@@ -1,0 +1,4 @@
+#!/bin/bash
+# vault-search — Obsidian 볼트 시맨틱 검색 래퍼
+cd "$(dirname "$0")"
+python3 search.py "$@"
