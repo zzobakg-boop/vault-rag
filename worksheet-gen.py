@@ -533,7 +533,10 @@ function submitResult(){{
   .then(()=>{{
     document.getElementById('submitBtn').textContent='✅ 제출 완료';
     document.getElementById('submitBtn').classList.add('btn-submitted');
-    document.getElementById('submitBtn').disabled=true;
+    setTimeout(()=>{{
+      document.getElementById('submitBtn').textContent='📤 재제출';
+      document.getElementById('submitBtn').classList.remove('btn-submitted');
+    }}, 2000);
   }})
   .catch(e=>alert('제출 실패: '+e));
 }}
