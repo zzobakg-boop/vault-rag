@@ -270,7 +270,7 @@ def inline(text):
     return ''.join(result)
 
 
-def generate_html(title, content, total, total_ox):
+def generate_html(title, content, total, total_ox, submit_url=''):
     grand_total = total + total_ox
     return f'''<!DOCTYPE html>
 <html lang="ko">
@@ -342,6 +342,8 @@ blockquote {{
 .choice-btn.selected {{ background: #007aff; color: white; }}
 .choice-btn.correct {{ background: #34c759; color: white; border-color: #34c759; }}
 .choice-btn.wrong {{ background: #ff3b30; color: white; border-color: #ff3b30; }}
+.btn-submitted {{ background: #34c759 !important; cursor: default; }}
+.submit-msg {{ text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }}
 .essay-input {{
   width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
   padding: 10px; font-family: inherit; font-size: 0.93em;
@@ -387,6 +389,7 @@ blockquote {{
       <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
       <button class="btn btn-danger" onclick="reset()">초기화</button>
       <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
+      <button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>
     </div>
   </div>
   <div class="student-info">
@@ -509,6 +512,31 @@ allInputs.forEach((el,i)=>{{
     if(e.key==='Enter'){{e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}}
   }});
 }});
+// 제출
+const SUBMIT_URL='{submit_url}';
+function submitResult(){{
+  if(!SUBMIT_URL){{alert('제출 URL이 설정되지 않았습니다.');return;}}
+  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
+  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
+  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
+  if(!cls||!num||!name){{alert('반, 번호, 이름을 모두 입력해주세요.');return;}}
+  check(); // 먼저 채점
+  const bs=parseInt(document.getElementById('score').textContent);
+  const os=parseInt(document.getElementById('ox-score').textContent);
+  const ts=parseInt(document.getElementById('total-score').textContent);
+  const data={{
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts
+  }};
+  fetch(SUBMIT_URL,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'application/json'}},body:JSON.stringify(data)}})
+  .then(()=>{{
+    document.getElementById('submitBtn').textContent='✅ 제출 완료';
+    document.getElementById('submitBtn').classList.add('btn-submitted');
+    document.getElementById('submitBtn').disabled=true;
+  }})
+  .catch(e=>alert('제출 실패: '+e));
+}}
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
 </script>
@@ -518,7 +546,7 @@ loadProgress();
 
 def main():
     if len(sys.argv) < 3:
-        print("Usage: python3 worksheet-gen.py <개념편.md> <개념편_정답.md> [output.html]")
+        print("Usage: python3 worksheet-gen.py <개념편.md> <개념편_정답.md> [output.html] [submit_url]")
         sys.exit(1)
 
     blank_file = sys.argv[1]
@@ -538,7 +566,8 @@ def main():
     if total != len(answers):
         print(f"⚠️  빈칸({total})과 정답({len(answers)}) 수 불일치")
 
-    html = generate_html(title, content, total, total_ox)
+    submit_url = sys.argv[4] if len(sys.argv) > 4 else ''
+    html = generate_html(title, content, total, total_ox, submit_url)
 
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(html)
