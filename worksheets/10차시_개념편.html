@@ -68,6 +68,8 @@ blockquote {
 .choice-btn.selected { background: #007aff; color: white; }
 .choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
 .choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.btn-submitted { background: #34c759 !important; cursor: default; }
+.submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
 .essay-input {
   width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
   padding: 10px; font-family: inherit; font-size: 0.93em;
@@ -113,6 +115,7 @@ blockquote {
       <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
       <button class="btn btn-danger" onclick="reset()">초기화</button>
       <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
+      <button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>
     </div>
   </div>
   <div class="student-info">
@@ -372,10 +375,10 @@ blockquote {
 <br>
 <table>
 <tr><td>뉴스</td><td>관련 기관·지위</td><td>구체적 권한/역할</td></tr>
-<tr><td>A</td><td></td><td><div class="choice-group" data-id="tbl-1"><button class="choice-btn" onclick="selectChoice(this,'심의')" data-answer="공무원 임면권">심의</button><button class="choice-btn" onclick="selectChoice(this,'공무원 임면권')" data-answer="공무원 임면권">공무원 임면권</button><button class="choice-btn" onclick="selectChoice(this,'조약 체결권')" data-answer="공무원 임면권">조약 체결권</button></div></td></tr>
-<tr><td>B</td><td><div class="choice-group" data-id="tbl-2"><button class="choice-btn" onclick="selectChoice(this,'감사원')" data-answer="감사원">감사원</button><button class="choice-btn" onclick="selectChoice(this,'국무회의')" data-answer="감사원">국무회의</button><button class="choice-btn" onclick="selectChoice(this,'국가 원수')" data-answer="감사원">국가 원수</button></div></td><td></td></tr>
-<tr><td>C</td><td><div class="choice-group" data-id="tbl-3"><button class="choice-btn" onclick="selectChoice(this,'국가 원수')" data-answer="국가 원수">국가 원수</button><button class="choice-btn" onclick="selectChoice(this,'국무회의')" data-answer="국가 원수">국무회의</button><button class="choice-btn" onclick="selectChoice(this,'감사원')" data-answer="국가 원수">감사원</button></div></td><td><div class="choice-group" data-id="tbl-4"><button class="choice-btn" onclick="selectChoice(this,'조약 체결권')" data-answer="조약 체결권">조약 체결권</button><button class="choice-btn" onclick="selectChoice(this,'심의')" data-answer="조약 체결권">심의</button><button class="choice-btn" onclick="selectChoice(this,'공무원 임면권')" data-answer="조약 체결권">공무원 임면권</button></div></td></tr>
-<tr><td>D</td><td><div class="choice-group" data-id="tbl-5"><button class="choice-btn" onclick="selectChoice(this,'국무회의')" data-answer="국무회의">국무회의</button><button class="choice-btn" onclick="selectChoice(this,'감사원')" data-answer="국무회의">감사원</button><button class="choice-btn" onclick="selectChoice(this,'국가 원수')" data-answer="국무회의">국가 원수</button></div></td><td><div class="choice-group" data-id="tbl-6"><button class="choice-btn" onclick="selectChoice(this,'심의')" data-answer="심의">심의</button><button class="choice-btn" onclick="selectChoice(this,'조약 체결권')" data-answer="심의">조약 체결권</button><button class="choice-btn" onclick="selectChoice(this,'공무원 임면권')" data-answer="심의">공무원 임면권</button></div></td></tr>
+<tr><td>A</td><td></td><td><div class="choice-group" data-id="tbl-1"><button class="choice-btn" onclick="selectChoice(this,'공무원 임면권')" data-answer="공무원 임면권">공무원 임면권</button><button class="choice-btn" onclick="selectChoice(this,'심의')" data-answer="공무원 임면권">심의</button><button class="choice-btn" onclick="selectChoice(this,'조약 체결권')" data-answer="공무원 임면권">조약 체결권</button></div></td></tr>
+<tr><td>B</td><td><div class="choice-group" data-id="tbl-2"><button class="choice-btn" onclick="selectChoice(this,'국무회의')" data-answer="감사원">국무회의</button><button class="choice-btn" onclick="selectChoice(this,'감사원')" data-answer="감사원">감사원</button><button class="choice-btn" onclick="selectChoice(this,'국가 원수')" data-answer="감사원">국가 원수</button></div></td><td></td></tr>
+<tr><td>C</td><td><div class="choice-group" data-id="tbl-3"><button class="choice-btn" onclick="selectChoice(this,'감사원')" data-answer="국가 원수">감사원</button><button class="choice-btn" onclick="selectChoice(this,'국무회의')" data-answer="국가 원수">국무회의</button><button class="choice-btn" onclick="selectChoice(this,'국가 원수')" data-answer="국가 원수">국가 원수</button></div></td><td><div class="choice-group" data-id="tbl-4"><button class="choice-btn" onclick="selectChoice(this,'공무원 임면권')" data-answer="조약 체결권">공무원 임면권</button><button class="choice-btn" onclick="selectChoice(this,'심의')" data-answer="조약 체결권">심의</button><button class="choice-btn" onclick="selectChoice(this,'조약 체결권')" data-answer="조약 체결권">조약 체결권</button></div></td></tr>
+<tr><td>D</td><td><div class="choice-group" data-id="tbl-5"><button class="choice-btn" onclick="selectChoice(this,'감사원')" data-answer="국무회의">감사원</button><button class="choice-btn" onclick="selectChoice(this,'국무회의')" data-answer="국무회의">국무회의</button><button class="choice-btn" onclick="selectChoice(this,'국가 원수')" data-answer="국무회의">국가 원수</button></div></td><td><div class="choice-group" data-id="tbl-6"><button class="choice-btn" onclick="selectChoice(this,'조약 체결권')" data-answer="심의">조약 체결권</button><button class="choice-btn" onclick="selectChoice(this,'공무원 임면권')" data-answer="심의">공무원 임면권</button><button class="choice-btn" onclick="selectChoice(this,'심의')" data-answer="심의">심의</button></div></td></tr>
 </table>
 <br>
 <h3>📝 심화 분석</h3>
@@ -392,7 +395,7 @@ blockquote {
 <br>
 <table>
 <tr><td>구분</td><td>감사원</td><td>국회 국정 감사</td></tr>
-<tr><td>소속</td><td><div class="choice-group" data-id="tbl-7"><button class="choice-btn" onclick="selectChoice(this,'행정부')" data-answer="행정부">행정부</button><button class="choice-btn" onclick="selectChoice(this,'수시·정기')" data-answer="행정부">수시·정기</button></div></td><td><div class="choice-group" data-id="tbl-8"><button class="choice-btn" onclick="selectChoice(this,'1회')" data-answer="입법부(국회)">1회</button><button class="choice-btn" onclick="selectChoice(this,'입법부(국회)')" data-answer="입법부(국회)">입법부(국회)</button></div></td></tr>
+<tr><td>소속</td><td><div class="choice-group" data-id="tbl-7"><button class="choice-btn" onclick="selectChoice(this,'수시·정기')" data-answer="행정부">수시·정기</button><button class="choice-btn" onclick="selectChoice(this,'행정부')" data-answer="행정부">행정부</button></div></td><td><div class="choice-group" data-id="tbl-8"><button class="choice-btn" onclick="selectChoice(this,'1회')" data-answer="입법부(국회)">1회</button><button class="choice-btn" onclick="selectChoice(this,'입법부(국회)')" data-answer="입법부(국회)">입법부(국회)</button></div></td></tr>
 <tr><td>목적</td><td></td><td></td></tr>
 <tr><td>시행 횟수</td><td><div class="choice-group" data-id="tbl-9"><button class="choice-btn" onclick="selectChoice(this,'행정부')" data-answer="수시·정기">행정부</button><button class="choice-btn" onclick="selectChoice(this,'수시·정기')" data-answer="수시·정기">수시·정기</button></div></td><td><div class="choice-group" data-id="tbl-10"><button class="choice-btn" onclick="selectChoice(this,'1회')" data-answer="1회">1회</button><button class="choice-btn" onclick="selectChoice(this,'입법부(국회)')" data-answer="1회">입법부(국회)</button></div></td></tr>
 </table>
@@ -596,6 +599,31 @@ allInputs.forEach((el,i)=>{
     if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
   });
 });
+// 제출
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwSNsUeMNqh3UTi_4avMl4SzTnMWEmB_RzHI6hvazUqb4n7SSiabxfhkL1V5Cih1Ke5mw/exec';
+function submitResult(){
+  if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
+  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
+  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
+  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
+  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요.');return;}
+  check(); // 먼저 채점
+  const bs=parseInt(document.getElementById('score').textContent);
+  const os=parseInt(document.getElementById('ox-score').textContent);
+  const ts=parseInt(document.getElementById('total-score').textContent);
+  const data={
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts
+  };
+  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(()=>{
+    document.getElementById('submitBtn').textContent='✅ 제출 완료';
+    document.getElementById('submitBtn').classList.add('btn-submitted');
+    document.getElementById('submitBtn').disabled=true;
+  })
+  .catch(e=>alert('제출 실패: '+e));
+}
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
 </script>
