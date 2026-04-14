@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏛️ 8차시 — 법을 만드는 국회 (개념편)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
+  background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
+}
+.container {
+  max-width: 800px; margin: 0 auto; background: white;
+  border-radius: 16px; padding: 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
+h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
+h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
+p { margin: 5px 0; font-size: 0.95em; }
+hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
+}
+td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
+tr:first-child td { background: #f0f4ff; font-weight: 600; }
+blockquote {
+  border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
+  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
+}
+.callout {
+  padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
+}
+.callout-info { background: #e8f4fd; border-left: 4px solid #007aff; }
+.callout-warning { background: #fff8e1; border-left: 4px solid #ff9500; }
+.callout-tip { background: #e8f8e8; border-left: 4px solid #34c759; }
+.callout-question { background: #f3e8fd; border-left: 4px solid #af52de; }
+.code-block {
+  background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px;
+  font-family: 'SF Mono', monospace; font-size: 0.82em;
+  overflow-x: auto; margin: 10px 0; white-space: pre;
+}
+.blank-input {
+  border: none; border-bottom: 2px solid #007aff; background: #f8f9ff;
+  padding: 3px 6px; font-size: 0.93em; font-family: inherit;
+  text-align: center; border-radius: 4px 4px 0 0; outline: none;
+  transition: all 0.3s;
+}
+.blank-input:focus { border-bottom-color: #5856d6; background: #f0f0ff; }
+.blank-input.correct { border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.blank-input.wrong { border-bottom-color: #ff3b30; background: #fff0f0; }
+.ox-input {
+  border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
+  font-family: inherit; border-radius: 4px; outline: none;
+  transition: all 0.3s;
+}
+.ox-input.correct { border-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.ox-input.wrong { border-color: #ff3b30; background: #fff0f0; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 4px; }
+.choice-btn {
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}
+.choice-btn:hover { background: #f0f4ff; }
+.choice-btn.selected { background: #007aff; color: white; }
+.choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.essay-input {
+  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
+  padding: 10px; font-family: inherit; font-size: 0.93em;
+  resize: vertical; margin: 6px 0; outline: none;
+}
+.essay-input:focus { border-color: #007aff; }
+.control-bar {
+  position: sticky; top: 0; background: white; padding: 10px 0;
+  border-bottom: 1px solid #eee; margin: -16px 0 16px; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.score { font-size: 1.1em; font-weight: 600; color: #007aff; }
+.btn {
+  padding: 7px 16px; border: none; border-radius: 8px;
+  font-size: 0.88em; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: #007aff; color: white; }
+.btn-secondary { background: #f0f0f5; color: #333; }
+.btn-danger { background: #ff3b30; color: white; }
+.student-info {
+  display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.student-info input {
+  border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
+}
+@media (max-width: 600px) {
+  .container { padding: 14px; }
+  .control-bar { flex-direction: column; text-align: center; }
+  table { font-size: 0.82em; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="control-bar">
+    <div class="score">
+      빈칸: <span id="score">0</span>/5 · OX: <span id="ox-score">0</span>/0
+      · 총: <span id="total-score">0</span>/5 (<span id="pct">0</span>%)
+    </div>
+    <div>
+      <button class="btn btn-primary" onclick="check()">채점하기</button>
+      <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
+      <button class="btn btn-danger" onclick="reset()">초기화</button>
+      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
+    </div>
+  </div>
+  <div class="student-info">
+    <input type="text" placeholder="반">
+    <input type="text" placeholder="번호">
+    <input type="text" placeholder="이름">
+  </div>
+  <br>
+<h1>🏛️ 8차시 — 법을 만드는 국회 (개념편)</h1>
+<br>
+<br>
+<hr>
+<br>
+<h2>STEP 0. ★ "이번 시간에는..."</h2>
+<br>
+<p>이번 단원에서는 우리나라 국가 기관 중 '<strong>국회</strong>'에 대해 배웁니다. 국회가 하는 일이 무엇인지, 법은 어떤 과정을 거쳐 만들어지는지 함께 알아봅시다.</p>
+<br>
+<h3>💡 학습 목표</h3>
+<p>- 국회가 입법 기관으로서 하는 일을 설명할 수 있다</p>
+<p>- 법률 제정 과정을 순서대로 말할 수 있다</p>
+<p>- 국회의 국정 견제 기능을 실제 사례와 연결해 설명할 수 있다</p>
+<br>
+<h3>🎯 미션 상황</h3>
+<br>
+<blockquote><strong>우리 반이 제안한 법안: 학교 스마트폰 보관함 의무 설치법</strong></blockquote>
+<p>></p>
+<blockquote>🤔 이 법안이 실제 법률이 되려면 어떤 과정을 거쳐야 할까?</blockquote>
+<blockquote>🤔 국회는 이 법안을 어떻게 검토하고 결정할까?</blockquote>
+<br>
+<p><strong>Step 1. 기본 탐색</strong></p>
+<br>
+<p>1) 교과서에서 '입법권'이 무엇인지 찾아 써 보기</p>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<p>2) 이 법안과 가장 먼저 연결되는 국회의 권한은?</p>
+<p>(                   )</p>
+<br>
+<p>3) 이 법안을 다룰 가능성이 큰 국회 조직은?</p>
+<p>(                    )</p>
+<br>
+<p><strong>Step 2. 과정 이해</strong></p>
+<br>
+<p>4) 교과서에서 법안 처리 과정과 관련된 핵심어 3개 찾기</p>
+<p>- ① (                    ) ② (                    ) ③ (                    )</p>
+<br>
+<p>5) 교과서 p.35에서 법률 제정 과정과 가장 가까운 문장 1개 옮기기</p>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<p>6) 위 문장을 내 말로 쉽게 바꿔 써 보기</p>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<p><strong>Step 3. 흐름 파악</strong></p>
+<br>
+<p>7) 법안이 법률이 되는 흐름을 4단계로 써 보기</p>
+<p>(                    ) → (                    ) → (                    ) → (                    )</p>
+<br>
+<p><strong>Step 4. 본질 이해</strong></p>
+<br>
+<p>8) 이 법안을 바로 국민투표로 정하지 않고 국회가 맡는 이유를 2줄로 써 보기</p>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<div class="callout callout-tip"><strong>STEP 0 한 줄 결론</strong></div>
+<blockquote><strong>국회는 국민이 뽑은 대표가 전문적으로 법안을 심의·의결하는 입법 기관이다.</strong></blockquote>
+<br>
+<hr>
+<br>
+<h2>1. ★ 오늘의 고급 단어</h2>
+<br>
+<table>
+<tr><td>단어</td><td>뜻</td><td>보충 설명</td></tr>
+<tr><td><strong>입법권</strong></td><td>법을 (                    ) 권한</td><td>국회만이 가지는 법률을 만들 수 있는 권한</td></tr>
+<tr><td><strong>의회주의</strong></td><td>국가의 중요한 의사를 (                    )가 결정하는 원리</td><td>국민이 뽑은 대표들이 모여 토론하고 결정하는 민주주의 원리</td></tr>
+<tr><td><strong>삼권분립</strong></td><td>권력을 입법·행정·(                    )으로 나누는 것</td><td>한 곳에 권력이 집중되면 독재가 되니까 세 곳으로 나눠서 서로 견제하게 하는 것</td></tr>
+<tr><td><strong>사법권</strong></td><td>(                    )을 해석하고 적용하는 권한</td><td>법을 어겼는지 재판하고 판결하는 권한 (법원이 담당)</td></tr>
+<tr><td><strong>국정 감사권</strong></td><td>국정 (                    )을 정기적으로 검사하는 권한</td><td>국회가 정부 기관의 일을 1년에 한 번 정기적으로 점검하는 것</td></tr>
+<tr><td><strong>탄핵 소추권</strong></td><td>고위 공무원의 헌법·법률 위반 시 (                    )를 의결하는 권한</td><td>대통령 등이 헌법/법률을 어겼을 때 국회가 '재판해 달라'고 헌법재판소에 요청하는 것</td></tr>
+</table>
+<br>
+<div class="callout callout-info"><strong>💡 의회주의란?</strong></div>
+<blockquote><strong>옛날</strong>: 왕 혼자서 나라의 모든 법을 만들고 결정했습니다.</blockquote>
+<blockquote><strong>지금</strong>: 국민이 직접 뽑은 대표들(국회의원)이 모여서 토론하고 법을 만듭니다.</blockquote>
+<p>></p>
+<blockquote>이것이 의회주의의 핵심입니다. 국회의원이 국민의 뜻을 대신 전달하기 때문에 <strong>대의 민주주의</strong>라고도 합니다.</blockquote>
+<p>></p>
+<blockquote><strong>예시</strong>: 우리 반에서 반장이 학급 회의를 통해 결정하는 것과 같은 원리입니다.</blockquote>
+<br>
+<div class="callout callout-warning"><strong>🔍 사법·국정 감사·탄핵 소추가 헷갈린다면?</strong></div>
+<blockquote>- <strong>사법</strong>: 법을 어겼는지 <strong>재판</strong>하는 일 (법원)</blockquote>
+<blockquote>- <strong>국정 감사</strong>: 정부가 일을 제대로 하는지 <strong>점검</strong>하는 일 (국회)</blockquote>
+<blockquote>- <strong>탄핵 소추</strong>: 고위 공무원이 헌법을 어겼을 때 '<strong>재판해 달라</strong>'고 요청하는 일 (국회 → 헌법재판소)</blockquote>
+<br>
+<hr>
+<br>
+<h2>2. ★★ 국회는 왜 필요한가?</h2>
+<br>
+<table>
+<tr><td>질문</td><td>답</td></tr>
+<tr><td>국회가 맡는 국가 권력</td><td>(                    )권</td></tr>
+<tr><td>헌법 제40조</td><td>입법권은 (                    )에 속한다</td></tr>
+<tr><td>의회주의</td><td>국민이 선출한 (                    )가 국가의 중요한 의사를 결정</td></tr>
+<tr><td>삼권분립의 목적</td><td>권력의 (                    )을 막기 위해</td></tr>
+</table>
+<br>
+<div class="callout callout-warning"><strong>핵심 이해!</strong></div>
+<blockquote><strong>Q</strong>: 왜 국민이 직접 법을 만들지 않고 국회를 둘까?</blockquote>
+<p>></p>
+<blockquote><strong>A</strong>:</blockquote>
+<blockquote>- <strong>전문성</strong>: 법을 만들려면 복잡한 지식이 필요함</blockquote>
+<blockquote>- <strong>효율성</strong>: 5천만 명이 모두 모여 토론할 수 없음</blockquote>
+<blockquote>- <strong>책임성</strong>: 국회의원은 국민이 뽑았으므로 잘못하면 선거에서 떨어짐</blockquote>
+<p>></p>
+<blockquote><strong>결론</strong>: 국회는 <strong>국민의 대표가 전문적으로 법을 만드는 입법 기관</strong>이다.</blockquote>
+<br>
+<hr>
+<br>
+<h2>3. ★★ 국회의 구성과 운영</h2>
+<br>
+<h3>📊 국회 구성 기본 정보</h3>
+<br>
+<table>
+<tr><td>항목</td><td>내용</td></tr>
+<tr><td>구성원</td><td>국민이 직접 선출한 국회 의원</td></tr>
+<tr><td>임기</td><td>(                    )년</td></tr>
+<tr><td>의원 정수</td><td>(                    )인 이상 (현재 300명)</td></tr>
+<tr><td>선출 방식</td><td>(                    ) 의원 + (                    ) 대표 의원</td></tr>
+</table>
+<br>
+<h3>🗳️ 선출방식별 의원 수 (2024년 기준)</h3>
+<br>
+<table>
+<tr><td>선출 방식</td><td>의원 수</td><td>선출 방법</td></tr>
+<tr><td><strong>지역구 의원</strong></td><td>(                    )명</td><td>각 지역(선거구)에서 1명씩 선출</td></tr>
+<tr><td><strong>비례대표 의원</strong></td><td>(                    )명</td><td>정당 득표율에 비례해 배분</td></tr>
+<tr><td><strong>총합</strong></td><td><strong>300명</strong></td><td>지역구 254명 + 비례대표 46명</td></tr>
+</table>
+<br>
+<div class="callout callout-info"><strong>💡 지역구 vs 비례대표 의원의 차이는?</strong></div>
+<blockquote>- <strong>지역구 의원</strong>: 우리 동네(광산구 을)를 대표하는 의원</blockquote>
+<blockquote>- <strong>비례대표 의원</strong>: 특정 지역이 아닌 전국을 대상으로 정당이 추천한 의원</blockquote>
+<p>></p>
+<blockquote><strong>예시</strong>: 광산구에 사는 학생은 '광산구 을 지역구 의원'과 '○○당 비례대표 의원'을 모두 뽑습니다.</blockquote>
+<br>
+<h3>🏛️ 국회 운영 원리</h3>
+<br>
+<table>
+<tr><td>운영 원리</td><td>설명</td></tr>
+<tr><td><strong>1단계</strong>: (                    ) 중심 심의</td><td>분야별 전문가들이 모여 꼼꼼히 검토</td></tr>
+<tr><td><strong>2단계</strong>: (                    )에서 최종 의결</td><td>전체 국회의원이 모여 최종 결정</td></tr>
+</table>
+<br>
+<div class="callout callout-question"><strong>🤔 왜 위원회를 거쳐야 할까?</strong></div>
+<p>></p>
+<blockquote><strong>상황</strong>: 국회에서 다루는 법안은 매년 수천 개. 분야도 교육·경제·외교·국방 등 매우 다양함.</blockquote>
+<p>></p>
+<blockquote><strong>문제점</strong>: 300명 전체가 모든 법안을 자세히 검토하기는 불가능</blockquote>
+<p>></p>
+<blockquote><strong>해결책</strong>: 분야별 전문가들이 모인 위원회에서 먼저 깊이 있게 검토</blockquote>
+<p>></p>
+<blockquote><strong>위원회가 필요한 이유 2가지 써 보기</strong></blockquote>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<hr>
+<br>
+<h2>4. ★★★ 법은 어떻게 만들어질까?</h2>
+<br>
+<pre class="code-block">
+법률안 제출
+
+   ↓
+
+(　　　　　　) 회부
+
+   ↓
+
+상임위원회 (　　　　　　)
+
+   ↓
+
+본회의 (　　　　　　)
+
+   ↓
+
+대통령 (　　　　　　)
+
+   ↓
+
+공포 후 (　　　　　　)일 뒤 시행
+
+</pre>
+<br>
+<div class="callout callout-tip"><strong>기억!</strong></div>
+<blockquote>대통령이 거부권을 행사하면 국회에 (　　　　　　)가 요구된다.</blockquote>
+<br>
+<hr>
+<br>
+<h2>5. ★ 국회의 기능 정리</h2>
+<br>
+<table>
+<tr><td>기능</td><td>핵심 내용</td><td>예시</td></tr>
+<tr><td><strong>입법 기능</strong></td><td></td><td>학교폭력예방법 개정</td></tr>
+<tr><td><strong>재정 기능</strong></td><td></td><td>내년도 정부 예산안 심의</td></tr>
+<tr><td><strong>국정 견제 기능</strong></td><td></td><td>감사, 조사, 탄핵</td></tr>
+</table>
+<br>
+<h3>📋 사례 연결</h3>
+<br>
+<p>다음 상황들을 국회의 어떤 기능/권한과 연결할 수 있는지 생각해 보세요.</p>
+<br>
+<table>
+<tr><td>사례</td><td>관련 국회 기능/권한</td></tr>
+<tr><td>정부가 제출한 내년도 예산안을 검토한다</td><td><div class="choice-group" data-id="tbl-1"><button class="choice-btn" onclick="selectChoice(this,'(입법 기능)')" data-answer="(재정 기능)">(입법 기능)</button><button class="choice-btn" onclick="selectChoice(this,'(재정 기능)')" data-answer="(재정 기능)">(재정 기능)</button><button class="choice-btn" onclick="selectChoice(this,'(국정 견제 기능)')" data-answer="(재정 기능)">(국정 견제 기능)</button></div></td></tr>
+<tr><td>정부 부처의 예산 낭비 의혹을 조사한다</td><td><div class="choice-group" data-id="tbl-2"><button class="choice-btn" onclick="selectChoice(this,'(입법 기능)')" data-answer="(국정 견제 기능)">(입법 기능)</button><button class="choice-btn" onclick="selectChoice(this,'(국정 견제 기능)')" data-answer="(국정 견제 기능)">(국정 견제 기능)</button><button class="choice-btn" onclick="selectChoice(this,'(재정 기능)')" data-answer="(국정 견제 기능)">(재정 기능)</button></div></td></tr>
+<tr><td>새로운 법안을 본회의에서 표결한다</td><td><div class="choice-group" data-id="tbl-3"><button class="choice-btn" onclick="selectChoice(this,'(입법 기능)')" data-answer="(입법 기능)">(입법 기능)</button><button class="choice-btn" onclick="selectChoice(this,'(국정 견제 기능)')" data-answer="(입법 기능)">(국정 견제 기능)</button><button class="choice-btn" onclick="selectChoice(this,'(재정 기능)')" data-answer="(입법 기능)">(재정 기능)</button></div></td></tr>
+<tr><td>고위 공무원의 헌법 위반에 대해 탄핵을 의결한다</td><td><div class="choice-group" data-id="tbl-4"><button class="choice-btn" onclick="selectChoice(this,'(국정 견제 기능)')" data-answer="(국정 견제 기능)">(국정 견제 기능)</button><button class="choice-btn" onclick="selectChoice(this,'(재정 기능)')" data-answer="(국정 견제 기능)">(재정 기능)</button><button class="choice-btn" onclick="selectChoice(this,'(입법 기능)')" data-answer="(국정 견제 기능)">(입법 기능)</button></div></td></tr>
+<tr><td>교육부가 예산을 제대로 사용했는지 1년에 한 번 점검한다</td><td><div class="choice-group" data-id="tbl-5"><button class="choice-btn" onclick="selectChoice(this,'(입법 기능)')" data-answer="(국정 견제 기능)">(입법 기능)</button><button class="choice-btn" onclick="selectChoice(this,'(국정 견제 기능)')" data-answer="(국정 견제 기능)">(국정 견제 기능)</button><button class="choice-btn" onclick="selectChoice(this,'(재정 기능)')" data-answer="(국정 견제 기능)">(재정 기능)</button></div></td></tr>
+</table>
+<br>
+<div class="callout callout-tip"><strong>💡 기능별 핵심 키워드</strong></div>
+<blockquote>- <strong>입법</strong>: 제정, 개정, 폐지</blockquote>
+<blockquote>- <strong>재정</strong>: 예산 심의, 결산 승인, 조세 법률</blockquote>
+<blockquote>- <strong>견제</strong>: 감사(정기), 조사(수시), 탄핵(위반 시)</blockquote>
+<br>
+<hr>
+<br>
+<h2>6. ★★ 적용·판단편</h2>
+<br>
+<h3>📰 뉴스 분석</h3>
+<br>
+<blockquote><strong>뉴스</strong>: "국회 교육위원회, 학교 폭력 예방법 개정안을 본회의에 상정"</blockquote>
+<br>
+<div class="callout callout-hint"><strong>🔍 생각 도움말</strong></div>
+<blockquote>이 사건의 배경에는 학교 폭력 문제 해결을 위한 법적 장치가 필요하다는 사회적 요구가 있습니다.</blockquote>
+<p>></p>
+<blockquote><strong>분석 포인트</strong>:</blockquote>
+<blockquote>- 교육위원회 → 본회의 흐름의 의미는?</blockquote>
+<blockquote>- 왜 위원회를 거쳐야 하는가?</blockquote>
+<blockquote>- 삼권분립에서 국회의 역할은?</blockquote>
+<br>
+<h3>📝 심화 분석 문제</h3>
+<br>
+<p>1) <strong>이 뉴스와 직접 연결되는 국회 운영 원리는?</strong></p>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<p>2) <strong>왜 본회의 전에 교육위원회에서 먼저 심의하는가? (2가지 이유)</strong></p>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<p>3) <strong>삼권분립 관점에서 국회의 역할을 2줄로 설명하기</strong></p>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<p>4) <strong>이 법안이 통과되어 시행되기까지 남은 과정은?</strong></p>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<div class="callout callout-question"><strong>🤔 더 생각해보기</strong></div>
+<blockquote><strong>만약 대통령이 이 법안에 거부권을 행사한다면?</strong></blockquote>
+<p>></p>
+<blockquote>국회는 어떻게 대응할 수 있을까요?</blockquote>
+<br>
+<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>
+<br>
+<hr>
+<br>
+<h2>7. ★★★ 한 방 정리</h2>
+<br>
+<pre class="code-block">
+🏛️ 국회 = 국민이 뽑은 대표가 법을 만드는 입법기관
+
+
+
+┌─ 📜 헌법적 위상
+
+│   ├ 입법권의 주체 (헌법 제40조 "입법권은 국회에 속한다")
+
+│   └ 의회주의 = 국민 대표가 토론과 합의로 결정
+
+│
+
+├─ 👥 구성과 임기
+
+│   ├ 국회의원 300명 이상 (현재 300명), 임기 4년
+
+│   └ 지역구 254명 + 비례대표 46명 (2024 기준)
+
+│
+
+├─ ⚙️ 운영 방식
+
+│   ├ 1단계: 위원회 심의 (분야별 전문 검토)
+
+│   └ 2단계: 본회의 의결 (전체 의원 최종 결정)
+
+│
+
+├─ 📋 입법 절차 (법안 → 법률)
+
+│   ├ 법률안 제출 → 위원회 회부 → 상임위 심의 → 본회의 의결
+
+│   ├ → 대통령 공포 → 20일 후 시행
+
+│   └ (거부권 시: 재의결 = 재적 과반 출석, 출석 2/3 찬성)
+
+│
+
+├─ 🔧 3대 기능
+
+│   ├ ① 입법: 법률 제정·개정·폐지
+
+│   ├ ② 재정: 예산 심의·확정, 결산 승인
+
+│   └ ③ 국정 견제: 국정 감사(정기) / 조사(수시) / 탄핵 소추
+
+│
+
+└─ 💡 민주주의적 의미
+
+    ├ 삼권분립을 통해 권력 남용 방지
+
+    └ 국민의 뜻을 법률로 구현하는 대의기관
+
+</pre>
+<br>
+<div class="callout callout-tip"><strong>🎯 오늘의 한 줄</strong></div>
+<blockquote><strong>국회는 국민의 대표가 전문적 심의를 통해 법을 만들고, 예산을 심의하며, 정부를 견제하여 민주주의를 실현하는 기관이다.</strong></blockquote>
+<br>
+<h3>🔗 핵심 연결고리</h3>
+<br>
+<p>- <strong>민주주의</strong> ↔ 의회주의 ↔ <strong>국민 대표</strong></p>
+<p>- <strong>삼권분립</strong> ↔ 입법권 ↔ <strong>권력 견제</strong></p>
+<p>- <strong>전문성</strong> ↔ 위원회 시스템 ↔ <strong>효율적 심의</strong></p>
+<br>
+<hr>
+<br>
+<h2>✅ OX 확인</h2>
+<br>
+<table>
+<tr><td>#</td><td>문항</td><td>O/X</td></tr>
+<tr><td>1</td><td>입법권은 헌법에 따라 국회에 속한다.</td><td><input type="text" class="ox-input" data-answer="" placeholder="O/X" style="width:40px;text-align:center"></td></tr>
+<tr><td>2</td><td>삼권분립은 권력 집중을 강화하기 위한 제도이다.</td><td><input type="text" class="ox-input" data-answer="" placeholder="O/X" style="width:40px;text-align:center"></td></tr>
+<tr><td>3</td><td>국회 의원의 임기는 4년이다.</td><td><input type="text" class="ox-input" data-answer="" placeholder="O/X" style="width:40px;text-align:center"></td></tr>
+<tr><td>4</td><td>국회는 위원회에서만 의결하고 본회의는 열지 않는다.</td><td><input type="text" class="ox-input" data-answer="" placeholder="O/X" style="width:40px;text-align:center"></td></tr>
+<tr><td>5</td><td>예산안은 정부가 편성하고 국회가 심의·확정한다.</td><td><input type="text" class="ox-input" data-answer="" placeholder="O/X" style="width:40px;text-align:center"></td></tr>
+<tr><td>6</td><td>국정 감사권은 국회의 국정 견제 기능에 해당한다.</td><td><input type="text" class="ox-input" data-answer="" placeholder="O/X" style="width:40px;text-align:center"></td></tr>
+<tr><td>7</td><td>대통령이 거부권을 행사해도 국회는 다시 심사할 수 없다.</td><td><input type="text" class="ox-input" data-answer="" placeholder="O/X" style="width:40px;text-align:center"></td></tr>
+</table>
+</div>
+<script>
+const TB=5, TOX=0, GT=5;
+function selectChoice(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function norm(s){return s.replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+function check(){
+  let bc=0, oxc=0;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    const a=norm(el.dataset.answer), u=norm(el.value);
+    if(!u){el.classList.remove('correct','wrong');return;}
+    if(u===a||a.includes(u)&&u.length>=a.length*0.6){
+      el.classList.add('correct');el.classList.remove('wrong');bc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.ox-input').forEach(el=>{
+    const a=el.dataset.answer, u=el.value.trim().toUpperCase();
+    if(!u){el.classList.remove('correct','wrong');return;}
+    if(u===a){
+      el.classList.add('correct');el.classList.remove('wrong');oxc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');bc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.getElementById('score').textContent=bc;
+  document.getElementById('ox-score').textContent=oxc;
+  document.getElementById('total-score').textContent=bc+oxc;
+  document.getElementById('pct').textContent=Math.round((bc+oxc)/GT*100);
+}
+function reveal(){
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.ox-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.getElementById('score').textContent=TB;
+  document.getElementById('ox-score').textContent=TOX;
+  document.getElementById('total-score').textContent=GT;
+  document.getElementById('pct').textContent=100;
+}
+function reset(){
+  document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
+    el.value='';el.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
+  document.getElementById('score').textContent=0;
+  document.getElementById('ox-score').textContent=0;
+  document.getElementById('total-score').textContent=0;
+  document.getElementById('pct').textContent=0;
+}
+function saveProgress(){
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
+    data[el.dataset.id||el.dataset.answer]=el.value;
+  });
+  const info={
+    class:document.querySelector('.student-info input:nth-child(1)').value,
+    number:document.querySelector('.student-info input:nth-child(2)').value,
+    name:document.querySelector('.student-info input:nth-child(3)').value
+  };
+  localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()}));
+  alert('저장되었습니다! 다음에 이 페이지를 열면 자동으로 불러옵니다.');
+}
+function loadProgress(){
+  const saved=localStorage.getItem('ws_'+document.title);
+  if(!saved) return;
+  const {info,data}=JSON.parse(saved);
+  if(info){
+    const inputs=document.querySelectorAll('.student-info input');
+    if(info.class) inputs[0].value=info.class;
+    if(info.number) inputs[1].value=info.number;
+    if(info.name) inputs[2].value=info.name;
+  }
+  if(data){
+    document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
+      const key=el.dataset.id||el.dataset.answer;
+      if(data[key]) el.value=data[key];
+    });
+  }
+}
+// 모든 입력칸에서 Enter→다음칸 이동
+const allInputs=[...document.querySelectorAll('.blank-input,.ox-input')];
+allInputs.forEach((el,i)=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
+  });
+});
+// 페이지 로드 시 저장된 진행 불러오기
+loadProgress();
+</script>
+</body>
+</html>
