@@ -31,10 +31,36 @@ def extract_ox_answers(answer_file):
     return ox_answers
 
 
-def build_html_from_blank(blank_file, answers, ox_answers):
+def extract_table_answers(answer_file):
+    """정답 파일에서 테이블 셀 안 **답** 패턴을 행/열 단위로 추출"""
+    with open(answer_file, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+
+    tables = []  # list of list of rows, each row is list of cells
+    current_table = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith('|'):
+            if re.match(r'^\|[\s\-:|]+\|$', stripped):
+                continue  # separator
+            cells = [c.strip() for c in stripped.split('|')[1:-1]]
+            current_table.append(cells)
+        else:
+            if current_table:
+                tables.append(current_table)
+                current_table = []
+    if current_table:
+        tables.append(current_table)
+    return tables
+
+
+def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
     """개념편 파일을 읽고, 빈칸을 input으로 교체하여 HTML 생성"""
     with open(blank_file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
+
+    # 정답 파일의 테이블들도 읽기
+    answer_tables = extract_table_answers(answer_file)
 
     blank_pattern = re.compile(r'\(\s*[　\s]+\)')
     answer_idx = 0
@@ -49,6 +75,9 @@ def build_html_from_blank(blank_file, answers, ox_answers):
     in_table = False
     in_ox_table = False
     title = "학습지"
+    table_idx = -1  # 현재 처리 중인 테이블 인덱스
+    table_row_idx = 0  # 현재 테이블 내 행 인덱스
+    blank_table_count = 0  # 빈칸 테이블 수
 
     for line in lines:
         stripped = line.strip()
@@ -129,26 +158,82 @@ def build_html_from_blank(blank_file, answers, ox_answers):
             if not in_table:
                 html_parts.append('<table>')
                 in_table = True
+                table_idx += 1
+                table_row_idx = 0
             if re.match(r'^\|[\s\-:|]+\|$', stripped):
                 continue
             cells = [c.strip() for c in stripped.split('|')[1:-1]]
-            row_class = ''
-            # OX 문항: 마지막 셀이 비어있거나 전각 공백이면 O/X 입력칸으로
-            if in_table and len(cells) >= 3:
-                last = cells[-1].strip()
-                if last == '　' or last == '':
+
+            # 셀 내 전각 공백만 있는 칸 감지 (\u3000 = 전각 공백)
+            # strip 전 원본으로 빈칸 감지 (strip()이 전각 공백을 제거하므로)
+            cells_raw = stripped.split('|')[1:-1]
+
+            def is_blank_cell_raw(c):
+                """전각 공백이나 일반 공백만으로 구성된 셀 (원본 기준)"""
+                return bool(re.match(r'^[\u3000\s]+$', c)) and len(c.strip('\u3000').strip()) == 0 and len(c) > 1
+
+            has_blank_cells = any(is_blank_cell_raw(c) for c in cells_raw[1:])  # 첫 셀 제외
+            # OX 판별: 마지막 셀만 비어있고, 다른 셀에 문장이 있으면 OX
+            is_ox = (len(cells_raw) >= 3
+                     and is_blank_cell_raw(cells_raw[-1])
+                     and not is_blank_cell_raw(cells_raw[1])
+                     and len(cells[1]) > 10)
+
+            if is_ox:
+                # OX 테이블 (먼저 체크)
+                if is_blank_cell_raw(cells_raw[-1]):
                     ox_answer = ''
                     if ox_idx < len(ox_answers):
                         ox_answer = ox_answers[ox_idx]['answer']
                         ox_idx += 1
                         total_ox += 1
                     cells[-1] = f'<input type="text" class="ox-input" data-answer="{ox_answer}" placeholder="O/X" style="width:40px;text-align:center">'
-                    in_ox_table = True
+
+            elif has_blank_cells:
+                # 보기 버튼 테이블: 정답 파일에서 같은 테이블/행의 정답 가져오기
+                answer_row = None
+                if table_idx < len(answer_tables) and table_row_idx < len(answer_tables[table_idx]):
+                    answer_row = answer_tables[table_idx][table_row_idx]
+
+                for ci in range(len(cells)):
+                    cell = cells[ci]
+                    if ci > 0 and ci < len(cells_raw) and is_blank_cell_raw(cells_raw[ci]):
+                        # 이 셀은 빈칸 → 보기 버튼으로 변환
+                        correct_answer = ''
+                        if answer_row and ci < len(answer_row):
+                            # 정답에서 **답** 추출
+                            m = re.search(r'\*\*(.+?)\*\*', answer_row[ci])
+                            if m:
+                                correct_answer = m.group(1)
+
+                        if correct_answer:
+                            # 같은 열의 모든 정답을 보기 옵션으로 수집
+                            options = set()
+                            for row in answer_tables[table_idx][1:]:  # 헤더 제외
+                                if ci < len(row):
+                                    m2 = re.search(r'\*\*(.+?)\*\*', row[ci])
+                                    if m2:
+                                        options.add(m2.group(1))
+                            options = list(options)
+                            import random
+                            random.shuffle(options)
+
+                            blank_table_count += 1
+                            btns = ''.join(
+                                f'<button class="choice-btn" onclick="selectChoice(this,\'{opt}\')" '
+                                f'data-answer="{correct_answer}">{opt}</button>'
+                                for opt in options
+                            )
+                            cells[ci] = f'<div class="choice-group" data-id="tbl-{blank_table_count}">{btns}</div>'
+                            total_blanks += 1
+
+            table_row_idx += 1
             html_parts.append('<tr>' + ''.join(f'<td>{inline(c)}</td>' for c in cells) + '</tr>')
         else:
             if in_table:
                 html_parts.append('</table>')
                 in_table = False
+                table_row_idx = 0
             # 콜아웃
             if stripped.startswith('> [!'):
                 match = re.match(r'> \[!(\w+)\]\s*(.*)', stripped)
@@ -247,6 +332,16 @@ blockquote {{
 }}
 .ox-input.correct {{ border-color: #34c759; background: #e8f8e8; color: #1a7a2e; }}
 .ox-input.wrong {{ border-color: #ff3b30; background: #fff0f0; }}
+.choice-group {{ display: flex; flex-wrap: wrap; gap: 4px; }}
+.choice-btn {{
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}}
+.choice-btn:hover {{ background: #f0f4ff; }}
+.choice-btn.selected {{ background: #007aff; color: white; }}
+.choice-btn.correct {{ background: #34c759; color: white; border-color: #34c759; }}
+.choice-btn.wrong {{ background: #ff3b30; color: white; border-color: #ff3b30; }}
 .essay-input {{
   width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
   padding: 10px; font-family: inherit; font-size: 0.93em;
@@ -303,6 +398,12 @@ blockquote {{
 </div>
 <script>
 const TB={total}, TOX={total_ox}, GT={grand_total};
+function selectChoice(btn, val){{
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}}
 function norm(s){{return s.replace(/\\s+/g,'').replace(/[·,.()（）\\[\\]]/g,'').toLowerCase();}}
 function check(){{
   let bc=0, oxc=0;
@@ -320,6 +421,18 @@ function check(){{
       el.classList.add('correct');el.classList.remove('wrong');oxc++;
     }}else{{el.classList.add('wrong');el.classList.remove('correct');}}
   }});
+  document.querySelectorAll('.choice-group').forEach(grp=>{{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){{
+        if(sel===ans){{btn.classList.add('correct');bc++;}}
+        else{{btn.classList.add('wrong');}}
+      }}
+    }});
+  }});
   document.getElementById('score').textContent=bc;
   document.getElementById('ox-score').textContent=oxc;
   document.getElementById('total-score').textContent=bc+oxc;
@@ -332,6 +445,14 @@ function reveal(){{
   document.querySelectorAll('.ox-input').forEach(el=>{{
     el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
   }});
+  document.querySelectorAll('.choice-group').forEach(grp=>{{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){{btn.classList.add('selected','correct');}}
+    }});
+    grp.dataset.selected=ans;
+  }});
   document.getElementById('score').textContent=TB;
   document.getElementById('ox-score').textContent=TOX;
   document.getElementById('total-score').textContent=GT;
@@ -341,6 +462,10 @@ function reset(){{
   document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{{
     el.value='';el.classList.remove('correct','wrong');
   }});
+  document.querySelectorAll('.choice-btn').forEach(b=>{{
+    b.classList.remove('selected','correct','wrong');
+  }});
+  document.querySelectorAll('.choice-group').forEach(g=>{{delete g.dataset.selected;}});
   document.querySelectorAll('.essay-input').forEach(el=>{{el.value='';}});
   document.getElementById('score').textContent=0;
   document.getElementById('ox-score').textContent=0;
@@ -407,7 +532,7 @@ def main():
     ox_answers = extract_ox_answers(answer_file)
     print(f"📋 추출된 정답: 빈칸 {len(answers)}개, OX {len(ox_answers)}개")
 
-    title, content, total, total_ox = build_html_from_blank(blank_file, answers, ox_answers)
+    title, content, total, total_ox = build_html_from_blank(blank_file, answers, ox_answers, answer_file)
     print(f"🔍 매칭된 빈칸: {total}개, OX: {total_ox}개")
 
     if total != len(answers):
