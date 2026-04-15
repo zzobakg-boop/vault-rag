@@ -196,7 +196,12 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
                         ox_answer = ox_answers[ox_idx]['answer']
                         ox_idx += 1
                         total_ox += 1
-                    cells[-1] = f'<input type="text" class="ox-input" data-answer="{ox_answer}" placeholder="O/X" style="width:40px;text-align:center">'
+                    cells[-1] = (
+                        f'<div class="ox-group" data-answer="{ox_answer}">'
+                        f'<button class="ox-btn" onclick="selectOX(this,\'O\')">O</button>'
+                        f'<button class="ox-btn" onclick="selectOX(this,\'X\')">X</button>'
+                        f'</div>'
+                    )
 
             elif has_blank_cells:
                 # 보기 버튼 테이블: 정답 파일에서 같은 테이블/행의 정답 가져오기
@@ -342,8 +347,16 @@ blockquote {{
   font-family: inherit; border-radius: 4px; outline: none;
   transition: all 0.3s;
 }}
-.ox-input.correct {{ border-color: #34c759; background: #e8f8e8; color: #1a7a2e; }}
-.ox-input.wrong {{ border-color: #ff3b30; background: #fff0f0; }}
+.ox-group {{ display: inline-flex; gap: 6px; }}
+.ox-btn {{
+  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; line-height: 1;
+}}
+.ox-btn:hover {{ background: #f0f4ff; }}
+.ox-btn.selected {{ background: #007aff; color: white; }}
+.ox-btn.correct {{ background: #34c759; color: white; border-color: #34c759; }}
+.ox-btn.wrong {{ background: #ff3b30; color: white; border-color: #ff3b30; }}
 .choice-group {{ display: flex; flex-wrap: wrap; gap: 4px; }}
 .choice-btn {{
   padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
@@ -413,6 +426,12 @@ blockquote {{
 </div>
 <script>
 const TB={total}, TOX={total_ox}, GT={grand_total};
+function selectOX(btn, val){{
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}}
 function selectChoice(btn, val){{
   const grp=btn.parentElement;
   grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
@@ -431,12 +450,16 @@ function check(){{
       if(!el.classList.contains('no-score')) bc++;
     }}else{{el.classList.add('wrong');el.classList.remove('correct');}}
   }});
-  document.querySelectorAll('.ox-input').forEach(el=>{{
-    const a=el.dataset.answer, u=el.value.trim().toUpperCase();
-    if(!u){{el.classList.remove('correct','wrong');return;}}
-    if(u===a){{
-      el.classList.add('correct');el.classList.remove('wrong');oxc++;
-    }}else{{el.classList.add('wrong');el.classList.remove('correct');}}
+  document.querySelectorAll('.ox-group').forEach(grp=>{{
+    const sel=grp.dataset.selected, ans=grp.dataset.answer;
+    if(!sel) return;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){{
+        if(sel===ans){{btn.classList.add('correct');oxc++;}}
+        else{{btn.classList.add('wrong');}}
+      }}
+    }});
   }});
   document.querySelectorAll('.choice-group').forEach(grp=>{{
     const sel=grp.dataset.selected;
@@ -459,8 +482,13 @@ function reveal(){{
   document.querySelectorAll('.blank-input').forEach(el=>{{
     el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
   }});
-  document.querySelectorAll('.ox-input').forEach(el=>{{
-    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  document.querySelectorAll('.ox-group').forEach(grp=>{{
+    const ans=grp.dataset.answer;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){{btn.classList.add('selected','correct');}}
+    }});
+    grp.dataset.selected=ans;
   }});
   document.querySelectorAll('.choice-group').forEach(grp=>{{
     const ans=grp.querySelector('.choice-btn').dataset.answer;
@@ -476,9 +504,13 @@ function reveal(){{
   document.getElementById('pct').textContent=100;
 }}
 function reset(){{
-  document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{{
+  document.querySelectorAll('.blank-input').forEach(el=>{{
     el.value='';el.classList.remove('correct','wrong');
   }});
+  document.querySelectorAll('.ox-btn').forEach(b=>{{
+    b.classList.remove('selected','correct','wrong');
+  }});
+  document.querySelectorAll('.ox-group').forEach(g=>{{delete g.dataset.selected;}});
   document.querySelectorAll('.choice-btn').forEach(b=>{{
     b.classList.remove('selected','correct','wrong');
   }});
@@ -520,7 +552,7 @@ function loadProgress(){{
   }}
 }}
 // 모든 입력칸에서 Enter→다음칸 이동
-const allInputs=[...document.querySelectorAll('.blank-input,.ox-input')];
+const allInputs=[...document.querySelectorAll('.blank-input')];
 allInputs.forEach((el,i)=>{{
   el.addEventListener('keydown',e=>{{
     if(e.key==='Enter'){{e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}}
