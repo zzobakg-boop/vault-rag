@@ -1,0 +1,31 @@
+name: 아침 브리핑
+on:
+  schedule:
+    - cron: '3 23 * * *'  # UTC 23:03 = KST 08:03
+  workflow_dispatch: # 수동 실행 가능
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Morning Briefing
+        uses: anthropics/claude-code-action@v1
+        with:
+          prompt: |
+            아침 브리핑을 수행해주세요.
+            1. WebSearch로 AI/교육 관련 최신 뉴스 3-5건을 수집하세요
+            2. 한국어로 요약해서 아래 형식으로 정리하세요:
+
+            ☀️ [날짜] 아침 브리핑
+            📌 AI 뉴스
+            1. [제목] — 한줄 요약
+            📌 교육 뉴스
+            1. [제목] — 한줄 요약
+            💡 교육 현장 관련 포인트
+
+            3. 결과를 GitHub Step Summary에 출력하세요
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          max_turns: 5

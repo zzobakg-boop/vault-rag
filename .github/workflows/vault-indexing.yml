@@ -1,0 +1,27 @@
+name: 볼트 인덱싱
+on:
+  schedule:
+    - cron: '17 */6 * * *'  # 6시간마다
+  workflow_dispatch:
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install chromadb ollama
+
+      - name: Run indexer
+        run: |
+          echo "⚠️ 볼트 인덱싱은 로컬 실행 전용입니다."
+          echo "Obsidian 볼트와 ollama가 로컬에 있어야 합니다."
+          echo "이 워크플로우는 로컬 세션이 살아있을 때 트리거용으로 사용됩니다."
+          echo "::notice::볼트 인덱싱은 로컬 macOS에서 실행해야 합니다."
