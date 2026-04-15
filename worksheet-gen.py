@@ -426,6 +426,7 @@ blockquote {{
 </div>
 <script>
 const TB={total}, TOX={total_ox}, GT={grand_total};
+let usedReveal=false;
 function selectOX(btn, val){{
   const grp=btn.parentElement;
   grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
@@ -479,6 +480,7 @@ function check(){{
   document.getElementById('pct').textContent=Math.round((bc+oxc)/GT*100);
 }}
 function reveal(){{
+  usedReveal=true;
   document.querySelectorAll('.blank-input').forEach(el=>{{
     el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
   }});
@@ -504,6 +506,7 @@ function reveal(){{
   document.getElementById('pct').textContent=100;
 }}
 function reset(){{
+  usedReveal=false;
   document.querySelectorAll('.blank-input').forEach(el=>{{
     el.value='';el.classList.remove('correct','wrong');
   }});
@@ -566,6 +569,7 @@ function submitResult(){{
   const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
   const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
   if(!cls||!num||!name){{alert('반, 번호, 이름을 모두 입력해주세요.');return;}}
+  if(usedReveal){{alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}}
   check(); // 먼저 채점
   const bs=parseInt(document.getElementById('score').textContent);
   const os=parseInt(document.getElementById('ox-score').textContent);
