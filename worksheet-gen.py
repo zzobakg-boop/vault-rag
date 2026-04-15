@@ -78,9 +78,16 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
     table_idx = -1  # 현재 처리 중인 테이블 인덱스
     table_row_idx = 0  # 현재 테이블 내 행 인덱스
     blank_table_count = 0  # 빈칸 테이블 수
+    in_step0 = False  # STEP 0 구간 (채점 제외)
 
     for line in lines:
         stripped = line.strip()
+
+        # STEP 0 구간 감지 (채점 제외 영역)
+        if re.match(r'^##\s+STEP\s*0', stripped):
+            in_step0 = True
+        elif in_step0 and re.match(r'^##\s+\d', stripped):
+            in_step0 = False  # 다음 ## 섹션이 시작되면 STEP 0 종료
 
         # 프론트매터
         if stripped == '---':
@@ -126,8 +133,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
                 if answer_idx < len(answers):
                     answer = answers[answer_idx]
                     input_width = max(len(answer) * 16 + 20, 60)
+                    extra_class = ' no-score' if in_step0 else ''
                     input_html = (
-                        f'<input type="text" class="blank-input" '
+                        f'<input type="text" class="blank-input{extra_class}" '
                         f'data-answer="{answer}" '
                         f'data-id="{answer_idx + 1}" '
                         f'style="width:{input_width}px" '
@@ -138,7 +146,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
                     new_line = new_line[:start] + input_html + new_line[end:]
                     offset += len(input_html) - (b.end() - b.start())
                     answer_idx += 1
-                    total_blanks += 1
+                    if not in_step0:
+                        total_blanks += 1
             line = new_line
 
         # 마크다운 → HTML
@@ -325,6 +334,9 @@ blockquote {{
 .blank-input:focus {{ border-bottom-color: #5856d6; background: #f0f0ff; }}
 .blank-input.correct {{ border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }}
 .blank-input.wrong {{ border-bottom-color: #ff3b30; background: #fff0f0; }}
+.blank-input.no-score {{ border-bottom-color: #aaa; }}
+.blank-input.no-score.correct {{ border-bottom-color: #34c759; }}
+.blank-input.no-score.wrong {{ border-bottom-color: #ff9500; }}
 .ox-input {{
   border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
   font-family: inherit; border-radius: 4px; outline: none;
@@ -413,8 +425,10 @@ function check(){{
   document.querySelectorAll('.blank-input').forEach(el=>{{
     const a=norm(el.dataset.answer), u=norm(el.value);
     if(!u){{el.classList.remove('correct','wrong');return;}}
-    if(u===a||a.includes(u)&&u.length>=a.length*0.6){{
-      el.classList.add('correct');el.classList.remove('wrong');bc++;
+    const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
+    if(isCorrect){{
+      el.classList.add('correct');el.classList.remove('wrong');
+      if(!el.classList.contains('no-score')) bc++;
     }}else{{el.classList.add('wrong');el.classList.remove('correct');}}
   }});
   document.querySelectorAll('.ox-input').forEach(el=>{{
