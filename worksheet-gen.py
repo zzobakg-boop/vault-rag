@@ -284,14 +284,15 @@ def inline(text):
     return ''.join(result)
 
 
-def generate_html(title, content, total, total_ox, submit_url=''):
+def generate_html(title, content, total, total_ox, submit_url='', mode='class'):
+    """mode: 'class' = 수업용(제출O, 정답보기X), 'review' = 복습용(제출X, 정답보기O)"""
     grand_total = total + total_ox
     return f'''<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title}</title>
+<title>{title}{' (복습용)' if mode == 'review' else ''}</title>
 <style>
 * {{ margin: 0; padding: 0; box-sizing: border-box; }}
 body {{
@@ -411,10 +412,10 @@ blockquote {{
     </div>
     <div>
       <button class="btn btn-primary" onclick="check()">채점하기</button>
-      <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
+      {'<button class="btn btn-secondary" onclick="reveal()">정답 보기</button>' if mode == 'review' else ''}
       <button class="btn btn-danger" onclick="reset()">초기화</button>
       <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
-      <button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>
+      {'<button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>' if mode == 'class' else ''}
     </div>
   </div>
   <div class="student-info">
@@ -620,12 +621,19 @@ def main():
         print(f"⚠️  빈칸({total})과 정답({len(answers)}) 수 불일치")
 
     submit_url = sys.argv[4] if len(sys.argv) > 4 else ''
-    html = generate_html(title, content, total, total_ox, submit_url)
 
+    # 수업용 (제출O, 정답보기X)
+    html_class = generate_html(title, content, total, total_ox, submit_url, mode='class')
     with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(html)
+        f.write(html_class)
+    print(f"✅ 수업용 생성: {output_file}")
 
-    print(f"✅ 생성 완료: {output_file}")
+    # 복습용 (제출X, 정답보기O)
+    review_file = output_file.replace('.html', '_복습용.html')
+    html_review = generate_html(title, content, total, total_ox, submit_url, mode='review')
+    with open(review_file, 'w', encoding='utf-8') as f:
+        f.write(html_review)
+    print(f"✅ 복습용 생성: {review_file}")
 
 
 if __name__ == '__main__':
