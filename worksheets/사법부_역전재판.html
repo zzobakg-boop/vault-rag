@@ -33,31 +33,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:#1a1a2e;color:#fff;min-hei
 /* 법정 배경 — 나무 패널 느낌 */
 .scene{padding:20px;min-height:220px;position:relative;display:flex;align-items:flex-end;gap:15px;background:linear-gradient(180deg,rgba(60,30,10,0.3),transparent)}
 
-/* CSS 캐릭터 */
-.character{text-align:center;flex-shrink:0;width:100px}
-.char-portrait{width:90px;height:110px;border-radius:8px;position:relative;overflow:hidden;border:3px solid #d4a017;box-shadow:0 4px 15px rgba(0,0,0,0.5)}
-.char-body{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;position:relative}
-/* 변호사 */
-.char-lawyer .char-body{background:linear-gradient(180deg,#e8d5b0 0%,#e8d5b0 35%,#1a3a6e 35%,#1a3a6e 60%,#fff 60%,#fff 62%,#1a3a6e 62%)}
-.char-lawyer .char-hair{position:absolute;top:5px;width:50px;height:30px;background:#2a1a0a;border-radius:50% 50% 0 0}
-.char-lawyer .char-eyes{position:absolute;top:22px;font-size:10px;letter-spacing:8px}
-.char-lawyer .char-tie{position:absolute;top:45%;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:10px solid #cc2222}
-/* 재판장 */
-.char-judge .char-body{background:linear-gradient(180deg,#d5c4a1 0%,#d5c4a1 35%,#1a1a1a 35%)}
-.char-judge .char-hair{position:absolute;top:2px;width:55px;height:25px;background:#888;border-radius:50% 50% 0 0}
-.char-judge .char-beard{position:absolute;top:30px;width:35px;height:15px;background:#888;border-radius:0 0 50% 50%}
-.char-judge .char-eyes{position:absolute;top:20px;font-size:10px;letter-spacing:8px}
-/* 검사 */
-.char-prosecutor .char-body{background:linear-gradient(180deg,#e0c8a0 0%,#e0c8a0 35%,#8b0000 35%,#8b0000 60%,#fff 60%,#fff 62%,#8b0000 62%)}
-.char-prosecutor .char-hair{position:absolute;top:3px;width:55px;height:28px;background:#4a0a0a;border-radius:40% 60% 0 0}
-.char-prosecutor .char-eyes{position:absolute;top:22px;font-size:10px;letter-spacing:8px}
-/* 증인 */
-.char-witness .char-body{background:linear-gradient(180deg,#e8d0b0 0%,#e8d0b0 35%,#555 35%)}
-.char-witness .char-hair{position:absolute;top:5px;width:45px;height:25px;background:#3a2a1a;border-radius:50%}
-.char-witness .char-eyes{position:absolute;top:22px;font-size:10px;letter-spacing:8px}
-/* 뉴스 */
-.char-news .char-body{background:linear-gradient(180deg,#334,#223);display:flex;align-items:center;justify-content:center}
-.char-news .char-body::after{content:'📺';font-size:3em}
+/* 캐릭터 (이모지 스타일) */
+.character{text-align:center;flex-shrink:0;width:90px}
+.char-portrait{width:80px;height:80px;border-radius:50%;border:3px solid #d4a017;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,0.5);margin:0 auto}
+.char-emoji{font-size:2.5em}
 
 .char-name{font-size:0.7em;margin-top:4px;color:#d4a017;font-weight:700}
 
@@ -197,16 +176,11 @@ function sfxGameover(){
   setTimeout(()=>playTone(200,0.5,'sawtooth',0.15),400);
 }
 
-// === 캐릭터 HTML ===
+// === 캐릭터 HTML (이모지 스타일) ===
 function charHTML(type, name){
-  const chars = {
-    judge: `<div class="char-portrait char-judge"><div class="char-body"><div class="char-hair"></div><div class="char-eyes">● ●</div><div class="char-beard"></div></div></div>`,
-    lawyer: `<div class="char-portrait char-lawyer"><div class="char-body"><div class="char-hair"></div><div class="char-eyes">● ●</div><div class="char-tie"></div></div></div>`,
-    prosecutor: `<div class="char-portrait char-prosecutor"><div class="char-body"><div class="char-hair"></div><div class="char-eyes">● ●</div></div></div>`,
-    witness: `<div class="char-portrait char-witness"><div class="char-body"><div class="char-hair"></div><div class="char-eyes">● ●</div></div></div>`,
-    news: `<div class="char-portrait char-news"><div class="char-body"></div></div>`
-  };
-  return `<div class="character">${chars[type]||chars.witness}<div class="char-name">${name}</div></div>`;
+  const emojis = {judge:'👨‍⚖️', lawyer:'👨‍💼', prosecutor:'👩‍⚖️', witness:'🕵️', news:'📺'};
+  const emoji = emojis[type] || '👤';
+  return `<div class="character"><div class="char-portrait"><div class="char-emoji">${emoji}</div></div><div class="char-name">${name}</div></div>`;
 }
 
 // === 게임 데이터 ===
