@@ -111,7 +111,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
                 html_parts.append('</pre>')
             continue
         if in_code:
-            # 코드블록 안에서도 빈칸 감지
+            # 코드블록 안의 빈칸은 정답을 직접 표시 (input 대신)
             blanks_in_code = list(blank_pattern.finditer(line))
             if blanks_in_code:
                 new_line = line
@@ -119,22 +119,13 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
                 for b in blanks_in_code:
                     if answer_idx < len(answers):
                         answer = answers[answer_idx]
-                        extra_class = ' no-score' if in_step0 else ''
-                        input_width = max(len(answer) * 16 + 20, 60)
-                        input_html = (
-                            f'</pre><input type="text" class="blank-input code-blank{extra_class}" '
-                            f'data-answer="{answer}" '
-                            f'data-id="{answer_idx + 1}" '
-                            f'style="width:{input_width}px" '
-                            f'placeholder=""><pre class="code-block" style="display:inline">'
-                        )
+                        # 정답을 강조 텍스트로 삽입 (빈칸 채점에서 제외)
+                        answer_text = f'【{answer}】'
                         start = b.start() + offset
                         end = b.end() + offset
-                        new_line = new_line[:start] + input_html + new_line[end:]
-                        offset += len(input_html) - (b.end() - b.start())
+                        new_line = new_line[:start] + answer_text + new_line[end:]
+                        offset += len(answer_text) - (b.end() - b.start())
                         answer_idx += 1
-                        if not in_step0:
-                            total_blanks += 1
                 html_parts.append(new_line.rstrip() + '\n')
             else:
                 html_parts.append(line.rstrip() + '\n')
