@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>⚖️ 역전재판: 사법부를 지켜라!</title>
+<title>⚖️ 역전재판: 사법부를 지켜라! v3</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -13,7 +13,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:#1a1a2e;color:#fff;min-hei
 .courtroom{background:linear-gradient(180deg,#2d1b4e 0%,#1a1a2e 50%,#0f0f23 100%);border:3px solid #8b6914;border-radius:12px;overflow:hidden;box-shadow:0 0 30px rgba(139,105,20,0.3)}
 
 /* 상단 바 */
-.topbar{background:linear-gradient(90deg,#8b6914,#d4a017,#8b6914);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:0.85em}
+.topbar{background:linear-gradient(90deg,#8b6914,#d4a017,#8b6914);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:0.85em;flex-wrap:wrap;gap:5px}
 .topbar .chapter{font-weight:700;color:#1a1a2e}
 .topbar .score-area{display:flex;gap:15px;align-items:center}
 .topbar .score{color:#1a1a2e;font-weight:700}
@@ -30,14 +30,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:#1a1a2e;color:#fff;min-hei
 .progress{height:4px;background:#333}
 .progress-bar{height:100%;background:#d4a017;transition:width 0.3s}
 
-/* 법정 배경 — 나무 패널 느낌 */
+/* 법정 배경 */
 .scene{padding:20px;min-height:220px;position:relative;display:flex;align-items:flex-end;gap:15px;background:linear-gradient(180deg,rgba(60,30,10,0.3),transparent)}
 
 /* 캐릭터 (이모지 스타일) */
 .character{text-align:center;flex-shrink:0;width:90px}
 .char-portrait{width:80px;height:80px;border-radius:50%;border:3px solid #d4a017;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,0.5);margin:0 auto}
 .char-emoji{font-size:2.5em}
-
 .char-name{font-size:0.7em;margin-top:4px;color:#d4a017;font-weight:700}
 
 /* 대사 박스 */
@@ -61,6 +60,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:#1a1a2e;color:#fff;min-hei
 .choice-btn.wrong{background:rgba(255,59,48,0.3);border-color:#ff3b30;color:#ff3b30}
 .choice-btn:disabled{cursor:default}
 
+/* 증거 선택 버튼 */
+.evidence-btn{display:block;width:100%;padding:12px 16px;margin:6px 0;background:rgba(100,50,150,0.2);border:2px solid #9b59b6;color:#fff;border-radius:8px;font-size:0.9em;cursor:pointer;text-align:left;transition:all 0.2s;font-family:'Noto Sans KR',sans-serif}
+.evidence-btn:hover{background:rgba(100,50,150,0.4);border-color:#bb77dd;transform:translateX(5px)}
+.evidence-btn.correct{background:rgba(52,199,89,0.3);border-color:#34c759;color:#34c759;font-weight:700}
+.evidence-btn.wrong{background:rgba(255,59,48,0.3);border-color:#ff3b30;color:#ff3b30}
+.evidence-btn:disabled{cursor:default}
+
 /* 결과 */
 .result{padding:15px 20px;text-align:center;font-size:0.9em}
 .result.correct-msg{color:#34c759}
@@ -70,6 +76,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:#1a1a2e;color:#fff;min-hei
 .nav{padding:10px 20px 20px;text-align:center}
 .btn-next{background:#d4a017;color:#1a1a2e;border:none;padding:12px 35px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s}
 .btn-next:hover{background:#e8b730;transform:scale(1.05)}
+
+/* 분기 선택 버튼 */
+.branch-btn{display:block;width:100%;padding:14px 16px;margin:8px 0;background:rgba(52,152,219,0.15);border:2px solid #3498db;color:#fff;border-radius:8px;font-size:0.95em;cursor:pointer;text-align:left;transition:all 0.2s;font-family:'Noto Sans KR',sans-serif}
+.branch-btn:hover{background:rgba(52,152,219,0.4);border-color:#5dade2;transform:translateX(5px)}
 
 /* 이의 있습니다 오버레이 */
 .objection-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(200,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column}
@@ -104,12 +114,61 @@ body{font-family:'Noto Sans KR',sans-serif;background:#1a1a2e;color:#fff;min-hei
 .timer-bar-bg{height:6px;background:#333;margin:0 20px;border-radius:3px;overflow:hidden}
 .timer-bar{height:100%;background:linear-gradient(90deg,#ff4444,#ffd93d,#34c759);border-radius:3px;transition:width 0.1s linear}
 
+/* === 증거 인벤토리 === */
+.evidence-panel{background:rgba(0,0,0,0.6);border-top:2px solid #9b59b6;padding:10px 16px;max-height:0;overflow:hidden;transition:max-height 0.3s ease}
+.evidence-panel.open{max-height:200px;overflow-y:auto}
+.evidence-toggle{background:linear-gradient(90deg,#9b59b6,#8e44ad);color:#fff;border:none;padding:6px 14px;font-size:0.8em;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;border-radius:4px;margin:8px 16px 0}
+.evidence-toggle:hover{background:linear-gradient(90deg,#bb77dd,#9b59b6)}
+.evidence-list{display:flex;flex-wrap:wrap;gap:6px;padding:6px 0}
+.evidence-tag{background:rgba(155,89,182,0.25);border:1px solid #9b59b6;border-radius:4px;padding:4px 10px;font-size:0.75em;color:#d9b3ff;cursor:default}
+.evidence-tag.new{animation:evidenceGlow 1s ease-out}
+@keyframes evidenceGlow{0%{box-shadow:0 0 15px #9b59b6;background:rgba(155,89,182,0.6)}100%{box-shadow:none;background:rgba(155,89,182,0.25)}}
+
+/* 증거 획득 알림 */
+.evidence-popup{position:fixed;top:20%;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#2d1b4e,#1a1a2e);border:2px solid #9b59b6;border-radius:12px;padding:20px 30px;z-index:90;text-align:center;animation:evidencePopIn 0.5s ease-out;box-shadow:0 0 40px rgba(155,89,182,0.5)}
+@keyframes evidencePopIn{0%{transform:translateX(-50%) scale(0) rotate(-10deg);opacity:0}60%{transform:translateX(-50%) scale(1.1) rotate(2deg)}100%{transform:translateX(-50%) scale(1) rotate(0);opacity:1}}
+.evidence-popup h3{color:#9b59b6;margin-bottom:8px;font-size:1.1em}
+.evidence-popup p{color:#d9b3ff;font-size:0.9em}
+
+/* === 뱃지 시스템 === */
+.badge-popup{position:fixed;top:15%;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#2d1b4e,#0f0f23);border:3px solid #d4a017;border-radius:16px;padding:25px 35px;z-index:95;text-align:center;animation:badgePopIn 0.6s ease-out;box-shadow:0 0 50px rgba(212,160,23,0.5)}
+@keyframes badgePopIn{0%{transform:translateX(-50%) scale(0) rotate(-15deg);opacity:0}50%{transform:translateX(-50%) scale(1.2) rotate(3deg)}100%{transform:translateX(-50%) scale(1) rotate(0);opacity:1}}
+.badge-popup .badge-icon{font-size:3em;margin-bottom:8px}
+.badge-popup h3{color:#d4a017;margin-bottom:5px}
+.badge-popup p{color:#ffd93d;font-size:0.85em}
+
+.badge-list{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0}
+.badge-item{background:rgba(212,160,23,0.15);border:2px solid #8b6914;border-radius:10px;padding:8px 12px;text-align:center;font-size:0.75em;min-width:80px}
+.badge-item .b-icon{font-size:1.5em;display:block;margin-bottom:3px}
+.badge-item .b-name{color:#d4a017;font-weight:700}
+.badge-item.locked{opacity:0.3;border-color:#444}
+
+/* === 용어사전 모달 === */
+.glossary-modal-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:200;display:none;align-items:center;justify-content:center}
+.glossary-modal-bg.show{display:flex}
+.glossary-modal{background:linear-gradient(180deg,#2d1b4e,#1a1a2e);border:3px solid #d4a017;border-radius:12px;padding:25px;max-width:400px;width:90%;max-height:70vh;overflow-y:auto;position:relative}
+.glossary-modal h3{color:#d4a017;font-size:1.2em;margin-bottom:10px;border-bottom:1px solid rgba(212,160,23,0.3);padding-bottom:8px}
+.glossary-modal p{color:#e0e0e0;font-size:0.9em;line-height:1.7}
+.glossary-modal .close-btn{position:absolute;top:10px;right:15px;background:none;border:none;color:#ff6b6b;font-size:1.5em;cursor:pointer}
+
+/* 용어사전 키워드 스타일 */
+.glossary-word{color:#ffd93d;font-weight:700;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer}
+.glossary-word:hover{color:#ffe77a;text-decoration-style:solid}
+
+/* 용어사전 버튼 */
+.btn-glossary{background:rgba(212,160,23,0.2);border:1px solid #8b6914;color:#d4a017;padding:4px 10px;border-radius:4px;font-size:0.75em;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-left:8px}
+.btn-glossary:hover{background:rgba(212,160,23,0.4)}
+
 @media(max-width:600px){
   .scene{flex-direction:column;align-items:center}
   .character{width:80px}
   .char-portrait{width:70px;height:85px}
   .btn-objection{font-size:1.1em;padding:14px 35px}
   .objection-text{font-size:2.5em}
+  .topbar{font-size:0.75em}
+  .hp-bar-bg{width:70px}
+  .badge-popup{padding:18px 22px;width:85%}
+  .evidence-popup{width:85%;padding:15px 20px}
 }
 </style>
 </head>
@@ -117,24 +176,38 @@ body{font-family:'Noto Sans KR',sans-serif;background:#1a1a2e;color:#fff;min-hei
 <div class="game" id="gameContainer">
 <div class="courtroom">
   <div class="topbar">
-    <span class="chapter">⚖️ 역전재판: 사법부를 지켜라!</span>
+    <span class="chapter">⚖️ 역전재판: 사법부를 지켜라! <span style="font-size:0.8em;opacity:0.7">v3</span></span>
     <div class="score-area">
       <div class="hp-bar-container">
         <span class="hp-label">HP</span>
         <div class="hp-bar-bg"><div class="hp-bar" id="hpBar"></div></div>
       </div>
       <span class="score" id="scoreDisplay">0점</span>
+      <button class="btn-glossary" onclick="showGlossaryList()">📖 용어</button>
     </div>
   </div>
   <div class="progress"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
   <div id="timerArea"></div>
   <div id="gameArea"></div>
+  <button class="evidence-toggle" id="evidenceToggle" onclick="toggleEvidence()">🔍 증거함 (0)</button>
+  <div class="evidence-panel" id="evidencePanel">
+    <div class="evidence-list" id="evidenceList"></div>
+  </div>
 </div>
 </div>
 
 <div class="objection-overlay" id="objectionOverlay">
   <div class="objection-text">이의 있습니다!</div>
   <div class="objection-sub">OBJECTION!</div>
+</div>
+
+<!-- 용어사전 모달 -->
+<div class="glossary-modal-bg" id="glossaryModalBg" onclick="closeGlossary(event)">
+  <div class="glossary-modal" id="glossaryModal">
+    <button class="close-btn" onclick="closeGlossaryForce()">&times;</button>
+    <h3 id="glossaryTitle">용어</h3>
+    <p id="glossaryBody">설명</p>
+  </div>
 </div>
 
 <script>
@@ -175,106 +248,342 @@ function sfxGameover(){
   setTimeout(()=>playTone(300,0.2,'sawtooth',0.15),200);
   setTimeout(()=>playTone(200,0.5,'sawtooth',0.15),400);
 }
+function sfxEvidence(){
+  playTone(660,0.08,'sine',0.15);
+  setTimeout(()=>playTone(880,0.08,'sine',0.15),80);
+  setTimeout(()=>playTone(1100,0.12,'sine',0.18),160);
+}
+function sfxBadge(){
+  playTone(523,0.1,'sine',0.2);
+  setTimeout(()=>playTone(659,0.1,'sine',0.2),120);
+  setTimeout(()=>playTone(784,0.1,'sine',0.2),240);
+  setTimeout(()=>playTone(1047,0.3,'sine',0.25),360);
+}
 
 // === 캐릭터 HTML (이모지 스타일) ===
 function charHTML(type, name){
-  const emojis = {judge:'👨‍⚖️', lawyer:'👨‍💼', prosecutor:'👩‍⚖️', witness:'🕵️', news:'📺'};
+  const emojis = {judge:'👨‍⚖️', lawyer:'👨‍💼', prosecutor:'👩‍⚖️', witness:'🕵️', news:'📺', client:'😰'};
   const emoji = emojis[type] || '👤';
   return `<div class="character"><div class="char-portrait"><div class="char-emoji">${emoji}</div></div><div class="char-name">${name}</div></div>`;
 }
 
-// === 게임 데이터 ===
-const SCENES = [
-  {type:'dialogue',char:'judge',name:'재판장',speaker:'재판장',
-   text:'지금부터 <span class="keyword">사법부 특별 재판</span>을 시작합니다. 신입 변호사, 준비되었습니까?',next:1},
-  {type:'dialogue',char:'lawyer',name:'나(변호사)',speaker:'나 (신입 변호사)',
-   text:'(심장이 뛴다... 법을 <span class="keyword">해석하고 적용</span>하여 분쟁을 해결하는 것이 사법부의 역할... 해내야 한다!)',next:2},
+// === 용어 사전 ===
+const GLOSSARY = {
+  '사법권': '법을 해석하고 적용하여 분쟁을 해결하는 국가 권력. 입법권(국회), 행정권(정부)과 함께 국가 권력의 3대 축을 이룬다. 헌법 제101조에 의해 법원에 속한다.',
+  '3심제': '하나의 사건에 대해 3번까지 재판을 받을 수 있는 제도. 지방법원(1심) → 고등법원(2심) → 대법원(3심)의 순서로 진행되며, 공정한 재판을 위한 제도적 장치이다.',
+  '항소': '1심 판결에 불복하여 고등법원(2심)에 재판을 다시 청구하는 것. 1심 판결 선고 후 7일 이내에 해야 한다.',
+  '상고': '2심(항소심) 판결에 불복하여 대법원(3심, 최종심)에 재판을 다시 청구하는 것. 대법원의 판결이 최종 판결이 된다.',
+  '사법권 독립': '법관이 재판할 때 외부의 어떤 압력이나 간섭도 받지 않고, 오직 헌법과 법률에 의하여 양심에 따라 독립하여 심판하는 원칙. 헌법 제103조에 명시되어 있다.',
+  '헌법재판소': '헌법에 관한 분쟁을 전문적으로 다루는 기관. 위헌 법률 심판, 탄핵 심판, 정당 해산 심판, 권한 쟁의 심판, 헌법 소원 심판 등 5가지 권한을 가진다.',
+  '위헌 법률 심판': '법률이 헌법에 위반되는지 여부를 심판하는 것. 법원이 재판 중 법률의 위헌 여부가 문제되면 헌법재판소에 제청하여 심판을 받는다.',
+  '탄핵': '대통령, 국무총리, 장관, 법관 등 고위 공직자가 헌법이나 법률을 위반했을 때 파면하는 제도. 탄핵 소추는 국회가, 탄핵 심판은 헌법재판소(재판관 6인 이상 찬성)가 담당한다.',
+  '헌법 소원': '국민의 기본권이 공권력에 의해 침해당했을 때 헌법재판소에 구제를 청구하는 제도. 다른 법적 구제 수단을 모두 거친 후 마지막으로 청구할 수 있다.',
+  '법관의 신분 보장': '법관이 독립적으로 재판할 수 있도록 탄핵이나 금고 이상의 형을 선고받지 않는 한 파면되지 않고, 징계처분에 의하지 않고는 불리한 처분을 받지 않는 제도.',
+  '대법원': '우리나라 최고 법원이자 최종심 법원. 대법원장 1인과 대법관 13인으로 구성된다. 대법원장은 국회 동의를 얻어 대통령이 임명한다.',
+  '권한 쟁의 심판': '국가기관 상호 간, 국가기관과 지방자치단체 간, 지방자치단체 상호 간에 권한의 유무 또는 범위에 관한 다툼을 헌법재판소가 심판하는 것.'
+};
 
-  // 1라운드
+function showGlossary(term){
+  const bg = document.getElementById('glossaryModalBg');
+  document.getElementById('glossaryTitle').textContent = '📖 ' + term;
+  document.getElementById('glossaryBody').textContent = GLOSSARY[term] || '등록되지 않은 용어입니다.';
+  bg.classList.add('show');
+}
+function showGlossaryList(){
+  const bg = document.getElementById('glossaryModalBg');
+  const modal = document.getElementById('glossaryModal');
+  let html = '<button class="close-btn" onclick="closeGlossaryForce()">&times;</button>';
+  html += '<h3>📖 용어 사전</h3>';
+  for(const [term, desc] of Object.entries(GLOSSARY)){
+    html += `<div style="margin:10px 0;padding:8px;background:rgba(255,255,255,0.05);border-radius:6px;cursor:pointer" onclick="showGlossary('${term}')"><span style="color:#ffd93d;font-weight:700">${term}</span><br><span style="color:#aaa;font-size:0.8em">${desc.substring(0,40)}...</span></div>`;
+  }
+  modal.innerHTML = html;
+  bg.classList.add('show');
+}
+function closeGlossary(e){if(e.target===e.currentTarget)closeGlossaryForce()}
+function closeGlossaryForce(){document.getElementById('glossaryModalBg').classList.remove('show')}
+
+// 텍스트에서 용어를 자동으로 링크로 변환
+function linkGlossary(text){
+  let result = text;
+  // keyword 클래스로 이미 감싸진 것은 glossary-word로 교체
+  for(const term of Object.keys(GLOSSARY)){
+    // 이미 태그 안에 있지 않은 용어만 대체 (단순 구현)
+    const escaped = term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    const re = new RegExp(`(?<![">])${escaped}(?![<"])`, 'g');
+    // 첫 번째 매치만 교체
+    let found = false;
+    result = result.replace(re, (m) => {
+      if(found) return m;
+      found = true;
+      return `<span class="glossary-word" onclick="showGlossary('${term}')">${m}</span>`;
+    });
+  }
+  return result;
+}
+
+// === 증거 시스템 ===
+let collectedEvidence = [];
+
+function collectEvidence(id, name, desc){
+  if(collectedEvidence.find(e=>e.id===id)) return;
+  collectedEvidence.push({id, name, desc});
+  updateEvidenceUI();
+  showEvidencePopup(name, desc);
+  sfxEvidence();
+}
+
+function showEvidencePopup(name, desc){
+  const popup = document.createElement('div');
+  popup.className = 'evidence-popup';
+  popup.innerHTML = `<h3>🔍 증거 획득!</h3><p style="font-size:1.1em;color:#fff;margin:5px 0">${name}</p><p>${desc}</p>`;
+  document.body.appendChild(popup);
+  setTimeout(()=>popup.remove(), 2000);
+}
+
+function updateEvidenceUI(){
+  const toggle = document.getElementById('evidenceToggle');
+  toggle.textContent = `🔍 증거함 (${collectedEvidence.length})`;
+  const list = document.getElementById('evidenceList');
+  list.innerHTML = collectedEvidence.map(e=>`<div class="evidence-tag" title="${e.desc}">📄 ${e.name}</div>`).join('');
+}
+
+function toggleEvidence(){
+  document.getElementById('evidencePanel').classList.toggle('open');
+}
+
+// === 뱃지 시스템 ===
+const BADGES = {
+  firstWin: {icon:'⭐', name:'첫 승리', desc:'첫 번째 문제 정답'},
+  objectionMaster: {icon:'🔥', name:'이의 마스터', desc:'모든 이의 제기 성공'},
+  tripleTrialClear: {icon:'⚖️', name:'3심 돌파', desc:'3심제 문제 정답'},
+  constitutionGuard: {icon:'🛡️', name:'헌법 수호자', desc:'헌법재판소 관련 전부 정답'},
+  perfectLawyer: {icon:'🏆', name:'완벽한 변호사', desc:'올클리어 (100점)'}
+};
+let earnedBadges = {};
+let quizResults = {};
+let objectionCount = 0;
+let objectionSuccess = 0;
+
+function tryBadge(id){
+  if(earnedBadges[id]) return;
+  earnedBadges[id] = true;
+  const b = BADGES[id];
+  sfxBadge();
+  const popup = document.createElement('div');
+  popup.className = 'badge-popup';
+  popup.innerHTML = `<div class="badge-icon">${b.icon}</div><h3>뱃지 획득!</h3><p>${b.name}</p><p style="font-size:0.75em;color:#aaa;margin-top:5px">${b.desc}</p>`;
+  document.body.appendChild(popup);
+  setTimeout(()=>popup.remove(), 2500);
+}
+
+function checkBadges(){
+  // 헌법 수호자: 헌법재판소 관련 문제 (scene 15, 16, 18, 20) 모두 정답
+  const constScenes = [15,16,18,20];
+  if(constScenes.every(s=>quizResults[s]===true)) tryBadge('constitutionGuard');
+  // 이의 마스터
+  if(objectionCount>=2 && objectionCount===objectionSuccess) tryBadge('objectionMaster');
+}
+
+// === 게임 데이터 (v3 — 증거 수집 + 분기 스토리 + 증거 제시 퀴즈) ===
+const SCENES = [
+  // 0: 오프닝
   {type:'dialogue',char:'judge',name:'재판장',speaker:'재판장',
-   text:'첫 번째 시험! <span class="highlight">사법권</span>이란 무엇인지 정확히 답하시오.',next:3},
+   text:'지금부터 <span class="glossary-word" onclick="showGlossary(\'사법권\')">사법권</span> 특별 재판을 시작합니다. 신입 변호사, 준비되었습니까?',next:1},
+  // 1
+  {type:'dialogue',char:'lawyer',name:'나(변호사)',speaker:'나 (신입 변호사)',
+   text:'(심장이 뛴다... 법을 해석하고 적용하여 분쟁을 해결하는 것이 사법부의 역할... 해내야 한다!)',next:2,
+   evidence:{id:'ev_const101',name:'헌법 제101조',desc:'사법권은 법관으로 구성된 법원에 속한다'}},
+
+  // 2: 1라운드 도입
+  {type:'dialogue',char:'judge',name:'재판장',speaker:'재판장',
+   text:'첫 번째 시험! <span class="glossary-word" onclick="showGlossary(\'사법권\')">사법권</span>이란 무엇인지 정확히 답하시오.',next:3},
+  // 3: 1라운드 퀴즈
   {type:'quiz',question:'사법권의 의미로 가장 적절한 것은?',
    choices:['법률을 만드는 권한','법을 해석·적용하여 분쟁을 해결하는 권한','법률을 집행하는 권한','헌법을 개정하는 권한'],
    answer:1,points:10,timer:25,
-   explanation:'사법권은 법을 해석·적용하여 분쟁을 해결하는 권한으로, 법관으로 구성된 법원에 속합니다. (헌법 제101조)',next:4},
+   explanation:'사법권은 법을 해석·적용하여 분쟁을 해결하는 권한으로, 법관으로 구성된 법원에 속합니다. (헌법 제101조)',next:4,
+   badge:'firstWin',sceneId:3},
 
-  // 2라운드
-  {type:'dialogue',char:'witness',name:'의뢰인',speaker:'의뢰인',
-   text:'변호사님! 저는 사기 혐의로 기소되었는데 억울합니다. 지금 <span class="keyword">지방법원</span>에서 1심 재판을 받고 있어요.',next:5},
+  // 4: 2라운드 도입
+  {type:'dialogue',char:'client',name:'의뢰인',speaker:'의뢰인',
+   text:'변호사님! 저는 사기 혐의로 기소되었는데 억울합니다. 지금 지방법원에서 1심 재판을 받고 있어요.',next:5,
+   evidence:{id:'ev_1심기록',name:'1심 재판 기록',desc:'지방법원에서 진행 중인 사기 혐의 사건 기록'}},
+  // 5
   {type:'dialogue',char:'lawyer',name:'나(변호사)',speaker:'나',
-   text:'걱정 마세요. 1심에서 불리해도 <span class="keyword">상급 법원</span>에 다시 재판을 청구할 수 있습니다!',next:6},
+   text:'걱정 마세요. 1심에서 불리해도 상급 법원에 다시 재판을 청구할 수 있습니다! 이것이 바로 <span class="glossary-word" onclick="showGlossary(\'3심제\')">3심제</span>입니다.',next:6},
+  // 6: 2라운드 퀴즈
   {type:'quiz',question:'1심 판결에 불복하여 상급 법원에 재판을 청구하는 것은?',
    choices:['상고','항소','제청','탄핵'],answer:1,points:10,timer:20,
-   explanation:'항소: 1심→고등법원(2심). 상고: 2심→대법원(3심). 구분해서 기억!',next:7},
+   explanation:'항소: 1심→고등법원(2심). 상고: 2심→대법원(3심). 구분해서 기억!',next:7,
+   evidence_on_correct:{id:'ev_항소권',name:'항소권 관련 법률',desc:'1심 패소 시 고등법원에 항소할 수 있는 권리'},sceneId:6},
 
-  // 3라운드 — 이의 있습니다!
+  // 7: === 분기점 1 — 1심 결과 ===
+  {type:'dialogue',char:'judge',name:'재판장',speaker:'재판장',
+   text:'1심 판결을 선고합니다. 피고인에게... <span class="highlight">유죄!</span>',next:8},
+  // 8: 분기 선택
+  {type:'branch',
+   text:'1심에서 패배했습니다. 의뢰인이 억울해하고 있습니다. 어떻게 하시겠습니까?',
+   options:[
+     {label:'📋 항소하겠습니다! (고등법원 2심 진행)', next:9},
+     {label:'😞 판결을 수용합니다... (하지만 정말 괜찮을까?)', next:50}
+   ]},
+
+  // 9: 항소 루트 (정상 루트)
+  {type:'dialogue',char:'lawyer',name:'나(변호사)',speaker:'나',
+   text:'<span class="glossary-word" onclick="showGlossary(\'항소\')">항소</span>합니다! 고등법원에서 다시 한번 진실을 밝히겠습니다!',next:10,
+   evidence:{id:'ev_항소장',name:'항소장',desc:'고등법원에 제출하는 항소 신청 문서'}},
+
+  // 10: 3라운드 — 이의 있습니다! (검사의 주장)
   {type:'dialogue',char:'prosecutor',name:'검사',speaker:'검사',
-   text:'피고인은 명백한 유죄입니다! 재판은 <span class="highlight">이번 한 번</span>으로 끝내야 합니다!',next:8},
+   text:'피고인은 명백한 유죄입니다! 재판은 <span class="highlight">이번 한 번</span>으로 끝내야 합니다!',next:11},
+  // 11: 이의제기
   {type:'objection',
-   text:'검사의 주장에 모순이 있습니다! 우리나라는 <span class="keyword">3심제</span>를 채택하고 있습니다!',next:9},
+   text:'검사의 주장에 모순이 있습니다! 우리나라는 <span class="glossary-word" onclick="showGlossary(\'3심제\')">3심제</span>를 채택하고 있습니다!',next:12},
+  // 12: 3심제 퀴즈
   {type:'quiz',question:'3심제의 순서로 올바른 것은?',
    choices:['대법원(1심) → 고등법원(2심) → 지방법원(3심)','고등법원(1심) → 지방법원(2심) → 대법원(3심)','지방법원(1심) → 고등법원(2심) → 대법원(3심)','지방법원(1심) → 대법원(2심) → 헌법재판소(3심)'],
    answer:2,points:15,timer:25,
-   explanation:'3심제: 지방법원(1심) → 항소 → 고등법원(2심) → 상고 → 대법원(3심, 최종심)',next:10},
+   explanation:'3심제: 지방법원(1심) → 항소 → 고등법원(2심) → 상고 → 대법원(3심, 최종심)',next:13,
+   badge:'tripleTrialClear',sceneId:12},
 
-  // 4라운드
+  // 13: 4라운드 — 사법권 독립
   {type:'dialogue',char:'witness',name:'???',speaker:'???',
-   text:'재판장님, 이 사건은 <span class="highlight">정부의 입장</span>을 고려해서 판결해 주시면 좋겠습니다.',next:11},
+   text:'재판장님, 이 사건은 <span class="highlight">정부의 입장</span>을 고려해서 판결해 주시면 좋겠습니다.',next:14,
+   evidence:{id:'ev_const103',name:'헌법 제103조',desc:'법관은 헌법과 법률에 의하여 그 양심에 따라 독립하여 심판한다'}},
+  // 14: 이의제기 2
   {type:'objection',
-   text:'법관은 헌법과 법률에 의하여 그 <span class="keyword">양심</span>에 따라 독립하여 심판합니다!',next:12},
+   text:'법관은 헌법과 법률에 의하여 그 <span class="glossary-word" onclick="showGlossary(\'사법권 독립\')">양심</span>에 따라 독립하여 심판합니다!',next:15},
+  // 15: 사법권 독립 퀴즈
   {type:'quiz',question:'사법권 독립에 대한 설명으로 옳은 것은?',
    choices:['법관은 대통령의 지시에 따라 판결해야 한다','법원은 여론조사를 기준으로 판결해야 한다','법관은 헌법과 법률에 따라 양심에 따라 독립하여 심판한다','국회가 개별 사건의 판결 내용을 미리 정할 수 있다'],
    answer:2,points:15,timer:25,
-   explanation:'헌법 제103조: 법관은 헌법과 법률에 의하여 그 양심에 따라 독립하여 심판한다.',next:13},
+   explanation:'헌법 제103조: 법관은 헌법과 법률에 의하여 그 양심에 따라 독립하여 심판한다.',next:16,sceneId:15},
 
-  // 5라운드
+  // 16: 5라운드 — 증거 제시 문제 (위헌 법률 심판)
   {type:'dialogue',char:'lawyer',name:'나(변호사)',speaker:'나',
-   text:'잠깐... 이 사건에 적용되는 법률 자체가 <span class="highlight">헌법에 위반</span>되는 것 같습니다!',next:14},
+   text:'잠깐... 이 사건에 적용되는 법률 자체가 <span class="highlight">헌법에 위반</span>되는 것 같습니다!',next:17,
+   evidence:{id:'ev_위헌의심',name:'위헌 의심 법률 문서',desc:'해당 사건에 적용된 법률의 위헌 소지 분석 자료'}},
+  // 17
   {type:'dialogue',char:'judge',name:'재판장',speaker:'재판장',
-   text:'그렇다면 법원이 직접 위헌 결정을 내릴 수 있을까요?',next:15},
+   text:'변호사, 그렇다면 이 법률이 위헌이라는 <span class="highlight">증거</span>를 제시하시오! 당신이 수집한 증거 중 적절한 것을 골라보시오.',next:18},
+  // 18: 증거 제시 퀴즈
+  {type:'evidence_quiz',question:'법률이 헌법에 위반된다고 판단할 때, 가장 관련 있는 증거는?',
+   correct_evidence:'ev_const101',
+   points:15,timer:30,
+   explanation:'헌법 제101조는 사법권이 법원에 속함을 명시합니다. 법률의 위헌 여부는 헌법재판소에 위헌 법률 심판을 제청하여 판단합니다.',next:19,sceneId:18},
+
+  // 19: 위헌 법률 심판 퀴즈
   {type:'quiz',question:'법률이 헌법에 위반된다고 판단하면 어떻게 해야 하는가?',
    choices:['법원이 직접 위헌 결정을 내린다','대통령에게 법률 폐지를 요청한다','헌법재판소에 위헌 법률 심판을 제청한다','국회에 법률 개정을 건의한다'],
    answer:2,points:15,timer:25,
-   explanation:'법원은 직접 위헌 결정을 못 합니다. 헌법재판소에 위헌 법률 심판을 제청해야 합니다.',next:16},
+   explanation:'법원은 직접 위헌 결정을 못 합니다. 헌법재판소에 위헌 법률 심판을 제청해야 합니다.',next:20,sceneId:19},
 
-  // 6라운드
+  // 20: 6라운드 — 헌법재판소 구성
+  {type:'dialogue',char:'judge',name:'재판장',speaker:'재판장',
+   text:'<span class="glossary-word" onclick="showGlossary(\'헌법재판소\')">헌법재판소</span>에 대해 더 자세히 묻겠습니다.',next:21,
+   evidence:{id:'ev_헌재구성',name:'헌법재판소 구성 자료',desc:'재판관 9인: 국회 3 + 대법원장 3 + 대통령 3, 임기 6년'}},
+  // 21
   {type:'quiz',question:'헌법재판소 재판관 9인의 구성으로 옳은 것은?',
    choices:['대통령이 9인 모두 단독 선출','국회 선출 3인 + 대법원장 지명 3인 + 대통령 지명 3인','국회 선출 5인 + 대통령 지명 4인','대법관 중에서 9인을 호선'],
    answer:1,points:10,timer:20,
-   explanation:'재판관 9인: 국회 3 + 대법원장 3 + 대통령 3. 모두 대통령이 임명하되 선출·지명 주체가 나뉩니다. 임기 6년, 연임 가능.',next:17},
+   explanation:'재판관 9인: 국회 3 + 대법원장 3 + 대통령 3. 모두 대통령이 임명하되 선출·지명 주체가 나뉩니다. 임기 6년, 연임 가능.',next:22,sceneId:21},
 
-  // 7라운드
+  // 22: 7라운드 — 탄핵
   {type:'dialogue',char:'news',name:'뉴스',speaker:'속보 뉴스',
-   text:'"<span class="highlight">국회</span>, □□ 장관에 대해 <span class="keyword">탄핵 소추</span> 의결! 헌법재판소로 넘어갈 전망"',next:18},
+   text:'"<span class="highlight">국회</span>, □□ 장관에 대해 <span class="glossary-word" onclick="showGlossary(\'탄핵\')">탄핵 소추</span> 의결! 헌법재판소로 넘어갈 전망"',next:23,
+   evidence:{id:'ev_탄핵절차',name:'탄핵 절차 기록',desc:'탄핵 소추(국회) → 탄핵 심판(헌법재판소, 6인 이상 찬성 시 파면)'}},
+  // 23
   {type:'quiz',question:'탄핵 절차에 대한 설명으로 옳은 것은?',
    choices:['탄핵 소추는 헌법재판소, 심판은 국회','소추와 심판 모두 대법원 담당','탄핵 소추는 국회, 심판은 헌법재판소','탄핵은 대통령이 단독 결정'],
    answer:2,points:15,timer:25,
-   explanation:'탄핵 소추: 국회(의결). 탄핵 심판: 헌법재판소(6인 이상 찬성 시 파면). 두 기관이 나눠서 권력 남용을 방지.',next:19},
+   explanation:'탄핵 소추: 국회(의결). 탄핵 심판: 헌법재판소(6인 이상 찬성 시 파면). 두 기관이 나눠서 권력 남용을 방지.',next:24,sceneId:23},
 
-  // 최종 라운드
-  {type:'dialogue',char:'judge',name:'재판장',speaker:'재판장',
-   text:'마지막 시험입니다. 법원과 헌법재판소를 <span class="keyword">정확히 구분</span>할 수 있어야 합니다!',next:20},
+  // 24: === 분기점 2 — 2심 결과 ===
+  {type:'dialogue',char:'judge',name:'재판장',speaker:'고등법원 재판장',
+   text:'2심 판결을 선고합니다. 증거 불충분으로... <span class="highlight">유죄 판결을 유지합니다.</span>',next:25},
+  // 25: 분기 선택 2
+  {type:'branch',
+   text:'2심에서도 패배했습니다. 하지만 아직 마지막 기회가 남아 있습니다!',
+   options:[
+     {label:'📋 상고합니다! 대법원에서 최종 판결을 받겠습니다!', next:26},
+     {label:'😞 더 이상은... 판결을 수용합니다.', next:55}
+   ]},
+
+  // 26: 상고 루트
+  {type:'dialogue',char:'lawyer',name:'나(변호사)',speaker:'나',
+   text:'<span class="glossary-word" onclick="showGlossary(\'상고\')">상고</span>합니다! <span class="glossary-word" onclick="showGlossary(\'대법원\')">대법원</span>에서 반드시 진실을 밝히겠습니다! 이것이 3심제의 마지막 기회입니다!',next:27,
+   evidence:{id:'ev_상고장',name:'상고장',desc:'대법원(3심)에 제출하는 최종 상고 신청서'}},
+
+  // 27: 최종 라운드 — 법원 vs 헌법재판소
+  {type:'dialogue',char:'judge',name:'대법원장',speaker:'대법원장',
+   text:'최종 시험입니다. 법원과 헌법재판소를 <span class="highlight">정확히 구분</span>할 수 있어야 합니다!',next:28},
+  // 28: 증거 제시 퀴즈 2
+  {type:'evidence_quiz',question:'헌법재판소의 권한을 증명하기 위해, 가장 적절한 증거를 제시하시오.',
+   correct_evidence:'ev_탄핵절차',
+   points:10,timer:30,
+   explanation:'탄핵 심판은 헌법재판소의 권한입니다. 이 증거가 헌법재판소의 역할을 명확히 보여줍니다.',next:29,sceneId:28},
+  // 29: 최종 퀴즈
   {type:'quiz',question:'다음 중 헌법재판소의 권한이 아닌 것은?',
    choices:['위헌 법률 심판','민사·형사 사건 재판','탄핵 심판','정당 해산 심판'],
    answer:1,points:10,timer:20,
-   explanation:'민사·형사 재판은 법원의 권한! 헌법재판소: 위헌심판, 헌법소원, 탄핵, 권한쟁의, 정당해산.',next:21},
+   explanation:'민사·형사 재판은 법원의 권한! 헌법재판소: 위헌심판, 헌법소원, 탄핵, 권한쟁의, 정당해산.',next:30,sceneId:29},
 
-  {type:'finale'}
+  // 30: 최종 판결
+  {type:'dialogue',char:'judge',name:'대법원장',speaker:'대법원장',
+   text:'최종 판결을 선고합니다. 새로운 증거와 변호인의 주장을 심사한 결과... <span style="color:#34c759;font-weight:900;font-size:1.2em">무죄!</span>',next:31},
+  // 31: 승리
+  {type:'dialogue',char:'client',name:'의뢰인',speaker:'의뢰인',
+   text:'변호사님, 감사합니다! 3심제가 있어서 정말 다행이에요! 포기하지 않아주셔서 감사합니다!',next:32},
+
+  // 32: 피날레
+  {type:'finale'},
+
+  // === 분기 루트 A (1심 수용 → 복귀) ===
+  // 50
+  {type:'dialogue',char:'client',name:'의뢰인',speaker:'의뢰인',
+   text:'변호사님... 정말 이대로 끝인가요? 저는 정말 억울한데...',next:51},
+  // 51
+  {type:'dialogue',char:'judge',name:'재판장',speaker:'재판장',
+   text:'변호사, 당신은 의뢰인의 권리를 포기하려 하는 겁니까? <span class="glossary-word" onclick="showGlossary(\'3심제\')">3심제</span>는 국민의 <span class="highlight">기본권</span>을 보장하는 제도입니다!',next:52},
+  // 52
+  {type:'quiz',question:'3심제가 존재하는 가장 중요한 이유는?',
+   choices:['재판을 더 오래 하기 위해','재판 비용을 늘리기 위해','공정한 재판을 보장하고 오판을 방지하기 위해','법관의 업무를 늘리기 위해'],
+   answer:2,points:10,timer:20,
+   explanation:'3심제는 한 번의 재판에서 생길 수 있는 오판(잘못된 판결)을 막고, 공정한 재판을 보장하기 위한 제도입니다.',next:53,sceneId:52},
+  // 53
+  {type:'dialogue',char:'lawyer',name:'나(변호사)',speaker:'나',
+   text:'... 맞습니다. 포기해서는 안 됩니다! <span class="glossary-word" onclick="showGlossary(\'항소\')">항소</span>하겠습니다!',next:9},
+
+  // === 분기 루트 B (2심 수용 → 복귀) ===
+  // 55
+  {type:'dialogue',char:'client',name:'의뢰인',speaker:'의뢰인',
+   text:'변호사님, 마지막 한 번만 더 기회를 주세요! <span class="glossary-word" onclick="showGlossary(\'상고\')">상고</span>라는 게 있다고 들었어요...',next:56},
+  // 56
+  {type:'quiz',question:'2심 판결에 불복하여 대법원(최종심)에 재판을 청구하는 것은?',
+   choices:['항소','재심','상고','제청'],answer:2,points:10,timer:20,
+   explanation:'상고란 2심 판결에 불복하여 대법원(3심, 최종심)에 재판을 다시 청구하는 것입니다.',next:57,sceneId:56},
+  // 57
+  {type:'dialogue',char:'lawyer',name:'나(변호사)',speaker:'나',
+   text:'맞습니다, 아직 끝이 아닙니다! 상고해서 대법원에서 최종 판결을 받겠습니다!',next:26}
 ];
 
-let cur=0, score=0, hp=100, timerInterval=null;
+let cur=0, score=0, hp=100, timerInterval=null, totalQuizCount=0, correctQuizCount=0;
 
 function updateUI(){
   document.getElementById('scoreDisplay').textContent=score+'점';
   const hpBar=document.getElementById('hpBar');
   hpBar.style.width=hp+'%';
   hpBar.classList.toggle('danger',hp<=30);
-  document.getElementById('progressBar').style.width=((cur+1)/SCENES.length*100)+'%';
+  // 진행률은 메인 루트 기준 (0~32)
+  const mainProgress = Math.min(cur, 32);
+  document.getElementById('progressBar').style.width=(mainProgress/32*100)+'%';
 }
 
 function render(){
   clearInterval(timerInterval);
   const s=SCENES[cur];
+  if(!s){cur=32;render();return;}
   const area=document.getElementById('gameArea');
   const timerArea=document.getElementById('timerArea');
   timerArea.innerHTML='';
@@ -286,10 +595,16 @@ function render(){
     return;
   }
 
+  // 자동 증거 수집
+  if(s.evidence){
+    collectEvidence(s.evidence.id, s.evidence.name, s.evidence.desc);
+  }
+
   if(s.type==='dialogue'){
     area.innerHTML=`<div class="scene">${charHTML(s.char,s.name)}<div class="dialogue"><div class="speaker">${s.speaker}</div><div class="text">${s.text}</div></div></div><div class="nav"><button class="btn-next" onclick="sfxClick();goTo(${s.next})">다음 ▶</button></div>`;
   }
   else if(s.type==='objection'){
+    objectionCount++;
     area.innerHTML=`<div class="scene">${charHTML('lawyer','나(변호사)')}<div class="dialogue"><div class="speaker">나</div><div class="text">(모순을 발견했다...!)</div></div></div><div class="objection-area"><button class="btn-objection" onclick="showObjection(${s.next})">이의 있습니다!</button></div>`;
   }
   else if(s.type==='quiz'){
@@ -297,14 +612,45 @@ function render(){
     area.innerHTML=`<div class="scene">${charHTML('judge','출제')}<div class="dialogue"><div class="speaker">⚖️ 문제</div><div class="text">${s.question}</div></div></div><div class="choices" id="choicesArea">${ch}</div><div class="result" id="resultArea"></div>`;
     if(s.timer) startTimer(s.timer,s.answer,s.points,s.next);
   }
+  else if(s.type==='evidence_quiz'){
+    // 증거 제시 문제
+    let evBtns = collectedEvidence.map(e=>
+      `<button class="evidence-btn" onclick="answerEvidence('${e.id}','${s.correct_evidence}',${s.points},${s.next})">${'📄'} ${e.name}<span style="display:block;font-size:0.75em;color:#aaa;margin-top:2px">${e.desc}</span></button>`
+    ).join('');
+    if(collectedEvidence.length===0){
+      evBtns = '<p style="color:#aaa;padding:10px;text-align:center">아직 수집한 증거가 없습니다. (정답 증거 없이 진행됩니다)</p>';
+    }
+    area.innerHTML=`<div class="scene">${charHTML('judge','출제')}<div class="dialogue"><div class="speaker">🔍 증거를 제시하시오!</div><div class="text">${s.question}</div></div></div><div class="choices" id="choicesArea">${evBtns}</div><div class="result" id="resultArea"></div>`;
+    if(s.timer) startEvidenceTimer(s.timer,s.correct_evidence,s.points,s.next);
+  }
+  else if(s.type==='branch'){
+    let opts = s.options.map(o=>
+      `<button class="branch-btn" onclick="sfxClick();goTo(${o.next})">${o.label}</button>`
+    ).join('');
+    area.innerHTML=`<div class="scene">${charHTML('lawyer','나(변호사)')}<div class="dialogue"><div class="speaker">⚡ 선택의 순간</div><div class="text">${s.text}</div></div></div><div class="choices">${opts}</div>`;
+  }
   else if(s.type==='finale'){
     let grade,comment,emoji;
-    if(score>=90){grade='S등급';comment='완벽한 변호사! 사법부의 수호자!';emoji='🏆';}
-    else if(score>=70){grade='A등급';comment='훌륭합니다! 법의 수호자!';emoji='🥇';}
-    else if(score>=50){grade='B등급';comment='좋습니다! 더 공부하면 에이스!';emoji='🥈';}
+    const maxScore = 120; // 최대 가능 점수
+    const pct = Math.round(score/maxScore*100);
+    if(pct>=90){grade='S등급';comment='완벽한 변호사! 사법부의 수호자!';emoji='🏆';tryBadge('perfectLawyer');}
+    else if(pct>=70){grade='A등급';comment='훌륭합니다! 법의 수호자!';emoji='🥇';}
+    else if(pct>=50){grade='B등급';comment='좋습니다! 더 공부하면 에이스!';emoji='🥈';}
     else{grade='수습 변호사';comment='사법부를 더 공부해봅시다!';emoji='📚';}
+
+    checkBadges();
     sfxCorrect();
-    area.innerHTML=`<div class="final-result"><h2>⚖️ 재판 종료!</h2><div class="grade">${emoji} ${grade}</div><div style="font-size:2em;color:#d4a017;margin:10px 0">${score}/100점</div><div class="detail">${comment}<br><br>✅ 사법권 = 법 해석·적용으로 분쟁 해결<br>✅ 3심제 = 지방법원 → 고등법원 → 대법원<br>✅ 사법권 독립 = 양심에 따라 독립 심판<br>✅ 헌법재판소 = 위헌심판, 탄핵, 헌법소원<br>✅ 법원 ≠ 헌법재판소</div><button class="btn-retry" onclick="retry()">🔄 다시 도전</button></div>`;
+
+    let badgeHTML = '<div class="badge-list">';
+    for(const [id, b] of Object.entries(BADGES)){
+      const earned = earnedBadges[id];
+      badgeHTML += `<div class="badge-item ${earned?'':'locked'}"><span class="b-icon">${b.icon}</span><span class="b-name">${b.name}</span></div>`;
+    }
+    badgeHTML += '</div>';
+
+    const earnedCount = Object.keys(earnedBadges).length;
+
+    area.innerHTML=`<div class="final-result"><h2>⚖️ 재판 종료!</h2><div class="grade">${emoji} ${grade}</div><div style="font-size:2em;color:#d4a017;margin:10px 0">${score}점</div><div class="detail">${comment}<br><br>✅ 사법권 = 법 해석·적용으로 분쟁 해결<br>✅ 3심제 = 지방법원 → 고등법원 → 대법원<br>✅ 사법권 독립 = 양심에 따라 독립 심판<br>✅ 헌법재판소 = 위헌심판, 탄핵, 헌법소원<br>✅ 법원 ≠ 헌법재판소</div><h3 style="color:#d4a017;margin-top:20px">🎖 획득 뱃지 (${earnedCount}/${Object.keys(BADGES).length})</h3>${badgeHTML}<div style="margin-top:10px;color:#aaa;font-size:0.8em">수집한 증거: ${collectedEvidence.length}개</div><button class="btn-retry" onclick="retry()">🔄 다시 도전</button></div>`;
   }
 }
 
@@ -312,6 +658,7 @@ function goTo(n){cur=n;render();window.scrollTo({top:0,behavior:'smooth'})}
 
 function showObjection(next){
   sfxObjection();
+  objectionSuccess++;
   const ov=document.getElementById('objectionOverlay');
   ov.classList.add('show');
   document.getElementById('gameContainer').classList.add('shake');
@@ -332,13 +679,23 @@ function answer(sel,correct,pts,next){
 
   btns.forEach((b,i)=>{b.disabled=true;if(i===correct)b.classList.add('correct');if(i===sel&&i!==correct)b.classList.add('wrong');});
 
+  totalQuizCount++;
+
   if(sel===correct){
     score+=pts;sfxCorrect();
+    correctQuizCount++;
     court.classList.add('flash-correct');
     setTimeout(()=>court.classList.remove('flash-correct'),500);
     result.innerHTML=`<div class="correct-msg">✅ 정답! (+${pts}점)<br><br>${s.explanation}</div>`;
+
+    if(s.sceneId!==undefined) quizResults[s.sceneId]=true;
+    if(s.badge) tryBadge(s.badge);
+    if(s.evidence_on_correct){
+      collectEvidence(s.evidence_on_correct.id, s.evidence_on_correct.name, s.evidence_on_correct.desc);
+    }
   }else{
     hp-=25;sfxWrong();
+    if(s.sceneId!==undefined) quizResults[s.sceneId]=false;
     document.getElementById('gameContainer').classList.add('shake');
     setTimeout(()=>document.getElementById('gameContainer').classList.remove('shake'),500);
     court.classList.add('flash-wrong');
@@ -346,6 +703,54 @@ function answer(sel,correct,pts,next){
     result.innerHTML=`<div class="wrong-msg">❌ 오답! (HP -25)<br><br>${s.explanation}</div>`;
   }
   updateUI();
+  checkBadges();
+
+  const nav=document.createElement('div');nav.className='nav';
+  nav.innerHTML=`<button class="btn-next" onclick="sfxClick();goTo(${next})">${hp<=0?'결과 보기':'다음 ▶'}</button>`;
+  document.getElementById('choicesArea').after(nav);
+}
+
+function answerEvidence(selectedId, correctId, pts, next){
+  clearInterval(timerInterval);
+  const btns=document.querySelectorAll('.evidence-btn');
+  const result=document.getElementById('resultArea');
+  const s=SCENES[cur];
+  const court=document.querySelector('.courtroom');
+
+  btns.forEach(b=>{
+    b.disabled=true;
+    // 정답 증거 하이라이트
+    if(b.onclick && b.onclick.toString().includes(correctId)){
+      b.classList.add('correct');
+    }
+  });
+  // 선택한 것이 오답이면 표시
+  btns.forEach(b=>{
+    if(b.onclick && b.onclick.toString().includes(selectedId) && selectedId !== correctId){
+      b.classList.add('wrong');
+    }
+  });
+
+  totalQuizCount++;
+
+  if(selectedId === correctId){
+    score+=pts;sfxCorrect();
+    correctQuizCount++;
+    court.classList.add('flash-correct');
+    setTimeout(()=>court.classList.remove('flash-correct'),500);
+    result.innerHTML=`<div class="correct-msg">✅ 올바른 증거를 제시했습니다! (+${pts}점)<br><br>${s.explanation}</div>`;
+    if(s.sceneId!==undefined) quizResults[s.sceneId]=true;
+  }else{
+    hp-=25;sfxWrong();
+    if(s.sceneId!==undefined) quizResults[s.sceneId]=false;
+    document.getElementById('gameContainer').classList.add('shake');
+    setTimeout(()=>document.getElementById('gameContainer').classList.remove('shake'),500);
+    court.classList.add('flash-wrong');
+    setTimeout(()=>court.classList.remove('flash-wrong'),500);
+    result.innerHTML=`<div class="wrong-msg">❌ 잘못된 증거입니다! (HP -25)<br><br>${s.explanation}</div>`;
+  }
+  updateUI();
+  checkBadges();
 
   const nav=document.createElement('div');nav.className='nav';
   nav.innerHTML=`<button class="btn-next" onclick="sfxClick();goTo(${next})">${hp<=0?'결과 보기':'다음 ▶'}</button>`;
@@ -358,16 +763,39 @@ function startTimer(sec,correct,pts,next){
   let remaining=sec*10;
   timerInterval=setInterval(()=>{
     remaining--;
-    document.getElementById('timerBar').style.width=(remaining/(sec*10)*100)+'%';
+    const bar=document.getElementById('timerBar');
+    if(bar) bar.style.width=(remaining/(sec*10)*100)+'%';
     if(remaining<=0){
       clearInterval(timerInterval);
-      // 시간 초과 = 오답 처리
       answer(-1,correct,pts,next);
     }
   },100);
 }
 
-function retry(){cur=0;score=0;hp=100;render()}
+function startEvidenceTimer(sec,correctEv,pts,next){
+  const timerArea=document.getElementById('timerArea');
+  timerArea.innerHTML=`<div class="timer-bar-bg"><div class="timer-bar" id="timerBar" style="width:100%"></div></div>`;
+  let remaining=sec*10;
+  timerInterval=setInterval(()=>{
+    remaining--;
+    const bar=document.getElementById('timerBar');
+    if(bar) bar.style.width=(remaining/(sec*10)*100)+'%';
+    if(remaining<=0){
+      clearInterval(timerInterval);
+      answerEvidence('__timeout__',correctEv,pts,next);
+    }
+  },100);
+}
+
+function retry(){
+  cur=0;score=0;hp=100;totalQuizCount=0;correctQuizCount=0;
+  collectedEvidence=[];earnedBadges={};quizResults={};
+  objectionCount=0;objectionSuccess=0;
+  updateEvidenceUI();
+  document.getElementById('evidencePanel').classList.remove('open');
+  render();
+}
+
 render();
 </script>
 </body>
