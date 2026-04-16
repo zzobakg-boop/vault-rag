@@ -111,7 +111,33 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
                 html_parts.append('</pre>')
             continue
         if in_code:
-            html_parts.append(line.rstrip() + '\n')
+            # 코드블록 안에서도 빈칸 감지
+            blanks_in_code = list(blank_pattern.finditer(line))
+            if blanks_in_code:
+                new_line = line
+                offset = 0
+                for b in blanks_in_code:
+                    if answer_idx < len(answers):
+                        answer = answers[answer_idx]
+                        extra_class = ' no-score' if in_step0 else ''
+                        input_width = max(len(answer) * 16 + 20, 60)
+                        input_html = (
+                            f'</pre><input type="text" class="blank-input code-blank{extra_class}" '
+                            f'data-answer="{answer}" '
+                            f'data-id="{answer_idx + 1}" '
+                            f'style="width:{input_width}px" '
+                            f'placeholder=""><pre class="code-block" style="display:inline">'
+                        )
+                        start = b.start() + offset
+                        end = b.end() + offset
+                        new_line = new_line[:start] + input_html + new_line[end:]
+                        offset += len(input_html) - (b.end() - b.start())
+                        answer_idx += 1
+                        if not in_step0:
+                            total_blanks += 1
+                html_parts.append(new_line.rstrip() + '\n')
+            else:
+                html_parts.append(line.rstrip() + '\n')
             continue
 
         # 빈 div (서술형 답안 칸) → 서술형 textarea로 변환
@@ -341,6 +367,7 @@ blockquote {{
 .blank-input.correct {{ border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }}
 .blank-input.wrong {{ border-bottom-color: #ff3b30; background: #fff0f0; }}
 .blank-input.no-score {{ border-bottom-color: #aaa; }}
+.blank-input.code-blank {{ background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }}
 .blank-input.no-score.correct {{ border-bottom-color: #34c759; }}
 .blank-input.no-score.wrong {{ border-bottom-color: #ff9500; }}
 .ox-input {{
