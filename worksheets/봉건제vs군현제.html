@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>봉건제 vs 군현제 — 왜 시황제는 봉건제를 없앴나?</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #1a1208;
+  color: #e8d5b0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  user-select: none;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── 공통 ── */
+.scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  padding: 20px;
+}
+.scene.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scene-title {
+  font-size: clamp(18px, 4vw, 28px);
+  font-weight: 700;
+  color: #f0c040;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.desc-text {
+  font-size: clamp(13px, 2.8vw, 17px);
+  text-align: center;
+  color: #d4c4a0;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.analogy {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: rgba(240,192,64,0.12);
+  border-left: 3px solid #f0c040;
+  border-radius: 4px;
+  font-size: clamp(12px, 2.5vw, 15px);
+  color: #f0c040;
+}
+
+.emoji-char {
+  font-size: clamp(40px, 10vw, 72px);
+  line-height: 1;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  transition: transform 0.6s ease, opacity 0.5s ease;
+}
+
+.speech-bubble {
+  position: relative;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(240,192,64,0.3);
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: clamp(13px, 2.8vw, 16px);
+  color: #ffe8a0;
+  max-width: 280px;
+  text-align: center;
+  margin-bottom: 8px;
+  backdrop-filter: blur(4px);
+}
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid rgba(255,255,255,0.12);
+}
+
+.click-hint {
+  font-size: clamp(11px, 2.2vw, 14px);
+  color: rgba(240,192,64,0.5);
+  animation: pulse-hint 2s ease-in-out infinite;
+  margin-top: 16px;
+}
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ── 하단 인디케이터 ── */
+#nav {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 100;
+}
+.nav-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: rgba(240,192,64,0.25);
+  border: 1px solid rgba(240,192,64,0.4);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.nav-dot.active {
+  background: #f0c040;
+  box-shadow: 0 0 8px rgba(240,192,64,0.6);
+  transform: scale(1.2);
+}
+
+/* 장면 전환 버튼 */
+.next-btn {
+  margin-top: 20px;
+  padding: 10px 28px;
+  background: linear-gradient(135deg, #c49a20, #f0c040);
+  color: #1a1208;
+  border: none;
+  border-radius: 24px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: clamp(13px, 2.8vw, 16px);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.next-btn:hover { transform: scale(1.05); box-shadow: 0 4px 16px rgba(240,192,64,0.4); }
+.next-btn:active { transform: scale(0.97); }
+
+/* ═══════════════════════════
+   장면 1: 봉건제의 시작
+   ═══════════════════════════ */
+#scene1 .stage {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 10px auto;
+}
+
+#scene1 .king {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.vassal {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: clamp(32px, 8vw, 52px);
+}
+.vassal.show { opacity: 1; transform: scale(1); }
+
+.vassal:nth-child(2) { top: 5%; left: 50%; transform: translate(-50%, 0) scale(0); }
+.vassal:nth-child(3) { top: 50%; right: 2%; transform: translate(0, -50%) scale(0); }
+.vassal:nth-child(4) { bottom: 5%; left: 50%; transform: translate(-50%, 0) scale(0); }
+.vassal:nth-child(5) { top: 50%; left: 2%; transform: translate(0, -50%) scale(0); }
+
+.vassal.show:nth-child(2) { transform: translate(-50%, 0) scale(1); }
+.vassal.show:nth-child(3) { transform: translate(0, -50%) scale(1); }
+.vassal.show:nth-child(4) { transform: translate(-50%, 0) scale(1); }
+.vassal.show:nth-child(5) { transform: translate(0, -50%) scale(1); }
+
+.land-block {
+  position: absolute;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.8s ease 0.5s;
+}
+.land-block.show { opacity: 0.35; }
+
+.land-block:nth-child(6) { top: 0; left: 25%; right: 25%; height: 35%; background: #4a7c3f; }
+.land-block:nth-child(7) { top: 25%; right: 0; width: 35%; height: 50%; background: #7c5e3f; }
+.land-block:nth-child(8) { bottom: 0; left: 25%; right: 25%; height: 35%; background: #3f5a7c; }
+.land-block:nth-child(9) { top: 25%; left: 0; width: 35%; height: 50%; background: #7c3f5a; }
+
+/* ═══════════════════════════
+   장면 2: 봉건제 붕괴
+   ═══════════════════════════ */
+#scene2 .stage2 {
+  position: relative;
+  width: 320px;
+  height: 260px;
+  margin: 10px auto;
+}
+
+#scene2 .king2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 1s ease;
+  z-index: 10;
+}
+
+.vassal2 {
+  position: absolute;
+  transition: transform 1s ease;
+  font-size: clamp(28px, 7vw, 46px);
+}
+.vassal2:nth-child(2) { top: 5%; left: 50%; transform: translateX(-50%); }
+.vassal2:nth-child(3) { top: 50%; right: 5%; transform: translateY(-50%); }
+.vassal2:nth-child(4) { bottom: 5%; left: 50%; transform: translateX(-50%); }
+.vassal2:nth-child(5) { top: 50%; left: 5%; transform: translateY(-50%); }
+
+.war-icon {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 5;
+}
+.war-icon.show { opacity: 1; animation: shake 0.5s ease-in-out infinite; }
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+.war-icon:nth-child(6) { top: 28%; left: 30%; }
+.war-icon:nth-child(7) { top: 28%; right: 30%; }
+.war-icon:nth-child(8) { bottom: 28%; left: 30%; }
+.war-icon:nth-child(9) { bottom: 28%; right: 30%; }
+
+#scene2 .slider-wrap {
+  width: 90%;
+  max-width: 400px;
+  margin: 12px auto 0;
+}
+#scene2 .slider-wrap label {
+  font-size: clamp(12px, 2.4vw, 14px);
+  color: #b0a080;
+  display: flex;
+  justify-content: space-between;
+}
+#time-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(to right, #4a7c3f, #7c3f3f);
+  border-radius: 4px;
+  outline: none;
+  margin-top: 4px;
+}
+#time-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #f0c040;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.war-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(180, 30, 30, 0);
+  transition: background 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  border-radius: 12px;
+  z-index: 20;
+}
+.war-overlay .war-text {
+  font-size: clamp(18px, 5vw, 30px);
+  font-weight: 900;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  text-shadow: 0 2px 12px rgba(180,30,30,0.8);
+}
+
+/* ═══════════════════════════
+   장면 3: 군현제
+   ═══════════════════════════ */
+#scene3 .stage3 {
+  position: relative;
+  width: 340px;
+  height: 280px;
+  margin: 10px auto;
+}
+
+.old-structure {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease;
+}
+.old-structure .x-mark {
+  position: absolute;
+  font-size: 160px;
+  color: #ff3333;
+  opacity: 0;
+  z-index: 30;
+  transition: opacity 0.5s ease;
+  text-shadow: 0 4px 20px rgba(255,0,0,0.5);
+}
+.old-structure .mini-feudal {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 36px;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.new-structure {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.8s ease 0.4s;
+}
+.new-structure .emperor {
+  font-size: clamp(48px, 12vw, 72px);
+  margin-bottom: 8px;
+}
+.new-structure .officials-row {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+.official-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: all 0.5s ease;
+}
+.official-unit.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.official-unit .line {
+  width: 2px;
+  height: 24px;
+  background: #f0c040;
+  margin-bottom: 4px;
+}
+.official-unit .emoji-official {
+  font-size: clamp(28px, 6vw, 40px);
+}
+.official-unit .label {
+  font-size: 11px;
+  color: #b0a080;
+}
+
+.replace-btn {
+  margin-top: 16px;
+  padding: 8px 20px;
+  background: rgba(255,60,60,0.2);
+  border: 1px solid rgba(255,60,60,0.5);
+  color: #ff8080;
+  border-radius: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: clamp(12px, 2.5vw, 14px);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.replace-btn.show { opacity: 1; }
+.replace-btn:hover { background: rgba(255,60,60,0.35); }
+
+.replaced-anim {
+  animation: swap-out 0.4s ease forwards;
+}
+@keyframes swap-out {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(20px); opacity: 0; }
+  51% { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ═══════════════════════════
+   장면 4: 비교 + 퀴즈
+   ═══════════════════════════ */
+#scene4 .compare-wrap {
+  display: flex;
+  gap: 16px;
+  margin: 10px auto;
+  max-width: 600px;
+  width: 100%;
+}
+.compare-col {
+  flex: 1;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.compare-col.left {
+  background: rgba(180,50,50,0.15);
+  border: 1px solid rgba(180,50,50,0.3);
+}
+.compare-col.right {
+  background: rgba(50,140,80,0.15);
+  border: 1px solid rgba(50,140,80,0.3);
+}
+.compare-col h3 {
+  font-size: clamp(15px, 3vw, 20px);
+  margin-bottom: 6px;
+}
+.compare-col .sub {
+  font-size: clamp(11px, 2.2vw, 13px);
+  color: #b0a080;
+  margin-bottom: 10px;
+}
+.compare-row {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.5s ease;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: clamp(12px, 2.6vw, 15px);
+}
+.compare-row.show { opacity: 1; transform: translateY(0); }
+
+/* 퀴즈 */
+.quiz-area {
+  margin-top: 16px;
+  width: 100%;
+  max-width: 500px;
+}
+.quiz-q {
+  margin-bottom: 14px;
+}
+.quiz-q p {
+  font-size: clamp(13px, 2.8vw, 16px);
+  font-weight: 700;
+  color: #f0c040;
+  margin-bottom: 8px;
+}
+.quiz-option {
+  display: block;
+  width: 100%;
+  padding: 8px 14px;
+  margin-bottom: 6px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: #e8d5b0;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: clamp(12px, 2.5vw, 14px);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s;
+}
+.quiz-option:hover { background: rgba(240,192,64,0.1); border-color: rgba(240,192,64,0.3); }
+.quiz-option.correct {
+  background: rgba(50,180,80,0.25);
+  border-color: rgba(50,180,80,0.6);
+  color: #80ff90;
+}
+.quiz-option.wrong {
+  background: rgba(180,50,50,0.25);
+  border-color: rgba(180,50,50,0.6);
+  color: #ff8080;
+}
+.quiz-option:disabled { cursor: default; opacity: 0.7; }
+.quiz-option:disabled:hover { background: inherit; border-color: inherit; }
+
+.quiz-feedback {
+  font-size: clamp(12px, 2.5vw, 14px);
+  margin-top: 4px;
+  min-height: 20px;
+}
+
+/* 배경 장식 */
+.bg-pattern {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(180,140,60,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(180,140,60,0.04) 0%, transparent 50%);
+}
+.bg-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 40px,
+    rgba(180,140,60,0.02) 40px,
+    rgba(180,140,60,0.02) 41px
+  );
+}
+
+/* 반응형 */
+@media (max-width: 420px) {
+  #scene1 .stage { width: 260px; height: 260px; }
+  #scene2 .stage2 { width: 260px; height: 220px; }
+  #scene3 .stage3 { width: 280px; height: 240px; }
+  .compare-wrap { flex-direction: column; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+
+<div id="app">
+
+  <!-- ────── 장면 1: 봉건제의 시작 ────── -->
+  <div id="scene1" class="scene active">
+    <div class="scene-title">장면 1: 봉건제의 시작</div>
+
+    <div class="speech-bubble" id="bubble1">
+      "땅을 나눠주겠다!"
+    </div>
+
+    <div class="stage">
+      <div class="king emoji-char">👑</div>
+      <div class="vassal" data-v="1">👤</div>
+      <div class="vassal" data-v="2">👤</div>
+      <div class="vassal" data-v="3">👤</div>
+      <div class="vassal" data-v="4">👤</div>
+      <div class="land-block"></div>
+      <div class="land-block"></div>
+      <div class="land-block"></div>
+      <div class="land-block"></div>
+    </div>
+
+    <div class="desc-text" id="desc1" style="opacity:0; transition: opacity 0.6s ease;">
+      주나라 왕이 제후에게 땅을 나눠주었다 <strong>(봉건제)</strong>
+    </div>
+    <div class="analogy" id="analogy1" style="opacity:0; transition: opacity 0.6s ease 0.3s;">
+      💡 비유: 프랜차이즈 본사가 가맹점주에게 영업권을 나눠준 것
+    </div>
+
+    <div class="click-hint" id="hint1">👆 화면을 클릭하세요</div>
+
+    <button class="next-btn" id="next1" style="display:none;" onclick="goScene(2)">다음 장면 →</button>
+  </div>
+
+  <!-- ────── 장면 2: 봉건제 붕괴 ────── -->
+  <div id="scene2" class="scene">
+    <div class="scene-title">장면 2: 봉건제의 붕괴</div>
+
+    <div class="stage2">
+      <div class="king2 emoji-char" id="king2">👑</div>
+      <div class="vassal2">👤</div>
+      <div class="vassal2">👤</div>
+      <div class="vassal2">👤</div>
+      <div class="vassal2">👤</div>
+      <div class="war-icon">⚔️</div>
+      <div class="war-icon">⚔️</div>
+      <div class="war-icon">⚔️</div>
+      <div class="war-icon">⚔️</div>
+      <div class="war-overlay" id="warOverlay">
+        <div class="war-text">500년간 전쟁!<br>춘추전국시대</div>
+      </div>
+    </div>
+
+    <div class="slider-wrap">
+      <label>
+        <span>주나라 건국</span>
+        <span>춘추전국시대</span>
+      </label>
+      <input type="range" id="time-slider" min="0" max="100" value="0">
+    </div>
+
+    <div class="desc-text" style="margin-top: 10px;">
+      시간이 지나면서 제후들은 점점 강해지고, 왕은 약해졌다
+    </div>
+    <div class="analogy">
+      💡 비유: 프랜차이즈 가맹점이 본사보다 커져서 독립한 것과 같다
+    </div>
+
+    <button class="next-btn" onclick="goScene(3)" style="margin-top:12px;">다음 장면 →</button>
+  </div>
+
+  <!-- ────── 장면 3: 군현제 ────── -->
+  <div id="scene3" class="scene">
+    <div class="scene-title">장면 3: 시황제의 결심 — 군현제</div>
+
+    <div class="speech-bubble" id="bubble3" style="opacity:0; transition: opacity 0.6s ease;">
+      "다시는 이런 일이 없게 하겠다!"
+    </div>
+
+    <div class="stage3">
+      <div class="old-structure" id="oldStruct">
+        <div class="mini-feudal">
+          <span>👑</span><span>→</span>
+          <span>👤</span><span>👤</span><span>👤</span><span>👤</span>
+        </div>
+        <div class="x-mark" id="xMark">✕</div>
+      </div>
+      <div class="new-structure" id="newStruct">
+        <div class="emperor">👑</div>
+        <div class="officials-row">
+          <div class="official-unit" id="off1">
+            <div class="line"></div>
+            <div class="emoji-official">👨‍💼</div>
+            <div class="label">파견 관리</div>
+          </div>
+          <div class="official-unit" id="off2">
+            <div class="line"></div>
+            <div class="emoji-official">👨‍💼</div>
+            <div class="label">파견 관리</div>
+          </div>
+          <div class="official-unit" id="off3">
+            <div class="line"></div>
+            <div class="emoji-official">👨‍💼</div>
+            <div class="label">파견 관리</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="replace-btn" id="replaceBtn" onclick="replaceOfficial()">
+      🔄 "마음에 안 들면?" — 관리 교체!
+    </button>
+
+    <div class="desc-text" style="margin-top: 8px;">
+      황제가 직접 관리를 임명하고 파견 → 언제든 교체 가능
+    </div>
+    <div class="analogy">
+      💡 비유: 직영점 매니저를 본사가 직접 보내서 운영하는 것
+    </div>
+
+    <button class="next-btn" onclick="goScene(4)" style="margin-top:10px;">다음 장면 →</button>
+  </div>
+
+  <!-- ────── 장면 4: 비교 + 퀴즈 ────── -->
+  <div id="scene4" class="scene">
+    <div class="scene-title">장면 4: 봉건제 vs 군현제 비교</div>
+
+    <div class="compare-wrap">
+      <div class="compare-col left">
+        <h3>👤 봉건제</h3>
+        <div class="sub">(프랜차이즈)</div>
+        <div class="compare-row" data-idx="0">📌 땅을 나눠줌</div>
+        <div class="compare-row" data-idx="1">📌 제후 = 독립적</div>
+        <div class="compare-row" data-idx="2">📌 시간 → 전쟁</div>
+      </div>
+      <div class="compare-col right">
+        <h3>👨‍💼 군현제</h3>
+        <div class="sub">(직영점)</div>
+        <div class="compare-row" data-idx="0">✅ 관리를 파견</div>
+        <div class="compare-row" data-idx="1">✅ 관리 = 월급쟁이</div>
+        <div class="compare-row" data-idx="2">✅ 교체 가능</div>
+      </div>
+    </div>
+
+    <div class="quiz-area" id="quizArea" style="opacity:0; transition: opacity 0.5s ease;">
+      <div class="quiz-q">
+        <p>Q1. 시황제가 봉건제를 폐지한 이유는?</p>
+        <button class="quiz-option" data-q="1" data-correct="false" onclick="checkAnswer(this)">① 땅이 부족해서</button>
+        <button class="quiz-option" data-q="1" data-correct="true" onclick="checkAnswer(this)">② 제후들이 너무 강해져 전쟁이 계속되었기 때문에</button>
+        <button class="quiz-option" data-q="1" data-correct="false" onclick="checkAnswer(this)">③ 외국과 교역하기 위해서</button>
+        <div class="quiz-feedback" id="fb1"></div>
+      </div>
+      <div class="quiz-q">
+        <p>Q2. 군현제의 핵심 특징은?</p>
+        <button class="quiz-option" data-q="2" data-correct="false" onclick="checkAnswer(this)">① 제후가 스스로 땅을 다스림</button>
+        <button class="quiz-option" data-q="2" data-correct="false" onclick="checkAnswer(this)">② 백성이 투표로 관리를 선출</button>
+        <button class="quiz-option" data-q="2" data-correct="true" onclick="checkAnswer(this)">③ 황제가 관리를 임명·파견하고 교체할 수 있음</button>
+        <div class="quiz-feedback" id="fb2"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 하단 내비게이션 -->
+<div id="nav">
+  <div class="nav-dot active" data-s="1" onclick="goScene(1)"></div>
+  <div class="nav-dot" data-s="2" onclick="goScene(2)"></div>
+  <div class="nav-dot" data-s="3" onclick="goScene(3)"></div>
+  <div class="nav-dot" data-s="4" onclick="goScene(4)"></div>
+</div>
+
+<script>
+// ── 오디오 컨텍스트 (Web Audio API) ──
+let audioCtx = null;
+function ensureAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+
+function playTone(freq, dur, type = 'sine', vol = 0.12) {
+  try {
+    ensureAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + dur);
+  } catch(e) {}
+}
+
+function sfxTransition() {
+  playTone(520, 0.15, 'sine', 0.1);
+  setTimeout(() => playTone(680, 0.2, 'sine', 0.08), 80);
+}
+
+function sfxWar() {
+  playTone(120, 0.4, 'sawtooth', 0.15);
+  setTimeout(() => playTone(90, 0.5, 'square', 0.1), 100);
+}
+
+function sfxCorrect() {
+  playTone(523, 0.12, 'sine', 0.1);
+  setTimeout(() => playTone(659, 0.12, 'sine', 0.1), 100);
+  setTimeout(() => playTone(784, 0.25, 'sine', 0.1), 200);
+}
+
+function sfxWrong() {
+  playTone(200, 0.3, 'sawtooth', 0.08);
+}
+
+function sfxReplace() {
+  playTone(400, 0.1, 'triangle', 0.1);
+  setTimeout(() => playTone(600, 0.15, 'triangle', 0.1), 100);
+}
+
+// ── 장면 전환 ──
+let currentScene = 1;
+const sceneInited = { 1: false, 2: false, 3: false, 4: false };
+
+function goScene(n) {
+  if (n === currentScene) return;
+  sfxTransition();
+  document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+  document.getElementById('scene' + n).classList.add('active');
+  document.querySelectorAll('.nav-dot').forEach(d => {
+    d.classList.toggle('active', +d.dataset.s === n);
+  });
+  currentScene = n;
+  initScene(n);
+}
+
+function initScene(n) {
+  if (sceneInited[n]) return;
+  sceneInited[n] = true;
+  if (n === 3) startScene3();
+  if (n === 4) startScene4();
+}
+
+// ── 장면 1: 클릭으로 제후 등장 ──
+let scene1clicked = false;
+document.getElementById('scene1').addEventListener('click', function(e) {
+  if (e.target.classList.contains('next-btn')) return;
+  if (scene1clicked) return;
+  scene1clicked = true;
+
+  ensureAudio();
+  playTone(440, 0.15, 'sine', 0.08);
+
+  document.getElementById('hint1').style.display = 'none';
+
+  const vassals = this.querySelectorAll('.vassal');
+  const lands = this.querySelectorAll('.land-block');
+  vassals.forEach((v, i) => {
+    setTimeout(() => {
+      v.classList.add('show');
+      playTone(350 + i * 60, 0.12, 'triangle', 0.06);
+    }, i * 300);
+  });
+  setTimeout(() => {
+    lands.forEach(l => l.classList.add('show'));
+  }, vassals.length * 300 + 200);
+
+  setTimeout(() => {
+    document.getElementById('desc1').style.opacity = '1';
+    document.getElementById('analogy1').style.opacity = '1';
+    document.getElementById('next1').style.display = '';
+  }, vassals.length * 300 + 600);
+});
+
+// ── 장면 2: 시간 슬라이더 ──
+const slider = document.getElementById('time-slider');
+slider.addEventListener('input', function() {
+  const v = +this.value;
+  const king2 = document.getElementById('king2');
+  const vassals2 = document.querySelectorAll('.vassal2');
+  const wars = document.querySelectorAll('.war-icon');
+  const overlay = document.getElementById('warOverlay');
+
+  // 왕 축소
+  const kingScale = 1 - v * 0.006;
+  king2.style.transform = `translate(-50%, -50%) scale(${Math.max(kingScale, 0.3)})`;
+
+  // 제후 확대
+  const vScale = 1 + v * 0.012;
+  vassals2[0].style.transform = `translateX(-50%) scale(${vScale})`;
+  vassals2[1].style.transform = `translateY(-50%) scale(${vScale})`;
+  vassals2[2].style.transform = `translateX(-50%) scale(${vScale})`;
+  vassals2[3].style.transform = `translateY(-50%) scale(${vScale})`;
+
+  // 전쟁 아이콘
+  if (v > 50) {
+    wars.forEach(w => w.classList.add('show'));
+  } else {
+    wars.forEach(w => w.classList.remove('show'));
+  }
+
+  // 빨간 오버레이
+  if (v > 80) {
+    overlay.style.background = `rgba(180,30,30,${(v - 80) * 0.015})`;
+    overlay.querySelector('.war-text').style.opacity = Math.min((v - 85) / 15, 1);
+    if (v > 90 && !slider.warPlayed) {
+      slider.warPlayed = true;
+      sfxWar();
+    }
+  } else {
+    overlay.style.background = 'rgba(180,30,30,0)';
+    overlay.querySelector('.war-text').style.opacity = '0';
+  }
+});
+
+// ── 장면 3: 시황제 군현제 ──
+function startScene3() {
+  const bubble = document.getElementById('bubble3');
+  const xMark = document.getElementById('xMark');
+  const oldStruct = document.getElementById('oldStruct');
+  const newStruct = document.getElementById('newStruct');
+  const replaceBtn = document.getElementById('replaceBtn');
+
+  // 1. 말풍선 등장
+  setTimeout(() => { bubble.style.opacity = '1'; }, 300);
+
+  // 2. X 표시
+  setTimeout(() => {
+    xMark.style.opacity = '1';
+    playTone(150, 0.3, 'sawtooth', 0.1);
+  }, 1500);
+
+  // 3. 구조 전환
+  setTimeout(() => {
+    oldStruct.style.opacity = '0';
+    newStruct.style.opacity = '1';
+  }, 2500);
+
+  // 4. 관리 등장
+  setTimeout(() => {
+    document.getElementById('off1').classList.add('show');
+    playTone(440, 0.1, 'triangle', 0.06);
+  }, 3200);
+  setTimeout(() => {
+    document.getElementById('off2').classList.add('show');
+    playTone(520, 0.1, 'triangle', 0.06);
+  }, 3600);
+  setTimeout(() => {
+    document.getElementById('off3').classList.add('show');
+    playTone(600, 0.1, 'triangle', 0.06);
+  }, 4000);
+
+  // 5. 교체 버튼
+  setTimeout(() => { replaceBtn.classList.add('show'); }, 4500);
+}
+
+let replaceTarget = 0;
+function replaceOfficial() {
+  sfxReplace();
+  const officials = [document.getElementById('off1'), document.getElementById('off2'), document.getElementById('off3')];
+  const target = officials[replaceTarget % 3];
+  const emojiEl = target.querySelector('.emoji-official');
+
+  emojiEl.classList.add('replaced-anim');
+  setTimeout(() => {
+    emojiEl.classList.remove('replaced-anim');
+    // 시각적 표시: 새 관리
+    const faces = ['👨‍💼', '👩‍💼', '🧑‍💼'];
+    emojiEl.textContent = faces[(replaceTarget + 1) % faces.length];
+  }, 400);
+  replaceTarget++;
+}
+
+// ── 장면 4: 비교 항목 순차 등장 + 퀴즈 ──
+function startScene4() {
+  const rows = document.querySelectorAll('#scene4 .compare-row');
+  rows.forEach((r, i) => {
+    setTimeout(() => {
+      r.classList.add('show');
+      playTone(380 + i * 50, 0.08, 'sine', 0.04);
+    }, i * 500 + 300);
+  });
+
+  setTimeout(() => {
+    document.getElementById('quizArea').style.opacity = '1';
+  }, rows.length * 500 + 600);
+}
+
+// ── 퀴즈 ──
+const answered = {};
+function checkAnswer(btn) {
+  const q = btn.dataset.q;
+  if (answered[q]) return;
+  answered[q] = true;
+
+  const isCorrect = btn.dataset.correct === 'true';
+  const fb = document.getElementById('fb' + q);
+
+  // 해당 질문의 모든 옵션 비활성화
+  document.querySelectorAll(`.quiz-option[data-q="${q}"]`).forEach(b => {
+    b.disabled = true;
+    if (b.dataset.correct === 'true') b.classList.add('correct');
+  });
+
+  if (isCorrect) {
+    sfxCorrect();
+    fb.style.color = '#80ff90';
+    fb.textContent = '🎉 정답입니다!';
+  } else {
+    btn.classList.add('wrong');
+    sfxWrong();
+    fb.style.color = '#ff8080';
+    fb.textContent = '❌ 아쉬워요! 정답을 확인해보세요.';
+  }
+}
+
+// ── 키보드 네비게이션 ──
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' && currentScene < 4) goScene(currentScene + 1);
+  if (e.key === 'ArrowLeft' && currentScene > 1) goScene(currentScene - 1);
+});
+
+// ── 터치 스와이프 ──
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 60) {
+    if (diff > 0 && currentScene < 4) goScene(currentScene + 1);
+    if (diff < 0 && currentScene > 1) goScene(currentScene - 1);
+  }
+}, { passive: true });
+</script>
+
+</body>
+</html>
