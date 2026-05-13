@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3-2. 기업의 역할과 사회적 책임 — 자료편</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  background: #f5f5f7; color: #1d1d1f; line-height: 1.75;
+  padding: 0; margin: 0;
+}
+.container {
+  max-width: 760px; margin: 0 auto; background: #fff;
+  border-radius: 0; padding: 28px 24px 80px;
+  min-height: 100vh;
+}
+@media (min-width: 768px) {
+  .container { margin: 20px auto; border-radius: 16px; box-shadow: 0 2px 24px rgba(0,0,0,0.06); padding: 40px 48px 100px; }
+}
+header.meta {
+  padding-bottom: 18px; margin-bottom: 24px; border-bottom: 2px solid #1a3a52;
+}
+header.meta h1 {
+  font-size: 1.6em; font-weight: 700; color: #1a3a52; line-height: 1.35; margin-bottom: 10px;
+}
+header.meta .sub {
+  font-size: 0.85em; color: #666; display: flex; flex-wrap: wrap; gap: 12px;
+}
+header.meta .sub span { padding: 3px 10px; background: #eef3f7; border-radius: 12px; color: #1a3a52; }
+.toc {
+  background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+  padding: 14px 18px; margin: 18px 0 28px; font-size: 0.9em;
+}
+.toc-title { font-weight: 700; color: #1a3a52; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.toc ol { list-style: none; padding: 0; counter-reset: toc; }
+.toc li { counter-increment: toc; padding: 3px 0; }
+.toc li::before { content: counter(toc) ". "; color: #5856d6; font-weight: 600; margin-right: 4px; }
+.toc li ol { padding-left: 18px; counter-reset: toc2; }
+.toc li li::before { content: counter(toc2, lower-roman) ". "; color: #888; counter-increment: toc2; }
+.toc a { color: #1d1d1f; text-decoration: none; }
+.toc a:hover { color: #5856d6; }
+h1 { font-size: 1.5em; margin: 26px 0 12px; color: #1a3a52; border-bottom: 2px solid #5856d6; padding-bottom: 8px; }
+h2 { font-size: 1.3em; margin: 32px 0 14px; color: #1a3a52; padding-top: 8px; }
+h3 { font-size: 1.12em; margin: 22px 0 10px; color: #2d4f6c; }
+h4 { font-size: 1em; margin: 16px 0 8px; color: #555; }
+p { margin: 10px 0; font-size: 1em; }
+ul, ol { margin: 10px 0 12px 22px; }
+li { margin: 4px 0; }
+hr { border: none; border-top: 1px solid #e5e7eb; margin: 26px 0; }
+table {
+  width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.94em;
+}
+th, td { border: 1px solid #e0e4e8; padding: 9px 12px; vertical-align: top; text-align: left; }
+th { background: #eef3f7; font-weight: 600; color: #1a3a52; }
+tr:nth-child(2n) td { background: #fafbfc; }
+blockquote {
+  border-left: 4px solid #5856d6; background: #f4f4ff;
+  padding: 12px 18px; margin: 14px 0; border-radius: 0 8px 8px 0; color: #333;
+}
+blockquote.info { border-left-color: #34c759; background: #ecfdf5; }
+blockquote.warn { border-left-color: #ff9500; background: #fff7ed; }
+blockquote.source { border-left-color: #8e8e93; background: #f5f5f7; font-size: 0.92em; color: #555; }
+code {
+  font-family: 'SF Mono', 'Menlo', monospace; font-size: 0.88em;
+  background: #f1f3f5; padding: 2px 6px; border-radius: 4px; color: #c0392b;
+}
+pre {
+  background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px;
+  overflow-x: auto; margin: 14px 0; font-family: 'SF Mono', monospace;
+  font-size: 0.85em; line-height: 1.6;
+}
+pre code { background: none; color: inherit; padding: 0; }
+img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; }
+a { color: #5856d6; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.footnote { font-size: 0.85em; color: #666; }
+.footnote-ref { vertical-align: super; font-size: 0.75em; color: #5856d6; text-decoration: none; }
+footer.published {
+  margin-top: 60px; padding-top: 20px; border-top: 1px solid #e5e7eb;
+  text-align: center; color: #999; font-size: 0.82em;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="meta">
+    <h1>3-2. 기업의 역할과 사회적 책임 — 자료편</h1>
+    <div class="sub"><span>사회②</span><span>천재교육 사회②(구정화)</span><span>👤 천대현</span></div>
+  </header>
+  <nav class="toc"><div class="toc-title">📑 목차</div><ol><li><a href="#이윤-너머-기업은-왜-더-무거운-짐을-지는가">「이윤 너머 — 기업은 왜 더 무거운 짐을 지는가」</a><ol></ol></li><li><a href="#도입-나는-어떤-소비자-mbti-4축-진단">[도입] 나는 어떤 소비자? — MBTI 4축 진단 🎯</a><ol></ol></li><li><a href="#q0-왜-우리-일상은-기업으로-가득한가-기업의-의미와-5가지-종류">[Q0] 왜 우리 일상은 기업으로 가득한가? — 기업의 의미와 5가지 종류</a><ol><li><a href="#0-1-기업이란">0-1. 기업이란</a></li><li><a href="#0-2-기업의-5가지-종류-한국-법령-기준">0-2. 기업의 5가지 종류 (한국 법령 기준)</a></li><li><a href="#0-3-한국-경제의-진짜-모습-통계로-보기">0-3. 한국 경제의 진짜 모습 — 통계로 보기</a></li></ol></li><li><a href="#q1-기업의-4가지-역할-왜-사회는-기업을-필요로-하는가">[Q1] 기업의 4가지 역할 — 왜 사회는 기업을 필요로 하는가</a><ol><li><a href="#1-1-4가지-역할">1-1. 4가지 역할</a></li><li><a href="#1-2-4가지-역할이-연결된-한-줄">1-2. 4가지 역할이 연결된 한 줄</a></li><li><a href="#1-3-작은-마을-세계-기업-레고-lego-의-사례">1-3. 작은 마을 → 세계 기업 — 레고(LEGO)의 사례</a></li><li><a href="#반전-박스-4가지-역할은-4가지-회피가-될-수도-있다">⚡ 반전 박스 — 4가지 역할은 4가지 회피가 될 수도 있다</a></li></ol></li><li><a href="#q2-이윤만-추구하면-충분할까-사회적-책임이-등장한-이유">[Q2] 이윤만 추구하면 충분할까? — 사회적 책임이 등장한 이유</a><ol><li><a href="#2-1-충분하다는-옛-주장-프리드먼-선언-1970">2-1. 충분하다는 옛 주장 — 프리드먼 선언 (1970)</a></li><li><a href="#2-2-충분하지-않다는-반론-1970-80년대-환경-인권-충격">2-2. 충분하지 않다는 반론 — 1970~80년대 환경·인권 충격</a></li><li><a href="#반전-박스-사고는-과거가-아니다-지금도-진행-중">⚡ 반전 박스 — 사고는 과거가 아니다·지금도 진행 중</a></li><li><a href="#2-3-새로운-합의-기업의-사회적-책임-csr">2-3. 새로운 합의 — 기업의 사회적 책임 (CSR)</a></li></ol></li><li><a href="#q3-csr의-4단계-어디까지가-책임인가-캐럴-피라미드-1991">[Q3] CSR의 4단계 — 어디까지가 책임인가 (캐럴 피라미드, 1991)</a><ol><li><a href="#반전-박스-피라미드-너머-주주-지구-파타고니아-2022">⚡ 반전 박스 — 피라미드 너머: 주주 = 지구 (파타고니아 2022)</a></li></ol></li><li><a href="#q3-5-3-인물-평행-너는-누구에-가까운가">[Q3.5] 3 인물 평행 — 너는 누구에 가까운가? 🎯</a><ol><li><a href="#너의-4축-코드와-매칭">💡 너의 4축 코드와 매칭</a></li></ol></li><li><a href="#q4-esg-21세기-사회적-책임의-새-이름">[Q4] ESG — 21세기 사회적 책임의 새 이름</a><ol><li><a href="#4-1-esg란">4-1. ESG란</a></li><li><a href="#4-2-csr과-esg-무엇이-다른가">4-2. CSR과 ESG, 무엇이 다른가</a></li><li><a href="#4-3-왜-갑자기-esg가-떴나">4-3. 왜 갑자기 ESG가 떴나</a></li><li><a href="#반전-박스-esg도-워싱-가능-점수만-잘-받는-기업">⚡ 반전 박스 — ESG도 워싱 가능: 점수만 잘 받는 기업</a></li></ol></li><li><a href="#q5-기업가-정신이란-슘페터의-창조적-파괴">[Q5] 기업가 정신이란? — 슘페터의 창조적 파괴</a><ol><li><a href="#5-1-정의">5-1. 정의</a></li><li><a href="#5-2-창조적-파괴-슘페터의-핵심-명제">5-2. 창조적 파괴 — 슘페터의 핵심 명제</a></li><li><a href="#5-3-기업가-정신의-3가지-요소">5-3. 기업가 정신의 3가지 요소</a></li><li><a href="#반전-박스-창조는-동시에-파괴다-사라지는-일자리">⚡ 반전 박스 — 창조는 동시에 파괴다: 사라지는 일자리</a></li></ol></li><li><a href="#q6-기업가-정신-사례-한국-3세대-글로벌-청소년">[Q6] 기업가 정신 사례 — 한국 3세대 + 글로벌 청소년</a><ol><li><a href="#6-1-1세대-1960-70년대-산업화-시대">6-1. 1세대 (1960~70년대) — 산업화 시대</a></li><li><a href="#6-2-2세대-1990-2000년대-정보화-시대">6-2. 2세대 (1990~2000년대) — 정보화 시대</a></li><li><a href="#6-3-3세대-2010년대-플랫폼-소셜-시대">6-3. 3세대 (2010년대~) — 플랫폼·소셜 시대</a></li><li><a href="#6-4-글로벌-청소년-사례-프레이저-도허티-fraser-doherty-1988">6-4. 글로벌 청소년 사례 — 프레이저 도허티 (Fraser Doherty, 1988~) ⭐</a></li><li><a href="#6-5-기업가-정신과-기업의-사회적-책임의-관계">6-5. 기업가 정신과 기업의 사회적 책임의 관계</a></li><li><a href="#반전-박스-한국-재벌은-사실상-공공재인가-이재명-인용">⚡ 반전 박스 — 한국 재벌은 사실상 공공재인가? (이재명 인용)</a></li></ol></li><li><a href="#q7-21세기-그림자-교과서-너머의-6가지-사례">[Q7] 21세기 그림자 — 교과서 너머의 6가지 사례 ⚡⚡⚡</a><ol><li><a href="#7-1-쿠팡-로켓배송-죽음의-배송-한국-2024">7-1. 쿠팡 — 로켓배송 = 죽음의 배송? (한국·2024)</a></li><li><a href="#7-2-일론-머스크-아스퍼거-미국-정치-권력">7-2. 일론 머스크 — 아스퍼거 + 미국 정치 권력</a></li><li><a href="#7-3-샘-올트만-ai-거버넌스-5일-해임극-openai-2023-11">7-3. 샘 올트만 — AI 거버넌스 5일 해임극 (OpenAI·2023.11)</a></li><li><a href="#7-4-애플-세금-0-005-130억-유로-추징-eu-최고법원-2024">7-4. 애플 — 세금 0.005%·130억 유로 추징 (EU 최고법원 2024)</a></li><li><a href="#7-5-코카콜라-친환경-광고-6년-연속-플라스틱-1위-bffp-2023">7-5. 코카콜라 — 친환경 광고 + 6년 연속 플라스틱 1위 (BFFP 2023)</a></li><li><a href="#7-6-반전의-반전-파타고니아-yvon-chouinard-2011-2022">7-6. 반전의 반전 — 파타고니아 (Yvon Chouinard, 2011·2022)</a></li></ol></li><li><a href="#종합-한-장으로-보는-인과-사슬">[종합] 한 장으로 보는 인과 사슬</a><ol></ol></li><li><a href="#심화-세특용-탐구-주제-추천">[심화] 세특용 탐구 주제 추천 ⭐</a><ol><li><a href="#심화-1-그린워싱-greenwashing-가짜-친환경의-함정">심화 1: 그린워싱(Greenwashing) — 가짜 친환경의 함정</a></li><li><a href="#심화-2-주주-자본주의-vs-이해관계자-자본주의">심화 2: 주주 자본주의 vs 이해관계자 자본주의</a></li><li><a href="#심화-3-플랫폼-노동-새로운-형태의-고용-책임">심화 3: 플랫폼 노동 — 새로운 형태의 고용 책임</a></li><li><a href="#심화-4-중대재해처벌법-윤리에서-법으로">심화 4: 중대재해처벌법 — 윤리에서 법으로</a></li><li><a href="#심화-5-사회적-기업-b-corp-인증-책임을-사업-목적으로">심화 5: 사회적 기업·B Corp 인증 — 책임을 사업 목적으로</a></li><li><a href="#심화-6-ai-기업의-거버넌스-openai-5일-해임극-신설">심화 6: AI 기업의 거버넌스 — OpenAI 5일 해임극 ⭐ 신설</a></li><li><a href="#심화-7-세금-회피와-다국적-기업의-책임-애플-130억-유로-신설">심화 7: 세금 회피와 다국적 기업의 책임 — 애플 130억 유로 ⭐ 신설</a></li></ol></li><li><a href="#활용-개념편-활동과-연결">[활용] 개념편 활동과 연결</a><ol></ol></li><li><a href="#교과서-지도서-연계-심화">[교과서·지도서 연계 심화]</a><ol></ol></li><li><a href="#관련-노트">🔗 관련 노트</a><ol><li><a href="#위성볼트-사진-마스터-5-11-신설">위성볼트 사진 마스터 (5/11 신설)</a></li></ol></li><li><a href="#각주">📎 각주</a><ol></ol></li></ol></nav>
+  <main>
+<h1>3-2. 기업의 역할과 사회적 책임 — 자료편</h1>
+<h2 id="이윤-너머-기업은-왜-더-무거운-짐을-지는가">「이윤 너머 — 기업은 왜 더 무거운 짐을 지는가」</h2>
+<blockquote>
+<p>개념편에서 &ldquo;기업은 이윤을 추구하는 경제 주체&rdquo;라고 배웠다.
+그런데 왜 기업들은 매년 <em>지속가능경영보고서</em>를 내고, 환경·인권·지배구조 점수를 받으며,
+어떤 기업은 <em>돈을 벌면서도</em> 사회적 문제 해결을 자기 사업으로 삼을까?
+이 자료편은 &ldquo;기업이 이윤만으로 끝나지 않는 이유&rdquo;를 <strong>8개의 핵심 질문</strong>으로 정리한다.
+각 Q 끝에는 <em>카테고리 충격</em> — <em>익숙한 의미가 정반대로 뒤집히는</em> 반전 사례를 함께 둔다.</p>
+</blockquote>
+<hr />
+<h2 id="도입-나는-어떤-소비자-mbti-4축-진단">[도입] 나는 어떤 소비자? — MBTI 4축 진단 🎯</h2>
+<blockquote>
+<p>본 자료편 진입 전, <strong>너의 4축 소비 성향</strong>부터 확인하자.
+4축에서 각각 1개씩 골라서 <strong>4글자 코드</strong>를 만들어 보자.
+자료편 중간중간 <em>너의 유형</em>과 <em>기업의 책임</em>이 어떻게 만나는지 표시된다.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>축</th>
+<th>A</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 가성비 vs 가치소비</td>
+<td><strong>P</strong>rice (저렴이 우선)</td>
+<td><strong>V</strong>alue (의미·품질 우선)</td>
+</tr>
+<tr>
+<td>② 대기업 vs 동네가게</td>
+<td><strong>B</strong>ig (브랜드 신뢰)</td>
+<td><strong>L</strong>ocal (소상공인 응원)</td>
+</tr>
+<tr>
+<td>③ 환경 vs 편리</td>
+<td><strong>E</strong>co (환경·미래)</td>
+<td><strong>C</strong>onvenient (지금 편하게)</td>
+</tr>
+<tr>
+<td>④ 직접비교 vs 인플루언서</td>
+<td><strong>D</strong>irect (발품·비교)</td>
+<td><strong>I</strong>nfluencer (유튜브·SNS 추천)</td>
+</tr>
+</tbody>
+</table>
+<p>→ 예: <em>PBCD</em> = 가성비·대기업·편리·직접비교 / <em>VLEI</em> = 가치소비·동네가게·환경·인플루언서</p>
+<blockquote class="info">
+<p>💡 <strong>너의 4글자 코드는?</strong> 친구와 비교해 보고, 자료편 [Q4 ESG] 부분에서 <em>너의 유형과 가장 잘 맞는 기업</em>이 누구일지 다시 생각해 보자.</p>
+<p>📚 <strong>참고</strong>: MBTI 자체는 C.G. Jung 이론을 Myers·Briggs가 1944년 검사로 만든 도구다. 여기 <em>4축 소비자 진단</em>은 같은 <em>2분법 X 4축</em> 구조만 차용한 것·심리학적으로 검증된 도구 아님 (Myers-Briggs Foundation, <em>About Personality Type</em>).</p>
+</blockquote>
+<hr />
+<h2 id="q0-왜-우리-일상은-기업으로-가득한가-기업의-의미와-5가지-종류">[Q0] 왜 우리 일상은 기업으로 가득한가? — 기업의 의미와 5가지 종류</h2>
+<h3 id="0-1-기업이란">0-1. 기업이란</h3>
+<p><strong>기업(企業, enterprise)</strong>: 재화와 서비스를 <strong>생산·판매</strong>하여 <strong>이윤</strong>을 얻는 경제 활동 주체.</p>
+<blockquote class="source">
+<p>(교과서 원문: &ldquo;기업은 가계, 정부와 함께 경제 활동의 주체로서 재화와 서비스를 생산·판매하여 이윤을 얻는다.&rdquo;, 천재교육 사회②(구정화) p.58)</p>
+</blockquote>
+<p>가계가 <em>소비</em>의 중심이고 정부가 <em>조정</em>의 중심이라면, 기업은 <em>생산</em>의 중심이다. 우리가 아침에 일어나 쓰는 칫솔·세수 비누·교복·스마트폰·점심 급식 식자재까지 — 거의 모든 물건이 <em>어딘가의 기업</em>에서 만들어졌다.</p>
+<h3 id="0-2-기업의-5가지-종류-한국-법령-기준">0-2. 기업의 5가지 종류 (한국 법령 기준)</h3>
+<p>한국 법은 기업을 <em>규모·구조</em> 두 축으로 나눈다.</p>
+<table>
+<thead>
+<tr>
+<th>종류</th>
+<th>규모·특징</th>
+<th>대표 사례</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>자영업</strong></td>
+<td>개인이 직접 운영하는 소규모 사업</td>
+<td>동네 편의점·세탁소·미용실</td>
+</tr>
+<tr>
+<td><strong>중소기업</strong></td>
+<td>업종별 평균매출액 기준 + 자산 5천억 미만 (중소기업기본법 시행령 별표 1)</td>
+<td>부품 제조·지역 식품 기업</td>
+</tr>
+<tr>
+<td><strong>중견기업</strong> ⭐</td>
+<td>중소·대기업 <em>사이</em>. 산업통상자원부 <em>중견기업법</em> 적용</td>
+<td>한미약품·휠라코리아·오뚜기</td>
+</tr>
+<tr>
+<td><strong>대기업</strong></td>
+<td>중소·중견 <em>아닌</em> 기업. 자산 5조 이상은 <em>대규모기업집단</em>(공정거래법)으로 별도 지정</td>
+<td>삼성전자·현대자동차·LG화학</td>
+</tr>
+<tr>
+<td><strong>다국적 기업</strong></td>
+<td><strong>2개 이상 나라</strong>에 생산·판매 거점을 둔 기업 (UN UNCTAD 정의)</td>
+<td>애플·맥도날드·도요타·삼성전자</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="info">
+<p>💡 <strong>헷갈리기 쉬운 점 1 — 대기업 vs 다국적 기업</strong>
+같은 말이 아니다. 매출이 작아도 여러 나라에서 활동하면 다국적 기업이고(예: 작은 IT 스타트업이 미국 지사를 두면 다국적), 거꾸로 매출이 커도 한 나라 안에서만 사업하면 다국적이 아니다. 다만 <em>현실에서는 큰 기업이 다국적이 되는 경우가 많아</em> 겹치는 일이 잦다.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">6</a></sup></p>
+<p>💡 <strong>헷갈리기 쉬운 점 2 — 중소·중견·대기업의 <em>세 단계</em></strong>
+중견기업은 2011년 <em>산업발전법</em> 개정으로 신설된 분류다. <em>중소기업도 대기업도 아닌</em> 중간 규모를 <em>육성</em>하기 위한 정책 카테고리. 한국에는 약 5,000~6,000개 중견기업이 있으며, <em>수출·고용</em>에서 큰 비중을 차지한다. (산업통상자원부 <em>중견기업 기본통계</em>)</p>
+</blockquote>
+<h3 id="0-3-한국-경제의-진짜-모습-통계로-보기">0-3. 한국 경제의 진짜 모습 — 통계로 보기</h3>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>수치</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>전체 사업체 수 (2023)</td>
+<td>약 <strong>640만 개</strong></td>
+<td>통계청 <em>2023 전국사업체조사 결과(잠정)</em></td>
+</tr>
+<tr>
+<td>전체 종사자 수 (2023)</td>
+<td>약 <strong>2,532만 명</strong></td>
+<td>동</td>
+</tr>
+<tr>
+<td>중소기업이 차지하는 비중 (사업체·종사자 합산)</td>
+<td><strong>약 80% 이상</strong></td>
+<td>중소벤처기업부 <em>중소기업 기본통계</em> (해마다 81~83% 범위)</td>
+</tr>
+</tbody>
+</table>
+<p>→ 뉴스에 자주 나오는 건 대기업이지만, <em>실제로 일하는 사람의 약 80%</em>는 중소·중견·자영업에 있다. 중소기업이 어려워지면 일자리 <em>80%가 흔들린다</em>는 뜻이다. <em>대기업 = 한국 경제 전부</em>라는 인식은 <em>통계상 절반의 진실</em>이다.</p>
+<hr />
+<h2 id="q1-기업의-4가지-역할-왜-사회는-기업을-필요로-하는가">[Q1] 기업의 4가지 역할 — 왜 사회는 기업을 필요로 하는가</h2>
+<h3 id="1-1-4가지-역할">1-1. 4가지 역할</h3>
+<table>
+<thead>
+<tr>
+<th>역할</th>
+<th>무엇을 하는가</th>
+<th>사회에 미치는 효과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 소비자 만족</strong></td>
+<td>더 좋은 물건·새 기술을 시장에 내놓음</td>
+<td>우리 삶의 질 향상</td>
+</tr>
+<tr>
+<td><strong>② 고용 창출</strong></td>
+<td>사람을 채용해 일자리 제공</td>
+<td>가계 소득 형성</td>
+</tr>
+<tr>
+<td><strong>③ 국가 경제 발전</strong></td>
+<td>생산 활동으로 GDP 기여</td>
+<td>경제 성장의 동력</td>
+</tr>
+<tr>
+<td><strong>④ 세금 납부</strong></td>
+<td>법인세·부가가치세 등 납부</td>
+<td>복지·교육·국방 재원</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="source">
+<p>(교과서 원문: &ldquo;기업은 사회에 일자리를 제공하고, 세금을 납부하여 국가 재정에 기여한다.&rdquo;, 천재교육 사회②(구정화) p.59)</p>
+</blockquote>
+<h3 id="1-2-4가지-역할이-연결된-한-줄">1-2. 4가지 역할이 <em>연결</em>된 한 줄</h3>
+<pre><code>좋은 물건 (소비자 만족)
+       ↓
+사람을 더 뽑음 (고용 창출)
+       ↓
+이윤이 생김 → 일부는 세금으로 (세금 납부)
+       ↓
+세금이 복지·교육·도로로 (국가 경제 발전)
+       ↓
+국민 소득·구매력 ↑ → 다시 좋은 물건 수요 ↑
+</code></pre>
+<p>기업의 4가지 역할은 <em>따로 떨어진 4가지</em>가 아니라 <strong>하나의 순환</strong>이다. 한 고리가 끊기면(예: 고용 안 함, 세금 회피) 전체 순환이 흔들린다.</p>
+<h3 id="1-3-작은-마을-세계-기업-레고-lego-의-사례">1-3. 작은 마을 → 세계 기업 — 레고(LEGO)의 사례</h3>
+<p>덴마크 빌룬(Billund)의 목수 <strong>올레 키르크 크리스티안센(Ole Kirk Kristiansen)</strong>은 1932년 나무 장난감 회사를 차렸다. 회사 이름 <em>LEGO</em>는 덴마크어 <em>Leg Godt</em>(잘 놀자)의 줄임말이다.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">1</a></sup></p>
+<table>
+<thead>
+<tr>
+<th>시기</th>
+<th>사건</th>
+<th>어떤 역할이 작동했나</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1932</td>
+<td>빌룬에서 창업 — 마을 사람 7명 채용</td>
+<td>② 고용</td>
+</tr>
+<tr>
+<td>1949</td>
+<td>플라스틱 블록 출시 — 세계 최초의 <em>연결 시스템 장난감</em></td>
+<td>① 소비자 만족</td>
+</tr>
+<tr>
+<td>1968</td>
+<td>레고랜드 개장 — 빌룬에 관광객 몰림</td>
+<td>③ 지역 경제 발전</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>매출 약 9.6조 원·세계 130개국 진출</td>
+<td>④ 덴마크 법인세 + 다국적 기업</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>(교과서 외 보충 — LEGO Group <em>Annual Report 2023</em>)</p>
+</blockquote>
+<p>→ 작은 마을 목수의 작은 가게가 <em>덴마크 전체 이미지와 수출</em>까지 책임지는 기업이 됐다. 기업의 4가지 역할이 <em>시간의 축</em> 위에서 어떻게 누적되는지 보여주는 사례.</p>
+<blockquote>
+<p>🖼️ <strong>Figure 1 (LEGO House, Billund)</strong> — 2017년 빌룬에 개관한 LEGO House. <em>작은 마을 → 세계 본사</em>의 가시적 증거. 출처: Wikimedia <em>Lego House 01.jpg</em> (CC BY-SA 4.0)</p>
+</blockquote>
+<p>![[fig01-lego-house-billund.jpg|450]]</p>
+<h3 id="반전-박스-4가지-역할은-4가지-회피가-될-수도-있다">⚡ 반전 박스 — <em>4가지 역할</em>은 <em>4가지 회피</em>가 될 수도 있다</h3>
+<table>
+<thead>
+<tr>
+<th>정상 역할</th>
+<th>회피의 사례</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>④ 세금 납부</td>
+<td><strong>애플 아일랜드 절세 = 법인세율 0.005%</strong> (2014). EU 최고법원 2024.9.10 판결로 <strong>130억 유로 (약 18조 원) 추징</strong> 확정<sup id="fnref2:5"><a class="footnote-ref" href="#fn:5">8</a></sup></td>
+</tr>
+<tr>
+<td>② 고용 창출</td>
+<td><em>대기업이 창고에 돈을 쌓기만 하고 투자·고용은 외면</em> (이재명, <em>대한민국 혁명하라</em>)</td>
+</tr>
+<tr>
+<td>① 소비자 만족</td>
+<td><em>로켓배송 = 소비자 만족</em>이 <em>노동자 산재율 5.9%</em> 위에 (쿠팡·2020~2023 평균)<sup id="fnref2:6"><a class="footnote-ref" href="#fn:6">7</a></sup></td>
+</tr>
+</tbody>
+</table>
+<p>→ 4가지 역할은 <em>기본 의무</em>. 그 회피가 누적되면 <em>사회적 책임</em> 논의가 등장한다. ([Q2]로 자연 연결)</p>
+<hr />
+<h2 id="q2-이윤만-추구하면-충분할까-사회적-책임이-등장한-이유">[Q2] 이윤만 추구하면 충분할까? — 사회적 책임이 등장한 이유</h2>
+<h3 id="2-1-충분하다는-옛-주장-프리드먼-선언-1970">2-1. <em>충분하다</em>는 옛 주장 — 프리드먼 선언 (1970)</h3>
+<p>미국 경제학자 <strong>밀턴 프리드먼(Milton Friedman)</strong>은 1970년 <em>뉴욕 타임스</em>에 글을 실어 이렇게 주장했다.</p>
+<blockquote>
+<p><em>&ldquo;기업의 사회적 책임은 단 하나 — 이윤을 늘리는 것이다.&rdquo;</em> (Milton Friedman, <em>The Social Responsibility of Business Is to Increase Its Profits</em>, New York Times Magazine, 1970.9.13.)</p>
+</blockquote>
+<p>논거는 단순했다. 기업이 <em>사회적 책임</em>에 돈을 쓰면 그건 결국 <em>주주의 돈</em>을 마음대로 쓰는 셈이고, 정부가 할 일을 기업이 가로채는 것과 같다는 것. 이윤만 잘 내면 <em>세금을 내고 → 정부가 사회 문제를 해결</em>하는 게 효율적이라는 주장이다.</p>
+<h3 id="2-2-충분하지-않다는-반론-1970-80년대-환경-인권-충격">2-2. <em>충분하지 않다</em>는 반론 — 1970~80년대 환경·인권 충격</h3>
+<p>같은 시기 세 가지 충격이 일어나면서 <em>프리드먼의 주장</em>은 점점 비판을 받게 된다.</p>
+<table>
+<thead>
+<tr>
+<th>연도</th>
+<th>사건</th>
+<th>기업이 책임진 부분</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1976</td>
+<td>이탈리아 세베소 공장 폭발 — 다이옥신 누출, 주민 대피</td>
+<td>ICMESA(스위스 호프만라로슈 자회사)가 환경·인체 피해 책임</td>
+</tr>
+<tr>
+<td>1984</td>
+<td>인도 보팔 가스 누출 — 사망자 약 3,800명, 부상 50만 명 추정</td>
+<td>유니언카바이드(미국)가 보상금 협상·공장 폐쇄</td>
+</tr>
+<tr>
+<td>1989</td>
+<td>미국 엑손발데즈호 유출 — 알래스카 해안 1,300km 오염</td>
+<td>Exxon이 환경 복구 비용·벌금 부담</td>
+</tr>
+</tbody>
+</table>
+<p>(『세계환경사연감』·BBC News <em>Bhopal: The world&rsquo;s worst industrial disaster</em> 2014.12.3.)</p>
+<p>→ &ldquo;이윤만 챙기고 환경·노동자·소비자 안전은 모르겠다&rdquo;는 태도가 <strong>기업 자체도 망하게 만든다</strong>는 사실이 드러났다. 보팔 사고 후 유니언카바이드는 신뢰를 잃고 결국 다우케미컬에 인수됐다.</p>
+<blockquote>
+<p>🖼️ <strong>Figure 2 (3장 묶음)</strong> — 환경·인권 사고 시각화
+- <strong>세베소 (1976, 이탈리아)</strong> — Wikimedia <em>SEVESO-1976.jpg</em> (Public domain)
+- <strong>보팔 유니언카바이드 공장 (1985)</strong> — Wikimedia <em>Union_Carbide_pesticide_factory_Bhopal_1985</em> (CC BY-SA 2.0)
+- <strong>엑손발데즈 유출 (1989, 알래스카)</strong> — Wikimedia <em>Exxon_Valdez_Oil_Spill</em> (CC BY-SA 2.0)</p>
+</blockquote>
+<p>![[fig02a-seveso-1976.jpg|300]] ![[fig02b-bhopal-union-carbide-1985.jpg|300]] ![[fig02c-exxon-valdez-1989.jpg|300]]</p>
+<h3 id="반전-박스-사고는-과거가-아니다-지금도-진행-중">⚡ 반전 박스 — 사고는 <em>과거</em>가 아니다·<em>지금도 진행 중</em></h3>
+<p><strong>코카콜라 — 6년 연속 세계 1위 플라스틱 폐기물 배출 기업</strong> (Break Free From Plastic 2023 글로벌 브랜드 감사)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">2</a></sup>
+- 2023년 단일 감사에서 코카콜라 브랜드 플라스틱 폐기물 <strong>33,820개</strong>(역대 최대) 발견
+- 41개국 8,804명 자원봉사자가 537,719개 플라스틱 폐기물을 조사한 결과
+- 2024.12 <em>2030년까지 재사용 포장 25% 목표</em> <strong>폐기</strong> → BFFP: <em>&ldquo;마스터클래스 그린워싱&rdquo;</em>
+- <strong>카테고리 충격</strong>: 보팔·세베소·엑손은 <em>과거 사고</em>로 끝나지 않았다. <em>2026년에도 진행 중</em>인 <em>느린 환경 파괴</em>가 있다.</p>
+<h3 id="2-3-새로운-합의-기업의-사회적-책임-csr">2-3. 새로운 합의 — <em>기업의 사회적 책임</em> (CSR)</h3>
+<p>이런 흐름 속에서 <em>기업도 사회 구성원</em>이라는 개념이 자리잡았다. 우리말로는 <strong>사회적 책임</strong>, 영어로는 <strong>CSR(Corporate Social Responsibility, 기업의 사회적 책임)</strong>.</p>
+<blockquote class="info">
+<p>💡 <strong>한 줄 정리</strong>
+<em>프리드먼</em>: &ldquo;기업은 돈만 벌면 된다.&rdquo;
+<em>CSR</em>: &ldquo;기업이 <em>돈을 버는 방식</em>이 사회를 망치면, 결국 그 사회 안에서 기업도 못 산다.&rdquo;</p>
+</blockquote>
+<hr />
+<h2 id="q3-csr의-4단계-어디까지가-책임인가-캐럴-피라미드-1991">[Q3] CSR의 4단계 — 어디까지가 책임인가 (캐럴 피라미드, 1991)</h2>
+<p>미국 경영학자 <strong>아치 캐럴(Archie B. Carroll)</strong>은 1991년 CSR을 4단계 피라미드로 정리했다.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> <em>어디까지를 책임으로 볼 것인가</em>를 가르는 가장 널리 쓰이는 틀이다.</p>
+<pre><code>                  ┌─────────────────────┐
+                  │ ④ 자선적 책임        │  ← 좋은 시민이 되라
+                  │   (Philanthropic)    │     (기부·봉사·문화 후원)
+                  ├─────────────────────┤
+                  │ ③ 윤리적 책임        │  ← 옳은 일을 하라
+                  │   (Ethical)          │     (인권·환경·정직)
+                  ├─────────────────────┤
+                  │ ② 법적 책임          │  ← 법을 지켜라
+                  │   (Legal)            │     (세금·근로기준법·환경법)
+                  ├─────────────────────┤
+                  │ ① 경제적 책임        │  ← 돈을 벌어라
+                  │   (Economic)         │     (이윤 창출·일자리)
+                  └─────────────────────┘
+                       기업의 책임 피라미드
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>내용</th>
+<th>한국 예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 경제적</strong></td>
+<td>이윤을 내고 일자리를 만든다</td>
+<td>모든 영리 기업의 기본</td>
+</tr>
+<tr>
+<td><strong>② 법적</strong></td>
+<td>법을 지킨다 (세금·근로기준·환경 규제)</td>
+<td>최저임금법·중대재해처벌법 준수</td>
+</tr>
+<tr>
+<td><strong>③ 윤리적</strong></td>
+<td>법이 요구하지 않아도 <em>옳은 일</em>을 한다</td>
+<td>협력업체 <em>갑질</em> 없는 거래·인권 점검</td>
+</tr>
+<tr>
+<td><strong>④ 자선적</strong></td>
+<td>사회에 환원한다 (기부·봉사·문화 후원)</td>
+<td>삼성호암상·LG연암문화재단</td>
+</tr>
+</tbody>
+</table>
+<p>→ <em>위로 갈수록</em> 사회의 기대는 강하지만 <em>법적 강제력은 약해진다</em>. ①·② 단계는 <em>안 하면 처벌</em>이지만, ③·④는 <em>안 한다고 처벌받지는 않는다</em>. 그래서 ③·④까지 자발적으로 할수록 <em>훌륭한 기업</em>으로 평가받는다.</p>
+<blockquote class="info">
+<p>💡 <strong>한국 법이 윤리적 책임을 <em>법적 책임</em>으로 끌어올린 사례</strong>
+2022년 1월 시행된 <strong>중대재해처벌법</strong>은 <em>작업장 안전</em>을 <em>윤리적 권고</em>가 아닌 <em>경영자의 형사 책임</em>으로 만들었다. (중대재해 처벌 등에 관한 법률 제6조)
+→ 캐럴의 피라미드는 <em>고정된 경계</em>가 아니라 <em>사회 합의에 따라 단계 사이에서 이동하는 경계</em>다.</p>
+</blockquote>
+<h3 id="반전-박스-피라미드-너머-주주-지구-파타고니아-2022">⚡ 반전 박스 — 피라미드 <em>너머</em>: <em>주주 = 지구</em> (파타고니아 2022)</h3>
+<p>미국 아웃도어 의류 기업 <strong>파타고니아(Patagonia)</strong>의 창업자 <strong>이본 쉬나르(Yvon Chouinard)</strong>는 2022년 9월 14일, 가족이 보유한 회사 지분 <strong>100%(약 30억 달러·4조 원)</strong>를 <strong>Patagonia Purpose Trust + Holdfast Collective</strong>라는 환경 신탁에 양도했다.<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">4</a></sup></p>
+<blockquote>
+<p><em>&ldquo;Earth is now our only shareholder&rdquo;</em> — 이본 쉬나르 공개 서한, 2022.9.14.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>의결권 주식 (2%)</td>
+<td>Patagonia Purpose Trust — <em>환경 가치 보존 감시</em></td>
+</tr>
+<tr>
+<td>무의결권 주식 (98%)</td>
+<td>Holdfast Collective (비영리) — <em>환경 문제 해결에 매년 약 1억 달러 배당</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>카테고리 충격</strong>:
+- 캐럴 피라미드는 <em>① 경제 → ② 법 → ③ 윤리 → ④ 자선</em> 4단계. 파타고니아는 <em>④ 자선의 극단</em>으로 <em>기업 소유 자체를 양도</em>했다
+- <em>프리드먼</em>(주주 이익)도 <em>캐럴</em>(자선적 환원)도 아닌 <em>전혀 다른 카테고리</em> — <em>소유 구조 자체의 재설계</em>
+- <em>기업 = 이윤 추구 = 주주 이익</em>이라는 익숙한 등식이 <em>주주 = 지구</em>로 뒤집힘</p>
+<blockquote>
+<p>🖼️ <strong>Figure 3 (Patagonia 매장)</strong> — Wikimedia <em>Patagonia_OutDoor_2018</em> (CC BY-SA 4.0)</p>
+</blockquote>
+<p>![[fig03-patagonia-outdoor-2018.jpg|450]]</p>
+<hr />
+<h2 id="q3-5-3-인물-평행-너는-누구에-가까운가">[Q3.5] 3 인물 평행 — 너는 누구에 가까운가? 🎯</h2>
+<blockquote>
+<p>Q2~Q3에서 <em>기업의 사회적 책임</em>을 두고 <strong>시대를 가르는 3 입장</strong>이 나왔다. 너는 어느 입장에 가까운지 골라 보자.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>인물</th>
+<th>시대</th>
+<th>핵심 입장</th>
+<th>한 줄로</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>밀튼 프리드먼</strong></td>
+<td>1970</td>
+<td><em>&ldquo;기업의 사회적 책임은 단 하나 — 이윤을 늘리는 것&rdquo;</em></td>
+<td>&ldquo;<strong>돈만 잘 벌면 된다.</strong> 사회 문제는 정부가.&rdquo;</td>
+</tr>
+<tr>
+<td><strong>아치 캐럴</strong></td>
+<td>1991</td>
+<td>4단계 피라미드 (경제 → 법 → 윤리 → 자선)</td>
+<td>&ldquo;<strong>돈도 벌고 책임도 진다.</strong> 단계별로.&rdquo;</td>
+</tr>
+<tr>
+<td><strong>이본 쉬나르 (파타고니아)</strong></td>
+<td>2022</td>
+<td><em>&ldquo;Earth is now our only shareholder&rdquo;</em></td>
+<td>&ldquo;<strong>주주가 지구다.</strong> 회사를 환경에 양도.&rdquo;</td>
+</tr>
+<tr>
+<td><strong>🆕 너는?</strong></td>
+<td>2026</td>
+<td>(너의 선택·이유)</td>
+<td><strong><em>_</em></strong><strong><em>_</em></strong>_</td>
+</tr>
+</tbody>
+</table>
+<h3 id="너의-4축-코드와-매칭">💡 너의 4축 코드와 매칭</h3>
+<ul>
+<li><strong>PBCD</strong>(가성비·대기업·편리·직접) 유형 → 프리드먼에 가까울 수 있음 (효율 우선)</li>
+<li><strong>VLEC</strong>(가치·동네·환경·직접) → 캐럴에 가까울 수 있음 (균형)</li>
+<li><strong>VLEI</strong>·<strong>VLED</strong> → 쉬나르에 가까울 수 있음 (가치 우선)</li>
+<li><em>반드시 일치하지는 않음. 너의 </em>선택 이유<em>가 더 중요.</em></li>
+</ul>
+<blockquote>
+<p>✏️ <strong>활동 (3분)</strong>: 짝과 <em>너의 4축 코드 + 너는 누구에 가까운지</em> 1분씩 발표. 의견 다른 점 1개 적기.</p>
+<p>⚡ <strong>카테고리 충격</strong>: <em>돈 잘 벌기 ↔ 사회 책임</em>이라는 <em>이분법</em> 자체가 21세기엔 흔들린다. 파타고니아는 <em>돈 벌면서·환경에 양도</em>했다. <em>둘 다 가능한 길</em>도 있다는 사실이 지난 50년의 큰 발견.</p>
+</blockquote>
+<hr />
+<h2 id="q4-esg-21세기-사회적-책임의-새-이름">[Q4] ESG — 21세기 사회적 책임의 새 이름</h2>
+<h3 id="4-1-esg란">4-1. ESG란</h3>
+<p><strong>ESG</strong>: 기업의 비재무적 성과를 평가하는 3가지 축의 첫 글자.</p>
+<table>
+<thead>
+<tr>
+<th>축</th>
+<th>무엇을 본다</th>
+<th>한국 사례</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>E</strong>nvironmental (환경)</td>
+<td>탄소 배출·에너지 효율·폐기물 관리</td>
+<td>RE100 가입 (삼성전자·SK하이닉스 등 33개사·2025년 기준)</td>
+</tr>
+<tr>
+<td><strong>S</strong>ocial (사회)</td>
+<td>노동권·다양성·고객 안전·협력업체 관계</td>
+<td>다양성 위원회 설치·여성 임원 비율 공시</td>
+</tr>
+<tr>
+<td><strong>G</strong>overnance (지배구조)</td>
+<td>이사회 독립성·주주 권리·반부패</td>
+<td>사외이사 비율·감사위원회 분리</td>
+</tr>
+</tbody>
+</table>
+<p>(KCGS 한국ESG기준원 <em>ESG 평가 기준</em> 2024)</p>
+<h3 id="4-2-csr과-esg-무엇이-다른가">4-2. CSR과 ESG, 무엇이 다른가</h3>
+<table>
+<thead>
+<tr>
+<th>비교</th>
+<th>CSR (1990년대~)</th>
+<th>ESG (2010년대~)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주체</td>
+<td>기업이 <em>자발적</em>으로 한다</td>
+<td>투자자·정부가 <em>측정·평가</em>한다</td>
+</tr>
+<tr>
+<td>목적</td>
+<td>기업 이미지·사회 공헌</td>
+<td>투자 판단·리스크 관리</td>
+</tr>
+<tr>
+<td>평가</td>
+<td>정성적 (보고서·캠페인)</td>
+<td>정량적 (점수·등급)</td>
+</tr>
+<tr>
+<td>결과</td>
+<td>칭찬·비판</td>
+<td>투자 받음·빠짐</td>
+</tr>
+</tbody>
+</table>
+<p>→ CSR이 <em>기업이 알아서 잘하자</em>였다면, ESG는 <em>못 하면 투자받지 못한다</em>. 같은 사회적 책임이지만 <strong>더 강제력 있는 형태</strong>다.</p>
+<h3 id="4-3-왜-갑자기-esg가-떴나">4-3. 왜 갑자기 ESG가 떴나</h3>
+<p>2020년 미국 자산운용사 <strong>블랙록(BlackRock)</strong>의 CEO 래리 핑크가 <em>지속가능성 없는 기업에는 투자하지 않겠다</em>고 선언하면서 ESG는 세계 금융의 표준이 됐다. (Larry Fink, <em>Annual Letter to CEOs</em>, 2020)</p>
+<p>→ 환경·노동권을 <em>도덕</em>이 아니라 <em>돈</em>의 문제로 만든 사건. 이후 한국에서도 2025년부터 자산 2조 원 이상 상장사는 <em>지속가능경영보고서 공시 의무화</em>가 추진되고 있다. (금융위원회 <em>ESG 공시 의무화 로드맵</em> 2024)</p>
+<blockquote>
+<p>📚 <strong>위성볼트 ebook 인용</strong> — 하이케 부흐터, <em>석유전쟁</em>
+<em>&ldquo;ESG에 대한 단일기준이 없기 때문에 윤리적이고 지속 가능한 투자지분이 실제로 얼마나 되는지도 확실치 않다. 세계지속가능투자연합 GSIA는 ESG 투자가 31조 달러에 이르는 것으로 평가한다. 훨씬 더 보수적인 JP모건체이스는 반대로 3조 달러만을 &lsquo;순수한&rsquo; ESG 자산으로 인정한다.&rdquo;</em>
+→ 같은 <em>ESG 자산</em> 통계가 <em>10배 차이</em>. 측정 기준의 합의가 아직 없다.</p>
+</blockquote>
+<h3 id="반전-박스-esg도-워싱-가능-점수만-잘-받는-기업">⚡ 반전 박스 — ESG도 <em>워싱</em> 가능: <em>점수만 잘 받는 기업</em></h3>
+<p>ESG가 <em>돈</em>의 문제가 되면서 <em>측정 항목만 만족시키는 위장</em>도 늘었다.</p>
+<table>
+<thead>
+<tr>
+<th>사례</th>
+<th>무엇이 뒤집혔나</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>폭스바겐 디젤게이트 (2015)</strong></td>
+<td><em>친환경 디젤</em> 광고 + 배기가스 시험 통과용 소프트웨어 조작. ESG E 점수 <em>우수</em> 유지하다 발각</td>
+</tr>
+<tr>
+<td><strong>셸·BP <em>친환경 광고</em></strong></td>
+<td>광고 예산의 다수가 <em>재생에너지</em>인데 실제 투자의 99%가 <em>화석연료</em> (ClientEarth 보고서)</td>
+</tr>
+<tr>
+<td><strong>코카콜라 ESG 우수 평가 + 6년 연속 플라스틱 1위</strong></td>
+<td>점수 따로·실제 폐기물 따로. <em>그린워싱</em>의 전형</td>
+</tr>
+</tbody>
+</table>
+<p><strong>카테고리 충격</strong>: <em>ESG = 객관 측정</em>이라는 인식이 <em>측정 가능한 것만 측정한다</em>는 한계와 만남. <em>측정 항목 외의 환경 부담</em>은 <em>점수에 안 잡힘</em>.</p>
+<hr />
+<blockquote>
+<p>📍 <strong>여기까지 13차시 (Q0~Q4: 기업의 의미·역할·CSR·ESG).</strong>
+다음 14차시는 [Q5] 기업가 정신부터 시작.</p>
+</blockquote>
+<hr />
+<h2 id="q5-기업가-정신이란-슘페터의-창조적-파괴">[Q5] 기업가 정신이란? — 슘페터의 <em>창조적 파괴</em></h2>
+<h3 id="5-1-정의">5-1. 정의</h3>
+<p><strong>기업가 정신(企業家 精神, entrepreneurship)</strong>: 새로운 가치를 만들기 위해 <em>위험을 무릅쓰고</em> 기존 질서를 바꾸는 태도와 능력.</p>
+<blockquote class="source">
+<p>(교과서 원문: &ldquo;기업가 정신은 새로운 아이디어와 기술로 위험을 무릅쓰고 도전하는 자세이다.&rdquo;, 천재교육 사회②(구정화) p.60)</p>
+</blockquote>
+<h3 id="5-2-창조적-파괴-슘페터의-핵심-명제">5-2. <em>창조적 파괴</em> — 슘페터의 핵심 명제</h3>
+<p><strong>조지프 슘페터(Joseph Schumpeter, 1883~1950)</strong>는 오스트리아-헝가리 제국 트리에슈(현 체코)에서 태어났다. 1919년 짧게 <em>오스트리아 재무장관</em>을 지냈고, 1925~1932년 독일 본 대학 교수. <strong>1932년 나치 박해를 피해 미국으로 망명</strong>해 하버드 대학교 교수가 되었고, <strong>1939년 미국 시민권 취득</strong>. 사망 직전까지 하버드에서 가르쳤다. 1942년 <em>Capitalism, Socialism and Democracy</em>는 미국 망명 시기의 산물이다 — <em>오스트리아 출신·미국에서 꽃핀</em> 경제학자.</p>
+<blockquote>
+<p>🖼️ <strong>Figure 4 (슘페터 초상)</strong> — Wikimedia <em>Joseph_Schumpeter_Colorized.png</em> (CC0)</p>
+</blockquote>
+<p>![[fig04-schumpeter-colorized.png|350]]</p>
+<p>슘페터는 자본주의의 본질을 한 단어로 정리했다.</p>
+<blockquote>
+<p><em>&ldquo;창조적 파괴(creative destruction)는 자본주의의 본질적 사실이다. 그것은 끊임없이 오래된 구조를 안에서부터 부수고, 끊임없이 새 구조를 만들어 낸다.&rdquo;</em> (Schumpeter, <em>Capitalism, Socialism and Democracy</em>, 1942, p.83)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>옛 질서</th>
+<th>창조적 파괴</th>
+<th>새 질서</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>마차</td>
+<td>자동차 (헨리 포드, 1908)</td>
+<td>자동차 산업</td>
+</tr>
+<tr>
+<td>백과사전</td>
+<td>인터넷 검색 (구글, 1998)</td>
+<td>정보 산업</td>
+</tr>
+<tr>
+<td>DVD 대여점</td>
+<td>스트리밍 (넷플릭스, 2007 전환)</td>
+<td>콘텐츠 산업</td>
+</tr>
+<tr>
+<td>택시 호출</td>
+<td>모바일 호출 (우버·카카오T, 2010~)</td>
+<td>플랫폼 산업</td>
+</tr>
+</tbody>
+</table>
+<p>→ 기업가 정신은 <em>조용한 직업 정신</em>이 아니라 <em>기존 시장을 흔드는 도전</em>이다. 그래서 <em>실패 위험</em>이 항상 따른다.</p>
+<h3 id="5-3-기업가-정신의-3가지-요소">5-3. 기업가 정신의 3가지 요소</h3>
+<table>
+<thead>
+<tr>
+<th>요소</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>혁신 (innovation)</strong></td>
+<td>새 기술·새 모델·새 시장을 만든다</td>
+</tr>
+<tr>
+<td><strong>위험 감수 (risk-taking)</strong></td>
+<td>실패 가능성을 알면서 자원을 건다</td>
+</tr>
+<tr>
+<td><strong>기회 포착 (opportunity recognition)</strong></td>
+<td>남들이 못 본 <em>틈</em>을 찾아낸다</td>
+</tr>
+</tbody>
+</table>
+<h3 id="반전-박스-창조는-동시에-파괴다-사라지는-일자리">⚡ 반전 박스 — <em>창조</em>는 동시에 <em>파괴</em>다: 사라지는 일자리</h3>
+<p>슘페터의 <em>창조적 파괴</em>는 <em>낭만적인 영웅 서사</em>가 아니다. <em>새 산업의 등장</em>은 <em>옛 산업의 일자리 소멸</em>을 동반한다.</p>
+<table>
+<thead>
+<tr>
+<th>새 질서</th>
+<th>사라진 일자리·산업</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>우버·카카오T (2010~)</td>
+<td>전통 <em>개인택시 면허 가치</em> 폭락. 서울 개인택시 면허 시가 2014 1억 → 2024 5천만 원대 (서울개인택시조합)</td>
+</tr>
+<tr>
+<td>넷플릭스 (2007 전환)</td>
+<td>미국 <em>Blockbuster</em> DVD 대여점 9,000개·종업원 84,000명·2010 파산</td>
+</tr>
+<tr>
+<td>키오스크·AI 주문</td>
+<td>패스트푸드·편의점 <em>최저임금 일자리</em> 축소</td>
+</tr>
+<tr>
+<td>챗GPT·생성형 AI (2022~)</td>
+<td>콜센터·번역·일러스트레이션 등 <em>지식 노동</em> 재편 진행 중</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🖼️ <strong>Figure 5 (Uber 시위)</strong> — Wikimedia <em>Uber_Protest_Portland</em> (CC BY 2.0). 2014~2015 미국·유럽에서 우버 진출에 대한 택시 운전사들의 대규모 시위 발생.</p>
+</blockquote>
+<p>![[fig05-uber-protest-portland-2015.jpg|450]]</p>
+<p><strong>카테고리 충격</strong>: <em>혁신 = 모두에게 좋은 것</em>이라는 인식이 <em>혁신 = 누군가는 일자리를 잃는다</em>는 현실과 만남. 그래서 <em>기업가 정신</em>에는 <em>옛 산업 노동자의 </em>전환·재교육<em> 책임</em>도 함께 묻어 있다 — 캐럴 피라미드 ③ 윤리적 책임의 한 형태.</p>
+<hr />
+<h2 id="q6-기업가-정신-사례-한국-3세대-글로벌-청소년">[Q6] 기업가 정신 사례 — 한국 3세대 + 글로벌 청소년</h2>
+<h3 id="6-1-1세대-1960-70년대-산업화-시대">6-1. 1세대 (1960~70년대) — 산업화 시대</h3>
+<table>
+<thead>
+<tr>
+<th>인물</th>
+<th>기업</th>
+<th>핵심 도전</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>정주영</strong> (1915~2001)</td>
+<td>현대그룹</td>
+<td>거북선 도안만 그려 영국 은행에서 <em>조선소 차관</em> 받음 (1971) → 현대중공업 창업<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">9</a></sup></td>
+</tr>
+<tr>
+<td><strong>이병철</strong> (1910~1987)</td>
+<td>삼성그룹</td>
+<td>1969년 <em>전자 산업</em> 진출 결정 — 당시 정부조차 반대했던 <em>반도체</em>를 1983년 <em>도쿄 선언</em>으로 본격화</td>
+</tr>
+</tbody>
+</table>
+<p>→ <em>없는 산업</em>을 <em>국가 단위로</em> 만든 1세대. 인프라·자본·기술 모두 부족한 상황에서 <em>국가 차원의 모험</em>에 가까웠다.</p>
+<blockquote>
+<p>🖼️ <strong>Figure 6 (정주영)</strong> — Wikimedia <em>Chung_Ju-yung.jpg</em> (Public domain)</p>
+</blockquote>
+<p>![[fig06-chung-ju-yung.jpg|350]]</p>
+<blockquote>
+<p>📚 <strong>위성볼트 ebook 인용</strong> — 크리스 밀러, <em>칩 워: 누가 반도체 전쟁의 최후 승자가 될 것인가</em>
+<em>&ldquo;이병철은 무슨 일을 해도 이익을 낼 수 있는 사람이었다. 1910년, 잭 심플롯보다 1년 뒤에 태어난 이병철은&hellip;&rdquo;</em>
+→ 미국 반도체 역사 책이 <em>이병철을 글로벌 인물</em>로 기록.</p>
+</blockquote>
+<h3 id="6-2-2세대-1990-2000년대-정보화-시대">6-2. 2세대 (1990~2000년대) — 정보화 시대</h3>
+<table>
+<thead>
+<tr>
+<th>인물</th>
+<th>기업</th>
+<th>핵심 도전</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>이해진</strong></td>
+<td>네이버 (1999)</td>
+<td>한국형 검색 엔진 — 글로벌 구글 대신 <em>한국어 데이터</em>에 특화</td>
+</tr>
+<tr>
+<td><strong>김범수</strong></td>
+<td>카카오 (2010)</td>
+<td>메신저 → 플랫폼 — <em>무료 메시지</em>로 시장을 흔든 뒤 결제·교통·금융으로 확장</td>
+</tr>
+</tbody>
+</table>
+<p>→ <em>디지털 인프라</em> 위에서 <em>플랫폼</em>을 만든 2세대. 1세대처럼 <em>공장</em>을 짓지 않고 <em>네트워크</em>를 키웠다.</p>
+<h3 id="6-3-3세대-2010년대-플랫폼-소셜-시대">6-3. 3세대 (2010년대~) — 플랫폼·소셜 시대</h3>
+<table>
+<thead>
+<tr>
+<th>인물</th>
+<th>기업</th>
+<th>핵심 도전</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>김봉진</strong></td>
+<td>배달의민족 (2010, 우아한형제들)</td>
+<td><em>전단지 배달 시장</em>을 앱으로 옮김 — 2019년 독일 딜리버리히어로에 약 4조 8천억 원에 매각</td>
+</tr>
+<tr>
+<td><strong>이수만</strong> (1952~)</td>
+<td>SM엔터테인먼트 (1995)</td>
+<td><em>K-POP</em> 산업화 — <em>기획사 시스템</em>으로 한국 음악을 세계 시장 상품으로 만듦</td>
+</tr>
+</tbody>
+</table>
+<p>→ <em>이미 있는 일상</em>을 <em>디지털 플랫폼·문화 콘텐츠</em>로 재설계한 3세대.</p>
+<h3 id="6-4-글로벌-청소년-사례-프레이저-도허티-fraser-doherty-1988">6-4. 글로벌 청소년 사례 — 프레이저 도허티 (Fraser Doherty, 1988~) ⭐</h3>
+<p>스코틀랜드 에든버러의 한 <em>14세 소년</em>이 할머니 부엌에서 잼 만드는 법을 배웠다. 그는 <em>설탕 대신 100% 과일</em>로만 잼을 만드는 방법을 고안해 동네 농산물 시장과 식자재상에 팔기 시작했다.<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">5</a></sup></p>
+<table>
+<thead>
+<tr>
+<th>시기</th>
+<th>사건</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2002 (14세)</td>
+<td>할머니 <em>수전 도허티(Susan Doherty)</em>에게 잼 배움. SuperJam 시작</td>
+</tr>
+<tr>
+<td>2004 (16세)</td>
+<td><em>Waitrose</em>(영국 4대 슈퍼체인 중 하나) 입점 — <strong>역대 최연소 슈퍼마켓 공급자</strong> 기록</td>
+</tr>
+<tr>
+<td>2007~</td>
+<td>영국 전역 + 호주·일본·러시아·한국 등 수출. 누적 <em>수백만 병</em> 판매</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>영국 여왕으로부터 <strong>MBE 훈장</strong> 수여 (&ldquo;for services to business&rdquo;)</td>
+</tr>
+<tr>
+<td>진행 중</td>
+<td>노인 무료 티 파티 <em>수백 회</em>·지역 양봉 프로젝트 수백 개 운영</td>
+</tr>
+</tbody>
+</table>
+<p><strong>기업가 정신 3요소 매핑</strong>:
+- <strong>혁신</strong>: <em>설탕 없는 100% 과일 잼</em> — 기존 잼 시장에 없던 카테고리
+- <strong>위험 감수</strong>: 14세에 자기 용돈·할머니 부엌·작은 시장만 가진 채 시작
+- <strong>기회 포착</strong>: <em>건강식 트렌드 + 할머니의 옛 레시피</em>라는 <em>낡은 것 + 새 시장</em>의 교차점</p>
+<p><strong>+ 사회적 책임 결합</strong>:
+- ④ 자선적 책임 — 노인 티 파티·지역 양봉 (단순 부업이 아니라 <em>사업과 통합</em>)
+- ESG의 S — 지역 노인 고립 문제 해결을 <em>비즈니스 모델 안에</em> 포함</p>
+<blockquote class="info">
+<p>💡 <strong>왜 도허티인가</strong>
+한국 학생에게 <em>기업가 정신</em>은 흔히 <em>정주영·이병철</em>처럼 <em>50대 이후의 거인</em>으로 그려진다. 도허티는 <em>중3 학생과 거의 같은 나이(14세)</em>에 시작했고, <em>작은 부엌 + 할머니의 레시피</em>로 출발해 <em>MBE 훈장</em>까지 받았다. <em>시작 가능한 나이·자원의 규모</em>를 카테고리 그대로 뒤집는 사례다.</p>
+</blockquote>
+<h3 id="6-5-기업가-정신과-기업의-사회적-책임의-관계">6-5. <em>기업가 정신</em>과 <em>기업의 사회적 책임</em>의 관계</h3>
+<p>기업가 정신이 <em>새로운 가치를 만드는 힘</em>이라면, 사회적 책임은 <em>그 가치를 사회와 나누는 약속</em>이다. 둘은 충돌하지 않는다.</p>
+<table>
+<thead>
+<tr>
+<th>좋은 경우</th>
+<th>나쁜 경우</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>혁신 + 책임 — 새 시장을 열며 환경·노동도 챙김</td>
+<td>혁신만 — 빠르게 성장하지만 노동자·환경 문제로 비판받음</td>
+</tr>
+<tr>
+<td>책임만 — 안전한 사업·새로운 도전 없음</td>
+<td>둘 다 없음 — 기존 사업에 안주하며 사회 문제도 외면</td>
+</tr>
+</tbody>
+</table>
+<p>→ 21세기 기업의 평가는 <em>혁신</em>과 <em>책임</em> 둘 다를 본다.</p>
+<h3 id="반전-박스-한국-재벌은-사실상-공공재인가-이재명-인용">⚡ 반전 박스 — 한국 재벌은 <em>사실상 공공재</em>인가? (이재명 인용)</h3>
+<blockquote>
+<p>📚 <strong>위성볼트 ebook 인용</strong> — 이재명, <em>대한민국 혁명하라</em>
+<em>&ldquo;형식적으로 말하자면, 사유재산제도 속에서 재벌 대기업은 주주들의 것이다. 그러나 재벌의 탄생과 발전 과정을 들여다보면 그것은 국민 모두의 것, 도로나 항구 또는 한국은행처럼 일종의 공공재와 유사한 속성을 지닌다. 우리 모두가 알고 있듯이 해방 이후 온갖 특혜와 국민의 희생 속에서 성장해 온 재벌은&hellip;&rdquo;</em></p>
+</blockquote>
+<p><strong>카테고리 충격</strong>:
+- <em>기업 = 사유 자산 = 주주 소유</em>가 익숙한 등식
+- 한국 재벌은 <em>해방 이후 정부 특혜·국민 희생</em>으로 컸으므로 <em>형식상 사유 + 실질상 공공</em>의 이중 성격
+- → 이재명의 주장이 정치적으로 옳든 그르든, <em>재벌이라는 카테고리 자체가 한국에서 비대칭적으로 형성됐다</em>는 사실은 학술적으로 다툼이 적은 부분</p>
+<p>→ 한국 <em>기업가 정신</em>은 <em>글로벌 표준</em>과는 다른 <em>역사적 조건</em> 위에서 형성됐음을 인식하는 것이 13~14차시의 한 의의.</p>
+<hr />
+<h2 id="q7-21세기-그림자-교과서-너머의-6가지-사례">[Q7] 21세기 그림자 — 교과서 너머의 6가지 사례 ⚡⚡⚡</h2>
+<p>기업가 정신과 사회적 책임이 <em>충돌하는 21세기 현실</em>. 교과서가 그리는 <em>영웅 서사</em>와는 다른 면모를 <em>6 사례</em>로 짚는다. 모두 <em>학생에게 익숙한 의미가 정반대로 뒤집히는 카테고리 충격</em> 사례.</p>
+<h3 id="7-1-쿠팡-로켓배송-죽음의-배송-한국-2024">7-1. 쿠팡 — <em>로켓배송 = 죽음의 배송</em>? (한국·2024)</h3>
+<ul>
+<li>2020~2023 평균 <strong>산업재해율 5.9%</strong> (건설업 1.45%·전체 0.66%의 4~9배·국정감사 발표)</li>
+<li>2024.7 제주 서브허브 분류장에서 56세 노동자 분류 작업 중 심정지·사망</li>
+<li>잠입취재(뉴스타파·MBC) — 폭염 노출·중량물 반복·휴게시간 미부여·강제 추가 근무 / 고용노동부 조사에서 <em>온도 측정 거부 25/27소·공기흐름평가 거부 18/27소</em></li>
+<li>2024.8.5 공정거래위 <em>PB 상품 부당 우대</em> 과징금 <strong>1,628억 원</strong> + 검찰 고발 (공정위 의결 2024-284)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">7</a></sup></li>
+<li>중대재해처벌법(2022) 시험대 — 사업주 형사 책임 적용 진행 중</li>
+<li><strong>카테고리 충격</strong>: <em>로켓배송 = 편리·소비자 만족</em> → <em>노동자 희생 위에 세워진 편리함</em></li>
+</ul>
+<h3 id="7-2-일론-머스크-아스퍼거-미국-정치-권력">7-2. 일론 머스크 — <em>아스퍼거 + 미국 정치 권력</em></h3>
+<ul>
+<li>2021.5.8 미국 <em>Saturday Night Live</em> 진행자로 등장. 모놀로그에서 <strong>아스퍼거 증후군 자가 공개</strong>: <em>&ldquo;전기차를 재발명하고 사람을 화성에 보내는 사람이 normal dude일 줄 알았냐?&rdquo;</em></li>
+<li>2022 트위터 인수 (440억 달러) → <em>X</em>로 개명·콘텐츠 정책 대폭 변경</li>
+<li>2024 미국 대선에서 <em>트럼프 진영</em>에 거액 후원·정부효율부(DOGE) 책임자 임명</li>
+<li><strong>카테고리 충격</strong>: <em>기업가 = 비즈니스 인물</em>이라는 카테고리가 <em>기업가 = 정치 권력자·미디어 소유자·정신과적 자기 진단까지 공유</em>로 확장됨. 캐럴 피라미드의 ② 법적 책임의 <em>기준 설정자 자체</em>가 됨</li>
+</ul>
+<blockquote>
+<p>🖼️ <strong>Figure 7 (머스크 Tesla Roadster)</strong> — Wikimedia <em>Elon_Musk&rsquo;s_Tesla_Roadster_(40110297852)</em> (CC0)</p>
+</blockquote>
+<p>![[fig07-musk-tesla-roadster.jpg|400]]</p>
+<h3 id="7-3-샘-올트만-ai-거버넌스-5일-해임극-openai-2023-11">7-3. 샘 올트만 — <em>AI 거버넌스 5일 해임극</em> (OpenAI·2023.11)</h3>
+<ul>
+<li>2023.11.17 OpenAI 이사회가 CEO 샘 올트만을 <em>전격 해임</em>. 사유: <em>&ldquo;이사회에 일관되게 진솔하지 않았다&rdquo;</em> / <em>AI 안전 정보 보류 의혹</em></li>
+<li>2023.11.22 (5일 후) 복귀 — 직원 700+ 명이 <em>MS로 단체 이직</em> 위협·MS·투자자·언론 압력</li>
+<li>이후 <em>AI 안전 강조</em> 이사진 다수 사임·<em>속도 우선</em>으로 노선 정리</li>
+<li><strong>카테고리 충격</strong>: <em>ESG의 G(거버넌스)는 좋은 기업의 표지</em>인 줄 알았는데, <em>세계 최대 AI 기업</em>의 거버넌스가 <em>5일 만에 무력화</em>됨. <em>AI 안전 vs 속도</em>의 첫 공개 대결</li>
+</ul>
+<blockquote>
+<p>🖼️ <strong>Figure 8 (샘 올트만, OpenAI CEO)</strong> — Wikimedia <em>Sam_Altman_CropEdit_James_Tamim</em> (CC BY 2.0)</p>
+</blockquote>
+<p>![[fig08-sam-altman-openai.jpg|350]]</p>
+<h3 id="7-4-애플-세금-0-005-130억-유로-추징-eu-최고법원-2024">7-4. 애플 — <em>세금 0.005%·130억 유로 추징</em> (EU 최고법원 2024)</h3>
+<ul>
+<li>1991·2007 아일랜드 정부와 비밀 <em>세금 협약</em> — <strong>법인세율 0.005%</strong> (2014)·1%(2003)</li>
+<li>10년 법정 다툼 → 2024.9.10 EU 최고법원(ECJ) <em>원판결 파기·재인정</em></li>
+<li><strong>130억 유로(약 18조 원) 추징</strong> 확정<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">8</a></sup></li>
+<li>카테고리 충격: <em>애플 = 최고 기업·세계 시가총액 1위</em>라는 명성이 <em>세금 회피·국가 단위 사회적 책임 외면</em>과 공존. 캐럴 피라미드 ② 법적 책임의 <em>국제 회피 전형</em></li>
+</ul>
+<h3 id="7-5-코카콜라-친환경-광고-6년-연속-플라스틱-1위-bffp-2023">7-5. 코카콜라 — <em>친환경 광고 + 6년 연속 플라스틱 1위</em> (BFFP 2023)</h3>
+<ul>
+<li>Break Free From Plastic 6년 연속 글로벌 브랜드 감사 1위 (2018~2023)</li>
+<li>2023 단일 감사 33,820개 폐기물 (역대 최대)</li>
+<li>2024.12 <em>2030 재사용 포장 25% 목표</em> 폐기 → <em>&ldquo;마스터클래스 그린워싱&rdquo;</em><sup id="fnref2:7"><a class="footnote-ref" href="#fn:7">2</a></sup></li>
+<li><strong>카테고리 충격</strong>: <em>Coca-Cola = 행복·청량·</em>Reduce·Reuse·Recycle<em> 캠페인</em>이라는 광고 이미지가 <em>지구 1위 플라스틱 오염 기업</em>이라는 실제와 만남</li>
+</ul>
+<blockquote>
+<p>🖼️ <strong>Figure 9 (코카콜라 플라스틱 병)</strong> — Wikimedia <em>Coca_Cola_plastic_bottles</em> (CC BY-SA 4.0)</p>
+</blockquote>
+<p>![[fig09-cocacola-plastic-bottles.jpg|450]]</p>
+<h3 id="7-6-반전의-반전-파타고니아-yvon-chouinard-2011-2022">7-6. <em>반전의 반전</em> — 파타고니아 (Yvon Chouinard, 2011·2022)</h3>
+<p>위 5 사례가 <em>기업의 그림자</em>만 보여준다면, <em>다른 길이 있다</em>는 것을 보여주는 사례.</p>
+<table>
+<thead>
+<tr>
+<th>사건</th>
+<th>무엇이 뒤집혔나</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2011.11.25 <em>Don&rsquo;t Buy This Jacket</em> NYT 광고</strong></td>
+<td>블랙프라이데이에 <em>우리 제품 사지 마라</em> 광고 → 다음 해 매출 <strong>30% 증가</strong> (5억 4,300만 달러). <em>마케팅 = 더 사라</em>의 카테고리 자체를 뒤집음</td>
+</tr>
+<tr>
+<td><strong>2022.9.14 <em>Earth is our only shareholder</em></strong></td>
+<td>30억 달러 회사 전체 환경 신탁 양도 → <em>주주 = 지구</em>. 캐럴 피라미드 ④ 자선적 책임의 <em>극단적 변형</em> — <em>기업 소유 자체를 환경에</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>카테고리 충격</strong>: <em>21세기 기업 = 그림자만 짙다</em>는 비관도 한 카테고리. 파타고니아는 <em>그 카테고리도 뒤집을 수 있다</em>는 가능성을 <em>실제 행동</em>으로 보여준다.</p>
+<hr />
+<h2 id="종합-한-장으로-보는-인과-사슬">[종합] 한 장으로 보는 인과 사슬</h2>
+<pre><code>[기업의 의미]
+재화·서비스 생산·이윤 추구
+        ↓
+[4가지 역할] ── ⚡ 회피 가능 (애플 세금·쿠팡 산재·창고 돈쌓기)
+소비자 만족 · 고용 · 경제 발전 · 세금
+        ↓
+&quot;이윤만 챙기면 충분한가?&quot; — 환경·인권 사고 누적 (세베소·보팔·엑손)
+        ↓ ── ⚡ 지금도 진행 중 (코카콜라 그린워싱)
+[사회적 책임 (CSR)]
+캐럴 피라미드: 경제 → 법적 → 윤리적 → 자선적
+        ↓ ── ⚡ 피라미드 너머 (파타고니아 *주주=지구*)
+[ESG로 진화]
+환경 · 사회 · 지배구조 — 투자자가 점수로 평가
+        ↓ ── ⚡ ESG도 워싱 가능 (폭스바겐·코카콜라)
+[기업가 정신]
+혁신 · 위험 감수 · 기회 포착
+        ↓ ── ⚡ 창조는 동시에 파괴 (택시·DVD·콜센터)
+[글로벌 청소년·도허티] + [한국 1·2·3세대]
+        ↓ ── ⚡ 한국 재벌 = 사실상 공공재? (이재명)
+[21세기 그림자 6 사례]
+쿠팡·머스크·올트만·애플·코카콜라 / 파타고니아 (반전의 반전)
+</code></pre>
+<blockquote class="info">
+<p>💡 <strong>오늘의 한 줄</strong>
+기업의 역할은 <em>돈을 버는 것</em>에서 시작하지만, <em>어떻게 버는가</em>까지 사회가 묻는 시대다. <em>교과서가 그리는 영웅 서사</em>만 받으면 <em>21세기 그림자</em>를 놓치고, <em>그림자만 받으면</em> <em>다른 길</em>을 놓친다. <em>둘 다</em>를 같이 본다.</p>
+</blockquote>
+<hr />
+<h2 id="심화-세특용-탐구-주제-추천">[심화] 세특용 탐구 주제 추천 ⭐</h2>
+<p>학생이 자율 탐구·세부능력 특기사항 작성용으로 발전시킬 수 있는 주제 <strong>7선</strong>.</p>
+<h3 id="심화-1-그린워싱-greenwashing-가짜-친환경의-함정">심화 1: <em>그린워싱(Greenwashing)</em> — 가짜 친환경의 함정</h3>
+<ul>
+<li><strong>질문</strong>: 기업이 <em>친환경</em>을 표방하면서 실제로는 환경 부담을 늘리는 사례는?</li>
+<li><strong>자료</strong>: 폭스바겐 디젤게이트 (2015), 코카콜라 6년 연속 BFFP 1위 (2018~2023)</li>
+<li><strong>연결</strong>: ESG 평가의 한계, 소비자 식별 능력의 중요성</li>
+</ul>
+<h3 id="심화-2-주주-자본주의-vs-이해관계자-자본주의">심화 2: <em>주주 자본주의 vs 이해관계자 자본주의</em></h3>
+<ul>
+<li><strong>질문</strong>: 기업의 주인은 <em>주주</em>인가 <em>모든 이해관계자</em>(주주·노동자·소비자·지역사회)인가? <em>주주가 지구</em>가 될 수도 있는가?</li>
+<li><strong>자료</strong>: 미국 <em>비즈니스 라운드테이블</em> 2019 선언, 파타고니아 <em>Earth shareholder</em> 2022</li>
+<li><strong>연결</strong>: 프리드먼 vs 캐럴 vs 쉬나르 (이론 3 단계)</li>
+</ul>
+<h3 id="심화-3-플랫폼-노동-새로운-형태의-고용-책임">심화 3: <em>플랫폼 노동</em> — 새로운 형태의 고용 책임</h3>
+<ul>
+<li><strong>질문</strong>: 배달기사·택시기사가 <em>근로자</em>인가 <em>개인 사업자</em>인가? 기업의 책임은 어디까지?</li>
+<li><strong>자료</strong>: 2020 캘리포니아 AB5 법, 한국 <em>플랫폼 종사자 보호법안</em>, 쿠팡 산재율 5.9%</li>
+<li><strong>연결</strong>: 기업의 ② 법적 책임 + ③ 윤리적 책임 경계 변화</li>
+</ul>
+<h3 id="심화-4-중대재해처벌법-윤리에서-법으로">심화 4: <em>중대재해처벌법</em> — 윤리에서 법으로</h3>
+<ul>
+<li><strong>질문</strong>: <em>작업장 안전</em>은 왜 <em>윤리적 권고</em>에서 <em>형사 책임</em>으로 바뀌었나? 시행 후 실효성은?</li>
+<li><strong>자료</strong>: 김용균법(2018), 중대재해처벌법(2022) 입법 과정, 쿠팡 적용 시험대 (2024 국정감사)</li>
+<li><strong>연결</strong>: 캐럴 피라미드 단계 사이의 이동·실효성 검증</li>
+</ul>
+<h3 id="심화-5-사회적-기업-b-corp-인증-책임을-사업-목적으로">심화 5: <em>사회적 기업·B Corp 인증</em> — 책임을 사업 목적으로</h3>
+<ul>
+<li><strong>질문</strong>: <em>이윤 추구</em>와 <em>사회 문제 해결</em>을 동시에 사업 목적으로 둘 수 있는가?</li>
+<li><strong>자료</strong>: 파타고니아(2022 회사 전체 환경단체 양도), 한국 <em>사회적기업육성법</em> (2007), 도허티 SuperJam <em>티 파티·양봉</em></li>
+<li><strong>연결</strong>: 캐럴의 ④ 자선적 책임이 <em>본업</em>으로 통합되는 21세기 모델</li>
+</ul>
+<h3 id="심화-6-ai-기업의-거버넌스-openai-5일-해임극-신설">심화 6: <em>AI 기업의 거버넌스</em> — OpenAI 5일 해임극 ⭐ 신설</h3>
+<ul>
+<li><strong>질문</strong>: 세계 최대 AI 기업의 <em>이사회 거버넌스(G)</em>가 <em>5일 만에 무력화</em>된 이유는? <em>AI 안전 vs 속도</em> 갈등은 사회적 책임 영역에 어떻게 들어오는가?</li>
+<li><strong>자료</strong>: 2023.11.17~22 OpenAI 사태, 핼렌 토너 인터뷰, MS 13B 투자 컨텍스트</li>
+<li><strong>연결</strong>: 거버넌스(G)의 <em>돈</em>과 <em>안전</em> 사이 긴장</li>
+</ul>
+<h3 id="심화-7-세금-회피와-다국적-기업의-책임-애플-130억-유로-신설">심화 7: <em>세금 회피와 다국적 기업의 책임</em> — 애플 130억 유로 ⭐ 신설</h3>
+<ul>
+<li><strong>질문</strong>: 다국적 기업이 <em>국가별 세율 차이</em>를 이용해 세금을 줄이는 것은 <em>법적 책임</em> 범위 안인가 밖인가? OECD <em>글로벌 최저 법인세 15%</em>는 어떻게 다루는가?</li>
+<li><strong>자료</strong>: Apple&rsquo;s EU tax dispute (2016~2024), OECD BEPS 2.0 합의 (2021), EU CBAM</li>
+<li><strong>연결</strong>: 캐럴 ② 법적 책임의 <em>국가 경계 너머 확장</em></li>
+</ul>
+<hr />
+<h2 id="활용-개념편-활동과-연결">[활용] 개념편 활동과 연결</h2>
+<table>
+<thead>
+<tr>
+<th>자료편 Q</th>
+<th>개념편 활동</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[도입] MBTI 4축</td>
+<td><strong>활동 0</strong> 🆕: <em>나는 어떤 소비자?</em> 4글자 코드 도출·짝과 비교·학급 분포</td>
+</tr>
+<tr>
+<td>[Q0] 기업의 종류</td>
+<td><strong>활동 1</strong>: 내가 쓰는 제품 기업 찾기 — 자영업·중소·중견·대·다국적 분류</td>
+</tr>
+<tr>
+<td>[Q1] 4가지 역할</td>
+<td><strong>활동 2</strong>: 기업 뉴스를 4가지 역할에 연결</td>
+</tr>
+<tr>
+<td>[Q2~Q3] 사회적 책임</td>
+<td><strong>활동 3</strong>: 캐럴 피라미드 — <em>우리 동네 기업</em> 한 곳 골라 4단계 평가</td>
+</tr>
+<tr>
+<td>[Q3.5] 3 인물 평행 🆕</td>
+<td><strong>활동 3.5</strong> 🆕: 프리드먼·캐럴·쉬나르 <em>너는 누구에 가까운가</em> 짝 발표</td>
+</tr>
+<tr>
+<td>[Q4] ESG</td>
+<td><strong>활동 4</strong>: ESG 카드 — E·S·G 중 어느 항목이 가장 부족한 기업 사례 찾기</td>
+</tr>
+<tr>
+<td>[Q4] ESG 학급 투표 🆕</td>
+<td><strong>활동 4.5</strong> 🆕: <em>기업 5장 학급 ESG 투표</em> — 애플·쿠팡·코카콜라·파타고니아·도허티 SuperJam → 각자 E·S·G 점수(1~5) → 학급 평균 vs 내 점수 비교</td>
+</tr>
+<tr>
+<td>[Q5~Q6] 기업가 정신</td>
+<td><strong>활동 5</strong>: 내가 창업한다면 — 혁신·위험·기회 3요소로 설계</td>
+</tr>
+<tr>
+<td>[Q6] 도허티 14세 🆕</td>
+<td><strong>활동 5.5</strong> 🆕: <em>내가 14세 도허티라면</em> — <em>우리 동네 + 내 강점</em>으로 3분 사업 아이디어·짝 평가</td>
+</tr>
+<tr>
+<td>[Q7] 21세기 그림자</td>
+<td>(개념편 <em>더 생각해 보기</em> Q1~Q3에 연결 — 그린워싱·중대재해처벌법 등)</td>
+</tr>
+<tr>
+<td>(학기 누적) 🆕</td>
+<td><strong>활동 6</strong> 🆕: <em>내 일주일 소비 추적</em> — 7일 산 것 list → 어느 기업·캐럴 어느 단계 책임 매핑 (학기 말 발표)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="교과서-지도서-연계-심화">[교과서·지도서 연계 심화]</h2>
+<table>
+<thead>
+<tr>
+<th>교과서 위치</th>
+<th>자료편 어디서 풀었나</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p.58 <em>레고 창업 스토리</em></td>
+<td>[Q1] 1-3 — 시간 축 표로 4가지 역할 누적 분석</td>
+</tr>
+<tr>
+<td>p.58 <em>톡톡톡 — 기업 경영 목표 조사</em>(2014 한국경제연구원)</td>
+<td>[Q2] 2-3 — <em>이윤 추구 vs 사회 공헌</em> 비율의 의미를 CSR 등장 흐름으로 연결</td>
+</tr>
+<tr>
+<td>p.59 <em>기업의 역할</em> (4가지)</td>
+<td>[Q1] 1-1·1-2 — 4가지 역할을 <em>순환</em>으로 도식화</td>
+</tr>
+<tr>
+<td>p.59 <em>스스로 탐구 — 내가 사용하는 제품</em></td>
+<td>[Q0] 0-2 — 다국적 vs 대기업 구별 강조·중견기업 추가</td>
+</tr>
+<tr>
+<td>p.60 <em>기업의 사회적 책임</em></td>
+<td>[Q2]·[Q3] — 프리드먼 → 캐럴 → ESG로 <em>역사적 흐름</em> 추가</td>
+</tr>
+<tr>
+<td>p.61 <em>지속가능경영</em></td>
+<td>[Q4] — ESG로 구체화·하이케 부흐터 <em>석유전쟁</em> 인용</td>
+</tr>
+<tr>
+<td>p.62 <em>기업가 정신</em></td>
+<td>[Q5]·[Q6] — 슘페터 <em>창조적 파괴</em> + 한국 3세대 + 도허티 청소년</td>
+</tr>
+<tr>
+<td>지도서 p.88 <em>대안적 발문</em></td>
+<td>[심화] 7선으로 세특·자율 탐구 연결</td>
+</tr>
+<tr>
+<td>(교과서 외)</td>
+<td>[Q7] 21세기 그림자 6 사례 — 쿠팡·머스크·올트만·애플·코카콜라·파타고니아</td>
+</tr>
+</tbody>
+</table>
+<p>→ 교과서가 <em>4가지 역할 → 사회적 책임 → 기업가 정신</em> 순서로 흐를 때, 학생은 <em>왜 이 순서인가</em>를 이해하지 못하기 쉽다. 자료편은 그 <em>흐름의 동력</em>(환경 사고·투자자 압력·창조적 파괴)을 메워 주고, <em>카테고리 충격</em> 박스로 <em>익숙한 의미가 뒤집히는</em> 21세기 현실까지 함께 짚어 준다.</p>
+<hr />
+<h2 id="관련-노트">🔗 관련 노트</h2>
+<ul>
+<li>[[11-12차시 합리적경제생활과경제체제 자료편]] — 직전 차시. 합리적 선택 → 기업 활동의 동기 연결</li>
+<li>[[13-14차시 기업역할과사회적책임 개념편]] — 학생용 빈칸 (28개)</li>
+<li>[[13-14차시 기업역할과사회적책임 개념편 정답]] — 정답 확인용</li>
+<li>[[2026-04-19-자아와미디어 통합허브]] — 1단원 <em>미디어 속 기업 광고</em>와 연결 가능 (광고와 그린워싱)</li>
+<li>[[교재작성틀_가이드]] — v5 운영규칙 단일 소스</li>
+<li>[[사회② 교재작업틀 운영규칙]] — 단원별 세부 규칙</li>
+</ul>
+<h3 id="위성볼트-사진-마스터-5-11-신설">위성볼트 사진 마스터 (5/11 신설)</h3>
+<ul>
+<li>사진 인덱스: <a href="obsidian://open?vault=Geo-Teacher-Wiki&amp;file=50.%20Assets%2F%EC%82%AC%ED%9A%8C%EC%9D%B4%EB%AF%B8%EC%A7%80%2F_INDEX%20%EC%82%AC%ED%9A%8C%20%EC%82%AC%EC%A7%84%20%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC.md">_INDEX 사회 사진 라이브러리</a> — <em>기업CSR</em> 카테고리 11장 + 4 기존 카테고리 20장 (총 31장)</li>
+<li>11장 마스터: 위성볼트 <code>50. Assets/사회이미지/기업CSR/</code></li>
+<li>메인볼트 symlink: <code>20. LN/수업자료/사회②/_assets/figures/fig0X-*.jpg</code> — 자료편·개념편·정답에서 <code>![[fig0X-*.jpg|450]]</code> wiki-embed</li>
+<li>워크플로우: [[concept-to-figure-workflow|Concept-to-Figure 워크플로우]] (5/8 신설·use_count 3·이번 11장 추가)</li>
+<li>패턴 출처: 역사 2-2-3 <em>그리스 사료이미지</em> 패턴 (5/8 hot.md)</li>
+</ul>
+<hr />
+<h2 id="각주">📎 각주</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:2">
+<p><strong>레고의 어원.</strong> <em>Leg Godt</em>는 덴마크어로 <em>잘 놀자</em>(play well)라는 뜻이며, 1934년 창업자 올레 키르크 크리스티안센이 사내 공모를 거쳐 회사명으로 채택했다. 우연히도 라틴어로 <em>나는 모은다(I assemble)</em>라는 뜻도 가지고 있어 <em>조립 블록 회사</em>에 잘 어울리는 이름이 되었다. 출처: LEGO Group 공식 <em>About Us — Our History</em>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p><strong>코카콜라 BFFP 글로벌 브랜드 감사.</strong> Break Free From Plastic이 매년 진행하는 글로벌 브랜드 감사에서 코카콜라가 2018~2023 <em>6년 연속 1위</em> 플라스틱 폐기물 배출 기업으로 집계됨. 2023년 단일 감사에서 코카콜라 폐기물 33,820개(역대 최대). 41개국 8,804명 자원봉사자가 537,719개 폐기물 조사. 2024.12 코카콜라가 <em>2030년까지 재사용 포장 25% 도입</em> 목표를 폐기하자 BFFP가 <em>&ldquo;마스터클래스 그린워싱&rdquo;</em>으로 비판. 출처: Break Free From Plastic <em>2023 Global Brand Audit Report</em> / CNN <em>Coca-Cola is dramatically scaling back its plastic promises</em>(2024.12.4).&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:7" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><strong>캐럴의 4단계 피라미드.</strong> Archie B. Carroll, <em>The Pyramid of Corporate Social Responsibility: Toward the Moral Management of Organizational Stakeholders</em>, Business Horizons, 34(4), pp.39-48, 1991. 캐럴은 <em>경제적 책임이 다른 모든 책임의 토대</em>임을 강조하여 <em>돈을 못 버는 기업이 사회적 책임을 다할 수는 없다</em>는 점도 함께 지적했다. 이는 <em>프리드먼</em>의 주장을 <em>완전히 부정한 것이 아니라 확장한 것</em>이다.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p><strong>파타고니아 환경 신탁 양도.</strong> 2022.9.14 이본 쉬나르(Yvon Chouinard)와 가족이 보유한 파타고니아 지분 100%(평가액 약 30억 달러)를 두 곳에 양도. <em>Patagonia Purpose Trust</em>(의결권 주식 2% 보유, 환경 가치 보존 감시), <em>Holdfast Collective</em>(비영리·무의결권 주식 98% 보유, 매년 약 1억 달러 배당을 환경 문제 해결에 사용). 쉬나르의 공개 서한: <em>&ldquo;Earth is now our only shareholder.&rdquo;</em> 2011.11.25 NYT <em>Don&rsquo;t Buy This Jacket</em> 광고 (광고비 $57,000, 무료 홍보 효과 $40~50M, 다음 해 매출 30% 증가)와 함께 <em>불-마케팅(anti-marketing)</em>의 대표 사례. 출처: Patagonia Works <em>Patagonia&rsquo;s Next Chapter: Earth is Now Our Only Shareholder</em>(2022.9.14) / David Gelles <em>The Secret History of &ldquo;Don&rsquo;t Buy This Jacket&rdquo;</em>.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p><strong>프레이저 도허티 (Fraser Doherty).</strong> 1988년 스코틀랜드 에든버러 출생. 14세(2002)에 할머니 <em>수전 도허티</em>의 부엌에서 잼 만드는 법을 배우고 100% 과일 잼을 개발해 SuperJam을 창업. 16세(2004)에 영국 4대 슈퍼체인 중 하나인 <em>Waitrose</em> 입점에 성공하며 <em>역대 최연소 슈퍼마켓 공급자</em> 기록 수립. 영국 전역과 호주·일본·러시아·한국 등으로 수출 확대. 2013 영국 여왕으로부터 <em>MBE(Member of the Order of the British Empire)</em> 훈장 수여. 사업과 병행해 지역 노인 대상 <em>무료 티 파티</em>와 <em>지역 양봉 프로젝트</em> 수백 곳 운영 — <em>사업 + 자선</em>의 통합 모델. 출처: Fraser Doherty 공식 사이트 / Wiley <em>SuperBusiness: How I Started SuperJam from My Gran&rsquo;s Kitchen</em>(저자 자서전).&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p><strong>대기업 vs 다국적 기업.</strong> 한국 <em>공정거래법</em>상 <em>대기업집단</em>은 자산 5조 원 이상 그룹을 가리키며 <em>공정거래위원회</em>가 매년 지정한다. 반면 <em>다국적 기업(multinational corporation, MNC)</em>은 UN의 <em>Transnational Corporations</em> 정의를 따라 <em>2개 이상 국가에 생산·판매 거점</em>을 둔 기업을 가리킨다. 출처: 공정거래위원회 <em>대규모기업집단 지정 현황</em>(2024) / UN Conference on Trade and Development(UNCTAD) <em>World Investment Report</em> 2023.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p><strong>쿠팡 노동 환경·공정위 제재.</strong> (1) 2020~2023 쿠팡·쿠팡CLS 평균 산업재해율 약 5.9%로 건설업 1.45%·전체 0.66%의 4~9배 (국정감사 자료, 2024). (2) 2024.7 제주 서브허브 56세 노동자 분류 작업 중 심정지·사망 — 폭염·중량물·휴게시간 미부여 등이 잠입취재로 확인 (뉴스타파·MBC). (3) 2024.8.5 공정거래위원회 의결 2024-284 — 쿠팡(주) 및 자회사 씨피엘비의 <em>PB 상품 부당 우대</em>에 대해 과징금 <strong>1,628억 원</strong> 부과 및 검찰 고발. (4) 중대재해처벌법(2022.1 시행) 적용 사례로 시험대에 오름. 출처: 환경일보 <em>2024 국정감사</em>(2024.10), 이코노믹데일리 <em>연이은 물류센터·배달 노동자 사망사고</em>(2025.8.25), 공정거래위원회 <em>의결 2024-284</em>.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 7 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:6" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p><strong>애플 아일랜드 130억 유로 추징.</strong> 2016 EU 집행위가 아일랜드 정부에 <em>애플에 대한 130억 유로 미납 세금 회수</em>를 명령. 1991·2007 양국 비밀 협약 결과 애플 유럽 사업 법인세 실효세율이 <em>2003년 1% → 2014년 0.005%</em>까지 하락했다는 판단. 아일랜드·애플은 항소했고 2020 EU 일반법원은 양측 손을 들었다가, 2024.9.10 EU 최고법원(ECJ)이 원판결을 파기하고 <em>원 집행위 결정 완전 재인정</em>. 130억 유로(약 18조 원) 추징 확정. 출처: ECJ Case C-465/20, 2024.9.10 판결 / European Commission <em>State Aid</em> 자료.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 8 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:5" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p><strong>정주영의 거북선 도안 일화.</strong> 1971년 정주영이 영국 <em>바클레이즈 은행</em>에서 차관을 받기 위해 <em>500원짜리 지폐의 거북선 도안</em>을 보여주며 &ldquo;우리는 영국보다 300년 앞서 철갑선을 만든 민족이다&rdquo;라고 설득한 일화는 정주영 자서전 <em>시련은 있어도 실패는 없다</em>(1991, 제삼기획)에 직접 기록되어 있다. 이 일화의 신빙성과 세부 사항에 대해서는 사학계 논쟁이 있으나, <em>현대중공업 창업 자금 차관 도입</em>이라는 결과는 사실이다. 출처: 정주영 자서전 / 박정희정부 <em>경제기획원</em> 자료.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+  </main>
+  <footer class="published">
+    📚 자료편 블로그 (curriculum-designer/blog_publish.py) · 학생 눈높이 10차원 매트릭스 적용
+  </footer>
+</div>
+</body>
+</html>
