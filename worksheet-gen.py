@@ -111,7 +111,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
                 html_parts.append('</pre>')
             continue
         if in_code:
-            # 코드블록 안의 빈칸은 정답을 직접 표시 (input 대신)
+            # 코드블록 안 빈칸도 학생이 입력할 수 있도록 input 생성 (한나라 학습지 패턴)
             blanks_in_code = list(blank_pattern.finditer(line))
             if blanks_in_code:
                 new_line = line
@@ -119,13 +119,23 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
                 for b in blanks_in_code:
                     if answer_idx < len(answers):
                         answer = answers[answer_idx]
-                        # 정답을 강조 텍스트로 삽입 (빈칸 채점에서 제외)
-                        answer_text = f'【{answer}】'
-                        start = b.start() + offset
-                        end = b.end() + offset
-                        new_line = new_line[:start] + answer_text + new_line[end:]
-                        offset += len(answer_text) - (b.end() - b.start())
+                        width = max(60, len(answer) * 14)
+                        answer_text = (
+                            f'<input type="text" class="blank-input code-blank" '
+                            f'data-answer="{answer}" data-id="{answer_idx+1}" '
+                            f'style="width:{width}px" placeholder="">'
+                        )
                         answer_idx += 1
+                    else:
+                        # 정답 없는 코드블록 빈칸도 입력만 가능 (채점 제외)
+                        answer_text = (
+                            f'<input type="text" class="blank-input code-blank no-score" '
+                            f'data-id="0" style="width:80px" placeholder="">'
+                        )
+                    start = b.start() + offset
+                    end = b.end() + offset
+                    new_line = new_line[:start] + answer_text + new_line[end:]
+                    offset += len(answer_text) - (b.end() - b.start())
                 html_parts.append(new_line.rstrip() + '\n')
             else:
                 html_parts.append(line.rstrip() + '\n')
