@@ -329,9 +329,51 @@ def inline(text):
     return ''.join(result)
 
 
-def generate_html(title, content, total, total_ox, submit_url='', mode='class'):
+def extract_hero_meta(blank_file):
+    """개념편 frontmatter에서 hero 메타 추출 (editorial-noir 톤 master of slide 스타일)"""
+    hero = {'image': None, 'keywords': [], 'subtitle': None, 'eyebrow': None, 'hook': None}
+    try:
+        with open(blank_file, 'r', encoding='utf-8') as f:
+            text = f.read()
+    except Exception:
+        return hero
+    m = re.match(r'^---\n(.*?)\n---', text, re.S)
+    if not m:
+        return hero
+    fm = m.group(1)
+    def get(key):
+        mm = re.search(r'^' + key + r':\s*[\"\']?([^\"\'\n]+?)[\"\']?\s*$', fm, re.M)
+        return mm.group(1).strip() if mm else None
+    hero['image'] = get('hero_image')
+    hero['subtitle'] = get('hero_subtitle') or get('교과서')
+    hero['eyebrow'] = get('hero_eyebrow') or get('subject')
+    hero['hook'] = get('hero_hook')
+    mm = re.search(r'^hero_keywords:\s*\[([^\]]+)\]', fm, re.M)
+    if mm:
+        hero['keywords'] = [k.strip().strip('"\'') for k in mm.group(1).split(',')]
+    else:
+        mm = re.search(r'^hero_keywords:\s*\n((?:\s+-\s+.+\n)+)', fm, re.M)
+        if mm:
+            hero['keywords'] = [l.strip().lstrip('- ').strip().strip('"\'') for l in mm.group(1).strip().split('\n')][:5]
+    return hero
+
+
+def build_hero_html(title, hero):
+    if not any([hero.get('keywords'), hero.get('image'), hero.get('hook')]):
+        return ''
+    eyebrow = f'<div class="hero-eyebrow">{hero["eyebrow"]}</div>' if hero.get('eyebrow') else ''
+    sub = f'<p class="hero-subtitle">{hero["subtitle"]}</p>' if hero.get('subtitle') else ''
+    kws = ''.join(f'<span class="hero-keyword">{k}</span>' for k in (hero.get('keywords') or [])[:6])
+    kws_html = f'<div class="hero-keywords">{kws}</div>' if kws else ''
+    img = f'<img class="hero-image" src="{hero["image"]}" alt="">' if hero.get('image') else ''
+    hook = f'<div class="hero-hook">{hero["hook"]}</div>' if hero.get('hook') else ''
+    return f'<section class="hero-section">{eyebrow}<h1 class="hero-title">{title}</h1>{sub}{kws_html}{img}{hook}</section>'
+
+
+def generate_html(title, content, total, total_ox, submit_url='', mode='class', hero=None):
     """mode: 'class' = 수업용(제출O, 정답보기X), 'review' = 복습용(제출X, 정답보기O)"""
     grand_total = total + total_ox
+    hero_html = build_hero_html(title, hero or {})
     return f'''<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -446,11 +488,36 @@ blockquote {{
   .container {{ padding: 14px; }}
   .control-bar {{ flex-direction: column; text-align: center; }}
   table {{ font-size: 0.82em; }}
+  .hero-title {{ font-size: 26px !important; }}
+  .hero-section {{ padding: 36px 20px !important; }}
 }}
+.hero-section {{
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}}
+.hero-section::before {{
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}}
+.hero-eyebrow {{ font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }}
+.hero-title {{ font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }}
+.hero-subtitle {{ font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }}
+.hero-keywords {{ display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }}
+.hero-keyword {{
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}}
+.hero-image {{ width: 100%; max-height: 280px; margin-top: 24px; border-radius: 10px; object-fit: cover; }}
+.hero-hook {{ margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }}
 </style>
 </head>
 <body>
 <div class="container">
+  {hero_html}
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/{total} · OX: <span id="ox-score">0</span>/{total_ox}
@@ -669,15 +736,19 @@ def main():
     DEFAULT_SUBMIT_URL = os.environ.get('WORKSHEET_SUBMIT_URL', 'https://script.google.com/macros/s/AKfycbwSNsUeMNqh3UTi_4avMl4SzTnMWEmB_RzHI6hvazUqb4n7SSiabxfhkL1V5Cih1Ke5mw/exec')
     submit_url = sys.argv[4] if len(sys.argv) > 4 else DEFAULT_SUBMIT_URL
 
+    hero = extract_hero_meta(blank_file)
+    if any([hero.get('keywords'), hero.get('image'), hero.get('hook')]):
+        print(f"🎨 hero 섹션: image={'O' if hero.get('image') else 'X'}, keywords={len(hero.get('keywords') or [])}, hook={'O' if hero.get('hook') else 'X'}")
+
     # 수업용 (제출O, 정답보기X)
-    html_class = generate_html(title, content, total, total_ox, submit_url, mode='class')
+    html_class = generate_html(title, content, total, total_ox, submit_url, mode='class', hero=hero)
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(html_class)
     print(f"✅ 수업용 생성: {output_file}")
 
     # 복습용 (제출X, 정답보기O)
     review_file = output_file.replace('.html', '_복습용.html')
-    html_review = generate_html(title, content, total, total_ox, submit_url, mode='review')
+    html_review = generate_html(title, content, total, total_ox, submit_url, mode='review', hero=hero)
     with open(review_file, 'w', encoding='utf-8') as f:
         f.write(html_review)
     print(f"✅ 복습용 생성: {review_file}")
