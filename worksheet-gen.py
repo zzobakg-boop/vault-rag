@@ -7,6 +7,14 @@ import sys
 import os
 
 
+def strip_obsidian_artifacts(text):
+    """학생용 HTML 발행 시 옵시디언 전용 wiki-embed·obsidian:// link 제거 (HTML 깨짐 방지)"""
+    text = re.sub(r'!\[\[[^\]]+\]\]', '', text)  # ![[image.png|450]] wiki-embed
+    text = re.sub(r'\[[^\]]+\]\(obsidian://[^)]+\)[^\n]*', '', text)  # [확대 보기](obsidian://...)
+    text = re.sub(r'📎\s*\n', '', text)  # 외로운 📎 줄
+    return text
+
+
 def extract_answers(answer_file):
     """정답 파일에서 ( **답** ) 패턴의 답을 순서대로 추출"""
     with open(answer_file, 'r', encoding='utf-8') as f:
@@ -57,7 +65,9 @@ def extract_table_answers(answer_file):
 def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
     """개념편 파일을 읽고, 빈칸을 input으로 교체하여 HTML 생성"""
     with open(blank_file, 'r', encoding='utf-8') as f:
-        lines = f.readlines()
+        raw = f.read()
+    raw = strip_obsidian_artifacts(raw)  # 학생용 HTML에서 wiki-embed·obsidian:// link 제거
+    lines = raw.splitlines(keepends=True)
 
     # 정답 파일의 테이블들도 읽기
     answer_tables = extract_table_answers(answer_file)
