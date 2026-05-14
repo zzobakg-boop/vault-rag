@@ -679,10 +679,9 @@ allInputs.forEach((el,i)=>{{
 const SUBMIT_URL='{submit_url}';
 function submitResult(){{
   if(!SUBMIT_URL){{alert('제출 URL이 설정되지 않았습니다.');return;}}
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
-  if(!cls||!num||!name){{alert('반, 번호, 이름을 모두 입력해주세요.');return;}}
+  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim()||'미입력';
+  const num=document.querySelector('.student-info input:nth-child(2)').value.trim()||'미입력';
+  const name=document.querySelector('.student-info input:nth-child(3)').value.trim()||'미입력';
   if(usedReveal){{alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}}
   check(); // 먼저 채점
   const bs=parseInt(document.getElementById('score').textContent);
