@@ -698,10 +698,12 @@ function submitResult(){{
   }};
   fetch(SUBMIT_URL,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'application/json'}},body:JSON.stringify(data)}})
   .then(()=>{{
-    const btn=document.getElementById('submitBtn');
-    btn.textContent='✅ 제출 완료';
-    btn.classList.add('btn-submitted');
-    btn.disabled=true;
+    document.getElementById('submitBtn').textContent='✅ 제출 완료';
+    document.getElementById('submitBtn').classList.add('btn-submitted');
+    setTimeout(()=>{{
+      document.getElementById('submitBtn').textContent='📤 재제출';
+      document.getElementById('submitBtn').classList.remove('btn-submitted');
+    }}, 2000);
   }})
   .catch(e=>alert('제출 실패: '+e));
 }}
