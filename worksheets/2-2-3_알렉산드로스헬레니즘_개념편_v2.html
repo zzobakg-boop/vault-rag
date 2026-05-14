@@ -323,7 +323,7 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
-function norm(s){return s.replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
   document.querySelectorAll('.blank-input').forEach(el=>{
