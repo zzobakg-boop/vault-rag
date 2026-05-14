@@ -8,10 +8,18 @@ import os
 
 
 def strip_obsidian_artifacts(text):
-    """학생용 HTML 발행 시 옵시디언 전용 wiki-embed·obsidian:// link 제거 (HTML 깨짐 방지)"""
+    """학생용 HTML 발행 시 옵시디언 전용 wiki-embed·obsidian:// link·교사 전용 섹션 제거"""
     text = re.sub(r'!\[\[[^\]]+\]\]', '', text)  # ![[image.png|450]] wiki-embed
     text = re.sub(r'\[[^\]]+\]\(obsidian://[^)]+\)[^\n]*', '', text)  # [확대 보기](obsidian://...)
     text = re.sub(r'📎\s*\n', '', text)  # 외로운 📎 줄
+    # 교사 전용 섹션 제거 (## ✅ 교사 기준 ... 다음 ## 또는 끝까지)
+    text = re.sub(r'## ✅ 교사 기준.*?(?=\n## |\Z)', '', text, flags=re.S)
+    # 학생 자유 작성 칸 마커 → no-score input (정답 매칭 X·수합만)
+    text = re.sub(
+        r'\[학생작성\]',
+        '<input type="text" class="blank-input activity-input no-score" data-id="0" style="width:240px" placeholder="">',
+        text
+    )
     return text
 
 
