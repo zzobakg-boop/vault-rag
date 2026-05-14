@@ -470,12 +470,9 @@ function submitResult(){
   const os=parseInt(document.getElementById('ox-score').textContent);
   const ts=parseInt(document.getElementById('total-score').textContent);
   const data={
-    type:'final',
     worksheet:document.title,
     studentClass:cls,studentNumber:num,studentName:name,
-    blankScore:bs,oxScore:os,totalScore:ts,
-    answers:collectAnswers(),
-    ts:new Date().toISOString()
+    blankScore:bs,oxScore:os,totalScore:ts
   };
   fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
   .then(()=>{
@@ -488,42 +485,6 @@ function submitResult(){
   })
   .catch(e=>alert('제출 실패: '+e));
 }
-// 실시간 진행 모니터링 — input/click 시 2초 debounce POST
-function collectAnswers(){
-  const a={};
-  document.querySelectorAll('.blank-input').forEach(el=>{
-    const k=el.dataset.id;
-    if(k&&el.value) a[k]=el.value;
-  });
-  document.querySelectorAll('.ox-group').forEach(grp=>{
-    const k=grp.dataset.id||grp.dataset.answer||'';
-    const sel=grp.querySelector('.ox-btn.selected');
-    if(sel) a['ox_'+k]=sel.textContent;
-  });
-  return a;
-}
-let progressTimer;
-function sendProgress(){
-  if(!SUBMIT_URL) return;
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  if(!cls||!num) return;
-  const data={
-    type:'progress',
-    worksheet:document.title,
-    studentClass:cls,studentNumber:num,
-    answers:collectAnswers(),
-    ts:new Date().toISOString()
-  };
-  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).catch(()=>{});
-}
-function scheduleProgress(){
-  clearTimeout(progressTimer);
-  progressTimer=setTimeout(sendProgress, 2000);
-}
-document.querySelectorAll('.blank-input').forEach(el=>{el.addEventListener('input', scheduleProgress);});
-document.querySelectorAll('.ox-btn').forEach(el=>{el.addEventListener('click', scheduleProgress);});
-
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
 </script>
