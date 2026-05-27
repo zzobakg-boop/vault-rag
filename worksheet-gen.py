@@ -767,7 +767,7 @@ def main():
     if total != len(answers):
         print(f"⚠️  빈칸({total})과 정답({len(answers)}) 수 불일치")
 
-    DEFAULT_SUBMIT_URL = os.environ.get('WORKSHEET_SUBMIT_URL', 'https://script.google.com/macros/s/AKfycbwSNsUeMNqh3UTi_4avMl4SzTnMWEmB_RzHI6hvazUqb4n7SSiabxfhkL1V5Cih1Ke5mw/exec')
+    DEFAULT_SUBMIT_URL = os.environ.get('WORKSHEET_SUBMIT_URL', 'https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec')
     submit_url = sys.argv[4] if len(sys.argv) > 4 else DEFAULT_SUBMIT_URL
 
     hero = extract_hero_meta(blank_file)
