@@ -517,6 +517,7 @@ function scheduleProgress(){
     if(!cls||!num) return;
     const answers=collectAnswers();
     const count=Object.values(answers).filter(v=>v&&v.length>0).length;
+    if(count===0) return;  // ⭐ 5/27 fix: 답 1개 이상 입력 시에만 POST (반·번호만 입력한 학생 noise 차단)
     fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({type:'progress',worksheet:document.title,studentClass:cls,studentNumber:num,answers,answerCount:count})});
   },2000);
