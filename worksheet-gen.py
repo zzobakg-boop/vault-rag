@@ -15,11 +15,14 @@ def strip_obsidian_artifacts(text):
     # 교사 전용 섹션 제거 (## ✅ 교사 기준 ... 다음 ## 또는 끝까지)
     text = re.sub(r'## ✅ 교사 기준.*?(?=\n## |\Z)', '', text, flags=re.S)
     # 학생 자유 작성 칸 마커 → no-score input (정답 매칭 X·수합만)
-    text = re.sub(
-        r'\[학생작성\]',
-        '<input type="text" class="blank-input activity-input no-score" data-id="0" style="width:240px" placeholder="">',
-        text
-    )
+    # ⭐ 5/27 fix: 활동 input마다 unique data-id (act-1, act-2, ...)
+    # 이전엔 모두 data-id="0"이라 collectAnswers()에서 한 키로 덮어씌워져 *마지막 1개만 살아남는* 데이터 손실 버그
+    act_counter = [0]
+    def _activity_sub(m):
+        act_counter[0] += 1
+        return (f'<input type="text" class="blank-input activity-input no-score" '
+                f'data-id="act-{act_counter[0]}" style="width:240px" placeholder="">')
+    text = re.sub(r'\[학생작성\]', _activity_sub, text)
     return text
 
 
@@ -677,6 +680,34 @@ allInputs.forEach((el,i)=>{{
 }});
 // 제출
 const SUBMIT_URL='{submit_url}';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){{
+  const ans={{}};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  }});
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+  }});
+  return ans;
+}}
+// 진행 탭 — 실시간 입력 누적 (2초 debounce·5/21 patch)
+let progressTimer;
+function scheduleProgress(){{
+  clearTimeout(progressTimer);
+  progressTimer=setTimeout(()=>{{
+    if(!SUBMIT_URL) return;
+    const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
+    const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
+    if(!cls||!num) return;
+    const answers=collectAnswers();
+    const count=Object.values(answers).filter(v=>v&&v.length>0).length;
+    fetch(SUBMIT_URL,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'application/json'}},
+      body:JSON.stringify({{type:'progress',worksheet:document.title,studentClass:cls,studentNumber:num,answers,answerCount:count}})}});
+  }},2000);
+}}
 function submitResult(){{
   if(!SUBMIT_URL){{alert('제출 URL이 설정되지 않았습니다.');return;}}
   const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
@@ -688,10 +719,13 @@ function submitResult(){{
   const bs=parseInt(document.getElementById('score').textContent);
   const os=parseInt(document.getElementById('ox-score').textContent);
   const ts=parseInt(document.getElementById('total-score').textContent);
+  const answers=collectAnswers();
   const data={{
+    type:'final',
     worksheet:document.title,
     studentClass:cls,studentNumber:num,studentName:name,
-    blankScore:bs,oxScore:os,totalScore:ts
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
   }};
   fetch(SUBMIT_URL,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'application/json'}},body:JSON.stringify(data)}})
   .then(()=>{{
@@ -706,6 +740,16 @@ function submitResult(){{
 }}
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{{
+  el.addEventListener('input',scheduleProgress);
+}});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+}});
+document.querySelectorAll('.student-info input').forEach(el=>{{
+  el.addEventListener('input',scheduleProgress);
+}});
 </script>
 </body>
 </html>'''
