@@ -373,10 +373,12 @@ function check(){
   document.querySelectorAll('.blank-input').forEach(el=>{
     const a=norm(el.dataset.answer), u=norm(el.value);
     if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
     const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
     if(isCorrect){
       el.classList.add('correct');el.classList.remove('wrong');
-      if(!el.classList.contains('no-score')) bc++;
+      bc++;
     }else{el.classList.add('wrong');el.classList.remove('correct');}
   });
   document.querySelectorAll('.ox-group').forEach(grp=>{
