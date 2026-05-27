@@ -695,22 +695,9 @@ function collectAnswers(){{
   }});
   return ans;
 }}
-// 진행 탭 — 실시간 입력 누적 (2초 debounce·5/21 patch)
-let progressTimer;
-function scheduleProgress(){{
-  clearTimeout(progressTimer);
-  progressTimer=setTimeout(()=>{{
-    if(!SUBMIT_URL) return;
-    const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-    const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-    if(!cls||!num) return;
-    const answers=collectAnswers();
-    const count=Object.values(answers).filter(v=>v&&v.length>0).length;
-    if(count===0) return;  // ⭐ 5/27 fix: 답 1개 이상 입력 시에만 POST (반·번호만 입력한 학생 noise 차단)
-    fetch(SUBMIT_URL,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'application/json'}},
-      body:JSON.stringify({{type:'progress',worksheet:document.title,studentClass:cls,studentNumber:num,answers,answerCount:count}})}});
-  }},2000);
-}}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){{ /* disabled — 제출 시점에만 데이터 전송 */ }}
 function submitResult(){{
   if(!SUBMIT_URL){{alert('제출 URL이 설정되지 않았습니다.');return;}}
   const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
