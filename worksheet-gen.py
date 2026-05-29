@@ -12,8 +12,15 @@ def strip_obsidian_artifacts(text):
     text = re.sub(r'!\[\[[^\]]+\]\]', '', text)  # ![[image.png|450]] wiki-embed
     text = re.sub(r'\[[^\]]+\]\(obsidian://[^)]+\)[^\n]*', '', text)  # [확대 보기](obsidian://...)
     text = re.sub(r'📎\s*\n', '', text)  # 외로운 📎 줄
-    # 교사 전용 섹션 제거 (## ✅ 교사 기준 ... 다음 ## 또는 끝까지)
-    text = re.sub(r'## ✅ 교사 기준.*?(?=\n## |\Z)', '', text, flags=re.S)
+    # 교사 전용 섹션 제거 — 학생 개념편에 교사 메타·정답이 남아도 학생 HTML엔 안 나가도록 (defense-in-depth)
+    # ⭐ 2026-05-29 일반화: '✅ 교사 기준' 정확 문구만 잡던 것 → 교사·채점·정답 매핑·학생 비공개·배부 금지
+    #    마커를 *제목에 포함한 H2 섹션 전부* 제거. + 명시 마커 <!-- teacher-only --> 블록 지원.
+    #    (2-2-3 v4 사고: 학생 개념편에 정답 14 박힌 '## ✅ 교사 기준 대조 (학생 비공개)' 섹션 → 통째 렌더 위험)
+    text = re.sub(r'<!--\s*teacher-only\s*-->.*?<!--\s*/teacher-only\s*-->', '', text, flags=re.S | re.I)
+    text = re.sub(
+        r'^##\s+[^\n]*(?:교사|채점\s*가이드|정답\s*매핑|빈칸\s*정답|학생\s*비공개|학생\s*배부\s*금지)[^\n]*\n.*?(?=^##\s|\Z)',
+        '', text, flags=re.S | re.M,
+    )
     # 학생 자유 작성 칸 마커 → no-score input (정답 매칭 X·수합만)
     # ⭐ 5/27 fix: 활동 input마다 unique data-id (act-1, act-2, ...)
     # 이전엔 모두 data-id="0"이라 collectAnswers()에서 한 키로 덮어씌워져 *마지막 1개만 살아남는* 데이터 손실 버그
