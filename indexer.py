@@ -15,7 +15,10 @@ from config import (
     CHUNK_SIZE, CHUNK_OVERLAP, COLLECTION_NAME
 )
 
-METADATA_PATH = os.path.join(os.path.dirname(__file__), "index_metadata.json")
+METADATA_PATH = os.path.join(
+    os.path.dirname(__file__),
+    os.environ.get("VAULT_RAG_METADATA_FILE", "index_metadata.json")
+)
 
 
 def load_metadata():
@@ -112,8 +115,14 @@ def embed_text(text):
 
 def index_vault(full_rebuild=False):
     """볼트 인덱싱 메인 함수"""
+    # 2026-05-04: 환경변수로 vault 경로·collection 이름 override 가능 (위성볼트 인덱싱용)
+    import os as _os
+    global VAULT_PATH, COLLECTION_NAME
+    VAULT_PATH = _os.environ.get("VAULT_RAG_VAULT_PATH", VAULT_PATH)
+    COLLECTION_NAME = _os.environ.get("VAULT_RAG_COLLECTION", COLLECTION_NAME)
     print(f"📂 볼트 경로: {VAULT_PATH}")
     print(f"💾 DB 경로: {CHROMA_DB_PATH}")
+    print(f"📊 Collection: {COLLECTION_NAME}")
 
     # ChromaDB 클라이언트
     client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
