@@ -17,8 +17,10 @@ def strip_obsidian_artifacts(text):
     #    마커를 *제목에 포함한 H2 섹션 전부* 제거. + 명시 마커 <!-- teacher-only --> 블록 지원.
     #    (2-2-3 v4 사고: 학생 개념편에 정답 14 박힌 '## ✅ 교사 기준 대조 (학생 비공개)' 섹션 → 통째 렌더 위험)
     text = re.sub(r'<!--\s*teacher-only\s*-->.*?<!--\s*/teacher-only\s*-->', '', text, flags=re.S | re.I)
+    # ⭐ 2026-05-30 확장: '## ✅ 교재 기준 대조용 보강 (삭제 금지 포인트)'(2-2-2 누출·설계자 의도/핵심 대비축)도 포획.
+    #    5/29 regex가 '교사'만 잡아 '교재'를 놓침 → 학생 발행본에 교사 메타 노출(실측 5건). '교재 기준·대조용·설계자 의도·삭제 금지' 추가.
     text = re.sub(
-        r'^##\s+[^\n]*(?:교사|채점\s*가이드|정답\s*매핑|빈칸\s*정답|학생\s*비공개|학생\s*배부\s*금지)[^\n]*\n.*?(?=^##\s|\Z)',
+        r'^##\s+[^\n]*(?:교사|교재\s*기준|대조용|설계자\s*의도|채점\s*가이드|정답\s*매핑|빈칸\s*정답|학생\s*비공개|학생\s*배부\s*금지|삭제\s*금지)[^\n]*\n.*?(?=^##\s|\Z)',
         '', text, flags=re.S | re.M,
     )
     # 학생 자유 작성 칸 마커 → no-score input (정답 매칭 X·수합만)
@@ -207,6 +209,14 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
 
         # 마크다운 → HTML
         stripped = line.strip()
+
+        # 이미지 ![캡션](src) → figure (2026-05-30: 본문 사료/figure 렌더. wiki-embed ![[..]]는 위에서 이미 제거됨)
+        m_img = re.match(r'!\[(.*?)\]\(([^)]+)\)\s*$', stripped)
+        if m_img:
+            cap, src = m_img.group(1), m_img.group(2)
+            fc = f'<figcaption>{inline(cap)}</figcaption>' if cap else ''
+            html_parts.append(f'<figure class="ws-fig"><img src="{src}" alt="{cap}" loading="lazy">{fc}</figure>')
+            continue
 
         # 헤딩
         if stripped.startswith('#### '):
@@ -522,6 +532,9 @@ blockquote {{
   letter-spacing: 0.3px;
 }}
 .hero-image {{ width: 100%; max-height: 280px; margin-top: 24px; border-radius: 10px; object-fit: cover; }}
+.ws-fig {{ max-width: 680px; margin: 22px auto; text-align: center; }}
+.ws-fig img {{ max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
+.ws-fig figcaption {{ margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }}
 .hero-hook {{ margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }}
 </style>
 </head>
