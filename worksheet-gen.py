@@ -345,6 +345,7 @@ def inline(text):
             result.append(part)
         else:
             part = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', part)
+            part = re.sub(r'\*([^*\n]+?)\*', r'<em>\1</em>', part)  # 2026-05-30: *이탤릭* 지원 (입담 voice 강조어)
             result.append(part)
     return ''.join(result)
 
