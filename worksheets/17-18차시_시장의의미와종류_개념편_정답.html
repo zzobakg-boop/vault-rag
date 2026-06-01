@@ -151,15 +151,15 @@ blockquote {
   <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅳ단원 · 시장의 의미와 종류</div><h1 class="hero-title">사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</h1><p class="hero-subtitle">너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</p><div class="hero-keywords"><span class="hero-keyword">시장 = 사고파는 사람이 모이는 곳</span><span class="hero-keyword">보이는 / 보이지 않는 시장</span><span class="hero-keyword">생산물 / 생산요소 시장</span><span class="hero-keyword">상설 / 정기 시장</span></div><img class="hero-image" src="images/market-cover.jpeg" alt="시장은 어디에나 있다 — 재래시장·온라인쇼핑·주식거래 3가지 시장 모습" loading="lazy"></section>
   <div class="control-bar">
     <div class="score">
-      빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/0
-      · 총: <span id="total-score">0</span>/12 (<span id="pct">0</span>%)
+      빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/3
+      · 총: <span id="total-score">0</span>/15 (<span id="pct">0</span>%)
     </div>
     <div>
       <button class="btn btn-primary" onclick="check()">채점하기</button>
-      <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
+      
       <button class="btn btn-danger" onclick="reset()">초기화</button>
       <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
-      
+      <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
     </div>
   </div>
   <div class="student-info">
@@ -286,9 +286,9 @@ blockquote {
 <br>
 <table>
 <tr><td>상황</td><td>O/X</td><td>이유</td></tr>
-<tr><td>온라인 쇼핑몰(무신사)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-19" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-20" style="width:240px" placeholder=""></td></tr>
-<tr><td>학교 <em>급식</em></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-21" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-22" style="width:240px" placeholder=""></td></tr>
-<tr><td><em>유튜브 광고</em>로 돈 버는 것</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-23" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-24" style="width:240px" placeholder=""></td></tr>
+<tr><td>온라인 쇼핑몰(무신사)</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-20" style="width:240px" placeholder=""></td></tr>
+<tr><td>학교 <em>급식</em></td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-22" style="width:240px" placeholder=""></td></tr>
+<tr><td><em>유튜브 광고</em>로 돈 버는 것</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-24" style="width:240px" placeholder=""></td></tr>
 </table>
 <br>
 <hr>
@@ -305,7 +305,7 @@ blockquote {
 <br>
 </div>
 <script>
-const TB=12, TOX=0, GT=12;
+const TB=12, TOX=3, GT=15;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
