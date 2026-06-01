@@ -139,6 +139,10 @@ blockquote {
 .ws-fig { max-width: 880px; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 1000px; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
 </style>
 </head>
@@ -192,16 +196,12 @@ blockquote {
 <blockquote>🖼 <strong>사진 비교 (3분)</strong></blockquote>
 <p>></p>
 <blockquote>- 왼쪽: <strong>그리스 신상</strong> (B.C. 5세기)</blockquote>
-<blockquote>- 가운데: <strong>간다라 부처상</strong> (A.D. 1~2세기·400년 후)</blockquote>
-<blockquote>- 오른쪽: <strong>금동미륵보살반가사유상</strong> (한국 국보·8세기·1,400년 후)</blockquote>
+<blockquote>- 가운데: <strong>간다라 부처상</strong> (A.D. 1~2세기·정복 약 400년 뒤)</blockquote>
+<blockquote>- 오른쪽: <strong>금동미륵보살반가사유상</strong> (한국 국보·8세기·정복 약 1,000년 뒤)</blockquote>
 <p>></p>
 <blockquote>옷주름·곱슬머리·콧날 — <em>세 얼굴이 거의 똑같다</em>. 어떻게? 답: <strong>한 사람의 13년 정복</strong> 때문.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/2-2-3_아폴로.jpg" alt="아폴로 신상 (그리스, BC 5세기) — 헬레니즘 부처상이 닮아간 원형. 곱슬머리·콧날·옷주름. (바티칸 박물관, Public Domain)" loading="lazy"><figcaption>아폴로 신상 (그리스, BC 5세기) — 헬레니즘 부처상이 닮아간 원형. 곱슬머리·콧날·옷주름. (바티칸 박물관, Public Domain)</figcaption></figure>
-<br>
-<figure class="ws-fig"><img src="images/2-2-3_간다라.jpg" alt="간다라 부처 (AD 1~2세기) — 그리스풍 물결 곱슬머리와 옷주름의 부처. 인간 모습의 불상 자체가 그리스 영향의 결과. (Greco-Buddhist)" loading="lazy"><figcaption>간다라 부처 (AD 1~2세기) — 그리스풍 물결 곱슬머리와 옷주름의 부처. 인간 모습의 불상 자체가 그리스 영향의 결과. (Greco-Buddhist)</figcaption></figure>
-<br>
-<figure class="ws-fig"><img src="images/2-2-3_반가사유상.jpg" alt="금동미륵보살반가사유상 (한국 국보, 8세기) — 그 계보의 한국 끝점. 간다라 → 중국 → 신라로 이어진 헬레니즘의 후손. (국립중앙박물관)" loading="lazy"><figcaption>금동미륵보살반가사유상 (한국 국보, 8세기) — 그 계보의 한국 끝점. 간다라 → 중국 → 신라로 이어진 헬레니즘의 후손. (국립중앙박물관)</figcaption></figure>
+<div class="ws-figrow"><figure class="ws-figrow-item"><img src="images/2-2-3_아폴로.jpg" alt="① 그리스 아폴로 신상 (BC 5세기) — 정복 이전의 원형. 곱슬머리·콧날·옷주름. (바티칸 박물관, Public Domain)" loading="lazy"><figcaption>① 그리스 아폴로 신상 (BC 5세기) — 정복 이전의 원형. 곱슬머리·콧날·옷주름. (바티칸 박물관, Public Domain)</figcaption></figure><figure class="ws-figrow-item"><img src="images/2-2-3_간다라.jpg" alt="② 간다라 부처 (AD 1~2세기·정복 약 400년 뒤) — 그리스풍 물결 곱슬머리·옷주름. 인간 모습 불상 자체가 그리스 영향. (Greco-Buddhist)" loading="lazy"><figcaption>② 간다라 부처 (AD 1~2세기·정복 약 400년 뒤) — 그리스풍 물결 곱슬머리·옷주름. 인간 모습 불상 자체가 그리스 영향. (Greco-Buddhist)</figcaption></figure><figure class="ws-figrow-item"><img src="images/2-2-3_반가사유상.jpg" alt="③ 금동미륵보살반가사유상 (한국·8세기·정복 약 1,000년 뒤) — 그 계보의 한국 끝점. 간다라→중국→신라로 이어진 헬레니즘의 후손. (국립중앙박물관)" loading="lazy"><figcaption>③ 금동미륵보살반가사유상 (한국·8세기·정복 약 1,000년 뒤) — 그 계보의 한국 끝점. 간다라→중국→신라로 이어진 헬레니즘의 후손. (국립중앙박물관)</figcaption></figure></div>
 <br>
 <blockquote>💡 <em>이게 왜 너랑 상관 있냐면</em> — 너의 핸드폰 안 <em>경주 석굴암</em>·<em>국립중앙박물관 불상</em>도 <em>그리스 신상의 후손</em>이야.</blockquote>
 <br>
@@ -380,7 +380,7 @@ BC 30 클레오파트라 자결 → 로마에 흡수 → 헬레니즘 → 로마
 
 </pre>
 <br>
-<p>💡 <strong>오늘의 한 줄</strong>: <em>13년이 2,000년을 만들었다</em>. 짧은 행동·긴 결과·<strong>융합이 새 것을 낳는다</strong>.</p>
+<p>💡 <strong>오늘의 한 줄</strong>: <em>13년이 1,000년을 만들었다</em> (정복 → 한국 불교조각). 그 여운은 <em>2,300년 뒤 너의 셀카·학원(academy)·박물관(museum)</em>에까지. 짧은 행동·긴 결과·<strong>융합이 새 것을 낳는다</strong>.</p>
 <br>
 <hr>
 <br>
