@@ -408,7 +408,7 @@ body {{
   background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
 }}
 .container {{
-  max-width: 800px; margin: 0 auto; background: white;
+  max-width: 1040px; margin: 0 auto; background: white;
   border-radius: 16px; padding: 32px;
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
 }}
@@ -533,7 +533,7 @@ blockquote {{
   letter-spacing: 0.3px;
 }}
 .hero-image {{ width: 100%; max-height: 280px; margin-top: 24px; border-radius: 10px; object-fit: cover; }}
-.ws-fig {{ max-width: 680px; margin: 22px auto; text-align: center; }}
+.ws-fig {{ max-width: 880px; margin: 22px auto; text-align: center; }}
 .ws-fig img {{ max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
 .ws-fig figcaption {{ margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }}
 .hero-hook {{ margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }}
