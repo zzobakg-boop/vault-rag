@@ -109,6 +109,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
     table_row_idx = 0  # 현재 테이블 내 행 인덱스
     blank_table_count = 0  # 빈칸 테이블 수
     in_step0 = False  # STEP 0 구간 (채점 제외)
+    in_figrow = False  # 가로 비교 figure 행 (:::figrow ... :::)
+    figrow_items = []
 
     for line in lines:
         stripped = line.strip()
@@ -169,6 +171,27 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
                 html_parts.append(new_line.rstrip() + '\n')
             else:
                 html_parts.append(line.rstrip() + '\n')
+            continue
+
+        # 가로 비교 figure 행 (:::figrow ... :::) — 이미지 N장을 나란히 비교 (1단계 그리스→간다라→한국 등)
+        if stripped == ':::figrow':
+            in_figrow = True
+            figrow_items = []
+            continue
+        if in_figrow:
+            if stripped == ':::':
+                if figrow_items:
+                    html_parts.append(f'<div class="ws-figrow">{"".join(figrow_items)}</div>')
+                in_figrow = False
+                figrow_items = []
+                continue
+            m_ri = re.match(r'!\[(.*?)\]\(([^)]+)\)\s*$', stripped)
+            if m_ri:
+                cap, src = m_ri.group(1), m_ri.group(2)
+                fc = f'<figcaption>{inline(cap)}</figcaption>' if cap else ''
+                figrow_items.append(
+                    f'<figure class="ws-figrow-item"><img src="{src}" alt="{cap}" loading="lazy">{fc}</figure>'
+                )
             continue
 
         # 빈 div (서술형 답안 칸) → 서술형 textarea로 변환
@@ -536,6 +559,10 @@ blockquote {{
 .ws-fig {{ max-width: 880px; margin: 22px auto; text-align: center; }}
 .ws-fig img {{ max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
 .ws-fig figcaption {{ margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }}
+.ws-figrow {{ display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 1000px; margin: 22px auto; }}
+.ws-figrow-item {{ flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }}
+.ws-figrow-item img {{ width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
+.ws-figrow-item figcaption {{ margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }}
 .hero-hook {{ margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }}
 </style>
 </head>
