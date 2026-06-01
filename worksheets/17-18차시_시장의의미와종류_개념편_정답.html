@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</title>
+<title>사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다 (정답)</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -156,10 +156,10 @@ blockquote {
     </div>
     <div>
       <button class="btn btn-primary" onclick="check()">채점하기</button>
-      
+      <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
       <button class="btn btn-danger" onclick="reset()">초기화</button>
       <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
-      <button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>
+      
     </div>
   </div>
   <div class="student-info">
@@ -498,5 +498,6 @@ document.querySelectorAll('.student-info input').forEach(el=>{
   el.addEventListener('input',scheduleProgress);
 });
 </script>
+<script>window.addEventListener("load",function(){try{reveal();}catch(e){}});</script>
 </body>
 </html>
