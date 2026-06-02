@@ -558,6 +558,7 @@ blockquote {{
 .hero-image {{ width: 100%; max-height: 280px; margin-top: 24px; border-radius: 10px; object-fit: cover; }}
 .ws-fig {{ max-width: 880px; margin: 22px auto; text-align: center; }}
 .ws-fig img {{ max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
+.ws-fig img[src*="comic"] {{ max-height: 820px; max-width: 600px; }}
 .ws-fig figcaption {{ margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }}
 .ws-figrow {{ display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 1000px; margin: 22px auto; }}
 .ws-figrow-item {{ flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }}
