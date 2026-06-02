@@ -11,7 +11,7 @@ body {
   background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
 }
 .container {
-  max-width: 800px; margin: 0 auto; background: white;
+  max-width: 1040px; margin: 0 auto; background: white;
   border-radius: 16px; padding: 32px;
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
 }
@@ -136,6 +136,13 @@ blockquote {
   letter-spacing: 0.3px;
 }
 .hero-image { width: 100%; max-height: 280px; margin-top: 24px; border-radius: 10px; object-fit: cover; }
+.ws-fig { max-width: 880px; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 1000px; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
 </style>
 </head>
@@ -182,12 +189,12 @@ blockquote {
 <blockquote>회사가 어렵다며 권고사직. 저축은 거의 없었다.</blockquote>
 <blockquote>그 다음 달, 집에서 보던 OTT(넷플릭스·쿠팡플레이)를 모두 해지했다.</blockquote>
 <blockquote>다니던 학원도 두 곳을 끊었다. 가족 외식·배달도 한 달에 한 번으로 줄였다.</blockquote>
-<blockquote>길동이는 이해가 안 됐다. *"아빠 그동안 열심히 일하셨는데, 왜 갑자기 이렇게 됐지?"*</blockquote>
+<blockquote>길동이는 이해가 안 됐다. <em>"아빠 그동안 열심히 일하셨는데, 왜 갑자기 이렇게 됐지?"</em></blockquote>
 <br>
-<blockquote>💬 <strong>이게 *너*랑 무슨 상관일까?</strong></blockquote>
-<blockquote>*지금 우리 집*, 그리고 *20년 후의 너*에게도 똑같은 일이 일어날 수 있다.</blockquote>
+<blockquote>💬 <strong>이게 <em>너</em>랑 무슨 상관일까?</strong></blockquote>
+<blockquote><em>지금 우리 집</em>, 그리고 <em>20년 후의 너</em>에게도 똑같은 일이 일어날 수 있다.</blockquote>
 <blockquote>일하는 시기는 정해져 있고, 일을 안 하는 시기에도 돈은 계속 들어간다.</blockquote>
-<blockquote>이번 차시는 *언제·어떻게 준비해야 하는가*를 짚는다.</blockquote>
+<blockquote>이번 차시는 <em>언제·어떻게 준비해야 하는가</em>를 짚는다.</blockquote>
 <br>
 <hr>
 <br>
@@ -205,10 +212,10 @@ blockquote {
 <tr><td><strong>노년기</strong></td><td>③<input type="text" class="blank-input" data-answer="은퇴" data-id="3" style="width:60px" placeholder="">로 소득 중단</td><td>지속</td><td>저축·연금·보험으로 생활</td></tr>
 </table>
 <br>
-<h3>소득 ≠ 소비 → ④<input type="text" class="blank-input" data-answer="자산 관리" data-id="4" style="width:100px" placeholder=""> 필요</h3>
+<h3>소득 ≠ 소비 → 대비가 필요</h3>
 <br>
 <p>소비는 <strong>평생</strong> 꾸준히 이루어지지만, 소득은 <strong>일정하지 않다.</strong></p>
-<p>소득이 없거나 적어지는 시기를 대비하여 ④<input type="text" class="blank-input" data-answer="안전성" data-id="5" style="width:68px" placeholder="">가 필요하다.</p>
+<p>소득이 없거나 적어지는 시기를 대비하여 ④<input type="text" class="blank-input" data-answer="자산 관리" data-id="4" style="width:100px" placeholder="">가 필요하다.</p>
 <br>
 <blockquote>(교과서 원문: "소비는 평생 이루어지지만 소득은 일정하지 않으므로, 미래를 위해 자산을 계획적으로 관리할 필요가 있다." 천재교육 사회②(구정화) p.62~63)</blockquote>
 <br>
@@ -220,9 +227,9 @@ blockquote {
 <br>
 <table>
 <tr><td>기준</td><td>의미</td></tr>
-<tr><td>⑤<input type="text" class="blank-input" data-answer="수익성" data-id="6" style="width:68px" placeholder=""></td><td><strong>원금</strong>을 잃지 않을 가능성</td></tr>
-<tr><td>⑥<input type="text" class="blank-input" data-answer="유동성" data-id="7" style="width:68px" placeholder=""></td><td><strong>이익</strong>을 얻는 정도</td></tr>
-<tr><td>⑦<input type="text" class="blank-input" data-answer="이자" data-id="8" style="width:60px" placeholder=""></td><td><strong>현금</strong>으로 바꿀 수 있는 정도</td></tr>
+<tr><td>⑤<input type="text" class="blank-input" data-answer="안전성" data-id="5" style="width:68px" placeholder=""></td><td><strong>원금</strong>을 잃지 않을 가능성</td></tr>
+<tr><td>⑥<input type="text" class="blank-input" data-answer="수익성" data-id="6" style="width:68px" placeholder=""></td><td><strong>이익</strong>을 얻는 정도</td></tr>
+<tr><td>⑦<input type="text" class="blank-input" data-answer="유동성" data-id="7" style="width:68px" placeholder=""></td><td><strong>현금</strong>으로 바꿀 수 있는 정도</td></tr>
 </table>
 <br>
 <blockquote>⚠️ <strong>셋 모두를 충족하는 금융 상품은 없다.</strong> 안전성이 높으면 수익성이 낮고, 수익성이 높으면 위험도 크다.</blockquote>
@@ -233,17 +240,17 @@ blockquote {
 <br>
 <table>
 <tr><td>상품</td><td>특징</td><td>강점</td></tr>
-<tr><td><strong>정기 예금·적금</strong></td><td>목돈을 맡기고 ⑧<input type="text" class="blank-input" data-answer="주식" data-id="9" style="width:60px" placeholder="">를 받음</td><td>안전성 ↑</td></tr>
-<tr><td>⑨<input type="text" class="blank-input" data-answer="채권" data-id="10" style="width:60px" placeholder=""></td><td>회사 소유권 일부 구매·원금 손실 가능</td><td>수익성 ↑</td></tr>
-<tr><td>⑩<input type="text" class="blank-input" data-answer="포트폴리오" data-id="11" style="width:100px" placeholder=""></td><td>기업·정부가 발행·예금보다 수익성 높음</td><td>중간</td></tr>
+<tr><td><strong>정기 예금·적금</strong></td><td>목돈을 맡기고 ⑧<input type="text" class="blank-input" data-answer="이자" data-id="8" style="width:60px" placeholder="">를 받음</td><td>안전성 ↑</td></tr>
+<tr><td>⑨<input type="text" class="blank-input" data-answer="주식" data-id="9" style="width:60px" placeholder=""></td><td>회사 소유권 일부 구매·원금 손실 가능</td><td>수익성 ↑</td></tr>
+<tr><td>⑩<input type="text" class="blank-input" data-answer="채권" data-id="10" style="width:60px" placeholder=""></td><td>기업·정부가 발행·예금보다 수익성 높음</td><td>중간</td></tr>
 <tr><td><strong>보험</strong></td><td>사고·질병 등 위험에 대비</td><td>안전 대비</td></tr>
 </table>
 <br>
 <blockquote>(교과서 원문: "금융 상품에는 예금, 적금, 주식, 채권, 보험 등이 있으며 각각 안전성, 수익성, 유동성의 수준이 다르다." 천재교육 사회②(구정화) p.64~65)</blockquote>
 <br>
-<h3>분산 투자 — ⑪<input type="text" class="blank-input" data-answer="신용" data-id="12" style="width:60px" placeholder=""></h3>
+<h3>분산 투자</h3>
 <br>
-<p>한 상품에 모두 투자하면 위험이 크다. 여러 상품에 나눠 투자하는 것을 ⑪<input type="text" class="blank-input" data-answer="연체" data-id="13" style="width:60px" placeholder="">라 한다.</p>
+<p>한 상품에 모두 투자하면 위험이 크다. 여러 상품에 나눠 투자하는 것을 ⑪<input type="text" class="blank-input" data-answer="포트폴리오" data-id="11" style="width:100px" placeholder="">라 한다.</p>
 <br>
 <pre class="code-block">
 예금(안전) + 주식(수익) + 채권(균형) → 위험 ↓
@@ -259,17 +266,17 @@ blockquote {
 <br>
 <blockquote>💳 <strong>지아 언니는 22살, 첫 직장에 들어가자마자 신용카드를 만들었다.</strong></blockquote>
 <blockquote>친구들과 점심·카페·<strong>OTT 구독</strong>·<strong>배달앱</strong>·<strong>게임 결제</strong>·인스타에서 본 옷까지 전부 카드로.</blockquote>
-<blockquote>*"월급 들어오면 갚지"* 하다가 한 달 결제가 <strong>70만 원</strong>.</blockquote>
+<blockquote><em>"월급 들어오면 갚지"</em> 하다가 한 달 결제가 <strong>70만 원</strong>.</blockquote>
 <blockquote>자동이체 통장에 잔액이 부족해, 두 달 연속 <strong>연체</strong> 기록이 남았다.</blockquote>
 <blockquote>3년 뒤, 자취방 전세 보증금 대출을 신청했다.</blockquote>
 <blockquote><strong>"고객님, 신용등급이 낮아 대출이 어렵습니다."</strong></blockquote>
-<blockquote>*왜?*</blockquote>
+<blockquote><em>왜?</em></blockquote>
 <br>
 <hr>
 <br>
 <h2>📖 5단계: 신용이란 무엇인가?</h2>
 <br>
-<p>⑫<input type="text" class="blank-input" data-answer="신용 등급" data-id="14" style="width:100px" placeholder="">은 돈을 빌려 쓰고 약속한 대로 <strong>갚을 수 있는 능력</strong>을 말한다.</p>
+<p>⑫<input type="text" class="blank-input" data-answer="신용" data-id="12" style="width:60px" placeholder="">은 돈을 빌려 쓰고 약속한 대로 <strong>갚을 수 있는 능력</strong>을 말한다.</p>
 <p>신용이 높으면 더 낮은 이자로 더 많은 돈을 빌릴 수 있다.</p>
 <br>
 <blockquote>(교과서 원문: "신용이란 돈을 빌려 쓰고 약속한 대로 갚을 수 있는 능력을 말하며, 현금 없이도 물건을 구매하거나 돈을 빌릴 수 있게 해 준다." 천재교육 사회②(구정화) p.66)</blockquote>
@@ -288,8 +295,8 @@ blockquote {
 <br>
 <h2>📖 6단계: 신용 관리 — 무너지기 전에</h2>
 <br>
-<p>신용을 가장 많이 떨어뜨리는 요인은 ⑬<input type="text" class="blank-input" data-answer="소득" data-id="15" style="width:60px" placeholder="">이다.</p>
-<p>약속한 날짜에 돈을 갚지 않으면 ⑭(　　 　　)이 하락하고, 이것은 장기간 기록으로 남는다.</p>
+<p>신용을 가장 많이 떨어뜨리는 요인은 ⑬<input type="text" class="blank-input" data-answer="연체" data-id="13" style="width:60px" placeholder="">이다.</p>
+<p>약속한 날짜에 돈을 갚지 않으면 ⑭<input type="text" class="blank-input" data-answer="신용 등급" data-id="14" style="width:100px" placeholder="">이 하락하고, 이것은 장기간 기록으로 남는다.</p>
 <br>
 <blockquote>(교과서 원문: "신용을 관리하기 위해서는 소득 범위 내에서 소비하고, 약속한 기한 내에 빚을 갚으며, 연체하지 않아야 한다." 천재교육 사회②(구정화) p.67)</blockquote>
 <br>
@@ -297,7 +304,7 @@ blockquote {
 <br>
 <table>
 <tr><td>방법</td><td>구체적 행동</td></tr>
-<tr><td>⑮(　　) 범위 안에서 소비</td><td>카드 한도보다 내 통장을 봐라</td></tr>
+<tr><td>⑮<input type="text" class="blank-input" data-answer="소득" data-id="15" style="width:60px" placeholder=""> 범위 안에서 소비</td><td>카드 한도보다 내 통장을 봐라</td></tr>
 <tr><td>약속한 <strong>기한</strong> 지키기</td><td>자동 이체 설정으로 날짜 놓치지 않기</td></tr>
 <tr><td><strong>연체</strong> 기록 만들지 않기</td><td>통신비·구독료도 포함·자동 청구 주의</td></tr>
 </table>
