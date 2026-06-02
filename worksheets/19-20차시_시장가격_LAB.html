@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>시장 가격 시뮬레이터 (LAB · Design A)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* ===== Design A — 디자인 토큰 (밝고 친근한 톤) ===== */
+:root{
+  --font:'Pretendard Variable',Pretendard,-apple-system,'Noto Sans KR',sans-serif;
+  --bg:#eef3fc; --card:#ffffff; --ink:#27303f; --muted:#7c869a;
+  --primary:#5b8def; --primary-soft:#e9f0ff;
+  --demand:#2f9bff; --demand-soft:#e3f1ff;
+  --supply:#ff8a3d; --supply-soft:#fff0e4;
+  --equil:#13c29c; --equil-soft:#dcf7f0;
+  --radius:18px; --radius-sm:12px;
+  --shadow:0 6px 28px rgba(40,70,130,.10); --shadow-sm:0 2px 10px rgba(40,70,130,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.65;padding:16px;
+  background-image:radial-gradient(circle at 12% 8%,#f3f8ff 0,transparent 40%),radial-gradient(circle at 92% 0%,#fff3ea 0,transparent 35%);}
+.wrap{max-width:880px;margin:0 auto;}
+.hero{background:linear-gradient(135deg,#5b8def 0%,#7a6cff 100%);color:#fff;border-radius:var(--radius);
+  padding:26px 26px 24px;box-shadow:var(--shadow);margin-bottom:18px;}
+.hero .eyebrow{font-size:13px;font-weight:600;letter-spacing:.3px;opacity:.9;}
+.hero h1{font-size:1.55em;font-weight:800;margin:6px 0 6px;letter-spacing:-.5px;}
+.hero p{font-size:.96em;opacity:.95;}
+.hero .pill{display:inline-block;margin-top:12px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);
+  padding:5px 12px;border-radius:999px;font-size:12.5px;font-weight:600;}
+.card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin:16px 0;}
+.card h2{font-size:1.18em;font-weight:800;margin-bottom:4px;letter-spacing:-.3px;}
+.card .sub{color:var(--muted);font-size:.9em;margin-bottom:14px;}
+/* 시뮬레이터 */
+.sim-stage{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;}
+.sim-svg{flex:1 1 360px;min-width:300px;}
+svg{width:100%;height:auto;touch-action:none;-webkit-user-select:none;user-select:none;}
+.grid line{stroke:#eef1f7;stroke-width:1;}
+.axis{stroke:#c2cad8;stroke-width:2;}
+.axis-lab{fill:var(--muted);font-size:13px;font-weight:600;}
+.curve{stroke-width:4;fill:none;stroke-linecap:round;transition:none;}
+.curve.demand{stroke:var(--demand);} .curve.supply{stroke:var(--supply);}
+.curve-lab{font-size:13.5px;font-weight:800;}
+.handle{cursor:grab;filter:drop-shadow(0 2px 4px rgba(0,0,0,.18));}
+.handle:active{cursor:grabbing;}
+.proj{stroke:var(--equil);stroke-width:1.6;stroke-dasharray:5 4;opacity:.8;}
+.eq-star{fill:var(--equil);filter:drop-shadow(0 0 8px rgba(19,194,156,.6));}
+.eq-lab{fill:var(--equil);font-size:13px;font-weight:800;}
+/* readout */
+.readout{flex:1 1 200px;min-width:200px;}
+.metric{background:var(--equil-soft);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px;}
+.metric .k{font-size:12.5px;color:#0a8d72;font-weight:700;}
+.metric .v{font-size:1.7em;font-weight:800;color:#0a8d72;letter-spacing:-.5px;}
+.status{background:var(--primary-soft);color:#2c5bd6;border-radius:var(--radius-sm);padding:12px 14px;
+  font-size:.92em;font-weight:600;min-height:48px;}
+.status b{color:#1b40a8;}
+.legend{display:flex;gap:14px;margin-top:8px;font-size:12.5px;color:var(--muted);flex-wrap:wrap;}
+.legend i{display:inline-block;width:14px;height:4px;border-radius:2px;vertical-align:middle;margin-right:5px;}
+/* buttons */
+.scn-title{font-size:.92em;font-weight:700;color:var(--muted);margin:18px 0 8px;}
+.btns{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.btn{border:none;border-radius:var(--radius-sm);padding:13px 12px;font-family:inherit;font-size:.9em;font-weight:700;
+  cursor:pointer;text-align:left;transition:transform .12s,box-shadow .12s;box-shadow:var(--shadow-sm);}
+.btn:hover{transform:translateY(-2px);}
+.btn small{display:block;font-weight:500;font-size:.82em;opacity:.8;margin-top:2px;}
+.btn.up{background:var(--demand-soft);color:#1668c4;}
+.btn.dn{background:#fdeaf0;color:#c43a6a;}
+.btn.su{background:var(--supply-soft);color:#cc5e16;}
+.btn.sd{background:#fff6e0;color:#a87e10;}
+.btn.reset{background:#eef1f7;color:#5a6577;grid-column:1/-1;text-align:center;}
+.tip{background:#fffaf0;border:1px solid #ffe6b0;border-radius:var(--radius-sm);padding:12px 14px;font-size:.9em;color:#8a6d1f;margin-top:14px;}
+.tip b{color:#6b520f;}
+footer{text-align:center;color:var(--muted);font-size:.78em;padding:18px 0 8px;}
+@media (max-width:560px){.btns{grid-template-columns:1fr;}.hero h1{font-size:1.3em;}}
+/* ===== 인쇄용 ===== */
+@media print{
+  body{background:#fff;padding:0;}
+  .hero{background:#fff!important;color:#000;border:2px solid #5b8def;box-shadow:none;}
+  .hero .eyebrow,.hero p,.hero .pill{color:#333;}
+  .card{box-shadow:none;border:1px solid #dde3ee;break-inside:avoid;}
+  .btns,.tip,.status,footer{display:none;}      /* 조작 UI는 인쇄 제외 */
+  .handle{display:none;}                          /* 정적 그래프로 인쇄 */
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">사회② · Ⅳ단원 · 시장 가격의 결정 · 🧪 인터랙티브 LAB</div>
+    <h1>곡선을 움직이면 가격이 따라온다</h1>
+    <p>수요·공급 곡선을 직접 드래그해서 <b>균형 가격</b>과 <b>균형 거래량</b>이 어떻게 정해지는지 눈으로 확인해 보자.</p>
+    <span class="pill">🎨 Design A 적용 — Pretendard · 밝고 친근한 톤 · 인쇄 지원</span>
+  </div>
+
+  <div class="card">
+    <h2>📈 수요·공급 시뮬레이터</h2>
+    <div class="sub">파란 점(수요)·주황 점(공급)을 <b>위아래로 드래그</b>하거나, 아래 4시나리오 버튼을 눌러 보자. ★ 균형점이 실시간으로 움직인다.</div>
+    <div class="sim-stage">
+      <div class="sim-svg">
+        <svg id="sim" viewBox="0 0 560 400" role="img" aria-label="수요 공급 그래프">
+          <g class="grid" id="grid"></g>
+          <line class="axis" x1="64" y1="30" x2="64" y2="360"></line>
+          <line class="axis" x1="64" y1="360" x2="528" y2="360"></line>
+          <text class="axis-lab" x="40" y="34">가격</text>
+          <text class="axis-lab" x="500" y="384">수량</text>
+          <line class="proj" id="projY"></line>
+          <line class="proj" id="projX"></line>
+          <line class="curve demand" id="dLine"></line>
+          <line class="curve supply" id="sLine"></line>
+          <text class="curve-lab" id="dLab" fill="#2f9bff">수요</text>
+          <text class="curve-lab" id="sLab" fill="#ff8a3d">공급</text>
+          <polygon class="eq-star" id="star" points=""></polygon>
+          <text class="eq-lab" id="eqLab">균형점</text>
+          <circle class="handle" id="dHandle" r="11" fill="#2f9bff" stroke="#fff" stroke-width="3"></circle>
+          <circle class="handle" id="sHandle" r="11" fill="#ff8a3d" stroke="#fff" stroke-width="3"></circle>
+        </svg>
+        <div class="legend">
+          <span><i style="background:#2f9bff"></i>수요곡선 (우하향)</span>
+          <span><i style="background:#ff8a3d"></i>공급곡선 (우상향)</span>
+          <span><i style="background:#13c29c"></i>균형점 ★</span>
+        </div>
+      </div>
+      <div class="readout">
+        <div class="metric"><div class="k">균형 가격</div><div class="v"><span id="mP">0</span><span style="font-size:.5em">만원</span></div></div>
+        <div class="metric" style="background:#eaf0ff"><div class="k" style="color:#2c5bd6">균형 거래량</div><div class="v" style="color:#2c5bd6"><span id="mQ">0</span><span style="font-size:.5em">개</span></div></div>
+        <div class="status" id="status">파란 점·주황 점을 드래그해 보세요.</div>
+      </div>
+    </div>
+
+    <div class="scn-title">⚡ 가격 변동 4시나리오 — 눌러서 곡선을 움직여 보자</div>
+    <div class="btns">
+      <button class="btn up" onclick="scenario('dUp')">수요 증가 ↑<small>예: NCT 콘서트 인기 폭발</small></button>
+      <button class="btn dn" onclick="scenario('dDn')">수요 감소 ↓<small>예: 유행 지난 굿즈</small></button>
+      <button class="btn su" onclick="scenario('sUp')">공급 증가 ↑<small>예: 딸기 풍년·출하 ↑</small></button>
+      <button class="btn sd" onclick="scenario('sDn')">공급 감소 ↓<small>예: 사과 흉년·생산 ↓</small></button>
+      <button class="btn reset" onclick="scenario('reset')">↺ 처음으로</button>
+    </div>
+    <div class="tip">💡 <b>규칙 발견:</b> <b>수요</b>가 움직이면 가격·거래량이 <b>같은 방향</b>, <b>공급</b>이 움직이면 <b>반대 방향</b>으로 간다. 버튼을 눌러보며 확인!</div>
+  </div>
+
+  <div class="card">
+    <h2>✏️ 활동 1 — 균형점을 직접 찾아 표시하기</h2>
+    <div class="sub">위 그래프에서 수요·공급 곡선을 드래그해 <b>★ 균형점</b>을 만들고, 그때의 균형 가격·거래량을 아래에 적어 보자.</div>
+    <p>· 내가 만든 <b>균형 가격</b> = <input style="width:90px;border:none;border-bottom:2px solid var(--primary);background:var(--primary-soft);border-radius:6px 6px 0 0;padding:4px 8px;font-family:inherit;text-align:center;outline:none;" placeholder="만원"> &nbsp; · <b>균형 거래량</b> = <input style="width:90px;border:none;border-bottom:2px solid var(--primary);background:var(--primary-soft);border-radius:6px 6px 0 0;padding:4px 8px;font-family:inherit;text-align:center;outline:none;" placeholder="개"></p>
+    <p style="margin-top:10px;color:var(--muted);font-size:.9em">· 수요를 올렸을 때 균형 가격은? <b style="color:var(--demand)">오른다 / 내린다</b> &nbsp;·&nbsp; 공급을 올렸을 때 균형 가격은? <b style="color:var(--supply)">오른다 / 내린다</b></p>
+  </div>
+
+  <footer>🧪 LAB 비교 테스트 · Design A(Pretendard·밝은 톤·인쇄 CSS) + 드래그 시뮬레이터 · 기존 학습지와 별도</footer>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+const svg=document.getElementById('sim');
+// 좌표계: Q 0~10, P 0~10
+const X0=64,X1=528,Y0=360,Y1=30;
+const xPix=q=>X0+(q/10)*(X1-X0);
+const yPix=p=>Y0-(p/10)*(Y0-Y1);
+const yToP=y=>(Y0-y)/(Y0-Y1)*10;
+const SLOPE=0.7;
+// 상태: 수요 절편 dA, 공급 절편 sA
+const DEF={dA:9,sA:2.5};
+let dA=DEF.dA, sA=DEF.sA;
+// 그리드
+const g=document.getElementById('grid');
+for(let i=0;i<=10;i+=2){const y=yPix(i);const l=document.createElementNS(NS,'line');l.setAttribute('x1',X0);l.setAttribute('x2',X1);l.setAttribute('y1',y);l.setAttribute('y2',y);g.appendChild(l);
+  const t=document.createElementNS(NS,'text');t.setAttribute('x',X0-12);t.setAttribute('y',y+4);t.setAttribute('text-anchor','end');t.setAttribute('class','axis-lab');t.setAttribute('font-size','11');t.textContent=i;g.appendChild(t);}
+const dLine=document.getElementById('dLine'),sLine=document.getElementById('sLine');
+const dH=document.getElementById('dHandle'),sH=document.getElementById('sHandle');
+const star=document.getElementById('star'),projX=document.getElementById('projX'),projY=document.getElementById('projY');
+const mP=document.getElementById('mP'),mQ=document.getElementById('mQ'),statusEl=document.getElementById('status');
+const dLab=document.getElementById('dLab'),sLab=document.getElementById('sLab'),eqLab=document.getElementById('eqLab');
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function render(){
+  dA=clamp(dA,5.5,10.5); sA=clamp(sA,0.5,Math.min(5.5,dA-1.2));
+  // 곡선 끝점
+  dLine.setAttribute('x1',xPix(0));dLine.setAttribute('y1',yPix(dA));dLine.setAttribute('x2',xPix(10));dLine.setAttribute('y2',yPix(dA-SLOPE*10));
+  sLine.setAttribute('x1',xPix(0));sLine.setAttribute('y1',yPix(sA));sLine.setAttribute('x2',xPix(10));sLine.setAttribute('y2',yPix(sA+SLOPE*10));
+  // 핸들 (Q=1.4 지점)
+  const hq=1.4;
+  dH.setAttribute('cx',xPix(hq));dH.setAttribute('cy',yPix(dA-SLOPE*hq));
+  sH.setAttribute('cx',xPix(hq));sH.setAttribute('cy',yPix(sA+SLOPE*hq));
+  dLab.setAttribute('x',xPix(7.6));dLab.setAttribute('y',yPix(dA-SLOPE*7.6)+18);
+  sLab.setAttribute('x',xPix(8.2));sLab.setAttribute('y',yPix(sA+SLOPE*8.2)-8);
+  // 균형
+  const Q=(dA-sA)/(2*SLOPE), P=dA-SLOPE*Q;
+  const ex=xPix(Q),ey=yPix(P);
+  // 별
+  let pts='';for(let i=0;i<10;i++){const ang=-Math.PI/2+i*Math.PI/5;const r=(i%2===0)?10:4.5;pts+=`${(ex+r*Math.cos(ang)).toFixed(1)},${(ey+r*Math.sin(ang)).toFixed(1)} `;}
+  star.setAttribute('points',pts);
+  eqLab.setAttribute('x',ex+14);eqLab.setAttribute('y',ey-10);
+  projY.setAttribute('x1',X0);projY.setAttribute('y1',ey);projY.setAttribute('x2',ex);projY.setAttribute('y2',ey);
+  projX.setAttribute('x1',ex);projX.setAttribute('y1',Y0);projX.setAttribute('x2',ex);projX.setAttribute('y2',ey);
+  mP.textContent=P.toFixed(1);mQ.textContent=Q.toFixed(1);
+  return {Q,P};
+}
+let last=render();
+function setStatus(html){statusEl.innerHTML=html;}
+// 드래그
+function ptP(evt){const ctm=svg.getScreenCTM();const sp=svg.createSVGPoint();sp.x=evt.clientX;sp.y=evt.clientY;const loc=sp.matrixTransform(ctm.inverse());return yToP(loc.y);}
+let drag=null;
+function down(which){return e=>{drag=which;e.preventDefault();};}
+dH.addEventListener('pointerdown',down('d'));sH.addEventListener('pointerdown',down('s'));
+window.addEventListener('pointermove',e=>{ if(!drag)return; const p=ptP(e);
+  if(drag==='d'){dA=p+SLOPE*1.4;} else {sA=p-SLOPE*1.4;}
+  const r=render(); liveMsg(r); });
+window.addEventListener('pointerup',()=>{drag=null;});
+function liveMsg(r){
+  const dP=r.P-last.P, dQ=r.Q-last.Q;
+  if(Math.abs(dP)<0.05&&Math.abs(dQ)<0.05){return;}
+  setStatus(`균형 가격 <b>${r.P.toFixed(1)}만원</b> · 거래량 <b>${r.Q.toFixed(1)}개</b> &nbsp;(${dP>=0?'▲':'▼'} 가격 ${dP>=0?'상승':'하락'})`);
+  last=r;
+}
+// 4시나리오 (애니메이션)
+function animateTo(tDA,tSA,label){
+  const sDA=dA,sSA=sA,t0=performance.now(),dur=500;
+  (function step(now){const k=Math.min(1,(now-t0)/dur);const e=1-Math.pow(1-k,3);
+    dA=sDA+(tDA-sDA)*e;sA=sSA+(tSA-sSA)*e;render();
+    if(k<1)requestAnimationFrame(step);else{const r=render();last=r;if(label)setStatus(label);} })(t0);
+}
+function scenario(t){
+  const before=render();
+  if(t==='reset'){animateTo(DEF.dA,DEF.sA,'처음 상태로 되돌렸어요.');return;}
+  let tDA=dA,tSA=sA,msg='';
+  if(t==='dUp'){tDA=clamp(dA+2,5.5,10.5);msg='<b>수요 증가</b> → 균형 가격 <b>▲ 상승</b>, 거래량 <b>▲ 증가</b> <small>(NCT 인기 ↑)</small>';}
+  if(t==='dDn'){tDA=clamp(dA-2,5.5,10.5);msg='<b>수요 감소</b> → 균형 가격 <b>▼ 하락</b>, 거래량 <b>▼ 감소</b> <small>(유행 끝)</small>';}
+  if(t==='sUp'){tSA=clamp(sA-1.6,0.5,5.5);msg='<b>공급 증가</b> → 균형 가격 <b>▼ 하락</b>, 거래량 <b>▲ 증가</b> <small>(딸기 풍년)</small>';}
+  if(t==='sDn'){tSA=clamp(sA+1.6,0.5,5.5);msg='<b>공급 감소</b> → 균형 가격 <b>▲ 상승</b>, 거래량 <b>▼ 감소</b> <small>(사과 흉년)</small>';}
+  animateTo(tDA,tSA,msg);
+}
+</script>
+</body>
+</html>
