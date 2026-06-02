@@ -576,6 +576,7 @@ blockquote {{
       · 총: <span id="total-score">0</span>/{grand_total} (<span id="pct">0</span>%)
     </div>
     <div>
+      <a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
       <button class="btn btn-primary" onclick="check()">채점하기</button>
       {'<button class="btn btn-secondary" onclick="reveal()">정답 보기</button>' if mode == 'review' else ''}
       <button class="btn btn-danger" onclick="reset()">초기화</button>
