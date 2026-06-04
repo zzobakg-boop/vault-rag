@@ -92,6 +92,10 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     with open(blank_file, 'r', encoding='utf-8') as f:
         raw = f.read()
     raw = strip_obsidian_artifacts(raw, teacher=teacher)  # 학생용은 교사섹션 strip·정답편은 유지
+    if teacher:
+        # 정답본: ①( **답** ) → 채워진 빈칸(초록 박스) 스팬 — 이전 정답본 reveal 느낌 그대로.
+        # 학생 제출용과 같은 레이아웃에 답만 기입된 모습. 모범답안·OX해설·사료이미지는 정답.md 본문에서 그대로 노출.
+        raw = re.sub(r'\(\s*\*\*([^*]+?)\*\*\s*\)', r'<span class="blank-filled">\1</span>', raw)
     lines = raw.splitlines(keepends=True)
 
     # 정답 파일의 테이블들도 읽기
@@ -424,9 +428,9 @@ def generate_html(title, content, total, total_ox, submit_url='', mode='class', 
     grand_total = total + total_ox
     hero_html = build_hero_html(title, hero or {})
     if mode == 'teacher':
-        # 정답편(교사용): 채점·제출·학생정보 없음. 본문에 정답·해설이 텍스트로 노출됨.
-        # 템플릿 v3.2 — '학생 배부 금지' 경고·'교사 기준 대조' 메타 라벨 넣지 않음(그 자체로 교사용·지저분).
-        top_bar = ('<div class="control-bar"><div class="score">교사용 정답본</div>'
+        # 정답본: 학생 제출용과 같은 레이아웃에 답이 빈칸에 기입된 모습(reveal 느낌) + 모범답안·해설·이미지 포함.
+        # 수업 중 이걸 띄워놓고 학생은 제출용을 작성. '교사용 정답본' 같은 명명·경고 라벨 X (v3.2).
+        top_bar = ('<div class="control-bar"><div></div>'
                    '<div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>')
     else:
         reveal_btn = '<button class="btn btn-secondary" onclick="reveal()">정답 보기</button>' if mode == 'review' else ''
@@ -597,8 +601,7 @@ blockquote {{
 .ws-figrow-item img {{ width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
 .ws-figrow-item figcaption {{ margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }}
 .hero-hook {{ margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }}
-.teacher-banner {{ background: #b00020; color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 0.92em; font-weight: 600; margin: 12px 0 4px; }}
-.teacher-banner a {{ color: #fff; text-decoration: underline; }}
+.blank-filled {{ display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }}
 </style>
 </head>
 <body>
