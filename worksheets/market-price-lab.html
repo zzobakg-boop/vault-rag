@@ -41,6 +41,11 @@ svg{width:100%;height:auto;touch-action:none;-webkit-user-select:none;user-selec
 .axis-lab{fill:var(--muted);font-size:13px;font-weight:600;}
 .curve{stroke-width:4;fill:none;stroke-linecap:round;transition:none;}
 .curve.demand{stroke:var(--demand);} .curve.supply{stroke:var(--supply);}
+.ghost{stroke-width:3;stroke-dasharray:7 6;opacity:0;transition:opacity .35s;}
+.ghost.demand{stroke:var(--demand);} .ghost.supply{stroke:var(--supply);}
+.ghost.on{opacity:.45;}
+.ghost-lab{font-size:12px;font-weight:700;fill:var(--muted);opacity:0;}
+.ghost-lab.on{opacity:.8;}
 .curve-lab{font-size:13.5px;font-weight:800;}
 .handle{cursor:grab;filter:drop-shadow(0 2px 4px rgba(0,0,0,.18));}
 .handle:active{cursor:grabbing;}
@@ -104,6 +109,9 @@ footer{text-align:center;color:var(--muted);font-size:.78em;padding:18px 0 8px;}
           <line class="axis" x1="64" y1="360" x2="528" y2="360"></line>
           <text class="axis-lab" x="40" y="34">가격</text>
           <text class="axis-lab" x="500" y="384">수량</text>
+          <line class="ghost demand" id="dGhost"></line>
+          <line class="ghost supply" id="sGhost"></line>
+          <text class="ghost-lab" id="ghLab"></text>
           <line class="proj" id="projY"></line>
           <line class="proj" id="projX"></line>
           <line class="curve demand" id="dLine"></line>
@@ -136,7 +144,7 @@ footer{text-align:center;color:var(--muted);font-size:.78em;padding:18px 0 8px;}
       <button class="btn sd" onclick="scenario('sDn')">공급 감소 ↓<small>예: 사과 흉년·생산 ↓</small></button>
       <button class="btn reset" onclick="scenario('reset')">↺ 처음으로</button>
     </div>
-    <div class="tip">💡 <b>규칙 발견:</b> <b>수요</b>가 움직이면 가격·거래량이 <b>같은 방향</b>, <b>공급</b>이 움직이면 <b>반대 방향</b>으로 간다. 버튼을 눌러보며 확인!</div>
+    <div class="tip">💡 <b>규칙 발견:</b> <b>수요</b>가 움직이면 가격·거래량이 <b>같은 방향</b>, <b>공급</b>이 움직이면 <b>반대 방향</b>으로 간다. 버튼을 눌러보며 확인!<br><span style="color:var(--muted)">※ <b>점선</b>은 이동 <b>전</b> 곡선 — 새 곡선이 <b>대각선으로 옮겨간 것</b>(D→D')을 비교해 보자.</span></div>
   </div>
 
   <div class="card">
@@ -170,6 +178,15 @@ const dH=document.getElementById('dHandle'),sH=document.getElementById('sHandle'
 const star=document.getElementById('star'),projX=document.getElementById('projX'),projY=document.getElementById('projY');
 const mP=document.getElementById('mP'),mQ=document.getElementById('mQ'),statusEl=document.getElementById('status');
 const dLab=document.getElementById('dLab'),sLab=document.getElementById('sLab'),eqLab=document.getElementById('eqLab');
+const dGhost=document.getElementById('dGhost'),sGhost=document.getElementById('sGhost'),ghLab=document.getElementById('ghLab');
+function setGhost(gh,src,labText,labDy){
+  ['x1','y1','x2','y2'].forEach(a=>gh.setAttribute(a,src.getAttribute(a)));
+  gh.classList.add('on');
+  ghLab.textContent=labText;
+  ghLab.setAttribute('x',(+src.getAttribute('x1'))+8);
+  ghLab.setAttribute('y',(+src.getAttribute('y1'))+(labDy||-6));
+  ghLab.classList.add('on');
+}
 function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
 function render(){
   dA=clamp(dA,5.5,10.5); sA=clamp(sA,0.5,Math.min(5.5,dA-1.2));
@@ -199,7 +216,7 @@ function setStatus(html){statusEl.innerHTML=html;}
 // 드래그
 function ptP(evt){const ctm=svg.getScreenCTM();const sp=svg.createSVGPoint();sp.x=evt.clientX;sp.y=evt.clientY;const loc=sp.matrixTransform(ctm.inverse());return yToP(loc.y);}
 let drag=null;
-function down(which){return e=>{drag=which;e.preventDefault();};}
+function down(which){return e=>{drag=which;dGhost.classList.remove('on');sGhost.classList.remove('on');ghLab.classList.remove('on');e.preventDefault();};}
 dH.addEventListener('pointerdown',down('d'));sH.addEventListener('pointerdown',down('s'));
 window.addEventListener('pointermove',e=>{ if(!drag)return; const p=ptP(e);
   if(drag==='d'){dA=p+SLOPE*1.4;} else {sA=p-SLOPE*1.4;}
@@ -220,8 +237,11 @@ function animateTo(tDA,tSA,label){
 }
 function scenario(t){
   const before=render();
-  if(t==='reset'){animateTo(DEF.dA,DEF.sA,'처음 상태로 되돌렸어요.');return;}
+  if(t==='reset'){dGhost.classList.remove('on');sGhost.classList.remove('on');ghLab.classList.remove('on');animateTo(DEF.dA,DEF.sA,'처음 상태로 되돌렸어요.');return;}
   let tDA=dA,tSA=sA,msg='';
+  // 이동 전 곡선을 점선 잔상으로 — D→D'(또는 S→S')가 대각으로 이동함을 보여줌
+  if(t==='dUp'||t==='dDn'){ setGhost(dGhost,dLine,'이전 수요',-8); sGhost.classList.remove('on'); }
+  else { setGhost(sGhost,sLine,'이전 공급',18); dGhost.classList.remove('on'); }
   if(t==='dUp'){tDA=clamp(dA+2,5.5,10.5);msg='<b>수요 증가</b> → 균형 가격 <b>▲ 상승</b>, 거래량 <b>▲ 증가</b> <small>(NCT 인기 ↑)</small>';}
   if(t==='dDn'){tDA=clamp(dA-2,5.5,10.5);msg='<b>수요 감소</b> → 균형 가격 <b>▼ 하락</b>, 거래량 <b>▼ 감소</b> <small>(유행 끝)</small>';}
   if(t==='sUp'){tSA=clamp(sA-1.6,0.5,5.5);msg='<b>공급 증가</b> → 균형 가격 <b>▼ 하락</b>, 거래량 <b>▲ 증가</b> <small>(딸기 풍년)</small>';}
