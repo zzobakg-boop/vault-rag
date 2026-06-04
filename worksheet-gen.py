@@ -7,22 +7,25 @@ import sys
 import os
 
 
-def strip_obsidian_artifacts(text):
-    """학생용 HTML 발행 시 옵시디언 전용 wiki-embed·obsidian:// link·교사 전용 섹션 제거"""
+def strip_obsidian_artifacts(text, teacher=False):
+    """옵시디언 전용 wiki-embed·obsidian:// link 제거.
+    teacher=False (학생/복습용) — 교사 전용 섹션도 제거 (defense-in-depth·학생 노출 방지).
+    teacher=True  (정답편)      — 교사 전용 섹션을 *유지* (정답편=교사용이므로 해설·모범답안·교사 메타 전부 노출)."""
     text = re.sub(r'!\[\[[^\]]+\]\]', '', text)  # ![[image.png|450]] wiki-embed
     text = re.sub(r'\[[^\]]+\]\(obsidian://[^)]+\)[^\n]*', '', text)  # [확대 보기](obsidian://...)
     text = re.sub(r'📎\s*\n', '', text)  # 외로운 📎 줄
-    # 교사 전용 섹션 제거 — 학생 개념편에 교사 메타·정답이 남아도 학생 HTML엔 안 나가도록 (defense-in-depth)
-    # ⭐ 2026-05-29 일반화: '✅ 교사 기준' 정확 문구만 잡던 것 → 교사·채점·정답 매핑·학생 비공개·배부 금지
-    #    마커를 *제목에 포함한 H2 섹션 전부* 제거. + 명시 마커 <!-- teacher-only --> 블록 지원.
-    #    (2-2-3 v4 사고: 학생 개념편에 정답 14 박힌 '## ✅ 교사 기준 대조 (학생 비공개)' 섹션 → 통째 렌더 위험)
-    text = re.sub(r'<!--\s*teacher-only\s*-->.*?<!--\s*/teacher-only\s*-->', '', text, flags=re.S | re.I)
-    # ⭐ 2026-05-30 확장: '## ✅ 교재 기준 대조용 보강 (삭제 금지 포인트)'(2-2-2 누출·설계자 의도/핵심 대비축)도 포획.
-    #    5/29 regex가 '교사'만 잡아 '교재'를 놓침 → 학생 발행본에 교사 메타 노출(실측 5건). '교재 기준·대조용·설계자 의도·삭제 금지' 추가.
-    text = re.sub(
-        r'^##\s+[^\n]*(?:교사|교재\s*기준|대조용|설계자\s*의도|채점\s*가이드|정답\s*매핑|빈칸\s*정답|학생\s*비공개|학생\s*배부\s*금지|삭제\s*금지)[^\n]*\n.*?(?=^##\s|\Z)',
-        '', text, flags=re.S | re.M,
-    )
+    if not teacher:
+        # 교사 전용 섹션 제거 — 학생 개념편에 교사 메타·정답이 남아도 학생 HTML엔 안 나가도록 (defense-in-depth)
+        # ⭐ 2026-05-29 일반화: '✅ 교사 기준' 정확 문구만 잡던 것 → 교사·채점·정답 매핑·학생 비공개·배부 금지
+        #    마커를 *제목에 포함한 H2 섹션 전부* 제거. + 명시 마커 <!-- teacher-only --> 블록 지원.
+        #    (2-2-3 v4 사고: 학생 개념편에 정답 14 박힌 '## ✅ 교사 기준 대조 (학생 비공개)' 섹션 → 통째 렌더 위험)
+        text = re.sub(r'<!--\s*teacher-only\s*-->.*?<!--\s*/teacher-only\s*-->', '', text, flags=re.S | re.I)
+        # ⭐ 2026-05-30 확장: '## ✅ 교재 기준 대조용 보강 (삭제 금지 포인트)'(2-2-2 누출·설계자 의도/핵심 대비축)도 포획.
+        #    5/29 regex가 '교사'만 잡아 '교재'를 놓침 → 학생 발행본에 교사 메타 노출(실측 5건). '교재 기준·대조용·설계자 의도·삭제 금지' 추가.
+        text = re.sub(
+            r'^##\s+[^\n]*(?:교사|교재\s*기준|대조용|설계자\s*의도|채점\s*가이드|정답\s*매핑|빈칸\s*정답|학생\s*비공개|학생\s*배부\s*금지|삭제\s*금지)[^\n]*\n.*?(?=^##\s|\Z)',
+            '', text, flags=re.S | re.M,
+        )
     # 학생 자유 작성 칸 마커 → no-score input (정답 매칭 X·수합만)
     # ⭐ 5/27 fix: 활동 input마다 unique data-id (act-1, act-2, ...)
     # 이전엔 모두 data-id="0"이라 collectAnswers()에서 한 키로 덮어씌워져 *마지막 1개만 살아남는* 데이터 손실 버그
@@ -82,11 +85,13 @@ def extract_table_answers(answer_file):
     return tables
 
 
-def build_html_from_blank(blank_file, answers, ox_answers, answer_file):
-    """개념편 파일을 읽고, 빈칸을 input으로 교체하여 HTML 생성"""
+def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=False):
+    """개념편 파일을 읽고, 빈칸을 input으로 교체하여 HTML 생성.
+    teacher=True — blank_file로 *정답.md*를 넘긴다. 빈칸이 ( **답** )로 차 있어 input이 안 생기고
+    교사 섹션도 보존되어 *완전한 교사 정답본* 본문이 된다 (정답.md 해설·모범답안 그대로 노출)."""
     with open(blank_file, 'r', encoding='utf-8') as f:
         raw = f.read()
-    raw = strip_obsidian_artifacts(raw)  # 학생용 HTML에서 wiki-embed·obsidian:// link 제거
+    raw = strip_obsidian_artifacts(raw, teacher=teacher)  # 학생용은 교사섹션 strip·정답편은 유지
     lines = raw.splitlines(keepends=True)
 
     # 정답 파일의 테이블들도 읽기
@@ -418,6 +423,33 @@ def generate_html(title, content, total, total_ox, submit_url='', mode='class', 
     """mode: 'class' = 수업용(제출O, 정답보기X), 'review' = 복습용(제출X, 정답보기O)"""
     grand_total = total + total_ox
     hero_html = build_hero_html(title, hero or {})
+    if mode == 'teacher':
+        # 정답편(교사용): 채점·제출·학생정보 없음. 본문에 정답·해설이 텍스트로 노출됨.
+        # 템플릿 v3.2 — '학생 배부 금지' 경고·'교사 기준 대조' 메타 라벨 넣지 않음(그 자체로 교사용·지저분).
+        top_bar = ('<div class="control-bar"><div class="score">교사용 정답본</div>'
+                   '<div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>')
+    else:
+        reveal_btn = '<button class="btn btn-secondary" onclick="reveal()">정답 보기</button>' if mode == 'review' else ''
+        submit_btn = '<button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>' if mode == 'class' else ''
+        top_bar = f'''<div class="control-bar">
+    <div class="score">
+      빈칸: <span id="score">0</span>/{total} · OX: <span id="ox-score">0</span>/{total_ox}
+      · 총: <span id="total-score">0</span>/{grand_total} (<span id="pct">0</span>%)
+    </div>
+    <div>
+      <a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
+      <button class="btn btn-primary" onclick="check()">채점하기</button>
+      {reveal_btn}
+      <button class="btn btn-danger" onclick="reset()">초기화</button>
+      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
+      {submit_btn}
+    </div>
+  </div>
+  <div class="student-info">
+    <input type="text" placeholder="반">
+    <input type="text" placeholder="번호">
+    <input type="text" placeholder="이름">
+  </div>'''
     return f'''<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -565,30 +597,14 @@ blockquote {{
 .ws-figrow-item img {{ width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
 .ws-figrow-item figcaption {{ margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }}
 .hero-hook {{ margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }}
+.teacher-banner {{ background: #b00020; color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 0.92em; font-weight: 600; margin: 12px 0 4px; }}
+.teacher-banner a {{ color: #fff; text-decoration: underline; }}
 </style>
 </head>
 <body>
 <div class="container">
   {hero_html}
-  <div class="control-bar">
-    <div class="score">
-      빈칸: <span id="score">0</span>/{total} · OX: <span id="ox-score">0</span>/{total_ox}
-      · 총: <span id="total-score">0</span>/{grand_total} (<span id="pct">0</span>%)
-    </div>
-    <div>
-      <a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
-      <button class="btn btn-primary" onclick="check()">채점하기</button>
-      {'<button class="btn btn-secondary" onclick="reveal()">정답 보기</button>' if mode == 'review' else ''}
-      <button class="btn btn-danger" onclick="reset()">초기화</button>
-      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
-      {'<button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>' if mode == 'class' else ''}
-    </div>
-  </div>
-  <div class="student-info">
-    <input type="text" placeholder="반">
-    <input type="text" placeholder="번호">
-    <input type="text" placeholder="이름">
-  </div>
+  {top_bar}
   {content}
 </div>
 <script>
@@ -836,6 +852,15 @@ def main():
     with open(review_file, 'w', encoding='utf-8') as f:
         f.write(html_review)
     print(f"✅ 복습용 생성: {review_file}")
+
+    # 정답편 (교사용·제출X·채점X) — 정답.md를 *본문*으로 렌더(교사섹션 유지) → 빈칸 볼드 정답+OX 해설+모범답안+교사 메타 전부 노출.
+    # 2026-06-03: 기존 정답편은 개념편 본문에 답만 보여줘 '정답만' 나가는 문제(로마 사고) → 정답.md 본문 직접 렌더로 교정.
+    teacher_file = output_file.replace('.html', '_정답.html')
+    t_title, t_content, t_total, t_total_ox = build_html_from_blank(answer_file, [], [], answer_file, teacher=True)
+    html_teacher = generate_html(t_title, t_content, t_total, t_total_ox, submit_url, mode='teacher', hero=hero)
+    with open(teacher_file, 'w', encoding='utf-8') as f:
+        f.write(html_teacher)
+    print(f"✅ 정답편(교사용) 생성: {teacher_file}")
 
 
 if __name__ == '__main__':
