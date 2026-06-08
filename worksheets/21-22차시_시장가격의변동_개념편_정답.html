@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사회② Ⅳ단원 — 사과는 흉년, 콘서트는 인기, 같은 '가격 상승' 다른 범인? [정답]</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
+  background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
+}
+.container {
+  max-width: 1040px; margin: 0 auto; background: white;
+  border-radius: 16px; padding: 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
+h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
+h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
+p { margin: 5px 0; font-size: 0.95em; }
+hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
+}
+td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
+tr:first-child td { background: #f0f4ff; font-weight: 600; }
+blockquote {
+  border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
+  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
+}
+.callout {
+  padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
+}
+.callout-info { background: #e8f4fd; border-left: 4px solid #007aff; }
+.callout-warning { background: #fff8e1; border-left: 4px solid #ff9500; }
+.callout-tip { background: #e8f8e8; border-left: 4px solid #34c759; }
+.callout-question { background: #f3e8fd; border-left: 4px solid #af52de; }
+.code-block {
+  background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px;
+  font-family: 'SF Mono', monospace; font-size: 0.82em;
+  overflow-x: auto; margin: 10px 0; white-space: pre;
+}
+.blank-input {
+  border: none; border-bottom: 2px solid #007aff; background: #f8f9ff;
+  padding: 3px 6px; font-size: 0.93em; font-family: inherit;
+  text-align: center; border-radius: 4px 4px 0 0; outline: none;
+  transition: all 0.3s;
+}
+.blank-input:focus { border-bottom-color: #5856d6; background: #f0f0ff; }
+.blank-input.correct { border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.blank-input.wrong { border-bottom-color: #ff3b30; background: #fff0f0; }
+.blank-input.no-score { border-bottom-color: #aaa; }
+.blank-input.code-blank { background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }
+.blank-input.no-score.correct { border-bottom-color: #34c759; }
+.blank-input.no-score.wrong { border-bottom-color: #ff9500; }
+.ox-input {
+  border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
+  font-family: inherit; border-radius: 4px; outline: none;
+  transition: all 0.3s;
+}
+.ox-group { display: inline-flex; gap: 6px; }
+.ox-btn {
+  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; line-height: 1;
+}
+.ox-btn:hover { background: #f0f4ff; }
+.ox-btn.selected { background: #007aff; color: white; }
+.ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.ox-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 4px; }
+.choice-btn {
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}
+.choice-btn:hover { background: #f0f4ff; }
+.choice-btn.selected { background: #007aff; color: white; }
+.choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.btn-submitted { background: #34c759 !important; cursor: default; }
+.submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
+.essay-input {
+  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
+  padding: 10px; font-family: inherit; font-size: 0.93em;
+  resize: vertical; margin: 6px 0; outline: none;
+}
+.essay-input:focus { border-color: #007aff; }
+.control-bar {
+  position: sticky; top: 0; background: white; padding: 10px 0;
+  border-bottom: 1px solid #eee; margin: -16px 0 16px; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.score { font-size: 1.1em; font-weight: 600; color: #007aff; }
+.btn {
+  padding: 7px 16px; border: none; border-radius: 8px;
+  font-size: 0.88em; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: #007aff; color: white; }
+.btn-secondary { background: #f0f0f5; color: #333; }
+.btn-danger { background: #ff3b30; color: white; }
+.student-info {
+  display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.student-info input {
+  border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
+}
+@media (max-width: 600px) {
+  .container { padding: 14px; }
+  .control-bar { flex-direction: column; text-align: center; }
+  table { font-size: 0.82em; }
+  .hero-title { font-size: 26px !important; }
+  .hero-section { padding: 36px 20px !important; }
+}
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
+.hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
+.hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword {
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}
+.hero-image { width: 100%; max-height: 280px; margin-top: 24px; border-radius: 10px; object-fit: cover; }
+.ws-fig { max-width: 880px; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 1000px; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+.hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅳ단원 · 시장 가격의 변동</div><h1 class="hero-title">사회② Ⅳ단원 — 사과는 흉년, 콘서트는 인기, 같은 '가격 상승' 다른 범인? [정답]</h1><p class="hero-subtitle">천재교육 사회②(구정화) p.82~85</p><div class="hero-keywords"><span class="hero-keyword">수요 변화 요인 (소득·기호·관련재·예상·수요자 수)</span><span class="hero-keyword">공급 변화 요인 (생산비·기술·날씨·공급자 수)</span><span class="hero-keyword">대체재 vs 보완재</span><span class="hero-keyword">곡선 위 이동(수요량) vs 곡선 자체 이동(수요)</span></div><img class="hero-image" src="images/price-shift-hero.jpeg" alt=""></section>
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
+  <h1>사회② Ⅳ단원 — 사과는 흉년, 콘서트는 인기, 같은 '가격 상승' 다른 범인? [정답]</h1>
+<br>
+<h2>📌 학습 목표</h2>
+<p>- 수요·공급을 <strong>변화시키는 요인</strong>(소득·기호·관련재·생산비·기술 등)을 설명할 수 있다.</p>
+<p>- <strong>곡선 위의 이동(수요량 변화)</strong> 과 <strong>곡선 자체의 이동(수요 변화)</strong> 을 구분할 수 있다.</p>
+<p>- 수요·공급의 변화가 <strong>균형 가격·균형 거래량</strong>을 어떻게 바꾸는지 예측할 수 있다.</p>
+<br>
+<h2>✨ 오늘의 어휘 (교과서)</h2>
+<p>- <strong>대체재(代替財)</strong>: 서로 <em>대신</em> 쓸 수 있는 재화 (예: 소고기 ↔ 돼지고기, 콜라 ↔ 사이다)</p>
+<p>- <strong>보완재(補完財)</strong>: <em>함께</em> 쓸 때 만족이 커지는 재화 (예: 스마트폰 ↔ 케이스, 프린터 ↔ 잉크)</p>
+<p>- <strong>수요량의 변화</strong>: <em>가격</em>이 변해 곡선 <em>위의 점</em>이 움직이는 것</p>
+<p>- <strong>수요의 변화</strong>: 가격 <em>외의 요인</em>으로 곡선 <em>자체</em>가 통째로 움직이는 것</p>
+<br>
+<hr>
+<br>
+<h2>📖 1단계: 도입 — 같은 '가격 상승'인데 범인이 다르다</h2>
+<br>
+<blockquote>🎙️ 지난 시간(19-20) 기억나? 가격은 수요·공급이 만나는 <em>균형점</em>에서 정해진다고 했지. 근데 그 가격은 <em>가만히 안 있어</em>. 사과값은 작년보다 18% 올랐고, NCT 콘서트 티켓값도 폭등했어. 둘 다 "가격 상승"이지만 <strong>범인이 완전 달라.</strong></blockquote>
+<br>
+<blockquote>💬 <strong>범인 추리</strong></blockquote>
+<blockquote>사과값 상승 = <em>흉년으로 생산이 줄어서</em> (→ <strong>공급</strong> 쪽 문제). 콘서트값 상승 = <em>가고 싶은 사람이 폭발해서</em> (→ <strong>수요</strong> 쪽 문제). 오늘은 <em>수요와 공급을 움직이는 진짜 요인</em>을 찾는다.</blockquote>
+<br>
+<hr>
+<br>
+<h2>📖 2단계: 수요를 움직이는 요인 — 가격 말고 또 뭐가?</h2>
+<br>
+<p>가격이 그대로여도 수요는 변할 수 있다. 교과서가 든 요인은 이렇다.</p>
+<p>- <strong>소득</strong>: ①<span class="blank-filled">소득</span>이 늘면 대개 수요도 는다.</p>
+<p>- <strong>기호(취향)</strong>: 유행·선호가 바뀌면 ②<span class="blank-filled">기호</span>에 따라 수요가 변한다.</p>
+<p>- <strong>관련재 가격</strong>: 서로 대신 쓰는 ③<span class="blank-filled">대체재</span>와, 함께 쓰는 ④<span class="blank-filled">보완재</span>의 가격이 영향을 준다.</p>
+<p>- <strong>미래 예상·수요자 수</strong>: 값이 오를 것 같으면 미리 사두고, 사려는 사람이 늘면 수요도 는다.</p>
+<br>
+<blockquote>(교과서 원문: "어떤 상품의 수요는 가격 외에도 여러 가지 요인의 영향을 받는다. 소득이 증가하면 대개 수요도 증가하며, 기호 변화도 수요에 영향을 미친다. … 승용차 가격이 내리면 … 보완재인 휘발유 수요도 증가한다. 소고기 가격이 오르면, 대체재인 돼지고기를 찾는 사람이 많아지므로 돼지고기 수요가 증가한다." 천재교육 사회②(구정화) p.82)</blockquote>
+<br>
+<blockquote>💡 <strong>대체재 vs 보완재 — 한 방에 구분</strong></blockquote>
+<blockquote><em>대체재</em> = "둘 중 <strong>하나만</strong>" (소고기 비싸지면 → 돼지고기로 갈아탐). <em>보완재</em> = "<strong>둘이 한 세트</strong>" (스마트폰 사면 → 케이스도 삼). 한쪽 가격이 오르면 — 대체재는 <em>반대편 수요 ↑</em>, 보완재는 <em>짝꿍 수요 ↓</em>.</blockquote>
+<br>
+<hr>
+<br>
+<h2>📖 3단계: 공급을 움직이는 요인 — 만드는 쪽 사정</h2>
+<br>
+<p>공급도 가격 말고 여러 요인으로 변한다.</p>
+<p>- <strong>생산비(생산 요소 가격)</strong>: 원료·임금 등 ⑤<span class="blank-filled">생산비</span>가 오르면 공급이 줄고, 내리면 는다.</p>
+<p>- <strong>생산 기술</strong>: ⑥<span class="blank-filled">생산 기술</span>이 발전하면 같은 비용으로 더 많이 만들어 공급이 는다.</p>
+<p>- <strong>공급자 수·자연조건</strong>: 파는 기업(⑦<span class="blank-filled">공급자</span> 수)이 늘거나 날씨가 좋으면(풍년) 공급이 는다.</p>
+<br>
+<blockquote>(교과서 원문: "생산 기술이 발전하면 생산 비용이 절감되거나 생산성이 높아지므로 공급이 증가한다." 천재교육 사회②(구정화) p.83 · 예: 배추 풍년 → 배추 공급 증가)</blockquote>
+<br>
+<blockquote>🎙️ 사과 흉년을 생각해 봐. 날씨가 안 좋아 <em>생산이 줄면</em> → 공급 곡선이 <em>왼쪽으로</em> 밀려 → 같은 값이어도 시장에 나오는 사과가 적어져 → 결국 값이 뛴다. <em>생산 쪽 사정</em>이 가격을 움직인 거야.</blockquote>
+<br>
+<hr>
+<br>
+<h2>📖 4단계: 핵심 — '곡선 위 이동' vs '곡선 자체 이동'</h2>
+<br>
+<p>여기가 제일 헷갈리는 곳이야. 둘은 완전히 다르다.</p>
+<p>- <strong>가격이 변해서</strong> 사는 양이 달라지는 건 → 곡선 <em>위의 점</em>이 미끄러지는 ⑧<span class="blank-filled">수요량</span>의 변화.</p>
+<p>- <strong>가격 외 요인</strong>(소득·기호 등)으로 수요 자체가 달라지는 건 → 곡선 <em>전체</em>가 통째로 옮겨가는 ⑨<span class="blank-filled">수요</span>의 변화.</p>
+<br>
+<p>수요가 늘면 수요곡선이 ⑩<span class="blank-filled">오른쪽</span>으로, 줄면 왼쪽으로 통째로 이동한다.</p>
+<br>
+<blockquote>(교과서 원문: "가격의 변화에 따른 수요량의 변화는 수요 곡선 상에서의 점의 이동으로 나타난다. 한편 가격 외 요인에 의한 수요의 변화는 … 수요 곡선 자체의 이동으로 나타난다." 천재교육 사회②(구정화) p.82)</blockquote>
+<br>
+<blockquote>⚠️ <strong>자주 하는 오해</strong> — "값이 오르면 수요가 준다"와 "유행이 식어 수요가 준다"는 <em>다른 그림</em>이야. 앞은 <em>곡선 위에서</em> 점이 움직인 것(수요량 변화), 뒤는 <em>곡선이 통째로</em> 왼쪽으로 간 것(수요 변화). 19-20에서 짚었던 그 구분이 여기서 결정적이야.</blockquote>
+<br>
+<blockquote>🔗 <strong>직접 움직여 보기</strong>: 시장가격 LAB에서 '수요 증가/공급 증가' 버튼을 누르면 <em>곡선이 통째로 대각선 이동</em>(점선=이전 곡선)하는 걸 볼 수 있어. → `19-20차시_시장가격_LAB.html`</blockquote>
+<br>
+<hr>
+<br>
+<h2>📖 5단계: 그래서 균형이 바뀐다 — 4가지 시나리오</h2>
+<br>
+<p>곡선이 움직이면 균형점도 새 자리로 간다.</p>
+<br>
+<figure class="ws-fig"><img src="images/price-shift.jpg" alt="수요·공급 곡선이 통째로 이동하면 균형점이 바뀐다. 수요 증가=오른쪽 이동→가격·거래량 ↑ / 공급 증가=오른쪽 이동→가격 ↓·거래량 ↑" loading="lazy"><figcaption>수요·공급 곡선이 통째로 이동하면 균형점이 바뀐다. 수요 증가=오른쪽 이동→가격·거래량 ↑ / 공급 증가=오른쪽 이동→가격 ↓·거래량 ↑</figcaption></figure>
+<br>
+<table>
+<tr><td>무엇이 변했나</td><td>곡선 이동</td><td>균형 가격</td><td>균형 거래량</td><td>실제 사례</td></tr>
+<tr><td>수요 증가</td><td>수요곡선 오른쪽</td><td>⑪<span class="blank-filled">오름</span></td><td>늘어남</td><td>콘서트 인기 폭발</td></tr>
+<tr><td>수요 감소</td><td>수요곡선 왼쪽</td><td>내림</td><td>줄어듦</td><td>유행 지난 굿즈</td></tr>
+<tr><td>공급 증가</td><td>공급곡선 오른쪽</td><td>⑫<span class="blank-filled">내림</span></td><td>늘어남</td><td>딸기 풍년</td></tr>
+<tr><td>공급 감소</td><td>공급곡선 왼쪽</td><td>오름</td><td>줄어듦</td><td>사과 흉년</td></tr>
+</table>
+<br>
+<blockquote>💡 <strong>암기 팁</strong>: <em>수요</em>가 움직이면 가격·거래량이 <strong>같은 방향</strong>, <em>공급</em>이 움직이면 <strong>반대 방향</strong>. (19-20에서 배운 그 규칙 그대로!)</blockquote>
+<br>
+<hr>
+<br>
+<h2>🔗 핵심 정리 — 한 줄로</h2>
+<br>
+<blockquote>가격은 ① <em>가격 외 요인</em>(소득·기호·관련재·생산비·기술)이 ② <em>수요·공급 곡선을 통째로 이동</em>시키면 ③ <em>균형점이 새 자리로 옮겨</em> 변동한다. — 곡선 <em>위 이동</em>(수요량)과 곡선 <em>자체 이동</em>(수요)을 꼭 구분!</blockquote>
+<br>
+<hr>
+<br>
+<h2>✏️ 활동 — 정답·모범 답안</h2>
+<br>
+<h3>활동 1 (개인): 요인 분류 🗂</h3>
+<br>
+<table>
+<tr><td>카드</td><td>정답</td><td>이유</td></tr>
+<tr><td>용돈(소득)이 늘었다</td><td><strong>수요</strong></td><td>소득은 수요 변화 요인</td></tr>
+<tr><td>원료값이 올랐다</td><td><strong>공급</strong></td><td>생산비 = 공급 변화 요인</td></tr>
+<tr><td>그 가수가 갑자기 유행이다(기호)</td><td><strong>수요</strong></td><td>기호는 수요 변화 요인</td></tr>
+<tr><td>새 생산 기술이 나왔다</td><td><strong>공급</strong></td><td>생산 기술 = 공급 변화 요인</td></tr>
+<tr><td>가게(공급자) 수가 늘었다</td><td><strong>공급</strong></td><td>공급자 수 = 공급 변화 요인</td></tr>
+<tr><td>곧 값이 오를 것 같다(예상)</td><td><strong>수요</strong></td><td>미래 예상 = 수요 변화 요인</td></tr>
+</table>
+<br>
+<h3>활동 2 (개인): 범인 찾기 — 곡선·방향</h3>
+<br>
+<table>
+<tr><td>상황</td><td>어느 곡선?</td><td>어느 방향?</td><td>가격은?</td></tr>
+<tr><td>1 폭염으로 아이스크림 인기 ↑</td><td><strong>수요곡선</strong></td><td>오른쪽(증가)</td><td><strong>오름</strong></td></tr>
+<tr><td>2 스마트폰 가격 ↓ → 케이스는?</td><td><strong>수요곡선(케이스)</strong></td><td>오른쪽(증가)</td><td><strong>오름</strong></td></tr>
+<tr><td>3 사과 흉년</td><td><strong>공급곡선</strong></td><td>왼쪽(감소)</td><td><strong>오름</strong></td></tr>
+</table>
+<br>
+<blockquote>📌 지도 포인트: 2번이 핵심 — 스마트폰↔케이스는 <em>보완재</em>라 스마트폰이 싸져 많이 팔리면 <em>케이스 수요도 함께 증가</em>(곡선 오른쪽). "대체재였다면 반대"임을 짚어 줄 것.</blockquote>
+<br>
+<h3>활동 3 (개인): LAB으로 확인</h3>
+<br>
+<table>
+<tr><td>버튼</td><td>곡선 이동 방향</td><td>균형 가격</td><td>균형 거래량</td></tr>
+<tr><td>수요 증가</td><td>수요곡선 <strong>오른쪽</strong></td><td><strong>오름</strong></td><td>늘어남</td></tr>
+<tr><td>공급 증가</td><td>공급곡선 <strong>오른쪽</strong></td><td><strong>내림</strong></td><td>늘어남</td></tr>
+</table>
+<br>
+<hr>
+<br>
+<h2>🔍 더 생각해 보기 — 모범 답안</h2>
+<br>
+<p><strong>Q1. "값이 올라서 덜 산다" vs "유행이 식어서 덜 산다"</strong></p>
+<blockquote>"값이 올라서 덜 산다" = 가격 변화로 <em>곡선 위의 점</em>이 미끄러진 것 → <strong>수요량의 변화</strong>. "유행이 식어서 덜 산다" = 가격 외 요인(기호)으로 <em>수요곡선 자체가 왼쪽으로</em> 통째로 이동한 것 → <strong>수요의 변화</strong>. 그래프에서 <em>점 이동</em> vs <em>곡선 이동</em>으로 다르게 나타난다.</blockquote>
+<br>
+<p><strong>Q2. 새 스마트폰 출시 → 기존(그 폰의) 케이스 수요</strong></p>
+<blockquote>스마트폰과 케이스는 <strong>보완재</strong>(함께 씀). 새 스마트폰이 잘 팔리면 그에 맞는 <em>케이스 수요도 함께 증가</em>한다. 보완재 관계에서는 한 재화 소비가 늘면 짝꿍 재화 수요도 는다.</blockquote>
+<br>
+<p><strong>Q3. 명절 전 과일값 상승</strong></p>
+<blockquote>주로 <strong>수요의 변화</strong>. 명절을 앞두고 차례·선물용으로 <em>과일을 찾는 사람이 급증</em>(수요자 수·기호)해 수요곡선이 오른쪽으로 이동 → 균형 가격 상승. (공급은 크게 안 변했는데 수요가 몰린 경우)</blockquote>
+<br>
+<hr>
+<br>
+<blockquote>📋 차시 기획 메타(성취기준·R3 확정·오개념·활용 자료)는 → `_운영/21-22 시장가격 변동 차시 기획 메타.md`</blockquote>
+</div>
+<script>
+const TB=0, TOX=0, GT=0;
+let usedReveal=false;
+function selectOX(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function selectChoice(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+function check(){
+  let bc=0, oxc=0;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    const a=norm(el.dataset.answer), u=norm(el.value);
+    if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
+    const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
+    if(isCorrect){
+      el.classList.add('correct');el.classList.remove('wrong');
+      bc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const sel=grp.dataset.selected, ans=grp.dataset.answer;
+    if(!sel) return;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');oxc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');bc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.getElementById('score').textContent=bc;
+  document.getElementById('ox-score').textContent=oxc;
+  document.getElementById('total-score').textContent=bc+oxc;
+  document.getElementById('pct').textContent=Math.round((bc+oxc)/GT*100);
+}
+function reveal(){
+  usedReveal=true;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const ans=grp.dataset.answer;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.getElementById('score').textContent=TB;
+  document.getElementById('ox-score').textContent=TOX;
+  document.getElementById('total-score').textContent=GT;
+  document.getElementById('pct').textContent=100;
+}
+function reset(){
+  usedReveal=false;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value='';el.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.ox-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
+  document.getElementById('score').textContent=0;
+  document.getElementById('ox-score').textContent=0;
+  document.getElementById('total-score').textContent=0;
+  document.getElementById('pct').textContent=0;
+}
+function saveProgress(){
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
+    data[el.dataset.id||el.dataset.answer]=el.value;
+  });
+  const info={
+    class:document.querySelector('.student-info input:nth-child(1)').value,
+    number:document.querySelector('.student-info input:nth-child(2)').value,
+    name:document.querySelector('.student-info input:nth-child(3)').value
+  };
+  localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()}));
+  alert('저장되었습니다! 다음에 이 페이지를 열면 자동으로 불러옵니다.');
+}
+function loadProgress(){
+  const saved=localStorage.getItem('ws_'+document.title);
+  if(!saved) return;
+  const {info,data}=JSON.parse(saved);
+  if(info){
+    const inputs=document.querySelectorAll('.student-info input');
+    if(info.class) inputs[0].value=info.class;
+    if(info.number) inputs[1].value=info.number;
+    if(info.name) inputs[2].value=info.name;
+  }
+  if(data){
+    document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
+      const key=el.dataset.id||el.dataset.answer;
+      if(data[key]) el.value=data[key];
+    });
+  }
+}
+// 모든 입력칸에서 Enter→다음칸 이동
+const allInputs=[...document.querySelectorAll('.blank-input')];
+allInputs.forEach((el,i)=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
+  });
+});
+// 제출
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){
+  const ans={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  });
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+  });
+  return ans;
+}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+function submitResult(){
+  if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
+  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
+  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
+  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
+  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
+  check(); // 먼저 채점
+  const bs=parseInt(document.getElementById('score').textContent);
+  const os=parseInt(document.getElementById('ox-score').textContent);
+  const ts=parseInt(document.getElementById('total-score').textContent);
+  const answers=collectAnswers();
+  const data={
+    type:'final',
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
+  };
+  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(()=>{
+    document.getElementById('submitBtn').textContent='✅ 제출 완료';
+    document.getElementById('submitBtn').classList.add('btn-submitted');
+    setTimeout(()=>{
+      document.getElementById('submitBtn').textContent='📤 재제출';
+      document.getElementById('submitBtn').classList.remove('btn-submitted');
+    }, 2000);
+  })
+  .catch(e=>alert('제출 실패: '+e));
+}
+// 페이지 로드 시 저장된 진행 불러오기
+loadProgress();
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+});
+document.querySelectorAll('.student-info input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+</script>
+</body>
+</html>
