@@ -437,13 +437,15 @@ def generate_html(title, content, total, total_ox, submit_url='', mode='class', 
     else:
         reveal_btn = '<button class="btn btn-secondary" onclick="reveal()">정답 보기</button>' if mode == 'review' else ''
         submit_btn = '<button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>' if mode == 'class' else ''
+        # 📋 목록(허브) 링크 — 학생 제출용(class)엔 X (이탈·딴 학습지 답 열람 방지·6/8 천대현). 복습용엔 유지.
+        list_btn = '' if mode == 'class' else '<a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>'
         top_bar = f'''<div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/{total} · OX: <span id="ox-score">0</span>/{total_ox}
       · 총: <span id="total-score">0</span>/{grand_total} (<span id="pct">0</span>%)
     </div>
     <div>
-      <a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
+      {list_btn}
       <button class="btn btn-primary" onclick="check()">채점하기</button>
       {reveal_btn}
       <button class="btn btn-danger" onclick="reset()">초기화</button>
