@@ -716,35 +716,45 @@ function reset(){{
   document.getElementById('total-score').textContent=0;
   document.getElementById('pct').textContent=0;
 }}
-function saveProgress(){{
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+function _persist(){{
   const data={{}};
-  document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{{
-    data[el.dataset.id||el.dataset.answer]=el.value;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
   }});
-  const info={{
-    class:document.querySelector('.student-info input:nth-child(1)').value,
-    number:document.querySelector('.student-info input:nth-child(2)').value,
-    name:document.querySelector('.student-info input:nth-child(3)').value
-  }};
-  localStorage.setItem('ws_'+document.title, JSON.stringify({{info,data,ts:Date.now()}}));
-  alert('저장되었습니다! 다음에 이 페이지를 열면 자동으로 불러옵니다.');
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; }});
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; }});
+  const si=document.querySelectorAll('.student-info input');
+  const info={{class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''}};
+  try{{ localStorage.setItem('ws_'+document.title, JSON.stringify({{info,data,ts:Date.now()}})); }}catch(e){{}}
 }}
+function saveProgress(){{ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }}
+let _autosaveT;
+function autosave(){{ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }}
 function loadProgress(){{
-  const saved=localStorage.getItem('ws_'+document.title);
+  let saved; try{{ saved=localStorage.getItem('ws_'+document.title); }}catch(e){{}}
   if(!saved) return;
-  const {{info,data}}=JSON.parse(saved);
+  let parsed; try{{ parsed=JSON.parse(saved); }}catch(e){{ return; }}
+  const info=parsed.info, data=parsed.data;
   if(info){{
     const inputs=document.querySelectorAll('.student-info input');
-    if(info.class) inputs[0].value=info.class;
-    if(info.number) inputs[1].value=info.number;
-    if(info.name) inputs[2].value=info.name;
+    if(info.class&&inputs[0]) inputs[0].value=info.class;
+    if(info.number&&inputs[1]) inputs[1].value=info.number;
+    if(info.name&&inputs[2]) inputs[2].value=info.name;
   }}
-  if(data){{
-    document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{{
-      const key=el.dataset.id||el.dataset.answer;
-      if(data[key]) el.value=data[key];
-    }});
-  }}
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  }});
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){{ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }}
+  }});
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){{ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }}
+  }});
 }}
 // 모든 입력칸에서 Enter→다음칸 이동
 const allInputs=[...document.querySelectorAll('.blank-input')];
@@ -803,6 +813,9 @@ function submitResult(){{
 }}
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }}, true);
 // 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
 document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{{
   el.addEventListener('input',scheduleProgress);
