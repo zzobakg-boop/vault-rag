@@ -138,23 +138,26 @@ blockquote {
 .hero-image { width: 100%; max-height: 280px; margin-top: 24px; border-radius: 10px; object-fit: cover; }
 .ws-fig { max-width: 880px; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 1000px; margin: 22px auto; }
 .ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅳ단원 · 시장의 의미와 종류</div><h1 class="hero-title">사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</h1><p class="hero-subtitle">너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</p><div class="hero-keywords"><span class="hero-keyword">시장 = 사고파는 사람이 모이는 곳</span><span class="hero-keyword">보이는 / 보이지 않는 시장</span><span class="hero-keyword">생산물 / 생산요소 시장</span><span class="hero-keyword">상설 / 정기 시장</span></div><img class="hero-image" src="images/market-cover.jpeg" alt="시장은 어디에나 있다 — 재래시장·온라인쇼핑·주식거래 3가지 시장 모습" loading="lazy"></section>
+  <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅳ단원 · 시장의 의미와 종류</div><h1 class="hero-title">사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</h1><p class="hero-subtitle">너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</p><div class="hero-keywords"><span class="hero-keyword">시장 = 사고파는 사람이 모이는 곳</span><span class="hero-keyword">보이는 / 보이지 않는 시장</span><span class="hero-keyword">생산물 / 생산요소 시장</span><span class="hero-keyword">상설 / 정기 시장</span></div></section>
   <div class="control-bar">
     <div class="score">
-      빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/3
-      · 총: <span id="total-score">0</span>/15 (<span id="pct">0</span>%)
+      빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/0
+      · 총: <span id="total-score">0</span>/12 (<span id="pct">0</span>%)
     </div>
     <div>
+      
       <button class="btn btn-primary" onclick="check()">채점하기</button>
       
       <button class="btn btn-danger" onclick="reset()">초기화</button>
@@ -208,15 +211,13 @@ blockquote {
 <br>
 <blockquote>⭐ <strong>심화 (읽기만)</strong> — 시장은 <em>분업과 전문화</em>도 키운다. 각자 잘하는 일에 집중(특화)하고 시장에서 교환하면 사회 전체 생산이 늘어난다. (애덤 스미스 『국부론』)</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/market-role.jpeg" alt="시장이 하는 일 — 효율적 거래와 가격 정보 제공, 사과 3200원·에어팟 189000원 등 가격 신호" loading="lazy"><figcaption><strong>시장의 두 역할</strong> — ① 거래에 드는 시간·노력 절약(효율적 거래) ② 가격·품질 정보 제공. 시장이 없으면 사과 한 개 사려고 전국을 헤매야 한다.</figcaption></figure>
-<br>
 <hr>
 <br>
 <h2>📖 3단계: 시장의 종류 — 3가지 기준</h2>
 <br>
 <blockquote>🎙️ 너 어제 <strong>당근마켓</strong>에서 뭐 샀지? 그 거래의 <em>시장 건물</em>은 어디 있어? <strong>없어.</strong> 근데 사는 사람·파는 사람·물건·가격, 다 있었잖아. 그게 바로 <em>보이지 않는 시장</em>이야. <em>물리적 공간이 있어야만 시장</em>인 게 아니다.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/market-types.jpeg" alt="시장의 종류 — 눈에 보이는 시장(전통시장), 보이지 않는 시장(인터넷 쇼핑몰), 주식 거래소 3가지 유형" loading="lazy"><figcaption><strong>시장의 3가지 유형</strong> — 전통시장(보이는·생산물), 인터넷 쇼핑몰(보이지 않는·생산물), 주식 거래소(보이지 않는·자본 생산요소). 거래 모습·대상·시기 기준이 모두 다르다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/social2-4-1-market.png" alt="보이는 시장(재래시장·마트·백화점) ↔ 보이지 않는 시장(온라인·주식·배달·알바) — 둘 다 사고파는 사람이 만나면 시장이다." loading="lazy"><figcaption>보이는 시장(재래시장·마트·백화점) ↔ 보이지 않는 시장(온라인·주식·배달·알바) — 둘 다 사고파는 사람이 만나면 시장이다.</figcaption></figure>
 <br>
 <h3>기준 1. 거래 <em>모습</em> — 보이나, 안 보이나</h3>
 <table>
@@ -286,9 +287,9 @@ blockquote {
 <br>
 <table>
 <tr><td>상황</td><td>O/X</td><td>이유</td></tr>
-<tr><td>온라인 쇼핑몰(무신사)</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-20" style="width:240px" placeholder=""></td></tr>
-<tr><td>학교 <em>급식</em></td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-22" style="width:240px" placeholder=""></td></tr>
-<tr><td><em>유튜브 광고</em>로 돈 버는 것</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-24" style="width:240px" placeholder=""></td></tr>
+<tr><td>온라인 쇼핑몰(무신사)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-19" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-20" style="width:240px" placeholder=""></td></tr>
+<tr><td>학교 <em>급식</em></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-21" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-22" style="width:240px" placeholder=""></td></tr>
+<tr><td><em>유튜브 광고</em>로 돈 버는 것</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-23" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-24" style="width:240px" placeholder=""></td></tr>
 </table>
 <br>
 <hr>
@@ -305,7 +306,7 @@ blockquote {
 <br>
 </div>
 <script>
-const TB=12, TOX=3, GT=15;
+const TB=12, TOX=0, GT=12;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
@@ -406,35 +407,45 @@ function reset(){
   document.getElementById('total-score').textContent=0;
   document.getElementById('pct').textContent=0;
 }
-function saveProgress(){
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+function _persist(){
   const data={};
-  document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
-    data[el.dataset.id||el.dataset.answer]=el.value;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
   });
-  const info={
-    class:document.querySelector('.student-info input:nth-child(1)').value,
-    number:document.querySelector('.student-info input:nth-child(2)').value,
-    name:document.querySelector('.student-info input:nth-child(3)').value
-  };
-  localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()}));
-  alert('저장되었습니다! 다음에 이 페이지를 열면 자동으로 불러옵니다.');
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const si=document.querySelectorAll('.student-info input');
+  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  try{ localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
-  const saved=localStorage.getItem('ws_'+document.title);
+  let saved; try{ saved=localStorage.getItem('ws_'+document.title); }catch(e){}
   if(!saved) return;
-  const {info,data}=JSON.parse(saved);
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
   if(info){
     const inputs=document.querySelectorAll('.student-info input');
-    if(info.class) inputs[0].value=info.class;
-    if(info.number) inputs[1].value=info.number;
-    if(info.name) inputs[2].value=info.name;
+    if(info.class&&inputs[0]) inputs[0].value=info.class;
+    if(info.number&&inputs[1]) inputs[1].value=info.number;
+    if(info.name&&inputs[2]) inputs[2].value=info.name;
   }
-  if(data){
-    document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
-      const key=el.dataset.id||el.dataset.answer;
-      if(data[key]) el.value=data[key];
-    });
-  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
 }
 // 모든 입력칸에서 Enter→다음칸 이동
 const allInputs=[...document.querySelectorAll('.blank-input')];
@@ -493,6 +504,9 @@ function submitResult(){
 }
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
 // 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
 document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
   el.addEventListener('input',scheduleProgress);
