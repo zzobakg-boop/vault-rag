@@ -439,14 +439,18 @@ def generate_html(title, content, total, total_ox, submit_url='', mode='class', 
         submit_btn = '<button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>' if mode == 'class' else ''
         # 📋 목록(허브) 링크 — 학생 제출용(class)엔 X (이탈·딴 학습지 답 열람 방지·6/8 천대현). 복습용엔 유지.
         list_btn = '' if mode == 'class' else '<a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>'
-        top_bar = f'''<div class="control-bar">
-    <div class="score">
+        # 자동 채점 대상(빈칸·OX)이 없으면(서술형 수행평가 등) 점수칸·채점 버튼 숨김 — NaN% 방지 (6/8)
+        scorable = grand_total > 0
+        score_block = (f'''<div class="score">
       빈칸: <span id="score">0</span>/{total} · OX: <span id="ox-score">0</span>/{total_ox}
       · 총: <span id="total-score">0</span>/{grand_total} (<span id="pct">0</span>%)
-    </div>
+    </div>''' if scorable else '<div></div>')
+        check_btn = '<button class="btn btn-primary" onclick="check()">채점하기</button>' if scorable else ''
+        top_bar = f'''<div class="control-bar">
+    {score_block}
     <div>
       {list_btn}
-      <button class="btn btn-primary" onclick="check()">채점하기</button>
+      {check_btn}
       {reveal_btn}
       <button class="btn btn-danger" onclick="reset()">초기화</button>
       <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
@@ -666,10 +670,13 @@ function check(){{
       }}
     }});
   }});
-  document.getElementById('score').textContent=bc;
-  document.getElementById('ox-score').textContent=oxc;
-  document.getElementById('total-score').textContent=bc+oxc;
-  document.getElementById('pct').textContent=Math.round((bc+oxc)/GT*100);
+  const _sc=document.getElementById('score');
+  if(_sc){{
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }}
 }}
 function reveal(){{
   usedReveal=true;
@@ -711,10 +718,13 @@ function reset(){{
   }});
   document.querySelectorAll('.choice-group').forEach(g=>{{delete g.dataset.selected;}});
   document.querySelectorAll('.essay-input').forEach(el=>{{el.value='';}});
-  document.getElementById('score').textContent=0;
-  document.getElementById('ox-score').textContent=0;
-  document.getElementById('total-score').textContent=0;
-  document.getElementById('pct').textContent=0;
+  const _sc=document.getElementById('score');
+  if(_sc){{
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }}
 }}
 // 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
 function _persist(){{
@@ -789,9 +799,10 @@ function submitResult(){{
   if(!cls||!num||!name){{alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}}
   if(usedReveal){{alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}}
   check(); // 먼저 채점
-  const bs=parseInt(document.getElementById('score').textContent);
-  const os=parseInt(document.getElementById('ox-score').textContent);
-  const ts=parseInt(document.getElementById('total-score').textContent);
+  const _g=id=>{{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;}};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
   const answers=collectAnswers();
   const data={{
     type:'final',
