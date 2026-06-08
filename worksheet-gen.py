@@ -120,6 +120,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_step0 = False  # STEP 0 구간 (채점 제외)
     in_figrow = False  # 가로 비교 figure 행 (:::figrow ... :::)
     figrow_items = []
+    essay_count = 0  # 서술형 textarea 수 (제출 수합·세특용 data-id essay-N)
 
     for line in lines:
         stripped = line.strip()
@@ -203,9 +204,10 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 )
             continue
 
-        # 빈 div (서술형 답안 칸) → 서술형 textarea로 변환
+        # 빈 div (서술형 답안 칸) → 서술형 textarea로 변환 (제출 수합·세특용 data-id essay-N)
         if '<div style="height:' in stripped:
-            html_parts.append('<textarea class="essay-input" placeholder="서술형 답안을 작성하세요"></textarea>')
+            essay_count += 1
+            html_parts.append(f'<textarea class="essay-input" data-id="essay-{essay_count}" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>')
             continue
 
         # 반/번/이름 줄은 학생 정보라 빈칸 매칭 스킵
