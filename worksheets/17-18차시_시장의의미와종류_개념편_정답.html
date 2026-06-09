@@ -150,7 +150,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅳ단원 · 시장의 의미와 종류</div><h1 class="hero-title">사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</h1><p class="hero-subtitle">너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</p><div class="hero-keywords"><span class="hero-keyword">시장 = 사고파는 사람이 모이는 곳</span><span class="hero-keyword">보이는 / 보이지 않는 시장</span><span class="hero-keyword">생산물 / 생산요소 시장</span><span class="hero-keyword">상설 / 정기 시장</span></div></section>
+  <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅳ단원 · 시장의 의미와 종류</div><h1 class="hero-title">사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</h1><p class="hero-subtitle">너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</p><div class="hero-keywords"><span class="hero-keyword">시장 = 사고파는 사람이 모이는 곳</span><span class="hero-keyword">보이는 / 보이지 않는 시장</span><span class="hero-keyword">생산물 / 생산요소 시장</span><span class="hero-keyword">상설 / 정기 시장</span></div><img class="hero-image" src="images/market-cover.jpeg" alt=""></section>
   <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
   <h1>사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</h1>
 <br>
@@ -336,10 +336,13 @@ function check(){
       }
     });
   });
-  document.getElementById('score').textContent=bc;
-  document.getElementById('ox-score').textContent=oxc;
-  document.getElementById('total-score').textContent=bc+oxc;
-  document.getElementById('pct').textContent=Math.round((bc+oxc)/GT*100);
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
 }
 function reveal(){
   usedReveal=true;
@@ -381,10 +384,13 @@ function reset(){
   });
   document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
   document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
-  document.getElementById('score').textContent=0;
-  document.getElementById('ox-score').textContent=0;
-  document.getElementById('total-score').textContent=0;
-  document.getElementById('pct').textContent=0;
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
 }
 // 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
 function _persist(){
@@ -459,9 +465,10 @@ function submitResult(){
   if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
-  const bs=parseInt(document.getElementById('score').textContent);
-  const os=parseInt(document.getElementById('ox-score').textContent);
-  const ts=parseInt(document.getElementById('total-score').textContent);
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
   const answers=collectAnswers();
   const data={
     type:'final',
