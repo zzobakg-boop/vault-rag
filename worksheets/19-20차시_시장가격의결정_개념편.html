@@ -153,8 +153,8 @@ blockquote {
   <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅳ단원 · 시장 가격의 결정</div><h1 class="hero-title">사회② Ⅳ단원 — 정가 19만 원짜리 티켓이 왜 800만 원이 될까?</h1><p class="hero-subtitle">정가 19만 원짜리 티켓이 왜 800만 원이 될까?</p><div class="hero-keywords"><span class="hero-keyword">수요 / 공급</span><span class="hero-keyword">수요곡선(우하향) / 공급곡선(우상향)</span><span class="hero-keyword">균형 가격 = 두 곡선의 교차점</span><span class="hero-keyword">초과수요 → 가격↑ / 초과공급 → 가격↓</span></div><img class="hero-image" src="images/price-hero.jpeg" alt=""><div class="hero-hook">콘서트 티켓 정가 19.8만 원이 리셀가 800만 원. 사과는 작년보다 18% 비싸졌다. 누가 이 가격을 정했을까? 아무도 안 정했다 — 수요와 공급이 정했다.</div></section>
   <div class="control-bar">
     <div class="score">
-      빈칸: <span id="score">0</span>/14 · OX: <span id="ox-score">0</span>/4
-      · 총: <span id="total-score">0</span>/18 (<span id="pct">0</span>%)
+      빈칸: <span id="score">0</span>/14 · OX: <span id="ox-score">0</span>/5
+      · 총: <span id="total-score">0</span>/19 (<span id="pct">0</span>%)
     </div>
     <div>
       
@@ -282,34 +282,28 @@ blockquote {
 <br>
 <h2>✏️ 활동</h2>
 <br>
-<h3>활동 1 (개인): 그래프에서 균형점 찾기 📈</h3>
-<blockquote>아래 빈 그래프에 수요곡선(우하향)·공급곡선(우상향)을 그리고, 두 곡선이 만나는 <strong>균형점</strong>에 ★ 표시해 보자. 균형 가격과 균형 거래량을 화살표로 나타내자.</blockquote>
-<br>
-<table>
-<tr><td>그려야 할 것</td><td>내가 그렸나 (O/X)</td></tr>
-<tr><td>수요곡선 (우하향)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-1" style="width:240px" placeholder=""></td></tr>
-<tr><td>공급곡선 (우상향)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-2" style="width:240px" placeholder=""></td></tr>
-<tr><td>균형점 ★ 표시</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-3" style="width:240px" placeholder=""></td></tr>
-</table>
-<br>
-<h3>활동 2 (개인): "가격은 어떻게 될까?" ⭕❌</h3>
-<blockquote>다음 상황에서 가격이 <strong>오르면 ○, 내리면 ×</strong></blockquote>
+<h3>활동 1. 가격 탐정 — 무엇이 변했나? 🕵️ (○×)</h3>
+<blockquote>각 상황을 읽고 문장이 맞으면 <strong>○</strong>, 틀리면 <strong>×</strong>. <em>수요·공급 중 무엇이</em> 변했는지 먼저 짚어 봐.</blockquote>
 <br>
 <table>
 <tr><td>번호</td><td>상황</td><td>○ / ×</td></tr>
-<tr><td>1</td><td>사과가 흉년이라 생산량이 줄었다 (공급 감소)</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>딸기가 풍년이라 출하량이 늘었다 (공급 증가)</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>아이돌 컴백으로 콘서트 인기가 폭발했다 (수요 증가)</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>유행이 지나 한정판 굿즈를 찾는 사람이 줄었다 (수요 감소)</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>폭염으로 배추 수확이 줄면, 배추 가격은 오른다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>신곡이 대박 나 콘서트 가려는 팬이 폭증하면, 티켓 거래량은 줄어든다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>딸기가 풍년이라 출하량이 늘면, 딸기 가격은 내린다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>유행이 식어 한정판을 찾는 사람이 줄면, 그 굿즈 가격은 오른다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>새 모델이 출시돼 공급이 늘면, 그 휴대폰 거래량은 늘어난다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
-<h3>활동 3 (개인): 내 리셀 가격 추리 🕵️</h3>
-<blockquote>내가 아는 한정판·굿즈·티켓 1개를 골라, <em>왜</em> 정가보다 비싸(싸)졌는지 수요·공급으로 설명해 보자.</blockquote>
+<h3>활동 2. 내 시장 이야기 — 가격이 움직인 순간 ✍️ <em>(제출에 포함돼요)</em></h3>
+<blockquote>네가 사거나 사고 싶었던 것 중 <em>가격이 눈에 띄게 오르거나 내린</em> 것 1개를 골라 분석해 보자.</blockquote>
 <br>
 <table>
-<tr><td>내가 고른 것</td><td>정가 → 현재 시세</td><td>수요·공급 이유</td></tr>
-<tr><td><input type="text" class="blank-input activity-input no-score" data-id="act-4" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-5" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-6" style="width:240px" placeholder=""></td></tr>
+<tr><td>내가 고른 것</td><td>그때 가격 변화 (예: 정가 2만 → 8만)</td></tr>
+<tr><td><input type="text" class="blank-input activity-input no-score" data-id="act-1" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-2" style="width:240px" placeholder=""></td></tr>
 </table>
+<br>
+<p><strong>왜 그렇게 됐을까?</strong> — <em>수요·공급 중 무엇이 변했고</em>, 그래서 <em>균형 가격이 어느 쪽으로</em> 움직였는지 네 말로 설명해 보자.</p>
+<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <hr>
 <br>
@@ -318,14 +312,14 @@ blockquote {
 <br>
 <p><strong>Q1. 내 소비로 — 가격이라는 신호</strong></p>
 <p>최근 네가 <em>가격을 보고 살까 말까 망설였던</em> 경험을 하나 쓰고, 그때 가격이 너에게 어떤 '신호'를 줬는지 네 말로 설명해 보자.</p>
-<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-2" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <p><strong>Q2. 자동으로 정해진 가격, 공정할까?</strong></p>
 <p>균형 가격은 '아무도 정하지 않았는데 수요·공급으로 <em>자동으로</em>' 정해져. 이게 <em>공정하다</em>고 생각해, 아니면 <em>문제가 있다</em>고 보니? 반대편 입장도 한 가지 인정한 뒤 네 생각과 이유를 써 보자.</p>
-<textarea class="essay-input" data-id="essay-2" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-3" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>
 <script>
-const TB=14, TOX=4, GT=18;
+const TB=14, TOX=5, GT=19;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
