@@ -425,8 +425,10 @@ def build_hero_html(title, hero):
     return f'<section class="hero-section">{eyebrow}<h1 class="hero-title">{title}</h1>{sub}{kws_html}{img}{hook}</section>'
 
 
-def generate_html(title, content, total, total_ox, submit_url='', mode='class', hero=None):
-    """mode: 'class' = 수업용(제출O, 정답보기X), 'review' = 복습용(제출X, 정답보기O)"""
+def generate_html(title, content, total, total_ox, submit_url='', mode='class', hero=None, exam=False):
+    """mode: 'class' = 수업용(제출O, 정답보기X), 'review' = 복습용(제출X, 정답보기O)
+    exam: 평가지 모드 — localStorage 키를 반-번호에 묶음 (공용 노트북 잔존 방지·6/12)"""
+    exam_js = 'true' if exam else 'false'
     grand_total = total + total_ox
     hero_html = build_hero_html(title, hero or {})
     if mode == 'teacher':
@@ -727,7 +729,19 @@ function reset(){{
   }}
 }}
 // 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE={exam_js};
+function _wsKey(){{
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}}
 function _persist(){{
+  const key=_wsKey(); if(!key) return;
   const data={{}};
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{{
     data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
@@ -736,17 +750,18 @@ function _persist(){{
   document.querySelectorAll('.choice-group').forEach((g,i)=>{{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; }});
   const si=document.querySelectorAll('.student-info input');
   const info={{class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''}};
-  try{{ localStorage.setItem('ws_'+document.title, JSON.stringify({{info,data,ts:Date.now()}})); }}catch(e){{}}
+  try{{ localStorage.setItem(key, JSON.stringify({{info,data,ts:Date.now()}})); }}catch(e){{}}
 }}
 function saveProgress(){{ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }}
 let _autosaveT;
 function autosave(){{ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }}
 function loadProgress(){{
-  let saved; try{{ saved=localStorage.getItem('ws_'+document.title); }}catch(e){{}}
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{{ saved=localStorage.getItem(key); }}catch(e){{}}
   if(!saved) return;
   let parsed; try{{ parsed=JSON.parse(saved); }}catch(e){{ return; }}
   const info=parsed.info, data=parsed.data;
-  if(info){{
+  if(info&&!EXAM_MODE){{
     const inputs=document.querySelectorAll('.student-info input');
     if(info.class&&inputs[0]) inputs[0].value=info.class;
     if(info.number&&inputs[1]) inputs[1].value=info.number;
@@ -837,6 +852,12 @@ document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{{
 document.querySelectorAll('.student-info input').forEach(el=>{{
   el.addEventListener('input',scheduleProgress);
 }});
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){{
+  document.querySelectorAll('.student-info input').forEach(el=>{{
+    el.addEventListener('change',()=>{{ if(_wsKey()) loadProgress(); }});
+  }});
+}}
 </script>
 </body>
 </html>'''
@@ -868,18 +889,23 @@ def main():
     submit_url = sys.argv[4] if len(sys.argv) > 4 else DEFAULT_SUBMIT_URL
 
     hero = extract_hero_meta(blank_file)
+    # 평가지 모드 (frontmatter exam_mode: true) — 공용 노트북 이전 답 잔존 방지
+    with open(blank_file, 'r', encoding='utf-8') as _f:
+        exam_mode = bool(re.search(r'^exam_mode:\s*true', _f.read()[:3000], re.M | re.I))
+    if exam_mode:
+        print('🔒 평가지 모드(exam_mode): 저장/복원 키를 반-번호에 묶음')
     if any([hero.get('keywords'), hero.get('image'), hero.get('hook')]):
         print(f"🎨 hero 섹션: image={'O' if hero.get('image') else 'X'}, keywords={len(hero.get('keywords') or [])}, hook={'O' if hero.get('hook') else 'X'}")
 
     # 수업용 (제출O, 정답보기X)
-    html_class = generate_html(title, content, total, total_ox, submit_url, mode='class', hero=hero)
+    html_class = generate_html(title, content, total, total_ox, submit_url, mode='class', hero=hero, exam=exam_mode)
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(html_class)
     print(f"✅ 수업용 생성: {output_file}")
 
     # 복습용 (제출X, 정답보기O)
     review_file = output_file.replace('.html', '_복습용.html')
-    html_review = generate_html(title, content, total, total_ox, submit_url, mode='review', hero=hero)
+    html_review = generate_html(title, content, total, total_ox, submit_url, mode='review', hero=hero, exam=exam_mode)
     with open(review_file, 'w', encoding='utf-8') as f:
         f.write(html_review)
     print(f"✅ 복습용 생성: {review_file}")
@@ -888,7 +914,7 @@ def main():
     # 2026-06-03: 기존 정답편은 개념편 본문에 답만 보여줘 '정답만' 나가는 문제(로마 사고) → 정답.md 본문 직접 렌더로 교정.
     teacher_file = output_file.replace('.html', '_정답.html')
     t_title, t_content, t_total, t_total_ox = build_html_from_blank(answer_file, [], [], answer_file, teacher=True)
-    html_teacher = generate_html(t_title, t_content, t_total, t_total_ox, submit_url, mode='teacher', hero=hero)
+    html_teacher = generate_html(t_title, t_content, t_total, t_total_ox, submit_url, mode='teacher', hero=hero, exam=exam_mode)
     with open(teacher_file, 'w', encoding='utf-8') as f:
         f.write(html_teacher)
     print(f"✅ 정답편(교사용) 생성: {teacher_file}")
