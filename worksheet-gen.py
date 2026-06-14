@@ -397,8 +397,14 @@ def extract_hero_meta(blank_file):
         return hero
     fm = m.group(1)
     def get(key):
-        mm = re.search(r'^' + key + r':\s*[\"\']?([^\"\'\n]+?)[\"\']?\s*$', fm, re.M)
-        return mm.group(1).strip() if mm else None
+        # 전체 라인 값을 잡고 바깥쪽 따옴표만 벗긴다 (값 안의 작은따옴표 보존 — hero_hook 등)
+        mm = re.search(r'^' + key + r':[ \t]*(.+?)[ \t]*$', fm, re.M)
+        if not mm:
+            return None
+        v = mm.group(1).strip()
+        if len(v) >= 2 and v[0] in '"\'' and v[-1] == v[0]:
+            v = v[1:-1].strip()
+        return v or None
     hero['image'] = get('hero_image')
     hero['subtitle'] = get('hero_subtitle') or get('교과서')
     hero['eyebrow'] = get('hero_eyebrow') or get('subject')
