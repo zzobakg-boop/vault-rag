@@ -244,12 +244,19 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         # 마크다운 → HTML
         stripped = line.strip()
 
-        # 이미지 ![캡션](src) → figure (2026-05-30: 본문 사료/figure 렌더. wiki-embed ![[..]]는 위에서 이미 제거됨)
+        # 이미지/영상 ![캡션](src) → figure (2026-05-30: 본문 사료/figure 렌더. wiki-embed ![[..]]는 위에서 이미 제거됨)
+        # 2026-06-15: src가 .mp4/.webm 이면 <video> 렌더 (대운하 설명 영상 등 학습지 임베드)
         m_img = re.match(r'!\[(.*?)\]\(([^)]+)\)\s*$', stripped)
         if m_img:
             cap, src = m_img.group(1), m_img.group(2)
             fc = f'<figcaption>{inline(cap)}</figcaption>' if cap else ''
-            html_parts.append(f'<figure class="ws-fig"><img src="{src}" alt="{cap}" loading="lazy">{fc}</figure>')
+            if re.search(r'\.(mp4|webm|mov)(\?|$)', src, re.I):
+                vtype = 'video/webm' if re.search(r'\.webm', src, re.I) else 'video/mp4'
+                html_parts.append(
+                    f'<figure class="ws-fig"><video class="ws-fig-video" controls preload="metadata" '
+                    f'playsinline><source src="{src}" type="{vtype}">동영상을 재생할 수 없습니다.</video>{fc}</figure>')
+            else:
+                html_parts.append(f'<figure class="ws-fig"><img src="{src}" alt="{cap}" loading="lazy">{fc}</figure>')
             continue
 
         # 헤딩
@@ -610,6 +617,7 @@ blockquote {{
 .hero-image {{ width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }}
 .ws-fig {{ max-width: 100%; margin: 22px auto; text-align: center; }}
 .ws-fig img {{ max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
+.ws-fig-video {{ max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }}
 .ws-fig img[src*="comic"] {{ max-height: 820px; max-width: 600px; }}
 .ws-fig figcaption {{ margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }}
 .ws-figrow {{ display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }}
