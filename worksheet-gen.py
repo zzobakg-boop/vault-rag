@@ -375,7 +375,17 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     if in_table:
         html_parts.append('</table>')
 
-    return title, '\n'.join(html_parts), total_blanks, total_ox
+    content = '\n'.join(html_parts)
+    # ⭐ 6/18: 활동 입력칸(activity-input)이 든 표는 폭 100% 강제 대신 내용 폭(auto)으로.
+    #    짧은 단답 칸(120px)이 넓은 셀에 떠 보이는 비율 깨짐 방지 (21-22 학습지 사고).
+    def _mark_act_table(m):
+        block = m.group(0)
+        if 'activity-input' in block:
+            return block.replace('<table>', '<table class="act-table">', 1)
+        return block
+    content = re.sub(r'<table>.*?</table>', _mark_act_table, content, flags=re.S)
+
+    return title, content, total_blanks, total_ox
 
 
 def inline(text):
@@ -505,6 +515,9 @@ hr {{ border: none; border-top: 1px solid #eee; margin: 16px 0; }}
 table {{
   width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
 }}
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table {{ width: auto; max-width: 100%; }}
+table.act-table .activity-input {{ max-width: 100%; }}
 td {{ border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }}
 tr:first-child td {{ background: #f0f4ff; font-weight: 600; }}
 blockquote {{
