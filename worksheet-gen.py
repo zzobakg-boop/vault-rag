@@ -32,9 +32,11 @@ def strip_obsidian_artifacts(text, teacher=False):
     act_counter = [0]
     def _activity_sub(m):
         act_counter[0] += 1
+        # [학생작성] = 기본 240px / [학생작성:N] = 폭 N px (짧은 단답 칸용·6/18 추가·하위호환)
+        w = m.group(1) if m.group(1) else '240'
         return (f'<input type="text" class="blank-input activity-input no-score" '
-                f'data-id="act-{act_counter[0]}" style="width:240px" placeholder="">')
-    text = re.sub(r'\[학생작성\]', _activity_sub, text)
+                f'data-id="act-{act_counter[0]}" style="width:{w}px" placeholder="">')
+    text = re.sub(r'\[학생작성(?::(\d+))?\]', _activity_sub, text)
     return text
 
 

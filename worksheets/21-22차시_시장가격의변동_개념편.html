@@ -138,6 +138,7 @@ blockquote {
 .hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
@@ -150,7 +151,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅳ단원 · 시장 가격의 변동</div><h1 class="hero-title">사회② Ⅳ단원 — 사과는 흉년, 콘서트는 인기, 같은 '가격 상승' 다른 범인?</h1><p class="hero-subtitle">천재교육 사회②(구정화) p.82~85</p><div class="hero-keywords"><span class="hero-keyword">수요 변화 요인 (소득·기호·관련재·예상·수요자 수)</span><span class="hero-keyword">공급 변화 요인 (생산비·기술·날씨·공급자 수)</span><span class="hero-keyword">대체재 vs 보완재</span><span class="hero-keyword">곡선 위 이동(수요량) vs 곡선 자체 이동(수요)</span></div><img class="hero-image" src="images/price-shift-hero.jpeg" alt=""></section>
+  <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅳ단원 · 시장 가격의 변동</div><h1 class="hero-title">사회② Ⅳ단원 — 사과는 흉년, 콘서트는 인기, 같은 '가격 상승' 다른 범인?</h1><p class="hero-subtitle">사과는 흉년, 콘서트는 인기 — 같은 '가격 상승' 다른 범인</p><div class="hero-keywords"><span class="hero-keyword">수요 변화 요인 (소득·기호·관련재·예상·수요자 수)</span><span class="hero-keyword">공급 변화 요인 (생산비·기술·날씨·공급자 수)</span><span class="hero-keyword">대체재 vs 보완재</span><span class="hero-keyword">곡선 위 이동(수요량) vs 곡선 자체 이동(수요)</span></div><img class="hero-image" src="images/price-shift-hero.jpeg" alt=""><div class="hero-hook">19-20에선 '가격이 어떻게 정해지나'를 배웠다. 이번엔 '왜 그 가격이 움직이나'. 사과값을 올린 범인과 콘서트 티켓값을 올린 범인은 서로 다르다.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/0
@@ -283,12 +284,12 @@ blockquote {
 <br>
 <table>
 <tr><td>카드</td><td>수 / 공</td></tr>
-<tr><td>용돈(소득)이 늘었다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-1" style="width:240px" placeholder=""></td></tr>
-<tr><td>원료값이 올랐다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-2" style="width:240px" placeholder=""></td></tr>
-<tr><td>그 가수가 갑자기 유행이다(기호)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-3" style="width:240px" placeholder=""></td></tr>
-<tr><td>새 생산 기술이 나왔다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-4" style="width:240px" placeholder=""></td></tr>
-<tr><td>가게(공급자) 수가 늘었다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-5" style="width:240px" placeholder=""></td></tr>
-<tr><td>곧 값이 오를 것 같다(예상)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-6" style="width:240px" placeholder=""></td></tr>
+<tr><td>용돈(소득)이 늘었다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-1" style="width:120px" placeholder=""></td></tr>
+<tr><td>원료값이 올랐다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-2" style="width:120px" placeholder=""></td></tr>
+<tr><td>그 가수가 갑자기 유행이다(기호)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-3" style="width:120px" placeholder=""></td></tr>
+<tr><td>새 생산 기술이 나왔다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-4" style="width:120px" placeholder=""></td></tr>
+<tr><td>가게(공급자) 수가 늘었다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-5" style="width:120px" placeholder=""></td></tr>
+<tr><td>곧 값이 오를 것 같다(예상)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-6" style="width:120px" placeholder=""></td></tr>
 </table>
 <br>
 <h3>활동 2 (개인): 범인 찾기 — 곡선·방향 🕵️</h3>
@@ -296,9 +297,9 @@ blockquote {
 <br>
 <table>
 <tr><td>상황</td><td>어느 곡선?</td><td>어느 방향?</td><td>가격은?</td></tr>
-<tr><td>1. 폭염으로 아이스크림 인기 ↑</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-7" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" style="width:240px" placeholder=""></td></tr>
-<tr><td>2. 스마트폰 가격 ↓ → 케이스는?</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-10" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-11" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-12" style="width:240px" placeholder=""></td></tr>
-<tr><td>3. 사과 흉년</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-13" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-14" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-15" style="width:240px" placeholder=""></td></tr>
+<tr><td>1. 폭염으로 아이스크림 인기 ↑</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-7" style="width:120px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" style="width:120px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" style="width:120px" placeholder=""></td></tr>
+<tr><td>2. 스마트폰 가격 ↓ → 케이스는?</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-10" style="width:120px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-11" style="width:120px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-12" style="width:120px" placeholder=""></td></tr>
+<tr><td>3. 사과 흉년</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-13" style="width:120px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-14" style="width:120px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-15" style="width:120px" placeholder=""></td></tr>
 </table>
 <br>
 <h3>활동 3 (개인): LAB으로 확인 📈</h3>
@@ -306,8 +307,8 @@ blockquote {
 <br>
 <table>
 <tr><td>버튼</td><td>곡선 이동 방향</td><td>균형 가격</td><td>균형 거래량</td></tr>
-<tr><td>수요 증가</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-16" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-17" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-18" style="width:240px" placeholder=""></td></tr>
-<tr><td>공급 증가</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-19" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-20" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-21" style="width:240px" placeholder=""></td></tr>
+<tr><td>수요 증가</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-16" style="width:120px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-17" style="width:120px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-18" style="width:120px" placeholder=""></td></tr>
+<tr><td>공급 증가</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-19" style="width:120px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-20" style="width:120px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-21" style="width:120px" placeholder=""></td></tr>
 </table>
 <br>
 <hr>
@@ -320,7 +321,9 @@ blockquote {
 <textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <p><strong>Q2. 값이 폭등할 때 — 시장에 맡길까, 정부가 막을까?</strong></p>
-<p>콘서트 암표나 명절 과일처럼 수요가 몰려 값이 크게 오를 때, ㉮ <em>"시장 가격에 맡기자"</em> vs ㉯ <em>"정부가 가격을 제한하자"</em> 중 너는 어느 쪽이 더 옳다고 생각해? <strong>반대편 입장도 한 가지 인정한 뒤</strong>, 네 선택과 이유를 써 보자.</p>
+<blockquote>💬 <em>진짜 있었던 일</em>: 2025~2026년 겨울, 조류 인플루엔자로 닭이 많이 살처분되어 <em>계란 공급이 줄자</em> 계란 한 판 값이 7,000~8,000원까지 뛰었어. 이때 <em>"정부가 계란값에 개입해야 한다 vs 시장에 맡겨야 한다"</em>를 두고 실제로 논쟁이 벌어졌지.</blockquote>
+<br>
+<p>이처럼 (계란값·콘서트 암표·명절 과일처럼) 값이 크게 오를 때, ㉮ <em>"시장 가격에 맡기자"</em> vs ㉯ <em>"정부가 가격을 제한하자"</em> 중 너는 어느 쪽이 더 옳다고 생각해? <strong>반대편 입장도 한 가지 인정한 뒤</strong>, 네 선택과 이유를 써 보자.</p>
 <textarea class="essay-input" data-id="essay-2" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>
 <script>
@@ -375,10 +378,13 @@ function check(){
       }
     });
   });
-  document.getElementById('score').textContent=bc;
-  document.getElementById('ox-score').textContent=oxc;
-  document.getElementById('total-score').textContent=bc+oxc;
-  document.getElementById('pct').textContent=Math.round((bc+oxc)/GT*100);
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
 }
 function reveal(){
   usedReveal=true;
@@ -420,13 +426,28 @@ function reset(){
   });
   document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
   document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
-  document.getElementById('score').textContent=0;
-  document.getElementById('ox-score').textContent=0;
-  document.getElementById('total-score').textContent=0;
-  document.getElementById('pct').textContent=0;
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
 }
 // 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+function _wsKey(){
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}
 function _persist(){
+  const key=_wsKey(); if(!key) return;
   const data={};
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
     data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
@@ -435,17 +456,18 @@ function _persist(){
   document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
   const si=document.querySelectorAll('.student-info input');
   const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
-  try{ localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
 function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
 let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
-  let saved; try{ saved=localStorage.getItem('ws_'+document.title); }catch(e){}
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
-  if(info){
+  if(info&&!EXAM_MODE){
     const inputs=document.querySelectorAll('.student-info input');
     if(info.class&&inputs[0]) inputs[0].value=info.class;
     if(info.number&&inputs[1]) inputs[1].value=info.number;
@@ -498,9 +520,10 @@ function submitResult(){
   if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
-  const bs=parseInt(document.getElementById('score').textContent);
-  const os=parseInt(document.getElementById('ox-score').textContent);
-  const ts=parseInt(document.getElementById('total-score').textContent);
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
   const answers=collectAnswers();
   const data={
     type:'final',
@@ -535,6 +558,12 @@ document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
 document.querySelectorAll('.student-info input').forEach(el=>{
   el.addEventListener('input',scheduleProgress);
 });
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  document.querySelectorAll('.student-info input').forEach(el=>{
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
 </script>
 </body>
 </html>
