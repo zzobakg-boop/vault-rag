@@ -24,6 +24,9 @@ hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
 table {
   width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
 }
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
 blockquote {
@@ -138,6 +141,7 @@ blockquote {
 .hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
@@ -192,11 +196,16 @@ blockquote {
 <blockquote>(교과서 원문: "사산 왕조 페르시아는 로마 제국과 경쟁하였으며, 동서를 잇는 중계 무역으로 번영을 누렸다." — 비상교육 역사① p.77)</blockquote>
 <figure class="ws-fig"><img src="images/sasanian-map.png" alt="사산 왕조 페르시아의 최대 영역(7세기 초) — 왼쪽 끝은 비잔티움(유럽·지중해), 오른쪽 끝은 인도 방향. 딱 그 *사이*에 자리잡았다 = 동서 교역이 반드시 지나가는 길목. 왼쪽 아래 작은 지도로 세계 속 위치 확인! (지도: Wikimedia · CC BY-SA)" loading="lazy"><figcaption>사산 왕조 페르시아의 최대 영역(7세기 초) — 왼쪽 끝은 비잔티움(유럽·지중해), 오른쪽 끝은 인도 방향. 딱 그 <em>사이</em>에 자리잡았다 = 동서 교역이 반드시 지나가는 길목. 왼쪽 아래 작은 지도로 세계 속 위치 확인! (지도: Wikimedia · CC BY-SA)</figcaption></figure>
 <br>
+<blockquote>🏛️ <strong>로마 황제를 사로잡은 나라</strong>: 사산조는 로마와 그냥 '경쟁'만 한 게 아니야. 3세기 <em>샤푸르 1세</em>는 로마와 싸워 <strong>로마 황제(발레리아누스)를 포로로</strong> 붙잡았어(헐!). 게다가 잡아온 <em>로마·시리아 기술자들</em>을 도시에 정착시켜 유리·직물 기술까지 빨아들였지 — 이게 다음 4단계 <em>공예 강국</em>으로 이어진다. <em>(지도서 p.118)</em></blockquote>
+<br>
 <p>⚠️ <strong>자주 하는 오해</strong>: "사산조는 그냥 옛날 중동 왕국"? 아니다 — <em>비잔티움과 어깨를 겨룬 당대 양대 강국</em>이었고, <em>동서 교역의 핵심 허브</em>였다.</p>
 <br>
 <h2>📖 4단계: 문화 — 유리·금속·직물, 그리고 신라까지</h2>
 <p>사산조에서는 ⑧<span class="blank-filled">공예</span>가 크게 발달했다. 특히 금속·⑨<span class="blank-filled">유리</span> 공예품이 유명했고, 직물·염색 기술도 뛰어났다. 이 문화는 ⑩<span class="blank-filled">이슬람</span> 세계와 비잔티움 제국으로, 또 비단길(실크로드)을 타고 당과 ⑪<span class="blank-filled">신라</span> 등 동아시아에도 전해졌다.</p>
 <blockquote>(교과서 원문: "사산 왕조 페르시아에서는 공예가 발달하였다. 특히 금속과 유리 공예품이 유명하였고 … 사산 왕조 페르시아의 문화는 이슬람 세계와 비잔티움 제국에 전해졌고, 당과 신라 등 동아시아 국가에도 영향을 주었다." — 비상교육 역사① p.77)</blockquote>
+<br>
+<figure class="ws-fig"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Sasanian_Gilt_Silver_Plate%2C_from_Northern_Wei_504_CE_tomb.jpg/1280px-Sasanian_Gilt_Silver_Plate%2C_from_Northern_Wei_504_CE_tomb.jpg" alt="사산조 은제 접시 — 중국 북위(北魏) 무덤에서 출토(504년)" loading="lazy"><figcaption>사산조 은제 접시 — 중국 북위(北魏) 무덤에서 출토(504년)</figcaption></figure>
+<blockquote>🥈 <strong>사산조 은제 접시</strong>(왕의 모습이 새겨짐). 놀라운 건 <em>출토지</em> — 이 페르시아 명품이 <strong>중국 북위(北魏)의 무덤(504년)</strong>에서 나왔다. 사산조 공예품이 <em>비단길을 타고 동아시아 깊숙이</em> 전해진 <strong>물증</strong>이다. 경주 유리병도 같은 길로 왔다. <em>(Wikimedia · CC0)</em></blockquote>
 <br>
 <p>💡 ★ <strong>핵심 포인트</strong>: 그래서 <em>경주 유리병</em>이 설명된다 — 사산조 명품이 비단길을 타고 신라까지! (도입의 답)</p>
 <br>
@@ -249,7 +258,7 @@ blockquote {
 <h2>✏️ 활동 1. 호스로 1세의 신하가 되어 — 어전 회의 결재판</h2>
 <blockquote>🎙️ 6세기 전성기, 너는 <strong>호스로 1세의 신하</strong>다. 오늘 어전 회의에 세 안건이 올라왔다. 각 안건에 <strong>찬성/반대</strong>를 정하고, <em>오늘 배운 내용</em>을 근거로 왕을 설득하라. (정답 없음 — <em>근거가 오늘 수업과 이어지는가</em>가 핵심)</blockquote>
 <br>
-<table>
+<table class="act-table">
 <tr><td>안건 — <em>판단 힌트</em></td><td>나의 결정 (찬/반)</td><td>이유 (오늘 배운 근거로 한 줄)</td></tr>
 <tr><td>① 비잔티움과 전쟁을 계속한다 — <em>힌트: 잦은 전쟁의 끝은 어땠지? (5단계)</em></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-1" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-2" style="width:240px" placeholder=""></td></tr>
 <tr><td>② 비단길 상인에게 세금을 더 걷는다 — <em>힌트: 우리 부는 어디서 오지? 세금이 과하면 상인은? (3단계)</em></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-3" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-4" style="width:240px" placeholder=""></td></tr>
@@ -387,7 +396,19 @@ function reset(){
   }
 }
 // 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+function _wsKey(){
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}
 function _persist(){
+  const key=_wsKey(); if(!key) return;
   const data={};
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
     data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
@@ -396,17 +417,18 @@ function _persist(){
   document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
   const si=document.querySelectorAll('.student-info input');
   const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
-  try{ localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
 function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
 let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
-  let saved; try{ saved=localStorage.getItem('ws_'+document.title); }catch(e){}
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
-  if(info){
+  if(info&&!EXAM_MODE){
     const inputs=document.querySelectorAll('.student-info input');
     if(info.class&&inputs[0]) inputs[0].value=info.class;
     if(info.number&&inputs[1]) inputs[1].value=info.number;
@@ -497,6 +519,12 @@ document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
 document.querySelectorAll('.student-info input').forEach(el=>{
   el.addEventListener('input',scheduleProgress);
 });
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  document.querySelectorAll('.student-info input').forEach(el=>{
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
 </script>
 </body>
 </html>
