@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사회② 국민경제와 국제거래 31-32차시 — 환율의 결정과 영향 (정답·모범답안)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
+  background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
+}
+.container {
+  max-width: 800px; margin: 0 auto; background: white;
+  border-radius: 16px; padding: 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
+h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
+h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
+p { margin: 5px 0; font-size: 0.95em; }
+hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
+}
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
+td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
+tr:first-child td { background: #f0f4ff; font-weight: 600; }
+blockquote {
+  border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
+  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
+}
+.callout {
+  padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
+}
+.callout-info { background: #e8f4fd; border-left: 4px solid #007aff; }
+.callout-warning { background: #fff8e1; border-left: 4px solid #ff9500; }
+.callout-tip { background: #e8f8e8; border-left: 4px solid #34c759; }
+.callout-question { background: #f3e8fd; border-left: 4px solid #af52de; }
+.code-block {
+  background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px;
+  font-family: 'SF Mono', monospace; font-size: 0.82em;
+  overflow-x: auto; margin: 10px 0; white-space: pre;
+}
+.blank-input {
+  border: none; border-bottom: 2px solid #007aff; background: #f8f9ff;
+  padding: 3px 6px; font-size: 0.93em; font-family: inherit;
+  text-align: center; border-radius: 4px 4px 0 0; outline: none;
+  transition: all 0.3s;
+}
+.blank-input:focus { border-bottom-color: #5856d6; background: #f0f0ff; }
+.blank-input.correct { border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.blank-input.wrong { border-bottom-color: #ff3b30; background: #fff0f0; }
+.blank-input.no-score { border-bottom-color: #aaa; }
+.blank-input.code-blank { background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }
+.blank-input.no-score.correct { border-bottom-color: #34c759; }
+.blank-input.no-score.wrong { border-bottom-color: #ff9500; }
+.ox-input {
+  border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
+  font-family: inherit; border-radius: 4px; outline: none;
+  transition: all 0.3s;
+}
+.ox-group { display: inline-flex; gap: 6px; }
+.ox-btn {
+  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; line-height: 1;
+}
+.ox-btn:hover { background: #f0f4ff; }
+.ox-btn.selected { background: #007aff; color: white; }
+.ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.ox-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 4px; }
+.choice-btn {
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}
+.choice-btn:hover { background: #f0f4ff; }
+.choice-btn.selected { background: #007aff; color: white; }
+.choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.btn-submitted { background: #34c759 !important; cursor: default; }
+.submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
+.essay-input {
+  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
+  padding: 10px; font-family: inherit; font-size: 0.93em;
+  resize: vertical; margin: 6px 0; outline: none;
+}
+.essay-input:focus { border-color: #007aff; }
+.control-bar {
+  position: sticky; top: 0; background: white; padding: 10px 0;
+  border-bottom: 1px solid #eee; margin: -16px 0 16px; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.score { font-size: 1.1em; font-weight: 600; color: #007aff; }
+.btn {
+  padding: 7px 16px; border: none; border-radius: 8px;
+  font-size: 0.88em; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: #007aff; color: white; }
+.btn-secondary { background: #f0f0f5; color: #333; }
+.btn-danger { background: #ff3b30; color: white; }
+.student-info {
+  display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.student-info input {
+  border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
+}
+@media (max-width: 600px) {
+  .container { padding: 14px; }
+  .control-bar { flex-direction: column; text-align: center; }
+  table { font-size: 0.82em; }
+  .hero-title { font-size: 26px !important; }
+  .hero-section { padding: 36px 20px !important; }
+}
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
+.hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
+.hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword {
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}
+.hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
+.ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+.hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 31-32차시 — 환율의 결정과 영향 (정답·모범답안)</h1><p class="hero-subtitle">해외 직구할 때 '환율 오름' 뜨면 왜 비싸질까?</p><div class="hero-keywords"><span class="hero-keyword">환율 = 두 화폐의 교환 비율(외화의 가격)</span><span class="hero-keyword">환율도 외화의 수요·공급으로 결정</span><span class="hero-keyword">환율 ↑ = 원화 가치 ↓</span><span class="hero-keyword">수출·수입·물가·여행에 영향</span></div><div class="hero-hook">좋아하는 해외 아이돌 굿즈를 직구하려는데 '환율이 올랐다'는 뉴스가 떠. 그러면 같은 10달러짜리 굿즈가 갑자기 더 비싸져(헐!). 환율이 뭐길래 내 지갑을 흔들까? 환율은 '다른 나라 돈의 값'이야. 이게 오르고 내리면 직구도, 수출도, 해외여행도 다 달라져. 오늘은 환율의 정체와 그 파급력을 알아보자.</div></section>
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
+  <h1>사회② 국민경제와 국제거래 31-32차시 — 환율의 결정과 영향 (정답·모범답안)</h1>
+<br>
+<blockquote>🎙️ 환율 = 외화의 가격. 환율 ↑ = 원화 가치 ↓ = 수출 유리·수입/여행 불리. 환율도 외화의 수요·공급으로 결정(앞 단원 수요공급 원리).</blockquote>
+<br>
+<h2>📌 학습 목표</h2>
+<p>- <strong>환율의 의미와 결정 원리</strong>를 설명할 수 있다.</p>
+<p>- <strong>환율 변동</strong>이 우리 생활에 미치는 영향을 설명할 수 있다.</p>
+<br>
+<h2>📖 1단계: 환율이란 무엇일까?</h2>
+<p>나라마다 다른 화폐를 쓰므로 무역·여행 시 그 나라 돈으로 바꿔야 한다. 이때 두 나라 화폐를 교환하는 비율이 ①<span class="blank-filled">환율</span>이다. 미국 1달러를 얻는 데 우리 돈 1,100원이 필요하면 환율은 '1,100원/달러'로 적는다. 곧 환율은 외국 화폐의 ②<span class="blank-filled">가치</span>이다.</p>
+<blockquote>(교과서 원문: "두 국가의 화폐를 교환하는 비율이 환율이다. … 환율은 달러당 1,100원이고, '1,100원/달러'로 표기한다. 즉, 환율은 외국 화폐의 가치(가격)이다." — 천재교육 사회②(구정화) 105쪽)</blockquote>
+<br>
+<blockquote>🎯 <strong>여기가 핵심!</strong> 환율 = <em>달러의 가격표</em>. ② 답은 '가치(가격)' — 환율이 <em>외화의 값</em>이라는 점을 못 박으면, 3단계의 '환율↑=원화 가치↓'가 자연스럽게 이해된다.</blockquote>
+<br>
+<h2>📖 2단계: 환율은 어떻게 정해질까?</h2>
+<p>재화의 가격이 시장에서 수요와 공급으로 정해지듯, 외국 화폐의 가격인 환율도 그 외화의 ③<span class="blank-filled">수요</span>와 ④<span class="blank-filled">공급</span>으로 결정된다. 달러를 사려는 ③<span class="blank-filled">수요</span>가 늘면 환율이 ⑤<span class="blank-filled">상승</span>하고(원화 가치 하락), 달러가 들어와 ④<span class="blank-filled">공급</span>이 늘면 환율이 ⑥<span class="blank-filled">하락</span>한다(원화 가치 상승).</p>
+<blockquote>(교과서 원문: "외국 화폐의 가격인 환율도 그 외국 화폐의 수요와 공급으로 결정된다." — 천재교육 사회②(구정화) 105쪽)</blockquote>
+<br>
+<blockquote>🎯 <strong>여기가 핵심!</strong> 앞 단원(수요·공급)을 <em>그대로 적용</em> — '상품' 자리에 '달러'. 달러 수요↑ → 곡선 오른쪽 이동 → 환율(달러 값)↑. 자료로 곡선 이동→환율 변동을 분석시키는 문항이 단골(결정론 그래프 영상과 연계).</blockquote>
+<br>
+<h2>📖 3단계: 환율이 오르면 원화 가치는 내린다</h2>
+<p>환율이 1,100원에서 1,300원으로 오르면, 1달러를 얻는 데 더 많은 원화가 든다. 즉 환율 상승은 우리 돈의 가치가 ⑦<span class="blank-filled">하락</span>한 것이다. 반대로 환율이 내리면 원화 가치는 ⑧<span class="blank-filled">상승</span>한다.</p>
+<blockquote>(교과서 원문(탐구 길잡이): "달러 수요 증가 = 환율 상승 = 원화 가치 하락 = 달러 가치 상승 / 달러 공급 증가 = 환율 하락 = 원화 가치 상승 = 달러 가치 하락" — 천재교육 사회②(구정화) 105쪽)</blockquote>
+<br>
+<blockquote>🎯 <strong>여기가 핵심 — 최다 함정!</strong> <em>환율 상승 = 원화 가치 하락</em>(거꾸로 외우기 1순위). 같은 1달러에 더 많은 원화가 필요 = 원화 한 장의 힘↓. '환율 상승=원화 강세'로 적으면 오답. 표(환율↑↔원화↓, 환율↓↔원화↑)를 외우게.</blockquote>
+<br>
+<h2>📖 4단계: 환율이 변하면 우리 생활은?</h2>
+<p>환율이 오르면(원화 약세) 우리 수출품이 외국에서 싸져 ⑨<span class="blank-filled">수출</span>이 늘지만, 수입 원자재 값이 올라 국내 물가가 오르고 해외여행·유학 비용이 비싸진다. 환율이 내리면(원화 강세) 수입품이 싸져 물가가 안정되지만, 수출이 줄어 국내 기업의 생산이 위축되고 ⑩<span class="blank-filled">실업</span>이 늘 수 있다.</p>
+<blockquote>(교과서 원문(표): 환율 상승 — 수출↑→생산·고용↑ / 수입 원자재↑→물가↑·외채 부담↑. 환율 하락 — 수입 원자재↓→물가 안정·외채 부담↓ / 수입↑→생산 위축·고용↓·실업↑ — 천재교육 사회②(구정화) 105쪽)</blockquote>
+<br>
+<blockquote>🎯 <strong>여기가 핵심!</strong> <em>환율 상승 표</em>: 수출↑·물가↑·외채↑·여행 불리. <em>환율 하락 표</em>: 수입↑·물가 안정·실업↑·여행 유리. 'A가 오르면 B는?' 자료해석이 시험 단골. 한쪽이 유리하면 한쪽이 불리(수출 vs 수입·여행)라는 양면을 강조.</blockquote>
+<br>
+<h2>❓ OX 퀴즈</h2>
+<table>
+<tr><td>번호</td><td>문장</td><td>O/X</td></tr>
+<tr><td>1</td><td>환율은 두 나라 화폐를 교환하는 비율로, 외국 화폐의 가격이다.</td><td><strong>O</strong></td></tr>
+<tr><td>2</td><td>환율은 정부가 정한 고정된 값으로, 변하지 않는다.</td><td><strong>X</strong></td></tr>
+<tr><td>3</td><td>달러의 수요가 늘면 환율이 오르고 원화 가치는 떨어진다.</td><td><strong>O</strong></td></tr>
+<tr><td>4</td><td>환율이 오르면 우리 수출품이 외국에서 싸져 수출에 유리하다.</td><td><strong>O</strong></td></tr>
+<tr><td>5</td><td>환율이 오르면 해외여행·유학 비용이 줄어든다.</td><td><strong>X</strong></td></tr>
+</table>
+<br>
+<blockquote><strong>OX 해설</strong>: 1 O — 환율=외화의 가격. <strong>2 X</strong>: 환율은 외화의 수요·공급에 따라 <em>오르내린다</em>(고정 아님). 3 O — 달러 수요↑→환율↑→원화 가치↓. 4 O — 환율↑(원화 약세)→수출 유리. <strong>5 X — 핵심 함정</strong>: 환율↑이면 같은 외화에 더 많은 원화 필요 → 해외여행·유학 비용은 <em>늘어난다</em>.</blockquote>
+<br>
+<h2>💭 더 생각해 보기 (모범답안·채점 관점)</h2>
+<p><strong>모범답안 예시</strong>: "환율이 오르면 원화 가치가 떨어지므로, 같은 외화를 얻는 데 더 많은 원화가 필요해 해외여행자는 비용이 늘어 불리하다. 반면 수출 기업은 우리 제품이 외국에서 싸져 더 잘 팔리므로 유리하다."</p>
+<p>- <strong>상</strong>: '환율↑=원화 가치↓'를 근거로, 해외여행자(불리)와 수출 기업(유리)을 각각 정확히 판단·서술.</p>
+<p>- <strong>중</strong>: 유·불리는 맞게 구분했으나 '원화 가치' 근거 연결이 약함.</p>
+<p>- <strong>하</strong>: 한쪽만 언급하거나 유·불리를 반대로 서술.</p>
+</div>
+<script>
+const TB=0, TOX=0, GT=0;
+let usedReveal=false;
+function selectOX(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function selectChoice(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+function check(){
+  let bc=0, oxc=0;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    const a=norm(el.dataset.answer), u=norm(el.value);
+    if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
+    const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
+    if(isCorrect){
+      el.classList.add('correct');el.classList.remove('wrong');
+      bc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const sel=grp.dataset.selected, ans=grp.dataset.answer;
+    if(!sel) return;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');oxc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');bc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
+}
+function reveal(){
+  usedReveal=true;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const ans=grp.dataset.answer;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.getElementById('score').textContent=TB;
+  document.getElementById('ox-score').textContent=TOX;
+  document.getElementById('total-score').textContent=GT;
+  document.getElementById('pct').textContent=100;
+}
+function reset(){
+  usedReveal=false;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value='';el.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.ox-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
+}
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+function _wsKey(){
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}
+function _persist(){
+  const key=_wsKey(); if(!key) return;
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const si=document.querySelectorAll('.student-info input');
+  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+}
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
+function loadProgress(){
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
+  if(!saved) return;
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  if(info&&!EXAM_MODE){
+    const inputs=document.querySelectorAll('.student-info input');
+    if(info.class&&inputs[0]) inputs[0].value=info.class;
+    if(info.number&&inputs[1]) inputs[1].value=info.number;
+    if(info.name&&inputs[2]) inputs[2].value=info.name;
+  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
+}
+// 모든 입력칸에서 Enter→다음칸 이동
+const allInputs=[...document.querySelectorAll('.blank-input')];
+allInputs.forEach((el,i)=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
+  });
+});
+// 제출
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){
+  const ans={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  });
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+  });
+  return ans;
+}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+function submitResult(){
+  if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
+  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
+  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
+  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
+  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
+  check(); // 먼저 채점
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
+  const answers=collectAnswers();
+  const data={
+    type:'final',
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
+  };
+  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(()=>{
+    document.getElementById('submitBtn').textContent='✅ 제출 완료';
+    document.getElementById('submitBtn').classList.add('btn-submitted');
+    setTimeout(()=>{
+      document.getElementById('submitBtn').textContent='📤 재제출';
+      document.getElementById('submitBtn').classList.remove('btn-submitted');
+    }, 2000);
+  })
+  .catch(e=>alert('제출 실패: '+e));
+}
+// 페이지 로드 시 저장된 진행 불러오기
+loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+});
+document.querySelectorAll('.student-info input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  document.querySelectorAll('.student-info input').forEach(el=>{
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
+</script>
+</body>
+</html>
