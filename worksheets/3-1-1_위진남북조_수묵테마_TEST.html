@@ -156,8 +156,16 @@ body{ background:#f3ecdb !important; color:#1b160d !important; font-family:'Gowu
   background-image:radial-gradient(circle at 8% -2%, rgba(0,0,0,0.05), transparent 32%), radial-gradient(circle at 96% 4%, rgba(0,0,0,0.04), transparent 24%) !important;
   border:1px solid #cdbb95 !important; box-shadow:0 3px 26px rgba(20,20,20,0.14) !important; overflow:hidden; }
 p,li,td,th,label,span,div{ font-family:'Gowun Batang','Nanum Myeongjo',serif; }
-h1{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#1b160d !important; font-weight:700 !important; letter-spacing:1px; position:relative; }
-h1::after{ content:''; display:block; width:130px; height:7px; margin:14px auto 4px; background:linear-gradient(90deg, transparent, #3a3326 18%, #3a3326 78%, transparent); border-radius:4px; opacity:.85; }
+/* hero 배너 = 먹빛 띠 + 밝은 제목(어두운 배경서 가독) */
+.hero-section{ background:linear-gradient(135deg, #1b160d 0%, #3a3326 100%) !important; border:none !important; }
+.hero-title{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#faf5e9 !important; font-weight:700 !important; letter-spacing:.5px; text-shadow:0 1px 3px rgba(0,0,0,.4); }
+.hero-eyebrow{ color:#faf5e9 !important; opacity:.82; letter-spacing:1px; }
+.hero-subtitle{ color:#faf5e9 !important; opacity:.93; }
+.hero-keyword{ background:rgba(255,255,255,.10) !important; color:#faf5e9 !important; border:1px solid #9a3b2e !important; }
+.hero-hook{ color:#faf5e9 !important; opacity:.95; }
+/* 본문 제목(hero 제외) = 진한 먹빛 + 먹 획 밑줄 */
+h1:not(.hero-title){ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#1b160d !important; font-weight:700 !important; letter-spacing:1px; position:relative; }
+h1:not(.hero-title)::after{ content:''; display:block; width:130px; height:7px; margin:14px auto 4px; background:linear-gradient(90deg, transparent, #3a3326 18%, #3a3326 78%, transparent); border-radius:4px; opacity:.85; }
 h2,h3,h4{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#3a3326 !important; }
 h2{ border-left:5px solid #9a3b2e !important; padding-left:12px !important; }
 strong,b,.accent,a{ color:#9a3b2e !important; }
