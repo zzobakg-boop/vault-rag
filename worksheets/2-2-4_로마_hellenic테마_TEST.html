@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>역사① Ⅱ단원 — 로마는 어떻게 1,000년을 갔을까?</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
+  background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
+}
+.container {
+  max-width: 800px; margin: 0 auto; background: white;
+  border-radius: 16px; padding: 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
+h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
+h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
+p { margin: 5px 0; font-size: 0.95em; }
+hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
+}
+td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
+tr:first-child td { background: #f0f4ff; font-weight: 600; }
+blockquote {
+  border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
+  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
+}
+.callout {
+  padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
+}
+.callout-info { background: #e8f4fd; border-left: 4px solid #007aff; }
+.callout-warning { background: #fff8e1; border-left: 4px solid #ff9500; }
+.callout-tip { background: #e8f8e8; border-left: 4px solid #34c759; }
+.callout-question { background: #f3e8fd; border-left: 4px solid #af52de; }
+.code-block {
+  background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px;
+  font-family: 'SF Mono', monospace; font-size: 0.82em;
+  overflow-x: auto; margin: 10px 0; white-space: pre;
+}
+.blank-input {
+  border: none; border-bottom: 2px solid #007aff; background: #f8f9ff;
+  padding: 3px 6px; font-size: 0.93em; font-family: inherit;
+  text-align: center; border-radius: 4px 4px 0 0; outline: none;
+  transition: all 0.3s;
+}
+.blank-input:focus { border-bottom-color: #5856d6; background: #f0f0ff; }
+.blank-input.correct { border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.blank-input.wrong { border-bottom-color: #ff3b30; background: #fff0f0; }
+.blank-input.no-score { border-bottom-color: #aaa; }
+.blank-input.code-blank { background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }
+.blank-input.no-score.correct { border-bottom-color: #34c759; }
+.blank-input.no-score.wrong { border-bottom-color: #ff9500; }
+.ox-input {
+  border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
+  font-family: inherit; border-radius: 4px; outline: none;
+  transition: all 0.3s;
+}
+.ox-group { display: inline-flex; gap: 6px; }
+.ox-btn {
+  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; line-height: 1;
+}
+.ox-btn:hover { background: #f0f4ff; }
+.ox-btn.selected { background: #007aff; color: white; }
+.ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.ox-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 4px; }
+.choice-btn {
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}
+.choice-btn:hover { background: #f0f4ff; }
+.choice-btn.selected { background: #007aff; color: white; }
+.choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.btn-submitted { background: #34c759 !important; cursor: default; }
+.submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
+.essay-input {
+  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
+  padding: 10px; font-family: inherit; font-size: 0.93em;
+  resize: vertical; margin: 6px 0; outline: none;
+}
+.essay-input:focus { border-color: #007aff; }
+.control-bar {
+  position: sticky; top: 0; background: white; padding: 10px 0;
+  border-bottom: 1px solid #eee; margin: -16px 0 16px; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.score { font-size: 1.1em; font-weight: 600; color: #007aff; }
+.btn {
+  padding: 7px 16px; border: none; border-radius: 8px;
+  font-size: 0.88em; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: #007aff; color: white; }
+.btn-secondary { background: #f0f0f5; color: #333; }
+.btn-danger { background: #ff3b30; color: white; }
+.student-info {
+  display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.student-info input {
+  border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
+}
+@media (max-width: 600px) {
+  .container { padding: 14px; }
+  .control-bar { flex-direction: column; text-align: center; }
+  table { font-size: 0.82em; }
+  .hero-title { font-size: 26px !important; }
+  .hero-section { padding: 36px 20px !important; }
+}
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
+.hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
+.hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword {
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}
+.hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
+.ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+.hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<style id="cd-theme">
+/* ===== 통합 테마: 그리스·로마 (대리석·메안더) (apply_theme.py) ===== */
+body{ background:#eceadf !important; color:#21303a !important; font-family:'Gowun Batang','Nanum Myeongjo',serif !important; }
+.container{ position:relative; background:#f7f5ec !important;
+  background-image:radial-gradient(circle at 8% -2%, rgba(0,0,0,0.05), transparent 32%), radial-gradient(circle at 96% 4%, rgba(0,0,0,0.04), transparent 24%) !important;
+  border:1px solid #cdcdb8 !important; box-shadow:0 3px 26px rgba(20,20,20,0.14) !important; overflow:hidden; }
+p,li,td,th,label,span,div{ font-family:'Gowun Batang','Nanum Myeongjo',serif; }
+h1{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#21303a !important; font-weight:700 !important; letter-spacing:1px; position:relative; }
+h1::after{ content:''; display:block; width:130px; height:7px; margin:14px auto 4px; background:linear-gradient(90deg, transparent, #33414c 18%, #33414c 78%, transparent); border-radius:4px; opacity:.85; }
+h2,h3,h4{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#33414c !important; }
+h2{ border-left:5px solid #b6862c !important; padding-left:12px !important; }
+strong,b,.accent,a{ color:#b6862c !important; }
+.badge,.section-label,.hero .badge{ background:#b6862c !important; color:#f7f5ec !important; border-color:#b6862c !important; }
+table,th,td{ border-color:#cdcdb8 !important; } th{ background:#e4e3d2 !important; color:#33414c !important; }
+.blank-input{ background:#fffef8 !important; border:1px solid #cdcdb8 !important; color:#21303a !important; }
+blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:4px solid #b6862c !important; color:#33414c !important; }
+.container::before{ content:'Σ'; position:absolute; top:14px; right:16px; font-family:'Song Myung','Nanum Myeongjo',serif; color:#f7f5ec; background:#b6862c; width:34px; height:34px; line-height:34px; text-align:center; border-radius:5px; font-size:18px; box-shadow:0 1px 4px rgba(0,0,0,.22); z-index:5; }
+.container{ border-top:0 !important; }
+.container::after{ content:''; position:absolute; top:0; left:0; right:0; height:10px; background:repeating-linear-gradient(90deg, #b6862c 0 8px, transparent 8px 10px, #b6862c 10px 12px, transparent 12px 22px); opacity:.6; }
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero-section"><div class="hero-eyebrow">역사① · Ⅱ단원 · 로마가 제국으로 성장하다</div><h1 class="hero-title">역사① Ⅱ단원 — 로마는 어떻게 1,000년을 갔을까?</h1><p class="hero-subtitle">로마는 어떻게 1,000년을 갔을까?</p><div class="hero-keywords"><span class="hero-keyword">공화정(Res Publica) → 제정(Imperium)</span><span class="hero-keyword">포에니 전쟁 → 지중해 패권</span><span class="hero-keyword">그라쿠스·카이사르·옥타비아누스·콘스탄티누스</span><span class="hero-keyword">법·건축·도로 = 오늘의 로마</span></div><img class="hero-image" src="images/rome-hero.jpeg" alt=""></section>
+  <div class="control-bar">
+    <div class="score">
+      빈칸: <span id="score">0</span>/15 · OX: <span id="ox-score">0</span>/4
+      · 총: <span id="total-score">0</span>/19 (<span id="pct">0</span>%)
+    </div>
+    <div>
+      
+      <button class="btn btn-primary" onclick="check()">채점하기</button>
+      
+      <button class="btn btn-danger" onclick="reset()">초기화</button>
+      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
+      <button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>
+    </div>
+  </div>
+  <div class="student-info">
+    <input type="text" placeholder="반">
+    <input type="text" placeholder="번호">
+    <input type="text" placeholder="이름">
+  </div>
+  <h1>역사① Ⅱ단원 — 로마는 어떻게 1,000년을 갔을까?</h1>
+<br>
+<h2>📌 학습 목표</h2>
+<p>- 로마의 <strong>통치 체제</strong>(왕정 → 공화정 → 제정)의 변화 과정을 설명할 수 있다.</p>
+<p>- 로마 <strong>문화</strong>(법·건축·도로)와 <strong>크리스트교</strong>의 등장을 이해할 수 있다.</p>
+<br>
+<h2>✨ 오늘의 어휘 (교과서)</h2>
+<p>- <strong>공화정(共和政)</strong>: 왕이 없고 <em>개인이나 집단이 국가를 통치하는</em> 정치 형태</p>
+<p>- <strong>원로원</strong>: 로마에서 <em>입법과 자문</em>을 맡은 최고 의결 기관</p>
+<p>- <strong>집정관</strong>: 로마에서 <em>정치와 군사</em>를 도맡은 관직</p>
+<p>- <strong>호민관(護民官)</strong>: <em>평민의 권리</em>를 지키기 위해 뽑은 관리, 원로원·집정관 결정에 <strong>거부권</strong> 행사 가능</p>
+<br>
+<blockquote>🔤 <strong>어려운 말, 영어·어원으로 풀면 쉬워</strong></blockquote>
+<blockquote>- <strong>공화정</strong> = 라틴어 <em>Res Publica</em>(공공의 것) → 영어 <strong>Republic</strong>. <em>대한민국도 민주공화'국'(共和國)!</em></blockquote>
+<blockquote>- <strong>라티푼디움(latifundium)</strong> = <em>lati</em>(넓은) + <em>fundium</em>(땅·농장) = <em>넓은 땅</em> = 노예 부리는 <strong>대농장</strong>. 영어 <em>fund</em>(자금)·<em>foundation</em>(토대)도 같은 뿌리(fundus).</blockquote>
+<blockquote>- <strong>호민관</strong> = 라틴어 <em>tribunus</em> → 영어 <strong>tribune</strong>(평민의 대변자). 신문 이름 'OO 트리뷴'이 여기서 옴.</blockquote>
+<blockquote>- <strong>카이사르(Caesar)</strong> → 독일 <strong>Kaiser</strong>(카이저)·러시아 <strong>Tsar</strong>(차르) — 4단계에서 자세히!</blockquote>
+<br>
+<hr>
+<br>
+<h2>📖 1단계: 도입 — 거대한 제국은 왜 한순간에 무너질까?</h2>
+<br>
+<blockquote>🎙️ 지난 시간 기억나? 알렉산드로스는 동방 문화까지 끌어안은 <em>개방적인</em> 대제국을 세웠어. 근데 이상하지 — 그렇게 크고 열려 있던 제국이 <strong>그가 죽자(B.C.323) 한 세대도 못 가 장군들 손에 쪼개졌어</strong>(헬레니즘 세계). 왜? 제국이 <em>알렉산드로스라는 한 사람(영웅)</em>에게 통째로 '매여' 있었거든. 기둥이 빠지자 무너진 거야.</blockquote>
+<br>
+<blockquote>🎙️ 반대로, 지중해 <em>서쪽 끝</em>의 작고 투박한 나라 <strong>로마</strong>는 무려 <strong>1,000년</strong>을 가. 차이가 뭘까? 로마는 한 영웅이 아니라 <em>제도(법·공화정·시민)</em>로 굴러갔거든. 그런데 — 그 로마조차 <em>견제가 무너지자</em> 결국 <strong>황제 1인</strong>에게 권력이 '매여' 버려(공화정→제정).</blockquote>
+<br>
+<blockquote>🎙️ 요즘으로 치면 이래. 메신저·AI 앱을 <em>딱 한 곳</em>에만 다 맡기면 그 회사 규칙에 묶여 못 빠져나오지 — 이게 <strong>종속</strong>이야. 정치도 한 세력이 <em>너무 오래</em> 권력을 쥐면 견제가 사라져. 그래서 이번 지방선거에서도 사람들은 <em>"한쪽이 너무 오래 가면 견제하자"</em>며 표를 나눠. <strong>권력이 한 곳에 오래 매이는 걸 경계하는 것</strong> — 이게 민주주의의 기본 감각이야. <em>로마는 그 경계가 무너졌을 때 어떻게 됐을까?</em> 따라와.</blockquote>
+<br>
+<blockquote>💡 <strong>왜 알렉산드로스 제국은 그렇게 빨리 무너졌을까?</strong> <em>(보충)</em></blockquote>
+<blockquote>- 제국이 <em>알렉산드로스 개인의 정복·카리스마</em>로 급조됨 → 그가 33세에 갑자기 죽자 구심점이 사라짐.</blockquote>
+<blockquote>- <em>정해진 후계자가 없어</em> 장군들이 영토를 놓고 싸움 → 이집트·서아시아·마케도니아 등으로 분열.</blockquote>
+<blockquote>- 정복은 빨랐지만 <em>법·행정·시민 기반</em>을 다질 시간이 없었음.</blockquote>
+<blockquote>- 👉 로마는 그 반대 — <em>제도를 수백 년 쌓아</em> 개인이 죽어도 시스템이 굴러감. <strong>영웅에 매인 제국 vs 제도로 선 제국.</strong></blockquote>
+<br>
+<hr>
+<br>
+<h2>📖 2단계: 공화정의 성립 — 왕을 몰아내다</h2>
+<br>
+<p>기원전 8세기 무렵 로마는 이탈리아반도의 <em>작은 도시 국가</em>로 출발했다. 처음엔 왕정이었으나, 기원전 6세기 말 귀족들이 왕을 몰아내고 ①<input type="text" class="blank-input" data-answer="공화정" data-id="1" style="width:68px" placeholder="">을 세웠다. <em>Res Publica = 공공의 것</em>, 영어 <strong>Republic</strong>의 어원이다.</p>
+<br>
+<p>초기엔 귀족들이 ②<input type="text" class="blank-input" data-answer="원로원" data-id="2" style="width:68px" placeholder="">을 중심으로 집정관 등 주요 관직을 독차지했다. 그러나 평민들이 정복 전쟁에 참여하며 세력을 키워, 평민의 권리를 지키는 ③<input type="text" class="blank-input" data-answer="호민관" data-id="3" style="width:68px" placeholder="">을 뽑고 평민회를 세웠다.</p>
+<br>
+<blockquote>(교과서 원문: "기원전 8세기 무렵 로마는 이탈리아반도에서 작은 도시 국가로 출발하였다. 처음에는 왕정이었으나 기원전 6세기 말에 귀족들이 왕을 몰아내고 공화정을 세웠다. … 그 결과 평민들은 호민관을 뽑고 평민회를 세울 수 있었다." 비상교육 역사①(이병인) p.48)</blockquote>
+<br>
+<figure class="ws-fig"><img src="images/rome-step2.jpg" alt="왕관은 바닥에, 권력은 셋으로 — 왕을 몰아낸 시민이 원로원·집정관·호민관에 권력을 나눠 맡겼다(공화정의 시작)" loading="lazy"><figcaption>왕관은 바닥에, 권력은 셋으로 — 왕을 몰아낸 시민이 원로원·집정관·호민관에 권력을 나눠 맡겼다(공화정의 시작)</figcaption></figure>
+<br>
+<blockquote>💡 <strong>로마 직책, 오늘로 치면? (감 잡기용 — 똑같진 않아)</strong></blockquote>
+<br>
+<table>
+<tr><td>로마</td><td>한 일</td><td>오늘날 우리로 치면</td></tr>
+<tr><td><strong>공화정</strong></td><td>왕 없이, 시민이 뽑은 대표가 다스림</td><td><em>대한민국도 민주공화국</em> (헌법 제1조)</td></tr>
+<tr><td><strong>원로원</strong></td><td>정책을 정하는 최고 회의</td><td>국회와 비슷 (단, 로마는 귀족 모임)</td></tr>
+<tr><td><strong>집정관</strong></td><td>정치·군사 최고 책임자 (2명·임기 1년)</td><td>대통령과 비슷 (단, 2명이 서로 견제·딱 1년)</td></tr>
+<tr><td><strong>호민관</strong></td><td>평민 편에서 거부권 행사</td><td>국민 권익을 대변하는 자리</td></tr>
+</table>
+<br>
+<blockquote>⚠️ <strong>그대로 같진 않아</strong>: 로마 공화정은 <em>신분제 사회</em>라 여성·노예는 정치에서 빠졌고, 원로원도 귀족 모임이었어. "비슷한 점"으로 감만 잡고 <em>다른 점</em>도 같이 기억하자.</blockquote>
+<br>
+<hr>
+<br>
+<h2>📖 3단계: 공화정의 위기 — 전쟁이 남긴 빈부 격차</h2>
+<br>
+<p>기원전 3세기, 이탈리아반도를 통일한 로마는 ④<input type="text" class="blank-input" data-answer="카르타고" data-id="4" style="width:84px" placeholder="">와 지중해 해상권을 놓고 세 차례 <strong>포에니 전쟁</strong>을 벌여 승리하고, 지중해 세계를 지배했다.</p>
+<br>
+<p>그런데 전쟁이 남긴 <em>그늘</em>이 있었다.</p>
+<br>
+<blockquote>🎙️ 생각해 봐. 농민이 군대 가서 몇 년씩 전쟁하면 그 사이 <em>밭은 누가 갈아?</em> 황폐해지고, 빚지고, 땅을 팔지. 그 땅을 <em>귀족이 헐값에 사서</em> 노예 부리는 거대 농장을 만들어. 이게 ⑤<input type="text" class="blank-input" data-answer="라티푼디움" data-id="5" style="width:100px" placeholder="">(대농장)이야. 자영 농민은 몰락하고, 군대 갈 자격도 잃어. <strong>공화정의 뿌리(시민)가 무너진 거지.</strong></blockquote>
+<br>
+<p>호민관 ⑥<input type="text" class="blank-input" data-answer="그라쿠스" data-id="6" style="width:84px" placeholder=""> 형제는 자영 농민을 위한 토지 개혁을 시도했지만 귀족들의 반대로 실패하고 죽었다. 이후 기원전 1세기, 군사력을 앞세운 ⑦<input type="text" class="blank-input" data-answer="카이사르" data-id="7" style="width:84px" placeholder="">가 정권을 잡았으나, 독재에 반대한 세력에게 <strong>암살</strong>당했다(<em>"주사위는 던져졌다"</em>).</p>
+<br>
+<blockquote>(교과서 원문: "전쟁을 거치면서 로마의 귀족들은 토지를 많이 차지하여 노예를 이용한 대농장(라티푼디움)을 경영하였다. 반면 자영 농민들은 토지를 잃고 몰락하면서 로마 공화정에 위기가 찾아왔다. … 그라쿠스 형제는 … 개혁을 실시하였지만 귀족들의 반대로 실패하였다." 비상교육 역사①(이병인) p.48)</blockquote>
+<br>
+<figure class="ws-fig"><img src="images/rome-step3.jpg" alt="같은 전쟁, 다른 결말 — 군대 갔던 자영농은 빈 밭만 남아 몰락(왼쪽), 귀족은 노예 대농장(라티푼디움)으로 더 부유(오른쪽). 공화정의 뿌리가 흔들렸다" loading="lazy"><figcaption>같은 전쟁, 다른 결말 — 군대 갔던 자영농은 빈 밭만 남아 몰락(왼쪽), 귀족은 노예 대농장(라티푼디움)으로 더 부유(오른쪽). 공화정의 뿌리가 흔들렸다</figcaption></figure>
+<br>
+<blockquote>💡 <strong>오늘과 잇기 — 땅을 누가 갖느냐</strong> <em>(교과서 외 보충)</em></blockquote>
+<blockquote>그라쿠스 형제의 토지 개혁은 귀족 반대로 <em>실패</em>했어. 그런데 우리나라는 1950년 <strong>농지 개혁</strong>으로 소작농에게 땅을 나눠 <em>자기 땅을 가진 농민(자작농)</em>을 만들어 냈지. <em>토지를 누가 갖느냐</em>가 한 사회의 안정을 좌우해 — 로마는 개혁 실패가 공화정 위기로, 한국은 개혁 성공이 안정의 바탕이 됐어.</blockquote>
+<br>
+<hr>
+<br>
+<h2>📖 4단계: 제정의 시작 — 황제의 시대</h2>
+<br>
+<p>카이사르의 뒤를 이은 ⑧<input type="text" class="blank-input" data-answer="옥타비아누스" data-id="8" style="width:116px" placeholder="">는 정치적 혼란을 안정시키고 행정권·군사권을 차지했다. 원로원은 그에게 <em>'존엄한 자'</em>라는 뜻의 ⑨<input type="text" class="blank-input" data-answer="아우구스투스" data-id="9" style="width:116px" placeholder=""> 칭호를 주었고, 그는 황제나 다름없는 권력을 누렸다. 이때부터 공화정이 끝나고 황제가 다스리는 ⑩<input type="text" class="blank-input" data-answer="제정" data-id="10" style="width:60px" placeholder="">이 시작되었다(기원전 27).</p>
+<br>
+<p>이후 로마는 약 200년간 <em>'로마의 평화'</em> — ⑪<input type="text" class="blank-input" data-answer="팍스 로마나" data-id="11" style="width:116px" placeholder="">(Pax Romana) — 라 불리는 번영을 누렸다.</p>
+<br>
+<p>그러나 2세기 말부터 게르만족이 침입해 쇠퇴하기 시작했다. 4세기 초, ⑫<input type="text" class="blank-input" data-answer="콘스탄티누스" data-id="12" style="width:116px" placeholder=""> 대제가 수도를 콘스탄티노폴리스로 옮기며 제국을 다시 세우려 했지만, 로마는 4세기 말 동서로 분리되었다. 동로마(비잔티움)는 1,000여 년 더 이어졌으나, <strong>서로마는 게르만족의 침입으로 멸망</strong>했다(⑬<input type="text" class="blank-input" data-answer="476" data-id="13" style="width:68px" placeholder="">년).</p>
+<br>
+<blockquote>(교과서 원문: "옥타비아누스는 … 원로원은 그에게 '아우구스투스(존엄한 자)'라는 칭호를 주었고 … 이때부터는 로마의 공화정이 끝나고 황제가 다스리는 제정이 시작되었다(기원전 27). … 서로마 제국은 게르만족의 침입으로 멸망하였다(476)." 비상교육 역사①(이병인) p.49)</blockquote>
+<br>
+<figure class="ws-fig"><img src="images/rome-step4.jpg" alt="공화정의 끝, 황제의 시대 — 옥타비아누스가 아우구스투스가 되며 1인 지배(제정)가 시작됐다" loading="lazy"><figcaption>공화정의 끝, 황제의 시대 — 옥타비아누스가 아우구스투스가 되며 1인 지배(제정)가 시작됐다</figcaption></figure>
+<br>
+<blockquote>⭐ <strong>Caesar → Kaiser → Tsar — 1,500년을 건너간 이름</strong> <em>(한호림 『꼬리에 꼬리를 무는 영단어』 패턴)</em></blockquote>
+<blockquote>암살당한 카이사르의 <em>이름</em>은 2,000년 후 유럽·러시아 황제 칭호가 됐다. 독일 <strong>Kaiser</strong>(카이저), 러시아 <strong>Tsar</strong>(차르) — 둘 다 <em>Caesar</em>의 다른 발음. <strong>로마는 끝나도 로마의 이름은 안 끝났다.</strong></blockquote>
+<br>
+<hr>
+<br>
+<h2>📖 5단계: 로마의 문화 — 실용의 제국</h2>
+<br>
+<blockquote>🎙️ 그리스가 <em>"어떻게 사는 게 옳은가"</em>를 따지는 철학·예술의 나라였다면, 로마는 <em>"이 넓은 제국을 실제로 어떻게 굴리지?"</em>를 푼 나라야. 그래서 로마 문화의 키워드는 딱 하나 — <strong>실용</strong>. 멋이 아니라 <em>운영</em>에 강했지. 실용은 크게 두 군데서 드러나.</blockquote>
+<br>
+<p>넓은 제국을 <em>실제로 다스리기 위해</em> 로마는 실용적인 문화를 발달시켰다.</p>
+<br>
+<p><strong>① 법 — 다양한 민족을 하나의 규칙으로 (통치의 실용)</strong></p>
+<p>공화정 초기, 문서 형식을 갖춘 성문법인 ⑭<input type="text" class="blank-input" data-answer="12표법" data-id="14" style="width:84px" placeholder="">을 만들었다. 처음엔 로마 시민에게만 적용하는 <em>시민법</em>이었으나, 제국이 커지자 <em>모든 민족에게 적용하는</em> <strong>만민법</strong>으로 넓어졌다. 훗날 동로마의 『유스티니아누스 법전』으로 집대성되어 <em>유럽 법률의 토대</em>가 되었다.</p>
+<blockquote>(교과서 원문: "로마는 공화정 초기에 문서의 형식을 갖춘 성문법인 12표법을 만들었다. … 동로마 제국에서는 로마의 법률을 모아 『유스티니아누스 법전』을 만들었고, 이는 유럽 법률의 토대가 되었다." 비상교육 역사①(이병인) p.50)</blockquote>
+<br>
+<p><strong>② 토목·건축 — 넓은 땅을 잇고 먹이고 씻기다 (생활의 실용)</strong></p>
+<p>콘크리트·아치·돔 기술로 콜로세움·판테온 같은 거대 건축을 세웠다. <em>8만 km에 이르는 도로망</em>("모든 길은 로마로")으로 군대·물자·소식이 빠르게 오갔고, <em>수도교</em>로 도시까지 물을 끌어와 공중목욕탕·상하수도를 갖췄다. <em>보여주기</em>가 아니라 <em>실제로 쓰려고</em> 만든 시설이었다.</p>
+<br>
+<blockquote>🏛️ <strong>2,000년 전 건축이 아직 서 있다 — 진짜 로마 유물</strong></blockquote>
+<br>
+<div class="ws-figrow"><figure class="ws-figrow-item"><img src="images/rome-colosseum.jpg" alt="콜로세움(로마) — 아치를 쌓아 만든 거대 원형 경기장" loading="lazy"><figcaption>콜로세움(로마) — 아치를 쌓아 만든 거대 원형 경기장</figcaption></figure><figure class="ws-figrow-item"><img src="images/rome-aqueduct.jpg" alt="퐁 뒤 가르 수도교(프랑스) — 도시로 물을 보낸 상수도" loading="lazy"><figcaption>퐁 뒤 가르 수도교(프랑스) — 도시로 물을 보낸 상수도</figcaption></figure><figure class="ws-figrow-item"><img src="images/rome-pantheon.jpg" alt="판테온 돔 내부(로마) — 콘크리트·돔 건축 기술의 정점" loading="lazy"><figcaption>판테온 돔 내부(로마) — 콘크리트·돔 건축 기술의 정점</figcaption></figure></div>
+<br>
+<blockquote>📷 사진: Wikimedia Commons (콜로세움·수도교 CC BY-SA · 판테온 CC0)</blockquote>
+<br>
+<hr>
+<br>
+<h2>📖 6단계: 크리스트교의 등장 — 박해에서 공인으로</h2>
+<br>
+<p>로마 지배하의 팔레스타인에서 예수는 <em>민족·신분에 상관없이 모두 평등</em>하며 누구나 사랑과 믿음으로 구원받을 수 있다고 가르쳤다. 그 가르침이 퍼져 <strong>크리스트교</strong>가 성립되고, 여성·하층민·노예 등 소외된 사람들에게 널리 퍼졌다.</p>
+<br>
+<p>크리스트교도들은 황제 숭배를 거부해 박해받았으나, 신자는 계속 늘었다. 결국 콘스탄티누스 대제는 제국 안정을 위해 ⑮<input type="text" class="blank-input" data-answer="밀라노 칙령" data-id="15" style="width:116px" placeholder="">을 내려 크리스트교를 <strong>공인</strong>했다(313). 4세기 말엔 <em>국교</em>가 되었다.</p>
+<br>
+<blockquote>(교과서 원문: "콘스탄티누스 대제는 제국의 안정을 위해 밀라노 칙령을 내려 크리스트교를 공인하였다(313). 4세기 말 로마 제국은 크리스트교를 국교로 인정하였고 …" 비상교육 역사①(이병인) p.51)</blockquote>
+<br>
+<figure class="ws-fig"><img src="images/rome-step6.jpg" alt="박해에서 공인으로 — 숨어 예배하던 크리스트교가 밀라노 칙령(313)으로 합법이 됐다" loading="lazy"><figcaption>박해에서 공인으로 — 숨어 예배하던 크리스트교가 밀라노 칙령(313)으로 합법이 됐다</figcaption></figure>
+<br>
+<blockquote>💡 <strong>공인(公認) ≠ 국교(國敎)</strong> — <em>공인</em>(313, 밀라노 칙령)은 "믿어도 처벌 안 함(합법)", <em>국교</em>(4세기 말)는 "로마의 공식 종교". 두 단계를 헷갈리지 말자.</blockquote>
+<br>
+<blockquote>🎙️ <strong>'실용의 제국'이 종교까지 퍼뜨렸다</strong> — 크리스트교가 빠르게 번진 데는 5단계의 <em>실용 유산</em>이 한몫했어. <em>팍스 로마나</em>의 안정, <em>8만 km 도로</em>, 제국 공용어(그리스어·라틴어) 덕에 가르침이 멀리·빠르게 퍼졌거든. 게다가 콘스탄티누스의 공인도 <em>쪼개진 제국을 하나로 묶으려는</em> 통치의 실용이었어 — 5단계와 6단계가 <em>실용</em>이라는 한 줄로 이어지는 거야.</blockquote>
+<br>
+<hr>
+<br>
+<h2>🔗 핵심 정리 — 1,000년 한눈에</h2>
+<br>
+<pre class="code-block">
+작은 도시 로마(B.C.8C) → 왕정 → 공화정(B.C.509)
+
+        ↓ 포에니 전쟁 → 지중해 패권
+
+자영농 몰락·라티푼디움 → 공화정 위기
+
+        ↓ 그라쿠스(개혁·실패) → 카이사르(군사력·암살)
+
+옥타비아누스(아우구스투스) → 제정 시작(B.C.27) → 팍스 로마나
+
+        ↓ 콘스탄티누스(크리스트교 공인·313)
+
+서로마 멸망(476) → 유산: 법·건축·도로
+
+</pre>
+<br>
+<blockquote>💡 <strong>오늘의 한 줄</strong>: 로마는 <em>제도가 무너진 게 아니라, 시민이 정치를 멈춘 순간</em> 권력이 황제 1인에게 '매였다'(종속). <strong>견제가 사라지면 자유도 사라진다.</strong> 그 1,000년이 오늘 우리의 <em>법·건축·도로</em>를 남겼다.</blockquote>
+<br>
+<hr>
+<br>
+<h2>✏️ 활동</h2>
+<br>
+<h3>활동 1 (개인): 너는 누구에 가까운가? — 4인물</h3>
+<blockquote>공화정 위기 앞에서 4명이 각자 다른 답을 냈다. 누구의 선택에 가까운가? 점수(1~5)와 이유 1줄.</blockquote>
+<br>
+<table>
+<tr><td>인물</td><td>한 줄 요약</td><td>점수</td><td>이유</td></tr>
+<tr><td>그라쿠스 형제</td><td>옳은 일이 죽음을 부르네 (개혁·암살)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-1" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-2" style="width:240px" placeholder=""></td></tr>
+<tr><td>카이사르</td><td>내 길을 가고 죽었네 (루비콘·암살)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-3" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-4" style="width:240px" placeholder=""></td></tr>
+<tr><td>옥타비아누스</td><td>기다리고 완성했네 (제정 시작)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-5" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-6" style="width:240px" placeholder=""></td></tr>
+<tr><td>콘스탄티누스</td><td>내가 믿음을 만들었네 (크리스트교 공인)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-7" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" style="width:240px" placeholder=""></td></tr>
+</table>
+<br>
+<h3>활동 2 (개인): 로마 ○× 퀴즈</h3>
+<blockquote>다음이 맞으면 ○, 틀리면 ×</blockquote>
+<br>
+<table>
+<tr><td>번호</td><td>문장</td><td>○ / ×</td></tr>
+<tr><td>1</td><td>카이사르가 로마의 첫 황제(아우구스투스)다</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>콘스탄티누스 대제가 밀라노 칙령으로 크리스트교를 공인했다</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>호민관은 원로원·집정관의 결정에 거부권을 행사할 수 있었다</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>서로마가 멸망한 원인은 오직 게르만족의 침입 하나뿐이다</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+</table>
+<br>
+<h3>활동 3 (개인): 오늘 우리에게 남은 로마 찾기 🔍</h3>
+<blockquote>지난 24시간 안에서 <em>로마가 남긴 것</em> 3가지를 찾아보자. (힌트: 법·도로·건축·아치·콘크리트)</blockquote>
+<br>
+<table>
+<tr><td>#</td><td>무엇</td><td>어떤 면이 로마?</td></tr>
+<tr><td>1</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-10" style="width:240px" placeholder=""></td></tr>
+<tr><td>2</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-11" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-12" style="width:240px" placeholder=""></td></tr>
+<tr><td>3</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-13" style="width:240px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-14" style="width:240px" placeholder=""></td></tr>
+</table>
+<br>
+<h3>활동 4 (모둠): 콘스탄티누스는 믿어서? 이용해서? — 찬반 토론 🗣️</h3>
+<blockquote>콘스탄티누스의 크리스트교 공인(313)을 두고 두 입장이 맞선다. 짝/모둠과 한쪽을 골라 <em>근거</em>를 채워 보자.</blockquote>
+<br>
+<table>
+<tr><td>입장</td><td>주장</td><td>내가 댈 근거</td></tr>
+<tr><td>🕊️ 종교 자유파</td><td>박해를 끝내고 누구나 자유롭게 믿게 한 <em>관용 선언</em>이다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-15" style="width:240px" placeholder=""></td></tr>
+<tr><td>👑 정치 도구파</td><td>기독교를 이용해 <em>제국을 통합</em>하고 황제 권력을 키웠다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-16" style="width:240px" placeholder=""></td></tr>
+</table>
+<br>
+<blockquote>❓ 핵심 질문 ① 콘스탄티누스는 정말 <em>믿어서</em> 도왔을까, <em>이용해서</em> 다스리려 했을까?</blockquote>
+<blockquote>❓ 핵심 질문 ② 목적이 정치였더라도, 오늘 우리가 누리는 <em>종교의 자유</em>에 밀라노 칙령이 한 역할은?</blockquote>
+<br>
+<hr>
+<br>
+<h2>🔍 더 생각해 보기 — 내 생각 쓰기 ✍️ <em>(제출에 포함돼요)</em></h2>
+<blockquote>정답이 정해진 문제가 아니야. <em>네 경험과 판단</em>을 솔직하게 써 보자. 검색·AI는 <em>참고만</em> 하고, <strong>마지막 문장은 네 생각</strong>으로 끝내자.</blockquote>
+<br>
+<p><strong>Q1. 오늘로 잇기 — 견제가 사라지면</strong></p>
+<p>로마 공화정은 '시민이 주인'이라면서도 견제가 무너지자 황제 1인에게 권력이 넘어갔어. <em>너의 학교·동네·온라인</em> 등에서 '한쪽에 힘이 너무 쏠려서 문제'라고 느낀 경험이나 사례가 있어? 로마와 연결해 써 보자.</p>
+<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<br>
+<p><strong>Q2. 너라면 — 카이사르 vs 옥타비아누스</strong></p>
+<p>카이사르는 <em>정면 돌파</em>하다 암살당했고, 옥타비아누스는 <em>형식을 지키며</em> 실권을 잡았어. 옳은 일을 이루려 할 때 <em>너라면</em> 어느 방식에 더 가까울까? 반대편의 위험도 한 가지 인정한 뒤 네 선택과 이유를 써 보자.</p>
+<textarea class="essay-input" data-id="essay-2" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+</div>
+<script>
+const TB=15, TOX=4, GT=19;
+let usedReveal=false;
+function selectOX(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function selectChoice(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+function check(){
+  let bc=0, oxc=0;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    const a=norm(el.dataset.answer), u=norm(el.value);
+    if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
+    const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
+    if(isCorrect){
+      el.classList.add('correct');el.classList.remove('wrong');
+      bc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const sel=grp.dataset.selected, ans=grp.dataset.answer;
+    if(!sel) return;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');oxc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');bc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
+}
+function reveal(){
+  usedReveal=true;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const ans=grp.dataset.answer;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.getElementById('score').textContent=TB;
+  document.getElementById('ox-score').textContent=TOX;
+  document.getElementById('total-score').textContent=GT;
+  document.getElementById('pct').textContent=100;
+}
+function reset(){
+  usedReveal=false;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value='';el.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.ox-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
+}
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+function _persist(){
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const si=document.querySelectorAll('.student-info input');
+  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  try{ localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+}
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
+function loadProgress(){
+  let saved; try{ saved=localStorage.getItem('ws_'+document.title); }catch(e){}
+  if(!saved) return;
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  if(info){
+    const inputs=document.querySelectorAll('.student-info input');
+    if(info.class&&inputs[0]) inputs[0].value=info.class;
+    if(info.number&&inputs[1]) inputs[1].value=info.number;
+    if(info.name&&inputs[2]) inputs[2].value=info.name;
+  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
+}
+// 모든 입력칸에서 Enter→다음칸 이동
+const allInputs=[...document.querySelectorAll('.blank-input')];
+allInputs.forEach((el,i)=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
+  });
+});
+// 제출
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){
+  const ans={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  });
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+  });
+  return ans;
+}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+function submitResult(){
+  if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
+  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
+  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
+  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
+  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
+  check(); // 먼저 채점
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
+  const answers=collectAnswers();
+  const data={
+    type:'final',
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
+  };
+  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(()=>{
+    document.getElementById('submitBtn').textContent='✅ 제출 완료';
+    document.getElementById('submitBtn').classList.add('btn-submitted');
+    setTimeout(()=>{
+      document.getElementById('submitBtn').textContent='📤 재제출';
+      document.getElementById('submitBtn').classList.remove('btn-submitted');
+    }, 2000);
+  })
+  .catch(e=>alert('제출 실패: '+e));
+}
+// 페이지 로드 시 저장된 진행 불러오기
+loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+});
+document.querySelectorAll('.student-info input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+</script>
+</body>
+</html>

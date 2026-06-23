@@ -148,41 +148,26 @@ blockquote {
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
 <style id="cd-theme">
-/* ===== 통합 테마 (apply_theme.py) ===== */
+/* ===== 통합 테마: 수묵화 (동아시아 고대) (apply_theme.py) ===== */
 body{ background:#f3ecdb !important; color:#1b160d !important; font-family:'Gowun Batang','Nanum Myeongjo',serif !important; }
-.container{
-  background:#faf5e9 !important;
-  background-image:
-    radial-gradient(circle at 8% -2%, rgba(27,22,13,0.07), transparent 34%),
-    radial-gradient(circle at 96% 4%, rgba(27,22,13,0.05), transparent 26%) !important;
-  border:1px solid #cdbb95 !important; box-shadow:0 3px 26px rgba(40,33,20,0.16) !important;
-}
+.container{ position:relative; background:#faf5e9 !important;
+  background-image:radial-gradient(circle at 8% -2%, rgba(0,0,0,0.05), transparent 32%), radial-gradient(circle at 96% 4%, rgba(0,0,0,0.04), transparent 24%) !important;
+  border:1px solid #cdbb95 !important; box-shadow:0 3px 26px rgba(20,20,20,0.14) !important; overflow:hidden; }
 p,li,td,th,label,span,div{ font-family:'Gowun Batang','Nanum Myeongjo',serif; }
-/* 제목 — 진한 먹빛 + 먹 획 밑줄(가독 최우선) */
-h1{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#1b160d !important; font-weight:400 !important;
-     letter-spacing:1px; position:relative; }
-h1::after{ content:''; display:block; width:130px; height:7px; margin:14px auto 4px;
-  background:linear-gradient(90deg, transparent, #3a3326 18%, #3a3326 78%, transparent);
-  border-radius:4px; opacity:.85; }
+h1{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#1b160d !important; font-weight:700 !important; letter-spacing:1px; position:relative; }
+h1::after{ content:''; display:block; width:130px; height:7px; margin:14px auto 4px; background:linear-gradient(90deg, transparent, #3a3326 18%, #3a3326 78%, transparent); border-radius:4px; opacity:.85; }
 h2,h3,h4{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#3a3326 !important; }
 h2{ border-left:5px solid #9a3b2e !important; padding-left:12px !important; }
-strong,b,.accent{ color:#9a3b2e !important; }
-a{ color:#9a3b2e !important; }
+strong,b,.accent,a{ color:#9a3b2e !important; }
 .badge,.section-label,.hero .badge{ background:#9a3b2e !important; color:#faf5e9 !important; border-color:#9a3b2e !important; }
-table,th,td{ border-color:#cdbb95 !important; }
-th{ background:#ece0c6 !important; color:#3a3326 !important; }
+table,th,td{ border-color:#cdbb95 !important; } th{ background:#ece0c6 !important; color:#3a3326 !important; }
 .blank-input{ background:#fffdf6 !important; border:1px solid #cdbb95 !important; color:#1b160d !important; }
-blockquote,[class*="callout"],[class*="call"]{ background:#efe7d4 !important; border-left:4px solid #9a3b2e !important; color:#3a3326 !important; }
-/* 작은 인장 — 의미있는 전통 요소(필러 이미지 대체) */
-.container::before{ content:'印'; position:absolute; top:14px; right:16px; font-family:'Song Myung','Nanum Myeongjo',serif;
-  color:#faf5e9; background:#9a3b2e; width:34px; height:34px; line-height:34px; text-align:center;
-  border-radius:5px; font-size:18px; box-shadow:0 1px 4px rgba(0,0,0,.25); z-index:5; }
-.container{ position:relative; }
-</style>
+blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:4px solid #9a3b2e !important; color:#3a3326 !important; }
+.container::before{ content:'印'; position:absolute; top:14px; right:16px; font-family:'Song Myung','Nanum Myeongjo',serif; color:#faf5e9; background:#9a3b2e; width:34px; height:34px; line-height:34px; text-align:center; border-radius:5px; font-size:18px; box-shadow:0 1px 4px rgba(0,0,0,.22); z-index:5; }
 
+</style>
 </head>
 <body>
 <div class="container">
