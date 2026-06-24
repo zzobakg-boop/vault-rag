@@ -154,8 +154,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 27-28차시 — '테러보다 실업이 더 무섭다' (실업과 실업률)</h1><p class="hero-subtitle">'테러보다 실업이 더 무섭다' — 일자리가 없으면 무슨 일이?</p><div class="hero-keywords"><span class="hero-keyword">실업 = 일할 능력·의사 있으나 일자리 없음</span><span class="hero-keyword">원인 3가지(경기·구조·마찰)</span><span class="hero-keyword">실업률 = 실업자 ÷ 경제활동인구 ×100</span><span class="hero-keyword">개인 고통 + 사회 악순환</span></div><div class="hero-hook">프랑스에서는 '테러보다 실업이 더 무섭다'는 말이 나올 정도로 일자리 문제가 심각했대. 좀 과한 말 같지? 그런데 일자리를 잃으면 소득만 끊기는 게 아니야 — 자신감도, 미래 계획도 흔들려. 게다가 한 사람의 실업은 그 사람만의 문제가 아니라 *우리 모두의 경제*를 함께 끌어내려. 오늘은 '실업'이 왜 무섭고, 실업률은 어떻게 재는지 알아보자.</div><img class="hero-image" src="images/27-28_실업과실업률_표지.png" alt="표지"></section>
-<figure class="ws-fig"><video class="ws-fig-video" controls preload="metadata" playsinline><source src="images/27-28_실업_악순환.mp4" type="video/mp4">동영상을 재생할 수 없습니다.</video><figcaption>🎬 실업의 <strong>악순환</strong> — ①실업자 증가 → ②소비 감소 → ③기업 생산 감소 → ④고용 감소 → 또 실업. 한 사람의 실업이 사회 전체를 끌어내리는 과정. 음성 설명 포함(생성형 AI 아님).</figcaption></figure>
+  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 27-28차시 — '테러보다 실업이 더 무섭다' (실업과 실업률)</h1><p class="hero-subtitle">'테러보다 실업이 더 무섭다' — 일자리가 없으면 무슨 일이?</p><div class="hero-keywords"><span class="hero-keyword">실업 = 일할 능력·의사 있으나 일자리 없음</span><span class="hero-keyword">원인 3가지(경기·구조·마찰)</span><span class="hero-keyword">실업률 = 실업자 ÷ 경제활동인구 ×100</span><span class="hero-keyword">개인 고통 + 사회 악순환</span></div><div class="hero-hook">프랑스에서는 '테러보다 실업이 더 무섭다'는 말이 나올 정도로 일자리 문제가 심각했대. 좀 과한 말 같지? 그런데 일자리를 잃으면 소득만 끊기는 게 아니야 — 자신감도, 미래 계획도 흔들려. 게다가 한 사람의 실업은 그 사람만의 문제가 아니라 *우리 모두의 경제*를 함께 끌어내려. 오늘은 '실업'이 왜 무섭고, 실업률은 어떻게 재는지 알아보자.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/11 · OX: <span id="ox-score">0</span>/5
@@ -228,7 +227,7 @@ blockquote {
 <br>
 <h2>💭 더 생각해 보기</h2>
 <p>'전업주부는 일자리가 없어도 실업자가 아니다'라고 한다. 왜 그럴까? '일할 의사'와 '비경제 활동 인구'라는 말을 넣어 한두 문장으로 써 보자.</p>
-<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>
 <script>
 const TB=11, TOX=5, GT=16;
@@ -411,6 +410,12 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)

@@ -154,8 +154,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 시장경제와 가격 23-24차시 — 가격은 왜 '신호등'일까? (가격의 기능)</h1><p class="hero-subtitle">가격은 왜 '신호등'일까? — 가격의 두 가지 역할</p><div class="hero-keywords"><span class="hero-keyword">가격 = 의사 결정의 신호등</span><span class="hero-keyword">가격 = 자원을 가장 원하는 사람에게 배분</span><span class="hero-keyword">신호 무시하면 → 합리적 선택 실패</span><span class="hero-keyword">인위적 가격 통제의 함정</span></div><div class="hero-hook">콘서트 티켓이 10만 원인데 표는 100장뿐, 사고 싶은 사람은 1만 명이야. 누가 갖게 될까? '가위바위보'도, '오래 줄 선 사람'도 아니야 — 결국 가격이 정리해 줘. 비싸지면 '꼭 가고 싶은 사람'만 남거든. 가격은 단순한 '숫자'가 아니라, 시장을 움직이는 신호등이자 교통경찰이야. 오늘은 가격이 우리 대신 어떤 '일'을 하는지 들여다보자.</div><img class="hero-image" src="images/23-24_가격의기능_표지.png" alt="표지"></section>
-<figure class="ws-fig"><video class="ws-fig-video" controls preload="metadata" playsinline><source src="images/23-24_가격의기능_signal-ceiling.mp4" type="video/mp4">동영상을 재생할 수 없습니다.</video><figcaption>🎬 가격의 두 얼굴 — 움직이는 그래프. ①가격이 오르면 <strong>소비자는 수요량↓·생산자는 공급량↑</strong>(같은 가격, 정반대 신호) → ②정부가 균형보다 낮게 <strong>가격 상한선</strong>을 그으면 사려는 양 &gt; 팔려는 양 → <strong>초과수요(품귀)</strong>. 음성 설명 포함·정확한 좌표 애니메이션(생성형 AI 아님).</figcaption></figure>
+  <section class="hero-section"><h1 class="hero-title">사회② 시장경제와 가격 23-24차시 — 가격은 왜 '신호등'일까? (가격의 기능)</h1><p class="hero-subtitle">가격은 왜 '신호등'일까? — 가격의 두 가지 역할</p><div class="hero-keywords"><span class="hero-keyword">가격 = 의사 결정의 신호등</span><span class="hero-keyword">가격 = 자원을 가장 원하는 사람에게 배분</span><span class="hero-keyword">신호 무시하면 → 합리적 선택 실패</span><span class="hero-keyword">인위적 가격 통제의 함정</span></div><div class="hero-hook">콘서트 티켓이 10만 원인데 표는 100장뿐, 사고 싶은 사람은 1만 명이야. 누가 갖게 될까? '가위바위보'도, '오래 줄 선 사람'도 아니야 — 결국 가격이 정리해 줘. 비싸지면 '꼭 가고 싶은 사람'만 남거든. 가격은 단순한 '숫자'가 아니라, 시장을 움직이는 신호등이자 교통경찰이야. 오늘은 가격이 우리 대신 어떤 '일'을 하는지 들여다보자.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/8 · OX: <span id="ox-score">0</span>/4
@@ -221,7 +220,7 @@ blockquote {
 <br>
 <h2>💭 더 생각해 보기</h2>
 <p>인기 가수의 콘서트 표를 '추첨'으로 나눠 줄 때와 '가격'으로 나눠 줄 때를 비교해 보자. 가격으로 나누면 어떤 점이 좋고, 어떤 점이 아쉬울까? 각각 한 가지씩 써 보자.</p>
-<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>
 <script>
 const TB=8, TOX=4, GT=12;
@@ -404,6 +403,12 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)

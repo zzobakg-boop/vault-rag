@@ -393,6 +393,12 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)

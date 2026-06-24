@@ -225,7 +225,7 @@ blockquote {
 <br>
 <h2>💭 더 생각해 보기</h2>
 <p>'7세기 초'에 동아시아와 서아시아에서 <em>거의 동시에</em> 일어난 큰 변화를 각각 하나씩 들고, 두 사건의 연도를 비교해 보자.</p>
-<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>
 <script>
 const TB=14, TOX=5, GT=19;
@@ -408,6 +408,12 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
