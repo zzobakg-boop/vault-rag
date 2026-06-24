@@ -154,7 +154,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 29-30차시 — 왜 옷도 만들 수 있는데 중국에서 옷을 사 올까? (국제 거래와 비교 우위)</h1><p class="hero-subtitle">왜 우리는 옷도 만들 수 있는데 중국에서 옷을 사 올까?</p><div class="hero-keywords"><span class="hero-keyword">국제 거래 = 국경 넘는 거래·상호 의존</span><span class="hero-keyword">필요 이유 = 자연환경·생산요소 차이</span><span class="hero-keyword">비교 우위 상품에 특화 → 수출</span><span class="hero-keyword">절대 우위 ≠ 비교 우위</span></div><div class="hero-hook">네가 입은 옷, 손에 든 폰, 아침에 먹은 바나나 — 'made in' 라벨을 보면 세계 곳곳이야. 우리나라도 옷을 만들 수 있는데 왜 굳이 중국 옷을 사 올까? 답은 '비교 우위'에 있어. 모두가 다 잘 만들려 하지 않고, 서로 '제일 잘하는 것'에 집중해서 바꾸면 모두가 이득이거든. 오늘은 나라들이 왜, 어떻게 거래하는지 알아보자.</div><img class="hero-image" src="images/29-30_국제거래와비교우위_표지.png" alt="표지"></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 29-30차시 — 왜 옷도 만들 수 있는데 중국에서 옷을 사 올까? (국제 거래와 비교 우위)</h1><p class="hero-subtitle">왜 우리는 옷도 만들 수 있는데 중국에서 옷을 사 올까?</p><div class="hero-keywords"><span class="hero-keyword">국제 거래 = 국경 넘는 거래·상호 의존</span><span class="hero-keyword">필요 이유 = 자연환경·생산요소 차이</span><span class="hero-keyword">비교 우위 상품에 특화 → 수출</span><span class="hero-keyword">절대 우위 ≠ 비교 우위</span></div><div class="hero-hook">네가 입은 옷, 손에 든 폰, 아침에 먹은 바나나 — 'made in' 라벨을 보면 세계 곳곳이야. 우리나라도 옷을 만들 수 있는데 왜 굳이 중국 옷을 사 올까? 답은 '비교 우위'에 있어. 모두가 다 잘 만들려 하지 않고, 서로 '제일 잘하는 것'에 집중해서 바꾸면 모두가 이득이거든. 오늘은 나라들이 왜, 어떻게 거래하는지 알아보자.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/10 · OX: <span id="ox-score">0</span>/5
@@ -227,7 +227,7 @@ blockquote {
 <br>
 <h2>💭 더 생각해 보기</h2>
 <p>우리나라가 컴퓨터와 옷을 모두 중국보다 잘 만든다고 하자. 그래도 옷을 중국에서 수입하는 것이 이득인 까닭은 무엇일까? '비교 우위'와 '특화'라는 말을 넣어 한두 문장으로 써 보자.</p>
-<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>
 <script>
 const TB=10, TOX=5, GT=15;
@@ -410,6 +410,12 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)

@@ -141,6 +141,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_figrow = False  # 가로 비교 figure 행 (:::figrow ... :::)
     figrow_items = []
     essay_count = 0  # 서술형 textarea 수 (제출 수합·세특용 data-id essay-N)
+    last_heading = ''  # 가장 최근 heading (essay data-label용·2026-06-24)
+    def _hlabel(t):
+        return t.replace('*', '').replace('`', '').replace('#', '').replace('"', '').replace('_', '').strip()[:40]
 
     for line in lines:
         stripped = line.strip()
@@ -227,7 +230,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         # 빈 div (서술형 답안 칸) → 서술형 textarea로 변환 (제출 수합·세특용 data-id essay-N)
         if '<div style="height:' in stripped:
             essay_count += 1
-            html_parts.append(f'<textarea class="essay-input" data-id="essay-{essay_count}" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>')
+            elbl = last_heading or f'서술{essay_count}'
+            html_parts.append(f'<textarea class="essay-input" data-id="essay-{essay_count}" data-label="{elbl}" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>')
             continue
 
         # 반/번/이름 줄은 학생 정보라 빈칸 매칭 스킵
@@ -281,10 +285,13 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
 
         # 헤딩
         if stripped.startswith('#### '):
+            last_heading = _hlabel(stripped[5:])
             html_parts.append(f'<h4>{inline(stripped[5:])}</h4>')
         elif stripped.startswith('### '):
+            last_heading = _hlabel(stripped[4:])
             html_parts.append(f'<h3>{inline(stripped[4:])}</h3>')
         elif stripped.startswith('## '):
+            last_heading = _hlabel(stripped[3:])
             html_parts.append(f'<h2>{inline(stripped[3:])}</h2>')
         elif stripped.startswith('# '):
             html_parts.append(f'<h1>{inline(stripped[2:])}</h1>')
