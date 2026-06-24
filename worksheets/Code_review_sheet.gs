@@ -83,11 +83,13 @@ function buildReviewSheet() {
     if (idx['답(JSON)'] != null && row[idx['답(JSON)']]) {
       try { ans = JSON.parse(row[idx['답(JSON)']]); } catch (e) { ans = {}; }
     }
-    if (Object.keys(ans).length) {
-      Object.keys(ans).forEach(function (k) {
+    var labels = ans['__labels'] || {};   // 제작 시점 문항 라벨(있으면 act-N 대신 표시)
+    var ansKeys = Object.keys(ans).filter(function (k) { return k !== '__labels'; });
+    if (ansKeys.length) {
+      ansKeys.forEach(function (k) {
         var v = ans[k];
         if (v === '' || v == null) return;
-        block.push([k, String(v)]);
+        block.push([labels[k] || k, String(v)]);
       });
     } else {
       answerCols.forEach(function (c) {
