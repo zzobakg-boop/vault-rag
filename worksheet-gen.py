@@ -34,8 +34,26 @@ def strip_obsidian_artifacts(text, teacher=False):
         act_counter[0] += 1
         # [학생작성] = 기본 240px / [학생작성:N] = 폭 N px (짧은 단답 칸용·6/18 추가·하위호환)
         w = m.group(1) if m.group(1) else '240'
+        # 2026-06-24: 같은 줄 문맥을 data-label로 — 수합 시 답(JSON) __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경/재배포 불요)
+        s = m.string
+        ls = s.rfind('\n', 0, m.start()) + 1
+        le = s.find('\n', m.start()); le = len(s) if le == -1 else le
+        lbl = re.sub(r'\[학생작성(?::\d+)?\]', '', s[ls:le])
+        lbl = re.sub(r'[*_`|>#]', '', lbl)
+        lbl = re.sub(r'\(\s*[　\s]*\)', '', lbl)
+        lbl = re.sub(r'\s+', ' ', lbl).strip(' -–—·:|"\'').strip()[:40]
+        if not lbl:
+            # 표 셀 등 같은 줄이 비면 가장 가까운 앞 heading을 라벨로
+            for prev in reversed(s[:ls].split('\n')):
+                hm = re.match(r'^\s{0,3}#{2,4}\s+(.*)', prev)
+                if hm:
+                    lbl = re.sub(r'[*_`#]', '', hm.group(1)).strip()[:40]
+                    break
+            if not lbl:
+                lbl = f'활동{act_counter[0]}'
+        lbl = lbl.replace('"', '“')
         return (f'<input type="text" class="blank-input activity-input no-score" '
-                f'data-id="act-{act_counter[0]}" style="width:{w}px" placeholder="">')
+                f'data-id="act-{act_counter[0]}" data-label="{lbl}" style="width:{w}px" placeholder="">')
     text = re.sub(r'\[학생작성(?::(\d+))?\]', _activity_sub, text)
     return text
 
@@ -830,6 +848,12 @@ function collectAnswers(){{
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   }});
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={{}};
+  document.querySelectorAll('[data-label]').forEach(el=>{{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  }});
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }}
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
