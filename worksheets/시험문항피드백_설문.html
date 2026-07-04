@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>시험 문항 피드백 (5분 설문)</title>
+<style>
+:root{--accent:#4f6df5;--bg:#f6f7fb;--card:#fff;--ink:#26282e;--sub:#6b7080;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;}
+.container{max-width:720px;margin:0 auto;padding:28px 18px 80px;}
+.hero{background:linear-gradient(135deg,#4f6df5,#7b5cf0);color:#fff;border-radius:16px;padding:28px 24px;margin-bottom:22px;}
+.hero h1{font-size:1.5rem;margin-bottom:8px;}
+.hero p{font-size:.95rem;opacity:.92;}
+.card{background:var(--card);border-radius:14px;padding:22px 20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.card h2{font-size:1.06rem;margin-bottom:6px;}
+.card .hint{font-size:.85rem;color:var(--sub);margin-bottom:14px;}
+.qnum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:8px;}
+.qnum-grid label{display:flex;align-items:center;justify-content:center;border:1.5px solid #d8dbe6;border-radius:10px;padding:10px 0;cursor:pointer;font-weight:600;user-select:none;}
+.qnum-grid input{display:none;}
+.qnum-grid input:checked+span{color:#fff;}
+.qnum-grid label:has(input:checked){background:var(--accent);border-color:var(--accent);color:#fff;}
+.reasons label{display:flex;gap:10px;align-items:flex-start;border:1.5px solid #d8dbe6;border-radius:12px;padding:13px 14px;margin-bottom:10px;cursor:pointer;}
+.reasons label:has(input:checked){background:#eef1ff;border-color:var(--accent);}
+.reasons input{margin-top:4px;accent-color:var(--accent);}
+.reasons b{display:block;font-size:.97rem;}
+.reasons small{color:var(--sub);}
+input[type=text],textarea{width:100%;border:1.5px solid #d8dbe6;border-radius:10px;padding:11px 12px;font:inherit;background:#fbfbfd;}
+textarea{min-height:74px;resize:vertical;}
+.scale{display:flex;gap:8px;justify-content:space-between;}
+.scale label{flex:1;text-align:center;border:1.5px solid #d8dbe6;border-radius:10px;padding:10px 4px;cursor:pointer;font-size:.85rem;}
+.scale input{display:none;}
+.scale label:has(input:checked){background:var(--accent);border-color:var(--accent);color:#fff;}
+.idrow{display:flex;gap:10px;}
+.idrow input{flex:1;}
+.optional-note{font-size:.8rem;color:var(--sub);margin-top:6px;}
+#submitBtn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:14px;padding:16px;font-size:1.05rem;font-weight:700;cursor:pointer;margin-top:6px;}
+#submitBtn:disabled{opacity:.55;}
+.done{display:none;text-align:center;padding:40px 16px;}
+.done h2{font-size:1.3rem;margin-bottom:8px;}
+</style>
+</head>
+<body>
+<div class="container" id="formArea">
+  <div class="hero">
+    <h1>📝 시험 문항 피드백 (5분)</h1>
+    <p>이번 시험에서 <b>어떤 문항이 왜 어려웠는지</b> 알려주면, 다음 수업과 학습지가 그만큼 좋아져요. <b>익명</b>이고 성적과 아무 상관 없어요. 솔직하게!</p>
+  </div>
+
+  <div class="card">
+    <h2>0. 과목 선택</h2>
+    <div class="scale" id="subjectScale">
+      <label><input type="radio" name="subject" value="역사①"><span>역사①</span></label>
+      <label><input type="radio" name="subject" value="사회②"><span>사회②</span></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. 가장 어려웠던 문항 번호는? <span style="color:var(--accent)">(여러 개 가능)</span></h2>
+    <div class="hint">시험지를 보면서 체크해도 좋아요.</div>
+    <div class="qnum-grid" id="qnums"></div>
+  </div>
+
+  <div class="card reasons">
+    <h2>2. 위 문항(들)이 어려웠던 <u>가장 큰</u> 이유 하나만!</h2>
+    <div class="hint">이게 제일 중요한 질문이에요.</div>
+    <label><input type="radio" name="reason" value="단어생소"><span><b>① 단어(용어) 자체가 생소했다</b><small>예: 이름은 봤는데 뜻이 바로 안 떠오름</small></span></label>
+    <label><input type="radio" name="reason" value="기억안남"><span><b>② 배운 건 아는데 기억이 안 났다</b><small>수업 때는 알았는데 시험장에서 증발</small></span></label>
+    <label><input type="radio" name="reason" value="형식헷갈림"><span><b>③ 내용은 아는데 문제(자료·발문)가 헷갈렸다</b><small>보기·자료를 읽고 나니 더 헷갈림</small></span></label>
+    <label><input type="radio" name="reason" value="시간부족"><span><b>④ 시간이 부족했다</b><small>읽을 게 많았거나 뒤 문항을 급하게 풀었음</small></span></label>
+  </div>
+
+  <div class="card">
+    <h2>3. 시험에서 뜻이 바로 안 떠오른 <u>단어</u>가 있었다면?</h2>
+    <div class="hint">한 개만 적어줘요. (예: 아크로폴리스) — 없으면 비워두기</div>
+    <input type="text" id="word" maxlength="30" placeholder="예: 아크로폴리스">
+  </div>
+
+  <div class="card">
+    <h2>4. 수업·학습지에서 더 다뤄줬으면 했던 것?</h2>
+    <div class="hint">한 줄이면 충분! (선택)</div>
+    <textarea id="wish" maxlength="200" placeholder="예: 지도를 더 보여줬으면 / 그림으로 정리해줬으면"></textarea>
+  </div>
+
+  <div class="card">
+    <h2>5. 수업·학습지로 이번 시험 준비가 됐다고 느꼈나요?</h2>
+    <div class="scale">
+      <label><input type="radio" name="prep" value="1"><span>1<br>전혀</span></label>
+      <label><input type="radio" name="prep" value="2"><span>2</span></label>
+      <label><input type="radio" name="prep" value="3"><span>3<br>보통</span></label>
+      <label><input type="radio" name="prep" value="4"><span>4</span></label>
+      <label><input type="radio" name="prep" value="5"><span>5<br>충분</span></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>반·번호 (선택)</h2>
+    <div class="hint">안 적어도 돼요. 통계에만 쓰여요.</div>
+    <div class="idrow">
+      <input type="text" id="cls" inputmode="numeric" maxlength="2" placeholder="반 (선택)">
+      <input type="text" id="num" inputmode="numeric" maxlength="2" placeholder="번호 (선택)">
+    </div>
+    <div class="optional-note">이름은 받지 않아요 — 익명 설문.</div>
+  </div>
+
+  <button id="submitBtn" onclick="submitSurvey()">📤 제출하기</button>
+</div>
+
+<div class="done container" id="doneArea">
+  <h2>✅ 고마워요!</h2>
+  <p>너의 피드백이 다음 수업을 바꿉니다.</p>
+</div>
+
+<script>
+const SUBMIT_URL = "https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec";
+// 문항 번호 버튼 1~27 생성
+const grid = document.getElementById("qnums");
+for (let i = 1; i <= 27; i++) {
+  const l = document.createElement("label");
+  l.innerHTML = `<input type="checkbox" name="q" value="${i}"><span>${i}</span>`;
+  grid.appendChild(l);
+}
+function val(name){ const el=document.querySelector(`input[name=${name}]:checked`); return el?el.value:""; }
+function submitSurvey(){
+  const subject = val("subject");
+  if(!subject){ alert("0번 — 과목을 선택해 주세요!"); return; }
+  const hardQs = Array.from(document.querySelectorAll('input[name=q]:checked')).map(e=>e.value).join(",");
+  const reason = val("reason");
+  if(!hardQs && !reason && !document.getElementById("word").value.trim()){
+    alert("1번(어려웠던 문항) 또는 2번(이유) 중 하나는 답해 주세요!"); return;
+  }
+  const btn=document.getElementById("submitBtn");
+  btn.disabled=true; btn.textContent="전송 중…";
+  const data={
+    type:'final',
+    worksheet: `문항피드백_${subject}`,
+    studentClass: document.getElementById("cls").value.trim()||"익명",
+    studentNumber: document.getElementById("num").value.trim()||"-",
+    studentName: "(익명)",
+    blankScore:0, oxScore:0, totalScore:0,
+    answers:{
+      "어려웠던문항": hardQs,
+      "이유": reason,
+      "생소단어": document.getElementById("word").value.trim(),
+      "바라는점": document.getElementById("wish").value.trim(),
+      "준비도": val("prep")
+    }
+  };
+  fetch(SUBMIT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(data)})
+    .then(()=>{ document.getElementById("formArea").style.display="none"; document.getElementById("doneArea").style.display="block"; window.scrollTo(0,0); })
+    .catch(()=>{ btn.disabled=false; btn.textContent="📤 제출하기 (다시 시도)"; alert("전송에 실패했어요. 한 번 더 눌러주세요."); });
+}
+</script>
+</body>
+</html>
