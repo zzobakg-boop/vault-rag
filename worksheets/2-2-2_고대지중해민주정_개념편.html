@@ -24,6 +24,9 @@ hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
 table {
   width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
 }
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
 blockquote {
@@ -138,8 +141,15 @@ blockquote {
 .hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
@@ -151,6 +161,7 @@ blockquote {
       · 총: <span id="total-score">0</span>/42 (<span id="pct">0</span>%)
     </div>
     <div>
+      
       <button class="btn btn-primary" onclick="check()">채점하기</button>
       
       <button class="btn btn-danger" onclick="reset()">초기화</button>
@@ -260,6 +271,15 @@ blockquote {
   └ 시장·토론·집회가 열리는 광장
 
 </pre>
+<br>
+<figure class="ws-fig"><img src="images/2-2-2_폴리스_모식도.png" alt="폴리스의 구조 모식도 — 언덕 위 아크로폴리스(신전·피난 요새), 평지의 아고라(광장), 성벽 밖 주변 농촌 코라까지가 하나의 폴리스다 (모식도·실제 지형 아님)" loading="lazy"><figcaption>폴리스의 구조 모식도 — 언덕 위 아크로폴리스(신전·피난 요새), 평지의 아고라(광장), 성벽 밖 주변 농촌 코라까지가 하나의 폴리스다 (모식도·실제 지형 아님)</figcaption></figure>
+<br>
+<figure class="ws-fig"><img src="images/2-2-2_아크로폴리스_실경.jpg" alt="아테네 아크로폴리스 실경 — 도시 한가운데 우뚝 솟은 바위 언덕 위에 파르테논 신전이 서 있다 (그리스 아테네 · Wikimedia CC BY-SA 3.0)" loading="lazy"><figcaption>아테네 아크로폴리스 실경 — 도시 한가운데 우뚝 솟은 바위 언덕 위에 파르테논 신전이 서 있다 (그리스 아테네 · Wikimedia CC BY-SA 3.0)</figcaption></figure>
+<br>
+<figure class="ws-fig"><img src="images/2-2-2_아크로폴리스_복원화.jpg" alt="고대 아테네 아크로폴리스 복원 상상도 — 아테나 여신상과 파르테논, 언덕 아래 광장에 모인 시민들 (레오 폰 클렌체, 1846 · Public Domain)" loading="lazy"><figcaption>고대 아테네 아크로폴리스 복원 상상도 — 아테나 여신상과 파르테논, 언덕 아래 광장에 모인 시민들 (레오 폰 클렌체, 1846 · Public Domain)</figcaption></figure>
+<br>
+<blockquote>💡 <strong>아크로폴리스 = '높은(akro) + 도시(polis)'.</strong> 폴리스에서 가장 높은 바위 언덕이다. 평소에는 수호신을 모신 <strong>신전</strong>(아테네는 파르테논)이 있는 신성한 곳, 전쟁이 나면 주민이 올라가 버티는 <strong>피난 요새</strong>였다. 위 사진처럼 지금도 아테네 시내 어디서든 올려다보인다.</blockquote>
+<blockquote>🌏 <strong>폴리스는 시가지만이 아니다 (교과서 외 보충)</strong> — 성벽 안 시가지(아크로폴리스+아고라)에 성벽 밖 <strong>주변 농촌(코라)</strong>까지 합쳐야 하나의 폴리스다. 농촌 사람들도 시장·재판·제사는 시가지로 나왔으니, 시가지는 폴리스 생활권의 <strong>'중심지'</strong> 역할을 한 셈이다.</blockquote>
 <br>
 <p>기원전 ④<input type="text" class="blank-input" data-answer="8" data-id="4" style="width:60px" placeholder="">세기 무렵 지중해 전역에 폴리스가 퍼졌다. 폴리스들은 <strong>정치적으로는 독립</strong>이었지만,</p>
 <br>
@@ -666,18 +686,18 @@ blockquote {
 <br>
 <table>
 <tr><td>안건</td><td>찬성/반대</td><td>이유</td></tr>
-<tr><td>"재판 배심원에게도 수당을 지급하자"</td><td><div class="choice-group" data-id="tbl-1"><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="찬성(예시)">반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="찬성(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'조건부 반대(예시)')" data-answer="찬성(예시)">조건부 반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-2"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.')" data-answer="가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.">가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.</button><button class="choice-btn" onclick="selectChoice(this,'원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.')" data-answer="가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.">원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.</button><button class="choice-btn" onclick="selectChoice(this,'공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.')" data-answer="가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.">공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.</button></div></td></tr>
-<tr><td>"외국인(메토이코이)에게도 시민권을 주자"</td><td><div class="choice-group" data-id="tbl-3"><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="조건부 반대(예시)">반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'조건부 반대(예시)')" data-answer="조건부 반대(예시)">조건부 반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="조건부 반대(예시)">찬성(예시)</button></div></td><td><div class="choice-group" data-id="tbl-4"><button class="choice-btn" onclick="selectChoice(this,'공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.')" data-answer="원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.">공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.</button><button class="choice-btn" onclick="selectChoice(this,'가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.')" data-answer="원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.">가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.</button><button class="choice-btn" onclick="selectChoice(this,'원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.')" data-answer="원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.">원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.</button></div></td></tr>
-<tr><td>"델로스 동맹 자금으로 파르테논을 재건하자"</td><td><div class="choice-group" data-id="tbl-5"><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="반대(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="반대(예시)">반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'조건부 반대(예시)')" data-answer="반대(예시)">조건부 반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-6"><button class="choice-btn" onclick="selectChoice(this,'공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.')" data-answer="공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.">공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.</button><button class="choice-btn" onclick="selectChoice(this,'가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.')" data-answer="공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.">가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.</button><button class="choice-btn" onclick="selectChoice(this,'원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.')" data-answer="공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.">원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.</button></div></td></tr>
+<tr><td>"재판 배심원에게도 수당을 지급하자"</td><td><div class="choice-group" data-id="tbl-1"><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="찬성(예시)">반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="찬성(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'조건부 반대(예시)')" data-answer="찬성(예시)">조건부 반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-2"><button class="choice-btn" onclick="selectChoice(this,'공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.')" data-answer="가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.">공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.</button><button class="choice-btn" onclick="selectChoice(this,'가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.')" data-answer="가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.">가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.</button><button class="choice-btn" onclick="selectChoice(this,'원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.')" data-answer="가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.">원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.</button></div></td></tr>
+<tr><td>"외국인(메토이코이)에게도 시민권을 주자"</td><td><div class="choice-group" data-id="tbl-3"><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="조건부 반대(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="조건부 반대(예시)">반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'조건부 반대(예시)')" data-answer="조건부 반대(예시)">조건부 반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-4"><button class="choice-btn" onclick="selectChoice(this,'공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.')" data-answer="원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.">공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.</button><button class="choice-btn" onclick="selectChoice(this,'원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.')" data-answer="원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.">원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.</button><button class="choice-btn" onclick="selectChoice(this,'가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.')" data-answer="원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.">가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.</button></div></td></tr>
+<tr><td>"델로스 동맹 자금으로 파르테논을 재건하자"</td><td><div class="choice-group" data-id="tbl-5"><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="반대(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'조건부 반대(예시)')" data-answer="반대(예시)">조건부 반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="반대(예시)">반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-6"><button class="choice-btn" onclick="selectChoice(this,'원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.')" data-answer="공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.">원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.</button><button class="choice-btn" onclick="selectChoice(this,'공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.')" data-answer="공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.">공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.</button><button class="choice-btn" onclick="selectChoice(this,'가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.')" data-answer="공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.">가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.</button></div></td></tr>
 </table>
 <br>
 <h3>활동 2: 3명의 개혁가 비교</h3>
 <br>
 <table>
 <tr><td>개혁가</td><td>해결하려 한 문제</td><td>핵심 장치</td><td>한 줄로</td></tr>
-<tr><td>솔론</td><td><div class="choice-group" data-id="tbl-7"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민의 실질 참여 어려움')" data-answer="빚에 시달리는 평민, 귀족 독점">가난한 시민의 실질 참여 어려움</button><button class="choice-btn" onclick="selectChoice(this,'귀족의 혈연 기반 독점')" data-answer="빚에 시달리는 평민, 귀족 독점">귀족의 혈연 기반 독점</button><button class="choice-btn" onclick="selectChoice(this,'빚에 시달리는 평민, 귀족 독점')" data-answer="빚에 시달리는 평민, 귀족 독점">빚에 시달리는 평민, 귀족 독점</button></div></td><td><div class="choice-group" data-id="tbl-8"><button class="choice-btn" onclick="selectChoice(this,'재산 등급별 참정권, 부채 탕감')" data-answer="재산 등급별 참정권, 부채 탕감">재산 등급별 참정권, 부채 탕감</button><button class="choice-btn" onclick="selectChoice(this,'추첨제, 공무 수당, 민회 중심 의결')" data-answer="재산 등급별 참정권, 부채 탕감">추첨제, 공무 수당, 민회 중심 의결</button><button class="choice-btn" onclick="selectChoice(this,'지역 부족제, 500인 평의회, 도편 추방제')" data-answer="재산 등급별 참정권, 부채 탕감">지역 부족제, 500인 평의회, 도편 추방제</button></div></td><td><div class="choice-group" data-id="tbl-9"><button class="choice-btn" onclick="selectChoice(this,'"전성기를 완성하다"')" data-answer=""문을 살짝 열다"">"전성기를 완성하다"</button><button class="choice-btn" onclick="selectChoice(this,'"기반을 만들다"')" data-answer=""문을 살짝 열다"">"기반을 만들다"</button><button class="choice-btn" onclick="selectChoice(this,'"문을 살짝 열다"')" data-answer=""문을 살짝 열다"">"문을 살짝 열다"</button></div></td></tr>
-<tr><td>클레이스테네스</td><td><div class="choice-group" data-id="tbl-10"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민의 실질 참여 어려움')" data-answer="귀족의 혈연 기반 독점">가난한 시민의 실질 참여 어려움</button><button class="choice-btn" onclick="selectChoice(this,'귀족의 혈연 기반 독점')" data-answer="귀족의 혈연 기반 독점">귀족의 혈연 기반 독점</button><button class="choice-btn" onclick="selectChoice(this,'빚에 시달리는 평민, 귀족 독점')" data-answer="귀족의 혈연 기반 독점">빚에 시달리는 평민, 귀족 독점</button></div></td><td><div class="choice-group" data-id="tbl-11"><button class="choice-btn" onclick="selectChoice(this,'지역 부족제, 500인 평의회, 도편 추방제')" data-answer="지역 부족제, 500인 평의회, 도편 추방제">지역 부족제, 500인 평의회, 도편 추방제</button><button class="choice-btn" onclick="selectChoice(this,'재산 등급별 참정권, 부채 탕감')" data-answer="지역 부족제, 500인 평의회, 도편 추방제">재산 등급별 참정권, 부채 탕감</button><button class="choice-btn" onclick="selectChoice(this,'추첨제, 공무 수당, 민회 중심 의결')" data-answer="지역 부족제, 500인 평의회, 도편 추방제">추첨제, 공무 수당, 민회 중심 의결</button></div></td><td><div class="choice-group" data-id="tbl-12"><button class="choice-btn" onclick="selectChoice(this,'"전성기를 완성하다"')" data-answer=""기반을 만들다"">"전성기를 완성하다"</button><button class="choice-btn" onclick="selectChoice(this,'"기반을 만들다"')" data-answer=""기반을 만들다"">"기반을 만들다"</button><button class="choice-btn" onclick="selectChoice(this,'"문을 살짝 열다"')" data-answer=""기반을 만들다"">"문을 살짝 열다"</button></div></td></tr>
-<tr><td>페리클레스</td><td><div class="choice-group" data-id="tbl-13"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민의 실질 참여 어려움')" data-answer="가난한 시민의 실질 참여 어려움">가난한 시민의 실질 참여 어려움</button><button class="choice-btn" onclick="selectChoice(this,'빚에 시달리는 평민, 귀족 독점')" data-answer="가난한 시민의 실질 참여 어려움">빚에 시달리는 평민, 귀족 독점</button><button class="choice-btn" onclick="selectChoice(this,'귀족의 혈연 기반 독점')" data-answer="가난한 시민의 실질 참여 어려움">귀족의 혈연 기반 독점</button></div></td><td><div class="choice-group" data-id="tbl-14"><button class="choice-btn" onclick="selectChoice(this,'재산 등급별 참정권, 부채 탕감')" data-answer="추첨제, 공무 수당, 민회 중심 의결">재산 등급별 참정권, 부채 탕감</button><button class="choice-btn" onclick="selectChoice(this,'지역 부족제, 500인 평의회, 도편 추방제')" data-answer="추첨제, 공무 수당, 민회 중심 의결">지역 부족제, 500인 평의회, 도편 추방제</button><button class="choice-btn" onclick="selectChoice(this,'추첨제, 공무 수당, 민회 중심 의결')" data-answer="추첨제, 공무 수당, 민회 중심 의결">추첨제, 공무 수당, 민회 중심 의결</button></div></td><td><div class="choice-group" data-id="tbl-15"><button class="choice-btn" onclick="selectChoice(this,'"문을 살짝 열다"')" data-answer=""전성기를 완성하다"">"문을 살짝 열다"</button><button class="choice-btn" onclick="selectChoice(this,'"전성기를 완성하다"')" data-answer=""전성기를 완성하다"">"전성기를 완성하다"</button><button class="choice-btn" onclick="selectChoice(this,'"기반을 만들다"')" data-answer=""전성기를 완성하다"">"기반을 만들다"</button></div></td></tr>
+<tr><td>솔론</td><td><div class="choice-group" data-id="tbl-7"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민의 실질 참여 어려움')" data-answer="빚에 시달리는 평민, 귀족 독점">가난한 시민의 실질 참여 어려움</button><button class="choice-btn" onclick="selectChoice(this,'귀족의 혈연 기반 독점')" data-answer="빚에 시달리는 평민, 귀족 독점">귀족의 혈연 기반 독점</button><button class="choice-btn" onclick="selectChoice(this,'빚에 시달리는 평민, 귀족 독점')" data-answer="빚에 시달리는 평민, 귀족 독점">빚에 시달리는 평민, 귀족 독점</button></div></td><td><div class="choice-group" data-id="tbl-8"><button class="choice-btn" onclick="selectChoice(this,'지역 부족제, 500인 평의회, 도편 추방제')" data-answer="재산 등급별 참정권, 부채 탕감">지역 부족제, 500인 평의회, 도편 추방제</button><button class="choice-btn" onclick="selectChoice(this,'재산 등급별 참정권, 부채 탕감')" data-answer="재산 등급별 참정권, 부채 탕감">재산 등급별 참정권, 부채 탕감</button><button class="choice-btn" onclick="selectChoice(this,'추첨제, 공무 수당, 민회 중심 의결')" data-answer="재산 등급별 참정권, 부채 탕감">추첨제, 공무 수당, 민회 중심 의결</button></div></td><td><div class="choice-group" data-id="tbl-9"><button class="choice-btn" onclick="selectChoice(this,'"기반을 만들다"')" data-answer=""문을 살짝 열다"">"기반을 만들다"</button><button class="choice-btn" onclick="selectChoice(this,'"문을 살짝 열다"')" data-answer=""문을 살짝 열다"">"문을 살짝 열다"</button><button class="choice-btn" onclick="selectChoice(this,'"전성기를 완성하다"')" data-answer=""문을 살짝 열다"">"전성기를 완성하다"</button></div></td></tr>
+<tr><td>클레이스테네스</td><td><div class="choice-group" data-id="tbl-10"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민의 실질 참여 어려움')" data-answer="귀족의 혈연 기반 독점">가난한 시민의 실질 참여 어려움</button><button class="choice-btn" onclick="selectChoice(this,'빚에 시달리는 평민, 귀족 독점')" data-answer="귀족의 혈연 기반 독점">빚에 시달리는 평민, 귀족 독점</button><button class="choice-btn" onclick="selectChoice(this,'귀족의 혈연 기반 독점')" data-answer="귀족의 혈연 기반 독점">귀족의 혈연 기반 독점</button></div></td><td><div class="choice-group" data-id="tbl-11"><button class="choice-btn" onclick="selectChoice(this,'지역 부족제, 500인 평의회, 도편 추방제')" data-answer="지역 부족제, 500인 평의회, 도편 추방제">지역 부족제, 500인 평의회, 도편 추방제</button><button class="choice-btn" onclick="selectChoice(this,'추첨제, 공무 수당, 민회 중심 의결')" data-answer="지역 부족제, 500인 평의회, 도편 추방제">추첨제, 공무 수당, 민회 중심 의결</button><button class="choice-btn" onclick="selectChoice(this,'재산 등급별 참정권, 부채 탕감')" data-answer="지역 부족제, 500인 평의회, 도편 추방제">재산 등급별 참정권, 부채 탕감</button></div></td><td><div class="choice-group" data-id="tbl-12"><button class="choice-btn" onclick="selectChoice(this,'"기반을 만들다"')" data-answer=""기반을 만들다"">"기반을 만들다"</button><button class="choice-btn" onclick="selectChoice(this,'"전성기를 완성하다"')" data-answer=""기반을 만들다"">"전성기를 완성하다"</button><button class="choice-btn" onclick="selectChoice(this,'"문을 살짝 열다"')" data-answer=""기반을 만들다"">"문을 살짝 열다"</button></div></td></tr>
+<tr><td>페리클레스</td><td><div class="choice-group" data-id="tbl-13"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민의 실질 참여 어려움')" data-answer="가난한 시민의 실질 참여 어려움">가난한 시민의 실질 참여 어려움</button><button class="choice-btn" onclick="selectChoice(this,'귀족의 혈연 기반 독점')" data-answer="가난한 시민의 실질 참여 어려움">귀족의 혈연 기반 독점</button><button class="choice-btn" onclick="selectChoice(this,'빚에 시달리는 평민, 귀족 독점')" data-answer="가난한 시민의 실질 참여 어려움">빚에 시달리는 평민, 귀족 독점</button></div></td><td><div class="choice-group" data-id="tbl-14"><button class="choice-btn" onclick="selectChoice(this,'재산 등급별 참정권, 부채 탕감')" data-answer="추첨제, 공무 수당, 민회 중심 의결">재산 등급별 참정권, 부채 탕감</button><button class="choice-btn" onclick="selectChoice(this,'지역 부족제, 500인 평의회, 도편 추방제')" data-answer="추첨제, 공무 수당, 민회 중심 의결">지역 부족제, 500인 평의회, 도편 추방제</button><button class="choice-btn" onclick="selectChoice(this,'추첨제, 공무 수당, 민회 중심 의결')" data-answer="추첨제, 공무 수당, 민회 중심 의결">추첨제, 공무 수당, 민회 중심 의결</button></div></td><td><div class="choice-group" data-id="tbl-15"><button class="choice-btn" onclick="selectChoice(this,'"문을 살짝 열다"')" data-answer=""전성기를 완성하다"">"문을 살짝 열다"</button><button class="choice-btn" onclick="selectChoice(this,'"전성기를 완성하다"')" data-answer=""전성기를 완성하다"">"전성기를 완성하다"</button><button class="choice-btn" onclick="selectChoice(this,'"기반을 만들다"')" data-answer=""전성기를 완성하다"">"기반을 만들다"</button></div></td></tr>
 </table>
 <br>
 <h3>활동 3: 현대 연결</h3>
@@ -772,10 +792,13 @@ function check(){
       }
     });
   });
-  document.getElementById('score').textContent=bc;
-  document.getElementById('ox-score').textContent=oxc;
-  document.getElementById('total-score').textContent=bc+oxc;
-  document.getElementById('pct').textContent=Math.round((bc+oxc)/GT*100);
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
 }
 function reveal(){
   usedReveal=true;
@@ -817,40 +840,66 @@ function reset(){
   });
   document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
   document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
-  document.getElementById('score').textContent=0;
-  document.getElementById('ox-score').textContent=0;
-  document.getElementById('total-score').textContent=0;
-  document.getElementById('pct').textContent=0;
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
 }
-function saveProgress(){
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+function _wsKey(){
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}
+function _persist(){
+  const key=_wsKey(); if(!key) return;
   const data={};
-  document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
-    data[el.dataset.id||el.dataset.answer]=el.value;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
   });
-  const info={
-    class:document.querySelector('.student-info input:nth-child(1)').value,
-    number:document.querySelector('.student-info input:nth-child(2)').value,
-    name:document.querySelector('.student-info input:nth-child(3)').value
-  };
-  localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()}));
-  alert('저장되었습니다! 다음에 이 페이지를 열면 자동으로 불러옵니다.');
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const si=document.querySelectorAll('.student-info input');
+  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
-  const saved=localStorage.getItem('ws_'+document.title);
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
-  const {info,data}=JSON.parse(saved);
-  if(info){
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  if(info&&!EXAM_MODE){
     const inputs=document.querySelectorAll('.student-info input');
-    if(info.class) inputs[0].value=info.class;
-    if(info.number) inputs[1].value=info.number;
-    if(info.name) inputs[2].value=info.name;
+    if(info.class&&inputs[0]) inputs[0].value=info.class;
+    if(info.number&&inputs[1]) inputs[1].value=info.number;
+    if(info.name&&inputs[2]) inputs[2].value=info.name;
   }
-  if(data){
-    document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
-      const key=el.dataset.id||el.dataset.answer;
-      if(data[key]) el.value=data[key];
-    });
-  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
 }
 // 모든 입력칸에서 Enter→다음칸 이동
 const allInputs=[...document.querySelectorAll('.blank-input')];
@@ -872,6 +921,12 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
@@ -885,9 +940,10 @@ function submitResult(){
   if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
-  const bs=parseInt(document.getElementById('score').textContent);
-  const os=parseInt(document.getElementById('ox-score').textContent);
-  const ts=parseInt(document.getElementById('total-score').textContent);
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
   const answers=collectAnswers();
   const data={
     type:'final',
@@ -909,6 +965,9 @@ function submitResult(){
 }
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
 // 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
 document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
   el.addEventListener('input',scheduleProgress);
@@ -919,6 +978,12 @@ document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
 document.querySelectorAll('.student-info input').forEach(el=>{
   el.addEventListener('input',scheduleProgress);
 });
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  document.querySelectorAll('.student-info input').forEach(el=>{
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
 </script>
 </body>
 </html>

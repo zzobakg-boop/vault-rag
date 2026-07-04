@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>역사① Ⅱ단원 13~14차시 — 평민은 어떻게 귀족을 이겼을까? 아테네 민주정 200년의 여정 (정답)</title>
+<title>역사① Ⅱ단원 13~14차시 — 평민은 어떻게 귀족을 이겼을까? 아테네 민주정 200년의 여정</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -24,6 +24,9 @@ hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
 table {
   width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
 }
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
 blockquote {
@@ -138,31 +141,21 @@ blockquote {
 .hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
   
-  <div class="control-bar">
-    <div class="score">
-      빈칸: <span id="score">0</span>/42 · OX: <span id="ox-score">0</span>/0
-      · 총: <span id="total-score">0</span>/42 (<span id="pct">0</span>%)
-    </div>
-    <div>
-      <button class="btn btn-primary" onclick="check()">채점하기</button>
-      <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
-      <button class="btn btn-danger" onclick="reset()">초기화</button>
-      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
-      
-    </div>
-  </div>
-  <div class="student-info">
-    <input type="text" placeholder="반">
-    <input type="text" placeholder="번호">
-    <input type="text" placeholder="이름">
-  </div>
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
   <br>
 <br>
 <br>
@@ -171,8 +164,6 @@ blockquote {
 <br>
 <br>
 <hr>
-<br>
-<figure class="ws-fig"><img src="images/2-2-2_표지.png" alt="" loading="lazy"></figure>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 아테네 민주정이 <strong>왜 아테네에서만</strong> 이렇게 발전했는지 <strong>인과관계</strong>로 설명할 수 있다.</p>
@@ -198,8 +189,6 @@ blockquote {
 <hr>
 <br>
 <h2>📖 1단계: 복습 연결 — 페르시아는 왜 그리스를 못 이겼을까?</h2>
-<br>
-<blockquote>🎙️ 자, 복습부터. 세계 최강 페르시아 제국이 <em>코딱지만 한 그리스 도시들</em>한테 졌어. 어떻게? 그 비밀이 이번 시간 주인공이야 — <strong>시민이 직접 싸우고 직접 정치하는 나라</strong>의 힘.</blockquote>
 <br>
 <p><strong>2-2-1차시(페르시아)에서 배운 것:</strong></p>
 <p>- 페르시아는 관용 정책으로 서아시아 대제국을 유지</p>
@@ -231,8 +220,6 @@ blockquote {
 <br>
 <h2>📖 2단계: 폴리스의 탄생 — 왜 작은 나라들이었나?</h2>
 <br>
-<blockquote>🎙️ 그리스 지도 봐봐, 온통 산이야. 큰 나라 만들고 싶어도 산이 갈라놔서 못 해. 그래서 <em>수천 명짜리 미니 국가(폴리스)</em> 수백 개가 따로 노는 거지. 근데 이 <strong>'작음'이 반전</strong>이야 — 작으니까 시민이 직접 정치를 실험할 수 있었거든.</blockquote>
-<br>
 <h3>2-1. 지형이 만든 정치 형태</h3>
 <br>
 <table>
@@ -242,28 +229,35 @@ blockquote {
 <tr><td>방어</td><td>침략이 잦음[^1]</td><td>방어하기 좋은 <strong>언덕</strong> 중심으로 정착</td></tr>
 </table>
 <br>
-<p>기원전 1200년경 에게 문명이 몰락한 후, 남쪽으로 내려간 그리스인들은 해안 가까운 방어지에 모여 작은 공동체를 이루었다. 이 작은 도시 국가들이 ①<input type="text" class="blank-input" data-answer="폴리스" data-id="1" style="width:68px" placeholder="">다.</p>
-<br>
-<figure class="ws-fig"><img src="images/2-2-2_지형.jpg" alt="그리스의 험준한 산악 지형(에우보이아섬) — 평야가 적고 산이 땅을 갈라놓아, 큰 통일 왕국 대신 수천 명 규모의 작은 폴리스 수백 개로 쪼개졌다. (Wikimedia · CC0)" loading="lazy"><figcaption>그리스의 험준한 산악 지형(에우보이아섬) — 평야가 적고 산이 땅을 갈라놓아, 큰 통일 왕국 대신 수천 명 규모의 작은 폴리스 수백 개로 쪼개졌다. (Wikimedia · CC0)</figcaption></figure>
+<p>기원전 1200년경 에게 문명이 몰락한 후, 남쪽으로 내려간 그리스인들은 해안 가까운 방어지에 모여 작은 공동체를 이루었다. 이 작은 도시 국가들이 ①<span class="blank-filled">폴리스</span>다.</p>
 <br>
 <h3>2-2. 폴리스의 구조와 유대감</h3>
 <br>
 <pre class="code-block">
 [하나의 폴리스 안]
 
-가파른 언덕 위 = ②<input type="text" class="blank-input code-blank" data-answer="아크로폴리스" data-id="2" style="width:84px" placeholder="">
+가파른 언덕 위 = ②<span class="blank-filled">아크로폴리스</span>
 
   └ 파르테논 같은 신전, 방어용 성채
 
-아래쪽 평지 = ③<input type="text" class="blank-input code-blank" data-answer="아고라" data-id="3" style="width:60px" placeholder="">
+아래쪽 평지 = ③<span class="blank-filled">아고라</span>
 
   └ 시장·토론·집회가 열리는 광장
 
 </pre>
 <br>
-<p>기원전 ④<input type="text" class="blank-input" data-answer="8" data-id="4" style="width:60px" placeholder="">세기 무렵 지중해 전역에 폴리스가 퍼졌다. 폴리스들은 <strong>정치적으로는 독립</strong>이었지만,</p>
+<figure class="ws-fig"><img src="images/2-2-2_폴리스_모식도.png" alt="폴리스의 구조 모식도 — 언덕 위 아크로폴리스(신전·피난 요새), 평지의 아고라(광장), 성벽 밖 주변 농촌 코라까지가 하나의 폴리스다 (모식도·실제 지형 아님)" loading="lazy"><figcaption>폴리스의 구조 모식도 — 언덕 위 아크로폴리스(신전·피난 요새), 평지의 아고라(광장), 성벽 밖 주변 농촌 코라까지가 하나의 폴리스다 (모식도·실제 지형 아님)</figcaption></figure>
 <br>
-<blockquote>(교과서 원문) "폴리스들은 정치적으로 독립되어 있었으나, 서로 같은 언어를 사용하고 같은 신들을 믿었으며, 주기적으로 ⑤<input type="text" class="blank-input" data-answer="올림피아" data-id="5" style="width:84px" placeholder=""> 제전을 열어 유대감을 다졌다." — 비상교육 역사① p.43</blockquote>
+<figure class="ws-fig"><img src="images/2-2-2_아크로폴리스_실경.jpg" alt="아테네 아크로폴리스 실경 — 도시 한가운데 우뚝 솟은 바위 언덕 위에 파르테논 신전이 서 있다 (그리스 아테네 · Wikimedia CC BY-SA 3.0)" loading="lazy"><figcaption>아테네 아크로폴리스 실경 — 도시 한가운데 우뚝 솟은 바위 언덕 위에 파르테논 신전이 서 있다 (그리스 아테네 · Wikimedia CC BY-SA 3.0)</figcaption></figure>
+<br>
+<figure class="ws-fig"><img src="images/2-2-2_아크로폴리스_복원화.jpg" alt="고대 아테네 아크로폴리스 복원 상상도 — 아테나 여신상과 파르테논, 언덕 아래 광장에 모인 시민들 (레오 폰 클렌체, 1846 · Public Domain)" loading="lazy"><figcaption>고대 아테네 아크로폴리스 복원 상상도 — 아테나 여신상과 파르테논, 언덕 아래 광장에 모인 시민들 (레오 폰 클렌체, 1846 · Public Domain)</figcaption></figure>
+<br>
+<blockquote>💡 <strong>아크로폴리스 = '높은(akro) + 도시(polis)'.</strong> 폴리스에서 가장 높은 바위 언덕이다. 평소에는 수호신을 모신 <strong>신전</strong>(아테네는 파르테논)이 있는 신성한 곳, 전쟁이 나면 주민이 올라가 버티는 <strong>피난 요새</strong>였다. 위 사진처럼 지금도 아테네 시내 어디서든 올려다보인다.</blockquote>
+<blockquote>🌏 <strong>폴리스는 시가지만이 아니다 (교과서 외 보충)</strong> — 성벽 안 시가지(아크로폴리스+아고라)에 성벽 밖 <strong>주변 농촌(코라)</strong>까지 합쳐야 하나의 폴리스다. 농촌 사람들도 시장·재판·제사는 시가지로 나왔으니, 시가지는 폴리스 생활권의 <strong>'중심지'</strong> 역할을 한 셈이다.</blockquote>
+<br>
+<p>기원전 ④<span class="blank-filled">8</span>세기 무렵 지중해 전역에 폴리스가 퍼졌다. 폴리스들은 <strong>정치적으로는 독립</strong>이었지만,</p>
+<br>
+<blockquote>(교과서 원문) "폴리스들은 정치적으로 독립되어 있었으나, 서로 같은 언어를 사용하고 같은 신들을 믿었으며, 주기적으로 ⑤<span class="blank-filled">올림피아</span> 제전을 열어 유대감을 다졌다." — 비상교육 역사① p.43</blockquote>
 <br>
 <blockquote>💡 <strong>왜 통일 국가가 안 됐나?</strong></blockquote>
 <blockquote>산으로 갈라진 지형 때문에 이집트·페르시아처럼 <strong>거대 관료제 왕국</strong>을 만들기가 어려웠다. 대신 수천 명 규모의 작은 공동체가 <strong>각자 정치를 실험</strong>할 자유를 얻었다. 역설적으로, 이 "작음"이 민주정을 가능하게 했다.</blockquote>
@@ -274,15 +268,13 @@ blockquote {
 <br>
 <h3>3-1. 스파르타 — "왜 그렇게 훈련만 했을까?"</h3>
 <br>
-<blockquote>🎙️ 스파르타 하면? 영화 「300」, 식스팩, 빡센 훈련. 근데 <em>왜</em> 이렇게까지 군대 국가가 됐을까? 답이 좀 무서워 — <strong>시민보다 노예가 8배 많아서.</strong> 8배를 누르려면 24시간 전투태세여야 했던 거야.</blockquote>
-<br>
-<p>스파르타는 ⑥<input type="text" class="blank-input" data-answer="정복" data-id="6" style="width:60px" placeholder=""> 국가로 출발했다. 소수의 시민이 전체 인구의 <strong>80%가 넘는 예속민·노예</strong>를 다스려야 했기에, 반란을 막기 위해 강력한 ⑦<input type="text" class="blank-input" data-answer="군사" data-id="7" style="width:60px" placeholder=""> 통치를 유지해야 했다.</p>
+<p>스파르타는 ⑥<span class="blank-filled">정복</span> 국가로 출발했다. 소수의 시민이 전체 인구의 <strong>80%가 넘는 예속민·노예</strong>를 다스려야 했기에, 반란을 막기 위해 강력한 ⑦<span class="blank-filled">군사</span> 통치를 유지해야 했다.</p>
 <br>
 <table>
 <tr><td>계층</td><td>비율</td><td>역할</td></tr>
 <tr><td>자유 시민(스파르티아타이)</td><td>약 5~10%</td><td>정치·군사 전념</td></tr>
 <tr><td>페리오이코이(반자유민)</td><td>약 10~15%</td><td>상공업, 군 복무</td></tr>
-<tr><td>⑧<input type="text" class="blank-input" data-answer="헤일로타이" data-id="8" style="width:100px" placeholder="">(예속민)[^2]</td><td>약 70~80%</td><td>농업 노동</td></tr>
+<tr><td>⑧<span class="blank-filled">헤일로타이</span>(예속민)[^2]</td><td>약 70~80%</td><td>농업 노동</td></tr>
 </table>
 <br>
 <pre class="code-block">
@@ -290,29 +282,22 @@ blockquote {
 
  7세 → 집 떠나 공동 훈련 시작
 
-20세 → 군대 공동 기숙 생활 (이 무렵 결혼해도 막사 거주)
+20세 → 군대 공동 기숙 생활
 
-30세 → 막사 졸업·아내와 가정생활 시작·완전한 시민권 (공동 식사는 계속)
+30세 → 결혼 허용, 공동 식사·훈련 병행
 
 60세 → 군 복무 면제
 
 </pre>
 <br>
-<blockquote>💡 <strong>반전 — 결혼은 했는데 같이 못 산다?</strong></blockquote>
-<blockquote>스파르타 남자는 <em>20대에 결혼해도</em> 30살까진 군 막사에서 살아야 했다. 그래서 밤에 <em>몰래</em> 아내를 만나러 갔다(플루타르코스 『뤼쿠르고스전』). 30세가 되어야 비로소 막사를 졸업하고 <em>집에서 아내와 함께</em> 살며 완전한 시민이 됐다. → 그러니 <em>"30세에 결혼"이 아니라 "30세에 같이 살기 시작"</em>이 정확.</blockquote>
-<br>
-<p>정치는 왕과 귀족이 담당했으나, 나라의 중대사는 ⑨<input type="text" class="blank-input" data-answer="민회" data-id="9" style="width:60px" placeholder="">에서 결정했다.</p>
+<p>정치는 왕과 귀족이 담당했으나, 나라의 중대사는 ⑨<span class="blank-filled">민회</span>에서 결정했다.</p>
 <br>
 <blockquote>⚠️ <strong>자주 하는 오해 — "스파르타도 민주정이었다?"</strong></blockquote>
 <blockquote>스파르타에도 민회(아펠라)가 있어 민주적으로 보일 수 있으나, 실권은 왕 2명[^7]과 원로회, 감독관 5명이 쥐었다. 민회는 제안에 <strong>찬반만 외치는 거수기</strong> 역할에 가까웠다. 아테네 민주정과는 <strong>결이 전혀 다르다.</strong></blockquote>
 <br>
 <h3>3-2. 아테네 — "왜 평민이 정치에 낄 수 있었나?"</h3>
 <br>
-<figure class="ws-fig"><img src="images/2-2-2_재미_fun2.png" alt="" loading="lazy"></figure>
-<br>
-<blockquote>🎙️ <strong>잠깐, 네가 아테네 평민이라고 해보자.</strong> 농사짓고 가끔 장사하고… 정치? 그건 <em>귀족 나으리들</em> 일이지, 나랑 무슨 상관이야. 그런데 어느 날 <strong>전쟁하는 방식이 확 바뀐다.</strong> 비싼 말 타는 귀족 기병 대신, 방패 들고 빽빽이 줄 선 보병(팔랑크스)이 이기기 시작해. 그 보병이 누구냐고? <em>무역으로 돈 좀 번 평민들</em>이 자기 돈으로 갑옷 사 입고 나간 거야. 자, 여기서 <strong>역사상 가장 위험한 질문</strong>이 터진다 — <em>"전쟁에서 목숨 거는 건 우린데, 왜 정치는 귀족만 해?"</em></blockquote>
-<br>
-<p>아테네는 처음에는 왕정, 이후 ⑩<input type="text" class="blank-input" data-answer="귀족" data-id="10" style="width:60px" placeholder="">정으로 바뀌었다. 그런데 <strong>하나의 변화</strong>가 모든 것을 바꿨다.</p>
+<p>아테네는 처음에는 왕정, 이후 ⑩<span class="blank-filled">귀족</span>정으로 바뀌었다. 그런데 <strong>하나의 변화</strong>가 모든 것을 바꿨다.</p>
 <br>
 <pre class="code-block">
 무역·상공업 발달 (해상 폴리스 아테네의 특성)
@@ -327,7 +312,7 @@ blockquote {
 
          ↓
 
-⑪<input type="text" class="blank-input code-blank" data-answer="팔랑크스" data-id="11" style="width:60px" placeholder=""> = 중무장 보병 밀집 대형 전술 도입
+⑪<span class="blank-filled">팔랑크스</span> = 중무장 보병 밀집 대형 전술 도입
 
   └ 소수 귀족 기병 대신 다수 평민 보병이 전쟁의 핵심
 
@@ -344,17 +329,13 @@ blockquote {
 <blockquote>💡 <strong>핵심 포인트 (★중요)</strong></blockquote>
 <blockquote>평민이 그냥 "달라"고 한다고 귀족이 권력을 내주지 않는다. 아테네에서 권력 이동이 가능했던 이유는 <strong>전쟁 방식의 변화</strong>다. 전쟁의 주역이 바뀌면 정치의 주역도 바뀐다 — 이건 역사 전체를 관통하는 법칙이다.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/2-2-2_팔랑크스.jpg" alt="팔랑크스 — 방패와 창으로 무장한 호플리테스(중장 보병)의 전투. 전쟁의 주역이 귀족 기병에서 평민 보병으로 옮겨가며 평민의 정치 발언권이 커졌다. (고대 그리스 흑색상 암포라, 메트로폴리탄 미술관 · Public Domain)" loading="lazy"><figcaption>팔랑크스 — 방패와 창으로 무장한 호플리테스(중장 보병)의 전투. 전쟁의 주역이 귀족 기병에서 평민 보병으로 옮겨가며 평민의 정치 발언권이 커졌다. (고대 그리스 흑색상 암포라, 메트로폴리탄 미술관 · Public Domain)</figcaption></figure>
-<br>
 <hr>
 <br>
 <h2>📖 4단계: 아테네 민주정의 3단 도약 — 솔론, 클레이스테네스, 페리클레스</h2>
 <br>
-<blockquote>🎙️ 민주정은 어느 날 뚝딱 생긴 게 아니야. <strong>세 명의 개혁가가 150년에 걸쳐</strong> 한 칸씩 쌓아 올린 탑이지. 솔론이 문을 살짝 열고 → 클레이스테네스가 기반을 깔고 → 페리클레스가 완성한다.</blockquote>
-<br>
 <p>아테네 민주정은 한 번에 완성되지 않았다. <strong>3명의 개혁가가 약 150년에 걸쳐 단계별로</strong> 제도를 쌓아 올렸다.</p>
 <br>
-<h3>4-1. ⑫<input type="text" class="blank-input" data-answer="솔론" data-id="12" style="width:60px" placeholder=""> — 기원전 6세기 초: "문을 살짝 열다"</h3>
+<h3>4-1. ⑫<span class="blank-filled">솔론</span> — 기원전 6세기 초: "문을 살짝 열다"</h3>
 <br>
 <table>
 <tr><td>정책</td><td>내용</td></tr>
@@ -376,13 +357,13 @@ blockquote {
 
 </pre>
 <br>
-<h3>4-2. ⑬<input type="text" class="blank-input" data-answer="클레이스테네스" data-id="13" style="width:132px" placeholder=""> — 기원전 6세기 말: "기반을 만들다"</h3>
+<h3>4-2. ⑬<span class="blank-filled">클레이스테네스</span> — 기원전 6세기 말: "기반을 만들다"</h3>
 <br>
 <table>
 <tr><td>정책</td><td>내용</td></tr>
 <tr><td>부족제 개편</td><td>혈연 중심 → <strong>지역 중심 10개 부족</strong>으로 재편 (귀족의 혈연 기반 해체)</td></tr>
 <tr><td>500인 평의회[^4]</td><td>각 부족에서 50명씩 <strong>추첨</strong>으로 선발, 민회 안건 준비·행정 담당</td></tr>
-<tr><td>⑭<input type="text" class="blank-input" data-answer="재산" data-id="14" style="width:60px" placeholder=""> 기준 폐지</td><td>정치 참여의 재산 요건 제거 → 성인 남성 시민 모두 참여 가능</td></tr>
+<tr><td>⑭<span class="blank-filled">재산</span> 기준 폐지</td><td>정치 참여의 재산 요건 제거 → 성인 남성 시민 모두 참여 가능</td></tr>
 <tr><td>도편 추방제[^5]</td><td>독재자 출현 방지용 <strong>예방 장치</strong></td></tr>
 </table>
 <br>
@@ -397,7 +378,7 @@ blockquote {
 
          ↓
 
-6,000표 이상 모이면 최다 득표자 1명 → ⑮<input type="text" class="blank-input code-blank" data-answer="10" data-id="15" style="width:60px" placeholder="">년 국외 추방
+6,000표 이상 모이면 최다 득표자 1명 → ⑮<span class="blank-filled">10</span>년 국외 추방
 
          ↓
 
@@ -405,23 +386,15 @@ blockquote {
 
 </pre>
 <br>
-<figure class="ws-fig"><img src="images/2-2-2_도편.jpg" alt="테미스토클레스 도편(오스트라콘) — 추방할 인물의 이름(ΘΕΜΙΣΘΟΚΛΕΣ)을 도자기 파편에 새겨 투표했다. 페르시아 전쟁의 영웅 테미스토클레스도 이 제도로 추방당했다. (아테네 고대 아고라 박물관 · Public Domain)" loading="lazy"><figcaption>테미스토클레스 도편(오스트라콘) — 추방할 인물의 이름(ΘΕΜΙΣΘΟΚΛΕΣ)을 도자기 파편에 새겨 투표했다. 페르시아 전쟁의 영웅 테미스토클레스도 이 제도로 추방당했다. (아테네 고대 아고라 박물관 · Public Domain)</figcaption></figure>
-<br>
-<figure class="ws-fig"><img src="images/2-2-2_재미_fun3.png" alt="" loading="lazy"></figure>
-<br>
-<blockquote>🎙️ <strong>느낌 왔어?</strong> 도편 추방제는 <em>2,500년 전의 '단톡방 강퇴 투표'</em>야. 위험해 보이는 사람 이름을 도자기 조각에 적어 내고, 6,000표 넘으면 10년 국외 추방 ㄷㄷ. 단, 단톡방 강퇴랑 다른 점 — 한 번 찍히면 <em>10년</em>이고 되돌리기 없음.</blockquote>
-<br>
 <blockquote>💡 <strong>클레이스테네스가 진짜 바꾼 것</strong>: 표면적으로는 "제도"지만, 본질은 <strong>"귀족의 혈연 네트워크를 해체한 것"</strong>이다. 혈연으로 뭉친 귀족 세력을 지역 단위로 흩어 놓으니 더 이상 귀족이 자기네끼리 뭉쳐 권력을 독점할 수 없었다.</blockquote>
 <br>
-<h3>4-3. ⑯<input type="text" class="blank-input" data-answer="페리클레스" data-id="16" style="width:100px" placeholder=""> — 기원전 5세기 중엽: "전성기를 완성하다"</h3>
-<br>
-<blockquote>🎙️ 여기 제일 충격 포인트. 아테네는 공무원을 시험도 선거도 아니고 <strong>추첨</strong>으로 뽑았어. 제비뽑기 ㄹㅇ. 왜? 말 잘하고 돈 있는 사람한테 유리한 선거 대신, <em>가난한 시민도 공직 기회를 갖게</em> 하려고. 우리 상식이랑 정반대지?</blockquote>
+<h3>4-3. ⑯<span class="blank-filled">페리클레스</span> — 기원전 5세기 중엽: "전성기를 완성하다"</h3>
 <br>
 <table>
 <tr><td>정책</td><td>내용</td></tr>
 <tr><td>민회 중심</td><td>민회에서 <strong>실질적 입법·의결</strong> (성인 남성 시민 직접 참여)</td></tr>
-<tr><td>⑰<input type="text" class="blank-input" data-answer="추첨" data-id="17" style="width:60px" placeholder=""> 선출</td><td>관직·배심원을 대부분 추첨으로 선발 → "능력보다 기회의 평등"</td></tr>
-<tr><td>⑱<input type="text" class="blank-input" data-answer="수당" data-id="18" style="width:60px" placeholder=""> 지급</td><td>가난한 시민도 정치 참여할 수 있도록 공무 수당 지급</td></tr>
+<tr><td>⑰<span class="blank-filled">추첨</span> 선출</td><td>관직·배심원을 대부분 추첨으로 선발 → "능력보다 기회의 평등"</td></tr>
+<tr><td>⑱<span class="blank-filled">수당</span> 지급</td><td>가난한 시민도 정치 참여할 수 있도록 공무 수당 지급</td></tr>
 </table>
 <br>
 <blockquote>(교과서 원문) "관직과 배심원은 대부분 추첨으로 뽑았고, 이들에게는 수당도 지급되었다. 그러나 아테네에서는 성인 남성만 정치에 참여할 수 있었고, 여성, 노예, 외국인은 정치에 참여할 수 없었다." — 비상교육 역사① p.44</blockquote>
@@ -430,8 +403,6 @@ blockquote {
 <blockquote>선거는 결국 "말 잘하고 돈 있는 사람"에게 유리하다. 추첨은 <strong>가난한 시민에게도 공직 기회를 주는 가장 급진적인 평등 장치</strong>였다. 오늘날 우리가 "선거가 당연"하다고 여기는 것과 정반대 발상이다.</blockquote>
 <br>
 <h3>4-4. ⚠️ 아테네 민주정의 한계 — 누가 "시민"이었나?</h3>
-<br>
-<blockquote>🎙️ 근데 잠깐 — '모두가 평등'이었을까? <strong>아니.</strong> 성인 남자 시민만, 전체의 <em>10~15%</em>야. 여자·노예·외국인은 빠졌어. 노예가 일해준 덕에 시민이 정치할 시간이 났다는 것도 같이 봐야 해.</blockquote>
 <br>
 <pre class="code-block">
 [아테네 전체 인구 구성 (추정)]
@@ -465,8 +436,6 @@ blockquote {
 <br>
 <h2>📖 5단계: 전쟁이 바꾼 그리스 — 영광에서 쇠퇴로</h2>
 <br>
-<blockquote>🎙️ 영광의 절정에서 반전이 온다. 페르시아를 이긴 자신감으로 잘나가던 아테네가… <em>같은 그리스 폴리스끼리</em> <strong>27년 전쟁(펠로폰네소스)</strong>으로 자멸해. 이긴 스파르타도 너덜너덜. 그 틈을 북쪽 마케도니아가 꿀꺽 — 다음 시간 헬레니즘의 시작이야.</blockquote>
-<br>
 <p>아테네 민주정이 꽃필 수 있었던 배경에는 <strong>페르시아를 이긴 자신감</strong>이 있었다. 하지만 같은 전쟁이 결국 그리스를 무너뜨리는 씨앗이 된다.</p>
 <br>
 <h3>5-1. 그리스·페르시아 전쟁 (기원전 5세기) — 자신감의 원천</h3>
@@ -474,11 +443,11 @@ blockquote {
 <table>
 <tr><td>순서</td><td>시기</td><td>핵심 전투</td><td>결과</td></tr>
 <tr><td>1차</td><td>BC 492</td><td>자연재해로 중도 포기</td><td>—</td></tr>
-<tr><td>2차</td><td>BC 490</td><td>⑲<input type="text" class="blank-input" data-answer="마라톤" data-id="19" style="width:68px" placeholder=""> 전투</td><td>아테네 승리</td></tr>
+<tr><td>2차</td><td>BC 490</td><td>⑲<span class="blank-filled">마라톤</span> 전투</td><td>아테네 승리</td></tr>
 <tr><td>3차</td><td>BC 480~479</td><td>살라미스 해전·플라타이아이 전투</td><td>그리스 연합 승리</td></tr>
 </table>
 <br>
-<p>전쟁 후 그리스는 ⑳<input type="text" class="blank-input" data-answer="델로스" data-id="20" style="width:68px" placeholder=""> 동맹을 결성해 페르시아 재침입에 대비했다. <strong>아테네가 동맹의 중심</strong>이었다.</p>
+<p>전쟁 후 그리스는 ⑳<span class="blank-filled">델로스</span> 동맹을 결성해 페르시아 재침입에 대비했다. <strong>아테네가 동맹의 중심</strong>이었다.</p>
 <br>
 <h3>5-2. 펠로폰네소스 전쟁 — 자신감의 대가</h3>
 <br>
@@ -495,17 +464,17 @@ blockquote {
 
          ↓
 
-㉑<input type="text" class="blank-input code-blank" data-answer="펠로폰네소스" data-id="21" style="width:84px" placeholder=""> 전쟁 발발 (BC 431~404)
+㉑<span class="blank-filled">펠로폰네소스</span> 전쟁 발발 (BC 431~404)
 
    델로스 동맹(아테네) ↔ 펠로폰네소스 동맹(스파르타)
 
          ↓
 
-㉒<input type="text" class="blank-input code-blank" data-answer="스파르타" data-id="22" style="width:60px" placeholder=""> 승리 → 그러나 그리스 전체 쇠퇴
+㉒<span class="blank-filled">스파르타</span> 승리 → 그러나 그리스 전체 쇠퇴
 
          ↓
 
-기원전 4세기: ㉓<input type="text" class="blank-input code-blank" data-answer="마케도니아" data-id="23" style="width:70px" placeholder="">가 그리스 정복
+기원전 4세기: ㉓<span class="blank-filled">마케도니아</span>가 그리스 정복
 
 </pre>
 <br>
@@ -516,8 +485,6 @@ blockquote {
 <br>
 <h2>📖 6단계: 그리스 문화 — 인간을 중심에 놓다</h2>
 <br>
-<blockquote>🎙️ 마지막. 그리스가 진짜 남긴 건 군대도 정치도 아니라 <strong>생각하는 방식</strong>이야. '신이 다 정한다'에서 '<em>인간이 머리로 따져본다</em>'로. 신화·조각·철학·과학 다 <strong>인간</strong>이 주인공 — 이게 서양 문명의 뿌리가 돼.</blockquote>
-<br>
 <p>그리스가 남긴 진짜 유산은 <strong>군사도 정치도 아닌 문화</strong>다. 이때 만들어진 사고방식이 서양 문명의 기초가 된다.</p>
 <br>
 <h3>6-1. 왜 "인간 중심"이라 불리나?</h3>
@@ -525,11 +492,9 @@ blockquote {
 <table>
 <tr><td>증거</td><td>내용</td></tr>
 <tr><td>신화</td><td>신들이 <strong>인간처럼</strong> 사랑·질투·배신을 함 (이집트·메소포타미아 신과 다름)</td></tr>
-<tr><td>조각·건축</td><td>「원반 던지는 사람」, ㉔<input type="text" class="blank-input" data-answer="파르테논" data-id="24" style="width:84px" placeholder=""> 신전 — 인체 비례·조화·균형</td></tr>
+<tr><td>조각·건축</td><td>「원반 던지는 사람」, ㉔<span class="blank-filled">파르테논</span> 신전 — 인체 비례·조화·균형</td></tr>
 <tr><td>철학</td><td>관심이 자연 → <strong>인간과 사회</strong>로 이동</td></tr>
 </table>
-<br>
-<figure class="ws-fig"><img src="images/2-2-2_디스코볼로스.jpg" alt="「원반 던지는 사람」(디스코볼로스) — 인체의 비례·균형·역동성을 사실적으로 표현한 그리스 인간 중심 문화의 대표 조각. (글립토테크 뮌헨 소장 로마 시대 청동 복제본 · CC BY 2.5)" loading="lazy"><figcaption>「원반 던지는 사람」(디스코볼로스) — 인체의 비례·균형·역동성을 사실적으로 표현한 그리스 인간 중심 문화의 대표 조각. (글립토테크 뮌헨 소장 로마 시대 청동 복제본 · CC BY 2.5)</figcaption></figure>
 <br>
 <h3>6-2. 철학 — 소피스트 vs 소크라테스</h3>
 <br>
@@ -544,21 +509,21 @@ blockquote {
 
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 
-┃ [ 소피스트 ].                            ┃
+┃ [ 소피스트 ]                            ┃
 
-┃   · 진리는 상대적                         ┃
+┃   · 진리는 상대적                       ┃
 
-┃   · 설득·수사가 핵심                       ┃
+┃   · 설득·수사가 핵심                    ┃
 
-┃                                        ┃
+┃                                         ┃
 
-┃ [ ㉕<input type="text" class="blank-input code-blank" data-answer="소크라테스" data-id="25" style="width:70px" placeholder=""> ]                      ┃
+┃ [ ㉕<span class="blank-filled">소크라테스</span> ]                ┃
 
-┃   · 객관적·절대적 진리가 존재.               ┃
+┃   · 객관적·절대적 진리가 존재           ┃
 
-┃   · "너 자신을 알라".                     ┃
+┃   · "너 자신을 알라"                    ┃
 
-┃   · 문답법(산파술)로 진리 추구.              ┃
+┃   · 문답법(산파술)로 진리 추구          ┃
 
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
@@ -576,10 +541,10 @@ blockquote {
 <br>
 <table>
 <tr><td>분야</td><td>인물·작품</td><td>의의</td></tr>
-<tr><td>문학</td><td>㉖<input type="text" class="blank-input" data-answer="호메로스" data-id="26" style="width:84px" placeholder="">의 『일리아드』·『오디세이아』</td><td>그리스 최초의 서사시</td></tr>
+<tr><td>문학</td><td>㉖<span class="blank-filled">호메로스</span>의 『일리아드』·『오디세이아』</td><td>그리스 최초의 서사시</td></tr>
 <tr><td>연극</td><td>「오이디푸스왕」·「안티고네」</td><td>인간관계·사회 문제 주제</td></tr>
 <tr><td>역사</td><td>헤로도토스(『역사』), 투키디데스(『펠로폰네소스 전쟁사』)</td><td>신화가 아닌 <strong>사실 기반</strong> 역사 서술</td></tr>
-<tr><td>의학</td><td>㉗<input type="text" class="blank-input" data-answer="히포크라테스" data-id="27" style="width:116px" placeholder=""></td><td>의학을 주술에서 분리, 경험·관찰 기반</td></tr>
+<tr><td>의학</td><td>㉗<span class="blank-filled">히포크라테스</span></td><td>의학을 주술에서 분리, 경험·관찰 기반</td></tr>
 <tr><td>수학</td><td>피타고라스</td><td>수학적 증명의 전통</td></tr>
 </table>
 <br>
@@ -632,9 +597,9 @@ blockquote {
 <br>
 <table>
 <tr><td>비교축</td><td>스파르타</td><td>아테네</td></tr>
-<tr><td>국가 성격</td><td>㉘<input type="text" class="blank-input" data-answer="정복" data-id="28" style="width:60px" placeholder=""> 국가</td><td>상공업·무역 중심</td></tr>
+<tr><td>국가 성격</td><td>㉘<span class="blank-filled">정복</span> 국가</td><td>상공업·무역 중심</td></tr>
 <tr><td>지형</td><td>내륙</td><td>해안 (항구 폴리스)</td></tr>
-<tr><td>정치</td><td>군사적 ㉙<input type="text" class="blank-input" data-answer="과두" data-id="29" style="width:60px" placeholder="">정 (왕·귀족 중심)</td><td>직접 민주정</td></tr>
+<tr><td>정치</td><td>군사적 ㉙<span class="blank-filled">과두</span>정 (왕·귀족 중심)</td><td>직접 민주정</td></tr>
 <tr><td>경제 기반</td><td>예속민 농업 노동</td><td>무역·상공업</td></tr>
 <tr><td>교육</td><td>7세부터 군사 훈련</td><td>철학·예술·체육 균형</td></tr>
 <tr><td>사회 통제</td><td>엄격한 규율, 외부 교류 제한</td><td>개방적, 외국인·무역 활발</td></tr>
@@ -649,11 +614,11 @@ blockquote {
 <br>
 <table>
 <tr><td>구분</td><td>고대 아테네</td><td>오늘날</td></tr>
-<tr><td>시민 범위</td><td>㉚<input type="text" class="blank-input" data-answer="성인 남성 시민" data-id="30" style="width:148px" placeholder="">만 (전체의 약 10~15%)</td><td>일정 연령(18세) 이상 <strong>모든 국민</strong></td></tr>
-<tr><td>참여 방식</td><td>㉛<input type="text" class="blank-input" data-answer="직접" data-id="31" style="width:60px" placeholder=""> 민주주의 (민회 직접 참여)</td><td>㉜<input type="text" class="blank-input" data-answer="대의(간접)" data-id="32" style="width:116px" placeholder=""> 민주주의 (선거로 대표 선출)</td></tr>
-<tr><td>공직 선출</td><td>㉝<input type="text" class="blank-input" data-answer="추첨" data-id="33" style="width:60px" placeholder="">제 중심</td><td>㉞<input type="text" class="blank-input" data-answer="선거" data-id="34" style="width:60px" placeholder="">제 중심</td></tr>
+<tr><td>시민 범위</td><td>㉚<span class="blank-filled">성인 남성 시민</span>만 (전체의 약 10~15%)</td><td>일정 연령(18세) 이상 <strong>모든 국민</strong></td></tr>
+<tr><td>참여 방식</td><td>㉛<span class="blank-filled">직접</span> 민주주의 (민회 직접 참여)</td><td>㉜<span class="blank-filled">대의(간접)</span> 민주주의 (선거로 대표 선출)</td></tr>
+<tr><td>공직 선출</td><td>㉝<span class="blank-filled">추첨</span>제 중심</td><td>㉞<span class="blank-filled">선거</span>제 중심</td></tr>
 <tr><td>수당</td><td>공무 수당 지급</td><td>선출직 공무원 임금</td></tr>
-<tr><td>독재 견제</td><td>㉟<input type="text" class="blank-input" data-answer="도편 추방제" data-id="35" style="width:116px" placeholder=""></td><td>탄핵·삼권분립·언론 자유</td></tr>
+<tr><td>독재 견제</td><td>㉟<span class="blank-filled">도편 추방제</span></td><td>탄핵·삼권분립·언론 자유</td></tr>
 </table>
 <br>
 <hr>
@@ -666,18 +631,18 @@ blockquote {
 <br>
 <table>
 <tr><td>안건</td><td>찬성/반대</td><td>이유</td></tr>
-<tr><td>"재판 배심원에게도 수당을 지급하자"</td><td><div class="choice-group" data-id="tbl-1"><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="찬성(예시)">반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="찬성(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'조건부 반대(예시)')" data-answer="찬성(예시)">조건부 반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-2"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.')" data-answer="가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.">가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.</button><button class="choice-btn" onclick="selectChoice(this,'원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.')" data-answer="가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.">원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.</button><button class="choice-btn" onclick="selectChoice(this,'공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.')" data-answer="가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.">공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.</button></div></td></tr>
-<tr><td>"외국인(메토이코이)에게도 시민권을 주자"</td><td><div class="choice-group" data-id="tbl-3"><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="조건부 반대(예시)">반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'조건부 반대(예시)')" data-answer="조건부 반대(예시)">조건부 반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="조건부 반대(예시)">찬성(예시)</button></div></td><td><div class="choice-group" data-id="tbl-4"><button class="choice-btn" onclick="selectChoice(this,'공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.')" data-answer="원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.">공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.</button><button class="choice-btn" onclick="selectChoice(this,'가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.')" data-answer="원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.">가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.</button><button class="choice-btn" onclick="selectChoice(this,'원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.')" data-answer="원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.">원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.</button></div></td></tr>
-<tr><td>"델로스 동맹 자금으로 파르테논을 재건하자"</td><td><div class="choice-group" data-id="tbl-5"><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="반대(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="반대(예시)">반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'조건부 반대(예시)')" data-answer="반대(예시)">조건부 반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-6"><button class="choice-btn" onclick="selectChoice(this,'공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.')" data-answer="공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.">공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.</button><button class="choice-btn" onclick="selectChoice(this,'가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.')" data-answer="공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.">가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.</button><button class="choice-btn" onclick="selectChoice(this,'원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.')" data-answer="공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.">원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.</button></div></td></tr>
+<tr><td>"재판 배심원에게도 수당을 지급하자"</td><td><strong>찬성(예시)</strong></td><td><strong>가난한 시민이 하루 일을 쉬고 배심 일을 할 수 있어야 '모든 시민의 평등'이 실질이 됨. 재산이 정치 참여를 가르면 도로 귀족정이 된다.</strong></td></tr>
+<tr><td>"외국인(메토이코이)에게도 시민권을 주자"</td><td><strong>조건부 반대(예시)</strong></td><td><strong>원칙적으로는 확대가 맞지만, 델로스 동맹 자금·군역 분담 구조가 시민권과 연결되어 있어 급격한 개방은 재정·병역 위기를 부른다. 단계적 통합안을 제안.</strong></td></tr>
+<tr><td>"델로스 동맹 자금으로 파르테논을 재건하자"</td><td><strong>반대(예시)</strong></td><td><strong>공금의 유용은 동맹국의 반발을 부르고, 이는 스파르타와의 전쟁 명분이 된다. 단기 자부심보다 장기 동맹 유지가 우선.</strong></td></tr>
 </table>
 <br>
 <h3>활동 2: 3명의 개혁가 비교</h3>
 <br>
 <table>
 <tr><td>개혁가</td><td>해결하려 한 문제</td><td>핵심 장치</td><td>한 줄로</td></tr>
-<tr><td>솔론</td><td><div class="choice-group" data-id="tbl-7"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민의 실질 참여 어려움')" data-answer="빚에 시달리는 평민, 귀족 독점">가난한 시민의 실질 참여 어려움</button><button class="choice-btn" onclick="selectChoice(this,'귀족의 혈연 기반 독점')" data-answer="빚에 시달리는 평민, 귀족 독점">귀족의 혈연 기반 독점</button><button class="choice-btn" onclick="selectChoice(this,'빚에 시달리는 평민, 귀족 독점')" data-answer="빚에 시달리는 평민, 귀족 독점">빚에 시달리는 평민, 귀족 독점</button></div></td><td><div class="choice-group" data-id="tbl-8"><button class="choice-btn" onclick="selectChoice(this,'재산 등급별 참정권, 부채 탕감')" data-answer="재산 등급별 참정권, 부채 탕감">재산 등급별 참정권, 부채 탕감</button><button class="choice-btn" onclick="selectChoice(this,'추첨제, 공무 수당, 민회 중심 의결')" data-answer="재산 등급별 참정권, 부채 탕감">추첨제, 공무 수당, 민회 중심 의결</button><button class="choice-btn" onclick="selectChoice(this,'지역 부족제, 500인 평의회, 도편 추방제')" data-answer="재산 등급별 참정권, 부채 탕감">지역 부족제, 500인 평의회, 도편 추방제</button></div></td><td><div class="choice-group" data-id="tbl-9"><button class="choice-btn" onclick="selectChoice(this,'"전성기를 완성하다"')" data-answer=""문을 살짝 열다"">"전성기를 완성하다"</button><button class="choice-btn" onclick="selectChoice(this,'"기반을 만들다"')" data-answer=""문을 살짝 열다"">"기반을 만들다"</button><button class="choice-btn" onclick="selectChoice(this,'"문을 살짝 열다"')" data-answer=""문을 살짝 열다"">"문을 살짝 열다"</button></div></td></tr>
-<tr><td>클레이스테네스</td><td><div class="choice-group" data-id="tbl-10"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민의 실질 참여 어려움')" data-answer="귀족의 혈연 기반 독점">가난한 시민의 실질 참여 어려움</button><button class="choice-btn" onclick="selectChoice(this,'귀족의 혈연 기반 독점')" data-answer="귀족의 혈연 기반 독점">귀족의 혈연 기반 독점</button><button class="choice-btn" onclick="selectChoice(this,'빚에 시달리는 평민, 귀족 독점')" data-answer="귀족의 혈연 기반 독점">빚에 시달리는 평민, 귀족 독점</button></div></td><td><div class="choice-group" data-id="tbl-11"><button class="choice-btn" onclick="selectChoice(this,'지역 부족제, 500인 평의회, 도편 추방제')" data-answer="지역 부족제, 500인 평의회, 도편 추방제">지역 부족제, 500인 평의회, 도편 추방제</button><button class="choice-btn" onclick="selectChoice(this,'재산 등급별 참정권, 부채 탕감')" data-answer="지역 부족제, 500인 평의회, 도편 추방제">재산 등급별 참정권, 부채 탕감</button><button class="choice-btn" onclick="selectChoice(this,'추첨제, 공무 수당, 민회 중심 의결')" data-answer="지역 부족제, 500인 평의회, 도편 추방제">추첨제, 공무 수당, 민회 중심 의결</button></div></td><td><div class="choice-group" data-id="tbl-12"><button class="choice-btn" onclick="selectChoice(this,'"전성기를 완성하다"')" data-answer=""기반을 만들다"">"전성기를 완성하다"</button><button class="choice-btn" onclick="selectChoice(this,'"기반을 만들다"')" data-answer=""기반을 만들다"">"기반을 만들다"</button><button class="choice-btn" onclick="selectChoice(this,'"문을 살짝 열다"')" data-answer=""기반을 만들다"">"문을 살짝 열다"</button></div></td></tr>
-<tr><td>페리클레스</td><td><div class="choice-group" data-id="tbl-13"><button class="choice-btn" onclick="selectChoice(this,'가난한 시민의 실질 참여 어려움')" data-answer="가난한 시민의 실질 참여 어려움">가난한 시민의 실질 참여 어려움</button><button class="choice-btn" onclick="selectChoice(this,'빚에 시달리는 평민, 귀족 독점')" data-answer="가난한 시민의 실질 참여 어려움">빚에 시달리는 평민, 귀족 독점</button><button class="choice-btn" onclick="selectChoice(this,'귀족의 혈연 기반 독점')" data-answer="가난한 시민의 실질 참여 어려움">귀족의 혈연 기반 독점</button></div></td><td><div class="choice-group" data-id="tbl-14"><button class="choice-btn" onclick="selectChoice(this,'재산 등급별 참정권, 부채 탕감')" data-answer="추첨제, 공무 수당, 민회 중심 의결">재산 등급별 참정권, 부채 탕감</button><button class="choice-btn" onclick="selectChoice(this,'지역 부족제, 500인 평의회, 도편 추방제')" data-answer="추첨제, 공무 수당, 민회 중심 의결">지역 부족제, 500인 평의회, 도편 추방제</button><button class="choice-btn" onclick="selectChoice(this,'추첨제, 공무 수당, 민회 중심 의결')" data-answer="추첨제, 공무 수당, 민회 중심 의결">추첨제, 공무 수당, 민회 중심 의결</button></div></td><td><div class="choice-group" data-id="tbl-15"><button class="choice-btn" onclick="selectChoice(this,'"문을 살짝 열다"')" data-answer=""전성기를 완성하다"">"문을 살짝 열다"</button><button class="choice-btn" onclick="selectChoice(this,'"전성기를 완성하다"')" data-answer=""전성기를 완성하다"">"전성기를 완성하다"</button><button class="choice-btn" onclick="selectChoice(this,'"기반을 만들다"')" data-answer=""전성기를 완성하다"">"기반을 만들다"</button></div></td></tr>
+<tr><td>솔론</td><td><strong>빚에 시달리는 평민, 귀족 독점</strong></td><td><strong>재산 등급별 참정권, 부채 탕감</strong></td><td><strong>"문을 살짝 열다"</strong></td></tr>
+<tr><td>클레이스테네스</td><td><strong>귀족의 혈연 기반 독점</strong></td><td><strong>지역 부족제, 500인 평의회, 도편 추방제</strong></td><td><strong>"기반을 만들다"</strong></td></tr>
+<tr><td>페리클레스</td><td><strong>가난한 시민의 실질 참여 어려움</strong></td><td><strong>추첨제, 공무 수당, 민회 중심 의결</strong></td><td><strong>"전성기를 완성하다"</strong></td></tr>
 </table>
 <br>
 <h3>활동 3: 현대 연결</h3>
@@ -685,22 +650,33 @@ blockquote {
 <p>다음 셋 중 하나를 골라, 아테네 민주정과 오늘날을 연결해 한 단락으로 써 보자.</p>
 <p><strong>① 선거 vs 추첨 / ② 시민의 범위 / ③ 독재 견제 장치</strong></p>
 <br>
-<pre class="code-block">
-
-
-
-
-
-
-
-
-
-
-</pre>
+<blockquote><strong>예시 답안(② 시민의 범위)</strong>: 아테네 민주정의 치명적 한계는 "시민"을 성인 남성으로 좁게 정의한 것이었다. 여성·노예·외국인이 빠졌기에 실제 참여자는 인구의 10%대에 불과했다. 오늘날 우리가 여성 참정권(20세기), 인종 차별 철폐(20세기), 이주민 인권 확대 같은 투쟁을 거쳐 오늘에 이른 것은, <strong>민주주의의 수준은 "시민을 얼마나 넓게 정의하느냐"로 결정된다</strong>는 아테네의 실패가 남긴 교훈 위에 서 있다.</blockquote>
+<br>
+<blockquote><strong>예시 답안(① 선거 vs 추첨)</strong>: 페리클레스 시대의 아테네는 대부분의 공직을 추첨으로 뽑았다. "선거는 결국 말 잘하고 돈 있는 사람이 이긴다"는 생각 때문이었다. 오늘날 우리가 당연하게 여기는 선거제는 사실 "엘리트가 뽑히는 장치"라는 비판에서 자유롭지 못하다. 최근 시민 배심원·시민 의회 같은 실험이 시도되는 이유는, <strong>2,500년 전 아테네가 던졌던 질문 — "추첨이 더 평등하지 않을까?" — 이 여전히 살아 있기</strong> 때문이다.</blockquote>
+<br>
+<blockquote><strong>예시 답안(③ 독재 견제 장치)</strong>: 아테네는 도편 추방제로 독재 위험 인물을 미리 제거했다. 오늘날 우리는 탄핵·삼권분립·언론 자유로 이를 대체한다. 그러나 도편 추방제가 대중 선동에 악용되어 무고한 정치인까지 쫓아낸 역사는, <strong>"견제 장치 자체가 또 다른 권력이 될 수 있다"</strong>는 경고를 남긴다. 민주주의는 제도를 만드는 것으로 끝나지 않고, 그 제도를 감시할 시민의 깨어 있음을 요구한다.</blockquote>
 <br>
 <hr>
 <br>
 <blockquote><strong>다음 시간 예고:</strong> 알렉산드로스 제국과 헬레니즘 문화 — 폴리스를 넘어 세계 시민으로</blockquote>
+<br>
+<hr>
+<br>
+<h2>✅ 교재 기준 대조용 보강 (삭제 금지 포인트)</h2>
+<p>- <strong>성취기준 연결</strong>: [9역02-02] 고대 지중해 세계의 형성과 민주 정치의 발전</p>
+<p>- <strong>인과 사슬 일관성</strong>: 2-2-1(페르시아의 지중해 진출) → 2-2-2(그리스의 대응과 민주정) → 2-2-3(마케도니아·헬레니즘)</p>
+<p>- <strong>설계자 의도</strong>:</p>
+<p>- 아테네 민주정을 <strong>"시민 범위 확장"의 첫 실험</strong>으로 이중 위치 지정</p>
+<p>- 전쟁 방식(팔랑크스) 변화 → 정치 주체 변화라는 <strong>역사 법칙</strong> 강조</p>
+<p>- 한계("시민이 누구인가")를 현대 민주주의 의제와 직결</p>
+<p>- <strong>핵심 대비축</strong>:</p>
+<p>- 스파르타(군사·폐쇄) ↔ 아테네(문화·개방)</p>
+<p>- 솔론(재산 기준) → 클레이스테네스(재산 기준 폐지) → 페리클레스(추첨·수당)</p>
+<p>- 직접 민주(아테네) ↔ 대의 민주(오늘날), 추첨(아테네) ↔ 선거(오늘날)</p>
+<p>- <strong>오개념 방지</strong>:</p>
+<p>- "스파르타도 민주정" → 아니다, 거수기 수준 민회</p>
+<p>- "전쟁 승자는 강해진다" → 펠로폰네소스 전쟁은 <strong>양쪽 모두 약화</strong></p>
+<p>- "도편 추방제는 이상적 장치" → <strong>선동에 악용</strong>된 사례도 존재</p>
 <br>
 <hr>
 <br>
@@ -721,7 +697,7 @@ blockquote {
 <p>[^7]: <strong>스파르타의 "왕 2명" 체제(이중 왕정).</strong> 스파르타에는 두 왕실 가문 — <strong>아기아드가(家)</strong>와 <strong>에우리폰티드가</strong> — 에서 각각 한 명씩 왕을 배출해 항상 왕이 2명 공존했다. 전설상 쌍둥이 왕자에서 비롯되었다고 전해지며, 헤로도토스 『역사』 제6권(51~60장)에 상세히 기록되어 있다. 두 왕은 서로 견제하며 주로 <strong>군사 지휘</strong>와 <strong>제사</strong>를 담당했고, 일상 정치는 장로회(게루시아, 왕 2명 포함 30명)와 감독관(에포로이, 5명)이 나눠 맡았다. 한 사람에게 권력이 집중되지 않도록 설계된 <strong>이중 권력 장치</strong>였다는 점이 특징이다.</p>
 </div>
 <script>
-const TB=42, TOX=0, GT=42;
+const TB=0, TOX=0, GT=0;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
@@ -772,10 +748,13 @@ function check(){
       }
     });
   });
-  document.getElementById('score').textContent=bc;
-  document.getElementById('ox-score').textContent=oxc;
-  document.getElementById('total-score').textContent=bc+oxc;
-  document.getElementById('pct').textContent=Math.round((bc+oxc)/GT*100);
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
 }
 function reveal(){
   usedReveal=true;
@@ -817,40 +796,66 @@ function reset(){
   });
   document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
   document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
-  document.getElementById('score').textContent=0;
-  document.getElementById('ox-score').textContent=0;
-  document.getElementById('total-score').textContent=0;
-  document.getElementById('pct').textContent=0;
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
 }
-function saveProgress(){
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+function _wsKey(){
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}
+function _persist(){
+  const key=_wsKey(); if(!key) return;
   const data={};
-  document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
-    data[el.dataset.id||el.dataset.answer]=el.value;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
   });
-  const info={
-    class:document.querySelector('.student-info input:nth-child(1)').value,
-    number:document.querySelector('.student-info input:nth-child(2)').value,
-    name:document.querySelector('.student-info input:nth-child(3)').value
-  };
-  localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()}));
-  alert('저장되었습니다! 다음에 이 페이지를 열면 자동으로 불러옵니다.');
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const si=document.querySelectorAll('.student-info input');
+  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
-  const saved=localStorage.getItem('ws_'+document.title);
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
-  const {info,data}=JSON.parse(saved);
-  if(info){
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  if(info&&!EXAM_MODE){
     const inputs=document.querySelectorAll('.student-info input');
-    if(info.class) inputs[0].value=info.class;
-    if(info.number) inputs[1].value=info.number;
-    if(info.name) inputs[2].value=info.name;
+    if(info.class&&inputs[0]) inputs[0].value=info.class;
+    if(info.number&&inputs[1]) inputs[1].value=info.number;
+    if(info.name&&inputs[2]) inputs[2].value=info.name;
   }
-  if(data){
-    document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
-      const key=el.dataset.id||el.dataset.answer;
-      if(data[key]) el.value=data[key];
-    });
-  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
 }
 // 모든 입력칸에서 Enter→다음칸 이동
 const allInputs=[...document.querySelectorAll('.blank-input')];
@@ -872,6 +877,12 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
@@ -885,9 +896,10 @@ function submitResult(){
   if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
-  const bs=parseInt(document.getElementById('score').textContent);
-  const os=parseInt(document.getElementById('ox-score').textContent);
-  const ts=parseInt(document.getElementById('total-score').textContent);
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
   const answers=collectAnswers();
   const data={
     type:'final',
@@ -909,6 +921,9 @@ function submitResult(){
 }
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
 // 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
 document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
   el.addEventListener('input',scheduleProgress);
@@ -919,7 +934,12 @@ document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
 document.querySelectorAll('.student-info input').forEach(el=>{
   el.addEventListener('input',scheduleProgress);
 });
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  document.querySelectorAll('.student-info input').forEach(el=>{
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
 </script>
-<script>window.addEventListener("load",function(){try{reveal();}catch(e){}});</script>
 </body>
 </html>
