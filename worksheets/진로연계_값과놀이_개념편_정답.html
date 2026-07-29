@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>값과 놀이 — 일의 값과 나의 진로 (정답·해설)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
+  background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
+}
+.container {
+  max-width: 800px; margin: 0 auto; background: white;
+  border-radius: 16px; padding: 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
+h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
+h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
+p { margin: 5px 0; font-size: 0.95em; }
+hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
+}
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
+td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
+tr:first-child td { background: #f0f4ff; font-weight: 600; }
+blockquote {
+  border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
+  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
+}
+.callout {
+  padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
+}
+.callout-info { background: #e8f4fd; border-left: 4px solid #007aff; }
+.callout-warning { background: #fff8e1; border-left: 4px solid #ff9500; }
+.callout-tip { background: #e8f8e8; border-left: 4px solid #34c759; }
+.callout-question { background: #f3e8fd; border-left: 4px solid #af52de; }
+.code-block {
+  background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px;
+  font-family: 'SF Mono', monospace; font-size: 0.82em;
+  overflow-x: auto; margin: 10px 0; white-space: pre;
+}
+.blank-input {
+  border: none; border-bottom: 2px solid #007aff; background: #f8f9ff;
+  padding: 3px 6px; font-size: 0.93em; font-family: inherit;
+  text-align: center; border-radius: 4px 4px 0 0; outline: none;
+  transition: all 0.3s;
+}
+.blank-input:focus { border-bottom-color: #5856d6; background: #f0f0ff; }
+.blank-input.correct { border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.blank-input.wrong { border-bottom-color: #ff3b30; background: #fff0f0; }
+.blank-input.no-score { border-bottom-color: #aaa; }
+.blank-input.code-blank { background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }
+.blank-input.no-score.correct { border-bottom-color: #34c759; }
+.blank-input.no-score.wrong { border-bottom-color: #ff9500; }
+.ox-input {
+  border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
+  font-family: inherit; border-radius: 4px; outline: none;
+  transition: all 0.3s;
+}
+.ox-group { display: inline-flex; gap: 6px; }
+.ox-btn {
+  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; line-height: 1;
+}
+.ox-btn:hover { background: #f0f4ff; }
+.ox-btn.selected { background: #007aff; color: white; }
+.ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.ox-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 4px; }
+.choice-btn {
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}
+.choice-btn:hover { background: #f0f4ff; }
+.choice-btn.selected { background: #007aff; color: white; }
+.choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.btn-submitted { background: #34c759 !important; cursor: default; }
+.submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
+.essay-input {
+  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
+  padding: 10px; font-family: inherit; font-size: 0.93em;
+  resize: vertical; margin: 6px 0; outline: none;
+}
+.essay-input:focus { border-color: #007aff; }
+.control-bar {
+  position: sticky; top: 0; background: white; padding: 10px 0;
+  border-bottom: 1px solid #eee; margin: -16px 0 16px; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.score { font-size: 1.1em; font-weight: 600; color: #007aff; }
+.btn {
+  padding: 7px 16px; border: none; border-radius: 8px;
+  font-size: 0.88em; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: #007aff; color: white; }
+.btn-secondary { background: #f0f0f5; color: #333; }
+.btn-danger { background: #ff3b30; color: white; }
+.student-info {
+  display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.student-info input {
+  border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
+}
+@media (max-width: 600px) {
+  .container { padding: 14px; }
+  .control-bar { flex-direction: column; text-align: center; }
+  table { font-size: 0.82em; }
+  .hero-title { font-size: 26px !important; }
+  .hero-section { padding: 36px 20px !important; }
+}
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
+.hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
+.hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword {
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}
+.hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
+.ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+.hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
+  <h1>값과 놀이 — 일의 값과 나의 진로 (정답·해설)</h1>
+<br>
+<blockquote>🧭 <strong>오늘 우리가 답할 한 가지</strong></blockquote>
+<blockquote>시장은 거의 모든 것에 <em>값(가격)</em> 을 매긴다. 그럼 <strong>사람의 일(노동)</strong> 에는 어떻게 값이 매겨질까? 그리고 <em>값으로는 잡히지 않는데도</em> 네가 계속하는 것은 어디에 있을까?</blockquote>
+<br>
+<h2>1단계 · 들어가기 — 값이 안 붙는데도 하는 일</h2>
+<p>포스트잇에 한 줄 적어 보자. <strong>돈을 주는 사람도 없는데, 네가 그냥 계속하는 것 하나</strong>는?</p>
+<br>
+<blockquote>🎙️ 유튜브 댓글 달면 누가 돈 줘? 아무도 안 줘. 그런데 왜 어떤 건 밤새 정성껏 달지? <em>값이 안 붙는데 계속하는 그것</em>이 오늘의 실마리야.</blockquote>
+<br>
+<blockquote>💡 <strong>값이 안 매겨지는데도 하는 것 = 오늘의 단서.</strong></blockquote>
+<br>
+<p><strong>✍️ 나의 한 줄</strong> — 정답 없음(자유 응답). 단계5의 <em>비환원 가치</em> 복선으로 연결되면 좋음.</p>
+<br>
+<h2>2단계 · 값은 어떻게 정해질까 — 물건에서 '일'로</h2>
+<p>시장에서 <strong>값(시장 가격)</strong> 은 누가 혼자 정하는 게 아니라, 사고 싶어 하는 힘과 팔고 싶어 하는 힘이 만나서 정해진다.</p>
+<br>
+<p>- 시장 가격 = ①<span class="blank-filled">수요</span>와 ②<span class="blank-filled">공급</span>가 만나는 곳에서 정해진다. (두 곡선이 만나 수량이 같아지는 점 = <em>균형 가격</em>)</p>
+<br>
+<blockquote>(교과서 원문: "시장 가격은 기업 혼자서 마음대로 결정하는 것이 아니라, 수요와 공급의 상호 작용으로 결정됨을 이해하게 한다.")</blockquote>
+<br>
+<p>일(노동)에도 값이 있다. 일의 값을 ③<span class="blank-filled">임금</span> 이라고 부른다(=임금·월급). 노동도 시장에서 거래되며, 일하려는 사람(공급)과 사람을 구하려는 곳(수요)이 만나 <em>희소성·숙련</em>에 따라 값이 달라진다.</p>
+<br>
+<blockquote>(교과서 원문: "생산 요소 시장은 노동, 자본, 자연 자원(토지)을 거래하는 시장으로 가계가 공급자, 기업이 수요자인 시장이다.")</blockquote>
+<br>
+<blockquote>🎙️ 아이돌 월급이 센 까닭 — 하고 싶은 사람 많고(공급↑) 되는 사람 적음(희소). 누구나 금방 하는 일은 값이 잘 안 오름.</blockquote>
+<br>
+<blockquote>⚠️ 핵심 복선: <strong>임금이 그 일의 가치를 <em>전부</em> 말해 주지는 않는다.</strong> (단계5 환원/비환원으로 회수)</blockquote>
+<blockquote>📌 범위 가드 — <em>노동시장에서 임금이 구체적으로 어떻게 결정되는가</em>는 본 단원 범위를 넘는다. "노동이라는 일에도 시장 값(임금)이 있다"는 한 발짝까지만 다룬다.</blockquote>
+<br>
+<h2>3단계 · 모둠 프로젝트 — 우리 동네 직업 한 사람</h2>
+<p>모둠이 직업 하나를 정해 조사·인터뷰하고 <strong>두 축</strong>으로 정리한다.</p>
+<br>
+<p>- <strong>ⓐ 값매김</strong>: 임금이 왜 이만큼인가(수요·공급·희소·숙련 중 무엇?)</p>
+<p>- <strong>ⓑ 놀이</strong>: 돈과 상관없이 그냥 좋아서·몰입해서 하는 순간</p>
+<br>
+<blockquote>🎙️ 인터뷰 한 줄: "돈 말고, 이 일 언제 제일 재밌으세요?"</blockquote>
+<br>
+<p><strong>채점 관점(모둠 산출)</strong></p>
+<p>- ⓐ에서 <strong>값매김 원리(수요·공급·희소·숙련)를 한 번이라도 적용</strong>했는가.</p>
+<p>- ⓐ값매김과 ⓑ놀이를 <em>둘 다</em> 찾아냈는가(한쪽만이면 보완 안내).</p>
+<p>- 산출물 형식(포스터/영상/4컷)은 채점 요소 아님 — <em>내용</em>으로 본다.</p>
+<br>
+<h2>4단계 · 나에게 돌리기 — 끌림과 현실, 둘 다</h2>
+<p>흥미가 가는 일을 하나 떠올려 두 줄로.</p>
+<p>- 값으로는 안 잡히는데 끌리는 점 한 가지</p>
+<p>- 현실적으로 걸리는 점(돈·시간·실력·환경) 한 가지</p>
+<br>
+<blockquote>🔒 이 칸은 <strong>성적·등수와 분리</strong>된 탐색 활동. <em>진로 확정·소명 강도로 평가하지 않는다.</em></blockquote>
+<br>
+<p><strong>채점 관점(서술 성찰)</strong> — 정답 없음·과정 채점.</p>
+<p>- <strong>끌림과 현실 제약을 <em>둘 다</em> 썼는가</strong>(한쪽만이면 반쪽).</p>
+<p>- 구체성(막연한 "좋아서" 대신 <em>언제·무엇이</em> 끌리는지). 진로를 <em>확정</em>하라는 게 아니라 <em>탐색 폭</em>을 넓혔는지로 본다.</p>
+<p>- ⚠️ "좋아하는 일을 하면 다 잘된다"식 단정엔 <em>현실 제약(자리·돈·기회)</em>을 함께 보도록 코멘트.</p>
+<br>
+<h2>5단계 · 정리 — 값으로 잡히는 것 / 안 잡히는 것</h2>
+<table>
+<tr><td>값으로 잡히는 것</td><td>값으로 안 잡히는 것</td></tr>
+<tr><td>임금·가격·연봉</td><td>의미·관계·몰입(놀이)</td></tr>
+<tr><td>수요·공급·희소·숙련으로 정해짐</td><td>숫자로 환원되지 않음</td></tr>
+</table>
+<br>
+<blockquote>🎙️ AI는 값은 매겨도, "그 일이 <em>왜 너한테</em> 좋은지"는 모른다 — 그건 네가 안다.</blockquote>
+<br>
+<blockquote>💡 진로 = <strong>① 끌리는 마음 + ② 현실 가능성 + ③ 바깥 제약(자리·돈·기회)</strong> 셋을 <em>함께</em> 보기. "좋아하면 다 된다"도, "돈만 보면 된다"도 아니다.</blockquote>
+<br>
+<h2>✅ 오늘의 OX (정답·해설)</h2>
+<table>
+<tr><td>번호</td><td>문장</td><td>정답</td></tr>
+<tr><td>1</td><td>일(노동)의 값인 임금은 그 일의 수요·공급·희소성·숙련 정도에 따라 정해진다.</td><td><strong>O</strong></td></tr>
+<tr><td>2</td><td>좋아하는 일을 직업으로 삼으면 반드시 돈을 많이 벌게 된다.</td><td><strong>X</strong></td></tr>
+</table>
+<br>
+<p>- <strong>1번(O)</strong>: 임금도 <em>생산요소시장</em>에서 노동의 수요·공급·희소성·숙련으로 형성된다(R3 생산요소시장 원문).</p>
+<p>- <strong>2번(X)</strong>: <em>함정 — 소명=고수익 등치 오개념.</em> 좋아하는 일과 소득은 별개 변수(수요·공급·희소성이 따로 작동). "좋아하면 돈도 따라온다"는 보장이 없음을 짚어 준다(소명 단순화 가드).</p>
+<br>
+<h2>🌱 더 생각해 보기 (모범답안·채점 관점)</h2>
+<p>"값이 잘 매겨지지 않는 일(돌봄·가사·자원봉사)도 가치가 있을까?"</p>
+<br>
+<p>- <strong>모범답안 방향</strong>: 시장 <em>가격</em>이 0이거나 낮아도, 그 일이 <em>사회를 돌아가게 하고(필수)</em>·<em>다른 사람에게 의미와 도움</em>을 준다는 점에서 가치가 있다. (예: 무급 가사·돌봄은 통계청 <em>생활시간조사</em> 등에서 경제적 가치로 추계되기도 함 — 값이 <em>안 매겨진</em> 것일 뿐 가치가 <em>없는</em> 것은 아님.)</p>
+<p>- <strong>채점 관점</strong>: ⓐ <em>가격(값)과 가치(중요함)를 구분</em>했는가 ⓑ 구체 사례를 들었는가. 정답을 하나로 고정하지 말고 <em>논리적 근거</em>로 본다.</p>
+</div>
+<script>
+const TB=0, TOX=0, GT=0;
+let usedReveal=false;
+function selectOX(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function selectChoice(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+function check(){
+  let bc=0, oxc=0;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    const a=norm(el.dataset.answer), u=norm(el.value);
+    if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
+    const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
+    if(isCorrect){
+      el.classList.add('correct');el.classList.remove('wrong');
+      bc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const sel=grp.dataset.selected, ans=grp.dataset.answer;
+    if(!sel) return;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');oxc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');bc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
+}
+function reveal(){
+  usedReveal=true;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const ans=grp.dataset.answer;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.getElementById('score').textContent=TB;
+  document.getElementById('ox-score').textContent=TOX;
+  document.getElementById('total-score').textContent=GT;
+  document.getElementById('pct').textContent=100;
+}
+function reset(){
+  usedReveal=false;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value='';el.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.ox-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
+}
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+function _wsKey(){
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}
+function _persist(){
+  const key=_wsKey(); if(!key) return;
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const si=document.querySelectorAll('.student-info input');
+  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+}
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
+function loadProgress(){
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
+  if(!saved) return;
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  if(info&&!EXAM_MODE){
+    const inputs=document.querySelectorAll('.student-info input');
+    if(info.class&&inputs[0]) inputs[0].value=info.class;
+    if(info.number&&inputs[1]) inputs[1].value=info.number;
+    if(info.name&&inputs[2]) inputs[2].value=info.name;
+  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
+}
+// 모든 입력칸에서 Enter→다음칸 이동
+const allInputs=[...document.querySelectorAll('.blank-input')];
+allInputs.forEach((el,i)=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
+  });
+});
+// 제출
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){
+  const ans={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  });
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+  });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
+  return ans;
+}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+function submitResult(){
+  if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
+  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
+  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
+  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
+  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
+  check(); // 먼저 채점
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
+  const answers=collectAnswers();
+  const data={
+    type:'final',
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
+  };
+  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(()=>{
+    document.getElementById('submitBtn').textContent='✅ 제출 완료';
+    document.getElementById('submitBtn').classList.add('btn-submitted');
+    setTimeout(()=>{
+      document.getElementById('submitBtn').textContent='📤 재제출';
+      document.getElementById('submitBtn').classList.remove('btn-submitted');
+    }, 2000);
+  })
+  .catch(e=>alert('제출 실패: '+e));
+}
+// 페이지 로드 시 저장된 진행 불러오기
+loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+});
+document.querySelectorAll('.student-info input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  document.querySelectorAll('.student-info input').forEach(el=>{
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
+</script>
+</body>
+</html>
