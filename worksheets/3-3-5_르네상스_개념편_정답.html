@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>역사① Ⅲ단원 3-3-5 — 천 년 만에 다시 사람을 그리다 (르네상스 · 정답)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
+  background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
+}
+.container {
+  max-width: 800px; margin: 0 auto; background: white;
+  border-radius: 16px; padding: 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
+h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
+h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
+p { margin: 5px 0; font-size: 0.95em; }
+hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
+}
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
+td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
+tr:first-child td { background: #f0f4ff; font-weight: 600; }
+blockquote {
+  border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
+  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
+}
+.callout {
+  padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
+}
+.callout-info { background: #e8f4fd; border-left: 4px solid #007aff; }
+.callout-warning { background: #fff8e1; border-left: 4px solid #ff9500; }
+.callout-tip { background: #e8f8e8; border-left: 4px solid #34c759; }
+.callout-question { background: #f3e8fd; border-left: 4px solid #af52de; }
+.code-block {
+  background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px;
+  font-family: 'SF Mono', monospace; font-size: 0.82em;
+  overflow-x: auto; margin: 10px 0; white-space: pre;
+}
+.blank-input {
+  border: none; border-bottom: 2px solid #007aff; background: #f8f9ff;
+  padding: 3px 6px; font-size: 0.93em; font-family: inherit;
+  text-align: center; border-radius: 4px 4px 0 0; outline: none;
+  transition: all 0.3s;
+}
+.blank-input:focus { border-bottom-color: #5856d6; background: #f0f0ff; }
+.blank-input.correct { border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.blank-input.wrong { border-bottom-color: #ff3b30; background: #fff0f0; }
+.blank-input.no-score { border-bottom-color: #aaa; }
+.blank-input.code-blank { background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }
+.blank-input.no-score.correct { border-bottom-color: #34c759; }
+.blank-input.no-score.wrong { border-bottom-color: #ff9500; }
+.ox-input {
+  border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
+  font-family: inherit; border-radius: 4px; outline: none;
+  transition: all 0.3s;
+}
+.ox-group { display: inline-flex; gap: 6px; }
+.ox-btn {
+  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; line-height: 1;
+}
+.ox-btn:hover { background: #f0f4ff; }
+.ox-btn.selected { background: #007aff; color: white; }
+.ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.ox-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 4px; }
+.choice-btn {
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}
+.choice-btn:hover { background: #f0f4ff; }
+.choice-btn.selected { background: #007aff; color: white; }
+.choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.btn-submitted { background: #34c759 !important; cursor: default; }
+.submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
+.essay-input {
+  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
+  padding: 10px; font-family: inherit; font-size: 0.93em;
+  resize: vertical; margin: 6px 0; outline: none;
+}
+.essay-input:focus { border-color: #007aff; }
+.control-bar {
+  position: sticky; top: 0; background: white; padding: 10px 0;
+  border-bottom: 1px solid #eee; margin: -16px 0 16px; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.score { font-size: 1.1em; font-weight: 600; color: #007aff; }
+.btn {
+  padding: 7px 16px; border: none; border-radius: 8px;
+  font-size: 0.88em; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: #007aff; color: white; }
+.btn-secondary { background: #f0f0f5; color: #333; }
+.btn-danger { background: #ff3b30; color: white; }
+.student-info {
+  display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.student-info input {
+  border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
+}
+@media (max-width: 600px) {
+  .container { padding: 14px; }
+  .control-bar { flex-direction: column; text-align: center; }
+  table { font-size: 0.82em; }
+  .hero-title { font-size: 26px !important; }
+  .hero-section { padding: 36px 20px !important; }
+}
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
+.hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
+.hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword {
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}
+.hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
+.ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+.hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-5 — 천 년 만에 다시 사람을 그리다 (르네상스 · 정답)</h1><p class="hero-subtitle">왜 하필 이탈리아에서, 왜 하필 그때였을까?</p><div class="hero-keywords"><span class="hero-keyword">르네상스 = 재생·부활 (14~16세기)</span><span class="hero-keyword">이탈리아 = 로마 유산 + 비잔티움 학자 + 상인의 돈</span><span class="hero-keyword">인문주의 — 신 중심에서 인간 중심으로</span><span class="hero-keyword">알프스 이북 = 교회 비판 (에라스뮈스)</span></div><div class="hero-hook">지난 시간 기억나? 십자군 전쟁으로 동방 교역이 열리면서 베네치아 상인들이 어마어마한 돈을 벌었지. 그 돈, 어디에 썼을까? 놀랍게도 — 그림에 썼어. 화가를 먹여 살린 거야(헐?). 로마 유적이 널린 땅, 비잔티움에서 도망 온 학자들, 그리고 상인의 돈. 이 셋이 한곳에 모이자 천 년 동안 신만 그리던 유럽이 갑자기 '사람'을 그리기 시작해. 오늘은 그 폭발의 이야기.</div></section>
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
+  <h1>역사① Ⅲ단원 3-3-5 — 천 년 만에 다시 사람을 그리다 (르네상스 · 정답)</h1>
+<br>
+<h2>📌 학습 목표</h2>
+<p>- 르네상스가 일어난 <strong>배경</strong>을 파악할 수 있다.</p>
+<p>- <strong>이탈리아</strong>와 <strong>알프스 이북</strong>의 르네상스 특징을 비교할 수 있다.</p>
+<br>
+<h2>✨ 오늘의 고급 단어</h2>
+<table>
+<tr><td>낱말</td><td>쉽게 말하면</td><td>한자·어원 뜯어보기</td><td>문장 속에서</td></tr>
+<tr><td><strong>르네상스</strong></td><td>다시 태어남</td><td>(프랑스어 '재생·부활')</td><td>"고대 문화를 되살리려는 <strong>르네상스</strong>가 일어났다."</td></tr>
+<tr><td><strong>인문주의</strong></td><td>사람을 중심에 두는 생각</td><td>인(人, 사람) + 문(文, 글·문화)</td><td>"<strong>인문주의</strong>자들은 인간의 삶에 관심을 가졌다."</td></tr>
+<tr><td><strong>후원</strong></td><td>돈이나 힘으로 뒤에서 도와줌</td><td>후(後, 뒤) + 원(援, 도울)</td><td>"상인들이 예술가를 <strong>후원</strong>했다."</td></tr>
+<tr><td><strong>풍자</strong></td><td>웃음으로 비틀어 비판함</td><td>풍(諷, 빗대다) + 자(刺, 찌를)</td><td>"『우신예찬』은 성직자를 <strong>풍자</strong>했다."</td></tr>
+</table>
+<br>
+<blockquote>'르네상스'가 프랑스어로 재생·부활이라는 뜻임을 먼저 짚으면, "무엇을 되살렸나(그리스·로마)"가 자연스럽게 따라온다.</blockquote>
+<br>
+<h2>📖 1단계: 왜 하필 이탈리아였을까</h2>
+<p>14~16세기 유럽에서 고대 그리스·로마 문화를 되살려 인간 중심의 새 문화를 만들려는 움직임, 곧 ①<span class="blank-filled">르네상스</span>가 일어났다.</p>
+<br>
+<p><strong>이탈리아에서 시작된 이유 세 가지</strong></p>
+<table>
+<tr><td>조건</td><td>내용</td></tr>
+<tr><td>유산</td><td>고대 로마의 중심지라 로마 문화유산이 많이 남아 있었다</td></tr>
+<tr><td>사람</td><td>비잔티움 제국 학자들이 많이 이주해 고전 연구가 활발했다</td></tr>
+<tr><td>돈</td><td>지중해 무역으로 부유해진 상인들이 예술가를 후원했다</td></tr>
+</table>
+<br>
+<p><strong>연결 포인트</strong>: 세 번째 조건이 직전 차시(십자군)와 이어진다. 십자군 이후 동서 교역 → 이탈리아 도시 번영 → 그 부가 예술 후원으로. "왜 하필 이탈리아"의 답을 학생이 스스로 앞 차시에서 찾게 하면 좋다.</p>
+<br>
+<h2>📖 2단계: 신에서 사람으로 — 인문주의</h2>
+<p>인간의 개성과 능력을 중요하게 여기는 ②<span class="blank-filled">인문주의</span>가 발달했다. 문학에서는 보카치오가 『③<span class="blank-filled">데카메론</span>』을 남겼다.</p>
+<blockquote>(교과서 원문: "인문주의자들은 신이 중심이 되는 중세의 세계관에서 벗어나 인간의 삶에 관심을 가졌다." — 비상 p.102)</blockquote>
+<br>
+<p><strong>주의</strong>: "중세에는 인간을 무시했다"로 단순화하지 않기. 중세에도 인간을 다뤘으나 <strong>신 중심의 틀 안에서</strong>였고, 르네상스는 그 무게중심을 인간 쪽으로 옮겼다는 것이 정확한 설명.</p>
+<br>
+<h2>📖 3단계: 예술의 폭발</h2>
+<p>- 미술: 레오나르도 다 빈치·미켈란젤로·라파엘로 — 인체의 아름다움</p>
+<p>- 건축: 대칭·비례의 르네상스 양식 — 성 베드로 대성당</p>
+<br>
+<p><strong>「미의 세 여신」 3점 비교 지도</strong>: 고대(입체적·생동감) → 중세(평면적·상징 위주) → 르네상스(다시 인체 비례·생동감). 학생에게 <em>무엇이 달라졌는지 먼저 말하게</em> 한 뒤 용어를 붙이면 인문주의가 몸으로 이해된다.</p>
+<br>
+<h2>📖 4단계: 알프스를 넘은 르네상스</h2>
+<p>16세기 이후 알프스 이북으로 퍼졌고, 현실 사회와 교회의 문제점을 비판하는 경향이 강했다. 에라스뮈스는 『④<span class="blank-filled">우신예찬</span>』에서 교황과 성직자의 부패를 풍자했다.</p>
+<blockquote>(사료: "요즘 교황은 힘들고 어려운 일은 베드로와 바울에게 떠넘기고 호화로운 의식과 즐거운 일만 찾는다." — 에라스뮈스, 『우신예찬』·교과서 p.103)</blockquote>
+<br>
+<p><strong>왜 남북이 달랐나</strong>: 이탈리아는 고전 유산·상인 후원이 풍부해 예술·인간 탐구로, 알프스 이북은 교회의 세속화 문제가 더 크게 체감되어 비판·개혁 지향으로 나타났다. 이 비판 정신이 다음 시대 <strong>종교 개혁</strong>으로 이어진다.</p>
+<br>
+<h2>📖 5단계: 어떻게 이렇게 빨리 퍼졌을까</h2>
+<p>구텐베르크의 활판 인쇄술로 책을 대량 생산하게 되면서 새로운 생각이 빠르게 퍼졌다.</p>
+<pre class="code-block">
+십자군 이후 동방 교류·상업 부활
+
+   ↓
+
+이탈리아 상인의 부 → 예술가 <span class="blank-filled">후원</span>
+
+   ↓
+
+로마 유산 + 비잔티움 학자
+
+   ↓
+
+르네상스 (인간 중심) → 알프스 이북 (교회 비판)
+
+   ↓
+
+인쇄술로 확산
+
+</pre>
+<br>
+<h2>✏️ 활동 1 — 남과 북, 무엇이 달랐나</h2>
+<table>
+<tr><td>구분</td><td>이탈리아 르네상스</td><td>알프스 이북 르네상스</td></tr>
+<tr><td>중심 내용</td><td>고대 그리스·로마 문화 부활, 인간의 개성·능력 탐구(예술 중심)</td><td>현실 사회와 교회의 문제점 비판(개혁 지향)</td></tr>
+<tr><td>대표 인물</td><td>다 빈치·미켈란젤로·라파엘로·보카치오</td><td>에라스뮈스</td></tr>
+</table>
+<br>
+<h2>✅ OX 퀴즈 (정답·해설)</h2>
+<table>
+<tr><td>번호</td><td>문장</td><td>정답</td></tr>
+<tr><td>1</td><td>르네상스가 이탈리아에서 시작된 배경에는 로마 문화유산과 상인들의 후원이 있었다.</td><td><strong>O</strong></td></tr>
+<tr><td>2</td><td>인문주의는 신을 세계의 중심에 두는 중세 세계관을 더욱 강화하려는 흐름이었다.</td><td><strong>X</strong></td></tr>
+<tr><td>3</td><td>알프스 이북의 르네상스는 현실과 교회를 비판하는 경향이 강하였다.</td><td><strong>O</strong></td></tr>
+</table>
+<br>
+<p>- 2번 해설: 정반대. 인문주의는 <strong>신 중심 세계관에서 벗어나 인간의 삶에 관심</strong>을 둔 흐름이다. '강화'라는 말이 함정.</p>
+<p>- 자주 나오는 오개념: "르네상스=중세와의 완전한 단절" → 고전 부활·교회 안에서의 활동 등 연속면도 있었음을 짚는다(탐구형 C판 발문).</p>
+<br>
+<h2>💭 더 생각해 보기 (모범답안·채점 관점)</h2>
+<p><strong>모범답안 예시</strong>: "교회의 힘이 강하던 시대라 정면으로 비판하면 위험했기 때문이라고 생각한다. 웃음은 직접 공격보다 부드럽게 들리지만, 읽는 사람이 스스로 문제를 깨닫게 만든다. 그래서 더 널리 읽히고 오래 남았을 것 같다."</p>
+<br>
+<p><strong>채점 관점</strong></p>
+<p>- (상) 풍자를 택한 <strong>이유</strong>(직접 비판의 위험·설득력·전파력 등)를 제시하고 <strong>효과</strong>까지 자기 근거로 판단</p>
+<p>- (중) 이유나 효과 중 하나만 서술</p>
+<p>- (하) "재미있어서" 등 단편적 서술</p>
+<p>- ※ 정답이 하나가 아니다. 사료 내용을 근거로 삼았는지가 핵심.</p>
+</div>
+<script>
+const TB=0, TOX=0, GT=0;
+let usedReveal=false;
+function selectOX(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function selectChoice(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+function check(){
+  let bc=0, oxc=0;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    const a=norm(el.dataset.answer), u=norm(el.value);
+    if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
+    const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
+    if(isCorrect){
+      el.classList.add('correct');el.classList.remove('wrong');
+      bc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const sel=grp.dataset.selected, ans=grp.dataset.answer;
+    if(!sel) return;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');oxc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');bc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
+}
+function reveal(){
+  usedReveal=true;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const ans=grp.dataset.answer;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.getElementById('score').textContent=TB;
+  document.getElementById('ox-score').textContent=TOX;
+  document.getElementById('total-score').textContent=GT;
+  document.getElementById('pct').textContent=100;
+}
+function reset(){
+  usedReveal=false;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value='';el.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.ox-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
+}
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+function _wsKey(){
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}
+function _persist(){
+  const key=_wsKey(); if(!key) return;
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const si=document.querySelectorAll('.student-info input');
+  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+}
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
+function loadProgress(){
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
+  if(!saved) return;
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  if(info&&!EXAM_MODE){
+    const inputs=document.querySelectorAll('.student-info input');
+    if(info.class&&inputs[0]) inputs[0].value=info.class;
+    if(info.number&&inputs[1]) inputs[1].value=info.number;
+    if(info.name&&inputs[2]) inputs[2].value=info.name;
+  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
+}
+// 모든 입력칸에서 Enter→다음칸 이동
+const allInputs=[...document.querySelectorAll('.blank-input')];
+allInputs.forEach((el,i)=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
+  });
+});
+// 제출
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){
+  const ans={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  });
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+  });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
+  return ans;
+}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+function submitResult(){
+  if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
+  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
+  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
+  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
+  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
+  check(); // 먼저 채점
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
+  const answers=collectAnswers();
+  const data={
+    type:'final',
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
+  };
+  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(()=>{
+    document.getElementById('submitBtn').textContent='✅ 제출 완료';
+    document.getElementById('submitBtn').classList.add('btn-submitted');
+    setTimeout(()=>{
+      document.getElementById('submitBtn').textContent='📤 재제출';
+      document.getElementById('submitBtn').classList.remove('btn-submitted');
+    }, 2000);
+  })
+  .catch(e=>alert('제출 실패: '+e));
+}
+// 페이지 로드 시 저장된 진행 불러오기
+loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+});
+document.querySelectorAll('.student-info input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  document.querySelectorAll('.student-info input').forEach(el=>{
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
+</script>
+</body>
+</html>
