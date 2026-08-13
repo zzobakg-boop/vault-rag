@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사회② 국민경제와 국제거래 27-28차시 — 실업과 실업률 (정답·모범답안)</title>
+<title>사회② 국민경제와 국제거래 5-4차시 — 왜 옷도 만들 수 있는데 중국에서 옷을 사 올까? (국제 거래와 비교 우위)</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -154,60 +154,83 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 27-28차시 — 실업과 실업률 (정답·모범답안)</h1><p class="hero-subtitle">'테러보다 실업이 더 무섭다' — 일자리가 없으면 무슨 일이?</p><div class="hero-keywords"><span class="hero-keyword">실업 = 일할 능력·의사 있으나 일자리 없음</span><span class="hero-keyword">원인 3가지(경기·구조·마찰)</span><span class="hero-keyword">실업률 = 실업자 ÷ 경제활동인구 ×100</span><span class="hero-keyword">개인 고통 + 사회 악순환</span></div><div class="hero-hook">프랑스에서는 '테러보다 실업이 더 무섭다'는 말이 나올 정도로 일자리 문제가 심각했대. 좀 과한 말 같지? 그런데 일자리를 잃으면 소득만 끊기는 게 아니야 — 자신감도, 미래 계획도 흔들려. 게다가 한 사람의 실업은 그 사람만의 문제가 아니라 *우리 모두의 경제*를 함께 끌어내려. 오늘은 '실업'이 왜 무섭고, 실업률은 어떻게 재는지 알아보자.</div></section>
-  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
-  <h1>사회② 국민경제와 국제거래 27-28차시 — 실업과 실업률 (정답·모범답안)</h1>
+  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-4차시 — 왜 옷도 만들 수 있는데 중국에서 옷을 사 올까? (국제 거래와 비교 우위)</h1><p class="hero-subtitle">왜 우리는 옷도 만들 수 있는데 중국에서 옷을 사 올까?</p><div class="hero-keywords"><span class="hero-keyword">국제 거래 = 국경 넘는 거래·상호 의존</span><span class="hero-keyword">필요 이유 = 자연환경·생산요소 차이</span><span class="hero-keyword">비교 우위 상품에 특화 → 수출</span><span class="hero-keyword">절대 우위 ≠ 비교 우위</span></div><div class="hero-hook">네가 입은 옷, 손에 든 폰, 아침에 먹은 바나나 — 'made in' 라벨을 보면 세계 곳곳이야. 우리나라도 옷을 만들 수 있는데 왜 굳이 중국 옷을 사 올까? 답은 '비교 우위'에 있어. 모두가 다 잘 만들려 하지 않고, 서로 '제일 잘하는 것'에 집중해서 바꾸면 모두가 이득이거든. 오늘은 나라들이 왜, 어떻게 거래하는지 알아보자.</div></section>
+  <div class="control-bar">
+    <div class="score">
+      빈칸: <span id="score">0</span>/10 · OX: <span id="ox-score">0</span>/5
+      · 총: <span id="total-score">0</span>/15 (<span id="pct">0</span>%)
+    </div>
+    <div>
+      
+      <button class="btn btn-primary" onclick="check()">채점하기</button>
+      
+      <button class="btn btn-danger" onclick="reset()">초기화</button>
+      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
+      <button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>
+    </div>
+  </div>
+  <div class="student-info">
+    <input type="text" placeholder="반">
+    <input type="text" placeholder="번호">
+    <input type="text" placeholder="이름">
+  </div>
+  <h1>사회② 국민경제와 국제거래 5-4차시 — 왜 옷도 만들 수 있는데 중국에서 옷을 사 올까? (국제 거래와 비교 우위)</h1>
 <br>
-<blockquote>🎙️ 실업 = 일할 능력·의사 있으나 일자리 없음. 개인 고통(소득·자아실현) + 사회 악순환(소비↓→생산↓→또 실업).</blockquote>
+<blockquote>🎙️ 가방 안을 한번 둘러봐. 폰은 어디 부품이고, 옷은 어디서 왔고, 간식은 어느 나라 거지? 우리는 이미 세계와 거래하며 살아. 그런데 우리나라가 옷도 만들 수 있는데 왜 중국 옷을 사 올까? '다 잘하는 것'보다 '제일 잘하는 것'에 집중하는 게 서로 이득이기 때문이야. 그 비밀, '비교 우위'를 풀어 보자.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
-<p>- <strong>실업자의 의미</strong>와 실업의 원인을 설명할 수 있다.</p>
-<p>- <strong>실업률</strong>의 의미와 실업이 우리 생활에 미치는 영향을 설명할 수 있다.</p>
+<p>- <strong>국제 거래의 의미와 특징</strong>을 설명할 수 있다.</p>
+<p>- <strong>비교 우위</strong>에 따라 국제 거래가 이루어지는 까닭을 설명할 수 있다.</p>
 <br>
-<h2>📖 1단계: 실업이란 무엇일까?</h2>
-<p>일하고 싶지만 일자리를 찾지 못하면 ①<span class="blank-filled">실업</span>이 발생한다. 곧 일할 ②<span class="blank-filled">능력</span>과 일할 ③<span class="blank-filled">의사</span>가 있음에도 일을 하지 못하는 사람을 실업자라고 한다.</p>
-<blockquote>(교과서 원문: "일하고 싶지만 일자리를 찾지 못하면 실업이 발생한다. 일할 능력과 일할 의사가 있음에도 일을 하지 못하는 사람을 실업자라고 한다." — 천재교육 사회②(구정화) 98쪽)</blockquote>
+<h2>✨ 오늘의 핵심 단어</h2>
+<table>
+<tr><td>단어</td><td>뜻</td></tr>
+<tr><td>국제 거래</td><td>국가 간에 상품·노동·자본·기술 등이 국경을 넘어 거래되는 것</td></tr>
+<tr><td>비교 우위</td><td>다른 나라보다 상대적으로 더 잘(싸게) 생산할 수 있는 상태</td></tr>
+<tr><td>특화</td><td>생산에 유리한 상품만 전문적으로 생산하는 것</td></tr>
+<tr><td>무역 의존도</td><td>(수출액 + 수입액) ÷ 국내 총생산 — 무역에 얼마나 기대는지</td></tr>
+</table>
 <br>
-<blockquote>🎯 <strong>여기가 핵심!</strong> <em>능력 + 의사</em> 둘 다 있어야 실업자. 다음 단계(실업률)에서 <em>일할 의사 없는 사람(학생·전업주부)=비경제 활동 인구</em>로 빠지는 것과 연결해 강조.</blockquote>
+<h2>📖 1단계: 국제 거래란 무엇일까?</h2>
+<p>국가 간에 상품·노동·자본·기술 등이 국경을 넘어 거래되는 것을 ①<input type="text" class="blank-input" data-answer="국제 거래" data-id="1" style="width:100px" placeholder="">라고 한다. 국제 거래가 활발해지면서 국가 사이의 ②<input type="text" class="blank-input" data-answer="상호 의존" data-id="2" style="width:100px" placeholder="">이 심화하고, 교통·통신의 발달로 거래가 더 쉬워지고 있다. 특히 우리나라는 ③<input type="text" class="blank-input" data-answer="무역 의존도" data-id="3" style="width:116px" placeholder="">가 높아 세계 경제 변화의 영향을 많이 받는다.</p>
+<blockquote>(교과서 원문: "전 세계적으로 국제 거래가 활발해지면서 국가 사이의 상호 의존이 심화하고 있다. 교통과 통신의 발달로 국가 사이의 국제 거래가 더 쉬워지기도 한다. 특히 우리나라 경제는 무역 의존도가 높아서 세계 경제 변화의 영향을 많이 받는다." — 천재교육 사회②(구정화) 102쪽)</blockquote>
 <br>
-<h2>📖 2단계: 실업은 왜 생길까? — 세 가지 원인</h2>
-<p>첫째, 경기가 나빠지면 기업이 생산과 고용을 줄여 실업자가 늘어난다(④<span class="blank-filled">경기적</span> 실업). 그래서 경제 성장과 실업자 수는 반대 방향으로 움직이고, 지속적인 경제 성장이 가장 좋은 실업 대책이다. 둘째, ⑤<span class="blank-filled">사양 산업</span>에 종사하던 근로자가 새로운 기술을 미처 익히지 못해 실업이 생긴다(구조적 실업). 셋째, 더 나은 직장으로 옮기는 과정에서 일시적으로 실업 상태가 되기도 한다(⑥<span class="blank-filled">마찰적</span> 실업).</p>
-<blockquote>(교과서 원문: "경기가 나빠지면 기업이 생산과 고용을 줄이므로 실업자가 증가한다. … 사양 산업에 종사하던 근로자가 새로운 기술을 미처 익히지 못하여 실업이 발생하기도 한다. 또한 현재 직장을 그만두고 더 나은 직장으로 이동하는 과정에 있는 사람도 일시적으로 실업 상태에 놓인다." — 천재교육 사회②(구정화) 98쪽)</blockquote>
+<blockquote>💡 <strong>무역 의존도란?</strong> (수출액 + 수입액)을 국내 총생산으로 나눈 값이야. 2015년 우리나라는 약 88%였어 — 그만큼 우리 경제가 무역에 크게 기대고 있다는 뜻이지.</blockquote>
 <br>
-<blockquote>🎯 <strong>여기가 핵심!</strong> 교과서는 용어를 직접 쓰진 않지만 사례로 세 유형을 제시 — ④ <em>경기적</em>(경기 침체), 구조적(<em>사양 산업</em>·기술 부적응), ⑥ <em>마찰적</em>(이직 중 일시 실업). 사례→유형 매칭이 출제 포인트. '지속적 경제 성장=최선의 실업 대책'도 자주 나옴.</blockquote>
+<h2>📖 2단계: 왜 나라끼리 거래할까? — 조건이 다르니까</h2>
+<p>국제 거래가 필요한 이유는 나라마다 처한 조건이 다르기 때문이다. 첫째, ④<input type="text" class="blank-input" data-answer="자연환경" data-id="4" style="width:84px" placeholder="">이 달라 생산할 수 있는 농작물과 천연자원이 다르다. 둘째, 노동·자본·기술 같은 ⑤<input type="text" class="blank-input" data-answer="생산 요소" data-id="5" style="width:100px" placeholder="">의 양과 질이 다르다. 그래서 각 나라는 상대적으로 더 잘 만드는 상품, 곧 ⑥<input type="text" class="blank-input" data-answer="비교 우위" data-id="6" style="width:100px" placeholder="">가 있는 상품에 특화하여 수출하고 그렇지 않은 상품은 수입한다.</p>
+<blockquote>(교과서 원문: "국제 거래가 필요한 이유는 각 국가가 처한 조건이 다르기 때문이다. 첫째, 자연환경이 달라 … 둘째, 생산 요소의 양과 질이 다르다. … 각국은 비교 우위가 있는 상품을 특화 생산하여 수출하고 그렇지 않은 상품을 외국에서 수입한다." — 천재교육 사회②(구정화) 102쪽)</blockquote>
 <br>
-<h2>📖 3단계: 실업률은 어떻게 잴까?</h2>
-<p>우리나라에서는 만 ⑦<span class="blank-filled">15</span>세 이상을 일할 능력이 있는 노동 가능 인구로 본다. 단, 공부하는 학생이나 전업주부처럼 일할 의사가 없는 사람은 ⑧<span class="blank-filled">비경제 활동 인구</span>에 포함하고 실업자로 보지 않는다. 실업률은 ⑨<span class="blank-filled">경제 활동 인구</span> 가운데 실업자가 차지하는 비율이다.</p>
-<blockquote>(교과서 원문: "우리나라에서는 만 15세 이상이 되어야 … 노동 가능 인구로 본다. … 학생이나 … 전업주부는 일할 의사가 없으므로 … 비경제 활동 인구에 포함한다. 실업률은 경제 활동 인구 가운데 실업자가 차지하는 비율을 측정한 것이다." — 천재교육 사회②(구정화) 98쪽)</blockquote>
+<blockquote>🎙️ 사막 나라가 쌀농사를 고집하고, 추운 나라가 바나나를 키우려 하면 엄청 비효율이겠지? <em>잘 맞는 것끼리 나눠서 바꾸는 게</em> 모두에게 이득. 그게 국제 거래의 출발이야.</blockquote>
 <br>
-<blockquote>🎯 <strong>여기가 핵심 — 최다 함정!</strong> 실업률 = (실업자 수 ÷ <strong>경제 활동 인구</strong>) × 100. 분모는 <em>전체 인구</em>도 <em>노동 가능 인구</em>도 아닌 <strong>경제 활동 인구(취업자+실업자)</strong>. 학생·전업주부는 <em>비경제 활동 인구</em>라 분모에서 제외. 숫자를 주고 실업률을 계산시키는 문항·분모를 헷갈리게 하는 함정 모두 가능.</blockquote>
+<h2>📖 3단계: '절대 우위'와 '비교 우위'는 다르다</h2>
+<p>한 나라가 두 상품을 모두 더 잘 만들어도(절대 우위), 그중 상대적으로 더 잘 만드는 상품에 ⑦<input type="text" class="blank-input" data-answer="특화" data-id="7" style="width:60px" placeholder="">하면 서로 이득을 본다. 예를 들어 우리나라가 컴퓨터·옷을 모두 중국보다 잘 만들어도, 더 잘 만드는 ⑧<input type="text" class="blank-input" data-answer="컴퓨터" data-id="8" style="width:68px" placeholder="">를 특화해 수출하고 옷은 수입하는 것이 양국 모두에게 이익이다.</p>
+<blockquote>(교과서 원문(지도서·주석): "어느 한 나라의 두 재화가 모두 절대 우위에 있을 때도 생산비가 상대적으로 적게 드는(비교 우위) 재화에 특화함으로써 무역 이익이 발생한다." / 수업 TIP: "컴퓨터와 옷에서 우리나라가 중국보다 모두 절대 우위에 있으나 비교 우위에 있는 컴퓨터를 생산하여 수출(=특화)하고 옷은 중국에서 수입한다." — 천재교육 사회② 지도서 4단원)</blockquote>
 <br>
-<h2>📖 4단계: 실업은 왜 무서울까? — 개인과 사회</h2>
-<p>개인적으로 실업자는 소득이 없어 생계가 어려워지고, 자신감을 잃고 ⑩<span class="blank-filled">자아실현</span>의 기회를 빼앗기는 고통을 겪는다. 사회적으로는 소비가 줄고 기업이 생산을 줄여 경기가 더 나빠지는 ⑪<span class="blank-filled">악순환</span>이 이어지고, 아까운 노동력이 낭비되며, 생계형 범죄·빈곤이 늘어 사회가 불안해질 수 있다. 정부가 실업자를 지원하려면 국민의 세금 부담도 커진다.</p>
-<blockquote>(교과서 원문: "개인적으로 실업자는 … 소득이 없어져 생계유지가 힘들어진다. 또한 자신감을 상실하고 자아실현의 기회가 박탈되는 고통을 겪는다. 사회적으로 실업자가 많아지면 소비가 감소하고 기업이 생산을 줄여 경기가 나빠지는 악순환이 이어진다. … 국민이 내야 할 세금이 증가할 수도 있다." — 천재교육 사회②(구정화) 98~99쪽)</blockquote>
+<blockquote>⚠️ <strong>핵심 함정 — 절대 우위 ≠ 비교 우위</strong>: '다 잘 만든다(절대 우위)'고 다 만드는 게 아니야. <em>상대적으로 더 잘 만드는 것 하나</em>에 집중(비교 우위·특화)하는 게 무역의 원리. 둘 다 잘하는 나라도 <em>덜 잘하는 것은 수입</em>하는 게 이득이라는 점이 가장 헷갈리는 부분.</blockquote>
 <br>
-<blockquote>🎯 <strong>여기가 핵심!</strong> <em>개인 차원</em>(소득 상실·자아실현 박탈)과 <em>사회 차원</em>(소비↓→생산↓→실업↑ 악순환·노동력 낭비·범죄·세금↑)을 나눠 정리. '실업=개인 탓'이 아니라 <em>사회 전체의 손실</em>(희소한 노동 자원 낭비)임을 강조.</blockquote>
+<h2>📖 4단계: 국제 거래, 좋기만 할까? — 차이점과 장단점</h2>
+<p>국제 거래는 국내 거래와 달리, 나라마다 법·제도가 달라 자유롭지 못하고, 수입품에 ⑨<input type="text" class="blank-input" data-answer="관세" data-id="9" style="width:60px" placeholder="">를 매기며 통관 절차를 거쳐야 하고, 화폐가 달라 ⑩<input type="text" class="blank-input" data-answer="환율" data-id="10" style="width:60px" placeholder="">로 교환해야 한다. 장점은 자원·기술 부족을 메우고 경쟁으로 생산성을 높이며 선택을 넓히는 것이고, 단점은 경쟁력 약한 국내 산업의 기반이 약해질 수 있다는 점이다.</p>
+<blockquote>(교과서 원문(지도서): 국제 거래는 "국가 간 법과 제도가 달라 … 관세를 내야 하고 통관 절차를 거쳐야 … 화폐 간 교환 비율인 환율이 바뀌면 … 상품의 가격이 달라짐." / 장점: 자원·기술 부족 해결·생산성 향상·선택 기회 확대 / 단점: 경쟁력 약한 국내 산업 기반 약화·경제 정책 자율성 훼손 가능 — 천재교육 사회② 지도서 4단원)</blockquote>
+<br>
+<blockquote>💡 <strong>관세·통관·환율</strong>: 국내에서 물건 살 땐 없던 <em>세 가지 관문</em>이 국제 거래엔 있어 — ⑨ 관세(수입품에 붙는 세금)·통관 절차·⑩ 환율(돈을 바꾸는 비율). 다음 시간엔 이 '환율'을 깊이 다룰 거야.</blockquote>
 <br>
 <h2>❓ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>실업자는 일할 능력과 의사가 있는데도 일자리가 없는 사람이다.</td><td><strong>O</strong></td></tr>
-<tr><td>2</td><td>전업주부와 학생은 일자리가 없으면 모두 실업자로 분류된다.</td><td><strong>X</strong></td></tr>
-<tr><td>3</td><td>실업률은 실업자 수를 경제 활동 인구로 나누어 구한다.</td><td><strong>O</strong></td></tr>
-<tr><td>4</td><td>경기가 나빠지면 실업자가 늘어나는 경향이 있다.</td><td><strong>O</strong></td></tr>
-<tr><td>5</td><td>실업이 늘면 소비가 줄어 경기가 더 나빠지는 악순환이 생길 수 있다.</td><td><strong>O</strong></td></tr>
+<tr><td>1</td><td>국제 거래에서는 상품뿐 아니라 노동·자본·기술도 거래된다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>무역 의존도가 높을수록 세계 경제 변화의 영향을 적게 받는다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>각 나라는 비교 우위가 있는 상품에 특화하여 수출한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>두 상품을 모두 더 잘 만드는 나라는 두 상품을 모두 수출하는 것이 이득이다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>국제 거래에서는 수입품에 관세를 매기고 통관 절차를 거쳐야 한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
-<blockquote><strong>OX 해설</strong>: 1 O — 능력+의사+무일자리. <strong>2 X — 핵심 함정</strong>: 학생·전업주부는 <em>일할 의사가 없어</em> 비경제 활동 인구 → 실업자 아님. 3 O — 분모=경제 활동 인구. 4 O — 경기적 실업. 5 O — 소비↓→생산↓→실업↑ 악순환.</blockquote>
-<br>
-<h2>💭 더 생각해 보기 (모범답안·채점 관점)</h2>
-<p><strong>모범답안 예시</strong>: "전업주부는 일할 의사가 없는 것으로 보아 비경제 활동 인구로 분류되기 때문에, 일자리가 없어도 실업자로 세지 않는다."</p>
-<p>- <strong>상</strong>: '일할 의사 없음 → 비경제 활동 인구 → 실업자에서 제외'를 인과로 정확히 서술.</p>
-<p>- <strong>중</strong>: '일할 의사가 없어서' 또는 '비경제 활동 인구라서' 중 하나만으로 설명.</p>
-<p>- <strong>하</strong>: '일을 안 해서'·'주부라서' 수준의 단순 진술.</p>
+<h2>💭 더 생각해 보기</h2>
+<p>우리나라가 컴퓨터와 옷을 모두 중국보다 잘 만든다고 하자. 그래도 옷을 중국에서 수입하는 것이 이득인 까닭은 무엇일까? '비교 우위'와 '특화'라는 말을 넣어 한두 문장으로 써 보자.</p>
+<textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>
 <script>
-const TB=0, TOX=0, GT=0;
+const TB=10, TOX=5, GT=15;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
