@@ -151,10 +151,39 @@ blockquote {
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<style id="cd-theme">
+/* ===== 통합 테마: 중세 유럽 (양피지·석조·반원 아치) (apply_theme.py) ===== */
+body{ background:#ece4d4 !important; color:#241d14 !important; font-family:'Gowun Batang','Nanum Myeongjo',serif !important; }
+.container{ position:relative; background:#f8f3e8 !important;
+  background-image:radial-gradient(circle at 8% -2%, rgba(0,0,0,0.05), transparent 32%), radial-gradient(circle at 96% 4%, rgba(0,0,0,0.04), transparent 24%) !important;
+  border:1px solid #cfc0a4 !important; box-shadow:0 3px 26px rgba(20,20,20,0.14) !important; overflow:hidden; }
+p,li,td,th,label,span,div{ font-family:'Gowun Batang','Nanum Myeongjo',serif; }
+/* hero 배너 = 먹빛 띠 + 밝은 제목(어두운 배경서 가독) */
+.hero-section{ background:linear-gradient(135deg, #241d14 0%, #3c3226 100%) !important; border:none !important; }
+.hero-title{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#f8f3e8 !important; font-weight:700 !important; letter-spacing:.5px; text-shadow:0 1px 3px rgba(0,0,0,.4); }
+.hero-eyebrow{ color:#f8f3e8 !important; opacity:.82; letter-spacing:1px; }
+.hero-subtitle{ color:#f8f3e8 !important; opacity:.93; }
+.hero-keyword{ background:rgba(255,255,255,.10) !important; color:#f8f3e8 !important; border:1px solid #a8761f !important; }
+.hero-hook{ color:#f8f3e8 !important; opacity:.95; }
+/* 본문 제목(hero 제외) = 진한 먹빛 + 먹 획 밑줄 */
+h1:not(.hero-title){ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#241d14 !important; font-weight:700 !important; letter-spacing:1px; position:relative; }
+h1:not(.hero-title)::after{ content:''; display:block; width:130px; height:7px; margin:14px auto 4px; background:linear-gradient(90deg, transparent, #3c3226 18%, #3c3226 78%, transparent); border-radius:4px; opacity:.85; }
+h2,h3,h4{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#3c3226 !important; }
+h2{ border-left:5px solid #a8761f !important; padding-left:12px !important; }
+strong,b,.accent,a{ color:#a8761f !important; }
+.badge,.section-label,.hero .badge{ background:#a8761f !important; color:#f8f3e8 !important; border-color:#a8761f !important; }
+table,th,td{ border-color:#cfc0a4 !important; } th{ background:#e5dac2 !important; color:#3c3226 !important; }
+.blank-input{ background:#fffdf6 !important; border:1px solid #cfc0a4 !important; color:#241d14 !important; }
+blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:4px solid #a8761f !important; color:#3c3226 !important; }
+
+.container::after{ content:''; position:absolute; top:0; left:0; right:0; height:13px; background:repeating-radial-gradient(circle at 11px 13px, transparent 0 8px, #a8761f 8px 10px, transparent 10px 22px); opacity:.6; }
+</style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-2-5 — 유럽 세계의 형성 (정답·모범답안)</h1><p class="hero-subtitle">서로마가 무너진 자리에, 어떻게 '유럽'이 태어났을까?</p><div class="hero-keywords"><span class="hero-keyword">게르만족 이동 → 서로마 멸망(476)</span><span class="hero-keyword">프랑크 왕국·카롤루스 대제 = 서유럽의 기틀</span><span class="hero-keyword">비잔티움 = 서로마 멸망 뒤 천 년 더</span><span class="hero-keyword">성상 숭배 논쟁 → 가톨릭 vs 정교 분리</span></div><div class="hero-hook">지난 시간 이슬람교가 세 대륙으로 퍼졌지? 그 무렵 유럽에서는 정반대 일이 벌어졌어. 천 년 제국 로마의 서쪽이 게르만족한테 무너진 거야(476). 근데 반전 — 그 폐허에서 새로운 유럽이 태어나. 게르만 + 로마 + 크리스트교가 뒤섞여서 말이야. 게다가 우리가 아는 프랑스·독일·이탈리아도 바로 이때 갈라져 나와(헐!). 무너진 자리에서 어떻게 새 세계가 솟았는지, 오늘 그 이야기.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-2-5 — 유럽 세계의 형성 (정답·모범답안)</h1><p class="hero-subtitle">서로마가 무너진 자리에, 어떻게 '유럽'이 태어났을까?</p><div class="hero-keywords"><span class="hero-keyword">게르만족 이동 → 서로마 멸망(476)</span><span class="hero-keyword">프랑크 왕국·카롤루스 대제 = 서유럽의 기틀</span><span class="hero-keyword">비잔티움 = 서로마 멸망 뒤 천 년 더</span><span class="hero-keyword">성상 숭배 논쟁 → 가톨릭 vs 정교 분리</span></div><img class="hero-image" src="images/europe-hero.jpeg" alt=""><div class="hero-hook">지난 시간 이슬람교가 세 대륙으로 퍼졌지? 그 무렵 유럽에서는 정반대 일이 벌어졌어. 천 년 제국 로마의 서쪽이 게르만족한테 무너진 거야(476). 근데 반전 — 그 폐허에서 새로운 유럽이 태어나. 게르만 + 로마 + 크리스트교가 뒤섞여서 말이야. 게다가 우리가 아는 프랑스·독일·이탈리아도 바로 이때 갈라져 나와(헐!). 무너진 자리에서 어떻게 새 세계가 솟았는지, 오늘 그 이야기.</div></section>
   <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
   <h1>역사① Ⅲ단원 3-2-5 — 유럽 세계의 형성 (정답·모범답안)</h1>
 <br>
