@@ -175,6 +175,8 @@ h2{ border-left:5px solid #a8761f !important; padding-left:12px !important; }
 strong,b,.accent,a{ color:#a8761f !important; }
 .badge,.section-label,.hero .badge{ background:#a8761f !important; color:#f8f3e8 !important; border-color:#a8761f !important; }
 table,th,td{ border-color:#cfc0a4 !important; } th{ background:#e5dac2 !important; color:#3c3226 !important; }
+/* worksheet-gen은 표 헤더를 <th>가 아니라 <tr:first-child><td>로 낸다 → 기본 CSS의 연파랑(#f0f4ff)이 남아 테마가 깨짐 (2026-08-13 발견·전 테마 공통 버그) */
+tr:first-child td{ background:#e5dac2 !important; color:#3c3226 !important; }
 .blank-input{ background:#fffdf6 !important; border:1px solid #cfc0a4 !important; color:#241d14 !important; }
 blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:4px solid #a8761f !important; color:#3c3226 !important; }
 
@@ -192,6 +194,18 @@ blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:
 <h2>📌 학습 목표</h2>
 <p>- 중세 서유럽 세계가 <strong>형성되는 과정</strong>을 설명할 수 있다.</p>
 <p>- <strong>비잔티움 제국</strong>의 정치적·문화적 특징을 파악할 수 있다.</p>
+<br>
+<h2>✨ 오늘의 고급 단어</h2>
+<table>
+<tr><td>낱말</td><td>쉽게 말하면</td><td>한자 뜯어보기</td><td>문장 속에서</td></tr>
+<tr><td><strong>용병</strong>(傭兵)</td><td>돈을 받고 싸워 주는 군인</td><td>용(傭, 품삯) + 병(兵, 군사)</td><td>"서로마는 게르만족 출신 <strong>용병</strong> 대장에게 멸망했다."</td></tr>
+<tr><td><strong>성상</strong>(聖像)</td><td>예수·성모·성인을 그리거나 조각한 것</td><td>성(聖, 거룩) + 상(像, 모양)</td><td>"황제가 <strong>성상</strong> 숭배를 금지했다."</td></tr>
+<tr><td><strong>수장</strong>(首長)</td><td>우두머리</td><td>수(首, 머리) + 장(長, 어른)</td><td>"황제가 교회의 <strong>수장</strong> 역할까지 맡았다."</td></tr>
+<tr><td><strong>융합</strong>(融合)</td><td>서로 녹아 하나가 되는 것</td><td>융(融, 녹을) + 합(合, 합할)</td><td>"그리스·로마 문화와 헬레니즘 문화가 <strong>융합</strong>되었다."</td></tr>
+</table>
+<br>
+<blockquote>🎯 <strong>여기가 핵심!</strong> 네 낱말이 각각 차시의 한 장면을 연다 — <strong>용병</strong>(서로마 멸망·1단계) → <strong>융합</strong>(새 유럽의 형성·3단계) → <strong>수장</strong>(황제 교황주의·4단계) → <strong>성상</strong>(동서 교회 분리·4단계). 어휘를 훑는 것만으로 오늘 흐름이 한 번 지나간다.</blockquote>
+<blockquote><strong>용병</strong>은 학생이 잘 놓치는 지점이다 — <em>로마를 무너뜨린 게 외부의 적이 아니라 로마가 돈 주고 고용한 군인</em>이었다는 아이러니를 짚으면 1단계 인상이 훨씬 깊어진다.</blockquote>
 <br>
 <h2>📖 1단계: 천 년 제국이 무너지다 — 게르만족의 대이동</h2>
 <p>유럽 북부에 살던 게르만족은 4세기 말 ①<span class="blank-filled">훈족</span>의 압박을 받아 대규모로 이동하여, ②<span class="blank-filled">서로마</span>제국 곳곳에 나라를 세웠다. 이 과정에서 서로마 제국은 게르만족 출신 용병 대장에게 멸망하였다(476).</p>
@@ -232,6 +246,31 @@ blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:
 <br>
 <figure class="ws-fig"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Hagia_Sophia_Mars_2013.jpg/960px-Hagia_Sophia_Mars_2013.jpg" alt="성 소피아 대성당(아야 소피아) — 비잔티움 양식의 대표 건축물, 거대한 돔과 모자이크 (튀르키예 이스탄불)" loading="lazy"><figcaption>성 소피아 대성당(아야 소피아) — 비잔티움 양식의 대표 건축물, 거대한 돔과 모자이크 (튀르키예 이스탄불)</figcaption></figure>
 <br>
+<h2>✏️ 활동 1 — 세 조각이 된 프랑크, 오늘날은? (정답)</h2>
+<table>
+<tr><td>갈라진 세 조각</td><td>오늘날 어느 나라?</td></tr>
+<tr><td>서프랑크 왕국</td><td><strong>프랑스</strong></td></tr>
+<tr><td>중프랑크 왕국</td><td><strong>이탈리아</strong></td></tr>
+<tr><td>동프랑크 왕국</td><td><strong>독일</strong></td></tr>
+</table>
+<br>
+<blockquote>🎯 <strong>지도서가 주안점으로 못 박은 활동이다</strong> — "지도를 활용하여 프랑크 왕국의 분열로 나타난 결과와 오늘날 독일, 프랑스, 이탈리아의 위치를 확인하도록 지도한다"(지도서 3-3 §5 수업의 주안점). 교과서 86쪽 분열 지도를 띄워 놓고 <strong>오늘날 유럽 지도와 겹쳐 보게</strong> 하면 정착이 빠르다.</blockquote>
+<blockquote><strong>중프랑크 → 이탈리아</strong>를 학생들이 가장 많이 틀린다. '중간'이라는 말 때문에 독일을 고르는데, 중프랑크는 <em>남북으로 긴 띠</em> 모양이라 이탈리아 쪽으로 내려간다. 지도에서 손가락으로 훑어 주면 해결된다.</blockquote>
+<blockquote>확장 발문: <strong>"천 년도 더 된 나라 나눔이 지금 국경으로 남아 있다는 게 무슨 뜻일까?"</strong> — 역사가 현재에 닿아 있다는 감각을 주는 자리.</blockquote>
+<br>
+<h2>✏️ 활동 2 — 동쪽 제국 되짚기 (정답)</h2>
+<table>
+<tr><td>물음</td><td>답</td></tr>
+<tr><td>서로마가 멸망한 뒤 비잔티움 제국은 얼마나 더 이어졌나?</td><td><strong>약 천 년</strong></td></tr>
+<tr><td>비잔티움 황제가 한 몸에 지녔던 <strong>두 가지</strong> 역할은?</td><td><strong>정치적·군사적 지배자 + 교회의 수장</strong></td></tr>
+<tr><td>성상 숭배 논쟁 끝에 갈라진 <strong>두 교회</strong>의 이름은?</td><td><strong>로마 가톨릭교회 / 그리스 정교</strong></td></tr>
+<tr><td>비잔티움이 보존한 그리스 고전은 훗날 무엇에 불을 댕겼나?</td><td><strong>르네상스</strong></td></tr>
+</table>
+<br>
+<blockquote>🎯 <strong>본문에서 답을 찾게 하는 훈련용 활동.</strong> 네 물음이 4·5단계의 뼈대를 그대로 훑으므로, 다 채우면 동쪽 제국 부분이 정리된다.</blockquote>
+<blockquote>2번이 <strong>황제 교황주의</strong>의 정의다. 용어 자체는 중2에 무겁지만 <em>"정치 1인자가 교회 우두머리까지 겸했다"</em>는 사실은 반드시 남겨야 한다 — 서유럽(교황과 왕이 따로)과 갈리는 지점이자, 다음 단원 3-3-2(교황권)의 대비축이다.</blockquote>
+<blockquote>4번은 <strong>천 년을 건너뛰는 연결</strong>이라 학생 반응이 좋다. "지금 배우는 이 제국이, 나중에 배울 르네상스의 도서관 노릇을 했다"로 닫으면 단원이 이어진다.</blockquote>
+<br>
 <h2>❓ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
@@ -243,6 +282,13 @@ blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:
 </table>
 <br>
 <blockquote><strong>OX 해설</strong>: 1 O — 476년 게르만 용병 대장에게 멸망. 2 O — 800년 교황 레오 3세. 3 O — 8세기 성상 숭배 금지 → 동서 분리. <strong>4 X — 핵심 함정</strong>: 서로마 멸망 뒤에도 <em>약 천 년 더</em> 지속. <strong>5 X</strong>: 공용어는 <em>그리스어</em>(라틴어는 서유럽).</blockquote>
+<br>
+<h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
+<blockquote><strong>복습 1회차 — 백지 회상.</strong> 정답이 정해진 칸이 아니다. 채점하지 말 것.</blockquote>
+<p>></p>
+<blockquote>🎯 <strong>운영 요령</strong>: 수업 종료 1분 전, <em>교과서를 덮게 한 뒤</em> 3줄을 쓰게 한다. "잘 쓴 3줄"이 목적이 아니라 <strong>떠올리려 애쓰는 1분</strong>이 목적이다(인출 연습). 다 쓴 뒤 펴서 스스로 대조하게 하면 자기 구멍이 그 자리에서 보인다.</blockquote>
+<blockquote>자주 나오는 3줄: ① 게르만족 이동으로 서로마가 무너졌다(476) ② 프랑크 왕국·카롤루스 대제가 게르만·로마·크리스트교를 묶어 서유럽의 기틀을 만들었다 ③ 동쪽 비잔티움은 천 년 더 이어졌고 성상 논쟁으로 교회가 둘로 갈라졌다.</blockquote>
+<blockquote>⚠️ <strong>평가에 쓰지 말 것.</strong> 점수로 인식되는 순간 교과서를 몰래 보게 되고, 그러면 인출 연습이 아니라 베껴 쓰기가 된다.</blockquote>
 <br>
 <h2>💭 더 생각해 보기 (모범답안·채점 관점)</h2>
 <p><strong>모범답안 예시</strong>: "카롤루스 대제는 게르만족의 군사력 위에 로마의 제도와 라틴 문화를 잇고, 크리스트교를 널리 전파하여 이 세 가지가 어우러진 서유럽 문화의 기틀을 마련했기 때문이다."</p>
