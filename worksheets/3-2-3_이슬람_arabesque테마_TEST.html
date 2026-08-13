@@ -175,6 +175,8 @@ h2{ border-left:5px solid #1f6b4f !important; padding-left:12px !important; }
 strong,b,.accent,a{ color:#1f6b4f !important; }
 .badge,.section-label,.hero .badge{ background:#1f6b4f !important; color:#f8f2e2 !important; border-color:#1f6b4f !important; }
 table,th,td{ border-color:#d3c39a !important; } th{ background:#e6dcc1 !important; color:#2c3a30 !important; }
+/* worksheet-gen은 표 헤더를 <th>가 아니라 <tr:first-child><td>로 낸다 → 기본 CSS의 연파랑(#f0f4ff)이 남아 테마가 깨짐 (2026-08-13 발견·전 테마 공통 버그) */
+tr:first-child td{ background:#e6dcc1 !important; color:#2c3a30 !important; }
 .blank-input{ background:#fffdf4 !important; border:1px solid #d3c39a !important; color:#1d241f !important; }
 blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:4px solid #1f6b4f !important; color:#2c3a30 !important; }
 .container::before{ content:'۞'; position:absolute; top:14px; right:16px; font-family:'Song Myung','Nanum Myeongjo',serif; color:#f8f2e2; background:#1f6b4f; width:34px; height:34px; line-height:34px; text-align:center; border-radius:5px; font-size:18px; box-shadow:0 1px 4px rgba(0,0,0,.22); z-index:5; }
