@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>사회② Ⅴ단원 관통 질문 — 교과서는 '하면 된다'는데, 왜 안 될까?</title>
+<style>
+  :root{
+    --bg:#0e1620; --bg2:#152232; --ink:#eef4f8; --dim:#9fb3c4;
+    --teal:#2ad3c8; --amber:#ffb84d; --red:#ff6b6b; --line:#2a3c4f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    overflow:hidden; -webkit-font-smoothing:antialiased;
+  }
+  .deck{position:relative; width:100vw; height:100vh;}
+  .slide{
+    position:absolute; inset:0; display:none;
+    flex-direction:column; justify-content:center;
+    padding:6vh 8vw; opacity:0; transition:opacity .25s;
+  }
+  .slide.on{display:flex; opacity:1;}
+  .kicker{font-size:1.5vw; letter-spacing:.25em; color:var(--teal); font-weight:700; margin-bottom:2.2vh;}
+  .kicker.amber{color:var(--amber);}
+  h1{font-size:6.4vw; line-height:1.15; font-weight:800; letter-spacing:-.02em;}
+  h2{font-size:4.4vw; line-height:1.25; font-weight:800; letter-spacing:-.015em;}
+  h3{font-size:2.9vw; line-height:1.35; font-weight:700;}
+  p{font-size:2.1vw; line-height:1.65; color:var(--dim); margin-top:2.6vh; max-width:60ch;}
+  p.big{font-size:2.6vw; color:var(--ink);}
+  .accent{color:var(--teal);}
+  .amber{color:var(--amber);}
+  .red{color:var(--red);}
+  .quote{
+    border-left:.5vw solid var(--teal); padding:2.4vh 2.4vw; margin-top:3.4vh;
+    background:rgba(42,211,200,.07); font-size:1.9vw; line-height:1.7; max-width:64ch;
+  }
+  .quote small{display:block; margin-top:1.4vh; color:var(--dim); font-size:1.3vw;}
+  .grid{display:grid; gap:1.6vw; margin-top:4vh;}
+  .g2{grid-template-columns:1fr 1fr;}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .card{
+    background:var(--bg2); border:1px solid var(--line); border-radius:1vw;
+    padding:2.6vh 1.8vw;
+  }
+  .card .n{font-size:1.5vw; font-weight:800; color:var(--teal); margin-bottom:1vh;}
+  .card .t{font-size:1.9vw; font-weight:700; line-height:1.35;}
+  .card .d{font-size:1.45vw; color:var(--dim); margin-top:1.2vh; line-height:1.6;}
+  .card.amberline{border-color:var(--amber);} .card.amberline .n{color:var(--amber);}
+  .card.redline{border-color:var(--red);} .card.redline .n{color:var(--red);}
+  .facts{display:grid; grid-template-columns:auto 1fr; gap:1.4vh 2vw; margin-top:3.6vh; font-size:1.9vw;}
+  .facts dt{color:var(--teal); font-weight:700; white-space:nowrap;}
+  .facts dd{color:var(--ink);}
+  .arrow{display:flex; align-items:center; gap:1.4vw; margin-top:4vh; flex-wrap:wrap;}
+  .arrow .box{background:var(--bg2); border:1px solid var(--line); border-radius:.8vw; padding:2vh 1.6vw; font-size:1.8vw; font-weight:700;}
+  .arrow .to{font-size:2.4vw; color:var(--dim);}
+  .note{margin-top:3.4vh; font-size:1.4vw; color:var(--dim); border-top:1px solid var(--line); padding-top:2vh; max-width:70ch;}
+  .src{position:absolute; left:8vw; bottom:3.2vh; font-size:1.05vw; color:#6f8496; max-width:74vw;}
+  .nav{position:absolute; right:2.4vw; bottom:2.6vh; display:flex; align-items:center; gap:1.2vw; font-size:1.2vw; color:var(--dim);}
+  .nav button{
+    background:var(--bg2); color:var(--ink); border:1px solid var(--line);
+    border-radius:.6vw; padding:1vh 1.2vw; font-size:1.2vw; cursor:pointer; font-family:inherit;
+  }
+  .nav button:hover{border-color:var(--teal);}
+  .bar{position:absolute; left:0; top:0; height:.5vh; background:var(--teal); transition:width .25s;}
+  @media (max-width:820px){
+    h1{font-size:9vw;} h2{font-size:7vw;} h3{font-size:5vw;}
+    p{font-size:4vw;} .g2,.g3{grid-template-columns:1fr;}
+    .card .t{font-size:4.2vw;} .card .d{font-size:3.4vw;} .card .n{font-size:3.4vw;}
+    .quote{font-size:3.8vw;} .facts{font-size:3.8vw; grid-template-columns:1fr;}
+    .kicker{font-size:3.4vw;} .src{font-size:2.4vw;} .nav{font-size:3vw;} .nav button{font-size:3vw;}
+  }
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 -->
+  <section class="slide on">
+    <div class="kicker">사회② · Ⅴ단원 국민 경제와 국제 거래</div>
+    <h1>교과서는<br><span class="accent">"이렇게 하면 된다"</span>는데,<br>현실은 왜 안 될까?</h1>
+    <p class="big">이 단원을 여는 네 개의 질문. 정답은 오늘 알려 주지 않는다.</p>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide">
+    <div class="kicker">먼저, 교과서가 우리에게 약속한 것</div>
+    <h2>이 단원을 배우고 나면?</h2>
+    <div class="quote">
+      ① <b>국내 총생산</b>을 바탕으로 <b>국민 경제</b>를 파악하고,<br>
+      ② <b>경제 성장</b>이 우리 생활에 미치는 영향을 알 수 있을 거야.<br>
+      또한 ③ 국민 경제의 주요 목표인 <b>물가 안정 및 고용 안정</b>의 중요성을 인식하고,<br>
+      ④ 이를 <b>달성하기 위한 방안</b>과 국제 경제의 기본 특징을 알 수 있을 거야.
+      <small>천재교육 사회②(구정화) 교사용 교과서 Ⅴ단원 91쪽</small>
+    </div>
+    <p>약속은 근사하다. 그런데 하나씩 따져 보면 이상한 게 나온다.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide">
+    <div class="kicker">질문 1</div>
+    <h2>'국민 경제'가 <span class="accent">대체 뭔데?</span></h2>
+    <p class="big">나는 안다 — 내 지갑. 우리 집 살림.<br>그런데 <b>'국민 경제'</b>는 어디 있는 거지?</p>
+    <div class="grid g3">
+      <div class="card"><div class="n">사실</div><div class="t">교과서에 정의가 없다</div><div class="d">이 단원 본문 어디에도 '국민 경제'가 무엇인지 설명하는 문장이 없다. 제목에만 있다.</div></div>
+      <div class="card"><div class="n">그럼 왜 재나</div><div class="t">재지 않으면 손댈 수 없다</div><div class="d">GDP·물가지수·실업률 = 나라의 <b>체온계·혈압계</b>. 열이 나는지 모르면 약도 못 쓴다.</div></div>
+      <div class="card"><div class="n">너와의 거리</div><div class="t">너는 이미 그 안에 산다</div><div class="d">부모님 월급, 알바 시급, 떡볶이값, 언니 취업 — 전부 '국민 경제'가 내놓은 <b>결과값</b>이다.</div></div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide">
+    <div class="kicker">질문 2</div>
+    <h2>경제는 <span class="accent">왜</span> 성장해야 할까?</h2>
+    <p class="big">교과서는 성장을 "모든 사회의 중요한 과제"라고 한다.<br>그런데 <b>세 쪽 뒤에서 스스로 이렇게 쓴다.</b></p>
+    <div class="quote">
+      "국민의 삶의 질이나 행복도가 <b>경제 성장 속도에 정확히 비례하여 높아지지는 않는다</b>."
+      <small>같은 교과서 95쪽</small>
+    </div>
+    <p><b class="amber">그렇다면 — 성장은 목적일까, 수단일까?</b> 교과서는 "행복한 삶에 필요한 <b>기본 여건</b>"이라 썼다. 스스로 <b>수단</b>이라 말한 셈이다. 그런데 뉴스는 성장을 <b>목적</b>처럼 말한다.</p>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
+    <div class="kicker">질문 3 — 뒤집기</div>
+    <h2>물가 안정, 고용 안정.<br><span class="accent">당연히 좋다.</span></h2>
+    <p class="big">물가가 안정되고 일자리가 있어야 나와 가족이 먹고산다.<br>여기까진 물어볼 것도 없다. 그래서 질문을 <b>뒤집는다</b>.</p>
+    <div class="quote" style="border-color:var(--amber); background:rgba(255,184,77,.08)">
+      <b class="amber" style="font-size:2.6vw">둘 다 좋은 건데,<br>왜 동시에 못 하지?</b>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide">
+    <div class="kicker amber">지금, 실제로 벌어지는 일</div>
+    <h2>2026년 7월 16일</h2>
+    <dl class="facts">
+      <dt>결정</dt><dd>한국은행이 기준금리를 <b class="amber">연 2.50% → 2.75%</b>로 올렸다</dd>
+      <dt>의미</dt><dd><b>3년 6개월 만의 전환</b> — 돈을 풀던 시기에서 <b>조이는 시기</b>로</dd>
+      <dt>왜</dt><dd>6월 소비자물가 <b>3.2%</b>(목표는 2%) · 기름값·환율 상승 · 집값과 가계 대출 급증</dd>
+      <dt>다음</dt><dd><b class="amber">2026년 8월 27일</b> — 다음 금리 회의. 우리가 이 단원을 배우는 동안이다</dd>
+    </dl>
+    <p class="note">'기준금리'는 <b>돈을 빌리는 값</b>이다. 이 값을 올리면 사람들이 돈을 덜 빌리고 덜 쓴다 → 물가가 진정된다.</p>
+    <div class="src">출처: 한국은행 통화정책방향 결정회의(2026-07-16) · YTN·MBC·네이트뉴스 보도(2026-07-16) · 2026-08-13 확인</div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <div class="kicker red">그런데 같은 날</div>
+    <h2>물가를 잡으려 했더니,<br><span class="red">다른 곳이 무너졌다</span></h2>
+    <div class="grid g3">
+      <div class="card redline"><div class="n">주식 시장</div><div class="t">코스피 급락</div><div class="d">너무 빠르게 떨어져 거래를 잠시 멈추는 장치(사이드카)까지 작동했다.</div></div>
+      <div class="card redline"><div class="n">대출한 사람</div><div class="t">이자 부담 증가</div><div class="d">집을 사려고 돈을 빌린 사람은 매달 갚을 돈이 늘었다.</div></div>
+      <div class="card amberline"><div class="n">저축한 사람</div><div class="t">이자 수입 증가</div><div class="d">반대로 은행에 돈을 맡긴 사람에게는 이득이 된다.</div></div>
+    </div>
+    <p class="big" style="margin-top:4vh"><b class="amber">누구를 살리면, 누군가는 아프다.</b></p>
+    <div class="src">출처: MBC·네이트뉴스 2026-07-16 보도 (구체 지수·등락률은 확인되지 않아 표기하지 않음)</div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide">
+    <div class="kicker">질문 4</div>
+    <h2>방안을 아는데 <span class="accent">왜 안 될까?</span></h2>
+    <div class="grid g2">
+      <div class="card"><div class="n">①</div><div class="t">목표끼리 부딪힌다</div><div class="d">물가를 잡으면 일자리가 위태롭고, 일자리를 살리면 물가가 오른다. <b>둘 다 좋은 목표인데 하나를 잡으면 다른 게 나빠진다.</b></div></div>
+      <div class="card"><div class="n">②</div><div class="t">아는 것과 하는 것은 다르다</div><div class="d">방법을 알아도 <b>누가 그 비용을 낼지</b>에서 갈린다. 대출한 사람과 저축한 사람의 이해가 정반대다.</div></div>
+      <div class="card"><div class="n">③</div><div class="t">전체가 좋아져도 내 몫은 별개</div><div class="d">나라 전체 생산이 늘어도 <b>그것이 어디로 갔는지</b>는 총량이 말해 주지 않는다. 빈부 격차가 생기는 자리.</div></div>
+      <div class="card"><div class="n">④⑤</div><div class="t">시간이 걸리고, 우리만의 일이 아니다</div><div class="d">약효가 나타날 때쯤 상황이 바뀐다. 게다가 기름값·환율·다른 나라 경기가 우리를 흔든다.</div></div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide">
+    <div class="kicker">그래서 이 단원은</div>
+    <h2>"경제는 원래 어렵다"가 아니라<br><span class="accent">"어려운 데는 이유가 있다"</span></h2>
+    <div class="arrow">
+      <div class="box">5-1 GDP</div><div class="to">→</div>
+      <div class="box">5-2 물가</div><div class="to">→</div>
+      <div class="box">5-3 실업</div><div class="to">→</div>
+      <div class="box">5-4 국제 거래</div><div class="to">→</div>
+      <div class="box">5-5 환율</div>
+    </div>
+    <p>다섯 차시가 각각 <b>이유 하나씩</b>을 쥐고 있다. 마지막에 다시 이 질문으로 돌아온다.</p>
+    <p class="note">📌 오늘은 답을 적지 않는다. 대신 <b>지금 떠오르는 생각</b>을 한 줄 적어 두자. 단원이 끝나면 그 한 줄을 다시 꺼내 볼 것이다.</p>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide">
+    <div class="kicker amber">단원 마무리에 다시 열기</div>
+    <h2>그때 네가 적은 한 줄,<br><span class="amber">지금도 같은가?</span></h2>
+    <div class="grid g2">
+      <div class="card"><div class="n">되돌아보기</div><div class="t">단원 첫날 내 답</div><div class="d">그때 나는 무엇이라고 생각했나. 무엇을 몰랐나.</div></div>
+      <div class="card amberline"><div class="n">지금</div><div class="t">다섯 차시를 지난 뒤의 답</div><div class="d">GDP·물가·실업·국제 거래·환율을 배운 지금, 같은 질문에 뭐라고 답하겠는가.</div></div>
+    </div>
+    <p class="big" style="margin-top:4vh">그리고 <b class="amber">8월 27일</b> 금리 회의는 어떻게 됐을까?<br>그 결정으로 <b>누가 웃고 누가 울었을까?</b></p>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button id="prev">◀</button>
+  <span id="count">1 / 10</span>
+  <button id="next">▶</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const bar=document.getElementById('bar'), count=document.getElementById('count');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    count.textContent=(i+1)+' / '+slides.length;
+  }
+  document.getElementById('next').onclick=()=>show(i+1);
+  document.getElementById('prev').onclick=()=>show(i-1);
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1);}
+    if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1);}
+    if(e.key==='Home')show(0);
+    if(e.key==='End')show(slides.length-1);
+  });
+  document.getElementById('deck').addEventListener('click',e=>{
+    if(e.target.closest('.nav'))return;
+    show(e.clientX < window.innerWidth/2 ? i-1 : i+1);
+  });
+  show(0);
+</script>
+</body>
+</html>
