@@ -65,6 +65,16 @@
   }
   .nav button:hover{border-color:var(--teal);}
   .bar{position:absolute; left:0; top:0; height:.5vh; background:var(--teal); transition:width .25s;}
+  .bg{position:absolute; inset:0; z-index:0; background-size:cover; background-position:center; opacity:.62;}
+  .bg::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(90deg, var(--bg) 0%, rgba(14,22,32,.93) 34%, rgba(14,22,32,.55) 66%, rgba(14,22,32,.2) 100%);
+  }
+  .slide > *:not(.bg){position:relative; z-index:1;}
+  .bg.soft{opacity:.92;}
+  .bg.soft::after{
+    background:linear-gradient(90deg, var(--bg) 0%, rgba(14,22,32,.9) 24%, rgba(14,22,32,.42) 50%, rgba(14,22,32,0) 100%);
+  }
   .chain{display:grid; grid-template-columns:repeat(5,1fr); gap:1.5vw; margin-top:3.2vh;}
   .chain .step{
     background:var(--bg2); border:1px solid var(--line); border-radius:.8vw;
@@ -112,6 +122,7 @@
 
   <!-- 1 -->
   <section class="slide on">
+    <div class="bg soft" style="background-image:url('images/v5-domino.png')"></div>
     <div class="kicker">사회② · Ⅴ단원 국민 경제와 국제 거래</div>
     <h1>교과서는<br><span class="accent">"이렇게 하면 된다"</span>는데,<br>현실은 왜 안 될까?</h1>
     <p class="big">이 단원을 여는 네 개의 질문. 정답은 오늘 알려 주지 않는다.</p>
@@ -157,6 +168,7 @@
 
   <!-- 5 -->
   <section class="slide">
+    <div class="bg" style="background-image:url('images/v5-blanket.png')"></div>
     <div class="kicker">질문 3 — 뒤집기</div>
     <h2>물가 안정, 고용 안정.<br><span class="accent">당연히 좋다.</span></h2>
     <p class="big">물가가 안정되고 일자리가 있어야 나와 가족이 먹고산다.<br>여기까진 물어볼 것도 없다. 그래서 질문을 <b>뒤집는다</b>.</p>
@@ -228,6 +240,7 @@
 
   <!-- 9 (신설) -->
   <section class="slide">
+    <div class="bg" style="background-image:url('images/v5-faucet.png')"></div>
     <div class="kicker red">그러니까, 다시 보면</div>
     <h2>금리 인상은 물가를 잡는 게 아니다.<br><span class="red">우리를 덜 쓰게 만들어서</span> 잡는다.</h2>
     <div class="reveal">
