@@ -65,6 +65,38 @@
   }
   .nav button:hover{border-color:var(--teal);}
   .bar{position:absolute; left:0; top:0; height:.5vh; background:var(--teal); transition:width .25s;}
+  .chain{display:grid; grid-template-columns:repeat(5,1fr); gap:1.5vw; margin-top:3.2vh;}
+  .chain .step{
+    background:var(--bg2); border:1px solid var(--line); border-radius:.8vw;
+    padding:2.2vh 1.1vw; display:flex; flex-direction:column; position:relative;
+  }
+  .chain .step:not(:last-child)::after{
+    content:"→"; position:absolute; right:-1.2vw; top:50%; transform:translateY(-50%);
+    font-size:1.6vw; color:var(--teal); font-weight:700; line-height:1;
+  }
+  .chain .step .k{font-size:1.25vw; font-weight:800; color:var(--teal); margin-bottom:.9vh; letter-spacing:.04em;}
+  .chain .step .v{font-size:1.5vw; font-weight:700; line-height:1.45;}
+  .chain .step .s{font-size:1.2vw; color:var(--dim); margin-top:.9vh; line-height:1.5;}
+  .chain .step.q{border:1px dashed var(--amber); background:rgba(255,184,77,.06);}
+  .chain .step.q .k{color:var(--amber);}
+  .chain .step.q .v{color:var(--amber); font-size:2.4vw;}
+  .reveal{
+    border-left:.5vw solid var(--red); background:rgba(255,107,107,.09);
+    padding:2.6vh 2.4vw; margin-top:3.2vh; max-width:84ch;
+  }
+  .reveal .big2{font-size:2.5vw; font-weight:800; line-height:1.45;}
+  @media (max-width:820px){
+    .chain{grid-template-columns:1fr 1fr; gap:1.6vw; margin-top:2.4vh;}
+    .chain .step{padding:1.4vh 2.4vw;}
+    .chain .step:not(:last-child)::after{display:none;}
+    .chain .step:last-child{grid-column:1 / -1;}
+    .chain .step .k{font-size:2.9vw; margin-bottom:.5vh;}
+    .chain .step .v{font-size:3.6vw; line-height:1.35;}
+    .chain .step .s{font-size:2.8vw; margin-top:.5vh;}
+    .chain .step.q .v{font-size:5vw;}
+    .reveal{padding:1.8vh 4vw; margin-top:2.4vh;}
+    .reveal .big2{font-size:4.6vw;}
+  }
   @media (max-width:820px){
     h1{font-size:9vw;} h2{font-size:7vw;} h3{font-size:5vw;}
     p{font-size:4vw;} .g2,.g3{grid-template-columns:1fr;}
@@ -143,11 +175,45 @@
       <dt>왜</dt><dd>6월 소비자물가 <b>3.2%</b>(목표는 2%) · 기름값·환율 상승 · 집값과 가계 대출 급증</dd>
       <dt>다음</dt><dd><b class="amber">2026년 8월 27일</b> — 다음 금리 회의. 우리가 이 단원을 배우는 동안이다</dd>
     </dl>
-    <p class="note">'기준금리'는 <b>돈을 빌리는 값</b>이다. 이 값을 올리면 사람들이 돈을 덜 빌리고 덜 쓴다 → 물가가 진정된다.</p>
+    <p class="note">'기준금리'는 <b>돈을 빌리는 값</b>이다. 그런데 — <b class="amber">돈 빌리는 값을 올리는 게, 어떻게 떡볶이값을 잡지?</b></p>
     <div class="src">출처: 한국은행 통화정책방향 결정회의(2026-07-16) · YTN·MBC·네이트뉴스 보도(2026-07-16) · 2026-08-13 확인</div>
   </section>
 
-  <!-- 7 -->
+  <!-- 7 (신설) -->
+  <section class="slide">
+    <div class="kicker">잠깐 — 그게 왜 물가를 잡지?</div>
+    <h2>돈이 비싸지면,<br><span class="accent">무슨 일이 생길까</span></h2>
+    <div class="chain">
+      <div class="step">
+        <div class="k">① 금리 ↑</div>
+        <div class="v">돈 빌리는 값이<br>오른다</div>
+      </div>
+      <div class="step">
+        <div class="k">② 갈림길</div>
+        <div class="v">빌리려던 사람은 안 빌리고,<br>가진 사람은 은행에 맡긴다</div>
+      </div>
+      <div class="step">
+        <div class="k">③ 그래서</div>
+        <div class="v">세상에 돌아다니는<br>돈이 줄어든다</div>
+      </div>
+      <div class="step">
+        <div class="k">④ 그러면</div>
+        <div class="v">사람들이 덜 산다</div>
+      </div>
+      <div class="step q">
+        <div class="k">⑤ 그다음은?</div>
+        <div class="v">?</div>
+        <div class="s">가게 입장에서 생각해 보자.<br>손님이 줄면 값을 올릴 수 있을까?</div>
+      </div>
+    </div>
+    <div class="quote" style="border-color:var(--amber); background:rgba(255,184,77,.08); margin-top:3.2vh">
+      <b>④를 우리 집으로 옮겨 보면</b> — 너희 집에 대출이 있다면 이번 달부터 나가는 돈이 늘어난다.<br>
+      그럼 <b class="amber">뭐가 먼저 줄어들까? 외식? 옷? 학원?</b> 그게 '덜 산다'의 진짜 모습이다.
+    </div>
+    <div class="src">교과서는 이 화살표를 <b>한 방향으로만</b> 그려 준다 — 천재교육 사회②(구정화) Ⅴ단원 「함께하는 창의 교실」의 <i>금리 인하 → 소비·투자 증가 → 생산 증가 → 고용 창출</i>. 이 슬라이드는 그 화살표를 거꾸로 돌린 것이다.</div>
+  </section>
+
+  <!-- 8 -->
   <section class="slide">
     <div class="kicker red">그런데 같은 날</div>
     <h2>물가를 잡으려 했더니,<br><span class="red">다른 곳이 무너졌다</span></h2>
@@ -160,7 +226,20 @@
     <div class="src">출처: MBC·네이트뉴스 2026-07-16 보도 (구체 지수·등락률은 확인되지 않아 표기하지 않음)</div>
   </section>
 
-  <!-- 8 -->
+  <!-- 9 (신설) -->
+  <section class="slide">
+    <div class="kicker red">그러니까, 다시 보면</div>
+    <h2>금리 인상은 물가를 잡는 게 아니다.<br><span class="red">우리를 덜 쓰게 만들어서</span> 잡는다.</h2>
+    <div class="reveal">
+      <div class="big2">그렇다면 앞 장의 그 아픔은 실수가 아니다.<br><span class="red">그게 작동 원리 자체다.</span></div>
+    </div>
+    <p class="big">아프게 해서 낫게 하는 약과 같다. 부작용을 없애면 약효도 같이 사라진다.<br>
+    그래서 한국은행의 고민은 '낫게 할까 말까'가 아니라 <b class="amber">'얼마나 아프게 할까'</b>다.</p>
+    <p class="note">단, 금리로 손댈 수 있는 건 <b>①사람들이 사려는 양</b>과 <b>②세상에 도는 돈의 양</b>까지다.
+    기름값·환율이 밀어 올린 물가는 <b class="red">금리로 잡히지 않는다</b>. 이 한계가 곧 다음 질문이 된다.</p>
+  </section>
+
+  <!-- 10 -->
   <section class="slide">
     <div class="kicker">질문 4</div>
     <h2>방안을 아는데 <span class="accent">왜 안 될까?</span></h2>
@@ -172,7 +251,7 @@
     </div>
   </section>
 
-  <!-- 9 -->
+  <!-- 11 -->
   <section class="slide">
     <div class="kicker">그래서 이 단원은</div>
     <h2>"경제는 원래 어렵다"가 아니라<br><span class="accent">"어려운 데는 이유가 있다"</span></h2>
@@ -187,7 +266,7 @@
     <p class="note">📌 오늘은 답을 적지 않는다. 대신 <b>지금 떠오르는 생각</b>을 한 줄 적어 두자. 단원이 끝나면 그 한 줄을 다시 꺼내 볼 것이다.</p>
   </section>
 
-  <!-- 10 -->
+  <!-- 12 -->
   <section class="slide">
     <div class="kicker amber">단원 마무리에 다시 열기</div>
     <h2>그때 네가 적은 한 줄,<br><span class="amber">지금도 같은가?</span></h2>
@@ -202,7 +281,7 @@
 
 <div class="nav">
   <button id="prev">◀</button>
-  <span id="count">1 / 10</span>
+  <span id="count">1 / 12</span>
   <button id="next">▶</button>
 </div>
 
