@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>시험이 바뀐다 — 고르는 공부에서 꺼내는 공부로 (중2·중3 특강 v3)</title>
+<style>
+  :root{
+    --bg:#111018; --bg2:#1b1a26; --ink:#f2eff8; --dim:#a9a2bd;
+    --mint:#5fe3b1; --violet:#b58bff; --amber:#ffc45c; --red:#ff7a7a; --line:#332f45;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    overflow:hidden; -webkit-font-smoothing:antialiased;
+  }
+  .deck{position:relative; width:100vw; height:100vh;}
+  .slide{position:absolute; inset:0; display:none; flex-direction:column; justify-content:center;
+    padding:6vh 8vw; opacity:0; transition:opacity .25s;}
+  .slide.on{display:flex; opacity:1;}
+  .kicker{font-size:1.5vw; letter-spacing:.25em; color:var(--mint); font-weight:700; margin-bottom:2.2vh;}
+  .kicker.v{color:var(--violet);} .kicker.a{color:var(--amber);} .kicker.r{color:var(--red);}
+  h1{font-size:6.2vw; line-height:1.15; font-weight:800; letter-spacing:-.02em;}
+  h2{font-size:4.3vw; line-height:1.25; font-weight:800; letter-spacing:-.015em;}
+  p{font-size:2.1vw; line-height:1.65; color:var(--dim); margin-top:2.6vh; max-width:62ch;}
+  p.big{font-size:2.55vw; color:var(--ink);}
+  .mint{color:var(--mint);} .violet{color:var(--violet);} .amber{color:var(--amber);} .red{color:var(--red);}
+  .quote{border-left:.5vw solid var(--mint); padding:2.4vh 2.4vw; margin-top:3.2vh;
+    background:rgba(95,227,177,.07); font-size:1.95vw; line-height:1.7; max-width:66ch;}
+  .quote.v{border-color:var(--violet); background:rgba(181,139,255,.08);}
+  .quote.a{border-color:var(--amber); background:rgba(255,196,92,.08);}
+  .quote small{display:block; margin-top:1.4vh; color:var(--dim); font-size:1.25vw;}
+  .grid{display:grid; gap:1.6vw; margin-top:3.6vh;}
+  .g2{grid-template-columns:1fr 1fr;} .g3{grid-template-columns:repeat(3,1fr);} .g4{grid-template-columns:repeat(4,1fr);}
+  .card{background:var(--bg2); border:1px solid var(--line); border-radius:1vw; padding:2.5vh 1.7vw;}
+  .card .n{font-size:1.45vw; font-weight:800; color:var(--mint); margin-bottom:1vh;}
+  .card .t{font-size:1.85vw; font-weight:700; line-height:1.35;}
+  .card .d{font-size:1.4vw; color:var(--dim); margin-top:1.1vh; line-height:1.6;}
+  .card.vl{border-color:var(--violet);} .card.vl .n{color:var(--violet);}
+  .card.al{border-color:var(--amber);} .card.al .n{color:var(--amber);}
+  .card.rl{border-color:var(--red);} .card.rl .n{color:var(--red);}
+.ex{margin-top:1.3vh; padding-top:1.1vh; border-top:1px dashed var(--line);
+    font-size:1.3vw; line-height:1.5; color:var(--mint);}
+  .ex b{color:var(--ink);}
+  .facts{display:grid; grid-template-columns:auto 1fr; gap:1.3vh 2vw; margin-top:3.2vh; font-size:1.85vw;}
+  .facts dt{color:var(--mint); font-weight:700; white-space:nowrap;}
+  .vs{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:2vw; margin-top:3.8vh;}
+  .vs .side{background:var(--bg2); border:1px solid var(--line); border-radius:1vw; padding:3vh 2vw;}
+  .vs .side.now{border-color:var(--red);} .vs .side.next{border-color:var(--mint);}
+  .vs .lab{font-size:1.4vw; font-weight:800; letter-spacing:.06em; margin-bottom:1.4vh;}
+  .vs .side.now .lab{color:var(--red);} .vs .side.next .lab{color:var(--mint);}
+  .vs .hd{font-size:2.5vw; font-weight:800; line-height:1.3;}
+  .vs .bd{font-size:1.5vw; color:var(--dim); margin-top:1.4vh; line-height:1.65;}
+  .vs .mid{font-size:2.6vw; color:var(--dim); font-weight:700;}
+  .note{margin-top:3vh; font-size:1.4vw; color:var(--dim); border-top:1px solid var(--line); padding-top:1.9vh; max-width:74ch;}
+  .src{position:absolute; left:8vw; bottom:3.2vh; font-size:1.05vw; color:#6d6785; max-width:76vw;}
+  .nav{position:absolute; right:2.4vw; bottom:2.6vh; display:flex; align-items:center; gap:1.2vw; font-size:1.2vw; color:var(--dim);}
+  .nav button{background:var(--bg2); color:var(--ink); border:1px solid var(--line); border-radius:.6vw;
+    padding:1vh 1.2vw; font-size:1.2vw; cursor:pointer; font-family:inherit;}
+  .nav button:hover{border-color:var(--mint);}
+  .bar{position:absolute; left:0; top:0; height:.5vh; background:var(--mint); transition:width .25s; z-index:5;}
+  .tl{display:grid; grid-template-columns:repeat(4,1fr); gap:1.4vw; margin-top:3.4vh;}
+  .tl .st{background:var(--bg2); border:1px solid var(--line); border-radius:.8vw; padding:2.2vh 1.1vw; position:relative;}
+  .tl .st:not(:last-child)::after{content:"→"; position:absolute; right:-1.1vw; top:50%; transform:translateY(-50%);
+    font-size:1.5vw; color:var(--mint); font-weight:700; line-height:1;}
+  .tl .st .y{font-size:1.5vw; font-weight:800; color:var(--mint); margin-bottom:.8vh;}
+  .tl .st .x{font-size:1.4vw; line-height:1.5;}
+  .tl .st.me{border-color:var(--amber); background:rgba(255,196,92,.07);} .tl .st.me .y{color:var(--amber);}
+  @media (max-width:820px){
+    h1{font-size:9vw;} h2{font-size:7vw;} p{font-size:4vw;}
+    .g2,.g3,.g4,.tl{grid-template-columns:1fr;} .vs{grid-template-columns:1fr;}
+    .tl .st:not(:last-child)::after{display:none;}
+    .card .t{font-size:4.2vw;} .card .d{font-size:3.4vw;} .card .n{font-size:3.4vw;}
+    .quote{font-size:3.8vw;} .facts{font-size:3.8vw; grid-template-columns:1fr;}
+    .kicker{font-size:3.4vw;} .src{font-size:2.4vw;} .nav{font-size:3vw;} .nav button{font-size:3vw;}
+    .vs .hd{font-size:5vw;} .vs .bd{font-size:3.5vw;} .vs .lab{font-size:3.2vw;} .vs .mid{display:none;}
+    .tl .st .y{font-size:3.6vw;} .tl .st .x{font-size:3.3vw;}
+    .ex{font-size:3.1vw;}
+  }
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 -->
+  <section class="slide on">
+    <div class="kicker">중2·중3 특강</div>
+    <h1>시험이 바뀐다.<br><span class="mint">공부도 바뀌어야 할까?</span></h1>
+    <p class="big">"정답 고르기"로 30년을 버틴 시험이 흔들리고 있다.<br>그런데 — <b>정말 바뀔까? 바뀌면 나는 뭘 해야 하지?</b></p>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide">
+    <div class="kicker">무슨 일이 있었나 ①</div>
+    <h2>우리 지역이 <span class="mint">전국에서 처음</span></h2>
+    <dl class="facts">
+      <dt>누가</dt><dd>전남광주통합특별시교육청 (준비위원회)</dd>
+      <dt>언제</dt><dd>2026년 7월 2일 기자회견</dd>
+      <dt>무엇을</dt><dd>초·중·고 전 과정에 <b class="mint">서·논술형 평가</b>를 단계적으로 전면 도입</dd>
+      <dt>왜</dt><dd>"암기와 <b>정답 찾기</b> 중심의 획일적 평가를 걷어내고 <b>사고력·표현력·문제 해결력</b> 중심으로"</dd>
+      <dt>언제부터</dt><dd><b class="amber">2027학년도부터 단계 적용 → 2032년 안착</b> 목표 (AI 채점 지원)</dd>
+    </dl>
+    <div class="src">출처: 전남광주통합특별시교육청 준비위원회 발표(2026-07-02) — 서울신문·오마이뉴스·천지일보·전남인뉴스 보도</div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide">
+    <div class="kicker v">무슨 일이 있었나 ②</div>
+    <h2>대통령도 <span class="violet">한마디 했다</span></h2>
+    <p class="big">2026년 8월 5일, 정부부처 업무보고 자리에서.</p>
+    <div class="quote v">
+      "초보 컴퓨터가 쉽게 답을 할 수 있는 <b>객관식 수능</b>을 앞으로도 계속할 것이냐?"<br>
+      "<b>AI 시대</b>에 필요 없는 것을 가르치고 규격화하는 것은 아이들을 망치는 것 같다."
+      <small>이재명 대통령 · 2026-08-05 업무보고</small>
+    </div>
+    <p>같은 자리에서 국가교육위원회는 <b>수능 서·논술형 도입</b>과 <b>절대평가 전환</b>을 검토 중이라고 밝혔다.</p>
+    <div class="src">출처: 2026-08-05 업무보고 관련 보도 — 한국일보·뉴시스·디지털타임스·오마이뉴스</div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide">
+    <div class="kicker a">그런데 — 여기서 정직해지자</div>
+    <h2>아직 <span class="amber">확정된 게 아니다</span></h2>
+    <div class="grid g2">
+      <div class="card al"><div class="n">아직 시안도 안 나왔다</div><div class="t">10월 말에 '시안', 내년 3월에 '확정'</div><div class="d">국교위가 「2028-2037 국가교육발전계획」 시안을 10월 말 발표하고, 의견을 모아 <b>2027년 3월 말에 확정</b>한다.</div></div>
+      <div class="card rl"><div class="n">대통령도 걱정했다</div><div class="t">"논술 학원이 생겨날 텐데"</div><div class="d">같은 자리에서 이렇게도 말했다 — <i>"주관식 평가를 도입하면 논술학원, 족집게 선생 등 특화된 사교육이 마구 생겨날 가능성이 높다."</i></div></div>
+    </div>
+    <p class="big" style="margin-top:3.4vh">그러니 <b class="amber">"이렇게 바뀐다"가 아니라 "이 방향으로 가는 중이다"</b>가 정확한 말이다.</p>
+    <div class="src">출처: 디지털타임스(2026) — 국교위 차정인 위원장 제안 및 대통령 신중론</div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
+    <div class="kicker">그럼 나는 언제 걸리나</div>
+    <h2>계산해 보면 <span class="mint">너희가 그 안에 있다</span></h2>
+    <div class="tl">
+      <div class="st"><div class="y">2026 (지금)</div><div class="x">너희는 중2·중3</div></div>
+      <div class="st"><div class="y">2027</div><div class="x">우리 지역 서·논술형 <b>단계 적용 시작</b><br>국교위 계획 <b>확정</b>(3월)</div></div>
+      <div class="st me"><div class="y">2029 · 2030</div><div class="x">지금 <b>중3</b>이 고3 → <b>2030학년도 수능</b><br>지금 <b>중2</b>가 고3 → <b>2031학년도 수능</b></div></div>
+      <div class="st"><div class="y">2032</div><div class="x">우리 지역 서·논술형 <b>안착</b> 목표</div></div>
+    </div>
+    <p class="big" style="margin-top:3.2vh">국교위가 세우는 계획 기간이 <b class="mint">2028~2037년</b>이다.<br>지금 중2·중3은 <b>그 한가운데</b>에 있다.</p>
+    <div class="note">※ 학년 계산은 단순 산술(중3 → 3년 뒤 고3). 실제 적용 범위·시점은 확정 발표를 봐야 한다.</div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide">
+    <div class="kicker">핵심은 이 한 가지</div>
+    <h2>무엇이 달라지는가</h2>
+    <div class="vs">
+      <div class="side now">
+        <div class="lab">지금까지</div>
+        <div class="hd">고르는 시험</div>
+        <div class="bd">답이 <b>화면에 이미 있다</b>. 다섯 개 중에 알아보기만 하면 된다.<br><br>필요한 능력 = <b>알아보기</b></div>
+      </div>
+      <div class="mid">→</div>
+      <div class="side next">
+        <div class="lab">앞으로</div>
+        <div class="hd">꺼내는 시험</div>
+        <div class="bd">아무것도 주어지지 않는다. <b>내 머릿속에서 꺼내</b> 내 문장으로 엮어야 한다.<br><br>필요한 능력 = <b>꺼내기 + 엮기</b></div>
+      </div>
+    </div>
+    <p class="big" style="margin-top:3.4vh">이건 <b>난이도</b>가 오르는 게 아니라 <b class="mint">묻는 능력 자체가 다른</b> 것이다.</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <div class="kicker r">그래서 — 슬픈 소식</div>
+    <h2>이 공부법들은 <span class="red">별로 안 통한다</span></h2>
+    <div class="grid g3">
+      <div class="card rl"><div class="n">✕</div><div class="t">교과서 다시 읽기</div><div class="d">읽으면 <b>아는 것 같은 느낌</b>이 든다. 그런데 그 느낌은 "알아보기"일 뿐, 꺼낼 수 있다는 뜻이 아니다.</div></div>
+      <div class="card rl"><div class="n">✕</div><div class="t">형광펜 긋기</div><div class="d">중요한 곳을 <b>표시</b>한 것이지 <b>내 것으로 만든</b> 게 아니다. 손은 움직였고 머리는 지나갔다.</div></div>
+      <div class="card rl"><div class="n">✕</div><div class="t">필기 그대로 옮겨 적기</div><div class="d">가장 성실해 보이는데 가장 안 남는다. <b>변환이 한 번도 없었기</b> 때문이다.</div></div>
+    </div>
+    <p class="big" style="margin-top:3.4vh">공통점 — 전부 <b class="red">'고르는 시험'에 맞춰진 공부</b>다.</p>
+  </section>
+
+  <!-- 8 (신설·탁석산) -->
+  <section class="slide">
+    <div class="kicker a">그런데 왜 그게 좋아 보일까</div>
+    <h2>효과 있는 방법일수록 <span class="amber">효과 없게 느껴진다</span></h2>
+    <p class="big" style="margin-top:2.2vh">그림을 보여 주고 화가를 맞히게 한 실험 — 한쪽은 <b>몰아서</b>, 한쪽은 <b>섞어서</b> 배웠다.</p>
+    <div class="grid g3" style="margin-top:2.6vh">
+      <div class="card" style="padding:2vh 1.7vw"><div class="n">섞어서 배운 쪽</div><div class="t mint" style="font-size:3vw">60점</div></div>
+      <div class="card" style="padding:2vh 1.7vw"><div class="n">몰아서 배운 쪽</div><div class="t red" style="font-size:3vw">37점</div></div>
+      <div class="card al" style="padding:2vh 1.7vw"><div class="n">그런데 물어보니</div><div class="t amber" style="font-size:2.1vw">78%가 "몰아서가 나았다"</div></div>
+    </div>
+    <p class="big" style="margin-top:2.6vh; margin-bottom:6vh">성적은 <b class="mint">정반대</b>인데 <b>느낌은 거꾸로</b> 갔다 — 몰아서 보면 <b>"패턴이 보인다"는 착각</b>이 든다.<br>👉 그래서 규칙 하나: <b class="amber">더듬거리면 되고 있는 것이다.</b></p>
+    <div class="src">탁석산 『공부 수업』(열린책들, 2022)이 소개한 실험</div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide">
+    <div class="kicker">기쁜 소식</div>
+    <h2>통하는 방법은 <span class="mint">이미 밝혀져 있다</span></h2>
+    <div class="grid g3" style="margin-top:2.6vh">
+      <div class="card"><div class="n">1 · 덮고 꺼내기</div><div class="t">읽지 말고 물어봐라</div><div class="d">교과서를 <b>덮은 채</b> 적어 본다. 3번 물어본 쪽이 0번보다 <b>거의 두 배</b> 기억했다.</div><div class="ex"><b>예)</b> "GDP에 들어가는 <b>문 네 개</b>가 뭐였지?"</div></div>
+      <div class="card"><div class="n">2 · 줄여서 쓰기</div><div class="t">내 말로 줄인다</div><div class="d">줄이려면 이해해야 한다. <b>단, 배우자마자는 안 된다</b> — 두세 번 본 뒤에.</div><div class="ex"><b>예)</b> 교과서 <b>5개</b> → 우리는 <b>3갈래</b>로 줄였다</div></div>
+      <div class="card"><div class="n">3 · "왜?" 붙이기</div><div class="t">이유를 한 줄 더</div><div class="d">서술형이 실제로 채점하는 건 이 줄이다. 친구에게 <b>설명</b>되면 진짜다.</div><div class="ex"><b>예)</b> "농노는 노예가 아니다" → <b>"결혼·재산이 가능했으니까"</b></div></div>
+      <div class="card vl"><div class="n">4 · 자고 나서 또</div><div class="t">사이에 잠을 끼워라</div><div class="d">오늘 한 번, <b>자고 나서</b> 내일 한 번. 잠이 벽돌 사이 <b>회반죽</b> 노릇을 한다.</div><div class="ex"><b>예)</b> 사흘에 나눠 외우니 <b>44% 덜</b> 걸렸다</div></div>
+      <div class="card vl"><div class="n">5 · 섞어서 하기</div><div class="t">한 과목만 붙들지 마라</div><div class="d">수학만 두 시간보다 <b>수학·영어·사회 40분씩</b>이 낫다. 처음엔 안 되는 것 같아도.</div><div class="ex"><b>예)</b> 섞어서 푼 쪽 <b>78점</b> vs 몰아서 <b>38점</b></div></div>
+      <div class="card vl"><div class="n">6 · 전날 밤 계획</div><div class="t">순서만 정해 두고 자라</div><div class="d">자는 동안 <b>뇌가 정리</b>해 주고, 다음 날 앉자마자 바로 시작된다.</div><div class="ex"><b>예)</b> "내일은 수학 → 영어 → 사회" 이 한 줄</div></div>
+    </div>
+    <div class="src">인출 연습·생성 효과·바람직한 어려움(인지심리학) · 탁석산 『공부 수업』(열린책들, 2022)</div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide">
+    <div class="kicker v">그리고 — 눈치챘을지도</div>
+    <h2>우리 학습지에 <span class="violet">이미 다 들어 있다</span></h2>
+    <div class="grid g2">
+      <div class="card vl"><div class="n">🧠 핵심 3줄 (교과서 덮고!)</div><div class="t">= 1번 덮고 꺼내기</div><div class="d">맨 아래 그 칸, 귀찮아 보였지? 그게 <b>인출 연습</b>이다. 점수 안 매기는 이유도 그래서다 — 몰래 보면 효과가 사라진다.</div></div>
+      <div class="card vl"><div class="n">💭 더 생각해 보기</div><div class="t">= 2·3번 줄이고 이유 쓰기</div><div class="d">"~에 대해 자기 생각을 써 보자". 이건 <b>서술형 연습</b>이고, 제출하면 선생님이 실제로 읽는다.</div></div>
+      <div class="card vl"><div class="n">✏️ 활동 — 판정하고 이유 쓰기</div><div class="t">= 3번 "왜?" 붙이기</div><div class="d">O/X만 고르는 게 아니라 <b>"몇 번 문에서 걸렸는지"</b>까지 쓰게 한 이유가 여기 있다.</div></div>
+      <div class="card vl"><div class="n">채점 기준 상 / 중 / 하</div><div class="t">= 무엇을 보고 점수를 주는가</div><div class="d">'상'은 답을 맞힌 사람이 아니라 <b>근거를 댄 사람</b>이다. 결론이 달라도 근거가 서 있으면 상이다.</div></div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide">
+    <div class="kicker a">채점 기준을 미리 공개한다</div>
+    <h2>'상'을 받는 건 <span class="amber">정답을 아는 사람이 아니다</span></h2>
+    <div class="grid g3">
+      <div class="card al"><div class="n">상</div><div class="t">주장 + 근거 + 연결</div><div class="d">묻는 것을 <b>둘 다</b> 답하고, 왜 그런지를 <b>배운 개념으로</b> 설명한다. 구체적인 예가 붙으면 더 좋다.</div></div>
+      <div class="card"><div class="n">중</div><div class="t">답은 맞는데 이유가 얕다</div><div class="d">"좋으니까 / 나쁘니까" 수준에서 멈추거나, 둘 중 하나만 설명했다.</div></div>
+      <div class="card"><div class="n">하</div><div class="t">외운 문장을 옮겨 적음</div><div class="d">교과서 문장을 그대로 썼는데 <b>왜 그게 답인지</b>가 없다.</div></div>
+    </div>
+    <p class="big" style="margin-top:3.4vh">그러니까 서술형은 <b class="amber">"더 많이 외운 사람"이 아니라 "설명할 수 있는 사람"</b>을 고른다.</p>
+    <div class="note">그런데 — <b>이 기준을 정하는 일이 지금 어른들이 가장 어려워하는 일</b>이다. 다음 장.</div>
+  </section>
+
+  <!-- 11 (신설) -->
+  <section class="slide">
+    <div class="kicker r">그런데 — 어른들은 이걸로 싸우고 있다</div>
+    <h2>아직 <span class="red">아무도 답을 모른다</span></h2>
+    <div class="grid g3">
+      <div class="card rl"><div class="n">현장 교사들</div><div class="t">"몇십만 명을 어떻게 채점하지?"</div><div class="d">사람마다 점수가 다르면? 그래서 <b>"차라리 객관식이 공정하다"</b>는 말도 나온다.</div></div>
+      <div class="card rl"><div class="n">시험 쳐 본 사람들</div><div class="t">"결국 형식을 외우게 되는 거 아냐?"</div><div class="d">서술형도 <b>답이 정해져 있으면</b> 틀만 외워서 갈아끼우게 된다. 그러면 바뀐 게 없다.</div></div>
+      <div class="card rl"><div class="n">대통령까지</div><div class="t">"논술 학원이 생길 텐데"</div><div class="d">새 시험이 생기면 <b>새 사교육</b>이 따라붙는다. 이건 대통령이 직접 걱정한 말이다.</div></div>
+    </div>
+    <p class="big" style="margin-top:3.2vh">오늘 이 답은 주지 않는다. 다만 <b class="mint">두 번째 물음의 답은 방금 봤다</b> —<br>채점 기준이 <b>'키워드 개수'</b>가 아니라 <b>'근거'</b>를 보면, 외워서 갈아끼우는 건 안 통한다.</p>
+    <div class="src">현장 교사·학원 운영자 토론(2026-08-11) 및 2026-08-05 업무보고 보도에서 실제로 나온 우려들</div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide">
+    <div class="kicker">노트 이야기 — 함정 하나</div>
+    <h2>"나중에 다시 봐야지"<br><span class="red">그 나중은 대개 오지 않는다</span></h2>
+    <p class="big">필기 앱이든 공책이든, <b>언제든 찾을 수 있다</b>고 안심하는 순간<br>뇌는 그걸 <b>기억할 필요가 없는 것</b>으로 분류해 버린다.</p>
+    <div class="quote a">
+      그래서 규칙은 하나면 된다 —<br>
+      <b class="amber" style="font-size:2.4vw">노트를 닫기 전에 한 줄 더 쓴다: "그래서 뭐가 달라지지?"</b><br>
+      이 한 줄은 <b>옮겨 적기로는 절대 채워지지 않는다.</b> 반드시 이해해야 쓸 수 있다.
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide">
+    <div class="kicker">오늘의 결론</div>
+    <h2>고르는 공부에서<br><span class="mint">꺼내는 공부로</span></h2>
+    <p class="big">시험이 바뀌어서 공부법을 바꾸는 게 아니다.<br><b>원래 남는 공부가 그쪽이었고</b>, 시험이 이제야 그쪽을 보는 것이다.</p>
+    <div class="quote">
+      <b style="font-size:2.3vw">값을 치르지 않은 것은 내 것이 되지 않는다.</b><br>
+      읽기만 하면 값을 안 치른 것이다. 줄이고, 꺼내고, 이유를 쓰는 것 — 그게 지불이다.
+    </div>
+    <div class="note">⚠️ 하나만 더 — <b>벼락치기</b>도 나쁘지만 <b>"일주일 전에 다 끝내고 손 놓기"</b>도 똑같이 나쁘다. 시험 전까지 <b>매일 한 번씩 스쳐야</b> 남는다.<br><br>📌 오늘 할 일 하나만 고르라면: <b class="mint">다음 수업 끝나고 교과서를 덮은 채 세 줄을 써 볼 것.</b> 그 1분이 오늘 특강의 전부다.</div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button id="prev">◀</button><span id="count">1 / 14</span><button id="next">▶</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const bar=document.getElementById('bar'), count=document.getElementById('count');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    count.textContent=(i+1)+' / '+slides.length;
+  }
+  document.getElementById('next').onclick=()=>show(i+1);
+  document.getElementById('prev').onclick=()=>show(i-1);
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1);}
+    if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1);}
+    if(e.key==='Home')show(0); if(e.key==='End')show(slides.length-1);
+  });
+  document.getElementById('deck').addEventListener('click',e=>{
+    if(e.target.closest('.nav'))return;
+    show(e.clientX < window.innerWidth/2 ? i-1 : i+1);
+  });
+  show(0);
+</script>
+</body>
+</html>
