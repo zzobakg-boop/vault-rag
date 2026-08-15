@@ -155,25 +155,7 @@ blockquote {
 <body>
 <div class="container">
   
-  <div class="control-bar">
-    <div class="score">
-      빈칸: <span id="score">0</span>/13 · OX: <span id="ox-score">0</span>/0
-      · 총: <span id="total-score">0</span>/13 (<span id="pct">0</span>%)
-    </div>
-    <div>
-      
-      <button class="btn btn-primary" onclick="check()">채점하기</button>
-      
-      <button class="btn btn-danger" onclick="reset()">초기화</button>
-      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
-      <button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>
-    </div>
-  </div>
-  <div class="student-info">
-    <input type="text" placeholder="반">
-    <input type="text" placeholder="번호">
-    <input type="text" placeholder="이름">
-  </div>
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
   <br>
 <br>
 <br>
@@ -218,7 +200,7 @@ blockquote {
 
     ↓
 
-BC ①<input type="text" class="blank-input code-blank" data-answer="221" data-id="1" style="width:60px" placeholder="">년: 진왕 정(政)이 6국을 차례로 멸망
+BC ①<span class="blank-filled">221</span>년: 진왕 정(政)이 6국을 차례로 멸망
 
     ↓
 
@@ -226,7 +208,7 @@ BC ①<input type="text" class="blank-input code-blank" data-answer="221" data-i
 
     ↓
 
-스스로 ②<input type="text" class="blank-input code-blank" data-answer="시황제" data-id="2" style="width:60px" placeholder="">(始皇帝)라 칭함
+스스로 ②<span class="blank-filled">시황제</span>(始皇帝)라 칭함
 
 = "처음으로 황제가 되다"
 
@@ -245,19 +227,24 @@ BC ①<input type="text" class="blank-input code-blank" data-answer="221" data-i
 <br>
 <table>
 <tr><td>정책</td><td>내용</td><td>왜 필요했나?</td></tr>
-<tr><td>③<input type="text" class="blank-input" data-answer="군현" data-id="3" style="width:60px" placeholder="">제 실시</td><td>봉건제 폐지, 지방에 중앙 관리 파견</td><td>제후가 독립하는 걸 막기 위해</td></tr>
-<tr><td>④<input type="text" class="blank-input" data-answer="도량형" data-id="4" style="width:68px" placeholder=""> 통일</td><td>길이·부피·무게 기준 단일화</td><td>지역마다 단위가 달라서 거래가 안 됨</td></tr>
-<tr><td>화폐 통일</td><td>⑤<input type="text" class="blank-input" data-answer="반량" data-id="5" style="width:60px" placeholder="">전으로 통일</td><td>7개국 화폐가 달라서 경제 혼란</td></tr>
-<tr><td>문자 통일</td><td>⑥<input type="text" class="blank-input" data-answer="소전" data-id="6" style="width:60px" placeholder="">(小篆)으로 통일</td><td>지역마다 글자가 달라 공문서 소통 불가</td></tr>
-<tr><td>만리장성 건설</td><td>북쪽에 장성을 쌓음</td><td>⑦<input type="text" class="blank-input" data-answer="흉노" data-id="7" style="width:60px" placeholder="">의 침입 방어</td></tr>
-<tr><td>⑧<input type="text" class="blank-input" data-answer="분서갱유" data-id="8" style="width:84px" placeholder=""></td><td>비판 서적 불태움 + 유학자 탄압</td><td>사상 통제, 반대 의견 차단</td></tr>
+<tr><td>③<span class="blank-filled">군현</span>제 실시</td><td>봉건제 폐지, 지방에 중앙 관리 파견</td><td>제후가 독립하는 걸 막기 위해</td></tr>
+<tr><td>④<span class="blank-filled">도량형</span> 통일</td><td>길이·부피·무게 기준 단일화</td><td>지역마다 단위가 달라서 거래가 안 됨</td></tr>
+<tr><td>화폐 통일</td><td>⑤<span class="blank-filled">반량</span>전으로 통일</td><td>7개국 화폐가 달라서 경제 혼란</td></tr>
+<tr><td>문자 통일</td><td>⑥<span class="blank-filled">소전</span>(小篆)으로 통일</td><td>지역마다 글자가 달라 공문서 소통 불가</td></tr>
+<tr><td>만리장성 건설</td><td>북쪽에 장성을 쌓음</td><td>⑦<span class="blank-filled">흉노</span>의 침입 방어</td></tr>
+<tr><td>⑧<span class="blank-filled">분서갱유</span></td><td>비판 서적 불태움 + 유학자 탄압</td><td>사상 통제, 반대 의견 차단</td></tr>
 </table>
 <br>
 <blockquote>(교과서 원문: "시황제는 넓어진 영토를 효율적으로 다스리고자 전국에 군현제를 실시하였고, 지역마다 달랐던 도량형·화폐·문자를 통일하였다. 법가 사상을 바탕으로 나라를 다스리며 자신의 정책에 반대하는 사상이나 학자들을 탄압하였다. 또한 흉노를 견제하고자 만리장성을 쌓았다." — 비상교육 역사①(이병인) p.54)</blockquote>
 <br>
 <blockquote>🔍 <strong>교과서가 밝힌 '그래서 뭐가 좋아졌나'</strong> — 통일은 그 자체가 목적이 아니라 <em>결과</em>가 있었어.</blockquote>
 <blockquote>(교과서 원문: "시황제는 각 제후국에서 사용하던 다양한 화폐를 반량전으로 통일하였고, 전국 시대에 각 나라마다 달랐던 길이, 부피, 무게를 재는 기구의 단위를 통일하였다. 이에 따라 지역 간에 경제 교류가 더욱 활발해졌다. 또한 문자를 통일하여 지방에서도 황제의 명령을 쉽게 이해하게 되어 국가의 법령을 효율적으로 추진할 수 있었다." — 비상교육 역사①(이병인) p.54 「도량형 통일」 자료)</blockquote>
-<blockquote>⬆️ 통일의 <em>결과</em>가 원문에 그대로 적혀 있어 — <strong>경제 교류가 활발해졌고, 법령을 효율적으로 추진할 수 있었다.</strong> 통일은 그 자체가 목적이 아니었던 거지.</blockquote>
+<blockquote>⬆️ 위 원문의 두 결론 — <em>지역 간 경제 교류가 활발해졌다</em> · <em>국가의 법령을 효율적으로 추진할 수 있었다</em> — 이 시험 포인트다.</blockquote>
+<br>
+<blockquote>🎯 <strong>여기가 핵심 — 통일 정책은 '목적'으로 묶어야 외워진다.</strong> 여섯 정책을 나열로 외우면 시험에서 흩어진다. <strong>"넓어진 영토를 효율적으로 다스리려고"</strong> 라는 한 문장(교과서 첫 줄)에 전부 매달아 주면 인과로 잡힌다.</blockquote>
+<blockquote>🎯 <strong>R4 지도서 자료 해설 — 교과서보다 한 걸음 더 들어간다</strong>: <em>"도량형이 다르면 <strong>조세 징수</strong> 등 경제 정책을 시행하는 데 어려움이 있었기 때문에 시황제는 도량형을 통일하여 <strong>조세를 효과적으로 거두었다.</strong> 또한 제후국마다 달랐던 문자도 <strong>전서체</strong>로 통일하여 <strong>문서 행정의 효율</strong>을 높이고자 하였다."</em> (지도서 자료 해설 — 교과서 p.54 「도량형 통일」 자료)</blockquote>
+<blockquote>⚠️ <strong>교과서와 지도서의 강조점이 다르다</strong>: 교과서는 도량형·화폐 통일의 결과를 <em>"경제 교류 활발"</em> 로만 적었고, <strong>"조세 징수"는 지도서에만</strong> 나온다. 학생 서술형 채점 시 <em>조세</em>를 쓰지 않았다고 감점하지 말 것 — 교과서 표기는 <em>경제 교류</em>다. 조세는 교사가 덧붙이는 심화다.</blockquote>
+<blockquote>🎯 <strong>문자 통일의 결과가 시험 포인트</strong>: 교과서가 <em>"지방에서도 황제의 명령을 쉽게 이해 → 법령을 효율적으로 추진"</em> 이라고 인과를 명시했다. "문자 통일 = 문화 통합"으로만 답하면 교과서 논지를 놓친 것 — <strong>행정 장치</strong>로 읽어야 한다.</blockquote>
 <br>
 <blockquote>💡 <strong>현대 비유</strong>: 유럽이 EU를 만들면서 한 것과 비슷해요. 유로화(화폐 통일), 여권 없는 이동(도로·교통 통일), 공용어(문자 통일). 진 시황제는 2,200년 전에 이미 비슷한 걸 한 거예요!</blockquote>
 <br>
@@ -296,11 +283,11 @@ BC 210년: 시황제 사망 → 2세 황제는 무능
 
     ↓
 
-⑨<input type="text" class="blank-input code-blank" data-answer="진승" data-id="9" style="width:60px" placeholder="">·오광의 난 (중국 최초 농민 봉기)
+⑨<span class="blank-filled">진승</span>·오광의 난 (중국 최초 농민 봉기)
 
     ↓
 
-BC ⑩<input type="text" class="blank-input code-blank" data-answer="206" data-id="10" style="width:60px" placeholder="">년: 진 멸망 (통일 후 겨우 15년!)
+BC ⑩<span class="blank-filled">206</span>년: 진 멸망 (통일 후 겨우 15년!)
 
 </pre>
 <br>
@@ -317,7 +304,7 @@ BC ⑩<input type="text" class="blank-input code-blank" data-answer="206" data-i
 
     ↓
 
-항우(귀족 출신) vs ⑪<input type="text" class="blank-input code-blank" data-answer="유방" data-id="11" style="width:60px" placeholder="">(농민 출신) — 초한전쟁
+항우(귀족 출신) vs ⑪<span class="blank-filled">유방</span>(농민 출신) — 초한전쟁
 
     ↓
 
@@ -339,21 +326,21 @@ BC ⑩<input type="text" class="blank-input code-blank" data-answer="206" data-i
 <br>
 <table>
 <tr><td>정책</td><td>내용</td><td>효과</td></tr>
-<tr><td>⑫<input type="text" class="blank-input" data-answer="유교" data-id="12" style="width:60px" placeholder=""> 채택</td><td>유교를 국가 공식 이념으로</td><td>도덕 기반 통치 → 장기 안정</td></tr>
-<tr><td>⑬<input type="text" class="blank-input" data-answer="태학" data-id="13" style="width:60px" placeholder=""> 설립</td><td>유교 교육 기관</td><td>관료 양성 시스템 구축</td></tr>
-<tr><td>⑭<input type="text" class="blank-input" data-answer="전매" data-id="14" style="width:60px" placeholder="">제 실시</td><td>소금·철의 국가 독점 판매</td><td>국가 재정 확보</td></tr>
+<tr><td>⑫<span class="blank-filled">유교</span> 채택</td><td>유교를 국가 공식 이념으로</td><td>도덕 기반 통치 → 장기 안정</td></tr>
+<tr><td>⑬<span class="blank-filled">태학</span> 설립</td><td>유교 교육 기관</td><td>관료 양성 시스템 구축</td></tr>
+<tr><td>⑭<span class="blank-filled">전매</span>제 실시</td><td>소금·철의 국가 독점 판매</td><td>국가 재정 확보</td></tr>
 <tr><td>영토 확장</td><td>흉노 정벌, 서역 개척</td><td>실크로드 본격 개통</td></tr>
-<tr><td>⑮<input type="text" class="blank-input" data-answer="장건" data-id="15" style="width:60px" placeholder=""> 파견</td><td>서역(중앙아시아)에 사절 보냄</td><td>동서 교류의 시작</td></tr>
+<tr><td>⑮<span class="blank-filled">장건</span> 파견</td><td>서역(중앙아시아)에 사절 보냄</td><td>동서 교류의 시작</td></tr>
 </table>
 <br>
 <h3>4-3. 진 vs 한 — 통치 사상이 바꾼 운명</h3>
 <br>
 <table>
 <tr><td>비교</td><td>진</td><td>한</td></tr>
-<tr><td>통치 사상</td><td>⑯<input type="text" class="blank-input" data-answer="법가" data-id="16" style="width:60px" placeholder=""></td><td>⑰<input type="text" class="blank-input" data-answer="유가" data-id="17" style="width:60px" placeholder=""></td></tr>
+<tr><td>통치 사상</td><td>⑯<span class="blank-filled">법가</span></td><td>⑰<span class="blank-filled">유가</span></td></tr>
 <tr><td>통치 방식</td><td>엄격한 법과 처벌</td><td>도덕과 예절 + 법의 병행</td></tr>
 <tr><td>백성에 대한 태도</td><td>통제와 동원의 대상</td><td>교화와 보살핌의 대상</td></tr>
-<tr><td>결과</td><td>⑱<input type="text" class="blank-input" data-answer="15" data-id="18" style="width:60px" placeholder="">년 만에 멸망</td><td>약 400년 지속</td></tr>
+<tr><td>결과</td><td>⑱<span class="blank-filled">15</span>년 만에 멸망</td><td>약 400년 지속</td></tr>
 <tr><td>핵심 키워드</td><td>효율·강압·단기</td><td>안정·도덕·장기</td></tr>
 </table>
 <br>
@@ -374,7 +361,7 @@ BC ⑩<input type="text" class="blank-input code-blank" data-answer="206" data-i
 
     ↓
 
-⑲"<input type="text" class="blank-input code-blank" data-answer="동아시아" data-id="19" style="width:60px" placeholder="">" 문화권 형성
+⑲"<span class="blank-filled">동아시아</span>" 문화권 형성
 
     ↓
 
@@ -432,26 +419,22 @@ BC ⑩<input type="text" class="blank-input code-blank" data-answer="206" data-i
 <br>
 <p>너는 진 시황제의 신하야. 통일 직후, 시황제에게 "앞으로 어떻게 다스려야 하는지" 조언하는 편지를 써보자. (4차시에서 배운 제자백가 사상을 활용해도 좋다)</p>
 <br>
-<p>(　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　)</p>
-<br>
-<p>(　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　)</p>
-<br>
-<p>(　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　)</p>
+<blockquote><strong>예시 답안</strong>: 폐하, 전쟁으로 통일을 이루셨으니 이제는 법만으로는 부족합니다. 백성들은 오랜 전쟁에 지쳐있으니 세금과 노역을 줄여 쉬게 해주시고(도가의 무위), 인(仁)과 예(禮)로 백성의 마음을 얻으셔야 합니다(유가). 엄한 법은 유지하되 지나친 처벌은 오히려 반발을 부릅니다.</blockquote>
 <br>
 <h3>활동 2: 진 vs 한 판결문</h3>
 <br>
 <table>
 <tr><td>질문</td><td>진</td><td>한</td></tr>
-<tr><td>백성이 세금을 내지 않으면?</td><td>(　　　　　)</td><td>(　　　　　)</td></tr>
-<tr><td>유학자가 정부를 비판하면?</td><td>(　　　　　)</td><td>(　　　　　)</td></tr>
-<tr><td>흉노가 침입하면?</td><td>(　　　　　)</td><td>(　　　　　)</td></tr>
+<tr><td>백성이 세금을 내지 않으면?</td><td><strong>엄벌 (사형/노역)</strong></td><td><strong>교화 후 감면 검토</strong></td></tr>
+<tr><td>유학자가 정부를 비판하면?</td><td><strong>분서갱유 (탄압)</strong></td><td><strong>토론 허용, 관직 등용</strong></td></tr>
+<tr><td>흉노가 침입하면?</td><td><strong>만리장성 + 강제 동원</strong></td><td><strong>장건 파견 + 외교 + 정벌 병행</strong></td></tr>
 </table>
 <br>
 <h3>활동 3: 현대 연결</h3>
 <br>
 <p>"효율적이지만 강압적인 통치" vs "느리지만 안정적인 통치" — 현대 사회에서 이 두 접근이 충돌하는 상황을 하나 찾아 써보자.</p>
 <br>
-<p>(　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　)</p>
+<blockquote><strong>예시 답안</strong>: 코로나19 팬데믹 시기, 일부 국가는 강력한 봉쇄(이동 제한, 벌금)로 빠르게 확산을 막았지만 시민의 자유가 크게 제한되었다. 반면 다른 국가는 시민의 자율에 맡겼지만 대응이 느렸다. 진(강압)과 한(자율)의 차이와 비슷한 구조이다.</blockquote>
 <br>
 <hr>
 <br>
@@ -459,9 +442,14 @@ BC ⑩<input type="text" class="blank-input code-blank" data-answer="206" data-i
 <br>
 <hr>
 <br>
+<h2>✅ 교재 기준 대조용 보강 (삭제 금지 포인트)</h2>
+<p>- <strong>성취기준 연결</strong>: [9역02-03] 진·한의 통일 과정과 동아시아 세계의 형성</p>
+<p>- <strong>인과 사슬 일관성</strong>: 4차시(제자백가) → 5차시(진한) → 이후(동아시아) 흐름 유지</p>
+<p>- <strong>설계자 의도</strong>: 통일의 빛과 그림자를 함께 다루어 비판적 사고 유도</p>
+<p>- <strong>핵심 대비축</strong>: 법가(효율·강압·단기) vs 유가(안정·도덕·장기)</p>
 </div>
 <script>
-const TB=13, TOX=0, GT=13;
+const TB=0, TOX=0, GT=0;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
