@@ -147,6 +147,18 @@ def index_vault(full_rebuild=False):
     md_files = get_markdown_files(VAULT_PATH)
     print(f"📄 발견된 파일: {len(md_files)}개")
 
+    # ⚠️ 안전 가드 (2026-06-27 — 5/08 사고·6/26 02:00 재발 후 박음)
+    # iCloud Drive 비활성 시간(예: 02:00)에 파일이 머티리얼라이즈 안 되면 0개 발견 →
+    # 아래 '삭제된 파일 처리'가 *전 청크를 삭제*하는 참사. 0개/급감 시 즉시 abort.
+    if not md_files:
+        print("🛑 ABORT: 0개 파일 발견 — iCloud 미동기화 의심. 기존 인덱스 보존(삭제 안 함).")
+        sys.exit(2)
+    prev_count = len(prev_meta)
+    if prev_count >= 50 and len(md_files) < prev_count * 0.5:
+        print(f"🛑 ABORT: 파일 급감({prev_count}→{len(md_files)}, 50%↓) — 동기화 이상 의심. "
+              "기존 인덱스 보존. 의도된 대량삭제면 --full로 재구축.")
+        sys.exit(2)
+
     indexed = 0
     skipped = 0
     errors = 0

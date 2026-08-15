@@ -30,6 +30,7 @@ EXCLUDE_DIRS = {
     "node_modules",
     ".git",
     "90. Settings",  # 템플릿 등 자동 생성물
+    "_레인 인박스",  # 인박스 메시지가 lint 후보를 인용 → 오탐 루프 (2026-08-10 fix)
 }
 
 # 제외 파일 패턴
@@ -37,6 +38,15 @@ EXCLUDE_FILES = {
     "CLAUDE.md",
     "README.md",
 }
+
+# 제외 파일 접두사 — 린트 리포트 자신을 스캔하면 인용된 깨진 링크를
+# 매주 재생산하는 오탐 루프가 됨 (2026-07-09 fix)
+EXCLUDE_FILE_PREFIXES = ("Lint_Report_", "Lint Report ")  # 구형식(공백) 리포트도 동일 오탐 루프 (2026-08-10)
+
+# 코드 영역 제거 — 펜스드 코드블록·인라인 코드 안의 [[...]]는
+# 위키링크가 아니라 코드 조각 (2026-07-09 fix)
+CODE_FENCE_RE = re.compile(r"```.*?```", re.DOTALL)
+INLINE_CODE_RE = re.compile(r"`[^`\n]*`")
 
 # 프론트매터 필수 필드
 REQUIRED_FRONTMATTER = ["type", "author", "date created"]
@@ -51,7 +61,8 @@ def iter_md_files(root: Path):
         # 제외 디렉토리 필터
         dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS]
         for fn in filenames:
-            if fn.endswith(".md") and fn not in EXCLUDE_FILES:
+            if (fn.endswith(".md") and fn not in EXCLUDE_FILES
+                    and not fn.startswith(EXCLUDE_FILE_PREFIXES)):
                 yield Path(dirpath) / fn
 
 
@@ -69,8 +80,12 @@ def parse_frontmatter(content: str) -> dict:
 
 
 def extract_wikilinks(content: str) -> set[str]:
-    """본문에서 [[wikilinks]] 추출 (alias·heading·block 제외한 타겟만)"""
-    return {m.group(1).strip() for m in WIKILINK_RE.finditer(content)}
+    """본문에서 [[wikilinks]] 추출 (alias·heading·block 제외한 타겟만).
+    코드블록·인라인 코드 안의 [[...]]는 링크가 아니므로 먼저 제거."""
+    content = CODE_FENCE_RE.sub("", content)
+    content = INLINE_CODE_RE.sub("", content)
+    # 표 안 별칭 링크 [[타겟\|별칭]]의 이스케이프 백슬래시가 타겟에 붙는 오탐 제거
+    return {m.group(1).strip().rstrip("\\").strip() for m in WIKILINK_RE.finditer(content)}
 
 
 def name_stem(path: Path) -> str:
@@ -100,6 +115,7 @@ def main():
     orphans = []
     broken_links = []  # (source_file, target_name)
     missing_fm = []  # (file, missing_fields)
+    temporal_unlabeled = []  # 시점성 문서(계획·초안·기획) description 라벨 누락 (2026-08-10 규약)
     outgoing = defaultdict(set)  # stem -> set of target stems
     incoming = defaultdict(set)  # stem -> set of source stems
 
@@ -115,6 +131,14 @@ def main():
         missing = [f for f in REQUIRED_FRONTMATTER if f not in fm]
         if missing:
             missing_fm.append((p, missing))
+
+        # 시점성 라벨 체크 — 계획·초안·기획 문서는 description 선두 [라벨] 의무
+        # (frontmatter-standard §시점성 규약 2026-08-10·stale-read 오보 사고 방어)
+        rel_str = str(p.relative_to(root))
+        if re.search(r"계획|기획|초안", rel_str):
+            desc = (fm.get("description") or "").strip().strip('"')
+            if desc and not desc.startswith("["):
+                temporal_unlabeled.append(p)
 
         # 위키링크 수집
         targets = extract_wikilinks(content)
@@ -138,6 +162,20 @@ def main():
         for b in stems[i + 1:]:
             if similar(a, b):
                 similar_pairs.append((a, b))
+
+    # 액션 후보 — 깨진 링크 중 기존 노트와 근접(≥0.9)한 타이포 교정 후보를
+    # 참조 수 순으로 top 10 (2026-07-09 소비 루프 도입)
+    from difflib import get_close_matches
+    broken_agg_pre = defaultdict(list)
+    for src, tgt in broken_links:
+        broken_agg_pre[tgt].append(src)
+    fixable = []
+    for tgt, srcs in broken_agg_pre.items():
+        match = get_close_matches(tgt, stems, n=1, cutoff=0.9)
+        if match:
+            fixable.append((tgt, match[0], len(srcs)))
+    fixable.sort(key=lambda x: -x[2])
+    top_actions = fixable[:10]
 
     # 리포트 작성
     today = datetime.now().strftime("%Y-%m-%d")
@@ -235,6 +273,36 @@ def main():
         "",
         "---",
         "",
+        f"## 5. 🎯 액션 후보 top {len(top_actions)} (타이포 교정 — 자동 선별)",
+        "",
+        "> 깨진 링크 중 기존 노트와 유사도 ≥ 0.9인 것. `[[깨진 타겟]]` → `[[제안]]`로 바꾸면 해소.",
+        "",
+    ]
+    if top_actions:
+        for tgt, suggestion, n_ref in top_actions:
+            lines.append(f"- `[[{tgt}]]` → `[[{suggestion}]]` (참조 {n_ref}곳)")
+    else:
+        lines.append("✅ 자동 교정 후보 없음")
+
+    lines += [
+        "",
+        f"## 6. ⏳ 시점성 라벨 누락 ({len(temporal_unlabeled)}개)",
+        "",
+        "> 계획·초안·기획 문서인데 description 선두 `[N월 계획]`류 라벨 없음 — stale-read 오보 위험. 규약: frontmatter-standard §시점성 (2026-08-10).",
+        "",
+    ]
+    if temporal_unlabeled:
+        for p in temporal_unlabeled[:30]:
+            lines.append(f"- `{p.relative_to(root)}`")
+        if len(temporal_unlabeled) > 30:
+            lines.append(f"- …외 {len(temporal_unlabeled)-30}개")
+    else:
+        lines.append("✅ 누락 없음")
+
+    lines += [
+        "",
+        "---",
+        "",
         "## 제외 설정",
         f"- 디렉토리: {sorted(EXCLUDE_DIRS)}",
         f"- 파일: {sorted(EXCLUDE_FILES)}",
@@ -245,7 +313,23 @@ def main():
 
     print(f"\n✅ 리포트 저장: {report_path}")
     print(f"  📊 고아 {len(orphans)} | 깨진링크 {len(broken_links)} | "
-          f"프론트매터누락 {len(missing_fm)} | 유사제목 {len(similar_pairs)}")
+          f"프론트매터누락 {len(missing_fm)} | 유사제목 {len(similar_pairs)} | "
+          f"액션후보 {len(top_actions)}")
+
+    # 소비 루프: 액션 후보가 있으면 시스템 레인 인박스에 1건 push (2026-07-09)
+    if top_actions:
+        import subprocess
+        msg = (f"[주간 lint 소비] 타이포 교정 후보 {len(top_actions)}건 — "
+               f"'40. Docs/Lint_Report_{today}.md' §5 확인 후 일괄 교정. "
+               f"1순위: [[{top_actions[0][0]}]]→[[{top_actions[0][1]}]] (참조 {top_actions[0][2]}곳)")
+        try:
+            subprocess.run(
+                ["python3", str(Path.home() / "scripts" / "lane_inbox.py"),
+                 "send", "시스템", msg, "--from", "자동(lint)"],
+                check=True, capture_output=True, timeout=30)
+            print("  📥 시스템 레인 인박스 push 완료")
+        except Exception as e:
+            print(f"  ⚠️ 인박스 push 실패(리포트는 정상): {e}")
 
 
 if __name__ == "__main__":
