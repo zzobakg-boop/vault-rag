@@ -12,3 +12,12 @@ __pycache__/
 
 # OS
 .DS_Store
+
+# 로컬 전용 (2026-08-15 — 미커밋 상주가 pull 막던 문제 정리)
+CLAUDE.md
+run_daily_index.sh
+archived/
+geodata/
+index_metadata_wiki.json
+*.bak
+*.bak.*
