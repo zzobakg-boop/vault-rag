@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>역사① Ⅱ단원 5-2차시 — 진은 15년, 한은 왜 400년을 갔을까?</title>
-<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
   background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
@@ -14,726 +15,856 @@ body {
   border-radius: 16px; padding: 32px;
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
 }
-h1 { font-size: 1.6em; margin: 24px 0 14px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 10px; }
-h2 { font-size: 1.3em; margin: 22px 0 12px; color: #333; border-left: 4px solid #007aff; padding-left: 10px; }
-h3 { font-size: 1.12em; margin: 16px 0 8px; color: #444; }
-h4 { font-size: 1em; margin: 12px 0 6px; color: #666; }
-p { margin: 8px 0; font-size: 0.96em; }
-ul, ol { margin: 8px 0 8px 24px; }
-li { margin: 4px 0; font-size: 0.95em; }
-hr { border: none; border-top: 1px solid #eee; margin: 18px 0; }
+h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
+h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
+h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
+p { margin: 5px 0; font-size: 0.95em; }
+hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
 table {
-  width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9em;
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
 }
-th, td { border: 1px solid #ddd; padding: 8px 11px; vertical-align: top; text-align: left; }
-th { background: #f0f4ff; font-weight: 600; }
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
+td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
 blockquote {
-  border-left: 3px solid #007aff; padding: 8px 14px; margin: 10px 0;
-  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.94em;
+  border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
+  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }
-code { background: #f0f0f5; padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', monospace; font-size: 0.88em; }
-pre {
+.callout {
+  padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
+}
+.callout-info { background: #e8f4fd; border-left: 4px solid #007aff; }
+.callout-warning { background: #fff8e1; border-left: 4px solid #ff9500; }
+.callout-tip { background: #e8f8e8; border-left: 4px solid #34c759; }
+.callout-question { background: #f3e8fd; border-left: 4px solid #af52de; }
+.code-block {
   background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px;
   font-family: 'SF Mono', monospace; font-size: 0.82em;
-  overflow-x: auto; margin: 12px 0; white-space: pre;
+  overflow-x: auto; margin: 10px 0; white-space: pre;
 }
-pre code { background: transparent; color: inherit; padding: 0; }
-strong { color: #1d1d1f; }
-.badge {
-  display: inline-block; padding: 3px 10px; background: #007aff; color: white;
-  border-radius: 12px; font-size: 0.78em; font-weight: 600; margin-right: 6px;
+.blank-input {
+  border: none; border-bottom: 2px solid #007aff; background: #f8f9ff;
+  padding: 3px 6px; font-size: 0.93em; font-family: inherit;
+  text-align: center; border-radius: 4px 4px 0 0; outline: none;
+  transition: all 0.3s;
 }
-.badge-answer { background: #34c759; }
-.badge-data { background: #ff9500; }
-.back-link {
-  display: inline-block; margin: 16px 0; color: #007aff;
-  text-decoration: none; font-size: 0.9em;
+.blank-input:focus { border-bottom-color: #5856d6; background: #f0f0ff; }
+.blank-input.correct { border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.blank-input.wrong { border-bottom-color: #ff3b30; background: #fff0f0; }
+.blank-input.no-score { border-bottom-color: #aaa; }
+.blank-input.code-blank { background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }
+.blank-input.no-score.correct { border-bottom-color: #34c759; }
+.blank-input.no-score.wrong { border-bottom-color: #ff9500; }
+.ox-input {
+  border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
+  font-family: inherit; border-radius: 4px; outline: none;
+  transition: all 0.3s;
 }
-.back-link:hover { text-decoration: underline; }
+.ox-group { display: inline-flex; gap: 6px; }
+.ox-btn {
+  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; line-height: 1;
+}
+.ox-btn:hover { background: #f0f4ff; }
+.ox-btn.selected { background: #007aff; color: white; }
+.ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.ox-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 4px; }
+.choice-btn {
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}
+.choice-btn:hover { background: #f0f4ff; }
+.choice-btn.selected { background: #007aff; color: white; }
+.choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.btn-submitted { background: #34c759 !important; cursor: default; }
+.submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
+.essay-input {
+  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
+  padding: 10px; font-family: inherit; font-size: 0.93em;
+  resize: vertical; margin: 6px 0; outline: none;
+}
+.essay-input:focus { border-color: #007aff; }
+.control-bar {
+  position: sticky; top: 0; background: white; padding: 10px 0;
+  border-bottom: 1px solid #eee; margin: -16px 0 16px; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.score { font-size: 1.1em; font-weight: 600; color: #007aff; }
+.btn {
+  padding: 7px 16px; border: none; border-radius: 8px;
+  font-size: 0.88em; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: #007aff; color: white; }
+.btn-secondary { background: #f0f0f5; color: #333; }
+.btn-danger { background: #ff3b30; color: white; }
+.student-info {
+  display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.student-info input {
+  border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
+}
 @media (max-width: 600px) {
-  .container { padding: 18px; }
+  .container { padding: 14px; }
+  .control-bar { flex-direction: column; text-align: center; }
   table { font-size: 0.82em; }
-  th, td { padding: 6px 8px; }
+  .hero-title { font-size: 26px !important; }
+  .hero-section { padding: 36px 20px !important; }
 }
-.worksheet-nav a{color:#007aff;text-decoration:none;padding:2px 8px;border-radius:6px;}
-.worksheet-nav a:hover{background:#fff;}
-.worksheet-nav a.active{background:#007aff;color:#fff;font-weight:600;}
-abbr[title]{border-bottom:1px dotted #af52de;text-decoration:none;cursor:help;color:#7a3fc4;}
-figure.edu-img{margin:14px 0;text-align:center;}
-figure.edu-img img{max-width:560px;width:100%;height:auto;border-radius:8px;box-shadow:0 1px 8px rgba(0,0,0,0.1);display:block;margin:0 auto;}figure.edu-img.wide img{max-width:820px;}
-figure.edu-img figcaption{font-size:0.78em;color:#777;margin-top:6px;line-height:1.5;}
-.map-compare{margin:16px 0;border:1px solid #d4dae5;border-radius:10px;overflow:hidden;background:#fafbfc;}
-.map-compare-tabs{display:flex;background:#eef2f8;border-bottom:1px solid #d4dae5;}
-.map-compare-tabs button{flex:1;padding:10px 14px;border:0;background:transparent;cursor:pointer;font-size:0.92em;font-weight:600;color:#555;border-bottom:3px solid transparent;}
-.map-compare-tabs button.active{color:#007aff;background:#fff;border-bottom-color:#007aff;}
-.map-compare-panel{display:none;padding:12px;}
-.map-compare-panel.active{display:block;}
-.map-compare-panel img{max-width:100%;height:auto;display:block;margin:0 auto;border-radius:6px;}
-#han-leaflet-map{height:460px;width:100%;border-radius:6px;}
-.map-compare-note{font-size:0.78em;color:#777;padding:8px 12px 12px;line-height:1.5;}
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
+.hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
+.hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword {
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}
+.hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
+.ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+.hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 </head>
 <body>
 <div class="container">
-  <nav class="worksheet-nav" style="display:flex;gap:8px;padding:10px 14px;background:#f0f4ff;border-radius:10px;margin-bottom:16px;font-size:0.88em;align-items:center;flex-wrap:wrap;">
-    <span style="color:#666;">📚 E05b 한나라 세트 →</span>
-    <a href="E05b_한나라_개념편.html">개념편</a>
-    <a href="E05b_한나라_개념편_정답.html" class="active">정답편</a>
-    <a href="E05b_한나라_자료편.html">자료편</a>
-    <a href="https://zzobakg-boop.github.io/worksheets/" style="margin-left:auto;">🏠 허브</a>
-  </nav>
-  <div><span class="badge badge-answer">정답편</span><span class="badge">역사①</span></div>
-  <h1>역사① Ⅱ단원 5-2차시 — 진은 15년, 한은 왜 400년을 갔을까?</h1>
-<p><strong>반:</strong> <strong><em>_</em>_  <strong>번:</strong> </strong><strong><em>_  <strong>이름:</strong> </em></strong><strong><em>_</em></strong></p>
-<hr />
+  
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
+  <br>
+<br>
+<br>
+<br>
+<h1>역사① Ⅱ단원 5-2차시 — 진은 15년, 한은 왜 400년을 갔을까?</h1>
+<br>
+<br>
+<hr>
+<br>
 <h2>📌 학습 목표</h2>
-<ul>
-<li>한이 진의 실패에서 무엇을 배워 통치 방식을 바꿨는지 <strong>인과관계</strong>로 설명할 수 있다.</li>
-<li>한 무제의 정책을 <strong>정치·경제·대외</strong>로 나누어 비교할 수 있다.</li>
-<li>한이 형성한 <strong>동아시아 문화권</strong>의 구성 요소가 오늘날까지 미친 영향을 자신의 관점으로 서술할 수 있다.</li>
-</ul>
-<hr />
+<p>- 한이 진의 실패에서 무엇을 배워 통치 방식을 바꿨는지 <strong>인과관계</strong>로 설명할 수 있다.</p>
+<p>- 한 무제의 정책을 <strong>정치·경제·대외</strong>로 나누어 비교할 수 있다.</p>
+<p>- 한이 형성한 <strong>동아시아 문화권</strong>의 구성 요소가 오늘날까지 미친 영향을 자신의 관점으로 서술할 수 있다.</p>
+<br>
+<hr>
+<br>
 <h2>✨ 오늘의 고급 단어</h2>
+<br>
 <table>
-<thead>
-<tr>
-<th>고급 단어</th>
-<th>쉽게 말하면</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><abbr title="황제(黃帝)와 노자(老子)의 가르침. 도가 계열로 '무위(간섭 최소)'를 통치 원리로 삼음">황로사상</abbr>(黃老思想)</td>
-<td>"백성을 가만히 두자"는 <strong>도가 계열</strong> 통치 사상</td>
-</tr>
-<tr>
-<td><abbr title="군현제(중앙직할)와 봉건제(제후 분봉)를 섞은 한 초기 지방 제도">군국제</abbr>(郡國制)</td>
-<td><strong>군현제 + 봉건제</strong>를 절충한 한 초기의 지방 제도</td>
-</tr>
-<tr>
-<td><abbr title="유교 경전의 글자·구절 뜻을 풀이하고 주석을 다는 학문. 과거제의 뿌리">훈고학</abbr>(訓詁學)</td>
-<td>유교 경전의 <strong>글자 뜻</strong>을 풀이하는 학문</td>
-</tr>
-<tr>
-<td><abbr title="수도에 세운 유교 중심의 국립 최고 교육 기관">태학</abbr>(太學)</td>
-<td>유교를 가르치는 <strong>국립 최고 교육 기관</strong></td>
-</tr>
-<tr>
-<td><abbr title="각지 특산물을 국가가 모아 부족한 곳에 보내고(균수), 물가 변동 시 사고팔아 안정시킴(평준)">균수평준법</abbr></td>
-<td>물자 수송과 가격 조절로 <strong>물가를 안정</strong>시키는 정책</td>
-</tr>
-<tr>
-<td><abbr title="지방에서 토지·노비·사병·학문을 함께 가진 유력 가문. 후한을 움직인 실세">호족</abbr>(豪族)</td>
-<td>지방의 토지·군사력을 가진 <strong>유력 가문</strong></td>
-</tr>
-</tbody>
+<tr><td>고급 단어</td><td>쉽게 말하면</td></tr>
+<tr><td>황로사상(黃老思想)</td><td>"백성을 가만히 두자"는 <strong>도가 계열</strong> 통치 사상</td></tr>
+<tr><td>군국제(郡國制)</td><td><strong>군현제 + 봉건제</strong>를 절충한 한 초기의 지방 제도</td></tr>
+<tr><td>훈고학(訓詁學)</td><td>유교 경전의 <strong>글자 뜻</strong>을 풀이하는 학문</td></tr>
+<tr><td>태학(太學)</td><td>유교를 가르치는 <strong>국립 최고 교육 기관</strong></td></tr>
+<tr><td>균수·평준법</td><td>물자 수송과 가격 조절로 <strong>물가를 안정</strong>시키는 정책</td></tr>
+<tr><td>호족(豪族)</td><td>지방의 토지·군사력을 가진 <strong>유력 가문</strong></td></tr>
 </table>
-<hr />
+<br>
+<hr>
+<br>
 <h2>📖 1단계: 복습 연결 — 진의 멸망이 남긴 숙제</h2>
-<p><strong>5-1차시(진)에서 배운 것:</strong><br />
-- 진은 법가로 빠르게 통일했지만 <strong>강압이 반발을 낳아</strong> 15년 만에 멸망<br />
-- "전쟁에서 이기는 방법"과 "평화를 유지하는 방법"은 달랐음</p>
-<pre><code>진 멸망 (BC 206)
+<br>
+<p><strong>5-1차시(진)에서 배운 것:</strong></p>
+<p>- 진은 법가로 빠르게 통일했지만 <strong>강압이 반발을 낳아</strong> 15년 만에 멸망</p>
+<p>- "전쟁에서 이기는 방법"과 "평화를 유지하는 방법"은 달랐음</p>
+<br>
+<pre class="code-block">
+진 멸망 (BC 206)
+
     ↓
-초한전쟁: 항우(귀족) vs ①( **유방** )(농민 출신)
+
+초한전쟁: 항우(귀족) vs ①<span class="blank-filled">유방</span>(농민 출신)
+
     ↓
+
 유방 승리 → BC 202년 한(漢) 건국
+
     ↓
-숙제: &quot;진처럼 되지 않으려면 어떻게 다스려야 하나?&quot;
-</code></pre>
-<blockquote>
-<p>💡 <strong>왜 농민 출신이 황제가 됐나?</strong><br />
-춘추전국 이래 "능력 있는 사람이 신분을 뛰어넘는" 흐름이 이어졌어요. 유방의 즉위는 그 흐름의 정점입니다.</p>
-</blockquote>
-<hr />
+
+숙제: "진처럼 되지 않으려면 어떻게 다스려야 하나?"
+
+</pre>
+<br>
+<blockquote>💡 <strong>왜 농민 출신이 황제가 됐나?</strong></blockquote>
+<blockquote>춘추전국 이래 "능력 있는 사람이 신분을 뛰어넘는" 흐름이 이어졌어요. 유방의 즉위는 그 흐름의 정점입니다.</blockquote>
+<br>
+<hr>
+<br>
 <h2>📖 2단계: 한의 건국과 초기 통치 — "쉬게 하라"</h2>
-<figure class="edu-img">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Western_Han_Terracotta_Army_of_Yangjiawan_03.jpg/960px-Western_Han_Terracotta_Army_of_Yangjiawan_03.jpg" alt="양가만 출토 전한 채색 병마용 (PD)" loading="lazy">
-  <figcaption>전한(前漢) 채색 도용(陶俑) — 진의 실물 크기 병마용과 달리 작게 만들어, 문경지치 시기 "민을 쉬게 한다"는 절제된 통치 기조를 보여주는 부장 유물.<br>출처: Wikimedia Commons · Gary Todd · CC0</figcaption>
-</figure>
+<br>
 <p>진의 강압을 본 한 초기 황제들은 정반대 길을 택합니다.</p>
+<br>
 <h3>2-1. 핵심 정책</h3>
+<br>
 <table>
-<thead>
-<tr>
-<th>정책</th>
-<th>내용</th>
-<th>진과 어떻게 다른가?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>②( <strong>황로</strong> )사상 채택</td>
-<td>도가 계열, "간섭 최소"</td>
-<td>법가의 엄격한 통제와 정반대</td>
-</tr>
-<tr>
-<td>③( <strong>군국</strong> )제 실시</td>
-<td>수도권은 <strong>군현제</strong>, 변방은 <strong>봉건제</strong></td>
-<td>봉건제 폐지(진) → 절충(한)</td>
-</tr>
-<tr>
-<td>세금·노역 감면</td>
-<td>백성의 부담을 줄임</td>
-<td>대규모 토목 공사 중단</td>
-</tr>
-<tr>
-<td>흉노에 화친책</td>
-<td>공물 보내며 평화 유지</td>
-<td>만리장성 동원(진) → 외교(한)</td>
-</tr>
-</tbody>
+<tr><td>정책</td><td>내용</td><td>진과 어떻게 다른가?</td></tr>
+<tr><td>②<span class="blank-filled">황로</span>사상 채택</td><td>도가 계열, "간섭 최소"</td><td>법가의 엄격한 통제와 정반대</td></tr>
+<tr><td>③<span class="blank-filled">군국</span>제 실시</td><td>수도권은 <strong>군현제</strong>, 변방은 <strong>봉건제</strong></td><td>봉건제 폐지(진) → 절충(한)</td></tr>
+<tr><td>세금·노역 감면</td><td>백성의 부담을 줄임</td><td>대규모 토목 공사 중단</td></tr>
+<tr><td>흉노에 화친책</td><td>공물 보내며 평화 유지</td><td>만리장성 동원(진) → 외교(한)</td></tr>
 </table>
-<blockquote>
-<p>💡 <strong>왜 절충했나?</strong><br />
-진처럼 군현제만 쓰면 <strong>반발이 두렵고</strong>, 주처럼 봉건제만 쓰면 <strong>분열이 두려움</strong>. 그래서 양쪽을 섞은 것이 군국제예요. 이후 봉건 제후들이 반란(오초 7국의 난)을 일으키자 점차 군현제 쪽으로 기울게 됩니다.</p>
-</blockquote>
+<br>
+<blockquote>(교과서 원문: "진이 멸망한 후 유방(고조)은 한을 세우고 중국을 다시 통일하였다. 한 고조는 군국제를 시행하였고, 세금을 낮추어 농민들의 생활을 안정시켰다. 한 무제는 군현제를 전국으로 확대하여 중앙 집권 체제를 강화하였다. 밖으로는 흉노를 정벌하고 고조선을 정복하였다. 잦은 전쟁으로 재정이 부족해지자 재정 문제를 해결하기 위해 소금과 철의 전매 제도를 실시하였다." — 비상교육 역사①(이병인) p.55)</blockquote>
+<blockquote>(교과서 원문 — 군국제 뜻: "군현에는 관리를 파견하여 직접 다스리고, 일부 지역은 제후에게 통치를 맡긴 제도이다." — 같은 책 p.55 날개)</blockquote>
+<br>
+<blockquote>🇰🇷 <strong>그때 우리 한반도는?</strong> 교과서도 이 대목에서 우리 역사를 나란히 놓았어.</blockquote>
+<blockquote>(교과서 원문: "한 무제가 정복 활동을 하며 고조선을 침략하였다. 고조선은 한에 맞서 싸웠지만 수도가 함락되면서 멸망하였다." — 같은 책 p.55 「한국사 나란히 보기」)</blockquote>
+<br>
+<blockquote>🎯 <strong>교과서가 한 문단에 압축해 둔 인과를 풀어 줄 것</strong> — <em>고조(군국제·감세) → 무제(군현제 확대·중앙집권) → 대외 정벌 → 재정 부족 → 전매제</em>. 정책 나열이 아니라 <strong>앞 정책이 다음 정책을 낳은 사슬</strong>이다. 특히 <strong>전매제는 무제의 야심이 아니라 전쟁 뒷감당</strong>이라는 점이 서술형 포인트.</blockquote>
+<blockquote>🎯 <strong>「한국사 나란히 보기」를 반드시 짚을 것</strong> — 교과서가 직접 걸어 둔 연결이라 R3로 인용 가능하다. <em>한 무제의 정복 = 고조선 멸망</em>은 학생이 중2 역사②(한국사)에서 다시 만나는 자리이고, 세계사가 남의 이야기가 아님을 보여주는 이 단원 최고의 자기관련성 지점이다. (비교연표 차시 `3-종합`의 한반도 열과 같은 방향)</blockquote>
+<blockquote>⚠️ <strong>교과서 표기 주의</strong>: 본문은 <em>군국제→군현제 확대</em>까지만 말하고, <strong>오초 7국의 난·추은령은 교과서 밖</strong>이다(우리 자료편 심화). 서술형 채점은 교과서 표기 기준으로.</blockquote>
+<br>
+<blockquote>💡 <strong>왜 절충했나?</strong></blockquote>
+<blockquote>진처럼 군현제만 쓰면 <strong>반발이 두렵고</strong>, 주처럼 봉건제만 쓰면 <strong>분열이 두려움</strong>. 그래서 양쪽을 섞은 것이 군국제예요. 이후 봉건 제후들이 반란(오초 7국의 난)을 일으키자 점차 군현제 쪽으로 기울게 됩니다.</blockquote>
+<br>
 <h3>2-2. 결과</h3>
-<pre><code>세금↓ + 노역↓ + 평화 외교
+<br>
+<pre class="code-block">
+세금↓ + 노역↓ + 평화 외교
+
     ↓
+
 인구·생산력 회복 (약 60년)
+
     ↓
+
 국력 충전 완료 → 무제 시대로
-</code></pre>
-<hr />
+
+</pre>
+<br>
+<hr>
+<br>
 <h2>📖 3단계: 한 무제의 전성기 — "이제는 강하게"</h2>
-<figure class="edu-img wide">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Han_Civilisation.png" alt="전한 무제 시기 영토와 주변 세력" loading="lazy">
-  <figcaption>전한 무제 시기(기원전 2세기) 한의 최대 영토와 흉노·서역·남월의 관계. 장건의 서역사행(BC 139~) 이후 실크로드가 이 구도 위에서 열림. 영토 팽창 → 문화 교류 확산의 시각화.<br>출처: Wikimedia Commons · Yeu Ninje · CC BY-SA 3.0</figcaption>
-</figure>
-<div class="map-compare" id="map-qinhan">
-  <div class="map-compare-tabs" role="tablist">
-    <button type="button" class="active" data-tab="qin" role="tab">秦 BC 210 (통일 직후)</button>
-    <button type="button" data-tab="han" role="tab">西漢 BC 107 (무제 후기)</button>
-  </div>
-  <div class="map-compare-panel active" data-panel="qin">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Qin_empire_210_BCE.png" alt="秦 제국 BC 210년 강역" loading="lazy">
-  </div>
-  <div class="map-compare-panel" data-panel="han">
-    <div id="han-leaflet-map"></div>
-  </div>
-  <p class="map-compare-note">
-    <strong>📍 정본 대조</strong> · 秦은 Wikimedia Commons 역사지도(PD), 西漢은 OpenHistoricalMap 검증 폴리곤(OHM rel 2692874, <em>admin_level=2</em>, ODbL).
-    BC 210 秦 통일 강역과 BC 107 전한 최대 영토를 대조하면 河西회랑·한사군·남월·서남이 편입으로 <strong>영토가 약 1.5배 확장</strong>되었음이 보임.
-    <br>※ 秦 이미지와 西漢 폴리곤은 데이터 출처·정확도가 다름. 西漢만 GIS 정본이며, 교육용 시각화에서는 "확장 방향"을 읽는 데 초점.
-  </p>
-</div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script>
-(function(){
-  var tabs = document.querySelectorAll('#map-qinhan .map-compare-tabs button');
-  var panels = document.querySelectorAll('#map-qinhan .map-compare-panel');
-  var hanMap = null;
-  function ensureHanMap(){
-    if(hanMap) { hanMap.invalidateSize(); return; }
-    hanMap = L.map('han-leaflet-map', { zoomControl:true, scrollWheelZoom:false }).setView([35.5, 105], 4);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap · 영토 폴리곤: OpenHistoricalMap (ODbL)',
-      maxZoom: 8
-    }).addTo(hanMap);
-    fetch('assets/maps/han_bc107_ohm.geojson').then(function(r){return r.json();}).then(function(gj){
-      var layer = L.geoJSON(gj, { style:{color:'#b8002e',weight:1.2,fillColor:'#e84a5f',fillOpacity:0.35} }).addTo(hanMap);
-      hanMap.fitBounds(layer.getBounds(),{padding:[18,18]});
-      L.marker([34.27, 108.93]).addTo(hanMap).bindPopup('<strong>장안 (長安)</strong><br>전한의 수도');
-    });
-  }
-  tabs.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      tabs.forEach(function(b){b.classList.remove('active');});
-      panels.forEach(function(p){p.classList.remove('active');});
-      btn.classList.add('active');
-      var key = btn.getAttribute('data-tab');
-      document.querySelector('#map-qinhan .map-compare-panel[data-panel="'+key+'"]').classList.add('active');
-      if(key === 'han') setTimeout(ensureHanMap, 30);
-    });
-  });
-})();
-</script>
+<br>
 <p>회복된 국력을 바탕으로 무제는 <strong>공세적 통치</strong>로 전환합니다.</p>
+<br>
 <h3>3-1. 사상·정치</h3>
+<br>
 <table>
-<thead>
-<tr>
-<th>정책</th>
-<th>내용</th>
-<th>효과</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>④( <strong>유교</strong> ) 채택</td>
-<td><strong>유교를 국가 공식 이념</strong>으로 (동중서의 건의)</td>
-<td>도덕 기반 통치, 황제 권위 강화</td>
-</tr>
-<tr>
-<td>⑤( <strong>태학</strong> ) 설립</td>
-<td>유교 교육을 위한 국립 학교</td>
-<td>관료 양성 시스템 구축</td>
-</tr>
-<tr>
-<td>향거리선제</td>
-<td>지방의 인재를 추천받아 등용</td>
-<td>능력 중심 관료 선발</td>
-</tr>
-</tbody>
+<tr><td>정책</td><td>내용</td><td>효과</td></tr>
+<tr><td>④<span class="blank-filled">유교</span> 채택</td><td><strong>유교를 국가 공식 이념</strong>으로 (동중서의 건의)</td><td>도덕 기반 통치, 황제 권위 강화</td></tr>
+<tr><td>⑤<span class="blank-filled">태학</span> 설립</td><td>유교 교육을 위한 국립 학교</td><td>관료 양성 시스템 구축</td></tr>
+<tr><td>향거리선제</td><td>지방의 인재를 추천받아 등용</td><td>능력 중심 관료 선발</td></tr>
 </table>
-<blockquote>
-<p>💡 <strong>왜 유교였나?</strong><br />
-법가는 너무 강압적, 도가는 너무 무위(無爲). 유교는 <strong>"군주에게 충성, 부모에게 효도"</strong> 를 강조해 황제 입장에서 가장 안전한 사상이었어요.</p>
-</blockquote>
+<br>
+<blockquote>💡 <strong>왜 유교였나?</strong></blockquote>
+<blockquote>법가는 너무 강압적, 도가는 너무 무위(無爲). 유교는 <strong>"군주에게 충성, 부모에게 효도"</strong> 를 강조해 황제 입장에서 가장 안전한 사상이었어요.</blockquote>
+<br>
 <h3>3-2. 경제</h3>
+<br>
 <table>
-<thead>
-<tr>
-<th>정책</th>
-<th>내용</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>⑥( <strong>전매</strong> )제 실시</td>
-<td>소금·철·술의 국가 독점 판매</td>
-</tr>
-<tr>
-<td>균수·평준법</td>
-<td>지역 간 물자 이동·가격 조절로 물가 안정</td>
-</tr>
-<tr>
-<td>오수전 주조</td>
-<td>화폐를 새로 통일</td>
-</tr>
-</tbody>
+<tr><td>정책</td><td>내용</td></tr>
+<tr><td>⑥<span class="blank-filled">전매</span>제 실시</td><td>소금·철·술의 국가 독점 판매</td></tr>
+<tr><td>균수·평준법</td><td>지역 간 물자 이동·가격 조절로 물가 안정</td></tr>
+<tr><td>오수전 주조</td><td>화폐를 새로 통일</td></tr>
 </table>
+<br>
 <h3>3-3. 대외 팽창</h3>
-<pre><code>북: 흉노 정벌 (위청·곽거병)
+<br>
+<pre class="code-block">
+북: 흉노 정벌 (위청·곽거병)
+
     ↓
-서: ⑦( **장건** )을 서역에 파견 (대월지와 동맹 시도)
+
+서: ⑦<span class="blank-filled">장건</span>을 서역에 파견 (대월지와 동맹 시도)
+
     ↓
-결과: ⑧( **실크로드(비단길)** ) 본격 개통
+
+결과: ⑧<span class="blank-filled">실크로드(비단길)</span> 본격 개통
+
     ↓
+
 동: 고조선 침공 → BC 108년 한 4군 설치
+
 남: 남월(베트남 북부) 정복
-</code></pre>
-<blockquote>
-<p>💡 <strong>장건 파견의 진짜 결과</strong>: 동맹 자체는 실패했지만, 그가 가져온 서역 정보가 <strong>동서 교역로 개통</strong>의 결정적 계기가 됐어요. 우리가 아는 비단·포도·호두·악기가 이때 오갑니다.</p>
-</blockquote>
-<hr />
+
+</pre>
+<br>
+<blockquote>💡 <strong>장건 파견의 진짜 결과</strong>: 동맹 자체는 실패했지만, 그가 가져온 서역 정보가 <strong>동서 교역로 개통</strong>의 결정적 계기가 됐어요. 우리가 아는 비단·포도·호두·악기가 이때 오갑니다.</blockquote>
+<br>
+<hr>
+<br>
 <h2>📖 4단계: 한의 흔들림과 멸망 — 강함의 대가</h2>
+<br>
 <p>한 무제는 영토를 넓혔지만 그 대가가 컸어요. 그 부담이 쌓이면서 <strong>새로운 세력</strong>이 등장하고, 결국 한 왕조는 약 400년 만에 무너집니다.</p>
-<h3>4-1. 새로운 세력의 등장 — ⑨( <strong>호족</strong> )(豪族)이란 누구인가</h3>
-<blockquote><p><strong>호족 = 무제 이후 등장한 지방의 토지·노비·사병을 가진 유력 가문</strong></p></blockquote>
-<pre><code>무제의 잦은 전쟁·대규모 토목
+<br>
+<h3>4-1. 새로운 세력의 등장 — ⑨<span class="blank-filled">호족</span>(豪族)이란 누구인가</h3>
+<br>
+<blockquote><strong>호족 = 무제 이후 등장한 지방의 토지·노비·사병을 가진 유력 가문</strong></blockquote>
+<br>
+<pre class="code-block">
+무제의 잦은 전쟁·대규모 토목
+
     ↓
+
 세금·노역 폭증 → 농민 몰락
+
     ↓
+
 땅을 헐값에 내놓음 → 부유층이 사들임 (토지 겸병)
+
     ↓
+
 대지주 = 호족 등장 (수십~수백 호의 농민이 그들에게 종속)
-</code></pre>
-<blockquote>
-<p>⚠️ <strong>자주 하는 오해 — 호족의 기원</strong><br>
-"호족은 한 초 군국제의 봉건(제후왕·열후)에서 땅을 받은 세력 아닌가?" → <strong>틀립니다.</strong> 제후왕·열후는 오·초 7국의 난(BC 154)과 무제의 추은령으로 사실상 소멸한 <strong>별개의 귀족층</strong>이에요. 호족의 주된 뿌리는 <strong>봉건 수혜자가 아니라 민간 대지주</strong> — 전국~진말 혼란기부터 토지를 사 모으고, 한 중기 소농 몰락을 틈타 대토지를 흡수한 <strong>지방 토지겸병자</strong>입니다. 즉 "봉건이 호족을 만들었다"가 아니라 <strong>"봉건이 무너진 공백을 토지겸병 부호가 메웠다"</strong>가 정확합니다.</p>
-</blockquote>
+
+</pre>
+<br>
+<blockquote>⚠️ <strong>자주 하는 오해 — 호족의 기원</strong></blockquote>
+<blockquote>"호족은 한 초 군국제의 봉건(제후왕·열후)에서 땅을 받은 세력 아닌가?" → <strong>틀립니다.</strong> 제후왕·열후는 오·초 7국의 난(BC 154)과 무제의 추은령으로 사실상 소멸한 <strong>별개의 귀족층</strong>이에요. 호족의 주된 뿌리는 <strong>봉건 수혜자가 아니라 민간 대지주</strong> — 전국~진말 혼란기부터 토지를 사 모으고, 한 중기 소농 몰락을 틈타 대토지를 흡수한 <strong>지방 토지겸병자</strong>입니다. 즉 "봉건이 호족을 만들었다"가 아니라 <strong>"봉건이 무너진 공백을 토지겸병 부호가 메웠다"</strong>가 정확합니다.</blockquote>
+<br>
 <table>
-<thead>
-<tr><th>호족이 가진 것</th><th>왜 위협이 됐나?</th></tr>
-</thead>
-<tbody>
+<tr><td>호족이 가진 것</td><td>왜 위협이 됐나?</td></tr>
 <tr><td>넓은 토지</td><td>세금이 호족에 흡수됨 → 국가 재정 약화</td></tr>
 <tr><td>노비·소작농</td><td>백성이 황제가 아닌 호족에 충성</td></tr>
 <tr><td>사병(私兵)</td><td>지방의 무력을 호족이 보유 → 황제 통제 어려움</td></tr>
 <tr><td>학문(유교)</td><td>관료를 배출 → 중앙 정치까지 장악</td></tr>
-</tbody>
 </table>
-<blockquote>
-<p>💡 <strong>호족의 두 얼굴 (★중요)</strong><br>
-후한을 세운 광무제(유수) 자신이 <strong>호족 출신</strong>이에요. 그래서 후한은 처음부터 호족 연합 정권 — 호족을 누르지 못한 채 시작됩니다. 호족은 결국 후한 멸망 이후 위·진·남북조의 <strong>문벌 귀족</strong>으로 이어져요.</p>
-</blockquote>
+<br>
+<blockquote>💡 <strong>호족의 두 얼굴 (★중요)</strong></blockquote>
+<blockquote>후한을 세운 광무제(유수) 자신이 <strong>호족 출신</strong>이에요. 그래서 후한은 처음부터 호족 연합 정권 — 호족을 누르지 못한 채 시작됩니다. 호족은 결국 후한 멸망 이후 위·진·남북조의 <strong>문벌 귀족</strong>으로 이어져요.</blockquote>
+<br>
 <h3>4-2. 전한의 단절 — 왕망의 신(新)</h3>
+<br>
 <table>
-<thead>
-<tr><th>사건</th><th>내용</th></tr>
-</thead>
-<tbody>
+<tr><td>사건</td><td>내용</td></tr>
 <tr><td>왕망의 즉위</td><td>외척 왕망이 어린 황제를 폐하고 신(新) 건국 (AD 8)</td></tr>
 <tr><td>급진 개혁 시도</td><td>토지 국유화·노비 매매 금지·화폐 개혁</td></tr>
 <tr><td>결과</td><td>호족·농민 모두 반발 → <strong>적미(赤眉)의 난</strong></td></tr>
 <tr><td>멸망</td><td>약 15년 만에 신 왕조 붕괴</td></tr>
-</tbody>
 </table>
-<blockquote>
-<p>💡 <strong>왕망 개혁이 왜 실패했나?</strong><br>
-호족의 토지를 빼앗으려 하자 호족이 등 돌리고, 화폐를 자주 바꾸자 백성도 등 돌렸어요. <strong>양쪽을 다 적으로 돌린</strong> 개혁이 실패의 원인입니다.</p>
-</blockquote>
+<br>
+<blockquote>💡 <strong>왕망 개혁이 왜 실패했나?</strong></blockquote>
+<blockquote>호족의 토지를 빼앗으려 하자 호족이 등 돌리고, 화폐를 자주 바꾸자 백성도 등 돌렸어요. <strong>양쪽을 다 적으로 돌린</strong> 개혁이 실패의 원인입니다.</blockquote>
+<br>
 <h3>4-3. 후한의 부흥과 구조적 약점</h3>
+<br>
 <table>
-<thead>
-<tr><th>시기</th><th>내용</th></tr>
-</thead>
-<tbody>
+<tr><td>시기</td><td>내용</td></tr>
 <tr><td>후한 부흥 (AD 25)</td><td>광무제가 호족 연합을 이끌고 한 왕조 재건, 수도를 <strong>낙양</strong>으로 옮김</td></tr>
 <tr><td>안정기</td><td>종이(채륜)·서역 경영(반초)·불교 전래 등 문화 융성</td></tr>
 <tr><td>후반의 정치 혼란</td><td>어린 황제 즉위 반복 → <strong>외척과 환관의 권력 다툼</strong> 만성화</td></tr>
 <tr><td>당고(黨錮)의 화</td><td>환관에 반대한 유학자·관료들을 대규모 숙청 → 정치 신뢰 붕괴</td></tr>
-</tbody>
 </table>
-<blockquote>
-<p>💡 <strong>외척과 환관은 왜 싸웠나?</strong><br>
-황제가 어리면 어머니 가문(외척)이 권력을 잡고, 황제가 자라면 측근 환관에 의지해 외척을 제거하는 패턴이 반복됐어요. 이 싸움 사이에 <strong>유학자 관료</strong>가 끼면서 후한 정치가 망가집니다.</p>
-</blockquote>
+<br>
+<blockquote>💡 <strong>외척과 환관은 왜 싸웠나?</strong></blockquote>
+<blockquote>황제가 어리면 어머니 가문(외척)이 권력을 잡고, 황제가 자라면 측근 환관에 의지해 외척을 제거하는 패턴이 반복됐어요. 이 싸움 사이에 <strong>유학자 관료</strong>가 끼면서 후한 정치가 망가집니다.</blockquote>
+<br>
 <h3>4-4. 황건적의 난과 군웅할거</h3>
-<pre><code>세금↑ + 호족의 토지 독점 + 정치 혼란
+<br>
+<pre class="code-block">
+세금↑ + 호족의 토지 독점 + 정치 혼란
+
     ↓
+
 AD 184, 태평도 장각 형제 봉기
+
 "푸른 하늘은 죽고 누런 하늘이 일어선다"
+
     ↓
+
 머리에 누런 두건 → 황건적(黃巾賊)
+
     ↓
+
 진압 과정에서 지방 군벌이 군사력을 키움
+
 (원소·동탁·조조·유비·손견 등)
+
     ↓
+
 황제는 이름뿐, 군웅할거(群雄割據) 시대
-</code></pre>
-<blockquote>
-<p>💡 <strong>황건적이 왜 한을 무너뜨렸나?</strong><br>
-봉기 자체는 진압됐지만, 진압을 맡은 지방 군벌이 그대로 자기 군대로 흡수하면서 <strong>중앙은 약해지고 지방은 강해졌어요.</strong> 한 황실은 군벌의 꼭두각시가 됩니다.</p>
-</blockquote>
+
+</pre>
+<br>
+<blockquote>💡 <strong>황건적이 왜 한을 무너뜨렸나?</strong></blockquote>
+<blockquote>봉기 자체는 진압됐지만, 진압을 맡은 지방 군벌이 그대로 자기 군대로 흡수하면서 <strong>중앙은 약해지고 지방은 강해졌어요.</strong> 한 황실은 군벌의 꼭두각시가 됩니다.</blockquote>
+<br>
 <h3>4-5. 한의 최종 멸망</h3>
+<br>
 <table>
-<thead>
-<tr><th>사건</th><th>내용</th></tr>
-</thead>
-<tbody>
-<tr><td>종이 발명</td><td>⑩( <strong>채륜</strong> )이 제지술 개량 (AD 105경)</td></tr>
+<tr><td>사건</td><td>내용</td></tr>
+<tr><td>종이 발명</td><td>⑩<span class="blank-filled">채륜</span>이 제지술 개량 (AD 105경)</td></tr>
 <tr><td>헌제(獻帝) 옹립</td><td>마지막 황제, 군벌(조조)에게 사실상 감금</td></tr>
 <tr><td>한 멸망</td><td>조조의 아들 <strong>조비</strong>가 헌제를 폐위 → AD 220, 약 400년 한 왕조 종료</td></tr>
 <tr><td>이후</td><td>위·촉·오 <strong>삼국 시대</strong> 개막</td></tr>
-</tbody>
 </table>
-<blockquote>
-<p>💡 <strong>종이의 의미</strong>: 죽간·목간 → 종이로 바뀌면서 지식 전파 속도가 비약적으로 빨라집니다. 동아시아 문서 행정이 가능해진 결정적 기술이에요.</p>
-<p>💡 <strong>한 멸망의 한 줄 정리</strong><br>
-호족의 성장(경제) + 외척·환관의 다툼(정치) + 황건적과 군벌(군사) — 세 흐름이 동시에 한을 무너뜨렸어요. 한쪽 원인만으로는 설명할 수 없습니다.</p>
-</blockquote>
-<hr />
+<br>
+<blockquote>💡 <strong>종이의 의미</strong>: 죽간·목간 → 종이로 바뀌면서 지식 전파 속도가 비약적으로 빨라집니다. 동아시아 문서 행정이 가능해진 결정적 기술이에요.</blockquote>
+<br>
+<blockquote>💡 <strong>한 멸망의 한 줄 정리</strong></blockquote>
+<blockquote>호족의 성장(경제) + 외척·환관의 다툼(정치) + 황건적과 군벌(군사) — 세 흐름이 동시에 한을 무너뜨렸어요. 한쪽 원인만으로는 설명할 수 없습니다.</blockquote>
+<br>
+<hr>
+<br>
 <h2>📖 5단계: 한의 문화 — 동아시아 표준이 만들어지다</h2>
-<figure class="edu-img">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/EmperorShun_Wu_family_shrine.jpg" alt="무씨사 화상석 순 임금" loading="lazy">
-  <figcaption>후한 무씨사(武氏祠) 화상석 — 유교적 성왕(聖王) 전설인 순(舜) 임금을 돌에 새긴 사례. 유교가 경전을 넘어 돌·무덤·공공공간까지 확산돼 "동아시아의 표준 윤리"로 자리 잡는 과정을 보여줌.<br>출처: Wikimedia Commons · Public Domain</figcaption>
-</figure>
+<br>
 <p>한이 400년을 버틴 진짜 힘은 군사가 아니라 <strong>문화</strong>예요. 이 시기에 만들어진 학문·기술·예술이 동아시아 전체의 표준이 됩니다.</p>
+<br>
 <h3>5-1. 한의 학술·사상</h3>
+<br>
 <table>
-<thead>
-<tr>
-<th>분야</th>
-<th>내용</th>
-<th>의미</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>유교 국교화</strong></td>
-<td>무제가 동중서의 건의로 유교를 국가 이념으로 채택</td>
-<td>통치 이념과 교육의 기준 확립</td>
-</tr>
-<tr>
-<td><strong>오경박사 설치</strong></td>
-<td>『시·서·역·예·춘추』 5경 전문 교수직</td>
-<td>유교 경전이 국가 학문이 됨</td>
-</tr>
-<tr>
-<td><strong>태학</strong></td>
-<td>수도에 세운 국립 최고 교육 기관</td>
-<td>관료 양성 시스템 시작 (→ 후대 과거제 뿌리)</td>
-</tr>
-<tr>
-<td><strong>훈고학 발달</strong></td>
-<td>유교 경전의 글자·뜻을 풀이하는 학문</td>
-<td>분서갱유로 사라진 경전 복원·주석 작업</td>
-</tr>
-</tbody>
+<tr><td>분야</td><td>내용</td><td>의미</td></tr>
+<tr><td><strong>유교 국교화</strong></td><td>무제가 동중서의 건의로 유교를 국가 이념으로 채택</td><td>통치 이념과 교육의 기준 확립</td></tr>
+<tr><td><strong>오경박사 설치</strong></td><td>『시·서·역·예·춘추』 5경 전문 교수직</td><td>유교 경전이 국가 학문이 됨</td></tr>
+<tr><td><strong>태학</strong></td><td>수도에 세운 국립 최고 교육 기관</td><td>관료 양성 시스템 시작 (→ 후대 과거제 뿌리)</td></tr>
+<tr><td><strong>훈고학 발달</strong></td><td>유교 경전의 글자·뜻을 풀이하는 학문</td><td>분서갱유로 사라진 경전 복원·주석 작업</td></tr>
 </table>
-<h3>5-2. 한의 역사 서술 — "기록이 곧 권력"</h3>
+<br>
+<blockquote>(교과서 원문: "한대에는 중국 문화의 기틀이 마련되었다. 한 무제는 진대에 탄압받았던 유교를 통치 이념으로 삼았다. 이에 수도에 유학을 가르치는 기관을 세우고 유학자를 관리로 뽑아 유학을 가르쳤다. 그리고 유교 경전의 옛글자를 해석하는 훈고학이 발달하였다." — 비상교육 역사①(이병인) p.55)</blockquote>
+<blockquote>(교과서 원문 — 과학·교류: "한대에는 사마천의 『사기』 등의 역사서가 편찬되는 등 역사학이 발달하였다. 과학 기술도 발달하여 해시계와 지진계 등이 발명되었으며, 채륜이 종이 만드는 기술을 개량하여 학문과 사상의 확산에 이바지하였다. 한편, 이 시기에는 동서 교류가 활발하게 이루어져 중국의 비단이 유럽에 전해졌고, 인도의 불교가 중국에 전해졌다." — 같은 책 p.55)</blockquote>
+<br>
+<blockquote>🎯 <strong>진↔한의 대칭이 이 차시의 뼈대</strong> — 교과서가 <em>"진대에 탄압받았던 유교를"</em> 이라고 못 박았다. <strong>분서갱유(진)로 없앤 것을 국교로 세운 것(한)</strong> 이 대칭이고, 그래서 사라진 경전을 되살리는 <strong>훈고학</strong>이 필요했다. 유교 국교화를 단독 사실로 외우게 하지 말고 진의 분서갱유와 짝지어 줄 것.</blockquote>
+<blockquote>⚠️ <strong>교과서 표기 주의</strong>: 본문은 <em>"수도에 유학을 가르치는 기관"</em> 이라고만 하고 <strong>'태학'·'오경박사'·'동중서'는 교과서 밖</strong>이다(우리 심화). 서술형 채점은 교과서 표기 기준으로 하고, 용어를 안 썼다고 감점하지 말 것.</blockquote>
+<blockquote>🎯 <strong>채륜의 제지술은 3-1-2 탈라스 전투(751)로 이어진다</strong> — 여기서 개량된 종이가 8세기에 서쪽으로 전해지는 사슬이다. 비교연표 차시(`3-종합`) ③8세기 구간과 연결해 주면 학생이 두 차시를 잇는다.</blockquote>
+<br>
 <table>
-<thead>
-<tr>
-<th>책</th>
-<th>저자</th>
-<th>특징</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>『사기(史記)』</strong></td>
-<td>사마천</td>
-<td>130권. 황제부터 평민까지 인물 중심으로 기록한 <strong>기전체</strong> 창시. 동아시아 역사 서술의 표준</td>
-</tr>
-<tr>
-<td><strong>『한서(漢書)』</strong></td>
-<td>반고</td>
-<td>전한 한 왕조만 다룬 <strong>단대사</strong>의 시작. 이후 정사(正史) 형식의 모델</td>
-</tr>
-</tbody>
+<tr><td>책</td><td>저자</td><td>특징</td></tr>
+<tr><td><strong>『사기(史記)』</strong></td><td>사마천</td><td>130권. 황제부터 평민까지 인물 중심으로 기록한 <strong>기전체</strong> 창시. 동아시아 역사 서술의 표준</td></tr>
+<tr><td><strong>『한서(漢書)』</strong></td><td>반고</td><td>전한 한 왕조만 다룬 <strong>단대사</strong>의 시작. 이후 정사(正史) 형식의 모델</td></tr>
 </table>
-<blockquote>
-<p>💡 <strong>사기가 왜 위대한가?</strong><br />
-사마천은 황제의 잘못도 가감 없이 기록했어요. "역사가는 사실을 그대로 적는다"는 동아시아 사관(史官) 정신이 여기서 시작됩니다.</p>
-</blockquote>
+<br>
+<blockquote>💡 <strong>사기가 왜 위대한가?</strong></blockquote>
+<blockquote>사마천은 황제의 잘못도 가감 없이 기록했어요. "역사가는 사실을 그대로 적는다"는 동아시아 사관(史官) 정신이 여기서 시작됩니다.</blockquote>
+<br>
 <h3>5-3. 한의 기술 — 종이와 일상의 혁명</h3>
+<br>
 <table>
-<thead>
-<tr>
-<th>기술</th>
-<th>인물·시기</th>
-<th>영향</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>제지술 개량</strong></td>
-<td>⑩( <strong>채륜</strong> )이 후한 시대(AD 105경) 식물 섬유로 종이 대량 생산</td>
-<td>죽간·목간 → 종이로 대체. 지식 전파 폭발</td>
-</tr>
-<tr>
-<td>천문·역법</td>
-<td>태초력(BC 104) 제정</td>
-<td>농경 사회의 기준 달력</td>
-</tr>
-<tr>
-<td>의학</td>
-<td>『황제내경』 정리</td>
-<td>동양 의학의 기본 텍스트</td>
-</tr>
-<tr>
-<td>농기구</td>
-<td>철제 농기구·우경(소를 이용한 밭갈이) 보급</td>
-<td>생산력 비약적 증가</td>
-</tr>
-</tbody>
+<tr><td>기술</td><td>인물·시기</td><td>영향</td></tr>
+<tr><td><strong>제지술 개량</strong></td><td>⑩<span class="blank-filled">채륜</span>이 후한 시대(AD 105경) 식물 섬유로 종이 대량 생산</td><td>죽간·목간 → 종이로 대체. 지식 전파 폭발</td></tr>
+<tr><td>천문·역법</td><td>태초력(BC 104) 제정</td><td>농경 사회의 기준 달력</td></tr>
+<tr><td>의학</td><td>『황제내경』 정리</td><td>동양 의학의 기본 텍스트</td></tr>
+<tr><td>농기구</td><td>철제 농기구·우경(소를 이용한 밭갈이) 보급</td><td>생산력 비약적 증가</td></tr>
 </table>
+<br>
 <h3>5-4. 한의 예술 — 화상석과 악부</h3>
+<br>
 <table>
-<thead>
-<tr>
-<th>예술</th>
-<th>내용</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>화상석(畫像石)</strong></td>
-<td>무덤 벽에 새긴 그림 돌. 당시 생활·신화·역사 장면 기록 → 한대 사회상의 살아있는 증거</td>
-</tr>
-<tr>
-<td><strong>악부(樂府)</strong></td>
-<td>무제가 설치한 음악 관청. 민요를 채집·정리한 시가 모음 → 후대 한시의 원형</td>
-</tr>
-<tr>
-<td><strong>부(賦)</strong></td>
-<td>화려한 산문체 운문. 사마상여 등의 명작</td>
-</tr>
-</tbody>
+<tr><td>예술</td><td>내용</td></tr>
+<tr><td><strong>화상석(畫像石)</strong></td><td>무덤 벽에 새긴 그림 돌. 당시 생활·신화·역사 장면 기록 → 한대 사회상의 살아있는 증거</td></tr>
+<tr><td><strong>악부(樂府)</strong></td><td>무제가 설치한 음악 관청. 민요를 채집·정리한 시가 모음 → 후대 한시의 원형</td></tr>
+<tr><td><strong>부(賦)</strong></td><td>화려한 산문체 운문. 사마상여 등의 명작</td></tr>
 </table>
+<br>
 <h3>5-5. 비단길로 들어온 것 — 불교 전래</h3>
-<pre><code>인도(석가모니, BC 6세기)
+<br>
+<pre class="code-block">
+인도(석가모니, BC 6세기)
+
     ↓
+
 중앙아시아(쿠샨 왕조, BC 1세기~)
+
     ↓
+
 실크로드 따라 후한 시대(AD 1세기) 중국 전래
+
     ↓
+
 낙양에 백마사(白馬寺) — 중국 최초 사찰
+
     ↓
+
 이후 한반도·일본으로 재전파
-</code></pre>
-<blockquote>
-<p>💡 <strong>불교 전래의 의미</strong>: 중국에 처음으로 <strong>체계적 외래 사상</strong>이 들어왔어요. 유교(중국 자생)와 불교(외래)가 공존하는 동아시아 사상 구조가 이때 만들어집니다.</p>
-</blockquote>
-<hr />
+
+</pre>
+<br>
+<blockquote>💡 <strong>불교 전래의 의미</strong>: 중국에 처음으로 <strong>체계적 외래 사상</strong>이 들어왔어요. 유교(중국 자생)와 불교(외래)가 공존하는 동아시아 사상 구조가 이때 만들어집니다.</blockquote>
+<br>
+<hr>
+<br>
 <h2>📖 6단계: 동아시아 문화권의 형성 — 한이 남긴 진짜 유산</h2>
+<br>
 <p>한의 영향은 왕조가 망한 뒤에도 살아남아, 주변 지역의 <strong>공통 기반</strong>이 됩니다.</p>
-<pre><code>한의 4대 유산: 한자 + 유교 + 율령 + 불교(전래)
+<br>
+<pre class="code-block">
+한의 4대 유산: 한자 + 유교 + 율령 + 불교(전래)
+
     ↓
+
 한반도·일본·베트남으로 전파
+
     ↓
-⑪&quot;( **동아시아** )&quot; 문화권 형성
+
+⑪"<span class="blank-filled">동아시아</span>" 문화권 형성
+
     ↓
+
 이후 약 2,000년간 동아시아 공통 기반
-</code></pre>
+
+</pre>
+<br>
 <table>
-<thead>
-<tr>
-<th>전파된 것</th>
-<th>어디서 왔나?</th>
-<th>한반도·일본·베트남에서의 모습</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>⑫( <strong>한자</strong> )</td>
-<td>한이 정착시킨 공식 문자</td>
-<td>공식 문자로 채택 (한문 행정·기록)</td>
-</tr>
-<tr>
-<td>유교</td>
-<td>무제의 국교화 + 태학·오경박사</td>
-<td>통치 이념·교육·가족 윤리</td>
-</tr>
-<tr>
-<td>율령</td>
-<td>한대 법률·행정 체계</td>
-<td>법률·행정 체계의 모델</td>
-</tr>
-<tr>
-<td>불교</td>
-<td>후한 때 실크로드로 전래</td>
-<td>인도→중국→주변국으로 재전파</td>
-</tr>
-</tbody>
+<tr><td>전파된 것</td><td>어디서 왔나?</td><td>한반도·일본·베트남에서의 모습</td></tr>
+<tr><td>⑫<span class="blank-filled">한자</span></td><td>한이 정착시킨 공식 문자</td><td>공식 문자로 채택 (한문 행정·기록)</td></tr>
+<tr><td>유교</td><td>무제의 국교화 + 태학·오경박사</td><td>통치 이념·교육·가족 윤리</td></tr>
+<tr><td>율령</td><td>한대 법률·행정 체계</td><td>법률·행정 체계의 모델</td></tr>
+<tr><td>불교</td><td>후한 때 실크로드로 전래</td><td>인도→중국→주변국으로 재전파</td></tr>
 </table>
-<blockquote>
-<p>💡 <strong>한자어의 흔적</strong>: 학교, 도서관, 민주주의, 사회, 경제 — 우리가 매일 쓰는 추상 개념어 대부분이 한자어예요. 그 뿌리가 한 대에 정착한 한문 전통입니다.</p>
-<p>💡 <strong>"문화권"이라는 말의 무게</strong>: 정치적으로는 각자 다른 나라였지만, 한자로 글을 쓰고 유교로 가족을 다스리고 율령으로 행정을 운영하고 불교로 영혼을 위로한다는 점에서 한반도·일본·베트남은 <strong>하나의 문화 단위</strong>가 됐어요.</p>
-</blockquote>
-<hr />
+<br>
+<blockquote>💡 <strong>한자어의 흔적</strong>: 학교, 도서관, 민주주의, 사회, 경제 — 우리가 매일 쓰는 추상 개념어 대부분이 한자어예요. 그 뿌리가 한 대에 정착한 한문 전통입니다.</blockquote>
+<br>
+<blockquote>💡 <strong>"문화권"이라는 말의 무게</strong>: 정치적으로는 각자 다른 나라였지만, 한자로 글을 쓰고 유교로 가족을 다스리고 율령으로 행정을 운영하고 불교로 영혼을 위로한다는 점에서 한반도·일본·베트남은 <strong>하나의 문화 단위</strong>가 됐어요.</blockquote>
+<br>
+<hr>
+<br>
 <h2>🔗 핵심 정리 — 진과 비교한 인과 사슬</h2>
-<pre><code>진의 강압 → 15년 만에 멸망
+<br>
+<pre class="code-block">
+진의 강압 → 15년 만에 멸망
+
     ↓
-한 초기: 황로사상으로 &quot;쉬게 하기&quot; → 60년간 회복
+
+한 초기: 황로사상으로 "쉬게 하기" → 60년간 회복
+
     ↓
+
 한 무제: 유교 채택 + 영토 확장 + 실크로드 개통
+
     ↓
+
 무제 이후: 재정 악화 + 호족 성장 → 흔들림
+
     ↓
+
 후한: 부흥했으나 황건적의 난 → AD 220 멸망
+
     ↓
+
 유산: 한자·유교·율령·불교 → 동아시아 문화권
-</code></pre>
-<blockquote>
-<p>💡 <strong>오늘의 한 줄</strong><br />
-한은 <strong>부드러움(초기)과 강함(무제)을 시기에 맞게 갈아끼우며</strong> 400년을 버텼고, 왕조보다 더 오래 가는 <strong>문화권</strong>을 남겼다.</p>
-</blockquote>
-<hr />
+
+</pre>
+<br>
+<blockquote>💡 <strong>오늘의 한 줄</strong></blockquote>
+<blockquote>한은 <strong>부드러움(초기)과 강함(무제)을 시기에 맞게 갈아끼우며</strong> 400년을 버텼고, 왕조보다 더 오래 가는 <strong>문화권</strong>을 남겼다.</blockquote>
+<br>
+<hr>
+<br>
 <h2>📊 한눈에 비교 — 진 vs 한</h2>
+<br>
 <table>
-<thead>
-<tr>
-<th>비교축</th>
-<th>진</th>
-<th>한</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>통치 사상</td>
-<td>법가</td>
-<td>황로사상(초기) → ⑬( <strong>유교</strong> )(무제)</td>
-</tr>
-<tr>
-<td>지방 제도</td>
-<td>군현제</td>
-<td>⑭( <strong>군국</strong> )제 → 군현제</td>
-</tr>
-<tr>
-<td>백성 부담</td>
-<td>매우 높음</td>
-<td>초기 낮음, 무제 때 다시 상승</td>
-</tr>
-<tr>
-<td>대외 정책</td>
-<td>만리장성·정복</td>
-<td>화친(초기) → 정복·교역(무제)</td>
-</tr>
-<tr>
-<td>지속 기간</td>
-<td>약 15년</td>
-<td>약 ⑮( <strong>400</strong> )년</td>
-</tr>
-<tr>
-<td>남긴 유산</td>
-<td>통일 행정 모델</td>
-<td>동아시아 문화권</td>
-</tr>
-</tbody>
+<tr><td>비교축</td><td>진</td><td>한</td></tr>
+<tr><td>통치 사상</td><td>법가</td><td>황로사상(초기) → ⑬<span class="blank-filled">유교</span>(무제)</td></tr>
+<tr><td>지방 제도</td><td>군현제</td><td>⑭<span class="blank-filled">군국</span>제 → 군현제</td></tr>
+<tr><td>백성 부담</td><td>매우 높음</td><td>초기 낮음, 무제 때 다시 상승</td></tr>
+<tr><td>대외 정책</td><td>만리장성·정복</td><td>화친(초기) → 정복·교역(무제)</td></tr>
+<tr><td>지속 기간</td><td>약 15년</td><td>약 ⑮<span class="blank-filled">400</span>년</td></tr>
+<tr><td>남긴 유산</td><td>통일 행정 모델</td><td>동아시아 문화권</td></tr>
 </table>
-<hr />
+<br>
+<hr>
+<br>
 <h2>✏️ 활동</h2>
+<br>
 <h3>활동 1: 한 무제의 결재판</h3>
+<br>
 <p>너는 한 무제 시대의 신하야. 황제가 다음 세 가지 안건을 책상에 올려놨어. 각각 <strong>찬성/반대 + 그 이유</strong>를 적어보자.</p>
+<br>
 <table>
-<thead>
-<tr>
-<th>안건</th>
-<th>찬성/반대</th>
-<th>이유</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>흉노 대정벌(병력 30만)</td>
-<td><strong>반대(예시)</strong></td>
-<td><strong>단기 성과는 있으나 재정 악화·백성 부담 폭증으로 왕조 수명을 깎음. 화친과 제한적 정벌 병행이 안전.</strong></td>
-</tr>
-<tr>
-<td>소금·철 국가 독점</td>
-<td><strong>찬성(예시)</strong></td>
-<td><strong>호족에게 흘러가던 이익을 국가 재정으로 흡수해 공공 투자와 변방 방어 재원을 확보할 수 있음.</strong></td>
-</tr>
-<tr>
-<td>유교를 유일한 국가 사상으로</td>
-<td><strong>조건부 찬성(예시)</strong></td>
-<td><strong>통치 정당성과 관료 양성에는 유리하나, 사상 일원화는 분서갱유의 전철을 밟을 수 있어 다른 학문도 연구·교류는 허용해야 함.</strong></td>
-</tr>
-</tbody>
+<tr><td>안건</td><td>찬성/반대</td><td>이유</td></tr>
+<tr><td>흉노 대정벌(병력 30만)</td><td><strong>반대(예시)</strong></td><td><strong>단기 성과는 있으나 재정 악화·백성 부담 폭증으로 왕조 수명을 깎음. 화친과 제한적 정벌 병행이 안전.</strong></td></tr>
+<tr><td>소금·철 국가 독점</td><td><strong>찬성(예시)</strong></td><td><strong>호족에게 흘러가던 이익을 국가 재정으로 흡수해 공공 투자와 변방 방어 재원을 확보할 수 있음.</strong></td></tr>
+<tr><td>유교를 유일한 국가 사상으로</td><td><strong>조건부 찬성(예시)</strong></td><td><strong>통치 정당성과 관료 양성에는 유리하나, 사상 일원화는 분서갱유의 전철을 밟을 수 있어 다른 학문도 연구·교류는 허용해야 함.</strong></td></tr>
 </table>
+<br>
 <h3>활동 2: 진과 한, 무엇이 달랐나</h3>
+<br>
 <table>
-<thead>
-<tr>
-<th>상황</th>
-<th>진의 대응</th>
-<th>한의 대응</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>흉노 침입</td>
-<td><strong>만리장성 축조 + 강제 동원으로 방어</strong></td>
-<td><strong>초기: 화친(공물·혼인) / 무제: 정벌 + 장건 파견</strong></td>
-</tr>
-<tr>
-<td>백성 불만 폭증</td>
-<td><strong>가혹한 법으로 처벌, 분서갱유로 사상 통제</strong></td>
-<td><strong>세금·노역 감면, 황로사상으로 '쉬게 하기'</strong></td>
-</tr>
-<tr>
-<td>사상 통제</td>
-<td><strong>분서갱유 — 서적 소각, 유학자 탄압</strong></td>
-<td><strong>유교 국교화, 태학 설립으로 교화 중심</strong></td>
-</tr>
-</tbody>
+<tr><td>상황</td><td>진의 대응</td><td>한의 대응</td></tr>
+<tr><td>흉노 침입</td><td><strong>만리장성 축조 + 강제 동원으로 방어</strong></td><td><strong>초기: 화친(공물·혼인) / 무제: 정벌 + 장건 파견</strong></td></tr>
+<tr><td>백성 불만 폭증</td><td><strong>가혹한 법으로 처벌, 분서갱유로 사상 통제</strong></td><td><strong>세금·노역 감면, 황로사상으로 '쉬게 하기'</strong></td></tr>
+<tr><td>사상 통제</td><td><strong>분서갱유 — 서적 소각, 유학자 탄압</strong></td><td><strong>유교 국교화, 태학 설립으로 교화 중심</strong></td></tr>
 </table>
+<br>
 <h3>활동 3: 현대 연결</h3>
+<br>
 <p>오늘날 우리가 쓰는 <strong>한자어, 유교적 가족관, 시험 제도</strong> 중 하나를 골라, 그것이 "한 대 동아시아 문화권"과 어떻게 연결되는지 한 단락으로 써보자.</p>
-<blockquote>
-<p><strong>예시 답안(시험 제도)</strong>: 오늘날 수능·공무원 시험의 뿌리는 한 무제가 태학을 세워 유교 경전을 시험해 관료를 뽑은 데서 시작됐다. 이후 수나라 과거제로 체계화되어 한반도 고려·조선, 베트남, 일본 율령국가로 퍼졌다. "공부로 신분을 넘는다"는 동아시아 공통 감각은 한 대 태학과 유교 채택이 남긴 2,000년짜리 유산인 셈이다.</p>
-<p><strong>예시 답안(한자어)</strong>: '학교·경제·민주주의' 같은 추상어는 모두 한자 조합으로 만들어졌다. 한이 공식 문자로 한자를 정착시키고 주변국에 전파한 결과, 한반도·일본·베트남은 새로운 개념이 들어올 때마다 한자로 번역어를 만들었다. 우리가 오늘 배우는 개념의 80% 이상이 이 문화권의 공유 자산이다.</p>
-<p><strong>예시 답안(유교적 가족관)</strong>: 명절에 조상에게 차례를 지내고 '효(孝)'를 강조하는 문화는 한 무제의 유교 국교화에서 시작됐다. 한이 주변국에 유교를 전파하면서 한반도·일본·베트남은 가족·제사 중심 윤리를 공유하게 되었고, 핵가족화가 진행된 지금도 명절 귀성·제례 전통으로 남아 있다.</p>
-</blockquote>
-<hr />
-<blockquote>
-<p><strong>다음 시간 예고:</strong> 고대 인도 — 카스트 제도와 불교의 탄생</p>
-</blockquote>
-<hr />
+<br>
+<blockquote><strong>예시 답안(시험 제도)</strong>: 오늘날 수능·공무원 시험의 뿌리는 한 무제가 태학을 세워 유교 경전을 시험해 관료를 뽑은 데서 시작됐다. 이후 수나라 과거제로 체계화되어 한반도 고려·조선, 베트남, 일본 율령국가로 퍼졌다. "공부로 신분을 넘는다"는 동아시아 공통 감각은 한 대 태학과 유교 채택이 남긴 2,000년짜리 유산인 셈이다.</blockquote>
+<br>
+<blockquote><strong>예시 답안(한자어)</strong>: '학교·경제·민주주의' 같은 추상어는 모두 한자 조합으로 만들어졌다. 한이 공식 문자로 한자를 정착시키고 주변국에 전파한 결과, 한반도·일본·베트남은 새로운 개념이 들어올 때마다 한자로 번역어를 만들었다. 우리가 오늘 배우는 개념의 80% 이상이 이 문화권의 공유 자산이다.</blockquote>
+<br>
+<blockquote><strong>예시 답안(유교적 가족관)</strong>: 명절에 조상에게 차례를 지내고 '효(孝)'를 강조하는 문화는 한 무제의 유교 국교화에서 시작됐다. 한이 주변국에 유교를 전파하면서 한반도·일본·베트남은 가족·제사 중심 윤리를 공유하게 되었고, 핵가족화가 진행된 지금도 명절 귀성·제례 전통으로 남아 있다.</blockquote>
+<br>
+<hr>
+<br>
+<blockquote><strong>다음 시간 예고:</strong> 고대 인도 — 카스트 제도와 불교의 탄생</blockquote>
+<br>
+<hr>
+<br>
 <h2>✅ 교재 기준 대조용 보강 (삭제 금지 포인트)</h2>
-<ul>
-<li><strong>성취기준 연결</strong>: [9역02-03] 진·한의 통일 과정과 동아시아 세계의 형성</li>
-<li><strong>인과 사슬 일관성</strong>: 5-1차시(진의 멸망) → 5-2차시(한의 대응) → 이후(동아시아 문화권)</li>
-<li><strong>설계자 의도</strong>: 한을 "진의 반사판"이자 "동아시아 문화권의 발신지"로 이중 위치 지정</li>
-<li><strong>핵심 대비축</strong>: 황로(초기 안정) ↔ 유교(무제 팽창), 그리고 왕조의 수명보다 긴 문화권의 수명</li>
-</ul>
+<p>- <strong>성취기준 연결</strong>: [9역02-03] 진·한의 통일 과정과 동아시아 세계의 형성</p>
+<p>- <strong>인과 사슬 일관성</strong>: 5-1차시(진의 멸망) → 5-2차시(한의 대응) → 이후(동아시아 문화권)</p>
+<p>- <strong>설계자 의도</strong>: 한을 "진의 반사판"이자 "동아시아 문화권의 발신지"로 이중 위치 지정</p>
+<p>- <strong>핵심 대비축</strong>: 황로(초기 안정) ↔ 유교(무제 팽창), 그리고 왕조의 수명보다 긴 문화권의 수명</p>
 </div>
+<script>
+const TB=0, TOX=0, GT=0;
+let usedReveal=false;
+function selectOX(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function selectChoice(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+function check(){
+  let bc=0, oxc=0;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    const a=norm(el.dataset.answer), u=norm(el.value);
+    if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
+    const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
+    if(isCorrect){
+      el.classList.add('correct');el.classList.remove('wrong');
+      bc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const sel=grp.dataset.selected, ans=grp.dataset.answer;
+    if(!sel) return;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');oxc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');bc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
+}
+function reveal(){
+  usedReveal=true;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const ans=grp.dataset.answer;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.getElementById('score').textContent=TB;
+  document.getElementById('ox-score').textContent=TOX;
+  document.getElementById('total-score').textContent=GT;
+  document.getElementById('pct').textContent=100;
+}
+function reset(){
+  usedReveal=false;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value='';el.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.ox-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
+}
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+function _wsKey(){
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}
+function _persist(){
+  const key=_wsKey(); if(!key) return;
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const si=document.querySelectorAll('.student-info input');
+  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+}
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
+function loadProgress(){
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
+  if(!saved) return;
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  if(info&&!EXAM_MODE){
+    const inputs=document.querySelectorAll('.student-info input');
+    if(info.class&&inputs[0]) inputs[0].value=info.class;
+    if(info.number&&inputs[1]) inputs[1].value=info.number;
+    if(info.name&&inputs[2]) inputs[2].value=info.name;
+  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
+}
+// 모든 입력칸에서 Enter→다음칸 이동
+const allInputs=[...document.querySelectorAll('.blank-input')];
+allInputs.forEach((el,i)=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
+  });
+});
+// 제출
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){
+  const ans={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  });
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+  });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
+  return ans;
+}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+function submitResult(){
+  if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
+  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
+  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
+  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
+  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
+  check(); // 먼저 채점
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
+  const answers=collectAnswers();
+  const data={
+    type:'final',
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
+  };
+  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(()=>{
+    document.getElementById('submitBtn').textContent='✅ 제출 완료';
+    document.getElementById('submitBtn').classList.add('btn-submitted');
+    setTimeout(()=>{
+      document.getElementById('submitBtn').textContent='📤 재제출';
+      document.getElementById('submitBtn').classList.remove('btn-submitted');
+    }, 2000);
+  })
+  .catch(e=>alert('제출 실패: '+e));
+}
+// 페이지 로드 시 저장된 진행 불러오기
+loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+});
+document.querySelectorAll('.student-info input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  document.querySelectorAll('.student-info input').forEach(el=>{
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
+</script>
 </body>
 </html>
