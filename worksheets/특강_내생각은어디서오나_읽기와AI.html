@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>내 생각은 어디서 오나 — 읽기와 AI (중2·중3 특강)</title>
+<style>
+  :root{
+    --bg:#12100e; --bg2:#1e1a16; --ink:#f6f1e8; --dim:#b3a795;
+    --amber:#e8a33d; --cyan:#5ec8d8; --rust:#e07a5f; --line:#3a322a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{background:var(--bg); color:var(--ink);
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    overflow:hidden; -webkit-font-smoothing:antialiased;}
+  .deck{position:relative; width:100vw; height:100vh;}
+  .slide{position:absolute; inset:0; display:none; flex-direction:column; justify-content:center;
+    padding:6vh 8vw; opacity:0; transition:opacity .25s;}
+  .slide.on{display:flex; opacity:1;}
+  .kicker{font-size:1.5vw; letter-spacing:.25em; color:var(--amber); font-weight:700; margin-bottom:2.2vh;}
+  .kicker.c{color:var(--cyan);} .kicker.r{color:var(--rust);}
+  h1{font-size:6vw; line-height:1.16; font-weight:800; letter-spacing:-.02em;}
+  h2{font-size:4.2vw; line-height:1.26; font-weight:800; letter-spacing:-.015em;}
+  p{font-size:2.1vw; line-height:1.68; color:var(--dim); margin-top:2.6vh; max-width:64ch;}
+  p.big{font-size:2.5vw; color:var(--ink);}
+  .amber{color:var(--amber);} .cyan{color:var(--cyan);} .rust{color:var(--rust);}
+  .quote{border-left:.5vw solid var(--amber); padding:2.3vh 2.3vw; margin-top:3vh;
+    background:rgba(232,163,61,.08); font-size:1.9vw; line-height:1.7; max-width:68ch;}
+  .quote.c{border-color:var(--cyan); background:rgba(94,200,216,.08);}
+  .quote small{display:block; margin-top:1.3vh; color:var(--dim); font-size:1.25vw;}
+  .grid{display:grid; gap:1.6vw; margin-top:3.4vh;}
+  .g2{grid-template-columns:1fr 1fr;} .g3{grid-template-columns:repeat(3,1fr);}
+  .card{background:var(--bg2); border:1px solid var(--line); border-radius:1vw; padding:2.5vh 1.7vw;}
+  .card .n{font-size:1.4vw; font-weight:800; color:var(--amber); margin-bottom:1vh;}
+  .card .t{font-size:1.85vw; font-weight:700; line-height:1.36;}
+  .card .d{font-size:1.4vw; color:var(--dim); margin-top:1.1vh; line-height:1.6;}
+  .card.cl{border-color:var(--cyan);} .card.cl .n{color:var(--cyan);}
+  .card.rl{border-color:var(--rust);} .card.rl .n{color:var(--rust);}
+  .vs{display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:1.8vw; margin-top:3.4vh;}
+  .vs .side{background:var(--bg2); border:1px solid var(--line); border-radius:1vw; padding:2.8vh 1.9vw;}
+  .vs .side.a{border-color:var(--rust);} .vs .side.b{border-color:var(--cyan);}
+  .vs .lab{font-size:1.35vw; font-weight:800; letter-spacing:.06em; margin-bottom:1.3vh;}
+  .vs .side.a .lab{color:var(--rust);} .vs .side.b .lab{color:var(--cyan);}
+  .vs .hd{font-size:2.2vw; font-weight:800; line-height:1.34;}
+  .vs .bd{font-size:1.45vw; color:var(--dim); margin-top:1.3vh; line-height:1.65;}
+  .vs .mid{display:flex; align-items:center; font-size:2.4vw; color:var(--dim); font-weight:700;}
+  .note{margin-top:2.8vh; font-size:1.38vw; color:var(--dim); border-top:1px solid var(--line); padding-top:1.9vh; max-width:76ch;}
+  .warn{margin-top:2.6vh; font-size:1.4vw; line-height:1.6; color:var(--ink); background:rgba(224,122,95,.10);
+    border:1px solid var(--rust); border-radius:.8vw; padding:2vh 1.8vw; max-width:74ch;}
+  .src{position:absolute; left:8vw; bottom:3.2vh; font-size:1.05vw; color:#7d7263; max-width:78vw;}
+  .nav{position:absolute; right:2.4vw; bottom:2.6vh; display:flex; align-items:center; gap:1.2vw; font-size:1.2vw; color:var(--dim);}
+  .nav button{background:var(--bg2); color:var(--ink); border:1px solid var(--line); border-radius:.6vw;
+    padding:1vh 1.2vw; font-size:1.2vw; cursor:pointer; font-family:inherit;}
+  .nav button:hover{border-color:var(--amber);}
+  .bar{position:absolute; left:0; top:0; height:.5vh; background:var(--amber); transition:width .25s; z-index:5;}
+  @media (max-width:820px){
+    h1{font-size:9vw;} h2{font-size:7vw;} p{font-size:4vw;}
+    .g2,.g3{grid-template-columns:1fr;} .vs{grid-template-columns:1fr;} .vs .mid{display:none;}
+    .card .t{font-size:4.2vw;} .card .d{font-size:3.4vw;} .card .n{font-size:3.3vw;}
+    .quote{font-size:3.8vw;} .kicker{font-size:3.4vw;} .src{font-size:2.4vw;}
+    .nav{font-size:3vw;} .nav button{font-size:3vw;}
+    .vs .hd{font-size:4.6vw;} .vs .bd{font-size:3.4vw;} .vs .lab{font-size:3.1vw;}
+    .note,.warn{font-size:3.2vw;}
+  }
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 -->
+  <section class="slide on">
+    <div class="kicker">중2·중3 특강 · 「시험이 바뀐다」 두 번째 이야기</div>
+    <h1>AI가 다 답해 주는데,<br><span class="amber">왜 내 생각이 필요할까?</span></h1>
+    <p class="big">지난번엔 <b>어떻게 공부할까</b>를 이야기했다.<br>오늘은 그다음 — <b>어떻게 나만의 생각을 갖게 되는가</b>.</p>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide">
+    <div class="kicker">솔직해지자</div>
+    <h2>궁금한 건 <span class="amber">3초면 나온다</span></h2>
+    <p class="big">검색하면 나오고, AI에게 물으면 <b>정리까지 해서</b> 준다.<br>줄거리도, 해석도, 심지어 "이 작품의 주제는"까지.</p>
+    <div class="quote">
+      그래서 진짜 질문은 이거다.<br>
+      <b class="amber" style="font-size:2.4vw">그럼 나는 뭘 하지?</b><br>
+      AI가 내놓는 답을 읽는 것 말고, 내가 보탤 수 있는 게 있기는 할까?
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide">
+    <div class="kicker c">실험 하나 — 선생님 이야기</div>
+    <h2>선생님이 본 영화가 하나 있다</h2>
+    <p class="big">해석이 어렵기로 유명한 한국 영화다. 끝까지 <b>"누가 나쁜 놈인지" 알려 주지 않는다.</b><br>그래서 사람들이 지금도 다투고 있다.</p>
+    <div class="warn">
+      ⚠️ <b>이 영화를 보라는 이야기가 아니다.</b> <b>15세 이상 관람가</b>이고, 개봉 당시 *수위가 높은데 15세가 맞느냐*는 논란도 있었다.<br>
+      오늘 우리가 볼 것은 <b class="amber">영화가 아니라 '해석하는 방법'</b>이다. <b>안 본 사람도 100% 따라올 수 있게</b> 짰다.
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide">
+    <div class="kicker">먼저, 남들은 뭐라고 했나</div>
+    <h2>거의 다 <span class="amber">같은 곳</span>에 도착했다</h2>
+    <div class="grid g3">
+      <div class="card"><div class="n">감독 본인</div><div class="t">"의심과 믿음"</div><div class="d">*"의심과 믿음, 그리고 그 결과를 2시간 보여드렸다… 여러분들이 해석하세요."*</div></div>
+      <div class="card"><div class="n">국내 평론</div><div class="t">"믿음과 의심의 뫼비우스"</div><div class="d">주요 리뷰가 대체로 같은 축으로 수렴했다.</div></div>
+      <div class="card"><div class="n">해외 평론</div><div class="t">doubt vs faith</div><div class="d">영어권 분석도 '의심 대 믿음'을 핵심으로 본다.</div></div>
+    </div>
+    <p class="big" style="margin-top:3vh">정리하면 — <b>"주인공이 믿지 못해서 비극이 됐다. 너라면 믿겠니?"</b><br>AI에게 물어도 <b class="amber">여기까지가 나온다.</b></p>
+    <div class="src">감독 인터뷰·국내외 평론 리뷰 대조(2026-07-15 조사)</div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
+    <div class="kicker c">그런데 선생님은 다른 걸 봤다</div>
+    <h2>영화는 답을 숨긴 게 아니라<br><span class="cyan">나를 비추고 있었다</span></h2>
+    <p class="big">영화가 끝까지 답을 안 주니까, 관객은 두 시간 내내 <b>"누가 나쁜 놈이야?"</b>를 판정하려 든다.<br>선생님이 멈춘 지점은 거기였다.</p>
+    <div class="quote c">
+      <b class="cyan" style="font-size:2.3vw">그렇게 끝까지 판정하려 드는 나는, 대체 누구지?</b><br>
+      영화 속 주인공이 남들을 의심하다 무너지는 걸 보며 답답해했는데 —<br>
+      <b>답을 캐내려던 나도 똑같이 하고 있었다.</b>
+    </div>
+    <p>"누가 악당인가"에서 <b class="cyan">"판정하려는 나는 누구인가"</b>로 질문이 한 층 내려간 것이다.</p>
+  </section>
+
+  <!-- 6 (봉준호·스코세이지) -->
+  <section class="slide">
+    <div class="kicker">그런데 — 이게 왜 값진 걸까</div>
+    <h2>2020년, 한 감독이<br><span class="amber">전 세계 앞에서 한 말</span></h2>
+    <p class="big">봉준호 감독이 아카데미 <b>감독상</b>을 받고 무대에 올라 이렇게 말했다.</p>
+    <div class="quote">
+      "제가 어릴 때 영화 공부를 하며 <b>가슴에 깊이 새긴 말</b>이 있습니다.<br>
+      <b class="amber" style="font-size:2.4vw">'가장 개인적인 것이 가장 창의적인 것이다.'</b><br>
+      그 말은 위대한 <b>마틴 스코세이지</b>가 한 말이었습니다."
+      <small>2020-02-09 제92회 아카데미 시상식 감독상 수상 소감</small>
+    </div>
+    <p class="big">그 순간 객석의 스코세이지에게 <b>기립박수</b>가 쏟아졌다. 그는 일어나 두 손을 모으며 인사했다.</p>
+    <div class="src">출처: 2020-02-09 수상 소감 관련 보도(서울신문·허프포스트코리아·머니투데이 등)</div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <div class="kicker">왜 이 각도는 남들에게 없었을까</div>
+    <h2>더 똑똑해서가 아니다 —<br><span class="amber">가진 렌즈가 달랐다</span></h2>
+    <p class="big">선생님은 여러 해 동안 꾸준히 읽어 온 글들이 있다.<br>그 글들이 계속 던지던 질문이 있었다 — <b>"판단하는 그 사람은 누구인가."</b></p>
+    <div class="quote">
+      그 질문을 <b>이미 머릿속에 갖고</b> 영화를 봤기 때문에,<br>
+      남들이 <b>"믿음이냐 의심이냐"</b>에서 멈춘 자리에서<br>
+      <b class="amber">한 층 더 내려갈 수 있었다.</b>
+    </div>
+    <p class="big">같은 영화를 봐도 <b>가진 렌즈가 다르면 다른 게 보인다.</b> 렌즈가 없으면 남들이 본 것까지만 보인다.<br>👉 스코세이지의 말이 이 뜻이다 — <b class="amber">가장 개인적인 것이 가장 창의적이다.</b></p>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <div class="kicker">그래서 첫 번째 — 아주 오래된 방법</div>
+    <h2>📚 읽기는 지식이 아니라<br><span class="amber">렌즈를 만드는 일</span></h2>
+    <div class="grid g2">
+      <div class="card"><div class="n">흔한 오해</div><div class="t">"책은 정보 얻으려고 읽는다"</div><div class="d">그거라면 AI가 훨씬 빠르다. 요약도 해 준다. 이 목적이면 책은 진다.</div></div>
+      <div class="card cl"><div class="n">진짜 일어나는 일</div><div class="t">읽은 것이 <b>질문</b>으로 남는다</div><div class="d">오래 읽으면 <b>세상을 보는 각도</b>가 하나 생긴다. 그 각도가 다음에 만나는 것들을 다르게 보이게 한다.</div></div>
+    </div>
+    <p class="big" style="margin-top:3vh">AI는 <b>정보</b>를 줄 수 있다. 그런데 <b class="amber">렌즈는 못 준다.</b><br>렌즈는 내가 시간을 들여 읽은 것에서만 자란다.</p>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide">
+    <div class="kicker c">그럼 두 번째 — AI는 어디에 쓰나</div>
+    <h2>답을 묻지 말고<br><span class="cyan">"이미 있어?"를 물어라</span></h2>
+    <p class="big">선생님이 그 해석을 떠올린 다음 한 일은, AI에게 <b>답을 만들어 달라고 한 게 아니었다.</b></p>
+    <div class="quote c">
+      <b class="cyan" style="font-size:2.2vw">"이 영화 해석들 다 찾아봐. 내가 생각한 이 각도가 이미 나와 있어?"</b><br>
+      리뷰·평론·감독 인터뷰를 훑어 <b>내 생각과 대조</b>했다.
+    </div>
+    <div class="grid g2" style="margin-top:2.6vh">
+      <div class="card"><div class="n">확인된 것</div><div class="t">토대는 맞았다</div><div class="d">감독이 실제로 심어 둔 장치들이 있었다 → 내 읽기가 <b>억지가 아님</b>이 확인됨</div></div>
+      <div class="card cl"><div class="n">확인된 것</div><div class="t">중심은 <b>없었다</b></div><div class="d">"판정하는 나는 누구인가"라는 각도는 <b>찾은 리뷰들에 없었다</b> → 내 것이 맞음</div></div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide">
+    <div class="kicker">이 순서가 전부다</div>
+    <h2>순서를 바꾸면 <span class="rust">내 것이 사라진다</span></h2>
+    <div class="vs">
+      <div class="side a">
+        <div class="lab">AI 먼저</div>
+        <div class="hd">"이 작품 해석해 줘"</div>
+        <div class="bd">→ 잘 정리된 답이 나온다<br>→ 읽으면 <b>다 맞는 말 같다</b><br>→ 내 생각이 <b>생길 자리가 없어진다</b><br><br><b class="rust">남는 것: 남의 해석 요약본</b></div>
+      </div>
+      <div class="mid">↔</div>
+      <div class="side b">
+        <div class="lab">내가 먼저</div>
+        <div class="hd">"나는 이렇게 봤는데…"</div>
+        <div class="bd">→ 서툴러도 <b>내 각도</b>를 먼저 세운다<br>→ AI로 <b>대조</b>한다<br>→ 겹치면 배우고, <b>안 겹치면 내 것</b><br><br><b class="cyan">남는 것: 내 해석 + 그게 새롭다는 증거</b></div>
+      </div>
+    </div>
+    <p class="big" style="margin-top:2.6vh"><b>AI를 쓰지 말라는 게 아니다. <span class="amber">순서를 지키라</span>는 것이다.</b></p>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide">
+    <div class="kicker r">⚠️ 함정 하나</div>
+    <h2>"나는 남들이 못 본 걸 봤다"<br><span class="rust">— 여기서 끝나면 그냥 자랑이다</span></h2>
+    <p class="big">선생님도 그 기록 맨 끝에 자기 검열을 적어 뒀다.</p>
+    <div class="quote" style="border-color:var(--rust); background:rgba(224,122,95,.09)">
+      <b class="rust">"내가 이 구조를 간파했다"로 삼으면, 그것도 결국 또 하나의 판정일 뿐이다.</b><br>
+      정직한 도착점은 반대다 — <b>"나도 두 시간 내내 판정하며 봤다"</b>를 인정하는 자리.
+    </div>
+    <p class="big">나만의 해석은 <b>이겼다는 트로피가 아니라</b>,<br><b class="amber">내가 뭘 하고 있었는지 알게 되는 거울</b>일 때 값이 있다.</p>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide">
+    <div class="kicker">정리하면 — 세 걸음</div>
+    <h2>내 생각은 <span class="amber">이렇게 생긴다</span></h2>
+    <div class="grid g3">
+      <div class="card"><div class="n">1 · 렌즈를 만든다</div><div class="t">📚 읽는다</div><div class="d">한 분야를 <b>오래</b>. 정보가 아니라 <b>질문</b>이 남을 때까지. AI가 못 주는 유일한 것.</div></div>
+      <div class="card"><div class="n">2 · 먼저 내가 본다</div><div class="t">✍️ 서툴러도 쓴다</div><div class="d">틀려도 좋다. <b>내 각도를 먼저</b> 세워야 대조할 것이 생긴다.</div></div>
+      <div class="card cl"><div class="n">3 · AI로 대조한다</div><div class="t">🤖 "이미 있어?"</div><div class="d">겹치면 배우고 <b>안 겹치면 내 것</b>. AI를 답 생성기가 아니라 <b>거울</b>로 쓴다.</div></div>
+    </div>
+    <p class="big" style="margin-top:3vh">지난 시간에 배운 것과 같은 이야기다 —<br><b class="amber">받아 적으면 지나가고, 내가 꺼내면 남는다.</b></p>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide">
+    <div class="kicker">이제 네 차례</div>
+    <h2>너의 렌즈는 <span class="amber">무엇으로 만들 거니?</span></h2>
+    <p class="big">선생님의 렌즈는 여러 해 읽어 온 글에서 왔다. 너의 것은 다른 데서 올 것이다 —<br>좋아하는 음악, 게임, 운동, 웹툰, 과학, 누군가의 삶.</p>
+    <div class="quote">
+      📌 오늘 한 가지만 정한다면 —<br>
+      <b class="amber" style="font-size:2.2vw">"나는 ○○을(를) 오래 파 보겠다."</b><br>
+      그리고 다음에 무언가를 보고 느낌이 들면, <b>AI에게 묻기 전에 한 줄 먼저 써 보자.</b>
+    </div>
+    <p>그 한 줄이 아직 서툴러도 괜찮다. <b>남의 답을 읽은 사람에게는 그 한 줄조차 없다.</b></p>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button id="prev">◀</button><span id="count">1 / 13</span><button id="next">▶</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const bar=document.getElementById('bar'), count=document.getElementById('count');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    count.textContent=(i+1)+' / '+slides.length;
+  }
+  document.getElementById('next').onclick=()=>show(i+1);
+  document.getElementById('prev').onclick=()=>show(i-1);
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1);}
+    if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1);}
+    if(e.key==='Home')show(0); if(e.key==='End')show(slides.length-1);
+  });
+  document.getElementById('deck').addEventListener('click',e=>{
+    if(e.target.closest('.nav'))return;
+    show(e.clientX < window.innerWidth/2 ? i-1 : i+1);
+  });
+  show(0);
+</script>
+</body>
+</html>
