@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>내 생각은 어디서 오나 — 읽기와 AI</title>
+<style>
+  :root{
+    --bg:#12100e;
+    --bg2:#1d1915;
+    --ink:#f6f1e8;
+    --dim:#b4a898;
+    --amber:#e8a33d;
+    --cyan:#6ec8c4;
+    --rust:#e07a5f;
+    --line:#3a322a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    overflow:hidden;-webkit-font-smoothing:antialiased;}
+  .stage{width:100vw;height:100vh;display:flex;flex-direction:column;}
+  .bar{flex:0 0 .5vh;background:var(--line);}
+  .bar > i{display:block;height:100%;width:0;background:var(--amber);transition:width .2s ease;}
+  .deck{flex:1 1 auto;min-height:0;display:flex;}
+  .slide{display:none;flex:1 1 auto;min-height:0;flex-direction:column;justify-content:center;
+    padding:5vh 7vw 3vh;gap:2.2vh;}
+  .slide.on{display:flex;}
+  .slide.tight{gap:1.6vh;}
+  .kicker{font-size:clamp(12px,1.35vw,22px);letter-spacing:.22em;font-weight:700;color:var(--amber);}
+  .kicker.c{color:var(--cyan);}
+  .kicker.r{color:var(--rust);}
+  h1{font-size:clamp(28px,4.6vw,78px);line-height:1.18;font-weight:800;letter-spacing:-.02em;}
+  h2{font-size:clamp(22px,3.3vw,54px);line-height:1.28;font-weight:800;letter-spacing:-.015em;}
+  p{font-size:clamp(16px,1.85vw,32px);line-height:1.58;color:var(--dim);max-width:38em;}
+  p.lead{font-size:clamp(18px,2.15vw,36px);color:var(--ink);max-width:28em;}
+  .amber{color:var(--amber);}
+  .cyan{color:var(--cyan);}
+  .rust{color:var(--rust);}
+  .quote{border-left:.45vw solid var(--amber);padding:2vh 1.8vw;background:rgba(232,163,61,.08);
+    font-size:clamp(16px,1.75vw,30px);line-height:1.62;max-width:36em;}
+  .quote.c{border-color:var(--cyan);background:rgba(110,200,196,.08);}
+  .quote .who{display:block;margin-top:1.2vh;color:var(--dim);font-size:clamp(12px,1.15vw,20px);}
+  .warn{border:1px solid var(--rust);background:rgba(224,122,95,.12);border-radius:.7vw;
+    padding:2vh 1.7vw;font-size:clamp(15px,1.55vw,27px);line-height:1.55;max-width:38em;color:var(--ink);}
+  .grid{display:grid;gap:1.4vw;}
+  .g3{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .g2{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:.8vw;padding:2.2vh 1.4vw;
+    display:flex;flex-direction:column;gap:.9vh;min-width:0;}
+  .card .n{font-size:clamp(12px,1.2vw,20px);font-weight:800;color:var(--amber);}
+  .card .t{font-size:clamp(16px,1.65vw,28px);font-weight:700;line-height:1.35;}
+  .card .d{font-size:clamp(13px,1.25vw,22px);color:var(--dim);line-height:1.5;}
+  .card.cl{border-color:var(--cyan);}
+  .card.cl .n{color:var(--cyan);}
+  .card.rl{border-color:var(--rust);}
+  .card.rl .n{color:var(--rust);}
+  .vs{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:1.4vw;align-items:stretch;}
+  .vs .side{background:var(--bg2);border:1px solid var(--line);border-radius:.8vw;padding:2.4vh 1.6vw;
+    display:flex;flex-direction:column;gap:1.1vh;min-width:0;}
+  .vs .side.a{border-color:var(--rust);}
+  .vs .side.b{border-color:var(--cyan);}
+  .vs .lab{font-size:clamp(12px,1.2vw,20px);font-weight:800;letter-spacing:.06em;}
+  .vs .side.a .lab{color:var(--rust);}
+  .vs .side.b .lab{color:var(--cyan);}
+  .vs .hd{font-size:clamp(18px,2vw,34px);font-weight:800;line-height:1.3;}
+  .vs .bd{font-size:clamp(14px,1.35vw,24px);color:var(--dim);line-height:1.55;}
+  .vs .mid{display:flex;align-items:center;font-size:clamp(18px,2vw,32px);color:var(--dim);font-weight:700;}
+  .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4vw;}
+  .qs{display:flex;flex-direction:column;gap:1.3vh;}
+  .q{background:var(--bg2);border:1px solid var(--line);border-radius:.7vw;padding:1.6vh 1.5vw;
+    font-size:clamp(15px,1.55vw,28px);line-height:1.45;}
+  .foot{flex:0 0 auto;display:flex;justify-content:flex-end;align-items:center;
+    padding:1.2vh 2.2vw 1.8vh;color:var(--dim);font-size:clamp(12px,1.15vw,20px);}
+  .count{letter-spacing:.04em;}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="bar" id="bar"><i></i></div>
+  <div class="deck" id="deck">
+
+    <section class="slide on">
+      <div class="kicker">중2 · 중3 특강</div>
+      <h1>AI에게 물으면<br><span class="amber">3초 만에 답이 나온다.</span></h1>
+      <p class="lead">그럼 나는 뭘 하지?</p>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">다른 일이다</div>
+      <h2>남이 이미 만들어 둔 답을<br>읽는 것과</h2>
+      <p class="lead">내 각도를 세우는 것은<br>같은 일이 아니다.</p>
+    </section>
+
+    <section class="slide tight">
+      <div class="kicker">실물 하나</div>
+      <h2>선생님이 어떤 영화를 보고<br>글을 썼다</h2>
+      <p class="lead">끝까지 범인을 알려 주지 않는 영화다.</p>
+      <div class="warn">이 영화를 보라는 이야기가 아니다. 15세 이상 관람가다. 안 본 사람도 100% 따라올 수 있게 짰다.</div>
+    </section>
+
+    <section class="slide tight">
+      <div class="kicker">먼저, 남들은 어디에 섰나</div>
+      <h2>해석은 거의 <span class="amber">같은 자리</span>에 모였다</h2>
+      <div class="grid g3">
+        <div class="card">
+          <div class="n">감독의 말</div>
+          <div class="t">믿음과 의심</div>
+          <div class="d">누가 범인인가. 믿을 것인가, 의심할 것인가.</div>
+        </div>
+        <div class="card">
+          <div class="n">국내 평론</div>
+          <div class="t">같은 축</div>
+          <div class="d">주요 리뷰도 대체로 그 질문 안에 머물렀다.</div>
+        </div>
+        <div class="card">
+          <div class="n">해외 평론</div>
+          <div class="t">doubt / faith</div>
+          <div class="d">영어권 분석도 ‘의심 대 믿음’을 핵심으로 본다.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">공통점</div>
+      <h2>질문은 여기서 멈췄다</h2>
+      <p class="lead">누가 범인인가.<br>믿을 것인가, 의심할 것인가.</p>
+    </section>
+
+    <section class="slide">
+      <div class="kicker c">그런데 선생님은</div>
+      <h2>다른 질문에 닿았다</h2>
+      <div class="quote c">끝까지 범인을 판정하려 드는 나는 누구인가.</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker c">그 읽기</div>
+      <h2>관객을 심판석에 앉히는 영화</h2>
+      <p class="lead">심판하려는 그 마음이,<br>이미 답이었다.</p>
+    </section>
+
+    <section class="slide tight">
+      <div class="kicker">2020년 2월 9일 · 제92회 아카데미</div>
+      <h2>봉준호, 감독상을 받으며</h2>
+      <div class="quote">
+        제가 어릴 때 영화 공부를 하며 가슴에 깊이 새긴 말이 있습니다.<br>
+        <b class="amber">‘가장 개인적인 것이 가장 창의적인 것이다.’</b><br>
+        그 말은 위대한 마틴 스코세이지가 한 말이었습니다.
+        <span class="who">봉준호 · 제92회 아카데미 감독상 수상 소감</span>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">그 순간</div>
+      <h2>객석의 스코세이지에게<br><span class="amber">기립박수</span>가 쏟아졌다</h2>
+      <p class="lead">개인적인 것이 왜 값진가.<br>그 권위 있는 뒷받침이다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">그건 어디서 왔나</div>
+      <h2>그 각도는 하늘에서<br>떨어진 게 아니다</h2>
+      <p class="lead">여러 해 동안 꾸준히 읽어 온 글들이 만든 <span class="amber">렌즈</span>다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">렌즈가 하는 일</div>
+      <h2>렌즈가 있어야<br>남들이 안 보는 게 보인다</h2>
+      <p class="lead">AI는 렌즈를 만들어 주지 못한다.</p>
+      <p>스코세이지의 말이 이 뜻이다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">읽기가 하는 일</div>
+      <h2>책은 답을 주지 않는다</h2>
+      <p class="lead">질문하는 각도를 준다.<br>느린 게 기능이다.</p>
+    </section>
+
+    <section class="slide tight">
+      <div class="kicker c">그럼 AI는 뭐에 쓰나</div>
+      <h2>답을 시키지 말고<br><span class="cyan">거울</span>로 써라</h2>
+      <div class="qs">
+        <div class="q">내 생각이 이거인데, 이미 이런 얘기가 있어? 있다면 누가?</div>
+        <div class="q">이 주장의 약한 데는 어디야?</div>
+        <div class="q">반대편은 뭐라고 해?</div>
+      </div>
+    </section>
+
+    <section class="slide tight">
+      <div class="kicker">순서가 전부다</div>
+      <h2>어느 쪽이 먼저인가</h2>
+      <div class="vs">
+        <div class="side a">
+          <div class="lab">AI에게 먼저 물으면</div>
+          <div class="hd">그 답이 자리를 차지한다</div>
+          <div class="bd">잘 정리된 문장이 먼저 온다. 내 생각이 생길 자리가 없어진다.</div>
+        </div>
+        <div class="mid">↔</div>
+        <div class="side b">
+          <div class="lab">내 각도를 먼저 세우면</div>
+          <div class="hd">내 것이 남는다</div>
+          <div class="bd">서툴러도 먼저 쓴다. AI로 대조하면, 겹친 것과 안 겹친 것이 보인다.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker r">함정</div>
+      <h2>“내가 간파했다”로 끝나면<br>그냥 자랑이다</h2>
+      <p class="lead">좋은 읽기는 자기 자신도<br>그 질문 안에 집어넣는다.</p>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">한 줄</div>
+      <h2>받아 적으면 지나가고,<br><span class="amber">내가 꺼내면 남는다.</span></h2>
+    </section>
+
+    <section class="slide tight">
+      <div class="kicker">세 걸음</div>
+      <h2>정리하면</h2>
+      <div class="steps">
+        <div class="card">
+          <div class="n">①</div>
+          <div class="t">오래 읽어<br>렌즈를 만든다</div>
+        </div>
+        <div class="card">
+          <div class="n">②</div>
+          <div class="t">먼저 내 각도를<br>쓴다</div>
+        </div>
+        <div class="card cl">
+          <div class="n">③</div>
+          <div class="t">AI로<br>대조한다</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">이제 네 차례</div>
+      <h2>너의 렌즈는<br><span class="amber">무엇으로 만들 거니?</span></h2>
+    </section>
+
+  </div>
+  <div class="foot"><span class="count" id="count">1 / 18</span></div>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const bar=document.querySelector('#bar i');
+  const count=document.getElementById('count');
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    count.textContent=(i+1)+' / '+slides.length;
+  }
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1);}
+    if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1);}
+    if(e.key==='Home')show(0);
+    if(e.key==='End')show(slides.length-1);
+  });
+  document.getElementById('deck').addEventListener('click',e=>{
+    show(e.clientX<window.innerWidth/2?i-1:i+1);
+  });
+  show(0);
+</script>
+</body>
+</html>
