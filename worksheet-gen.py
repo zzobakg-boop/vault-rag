@@ -422,6 +422,9 @@ def inline(text):
         if part.startswith('<input') or part.startswith('<textarea'):
             result.append(part)
         else:
+            # 2026-08-20: [제목](http…) 링크 지원 — 영상 자료 삽입용. 볼드·이탤릭보다 먼저 처리해 URL이 훼손되지 않게.
+            part = re.sub(r'\[([^\]]+)\]\((https?://[^)\s]+)\)',
+                          r'<a href="\2" target="_blank" rel="noopener">\1</a>', part)
             part = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', part)
             part = re.sub(r'\*([^*\n]+?)\*', r'<em>\1</em>', part)  # 2026-05-30: *이탤릭* 지원 (입담 voice 강조어)
             result.append(part)
