@@ -24,6 +24,9 @@ hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
 table {
   width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
 }
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
 blockquote {
@@ -138,6 +141,7 @@ blockquote {
 .hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
@@ -150,7 +154,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><div class="hero-eyebrow">역사① · Ⅲ단원 · 동아시아 문화의 형성 · 3-1-1</div><h1 class="hero-title">역사① Ⅲ단원 3-1-1 — 한(漢)이 무너지자, 중국은 왜 370년이나 갈라졌을까? (위진 남북조)</h1><p class="hero-subtitle">한(漢)이 무너지자, 중국은 왜 370년이나 갈라졌을까?</p><div class="hero-keywords"><span class="hero-keyword">후한→삼국→진→5호 16국→남북조</span><span class="hero-keyword">효문제 한화 — 소수가 다수를 다스리는 법</span><span class="hero-keyword">9품중정제 → 문벌 귀족</span><span class="hero-keyword">불교·도교·청담</span></div><img class="hero-image" src="images/wjnbj-hero.jpeg" alt=""><div class="hero-hook">선비족 소녀 아단은 어느 아침 한족 옷으로 갈아입어야 했다. 왜? 370년 갈라졌던 중국의 비밀이 그 질문에 있다.</div><img class="hero-image" src="images/3-1-1_위진남북조_표지.png" alt="표지"></section>
+  <section class="hero-section"><div class="hero-eyebrow">역사① · Ⅲ단원 · 동아시아 문화의 형성 · 3-1-1</div><h1 class="hero-title">역사① Ⅲ단원 3-1-1 — 한(漢)이 무너지자, 중국은 왜 370년이나 갈라졌을까? (위진 남북조)</h1><p class="hero-subtitle">한(漢)이 무너지자, 중국은 왜 370년이나 갈라졌을까?</p><div class="hero-keywords"><span class="hero-keyword">후한→삼국→진→5호 16국→남북조</span><span class="hero-keyword">효문제 한화 — 소수가 다수를 다스리는 법</span><span class="hero-keyword">9품중정제 → 문벌 귀족</span><span class="hero-keyword">불교·도교·청담</span></div><img class="hero-image" src="images/wjnbj-hero.jpeg" alt=""><div class="hero-hook">선비족 소녀 아단은 어느 아침 한족 옷으로 갈아입어야 했다. 왜? 370년 갈라졌던 중국의 비밀이 그 질문에 있다.</div></section>
   <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
   <h1>역사① Ⅲ단원 3-1-1 — 한(漢)이 무너지자, 중국은 왜 370년이나 갈라졌을까? (위진 남북조)</h1>
 <br>
@@ -195,7 +199,7 @@ blockquote {
 <br>
 <blockquote>💡 <strong>효문제는 왜 자기 민족 문화를 버렸을까?</strong> — 선비족은 <em>수가 적은데</em>, 다스려야 할 한족은 <em>훨씬 많았어</em>. 힘으로만 누르면 반발이 크지. 그래서 한족의 글·제도·문화를 받아들여 "우리도 너희와 같다"며 한족의 마음을 얻고 나라를 <strong>안정</strong>시키려 한 거야. (도입에서 아단이 한족 옷을 입어야 했던 이유!)</blockquote>
 <br>
-<blockquote>⚖️ <strong>2단원에서 배운 스파르타랑 비교해 봐!</strong> — 스파르타도 <em>소수의 시민이 다수의 피지배민(헬로타이)을 다스리는</em> <strong>똑같은 문제</strong>를 안고 있었어. 그런데 해법은 정반대! 스파르타는 <em>억누르고 분리</em>(평생 군사 훈련·감시·공포)를 택했고, 효문제는 <em>섞이고 동화</em>(한화)를 택했지. <strong>같은 문제, 정반대의 답</strong> — 너라면 어느 쪽을 택했을까?</blockquote>
+<blockquote>⚖️ <strong>2단원에서 배운 스파르타랑 비교해 봐!</strong> — 스파르타도 <em>소수의 시민이 다수의 피지배민(헤일로타이)을 다스리는</em> <strong>똑같은 문제</strong>를 안고 있었어. 그런데 해법은 정반대! 스파르타는 <em>억누르고 분리</em>(평생 군사 훈련·감시·공포)를 택했고, 효문제는 <em>섞이고 동화</em>(한화)를 택했지. <strong>같은 문제, 정반대의 답</strong> — 너라면 어느 쪽을 택했을까?</blockquote>
 <br>
 <figure class="ws-fig"><img src="images/wjnbj-step3-compare.jpeg" alt="소수가 다수를 다스리는 두 가지 길 — 스파르타(억누르기·분리) vs 효문제(섞이기·동화)." loading="lazy"><figcaption>소수가 다수를 다스리는 두 가지 길 — 스파르타(억누르기·분리) vs 효문제(섞이기·동화).</figcaption></figure>
 <br>
@@ -296,7 +300,7 @@ blockquote {
 <br>
 <h2>✏️ 활동 3. 더 생각해 보기 (자기 생각 서술)</h2>
 <blockquote>9품중정제는 분명 '추천으로 인재를 뽑자'는 <strong>좋은 의도</strong>로 시작했는데, 왜 결국 '문벌 귀족이 자리를 세습하는' 불공정한 제도로 변했을까? 오늘날에도 '추천서·스펙·인맥'으로 사람을 뽑는 경우가 있다. <strong>공정한 선발이 되려면 무엇이 필요할지</strong>, 위진 남북조의 사례에서 배운 점을 들어 너의 생각을 써 보자. (AI에게 정답을 묻기보다, 네 경험과 판단으로)</blockquote>
-<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-1" data-label="✏️ 활동 3. 더 생각해 보기 (자기 생각 서술)" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <blockquote><strong>예시 답안(교사 참고)</strong>: 추천제는 '누가 추천하는가'에 권력이 쏠리면 무너진다. 9품중정제도 추천 권한을 쥔 중정관과 호족이 결탁하면서 변질됐다. 공정한 선발이 되려면 ① 추천 기준의 공개·기록, ② 추천자에 대한 견제와 책임, ③ 출신과 무관하게 능력을 검증하는 별도 장치(예: 시험)가 함께 있어야 한다. 실제로 이 문제를 풀려고 다음 시대(수)에 '과거제'가 등장한다.</blockquote>
 <br>
@@ -412,7 +416,19 @@ function reset(){
   }
 }
 // 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+function _wsKey(){
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}
 function _persist(){
+  const key=_wsKey(); if(!key) return;
   const data={};
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
     data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
@@ -421,17 +437,18 @@ function _persist(){
   document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
   const si=document.querySelectorAll('.student-info input');
   const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
-  try{ localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
 function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
 let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
-  let saved; try{ saved=localStorage.getItem('ws_'+document.title); }catch(e){}
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
-  if(info){
+  if(info&&!EXAM_MODE){
     const inputs=document.querySelectorAll('.student-info input');
     if(info.class&&inputs[0]) inputs[0].value=info.class;
     if(info.number&&inputs[1]) inputs[1].value=info.number;
@@ -471,6 +488,12 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
@@ -522,6 +545,12 @@ document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
 document.querySelectorAll('.student-info input').forEach(el=>{
   el.addEventListener('input',scheduleProgress);
 });
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  document.querySelectorAll('.student-info input').forEach(el=>{
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
 </script>
 </body>
 </html>
