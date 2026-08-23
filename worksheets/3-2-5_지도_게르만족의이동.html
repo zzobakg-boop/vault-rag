@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>게르만족의 이동 375–476 — 지도</title>
+<style>
+:root{
+  --sea:#16343f; --sea-deep:#0f242c;
+  --land:#cbb892; --land-edge:#6a542e;
+  --ink:#f3ead8; --dim:#b7aa93; --mute:#7d7364;
+  --wre:#b43344; --ere:#5e4a78;
+  --hun:#c4452d; --goth:#d4a034; --vandal:#2a9bb5; --frank:#4d9a4a; --saxon:#4d6ea8;
+  --serif:"AppleMyungjo","Nanum Myeongjo","Songti SC","Noto Serif KR",serif;
+  --sans:"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+  --ease:cubic-bezier(.16,.7,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#110e0c;color:var(--ink);font-family:var(--sans);
+  overflow:hidden;word-break:keep-all;-webkit-font-smoothing:antialiased;user-select:none}
+#viewport{position:fixed;inset:0;background:radial-gradient(120% 80% at 50% 40%, #1a353e 0%, var(--sea-deep) 70%);
+  touch-action:pan-y}
+#viewport svg, #viewport canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#fx{pointer-events:none}
+#labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.lbl{position:absolute;transform:translate(-50%,-50%);white-space:nowrap;
+  font-size:clamp(11px,1.05vw,15px);font-weight:700;letter-spacing:.02em;
+  padding:.22em .55em;border-radius:2px;background:rgba(18,14,10,.78);
+  color:var(--ink);opacity:0;transition:opacity .55s var(--ease);
+  box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.lbl.on{opacity:1}
+.lbl.city{background:rgba(18,14,10,.86);font-weight:800}
+.lbl.river{background:transparent;color:#9fd0dc;font-weight:600;font-size:clamp(10px,.95vw,13px);
+  text-shadow:0 1px 2px #0b1c22;padding:0}
+.lbl small{display:block;font-weight:500;font-size:.78em;color:var(--dim);letter-spacing:0}
+.lbl .dot{display:inline-block;width:.55em;height:.55em;border-radius:50%;margin-right:.35em;vertical-align:.05em}
+#hud{background:linear-gradient(to top, rgba(9,20,26,.92) 0%, rgba(9,20,26,.78) 55%, rgba(9,20,26,0) 100%);padding-top:34px;position:fixed;left:0;right:0;bottom:0;z-index:5;
+  padding:max(10px,env(safe-area-inset-bottom)) 4vw 14px;
+  background:linear-gradient(to top,rgba(10,8,6,.96) 0%,rgba(10,8,6,.82) 55%,transparent);
+  pointer-events:none}
+#hud > *{pointer-events:auto}
+#kicker{font-size:11px;letter-spacing:.18em;color:var(--mute);text-transform:none;margin-bottom:.2rem}
+#year{font-family:var(--serif);font-size:clamp(28px,4.4vw,56px);line-height:1;letter-spacing:.03em}
+#desc{margin-top:.55rem;font-size:clamp(13px,1.5vw,19px);color:#e6dcc8;line-height:1.55;max-width:62ch}
+#event{display:none;margin-top:.7rem;align-items:center;gap:.7rem}
+#event.show{display:flex}
+#event .seal{width:42px;height:42px;border-radius:50%;border:2px solid var(--goth);
+  display:grid;place-items:center;font-family:var(--serif);font-size:13px;color:var(--goth);
+  box-shadow:0 0 0 4px rgba(212,160,52,.15)}
+#event .et{font-weight:800;font-size:clamp(14px,1.6vw,18px);color:#f6e6b8}
+#event .es{font-size:12px;color:var(--dim)}
+#barwrap{margin-top:1rem;max-width:720px}
+#bar{height:3px;background:rgba(243,234,216,.12);border-radius:2px;overflow:hidden}
+#bar > i{display:block;height:100%;width:0;background:var(--goth);box-shadow:0 0 10px rgba(212,160,52,.45);
+  transition:width .7s var(--ease)}
+#steps{display:flex;gap:0;margin-top:.55rem;max-width:720px}
+#steps button{flex:1;appearance:none;border:0;background:transparent;color:var(--mute);
+  font:inherit;font-size:clamp(10px,1vw,12px);padding:.45rem .15rem .2rem;cursor:pointer;
+  border-top:2px solid rgba(243,234,216,.14);text-align:left}
+#steps button[aria-current="true"]{color:var(--ink);border-top-color:var(--goth);font-weight:700}
+#legend{position:fixed;top:max(12px,env(safe-area-inset-top));right:14px;z-index:4;
+  display:flex;flex-direction:column;gap:.28rem;font-size:11px;color:var(--dim);
+  background:rgba(12,10,8,.55);padding:.55rem .7rem;border:1px solid rgba(243,234,216,.08);
+  backdrop-filter:blur(8px);pointer-events:none}
+#legend .grp{display:block;margin:7px 0 2px;font-size:10px;letter-spacing:.04em;color:#9aa7b2;border-top:1px solid rgba(255,255,255,.14);padding-top:5px}
+#legend em{font-style:normal;font-size:9.5px;color:#9aa7b2}
+#legend b{color:var(--ink);font-weight:700;letter-spacing:.08em;font-size:10px;margin-bottom:.15rem}
+#legend i{display:inline-block;width:.7em;height:.7em;border-radius:1px;margin-right:.4em;vertical-align:-.05em}
+#remain{position:fixed;top:max(12px,env(safe-area-inset-top));left:14px;z-index:4;
+  font-size:11px;color:var(--dim)}
+#remain strong{display:block;font-family:var(--serif);font-size:clamp(16px,2vw,22px);color:var(--wre);font-weight:700}
+#remain .pips{display:flex;gap:3px;margin-top:.35rem}
+#remain .pips span{width:14px;height:6px;background:rgba(180,51,68,.22)}
+#remain .pips span.on{background:var(--wre)}
+#hint{position:fixed;left:14px;bottom:max(8px,env(safe-area-inset-bottom));z-index:6;
+  font-size:11px;color:#6f675b}
+#src{position:fixed;right:14px;bottom:max(8px,env(safe-area-inset-bottom));z-index:6;
+  font-size:10px;color:#5e574c;max-width:46vw;text-align:right;line-height:1.4}
+#play{position:fixed;top:max(12px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:6;
+  appearance:none;border:1px solid rgba(243,234,216,.2);background:rgba(12,10,8,.55);
+  color:var(--ink);font:inherit;font-size:12px;padding:.35rem .8rem;cursor:pointer;letter-spacing:.06em}
+#play:focus-visible, #steps button:focus-visible{outline:2px solid var(--goth);outline-offset:2px}
+.region{transition:fill 1.15s var(--ease), opacity 1.15s var(--ease)}
+.route-under{fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.28}
+.route{fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px rgba(0,0,0,.55))}
+.ripple{pointer-events:none}
+.ripple circle{fill:none;stroke:#f6e6b8;stroke-width:1.6;transform-origin:center;transform-box:fill-box;
+  animation:rip 1.7s ease-out infinite}
+.ripple circle:nth-child(2){animation-delay:.45s;stroke-width:1.1}
+@keyframes rip{0%{transform:scale(.25);opacity:.85}100%{transform:scale(2.8);opacity:0}}
+.pin{stroke:#110e0c;stroke-width:1.2}
+@media (max-width:700px){
+  #legend{top:auto;bottom:38vh;right:8px;padding:.4rem .5rem;font-size:10px}
+  #remain{max-width:46vw}
+  #desc{font-size:13px;max-width:none}
+  #hud{padding-bottom:28px}
+  #src,#hint{display:none}
+  .lbl{font-size:11px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms !important;animation:none !important}
+  .ripple circle{opacity:.55;transform:scale(1.1)}
+}
+</style>
+</head>
+<body>
+<div id="viewport" aria-label="게르만족 대이동 지도">
+  <svg id="map" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="유럽·지중해 벡터 지도"></svg>
+  <canvas id="fx"></canvas>
+  <div id="labels"></div>
+</div>
+<button id="play" type="button">재생</button>
+<div id="remain"><span>서로마가 아직 가진 땅</span><strong id="remainN">7</strong><div class="pips" id="pips"></div></div>
+<div id="legend">
+  <b>한눈에</b>
+  <div><i style="background:var(--wre)"></i>서로마</div>
+  <div><i style="background:var(--ere)"></i>동로마</div>
+  <div class="grp">밀어낸 쪽</div>
+  <div><i style="background:var(--hun)"></i>훈족 <em>(게르만족 아님)</em></div>
+  <div class="grp">밀려난 게르만 부족</div>
+  <div><i style="background:var(--goth)"></i>서고트</div>
+  <div><i style="background:var(--vandal)"></i>반달</div>
+  <div><i style="background:var(--frank)"></i>프랑크</div>
+  <div><i style="background:var(--saxon)"></i>앵글로색슨</div>
+</div>
+<div id="hud">
+  <div id="kicker">게르만족의 이동 · 375–476</div>
+  <div id="year"></div>
+  <div id="desc"></div>
+  <div id="event"><div class="seal" id="eseal"></div><div><div class="et" id="etitle"></div><div class="es" id="esub"></div></div></div>
+  <div id="barwrap"><div id="bar"><i id="barfill"></i></div>
+    <div id="steps"></div>
+  </div>
+</div>
+<div id="hint">← → 이동 · 1–5 점프 · 스와이프 · F 전체화면</div>
+<div id="src">해안선: Natural Earth 1:110m (퍼블릭 도메인) · 투영: Albers 등적 원뿔 · 교실용 도식(경계는 권역 단위)</div>
+<script>
+/* GEO_INLINE */
+const GEO = {"bbox":[-18,27.5,44.5,61.2],"land":[[[[32.98,34.57],[32.49,34.7],[32.26,35.1],[32.8,35.15],[32.95,35.39],[33.67,35.37],[34.58,35.67],[33.9,35.25],[34.0,34.98],[32.98,34.57]]],[[[25.75,35.18],[26.29,35.3],[26.16,35.0],[24.72,34.92],[24.74,35.08],[23.51,35.28],[23.7,35.71],[24.25,35.37],[25.03,35.42],[25.77,35.35],[25.75,35.18]]],[[[14.34,37.0],[13.83,37.1],[12.43,37.61],[12.57,38.13],[13.74,38.03],[15.52,38.23],[15.16,37.44],[15.31,37.13],[15.1,36.62],[14.34,37.0]]],[[[8.81,38.91],[8.43,39.17],[8.39,40.38],[8.16,40.95],[8.71,40.9],[9.21,41.21],[9.81,40.5],[9.67,39.18],[9.21,39.24],[8.81,38.91]]],[[[8.75,42.63],[9.39,43.01],[9.56,42.15],[9.23,41.38],[8.78,41.58],[8.54,42.26],[8.75,42.63]]],[[[-9.69,53.88],[-7.57,55.13],[-6.73,55.17],[-5.66,54.55],[-6.2,53.87],[-6.03,53.15],[-6.79,52.26],[-8.56,51.67],[-9.98,51.82],[-9.17,52.86],[-9.69,53.88]]],[[[12.37,56.11],[12.69,55.61],[12.09,54.8],[11.04,55.36],[10.9,55.78],[12.37,56.11]]],[[[-2.22,56.87],[-3.12,55.97],[-2.09,55.91],[-1.11,54.62],[-0.43,54.46],[0.18,53.33],[0.47,52.93],[1.68,52.74],[1.56,52.1],[1.05,51.81],[1.45,51.29],[0.55,50.77],[-0.79,50.77],[-2.49,50.5],[-2.96,50.7],[-3.62,50.23],[-4.54,50.34],[-5.25,49.96],[-5.78,50.16],[-4.31,51.21],[-3.41,51.43],[-4.98,51.59],[-5.27,51.99],[-4.22,52.3],[-4.77,52.84],[-4.58,53.5],[-3.09,53.4],[-2.95,53.98],[-3.63,54.62],[-4.84,54.79],[-5.08,55.06],[-4.72,55.51],[-5.05,55.78],[-5.59,55.31],[-5.64,56.28],[-6.15,56.79],[-5.79,57.82],[-5.01,58.63],[-4.21,58.55],[-3.01,58.64],[-4.07,57.55],[-3.06,57.69],[-1.96,57.68],[-2.22,56.87]]],[[[35.13,28.06],[34.63,28.06],[34.92,29.5],[34.64,29.1],[34.15,27.82],[33.92,27.65],[33.14,28.42],[32.42,29.85],[32.32,29.76],[32.73,28.71],[33.45,27.5],[-13.23,27.5],[-12.62,28.04],[-11.69,28.15],[-10.9,28.83],[-10.4,29.1],[-9.56,29.93],[-9.81,31.18],[-9.3,32.56],[-8.66,33.24],[-6.91,34.11],[-5.93,35.76],[-5.19,35.76],[-4.59,35.33],[-3.64,35.4],[-2.17,35.17],[-1.21,35.71],[-0.13,35.89],[0.5,36.3],[1.47,36.61],[4.82,36.87],[5.32,36.72],[6.26,37.11],[7.33,37.12],[7.74,36.89],[8.42,36.95],[9.51,37.35],[10.21,37.23],[10.18,36.72],[11.03,37.09],[11.1,36.9],[10.6,36.41],[10.59,35.95],[10.94,35.7],[10.81,34.83],[10.15,34.33],[10.34,33.79],[10.86,33.77],[11.11,33.29],[11.49,33.14],[12.66,32.79],[13.08,32.88],[13.92,32.71],[15.25,32.27],[15.71,31.38],[18.02,30.76],[19.09,30.27],[19.57,30.53],[20.05,30.99],[19.82,31.75],[20.13,32.24],[20.85,32.71],[21.54,32.84],[22.9,32.64],[23.24,32.19],[24.92,31.9],[25.16,31.57],[26.5,31.59],[28.91,30.87],[30.1,31.47],[30.98,31.56],[31.69,31.43],[31.96,30.93],[32.19,31.26],[32.99,31.02],[33.77,30.97],[34.27,31.22],[34.56,31.55],[34.49,31.61],[34.75,32.07],[34.96,32.83],[35.48,33.91],[36.0,34.64],[35.91,35.41],[36.15,35.82],[35.78,36.28],[36.16,36.65],[35.55,36.57],[34.71,36.8],[34.03,36.22],[32.51,36.11],[31.7,36.64],[30.62,36.68],[30.39,36.26],[29.7,36.14],[28.73,36.68],[27.64,36.66],[27.05,37.65],[26.32,38.21],[26.8,38.99],[26.17,39.46],[27.28,40.42],[28.82,40.46],[29.24,41.22],[31.15,41.09],[32.35,41.74],[33.51,42.02],[35.17,42.04],[36.91,41.34],[38.35,40.95],[39.51,41.1],[40.37,41.01],[41.55,41.54],[41.7,41.96],[41.45,42.65],[40.88,43.01],[40.32,43.13],[38.68,44.28],[37.54,44.66],[36.68,45.24],[37.4,45.4],[38.23,46.24],[37.67,46.64],[39.15,47.04],[39.12,47.26],[37.43,47.02],[36.76,46.7],[35.82,46.65],[34.96,46.27],[35.02,45.65],[35.51,45.41],[36.53,45.47],[36.33,45.11],[35.24,44.94],[33.88,44.36],[33.33,44.56],[33.55,45.03],[32.45,45.33],[32.63,45.52],[33.59,45.85],[33.3,46.08],[31.74,46.33],[31.68,46.71],[30.75,46.58],[30.38,46.03],[29.6,45.29],[29.63,45.04],[29.14,44.82],[28.84,44.91],[28.56,43.71],[28.04,43.29],[27.67,42.58],[28.12,41.62],[28.99,41.3],[28.81,41.05],[27.62,41.0],[26.36,40.15],[26.04,40.62],[26.06,40.82],[24.93,40.95],[23.71,40.69],[24.41,40.13],[23.9,39.96],[23.34,39.96],[22.81,40.48],[22.63,40.26],[22.85,39.66],[23.35,39.19],[22.97,38.97],[24.03,38.22],[24.04,37.66],[23.12,37.92],[23.41,37.41],[22.78,37.31],[23.15,36.42],[22.49,36.41],[21.67,36.85],[21.12,38.31],[20.22,39.34],[20.15,39.63],[19.98,39.7],[19.96,39.92],[19.41,40.25],[19.32,40.73],[19.54,41.72],[18.88,42.28],[17.51,42.85],[16.93,43.21],[16.02,43.51],[15.17,44.24],[15.38,44.32],[14.92,44.74],[14.9,45.08],[14.26,45.23],[13.95,44.8],[13.66,45.14],[13.68,45.48],[13.94,45.59],[13.14,45.74],[12.33,45.38],[12.38,44.89],[12.26,44.6],[12.59,44.09],[13.53,43.59],[14.03,42.76],[15.14,41.96],[15.93,41.96],[16.17,41.74],[15.89,41.54],[17.52,40.88],[18.38,40.36],[18.48,40.17],[18.29,39.81],[17.74,40.28],[16.87,40.44],[16.45,39.8],[17.17,39.42],[17.05,38.9],[16.64,38.84],[16.1,37.99],[15.68,37.91],[15.89,38.75],[16.11,38.96],[15.41,40.05],[15.0,40.17],[14.7,40.6],[14.06,40.79],[13.63,41.19],[12.89,41.25],[12.11,41.7],[10.51,42.93],[10.2,43.92],[8.89,44.37],[8.43,44.23],[7.85,43.77],[7.44,43.69],[6.53,43.13],[4.56,43.4],[3.1,43.08],[2.99,42.47],[3.04,41.89],[2.09,41.23],[0.81,41.01],[0.72,40.68],[0.11,40.12],[-0.28,39.31],[0.11,38.74],[-0.47,38.29],[-0.68,37.64],[-1.44,37.44],[-2.15,36.67],[-4.37,36.68],[-5.0,36.32],[-5.38,35.95],[-5.87,36.03],[-6.24,36.37],[-6.52,36.94],[-7.45,37.1],[-7.86,36.84],[-8.38,36.98],[-8.9,36.87],[-8.75,37.65],[-8.84,38.27],[-9.29,38.36],[-9.53,38.74],[-9.45,39.39],[-9.05,39.76],[-8.77,40.76],[-8.79,41.18],[-9.03,41.88],[-8.98,42.59],[-9.39,43.03],[-7.98,43.75],[-4.35,43.4],[-1.9,43.42],[-1.38,44.02],[-1.19,46.01],[-2.23,47.06],[-2.96,47.57],[-4.49,47.96],[-4.59,48.68],[-3.3,48.9],[-1.62,48.64],[-1.93,49.78],[-0.99,49.35],[1.34,50.13],[1.64,50.95],[3.32,51.35],[3.83,51.62],[4.71,53.09],[6.07,53.51],[6.91,53.48],[7.1,53.69],[7.94,53.75],[8.12,53.53],[8.8,54.02],[8.57,54.4],[8.53,54.96],[8.12,55.52],[8.09,56.54],[8.54,57.11],[9.42,57.17],[9.78,57.45],[10.58,57.73],[10.55,57.22],[10.25,56.89],[10.37,56.61],[10.91,56.46],[10.67,56.08],[10.37,56.19],[9.65,55.47],[9.92,54.98],[9.94,54.6],[10.95,54.36],[10.94,54.01],[11.96,54.2],[12.52,54.47],[13.65,54.08],[14.12,53.76],[14.8,54.05],[17.62,54.85],[18.62,54.68],[18.7,54.44],[19.66,54.43],[19.89,54.87],[21.27,55.19],[21.06,56.03],[21.09,56.78],[21.58,57.41],[22.52,57.75],[23.32,57.01],[24.12,57.03],[24.43,58.38],[24.06,58.26],[23.43,58.61],[23.34,59.19],[25.86,59.61],[26.95,59.45],[27.98,59.48],[29.12,60.03],[28.07,60.5],[26.26,60.42],[22.87,59.85],[22.29,60.39],[21.32,60.72],[21.43,61.2],[17.26,61.2],[17.83,60.64],[18.79,60.08],[17.87,58.95],[16.83,58.72],[16.45,57.04],[15.88,56.1],[14.67,56.2],[14.1,55.41],[12.94,55.36],[12.63,56.31],[11.79,57.44],[11.03,58.86],[10.36,59.47],[8.38,58.31],[7.05,58.08],[5.67,58.59],[5.31,59.66],[5.1,61.2],[44.5,61.2],[44.5,27.5],[35.55,27.5],[35.13,28.06]]]],"lakes":[[[32.94,60.64],[32.82,60.48],[32.6,60.53],[32.58,60.21],[31.7,60.24],[31.51,59.92],[31.11,59.93],[31.11,60.15],[30.53,60.63],[30.5,60.84],[29.88,61.2],[32.32,61.2],[32.94,60.64]],[[13.28,58.61],[12.46,58.51],[12.52,58.88],[13.03,58.99],[13.59,59.34],[13.98,59.2],[13.92,58.9],[13.28,58.61]],[[35.35,60.95],[34.87,61.12],[36.31,61.2],[36.11,61.02],[35.35,60.95]]],"danube":[[8.22,48.05],[8.55,47.98],[9.41,48.14],[10.72,48.65],[11.68,48.79],[12.03,49.03],[14.7,48.23],[15.94,48.35],[16.88,48.17],[17.86,47.76],[18.7,47.88],[19.03,47.67],[18.76,46.03],[19.07,45.52],[19.39,45.25],[20.16,45.13],[20.77,44.74],[21.36,44.83],[22.15,44.48],[22.46,44.7],[22.71,44.58],[22.47,44.41],[22.94,43.82],[23.33,43.9],[24.1,43.74],[25.57,43.69],[26.07,43.94],[27.3,44.13],[28.05,44.41],[27.88,44.74],[27.99,45.22],[28.22,45.47],[28.68,45.3],[29.15,45.46],[29.6,45.29]]};
+(function(){
+  const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const DEG = Math.PI/180;
+  /* Albers equal-area conic — same formula as d3.geoConicEqualArea
+     Europe/Med: λ0=18°E, φ0=46°N, parallels 36° / 54° */
+  const φ1=36*DEG, φ2=54*DEG, φ0=46*DEG, λ0=18*DEG;
+  const n=(Math.sin(φ1)+Math.sin(φ2))/2;
+  const C=Math.cos(φ1)*Math.cos(φ1)+2*n*Math.sin(φ1);
+  const ρ0=Math.sqrt(Math.max(0,C-2*n*Math.sin(φ0)))/n;
+  function raw(lon,lat){
+    const φ=lat*DEG, λ=lon*DEG;
+    const ρ=Math.sqrt(Math.max(0,C-2*n*Math.sin(φ)))/n;
+    const θ=n*(λ-λ0);
+    return [ρ*Math.sin(θ), ρ0-ρ*Math.cos(θ)];
+  }
+  const PROJ={scale:1,cx:0,cy:0,W:1200,H:800};
+  function project(lon,lat){
+    const [x,y]=raw(lon,lat);
+    return [(x-PROJ.cx)*PROJ.scale+PROJ.W/2, (PROJ.cy-y)*PROJ.scale+PROJ.H/2];
+  }
+  function fit(){
+    const vp=document.getElementById('viewport');
+    PROJ.W=vp.clientWidth; PROJ.H=vp.clientHeight;
+    let minx=1e9,maxx=-1e9,miny=1e9,maxy=-1e9;
+    GEO.land.forEach(poly=>poly.forEach(ring=>ring.forEach(p=>{
+      const [x,y]=raw(p[0],p[1]);
+      if(x<minx)minx=x; if(x>maxx)maxx=x; if(y<miny)miny=y; if(y>maxy)maxy=y;
+    })));
+    const pad=0.04, dx=(maxx-minx)*(1+2*pad), dy=(maxy-miny)*(1+2*pad);
+    PROJ.scale=Math.min(PROJ.W/dx, PROJ.H/dy);
+    PROJ.cx=(minx+maxx)/2; PROJ.cy=(miny+maxy)/2;
+  }
+
+  const FILL={
+    wre:'rgba(186,44,62,.86)', ere:'rgba(104,80,140,.78)',
+    hun:'rgba(206,64,38,.78)', visigoth:'rgba(222,158,32,.86)',
+    vandal:'rgba(26,158,190,.84)', frank:'rgba(62,158,58,.84)',
+    saxon:'rgba(62,104,182,.82)', odovacer:'rgba(150,110,66,.82)',
+    gone:'url(#hatch)'
+  };
+  /* Covering hulls in lon/lat, clipped to land so coasts stay true */
+  const REGIONS=[
+    {id:'britain', w:1, owner:['wre','gone','gone','gone','gone'],
+      hull:[[-6.2,49.9],[1.9,49.9],[1.9,58.7],[-6.2,58.7]]},
+    {id:'saxonshore', w:0, owner:['gone','gone','gone','saxon','saxon'],
+      hull:[[-1.3,50.6],[1.85,50.6],[1.85,55.2],[-1.1,54.6],[-0.2,53.2],[-1.3,51.6]]},
+    {id:'gaul_n', w:1, owner:['wre','wre','wre','frank','frank'],
+      hull:[[-4.7,47.8],[-1.5,47.5],[2.2,47.5],[4.6,47.6],[7.6,47.6],[7.65,48.57],[8.35,50.0],
+            [6.96,50.94],[6.15,51.85],[4.5,51.5],[2.5,51.12],[1.55,50.9],[-1.85,49.72],[-4.55,48.88]]},
+    {id:'gaul_aq', w:1, owner:['wre','wre','visigoth','visigoth','visigoth'],
+      hull:[[-1.75,43.25],[1.45,42.55],[3.05,42.48],[3.6,43.6],[2.4,45.7],[2.15,47.5],[-1.5,47.5],[-1.2,44.0]]},
+    {id:'gaul_se', w:1, owner:['wre','wre','wre','wre','visigoth'],
+      hull:[[3.05,42.48],[4.9,43.35],[6.55,43.12],[7.5,43.7],[7.6,47.55],[4.6,47.6],[2.15,47.5],[2.4,45.7],[3.6,43.6]]},
+    {id:'iberia', w:1.15, owner:['wre','wre','wre','visigoth','visigoth'],
+      hull:[[-9.6,36.0],[3.35,36.0],[3.35,43.85],[-9.6,43.85]]},
+    {id:'italy', w:1.2, owner:['wre','wre','wre','wre','odovacer'],
+      hull:[[6.5,37.6],[18.6,37.6],[18.6,46.9],[12.4,46.9],[9.1,45.7],[6.6,44.1]]},
+    {id:'islands', w:.35, owner:['wre','wre','vandal','vandal','vandal'],
+      hull:[[8.1,38.85],[9.95,38.85],[9.95,43.15],[8.1,43.15]]},
+    {id:'nafrica', w:1.15, owner:['wre','wre','vandal','vandal','vandal'],
+      hull:[[-8.6,31.6],[12.4,31.6],[12.4,37.4],[-8.6,37.4]]},
+    {id:'tripol', w:.4, owner:['wre','wre','vandal','vandal','vandal'],
+      hull:[[11.5,31.4],[20.8,31.4],[20.8,33.3],[11.5,33.3]]},
+    {id:'dalmatia', w:.7, owner:['wre','wre','wre','wre','ere'],
+      hull:[[13.4,42.1],[19.6,42.1],[19.6,46.3],[13.4,46.3]]},
+    {id:'pannonia', w:.5, owner:['hun','hun','hun','gone','gone'],
+      hull:[[16.0,45.0],[22.6,45.0],[22.6,48.6],[16.0,48.6]]},
+    {id:'ere_balk', w:0, owner:['ere','ere','ere','ere','ere'],
+      hull:[[19.5,36.0],[29.3,36.0],[29.3,44.6],[22.2,44.6],[19.5,41.0]]},
+    {id:'ere_ana', w:0, owner:['ere','ere','ere','ere','ere'],
+      hull:[[26.8,36.0],[44.4,36.0],[44.4,42.3],[26.8,42.3]]},
+    {id:'ere_lev', w:0, owner:['ere','ere','ere','ere','ere'],
+      hull:[[32.0,30.8],[37.2,30.8],[37.2,36.6],[32.0,36.6]]},
+    {id:'ere_egy', w:0, owner:['ere','ere','ere','ere','ere'],
+      hull:[[29.4,27.6],[35.4,27.6],[35.4,31.6],[29.4,31.6]]}
+  ];
+
+  const RHINE=[[8.62,46.65],[9.55,47.05],[9.55,47.65],[9.18,47.66],[7.59,47.56],[7.63,48.57],
+    [8.27,50.00],[7.59,50.35],[6.96,50.94],[6.78,51.23],[6.12,51.84],[5.3,51.84],[4.2,51.90]];
+
+  const ROUTES=[
+    {id:'hun', name:'훈족', color:'#c4452d', width:7, n:32,
+      reveal:[1,1,1,.15,0],
+      pts:[[42.2,47.6],[38.0,47.9],[34.2,47.3],[30.2,47.0],[26.4,47.4],[22.6,47.8],[19.6,47.35],[18.6,47.05]]},
+    {id:'goth', name:'서고트', color:'#d4a034', width:6, n:30,
+      reveal:[0,.58,.78,1,1],
+      pts:[[26.1,45.7],[27.15,44.15],[26.57,41.68],[24.2,41.05],[21.6,42.15],[19.9,41.55],
+          [15.9,42.6],[13.45,45.77],[12.5,43.4],[12.50,41.90],[11.8,41.3],[5.2,43.85],[1.44,43.60],[-3.7,40.0]]},
+    {id:'vandal', name:'반달', color:'#2a9bb5', width:5.5, n:28,
+      reveal:[0,0,1,1,1],
+      pts:[[17.2,51.15],[13.8,50.4],[10.4,50.15],[8.27,50.00],[6.1,48.4],[3.8,46.2],[1.4,44.4],
+          [0.15,42.75],[-1.8,41.4],[-3.8,39.4],[-5.35,36.14],[-5.2,35.82],[-1.0,35.95],[3.1,36.52],[7.75,36.88],[10.32,36.85]]},
+    {id:'frank', name:'프랑크', color:'#4d9a4a', width:4, n:14,
+      reveal:[0,0,0,1,1],
+      pts:[[7.05,51.85],[6.15,51.55],[4.85,50.85],[3.52,50.46],[2.85,49.38],[2.35,48.86]]},
+    {id:'saxonA', name:'앵글로색슨', color:'#4d6ea8', width:3.4, n:12,
+      reveal:[0,0,0,1,1],
+      pts:[[9.55,55.40],[6.8,54.4],[3.6,53.0],[1.15,51.38]]},
+    {id:'saxonB', name:'앵글로색슨', color:'#4d6ea8', width:3.2, n:10,
+      reveal:[0,0,0,1,1],
+      pts:[[10.05,54.35],[6.4,54.05],[3.1,53.55],[1.45,52.62]]},
+    {id:'saxonC', name:'앵글로색슨', color:'#4d6ea8', width:3.0, n:10,
+      reveal:[0,0,0,1,1],
+      pts:[[8.6,53.85],[4.8,54.15],[1.2,54.05],[-0.4,53.96]]}
+  ];
+
+  const LABELS=[
+    {t:'로마', lon:12.50, lat:41.90, kind:'city', stages:[1,2,3,4]},
+    {t:'라벤나', lon:12.20, lat:44.42, kind:'city', stages:[4], sub:'서로마의 마지막 수도'},
+    {t:'카르타고', lon:10.32, lat:36.85, kind:'city', stages:[2,3,4]},
+    {t:'콘스탄티노폴리스', lon:28.98, lat:41.01, kind:'city', stages:[0,1,2,3,4]},
+    {t:'라인강', lon:7.2, lat:49.6, kind:'river', stages:[0,1,2,3,4]},
+    {t:'다뉴브강', lon:20.5, lat:45.1, kind:'river', stages:[0,1]},
+    {t:'훈족', lon:24.5, lat:47.6, kind:'tribe', col:'hun', stages:[0,1], sub:'초원에서 서쪽으로'},
+    {t:'서고트', lon:14.2, lat:43.2, kind:'tribe', col:'goth', stages:[1,2], sub:'410년 로마로'},
+    {t:'반달', lon:4.5, lat:37.6, kind:'tribe', col:'vandal', stages:[2,3], sub:'바다를 건너'},
+    {t:'프랑크', lon:4.2, lat:49.6, kind:'tribe', col:'frank', stages:[3,4], sub:'갈리아 북쪽에 남다'},
+    {t:'앵글로색슨', lon:1.3, lat:52.4, kind:'tribe', col:'saxon', stages:[3,4], sub:'북해를 건너'},
+    {t:'서로마', lon:6.5, lat:45.2, kind:'city', stages:[0,1]},
+    {t:'동로마', lon:32.5, lat:39.2, kind:'city', stages:[0,1,2,3,4]},
+    {t:'브리튼', lon:-1.8, lat:52.8, kind:'city', stages:[0,3]},
+    {t:'갈리아', lon:2.4, lat:46.6, kind:'city', stages:[0,3]},
+    {t:'이베리아', lon:-4.2, lat:40.2, kind:'city', stages:[2,4]},
+    {t:'북아프리카', lon:6.5, lat:33.8, kind:'city', stages:[2]}
+  ];
+
+  const STAGES=[
+    {y:'375년경', kicker:'1 / 5  ·  훈족의 서진',
+      d:'동쪽 초원의 훈족이 다뉴브 쪽으로 밀려온다. 그 압력이 게르만 여러 부족의 등을 떠민다. 서로마는 아직 브리튼에서 북아프리카까지 이어져 있다.',
+      cam:{lon:11, lat:43.6, k:1.02},
+      event:null},
+    {y:'376 → 410년', kicker:'2 / 5  ·  서고트, 로마로',
+      d:'서고트가 다뉴브강을 건너 로마 영토로 들어온다. 410년, 알라리크의 서고트가 로마 시를 약탈한다. 브리튼에서는 로마 군대가 빠져나간다.',
+      cam:{lon:16.5, lat:43.2, k:2.05},
+      event:{year:'410', title:'로마 약탈', sub:'서고트 · 알라리크', col:'#d4a034', lon:12.50, lat:41.90}},
+    {y:'406 → 439년', kicker:'3 / 5  ·  반달, 카르타고로',
+      d:'반달은 라인강을 건너 갈리아·이베리아를 지나 바다를 건넌다. 439년 카르타고가 그들의 수도가 되고, 서로마는 곡창 북아프리카를 잃는다.',
+      cam:{lon:3.2, lat:39.0, k:1.92},
+      event:{year:'439', title:'카르타고 함락', sub:'반달 왕국', col:'#2a9bb5', lon:10.32, lat:36.85}},
+    {y:'440년대', kicker:'4 / 5  ·  프랑크와 앵글로색슨',
+      d:'브리튼 동쪽에는 앵글로색슨이, 갈리아 북쪽에는 프랑크가 자리를 잡는다. 이동은 “스쳐 지나가는 것”이 아니라 땅에 남는 일이다.',
+      cam:{lon:3.5, lat:51.6, k:2.28},
+      event:null},
+    {y:'476년', kicker:'5 / 5  ·  서로마의 끝',
+      d:'서로마를 끝낸 것은 앞서 로마를 약탈한 서고트가 아니라, 로마가 고용한 게르만족 출신 용병 대장이었다. 지도의 붉은색이 사라지고, 그 자리에 게르만 왕국들이, 동쪽에는 동로마가 남는다.',
+      cam:{lon:9.5, lat:44.0, k:1.58},
+      event:{year:'476', title:'서로마 멸망', sub:'게르만족 용병 대장에게 · 라벤나', col:'#d8d2c4', lon:12.20, lat:44.42}}
+  ];
+
+  const svg=document.getElementById('map');
+  const canvas=document.getElementById('fx');
+  const ctx=canvas.getContext('2d');
+  const labelsEl=document.getElementById('labels');
+  const vp=document.getElementById('viewport');
+
+  let stage=0, cam={x:0,y:0,k:1}, camTo={x:0,y:0,k:1}, playing=false, playTimer=null;
+  const routeGeom=[];
+  const particles=[];
+  let worldG=null;
+
+  /* 권역 hull을 닫힌 Catmull-Rom 스플라인으로 그린다.
+     hull 다수가 사각형 4점이라 직선으로 이으면 화면에 네모 블록이 그대로 드러났다.
+     5세기 경계는 정확히 알 수 없으므로 각진 선은 없는 정확도를 주장한다 — 곡선이 정직하다.
+     해안선은 landclip이 따로 잡으므로 이 곡선화는 내륙 경계에만 영향을 준다.
+     (blur/soft-edge는 저해상 클립과 겹쳐 해안이 뭉개져 기각 — 2026-08-22) */
+  function hullPath(h, tension){
+    const t = (tension===undefined ? 1 : tension);
+    const P = h.map(p=>project(p[0],p[1]));
+    const n = P.length;
+    if(n < 3){
+      let d=''; P.forEach((q,i)=>{ d+=(i?'L':'M')+q[0].toFixed(1)+','+q[1].toFixed(1); });
+      return d+'Z';
+    }
+    const at = i => P[(i%n+n)%n];
+    let d = 'M'+at(0)[0].toFixed(1)+','+at(0)[1].toFixed(1);
+    for(let i=0;i<n;i++){
+      const p0=at(i-1), p1=at(i), p2=at(i+1), p3=at(i+2);
+      const c1=[p1[0]+(p2[0]-p0[0])/6*t, p1[1]+(p2[1]-p0[1])/6*t];
+      const c2=[p2[0]-(p3[0]-p1[0])/6*t, p2[1]-(p3[1]-p1[1])/6*t];
+      d += 'C'+c1[0].toFixed(1)+','+c1[1].toFixed(1)+' '+c2[0].toFixed(1)+','+c2[1].toFixed(1)
+         + ' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);
+    }
+    return d+'Z';
+  }
+  function linePath(pts){
+    if(!pts.length) return '';
+    const xy=pts.map(p=>project(p[0],p[1]));
+    let d='M'+xy[0][0].toFixed(1)+','+xy[0][1].toFixed(1);
+    for(let i=0;i<xy.length-1;i++){
+      const p0=xy[Math.max(0,i-1)], p1=xy[i], p2=xy[i+1], p3=xy[Math.min(xy.length-1,i+2)];
+      const c1x=p1[0]+(p2[0]-p0[0])/6, c1y=p1[1]+(p2[1]-p0[1])/6;
+      const c2x=p2[0]-(p3[0]-p1[0])/6, c2y=p2[1]-(p3[1]-p1[1])/6;
+      d+='C'+c1x.toFixed(1)+','+c1y.toFixed(1)+','+c2x.toFixed(1)+','+c2y.toFixed(1)+','+p2[0].toFixed(1)+','+p2[1].toFixed(1);
+    }
+    return d;
+  }
+  function landD(){
+    return GEO.land.map(poly=>poly.map(ring=>{
+      let d='';
+      ring.forEach((p,i)=>{const [x,y]=project(p[0],p[1]); d+=(i?'L':'M')+x.toFixed(1)+','+y.toFixed(1);});
+      return d+'Z';
+    }).join('')).join('');
+  }
+
+  function ns(el,attr){
+    const e=document.createElementNS('http://www.w3.org/2000/svg', el);
+    if(attr) for(const k in attr) e.setAttribute(k, attr[k]);
+    return e;
+  }
+
+  function build(){
+    fit();
+    svg.setAttribute('viewBox','0 0 '+PROJ.W+' '+PROJ.H);
+    svg.innerHTML='';
+    const defs=ns('defs');
+    const clip=ns('clipPath',{id:'landclip'});
+    GEO.land.forEach(poly=>{
+      const p=ns('path',{d:poly.map(ring=>{
+        let d=''; ring.forEach((pt,i)=>{const [x,y]=project(pt[0],pt[1]); d+=(i?'L':'M')+x.toFixed(1)+','+y.toFixed(1);});
+        return d+'Z';
+      }).join('')});
+      clip.appendChild(p);
+    });
+    const hatch=ns('pattern',{id:'hatch',width:'6',height:'6',patternUnits:'userSpaceOnUse',patternTransform:'rotate(28)'});
+    hatch.appendChild(ns('path',{d:'M0 0 L0 6', stroke:'rgba(180,51,68,.55)', 'stroke-width':'1.1'}));
+    defs.appendChild(clip); defs.appendChild(hatch);
+    svg.appendChild(defs);
+
+    worldG=ns('g',{id:'world'});
+    worldG.appendChild(ns('rect',{x:-PROJ.W,y:-PROJ.H,width:PROJ.W*3,height:PROJ.H*3,fill:'#16343f'}));
+    /* faint graticule */
+    const grat=ns('g',{opacity:'.12','stroke':'#9fd0dc','stroke-width':'.6',fill:'none'});
+    for(let lon=-15; lon<=40; lon+=10){
+      const pts=[]; for(let lat=28; lat<=60; lat+=2) pts.push([lon,lat]);
+      grat.appendChild(ns('path',{d:linePath(pts)}));
+    }
+    for(let lat=30; lat<=60; lat+=10){
+      const pts=[]; for(let lon=-16; lon<=43; lon+=2) pts.push([lon,lat]);
+      grat.appendChild(ns('path',{d:linePath(pts)}));
+    }
+    worldG.appendChild(grat);
+
+    worldG.appendChild(ns('path',{id:'landfill', d:landD(), fill:'#cbb892'}));
+    GEO.lakes.forEach(ring=>{
+      worldG.appendChild(ns('path',{d:hullPath(ring), fill:'#16343f', stroke:'#3d6a74', 'stroke-width':'.6'}));
+    });
+    const rg=ns('g',{'clip-path':'url(#landclip)', id:'polities'});
+    REGIONS.forEach(r=>{
+      const p=ns('path',{class:'region', id:'r-'+r.id, d:hullPath(r.hull), fill:FILL[r.owner[0]], stroke:'none'});
+      p.style.fill=FILL[r.owner[0]];
+      rg.appendChild(p);
+    });
+    worldG.appendChild(rg);
+    worldG.appendChild(ns('path',{d:landD(), fill:'none', stroke:'#6a542e', 'stroke-width':'1.15'}));
+
+    const rivers=ns('g',{fill:'none', 'stroke':'#3d7f8c', 'stroke-linecap':'round'});
+    rivers.appendChild(ns('path',{d:linePath(GEO.danube), 'stroke-width':'2.2'}));
+    rivers.appendChild(ns('path',{d:linePath(RHINE), 'stroke-width':'2.2'}));
+    worldG.appendChild(rivers);
+
+    const rgR=ns('g',{id:'routes'});
+    ROUTES.forEach(rt=>{
+      const d=linePath(rt.pts);
+      const under=ns('path',{class:'route-under', d, stroke:rt.color, 'stroke-width': String(rt.width+5)});
+      const over=ns('path',{class:'route', id:'rt-'+rt.id, d, stroke:rt.color, 'stroke-width':String(rt.width)});
+      rgR.appendChild(under); rgR.appendChild(over);
+    });
+    worldG.appendChild(rgR);
+
+    const pins=ns('g',{id:'pins'});
+    [['rome',12.50,41.90],['rav',12.20,44.42],['carth',10.32,36.85],['const',28.98,41.01]].forEach(([id,lon,lat])=>{
+      const [x,y]=project(lon,lat);
+      pins.appendChild(ns('circle',{class:'pin', id:'pin-'+id, cx:x.toFixed(1), cy:y.toFixed(1), r:'4.5', fill:'#f3ead8'}));
+    });
+    worldG.appendChild(pins);
+
+    const rip=ns('g',{id:'ripples'});
+    worldG.appendChild(rip);
+
+    svg.appendChild(worldG);
+
+    /* measure routes */
+    routeGeom.length=0;
+    ROUTES.forEach(rt=>{
+      const el=document.getElementById('rt-'+rt.id);
+      const L=el.getTotalLength()||1;
+      el.style.strokeDasharray=String(L);
+      el.style.strokeDashoffset=String(L);
+      const samples=[];
+      const step=Math.max(2, L/180);
+      for(let d=0; d<=L; d+=step){
+        const p=el.getPointAtLength(d);
+        samples.push({x:p.x,y:p.y,d});
+      }
+      routeGeom.push({el, L, samples, rt});
+    });
+
+    /* labels */
+    labelsEl.innerHTML='';
+    LABELS.forEach((lb,i)=>{
+      const div=document.createElement('div');
+      div.className='lbl '+lb.kind;
+      div.dataset.i=i;
+      const col=lb.col? '<span class="dot" style="background:var(--'+lb.col+')"></span>' : '';
+      div.innerHTML=col+'<span>'+lb.t+'</span>'+(lb.sub?'<small>'+lb.sub+'</small>':'');
+      labelsEl.appendChild(div);
+    });
+
+    sizeCanvas();
+    seedParticles();
+    applyStage(stage, true);
+  }
+
+  function sizeCanvas(){
+    const dpr=Math.min(window.devicePixelRatio||1, 2);
+    canvas.width=Math.floor(PROJ.W*dpr);
+    canvas.height=Math.floor(PROJ.H*dpr);
+    canvas.style.width=PROJ.W+'px';
+    canvas.style.height=PROJ.H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  function seedParticles(){
+    particles.length=0;
+    if(REDUCE) return;
+    routeGeom.forEach((g,gi)=>{
+      const n=g.rt.n;
+      for(let i=0;i<n;i++){
+        particles.push({gi, t:Math.random(), sp:0.0018+Math.random()*0.0032, w:1.2+Math.random()*2.2});
+      }
+    });
+  }
+
+  function camFromStage(s){
+    const st=STAGES[s];
+    let k=st.cam.k;
+    if(PROJ.W<700) k*=1.12;
+    const [x,y]=project(st.cam.lon, st.cam.lat);
+    return {x,y,k};
+  }
+  function worldTransform(){
+    return 'translate('+PROJ.W/2+','+PROJ.H/2+') scale('+cam.k+') translate('+(-cam.x)+','+(-cam.y)+')';
+  }
+  function toScreen(lon,lat){
+    const [x,y]=project(lon,lat);
+    return [(x-cam.x)*cam.k+PROJ.W/2, (y-cam.y)*cam.k+PROJ.H/2];
+  }
+
+  function applyStage(n, instant){
+    n=Math.max(0,Math.min(STAGES.length-1,n));
+    stage=n;
+    const s=STAGES[n];
+    document.getElementById('kicker').textContent=s.kicker;
+    document.getElementById('year').textContent=s.y;
+    document.getElementById('desc').textContent=s.d;
+    document.getElementById('barfill').style.width=((n+1)/STAGES.length*100)+'%';
+    [...document.querySelectorAll('#steps button')].forEach((b,i)=>b.setAttribute('aria-current', i===n?'true':'false'));
+
+    REGIONS.forEach(r=>{
+      const el=document.getElementById('r-'+r.id);
+      if(el){
+        if(REDUCE || instant) el.style.transition='none';
+        else el.style.transition='';
+        el.style.fill = FILL[r.owner[n]];
+      }
+    });
+    let wre=0, wreMax=0;
+    REGIONS.forEach(r=>{
+      if(!r.w) return;
+      wreMax+=r.w;
+      if(r.owner[n]==='wre') wre+=r.w;
+    });
+    const p=wreMax? wre/wreMax : 0;
+    document.getElementById('remainN').textContent=Math.round(p*100)+'%';
+    const pips=document.getElementById('pips');
+    pips.innerHTML='';
+    for(let i=0;i<7;i++){
+      const sp=document.createElement('span');
+      if(i < Math.round(p*7)) sp.className='on';
+      pips.appendChild(sp);
+    }
+
+    routeGeom.forEach(g=>{
+      const rev=g.rt.reveal[n];
+      const off=g.L*(1-rev);
+      if(REDUCE || instant){
+        g.el.style.transition='none';
+        g.el.style.strokeDashoffset=String(off);
+      }else{
+        g.el.style.transition='stroke-dashoffset 1.6s cubic-bezier(.16,.7,.2,1)';
+        g.el.style.strokeDashoffset=String(off);
+      }
+      g.el.style.opacity = rev<0.05 ? 0 : 1;
+    });
+
+    const ev=s.event;
+    const box=document.getElementById('event');
+    const rip=document.getElementById('ripples');
+    rip.innerHTML='';
+    if(ev){
+      box.classList.add('show');
+      const _es=document.getElementById('eseal');
+      _es.textContent=ev.year;
+      if(ev.col){ _es.style.borderColor=ev.col; _es.style.color=ev.col; }
+      document.getElementById('etitle').textContent=ev.title;
+      document.getElementById('esub').textContent=ev.esub||ev.sub;
+      const [x,y]=project(ev.lon, ev.lat);
+      const g=ns('g',{class:'ripple', transform:'translate('+x+','+y+')'});
+      g.appendChild(ns('circle',{r:'16'}));
+      g.appendChild(ns('circle',{r:'16'}));
+      rip.appendChild(g);
+    } else box.classList.remove('show');
+
+    camTo=camFromStage(n);
+    if(REDUCE || instant){
+      cam.x=camTo.x; cam.y=camTo.y; cam.k=camTo.k;
+      worldG.setAttribute('transform', worldTransform());
+      placeLabels();
+    }
+  }
+
+  function placeLabels(){
+    const nodes=labelsEl.children;
+    for(let i=0;i<nodes.length;i++){
+      const lb=LABELS[i];
+      const on=lb.stages.indexOf(stage)>=0;
+      nodes[i].classList.toggle('on', on);
+      if(!on) continue;
+      const [sx,sy]=toScreen(lb.lon, lb.lat);
+      if(sx<-40||sy<-20||sx>PROJ.W+40||sy>PROJ.H-120){ nodes[i].classList.remove('on'); continue; }
+      nodes[i].style.left=sx+'px';
+      nodes[i].style.top=sy+'px';
+    }
+  }
+
+  let last=performance.now();
+  function tick(now){
+    const dt=Math.min(40, now-last); last=now;
+    const a=REDUCE?1:(1-Math.exp(-dt/380));
+    cam.x+=(camTo.x-cam.x)*a;
+    cam.y+=(camTo.y-cam.y)*a;
+    cam.k+=(camTo.k-cam.k)*a;
+    if(worldG) worldG.setAttribute('transform', worldTransform());
+    placeLabels();
+
+    if(!REDUCE){
+      const dpr=Math.min(window.devicePixelRatio||1,2);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.globalCompositeOperation='destination-out';
+      ctx.fillStyle='rgba(0,0,0,0.18)';
+      ctx.fillRect(0,0,PROJ.W,PROJ.H);
+      ctx.globalCompositeOperation='lighter';
+      ctx.save();
+      ctx.translate(PROJ.W/2, PROJ.H/2);
+      ctx.scale(cam.k, cam.k);
+      ctx.translate(-cam.x, -cam.y);
+      particles.forEach(p=>{
+        const g=routeGeom[p.gi];
+        const rev=g.rt.reveal[stage];
+        if(rev<0.05) return;
+        p.t+=p.sp*(dt/16);
+        if(p.t>rev) p.t-=rev;
+        if(p.t<0) p.t+=rev;
+        const samples=g.samples;
+        const idx=Math.max(0, Math.min(samples.length-2, Math.floor(p.t*(samples.length-1))));
+        const pa=samples[idx], pb=samples[idx+1]||pa;
+        const dx=pb.x-pa.x, dy=pb.y-pa.y;
+        ctx.strokeStyle=g.rt.color;
+        ctx.globalAlpha=0.62;
+        ctx.lineWidth=p.w;
+        ctx.lineCap='round';
+        ctx.beginPath();
+        ctx.moveTo(pa.x-dx*2.1, pa.y-dy*2.1);
+        ctx.lineTo(pa.x, pa.y);
+        ctx.stroke();
+      });
+      ctx.restore();
+      ctx.globalAlpha=1;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* UI */
+  const steps=document.getElementById('steps');
+  STAGES.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.textContent=(i+1)+'  '+s.y.replace('년경','');
+    b.addEventListener('click',()=>{ stopPlay(); applyStage(i); });
+    steps.appendChild(b);
+  });
+  function stopPlay(){ playing=false; document.getElementById('play').textContent='재생'; if(playTimer){clearInterval(playTimer); playTimer=null;} }
+  document.getElementById('play').addEventListener('click',()=>{
+    if(playing){ stopPlay(); return; }
+    playing=true; document.getElementById('play').textContent='멈춤';
+    playTimer=setInterval(()=>{ applyStage((stage+1)%STAGES.length); }, REDUCE?4000:7000);
+  });
+  addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key===' '){ e.preventDefault(); stopPlay(); applyStage(stage+1); }
+    else if(e.key==='ArrowLeft'){ e.preventDefault(); stopPlay(); applyStage(stage-1); }
+    else if(/^[1-5]$/.test(e.key)){ stopPlay(); applyStage(+e.key-1); }
+    else if(e.key==='f'||e.key==='F'){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.(); }
+  });
+  let sx=null;
+  addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; }, {passive:true});
+  addEventListener('touchend', e=>{
+    if(sx==null) return;
+    const dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>44){ stopPlay(); applyStage(stage+(dx<0?1:-1)); }
+    sx=null;
+  });
+  let resizeT;
+  addEventListener('resize', ()=>{
+    clearTimeout(resizeT);
+    resizeT=setTimeout(()=>{ build(); }, 120);
+  });
+
+  build();
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
