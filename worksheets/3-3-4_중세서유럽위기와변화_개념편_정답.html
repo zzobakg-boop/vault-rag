@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>역사① Ⅲ단원 3-3-4 — 사람이 줄자, 값이 올랐다 (정답·모범답안)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
+  background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
+}
+.container {
+  max-width: 800px; margin: 0 auto; background: white;
+  border-radius: 16px; padding: 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
+h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
+h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
+p { margin: 5px 0; font-size: 0.95em; }
+hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
+}
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
+td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
+tr:first-child td { background: #f0f4ff; font-weight: 600; }
+blockquote {
+  border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
+  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
+}
+.callout {
+  padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
+}
+.callout-info { background: #e8f4fd; border-left: 4px solid #007aff; }
+.callout-warning { background: #fff8e1; border-left: 4px solid #ff9500; }
+.callout-tip { background: #e8f8e8; border-left: 4px solid #34c759; }
+.callout-question { background: #f3e8fd; border-left: 4px solid #af52de; }
+.code-block {
+  background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px;
+  font-family: 'SF Mono', monospace; font-size: 0.82em;
+  overflow-x: auto; margin: 10px 0; white-space: pre;
+}
+.blank-input {
+  border: none; border-bottom: 2px solid #007aff; background: #f8f9ff;
+  padding: 3px 6px; font-size: 0.93em; font-family: inherit;
+  text-align: center; border-radius: 4px 4px 0 0; outline: none;
+  transition: all 0.3s;
+}
+.blank-input:focus { border-bottom-color: #5856d6; background: #f0f0ff; }
+.blank-input.correct { border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.blank-input.wrong { border-bottom-color: #ff3b30; background: #fff0f0; }
+.blank-input.no-score { border-bottom-color: #aaa; }
+.blank-input.code-blank { background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }
+.blank-input.no-score.correct { border-bottom-color: #34c759; }
+.blank-input.no-score.wrong { border-bottom-color: #ff9500; }
+.ox-input {
+  border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
+  font-family: inherit; border-radius: 4px; outline: none;
+  transition: all 0.3s;
+}
+.ox-group { display: inline-flex; gap: 6px; }
+.ox-btn {
+  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; line-height: 1;
+}
+.ox-btn:hover { background: #f0f4ff; }
+.ox-btn.selected { background: #007aff; color: white; }
+.ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.ox-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 4px; }
+.choice-btn {
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}
+.choice-btn:hover { background: #f0f4ff; }
+.choice-btn.selected { background: #007aff; color: white; }
+.choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.btn-submitted { background: #34c759 !important; cursor: default; }
+.submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
+.essay-input {
+  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
+  padding: 10px; font-family: inherit; font-size: 0.93em;
+  resize: vertical; margin: 6px 0; outline: none;
+}
+.essay-input:focus { border-color: #007aff; }
+.control-bar {
+  position: sticky; top: 0; background: white; padding: 10px 0;
+  border-bottom: 1px solid #eee; margin: -16px 0 16px; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.score { font-size: 1.1em; font-weight: 600; color: #007aff; }
+.btn {
+  padding: 7px 16px; border: none; border-radius: 8px;
+  font-size: 0.88em; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: #007aff; color: white; }
+.btn-secondary { background: #f0f0f5; color: #333; }
+.btn-danger { background: #ff3b30; color: white; }
+.student-info {
+  display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.student-info input {
+  border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
+}
+@media (max-width: 600px) {
+  .container { padding: 14px; }
+  .control-bar { flex-direction: column; text-align: center; }
+  table { font-size: 0.82em; }
+  .hero-title { font-size: 26px !important; }
+  .hero-section { padding: 36px 20px !important; }
+}
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
+.hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
+.hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
+.hero-keyword {
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}
+.hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
+.ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+.hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-4 — 사람이 줄자, 값이 올랐다 (정답·모범답안)</h1><p class="hero-subtitle">사람이 줄자, 값이 올랐다</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">흑사병 = 인구 1/3이 사라짐<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">노동력 부족 → 농민 지위 상승<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">길드와 자치권 = 도시의 힘<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">백년 전쟁 → 중앙 집권 국가<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>흑사병(黑死病)</strong> — 페스트균이 일으킨 전염병. 14세기 유럽 인구의 <strong>약 3분의 1</strong>이 사망했다. > 이름의 유래: 사망하기 전 환자의 피부가 검게 변한다고 하여 흑사병이라 불렀다.</p><table><thead><tr><th>유행 전</th><th>유행 후</th></tr></thead><tbody><tr><td>일할 사람 많음 → 농민은 흔한 존재</td><td>일할 사람 귀함 → <strong>농민 몸값 상승</strong></td></tr></tbody></table></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>인구가 줄었는데 왜 농민이 세졌나</strong> — 교과서가 말하는 인과는 이 순서다.</p><p>`흑사병` → `인구 감소` → `노동력 부족` → `영주가 농노 처우 개선` → `농민 지위 상승`</p><p>> ⚠️ 단, 반대 길도 있었다. 일부 영주는 줄어든 수입을 메우려 <strong>농민을 억압</strong> → <strong>농민 반란</strong>(프랑스 자크리의 난 1358, 영국 와트 타일러의 난 1381).</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>길드</strong> — 도시의 상인·수공업자가 만든 <strong>동업 조합</strong>. 공동의 이익과 안전을 지키려고 결성했다. <strong>자치권</strong> — 도시가 스스로를 다스릴 권리. 도시민들이 <strong>영주에게 돈을 내거나 무력으로 저항해</strong> 얻어 냈다.</p><p>> 💡 중세 유럽에서 처음으로 「영주가 아닌 사람들이 운영하는 공간」이 생긴 것.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>두 전쟁, 같은 결과</strong></p><table><thead><tr><th></th><th>백년 전쟁 (1337~1453)</th><th>장미 전쟁</th></tr></thead><tbody><tr><td>누가</td><td>영국 ↔ 프랑스</td><td>영국 <strong>내부</strong> 귀족끼리</td></tr><tr><td>왜</td><td>플랑드르 지배권 + <strong>왕위 계승</strong></td><td>왕위 계승</td></tr><tr><td>결과</td><td>프랑스 승리 → 중앙 집권 발판</td><td>봉건 영주 몰락 → 왕권 강화</td></tr></tbody></table><p>> 장미 전쟁이라는 이름은 <strong>랭커스터 가문이 붉은 장미, 요크 가문이 흰 장미</strong>를 문장으로 삼은 데서 왔다.</p></div></div><div class="hero-hook">14세기 유럽에서 사람이 셋 중 하나꼴로 죽었어. 그런데 이상한 일이 벌어져 — 살아남은 농민들의 처지가 오히려 좋아진 거야. 왜 그럴까? 답은 잔인할 만큼 단순해. 일할 사람이 귀해졌거든. 오늘은 재앙 하나가 어떻게 유럽의 신분 질서를 무너뜨리고, 그 자리에 「나라」를 세웠는지 따라간다.</div></section>
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
+  <h1>역사① Ⅲ단원 3-3-4 — 사람이 줄자, 값이 올랐다 (정답·모범답안)</h1>
+<br>
+<blockquote>🎙️ 지난 시간에 이런 질문을 남겼지 — <em>"교황이 이겼던 싸움이 왜 나중엔 왕이 이기는 걸로 뒤집혔을까?"</em> 오늘 그 답이 나와. 그런데 출발점이 좀 무서워. <strong>14세기 유럽에서 사람이 셋 중 하나꼴로 죽었어.</strong> 흑사병이야. 그런데 그 재앙 뒤에 아무도 예상 못 한 일이 벌어져 — 살아남은 <strong>농민들의 처지가 좋아진 거야.</strong> 왜 그랬는지, 그리고 그게 어떻게 「나라」를 만들었는지 보러 가자.</blockquote>
+<br>
+<h2>📌 학습 목표</h2>
+<p>- 봉건 사회가 해체되고 <strong>도시가 발전하는 과정</strong>을 파악할 수 있다.</p>
+<p>- <strong>중앙 집권 국가가 등장한 배경</strong>을 설명할 수 있다.</p>
+<br>
+<h2>✨ 오늘의 고급 단어</h2>
+<table>
+<tr><td>낱말</td><td>쉽게 말하면</td><td>한자 뜯어보기</td><td>문장 속에서</td></tr>
+<tr><td><strong>해체</strong>(解體)</td><td>짜여 있던 것이 풀려 흩어짐</td><td>해(解, 풀) + 체(體, 몸)</td><td>"중세의 장원은 점차 <strong>해체</strong>되었다."</td></tr>
+<tr><td><strong>길드</strong></td><td>상인·수공업자의 동업 조합</td><td>(외래어)</td><td>"<strong>길드</strong>를 만들어 도시를 운영하였다."</td></tr>
+<tr><td><strong>자치권</strong>(自治權)</td><td>스스로 다스릴 권리</td><td>자(自, 스스로) + 치(治, 다스림)</td><td>"도시민들은 <strong>자치권</strong>을 얻기도 하였다."</td></tr>
+<tr><td><strong>중앙 집권</strong>(中央集權)</td><td>힘이 가운데로 모임</td><td>집(集, 모을) + 권(權, 권력)</td><td>"프랑스는 <strong>중앙 집권</strong> 국가로 성장하였다."</td></tr>
+</table>
+<br>
+<blockquote>💡 오늘의 인과 한 줄 — <strong>사람이 줄었다 → 일손이 귀해졌다 → 농민이 세졌다 → 장원이 무너졌다 → 왕이 세졌다.</strong> 이 사슬만 붙잡으면 오늘은 끝이야.</blockquote>
+<br>
+<h2>📖 1단계: 재앙이 신분을 흔들다</h2>
+<p>14세기 유럽에서 ①<span class="blank-filled">흑사병</span>이 유행하여 인구가 크게 줄었다. 노동력이 부족해지자 영주들이 농노의 처우를 개선해 주면서 ②<span class="blank-filled">농민</span>의 지위가 높아졌다. 그러나 일부 지역에서는 영주가 줄어든 수입을 보충하려고 오히려 농민들을 억압하여 ③<span class="blank-filled">농민 반란</span>이 일어났다.</p>
+<blockquote>(교과서 원문: "14세기 유럽에서는 흑사병이 유행하여 인구가 크게 줄었다. 노동력이 부족해지자 영주들이 농노의 처우를 개선해 주면서 농민의 지위가 높아졌다. 그러나 일부 지역에서는 영주가 줄어든 수입을 보충하려고 오히려 농민들을 억압하여 농민 반란이 일어났다." — 비상교육 역사①(이병인) p.99)</blockquote>
+<br>
+<blockquote>🎙️ 잔인하지만 단순한 계산이야. 일할 사람이 <strong>셋에서 둘로</strong> 줄면, 남은 두 사람의 몸값이 오르잖아. 영주 입장에선 <em>"떠나지 마세요, 조건 좋게 해 드릴게요"</em> 하는 수밖에 없었던 거지. 요즘으로 치면 <strong>사람이 없어서 시급이 오르는 상황</strong>이야.</blockquote>
+<blockquote>(교과서 원문: "페스트균이 일으키는 흑사병으로 유럽 인구의 약 3분의 1이 사망하였다. 사망하기 전 환자의 피부가 검게 변한다고 하여 흑사병이라고 불렸다." — 비상교육 역사①(이병인) p.99 날개 주석)</blockquote>
+<br>
+<blockquote>🧑‍🏫 <strong>지도 포인트</strong> — 지도서 수업 주안점이 <em>"흑사병의 유행, 화폐 경제의 발달이 농민의 지위 향상으로 이어졌음을 강조한다"</em>이다. <strong>두 원인(전염병·화폐)이 같은 결과로 모인다</strong>는 구조를 판서로 잡아 줄 것. 학생들은 흑사병만 기억하고 화폐 쪽을 흘린다.</blockquote>
+<br>
+<blockquote>⚠️ <strong>그런데 모두가 좋아진 건 아니야.</strong> 어떤 영주는 반대로 굴었어 — 수입이 줄었으니 <em>농민을 더 쥐어짜서</em> 메우려 한 거지. 그래서 프랑스와 영국에서 큰 농민 반란이 터져. 같은 재앙인데 지역마다 결과가 갈렸다는 것, 이게 중요해.</blockquote>
+<br>
+<h2>📖 2단계: 돈이 신분을 사다</h2>
+<p>상업과 도시의 성장으로 화폐 사용이 늘자 영주는 노동력이나 생산물 대신 ④<span class="blank-filled">화폐</span>로 세금을 거두었고, 농노에게 돈을 받고 농노 신분에서 해방하여 주기도 하였다. 이러한 변화 속에 중세의 ⑤<span class="blank-filled">장원</span>은 점차 해체되었고, 중세 봉건 사회는 크게 흔들렸다.</p>
+<blockquote>(교과서 원문: "한편, 상업과 도시의 성장으로 화폐 사용이 늘자 영주는 노동력이나 생산물 대신 화폐로 세금을 거두었고, 농노에게 돈을 받고 농노 신분에서 해방하여 주기도 하였다. 이러한 변화 속에 중세의 장원은 점차 해체되었고, 중세 봉건 사회는 크게 흔들렸다." — 비상교육 역사①(이병인) p.99)</blockquote>
+<br>
+<blockquote>🎙️ <strong>여기 진짜 반전이 있어.</strong> 농노가 자유를 얻은 방법이 뭐였게? 반란도, 전쟁도 아니야. <strong>돈을 주고 샀어.</strong> 영주 입장에선 <em>"땅에 묶어 두는 것보다 목돈 받는 게 낫다"</em>고 계산한 거고. 지난 시간에 배운 봉건 사회를 기억해 봐 — <em>"지켜 줄게, 대신 넌 여길 못 떠나"</em>였잖아. 그 거래가 <strong>화폐로 풀린</strong> 거야.</blockquote>
+<br>
+<blockquote>🧑‍🏫 <strong>지도 포인트</strong> — <em>"돈으로 자유를 샀다"</em>가 이 단계의 핵심이고 3-3-1의 회수 지점이다. 봉건 사회를 <em>"지켜 줄게, 대신 못 떠나"</em>로 배웠으니, <strong>그 계약이 화폐로 풀렸다</strong>고 이어 주면 두 차시가 한 줄로 꿰인다.</blockquote>
+<br>
+<h2>📖 3단계: 도시가 스스로 서다</h2>
+<p>11세기 이후 농업의 발달로 잉여 생산물이 늘어나면서 상업이 활발해졌고, 원거리 무역이 늘어나며 도시가 성장하였다. 도시의 상인과 수공업자들은 공동의 이익과 안전을 지키고자 동업 조합인 ⑥<span class="blank-filled">길드</span>를 만들어 도시를 운영하였다. 이 과정에서 부를 쌓은 도시민들은 영주에게 돈을 내거나 무력으로 저항하여 ⑦<span class="blank-filled">자치권</span>을 얻기도 하였다.</p>
+<blockquote>(교과서 원문: "11세기 이후 농업의 발달로 잉여 생산물이 늘어나면서 상업이 활발해졌다. 원거리 무역이 늘어나자 지중해와 발트해, 북해를 중심으로 한 기존의 도시들이 더욱 성장하였고, 새로운 도시도 생겨났다. 도시의 상인과 수공업자들은 공동의 이익과 안전을 지키고자 동업 조합인 길드를 만들어 도시를 운영하였다. 이 과정에서 부를 쌓은 도시민들은 영주에게 돈을 내거나 무력으로 저항하여 자치권을 얻기도 하였다." — 비상교육 역사①(이병인) p.100)</blockquote>
+<br>
+<blockquote>💡 <strong>자치권이 뭐가 그렇게 대단한가?</strong> 그때까지 모든 땅은 누군가의 영주가 다스렸어. 그런데 도시가 <em>"우리 일은 우리가 정한다"</em>는 권리를 얻은 거야. 중세 유럽에 <strong>영주가 아닌 사람들이 스스로 운영하는 공간</strong>이 처음 생긴 셈이지.</blockquote>
+<br>
+<h2>📖 4단계: 그래서 왕이 세졌다</h2>
+<p>장원이 해체되면서 영주의 힘이 점차 약해지고, 화약과 대포 등 새로운 무기가 등장하여 ⑧<span class="blank-filled">기사</span>　계급이 몰락하였다. 반면 새롭게 성장한 도시 상공업자들은 국왕을 경제적으로 돕거나 관리로 일하며 세력을 키웠다. 유럽 각국의 국왕은 이들의 지원에 힘입어 관료와 군대를 정비하며 ⑨<span class="blank-filled">왕권</span>을 강화해 나갔다.</p>
+<blockquote>(교과서 원문: "장원이 해체되면서 영주의 힘이 점차 약해지고, 화약과 대포 등 새로운 무기가 등장하여 기사 계급이 몰락하였다. 반면, 새롭게 성장한 도시 상공업자들은 국왕을 경제적으로 돕거나 관리로 일하며 세력을 키워 나갔다. 유럽 각국의 국왕은 이들의 지원에 힘입어 관료와 군대를 정비하며 왕권을 강화해 나갔다." — 비상교육 역사①(이병인) p.100)</blockquote>
+<br>
+<blockquote>🎙️ <strong>화약이 왜 기사를 무너뜨렸을까?</strong> 기사는 어릴 때부터 훈련받고 비싼 갑옷과 말을 갖춰야 하는 <strong>소수 정예</strong>였어. 그런데 대포 한 방이면 성벽이 뚫리고, 총을 든 평민 병사도 갑옷 입은 기사를 쓰러뜨릴 수 있게 된 거야. 수십 년 갈고닦은 실력이 <strong>화약 앞에서 값이 떨어진</strong> 거지.</blockquote>
+<br>
+<blockquote>⚠️ <strong>지난 시간 질문의 답이 여기 있어.</strong> <em>"왜 아비뇽 유수 때는 왕이 이겼나?"</em> — 이때쯤 왕은 <strong>관료와 군대와 세금</strong>을 갖춘 사람이 되어 있었거든. 교황의 힘은 신앙에서 나왔는데, 왕의 힘은 이렇게 손에 잡히는 것들로 채워지고 있었어.</blockquote>
+<br>
+<blockquote>🧑‍🏫 <strong>지도 포인트</strong> — 이 단계가 <strong>3-3-2 「더 생각해 보기」의 답</strong>이다. 그때 <em>"230년 사이에 무엇이 달라졌나"</em>를 물어 두었으니, 여기서 <em>"그 답이 오늘 나왔다"</em>고 명시적으로 회수할 것. 이 연결을 하면 학생은 두 차시를 한 사건으로 기억한다.</blockquote>
+<br>
+<h2>📖 5단계: 백 년을 싸운 두 나라</h2>
+<p>14세기 중반 영국과 프랑스 사이에서 ⑩<span class="blank-filled">백년 전쟁</span>이 일어났다. 전쟁에서 승리한 프랑스는 중앙 집권 국가로 성장하는 발판을 마련하였다. 이후 영국에서는 왕위 계승을 둘러싸고 ⑪<span class="blank-filled">장미 전쟁</span>이 일어났는데, 이 전쟁에 참여한 많은 봉건 영주들이 힘을 잃으면서 상대적으로 왕권이 강해졌고 영국도 중앙 집권 국가의 모습을 갖추어 갔다.</p>
+<blockquote>(교과서 원문: "14세기 중반 영국과 프랑스 사이에서 백년 전쟁이 일어났다(1337~1453). 전쟁에서 승리한 프랑스는 중앙 집권 국가로 성장하는 발판을 마련하였다. 이후 영국에서는 왕위 계승을 둘러싸고 장미 전쟁이 일어났다. 이 전쟁에 참여한 많은 봉건 영주들이 힘을 잃으면서 상대적으로 왕권이 강해졌고, 영국도 중앙 집권 국가의 모습을 갖추어 갔다." — 비상교육 역사①(이병인) p.101)</blockquote>
+<br>
+<blockquote>🎙️ 전쟁이 왕권을 <strong>강하게</strong> 만든다는 게 이상하지? 비결은 이거야 — 전쟁에 나간 건 <strong>영주와 기사들</strong>이었고, 거기서 죽거나 재산을 잃은 것도 그들이었어. 싸움이 끝나고 보니 <strong>경쟁자가 사라져 있던</strong> 거지. 영국 장미 전쟁이 특히 그랬어.</blockquote>
+<br>
+<h2>✏️ 활동 1 — 인과의 사슬 잇기</h2>
+<blockquote>오늘 배운 변화를 순서대로 이어 보자. 빈칸에 알맞은 말을 써넣으면 하나의 사슬이 완성돼.</blockquote>
+<br>
+<table>
+<tr><td>순서</td><td>일어난 일</td></tr>
+<tr><td>1</td><td>흑사병이 유행하다</td></tr>
+<tr><td><strong>2</strong></td><td><strong>인구가 크게 줄어 노동력이 부족해지다</strong></td></tr>
+<tr><td>3</td><td>영주가 농노의 처우를 개선하다</td></tr>
+<tr><td><strong>4</strong></td><td><strong>농민의 지위가 높아지다</strong></td></tr>
+<tr><td>5</td><td>화폐로 세금을 내고, 돈으로 신분에서 풀려나다</td></tr>
+<tr><td><strong>6</strong></td><td><strong>장원이 해체되고 영주의 힘이 약해지다</strong></td></tr>
+<tr><td>7</td><td>기사가 몰락하고 도시 상공업자가 국왕을 돕다</td></tr>
+<tr><td><strong>8</strong></td><td><strong>왕권이 강해져 중앙 집권 국가가 등장하다</strong></td></tr>
+</table>
+<br>
+<blockquote>🧑‍🏫 <strong>채점 관점</strong> — 표현이 달라도 <strong>인과의 자리</strong>가 맞으면 인정한다(예: 2번을 "사람이 많이 죽어서 일할 사람이 없어짐"으로 써도 O). ⚠️ 4번에 <em>"농민이 자유로워졌다"</em>만 쓰면 5번과 겹치므로 <strong>지위 상승</strong>으로 유도. 8번이 오늘의 도착점이므로 여기가 비면 개별 지도.</blockquote>
+<br>
+<h2>✏️ 활동 2 — 그래프 읽기</h2>
+<blockquote>교과서 100쪽 「흑사병의 유행에 따른 변화」 그래프를 보자. 13~15세기 영국의 <strong>인구</strong>와 <strong>농민 임금</strong>이 함께 그려져 있어.</blockquote>
+<br>
+<blockquote>💬 <strong>인구가 감소한 시기에 농민의 임금은 어떻게 변했는지 쓰고, 왜 그렇게 되었는지 이유도 함께 써 보자.</strong></blockquote>
+<br>
+<blockquote><strong>모범답안</strong>: 인구가 크게 줄어든 시기에 농민의 임금은 오히려 올랐다. 일할 사람이 부족해지자 영주들이 농민을 붙잡아 두기 위해 더 나은 조건을 제시해야 했기 때문이다.</blockquote>
+<blockquote>🧑‍🏫 <strong>채점 관점</strong> — <em>"임금이 올랐다"</em>(그래프 읽기)와 <em>"일손이 부족해서"</em>(이유)가 <strong>둘 다</strong> 있어야 도달. 그래프만 읽고 이유가 없으면 중간. ⚠️ 그래프의 두 선이 <strong>반대로 움직인다</strong>는 것을 못 읽는 학생이 있으니 축을 짚어 줄 것(왼쪽 축=임금 %, 오른쪽 축=인구 백만 명).</blockquote>
+<br>
+<h2>⭕ OX 퀴즈</h2>
+<table>
+<tr><td>번호</td><td>문장</td><td>O / X</td></tr>
+<tr><td>1</td><td>흑사병으로 인구가 줄자 노동력이 부족해져 농민의 지위가 높아졌다.</td><td><strong>O</strong></td></tr>
+<tr><td>2</td><td>흑사병 이후 모든 지역에서 농민의 처지가 좋아졌다.</td><td><strong>X</strong></td></tr>
+<tr><td>3</td><td>영주는 농노에게 돈을 받고 신분에서 해방해 주기도 하였다.</td><td><strong>O</strong></td></tr>
+<tr><td>4</td><td>길드는 영주가 도시를 다스리기 위해 만든 조직이다.</td><td><strong>X</strong></td></tr>
+<tr><td>5</td><td>백년 전쟁에서 승리한 프랑스는 중앙 집권 국가로 성장하는 발판을 마련하였다.</td><td><strong>O</strong></td></tr>
+</table>
+<br>
+<blockquote><strong>OX 해설</strong></blockquote>
+<blockquote>1 O — 오늘의 핵심 인과.</blockquote>
+<blockquote><strong>2 X — 핵심 함정.</strong> 일부 영주는 줄어든 수입을 메우려 오히려 농민을 억압했고, 그 결과 <strong>농민 반란</strong>(자크리의 난·와트 타일러의 난)이 일어났다. <em>"모든/항상"</em>이 들어간 문장은 일단 의심하게 지도할 것.</blockquote>
+<blockquote>3 O — 돈을 주고 신분에서 풀려났다.</blockquote>
+<blockquote><strong>4 X — 주체 뒤집기 함정.</strong> 길드는 <strong>상인과 수공업자</strong>가 공동의 이익과 안전을 위해 만든 동업 조합이다. 오히려 도시민들은 영주에게서 <strong>자치권을 얻어 냈다</strong>.</blockquote>
+<blockquote>5 O — 장미 전쟁을 거친 영국도 뒤이어 중앙 집권 국가의 모습을 갖춘다.</blockquote>
+<br>
+<h2>🤔 더 생각해 보기</h2>
+<blockquote><strong>발문</strong>: 지난 시간에 우리는 이렇게 물었다 — <em>"카노사에서는 황제가 굽혔는데, 아비뇽에서는 왜 교황이 끌려갔을까?"</em> 오늘 배운 내용에서 <strong>왕의 힘이 강해진 과정</strong>을 두 가지 이상 들어 한두 문장으로 서술하시오.</blockquote>
+<br>
+<blockquote><strong>모범답안</strong>: 장원이 해체되면서 영주의 힘이 약해졌고, 화약과 대포가 등장해 기사 계급이 몰락하였다. 여기에 도시 상공업자들이 국왕을 경제적으로 돕고 관리로 일하면서, 국왕은 관료와 군대를 갖추고 왕권을 강화할 수 있었다. 그래서 교황과 다시 부딪쳤을 때는 왕이 우위에 서게 되었다.</blockquote>
+<br>
+<table>
+<tr><td>수준</td><td>기준</td></tr>
+<tr><td><strong>상</strong></td><td>왕권 강화의 경로를 <strong>두 가지 이상</strong>(장원 해체·기사 몰락·도시 상공업자의 지원·관료와 군대 정비) 들고, 그것이 <strong>교황과의 관계 역전으로 이어졌다</strong>는 연결까지 쓴다</td></tr>
+<tr><td><strong>중</strong></td><td>왕권 강화 요인을 두 가지 이상 들었으나 <strong>아비뇽 유수와의 연결이 없다</strong></td></tr>
+<tr><td><strong>하</strong></td><td>한 가지만 들거나, "왕이 세져서"처럼 결과를 원인으로 되풀이한다</td></tr>
+</table>
+<br>
+<blockquote>🧑‍🏫 <strong>지도 참고</strong> — 이 문항은 <strong>3-3-2와 3-3-4를 잇는 연결 문항</strong>이다. 문항은행 적립 시 두 차시 공통으로 표시할 것. 답이 막히면 4단계 ⚠️ 콜아웃(<em>"교황의 힘은 신앙, 왕의 힘은 손에 잡히는 것"</em>)을 먼저 읽게 한다.</blockquote>
+<br>
+<h2>다음 시간 예고</h2>
+<p>장원이 무너지고 도시가 자라던 그 무렵, 이탈리아의 도시들에서는 전혀 다른 일이 시작되고 있었어. 사람들이 천 년 전 그리스·로마를 다시 꺼내 보기 시작한 거야 — 다음 시간 <strong>「유럽에서 르네상스가 일어나다」</strong>.</p>
+</div>
+<script>
+const TB=0, TOX=0, GT=0;
+let usedReveal=false;
+function selectOX(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function selectChoice(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+function check(){
+  let bc=0, oxc=0;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    const a=norm(el.dataset.answer), u=norm(el.value);
+    if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
+    const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
+    if(isCorrect){
+      el.classList.add('correct');el.classList.remove('wrong');
+      bc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const sel=grp.dataset.selected, ans=grp.dataset.answer;
+    if(!sel) return;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');oxc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');bc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
+}
+function reveal(){
+  usedReveal=true;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const ans=grp.dataset.answer;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.getElementById('score').textContent=TB;
+  document.getElementById('ox-score').textContent=TOX;
+  document.getElementById('total-score').textContent=GT;
+  document.getElementById('pct').textContent=100;
+}
+function reset(){
+  usedReveal=false;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value='';el.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.ox-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
+}
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+function _wsKey(){
+  if(!EXAM_MODE) return 'ws_'+document.title;
+  const si=document.querySelectorAll('.student-info input');
+  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  if(!c||!n) return null;
+  return 'ws_'+document.title+'::'+c+'-'+n;
+}
+function _persist(){
+  const key=_wsKey(); if(!key) return;
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const si=document.querySelectorAll('.student-info input');
+  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+}
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
+function loadProgress(){
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
+  if(!saved) return;
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  if(info&&!EXAM_MODE){
+    const inputs=document.querySelectorAll('.student-info input');
+    if(info.class&&inputs[0]) inputs[0].value=info.class;
+    if(info.number&&inputs[1]) inputs[1].value=info.number;
+    if(info.name&&inputs[2]) inputs[2].value=info.name;
+  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
+}
+// 모든 입력칸에서 Enter→다음칸 이동
+const allInputs=[...document.querySelectorAll('.blank-input')];
+allInputs.forEach((el,i)=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
+  });
+});
+// 제출
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){
+  const ans={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  });
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+  });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
+  return ans;
+}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+function submitResult(){
+  if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
+  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
+  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
+  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
+  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
+  check(); // 먼저 채점
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
+  const answers=collectAnswers();
+  const data={
+    type:'final',
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
+  };
+  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(()=>{
+    document.getElementById('submitBtn').textContent='✅ 제출 완료';
+    document.getElementById('submitBtn').classList.add('btn-submitted');
+    setTimeout(()=>{
+      document.getElementById('submitBtn').textContent='📤 재제출';
+      document.getElementById('submitBtn').classList.remove('btn-submitted');
+    }, 2000);
+  })
+  .catch(e=>alert('제출 실패: '+e));
+}
+// 페이지 로드 시 저장된 진행 불러오기
+loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+});
+document.querySelectorAll('.student-info input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  document.querySelectorAll('.student-info input').forEach(el=>{
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
+</script>
+</body>
+</html>
