@@ -133,6 +133,19 @@ blockquote {
 .hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
 .hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
 .hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
 .hero-keyword {
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -154,7 +167,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-4차시 — 왜 옷도 만들 수 있는데 중국에서 옷을 사 올까? (국제 거래와 비교 우위)</h1><p class="hero-subtitle">왜 우리는 옷도 만들 수 있는데 중국에서 옷을 사 올까?</p><div class="hero-keywords"><span class="hero-keyword">국제 거래 = 국경 넘는 거래·상호 의존</span><span class="hero-keyword">필요 이유 = 자연환경·생산요소 차이</span><span class="hero-keyword">비교 우위 상품에 특화 → 수출</span><span class="hero-keyword">절대 우위 ≠ 비교 우위</span></div><img class="hero-image" src="images/trade-hero.png" alt=""><div class="hero-hook">네가 입은 옷, 손에 든 폰, 아침에 먹은 바나나 — 'made in' 라벨을 보면 세계 곳곳이야. 우리나라도 옷을 만들 수 있는데 왜 굳이 중국 옷을 사 올까? 답은 '비교 우위'에 있어. 모두가 다 잘 만들려 하지 않고, 서로 '제일 잘하는 것'에 집중해서 바꾸면 모두가 이득이거든. 오늘은 나라들이 왜, 어떻게 거래하는지 알아보자.</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-4차시 — 왜 옷도 만들 수 있는데 중국에서 옷을 사 올까? (국제 거래와 비교 우위)</h1><p class="hero-subtitle">왜 우리는 옷도 만들 수 있는데 중국에서 옷을 사 올까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">국제 거래 = 국경 넘는 거래·상호 의존<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">필요 이유 = 자연환경·생산요소 차이<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">비교 우위 상품에 특화 → 수출<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">절대 우위 ≠ 비교 우위<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>국제 거래</strong> = 상품·노동·자본·기술이 <strong>국경을 넘어</strong> 오가는 것.</p><table><thead><tr><th>넘는 것</th><th>우리 일상의 예</th></tr></thead><tbody><tr><td>상품</td><td>편의점 수입 과자, 중국산 옷</td></tr><tr><td>노동</td><td>외국인 노동자, 해외 취업</td></tr><tr><td>자본</td><td>외국인의 한국 주식 투자</td></tr><tr><td>기술</td><td>반도체 특허 사용료</td></tr></tbody></table><p><strong>상호 의존</strong> — 한 나라에서 생긴 일이 다른 나라로 번진다는 뜻. 우리나라는 무역 의존도가 <strong>약 86%</strong>(2025)라 그 영향을 특히 크게 받는다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>나라마다 <strong>가진 것이 다르기 때문</strong>에 거래한다. 조건은 두 갈래다.</p><table><thead><tr><th>갈래</th><th>무엇이 다른가</th><th>예</th></tr></thead><tbody><tr><td><strong>자연환경</strong></td><td>기후·지형·자원</td><td>사우디의 석유, 베트남의 커피</td></tr><tr><td><strong>생산 요소</strong></td><td>노동·자본·기술의 양과 질</td><td>우리나라의 반도체 기술</td></tr></tbody></table><p><strong>뒤집어 보면</strong> — 모든 나라가 똑같았다면 무역할 이유가 없다. <strong>다르다는 것이 거래의 출발점</strong>이다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><img src="images/v5-comparative-advantage.png" alt="비교 우위를 기회비용으로 계산한 그림. 우리나라는 컴퓨터 1대에 옷 0.5벌, 중국은 옷 2벌을 포기한다."><p><strong>비교 우위</strong> = 그 상품을 만들 때 <strong>포기하는 것이 더 적은</strong> 쪽. 많이 만드느냐가 아니라 <strong>무엇을 포기하느냐</strong>로 정해진다.</p><p><strong>특화</strong> = 비교 우위가 있는 것 <strong>하나에 집중</strong>해서 만드는 것. → 그것을 수출하고, 나머지는 수입한다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>🔴 <strong>시험에 가장 많이 나오는 함정.</strong></p><table><thead><tr><th></th><th>절대 우위</th><th>비교 우위</th></tr></thead><tbody><tr><td>무엇을 보나</td><td><strong>많이</strong> 만드는가</td><td>무엇을 <strong>포기</strong>하는가</td></tr><tr><td>판정</td><td>컴퓨터 10>2 · 옷 5>4 → <strong>둘 다 우리나라</strong></td><td>컴퓨터는 우리 · 옷은 중국</td></tr><tr><td>결론</td><td>—</td><td><strong>나눠서 특화</strong></td></tr></tbody></table><p><strong>틀린 문장 하나만 기억하자</strong> — <em>"다 잘 만드니까 다 만드는 게 이득이다."</em> <strong>아니다.</strong> 둘 다 잘해도 <strong>덜 아까운 것 하나</strong>에 붙는 게 이득이다.</p></div></div><img class="hero-image" src="images/trade-hero.png" alt=""><div class="hero-hook">네가 입은 옷, 손에 든 폰, 아침에 먹은 바나나 — 'made in' 라벨을 보면 세계 곳곳이야. 우리나라도 옷을 만들 수 있는데 왜 굳이 중국 옷을 사 올까? 답은 '비교 우위'에 있어. 모두가 다 잘 만들려 하지 않고, 서로 '제일 잘하는 것'에 집중해서 바꾸면 모두가 이득이거든. 오늘은 나라들이 왜, 어떻게 거래하는지 알아보자.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/10 · OX: <span id="ox-score">0</span>/5
@@ -310,6 +323,16 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
