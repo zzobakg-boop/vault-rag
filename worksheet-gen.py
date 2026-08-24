@@ -459,6 +459,9 @@ def md_to_html(md):
         im = re.match(r'^!\[([^\]]*)\]\(([^)]+)\)$', t)
         if im:
             flush_p(); out.append(f'<img src="{im.group(2)}" alt="{im.group(1)}">'); continue
+        if t.startswith('>'):
+            # 2026-08-24: 카드 안 blockquote 지원. 없으면 '>'가 글자로 노출됐다(역사 세션 지적).
+            flush_p(); out.append('<div class="card-quote">' + inline(t.lstrip('> ').strip()) + '</div>'); continue
         if t.startswith('- '):
             flush_p(); out.append('<p>• ' + inline(t[2:]) + '</p>'); continue
         buf.append(t)
@@ -720,6 +723,7 @@ blockquote {{
 .hero-card-inner img {{ max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }}
 .hero-card-inner p {{ margin: 6px 0; }}
 .hero-card-inner strong {{ color: #0d47a1; }}
+.card-quote {{ border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }}
 @media print {{ .hero-card[hidden] {{ display: none; }} .kw-caret {{ display: none; }} }}
 .hero-keyword {{
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
