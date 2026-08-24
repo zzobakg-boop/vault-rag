@@ -133,6 +133,19 @@ blockquote {
 .hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
 .hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
 .hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
 .hero-keyword {
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -154,7 +167,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-5차시 — 해외 직구할 때 '환율 오름' 뜨면 왜 비싸질까? (환율의 결정과 영향)</h1><p class="hero-subtitle">해외 직구할 때 '환율 오름' 뜨면 왜 비싸질까?</p><div class="hero-keywords"><span class="hero-keyword">환율 = 두 화폐의 교환 비율(외화의 가격)</span><span class="hero-keyword">환율도 외화의 수요·공급으로 결정</span><span class="hero-keyword">환율 ↑ = 원화 가치 ↓</span><span class="hero-keyword">수출·수입·물가·여행에 영향</span></div><div class="hero-hook">좋아하는 해외 아이돌 굿즈를 직구하려는데 '환율이 올랐다'는 뉴스가 떠. 그러면 같은 10달러짜리 굿즈가 갑자기 더 비싸져(헐!). 환율이 뭐길래 내 지갑을 흔들까? 환율은 '다른 나라 돈의 값'이야. 이게 오르고 내리면 직구도, 수출도, 해외여행도 다 달라져. 오늘은 환율의 정체와 그 파급력을 알아보자.</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-5차시 — 해외 직구할 때 '환율 오름' 뜨면 왜 비싸질까? (환율의 결정과 영향)</h1><p class="hero-subtitle">해외 직구할 때 '환율 오름' 뜨면 왜 비싸질까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">환율 = 두 화폐의 교환 비율(외화의 가격)<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">환율도 외화의 수요·공급으로 결정<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">환율 ↑ = 원화 가치 ↓<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">수출·수입·물가·여행에 영향<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>환율</strong> = 두 나라 돈을 바꾸는 비율. 다르게 말하면 <strong>외화의 가격</strong>이다.</p><p><strong>1달러 = 1,400원</strong> 이라고 쓴다. 이건 <em>"달러라는 물건의 값이 1,400원"</em> 이라는 뜻이다.</p><p>🔴 <strong>환율을 '물건 값'으로 읽는 순간 전부 쉬워진다.</strong></p><p>• 환율이 오른다 = <strong>달러가 비싸졌다</strong></p><p>• 달러가 비싸졌다 = <strong>원화로는 더 많이 줘야 한다</strong></p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>환율도 <strong>수요·공급으로 정해진다.</strong> 4단원에서 배운 그 원리 그대로다 — 달라진 건 상품이 <strong>달러</strong>라는 것뿐.</p><table><thead><tr><th></th><th>언제 생기나</th><th>환율은</th></tr></thead><tbody><tr><td><strong>외화 수요 ↑</strong></td><td>수입 증가·해외여행·유학</td><td><strong>오른다</strong></td></tr><tr><td><strong>외화 공급 ↑</strong></td><td>수출 증가·외국인 투자 유입</td><td><strong>내린다</strong></td></tr></tbody></table><p><strong>뒤집어 보면</strong> — 달러를 <strong>사려는 사람</strong>이 많으면 달러 값(환율)이 오르고, <strong>팔려는 사람</strong>이 많으면 내린다. 시장에서 사과값 정해지는 것과 똑같다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>🔴 <strong>가장 헷갈리는 지점. 둘은 항상 반대로 움직인다.</strong></p><table><thead><tr><th></th><th>환율</th><th>원화 가치</th><th>뜻</th></tr></thead><tbody><tr><td>1달러 = 1,200원</td><td>—</td><td>—</td><td>기준</td></tr><tr><td>1달러 = <strong>1,400원</strong></td><td><strong>올랐다 ↑</strong></td><td><strong>떨어졌다 ↓</strong></td><td>달러 사려면 원화를 <strong>더</strong> 줘야 함</td></tr><tr><td>1달러 = <strong>1,000원</strong></td><td><strong>내렸다 ↓</strong></td><td><strong>올랐다 ↑</strong></td><td>원화를 <strong>덜</strong> 줘도 됨</td></tr></tbody></table><p><strong>외우는 법</strong> — 환율은 <strong>달러의 값</strong>이다. 달러가 비싸지면 상대적으로 <strong>원화는 싸진 것</strong>이다. 시소를 떠올리면 된다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>환율이 오르면(원화 가치 ↓) 우리 생활은 이렇게 갈린다.</p><table><thead><tr><th></th><th>환율 상승 시</th><th>왜</th></tr></thead><tbody><tr><td><strong>수출</strong></td><td>유리 ✅</td><td>우리 물건이 외국에서 <strong>싸 보인다</strong></td></tr><tr><td><strong>수입</strong></td><td>불리 ❌</td><td>같은 물건에 원화를 <strong>더</strong> 줘야 한다</td></tr><tr><td><strong>국내 물가</strong></td><td>오름 ❌</td><td>수입 원자재값이 올라 밀어 올린다</td></tr><tr><td><strong>해외여행</strong></td><td>불리 ❌</td><td>같은 여행에 돈이 <strong>더</strong> 든다</td></tr></tbody></table><p><strong>5-2와 이어진다</strong> — 환율이 오르면 물가도 오른다. 5-2에서 배운 <strong>물가 상승 3원인 중 '생산비 상승'</strong> 이 바로 이 길이다.</p></div></div><div class="hero-hook">좋아하는 해외 아이돌 굿즈를 직구하려는데 '환율이 올랐다'는 뉴스가 떠. 그러면 같은 10달러짜리 굿즈가 갑자기 더 비싸져(헐!). 환율이 뭐길래 내 지갑을 흔들까? 환율은 '다른 나라 돈의 값'이야. 이게 오르고 내리면 직구도, 수출도, 해외여행도 다 달라져. 오늘은 환율의 정체와 그 파급력을 알아보자.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/5
@@ -244,6 +257,16 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
