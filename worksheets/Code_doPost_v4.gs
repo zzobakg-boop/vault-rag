@@ -39,6 +39,14 @@ function doPost(e) {
     if (!tab) {
       tab = ss.insertSheet(tabName);
       tab.appendRow(['시각', '학습지', '반', '번호', '이름', '빈칸', 'OX', '총점', '답(JSON)']);
+    } else if (tab.getLastRow() === 0 || String(tab.getRange(1, 1).getValue()) !== '시각') {
+      // ⚠️ 2026-08-24 버그 픽스: 탭이 '이미 존재'하지만 헤더가 없는 경우
+      // (예: 빈 탭이 사전에 만들어져 있던 경우) — 예전엔 header 생성 자체를 건너뛰어
+      // act-N 동적 컬럼이 헤더 없는 시트의 2번째 열부터 붙으면서 헤더-데이터가
+      // 완전히 어긋났다(역사① 3-2-5 사고). 헤더가 없거나 첫 칸이 '시각'이 아니면
+      // 무조건 맨 위에 표준 헤더 행을 삽입한다.
+      tab.insertRowBefore(1);
+      tab.getRange(1, 1, 1, 9).setValues([['시각', '학습지', '반', '번호', '이름', '빈칸', 'OX', '총점', '답(JSON)']]);
     }
 
     var ts = new Date();
