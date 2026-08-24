@@ -133,6 +133,19 @@ blockquote {
 .hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
 .hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
 .hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
 .hero-keyword {
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -154,7 +167,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-2~5-3차시 — 물가와 실업 (정답·모범답안)</h1><p class="hero-subtitle">물가를 잡으면 일자리가 줄어든다고?</p><div class="hero-keywords"><span class="hero-keyword">물가 지수 = 기준 시점 100 · CPI는 평균</span><span class="hero-keyword">물가 상승 3원인(수요·통화량·생산비)</span><span class="hero-keyword">실업 3유형 · 실업률 분모 = 경제 활동 인구</span><span class="hero-keyword">물가 안정 ↔ 고용 안정 = 단기 상충</span></div><img class="hero-image" src="images/pricejob-hero.png" alt=""><div class="hero-hook">물가가 오르면 힘들지. 용돈은 그대로인데 떡볶이값만 오르니까. 그럼 물가를 확 잡아버리면 되잖아? 그런데 여기 반전이 있어 — 물가를 잡으려고 하면 이번엔 일자리가 줄어들거든(헐!). 둘 다 좋은 건데 왜 동시에 못 잡을까? 이 단원 첫날 던졌던 그 질문, 오늘 답의 절반을 찾는다.</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-2~5-3차시 — 물가와 실업 (정답·모범답안)</h1><p class="hero-subtitle">물가를 잡으면 일자리가 줄어든다고?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">물가 지수 = 기준 시점 100 · CPI는 평균<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">물가 상승 3원인(수요·통화량·생산비)<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">실업 3유형 · 실업률 분모 = 경제 활동 인구<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">물가 안정 ↔ 고용 안정 = 단기 상충<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>물가 지수</strong> = 기준이 되는 해를 <strong>100</strong>으로 놓고, 지금이 얼마인지 견준 수.</p><table><thead><tr><th>지수</th><th>뜻</th></tr></thead><tbody><tr><td>100</td><td>기준 시점과 <strong>같다</strong></td></tr><tr><td>105</td><td>기준보다 <strong>5% 올랐다</strong></td></tr><tr><td>98</td><td>기준보다 <strong>2% 내렸다</strong></td></tr></tbody></table><p>🔴 <strong>CPI는 '평균'이다.</strong> 소비자 물가 지수는 <strong>도시 가구의 평균 소비 패턴</strong>으로 만든다. 그래서 <em>"물가가 안정됐다"</em> 는 뉴스와 <strong>내 체감이 다를 수 있다</strong> — 내가 자주 사는 물건이 평균과 다르면 그렇다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>물가가 오르는 길은 <strong>세 갈래</strong>다. 셋 다 결국 <em>"돈은 많은데 물건은 그대로"</em> 로 모인다.</p><table><thead><tr><th>원인</th><th>무슨 일이</th><th>쉽게 말하면</th></tr></thead><tbody><tr><td><strong>수요 증가</strong></td><td>사려는 사람이 늘어남</td><td>물건은 그대로인데 <strong>사겠다는 손</strong>이 늘었다</td></tr><tr><td><strong>통화량 증가</strong></td><td>시중에 돈이 많이 풀림</td><td><strong>돈이 흔해지면</strong> 돈의 값이 떨어진다</td></tr><tr><td><strong>생산비 상승</strong></td><td>임금·원자재값이 오름</td><td>만드는 값이 오르니 <strong>파는 값</strong>도 오른다</td></tr></tbody></table><p><strong>9단계와 이어진다</strong> — 금리를 올리면 ①수요와 ②통화량을 <strong>거꾸로</strong> 돌리게 된다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><img src="images/v5-unemployment-rate.png" alt="만 15세 이상 100명인 마을로 그린 실업률 구조도. 경제 활동 인구 60명 가운데 실업자 3명이므로 실업률은 5%다."><p><strong>실업 3유형</strong> — <strong>경기적</strong>(경기가 나빠서) · <strong>구조적</strong>(기술·산업이 바뀌어서) · <strong>마찰적</strong>(더 나은 곳으로 옮기는 중).</p><p>🔴 <strong>분모는 '경제 활동 인구'다.</strong> 전체 인구도, 노동 가능 인구도 아니다. 학생·전업주부는 <strong>일할 의사가 없어 분모에서 아예 빠진다.</strong></p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><img src="images/v5-blanket.png" alt="너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다."><p><strong>둘 다 좋은 목표인데 동시에 잡기 어렵다.</strong></p><table><thead><tr><th>금리를</th><th>물가는</th><th>일자리는</th></tr></thead><tbody><tr><td><strong>올리면</strong></td><td>진정된다 ✅</td><td>줄어든다 ❌</td></tr><tr><td><strong>내리면</strong></td><td>오른다 ❌</td><td>늘어난다 ✅</td></tr></tbody></table><p><strong>핵심</strong> — 이건 정책이 서툴러서가 아니다. <strong>아픔이 부작용이 아니라, 그게 약이 듣는 방식</strong>이다. 그래서 한국은행의 고민은 <em>"할까 말까"</em> 가 아니라 <strong>"얼마나"</strong> 다.</p></div></div><img class="hero-image" src="images/pricejob-hero.png" alt=""><div class="hero-hook">물가가 오르면 힘들지. 용돈은 그대로인데 떡볶이값만 오르니까. 그럼 물가를 확 잡아버리면 되잖아? 그런데 여기 반전이 있어 — 물가를 잡으려고 하면 이번엔 일자리가 줄어들거든(헐!). 둘 다 좋은 건데 왜 동시에 못 잡을까? 이 단원 첫날 던졌던 그 질문, 오늘 답의 절반을 찾는다.</div></section>
   <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
   <h1>사회② 국민경제와 국제거래 5-2~5-3차시 — 물가와 실업 (정답·모범답안)</h1>
 <br>
@@ -379,6 +392,16 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
