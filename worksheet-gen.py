@@ -8,6 +8,8 @@ import os
 
 
 def strip_obsidian_artifacts(text, teacher=False):
+    # 2026-08-24: 키워드 카드 섹션은 hero에서만 렌더 → 본문에서는 항상 제거
+    text = re.sub(r'^##\s*🔖\s*키워드 카드\s*$.*?(?=^##\s|\Z)', '', text, flags=re.S | re.M)
     """옵시디언 전용 wiki-embed·obsidian:// link 제거.
     teacher=False (학생/복습용) — 교사 전용 섹션도 제거 (defense-in-depth·학생 노출 방지).
     teacher=True  (정답편)      — 교사 전용 섹션을 *유지* (정답편=교사용이므로 해설·모범답안·교사 메타 전부 노출)."""
@@ -431,9 +433,42 @@ def inline(text):
     return ''.join(result)
 
 
+def md_to_html(md):
+    """키워드 카드 전용 미니 변환기 (표·이미지·불릿·문단만). 2026-08-24.
+    기존 본문 파이프라인과 분리 — 카드가 없으면 호출되지 않으므로 회귀 0."""
+    out, rows, buf = [], [], []
+    def flush_p():
+        if buf:
+            out.append('<p>' + inline(' '.join(buf)) + '</p>'); buf.clear()
+    def flush_tbl():
+        if not rows: return
+        body = [r for r in rows if not re.match(r'^[\s|:-]+$', r)]
+        cells = [[c.strip() for c in r.strip().strip('|').split('|')] for r in body]
+        if cells:
+            h = ''.join(f'<th>{inline(c)}</th>' for c in cells[0])
+            b = ''.join('<tr>' + ''.join(f'<td>{inline(c)}</td>' for c in r) + '</tr>' for r in cells[1:])
+            out.append(f'<table><thead><tr>{h}</tr></thead><tbody>{b}</tbody></table>')
+        rows.clear()
+    for line in md.split('\n'):
+        t = line.strip()
+        if t.startswith('|'):
+            flush_p(); rows.append(t); continue
+        flush_tbl()
+        if not t:
+            flush_p(); continue
+        im = re.match(r'^!\[([^\]]*)\]\(([^)]+)\)$', t)
+        if im:
+            flush_p(); out.append(f'<img src="{im.group(2)}" alt="{im.group(1)}">'); continue
+        if t.startswith('- '):
+            flush_p(); out.append('<p>• ' + inline(t[2:]) + '</p>'); continue
+        buf.append(t)
+    flush_p(); flush_tbl()
+    return ''.join(out)
+
+
 def extract_hero_meta(blank_file):
     """개념편 frontmatter에서 hero 메타 추출 (editorial-noir 톤 master of slide 스타일)"""
-    hero = {'image': None, 'keywords': [], 'subtitle': None, 'eyebrow': None, 'hook': None}
+    hero = {'image': None, 'keywords': [], 'subtitle': None, 'eyebrow': None, 'hook': None, 'cards': {}}
     try:
         with open(blank_file, 'r', encoding='utf-8') as f:
             text = f.read()
@@ -463,6 +498,15 @@ def extract_hero_meta(blank_file):
         mm = re.search(r'^hero_keywords:\s*\n((?:\s+-\s+.+\n)+)', fm, re.M)
         if mm:
             hero['keywords'] = [l.strip().lstrip('- ').strip().strip('"\'') for l in mm.group(1).strip().split('\n')][:5]
+    # 2026-08-24: 본문 '## 🔖 키워드 카드' 섹션 → 칩별 개념 카드(아코디언).
+    # 형식: '### 1' ~ '### 6' (hero_keywords 순번과 1:1). 없으면 조용히 skip.
+    cm = re.search(r'^##\s*🔖\s*키워드 카드\s*$(.*?)(?=^##\s|\Z)', text, re.S | re.M)
+    if cm:
+        for bm in re.finditer(r'^###\s*(\d)\s*$\n(.*?)(?=^###\s*\d\s*$|\Z)', cm.group(1), re.S | re.M):
+            md = bm.group(2).strip()
+            if md:
+                hero['cards'][bm.group(1)] = md_to_html(md)
+
     return hero
 
 
@@ -471,8 +515,20 @@ def build_hero_html(title, hero):
         return ''
     eyebrow = f'<div class="hero-eyebrow">{hero["eyebrow"]}</div>' if hero.get('eyebrow') else ''
     sub = f'<p class="hero-subtitle">{hero["subtitle"]}</p>' if hero.get('subtitle') else ''
-    kws = ''.join(f'<span class="hero-keyword">{k}</span>' for k in (hero.get('keywords') or [])[:6])
-    kws_html = f'<div class="hero-keywords">{kws}</div>' if kws else ''
+    # 2026-08-24: 키워드 칩 클릭 → 개념 카드 펼침(아코디언).
+    # 카드가 없으면 이전과 100% 동일한 <span>을 낸다(회귀 0).
+    cards = hero.get('cards') or {}
+    _kw = []
+    for i, k in enumerate(list(hero.get('keywords') or [])[:6], 1):
+        if str(i) in cards:
+            _kw.append(f'<button type="button" class="hero-keyword has-card" data-card="{i}" aria-expanded="false">{k}<span class="kw-caret">＋</span></button>')
+        else:
+            _kw.append(f'<span class="hero-keyword">{k}</span>')
+    kws = ''.join(_kw)
+    card_html = ''.join(
+        f'<div class="hero-card" id="hero-card-{i}" hidden><div class="hero-card-inner">{h}</div></div>'
+        for i, h in sorted(cards.items(), key=lambda kv: int(kv[0])))
+    kws_html = f'<div class="hero-keywords">{kws}</div>{card_html}' if kws else ''
     img = f'<img class="hero-image" src="{hero["image"]}" alt="">' if hero.get('image') else ''
     hook = f'<div class="hero-hook">{hero["hook"]}</div>' if hero.get('hook') else ''
     return f'<section class="hero-section">{eyebrow}<h1 class="hero-title">{title}</h1>{sub}{kws_html}{img}{hook}</section>'
@@ -652,6 +708,19 @@ blockquote {{
 .hero-title {{ font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }}
 .hero-subtitle {{ font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }}
 .hero-keywords {{ display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }}
+.hero-keyword.has-card {{ cursor: pointer; font-family: inherit; }}
+.hero-keyword.has-card:hover {{ background: rgba(255,255,255,0.14); border-color: #8a8a80; }}
+.hero-keyword.has-card[aria-expanded="true"] {{ background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }}
+.kw-caret {{ margin-left: 7px; font-size: 11px; opacity: 0.75; }}
+.hero-card {{ margin-top: 12px; }}
+.hero-card-inner {{ background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }}
+.hero-card-inner table {{ width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }}
+.hero-card-inner th, .hero-card-inner td {{ border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }}
+.hero-card-inner th {{ background: #eef1f5; font-weight: 700; }}
+.hero-card-inner img {{ max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }}
+.hero-card-inner p {{ margin: 6px 0; }}
+.hero-card-inner strong {{ color: #0d47a1; }}
+@media print {{ .hero-card[hidden] {{ display: none; }} .kw-caret {{ display: none; }} }}
 .hero-keyword {{
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -692,6 +761,16 @@ function selectChoice(btn, val){{
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }}
+document.addEventListener('click', function(e){{
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) {{ card.removeAttribute('hidden'); }} else {{ card.setAttribute('hidden',''); }}
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '\u2212' : '\uFF0B';
+}});
 function norm(s){{return (s||'').replace(/\\s+/g,'').replace(/[·,.()（）\\[\\]]/g,'').toLowerCase();}}
 function check(){{
   let bc=0, oxc=0;
