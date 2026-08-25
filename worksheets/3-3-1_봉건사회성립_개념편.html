@@ -133,6 +133,20 @@ blockquote {
 .hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
 .hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
 .hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+.card-quote { border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
 .hero-keyword {
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -154,7 +168,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-1 — "지켜 줄게. 대신 넌 여길 못 떠나." (서유럽 봉건 사회의 성립)</h1><p class="hero-subtitle">\"지켜 줄게. 대신 넌 여길 못 떠나.\"</p><div class="hero-keywords"><span class="hero-keyword">주종 관계 = 서로 의무를 지는 계약</span><span class="hero-keyword">장원제 = 봉토를 굴리는 방식</span><span class="hero-keyword">농노 ≠ 노예 (결혼·재산 가능)</span><span class="hero-keyword">왕권 약화 → 지방 분권</span></div><div class="hero-hook">바이킹 배가 강을 거슬러 올라온다. 마을이 불탄다. 그런데 왕은 오지 않아. 그때 언덕 위 성에서 누가 외쳐 — \"안전하게 지내고 싶으면 이곳으로 오시오.\" 달려갈까? 가면 살 수는 있어. 대신 그날부터 넌 그 땅을 떠날 수 없게 돼. 중세 유럽은 이 거래 위에 세워진 세계야. 오늘은 그 거래의 조건을 하나씩 읽어 보자.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-1 — "지켜 줄게. 대신 넌 여길 못 떠나." (서유럽 봉건 사회의 성립)</h1><p class="hero-subtitle">\"지켜 줄게. 대신 넌 여길 못 떠나.\"</p><div class="hero-keywords"><span class="hero-keyword">주종 관계 = 서로 의무를 지는 계약</span><span class="hero-keyword">장원제 = 봉토를 굴리는 방식</span><span class="hero-keyword">농노 ≠ 노예 (결혼·재산 가능)</span><span class="hero-keyword">왕권 약화 → 지방 분권</span></div><img class="hero-image" src="images/feudal-hero.png" alt=""><div class="hero-hook">바이킹 배가 강을 거슬러 올라온다. 마을이 불탄다. 그런데 왕은 오지 않아. 그때 언덕 위 성에서 누가 외쳐 — \"안전하게 지내고 싶으면 이곳으로 오시오.\" 달려갈까? 가면 살 수는 있어. 대신 그날부터 넌 그 땅을 떠날 수 없게 돼. 중세 유럽은 이 거래 위에 세워진 세계야. 오늘은 그 거래의 조건을 하나씩 읽어 보자.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/18 · OX: <span id="ox-score">0</span>/5
@@ -298,6 +312,16 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
