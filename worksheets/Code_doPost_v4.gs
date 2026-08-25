@@ -32,6 +32,21 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
+    // ⚠️ 2026-08-25 근본 픽스: 동시 제출 경쟁 상태(race) 방어.
+    // 잠금이 없으면 두 학생이 거의 동시에 제출할 때 둘 다 '탭 없음'을 보고,
+    // 뒤 요청이 앞 요청이 만든 탭을 발견해 헤더 생성을 건너뛴다 →
+    // 헤더 없는 탭에 데이터만 쌓인다(사회② 5-2 8/21 · 역사① 3-2-5 동일 증상).
+    // 5-1이 멀쩡했던 것은 코드가 달라서가 아니라 제출이 몰리지 않았기 때문이다.
+    var lock = LockService.getScriptLock();
+    try {
+      lock.waitLock(20000);
+    } catch (lockErr) {
+      return ContentService.createTextOutput(JSON.stringify({ok: false, error: 'busy'}))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    try {
+
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var ws = data.worksheet || '제출';
     var tabName = sanitizeTabName_(ws);            // ⭐ v4: 학습지별 탭
@@ -77,6 +92,10 @@ function doPost(e) {
 
     return ContentService.createTextOutput(JSON.stringify({ok: true, tab: tabName}))
       .setMimeType(ContentService.MimeType.JSON);
+    } finally {
+      lock.releaseLock();
+    }
+
   } catch (err) {
     return ContentService.createTextOutput(JSON.stringify({ok: false, error: err.toString()}))
       .setMimeType(ContentService.MimeType.JSON);
