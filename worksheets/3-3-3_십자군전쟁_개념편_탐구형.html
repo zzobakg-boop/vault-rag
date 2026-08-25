@@ -133,6 +133,20 @@ blockquote {
 .hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
 .hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
 .hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+.card-quote { border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
 .hero-keyword {
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -154,11 +168,11 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-3 — 같은 깃발 아래, 서로 다른 꿍꿍이 (십자군 전쟁)</h1><p class="hero-subtitle">성지를 되찾자며 200년을 싸웠는데, 왜 교황이 약해졌을까?</p><div class="hero-keywords"><span class="hero-keyword">셀주크 튀르크 → 예루살렘 점령·비잔티움 위협</span><span class="hero-keyword">교황 우르바누스 2세 클레르몽 호소(1096~)</span><span class="hero-keyword">참여자 4인 = 서로 다른 목적</span><span class="hero-keyword">결과의 역설: 교황권↓ 왕권↑ · 동방 교류↑</span></div><div class="hero-hook">자, 네가 1096년 유럽 사람이라고 해보자. 교황이 외친다 — '성지 예루살렘을 되찾자!' 사람들이 우르르 모여든다. 그런데 반전이 있어. 모인 사람들 속마음이 다 달랐거든. 교황은 교회 힘을, 기사는 땅을, 상인은 돈을, 농노는 자유를 원했지. 200년 뒤 결과는? 예루살렘은 못 찾았고, 정작 전쟁을 이끈 교황의 힘이 떨어졌어(헐?). 목적과 결과가 이렇게 어긋난 전쟁, 오늘 그 이야기.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-3 — 같은 깃발 아래, 서로 다른 꿍꿍이 (십자군 전쟁)</h1><p class="hero-subtitle">성지를 되찾자며 200년을 싸웠는데, 왜 교황이 약해졌을까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">셀주크 튀르크 → 예루살렘 점령·비잔티움 위협<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">교황 우르바누스 2세 클레르몽 호소(1096~)<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">참여자 4인 = 서로 다른 목적<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">결과의 역설: 교황권↓ 왕권↑ · 동방 교류↑<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>셀주크 튀르크</strong> — 11세기경 중앙아시아에서 일어난 <strong>유목 민족</strong>. 바그다드를 정복하고 아바스 왕조의 칼리프에게서 <strong>술탄</strong> 칭호를 얻어 이슬람 세계를 이끌었다.</p><div class="card-quote"><strong>술탄</strong> = 아랍어로 '권력'. 이슬람 세계의 <strong>정치적</strong> 지배자를 이르는 말(종교적 지도자인 칼리프와 구분).</div><div class="card-quote">⚠️ 전쟁의 방아쇠는 두 가지 — <strong>예루살렘 점령</strong> + <strong>비잔티움 제국 위협</strong>. 다급해진 비잔티움 황제가 교황에게 도움을 요청한 것이 시작이다.</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>클레르몽의 호소 (1096~)</strong> — 교황 <strong>우르바누스 2세</strong>가 클레르몽에서 종교 회의를 열어 <em>"성지 예루살렘을 되찾자"</em>고 호소했다.</p><div class="card-quote">💡 여기에 <strong>제후·기사·상인·농민</strong>이 호응하면서 십자군 전쟁이 시작된다. 교황의 말 한마디에 유럽 전체가 움직였다는 것 자체가 <strong>교황권 절정기</strong>(3-3-2)의 증거다.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>같은 깃발, 다른 속마음</strong> — 교과서 삽화가 네 사람의 말풍선으로 보여 주는 대목.</p><table><thead><tr><th>누가</th><th>진짜 원한 것</th></tr></thead><tbody><tr><td>교황</td><td>동·서 교회를 통합해 <strong>교황권 강화</strong></td></tr><tr><td>기사</td><td><strong>더 넓은 땅</strong></td></tr><tr><td>상인</td><td>동방과 직접 교류해 <strong>부</strong></td></tr><tr><td>농노</td><td><strong>신분의 자유</strong></td></tr></tbody></table><div class="card-quote">⚠️ 목적이 넷으로 갈렸기 때문에 <em>"참여한 사람들의 <strong>이해관계</strong>에 따라 점차 본래의 목적을 잃었다"</em>(교과서). 실패의 원인이 이 표 안에 있다.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>결과의 역설</strong> — 성지는 못 찾았는데 유럽이 바뀌었다. 그것도 <strong>전쟁을 시작한 쪽이 손해 보는</strong> 방향으로.</p><p>`교황 권위 ↓` · `제후·기사 세력 ↓` → <strong>왕권 ↑</strong> → 중앙 집권 국가로</p><div class="card-quote">💡 그리고 <strong>적과의 교역이 늘었다</strong> — 지중해 무역권 성장, 베네치아·제노바·피사의 번영, 고전 문화·자연 과학·제지술의 유입. <strong>충돌과 교류가 같은 사건의 앞뒤</strong>다.</div></div></div><img class="hero-image" src="images/3-3-3_십자군_표지.png" alt=""><div class="hero-hook">자, 네가 1096년 유럽 사람이라고 해보자. 교황이 외친다 — '성지 예루살렘을 되찾자!' 사람들이 우르르 모여든다. 그런데 반전이 있어. 모인 사람들 속마음이 다 달랐거든. 교황은 교회 힘을, 기사는 땅을, 상인은 돈을, 농노는 자유를 원했지. 200년 뒤 결과는? 예루살렘은 못 찾았고, 정작 전쟁을 이끈 교황의 힘이 떨어졌어(헐?). 목적과 결과가 이렇게 어긋난 전쟁, 오늘 그 이야기.</div></section>
   <div class="control-bar">
     <div class="score">
-      빈칸: <span id="score">0</span>/3 · OX: <span id="ox-score">0</span>/3
-      · 총: <span id="total-score">0</span>/6 (<span id="pct">0</span>%)
+      빈칸: <span id="score">0</span>/4 · OX: <span id="ox-score">0</span>/3
+      · 총: <span id="total-score">0</span>/7 (<span id="pct">0</span>%)
     </div>
     <div>
       
@@ -246,7 +260,21 @@ blockquote {
 <br>
 <p><strong>한편 동쪽에서는</strong> — 셀주크 튀르크도 전쟁의 충격으로 수도를 옮겼고, 국력이 약해져 13세기 중반 몽골군의 침입으로 쇠퇴했다.</p>
 <br>
-<p><strong>그리고 뜻밖의 선물</strong> — 전쟁으로 오히려 동서 교류가 활발해졌다. 비잔티움의 고전 문화, 이슬람 세계의 자연 과학, 중국의 제지술이 유럽에 소개되었고, 바닷길 교역이 늘며 <strong>베네치아</strong> 같은 이탈리아 도시가 크게 번영했다.</p>
+<p><strong>그리고 뜻밖의 선물</strong> — 전쟁으로 오히려 동서 교류가 활발해졌다. 그 이야기는 다음 단계에서 따로 보자.</p>
+<br>
+<h2>📖 6단계: 전쟁이 열어 버린 길</h2>
+<p>전쟁 중에 <strong>돈을 번 사람들</strong>이 있었다. 유럽 상인들은 배로 십자군을 성지에 데려다주고, 돌아올 때 아시아의 특산물을 싣고 와 유럽에 팔았다. <strong>염료·비단·향신료</strong> 같은 사치품을 찾는 사람이 늘면서 유럽의 시장이 활기를 띠었다.</p>
+<blockquote>(교과서 원문: "십자군 전쟁 때 유럽 상인들은 배로 십자군을 성지에 데려다주고, 아시아의 특산물을 싣고 돌아와 유럽에 팔면서 부를 쌓았다. 아시아의 염료, 비단, 향신료와 같은 사치품에 대한 수요가 늘면서 유럽의 시장이 활성화되었다." — 같은 책 p.99)</blockquote>
+<br>
+<p><strong>싸운 상대편도 돈을 벌었다.</strong> 셀주크 튀르크는 동서양을 잇는 중계 무역으로 이익을 얻었다. 항구 도시와 비단길의 주요 도시에 국제 시장을 열었고, <strong>무료 숙박 시설</strong>을 교역로 곳곳에 세워 상인들의 안전을 보장하며 무역을 장려했다.</p>
+<blockquote>(교과서 원문: "셀주크 튀르크도 동서양을 잇는 중계 무역으로 이익을 얻었다. 셀주크 튀르크는 항구 도시와 비단길의 주요 도시에 국제 시장을 열었다. 또한 무료 숙박 시설을 교역로 곳곳에 세워 상인들의 안전을 보장해 주며 무역을 장려하였다." — 같은 책 p.99)</blockquote>
+<blockquote>(날개 주석: "카라반 사라이(튀르키예 카파도키아) 셀주크 튀르크가 세운 상인 숙소이다. 카라반은 낙타나 말에 짐을 싣고 무리 지어 먼 곳을 이동하는 상인 집단을 말한다." — 같은 책 p.99)</blockquote>
+<br>
+<p>전쟁이 끝난 뒤 두 세계의 교역은 더 활발해졌고, ⑥<input type="text" class="blank-input" data-answer="지중해" data-id="6" style="width:68px" placeholder=""> 무역권이 크게 성장했다. <strong>베네치아·제노바·피사</strong> 같은 연안 도시가 번성했고, <strong>이베리아반도</strong>와 <strong>콘스탄티노폴리스</strong>는 학문과 기술이 오가는 창구가 되었다. 이 길을 타고 비잔티움의 <strong>고전 문화</strong>, 이슬람 세계의 <strong>자연 과학</strong>, 중국의 <strong>제지술</strong>이 유럽에 들어왔다.</p>
+<blockquote>(교과서 원문: "십자군 전쟁이 끝난 후 크리스트교 세계와 이슬람 세계의 교역이 더욱 활발해지면서 지중해 무역권이 크게 성장하였다. 베네치아, 제노바, 피사 등 지중해 연안 도시들이 번성하였고, 이베리아반도와 콘스탄티노폴리스도 학문과 기술 교류의 창구 역할을 하였다. 이들 지역을 통해 비잔티움 제국의 고전 문화, 이슬람 세계의 자연 과학, 중국의 제지술 등이 유럽에 소개되었다." — 같은 책 p.99)</blockquote>
+<br>
+<blockquote>🎙️ <strong>여기가 이 차시에서 제일 이상한 대목이야.</strong> 죽이겠다고 200년을 싸웠는데, 그 싸움이 만든 뱃길로 <strong>물건과 책이 오갔어.</strong> 심지어 적이었던 셀주크가 상인들 재워 주는 숙소까지 지었대. 미워하면서도 서로에게서 얻어 갔다는 것 — 이게 <strong>충돌과 교류가 같은 사건의 앞뒤</strong>라는 말의 뜻이야.</blockquote>
+<blockquote>그리고 여기 심긴 씨앗이 두 차시 뒤에 열매를 맺어. 베네치아 상인들이 벌어들인 그 돈이 <strong>르네상스를 후원하는 돈</strong>이 되거든.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 속마음 맞히기</h2>
 <blockquote>아래 말이 누구의 속마음일지 연결해 보자. (교황 / 기사 / 상인 / 농노)</blockquote>
@@ -281,7 +309,7 @@ blockquote {
 <textarea class="essay-input" data-id="essay-2" data-label="💭 더 생각해 보기 ② — 자료 해석 (심화)" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>
 <script>
-const TB=3, TOX=3, GT=6;
+const TB=4, TOX=3, GT=7;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
@@ -295,6 +323,16 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
