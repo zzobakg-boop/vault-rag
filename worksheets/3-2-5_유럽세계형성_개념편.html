@@ -133,6 +133,20 @@ blockquote {
 .hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
 .hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
 .hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+.card-quote { border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
 .hero-keyword {
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -154,7 +168,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-2-5 — 서로마가 무너진 자리에, 어떻게 '유럽'이 태어났을까? (유럽 세계의 형성)</h1><p class="hero-subtitle">서로마가 무너진 자리에, 어떻게 '유럽'이 태어났을까?</p><div class="hero-keywords"><span class="hero-keyword">게르만족 이동 → 서로마 멸망(476)</span><span class="hero-keyword">프랑크 왕국·카롤루스 대제 = 서유럽의 기틀</span><span class="hero-keyword">비잔티움 = 서로마 멸망 뒤 천 년 더</span><span class="hero-keyword">성상 숭배 논쟁 → 가톨릭 vs 정교 분리</span></div><img class="hero-image" src="images/europe-hero.jpeg" alt=""><div class="hero-hook">지난 시간 이슬람교가 세 대륙으로 퍼졌지? 그 무렵 유럽에서는 정반대 일이 벌어졌어. 천 년 제국 로마의 서쪽이 게르만족한테 무너진 거야(476). 근데 반전 — 그 폐허에서 새로운 유럽이 태어나. 게르만 + 로마 + 크리스트교가 뒤섞여서 말이야. 게다가 우리가 아는 프랑스·독일·이탈리아도 바로 이때 갈라져 나와(헐!). 무너진 자리에서 어떻게 새 세계가 솟았는지, 오늘 그 이야기.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-2-5 — 서로마가 무너진 자리에, 어떻게 '유럽'이 태어났을까? (유럽 세계의 형성)</h1><p class="hero-subtitle">서로마가 무너진 자리에, 어떻게 '유럽'이 태어났을까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">게르만족 이동 → 서로마 멸망(476)<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">프랑크 왕국·카롤루스 대제 = 서유럽의 기틀<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">비잔티움 = 서로마 멸망 뒤 천 년 더<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">성상 숭배 논쟁 → 가톨릭 vs 정교 분리<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>게르만족의 이동 → 서로마 멸망(476)</strong> — 훈족에 밀린 게르만족이 로마 영토로 들어오면서 서로마 제국이 무너졌다.</p><div class="card-quote">⚠️ <strong>"쳐들어와서 멸망시켰다"는 단순한 그림이 아니다.</strong> 게르만족은 이미 오래전부터 로마의 <strong>용병</strong>으로 들어와 살고 있었다. 무너뜨린 쪽과 지키던 쪽이 결국 <strong>같은 사람들</strong>이었다는 것이 이 사건의 반전.</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>프랑크 왕국 · 카롤루스 대제</strong> — 폐허에서 자란 새 강자. 서유럽의 기틀을 놓았다.</p><p>`게르만족의 전통` + `로마의 제도` + `크리스트교` → <strong>서유럽 문화의 기초</strong></p><div class="card-quote">💡 카롤루스가 죽은 뒤 왕국은 셋으로 갈라지고, 그 셋이 오늘날 <strong>프랑스·독일·이탈리아</strong>의 뿌리가 된다.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>비잔티움 = 서로마가 무너진 뒤 천 년 더</strong> — 버틴 비결이 둘이다.</p><table><thead><tr><th>정치</th><th>경제</th></tr></thead><tbody><tr><td>황제가 정치·군사 지배자이자 <strong>교회의 수장</strong>(황제 교황주의)</td><td>수도 <strong>콘스탄티노폴리스</strong>가 유럽·아시아를 잇는 교역로 위의 <strong>세계 최대 도시</strong></td></tr></tbody></table><div class="card-quote">💡 6세기 <strong>유스티니아누스</strong> 황제 — 옛 로마 영토 상당 부분 회복 · 『유스티니아누스 법전』 편찬 · <strong>성 소피아 대성당</strong> 건립.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>성상 숭배 논쟁 → 교회가 둘로</strong> — 8세기 비잔티움 황제가 성상 숭배를 금지하면서 동서가 대립했다.</p><table><thead><tr><th>서(西)</th><th>동(東)</th></tr></thead><tbody><tr><td><strong>로마 가톨릭교회</strong> (로마 교황 중심)</td><td><strong>그리스 정교</strong> (비잔티움 제국)</td></tr></tbody></table><div class="card-quote">💡 오늘날 <strong>서유럽이 가톨릭, 동유럽·러시아가 정교회</strong>인 뿌리가 여기다. 천 년도 더 된 논쟁 하나가 지금 지도에 남아 있는 셈.</div></div></div><img class="hero-image" src="images/europe-hero.jpeg" alt=""><div class="hero-hook">지난 시간 이슬람교가 세 대륙으로 퍼졌지? 그 무렵 유럽에서는 정반대 일이 벌어졌어. 천 년 제국 로마의 서쪽이 게르만족한테 무너진 거야(476). 근데 반전 — 그 폐허에서 새로운 유럽이 태어나. 게르만 + 로마 + 크리스트교가 뒤섞여서 말이야. 게다가 우리가 아는 프랑스·독일·이탈리아도 바로 이때 갈라져 나와(헐!). 무너진 자리에서 어떻게 새 세계가 솟았는지, 오늘 그 이야기.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/16 · OX: <span id="ox-score">0</span>/5
@@ -218,6 +232,8 @@ blockquote {
 <h2>📖 4단계: 무너지지 않은 동쪽 — 비잔티움 제국</h2>
 <p>서로마 제국이 멸망한 뒤에도 동로마, 곧 비잔티움 제국은 약 천 년 동안 더 지속되었다. 비잔티움 제국에서는 황제가 정치적·군사적 지배자이자 교회의 수장 역할을 함께 하였다. 6세기 전성기를 이끈 ⑨<input type="text" class="blank-input" data-answer="유스티니아누스" data-id="9" style="width:132px" placeholder="">황제는 옛 로마 제국 영토의 상당 부분을 회복하고, 『⑩<input type="text" class="blank-input" data-answer="유스티니아누스 법전" data-id="10" style="width:180px" placeholder="">』을 편찬하였으며 ⑪<input type="text" class="blank-input" data-answer="성 소피아 대성당" data-id="11" style="width:164px" placeholder="">(아야 소피아)을 세웠다.</p>
 <blockquote>(교과서 원문: "비잔티움 제국은 서로마 제국이 멸망한 뒤에도 약 천 년 동안 더 지속되었다. 비잔티움 제국에서는 황제가 정치적·군사적 지배자이자 교회의 수장 역할을 하였다. 6세기 비잔티움 제국을 전성기로 이끈 유스티니아누스 황제는 옛 로마 제국 영토의 상당 부분을 회복하였다. … 그는 『유스티니아누스 법전』을 편찬하고 성 소피아 대성당(아야 소피아)을 세웠다." — 비상교육 역사①(이병인) p.86~87)</blockquote>
+<p>수도 <strong>콘스탄티노폴리스</strong>는 유럽과 아시아를 잇는 교역로에 있어 당시 <strong>세계 최대의 도시</strong>로 성장했다.</p>
+<blockquote>(교과서 원문: "수도 콘스탄티노폴리스는 유럽과 아시아를 잇는 교역로에 있어 당시 세계 최대의 도시로 성장하였다." — 같은 책 p.87)</blockquote>
 <br>
 <p>8세기 들어 비잔티움 제국의 황제가 ⑫<input type="text" class="blank-input" data-answer="성상" data-id="12" style="width:60px" placeholder=""> 숭배를 금지하면서 크리스트교 세력은 동서로 나뉘어 대립하였다. 오랜 논쟁 끝에 교회는 로마 교황을 중심으로 하는 ⑬<input type="text" class="blank-input" data-answer="로마 가톨릭" data-id="13" style="width:116px" placeholder="">교회와 비잔티움 제국의 ⑭<input type="text" class="blank-input" data-answer="그리스 정교" data-id="14" style="width:116px" placeholder="">로 나뉘었다.</p>
 <blockquote>(교과서 원문: "8세기 들어 비잔티움 제국의 황제가 성상 숭배를 금지하면서 크리스트교 세력은 동서로 나뉘어 대립하였다. … 동·서 로마 교회는 로마 교황을 중심으로 하는 로마 가톨릭교회와 비잔티움 제국의 그리스 정교로 나뉘었다." — 비상교육 역사①(이병인) p.87)</blockquote>
@@ -291,6 +307,16 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
