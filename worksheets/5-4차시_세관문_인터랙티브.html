@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>세 관문 통과하기</title>
+</head>
+<body>
+<style>
+  :root{
+    --paper:#f7f6f3; --ink:#191815; --ink-soft:#4e4c45; --ink-faint:#847f75;
+    --rule:#dad7cf; --panel:#fffefb; --panel-2:#eeebe4;
+    --accent:#2f5d50; --accent-bg:#e3eeea;
+    --g1:#a83a34; --g1b:#fbe9e7; --g2:#2b56a4; --g2b:#e7edfa; --g3:#8d6a10; --g3b:#f9f0d6;
+    --shadow:0 1px 2px rgba(25,24,21,.05),0 8px 22px rgba(25,24,21,.06);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#131211; --ink:#eae8e3; --ink-soft:#a7a39a; --ink-faint:#7c7871;
+    --rule:#2a2925; --panel:#1a1917; --panel-2:#22211e;
+    --accent:#7ec1ac; --accent-bg:#15241f;
+    --g1:#e28d86; --g1b:#2b1a18; --g2:#87a8e5; --g2b:#161c2b; --g3:#d9b65d; --g3b:#272011;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px rgba(0,0,0,.3);
+  }}
+  :root[data-theme="dark"]{
+    --paper:#131211; --ink:#eae8e3; --ink-soft:#a7a39a; --ink-faint:#7c7871;
+    --rule:#2a2925; --panel:#1a1917; --panel-2:#22211e;
+    --accent:#7ec1ac; --accent-bg:#15241f;
+    --g1:#e28d86; --g1b:#2b1a18; --g2:#87a8e5; --g2b:#161c2b; --g3:#d9b65d; --g3b:#272011;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Apple SD Gothic Neo","Pretendard",system-ui,-apple-system,sans-serif;
+    font-size:16px;line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:44px 20px 80px;display:flex;flex-direction:column;gap:26px}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+
+  header{text-align:center;display:flex;flex-direction:column;gap:8px}
+  h1{margin:0;font-size:clamp(27px,5.4vw,38px);line-height:1.16;letter-spacing:-.022em;font-weight:800}
+  .sub{margin:0;color:var(--ink-soft);font-size:15.5px}
+
+  /* 선택 */
+  .pick{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  .opt{background:var(--panel);border:2px solid var(--rule);border-radius:7px;padding:17px 15px;
+       cursor:pointer;text-align:center;transition:.15s;font:inherit;color:inherit}
+  .opt:hover{border-color:var(--accent)}
+  .opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-bg)}
+  .opt .emo{font-size:30px;display:block;line-height:1.2}
+  .opt .nm{font-weight:750;font-size:17px;margin-top:5px;display:block}
+  .opt .pr{font-size:13px;color:var(--ink-soft);margin-top:2px;display:block}
+  .opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* 진행 */
+  .stage{background:var(--panel);border:1px solid var(--rule);border-radius:8px;box-shadow:var(--shadow);
+         padding:20px 18px;display:flex;flex-direction:column;gap:14px}
+  .bar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .step{height:5px;border-radius:3px;background:var(--panel-2);transition:.3s}
+  .step.on{background:var(--accent)}
+  .gate{border:2px solid;border-radius:7px;padding:16px;display:flex;flex-direction:column;gap:7px}
+  .gate.g1{border-color:var(--g1);background:var(--g1b)}
+  .gate.g2{border-color:var(--g2);background:var(--g2b)}
+  .gate.g3{border-color:var(--g3);background:var(--g3b)}
+  .gate .hd{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .gate .no{font-size:11.5px;color:var(--ink-faint);font-family:ui-monospace,monospace}
+  .gate .ti{font-size:21px;font-weight:800;letter-spacing:-.01em}
+  .g1 .ti{color:var(--g1)} .g2 .ti{color:var(--g2)} .g3 .ti{color:var(--g3)}
+  .gate .de{font-size:13.5px;color:var(--ink-soft)}
+  .calc{background:var(--panel);border:1px solid var(--rule);border-radius:5px;padding:11px 13px;
+        font-family:ui-monospace,monospace;font-size:13.5px;line-height:1.85;font-variant-numeric:tabular-nums}
+  .calc .row{display:flex;justify-content:space-between;gap:10px}
+  .calc .row b{font-weight:700}
+  .calc .add{color:var(--g1)} .calc .fx{color:var(--g3)}
+  .calc hr{border:0;border-top:1px dashed var(--rule);margin:7px 0}
+
+  .price{text-align:center;padding:14px;border-radius:6px;background:var(--panel-2)}
+  .price .lb{font-size:12.5px;color:var(--ink-faint)}
+  .price .vl{font-size:31px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .price .df{font-size:13px;color:var(--ink-soft);margin-top:3px}
+
+  .btn{background:var(--accent);color:var(--paper);border:0;border-radius:6px;padding:13px;font:inherit;
+       font-weight:700;font-size:16px;cursor:pointer;width:100%}
+  .btn:hover{filter:brightness(1.08)} .btn:disabled{opacity:.4;cursor:default}
+  .btn.ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--rule);font-weight:600}
+
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .cmp>div{border:1px solid var(--rule);border-radius:6px;padding:13px;background:var(--panel-2)}
+  .cmp h4{margin:0 0 6px;font-size:13px;color:var(--ink-faint);font-weight:700}
+  .cmp .p{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+  .cmp .n{font-size:12.5px;color:var(--ink-soft);margin-top:3px;line-height:1.5}
+
+  .ask{background:var(--accent-bg);border:1.5px solid var(--accent);border-radius:7px;padding:15px 16px}
+  .ask h3{margin:0 0 6px;font-size:16px;font-weight:750}
+  .ask p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+  .src{font-size:11.5px;color:var(--ink-faint);text-align:center;line-height:1.6}
+  .hide{display:none}
+  @media(max-width:520px){.pick,.cmp{grid-template-columns:1fr}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>세 관문 통과하기</h1>
+    <p class="sub">물건 하나를 골라, 국경을 넘겨 보자</p>
+  </header>
+
+  <div id="s0">
+    <div class="pick">
+      <button class="opt" data-i="0" aria-pressed="false">
+        <span class="emo">🍪</span><span class="nm">편의점 과자</span><span class="pr">국내 · 1,500원</span></button>
+      <button class="opt" data-i="1" aria-pressed="false">
+        <span class="emo">👟</span><span class="nm">해외직구 운동화</span><span class="pr">미국 · $100</span></button>
+    </div>
+  </div>
+
+  <div id="s1" class="stage hide">
+    <div class="bar"><div class="step" id="b1"></div><div class="step" id="b2"></div><div class="step" id="b3"></div></div>
+    <div id="gateBox"></div>
+    <div class="calc" id="calcBox"></div>
+    <button class="btn" id="next">다음 문 →</button>
+  </div>
+
+  <div id="s2" class="stage hide">
+    <div class="price">
+      <div class="lb">내 손에 오기까지</div>
+      <div class="vl" id="finalP">—</div>
+      <div class="df" id="finalD"></div>
+    </div>
+    <div class="cmp">
+      <div><h4>국내 거래</h4><div class="p">1,500원</div>
+        <div class="n">지나는 문 <b>0개</b><br>가격표 그대로</div></div>
+      <div><h4>국제 거래</h4><div class="p" id="cmpP">—</div>
+        <div class="n">지나는 문 <b>3개</b><br id="cmpN">가격표에 없던 돈이 붙는다</div></div>
+    </div>
+    <div class="ask">
+      <h3>그래서 —</h3>
+      <p>같은 "산다"인데 <b>왜 국경만 넘으면 문이 셋</b>일까? 그리고 이 셋 중 <b>매일 값이 바뀌는 문</b>은 어느 것일까?</p>
+    </div>
+    <button class="btn ghost" id="again">다른 물건으로 다시</button>
+    <p class="src">관세율은 <b>품목마다 다르다</b> — 여기선 계산을 보이기 위한 예시 10% · 환율 1,422원(2025 실측 — 5-5차시가 쓰는 값)<br>
+      출처 · 5-4 국제거래 자료편(교사용) · 2026-07-10 시사 사례 팩</p>
+  </div>
+</div>
+
+<script>
+  const FX = 1422, TARIFF = 0.10, CUSTOMS = 0;
+  const GATES = [
+    {c:"g1", no:"첫 번째 문", ti:"관세", de:"우리나라가 <b>들여오는 물건</b>에 매기는 세금이다. 품목마다 세율이 다르다."},
+    {c:"g2", no:"두 번째 문", ti:"통관", de:"국경에서 검사를 받는 절차다. 돈보다 시간이 든다."},
+    {c:"g3", no:"세 번째 문", ti:"환율", de:"달러를 원으로 바꾸는 비율. 매일 달라진다."}
+  ];
+  let item = 0, step = 0;
+
+  const $ = id => document.getElementById(id);
+  const won = n => n.toLocaleString("ko-KR") + "원";
+
+  document.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".opt").forEach(o => o.setAttribute("aria-pressed","false"));
+    b.setAttribute("aria-pressed","true");
+    item = +b.dataset.i; step = 0;
+    $("s1").classList.remove("hide"); $("s2").classList.add("hide");
+    render();
+    $("s1").scrollIntoView({behavior:"smooth", block:"nearest"});
+  }));
+
+  function render(){
+    const g = GATES[step];
+    [1,2,3].forEach(i => $("b"+i).classList.toggle("on", i <= step+1));
+    $("gateBox").innerHTML =
+      `<div class="gate ${g.c}"><div class="hd"><span class="no">${g.no}</span><span class="ti">${g.ti}</span></div>
+       <div class="de">${g.de}</div></div>`;
+
+    let html = "";
+    if(item === 0){
+      const msg = ["관세 — 국내에서 만든 물건이라 <b>붙지 않는다</b>",
+                   "통관 — 국경을 안 넘으니 <b>절차가 없다</b>",
+                   "환율 — 원화로 사고파니 <b>바꿀 일이 없다</b>"][step];
+      html = `<div class="row"><span>가격표</span><b>1,500원</b></div><hr>
+              <div class="row"><span>${msg}</span><b>+0원</b></div>
+              <div class="row"><span>지금까지</span><b>1,500원</b></div>`;
+    } else {
+      const base = 100;
+      if(step === 0){
+        html = `<div class="row"><span>가격표</span><b>$${base}</b></div><hr>
+          <div class="row add"><span>관세 (예시 10%)</span><b>+$${(base*TARIFF).toFixed(0)}</b></div>
+          <div class="row"><span>지금까지</span><b>$${(base*(1+TARIFF)).toFixed(0)}</b></div>`;
+      } else if(step === 1){
+        html = `<div class="row"><span>지금까지</span><b>$${(base*(1+TARIFF)).toFixed(0)}</b></div><hr>
+          <div class="row"><span>통관 — 돈은 안 들지만</span><b>+${CUSTOMS}원</b></div>
+          <div class="row"><span>검사·서류로 <b>며칠</b>이 걸린다</span><b>시간</b></div>`;
+      } else {
+        const usd = base*(1+TARIFF);
+        html = `<div class="row"><span>지금까지</span><b>$${usd.toFixed(0)}</b></div><hr>
+          <div class="row fx"><span>환율 × ${FX.toLocaleString()}원</span><b>${won(Math.round(usd*FX))}</b></div>`;
+      }
+    }
+    $("calcBox").innerHTML = html;
+    $("next").textContent = step < 2 ? "다음 문 →" : "결과 보기";
+  }
+
+  $("next").addEventListener("click", () => {
+    if(step < 2){ step++; render(); return; }
+    const usd = 100*(1+TARIFF), fin = Math.round(usd*FX);
+    if(item === 0){
+      $("finalP").textContent = "1,500원";
+      $("finalD").textContent = "문을 하나도 지나지 않았다 — 가격표 그대로";
+      $("cmpP").textContent = won(fin);
+    } else {
+      $("finalP").textContent = won(fin);
+      $("finalD").textContent = `가격표 $100 → 관세 붙고 → 환율로 바꾸니 ${won(fin)}`;
+      $("cmpP").textContent = won(fin);
+    }
+    $("s2").classList.remove("hide");
+    $("s2").scrollIntoView({behavior:"smooth", block:"nearest"});
+  });
+
+  $("again").addEventListener("click", () => {
+    $("s1").classList.add("hide"); $("s2").classList.add("hide");
+    document.querySelectorAll(".opt").forEach(o => o.setAttribute("aria-pressed","false"));
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+</script>
+</body>
+</html>
