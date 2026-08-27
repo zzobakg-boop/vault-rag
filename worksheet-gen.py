@@ -1028,8 +1028,25 @@ def main():
     title, content, total, total_ox = build_html_from_blank(blank_file, answers, ox_answers, answer_file)
     print(f"🔍 매칭된 빈칸: {total}개, OX: {total_ox}개")
 
-    if total != len(answers):
-        print(f"⚠️  빈칸({total})과 정답({len(answers)}) 수 불일치")
+    # 2026-08-27: 원문 빈칸을 직접 세어 대조한다.
+    # 종전 검사는 `total`(=실제로 만든 input 수)을 비교했는데, 정답이 모자라면
+    # 그만큼만 만들고 그만큼만 세므로 **항상 일치**했다 → 남는 빈칸이 괄호로
+    # 방치돼도 경고가 안 떴다(5-4 ⑩ 입력 불가 사고). 이제 소스에서 직접 센다.
+    _bp = re.compile(r'\(\s*[　\s]+\)')   # build_html_from_blank의 blank_pattern과 동일 (그쪽은 지역 변수라 여기서 안 보임)
+    _skip = re.compile(r'\*\*반:\*\*.*\*\*번:\*\*.*\*\*이름:\*\*')
+    _raw = open(blank_file, encoding='utf-8').read()
+    src_blanks = sum(len(_bp.findall(l)) for l in _raw.split('\n') if not _skip.search(l))
+
+    if src_blanks != len(answers):
+        gap = src_blanks - len(answers)
+        print(f"🔴 빈칸/정답 불일치 — 개념편 빈칸 {src_blanks}개 vs 정답 {len(answers)}개")
+        if gap > 0:
+            print(f"   ⚠️  빈칸 {gap}개가 입력칸이 되지 못하고 괄호로 남습니다(학생이 답을 쓸 수 없음).")
+            print(f"   → 개념편에 번호가 중복된 빈칸이 있는지, 정답편에 빠진 항목이 있는지 확인하세요.")
+        else:
+            print(f"   ⚠️  정답 {-gap}개가 쓰이지 않습니다(정답편 prose의 ( **굵게** ) 오검출 가능).")
+    elif total != len(answers):
+        print(f"⚠️  생성된 입력칸({total})과 정답({len(answers)}) 수 불일치")
 
     DEFAULT_SUBMIT_URL = os.environ.get('WORKSHEET_SUBMIT_URL', 'https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec')
     submit_url = sys.argv[4] if len(sys.argv) > 4 else DEFAULT_SUBMIT_URL
