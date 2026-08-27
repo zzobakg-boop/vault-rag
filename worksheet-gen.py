@@ -537,7 +537,15 @@ def build_hero_html(title, hero):
     return f'<section class="hero-section">{eyebrow}<h1 class="hero-title">{title}</h1>{sub}{kws_html}{img}{hook}</section>'
 
 
-def generate_html(title, content, total, total_ox, submit_url='', mode='class', hero=None, exam=False):
+def generate_html(title, content, total, total_ox, submit_url='', mode='class', hero=None, exam=False,
+                  n_classes=6, n_numbers=35):
+    # ⭐ 2026-08-27: 반·번호를 자유 입력 → 드롭다운으로. 오기(誤記)를 원천 차단한다.
+    #   근거: 6/25 채점 로그 — "온라인 0건" 15명이 실제로는 12명(3명이 남의 번호로 오기 제출),
+    #         번호 오기 4건, 3-3반 1번에 두 명, 이름 칸에 "23" 입력. roster_match.py는 사후 교정이라
+    #         *미제출 명단이 부풀어* 있는 상태로 대장에 한 번 올라간다.
+    #   ⚠️ 이름은 자유 입력 유지 — 명렬표를 공개 HTML에 넣으면 학생 실명이 GitHub Pages에 노출된다.
+    cls_opts = ''.join(f'<option value="{i}">{i}반</option>' for i in range(1, n_classes + 1))
+    num_opts = ''.join(f'<option value="{i}">{i}번</option>' for i in range(1, n_numbers + 1))
     """mode: 'class' = 수업용(제출O, 정답보기X), 'review' = 복습용(제출X, 정답보기O)
     exam: 평가지 모드 — localStorage 키를 반-번호에 묶음 (공용 노트북 잔존 방지·6/12)"""
     exam_js = 'true' if exam else 'false'
@@ -572,9 +580,9 @@ def generate_html(title, content, total, total_ox, submit_url='', mode='class', 
     </div>
   </div>
   <div class="student-info">
-    <input type="text" placeholder="반">
-    <input type="text" placeholder="번호">
-    <input type="text" placeholder="이름">
+    <select id="si-cls"><option value="">반</option>{cls_opts}</select>
+    <select id="si-num"><option value="">번호</option>{num_opts}</select>
+    <input type="text" id="si-name" placeholder="이름">
   </div>'''
     return f'''<!DOCTYPE html>
 <html lang="ko">
@@ -686,7 +694,8 @@ blockquote {{
 .student-info {{
   display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
 }}
-.student-info input {{
+.student-info select {{ background:#fff; cursor:pointer; }}
+.student-info input, .student-info select {{
   border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
 }}
 @media (max-width: 600px) {{
@@ -873,10 +882,13 @@ function reset(){{
 //    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
 //    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
 const EXAM_MODE={exam_js};
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){{ return document.getElementById(id); }}
+function _siv(id){{ const e=_siEl(id); return e?e.value.trim():''; }}
 function _wsKey(){{
   if(!EXAM_MODE) return 'ws_'+document.title;
-  const si=document.querySelectorAll('.student-info input');
-  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
   return 'ws_'+document.title+'::'+c+'-'+n;
 }}
@@ -888,8 +900,7 @@ function _persist(){{
   }});
   document.querySelectorAll('.ox-group').forEach((g,i)=>{{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; }});
   document.querySelectorAll('.choice-group').forEach((g,i)=>{{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; }});
-  const si=document.querySelectorAll('.student-info input');
-  const info={{class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''}};
+  const info={{class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')}};
   try{{ localStorage.setItem(key, JSON.stringify({{info,data,ts:Date.now()}})); }}catch(e){{}}
 }}
 function saveProgress(){{ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }}
@@ -902,10 +913,9 @@ function loadProgress(){{
   let parsed; try{{ parsed=JSON.parse(saved); }}catch(e){{ return; }}
   const info=parsed.info, data=parsed.data;
   if(info&&!EXAM_MODE){{
-    const inputs=document.querySelectorAll('.student-info input');
-    if(info.class&&inputs[0]) inputs[0].value=info.class;
-    if(info.number&&inputs[1]) inputs[1].value=info.number;
-    if(info.name&&inputs[2]) inputs[2].value=info.name;
+    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
+    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
+    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
   }}
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{{
@@ -954,10 +964,10 @@ function collectAnswers(){{
 function scheduleProgress(){{ /* disabled — 제출 시점에만 데이터 전송 */ }}
 function submitResult(){{
   if(!SUBMIT_URL){{alert('제출 URL이 설정되지 않았습니다.');return;}}
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
-  if(!cls||!num||!name){{alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){{alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){{alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}}
   if(usedReveal){{alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}}
   check(); // 먼저 채점
   const _g=id=>{{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;}};
@@ -995,12 +1005,15 @@ document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{{
 document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{{
   b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
 }});
-document.querySelectorAll('.student-info input').forEach(el=>{{
+['si-cls','si-num','si-name'].forEach(id=>{{
+  const el=_siEl(id); if(!el) return;
   el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
 }});
 // 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
 if(EXAM_MODE){{
-  document.querySelectorAll('.student-info input').forEach(el=>{{
+  ['si-cls','si-num','si-name'].forEach(id=>{{
+    const el=_siEl(id); if(!el) return;
     el.addEventListener('change',()=>{{ if(_wsKey()) loadProgress(); }});
   }});
 }}
