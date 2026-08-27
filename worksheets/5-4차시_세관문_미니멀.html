@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>문 세 개</title>
+</head>
+<body>
+<style>
+  :root{
+    --paper:#faf9f6; --ink:#171613; --ink-soft:#55534b; --ink-faint:#8b8780;
+    --rule:#e0ddd5; --panel:#fff;
+    --on:#2f5d50; --on-bg:#e6f0ec;
+    --g1:#a83a34; --g2:#2b56a4; --g3:#8d6a10;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#121110; --ink:#ecebe6; --ink-soft:#a5a199; --ink-faint:#7b7770;
+    --rule:#2a2926; --panel:#1a1917;
+    --on:#7ec1ac; --on-bg:#16241f;
+    --g1:#e28d86; --g2:#87a8e5; --g3:#d9b65d;
+  }}
+  :root[data-theme="dark"]{
+    --paper:#121110; --ink:#ecebe6; --ink-soft:#a5a199; --ink-faint:#7b7770;
+    --rule:#2a2926; --panel:#1a1917;
+    --on:#7ec1ac; --on-bg:#16241f;
+    --g1:#e28d86; --g2:#87a8e5; --g3:#d9b65d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Apple SD Gothic Neo","Pretendard",system-ui,-apple-system,sans-serif;
+    font-size:17px;line-height:1.65;word-break:keep-all;-webkit-font-smoothing:antialiased;
+    display:grid;place-items:center;min-height:100vh;padding:28px 18px}
+  .card{width:100%;max-width:520px;display:flex;flex-direction:column;gap:20px}
+
+  h1{margin:0;font-size:clamp(24px,5.5vw,31px);line-height:1.2;letter-spacing:-.02em;font-weight:800;text-align:center}
+  .q{margin:0;text-align:center;color:var(--ink-soft);font-size:15px}
+
+  .toggle{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--rule);
+          border-radius:8px;overflow:hidden;background:var(--panel)}
+  .toggle button{border:0;background:transparent;padding:15px 10px;font:inherit;color:var(--ink-soft);
+                 cursor:pointer;font-weight:650;font-size:16px;transition:.15s}
+  .toggle button+button{border-left:1.5px solid var(--rule)}
+  .toggle button[aria-pressed="true"]{background:var(--on-bg);color:var(--ink)}
+  .toggle button:focus-visible{outline:2px solid var(--on);outline-offset:-2px}
+
+  .doors{display:flex;flex-direction:column;gap:9px}
+  .door{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:center;
+        border:1.5px solid var(--rule);border-radius:8px;padding:15px 16px;background:var(--panel);
+        transition:.25s;opacity:.45}
+  .door.lit{opacity:1}
+  .door .nm{font-size:19px;font-weight:750;letter-spacing:-.01em}
+  .door.d1.lit{border-color:var(--g1)} .door.d1.lit .nm{color:var(--g1)}
+  .door.d2.lit{border-color:var(--g2)} .door.d2.lit .nm{color:var(--g2)}
+  .door.d3.lit{border-color:var(--g3)} .door.d3.lit .nm{color:var(--g3)}
+  .door .ic{font-size:20px;width:26px;text-align:center;color:var(--ink-faint)}
+  .door.lit .ic{color:inherit}
+  .door .vl{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;
+            font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+  .door .vl.zero{color:var(--ink-faint);font-weight:400}
+
+  .out{text-align:center;border-top:1px solid var(--rule);padding-top:18px}
+  .out .lb{font-size:13px;color:var(--ink-faint)}
+  .out .vl{font-size:clamp(30px,8vw,42px);font-weight:800;letter-spacing:-.025em;
+           font-variant-numeric:tabular-nums;line-height:1.15;margin-top:2px}
+  .out .df{font-size:14px;color:var(--ink-soft);margin-top:5px;min-height:1.4em}
+  .brk{margin-top:11px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;
+       color:var(--ink-soft);line-height:1.9;font-variant-numeric:tabular-nums;min-height:1em}
+  .brk i{font-style:normal;color:var(--ink-faint)}
+  .brk b{font-weight:700;color:var(--ink)}
+
+  .src{font-size:11.5px;color:var(--ink-faint);text-align:center;line-height:1.6;margin:0}
+
+  /* 교실 TV(삼성) 대응 — 2026-08-27 교육 레인.
+     검증된 레이아웃(max-width:520px)을 그대로 두고 배율만 올린다.
+     1440px 화면에서 내용이 가운데 520px에만 갇혀 대화면에서 작게 떴다.
+     reflow 없는 transform이라 원 디자인 비율·줄바꿈이 보존된다. */
+  @media (min-width:1200px) and (min-height:980px){  /* 1.62는 카드 세로가 1022px이라 TV 주소창 있으면 잘림 — 실측 후 1.45 */
+    .card{transform:scale(1.45);transform-origin:center}
+  }
+</style>
+
+<div class="card">
+  <h1>문 세 개</h1>
+  <p class="q">국경을 넘을 때만 있는 문이다</p>
+
+  <div class="toggle" role="group" aria-label="물건 고르기">
+    <button id="bA" aria-pressed="true">🍪 편의점 과자</button>
+    <button id="bB" aria-pressed="false">👟 해외직구 $100</button>
+  </div>
+
+  <div class="doors">
+    <div class="door d1" id="d1"><span class="ic">①</span><span class="nm">관세</span><span class="vl" id="v1">—</span></div>
+    <div class="door d2" id="d2"><span class="ic">②</span><span class="nm">통관</span><span class="vl" id="v2">—</span></div>
+    <div class="door d3" id="d3"><span class="ic">③</span><span class="nm">환율</span><span class="vl" id="v3">—</span></div>
+  </div>
+
+  <div class="out">
+    <div class="lb">내 손에 오는 값</div>
+    <div class="vl" id="fin">1,500원</div>
+    <div class="df" id="dsc">문을 하나도 지나지 않았다</div>
+    <div class="brk" id="brk"></div>
+  </div>
+
+  <p class="src">환율 1,422원(2025) · 관세는 품목마다 다르다 — 예시 10% · <b>환율만 본 142,200원은 5-5차시가 쓰는 값</b></p>
+</div>
+
+<script>
+  const FX = 1422, T = 0.10, USD = 100;
+  const $ = i => document.getElementById(i);
+  const won = n => n.toLocaleString("ko-KR") + "원";
+
+  const VIEW = {
+    A: { lit:false,
+         v:["국내라 없음","국경을 안 넘음","원화 그대로"],
+         fin:"1,500원", dsc:"문을 하나도 지나지 않았다",
+         brk:"" },
+    B: { lit:true,
+         v:["+$"+(USD*T).toFixed(0), "돈 대신 며칠", "×"+FX.toLocaleString()+"원"],
+         fin:won(Math.round(USD*(1+T)*FX)), dsc:"가격표엔 없던 돈이 두 번 붙었다",
+         brk:`<i>환율만이라면</i> <b>${won(USD*FX)}</b><br><i>관세까지 더하면</i> <b>${won(Math.round(USD*(1+T)*FX))}</b>` }
+  };
+
+  function show(k){
+    const s = VIEW[k];
+    [1,2,3].forEach(i=>{
+      $("d"+i).classList.toggle("lit", s.lit);
+      const v=$("v"+i); v.textContent=s.v[i-1];
+      v.classList.toggle("zero", !s.lit);
+    });
+    $("fin").textContent=s.fin; $("dsc").textContent=s.dsc;
+    $("brk").innerHTML=s.brk;
+    $("bA").setAttribute("aria-pressed", k==="A");
+    $("bB").setAttribute("aria-pressed", k==="B");
+  }
+  $("bA").onclick=()=>show("A");
+  $("bB").onclick=()=>show("B");
+  show("A");
+</script>
+</body>
+</html>
