@@ -108,7 +108,8 @@ blockquote {
 .student-info {
   display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
 }
-.student-info input {
+.student-info select { background:#fff; cursor:pointer; }
+.student-info input, .student-info select {
   border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
 }
 @media (max-width: 600px) {
@@ -251,6 +252,12 @@ blockquote {
 <br>
 <blockquote>🎯 <strong>여기가 핵심!</strong> 세 원인을 <em>구분</em>시키는 게 출제 포인트 — ⑤ 총수요 견인 / ⑥ 통화량 / ⑦ 비용 인상. 사례를 주고 어느 원인인지 고르는 자료제시형이 잘 나온다.</blockquote>
 <blockquote>⭐ <strong>판서 요령</strong>: 이 표를 지우지 말고 칠판에 남겨 둘 것. <strong>9단계에서 화살표만 반대로 그리면</strong> 금리 설명이 끝난다. 두 번 그리지 않는다.</blockquote>
+<br>
+<blockquote>🎬 <strong>2단계 영상 (2026-08-27 신설·실재 검증 완료)</strong> — [YOUFiX_wwZQ] 교양이를 부탁해 「에너지 가격 오르면 밥값 오른다」 <strong>2분 51초</strong>(2026-08-23 업로드). oEmbed 실조회 + <strong>자막 실물 확인</strong>(제목만 보고 고르지 않음).</blockquote>
+<blockquote>· 쓰는 자리 = <strong>원인 ③생산비 상승</strong>. 셋 중 학생이 가장 안 와닿아 하는 항목인데, 영상이 <em>에너지 → 비료 → 식량 → 생필품 → 인건비</em>로 <strong>사슬을 끝까지</strong> 보여 준다.</blockquote>
+<blockquote>· 회수 지점 = <em>"전량 수입하는 나라"</em> → <strong>5-4 무역 의존도 86%</strong> · 5-5 환율↑ → 수입 원자재값↑ → 다시 이 ③번.</blockquote>
+<blockquote>· ⚠️ 자동 자막 오탈자 있음(화석연료→"화성열인", 곡물→"공물", 아껴쓰라→"아게쓰라"). <strong>인용은 영상 음성 기준으로</strong> 할 것.</blockquote>
+<blockquote>· 🔎 <strong>9단계 영상은 바꾸지 않았다</strong> — 같은 채널 「경기를 죽여야 물가가 잡힌다? 연준이 빠진 금리 딜레마」(2:11·2026-08-23·`DU1IbG-r64I`)가 9단계 주제와 정확히 겹치나, 이미 YTN 1:42가 있어 <strong>중복</strong>이다. YTN이 낡았다고 판단될 때 <strong>대체 후보</strong>로 쓸 것.</blockquote>
 <br>
 <h2>📖 3단계: 인플레이션 — 돈의 '힘'이 빠진다</h2>
 <p>물가가 지속해서 오르는 현상을 ⑧<span class="blank-filled">인플레이션</span>이라고 한다. 인플레이션이 일어나면 같은 돈으로 살 수 있는 양, 곧 ⑨<span class="blank-filled">구매력</span>이 떨어진다. 그래서 1963년에 1,000원으로 라면 100개를 사던 것이, 2015년엔 라면 1.25개밖에 못 사게 된 것이다.</p>
@@ -509,10 +516,13 @@ function reset(){
 //    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
 //    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
 const EXAM_MODE=false;
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){ return document.getElementById(id); }
+function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
 function _wsKey(){
   if(!EXAM_MODE) return 'ws_'+document.title;
-  const si=document.querySelectorAll('.student-info input');
-  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
   return 'ws_'+document.title+'::'+c+'-'+n;
 }
@@ -524,8 +534,7 @@ function _persist(){
   });
   document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
   document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
-  const si=document.querySelectorAll('.student-info input');
-  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
 function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
@@ -538,10 +547,9 @@ function loadProgress(){
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
   if(info&&!EXAM_MODE){
-    const inputs=document.querySelectorAll('.student-info input');
-    if(info.class&&inputs[0]) inputs[0].value=info.class;
-    if(info.number&&inputs[1]) inputs[1].value=info.number;
-    if(info.name&&inputs[2]) inputs[2].value=info.name;
+    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
+    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
+    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
   }
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
@@ -590,10 +598,10 @@ function collectAnswers(){
 function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
 function submitResult(){
   if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
-  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
   const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
@@ -631,12 +639,15 @@ document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
 document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
   b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
 });
-document.querySelectorAll('.student-info input').forEach(el=>{
+['si-cls','si-num','si-name'].forEach(id=>{
+  const el=_siEl(id); if(!el) return;
   el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
 });
 // 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
 if(EXAM_MODE){
-  document.querySelectorAll('.student-info input').forEach(el=>{
+  ['si-cls','si-num','si-name'].forEach(id=>{
+    const el=_siEl(id); if(!el) return;
     el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
   });
 }
