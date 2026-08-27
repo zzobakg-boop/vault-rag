@@ -108,7 +108,8 @@ blockquote {
 .student-info {
   display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
 }
-.student-info input {
+.student-info select { background:#fff; cursor:pointer; }
+.student-info input, .student-info select {
   border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
 }
 @media (max-width: 600px) {
@@ -229,6 +230,7 @@ blockquote {
 <br>
 <blockquote>🔎 <strong>이 단계를 다시 짠 이유</strong> (2026-08-27) — 콜아웃이 다섯 개 연속이라 <em>"텍스트 호흡이 너무 길다"</em>는 지적을 받았다. 원인은 <strong>조직 구조가 맨 끝에 있었던 것</strong> — 마지막 💡가 <em>'세 가지 관문'</em>이라는 뼈대를 말하는데, 학생은 그 뼈대를 다 읽은 뒤에야 받았다. 그 구조를 <strong>도식으로 올려 맨 앞에</strong> 두고, 도식이 말하는 산문 한 문단·💡 한 개를 지웠다. 장단점 산문도 아래 표와 완전히 겹쳐 삭제(원문은 R3 콜아웃에 남아 있다).</blockquote>
 <blockquote>⭐ <strong>판서 순서</strong> — ①"편의점에서 과자 살 때 뭐 필요해?" → ②"그럼 이 옷은 베트남에서 어떻게 왔을까?" → ③세 관문. <strong>관문을 먼저 나열하지 말 것.</strong></blockquote>
+<blockquote>💡 <strong>통관 설명은 '돈이 아니라 며칠'로</strong> (2026-08-27) — 세 문 중 통관만 <em>돈을 안 낸다</em>. 관세와 뭐가 다른지가 여기서 갈린다. 옛 문구 <em>"국경에서 검사받는 절차"</em>는 이 차이를 감췄다. (시스템 레인 시각자료에서 채택)</blockquote>
 <blockquote>(지도서: 국제 거래는 "관세를 내야 하고 통관 절차를 거쳐야 … 환율이 바뀌면 … 상품 가격이 달라짐." / 장점: 자원·기술 보완·생산성 향상·선택 확대 / 단점: 경쟁력 약한 국내 산업 기반 약화·정책 자율성 훼손 가능 — 천재교육 사회② 지도서)</blockquote>
 <br>
 <blockquote>⚠️ <strong>'우리'가 누구인지 헷갈리지 않게 (2026-08-27 정정)</strong> — 관세를 설명할 때 <em>"우리 물건을 사라"</em> 처럼 쓰면 <strong>관세를 매긴 나라</strong>와 <strong>우리나라</strong>가 뒤섞인다. 반드시 <strong>매기는 쪽과 맞는 쪽을 나라 이름으로</strong> 말할 것(예: <em>미국이 한국산 자동차에 관세 → 미국 안에서 한국 차가 비싸짐 → 미국 소비자가 미국 차를 삼</em>).</blockquote>
@@ -426,10 +428,13 @@ function reset(){
 //    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
 //    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
 const EXAM_MODE=false;
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){ return document.getElementById(id); }
+function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
 function _wsKey(){
   if(!EXAM_MODE) return 'ws_'+document.title;
-  const si=document.querySelectorAll('.student-info input');
-  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
   return 'ws_'+document.title+'::'+c+'-'+n;
 }
@@ -441,8 +446,7 @@ function _persist(){
   });
   document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
   document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
-  const si=document.querySelectorAll('.student-info input');
-  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
 function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
@@ -455,10 +459,9 @@ function loadProgress(){
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
   if(info&&!EXAM_MODE){
-    const inputs=document.querySelectorAll('.student-info input');
-    if(info.class&&inputs[0]) inputs[0].value=info.class;
-    if(info.number&&inputs[1]) inputs[1].value=info.number;
-    if(info.name&&inputs[2]) inputs[2].value=info.name;
+    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
+    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
+    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
   }
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
@@ -507,10 +510,10 @@ function collectAnswers(){
 function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
 function submitResult(){
   if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
-  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
   const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
@@ -548,12 +551,15 @@ document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
 document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
   b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
 });
-document.querySelectorAll('.student-info input').forEach(el=>{
+['si-cls','si-num','si-name'].forEach(id=>{
+  const el=_siEl(id); if(!el) return;
   el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
 });
 // 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
 if(EXAM_MODE){
-  document.querySelectorAll('.student-info input').forEach(el=>{
+  ['si-cls','si-num','si-name'].forEach(id=>{
+    const el=_siEl(id); if(!el) return;
     el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
   });
 }
