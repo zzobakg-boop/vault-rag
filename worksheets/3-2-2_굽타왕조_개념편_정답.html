@@ -108,7 +108,8 @@ blockquote {
 .student-info {
   display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
 }
-.student-info input {
+.student-info select { background:#fff; cursor:pointer; }
+.student-info input, .student-info select {
   border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
 }
 @media (max-width: 600px) {
@@ -133,6 +134,20 @@ blockquote {
 .hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
 .hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
 .hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+.card-quote { border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
 .hero-keyword {
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -154,10 +169,9 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><div class="hero-eyebrow">역사① · Ⅲ단원 · 지역 문화의 발전 · 3-2-2</div><h1 class="hero-title">역사① Ⅲ단원 3-2-2 — 왜 인도에서는 불교가 아니라 '힌두교'가 대세가 됐을까? (굽타 왕조)</h1><p class="hero-subtitle">왜 인도에서는 불교가 아니라 '힌두교'가 대세가 됐을까?</p><div class="hero-keywords"><span class="hero-keyword">찬드라굽타가 통일·해상 무역으로 번영</span><span class="hero-keyword">힌두교 = 브라만교+불교+민간신앙 → 카스트 인정</span><span class="hero-keyword">산스크리트 서사시·굽타 양식 미술</span><span class="hero-keyword">0(영)'과 10진법 → 이슬람 거쳐 세계로</span></div><div class="hero-hook">지난 시간 마우리아·쿠샨에서 *불교*가 꽃폈잖아? 근데 반전 — 정작 인도에 끝까지 뿌리내린 건 불교가 아니라 **힌두교**야. 게다가 우리가 매일 쓰는 숫자 '0'도 이때 인도에서 태어났어(헐!). 까다로운 불교·브라만교를 제치고 힌두교가 어떻게 '국민 종교'가 됐는지, 오늘 그 이야기.</div><img class="hero-image" src="images/3-2-2_굽타왕조_표지.png" alt="표지"></section>
+  <section class="hero-section"><div class="hero-eyebrow">역사① · Ⅲ단원 · 지역 문화의 발전 · 3-2-2</div><h1 class="hero-title">역사① Ⅲ단원 3-2-2 — 왜 인도에서는 불교가 아니라 '힌두교'가 대세가 됐을까? (굽타 왕조)</h1><p class="hero-subtitle">왜 인도에서는 불교가 아니라 '힌두교'가 대세가 됐을까?</p><div class="hero-keywords"><span class="hero-keyword">찬드라굽타가 통일·해상 무역으로 번영</span><span class="hero-keyword">힌두교 = 브라만교+불교+민간신앙 → 카스트 인정</span><span class="hero-keyword">산스크리트 서사시·굽타 양식 미술</span><span class="hero-keyword">0(영)'과 10진법 → 이슬람 거쳐 세계로</span></div><div class="hero-hook">지난 시간 마우리아·쿠샨에서 *불교*가 꽃폈잖아? 근데 반전 — 정작 인도에 끝까지 뿌리내린 건 불교가 아니라 **힌두교**야. 게다가 우리가 매일 쓰는 숫자 '0'도 이때 인도에서 태어났어(헐!). 까다로운 불교·브라만교를 제치고 힌두교가 어떻게 '국민 종교'가 됐는지, 오늘 그 이야기.</div></section>
   <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
-  <h1>역사① Ⅲ단원 3-2-2 — 왜 인도에서는 불교가 아니라 '힌두교'가 대세가 됐을까? (굽타 왕조)</h1>
-<br>
+  <br>
 <blockquote>🎙️ 지난 시간 마우리아(아소카)·쿠샨(카니슈카)에서 <strong>불교</strong>가 활짝 폈던 거 기억나? 근데 <em>반전</em> — 정작 인도에 끝까지 뿌리내린 종교는 불교가 아니라 <strong>힌두교</strong>야. 어떻게 까다로운 브라만교, 인기 있던 불교를 제치고 힌두교가 '국민 종교'가 됐을까? 게다가 <em>우리가 매일 쓰는 숫자 '0'</em>도 바로 이 굽타 왕조 때 인도에서 태어났어(헐!). 오늘 그 이야기.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
@@ -203,7 +217,6 @@ blockquote {
 <p>- <strong>건축</strong>: ⑭<span class="blank-filled">아잔타</span> 석굴 사원·엘로라 석굴 사원 등 수많은 석굴 사원이 만들어졌다.</p>
 <br>
 <figure class="ws-fig"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Indian_Museum_Sculpture_-_Buddha_Preaching%2C_5c%2C_Sarnath_%289220794680%29.jpg/1280px-Indian_Museum_Sculpture_-_Buddha_Preaching%2C_5c%2C_Sarnath_%289220794680%29.jpg" alt="굽타 양식 불상 — 사르나트 출토 설법하는 부처(5세기)" loading="lazy"><figcaption>굽타 양식 불상 — 사르나트 출토 설법하는 부처(5세기)</figcaption></figure>
-<figure class="ws-fig"><video class="ws-fig-video" controls preload="metadata" playsinline><source src="images/3-2-2_굽타왕조-생활상-대사.mp4" type="video/mp4">동영상을 재생할 수 없습니다.</video><figcaption>🎬 굽타 황금기 — 한눈에. ①여러 신앙을 <strong>흡수</strong>한 <strong>힌두교</strong>(브라만) → ②숫자 <strong>0</strong>과 십진법(학자) → ③광배를 두른 <strong>굽타 양식</strong> 불상(조각가). 영상 속 인물이 직접 대사로 말한다. (실사 재현·시대 고증·AI 생성)</figcaption></figure>
 <blockquote>🗿 <strong>굽타 양식 불상</strong>(사르나트·5세기). 간다라의 물결 옷주름이 <em>완만한 곡선</em>으로, 아래로 <em>내리뜬 두 눈</em>이 명상하는 느낌을 준다. 등 뒤의 둥근 후광까지 — <em>외래 양식을 인도 것으로 소화</em>한 단계다. <em>(인도 박물관 소장 · Wikimedia · CC BY 2.0)</em></blockquote>
 <br>
 <figure class="ws-fig"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ajanta_Caves_Exterior_View-52.jpg/1280px-Ajanta_Caves_Exterior_View-52.jpg" alt="아잔타 석굴 — 말굽 모양 절벽에 줄지어 파인 석굴군" loading="lazy"><figcaption>아잔타 석굴 — 말굽 모양 절벽에 줄지어 파인 석굴군</figcaption></figure>
@@ -227,12 +240,12 @@ blockquote {
 <br>
 <h2>✏️ 활동 1. 힌두교가 인도 사회에 미친 영향</h2>
 <p>교과서 자료(『마누 법전』·소 숭배·갠지스강 제사)를 보고, <strong>힌두교가 오늘날 인도 사람들의 생활에 어떤 영향을 주는지</strong> 한 가지 찾아 써 보자.</p>
-<p><input type="text" class="blank-input activity-input no-score" data-id="act-1" style="width:240px" placeholder=""></p>
+<p><input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="✏️ 활동 1. 힌두교가 인도 사회에 미친 영향" style="width:240px" placeholder=""></p>
 <blockquote><strong>채점 관점</strong>: <em>카스트제·소 숭배(암소 신성시)·갠지스강 제사·요가</em> 등 <em>오늘날까지 이어지는 구체 사례</em> 한 가지를 힌두교와 연결해 쓰면 정답. 예) "소를 신성하게 여겨 소고기를 먹지 않고, 길거리 소를 함부로 대하지 않는다." 단순히 "종교를 믿는다" 수준은 보완 지도.</blockquote>
 <br>
 <h2>✏️ 활동 2. 더 생각해 보기 (자기 생각 서술)</h2>
 <p>불교는 카스트를 <em>부정</em>했고, 힌두교는 카스트를 <em>인정</em>했어. 그런데도 인도에서 <em>힌두교가 더 널리 퍼진</em> 까닭은 무엇일까? 내 생각을 써 보자.</p>
-<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-1" data-label="✏️ 활동 2. 더 생각해 보기 (자기 생각 서술)" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <blockquote><strong>채점 관점</strong>: 정답이 하나가 아닌 <em>사고 개방형</em>. 좋은 답의 방향 — ① <em>왕·브라만(지배층)이 신분 질서를 지켜 주는 힌두교를 후원</em> ② <em>여러 신·민간 신앙을 흡수해 친숙·단순</em> ③ <em>카스트별 의무를 지키면 더 나은 환생이라는 교리가 기존 질서와 잘 맞음</em>. 근거를 들어 자기 생각을 쓰면 인정(세특 연계).</blockquote>
 <br>
 <h2>🔗 핵심 정리 — 인과 사슬</h2>
@@ -269,6 +282,16 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
@@ -367,10 +390,13 @@ function reset(){
 //    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
 //    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
 const EXAM_MODE=false;
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){ return document.getElementById(id); }
+function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
 function _wsKey(){
   if(!EXAM_MODE) return 'ws_'+document.title;
-  const si=document.querySelectorAll('.student-info input');
-  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
   return 'ws_'+document.title+'::'+c+'-'+n;
 }
@@ -382,8 +408,7 @@ function _persist(){
   });
   document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
   document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
-  const si=document.querySelectorAll('.student-info input');
-  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
 function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
@@ -396,10 +421,9 @@ function loadProgress(){
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
   if(info&&!EXAM_MODE){
-    const inputs=document.querySelectorAll('.student-info input');
-    if(info.class&&inputs[0]) inputs[0].value=info.class;
-    if(info.number&&inputs[1]) inputs[1].value=info.number;
-    if(info.name&&inputs[2]) inputs[2].value=info.name;
+    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
+    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
+    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
   }
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
@@ -435,6 +459,12 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
@@ -442,10 +472,10 @@ function collectAnswers(){
 function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
 function submitResult(){
   if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
-  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
   const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
@@ -483,12 +513,15 @@ document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
 document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
   b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
 });
-document.querySelectorAll('.student-info input').forEach(el=>{
+['si-cls','si-num','si-name'].forEach(id=>{
+  const el=_siEl(id); if(!el) return;
   el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
 });
 // 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
 if(EXAM_MODE){
-  document.querySelectorAll('.student-info input').forEach(el=>{
+  ['si-cls','si-num','si-name'].forEach(id=>{
+    const el=_siEl(id); if(!el) return;
     el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
   });
 }

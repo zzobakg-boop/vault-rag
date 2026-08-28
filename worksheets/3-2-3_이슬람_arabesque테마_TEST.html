@@ -108,7 +108,8 @@ blockquote {
 .student-info {
   display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
 }
-.student-info input {
+.student-info select { background:#fff; cursor:pointer; }
+.student-info input, .student-info select {
   border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
 }
 @media (max-width: 600px) {
@@ -133,6 +134,20 @@ blockquote {
 .hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
 .hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
 .hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+.card-quote { border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
 .hero-keyword {
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -151,41 +166,10 @@ blockquote {
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
-<style id="cd-theme">
-/* ===== 통합 테마: 이슬람 (아라베스크·녹금) (apply_theme.py) ===== */
-body{ background:#efe7d3 !important; color:#1d241f !important; font-family:'Gowun Batang','Nanum Myeongjo',serif !important; }
-.container{ position:relative; background:#f8f2e2 !important;
-  background-image:radial-gradient(circle at 8% -2%, rgba(0,0,0,0.05), transparent 32%), radial-gradient(circle at 96% 4%, rgba(0,0,0,0.04), transparent 24%) !important;
-  border:1px solid #d3c39a !important; box-shadow:0 3px 26px rgba(20,20,20,0.14) !important; overflow:hidden; }
-p,li,td,th,label,span,div{ font-family:'Gowun Batang','Nanum Myeongjo',serif; }
-/* hero 배너 = 먹빛 띠 + 밝은 제목(어두운 배경서 가독) */
-.hero-section{ background:linear-gradient(135deg, #1d241f 0%, #2c3a30 100%) !important; border:none !important; }
-.hero-title{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#f8f2e2 !important; font-weight:700 !important; letter-spacing:.5px; text-shadow:0 1px 3px rgba(0,0,0,.4); }
-.hero-eyebrow{ color:#f8f2e2 !important; opacity:.82; letter-spacing:1px; }
-.hero-subtitle{ color:#f8f2e2 !important; opacity:.93; }
-.hero-keyword{ background:rgba(255,255,255,.10) !important; color:#f8f2e2 !important; border:1px solid #1f6b4f !important; }
-.hero-hook{ color:#f8f2e2 !important; opacity:.95; }
-/* 본문 제목(hero 제외) = 진한 먹빛 + 먹 획 밑줄 */
-h1:not(.hero-title){ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#1d241f !important; font-weight:700 !important; letter-spacing:1px; position:relative; }
-h1:not(.hero-title)::after{ content:''; display:block; width:130px; height:7px; margin:14px auto 4px; background:linear-gradient(90deg, transparent, #2c3a30 18%, #2c3a30 78%, transparent); border-radius:4px; opacity:.85; }
-h2,h3,h4{ font-family:'Song Myung','Nanum Myeongjo',serif !important; color:#2c3a30 !important; }
-h2{ border-left:5px solid #1f6b4f !important; padding-left:12px !important; }
-strong,b,.accent,a{ color:#1f6b4f !important; }
-.badge,.section-label,.hero .badge{ background:#1f6b4f !important; color:#f8f2e2 !important; border-color:#1f6b4f !important; }
-table,th,td{ border-color:#d3c39a !important; } th{ background:#e6dcc1 !important; color:#2c3a30 !important; }
-/* worksheet-gen은 표 헤더를 <th>가 아니라 <tr:first-child><td>로 낸다 → 기본 CSS의 연파랑(#f0f4ff)이 남아 테마가 깨짐 (2026-08-13 발견·전 테마 공통 버그) */
-tr:first-child td{ background:#e6dcc1 !important; color:#2c3a30 !important; }
-.blank-input{ background:#fffdf4 !important; border:1px solid #d3c39a !important; color:#1d241f !important; }
-blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:4px solid #1f6b4f !important; color:#2c3a30 !important; }
-.container::before{ content:'۞'; position:absolute; top:14px; right:16px; font-family:'Song Myung','Nanum Myeongjo',serif; color:#f8f2e2; background:#1f6b4f; width:34px; height:34px; line-height:34px; text-align:center; border-radius:5px; font-size:18px; box-shadow:0 1px 4px rgba(0,0,0,.22); z-index:5; }
-.container::after{ content:''; position:absolute; top:0; left:0; right:0; height:9px; background:repeating-linear-gradient(45deg, #1f6b4f 0 6px, #c79a3e 6px 12px); opacity:.55; }
-</style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><div class="hero-eyebrow">역사① · Ⅲ단원 · 지역 문화의 발전 · 3-2-3</div><h1 class="hero-title">역사① Ⅲ단원 3-2-3 — 한 상인이 세운 종교가 어떻게 100년 만에 세 대륙으로 퍼졌을까? (이슬람 세계의 성장)</h1><p class="hero-subtitle">한 상인이 세운 종교가 어떻게 100년 만에 세 대륙으로 퍼졌을까?</p><div class="hero-keywords"><span class="hero-keyword">무함마드 이슬람교 성립·헤지라(메디나 이주)</span><span class="hero-keyword">정통 칼리프 — 지즈야 면제·평등으로 빠른 확산</span><span class="hero-keyword">우마이야(시아·수니 분열)→아바스(민족 차별 철폐)</span><span class="hero-keyword">탈라스 전투 — 고구려 유민 고선지와 얽힌 우리 역사</span></div><div class="hero-hook">사산조와 비잔티움이 치고받느라 동서 교역로가 막히자, 아라비아의 메카·메디나가 새 무역 중심지로 떴어. 근데 소수 귀족이 돈을 독차지하면서 빈부 격차가 폭발. 바로 그때 메카의 한 상인 *무함마드*가 '신 앞에 모두 평등하다'며 이슬람교를 세워. 박해받아 쫓겨났던 이 종교가 어떻게 100년 만에 세 대륙을 호령하게 됐을까?</div><img class="hero-image" src="images/3-2-3_이슬람세계_표지.png" alt="이슬람 세계의 성장 표지"></section>
+  <section class="hero-section"><div class="hero-eyebrow">역사① · Ⅲ단원 · 지역 문화의 발전 · 3-2-3</div><h1 class="hero-title">역사① Ⅲ단원 3-2-3 — 한 상인이 세운 종교가 어떻게 100년 만에 세 대륙으로 퍼졌을까? (이슬람 세계의 성장)</h1><p class="hero-subtitle">한 상인이 세운 종교가 어떻게 100년 만에 세 대륙으로 퍼졌을까?</p><div class="hero-keywords"><span class="hero-keyword">무함마드 이슬람교 성립·헤지라(메디나 이주)</span><span class="hero-keyword">정통 칼리프 — 지즈야 면제·평등으로 빠른 확산</span><span class="hero-keyword">우마이야(시아·수니 분열)→아바스(민족 차별 철폐)</span><span class="hero-keyword">탈라스 전투 — 고구려 유민 고선지와 얽힌 우리 역사</span></div><div class="hero-hook">사산조와 비잔티움이 치고받느라 동서 교역로가 막히자, 아라비아의 메카·메디나가 새 무역 중심지로 떴어. 근데 소수 귀족이 돈을 독차지하면서 빈부 격차가 폭발. 바로 그때 메카의 한 상인 *무함마드*가 '신 앞에 모두 평등하다'며 이슬람교를 세워. 박해받아 쫓겨났던 이 종교가 어떻게 100년 만에 세 대륙을 호령하게 됐을까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/0
@@ -201,12 +185,11 @@ blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:
     </div>
   </div>
   <div class="student-info">
-    <input type="text" placeholder="반">
-    <input type="text" placeholder="번호">
-    <input type="text" placeholder="이름">
+    <select id="si-cls"><option value="">반</option><option value="1">1반</option><option value="2">2반</option><option value="3">3반</option><option value="4">4반</option><option value="5">5반</option><option value="6">6반</option></select>
+    <select id="si-num"><option value="">번호</option><option value="1">1번</option><option value="2">2번</option><option value="3">3번</option><option value="4">4번</option><option value="5">5번</option><option value="6">6번</option><option value="7">7번</option><option value="8">8번</option><option value="9">9번</option><option value="10">10번</option><option value="11">11번</option><option value="12">12번</option><option value="13">13번</option><option value="14">14번</option><option value="15">15번</option><option value="16">16번</option><option value="17">17번</option><option value="18">18번</option><option value="19">19번</option><option value="20">20번</option><option value="21">21번</option><option value="22">22번</option><option value="23">23번</option><option value="24">24번</option><option value="25">25번</option><option value="26">26번</option><option value="27">27번</option><option value="28">28번</option><option value="29">29번</option><option value="30">30번</option><option value="31">31번</option><option value="32">32번</option><option value="33">33번</option><option value="34">34번</option><option value="35">35번</option></select>
+    <input type="text" id="si-name" placeholder="이름">
   </div>
-  <h1>역사① Ⅲ단원 3-2-3 — 한 상인이 세운 종교가 어떻게 100년 만에 세 대륙으로 퍼졌을까? (이슬람 세계의 성장)</h1>
-<br>
+  <br>
 <blockquote>🎙️ 사산조와 비잔티움이 치고받느라 동서 교역로가 막히자, 아라비아의 <em>메카·메디나</em>가 새 무역 중심지로 떴어. 근데 소수 귀족이 무역 이익을 독차지하면서 <em>빈부 격차</em>가 폭발하고 부족끼리 전쟁까지(헐!). 바로 그때 메카의 한 상인 <strong>무함마드</strong>가 "신 앞에 모두 평등하다"며 이슬람교를 세워. 처음엔 박해받아 쫓겨났던 이 종교가 어떻게 <em>100년 만에 세 대륙</em>을 호령하게 됐을까? 오늘 그 이야기.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
@@ -245,7 +228,6 @@ blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:
 <blockquote>(교과서 원문: "제4대 칼리프인 알리가 피살되자 우마이야 가문이 권력을 잡고 … 우마이야 왕조가 시작되었다(661). 이슬람교도들은 … 시아파와 수니파로 나뉘어 대립하였다. … 아바스 왕조는 아랍인 중심의 민족 차별 정책을 없애 … 또한 탈라스 전투에서 당에 승리하여 동서 교역로를 차지하고 국제 무역으로 번영하였다." — 비상교육 역사①(이병인) p.83)</blockquote>
 <br>
 <figure class="ws-fig"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Damascus%2C_Syria%2C_The_Umayyad_Mosque%2C_The_Courtyard%2C_Islamic_Art.jpg/1280px-Damascus%2C_Syria%2C_The_Umayyad_Mosque%2C_The_Courtyard%2C_Islamic_Art.jpg" alt="우마이야 대모스크 안뜰 — 금빛 모자이크와 너른 마당" loading="lazy"><figcaption>우마이야 대모스크 안뜰 — 금빛 모자이크와 너른 마당</figcaption></figure>
-<figure class="ws-fig"><video class="ws-fig-video" controls preload="metadata" playsinline><source src="images/3-2-3_이슬람세계-생활상-대사.mp4" type="video/mp4">동영상을 재생할 수 없습니다.</video><figcaption>🎬 이슬람 세계 — 한눈에. ①<strong>유일신 신앙</strong>으로 성립(카바·기도) → ②정통 칼리프의 <strong>관용</strong>으로 세 대륙에 확산("세금만 내면 믿음은 자유") → ③우마이야→<strong>아바스</strong>의 학문(그리스 책을 아랍어로). 영상 속 인물이 직접 대사로 말한다. (실사 재현·예언자 묘사 없이 신자·학자만·AI 생성)</figcaption></figure>
 <blockquote>🕌 <strong>우마이야 대모스크</strong>(시리아 다마스쿠스). 우마이야 왕조 때 세운 초기 이슬람 건축의 걸작 — 금빛 모자이크와 너른 안뜰에, <em>정복지(비잔티움)의 기술·예술까지 끌어안은</em> 이슬람 세계의 자신감이 담겨 있다. <em>(Wikimedia · CC BY 4.0)</em></blockquote>
 <br>
 <blockquote>🌍 <strong>1,300년을 잇는 분열</strong>: 이때 갈라진 <em>시아파·수니파</em>는 <em>오늘날까지</em> 이어져. 지금도 <strong>수니파가 약 83%로 다수</strong>, 시아파는 소수(이란이 중심)야. <em>이란(시아)–사우디(수니)</em>의 대립 같은 현대 중동 정세의 한 축이 바로 이 7세기 분열에 닿아 있어. (단, 종교만의 문제가 아니라 정치·자원도 얽혀 있다는 건 기억!)</blockquote>
@@ -264,11 +246,11 @@ blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:
 <br>
 <h2>✏️ 활동 1. 이슬람교는 왜 빠르게 퍼졌을까?</h2>
 <p>교과서를 바탕으로, 이슬람교가 <em>짧은 기간에 빠르게 확산된 까닭</em>을 두 가지 찾아 써 보자.</p>
-<p><input type="text" class="blank-input activity-input no-score" data-id="act-1" style="width:240px" placeholder=""></p>
+<p><input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="✏️ 활동 1. 이슬람교는 왜 빠르게 퍼졌을까?" style="width:240px" placeholder=""></p>
 <br>
 <h2>✏️ 활동 2. 더 생각해 보기 (자기 생각 서술)</h2>
 <p>정복지 주민에게 <em>개종을 강요하지 않고 세금을 깎아 준</em> 이슬람의 정책은, 페르시아의 <em>관용 정책</em>과 닮았어. '강요'가 아니라 '관용'이 더 강한 힘을 낸 까닭은 무엇일까? 내 생각을 써 보자.</p>
-<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-1" data-label="✏️ 활동 2. 더 생각해 보기 (자기 생각 서술)" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <h2>🔗 핵심 정리 — 인과 사슬</h2>
 <p>사산조·비잔티움 대립 → 교역로 막힘 → 메카·메디나 번영·빈부 격차 →</p>
@@ -287,7 +269,7 @@ blockquote,[class*="call"]{ background:rgba(0,0,0,0.03) !important; border-left:
 </table>
 <br>
 <h2>다음 시간 예고</h2>
-<p>이슬람 세계는 이후 『쿠란』을 중심으로 독자적인 <em>이슬람 문화권</em>을 이루고, 유럽에서는 비잔티움 제국과 중세 사회가 자라난다(다음 단원).</p>
+<p>이슬람 세계가 세 대륙으로 뻗어 가던 바로 그 무렵, 유럽에서는 정반대 일이 벌어진다. 천 년을 버틴 로마의 서쪽이 무너지고 그 폐허에서 새로운 유럽이 자라난다 — 다음 시간 <strong>「유럽 세계의 형성」</strong>.</p>
 </div>
 <script>
 const TB=12, TOX=0, GT=12;
@@ -304,6 +286,16 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
@@ -402,10 +394,13 @@ function reset(){
 //    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
 //    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
 const EXAM_MODE=false;
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){ return document.getElementById(id); }
+function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
 function _wsKey(){
   if(!EXAM_MODE) return 'ws_'+document.title;
-  const si=document.querySelectorAll('.student-info input');
-  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
   return 'ws_'+document.title+'::'+c+'-'+n;
 }
@@ -417,8 +412,7 @@ function _persist(){
   });
   document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
   document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
-  const si=document.querySelectorAll('.student-info input');
-  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
 function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
@@ -431,10 +425,9 @@ function loadProgress(){
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
   if(info&&!EXAM_MODE){
-    const inputs=document.querySelectorAll('.student-info input');
-    if(info.class&&inputs[0]) inputs[0].value=info.class;
-    if(info.number&&inputs[1]) inputs[1].value=info.number;
-    if(info.name&&inputs[2]) inputs[2].value=info.name;
+    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
+    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
+    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
   }
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
@@ -470,6 +463,12 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
@@ -477,10 +476,10 @@ function collectAnswers(){
 function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
 function submitResult(){
   if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
-  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
   const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
@@ -518,12 +517,15 @@ document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
 document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
   b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
 });
-document.querySelectorAll('.student-info input').forEach(el=>{
+['si-cls','si-num','si-name'].forEach(id=>{
+  const el=_siEl(id); if(!el) return;
   el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
 });
 // 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
 if(EXAM_MODE){
-  document.querySelectorAll('.student-info input').forEach(el=>{
+  ['si-cls','si-num','si-name'].forEach(id=>{
+    const el=_siEl(id); if(!el) return;
     el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
   });
 }

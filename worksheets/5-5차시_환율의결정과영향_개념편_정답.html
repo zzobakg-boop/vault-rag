@@ -108,7 +108,8 @@ blockquote {
 .student-info {
   display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
 }
-.student-info input {
+.student-info select { background:#fff; cursor:pointer; }
+.student-info input, .student-info select {
   border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
 }
 @media (max-width: 600px) {
@@ -170,8 +171,7 @@ blockquote {
 <div class="container">
   <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-5차시 — 환율의 결정과 영향 (정답·모범답안)</h1><p class="hero-subtitle">해외 직구할 때 '환율 오름' 뜨면 왜 비싸질까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">환율 = 두 화폐의 교환 비율(외화의 가격)<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">환율도 외화의 수요·공급으로 결정<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">환율 ↑ = 원화 가치 ↓<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">수출·수입·물가·여행에 영향<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>환율</strong> = 두 나라 돈을 바꾸는 비율. 다르게 말하면 <strong>외화의 가격</strong>이다.</p><p><strong>1달러 = 1,400원</strong> 이라고 쓴다. 이건 <em>"달러라는 물건의 값이 1,400원"</em> 이라는 뜻이다.</p><p>🔴 <strong>환율을 '물건 값'으로 읽는 순간 전부 쉬워진다.</strong></p><p>• 환율이 오른다 = <strong>달러가 비싸졌다</strong></p><p>• 달러가 비싸졌다 = <strong>원화로는 더 많이 줘야 한다</strong></p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>환율도 <strong>수요·공급으로 정해진다.</strong> 4단원에서 배운 그 원리 그대로다 — 달라진 건 상품이 <strong>달러</strong>라는 것뿐.</p><table><thead><tr><th></th><th>언제 생기나</th><th>환율은</th></tr></thead><tbody><tr><td><strong>외화 수요 ↑</strong></td><td>수입 증가·해외여행·유학</td><td><strong>오른다</strong></td></tr><tr><td><strong>외화 공급 ↑</strong></td><td>수출 증가·외국인 투자 유입</td><td><strong>내린다</strong></td></tr></tbody></table><p><strong>뒤집어 보면</strong> — 달러를 <strong>사려는 사람</strong>이 많으면 달러 값(환율)이 오르고, <strong>팔려는 사람</strong>이 많으면 내린다. 시장에서 사과값 정해지는 것과 똑같다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>🔴 <strong>가장 헷갈리는 지점. 둘은 항상 반대로 움직인다.</strong></p><table><thead><tr><th></th><th>환율</th><th>원화 가치</th><th>뜻</th></tr></thead><tbody><tr><td>1달러 = 1,200원</td><td>—</td><td>—</td><td>기준</td></tr><tr><td>1달러 = <strong>1,400원</strong></td><td><strong>올랐다 ↑</strong></td><td><strong>떨어졌다 ↓</strong></td><td>달러 사려면 원화를 <strong>더</strong> 줘야 함</td></tr><tr><td>1달러 = <strong>1,000원</strong></td><td><strong>내렸다 ↓</strong></td><td><strong>올랐다 ↑</strong></td><td>원화를 <strong>덜</strong> 줘도 됨</td></tr></tbody></table><p><strong>외우는 법</strong> — 환율은 <strong>달러의 값</strong>이다. 달러가 비싸지면 상대적으로 <strong>원화는 싸진 것</strong>이다. 시소를 떠올리면 된다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>환율이 오르면(원화 가치 ↓) 우리 생활은 이렇게 갈린다.</p><table><thead><tr><th></th><th>환율 상승 시</th><th>왜</th></tr></thead><tbody><tr><td><strong>수출</strong></td><td>유리 ✅</td><td>우리 물건이 외국에서 <strong>싸 보인다</strong></td></tr><tr><td><strong>수입</strong></td><td>불리 ❌</td><td>같은 물건에 원화를 <strong>더</strong> 줘야 한다</td></tr><tr><td><strong>국내 물가</strong></td><td>오름 ❌</td><td>수입 원자재값이 올라 밀어 올린다</td></tr><tr><td><strong>해외여행</strong></td><td>불리 ❌</td><td>같은 여행에 돈이 <strong>더</strong> 든다</td></tr></tbody></table><p><strong>5-2와 이어진다</strong> — 환율이 오르면 물가도 오른다. 5-2에서 배운 <strong>물가 상승 3원인 중 '생산비 상승'</strong> 이 바로 이 길이다.</p></div></div><img class="hero-image" src="images/exchange-hero.png" alt=""><div class="hero-hook">어제 누군가의 카톡에 이런 광고가 왔다. '엔화 800원대 = 일본 직구템 쓸어담을 타이밍'. 무슨 말일까? 엔화가 싸졌으니 지금 사라는 뜻이다. 그런데 같은 시기 뉴스에서는 '환율이 1,400원을 넘었다'며 걱정한다. 싸졌다는 걸까 비싸졌다는 걸까? 둘 다 맞다 — 상대가 다르기 때문이다. 오늘은 이 숫자 하나가 우리 지갑을 어떻게 흔드는지 알아보자.</div></section>
   <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
-  <h1>사회② 국민경제와 국제거래 5-5차시 — 환율의 결정과 영향 (정답·모범답안)</h1>
-<br>
+  <br>
 <blockquote>🎙️ 환율 = 외화의 가격. 환율 ↑ = 원화 가치 ↓ = 수출 유리·수입/여행 불리. 환율도 외화의 수요·공급으로 결정(앞 단원 수요공급 원리).</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
@@ -400,10 +400,13 @@ function reset(){
 //    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
 //    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
 const EXAM_MODE=false;
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){ return document.getElementById(id); }
+function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
 function _wsKey(){
   if(!EXAM_MODE) return 'ws_'+document.title;
-  const si=document.querySelectorAll('.student-info input');
-  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
   return 'ws_'+document.title+'::'+c+'-'+n;
 }
@@ -415,8 +418,7 @@ function _persist(){
   });
   document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
   document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
-  const si=document.querySelectorAll('.student-info input');
-  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
 function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
@@ -429,10 +431,9 @@ function loadProgress(){
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
   if(info&&!EXAM_MODE){
-    const inputs=document.querySelectorAll('.student-info input');
-    if(info.class&&inputs[0]) inputs[0].value=info.class;
-    if(info.number&&inputs[1]) inputs[1].value=info.number;
-    if(info.name&&inputs[2]) inputs[2].value=info.name;
+    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
+    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
+    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
   }
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
@@ -481,10 +482,10 @@ function collectAnswers(){
 function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
 function submitResult(){
   if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
-  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
   const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
@@ -522,12 +523,15 @@ document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
 document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
   b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
 });
-document.querySelectorAll('.student-info input').forEach(el=>{
+['si-cls','si-num','si-name'].forEach(id=>{
+  const el=_siEl(id); if(!el) return;
   el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
 });
 // 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
 if(EXAM_MODE){
-  document.querySelectorAll('.student-info input').forEach(el=>{
+  ['si-cls','si-num','si-name'].forEach(id=>{
+    const el=_siEl(id); if(!el) return;
     el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
   });
 }

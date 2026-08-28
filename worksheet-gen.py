@@ -557,6 +557,15 @@ def generate_html(title, content, total, total_ox, submit_url='', mode='class', 
     exam_js = 'true' if exam else 'false'
     grand_total = total + total_ox
     hero_html = build_hero_html(title, hero or {})
+    # ⚠️ 2026-08-28: hero(표지)가 있으면 본문 첫 <h1>이 같은 제목을 한 번 더 찍는다.
+    #    표지 이미지 안에도 제목이 그려져 있어 학생 화면에서 제목이 최대 세 번 나왔다.
+    #    hero가 있을 때만, 그리고 hero 제목과 내용이 같을 때만 본문 h1을 접는다(다른 제목은 보존).
+    if hero_html:
+        def _plain(x):
+            return re.sub(r'\s+', '', re.sub(r'<[^>]+>', '', x))
+        m_h1 = re.search(r'<h1>(.*?)</h1>\s*', content, re.S)
+        if m_h1 and _plain(m_h1.group(1)) == _plain(title):
+            content = content[:m_h1.start()] + content[m_h1.end():]
     if mode == 'teacher':
         # 정답본: 학생 제출용과 같은 레이아웃에 답이 빈칸에 기입된 모습(reveal 느낌) + 모범답안·해설·이미지 포함.
         # 수업 중 이걸 띄워놓고 학생은 제출용을 작성. '교사용 정답본' 같은 명명·경고 라벨 X (v3.2).
