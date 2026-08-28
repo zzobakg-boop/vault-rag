@@ -488,7 +488,13 @@ def extract_hero_meta(blank_file):
             return None
         v = mm.group(1).strip()
         if len(v) >= 2 and v[0] in '"\'' and v[-1] == v[0]:
+            quote = v[0]
             v = v[1:-1].strip()
+            # ⚠️ 2026-08-28: 큰따옴표로 감싼 YAML 값 안의 \" 를 안 풀어
+            #    학생 화면에 백슬래시가 그대로 노출됐다(3-3-1 부제·훅).
+            #    바깥 따옴표만 벗기고 끝내면 안 된다.
+            if quote == '"':
+                v = v.replace('\\"', '"').replace('\\\\', '\\')
         return v or None
     hero['image'] = get('hero_image')
     hero['subtitle'] = get('hero_subtitle') or get('교과서')
