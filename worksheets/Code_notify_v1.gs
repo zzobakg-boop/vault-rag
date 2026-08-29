@@ -23,7 +23,7 @@
  *      같은 배치를 두 번 보내지 않도록 마지막 발송 시각을 속성에 남긴다.
  */
 
-var VERSION = 'v1.6';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
+var VERSION = 'v1.7';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
 var WINDOW_MIN = 40;      // 되돌아볼 분
 var NUM_MAX = 40;         // 정상 번호 상한 (이보다 크면 이상 신호)
 var HDR = ['시각', '학습지', '반', '번호', '이름', '빈칸', 'OX', '총점', '답(JSON)'];
@@ -296,18 +296,26 @@ function notifyRecent() {
         var hint = [];
         all.forEach(function (t) {
           var nmx = t.getName();
-          if (nmx.indexOf('명') >= 0 || nmx.indexOf('렬') >= 0) {
+          var nx = nmx.normalize ? nmx.normalize('NFC') : nmx;   // NFD면 indexOf('명')이 실패한다
+          if (nx.indexOf('명') >= 0 || nx.indexOf('렬') >= 0) {
             hint.push('「' + nmx + '」(' + nmx.length + '자)');
           }
         });
-        diag += '🔴 「' + ROSTER_TAB + '」 탭을 찾지 못했습니다 — 미제출 계산은 하지 않습니다.\n'
+        var ssx = SpreadsheetApp.getActiveSpreadsheet();
+        diag += '🔴 「' + ROSTER_TAB + '」 탭을 찾지 못했습니다 — 미제출 계산은 하지 않습니다.\n\n'
+          + '   ▸ 이 스크립트가 읽고 있는 파일:\n'
+          + '     「' + ssx.getName() + '」\n'
+          + '     ' + ssx.getUrl() + '\n'
+          + '   ▸ 이 링크를 열어 보세요. 「명렬」을 만든 그 파일이 맞습니까?\n'
+          + '     다르면 그 파일에 명렬 탭을 만들어야 합니다.\n\n'
           + '   전체 탭 ' + all.length + '개.\n'
           + (hint.length
               ? '   비슷한 이름: ' + hint.join(', ') + '\n   → 이 탭 이름을 지우고 「명렬」 두 글자만 다시 입력해 보세요.'
               : '   「명」이나 「렬」이 든 탭이 하나도 없습니다. 다른 스프레드시트에 만드신 건 아닌지 확인하세요.');
       } else {
         var ks = Object.keys(roster);
-        diag += '「' + rosterInfo.tabName + '」 탭: ' + ks.length + '개 반 인식';
+        diag += '읽는 파일: 「' + SpreadsheetApp.getActiveSpreadsheet().getName() + '」\n'
+          + '「' + rosterInfo.tabName + '」 탭: ' + ks.length + '개 반 인식';
         if (rosterInfo.tabName !== ROSTER_TAB) { diag += ' ⚠️이름이 「' + ROSTER_TAB + '」과 다르지만 찾아서 씀'; }
         if (ks.length) { diag += ' (' + ks.sort().join(', ') + ')'; }
         if (rosterBad.length) { diag += '\n🔴 못 읽은 줄: ' + rosterBad.join(' / '); }
