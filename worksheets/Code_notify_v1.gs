@@ -23,12 +23,30 @@
  *      같은 배치를 두 번 보내지 않도록 마지막 발송 시각을 속성에 남긴다.
  */
 
-var VERSION = 'v1.7';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
+var VERSION = 'v1.8';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
 var WINDOW_MIN = 40;      // 되돌아볼 분
 var NUM_MAX = 40;         // 정상 번호 상한 (이보다 크면 이상 신호)
 var HDR = ['시각', '학습지', '반', '번호', '이름', '빈칸', 'OX', '총점', '답(JSON)'];
 
 function _prop_(k) { return PropertiesService.getScriptProperties().getProperty(k); }
+
+/**
+ * 어느 스프레드시트를 읽을지 결정한다.
+ * 스크립트 속성 SHEET_ID 가 있으면 그 파일을, 없으면 이 스크립트가 붙어 있는 파일을 쓴다.
+ * 왜: 8/30 — 알림 코드를 *제출을 받지 않는 옛 사본* 프로젝트에 붙여 넣는 바람에
+ *     명렬 탭을 몇 번을 만들어도 영원히 못 찾는 일이 있었다. SHEET_ID 를 박아 두면
+ *     스크립트가 어디에 붙어 있든 항상 같은 파일을 본다.
+ */
+function _ss_() {
+  var id = _prop_('SHEET_ID');
+  if (id) {
+    id = String(id).trim();
+    var m = id.match(/\/d\/([a-zA-Z0-9-_]+)/);   // URL 을 통째로 넣어도 받아준다
+    if (m) id = m[1];
+    return SpreadsheetApp.openById(id);
+  }
+  return SpreadsheetApp.getActiveSpreadsheet();
+}
 
 function _tg_(text) {
   var tok = _prop_('TG_BOT_TOKEN'), chat = _prop_('TG_CHAT_ID');
@@ -154,7 +172,7 @@ var ROSTER_TAB = '명렬';   // 학년 | 반 | 번호(1-25,27 형식) — 없으
  * 정확 일치 → 정규화 일치 → 부분 일치 순으로 내려가며 찾는다.
  */
 function _findRosterTab_() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = _ss_();
   var exact = ss.getSheetByName(ROSTER_TAB);
   if (exact) { return exact; }
 
@@ -216,7 +234,7 @@ function _gradeOf_(title) {
 function notifyRecent() {
   var now = new Date();
   var since = new Date(now.getTime() - WINDOW_MIN * 60 * 1000);
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = _ss_();
   var blocks = [], anyIssue = false;
   var scanned = 0, totalRows = 0;   // 진단용
   var rosterInfo = _roster_();      // '명렬' 탭 없으면 null → 미제출 계산 건너뜀
@@ -292,7 +310,7 @@ function notifyRecent() {
         + '이상 신호도 없습니다.\n\n';
       // 명렬 상태를 자세히 — 여기서 대부분의 설치 문제가 드러난다
       if (!rosterInfo) {
-        var all = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+        var all = _ss_().getSheets();
         var hint = [];
         all.forEach(function (t) {
           var nmx = t.getName();
@@ -301,7 +319,7 @@ function notifyRecent() {
             hint.push('「' + nmx + '」(' + nmx.length + '자)');
           }
         });
-        var ssx = SpreadsheetApp.getActiveSpreadsheet();
+        var ssx = _ss_();
         diag += '🔴 「' + ROSTER_TAB + '」 탭을 찾지 못했습니다 — 미제출 계산은 하지 않습니다.\n\n'
           + '   ▸ 이 스크립트가 읽고 있는 파일:\n'
           + '     「' + ssx.getName() + '」\n'
@@ -314,7 +332,7 @@ function notifyRecent() {
               : '   「명」이나 「렬」이 든 탭이 하나도 없습니다. 다른 스프레드시트에 만드신 건 아닌지 확인하세요.');
       } else {
         var ks = Object.keys(roster);
-        diag += '읽는 파일: 「' + SpreadsheetApp.getActiveSpreadsheet().getName() + '」\n'
+        diag += '읽는 파일: 「' + _ss_().getName() + '」\n'
           + '「' + rosterInfo.tabName + '」 탭: ' + ks.length + '개 반 인식';
         if (rosterInfo.tabName !== ROSTER_TAB) { diag += ' ⚠️이름이 「' + ROSTER_TAB + '」과 다르지만 찾아서 씀'; }
         if (ks.length) { diag += ' (' + ks.sort().join(', ') + ')'; }
