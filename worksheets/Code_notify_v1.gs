@@ -40,17 +40,34 @@ function _tg_(text) {
 }
 
 /** 시트 한 탭을 훑어 최근 제출 + 이상 신호를 뽑는다. */
+/** 값이 '최근'으로 읽히는 날짜인가 (헤더 없는 탭이 제출 탭인지 판별할 때 씀) */
+function _recentDate_(v, since) {
+  var d = (v instanceof Date) ? v : new Date(v);
+  return (d instanceof Date) && !isNaN(d.getTime()) && d >= since;
+}
+
 function _scanTab_(tab, since) {
   var vals = tab.getDataRange().getValues();
   var out = { name: tab.getName(), rows: [], issues: [] };
   if (vals.length === 0) { return out; }
 
-  // 🔴 이상 신호 A — 헤더 유실 (8/21 사고: 헤더 없는 탭에 데이터만 쌓임)
   var head = vals[0].map(function (v) { return String(v).trim(); });
+
+  // ⚠️ 2026-08-29 오탐 수정 — 이 시트에는 제출 탭 말고도 교사가 손으로 만든
+  //   정리 시트(「📋 정리·…」 등)가 섞여 있다. 예전엔 그것들까지 전부
+  //   "헤더 없음"으로 경보해 20줄짜리 알림이 왔고, 진짜 신호가 그 속에 묻혔다.
+  //   → 헤더가 없으면 기본은 *조용히 건너뛴다*. 단 A열이 '최근 날짜'로 읽히면
+  //     그건 제출 탭인데 헤더만 날아간 것이므로 그때만 경보한다(8/21 사고 대비).
   if (head[0] !== '시각') {
-    out.issues.push('헤더 없음 — 열이 어긋난 채로 쌓이는 중');
-    return out;   // 헤더가 없으면 아래 파싱을 신뢰할 수 없다
+    for (var j = 0; j < vals.length; j++) {
+      if (_recentDate_(vals[j][0], since)) {
+        out.issues.push('헤더 없음 — 제출이 들어오는데 열이 어긋난 채로 쌓이는 중');
+        break;
+      }
+    }
+    return out;
   }
+
   var ix = {};
   HDR.forEach(function (h) { ix[h] = head.indexOf(h); });
 
@@ -59,16 +76,20 @@ function _scanTab_(tab, since) {
     var r = vals[i];
     var ts = r[ix['시각']];
     var when = (ts instanceof Date) ? ts : new Date(ts);
+
+    // ⚠️ 2026-08-29 버그 수정 — 예전엔 번호 검사가 이 시간 필터 *앞*에 있었다.
+    //   그래서 7월 데이터까지 매번 딸려 와 30분마다 같은 과거 경보가 반복됐다.
+    //   모든 검사는 반드시 창 안으로 들어온 뒤에 한다.
+    if (!(when instanceof Date) || isNaN(when.getTime()) || when < since) { continue; }
+
     var cls = String(r[ix['반']]).trim();
     var num = String(r[ix['번호']]).trim();
 
-    // 🔴 이상 신호 B — 번호 범위 이탈 (드롭다운 이전 제출분·오기)
+    // 🔴 이상 신호 B — 번호 범위 이탈 (드롭다운 이전 제출분·오기·열 밀림)
     var n = parseInt(num, 10);
-    if (num && (isNaN(n) || n < 1 || n > NUM_MAX)) {
-      out.issues.push('번호 이상: ' + cls + '반 "' + num + '"');
+    if (num && (isNaN(n) || String(n) !== num || n < 1 || n > NUM_MAX)) {
+      out.issues.push('번호 이상: ' + cls + '반 "' + num.slice(0, 30) + '"');
     }
-
-    if (!(when instanceof Date) || isNaN(when.getTime()) || when < since) { continue; }
 
     var key = cls + '-' + num;
     // 🔴 이상 신호 C — 같은 반번호가 이 배치에 두 번 (재제출이 아니라 오기 의심)
@@ -95,6 +116,18 @@ function _scanTab_(tab, since) {
   Object.keys(seen).forEach(function (k) {
     if (seen[k].dup) { out.issues.push('같은 반·번호 중복 제출: ' + k + '번'); }
   });
+
+  // ⚠️ 2026-08-29 — 같은 문구가 5번씩 반복돼 알림이 읽히지 않았다.
+  //   중복은 접어서 "×N"으로, 종류가 많으면 잘라 낸다. 읽히지 않는 경보는 없는 것과 같다.
+  var cnt = {}, order = [];
+  out.issues.forEach(function (m) {
+    if (cnt[m] === undefined) { cnt[m] = 0; order.push(m); }
+    cnt[m]++;
+  });
+  out.issues = order.slice(0, 5).map(function (m) {
+    return cnt[m] > 1 ? (m + ' ×' + cnt[m]) : m;
+  });
+  if (order.length > 5) { out.issues.push('… 외 ' + (order.length - 5) + '종'); }
   return out;
 }
 
