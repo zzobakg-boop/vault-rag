@@ -136,30 +136,47 @@ var VERBOSE = false;
 
 var ROSTER_TAB = '명렬';   // 학년 | 반 | 번호(1-25,27 형식) — 없으면 미제출 계산을 건너뛴다
 
-/** '명렬' 탭 → { '3-1': {1:true, 2:true, ...}, ... } */
+/**
+ * '명렬' 탭 → { map: {'3-1': {1:true,...}}, bad: ['3-1 …'] }
+ *
+ * ⚠️ 2026-08-30 — 구글 시트가 '1-27' 을 **날짜(1월 27일)로 자동 변환**한다.
+ *   그러면 셀 값이 Date 객체가 되어 파싱이 실패하고, 그 반 명렬이 비어
+ *   *전원이 ❓ 명렬에 없는 번호* 로 뜬다. 조용히 깨지면 안 되므로 못 읽은 줄을 따로 모아 알린다.
+ *   근본 해결은 C열을 '일반 텍스트' 서식으로 두는 것.
+ */
 function _roster_() {
   var tab = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ROSTER_TAB);
   if (!tab) { return null; }
   var vals = tab.getDataRange().getValues();
-  var map = {};
+  var map = {}, bad = [];
   for (var i = 1; i < vals.length; i++) {          // 1행은 머리글
     var g = String(vals[i][0]).trim();
     var c = String(vals[i][1]).trim();
-    var spec = String(vals[i][2]).trim();
-    if (!g || !c || !spec) { continue; }
-    var set = {};
+    var raw = vals[i][2];
+    if (!g || !c || raw === '' || raw === null) { continue; }
+    var label = g + '학년 ' + c + '반';
+
+    // 날짜로 변환된 셀은 아예 신뢰하지 않는다 — 복구를 시도하면 틀린 명렬로 조용히 굴러간다
+    if (raw instanceof Date) {
+      bad.push(label + ' (날짜로 변환됨)');
+      continue;
+    }
+    var spec = String(raw).trim();
+    var set = {}, n1, n2, count = 0;
     spec.split(',').forEach(function (part) {
       part = part.trim();
-      var m = part.match(/^(\d+)\s*-\s*(\d+)$/);
+      var m = part.match(/^(\d+)\s*[-~]\s*(\d+)$/);
       if (m) {
-        for (var n = parseInt(m[1], 10); n <= parseInt(m[2], 10); n++) { set[n] = true; }
+        n1 = parseInt(m[1], 10); n2 = parseInt(m[2], 10);
+        for (var n = n1; n <= n2; n++) { set[n] = true; count++; }
       } else if (/^\d+$/.test(part)) {
-        set[parseInt(part, 10)] = true;
+        set[parseInt(part, 10)] = true; count++;
       }
     });
+    if (count === 0) { bad.push(label + ' ("' + spec.slice(0, 20) + '" 를 못 읽음)'); continue; }
     map[g + '-' + c] = set;
   }
-  return map;
+  return { map: map, bad: bad };
 }
 
 /** 학습지 제목에서 학년을 읽는다. 단서가 없으면 null → 미제출 계산을 건너뛴다(추측하지 않는다). */
@@ -175,12 +192,14 @@ function notifyRecent() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var blocks = [], anyIssue = false;
   var scanned = 0, totalRows = 0;   // 진단용
-  var roster = _roster_();          // '명렬' 탭 없으면 null → 미제출 계산 건너뜀
+  var rosterInfo = _roster_();      // '명렬' 탭 없으면 null → 미제출 계산 건너뜀
+  var roster = rosterInfo ? rosterInfo.map : null;
+  var rosterBad = rosterInfo ? rosterInfo.bad : [];
   var rosterUsed = false;
 
   ss.getSheets().forEach(function (tab) {
     var nm = tab.getName();
-    if (nm === '진행') { return; }            // 진행 탭은 중간저장이라 제외
+    if (nm === '진행' || nm === ROSTER_TAB) { return; }   // 중간저장·명렬 탭은 제출 탭이 아니다
     scanned++;
     var s = _scanTab_(tab, since);
     totalRows += s.rows.length;
@@ -231,6 +250,13 @@ function notifyRecent() {
   // ⚠️ 2026-08-29 — 예전엔 여기서 그냥 return 했다. 그래서 *제출이 없어서 조용한 것*과
   //   *코드가 죽어서 조용한 것*을 구분할 수 없었다. 정기 알림은 조용한 게 맞지만,
   //   손으로 누르는 테스트는 반드시 답을 줘야 한다. 침묵은 답이 아니다.
+  // 🔴 명렬을 못 읽었으면 제출 유무와 무관하게 알린다 — 조용히 틀린 명단으로 굴러가면 안 된다
+  if (rosterBad.length) {
+    blocks.unshift('🔴 「명렬」 탭을 못 읽은 반이 있습니다\n  ' + rosterBad.join('\n  ')
+      + '\n  → C열을 「서식 → 숫자 → 일반 텍스트」로 바꾸고 다시 붙여넣으세요.');
+    anyIssue = true;
+  }
+
   if (blocks.length === 0) {
     if (VERBOSE) {
       _tg_('✅ 알림 정상 작동 (' + stamp + ')\n\n'
