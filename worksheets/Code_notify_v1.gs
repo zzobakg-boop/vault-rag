@@ -23,7 +23,7 @@
  *      같은 배치를 두 번 보내지 않도록 마지막 발송 시각을 속성에 남긴다.
  */
 
-var VERSION = 'v1.8';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
+var VERSION = 'v1.9';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
 var WINDOW_MIN = 40;      // 되돌아볼 분
 var NUM_MAX = 40;         // 정상 번호 상한 (이보다 크면 이상 신호)
 var HDR = ['시각', '학습지', '반', '번호', '이름', '빈칸', 'OX', '총점', '답(JSON)'];
@@ -370,4 +370,44 @@ function notifyTest() {
 function pingTelegram() {
   _tg_('🔔 배선 확인 — 이 메시지가 보이면 토큰·권한·전송 경로는 정상입니다.\n('
     + Utilities.formatDate(new Date(), 'Asia/Seoul', 'MM/dd HH:mm') + ')');
+}
+
+/**
+ * 진단 — 열이 어떻게 생겼는지 눈으로 본다. (2026-08-30)
+ * 왜: 8/30 '8명이 전부 3반 1번'으로 읽히는 일이 있었다. 열 밀림이 의심되지만
+ *     추측으로 코드를 고치면 또 헛다리다. 헤더와 실제 값을 그대로 찍어서 대조한다.
+ * ⚠️ 이름은 보내지 않는다 — 글자수만.
+ */
+function dumpColumns() {
+  var ss = _ss_();
+  var out = ['🔬 열 구조 진단 · ' + VERSION, '읽는 파일: 「' + ss.getName() + '」', ''];
+  var sheets = ss.getSheets(), shown = 0;
+
+  for (var i = sheets.length - 1; i >= 0 && shown < 2; i--) {
+    var tab = sheets[i], nm = tab.getName();
+    if (nm === '진행' || nm === ROSTER_TAB) { continue; }
+    var vals = tab.getDataRange().getValues();
+    if (vals.length < 2) { continue; }
+
+    out.push('📄 ' + nm);
+    out.push('  헤더: ' + vals[0].map(function (v, k) {
+      return '[' + k + ']' + String(v).trim();
+    }).join(' '));
+
+    var last = vals[vals.length - 1];
+    out.push('  마지막 줄: ' + last.map(function (v, k) {
+      var t = (v instanceof Date) ? 'Date(' + Utilities.formatDate(v, 'Asia/Seoul', 'MM/dd HH:mm') + ')'
+            : String(v).slice(0, 14);
+      if (String(vals[0][k]).trim() === '이름') { t = '<' + String(v).length + '자>'; }
+      return '[' + k + ']' + t;
+    }).join(' '));
+
+    out.push('  코드가 찾은 열 번호: ' + HDR.map(function (h) {
+      return h + '=' + vals[0].map(function (v) { return String(v).trim(); }).indexOf(h);
+    }).join(' · '));
+    out.push('  ※ -1 은 그 열을 못 찾았다는 뜻이다.');
+    out.push('');
+    shown++;
+  }
+  _tg_(out.join('\n'));
 }
