@@ -134,12 +134,49 @@ function _scanTab_(tab, since) {
 /** VERBOSE=true 면 결과가 0건이어도 "0건이었다"고 알려 준다 (notifyTest 전용). */
 var VERBOSE = false;
 
+var ROSTER_TAB = '명렬';   // 학년 | 반 | 번호(1-25,27 형식) — 없으면 미제출 계산을 건너뛴다
+
+/** '명렬' 탭 → { '3-1': {1:true, 2:true, ...}, ... } */
+function _roster_() {
+  var tab = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ROSTER_TAB);
+  if (!tab) { return null; }
+  var vals = tab.getDataRange().getValues();
+  var map = {};
+  for (var i = 1; i < vals.length; i++) {          // 1행은 머리글
+    var g = String(vals[i][0]).trim();
+    var c = String(vals[i][1]).trim();
+    var spec = String(vals[i][2]).trim();
+    if (!g || !c || !spec) { continue; }
+    var set = {};
+    spec.split(',').forEach(function (part) {
+      part = part.trim();
+      var m = part.match(/^(\d+)\s*-\s*(\d+)$/);
+      if (m) {
+        for (var n = parseInt(m[1], 10); n <= parseInt(m[2], 10); n++) { set[n] = true; }
+      } else if (/^\d+$/.test(part)) {
+        set[parseInt(part, 10)] = true;
+      }
+    });
+    map[g + '-' + c] = set;
+  }
+  return map;
+}
+
+/** 학습지 제목에서 학년을 읽는다. 단서가 없으면 null → 미제출 계산을 건너뛴다(추측하지 않는다). */
+function _gradeOf_(title) {
+  if (title.indexOf('사회') >= 0) { return '3'; }
+  if (title.indexOf('역사') >= 0) { return '2'; }
+  return null;
+}
+
 function notifyRecent() {
   var now = new Date();
   var since = new Date(now.getTime() - WINDOW_MIN * 60 * 1000);
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var blocks = [], anyIssue = false;
   var scanned = 0, totalRows = 0;   // 진단용
+  var roster = _roster_();          // '명렬' 탭 없으면 null → 미제출 계산 건너뜀
+  var rosterUsed = false;
 
   ss.getSheets().forEach(function (tab) {
     var nm = tab.getName();
@@ -159,9 +196,28 @@ function notifyRecent() {
     });
 
     var lines = ['📥 ' + nm];
+    var grade = _gradeOf_(nm);
     Object.keys(byCls).sort().forEach(function (c) {
       var ns = byCls[c].sort(function (a, b) { return a - b; });
       lines.push('  ' + c + '반 ' + ns.length + '명 · ' + ns.join(',') + '번');
+
+      // ⛔ 미제출 — *제출이 들어온 반만* 대조한다.
+      //   아직 수업 안 한 반까지 미제출로 잡으면 알림이 쓰레기가 된다.
+      if (roster && grade) {
+        var set = roster[grade + '-' + c];
+        if (set) {
+          var got = {};
+          ns.forEach(function (n) { got[n] = true; });
+          var miss = [], unreg = [];
+          Object.keys(set).forEach(function (n) { if (!got[n]) { miss.push(parseInt(n, 10)); } });
+          ns.forEach(function (n) { if (!set[n]) { unreg.push(n); } });
+          miss.sort(function (a, b) { return a - b; });
+          if (miss.length) { lines.push('  ⛔ 미제출 ' + miss.length + '명 · ' + miss.join(',') + '번'); }
+          // 명렬에 없는 번호 = 전입생이거나 오기. 둘 다 사람이 봐야 한다.
+          if (unreg.length) { lines.push('  ❓ 명렬에 없는 번호 · ' + unreg.join(',') + '번'); }
+          rosterUsed = true;
+        }
+      }
     });
     if (essayGap > 0) {
       lines.push('  ✍️ 서술칸 빈 사람 ' + essayGap + '명 / ' + s.rows.length);
@@ -180,7 +236,8 @@ function notifyRecent() {
       _tg_('✅ 알림 정상 작동 (' + stamp + ')\n\n'
         + '탭 ' + scanned + '개를 훑었고, 최근 ' + Math.round(WINDOW_MIN / 60) + '시간 안에 들어온 제출은 '
         + totalRows + '건입니다.\n'
-        + '이상 신호도 없습니다.\n\n'
+        + '이상 신호도 없습니다.\n'
+        + '「명렬」 탭: ' + (roster ? Object.keys(roster).length + '개 반 인식' : '없음(미제출 계산 안 함)') + '\n\n'
         + '→ 제출이 없어서 조용한 것이지 고장이 아닙니다.');
     }
     return;
@@ -188,7 +245,13 @@ function notifyRecent() {
 
   var head = (anyIssue ? '🔴 학습지 제출 — 확인 필요' : '✅ 학습지 제출')
     + ' (' + stamp + ' 기준 ' + WINDOW_MIN + '분)';
-  _tg_(head + '\n\n' + blocks.join('\n\n'));
+  var foot = '';
+  if (rosterUsed) {
+    foot = '\n\n※ 미제출은 「명렬」 탭 기준입니다. 명렬이 오래됐으면 전출자가 미제출로, 전입생이 ❓로 뜹니다.';
+  } else if (!roster) {
+    foot = '\n\n※ 「명렬」 탭이 없어 미제출은 계산하지 않았습니다.';
+  }
+  _tg_(head + '\n\n' + blocks.join('\n\n') + foot);
   PropertiesService.getScriptProperties().setProperty('LAST_NOTIFY', now.toISOString());
 }
 
