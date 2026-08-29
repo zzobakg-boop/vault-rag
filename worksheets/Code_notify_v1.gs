@@ -23,6 +23,7 @@
  *      같은 배치를 두 번 보내지 않도록 마지막 발송 시각을 속성에 남긴다.
  */
 
+var VERSION = 'v1.5';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
 var WINDOW_MIN = 40;      // 되돌아볼 분
 var NUM_MAX = 40;         // 정상 번호 상한 (이보다 크면 이상 신호)
 var HDR = ['시각', '학습지', '반', '번호', '이름', '빈칸', 'OX', '총점', '답(JSON)'];
@@ -259,18 +260,30 @@ function notifyRecent() {
 
   if (blocks.length === 0) {
     if (VERBOSE) {
-      _tg_('✅ 알림 정상 작동 (' + stamp + ')\n\n'
+      var diag = '✅ 알림 정상 작동 · ' + VERSION + '  (' + stamp + ')\n\n'
         + '탭 ' + scanned + '개를 훑었고, 최근 ' + Math.round(WINDOW_MIN / 60) + '시간 안에 들어온 제출은 '
         + totalRows + '건입니다.\n'
-        + '이상 신호도 없습니다.\n'
-        + '「명렬」 탭: ' + (roster ? Object.keys(roster).length + '개 반 인식' : '없음(미제출 계산 안 함)') + '\n\n'
-        + '→ 제출이 없어서 조용한 것이지 고장이 아닙니다.');
+        + '이상 신호도 없습니다.\n\n';
+      // 명렬 상태를 자세히 — 여기서 대부분의 설치 문제가 드러난다
+      if (!rosterInfo) {
+        var names = [];
+        SpreadsheetApp.getActiveSpreadsheet().getSheets().forEach(function (t) { names.push(t.getName()); });
+        diag += '🔴 「' + ROSTER_TAB + '」 탭을 찾지 못했습니다 — 미제출 계산은 하지 않습니다.\n'
+          + '   탭 이름이 정확히 「' + ROSTER_TAB + '」 인지 확인하세요(앞뒤 공백·다른 글자 주의).\n'
+          + '   현재 탭 목록: ' + names.slice(0, 30).join(' / ');
+      } else {
+        var ks = Object.keys(roster);
+        diag += '「' + ROSTER_TAB + '」 탭: ' + ks.length + '개 반 인식';
+        if (ks.length) { diag += ' (' + ks.sort().join(', ') + ')'; }
+        if (rosterBad.length) { diag += '\n🔴 못 읽은 줄: ' + rosterBad.join(' / '); }
+      }
+      _tg_(diag);
     }
     return;
   }
 
   var head = (anyIssue ? '🔴 학습지 제출 — 확인 필요' : '✅ 학습지 제출')
-    + ' (' + stamp + ' 기준 ' + WINDOW_MIN + '분)';
+    + ' (' + stamp + ' 기준 ' + WINDOW_MIN + '분 · ' + VERSION + ')';
   var foot = '';
   if (rosterUsed) {
     foot = '\n\n※ 미제출은 「명렬」 탭 기준입니다. 명렬이 오래됐으면 전출자가 미제출로, 전입생이 ❓로 뜹니다.';
