@@ -74,7 +74,7 @@ function _scanTab_(tab, since) {
     // 🔴 이상 신호 C — 같은 반번호가 이 배치에 두 번 (재제출이 아니라 오기 의심)
     if (seen[key]) { seen[key].dup = true; } else { seen[key] = { dup: false }; }
 
-    var blanks = 0, essayBlank = true;
+    var essayBlank = true;
     try {
       var ans = JSON.parse(r[ix['답(JSON)']] || '{}');
       for (var k in ans) {
@@ -83,7 +83,11 @@ function _scanTab_(tab, since) {
       // essay 키가 아예 없으면 그 학습지에 서술칸이 없는 것 — 결손 아님
       var hasEssayKey = Object.keys(ans).some(function (k) { return k.indexOf('essay') === 0; });
       if (!hasEssayKey) { essayBlank = false; }
-    } catch (e) { blanks = -1; }
+    } catch (e) {
+      // 🔴 이상 신호 D — 답안 JSON이 깨졌다. 조용히 넘기면 그 학생 답이 통째로 사라진다.
+      out.issues.push('답안 JSON 파손: ' + cls + '반 ' + num + '번');
+      essayBlank = false;   // 결손 집계에서는 빼고 이상 신호로만 올린다
+    }
 
     out.rows.push({ cls: cls, num: num, key: key, essayBlank: essayBlank });
   }
