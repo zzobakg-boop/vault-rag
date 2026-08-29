@@ -131,16 +131,22 @@ function _scanTab_(tab, since) {
   return out;
 }
 
+/** VERBOSE=true 면 결과가 0건이어도 "0건이었다"고 알려 준다 (notifyTest 전용). */
+var VERBOSE = false;
+
 function notifyRecent() {
   var now = new Date();
   var since = new Date(now.getTime() - WINDOW_MIN * 60 * 1000);
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var blocks = [], anyIssue = false;
+  var scanned = 0, totalRows = 0;   // 진단용
 
   ss.getSheets().forEach(function (tab) {
     var nm = tab.getName();
     if (nm === '진행') { return; }            // 진행 탭은 중간저장이라 제외
+    scanned++;
     var s = _scanTab_(tab, since);
+    totalRows += s.rows.length;
     if (s.rows.length === 0 && s.issues.length === 0) { return; }
 
     // 반별 번호 목록 (이름 없음)
@@ -164,17 +170,41 @@ function notifyRecent() {
     blocks.push(lines.join('\n'));
   });
 
-  if (blocks.length === 0) { return; }   // 조용한 시간엔 아무것도 안 보낸다
+  var stamp = Utilities.formatDate(now, 'Asia/Seoul', 'MM/dd HH:mm');
+
+  // ⚠️ 2026-08-29 — 예전엔 여기서 그냥 return 했다. 그래서 *제출이 없어서 조용한 것*과
+  //   *코드가 죽어서 조용한 것*을 구분할 수 없었다. 정기 알림은 조용한 게 맞지만,
+  //   손으로 누르는 테스트는 반드시 답을 줘야 한다. 침묵은 답이 아니다.
+  if (blocks.length === 0) {
+    if (VERBOSE) {
+      _tg_('✅ 알림 정상 작동 (' + stamp + ')\n\n'
+        + '탭 ' + scanned + '개를 훑었고, 최근 ' + Math.round(WINDOW_MIN / 60) + '시간 안에 들어온 제출은 '
+        + totalRows + '건입니다.\n'
+        + '이상 신호도 없습니다.\n\n'
+        + '→ 제출이 없어서 조용한 것이지 고장이 아닙니다.');
+    }
+    return;
+  }
 
   var head = (anyIssue ? '🔴 학습지 제출 — 확인 필요' : '✅ 학습지 제출')
-    + ' (' + Utilities.formatDate(now, 'Asia/Seoul', 'MM/dd HH:mm') + ' 기준 ' + WINDOW_MIN + '분)';
+    + ' (' + stamp + ' 기준 ' + WINDOW_MIN + '분)';
   _tg_(head + '\n\n' + blocks.join('\n\n'));
   PropertiesService.getScriptProperties().setProperty('LAST_NOTIFY', now.toISOString());
 }
 
-/** 설치 직후 손으로 한 번 눌러 확인하는 용도 — 창을 24시간으로 늘려 무조건 뭔가 보낸다. */
+/** 설치 직후 손으로 눌러 확인하는 용도 — 창을 24시간으로 늘리고, 0건이어도 반드시 회신한다. */
 function notifyTest() {
-  var keep = WINDOW_MIN;
+  var keepW = WINDOW_MIN, keepV = VERBOSE;
   WINDOW_MIN = 60 * 24;
-  try { notifyRecent(); } finally { WINDOW_MIN = keep; }
+  VERBOSE = true;
+  try { notifyRecent(); } finally { WINDOW_MIN = keepW; VERBOSE = keepV; }
+}
+
+/**
+ * 배선만 확인하는 최소 테스트 — 시트를 아예 안 읽고 텔레그램만 쏜다.
+ * notifyTest도 조용하면 이걸 눌러 본다. 이것마저 안 오면 원인은 토큰/권한이지 코드가 아니다.
+ */
+function pingTelegram() {
+  _tg_('🔔 배선 확인 — 이 메시지가 보이면 토큰·권한·전송 경로는 정상입니다.\n('
+    + Utilities.formatDate(new Date(), 'Asia/Seoul', 'MM/dd HH:mm') + ')');
 }
