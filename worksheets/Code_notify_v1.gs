@@ -23,7 +23,7 @@
  *      같은 배치를 두 번 보내지 않도록 마지막 발송 시각을 속성에 남긴다.
  */
 
-var VERSION = 'v1.5';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
+var VERSION = 'v1.6';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
 var WINDOW_MIN = 40;      // 되돌아볼 분
 var NUM_MAX = 40;         // 정상 번호 상한 (이보다 크면 이상 신호)
 var HDR = ['시각', '학습지', '반', '번호', '이름', '빈칸', 'OX', '총점', '답(JSON)'];
@@ -145,9 +145,35 @@ var ROSTER_TAB = '명렬';   // 학년 | 반 | 번호(1-25,27 형식) — 없으
  *   *전원이 ❓ 명렬에 없는 번호* 로 뜬다. 조용히 깨지면 안 되므로 못 읽은 줄을 따로 모아 알린다.
  *   근본 해결은 C열을 '일반 텍스트' 서식으로 두는 것.
  */
+/**
+ * 명렬 탭 찾기 — 이름이 *눈에는 같은데* 안 잡히는 경우가 실제로 있다.
+ *   ① 한글 자소 분리(NFD): 맥에서 타이핑한 '명렬'이 ㅁ+ㅕ+ㅇ… 으로 저장되면
+ *      NFC로 쓰인 코드의 '명렬'과 문자열 비교가 실패한다.
+ *   ② 앞뒤 공백·전각 공백
+ *   ③ '명렬표' 처럼 뒤에 글자가 붙은 경우
+ * 정확 일치 → 정규화 일치 → 부분 일치 순으로 내려가며 찾는다.
+ */
+function _findRosterTab_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var exact = ss.getSheetByName(ROSTER_TAB);
+  if (exact) { return exact; }
+
+  var want = ROSTER_TAB.normalize ? ROSTER_TAB.normalize('NFC') : ROSTER_TAB;
+  var sheets = ss.getSheets();
+  var loose = null;
+  for (var i = 0; i < sheets.length; i++) {
+    var raw = sheets[i].getName();
+    var norm = (raw.normalize ? raw.normalize('NFC') : raw).replace(/[\s　]/g, '');
+    if (norm === want) { return sheets[i]; }        // NFD·공백만 다른 경우
+    if (!loose && norm.indexOf(want) === 0) { loose = sheets[i]; }  // '명렬표' 등
+  }
+  return loose;
+}
+
 function _roster_() {
-  var tab = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ROSTER_TAB);
+  var tab = _findRosterTab_();
   if (!tab) { return null; }
+  var tabName = tab.getName();
   var vals = tab.getDataRange().getValues();
   var map = {}, bad = [];
   for (var i = 1; i < vals.length; i++) {          // 1행은 머리글
@@ -177,7 +203,7 @@ function _roster_() {
     if (count === 0) { bad.push(label + ' ("' + spec.slice(0, 20) + '" 를 못 읽음)'); continue; }
     map[g + '-' + c] = set;
   }
-  return { map: map, bad: bad };
+  return { map: map, bad: bad, tabName: tabName };
 }
 
 /** 학습지 제목에서 학년을 읽는다. 단서가 없으면 null → 미제출 계산을 건너뛴다(추측하지 않는다). */
@@ -266,14 +292,23 @@ function notifyRecent() {
         + '이상 신호도 없습니다.\n\n';
       // 명렬 상태를 자세히 — 여기서 대부분의 설치 문제가 드러난다
       if (!rosterInfo) {
-        var names = [];
-        SpreadsheetApp.getActiveSpreadsheet().getSheets().forEach(function (t) { names.push(t.getName()); });
+        var all = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+        var hint = [];
+        all.forEach(function (t) {
+          var nmx = t.getName();
+          if (nmx.indexOf('명') >= 0 || nmx.indexOf('렬') >= 0) {
+            hint.push('「' + nmx + '」(' + nmx.length + '자)');
+          }
+        });
         diag += '🔴 「' + ROSTER_TAB + '」 탭을 찾지 못했습니다 — 미제출 계산은 하지 않습니다.\n'
-          + '   탭 이름이 정확히 「' + ROSTER_TAB + '」 인지 확인하세요(앞뒤 공백·다른 글자 주의).\n'
-          + '   현재 탭 목록: ' + names.slice(0, 30).join(' / ');
+          + '   전체 탭 ' + all.length + '개.\n'
+          + (hint.length
+              ? '   비슷한 이름: ' + hint.join(', ') + '\n   → 이 탭 이름을 지우고 「명렬」 두 글자만 다시 입력해 보세요.'
+              : '   「명」이나 「렬」이 든 탭이 하나도 없습니다. 다른 스프레드시트에 만드신 건 아닌지 확인하세요.');
       } else {
         var ks = Object.keys(roster);
-        diag += '「' + ROSTER_TAB + '」 탭: ' + ks.length + '개 반 인식';
+        diag += '「' + rosterInfo.tabName + '」 탭: ' + ks.length + '개 반 인식';
+        if (rosterInfo.tabName !== ROSTER_TAB) { diag += ' ⚠️이름이 「' + ROSTER_TAB + '」과 다르지만 찾아서 씀'; }
         if (ks.length) { diag += ' (' + ks.sort().join(', ') + ')'; }
         if (rosterBad.length) { diag += '\n🔴 못 읽은 줄: ' + rosterBad.join(' / '); }
       }
