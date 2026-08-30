@@ -23,7 +23,7 @@
  *      같은 배치를 두 번 보내지 않도록 마지막 발송 시각을 속성에 남긴다.
  */
 
-var VERSION = 'v2.0';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
+var VERSION = 'v2.1';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
 var WINDOW_MIN = 40;      // 되돌아볼 분
 var NUM_MAX = 40;         // 정상 번호 상한 (이보다 크면 이상 신호)
 var HDR = ['시각','학습지','반','번호','이름','빈칸','OX','총점','답(JSON)'];
@@ -466,5 +466,59 @@ function dumpColumns() {
     out.push('');
     shown++;
   }
+  _tg_(out.join('\n'));
+}
+
+/**
+ * 진단 — *최근 제출이 잡힌 탭*의 원본 줄을 그대로 찍는다. (2026-08-30)
+ * 왜: dumpColumns 는 탭 목록 끝 2개만 봤다. 정작 이상한 값이 나온 탭(5-4차시)은
+ *     목록 중간에 있어서 한 번도 못 봤고, 나는 그 사이 "허깨비 값"이라는 틀린 진단을 했다.
+ *     추측을 끝내려면 *그 탭의 그 줄* 을 봐야 한다.
+ * ⚠️ 이름은 글자수만 보낸다.
+ */
+function dumpFlagged() {
+  var ss = _ss_();
+  var since = new Date(new Date().getTime() - 1440 * 60 * 1000);
+  var out = ['🔬 최근 제출 탭 원본 · ' + VERSION, '읽는 파일: 「' + ss.getName() + '」', ''];
+  var shown = 0;
+
+  ss.getSheets().forEach(function (tab) {
+    if (shown >= 2) { return; }
+    var nm = tab.getName();
+    if (nm === '진행' || nm === ROSTER_TAB) { return; }
+    var vals = tab.getDataRange().getValues();
+    if (vals.length < 2) { return; }
+
+    var hr = _headerRow_(vals);
+    if (hr < 0) { return; }
+    var head = vals[hr].map(function (v) { return String(v).trim(); });
+    var tcol = _col_(head, '시각');
+
+    var hits = [];
+    for (var i = 0; i < vals.length && hits.length < 4; i++) {
+      if (i === hr) { continue; }
+      if (_recentDate_(vals[i][tcol], since)) { hits.push(i); }
+    }
+    if (hits.length === 0) { return; }
+
+    out.push('📄 ' + nm);
+    out.push('  헤더(' + (hr + 1) + '행): ' + head.map(function (v, k) {
+      return '[' + k + ']' + v;
+    }).join(' '));
+    out.push('  찾은 열: 시각=' + tcol + ' 반=' + _col_(head, '반') + ' 번호=' + _col_(head, '번호')
+             + ' 이름=' + _col_(head, '이름'));
+    hits.forEach(function (i) {
+      out.push('  ' + (i + 1) + '행: ' + vals[i].map(function (v, k) {
+        var t = (v instanceof Date) ? Utilities.formatDate(v, 'Asia/Seoul', 'MM/dd HH:mm') : String(v).slice(0, 12);
+        if (head[k] === '이름' || _col_(head, '이름') === k) { t = '<' + String(v).length + '자>'; }
+        return '[' + k + ']' + t;
+      }).join(' '));
+    });
+    out.push('  총 ' + vals.length + '행 · 최근 ' + hits.length + '행 표시');
+    out.push('');
+    shown++;
+  });
+
+  if (shown === 0) { out.push('최근 24시간 안에 제출이 잡힌 탭이 없습니다.'); }
   _tg_(out.join('\n'));
 }
