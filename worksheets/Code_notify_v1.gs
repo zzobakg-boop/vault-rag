@@ -23,10 +23,58 @@
  *      같은 배치를 두 번 보내지 않도록 마지막 발송 시각을 속성에 남긴다.
  */
 
-var VERSION = 'v1.9';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
+var VERSION = 'v2.0';     // ⭐ 모든 메시지 머리에 찍힌다 — 코드가 실제로 교체됐는지 눈으로 확인하는 유일한 수단
 var WINDOW_MIN = 40;      // 되돌아볼 분
 var NUM_MAX = 40;         // 정상 번호 상한 (이보다 크면 이상 신호)
-var HDR = ['시각', '학습지', '반', '번호', '이름', '빈칸', 'OX', '총점', '답(JSON)'];
+var HDR = ['시각','학습지','반','번호','이름','빈칸','OX','총점','답(JSON)'];
+
+/**
+ * 열 이름 별칭 — 2026-08-30.
+ * 왜: 실제 시트 헤더는 '제출시각 · 반 · 번호 · 이름 · 빈칸 점수 · OX 점수 · 총점' 이었는데
+ *     코드는 '시각 · 학습지 · … · 답(JSON)' 을 기다렸다. 이름이 안 맞으니 모든 탭이 조용히
+ *     건너뛰어졌고, 헤더가 아예 없는 탭 하나만 통과해 indexOf=-1 → undefined 값으로
+ *     '8명이 전부 3반 1번' 이라는 허깨비 집계를 만들어 냈다.
+ *     앞으로 헤더 문구가 조금 달라져도 버티도록 별칭으로 찾는다.
+ * '학습지'·'답(JSON)' 은 이 시트에 없다 — 학습지는 탭 이름이, 답안은 별도 탭이 갖고 있다.
+ */
+var ALIAS = {
+  '시각':   ['시각','제출시각','제출 시각','타임스탬프','Timestamp'],
+  '학습지': ['학습지','제목'],
+  '반':     ['반','학급'],
+  '번호':   ['번호','출석번호'],
+  '이름':   ['이름','성명'],
+  '빈칸':   ['빈칸','빈칸 점수','빈칸점수'],
+  'OX':     ['OX','OX 점수','OX점수'],
+  '총점':   ['총점','합계'],
+  '답(JSON)': ['답(JSON)','답','answers','JSON']
+};
+
+/** 별칭까지 훑어 열 번호를 찾는다. 못 찾으면 -1. */
+function _col_(head, key) {
+  var cands = ALIAS[key] || [key];
+  for (var i = 0; i < cands.length; i++) {
+    var at = head.indexOf(cands[i]);
+    if (at >= 0) { return at; }
+  }
+  return -1;
+}
+
+/**
+ * 헤더 행이 어디인가 — 보통 1행이지만, 정렬을 한 번 돌리면 데이터 사이나 맨 끝으로 밀린다
+ * (8/30 11차시 탭 실측: 1행이 데이터, 마지막 줄이 헤더였다). 앞 5줄과 끝 3줄을 본다.
+ */
+function _headerRow_(vals) {
+  var probe = [];
+  for (var i = 0; i < Math.min(5, vals.length); i++) { probe.push(i); }
+  for (var j = Math.max(0, vals.length - 3); j < vals.length; j++) {
+    if (probe.indexOf(j) < 0) { probe.push(j); }
+  }
+  for (var k = 0; k < probe.length; k++) {
+    var row = vals[probe[k]].map(function (v) { return String(v).trim(); });
+    if (_col_(row, '시각') >= 0 && _col_(row, '번호') >= 0) { return probe[k]; }
+  }
+  return -1;
+}
 
 function _prop_(k) { return PropertiesService.getScriptProperties().getProperty(k); }
 
@@ -70,14 +118,13 @@ function _scanTab_(tab, since) {
   var out = { name: tab.getName(), rows: [], issues: [] };
   if (vals.length === 0) { return out; }
 
-  var head = vals[0].map(function (v) { return String(v).trim(); });
+  var hr = _headerRow_(vals);
 
-  // ⚠️ 2026-08-29 오탐 수정 — 이 시트에는 제출 탭 말고도 교사가 손으로 만든
-  //   정리 시트(「📋 정리·…」 등)가 섞여 있다. 예전엔 그것들까지 전부
-  //   "헤더 없음"으로 경보해 20줄짜리 알림이 왔고, 진짜 신호가 그 속에 묻혔다.
-  //   → 헤더가 없으면 기본은 *조용히 건너뛴다*. 단 A열이 '최근 날짜'로 읽히면
-  //     그건 제출 탭인데 헤더만 날아간 것이므로 그때만 경보한다(8/21 사고 대비).
-  if (head[0] !== '시각') {
+  // ⚠️ 2026-08-29/30 오탐 수정 — 이 시트에는 제출 탭 말고도 교사가 손으로 만든
+  //   정리 시트(「📋 정리·…」 등)가 섞여 있다. 헤더를 못 찾으면 기본은 *조용히 건너뛴다*.
+  //   단 A열이 '최근 날짜'로 읽히면 그건 제출 탭인데 헤더만 날아간 것이므로 그때만 경보한다.
+  //   🔴 헤더를 못 찾은 탭은 절대 집계하지 않는다 — 8/30 '전원 3반 1번' 허깨비의 원인.
+  if (hr < 0) {
     for (var j = 0; j < vals.length; j++) {
       if (_recentDate_(vals[j][0], since)) {
         out.issues.push('헤더 없음 — 제출이 들어오는데 열이 어긋난 채로 쌓이는 중');
@@ -87,11 +134,13 @@ function _scanTab_(tab, since) {
     return out;
   }
 
+  var head = vals[hr].map(function (v) { return String(v).trim(); });
   var ix = {};
-  HDR.forEach(function (h) { ix[h] = head.indexOf(h); });
+  HDR.forEach(function (h) { ix[h] = _col_(head, h); });
 
   var seen = {};
-  for (var i = 1; i < vals.length; i++) {
+  for (var i = 0; i < vals.length; i++) {
+    if (i === hr) { continue; }                    // 헤더 행은 건너뛴다 (1행이 아닐 수 있다)
     var r = vals[i];
     var ts = r[ix['시각']];
     var when = (ts instanceof Date) ? ts : new Date(ts);
@@ -114,7 +163,9 @@ function _scanTab_(tab, since) {
     // 🔴 이상 신호 C — 같은 반번호가 이 배치에 두 번 (재제출이 아니라 오기 의심)
     if (seen[key]) { seen[key].dup = true; } else { seen[key] = { dup: false }; }
 
-    var essayBlank = true;
+    // 답안 JSON 열이 없는 시트도 있다(답안은 별도 탭). 그땐 서술 결손을 세지 않는다.
+    var essayBlank = false;
+    if (ix['답(JSON)'] >= 0) {
     try {
       var ans = JSON.parse(r[ix['답(JSON)']] || '{}');
       for (var k in ans) {
@@ -127,6 +178,7 @@ function _scanTab_(tab, since) {
       // 🔴 이상 신호 D — 답안 JSON이 깨졌다. 조용히 넘기면 그 학생 답이 통째로 사라진다.
       out.issues.push('답안 JSON 파손: ' + cls + '반 ' + num + '번');
       essayBlank = false;   // 결손 집계에서는 빼고 이상 신호로만 올린다
+    }
     }
 
     out.rows.push({ cls: cls, num: num, key: key, essayBlank: essayBlank });
@@ -390,22 +442,27 @@ function dumpColumns() {
     if (vals.length < 2) { continue; }
 
     out.push('📄 ' + nm);
-    out.push('  헤더: ' + vals[0].map(function (v, k) {
+    var hr = _headerRow_(vals);
+    out.push('  헤더 행: ' + (hr < 0 ? '못 찾음 🔴' : (hr + 1) + '행'));
+    var hrow = hr < 0 ? vals[0] : vals[hr];
+    out.push('  헤더: ' + hrow.map(function (v, k) {
       return '[' + k + ']' + String(v).trim();
     }).join(' '));
 
-    var last = vals[vals.length - 1];
+    var di = (hr === vals.length - 1) ? 0 : vals.length - 1;   // 헤더가 끝에 있으면 첫 줄을 본다
+    var last = vals[di];
     out.push('  마지막 줄: ' + last.map(function (v, k) {
       var t = (v instanceof Date) ? 'Date(' + Utilities.formatDate(v, 'Asia/Seoul', 'MM/dd HH:mm') + ')'
             : String(v).slice(0, 14);
-      if (String(vals[0][k]).trim() === '이름') { t = '<' + String(v).length + '자>'; }
+      if (String(hrow[k]).trim() === '이름') { t = '<' + String(v).length + '자>'; }
       return '[' + k + ']' + t;
     }).join(' '));
 
+    var hnorm = hrow.map(function (v) { return String(v).trim(); });
     out.push('  코드가 찾은 열 번호: ' + HDR.map(function (h) {
-      return h + '=' + vals[0].map(function (v) { return String(v).trim(); }).indexOf(h);
+      return h + '=' + _col_(hnorm, h);
     }).join(' · '));
-    out.push('  ※ -1 은 그 열을 못 찾았다는 뜻이다.');
+    out.push('  ※ -1 = 못 찾음. 학습지·답(JSON) 은 이 시트에 없는 게 정상이다.');
     out.push('');
     shown++;
   }
