@@ -24,8 +24,25 @@ hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
 table {
   width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
 }
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
+.ws-fold {
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}
+.ws-fold > summary {
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}
+.ws-fold > summary::-webkit-details-marker { display: none; }
+.ws-fold > summary::before { content: "▸ "; color: #7a8f6a; }
+.ws-fold[open] > summary::before { content: "▾ "; }
+.ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
+.ws-fold-body { padding: 10px 16px 14px; }
+.ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -105,24 +122,75 @@ blockquote {
 .student-info {
   display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
 }
-.student-info input {
+.student-info select { background:#fff; cursor:pointer; }
+.student-info input, .student-info select {
   border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
 }
 @media (max-width: 600px) {
   .container { padding: 14px; }
   .control-bar { flex-direction: column; text-align: center; }
   table { font-size: 0.82em; }
+  .hero-title { font-size: 26px !important; }
+  .hero-section { padding: 36px 20px !important; }
 }
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
+.hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
+.hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+.card-quote { border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
+.hero-keyword {
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}
+.hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
+.ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+.hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
+  
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/23 · OX: <span id="ox-score">0</span>/0
       · 총: <span id="total-score">0</span>/23 (<span id="pct">0</span>%)
     </div>
     <div>
+      
       <button class="btn btn-primary" onclick="check()">채점하기</button>
       
       <button class="btn btn-danger" onclick="reset()">초기화</button>
@@ -131,9 +199,9 @@ blockquote {
     </div>
   </div>
   <div class="student-info">
-    <input type="text" placeholder="반">
-    <input type="text" placeholder="번호">
-    <input type="text" placeholder="이름">
+    <select id="si-cls"><option value="">반</option><option value="1">1반</option><option value="2">2반</option><option value="3">3반</option><option value="4">4반</option><option value="5">5반</option><option value="6">6반</option></select>
+    <select id="si-num"><option value="">번호</option><option value="1">1번</option><option value="2">2번</option><option value="3">3번</option><option value="4">4번</option><option value="5">5번</option><option value="6">6번</option><option value="7">7번</option><option value="8">8번</option><option value="9">9번</option><option value="10">10번</option><option value="11">11번</option><option value="12">12번</option><option value="13">13번</option><option value="14">14번</option><option value="15">15번</option><option value="16">16번</option><option value="17">17번</option><option value="18">18번</option><option value="19">19번</option><option value="20">20번</option><option value="21">21번</option><option value="22">22번</option><option value="23">23번</option><option value="24">24번</option><option value="25">25번</option><option value="26">26번</option><option value="27">27번</option><option value="28">28번</option><option value="29">29번</option><option value="30">30번</option><option value="31">31번</option><option value="32">32번</option><option value="33">33번</option><option value="34">34번</option><option value="35">35번</option></select>
+    <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
 <br>
@@ -393,7 +461,7 @@ blockquote {
 
          ↓
 
- 두 체제의 장점을 합치고 단점을 줄이는 ⑱【혼합】 경제로 수렴
+ 두 체제의 장점을 합치고 단점을 줄이는 ⑱<input type="text" class="blank-input code-blank" data-answer="혼합" data-id="18" style="width:60px" placeholder=""> 경제로 수렴
 
 </pre>
 <br>
@@ -501,8 +569,8 @@ blockquote {
 <br>
 <table>
 <tr><td>안건</td><td>찬성/반대</td><td>이유</td></tr>
-<tr><td>① 모든 산업을 국유화하자</td><td><div class="choice-group" data-id="tbl-1"><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="반대(예시)">반대(예시)</button><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="반대(예시)">찬성(예시)</button></div></td><td><div class="choice-group" data-id="tbl-2"><button class="choice-btn" onclick="selectChoice(this,'단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.')" data-answer="초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.">단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.</button><button class="choice-btn" onclick="selectChoice(this,'초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.')" data-answer="초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.">초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.</button><button class="choice-btn" onclick="selectChoice(this,'시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.')" data-answer="초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.">시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.</button></div></td></tr>
-<tr><td>② 세금과 규제를 전부 없애자</td><td><div class="choice-group" data-id="tbl-3"><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="반대(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="반대(예시)">반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-4"><button class="choice-btn" onclick="selectChoice(this,'시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.')" data-answer="단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.">시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.</button><button class="choice-btn" onclick="selectChoice(this,'단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.')" data-answer="단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.">단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.</button><button class="choice-btn" onclick="selectChoice(this,'초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.')" data-answer="단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.">초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.</button></div></td></tr>
+<tr><td>① 모든 산업을 국유화하자</td><td><div class="choice-group" data-id="tbl-1"><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="반대(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="반대(예시)">반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-2"><button class="choice-btn" onclick="selectChoice(this,'시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.')" data-answer="초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.">시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.</button><button class="choice-btn" onclick="selectChoice(this,'단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.')" data-answer="초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.">단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.</button><button class="choice-btn" onclick="selectChoice(this,'초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.')" data-answer="초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.">초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.</button></div></td></tr>
+<tr><td>② 세금과 규제를 전부 없애자</td><td><div class="choice-group" data-id="tbl-3"><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="반대(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="반대(예시)">반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-4"><button class="choice-btn" onclick="selectChoice(this,'단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.')" data-answer="단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.">단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.</button><button class="choice-btn" onclick="selectChoice(this,'초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.')" data-answer="단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.">초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.</button><button class="choice-btn" onclick="selectChoice(this,'시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.')" data-answer="단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.">시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.</button></div></td></tr>
 <tr><td>③ 무상의료·무상교육 + 기업 자유</td><td><div class="choice-group" data-id="tbl-5"><button class="choice-btn" onclick="selectChoice(this,'찬성(예시)')" data-answer="찬성(예시)">찬성(예시)</button><button class="choice-btn" onclick="selectChoice(this,'반대(예시)')" data-answer="찬성(예시)">반대(예시)</button></div></td><td><div class="choice-group" data-id="tbl-6"><button class="choice-btn" onclick="selectChoice(this,'초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.')" data-answer="시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.">초기엔 통제가 쉽지만 장기적으로 창의·효율이 떨어져 물자 부족을 부른다. 주요 전략 산업 일부만 공공 운영하는 혼합 방식이 안전하다.</button><button class="choice-btn" onclick="selectChoice(this,'단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.')" data-answer="시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.">단기 성장은 있을 수 있으나 독과점·환경오염·빈부격차로 사회 불안이 커지고 결국 시장 자체가 망가진다. 최소한의 규칙과 복지는 필수.</button><button class="choice-btn" onclick="selectChoice(this,'시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.')" data-answer="시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.">시장의 효율(기업 자유)과 정부의 형평(기본 서비스) 두 축을 동시에 챙기는 전형적인 혼합경제 설계. 한국·EU 대부분 이 방향.</button></div></td></tr>
 </table>
 <br>
@@ -512,38 +580,18 @@ blockquote {
 <br>
 <hr>
 <br>
-<h2>✅ 교재 기준 대조용 보강 (삭제 금지 포인트)</h2>
-<br>
-<p>- <strong>성취기준 연결</strong>: [9사(일사)06-01] 희소성으로 인해 합리적 선택이 필요함을 이해하고, 경제 체제의 특징을 비교한다.</p>
-<p>- <strong>인과 사슬 일관성</strong>: 희소성 → 선택 → 기회비용 → 합리적 기준 → 사회 전체의 기본 경제 문제 → 경제 체제</p>
-<p>- <strong>설계자 의도</strong>:</p>
-<p>- 희소성을 *개인 사례*에서 *사회 체제 설계*까지 <strong>하나의 논리로 연결</strong></p>
-<p>- "체제 = 3대 문제의 해결 방식"이라는 <strong>틀 고정</strong></p>
-<p>- 혼합경제가 왜 주류인지는 <strong>시장실패·계획실패의 대조</strong>로 귀결</p>
-<p>- <strong>핵심 대비축</strong>:</p>
-<p>- 희소성 vs 희귀성 (상대 vs 절대)</p>
-<p>- 기회비용 vs 매몰비용 (미래 판단 근거 vs 고려 제외)</p>
-<p>- 시장 vs 계획 (주체·효율·형평 3축)</p>
-<p>- <strong>오개념 방지</strong>:</p>
-<p>- "희소 = 희귀" → 아니다, 욕구 상대적</p>
-<p>- "본전 뽑기" → 매몰 비용은 무시하는 것이 합리적</p>
-<p>- "시장경제 = 무규제" → 시장도 규칙 위에서 작동</p>
-<p>- "혼합경제 = 어중간" → 아니다, <strong>두 체제의 단점 보완형 적극적 설계</strong></p>
-<br>
-<hr>
-<br>
 <h2>📎 각주</h2>
 <br>
-<p>[^1]: <strong>희소성과 희귀성의 차이.</strong> 경제학에서 *희소성(scarcity)*은 "욕구에 비해 자원이 부족한 상태"를 뜻하는 <strong>관계 개념</strong>이고, *희귀성(rarity)*은 "절대량이 적은 상태"를 뜻하는 <strong>물리 개념</strong>이다. 다이아몬드가 희귀해도 필요를 느끼는 사람이 없다면 희소성은 낮다. 반대로 공기는 대부분 상황에서 희소하지 않지만, 미세먼지 시대 도시의 "맑은 공기"는 수요 폭증으로 <strong>희소성이 높아진</strong> 전형적 사례다.</p>
+<p>[^1]: <strong>희소성과 희귀성의 차이.</strong> 경제학에서 <em>희소성(scarcity)</em>은 "욕구에 비해 자원이 부족한 상태"를 뜻하는 <strong>관계 개념</strong>이고, <em>희귀성(rarity)</em>은 "절대량이 적은 상태"를 뜻하는 <strong>물리 개념</strong>이다. 다이아몬드가 희귀해도 필요를 느끼는 사람이 없다면 희소성은 낮다. 반대로 공기는 대부분 상황에서 희소하지 않지만, 미세먼지 시대 도시의 "맑은 공기"는 수요 폭증으로 <strong>희소성이 높아진</strong> 전형적 사례다.</p>
 <br>
 <p>[^2]: <strong>기회비용은 경제학의 가장 보편적 법칙 중 하나.</strong> 밀턴 프리드먼이 대중화한 <strong>"There ain't no such thing as a free lunch(TANSTAAFL, 공짜 점심은 없다)"</strong>가 대표 표어. 무엇을 선택하든 <strong>다른 선택의 포기</strong>가 반드시 뒤따르기 때문에, 합리성은 "얼마를 썼는가"가 아니라 "얼마를 포기했는가"로 판단된다.</p>
 <br>
 <p>[^3]: <strong>헌법 제119조와 혼합경제.</strong> 대한민국 헌법 제119조 제1항은 경제적 자유와 창의를 선언하고, 제2항은 "국가는 균형 있는 국민경제의 성장 및 안정과 적정한 소득의 분배를 유지하고, 시장의 지배와 경제력의 남용을 방지하며, 경제 주체 간의 조화를 통한 경제의 민주화를 위하여 경제에 관한 규제와 조정을 할 수 있다"고 규정한다. 이를 학계에서는 <strong>"경제 질서에 관한 혼합 모형"</strong>으로 해석한다.</p>
 <br>
 <p>[^헬륨뉴스]: <strong>카타르 LNG 단지 피격과 헬륨 공급 충격 — 주요 보도.</strong></p>
-<p>- Scientific American, *"Iran attack on Qatar's liquid natural gas trains has global energy consequences"* (2026-03-19) [링크](https://www.scientificamerican.com/article/iran-attack-on-qatars-liquid-natural-gas-trains-has-global-energy/)</p>
-<p>- Al Jazeera, *"QatarEnergy declares force majeure on some LNG contracts due to Iran war"* (2026-03-24) [링크](https://www.aljazeera.com/news/2026/3/24/qatarenergy-declares-force-majeure-on-some-lng-contracts)</p>
-<p>- Global LNG Hub, *"Qatar LNG capacity hit as Ras Laffan attacks damage key trains"* [링크](https://globallnghub.com/qatar-lng-capacity-hit-as-ras-laffan-attacks-damage-key-trains.html)</p>
+<p>- Scientific American, <em>"Iran attack on Qatar's liquid natural gas trains has global energy consequences"</em> (2026-03-19) <a href="https://www.scientificamerican.com/article/iran-attack-on-qatars-liquid-natural-gas-trains-has-global-energy/" target="_blank" rel="noopener">링크</a></p>
+<p>- Al Jazeera, <em>"QatarEnergy declares force majeure on some LNG contracts due to Iran war"</em> (2026-03-24) <a href="https://www.aljazeera.com/news/2026/3/24/qatarenergy-declares-force-majeure-on-some-lng-contracts" target="_blank" rel="noopener">링크</a></p>
+<p>- Global LNG Hub, <em>"Qatar LNG capacity hit as Ras Laffan attacks damage key trains"</em> <a href="https://globallnghub.com/qatar-lng-capacity-hit-as-ras-laffan-attacks-damage-key-trains.html" target="_blank" rel="noopener">링크</a></p>
 <p>- 공식 발표: QatarEnergy는 LNG 17%, condensate 24%, LPG 13%, <strong>헬륨 14% 감소</strong>를 발표. 복구에 3~5년이 걸릴 전망.</p>
 </div>
 <script>
@@ -561,16 +609,28 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
-function norm(s){return s.replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
   document.querySelectorAll('.blank-input').forEach(el=>{
     const a=norm(el.dataset.answer), u=norm(el.value);
     if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
     const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
     if(isCorrect){
       el.classList.add('correct');el.classList.remove('wrong');
-      if(!el.classList.contains('no-score')) bc++;
+      bc++;
     }else{el.classList.add('wrong');el.classList.remove('correct');}
   });
   document.querySelectorAll('.ox-group').forEach(grp=>{
@@ -596,10 +656,13 @@ function check(){
       }
     });
   });
-  document.getElementById('score').textContent=bc;
-  document.getElementById('ox-score').textContent=oxc;
-  document.getElementById('total-score').textContent=bc+oxc;
-  document.getElementById('pct').textContent=Math.round((bc+oxc)/GT*100);
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
 }
 function reveal(){
   usedReveal=true;
@@ -641,40 +704,99 @@ function reset(){
   });
   document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
   document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
-  document.getElementById('score').textContent=0;
-  document.getElementById('ox-score').textContent=0;
-  document.getElementById('total-score').textContent=0;
-  document.getElementById('pct').textContent=0;
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
 }
-function saveProgress(){
-  const data={};
-  document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
-    data[el.dataset.id||el.dataset.answer]=el.value;
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){ return document.getElementById(id); }
+function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
+// 🔴 2026-08-31: 저장 키에 '정답 체계 지문'을 붙인다.
+//   사고 — 3-3-1의 빈칸을 21→15로 줄이자, v1 때 채워 둔 답이 v2 번호로 복원되며
+//   ⑤부터 한 칸씩 밀렸다(⑤에 '봉신', ⑥에 '주종 관계'). 화면만 보면 "답이 노출되고
+//   매칭이 틀린" 것처럼 보이는데, 실제로는 옛 입력이 새 번호에 얹힌 것이다.
+//   빈칸 개수·정답 문자열이 바뀌면 지문이 달라져 옛 답이 붙지 않는다.
+function _wsFp(){
+  let sig='';
+  document.querySelectorAll('.blank-input:not(.activity-input),.ox-group').forEach(el=>{
+    sig += (el.dataset.answer||'') + '|';
   });
-  const info={
-    class:document.querySelector('.student-info input:nth-child(1)').value,
-    number:document.querySelector('.student-info input:nth-child(2)').value,
-    name:document.querySelector('.student-info input:nth-child(3)').value
-  };
-  localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()}));
-  alert('저장되었습니다! 다음에 이 페이지를 열면 자동으로 불러옵니다.');
+  let h=5381;
+  for(let i=0;i<sig.length;i++){ h=((h*33)^sig.charCodeAt(i))>>>0; }
+  return h.toString(36);
 }
+function _wsKey(){
+  const fp='::v'+_wsFp();
+  if(!EXAM_MODE) return 'ws_'+document.title+fp;
+  const c=_siv('si-cls'), n=_siv('si-num');
+  if(!c||!n) return null;
+  return 'ws_'+document.title+fp+'::'+c+'-'+n;
+}
+// 지문 도입 이전(=구키)에 저장된 답은, 빈칸 개수가 그대로일 때만 이어받는다.
+//   같으면 단순 재발행이므로 학생이 쓰던 답을 살리고, 다르면 구조가 바뀐 것이므로 버린다.
+function _migrateOldKey(newKey){
+  const oldKey = EXAM_MODE
+    ? 'ws_'+document.title+'::'+_siv('si-cls')+'-'+_siv('si-num')
+    : 'ws_'+document.title;
+  let raw; try{ raw=localStorage.getItem(oldKey); }catch(e){ return; }
+  if(!raw) return;
+  try{
+    const p=JSON.parse(raw), d=p.data||{};
+    const nowN=document.querySelectorAll('.blank-input:not(.activity-input)').length;
+    const oldN=Object.keys(d).filter(k=>/^\d+$/.test(k)).length;
+    if(oldN===nowN) localStorage.setItem(newKey, raw);   // 구조 동일 → 이어받기
+  }catch(e){}
+  try{ localStorage.removeItem(oldKey); }catch(e){}  // 구키는 어느 쪽이든 정리
+}
+function _persist(){
+  const key=_wsKey(); if(!key) return;
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+}
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
-  const saved=localStorage.getItem('ws_'+document.title);
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  _migrateOldKey(key);
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
-  const {info,data}=JSON.parse(saved);
-  if(info){
-    const inputs=document.querySelectorAll('.student-info input');
-    if(info.class) inputs[0].value=info.class;
-    if(info.number) inputs[1].value=info.number;
-    if(info.name) inputs[2].value=info.name;
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  if(info&&!EXAM_MODE){
+    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
+    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
+    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
   }
-  if(data){
-    document.querySelectorAll('.blank-input,.ox-input').forEach(el=>{
-      const key=el.dataset.id||el.dataset.answer;
-      if(data[key]) el.value=data[key];
-    });
-  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
 }
 // 모든 입력칸에서 Enter→다음칸 이동
 const allInputs=[...document.querySelectorAll('.blank-input')];
@@ -685,21 +807,47 @@ allInputs.forEach((el,i)=>{
 });
 // 제출
 const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){
+  const ans={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  });
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+  });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
+  return ans;
+}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
 function submitResult(){
   if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
-  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요.');return;}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
-  const bs=parseInt(document.getElementById('score').textContent);
-  const os=parseInt(document.getElementById('ox-score').textContent);
-  const ts=parseInt(document.getElementById('total-score').textContent);
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
+  const answers=collectAnswers();
   const data={
+    type:'final',
     worksheet:document.title,
     studentClass:cls,studentNumber:num,studentName:name,
-    blankScore:bs,oxScore:os,totalScore:ts
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
   };
   fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
   .then(()=>{
@@ -714,6 +862,28 @@ function submitResult(){
 }
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+});
+['si-cls','si-num','si-name'].forEach(id=>{
+  const el=_siEl(id); if(!el) return;
+  el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
+});
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  ['si-cls','si-num','si-name'].forEach(id=>{
+    const el=_siEl(id); if(!el) return;
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
 </script>
 </body>
 </html>

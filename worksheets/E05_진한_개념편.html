@@ -29,6 +29,20 @@ table.act-table { width: auto; max-width: 100%; }
 table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
+.ws-fold {
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}
+.ws-fold > summary {
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}
+.ws-fold > summary::-webkit-details-marker { display: none; }
+.ws-fold > summary::before { content: "▸ "; color: #7a8f6a; }
+.ws-fold[open] > summary::before { content: "▾ "; }
+.ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
+.ws-fold-body { padding: 10px 16px 14px; }
+.ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -108,7 +122,8 @@ blockquote {
 .student-info {
   display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
 }
-.student-info input {
+.student-info select { background:#fff; cursor:pointer; }
+.student-info input, .student-info select {
   border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
 }
 @media (max-width: 600px) {
@@ -133,6 +148,20 @@ blockquote {
 .hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
 .hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
 .hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+.card-quote { border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
 .hero-keyword {
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -170,9 +199,9 @@ blockquote {
     </div>
   </div>
   <div class="student-info">
-    <input type="text" placeholder="반">
-    <input type="text" placeholder="번호">
-    <input type="text" placeholder="이름">
+    <select id="si-cls"><option value="">반</option><option value="1">1반</option><option value="2">2반</option><option value="3">3반</option><option value="4">4반</option><option value="5">5반</option><option value="6">6반</option></select>
+    <select id="si-num"><option value="">번호</option><option value="1">1번</option><option value="2">2번</option><option value="3">3번</option><option value="4">4번</option><option value="5">5번</option><option value="6">6번</option><option value="7">7번</option><option value="8">8번</option><option value="9">9번</option><option value="10">10번</option><option value="11">11번</option><option value="12">12번</option><option value="13">13번</option><option value="14">14번</option><option value="15">15번</option><option value="16">16번</option><option value="17">17번</option><option value="18">18번</option><option value="19">19번</option><option value="20">20번</option><option value="21">21번</option><option value="22">22번</option><option value="23">23번</option><option value="24">24번</option><option value="25">25번</option><option value="26">26번</option><option value="27">27번</option><option value="28">28번</option><option value="29">29번</option><option value="30">30번</option><option value="31">31번</option><option value="32">32번</option><option value="33">33번</option><option value="34">34번</option><option value="35">35번</option></select>
+    <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
 <br>
@@ -475,6 +504,16 @@ function selectChoice(btn, val){
   btn.classList.add('selected');
   grp.dataset.selected=val;
 }
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
@@ -573,12 +612,46 @@ function reset(){
 //    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
 //    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
 const EXAM_MODE=false;
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){ return document.getElementById(id); }
+function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
+// 🔴 2026-08-31: 저장 키에 '정답 체계 지문'을 붙인다.
+//   사고 — 3-3-1의 빈칸을 21→15로 줄이자, v1 때 채워 둔 답이 v2 번호로 복원되며
+//   ⑤부터 한 칸씩 밀렸다(⑤에 '봉신', ⑥에 '주종 관계'). 화면만 보면 "답이 노출되고
+//   매칭이 틀린" 것처럼 보이는데, 실제로는 옛 입력이 새 번호에 얹힌 것이다.
+//   빈칸 개수·정답 문자열이 바뀌면 지문이 달라져 옛 답이 붙지 않는다.
+function _wsFp(){
+  let sig='';
+  document.querySelectorAll('.blank-input:not(.activity-input),.ox-group').forEach(el=>{
+    sig += (el.dataset.answer||'') + '|';
+  });
+  let h=5381;
+  for(let i=0;i<sig.length;i++){ h=((h*33)^sig.charCodeAt(i))>>>0; }
+  return h.toString(36);
+}
 function _wsKey(){
-  if(!EXAM_MODE) return 'ws_'+document.title;
-  const si=document.querySelectorAll('.student-info input');
-  const c=si[0]?si[0].value.trim():'', n=si[1]?si[1].value.trim():'';
+  const fp='::v'+_wsFp();
+  if(!EXAM_MODE) return 'ws_'+document.title+fp;
+  const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
-  return 'ws_'+document.title+'::'+c+'-'+n;
+  return 'ws_'+document.title+fp+'::'+c+'-'+n;
+}
+// 지문 도입 이전(=구키)에 저장된 답은, 빈칸 개수가 그대로일 때만 이어받는다.
+//   같으면 단순 재발행이므로 학생이 쓰던 답을 살리고, 다르면 구조가 바뀐 것이므로 버린다.
+function _migrateOldKey(newKey){
+  const oldKey = EXAM_MODE
+    ? 'ws_'+document.title+'::'+_siv('si-cls')+'-'+_siv('si-num')
+    : 'ws_'+document.title;
+  let raw; try{ raw=localStorage.getItem(oldKey); }catch(e){ return; }
+  if(!raw) return;
+  try{
+    const p=JSON.parse(raw), d=p.data||{};
+    const nowN=document.querySelectorAll('.blank-input:not(.activity-input)').length;
+    const oldN=Object.keys(d).filter(k=>/^\d+$/.test(k)).length;
+    if(oldN===nowN) localStorage.setItem(newKey, raw);   // 구조 동일 → 이어받기
+  }catch(e){}
+  try{ localStorage.removeItem(oldKey); }catch(e){}  // 구키는 어느 쪽이든 정리
 }
 function _persist(){
   const key=_wsKey(); if(!key) return;
@@ -588,8 +661,7 @@ function _persist(){
   });
   document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
   document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
-  const si=document.querySelectorAll('.student-info input');
-  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
+  const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
 function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
@@ -597,15 +669,15 @@ let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
   const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  _migrateOldKey(key);
   let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
   if(info&&!EXAM_MODE){
-    const inputs=document.querySelectorAll('.student-info input');
-    if(info.class&&inputs[0]) inputs[0].value=info.class;
-    if(info.number&&inputs[1]) inputs[1].value=info.number;
-    if(info.name&&inputs[2]) inputs[2].value=info.name;
+    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
+    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
+    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
   }
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
@@ -654,10 +726,10 @@ function collectAnswers(){
 function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
 function submitResult(){
   if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
-  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
   const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
@@ -695,12 +767,15 @@ document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
 document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
   b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
 });
-document.querySelectorAll('.student-info input').forEach(el=>{
+['si-cls','si-num','si-name'].forEach(id=>{
+  const el=_siEl(id); if(!el) return;
   el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
 });
 // 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
 if(EXAM_MODE){
-  document.querySelectorAll('.student-info input').forEach(el=>{
+  ['si-cls','si-num','si-name'].forEach(id=>{
+    const el=_siEl(id); if(!el) return;
     el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
   });
 }
