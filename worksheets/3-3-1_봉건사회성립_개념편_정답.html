@@ -173,6 +173,22 @@ blockquote {
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-gal { margin: 22px auto; max-width: 100%; border: 1px solid #ddd7c8; border-radius: 12px;
+  background: #fbfaf6; overflow: hidden; }
+.ws-gal-head { padding: 12px 16px 0; font-weight: 700; color: #3a4a34; font-size: 0.98em; }
+.ws-gal-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px; }
+.ws-gal-dot { border: 1px solid #cfc8b6; background: #fff; color: #5a5344; border-radius: 999px;
+  padding: 5px 12px; font-size: 0.84em; cursor: pointer; font-family: inherit; }
+.ws-gal-dot.on { background: #4a5c40; border-color: #4a5c40; color: #fff; font-weight: 700; }
+.ws-gal-stage { text-align: center; padding: 4px 14px 0; }
+.ws-gal-slide img { max-width: 100%; max-height: 430px; height: auto; border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.14); }
+.ws-gal-slide figcaption { margin: 8px auto 0; max-width: 640px; font-size: 0.86em;
+  color: #5a5344; line-height: 1.55; }
+.ws-gal-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 10px 0 14px; }
+.ws-gal-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px;
+  padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.9em; color: #4a5c40; }
+.ws-gal-count { font-size: 0.86em; color: #8a8272; font-variant-numeric: tabular-nums; }
 .ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
 .ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
@@ -285,6 +301,23 @@ blockquote {
 <br>
 <blockquote>🎯 <strong>여기가 최대 오개념 — 농노 ≠ 노예.</strong> 교과서가 "다만 노예와 달리"라고 <strong>명시적으로 구분</strong>한 문장이므로 시험에 그대로 나온다. 정리 축: <em>노예는 사고팔리는 물건, 농노는 가정과 재산을 가진 사람. 대신 <strong>떠날 자유</strong>가 없다.</em> → <strong>"자유 전부를 잃은 게 아니라, 이동의 자유를 안전과 바꾼 것"</strong>.</blockquote>
 <blockquote><strong>불입권은 4단계로 옮겨 학생 본문에 넣었다</strong>(2026-08-25 보강). 3단계에서 "다스렸다"고만 말하고 넘어가면 그 말의 무게가 안 잡히므로, 4단계 첫머리에서 <em>세금 징수·치안·재판 = 원래 왕의 일</em>로 풀어 준다. 용어 '불입권' 자체는 지도서에만 있으므로 빈칸으로 내지 않았다.</blockquote>
+<br>
+<h3>📜 같은 해, 다른 삶 — 달력 그림 여섯 장</h3>
+<p>600년 전 프랑스에서 만든 달력 그림이다. <strong>같은 책, 같은 한 해</strong>인데 달마다 나오는 사람이 다르다.</p>
+<br>
+<div class="ws-gal" id="gal105" data-n="6"><div class="ws-gal-head">👉 탭이나 ‹ › 로 한 장씩 넘겨 보자. 각 달에 <strong>누가 무엇을 하고 있는지</strong> 보면서.</div><div class="ws-gal-tabs"><button class="ws-gal-dot on" onclick="galGo('gal105',0)">1월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal105',1)">3월 · 농민</button><button class="ws-gal-dot" onclick="galGo('gal105',2)">5월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal105',3)">7월 · 농민</button><button class="ws-gal-dot" onclick="galGo('gal105',4)">8월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal105',5)">10월 · 농민</button></div><div class="ws-gal-stage"><figure class="ws-gal-slide" data-i="0"><img src="images/3-3-1_베리공_1월.jpg" alt="성 안에서 새해 잔치를 벌인다. 식탁에 음식이 가득하고, 뒤에는 인사하러 온 사람들이 줄을 섰다." loading="lazy"><figcaption><b>1월 · 귀족</b> 성 안에서 새해 잔치를 벌인다. 식탁에 음식이 가득하고, 뒤에는 인사하러 온 사람들이 줄을 섰다.</figcaption></figure><figure class="ws-gal-slide" data-i="1" hidden><img src="images/3-3-1_베리공_3월.jpg" alt="소가 쟁기를 끌고 밭을 간다. 뒤편 언덕 위에 영주의 성이 보인다." loading="lazy"><figcaption><b>3월 · 농민</b> 소가 쟁기를 끌고 밭을 간다. 뒤편 언덕 위에 영주의 성이 보인다.</figcaption></figure><figure class="ws-gal-slide" data-i="2" hidden><img src="images/3-3-1_베리공_5월.jpg" alt="화관을 쓰고 말을 타고 나들이를 간다. 나팔수가 앞장선다." loading="lazy"><figcaption><b>5월 · 귀족</b> 화관을 쓰고 말을 타고 나들이를 간다. 나팔수가 앞장선다.</figcaption></figure><figure class="ws-gal-slide" data-i="3" hidden><img src="images/3-3-1_베리공_7월.jpg" alt="밀을 베고 양털을 깎는다. 역시 뒤편에 성이 서 있다." loading="lazy"><figcaption><b>7월 · 농민</b> 밀을 베고 양털을 깎는다. 역시 뒤편에 성이 서 있다.</figcaption></figure><figure class="ws-gal-slide" data-i="4" hidden><img src="images/3-3-1_베리공_8월.jpg" alt="매를 들고 사냥을 나간다. 그림 뒤쪽에서는 농민들이 밀을 베고 강에서 멱을 감는다." loading="lazy"><figcaption><b>8월 · 귀족</b> 매를 들고 사냥을 나간다. 그림 뒤쪽에서는 농민들이 밀을 베고 강에서 멱을 감는다.</figcaption></figure><figure class="ws-gal-slide" data-i="5" hidden><img src="images/3-3-1_베리공_10월.jpg" alt="말이 끄는 써레로 땅을 고르고 씨를 뿌린다. 강 건너에 왕의 궁전이 있다." loading="lazy"><figcaption><b>10월 · 농민</b> 말이 끄는 써레로 땅을 고르고 씨를 뿌린다. 강 건너에 왕의 궁전이 있다.</figcaption></figure></div><div class="ws-gal-nav"><button onclick="galStep('gal105',-1)">‹ 이전</button><span class="ws-gal-count"><b>1</b> / 6</span><button onclick="galStep('gal105',1)">다음 ›</button></div></div>
+<br>
+<blockquote>📖 <strong>읽고 답하기 — 여섯 장을 다 넘겨 본 뒤에</strong></blockquote>
+<blockquote>원문에서 확인 — 농민이 나오는 달과 귀족이 나오는 달을 각각 세어 보고, <strong>두 쪽 그림 뒤편에 공통으로 서 있는 것</strong>이 무엇인지 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="원문에서 확인 — 농민이 나오는 달과 귀족이 나오는 달을 각각 세어 보고" style="width:400px" placeholder=""></blockquote>
+<br>
+<blockquote>🎙️ 눈치챘어? <strong>농민이 일하는 그림에도, 귀족이 노는 그림에도 뒤에는 늘 성이 서 있어.</strong> 그게 오늘 배운 거래의 그림판이야 — 성이 지켜 주는 대신, 그 앞의 땅에서 누군가는 계속 일을 해.</blockquote>
+<blockquote><span style="font-size:0.85em;color:#666">『베리 공의 매우 호화로운 기도서』(15세기 초, 랭부르 형제) · 프랑스 콩데 미술관 · Public Domain (Wikimedia Commons) · 교과서 94~95쪽 「세계사×미술」과 같은 자료</span></blockquote>
+<br>
+<blockquote><strong>답: 농민 3달(3·7·10월) · 귀족 3달(1·5·8월). 두 쪽 모두 그림 뒤편에 성(궁전)이 서 있다.</strong></blockquote>
+<blockquote>🎯 <strong>교과서 94~95쪽 「세계사×미술」을 3단계로 끌어온 것이다.</strong> 교과서는 자료①(크레센치·농민)과 자료②(베리 공·귀족)로 나눠 싣지만, <strong>베리 공 기도서 한 권에 두 계층이 다 들어 있다</strong> — 같은 책·같은 해라는 점이 대비를 더 선명하게 한다.</blockquote>
+<blockquote><strong>발문 순서</strong>: ① 여섯 장을 다 넘기게 한다(서두르지 말 것) ② <em>"농민 달과 귀족 달을 세어 봐"</em> ③ <em>"두 쪽에 공통으로 있는 게 뭐지?"</em> → <strong>성</strong>이 나오면 그 자리에서 3단계 전체를 회수한다.</blockquote>
+<blockquote>⚠️ <strong>8월이 특히 좋다</strong> — 앞에서는 귀족이 매사냥을 하는데 <strong>같은 그림 뒤쪽에서 농민이 밀을 벤다.</strong> 한 화면에 두 계층이 같이 있는 유일한 달이다. 시간이 없으면 이 한 장만 띄워도 된다.</blockquote>
+<blockquote>💡 도입 발문(교과서 90쪽) <em>"보호를 받는 대가로 어떤 삶을 살게 되었을까"</em>의 시각적 답이 여기다.</blockquote>
 <br>
 <h2>📖 4단계: 그래서 왕이 약해졌다</h2>
 <blockquote>📕 <strong>교과서 91쪽</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
@@ -492,6 +525,19 @@ document.addEventListener('click', function(e){
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
   b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
 });
+function galGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n;
+  i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-gal-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-gal-dot').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-gal-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function galStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  galGo(id, (+(g.dataset.cur||0)) + d);
+}
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;

@@ -142,6 +142,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     blank_table_count = 0  # 빈칸 테이블 수
     in_step0 = False  # STEP 0 구간 (채점 제외)
     in_figrow = False  # 가로 비교 figure 행 (:::figrow ... :::)
+    in_gallery = False        # 2026-08-31: 한 장씩 넘겨 보는 큐레이션 (:::gallery ... :::)
+    gallery_items = []
+    gallery_title = ''
     figrow_items = []
     essay_count = 0  # 서술형 textarea 수 (제출 수합·세특용 data-id essay-N)
     last_heading = ''  # 가장 최근 heading (essay data-label용·2026-06-24)
@@ -210,6 +213,46 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             continue
 
         # 가로 비교 figure 행 (:::figrow ... :::) — 이미지 N장을 나란히 비교 (1단계 그리스→간다라→한국 등)
+        # 2026-08-31: ':::gallery' — 한 장씩 넘겨 보는 큐레이션 블록.
+        #   교과서 p.94 「세계사×미술」처럼 *여러 장을 차례로 비교*하는 자료용.
+        #   figrow(나란히)와 달리 한 번에 한 장만 보여 준다 — 12달을 늘어놓으면 아무도 안 본다.
+        if stripped.startswith(':::gallery'):
+            in_gallery = True
+            gallery_items = []
+            gallery_title = stripped[len(':::gallery'):].strip()
+            continue
+        if in_gallery:
+            if stripped == ':::':
+                if gallery_items:
+                    gid = f'gal{len(html_parts)}'
+                    slides = ''.join(
+                        f'<figure class="ws-gal-slide" data-i="{i}"{"" if i==0 else " hidden"}>'
+                        f'<img src="{src}" alt="{cap}" loading="lazy">'
+                        f'<figcaption><b>{inline(tag)}</b> {inline(cap)}</figcaption></figure>'
+                        for i,(tag,cap,src) in enumerate(gallery_items))
+                    dots = ''.join(
+                        f'<button class="ws-gal-dot{" on" if i==0 else ""}" '
+                        f'onclick="galGo(\'{gid}\',{i})">{inline(t)}</button>'
+                        for i,(t,_,_) in enumerate(gallery_items))
+                    html_parts.append(
+                        f'<div class="ws-gal" id="{gid}" data-n="{len(gallery_items)}">'
+                        f'<div class="ws-gal-head">{inline(gallery_title)}</div>'
+                        f'<div class="ws-gal-tabs">{dots}</div>'
+                        f'<div class="ws-gal-stage">{slides}</div>'
+                        f'<div class="ws-gal-nav">'
+                        f'<button onclick="galStep(\'{gid}\',-1)">‹ 이전</button>'
+                        f'<span class="ws-gal-count"><b>1</b> / {len(gallery_items)}</span>'
+                        f'<button onclick="galStep(\'{gid}\',1)">다음 ›</button></div></div>')
+                in_gallery = False
+                gallery_items = []
+                continue
+            m_g = re.match(r'!\[(.*?)\]\(([^)]+)\)\s*$', stripped)
+            if m_g:
+                cap, src = m_g.group(1), m_g.group(2)
+                tag, _, rest = cap.partition('|')      # "1월 · 귀족|새해 잔치…" 형식
+                gallery_items.append((tag.strip(), rest.strip() or tag.strip(), src))
+            continue
+
         if stripped == ':::figrow':
             in_figrow = True
             figrow_items = []
@@ -806,6 +849,22 @@ blockquote {{
 .ws-fig-video {{ max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }}
 .ws-fig img[src*="comic"] {{ max-height: 820px; max-width: 600px; }}
 .ws-fig figcaption {{ margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }}
+.ws-gal {{ margin: 22px auto; max-width: 100%; border: 1px solid #ddd7c8; border-radius: 12px;
+  background: #fbfaf6; overflow: hidden; }}
+.ws-gal-head {{ padding: 12px 16px 0; font-weight: 700; color: #3a4a34; font-size: 0.98em; }}
+.ws-gal-tabs {{ display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px; }}
+.ws-gal-dot {{ border: 1px solid #cfc8b6; background: #fff; color: #5a5344; border-radius: 999px;
+  padding: 5px 12px; font-size: 0.84em; cursor: pointer; font-family: inherit; }}
+.ws-gal-dot.on {{ background: #4a5c40; border-color: #4a5c40; color: #fff; font-weight: 700; }}
+.ws-gal-stage {{ text-align: center; padding: 4px 14px 0; }}
+.ws-gal-slide img {{ max-width: 100%; max-height: 430px; height: auto; border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.14); }}
+.ws-gal-slide figcaption {{ margin: 8px auto 0; max-width: 640px; font-size: 0.86em;
+  color: #5a5344; line-height: 1.55; }}
+.ws-gal-nav {{ display: flex; align-items: center; justify-content: center; gap: 14px; padding: 10px 0 14px; }}
+.ws-gal-nav button {{ border: 1px solid #cfc8b6; background: #fff; border-radius: 8px;
+  padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.9em; color: #4a5c40; }}
+.ws-gal-count {{ font-size: 0.86em; color: #8a8272; font-variant-numeric: tabular-nums; }}
 .ws-figrow {{ display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }}
 .ws-figrow-item {{ flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }}
 .ws-figrow-item img {{ width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
@@ -845,6 +904,19 @@ document.addEventListener('click', function(e){{
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
   b.querySelector('.kw-caret').textContent = open ? '\u2212' : '\uFF0B';
 }});
+function galGo(id,i){{
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n;
+  i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-gal-slide').forEach(e=>{{ e.hidden = (+e.dataset.i !== i); }});
+  g.querySelectorAll('.ws-gal-dot').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-gal-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}}
+function galStep(id,d){{
+  const g=document.getElementById(id); if(!g) return;
+  galGo(id, (+(g.dataset.cur||0)) + d);
+}}
 function norm(s){{return (s||'').replace(/\\s+/g,'').replace(/[·,.()（）\\[\\]]/g,'').toLowerCase();}}
 function check(){{
   let bc=0, oxc=0;
