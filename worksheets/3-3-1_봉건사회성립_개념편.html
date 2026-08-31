@@ -173,6 +173,22 @@ blockquote {
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-gal { margin: 22px auto; max-width: 100%; border: 1px solid #ddd7c8; border-radius: 12px;
+  background: #fbfaf6; overflow: hidden; }
+.ws-gal-head { padding: 12px 16px 0; font-weight: 700; color: #3a4a34; font-size: 0.98em; }
+.ws-gal-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px; }
+.ws-gal-dot { border: 1px solid #cfc8b6; background: #fff; color: #5a5344; border-radius: 999px;
+  padding: 5px 12px; font-size: 0.84em; cursor: pointer; font-family: inherit; }
+.ws-gal-dot.on { background: #4a5c40; border-color: #4a5c40; color: #fff; font-weight: 700; }
+.ws-gal-stage { text-align: center; padding: 4px 14px 0; }
+.ws-gal-slide img { max-width: 100%; max-height: 430px; height: auto; border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.14); }
+.ws-gal-slide figcaption { margin: 8px auto 0; max-width: 640px; font-size: 0.86em;
+  color: #5a5344; line-height: 1.55; }
+.ws-gal-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 10px 0 14px; }
+.ws-gal-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px;
+  padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.9em; color: #4a5c40; }
+.ws-gal-count { font-size: 0.86em; color: #8a8272; font-variant-numeric: tabular-nums; }
 .ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
 .ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
@@ -273,6 +289,17 @@ blockquote {
 <br>
 <blockquote>💡 <strong>농노 ≠ 노예.</strong> 이 구분이 오늘의 핵심 중 하나야. 노예는 <em>물건</em>처럼 사고팔렸지만, 농노는 가정을 꾸리고 재산을 가질 수 있었어. 대신 <strong>땅에 묶여 있었지.</strong> 자유를 통째로 잃은 게 아니라, <em>떠날 자유</em>를 안전과 바꾼 거야.</blockquote>
 <br>
+<h3>📜 같은 해, 다른 삶 — 달력 그림 여섯 장</h3>
+<p>600년 전 프랑스에서 만든 달력 그림이다. <strong>같은 책, 같은 한 해</strong>인데 달마다 나오는 사람이 다르다.</p>
+<br>
+<div class="ws-gal" id="gal74" data-n="6"><div class="ws-gal-head">👉 탭이나 ‹ › 로 한 장씩 넘겨 보자. 각 달에 <strong>누가 무엇을 하고 있는지</strong> 보면서.</div><div class="ws-gal-tabs"><button class="ws-gal-dot on" onclick="galGo('gal74',0)">1월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal74',1)">3월 · 농민</button><button class="ws-gal-dot" onclick="galGo('gal74',2)">5월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal74',3)">7월 · 농민</button><button class="ws-gal-dot" onclick="galGo('gal74',4)">8월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal74',5)">10월 · 농민</button></div><div class="ws-gal-stage"><figure class="ws-gal-slide" data-i="0"><img src="images/3-3-1_베리공_1월.jpg" alt="성 안에서 새해 잔치를 벌인다. 식탁에 음식이 가득하고, 뒤에는 인사하러 온 사람들이 줄을 섰다." loading="lazy"><figcaption><b>1월 · 귀족</b> 성 안에서 새해 잔치를 벌인다. 식탁에 음식이 가득하고, 뒤에는 인사하러 온 사람들이 줄을 섰다.</figcaption></figure><figure class="ws-gal-slide" data-i="1" hidden><img src="images/3-3-1_베리공_3월.jpg" alt="소가 쟁기를 끌고 밭을 간다. 뒤편 언덕 위에 영주의 성이 보인다." loading="lazy"><figcaption><b>3월 · 농민</b> 소가 쟁기를 끌고 밭을 간다. 뒤편 언덕 위에 영주의 성이 보인다.</figcaption></figure><figure class="ws-gal-slide" data-i="2" hidden><img src="images/3-3-1_베리공_5월.jpg" alt="화관을 쓰고 말을 타고 나들이를 간다. 나팔수가 앞장선다." loading="lazy"><figcaption><b>5월 · 귀족</b> 화관을 쓰고 말을 타고 나들이를 간다. 나팔수가 앞장선다.</figcaption></figure><figure class="ws-gal-slide" data-i="3" hidden><img src="images/3-3-1_베리공_7월.jpg" alt="밀을 베고 양털을 깎는다. 역시 뒤편에 성이 서 있다." loading="lazy"><figcaption><b>7월 · 농민</b> 밀을 베고 양털을 깎는다. 역시 뒤편에 성이 서 있다.</figcaption></figure><figure class="ws-gal-slide" data-i="4" hidden><img src="images/3-3-1_베리공_8월.jpg" alt="매를 들고 사냥을 나간다. 그림 뒤쪽에서는 농민들이 밀을 베고 강에서 멱을 감는다." loading="lazy"><figcaption><b>8월 · 귀족</b> 매를 들고 사냥을 나간다. 그림 뒤쪽에서는 농민들이 밀을 베고 강에서 멱을 감는다.</figcaption></figure><figure class="ws-gal-slide" data-i="5" hidden><img src="images/3-3-1_베리공_10월.jpg" alt="말이 끄는 써레로 땅을 고르고 씨를 뿌린다. 강 건너에 왕의 궁전이 있다." loading="lazy"><figcaption><b>10월 · 농민</b> 말이 끄는 써레로 땅을 고르고 씨를 뿌린다. 강 건너에 왕의 궁전이 있다.</figcaption></figure></div><div class="ws-gal-nav"><button onclick="galStep('gal74',-1)">‹ 이전</button><span class="ws-gal-count"><b>1</b> / 6</span><button onclick="galStep('gal74',1)">다음 ›</button></div></div>
+<br>
+<blockquote>📖 <strong>읽고 답하기 — 여섯 장을 다 넘겨 본 뒤에</strong></blockquote>
+<blockquote>원문에서 확인 — 농민이 나오는 달과 귀족이 나오는 달을 각각 세어 보고, <strong>두 쪽 그림 뒤편에 공통으로 서 있는 것</strong>이 무엇인지 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="원문에서 확인 — 농민이 나오는 달과 귀족이 나오는 달을 각각 세어 보고" style="width:400px" placeholder=""></blockquote>
+<br>
+<blockquote>🎙️ 눈치챘어? <strong>농민이 일하는 그림에도, 귀족이 노는 그림에도 뒤에는 늘 성이 서 있어.</strong> 그게 오늘 배운 거래의 그림판이야 — 성이 지켜 주는 대신, 그 앞의 땅에서 누군가는 계속 일을 해.</blockquote>
+<blockquote><span style="font-size:0.85em;color:#666">『베리 공의 매우 호화로운 기도서』(15세기 초, 랭부르 형제) · 프랑스 콩데 미술관 · Public Domain (Wikimedia Commons) · 교과서 94~95쪽 「세계사×미술」과 같은 자료</span></blockquote>
+<br>
 <h2>📖 4단계: 그래서 왕이 약해졌다</h2>
 <blockquote>📕 <strong>교과서 91쪽</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
 <p>3단계에서 영주가 "주군의 간섭 없이 다스렸다"고 했지? 그 <strong>"다스렸다"가 생각보다 무거운 말</strong>이다. 영주는 자기 장원에서 <strong>세금을 걷고, 치안을 지키고, 재판을 했다.</strong> 원래 이건 전부 <em>왕이 하던 일</em>이다. 장원 하나하나가 왕의 손이 닿지 않는 작은 나라였던 셈이다.</p>
@@ -294,10 +321,10 @@ blockquote {
 <blockquote>💡 <strong>성직자가 영주였다</strong>는 게 이상하지? 이 이상함이 다음 시간(교황과 황제의 싸움) 이야기의 씨앗이야. 기억해 둬.</blockquote>
 <br>
 <blockquote>📖 <strong>91쪽 장원 그림을 본다</strong></blockquote>
-<blockquote>교과서 91쪽에서 찾기 — 경작지 셋 중 <strong>아무것도 심지 않은 땅</strong>의 이름을 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 91쪽에서 찾기 — 경작지 셋 중 아무것도 심지 않은 땅의 이름을" style="width:200px" placeholder=""></blockquote>
+<blockquote>교과서 91쪽에서 찾기 — 경작지 셋 중 <strong>아무것도 심지 않은 땅</strong>의 이름을 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 91쪽에서 찾기 — 경작지 셋 중 아무것도 심지 않은 땅의 이름을" style="width:200px" placeholder=""></blockquote>
 <br>
 <blockquote>📖 <strong>읽고 답하기 — 92쪽 성직자 설명을 끝까지 읽는다</strong></blockquote>
-<blockquote>원문에서 확인 — 성직자 가운데 일부는 <strong>어떤 다른 역할</strong>도 했나? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="원문에서 확인 — 성직자 가운데 일부는 어떤 다른 역할도 했나?" style="width:340px" placeholder=""></blockquote>
+<blockquote>원문에서 확인 — 성직자 가운데 일부는 <strong>어떤 다른 역할</strong>도 했나? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="원문에서 확인 — 성직자 가운데 일부는 어떤 다른 역할도 했나?" style="width:340px" placeholder=""></blockquote>
 <br>
 <h3>🌾 땅을 셋으로 나눈 이유</h3>
 <p>장원의 경작지는 그냥 한 덩어리가 아니었다. 봄에 씨 뿌리는 <strong>춘경지</strong>, 가을에 씨 뿌리는 <strong>추경지</strong>, 그리고 <strong>아무것도 심지 않고 쉬게 두는</strong> 땅으로 나누어 해마다 돌려 가며 지었다. 땅도 쉬어야 힘을 되찾기 때문이다.</p>
@@ -329,7 +356,7 @@ blockquote {
 <blockquote>🎙️ <strong>아리스토텔레스, 어디서 들어 봤지?</strong> 맞아, 고대 그리스 사람이야(2단원). 그런데 그 철학이 어떻게 천 년도 더 지나서 중세 유럽에 "전해"졌을까? — 서유럽이 잊고 있던 그리스 책들을 <strong>이슬람 세계가 번역해서 간직하고 있었거든.</strong> 지난 시간에 배운 이슬람 세계(Ⅲ-2-3)가 여기서 다시 등장하는 거야. 유럽사와 서아시아사가 따로 노는 게 아니라는 증거.</blockquote>
 <br>
 <blockquote>📖 <strong>93쪽 날개(옆쪽 작은 글씨)를 본다</strong></blockquote>
-<blockquote>교과서 93쪽에서 찾기 — 중세 대학이 주로 가르친 <strong>세 과목</strong>은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 93쪽에서 찾기 — 중세 대학이 주로 가르친 세 과목은 무엇인가?" style="width:340px" placeholder=""></blockquote>
+<blockquote>교과서 93쪽에서 찾기 — 중세 대학이 주로 가르친 <strong>세 과목</strong>은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 93쪽에서 찾기 — 중세 대학이 주로 가르친 세 과목은 무엇인가?" style="width:340px" placeholder=""></blockquote>
 <br>
 <h3>🏛 두 양식, 눈으로 구분하기</h3>
 <p><strong>로마네스크</strong>라는 이름은 <strong>'로마식'</strong>이라는 뜻이다 — 고대 로마 건축의 영향을 받았다는 말. 그래서 로마 건축처럼 <strong>반원형 아치</strong>가 겹겹이 나타난다.</p>
@@ -347,10 +374,10 @@ blockquote {
 <br>
 <table class="act-table">
 <tr><td>누가</td><td>상대에게 주는 것</td></tr>
-<tr><td>주군 → 봉신</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="주군 → 봉신" style="width:200px" placeholder=""></td></tr>
-<tr><td>봉신 → 주군</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="봉신 → 주군" style="width:200px" placeholder=""></td></tr>
-<tr><td>영주 → 농노</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="영주 → 농노" style="width:200px" placeholder=""></td></tr>
-<tr><td>농노 → 영주</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="농노 → 영주" style="width:200px" placeholder=""></td></tr>
+<tr><td>주군 → 봉신</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="주군 → 봉신" style="width:200px" placeholder=""></td></tr>
+<tr><td>봉신 → 주군</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="봉신 → 주군" style="width:200px" placeholder=""></td></tr>
+<tr><td>영주 → 농노</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="영주 → 농노" style="width:200px" placeholder=""></td></tr>
+<tr><td>농노 → 영주</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-10" data-label="농노 → 영주" style="width:200px" placeholder=""></td></tr>
 </table>
 <br>
 <h2>✏️ 활동 2 — 어느 양식일까</h2>
@@ -358,10 +385,10 @@ blockquote {
 <br>
 <table class="act-table">
 <tr><td>설명</td><td>양식</td></tr>
-<tr><td>벽이 두껍고 창이 작아 내부가 어둡다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-10" data-label="벽이 두껍고 창이 작아 내부가 어둡다" style="width:120px" placeholder=""></td></tr>
-<tr><td>뾰족한 탑이 하늘로 솟아 있다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-11" data-label="뾰족한 탑이 하늘로 솟아 있다" style="width:120px" placeholder=""></td></tr>
-<tr><td>넓은 벽면에 종교 벽화를 그렸다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-12" data-label="넓은 벽면에 종교 벽화를 그렸다" style="width:120px" placeholder=""></td></tr>
-<tr><td>큰 창에 색유리그림을 넣었다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-13" data-label="큰 창에 색유리그림을 넣었다" style="width:120px" placeholder=""></td></tr>
+<tr><td>벽이 두껍고 창이 작아 내부가 어둡다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-11" data-label="벽이 두껍고 창이 작아 내부가 어둡다" style="width:120px" placeholder=""></td></tr>
+<tr><td>뾰족한 탑이 하늘로 솟아 있다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-12" data-label="뾰족한 탑이 하늘로 솟아 있다" style="width:120px" placeholder=""></td></tr>
+<tr><td>넓은 벽면에 종교 벽화를 그렸다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-13" data-label="넓은 벽면에 종교 벽화를 그렸다" style="width:120px" placeholder=""></td></tr>
+<tr><td>큰 창에 색유리그림을 넣었다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-14" data-label="큰 창에 색유리그림을 넣었다" style="width:120px" placeholder=""></td></tr>
 </table>
 <br>
 <h2>✅ OX 퀴즈</h2>
@@ -377,9 +404,9 @@ blockquote {
 <h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
 <blockquote>오늘 배운 걸 <strong>안 보고</strong> 세 줄로 적어 보자. 틀려도 괜찮아 — 떠올리려고 애쓰는 그 순간에 머리에 박히는 거야.</blockquote>
 <br>
-<p>1. <input type="text" class="blank-input activity-input no-score" data-id="act-14" data-label="1." style="width:240px" placeholder=""></p>
-<p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-15" data-label="2." style="width:240px" placeholder=""></p>
-<p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-16" data-label="3." style="width:240px" placeholder=""></p>
+<p>1. <input type="text" class="blank-input activity-input no-score" data-id="act-15" data-label="1." style="width:240px" placeholder=""></p>
+<p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-16" data-label="2." style="width:240px" placeholder=""></p>
+<p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-17" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 <h2>💭 더 생각해 보기</h2>
 <p>너는 지금 어느 장원에 살고 있어. <strong>영주</strong>가 되어도 좋고 <strong>농노</strong>가 되어도 좋아.</p>
@@ -416,6 +443,19 @@ document.addEventListener('click', function(e){
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
   b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
 });
+function galGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n;
+  i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-gal-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-gal-dot').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-gal-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function galStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  galGo(id, (+(g.dataset.cur||0)) + d);
+}
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
