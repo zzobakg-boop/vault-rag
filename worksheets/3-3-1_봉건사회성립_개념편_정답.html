@@ -29,6 +29,20 @@ table.act-table { width: auto; max-width: 100%; }
 table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
+.ws-fold {
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}
+.ws-fold > summary {
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}
+.ws-fold > summary::-webkit-details-marker { display: none; }
+.ws-fold > summary::before { content: "▸ "; color: #7a8f6a; }
+.ws-fold[open] > summary::before { content: "▾ "; }
+.ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
+.ws-fold-body { padding: 10px 16px 14px; }
+.ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -190,6 +204,7 @@ blockquote {
 <blockquote>🎯 <strong>여기가 핵심!</strong> '농노'의 한자가 이 차시 최대 오개념의 진원지다 — 노(奴) 자 때문에 <strong>노예로 직행</strong>한다. 어휘 단계에서 미리 "노(奴)가 들어갔지만 노예는 아니다, 왜 그런지는 3단계에서"라고 예고해 두면 3단계 설명이 훨씬 잘 박힌다.</blockquote>
 <br>
 <h2>📖 1단계: 왕이 오지 않는다</h2>
+<blockquote>📕 <strong>교과서 90~91쪽</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
 <p>프랑크 왕국이 셋으로 나뉜 뒤, 서유럽은 ①<span class="blank-filled">바이킹</span>을 비롯한 이민족의 침입으로 큰 혼란에 빠졌다. 왕의 힘은 이들을 막기에 너무 약했다. 그러자 힘 있는 사람들이 스스로 성을 쌓고 무력을 갖춘 ②<span class="blank-filled">기사</span>가 되었다.</p>
 <blockquote>(교과서 원문: "프랑크 왕국이 셋으로 나뉜 후 서유럽은 바이킹, 이슬람 세력 등 이민족의 침입으로 혼란에 빠졌다. 이러한 상황에서 힘 있는 사람들은 성을 쌓고 무력을 갖춘 기사가 되었다." — 비상교육 역사①(이병인) p.91)</blockquote>
 <br>
@@ -207,9 +222,16 @@ blockquote {
 <blockquote>🎯 <strong>여기가 핵심 — 앞 차시와 반드시 이을 것.</strong> '프랑크 왕국의 분열'은 <strong>3-2-5에서 배운 내용</strong>이다. 그걸 짚지 않고 바로 봉건제로 들어가면 학생에게는 <em>외울 제도 하나</em>가 늘어날 뿐이다. "지난 시간에 왕국이 셋으로 갈라졌지? 그래서 어떻게 됐냐면—"으로 열면 인과가 살아난다.</blockquote>
 <blockquote>교과서 90쪽 「그때, 그곳에는?」의 도입 발문 <em>"자유민이었던 농민들은 영주의 보호를 받는 대가로 어떤 삶을 살게 되었을까요?"</em>를 판서해 두고 차시 끝에 되돌아오면 수미상관이 된다.</blockquote>
 <br>
+<blockquote>📖 <strong>90쪽 도입 그림을 본다</strong></blockquote>
+<blockquote>교과서 90쪽에서 찾기 — 농민이 성으로 들어가고 싶어지는 말풍선을 하나 골라 그대로 옮겨 적자.</blockquote>
+<blockquote><strong>답: "안전하게 지내고 싶으면 이곳으로 오시오." 또는 "전쟁이 나면 농민도 안전한 성안에 머무를 수 있어."</strong></blockquote>
+<blockquote>🎯 이 말풍선이 <strong>오늘 차시의 거래 조건 절반</strong>이다. 나머지 절반(<em>"대신 넌 여길 못 떠나"</em>)은 3단계에서 나온다. 여기서 "안전"을 학생 입으로 꺼내 두면 농노가 개념이 아니라 <strong>거래</strong>로 이해된다.</blockquote>
+<blockquote>⚠️ 교과서 도입 발문이 그대로 이 차시를 관통한다 — <em>"자유민이었던 농민들은 영주의 보호를 받는 대가로 어떤 삶을 살게 되었을까요?"</em>(교과서 90쪽). 판서에 걸어 두고 마지막에 회수할 것.</blockquote>
+<br>
 <h2>📖 2단계: 기사들의 계약 — 주종 관계</h2>
-<p>기사들은 자기보다 강한 기사를 ③<span class="blank-filled">주군</span>으로 섬기고 충성과 봉사를 맹세했다. 그러면 주군은 그 기사에게 땅, 곧 ④<span class="blank-filled">봉토</span>를 주고 자기 신하, 곧 ⑤<span class="blank-filled">봉신</span>으로 삼았다. 이렇게 맺어진 관계를 ⑥<span class="blank-filled">주종 관계</span>라고 한다.</p>
-<p>중요한 건 이게 <strong>일방적인 복종이 아니었다</strong>는 점이다. 주군과 봉신은 <em>서로</em> 의무를 다하자는 ⑦<span class="blank-filled">계약</span>을 맺은 사이였고, 어느 한쪽이 의무를 지키지 않으면 관계는 깨질 수 있었다.</p>
+<blockquote>📕 <strong>교과서 91쪽</strong> 펴고 채우기 · 배정 시간 <strong>8분</strong></blockquote>
+<p>기사들은 자기보다 강한 기사를 ③<span class="blank-filled">주군</span>으로 섬기고 충성과 봉사를 맹세했다. 그러면 주군은 그 기사에게 땅, 곧 ④<span class="blank-filled">봉토</span>를 주고 자기 신하, 곧 <strong>봉신</strong>으로 삼았다. 이렇게 맺어진 관계를 ⑤<span class="blank-filled">주종 관계</span>라고 한다.</p>
+<p>중요한 건 이게 <strong>일방적인 복종이 아니었다</strong>는 점이다. 주군과 봉신은 <em>서로</em> 의무를 다하자는 ⑥<span class="blank-filled">계약</span>을 맺은 사이였고, 어느 한쪽이 의무를 지키지 않으면 관계는 깨질 수 있었다.</p>
 <blockquote>(교과서 원문: "기사들은 자기보다 강한 기사를 주군으로 섬기고 충성과 봉사를 맹세하였으며, 주군은 그 기사에게 땅(봉토)을 주고 신하(봉신)로 삼았다. 주군과 봉신은 서로 의무를 다하자는 계약을 바탕으로 주종 관계를 맺었다. 어느 한쪽이 의무를 지키지 않으면 계약은 깨질 수 있었다." — 같은 책 p.91)</blockquote>
 <br>
 <blockquote>🎯 <strong>여기가 핵심 — 지도서 용어로는 '쌍무적 계약 관계'</strong>(지도서 p.132). 중2에게는 '쌍무적'이라는 말 대신 <strong>"양쪽 다 의무가 있다"</strong>로 풀어 주는 편이 낫고, 용어는 판서에만 남긴다.</blockquote>
@@ -233,21 +255,28 @@ blockquote {
 <blockquote>⚠️ 다만 <strong>주 봉건제 자체를 다시 가르치지는 말 것</strong> — 표의 왼쪽 열은 <em>상기</em>용이지 학습 목표가 아니다.</blockquote>
 <blockquote>④봉토와 ⑤봉신을 학생들이 자주 뒤바꾼다. <strong>봉토는 땅(土), 봉신은 사람(臣)</strong> — 한자 마지막 글자로 갈라 주면 정착한다.</blockquote>
 <br>
+<blockquote>📖 <strong>91쪽 봉건 사회 구조 도식을 본다</strong></blockquote>
+<blockquote>교과서 91쪽에서 찾기 — 교과서 도식에 <strong>왕에서 기사로 곧장 가는 화살표</strong>가 있나, 없나?</blockquote>
+<blockquote><strong>답: 없다.</strong> 왕 → 제후, 제후 → 기사로만 이어진다.</blockquote>
+<blockquote>🎯 <strong>우리 도식의 붉은 ✕가 교과서에서도 확인되는 자리다.</strong> 학생이 두 도식을 겹쳐 보게 하는 것이 목적 — <em>"조직도는 왕이 꼭대기인데 왜 왕이 약한가"</em>가 여기서 눈으로 풀린다.</blockquote>
+<br>
 <h2>📖 3단계: 땅 위의 삶 — 장원과 농노</h2>
-<p>봉토는 ⑧<span class="blank-filled">장원</span>이라는 형태로 운영되었다. 봉신은 그곳의 ⑨<span class="blank-filled">영주</span>가 되어 주군의 간섭 없이 자기 땅을 다스렸다. 장원에서 농사짓는 사람들은 대부분 ⑩<span class="blank-filled">농노</span>였다.</p>
+<blockquote>📕 <strong>교과서 91쪽</strong> 펴고 채우기 · 배정 시간 <strong>7분</strong></blockquote>
+<p>봉토는 ⑦<span class="blank-filled">장원</span>이라는 형태로 운영되었다. 봉신은 그곳의 ⑧<span class="blank-filled">영주</span>가 되어 주군의 간섭 없이 자기 땅을 다스렸다. 장원에서 농사짓는 사람들은 대부분 ⑨<span class="blank-filled">농노</span>였다.</p>
 <p>농노는 영주에게 방앗간·빵 가마 같은 시설 사용료와 세금을 바치고, 일주일에 사흘쯤은 영주의 땅에서 농사지어야 했다. 그리고 영주의 허락 없이는 장원을 떠날 수 없었다.</p>
-<p><strong>그렇다고 노예는 아니었다.</strong> 농노는 ⑪<span class="blank-filled">결혼</span>하여 가정을 꾸릴 수 있었고, 약간의 재산도 가질 수 있었다.</p>
+<p><strong>그렇다고 노예는 아니었다.</strong> 농노는 <strong>결혼</strong>하여 가정을 꾸릴 수 있었고, 약간의 재산도 가질 수 있었다.</p>
 <blockquote>(교과서 원문: "장원의 농민은 대부분 농노였다. 농노는 영주에게 각종 시설의 사용료와 세금을 바치고, 영주의 땅에서 농사지어야 했다. 또한 영주의 허락 없이 장원을 떠날 수 없었다. 다만 노예와 달리 결혼하여 가정을 꾸릴 수 있었고, 약간의 재산을 가질 수 있었다." — 같은 책 p.91)</blockquote>
 <br>
 <blockquote>🎯 <strong>여기가 최대 오개념 — 농노 ≠ 노예.</strong> 교과서가 "다만 노예와 달리"라고 <strong>명시적으로 구분</strong>한 문장이므로 시험에 그대로 나온다. 정리 축: <em>노예는 사고팔리는 물건, 농노는 가정과 재산을 가진 사람. 대신 <strong>떠날 자유</strong>가 없다.</em> → <strong>"자유 전부를 잃은 게 아니라, 이동의 자유를 안전과 바꾼 것"</strong>.</blockquote>
 <blockquote><strong>불입권은 4단계로 옮겨 학생 본문에 넣었다</strong>(2026-08-25 보강). 3단계에서 "다스렸다"고만 말하고 넘어가면 그 말의 무게가 안 잡히므로, 4단계 첫머리에서 <em>세금 징수·치안·재판 = 원래 왕의 일</em>로 풀어 준다. 용어 '불입권' 자체는 지도서에만 있으므로 빈칸으로 내지 않았다.</blockquote>
 <br>
 <h2>📖 4단계: 그래서 왕이 약해졌다</h2>
+<blockquote>📕 <strong>교과서 91쪽</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
 <p>3단계에서 영주가 "주군의 간섭 없이 다스렸다"고 했지? 그 <strong>"다스렸다"가 생각보다 무거운 말</strong>이다. 영주는 자기 장원에서 <strong>세금을 걷고, 치안을 지키고, 재판을 했다.</strong> 원래 이건 전부 <em>왕이 하던 일</em>이다. 장원 하나하나가 왕의 손이 닿지 않는 작은 나라였던 셈이다.</p>
 <blockquote>(지도서: "장원은 주군으로부터 받은 봉토로, 영주가 받은 불입권에 의해 자신의 영지 안에서 독립적인 권한을 행사할 수 있었다. <strong>세금 징수, 치안 유지, 재판 등 국왕이 행사하던 권한과 임무를 갖게 된 것이다.</strong>" — 지도서 p.132)</blockquote>
 <br>
 <p>여기에 더해, 봉건 사회에는 묘한 구멍이 하나 더 있었다. 주종 관계는 <strong>맺은 당사자끼리만</strong> 성립했기 때문에, 기사는 자기 주군에게만 의무를 졌고 <strong>그 위의 주군(예를 들어 왕)에게는 아무 의무가 없었다.</strong></p>
-<p>그 결과 지방 세력은 점점 강해지고 왕의 힘은 점점 약해져, 서유럽에는 ⑫<span class="blank-filled">지방 분권</span>적인 정치 체제가 자리 잡았다.</p>
+<p>그 결과 지방 세력은 점점 강해지고 왕의 힘은 점점 약해져, 서유럽에는 ⑩<span class="blank-filled">지방 분권</span>적인 정치 체제가 자리 잡았다.</p>
 <blockquote>(교과서 원문: "봉건 사회가 발전하면서 지방 세력이 강해지고, 왕권은 점점 약해졌다. 그 결과 지방 분권적인 정치 체제가 자리 잡았다." — 같은 책 p.91)</blockquote>
 <blockquote>(지도서: "이러한 관계는 당사자 간의 관계였기 때문에 기사는 자신의 주군 이외의 상위 주군에게는 어떠한 의무도 지지 않았다." — 지도서 p.132)</blockquote>
 <br>
@@ -261,8 +290,9 @@ blockquote {
 <blockquote><strong>뒤 차시 연결</strong>: 이 약해진 왕권이 3-3-4(중앙 집권 국가의 등장)에서 다시 강해진다. "지금은 왕이 약하지만 나중에 뒤집힌다"고 예고해 두면 단원 전체가 하나의 이야기가 된다.</blockquote>
 <br>
 <h2>📖 5단계: 세 종류의 사람 — 기도하는 자, 싸우는 자, 농사짓는 자</h2>
+<blockquote>📕 <strong>교과서 92쪽</strong> 펴고 채우기 · 배정 시간 <strong>8분</strong></blockquote>
 <p>중세 사람들은 사회를 세 신분으로 나누어 보았다. <strong>성직자</strong>(기도하는 자), <strong>기사</strong>(싸우는 자), <strong>농민</strong>(농사짓는 자)이다.</p>
-<p>농민은 인구의 대부분을 차지했고, 장원 안에서 함께 농사지으며 자급자족했다. 그런데 11세기에 쟁기를 개량하고 ⑬<span class="blank-filled">말</span>을 농사에 이용하면서 생산력이 크게 늘었다. 기사들은 농민의 노동으로 살아가는 대신 공동체를 지키는 걸 자기 의무로 여겼고, 평상시엔 사냥과 마상 시합으로 훈련했다. 성직자는 태어남부터 죽음까지를 신과 이어 주는 역할을 했는데, <strong>일부는 왕이나 제후에게 땅을 받아 영주 노릇도 했다.</strong></p>
+<p>농민은 인구의 대부분을 차지했고, 장원 안에서 함께 농사지으며 자급자족했다. 그런데 11세기에 쟁기를 개량하고 <strong>말</strong>을 농사에 이용하면서 생산력이 크게 늘었다. 기사들은 농민의 노동으로 살아가는 대신 공동체를 지키는 걸 자기 의무로 여겼고, 평상시엔 사냥과 마상 시합으로 훈련했다. 성직자는 태어남부터 죽음까지를 신과 이어 주는 역할을 했는데, <strong>일부는 왕이나 제후에게 땅을 받아 영주 노릇도 했다.</strong></p>
 <blockquote>(교과서 원문: "11세기에는 쟁기를 개량하고 말을 농사에 이용하면서 농업 생산력이 크게 늘었다." / "수도원장이나 대주교 등 일부 성직자들은 왕이나 제후에게서 땅을 받아 영주로서 장원을 다스리기도 하였다." — 같은 책 p.92)</blockquote>
 <br>
 <figure class="ws-fig"><img src="images/3-3-1_세신분.png" alt="중세의 세 신분 — 화살표는 서로에게 무엇을 하는지를 나타낸다. 아래 띠의 '이상한 일'에 주목할 것." loading="lazy"><figcaption>중세의 세 신분 — 화살표는 서로에게 무엇을 하는지를 나타낸다. 아래 띠의 '이상한 일'에 주목할 것.</figcaption></figure>
@@ -276,8 +306,19 @@ blockquote {
 <blockquote>ⓑ <strong>성직자가 영주였다</strong> — 다음 차시(3-3-2 교황권)의 복선. 종교 권력과 세속 권력이 처음부터 얽혀 있었기에 나중에 교황과 황제가 충돌한다. "이상하지 않아? 이 이상함이 다음 시간 이야기야"로 닫으면 예고가 된다.</blockquote>
 <blockquote><strong>서사 소재 — 윌리엄 마셜</strong>(지도서 p.132): 마상 시합을 전전하며 이름을 얻어 초대 펨브로크 백작이 되고, 잉글랜드 왕 셋을 섬기다 말년에 헨리 3세의 섭정까지 맡은 실존 기사. <em>"중세는 태어난 대로 사는 사회"</em>라는 통념을 깨는 반례라 반응이 좋다. 이 차시의 핵심 축(보호와 자유의 맞교환)에서는 옆길이라 학생 본문에는 넣지 않았다 — <strong>시간이 남을 때 구두로 1분</strong>이 적정선.</blockquote>
 <br>
+<blockquote>📖 <strong>91쪽 장원 그림을 본다</strong></blockquote>
+<blockquote>교과서 91쪽에서 찾기 — 경작지 셋 중 <strong>아무것도 심지 않은 땅</strong>의 이름을 적자.</blockquote>
+<blockquote><strong>답: 휴경지</strong></blockquote>
+<blockquote>🎯 종전엔 이것이 본문 빈칸이었다(⑭). <strong>교과서 그림에서 찾게 바꾼 이유</strong> — 3포제는 교과서 <em>본문에 없고 장원 그림 설명에만</em> 있어서, 그림을 봐야만 나온다. 빈칸으로 두면 그림을 안 봐도 앞뒤 문맥으로 풀렸다.</blockquote>
+<br>
+<blockquote>📖 <strong>읽고 답하기 — 92쪽 성직자 설명을 끝까지 읽는다</strong></blockquote>
+<blockquote>원문에서 확인 — 성직자 가운데 일부는 <strong>어떤 다른 역할</strong>도 했나?</blockquote>
+<blockquote><strong>답: 왕이나 제후에게 땅을 받아 영주로서 장원을 다스리기도 했다.</strong></blockquote>
+<blockquote>🎯 <strong>끝까지 읽어야만 나온다.</strong> 성직자 설명은 "신과 이어 주는 중재자"로 시작해 마지막 문장에서 뒤집힌다. 앞부분만 훑은 학생은 못 쓴다.</blockquote>
+<blockquote>이 반전이 다음 차시(3-3-2 교황과 황제의 대립)의 씨앗이다 — <em>기도하는 자가 땅과 사람을 가지면 어떻게 되는가.</em></blockquote>
+<br>
 <h3>🌾 땅을 셋으로 나눈 이유</h3>
-<p>장원의 경작지는 그냥 한 덩어리가 아니었다. 봄에 씨 뿌리는 <strong>춘경지</strong>, 가을에 씨 뿌리는 <strong>추경지</strong>, 그리고 <strong>아무것도 심지 않고 쉬게 두는</strong> ⑭<span class="blank-filled">휴경지</span>로 나누어 해마다 돌려 가며 지었다. 땅도 쉬어야 힘을 되찾기 때문이다.</p>
+<p>장원의 경작지는 그냥 한 덩어리가 아니었다. 봄에 씨 뿌리는 <strong>춘경지</strong>, 가을에 씨 뿌리는 <strong>추경지</strong>, 그리고 <strong>아무것도 심지 않고 쉬게 두는</strong> 땅으로 나누어 해마다 돌려 가며 지었다. 땅도 쉬어야 힘을 되찾기 때문이다.</p>
 <blockquote>(교과서 원문: "농노는 띠 형태로 구분한 땅에서 공동으로 농사지었다. 경작지는 춘경지, 추경지, 휴경지로 나누었다." — 같은 책 p.91 장원 그림)</blockquote>
 <blockquote>(지도서: "10~11세기에 쟁기의 개량, 마력의 이용, <strong>3포제의 도입</strong>과 같은 농업 기술의 발전 덕분에 농업 생산량이 크게 늘어날 수 있었다. 이러한 혁신은 <strong>'농업 혁명'</strong>이라고 불릴 정도로 서유럽 사회에 커다란 변화를 가져왔다." — 지도서 p.132)</blockquote>
 <br>
@@ -291,7 +332,8 @@ blockquote {
 <blockquote>⚠️ 용어 '3포제'는 지도서에만 있으므로 <strong>빈칸으로 내지 않았다</strong>(빈칸은 교과서에 실재하는 '휴경지'로). 판서 용어로는 써도 무방.</blockquote>
 <br>
 <h2>📖 6단계: 태어나서 죽을 때까지, 교회 안에서</h2>
-<p>중세 유럽 사람의 일생은 처음부터 끝까지 교회를 통과했다. 아기가 태어나면 성직자에게 ⑮<span class="blank-filled">세례</span>를 받았고, 그 뒤로도 결혼·임종·무덤까지 모든 관문이 교회 안에 있었다.</p>
+<blockquote>📕 <strong>교과서 92쪽 「종교와 손잡고」</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
+<p>중세 유럽 사람의 일생은 처음부터 끝까지 교회를 통과했다. 아기가 태어나면 성직자에게 ⑪<span class="blank-filled">세례</span>를 받았고, 그 뒤로도 결혼·임종·무덤까지 모든 관문이 교회 안에 있었다.</p>
 <br>
 <figure class="ws-fig"><img src="images/3-3-1_일생네관문.png" alt="인생의 네 관문이 모두 교회 안에 있었다 — 세례·결혼식·임종 기도·교회 묘지가 출생에서 죽음까지의 축 위에 놓여 있고, 넷 다 교회라는 큰 틀 안에 들어 있다." loading="lazy"><figcaption>인생의 네 관문이 모두 교회 안에 있었다 — 세례·결혼식·임종 기도·교회 묘지가 출생에서 죽음까지의 축 위에 놓여 있고, 넷 다 교회라는 큰 틀 안에 들어 있다.</figcaption></figure>
 <br>
@@ -303,13 +345,14 @@ blockquote {
 <blockquote>5단계의 <em>성직자도 영주였다</em>(세속 권력) + 6단계의 <em>일생이 교회 안</em>(정신 권력) = <strong>교황이 황제를 무릎 꿇릴 수 있었던 두 다리.</strong> 둘을 이어 주면 다음 차시가 저절로 열린다.</blockquote>
 <br>
 <h2>📖 7단계: 교회가 감싼 문화</h2>
+<blockquote>📕 <strong>교과서 93쪽</strong> 펴고 채우기 · 배정 시간 <strong>10분</strong></blockquote>
 <p>중세 서유럽의 문화는 크리스트교를 중심으로 자랐다. <strong>학문·교육·건축·문학</strong> 네 갈래가 모두 한 중심에서 뻗어 나온다.</p>
 <br>
 <figure class="ws-fig"><img src="images/3-3-1_교회문화.png" alt="중세 문화는 교회가 감쌌다 — 크리스트교를 중심으로 학문·교육·건축·문학 네 갈래가 뻗어 나온다. 왼쪽 위, 이슬람 세계를 거쳐 들어온 아리스토텔레스 철학이 학문 갈래로 합류하는 화살표에 주목할 것." loading="lazy"><figcaption>중세 문화는 교회가 감쌌다 — 크리스트교를 중심으로 학문·교육·건축·문학 네 갈래가 뻗어 나온다. 왼쪽 위, 이슬람 세계를 거쳐 들어온 아리스토텔레스 철학이 학문 갈래로 합류하는 화살표에 주목할 것.</figcaption></figure>
 <br>
-<p><strong>학문</strong> — 중심은 ⑯<span class="blank-filled">신학</span>이었다. 여기에 그리스 철학자 ⑰<span class="blank-filled">아리스토텔레스</span>의 철학이 전해지면서, 신앙과 이성의 조화를 강조한 ⑱<span class="blank-filled">스콜라 철학</span>이 유행했다(토마스 아퀴나스 『신학 대전』).</p>
-<p><strong>교육</strong> — 12세기 이후 유럽 곳곳에 ⑲<span class="blank-filled">대학</span>이 세워졌다. 교회나 영주의 간섭에서 벗어나 <strong>스스로 운영</strong>되었다.</p>
-<p><strong>건축</strong> — 11세기의 ⑳<span class="blank-filled">로마네스크</span> 양식, 12세기 이후의 ㉑<span class="blank-filled">고딕</span> 양식. 아래 사진 두 장으로 직접 비교한다.</p>
+<p><strong>학문</strong> — 중심은 ⑫<span class="blank-filled">신학</span>이었다. 여기에 그리스 철학자 <strong>아리스토텔레스</strong>의 철학이 전해지면서, 신앙과 이성의 조화를 강조한 ⑬<span class="blank-filled">스콜라 철학</span>이 유행했다(토마스 아퀴나스 『신학 대전』).</p>
+<p><strong>교육</strong> — 12세기 이후 유럽 곳곳에 <strong>대학</strong>이 세워졌다. 교회나 영주의 간섭에서 벗어나 <strong>스스로 운영</strong>되었다.</p>
+<p><strong>건축</strong> — 11세기의 ⑭<span class="blank-filled">로마네스크</span> 양식, 12세기 이후의 ⑮<span class="blank-filled">고딕</span> 양식. 아래 사진 두 장으로 직접 비교한다.</p>
 <p><strong>문학</strong> — 『아서왕 이야기』·『롤랑의 노래』 같은 <strong>기사도 문학</strong>.</p>
 <br>
 <blockquote>🎯 <strong>네 갈래를 먼저 세우고 채우는 순서로 갈 것.</strong> 종전엔 세 문단 산문이라 학생이 <em>"뭐가 몇 개인지"</em>부터 놓쳤다. 도식으로 갈래를 보여 준 뒤 빈칸을 채우게 하면 ⑯~㉑ 여섯 개가 <strong>어느 갈래 소속인지</strong> 함께 기억된다.</blockquote>
@@ -318,6 +361,11 @@ blockquote {
 <br>
 <blockquote>🎯 <strong>아리스토텔레스는 단원을 잇는 다리다.</strong> "전해지면서"라는 교과서의 짧은 표현이 실은 <em>그리스 → 이슬람 세계의 번역·보존 → 서유럽 재유입</em>이라는 긴 경로다. Ⅲ-2-3(이슬람 세계)을 배운 직후이므로 <strong>"지난 시간 이슬람 세계가 여기서 다시 나온다"</strong>고 한 줄만 짚어도 학생이 단원을 하나로 묶는다.</blockquote>
 <blockquote>⚠️ 다만 <strong>번역 운동·톨레도 번역학교 같은 세부는 교과서에 없다.</strong> 경로만 말하고 고유명사로 들어가지 말 것.</blockquote>
+<br>
+<blockquote>📖 <strong>93쪽 날개를 본다</strong></blockquote>
+<blockquote>교과서 93쪽에서 찾기 — 중세 대학이 주로 가르친 <strong>세 과목</strong>은 무엇인가?</blockquote>
+<blockquote><strong>답: 신학 · 법학 · 의학</strong> (가장 오래된 볼로냐 대학은 법학으로 유명)</blockquote>
+<blockquote>🎯 날개 주석은 학습지에 옮겨 적지 않았다. <strong>이 답을 쓴 학생 수 = 교과서를 편 학생 수</strong>다.</blockquote>
 <br>
 <h3>🏛 두 양식, 눈으로 구분하기</h3>
 <p><strong>로마네스크</strong>라는 이름은 <strong>'로마식'</strong>이라는 뜻이다 — 고대 로마 건축의 영향을 받았다는 말. 그래서 로마 건축처럼 <strong>반원형 아치</strong>가 겹겹이 나타난다.</p>
