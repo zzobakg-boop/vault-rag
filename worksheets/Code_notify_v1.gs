@@ -522,3 +522,110 @@ function dumpFlagged() {
   if (shown === 0) { out.push('최근 24시간 안에 제출이 잡힌 탭이 없습니다.'); }
   _tg_(out.join('\n'));
 }
+
+/**
+ * 진단 — 특정 학습지 탭의 *전 행*을 반·번호 분포로 요약한다. (2026-08-31 · 사회 중3)
+ *
+ * 왜 또 만드나: dumpFlagged 는 자기가 고치려던 버그를 그대로 갖고 있다.
+ *   ① shown>=2 로 탭을 2개만 본다 (dumpColumns 의 '끝 2개'와 성질이 같다)
+ *   ② since = 최근 24시간. 5-4 수업이 며칠 전이면 "최근 제출 없음"만 찍고 끝난다.
+ *      정작 증거인 과거 행을 못 본다.
+ * 그래서 이 함수는 *탭을 지정*하고 *전 행*을 센다. 개별 행이 아니라 분포를 본다 —
+ * '전부 3반 1번'이 사실인지, 사실이면 몇 행부터인지가 한 번에 나온다.
+ *
+ * 사용: dumpTabProfile('5-4')  · 인자 없으면 탭 목록만 찍는다.
+ * ⚠️ 이름은 글자수만 내보낸다(기존 진단 규약 준수).
+ */
+function dumpTabProfile(needle) {
+  var ss = _ss_();
+  var names = ss.getSheets().map(function (t) { return t.getName(); });
+  if (!needle) {
+    _tg_('📑 탭 목록 (' + names.length + ')\n' + names.join('\n')
+         + '\n\n사용: dumpTabProfile(\'5-4\')');
+    return;
+  }
+  var tab = null;
+  for (var i = 0; i < names.length; i++) {
+    if (names[i].indexOf(needle) >= 0) { tab = ss.getSheets()[i]; break; }
+  }
+  if (!tab) {
+    _tg_('❌ \'' + needle + '\' 를 담은 탭 없음.\n탭 목록:\n' + names.join('\n'));
+    return;
+  }
+
+  var vals = tab.getDataRange().getValues();
+  var hr = _headerRow_(vals);
+  var out = ['🔬 탭 프로파일 · ' + VERSION, '📄 ' + tab.getName(), '총 ' + vals.length + '행'];
+  if (hr < 0) {
+    out.push('🔴 헤더 행을 못 찾음 — 헤더 유실 사고 계열일 수 있다.');
+    out.push('1행 원본: ' + vals[0].slice(0, 12).map(String).join(' | ').slice(0, 300));
+    _tg_(out.join('\n'));
+    return;
+  }
+  var head = vals[hr].map(function (v) { return String(v).trim(); });
+  out.push('헤더 ' + (hr + 1) + '행 · 열 ' + head.length + '개');
+  var cT = _col_(head, '시각'), cC = _col_(head, '반'), cN = _col_(head, '번호'), cM = _col_(head, '이름');
+  out.push('찾은 열: 시각=' + cT + ' 반=' + cC + ' 번호=' + cN + ' 이름=' + cM);
+  if (cC < 0 || cN < 0) {
+    out.push('🔴 반/번호 열을 못 찾음. 헤더 전체: ' + head.join(' | ').slice(0, 400));
+    _tg_(out.join('\n'));
+    return;
+  }
+
+  var byCls = {}, byPair = {}, blankName = 0, rows = 0, first = null, last = null;
+  for (var r = 0; r < vals.length; r++) {
+    if (r === hr) { continue; }
+    var c = String(vals[r][cC]).trim(), n = String(vals[r][cN]).trim();
+    if (!c && !n) { continue; }
+    rows++;
+    byCls[c] = (byCls[c] || 0) + 1;
+    var k = c + '-' + n;
+    byPair[k] = (byPair[k] || 0) + 1;
+    if (cM >= 0 && !String(vals[r][cM]).trim()) { blankName++; }
+    if (cT >= 0) {
+      var t = vals[r][cT];
+      if (t instanceof Date) {
+        if (!first || t < first) { first = t; }
+        if (!last || t > last) { last = t; }
+      }
+    }
+  }
+  out.push('데이터 ' + rows + '행 · 이름 공란 ' + blankName + '행');
+  if (first) {
+    out.push('시각 범위: ' + Utilities.formatDate(first, 'Asia/Seoul', 'MM/dd HH:mm')
+             + ' ~ ' + Utilities.formatDate(last, 'Asia/Seoul', 'MM/dd HH:mm'));
+  }
+
+  function top(o, n) {
+    return Object.keys(o).sort(function (a, b) { return o[b] - o[a]; }).slice(0, n)
+      .map(function (k) { return (k === '-' ? '(빈칸)' : k) + ':' + o[k]; }).join(' · ');
+  }
+  out.push('');
+  out.push('■ 반별: ' + top(byCls, 10));
+  out.push('■ 반-번호 상위: ' + top(byPair, 8));
+  var pairs = Object.keys(byPair).length;
+  out.push('■ 서로 다른 반-번호 조합: ' + pairs + '개');
+  if (rows > 0 && pairs <= 2) {
+    out.push('🔴 조합이 ' + pairs + '개뿐 — 신원이 고정돼 들어오고 있다.');
+  } else if (rows > 0) {
+    out.push('✅ 신원은 분산돼 있다 — \'전부 한 명\'은 아니다.');
+  }
+
+  // ── 중복 제출 (2026-08-31 추가)
+  // 왜: dumpFlagged 표본에서 같은 반·번호·시각·점수의 행이 나란히 두 번 찍혔다
+  //     (사회 125/126행 · 역사 21/23행). 집계 기준이 '제출 버튼 도달'이라
+  //     중복이 그대로 인원으로 세어지면 제출률이 부푼다.
+  var dupPairs = 0, dupRows = 0, dupList = [];
+  Object.keys(byPair).forEach(function (k) {
+    if (byPair[k] > 1) { dupPairs++; dupRows += byPair[k] - 1; dupList.push(k + '×' + byPair[k]); }
+  });
+  out.push('');
+  out.push('■ 중복 제출 — 같은 반-번호가 2행 이상: ' + dupPairs + '명 · 잉여 ' + dupRows + '행');
+  if (dupPairs > 0) {
+    out.push('  ' + dupList.sort().slice(0, 12).join(' · '));
+    out.push('  ⚠️ 실제 제출 인원 = ' + pairs + '명 (행 수 ' + rows + '이 아님)');
+    out.push('  ※ 재제출(고쳐서 다시 냄)일 수도, 버튼 두 번일 수도 있다.');
+    out.push('     구분은 시각·점수가 같은지로 — 같으면 버튼 두 번, 다르면 재제출.');
+  }
+  _tg_(out.join('\n'));
+}
