@@ -134,6 +134,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     fm_count = 0
     in_code = False
     in_table = False
+    in_fold = False   # 2026-08-31: 접힌 콜아웃 '> [!타입]- 제목' → <details>
     in_ox_table = False
     title = "학습지"
     table_idx = -1  # 현재 처리 중인 테이블 인덱스
@@ -270,6 +271,12 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         # 마크다운 → HTML
         stripped = line.strip()
 
+        # 2026-08-31: 접힌 블록은 '>' 줄이 이어지는 동안만 유효. 헤딩·표·이미지·빈 줄이
+        #   오면 여기서 한 번에 닫는다(닫기를 여러 분기에 흩뿌리면 반드시 하나를 빠뜨린다).
+        if in_fold and not stripped.startswith('>'):
+            html_parts.append('</div></details>')
+            in_fold = False
+
         # 이미지/영상 ![캡션](src) → figure (2026-05-30: 본문 사료/figure 렌더. wiki-embed ![[..]]는 위에서 이미 제거됨)
         # 2026-06-15: src가 .mp4/.webm 이면 <video> 렌더 (대운하 설명 영상 등 학습지 임베드)
         m_img = re.match(r'!\[(.*?)\]\(([^)]+)\)\s*$', stripped)
@@ -384,19 +391,44 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 in_table = False
                 table_row_idx = 0
             # 콜아웃
-            if stripped.startswith('> [!'):
+            # 2026-08-31: '> [!타입]- 제목' (뒤에 하이픈) = 접힌 블록 → <details>.
+            #   빈칸 답이 바로 아래 R3 인용에 그대로 보여 학생이 교과서를 안 펴던 문제(실측 56%,
+            #   최근 차시는 100%)를 풀기 위해 도입. 원문을 '채운 뒤 펼쳐 확인'하는 자리로 옮긴다.
+            #   Obsidian 표준 접기 문법과 같아 볼트에서도 접힌 상태로 보인다.
+            m_fold = re.match(r'> \[!([^\]]+)\]-\s*(.*)', stripped)
+            if m_fold:
+                if in_fold:
+                    html_parts.append('</details>')
+                ftype, ftitle = m_fold.group(1), m_fold.group(2)
+                html_parts.append(
+                    f'<details class="ws-fold ws-fold-{ftype}">'
+                    f'<summary>{inline(ftitle) or "펼쳐 보기"}</summary>'
+                    f'<div class="ws-fold-body">')
+                in_fold = True
+            elif in_fold and stripped.startswith('>'):
+                body = stripped[2:] if stripped.startswith('> ') else stripped[1:]
+                html_parts.append(f'<p>{inline(body)}</p>')
+            elif stripped.startswith('> [!'):
+                if in_fold:
+                    html_parts.append('</div></details>'); in_fold = False
                 match = re.match(r'> \[!(\w+)\]\s*(.*)', stripped)
                 if match:
                     ctype = match.group(1)
                     ctitle = match.group(2)
                     html_parts.append(f'<div class="callout callout-{ctype}"><strong>{inline(ctitle)}</strong></div>')
             elif stripped.startswith('> '):
+                if in_fold:
+                    html_parts.append('</div></details>'); in_fold = False
                 html_parts.append(f'<blockquote>{inline(stripped[2:])}</blockquote>')
             elif stripped == '':
                 html_parts.append('<br>')
             elif stripped == '---':
+                if in_fold:
+                    html_parts.append('</div></details>'); in_fold = False
                 html_parts.append('<hr>')
             else:
+                if in_fold:
+                    html_parts.append('</div></details>'); in_fold = False
                 html_parts.append(f'<p>{inline(stripped)}</p>')
 
     if in_table:
@@ -630,6 +662,20 @@ table.act-table {{ width: auto; max-width: 100%; }}
 table.act-table .activity-input {{ max-width: 100%; }}
 td {{ border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }}
 tr:first-child td {{ background: #f0f4ff; font-weight: 600; }}
+.ws-fold {{
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}}
+.ws-fold > summary {{
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}}
+.ws-fold > summary::-webkit-details-marker {{ display: none; }}
+.ws-fold > summary::before {{ content: "▸ "; color: #7a8f6a; }}
+.ws-fold[open] > summary::before {{ content: "▾ "; }}
+.ws-fold[open] > summary {{ border-bottom: 1px solid #e2ddd0; }}
+.ws-fold-body {{ padding: 10px 16px 14px; }}
+.ws-fold-body p {{ margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }}
 blockquote {{
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
