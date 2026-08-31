@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>역사① Ⅲ단원 3-1-3 — 일본은 왜 수도까지 당나라 장안을 '복사'했을까? (일본 고대 국가) (복습용)</title>
+<title>사회② Ⅲ단원 11차시 학습지 (학생용)</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -29,6 +29,20 @@ table.act-table { width: auto; max-width: 100%; }
 table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
+.ws-fold {
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}
+.ws-fold > summary {
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}
+.ws-fold > summary::-webkit-details-marker { display: none; }
+.ws-fold > summary::before { content: "▸ "; color: #7a8f6a; }
+.ws-fold[open] > summary::before { content: "▾ "; }
+.ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
+.ws-fold-body { padding: 10px 16px 14px; }
+.ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -169,84 +183,143 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-1-3 — 일본은 왜 수도까지 당나라 장안을 '복사'했을까? (일본 고대 국가)</h1><p class="hero-subtitle">일본은 왜 수도까지 당나라 장안을 '복사'했을까?</p><div class="hero-keywords"><span class="hero-keyword">야마토 정권 → 아스카 문화</span><span class="hero-keyword">다이카 개신 = 당 율령 수용</span><span class="hero-keyword">나라(헤이조쿄)=장안 모방·도다이지</span><span class="hero-keyword">헤이안 시대 국풍 문화(가나)</span></div><div class="hero-hook">일본 나라(奈良)의 옛 수도 헤이조쿄는, 놀랍게도 당나라 수도 장안을 거의 그대로 본떠 만들었어. 도로도 바둑판 모양, 궁궐 배치도 비슷하게(헐!). 왜 한 나라가 다른 나라의 수도를 '복사'했을까? 그만큼 당의 문화가 매력적이었거든. 오늘은 일본이 당을 배우며 고대 국가로 성장하고, 마침내 자기 색깔(국풍 문화)을 찾아가는 과정을 따라가 보자.</div></section>
-  <div class="control-bar">
-    <div class="score">
-      빈칸: <span id="score">0</span>/11 · OX: <span id="ox-score">0</span>/5
-      · 총: <span id="total-score">0</span>/16 (<span id="pct">0</span>%)
-    </div>
-    <div>
-      <a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
-      <button class="btn btn-primary" onclick="check()">채점하기</button>
-      <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
-      <button class="btn btn-danger" onclick="reset()">초기화</button>
-      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
-      
-    </div>
-  </div>
-  <div class="student-info">
-    <select id="si-cls"><option value="">반</option><option value="1">1반</option><option value="2">2반</option><option value="3">3반</option><option value="4">4반</option><option value="5">5반</option><option value="6">6반</option></select>
-    <select id="si-num"><option value="">번호</option><option value="1">1번</option><option value="2">2번</option><option value="3">3번</option><option value="4">4번</option><option value="5">5번</option><option value="6">6번</option><option value="7">7번</option><option value="8">8번</option><option value="9">9번</option><option value="10">10번</option><option value="11">11번</option><option value="12">12번</option><option value="13">13번</option><option value="14">14번</option><option value="15">15번</option><option value="16">16번</option><option value="17">17번</option><option value="18">18번</option><option value="19">19번</option><option value="20">20번</option><option value="21">21번</option><option value="22">22번</option><option value="23">23번</option><option value="24">24번</option><option value="25">25번</option><option value="26">26번</option><option value="27">27번</option><option value="28">28번</option><option value="29">29번</option><option value="30">30번</option><option value="31">31번</option><option value="32">32번</option><option value="33">33번</option><option value="34">34번</option><option value="35">35번</option></select>
-    <input type="text" id="si-name" placeholder="이름">
-  </div>
+  
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
   <br>
-<blockquote>🎙️ 지난 시간 당나라 장안이 인구 100만의 국제도시였던 거 기억나? 그 장안이 어찌나 멋졌는지, 바다 건너 일본이 <em>수도를 통째로 본떠</em> 만들었어. 일본은 당을 열심히 배우며 고대 국가의 틀을 잡았지. 그런데 시간이 지나자 <em>빌린 옷</em>을 자기 몸에 맞게 고쳐 입기 시작해 — 그게 국풍 문화야. 오늘 일본 고대 국가의 성장 이야기.</blockquote>
+<br>
+<br>
+<br>
+<h1>사회② Ⅲ단원 11차시 학습지 (학생용)</h1>
+<br>
+<br>
+<hr>
 <br>
 <h2>📌 학습 목표</h2>
-<p>- 일본 <strong>고대 국가의 성립과 발전</strong> 과정을 이해할 수 있다.</p>
-<p>- 일본이 당의 문화를 수용하고 <strong>독자적으로 발전</strong>시킨 모습을 설명할 수 있다.</p>
+<p>- <strong>경제 활동</strong>의 의미와 종류를 설명할 수 있다.</p>
+<p>- <strong>자원의 희소성</strong>이 선택의 필요성을 만드는 이유를 이해할 수 있다.</p>
+<p>- <strong>기회비용</strong>과 <strong>합리적 선택</strong>의 기준을 설명할 수 있다.</p>
 <br>
-<h2>✨ 오늘의 고급 단어</h2>
+<hr>
+<br>
+<h2>📖 개념 정리</h2>
+<br>
+<h3>1. 경제 활동</h3>
+<br>
+<p>사람의 필요와 욕구를 충족하려고 재화와 서비스를 <strong>____________</strong>, 분배, <strong>____________</strong>하는 활동을 경제 활동이라고 한다.</p>
+<br>
 <table>
-<tr><td>단어</td><td>뜻</td></tr>
-<tr><td>야마토 정권</td><td>4세기경 일본의 작은 나라들을 통합한 정치 세력</td></tr>
-<tr><td>다이카 개신</td><td>당의 율령을 받아들여 통치 체제를 정비한 개혁</td></tr>
-<tr><td>헤이조쿄</td><td>당 장안을 본떠 만든 나라 시대의 수도(나라)</td></tr>
-<tr><td>국풍 문화</td><td>외래 문물을 일본 고유의 취향에 맞게 바꾼 문화</td></tr>
+<tr><td>유형</td><td>내용</td><td>예시</td></tr>
+<tr><td><strong>생산</strong></td><td>재화와 서비스를 만들어 내거나 가치를 ____________하는 활동</td><td>자동차 제조, 의료 서비스 제공</td></tr>
+<tr><td><strong>분배</strong></td><td>생산에 참여한 정도에 따라 ____________, 이자 등을 나누어 갖는 것</td><td>월급 받기, 이자 수령</td></tr>
+<tr><td><strong>소비</strong></td><td>만족을 얻으려고 재화와 서비스를 ____________하여 사용하는 활동</td><td>음식 먹기, 옷 구매</td></tr>
 </table>
 <br>
-<h2>📖 1단계: 야마토 정권과 아스카 문화</h2>
-<p>기원전 3세기경 일본에서는 야요이 문화가 성립하였고, 4세기경에는 ①<input type="text" class="blank-input" data-answer="야마토 정권" data-id="1" style="width:116px" placeholder="">이 주변의 작은 나라들을 통합하였다. 야마토 정권은 중국과 한반도로부터 ②<input type="text" class="blank-input" data-answer="불교" data-id="2" style="width:60px" placeholder=""> 같은 선진 문물을 받아들여 ③<input type="text" class="blank-input" data-answer="아스카" data-id="3" style="width:68px" placeholder=""> 문화를 발전시켰다(아스카 시대).</p>
-<blockquote>(교과서 원문: "4세기경에는 야마토 정권이 주변의 작은 나라들을 통합하였다. 야마토 정권은 중국과 한반도로부터 불교와 같은 선진 문물을 받아들여 아스카 문화를 발전시켰다(아스카 시대)." — 비상교육 역사①(이병인) p.73)</blockquote>
+<blockquote>💡 <strong>재화:</strong> 형태가 있는 물건 (예: 책, 자동차)</blockquote>
+<blockquote><strong>서비스:</strong> 형태는 없지만 편리함을 주는 행위 (예: 의사 진료, 세탁 서비스)</blockquote>
 <br>
-<blockquote>💡 <strong>한반도가 놓은 다리</strong>: 일본이 받아들인 불교·한자·기술은 <em>상당수 한반도(백제 등)를 거쳐</em> 전해졌어. 일본 고대 문화의 뿌리에 한반도와의 교류가 있다는 점, 기억해 두자.</blockquote>
+<hr>
 <br>
-<h2>📖 2단계: 다이카 개신 — 당을 배워 체제를 세우다</h2>
-<p>7세기 중엽 일본은 당의 율령을 받아들여 통치 체제를 정비하였다(④<input type="text" class="blank-input" data-answer="다이카 개신" data-id="4" style="width:116px" placeholder="">). 7세기 말에는 '⑤<input type="text" class="blank-input" data-answer="일본" data-id="5" style="width:60px" placeholder="">'이라는 국호를 사용하고, 왕을 '⑥<input type="text" class="blank-input" data-answer="천황" data-id="6" style="width:60px" placeholder="">'으로 부르기 시작하였다.</p>
-<blockquote>(교과서 원문: "(다이카 개신). 일본은 당의 율령을 받아들여 통치 체제를 정비하였다. 7세기 말에는 '일본'이라는 국호를 사용하고, 왕을 '천황'으로 부르기 시작하였다." — 비상교육 역사①(이병인) p.73)</blockquote>
+<h3>2. 자원의 희소성</h3>
 <br>
-<blockquote>⚠️ <strong>여기가 핵심 — '일본'과 '천황'의 등장</strong>: 다이카 개신으로 <em>당의 율령 체제</em>를 본떠 중앙 집권을 강화했고, 이 무렵 비로소 <strong>'일본'</strong> 국호와 <strong>'천황'</strong> 칭호가 쓰이기 시작해. 즉 <em>고대 국가의 틀</em>이 당을 모델로 완성된 거야.</blockquote>
+<p>인간의 욕구는 <strong>____________</strong>한 데 비해, 이를 충족할 자원은 <strong>____________</strong>되어 있다. → 이것을 자원의 <strong>____________</strong>이라고 한다.</p>
 <br>
-<h2>📖 3단계: 나라 시대 — 장안을 본뜬 수도, 도다이지</h2>
-<p>8세기 초 일본은 당의 장안성을 본떠 ⑦<input type="text" class="blank-input" data-answer="헤이조쿄" data-id="7" style="width:84px" placeholder="">(나라)를 세우고 수도로 삼았다(나라 시대). 이 시기에는 당과 신라에서 불교문화가 들어와 ⑧<input type="text" class="blank-input" data-answer="도다이지" data-id="8" style="width:84px" placeholder="">를 비롯한 대규모 사찰을 많이 지었다.</p>
-<blockquote>(교과서 원문: "8세기 초 일본은 당의 장안성을 본떠 헤이조쿄(나라)를 세우고 수도로 삼았다(나라 시대). 이 시기에는 당과 신라에서 불교문화가 들어와 도다이지를 비롯한 대규모 사찰을 많이 만들었다." — 비상교육 역사①(이병인) p.73)</blockquote>
+<blockquote>💡 희소성은 <strong>상대적</strong>이다!</blockquote>
+<blockquote>- 자원이 적어도 원하는 사람이 없으면 → 희소하지 <strong>않다</strong></blockquote>
+<blockquote>- 자원이 많아도 원하는 사람이 더 많으면 → 희소<strong>하다</strong></blockquote>
 <br>
-<blockquote>🎙️ <strong>수도를 '복사'하다</strong>: 헤이조쿄는 <em>장안의 바둑판 도시 구조</em>를 본떴어. <strong>도다이지</strong>(東大寺)는 나라 시대에 세운 <em>세계에서 가장 큰 목조 건축물</em> — 그 안의 거대한 청동 대불이 유명하지. 당의 제도(율령)와 신앙(불교)을 한꺼번에 빨아들인 시기야.</blockquote>
+<p><strong>예시:</strong> 중국의 '캔 공기' 사례 — 공기는 많지만 맑은 공기를 원하는 사람이 많아져 ____________해짐.</p>
 <br>
-<figure class="ws-fig"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/%E6%9D%B1%E5%A4%A7%E5%AF%BA%E5%A4%A7%E4%BD%9B%E6%AE%BF_Todaiji_Temple_Great_Buddha_Hall_-_panoramio.jpg/960px-%E6%9D%B1%E5%A4%A7%E5%AF%BA%E5%A4%A7%E4%BD%9B%E6%AE%BF_Todaiji_Temple_Great_Buddha_Hall_-_panoramio.jpg" alt="도다이지 대불전(일본 나라) — 나라 시대에 세운 세계 최대 목조 건축물. 당·신라의 불교문화를 받아들인 모습 (Wikimedia)" loading="lazy"><figcaption>도다이지 대불전(일본 나라) — 나라 시대에 세운 세계 최대 목조 건축물. 당·신라의 불교문화를 받아들인 모습 (Wikimedia)</figcaption></figure>
+<hr>
 <br>
-<h2>📖 4단계: 헤이안 시대 — 빌린 옷을 고쳐 입다(국풍 문화)</h2>
-<p>8세기 말 일본은 ⑨<input type="text" class="blank-input" data-answer="헤이안쿄" data-id="9" style="width:84px" placeholder="">(교토)로 수도를 옮겼다(헤이안 시대). 이 시대에는 외국 문물을 일본인의 취향과 특성에 맞게 바꾼 ⑩<input type="text" class="blank-input" data-answer="국풍 문화" data-id="10" style="width:100px" placeholder="">가 나타났다. 한자를 변형한 ⑪<input type="text" class="blank-input" data-answer="가나" data-id="11" style="width:60px" placeholder=""> 문자가 만들어졌고, 주택·관복 등에도 일본 고유의 특색이 나타났다.</p>
-<blockquote>(교과서 원문: "8세기 말 일본은 헤이안쿄(교토)로 수도를 옮겼다(헤이안 시대). 헤이안 시대에는 외국의 문물을 일본인의 취향과 특성에 맞게 바꾼 국풍 문화가 나타났다. 한자를 변형한 가나 문자가 만들어졌고, 주택과 관복 등에도 일본 고유의 특색이 나타났다." — 비상교육 역사①(이병인) p.73)</blockquote>
+<h3>3. 기회비용과 합리적 선택</h3>
 <br>
-<blockquote>💡 <strong>'국풍'은 독자 발전의 대표 사례</strong>: 나라 시대까지 <em>당을 그대로 배웠다면</em>, 헤이안 시대엔 <em>자기 식으로 바꿨어</em>. 한자→<strong>가나</strong>, 당풍 건축→일본식 주택. 이게 바로 동아시아 문화권의 핵심, <em>"공유하되 독자적으로 발전"</em>의 생생한 예야(→ 다음 차시 동아시아 문화권).</blockquote>
+<p><strong>기회비용:</strong> 어떤 선택을 할 때, 포기한 대안 중 <strong>가장 ____________을 지닌 대안의 가치</strong></p>
 <br>
-<h2>❓ OX 퀴즈</h2>
+<blockquote>예: 가수 공연 관람 vs 피겨 구매 중 공연을 선택했다면 → <strong>기회비용</strong> = 피겨 구매에서 얻을 수 있었던 ____________</blockquote>
+<br>
+<p><strong>합리적 선택이란?</strong></p>
+<br>
+<p>기회비용보다 <strong>____________</strong>이 큰 것을 선택하는 것</p>
+<br>
+<p>→ ____________ > 기회비용 이면 합리적!</p>
+<br>
+<hr>
+<br>
+<h2>✏️ 활동</h2>
+<br>
+<h3>활동 1: 희소성 판단하기</h3>
+<br>
+<blockquote>다음 자원이 희소한지 아닌지 판단하고, 이유를 써 보자.</blockquote>
+<br>
 <table>
-<tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>4세기경 야마토 정권이 일본의 작은 나라들을 통합하였다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>일본은 다이카 개신으로 당의 율령을 받아들여 통치 체제를 정비하였다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>헤이조쿄(나라)는 당의 장안성을 본떠 만든 수도이다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>국풍 문화는 당의 문화를 그대로 옮겨 온 문화이다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>헤이안 시대에 한자를 변형한 가나 문자가 만들어졌다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>자원</td><td>희소한가?</td><td>이유</td></tr>
+<tr><td>사막의 물</td><td></td><td></td></tr>
+<tr><td>도시의 맑은 공기</td><td></td><td></td></tr>
+<tr><td>넓은 주차 공간 (한적한 농촌)</td><td></td><td></td></tr>
+<tr><td>아이돌 콘서트 티켓</td><td></td><td></td></tr>
 </table>
 <br>
-<h2>💭 더 생각해 보기</h2>
-<p>일본은 나라 시대에 당의 수도·제도·불교를 적극 받아들였지만, 헤이안 시대에는 국풍 문화를 발전시켰다. 이 변화가 동아시아 문화권의 어떤 특징을 보여 주는지 한두 문장으로 써 보자.</p>
-<textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<hr>
+<br>
+<h3>활동 2: 나의 기회비용 계산하기</h3>
+<br>
+<blockquote>용돈 1만 원으로 다음 중 하나를 선택해야 한다. 내가 가장 원하는 것 순서대로 순위를 매기고, 선택과 기회비용을 써 보자.</blockquote>
+<br>
+<table>
+<tr><td>선택지</td><td>내 선호 순위</td></tr>
+<tr><td>친구와 영화 관람 (10,000원)</td><td></td></tr>
+<tr><td>책 구매 (10,000원)</td><td></td></tr>
+<tr><td>맛있는 음식 먹기 (10,000원)</td><td></td></tr>
+<tr><td>저축하기</td><td></td></tr>
+</table>
+<br>
+<p><strong>내 선택:</strong> __________________</p>
+<br>
+<p><strong>기회비용 (포기한 것 중 가장 아쉬운 것):</strong> __________________</p>
+<br>
+<p><strong>이 선택이 합리적인 이유:</strong></p>
+<br>
+<p>_____________________________________________________________________________</p>
+<br>
+<hr>
+<br>
+<h3>활동 3: 합리적 의사 결정 해보기</h3>
+<br>
+<blockquote>다음 평가 기준 표를 이용해 내 상황에 맞는 대안을 하나 정해 합리적 의사 결정을 해보자.</blockquote>
+<br>
+<p><strong>문제 상황 (예: 이번 주말을 어떻게 보낼까?):</strong></p>
+<br>
+<p>_____________________________________________</p>
+<br>
+<table>
+<tr><td>평가 기준</td><td>대안 ①</td><td>대안 ②</td><td>대안 ③</td></tr>
+<tr><td><strong>합계</strong></td><td></td><td></td><td></td></tr>
+</table>
+<br>
+<p><strong>최종 선택:</strong> __________________</p>
+<br>
+<p><strong>선택한 이유:</strong></p>
+<br>
+<p>_____________________________________________________________________________</p>
+<br>
+<hr>
+<br>
+<h2>🔍 더 생각해 보기</h2>
+<br>
+<blockquote>다음 중 희소성의 개념에 대한 설명으로 옳은 것을 고르고, 이유를 써 보자.</blockquote>
+<br>
+<p>① 자원의 양이 절대적으로 부족한 상태를 말한다.</p>
+<p>② 인간의 욕구가 자원의 양보다 클 때 나타나는 상태이다.</p>
+<p>③ 양이 많으면 절대로 희소해질 수 없다.</p>
+<p>④ 희소성은 모든 나라에서 똑같이 나타난다.</p>
+<br>
+<p><strong>정답:</strong> ______</p>
+<p><strong>이유:</strong> _____________________________________________________________________________</p>
+<br>
+<blockquote><strong>다음 시간 예고:</strong> 사회는 기본 경제 문제를 어떤 방식으로 해결할까?</blockquote>
 </div>
 <script>
-const TB=11, TOX=5, GT=16;
+const TB=0, TOX=0, GT=0;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
@@ -372,11 +445,42 @@ const EXAM_MODE=false;
 // nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
 function _siEl(id){ return document.getElementById(id); }
 function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
+// 🔴 2026-08-31: 저장 키에 '정답 체계 지문'을 붙인다.
+//   사고 — 3-3-1의 빈칸을 21→15로 줄이자, v1 때 채워 둔 답이 v2 번호로 복원되며
+//   ⑤부터 한 칸씩 밀렸다(⑤에 '봉신', ⑥에 '주종 관계'). 화면만 보면 "답이 노출되고
+//   매칭이 틀린" 것처럼 보이는데, 실제로는 옛 입력이 새 번호에 얹힌 것이다.
+//   빈칸 개수·정답 문자열이 바뀌면 지문이 달라져 옛 답이 붙지 않는다.
+function _wsFp(){
+  let sig='';
+  document.querySelectorAll('.blank-input:not(.activity-input),.ox-group').forEach(el=>{
+    sig += (el.dataset.answer||'') + '|';
+  });
+  let h=5381;
+  for(let i=0;i<sig.length;i++){ h=((h*33)^sig.charCodeAt(i))>>>0; }
+  return h.toString(36);
+}
 function _wsKey(){
-  if(!EXAM_MODE) return 'ws_'+document.title;
+  const fp='::v'+_wsFp();
+  if(!EXAM_MODE) return 'ws_'+document.title+fp;
   const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
-  return 'ws_'+document.title+'::'+c+'-'+n;
+  return 'ws_'+document.title+fp+'::'+c+'-'+n;
+}
+// 지문 도입 이전(=구키)에 저장된 답은, 빈칸 개수가 그대로일 때만 이어받는다.
+//   같으면 단순 재발행이므로 학생이 쓰던 답을 살리고, 다르면 구조가 바뀐 것이므로 버린다.
+function _migrateOldKey(newKey){
+  const oldKey = EXAM_MODE
+    ? 'ws_'+document.title+'::'+_siv('si-cls')+'-'+_siv('si-num')
+    : 'ws_'+document.title;
+  let raw; try{ raw=localStorage.getItem(oldKey); }catch(e){ return; }
+  if(!raw) return;
+  try{
+    const p=JSON.parse(raw), d=p.data||{};
+    const nowN=document.querySelectorAll('.blank-input:not(.activity-input)').length;
+    const oldN=Object.keys(d).filter(k=>/^\d+$/.test(k)).length;
+    if(oldN===nowN) localStorage.setItem(newKey, raw);   // 구조 동일 → 이어받기
+  }catch(e){}
+  try{ localStorage.removeItem(oldKey); }catch(e){}  // 구키는 어느 쪽이든 정리
 }
 function _persist(){
   const key=_wsKey(); if(!key) return;
@@ -394,6 +498,7 @@ let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
   const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  _migrateOldKey(key);
   let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }

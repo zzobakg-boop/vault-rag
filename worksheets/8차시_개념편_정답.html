@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다 (복습용)</title>
+<title>사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -29,6 +29,20 @@ table.act-table { width: auto; max-width: 100%; }
 table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
+.ws-fold {
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}
+.ws-fold > summary {
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}
+.ws-fold > summary::-webkit-details-marker { display: none; }
+.ws-fold > summary::before { content: "▸ "; color: #7a8f6a; }
+.ws-fold[open] > summary::before { content: "▾ "; }
+.ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
+.ws-fold-body { padding: 10px 16px 14px; }
+.ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -170,25 +184,7 @@ blockquote {
 <body>
 <div class="container">
   <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅳ단원 · 시장의 의미와 종류</div><h1 class="hero-title">사회② Ⅳ단원 — 너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</h1><p class="hero-subtitle">너는 오늘 시장에 안 갔지만, 시장을 10번 지났다</p><div class="hero-keywords"><span class="hero-keyword">시장 = 사고파는 사람이 모이는 곳</span><span class="hero-keyword">보이는 / 보이지 않는 시장</span><span class="hero-keyword">생산물 / 생산요소 시장</span><span class="hero-keyword">상설 / 정기 시장</span></div><img class="hero-image" src="images/market-cover.jpeg" alt=""><div class="hero-hook">오늘 너 시장 간 적 있어? '아니'라고? 근데 거래는 10번 했어. 당근·배민·편의점·알바… 그게 다 시장이야.</div></section>
-  <div class="control-bar">
-    <div class="score">
-      빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/0
-      · 총: <span id="total-score">0</span>/12 (<span id="pct">0</span>%)
-    </div>
-    <div>
-      <a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
-      <button class="btn btn-primary" onclick="check()">채점하기</button>
-      <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
-      <button class="btn btn-danger" onclick="reset()">초기화</button>
-      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
-      
-    </div>
-  </div>
-  <div class="student-info">
-    <select id="si-cls"><option value="">반</option><option value="1">1반</option><option value="2">2반</option><option value="3">3반</option><option value="4">4반</option><option value="5">5반</option><option value="6">6반</option></select>
-    <select id="si-num"><option value="">번호</option><option value="1">1번</option><option value="2">2번</option><option value="3">3번</option><option value="4">4번</option><option value="5">5번</option><option value="6">6번</option><option value="7">7번</option><option value="8">8번</option><option value="9">9번</option><option value="10">10번</option><option value="11">11번</option><option value="12">12번</option><option value="13">13번</option><option value="14">14번</option><option value="15">15번</option><option value="16">16번</option><option value="17">17번</option><option value="18">18번</option><option value="19">19번</option><option value="20">20번</option><option value="21">21번</option><option value="22">22번</option><option value="23">23번</option><option value="24">24번</option><option value="25">25번</option><option value="26">26번</option><option value="27">27번</option><option value="28">28번</option><option value="29">29번</option><option value="30">30번</option><option value="31">31번</option><option value="32">32번</option><option value="33">33번</option><option value="34">34번</option><option value="35">35번</option></select>
-    <input type="text" id="si-name" placeholder="이름">
-  </div>
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
   <br>
 <h2>📌 학습 목표</h2>
 <p>- <strong>시장</strong>의 의미와 <strong>역할</strong>을 설명할 수 있다.</p>
@@ -217,16 +213,16 @@ blockquote {
 <h2>📖 2단계: 시장의 의미와 역할</h2>
 <br>
 <h3>2-1. 시장이란?</h3>
-<p><strong>시장</strong>은 재화나 서비스를 <em>사거나 팔려는 사람들</em>이 편리하게 ①<input type="text" class="blank-input" data-answer="거래" data-id="1" style="width:60px" placeholder="">하기 위해 모이는 곳이다.</p>
-<p>- 사려는 사람 = ②<input type="text" class="blank-input" data-answer="수요자" data-id="2" style="width:68px" placeholder=""> · 팔려는 사람 = ③<input type="text" class="blank-input" data-answer="공급자" data-id="3" style="width:68px" placeholder=""></p>
+<p><strong>시장</strong>은 재화나 서비스를 <em>사거나 팔려는 사람들</em>이 편리하게 ①<span class="blank-filled">거래</span>하기 위해 모이는 곳이다.</p>
+<p>- 사려는 사람 = ②<span class="blank-filled">수요자</span> · 팔려는 사람 = ③<span class="blank-filled">공급자</span></p>
 <br>
 <blockquote>(교과서 원문: "시장은 재화나 서비스를 사거나 팔려는 사람들이 편리하게 거래하기 위해 모이는 곳이다." 천재교육 사회②(구정화) p.72~73)</blockquote>
 <br>
 <h3>2-2. 시장의 역할</h3>
 <table>
 <tr><td>역할</td><td>내용</td></tr>
-<tr><td>④<input type="text" class="blank-input" data-answer="효율적" data-id="4" style="width:68px" placeholder=""> 거래</td><td>거래에 필요한 <em>시간·노력</em>을 절약해 줌 → 거래가 효율적이 됨</td></tr>
-<tr><td>⑤<input type="text" class="blank-input" data-answer="정보" data-id="5" style="width:60px" placeholder=""> 제공</td><td>재화·서비스에 대한 <em>다양한 정보</em>(가격·품질 등)를 얻게 해 줌</td></tr>
+<tr><td>④<span class="blank-filled">효율적</span> 거래</td><td>거래에 필요한 <em>시간·노력</em>을 절약해 줌 → 거래가 효율적이 됨</td></tr>
+<tr><td>⑤<span class="blank-filled">정보</span> 제공</td><td>재화·서비스에 대한 <em>다양한 정보</em>(가격·품질 등)를 얻게 해 줌</td></tr>
 </table>
 <br>
 <blockquote>🎙️ 결국 시장은 <em>세상에서 제일 큰 소개팅 주선자</em>야. 살 사람과 팔 사람을 <em>효율적으로 연결</em>해서, 우리가 아낀 시간으로 다른 일·여가를 즐길 수 있게 해 준다.</blockquote>
@@ -244,28 +240,28 @@ blockquote {
 <h3>기준 1. 거래 <em>모습</em> — 보이나, 안 보이나</h3>
 <table>
 <tr><td>종류</td><td>뜻</td><td>사례</td></tr>
-<tr><td>⑥<input type="text" class="blank-input" data-answer="보이는" data-id="6" style="width:68px" placeholder=""> 시장</td><td>거래 장소가 <em>눈에 보이는</em> 구체적 시장</td><td>재래시장·대형마트·백화점</td></tr>
-<tr><td>⑦<input type="text" class="blank-input" data-answer="보이지 않는" data-id="7" style="width:116px" placeholder=""> 시장</td><td>장소가 <em>눈에 안 보여도</em> 거래가 이뤄지는 시장</td><td>온라인 쇼핑·주식 시장·외환 시장·노동 시장</td></tr>
+<tr><td>⑥<span class="blank-filled">보이는</span> 시장</td><td>거래 장소가 <em>눈에 보이는</em> 구체적 시장</td><td>재래시장·대형마트·백화점</td></tr>
+<tr><td>⑦<span class="blank-filled">보이지 않는</span> 시장</td><td>장소가 <em>눈에 안 보여도</em> 거래가 이뤄지는 시장</td><td>온라인 쇼핑·주식 시장·외환 시장·노동 시장</td></tr>
 </table>
 <br>
 <h3>기준 2. 거래 <em>대상</em> — 무엇을 사고파나</h3>
 <table>
 <tr><td>종류</td><td>거래 대상</td><td>수요자 / 공급자</td><td>사례</td></tr>
-<tr><td>⑧<input type="text" class="blank-input" data-answer="생산물" data-id="8" style="width:68px" placeholder=""> 시장</td><td>완성된 <em>재화·서비스</em></td><td>가계=수요자 / 기업=공급자</td><td>편의점·배달앱·영화관</td></tr>
-<tr><td>⑨<input type="text" class="blank-input" data-answer="생산요소" data-id="9" style="width:84px" placeholder=""> 시장</td><td>생산에 필요한 <em>노동·토지·자본</em></td><td>가계=공급자 / 기업=수요자</td><td>구인구직(노동)·부동산(토지)·주식(자본)</td></tr>
+<tr><td>⑧<span class="blank-filled">생산물</span> 시장</td><td>완성된 <em>재화·서비스</em></td><td>가계=수요자 / 기업=공급자</td><td>편의점·배달앱·영화관</td></tr>
+<tr><td>⑨<span class="blank-filled">생산요소</span> 시장</td><td>생산에 필요한 <em>노동·토지·자본</em></td><td>가계=공급자 / 기업=수요자</td><td>구인구직(노동)·부동산(토지)·주식(자본)</td></tr>
 </table>
 <br>
 <blockquote>(교과서 원문: "시장은 거래하는 상품에 따라 생산물 시장과 생산 요소 시장으로 나뉜다. 생산물 시장은 가계가 수요자, 기업이 공급자인 시장이고, 생산 요소 시장은 노동·자본·자연 자원(토지)을 거래하는 시장으로 가계가 공급자, 기업이 수요자인 시장이다." 천재교육 사회②(구정화) p.74~75)</blockquote>
 <br>
 <figure class="ws-fig"><img src="images/social2-4-1-flow.png" alt="생산물 시장(가계=수요자·기업=공급자) ↔ 생산요소 시장(가계=공급자·기업=수요자). 알바는 네가 노동을 파는 공급자!" loading="lazy"><figcaption>생산물 시장(가계=수요자·기업=공급자) ↔ 생산요소 시장(가계=공급자·기업=수요자). 알바는 네가 노동을 파는 공급자!</figcaption></figure>
 <br>
-<blockquote>💡 <strong>알바천국에서 알바 구하는 것</strong>도 시장이야 — <em>너의 노동</em>을 파는 ⑩<input type="text" class="blank-input" data-answer="노동" data-id="10" style="width:60px" placeholder=""> 시장. 여기선 <em>너(가계)가 공급자</em>, <em>사장님(기업)이 수요자</em>!</blockquote>
+<blockquote>💡 <strong>알바천국에서 알바 구하는 것</strong>도 시장이야 — <em>너의 노동</em>을 파는 ⑩<span class="blank-filled">노동</span> 시장. 여기선 <em>너(가계)가 공급자</em>, <em>사장님(기업)이 수요자</em>!</blockquote>
 <br>
 <h3>기준 3. 개설 <em>시기</em> — 늘 여나, 날 잡아 여나</h3>
 <table>
 <tr><td>종류</td><td>뜻</td><td>사례</td></tr>
-<tr><td>⑪<input type="text" class="blank-input" data-answer="상설" data-id="11" style="width:60px" placeholder=""> 시장</td><td>날마다 <em>늘 열려 있는</em> 시장</td><td>대형마트·백화점·편의점</td></tr>
-<tr><td>⑫<input type="text" class="blank-input" data-answer="정기" data-id="12" style="width:60px" placeholder=""> 시장</td><td><em>정해진 날</em>에만 열리는 시장</td><td>5일장·7일장</td></tr>
+<tr><td>⑪<span class="blank-filled">상설</span> 시장</td><td>날마다 <em>늘 열려 있는</em> 시장</td><td>대형마트·백화점·편의점</td></tr>
+<tr><td>⑫<span class="blank-filled">정기</span> 시장</td><td><em>정해진 날</em>에만 열리는 시장</td><td>5일장·7일장</td></tr>
 </table>
 <br>
 <blockquote>⭐ <strong>심화 (읽기만)</strong> — 시장은 <em>경쟁 정도</em>로도 나눈다: 파는 기업이 하나뿐인 <strong>독점 시장</strong>(옛 철도·우편), 몇 개뿐인 <strong>과점 시장</strong>(라면·통신). 공급자가 적을수록 가격을 마음대로 정하기 쉬워진다.</blockquote>
@@ -323,12 +319,9 @@ blockquote {
 <p><strong>Q2.</strong> 네가 <em>가장 자주 쓰는</em> 보이지 않는 시장 1개는? 거기서 너는 <em>수요자</em>야, <em>공급자</em>야?</p>
 <br>
 <p><strong>Q3.</strong> <em>알바</em>는 노동을 파는 생산요소 시장이다. 그럼 <em>너 자신</em>은 미래에 어떤 시장에서 <em>공급자</em>가 될까?</p>
-<br>
-<hr>
-<br>
 </div>
 <script>
-const TB=12, TOX=0, GT=12;
+const TB=0, TOX=0, GT=0;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
@@ -454,11 +447,42 @@ const EXAM_MODE=false;
 // nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
 function _siEl(id){ return document.getElementById(id); }
 function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
+// 🔴 2026-08-31: 저장 키에 '정답 체계 지문'을 붙인다.
+//   사고 — 3-3-1의 빈칸을 21→15로 줄이자, v1 때 채워 둔 답이 v2 번호로 복원되며
+//   ⑤부터 한 칸씩 밀렸다(⑤에 '봉신', ⑥에 '주종 관계'). 화면만 보면 "답이 노출되고
+//   매칭이 틀린" 것처럼 보이는데, 실제로는 옛 입력이 새 번호에 얹힌 것이다.
+//   빈칸 개수·정답 문자열이 바뀌면 지문이 달라져 옛 답이 붙지 않는다.
+function _wsFp(){
+  let sig='';
+  document.querySelectorAll('.blank-input:not(.activity-input),.ox-group').forEach(el=>{
+    sig += (el.dataset.answer||'') + '|';
+  });
+  let h=5381;
+  for(let i=0;i<sig.length;i++){ h=((h*33)^sig.charCodeAt(i))>>>0; }
+  return h.toString(36);
+}
 function _wsKey(){
-  if(!EXAM_MODE) return 'ws_'+document.title;
+  const fp='::v'+_wsFp();
+  if(!EXAM_MODE) return 'ws_'+document.title+fp;
   const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
-  return 'ws_'+document.title+'::'+c+'-'+n;
+  return 'ws_'+document.title+fp+'::'+c+'-'+n;
+}
+// 지문 도입 이전(=구키)에 저장된 답은, 빈칸 개수가 그대로일 때만 이어받는다.
+//   같으면 단순 재발행이므로 학생이 쓰던 답을 살리고, 다르면 구조가 바뀐 것이므로 버린다.
+function _migrateOldKey(newKey){
+  const oldKey = EXAM_MODE
+    ? 'ws_'+document.title+'::'+_siv('si-cls')+'-'+_siv('si-num')
+    : 'ws_'+document.title;
+  let raw; try{ raw=localStorage.getItem(oldKey); }catch(e){ return; }
+  if(!raw) return;
+  try{
+    const p=JSON.parse(raw), d=p.data||{};
+    const nowN=document.querySelectorAll('.blank-input:not(.activity-input)').length;
+    const oldN=Object.keys(d).filter(k=>/^\d+$/.test(k)).length;
+    if(oldN===nowN) localStorage.setItem(newKey, raw);   // 구조 동일 → 이어받기
+  }catch(e){}
+  try{ localStorage.removeItem(oldKey); }catch(e){}  // 구키는 어느 쪽이든 정리
 }
 function _persist(){
   const key=_wsKey(); if(!key) return;
@@ -476,6 +500,7 @@ let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
   const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  _migrateOldKey(key);
   let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }

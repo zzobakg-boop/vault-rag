@@ -29,6 +29,20 @@ table.act-table { width: auto; max-width: 100%; }
 table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
+.ws-fold {
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}
+.ws-fold > summary {
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}
+.ws-fold > summary::-webkit-details-marker { display: none; }
+.ws-fold > summary::before { content: "▸ "; color: #7a8f6a; }
+.ws-fold[open] > summary::before { content: "▾ "; }
+.ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
+.ws-fold-body { padding: 10px 16px 14px; }
+.ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -433,11 +447,42 @@ const EXAM_MODE=false;
 // nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
 function _siEl(id){ return document.getElementById(id); }
 function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
+// 🔴 2026-08-31: 저장 키에 '정답 체계 지문'을 붙인다.
+//   사고 — 3-3-1의 빈칸을 21→15로 줄이자, v1 때 채워 둔 답이 v2 번호로 복원되며
+//   ⑤부터 한 칸씩 밀렸다(⑤에 '봉신', ⑥에 '주종 관계'). 화면만 보면 "답이 노출되고
+//   매칭이 틀린" 것처럼 보이는데, 실제로는 옛 입력이 새 번호에 얹힌 것이다.
+//   빈칸 개수·정답 문자열이 바뀌면 지문이 달라져 옛 답이 붙지 않는다.
+function _wsFp(){
+  let sig='';
+  document.querySelectorAll('.blank-input:not(.activity-input),.ox-group').forEach(el=>{
+    sig += (el.dataset.answer||'') + '|';
+  });
+  let h=5381;
+  for(let i=0;i<sig.length;i++){ h=((h*33)^sig.charCodeAt(i))>>>0; }
+  return h.toString(36);
+}
 function _wsKey(){
-  if(!EXAM_MODE) return 'ws_'+document.title;
+  const fp='::v'+_wsFp();
+  if(!EXAM_MODE) return 'ws_'+document.title+fp;
   const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
-  return 'ws_'+document.title+'::'+c+'-'+n;
+  return 'ws_'+document.title+fp+'::'+c+'-'+n;
+}
+// 지문 도입 이전(=구키)에 저장된 답은, 빈칸 개수가 그대로일 때만 이어받는다.
+//   같으면 단순 재발행이므로 학생이 쓰던 답을 살리고, 다르면 구조가 바뀐 것이므로 버린다.
+function _migrateOldKey(newKey){
+  const oldKey = EXAM_MODE
+    ? 'ws_'+document.title+'::'+_siv('si-cls')+'-'+_siv('si-num')
+    : 'ws_'+document.title;
+  let raw; try{ raw=localStorage.getItem(oldKey); }catch(e){ return; }
+  if(!raw) return;
+  try{
+    const p=JSON.parse(raw), d=p.data||{};
+    const nowN=document.querySelectorAll('.blank-input:not(.activity-input)').length;
+    const oldN=Object.keys(d).filter(k=>/^\d+$/.test(k)).length;
+    if(oldN===nowN) localStorage.setItem(newKey, raw);   // 구조 동일 → 이어받기
+  }catch(e){}
+  try{ localStorage.removeItem(oldKey); }catch(e){}  // 구키는 어느 쪽이든 정리
 }
 function _persist(){
   const key=_wsKey(); if(!key) return;
@@ -455,6 +500,7 @@ let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
   const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  _migrateOldKey(key);
   let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }

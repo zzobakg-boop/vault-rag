@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사회② Ⅲ단원 15~16차시 — 돈이 내 삶을 돌볼 수 있을까? (복습용)</title>
+<title>사회② Ⅱ단원 10차시 학습지 (학생용)</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -29,6 +29,20 @@ table.act-table { width: auto; max-width: 100%; }
 table.act-table .activity-input { max-width: 100%; }
 td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
 tr:first-child td { background: #f0f4ff; font-weight: 600; }
+.ws-fold {
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}
+.ws-fold > summary {
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}
+.ws-fold > summary::-webkit-details-marker { display: none; }
+.ws-fold > summary::before { content: "▸ "; color: #7a8f6a; }
+.ws-fold[open] > summary::before { content: "▾ "; }
+.ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
+.ws-fold-body { padding: 10px 16px 14px; }
+.ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -169,225 +183,144 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><div class="hero-eyebrow">사회② · Ⅲ단원 15~16차시</div><h1 class="hero-title">사회② Ⅲ단원 15~16차시 — 돈이 내 삶을 돌볼 수 있을까?</h1><p class="hero-subtitle">돈이 내 삶을 돌볼 수 있을까?</p><div class="hero-keywords"><span class="hero-keyword">생애 주기</span><span class="hero-keyword">자산 관리 3원칙</span><span class="hero-keyword">금융 상품</span><span class="hero-keyword">신용</span><span class="hero-keyword">연체</span></div><img class="hero-image" src="images/finance-hero.jpeg" alt=""><div class="hero-hook">길동이 아빠는 50세에 일을 잃었다. 지아 언니는 OTT·배달앱 결제 두 달 밀려 신용등급이 떨어졌다.</div></section>
-  <div class="control-bar">
-    <div class="score">
-      빈칸: <span id="score">0</span>/15 · OX: <span id="ox-score">0</span>/4
-      · 총: <span id="total-score">0</span>/19 (<span id="pct">0</span>%)
-    </div>
-    <div>
-      <a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
-      <button class="btn btn-primary" onclick="check()">채점하기</button>
-      <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
-      <button class="btn btn-danger" onclick="reset()">초기화</button>
-      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
-      
-    </div>
-  </div>
-  <div class="student-info">
-    <select id="si-cls"><option value="">반</option><option value="1">1반</option><option value="2">2반</option><option value="3">3반</option><option value="4">4반</option><option value="5">5반</option><option value="6">6반</option></select>
-    <select id="si-num"><option value="">번호</option><option value="1">1번</option><option value="2">2번</option><option value="3">3번</option><option value="4">4번</option><option value="5">5번</option><option value="6">6번</option><option value="7">7번</option><option value="8">8번</option><option value="9">9번</option><option value="10">10번</option><option value="11">11번</option><option value="12">12번</option><option value="13">13번</option><option value="14">14번</option><option value="15">15번</option><option value="16">16번</option><option value="17">17번</option><option value="18">18번</option><option value="19">19번</option><option value="20">20번</option><option value="21">21번</option><option value="22">22번</option><option value="23">23번</option><option value="24">24번</option><option value="25">25번</option><option value="26">26번</option><option value="27">27번</option><option value="28">28번</option><option value="29">29번</option><option value="30">30번</option><option value="31">31번</option><option value="32">32번</option><option value="33">33번</option><option value="34">34번</option><option value="35">35번</option></select>
-    <input type="text" id="si-name" placeholder="이름">
-  </div>
+  
+  <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
   <br>
+<br>
+<br>
+<br>
+<h1>사회② Ⅱ단원 10차시 학습지 (학생용)</h1>
+<br>
+<br>
+<hr>
+<br>
 <h2>📌 학습 목표</h2>
-<p>- 생애 주기에 따른 소득·소비의 변화를 설명할 수 있다.</p>
-<p>- 자산 관리 3원칙과 주요 금융 상품의 특징을 이해할 수 있다.</p>
-<p>- 신용의 의미와 신용 관리의 중요성을 설명할 수 있다.</p>
-<br>
-<h2>✨ 오늘의 어휘 (교과서)</h2>
-<p>- <strong>생애 주기(生涯 週期)</strong>: 개인의 삶을 시간 흐름에 따라 단계로 나타낸 것</p>
-<p>- <strong>자산(資産)</strong>: 개인이 소유한 경제적 가치가 있는 것 (예금·주식·부동산 등)</p>
-<p>- <strong>포트폴리오</strong>: 위험을 줄이기 위해 여러 금융 상품에 나눠 투자하는 것</p>
-<p>- <strong>신용(信用)</strong>: 돈을 빌려 쓰고 약속한 대로 갚을 수 있는 능력</p>
-<p>- <strong>연체(延滯)</strong>: 약속한 기한이 지나도 돈을 갚지 않는 것</p>
+<p>- 대통령의 <strong>헌법상 지위</strong>를 설명할 수 있다.</p>
+<p>- 대통령의 <strong>주요 권한</strong>을 분류하고 설명할 수 있다.</p>
 <br>
 <hr>
 <br>
-<h2>📖 1단계: 길동이 이야기 — 왜 지금부터 준비해야 할까?</h2>
+<h2>📖 개념 정리</h2>
 <br>
-<blockquote>🏠 <strong>길동이 아빠는 50세에 갑자기 일을 잃었다.</strong></blockquote>
-<blockquote>회사가 어렵다며 권고사직. 저축은 거의 없었다.</blockquote>
-<blockquote>그 다음 달, 집에서 보던 OTT(넷플릭스·쿠팡플레이)를 모두 해지했다.</blockquote>
-<blockquote>다니던 학원도 두 곳을 끊었다. 가족 외식·배달도 한 달에 한 번으로 줄였다.</blockquote>
-<blockquote>길동이는 이해가 안 됐다. <em>"아빠 그동안 열심히 일하셨는데, 왜 갑자기 이렇게 됐지?"</em></blockquote>
+<h3>1. 행정권의 의미와 중요성</h3>
 <br>
-<figure class="ws-fig"><img src="images/finance-comic.jpeg" alt="길동이 이야기 4컷 — ① 아빠 권고사직(구조조정 통보) ② 빈 통장(저축 없음) ③ 가계 긴축(OTT 해지·학원 끊기·외식 줄이기) ④ "아빠 열심히 일하셨는데 왜 갑자기?"" loading="lazy"><figcaption>길동이 이야기 4컷 — ① 아빠 권고사직(구조조정 통보) ② 빈 통장(저축 없음) ③ 가계 긴축(OTT 해지·학원 끊기·외식 줄이기) ④ "아빠 열심히 일하셨는데 왜 갑자기?"</figcaption></figure>
+<p>행정권이란 입법부가 만든 <strong>____________</strong>을 집행하는 권한이다.</p>
 <br>
-<blockquote>💬 <strong>이게 <em>너</em>랑 무슨 상관일까?</strong></blockquote>
-<blockquote><em>지금 우리 집</em>, 그리고 <em>20년 후의 너</em>에게도 똑같은 일이 일어날 수 있다.</blockquote>
-<blockquote>일하는 시기는 정해져 있고, 일을 안 하는 시기에도 돈은 계속 들어간다.</blockquote>
-<blockquote>이번 차시는 <em>언제·어떻게 준비해야 하는가</em>를 짚는다.</blockquote>
+<p>- 근대 국가: 주로 <strong>____________</strong> 유지 기능만 수행</p>
+<p>- 현대 국가: 국민의 실질적인 자유와 평등 보장을 위한 <strong>____________</strong> 국가 → 행정권이 더욱 중요해짐</p>
+<br>
+<blockquote><strong>헌법 제66조 ④항:</strong> 행정권은 <strong>____________</strong>을 수반으로 하는 정부에 속한다.</blockquote>
 <br>
 <hr>
 <br>
-<h2>📖 2단계: 생애 주기와 경제생활</h2>
-<br>
-<p>개인의 삶을 시간의 흐름에 따라 단계로 나타낸 것을 ①<input type="text" class="blank-input" data-answer="생애 주기" data-id="1" style="width:100px" placeholder="">라 부른다.</p>
-<br>
-<blockquote>(교과서 원문: "개인의 경제생활은 태어나서 죽을 때까지 소득과 소비가 달라지는데, 이를 생애 주기로 나타낼 수 있다." 천재교육 사회②(구정화) p.62)</blockquote>
+<h3>2. 대통령의 헌법상 지위</h3>
 <br>
 <table>
-<tr><td>시기</td><td>소득</td><td>소비</td><td>특징</td></tr>
-<tr><td><strong>아동기</strong></td><td>②<input type="text" class="blank-input" data-answer="부모" data-id="2" style="width:60px" placeholder=""> 소득에 의존</td><td>낮음</td><td>경제적으로 독립 전</td></tr>
-<tr><td><strong>청년기</strong></td><td>점점 증가</td><td>비교적 적음</td><td>취업 후 소득 시작</td></tr>
-<tr><td><strong>중장년기</strong></td><td><strong>가장 높음</strong></td><td>높음</td><td>자녀 양육·결혼 비용</td></tr>
-<tr><td><strong>노년기</strong></td><td>③<input type="text" class="blank-input" data-answer="은퇴" data-id="3" style="width:60px" placeholder="">로 소득 중단</td><td>지속</td><td>저축·연금·보험으로 생활</td></tr>
+<tr><td>지위</td><td>내용</td></tr>
+<tr><td><strong>____________</strong></td><td>대한민국을 대표하는 최고 지위 (헌법 제66조 ①항)</td></tr>
+<tr><td><strong>행정부의 수반</strong></td><td>행정부를 <strong>____________</strong>하고 감독하는 지위</td></tr>
 </table>
 <br>
-<h3>소득 ≠ 소비 → 대비가 필요</h3>
+<p><strong>선출 방법:</strong> 국민의 <strong>____________</strong> 선거로 선출</p>
 <br>
-<p>소비는 <strong>평생</strong> 꾸준히 이루어지지만, 소득은 <strong>일정하지 않다.</strong></p>
-<p>소득이 없거나 적어지는 시기를 대비하여 ④<input type="text" class="blank-input" data-answer="자산 관리" data-id="4" style="width:100px" placeholder="">가 필요하다.</p>
-<br>
-<blockquote>(교과서 원문: "소비는 평생 이루어지지만 소득은 일정하지 않으므로, 미래를 위해 자산을 계획적으로 관리할 필요가 있다." 천재교육 사회②(구정화) p.62~63)</blockquote>
+<p><strong>임기:</strong> <strong>____________</strong>년, <strong>____________</strong>할 수 없음 (독재 방지)</p>
 <br>
 <hr>
 <br>
-<h2>📖 3단계: 합리적 자산 관리 — 3원칙과 금융 상품</h2>
+<h3>3. 대통령의 권한</h3>
 <br>
-<h3>자산 관리 3원칙</h3>
-<br>
-<table>
-<tr><td>기준</td><td>의미</td></tr>
-<tr><td>⑤<input type="text" class="blank-input" data-answer="안전성" data-id="5" style="width:68px" placeholder=""></td><td><strong>원금</strong>을 잃지 않을 가능성</td></tr>
-<tr><td>⑥<input type="text" class="blank-input" data-answer="수익성" data-id="6" style="width:68px" placeholder=""></td><td><strong>이익</strong>을 얻는 정도</td></tr>
-<tr><td>⑦<input type="text" class="blank-input" data-answer="유동성" data-id="7" style="width:68px" placeholder=""></td><td><strong>현금</strong>으로 바꿀 수 있는 정도</td></tr>
-</table>
-<br>
-<blockquote>⚠️ <strong>셋 모두를 충족하는 금융 상품은 없다.</strong> 안전성이 높으면 수익성이 낮고, 수익성이 높으면 위험도 크다.</blockquote>
-<br>
-<blockquote>(교과서 원문: "자산을 관리할 때에는 안전성, 수익성, 유동성을 고려하여 균형 있게 투자해야 한다." 천재교육 사회②(구정화) p.64)</blockquote>
-<br>
-<figure class="ws-fig"><img src="images/finance-3principles.jpeg" alt="자산 관리 3원칙 — 안전성·수익성·유동성 세 가지를 모두 충족하는 금융 상품은 없다(trade-off). 예금=안전성↑, 주식=수익성↑·위험, 채권=중간 균형." loading="lazy"><figcaption>자산 관리 3원칙 — 안전성·수익성·유동성 세 가지를 모두 충족하는 금융 상품은 없다(trade-off). 예금=안전성↑, 주식=수익성↑·위험, 채권=중간 균형.</figcaption></figure>
-<br>
-<h3>주요 금융 상품</h3>
+<p><strong>① 국가 원수로서의 권한</strong></p>
 <br>
 <table>
-<tr><td>상품</td><td>특징</td><td>강점</td></tr>
-<tr><td><strong>정기 예금·적금</strong></td><td>목돈을 맡기고 ⑧<input type="text" class="blank-input" data-answer="이자" data-id="8" style="width:60px" placeholder="">를 받음</td><td>안전성 ↑</td></tr>
-<tr><td>⑨<input type="text" class="blank-input" data-answer="주식" data-id="9" style="width:60px" placeholder=""></td><td>회사 소유권 일부 구매·원금 손실 가능</td><td>수익성 ↑</td></tr>
-<tr><td>⑩<input type="text" class="blank-input" data-answer="채권" data-id="10" style="width:60px" placeholder=""></td><td>기업·정부가 발행·예금보다 수익성 높음</td><td>중간</td></tr>
-<tr><td><strong>보험</strong></td><td>사고·질병 등 위험에 대비</td><td>안전 대비</td></tr>
+<tr><td>권한</td><td>내용</td></tr>
+<tr><td>조약 체결권</td><td>외국과 ____________를 체결</td></tr>
+<tr><td>외교 사절 신임·접수</td><td>외국에 ____________ 사절을 임명하거나 수락</td></tr>
+<tr><td>선전 포고권</td><td>외국에 ____________을 선포</td></tr>
+<tr><td>긴급 명령권</td><td>국가 위기를 극복하기 위해 ____________ 명령 발동</td></tr>
+<tr><td>사면권</td><td>죄를 용서하여 형벌을 ____________하는 권한</td></tr>
+<tr><td>헌법 개정안 발의</td><td>____________ 개정안을 제출할 수 있는 권한</td></tr>
 </table>
 <br>
-<blockquote>(교과서 원문: "금융 상품에는 예금, 적금, 주식, 채권, 보험 등이 있으며 각각 안전성, 수익성, 유동성의 수준이 다르다." 천재교육 사회②(구정화) p.64~65)</blockquote>
-<br>
-<h3>분산 투자</h3>
-<br>
-<p>한 상품에 모두 투자하면 위험이 크다. 여러 상품에 나눠 투자하는 것을 ⑪<input type="text" class="blank-input" data-answer="포트폴리오" data-id="11" style="width:100px" placeholder="">라 한다.</p>
-<br>
-<pre class="code-block">
-예금(안전) + 주식(수익) + 채권(균형) → 위험 ↓
-
-</pre>
-<br>
-<blockquote>⭐ <strong>심화 (읽기만·외울 필요 X)</strong></blockquote>
-<blockquote>예금자 보호 제도로 1인당 5천만 원까지 국가가 보장한다. 은행이 파산해도 그 금액까지 돌려받을 수 있다. 더 자세한 내용은 교과서 p.65 참고.</blockquote>
-<br>
-<hr>
-<br>
-<h2>📖 4단계: 지아 언니 이야기 — 70만 원이 만든 3년</h2>
-<br>
-<blockquote>💳 <strong>지아 언니는 22살, 첫 직장에 들어가자마자 신용카드를 만들었다.</strong></blockquote>
-<blockquote>친구들과 점심·카페·<strong>OTT 구독</strong>·<strong>배달앱</strong>·<strong>게임 결제</strong>·인스타에서 본 옷까지 전부 카드로.</blockquote>
-<blockquote><em>"월급 들어오면 갚지"</em> 하다가 한 달 결제가 <strong>70만 원</strong>.</blockquote>
-<blockquote>자동이체 통장에 잔액이 부족해, 두 달 연속 <strong>연체</strong> 기록이 남았다.</blockquote>
-<blockquote>3년 뒤, 자취방 전세 보증금 대출을 신청했다.</blockquote>
-<blockquote><strong>"고객님, 신용등급이 낮아 대출이 어렵습니다."</strong></blockquote>
-<blockquote><em>왜?</em></blockquote>
-<br>
-<figure class="ws-fig"><img src="images/finance-credit.jpeg" alt="연체가 만든 3년 — 신용카드 70만 원 연체·OTT·배달앱·게임 결제 미납이 쌓이면 신용등급이 하락하고, 대출 거절·은행 이용 제한으로 이어진다. 단 한 번의 연체가 오래 기록으로 남는다." loading="lazy"><figcaption>연체가 만든 3년 — 신용카드 70만 원 연체·OTT·배달앱·게임 결제 미납이 쌓이면 신용등급이 하락하고, 대출 거절·은행 이용 제한으로 이어진다. 단 한 번의 연체가 오래 기록으로 남는다.</figcaption></figure>
-<br>
-<hr>
-<br>
-<h2>📖 5단계: 신용이란 무엇인가?</h2>
-<br>
-<p>⑫<input type="text" class="blank-input" data-answer="신용" data-id="12" style="width:60px" placeholder="">은 돈을 빌려 쓰고 약속한 대로 <strong>갚을 수 있는 능력</strong>을 말한다.</p>
-<p>신용이 높으면 더 낮은 이자로 더 많은 돈을 빌릴 수 있다.</p>
-<br>
-<blockquote>(교과서 원문: "신용이란 돈을 빌려 쓰고 약속한 대로 갚을 수 있는 능력을 말하며, 현금 없이도 물건을 구매하거나 돈을 빌릴 수 있게 해 준다." 천재교육 사회②(구정화) p.66)</blockquote>
-<br>
-<h3>신용이 나빠지면</h3>
+<p><strong>② 행정부 수반으로서의 권한</strong></p>
 <br>
 <table>
-<tr><td>결과</td></tr>
-<tr><td>외상 구매 <strong>불가</strong></td></tr>
-<tr><td>대출 이자가 <strong>높아짐</strong></td></tr>
-<tr><td>신용카드 발급 <strong>제한</strong></td></tr>
-<tr><td>심하면 금융 기관 이용 <strong>불가</strong></td></tr>
+<tr><td>권한</td><td>내용</td></tr>
+<tr><td>공무원 임면권</td><td>헌법과 법률에 따라 공무원을 ____________하는 권한</td></tr>
+<tr><td>법률안 거부권</td><td>국회가 의결한 법률안에 이의가 있을 때 ____________에 재심사 요구</td></tr>
+<tr><td>대통령령 제정</td><td>법률의 위임을 받아 ____________을 만드는 권한</td></tr>
+<tr><td>법률안 공포</td><td>국회가 의결한 법률안을 ____________하는 권한</td></tr>
 </table>
-<br>
-<hr>
-<br>
-<h2>📖 6단계: 신용 관리 — 무너지기 전에</h2>
-<br>
-<p>신용을 가장 많이 떨어뜨리는 요인은 ⑬<input type="text" class="blank-input" data-answer="연체" data-id="13" style="width:60px" placeholder="">이다.</p>
-<p>약속한 날짜에 돈을 갚지 않으면 ⑭<input type="text" class="blank-input" data-answer="신용 등급" data-id="14" style="width:100px" placeholder="">이 하락하고, 이것은 장기간 기록으로 남는다.</p>
-<br>
-<blockquote>(교과서 원문: "신용을 관리하기 위해서는 소득 범위 내에서 소비하고, 약속한 기한 내에 빚을 갚으며, 연체하지 않아야 한다." 천재교육 사회②(구정화) p.67)</blockquote>
-<br>
-<h3>신용 관리 3가지 방법</h3>
-<br>
-<table>
-<tr><td>방법</td><td>구체적 행동</td></tr>
-<tr><td>⑮<input type="text" class="blank-input" data-answer="소득" data-id="15" style="width:60px" placeholder=""> 범위 안에서 소비</td><td>카드 한도보다 내 통장을 봐라</td></tr>
-<tr><td>약속한 <strong>기한</strong> 지키기</td><td>자동 이체 설정으로 날짜 놓치지 않기</td></tr>
-<tr><td><strong>연체</strong> 기록 만들지 않기</td><td>통신비·구독료도 포함·자동 청구 주의</td></tr>
-</table>
-<br>
-<blockquote>💡 <strong>중요</strong>: 통신비·구독 서비스도 연체하면 신용에 기록된다.</blockquote>
 <br>
 <hr>
 <br>
 <h2>✏️ 활동</h2>
 <br>
-<h3>활동 1: 생애 주기 그래프 읽기</h3>
-<blockquote>교과서 p.62 그래프를 보고 다음 질문에 답하시오.</blockquote>
+<h3>활동 1: 대통령 취임 선서 분석</h3>
 <br>
-<table class="act-table">
-<tr><td>질문</td><td>답</td></tr>
-<tr><td>소득이 소비보다 많은 구간 (저축 가능)은?</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="소득이 소비보다 많은 구간 (저축 가능)은?" style="width:240px" placeholder=""></td></tr>
-<tr><td>소득이 소비보다 적어 부족한 구간은?</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="소득이 소비보다 적어 부족한 구간은?" style="width:240px" placeholder=""></td></tr>
-<tr><td>노년기를 대비하려면 언제부터 준비해야 하는가?</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="노년기를 대비하려면 언제부터 준비해야 하는가?" style="width:240px" placeholder=""></td></tr>
-</table>
+<blockquote>대통령 취임 선서를 읽고 물음에 답해 보자.</blockquote>
 <br>
-<h3>활동 2: 나라면 어떻게 투자할까?</h3>
-<blockquote>100만 원이 있다. 세 상품에 나눠 투자한다면 각각 몇 %씩? 이유도 쓰시오.</blockquote>
+<blockquote><em>"나는 헌법을 준수하고 국가를 보위하며 조국의 평화적 통일과 국민의 자유와 복리의 증진 및 민족 문화의 창달에 노력하여 대통령으로서의 직책을 성실히 수행할 것을 국민 앞에 엄숙히 선서합니다."</em></blockquote>
 <br>
-<table class="act-table">
-<tr><td>상품</td><td>투자 비율</td><td>이유</td></tr>
-<tr><td><strong>예금</strong> (안전성 높음)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="예금 (안전성 높음) %" style="width:240px" placeholder="">%</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="예금 (안전성 높음) %" style="width:240px" placeholder=""></td></tr>
-<tr><td><strong>주식</strong> (수익성 높음·위험)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="주식 (수익성 높음·위험) %" style="width:240px" placeholder="">%</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="주식 (수익성 높음·위험) %" style="width:240px" placeholder=""></td></tr>
-<tr><td><strong>채권</strong> (중간)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="채권 (중간) %" style="width:240px" placeholder="">%</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="채권 (중간) %" style="width:240px" placeholder=""></td></tr>
-</table>
+<p><strong>Q1.</strong> 이 선서에서 대통령이 해야 할 일들을 세 가지 이상 찾아 써 보자.</p>
 <br>
-<h3>활동 3: 신용 점수 지키기 ○×</h3>
-<blockquote>다음 행동이 신용에 <strong>도움이 되면 ○, 해가 되면 ×</strong></blockquote>
+<p>①</p>
+<br>
+<p>②</p>
+<br>
+<p>③</p>
+<br>
+<p><strong>Q2.</strong> 내가 대통령이 된다면 어떤 일에 중점을 두고 싶은가? 그 이유는?</p>
+<br>
+<p>_____________________________________________________________________________</p>
+<br>
+<p>_____________________________________________________________________________</p>
+<br>
+<hr>
+<br>
+<h3>활동 2: 대통령 활동 권한 분류</h3>
+<br>
+<blockquote>다음 뉴스 제목을 읽고, 각각이 국가 원수로서의 권한인지 행정부 수반으로서의 권한인지 구분하고, 구체적인 권한 이름을 써 보자.</blockquote>
 <br>
 <table>
-<tr><td>번호</td><td>행동</td><td>○ / ×</td></tr>
-<tr><td>1</td><td>OTT 구독료를 매달 자동 이체로 납부한다</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>신용카드로 한도껏 써도 이번 달만 갚으면 된다</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>게임 결제 자동이체를 깜빡해서 3일 연체했다</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>소득이 없으니 카드 대신 체크카드만 쓴다</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>뉴스</td><td>지위</td><td>권한 이름</td></tr>
+<tr><td>(가) 대통령, A국과 정상 회담 후 무역 협정 체결</td><td></td><td></td></tr>
+<tr><td>(나) 신임 장·차관 임명장 수여식 실시</td><td></td><td></td></tr>
+<tr><td>(다) △△ 법안에 대해 거부권 행사</td><td></td><td></td></tr>
+<tr><td>(라) 국가 위기 상황에서 대통령 긴급 명령 발동</td><td></td><td></td></tr>
 </table>
+<br>
+<hr>
+<br>
+<h3>활동 3: 대통령의 권한과 견제</h3>
+<br>
+<blockquote>대통령의 권한이 너무 강력해지면 어떤 문제가 생길 수 있는가?</blockquote>
+<br>
+<p>_____________________________________________________________________________</p>
+<br>
+<p>_____________________________________________________________________________</p>
+<br>
+<blockquote>우리 헌법이 대통령의 임기를 5년 단임으로 정한 이유를 써 보자.</blockquote>
+<br>
+<p>_____________________________________________________________________________</p>
+<br>
+<p>_____________________________________________________________________________</p>
 <br>
 <hr>
 <br>
 <h2>🔍 더 생각해 보기</h2>
 <br>
-<p><strong>Q1.</strong> 길동이 아빠가 중장년기에 저축을 했다면 어떤 금융 상품 조합이 좋았을까? 3원칙을 근거로 설명해 보시오.</p>
+<blockquote>국회가 대통령을 견제할 수 있는 수단과, 대통령이 국회를 견제할 수 있는 수단을 각각 써 보자.</blockquote>
 <br>
-<p><strong>Q2.</strong> 지아 언니는 왜 25살에 대출이 거절됐을까? 연체와 신용 등급의 관계로 설명해 보시오.</p>
+<table>
+<tr><td></td><td>내용</td></tr>
+<tr><td>국회 → 대통령 견제</td><td></td></tr>
+<tr><td>대통령 → 국회 견제</td><td></td></tr>
+</table>
 <br>
-<p><strong>Q3.</strong> "빚을 갚지 않는 사람이 늘면 나와 상관없는 이야기일까?" 금융 회사와 국가 경제의 연쇄 영향을 설명해 보시오.</p>
-<br>
-<hr>
-<br>
+<blockquote><strong>단원 마무리:</strong> Ⅱ단원 핵심 정리 — 삼권분립과 민주주의</blockquote>
 </div>
 <script>
-const TB=15, TOX=4, GT=19;
+const TB=0, TOX=0, GT=0;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
@@ -513,11 +446,42 @@ const EXAM_MODE=false;
 // nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
 function _siEl(id){ return document.getElementById(id); }
 function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
+// 🔴 2026-08-31: 저장 키에 '정답 체계 지문'을 붙인다.
+//   사고 — 3-3-1의 빈칸을 21→15로 줄이자, v1 때 채워 둔 답이 v2 번호로 복원되며
+//   ⑤부터 한 칸씩 밀렸다(⑤에 '봉신', ⑥에 '주종 관계'). 화면만 보면 "답이 노출되고
+//   매칭이 틀린" 것처럼 보이는데, 실제로는 옛 입력이 새 번호에 얹힌 것이다.
+//   빈칸 개수·정답 문자열이 바뀌면 지문이 달라져 옛 답이 붙지 않는다.
+function _wsFp(){
+  let sig='';
+  document.querySelectorAll('.blank-input:not(.activity-input),.ox-group').forEach(el=>{
+    sig += (el.dataset.answer||'') + '|';
+  });
+  let h=5381;
+  for(let i=0;i<sig.length;i++){ h=((h*33)^sig.charCodeAt(i))>>>0; }
+  return h.toString(36);
+}
 function _wsKey(){
-  if(!EXAM_MODE) return 'ws_'+document.title;
+  const fp='::v'+_wsFp();
+  if(!EXAM_MODE) return 'ws_'+document.title+fp;
   const c=_siv('si-cls'), n=_siv('si-num');
   if(!c||!n) return null;
-  return 'ws_'+document.title+'::'+c+'-'+n;
+  return 'ws_'+document.title+fp+'::'+c+'-'+n;
+}
+// 지문 도입 이전(=구키)에 저장된 답은, 빈칸 개수가 그대로일 때만 이어받는다.
+//   같으면 단순 재발행이므로 학생이 쓰던 답을 살리고, 다르면 구조가 바뀐 것이므로 버린다.
+function _migrateOldKey(newKey){
+  const oldKey = EXAM_MODE
+    ? 'ws_'+document.title+'::'+_siv('si-cls')+'-'+_siv('si-num')
+    : 'ws_'+document.title;
+  let raw; try{ raw=localStorage.getItem(oldKey); }catch(e){ return; }
+  if(!raw) return;
+  try{
+    const p=JSON.parse(raw), d=p.data||{};
+    const nowN=document.querySelectorAll('.blank-input:not(.activity-input)').length;
+    const oldN=Object.keys(d).filter(k=>/^\d+$/.test(k)).length;
+    if(oldN===nowN) localStorage.setItem(newKey, raw);   // 구조 동일 → 이어받기
+  }catch(e){}
+  try{ localStorage.removeItem(oldKey); }catch(e){}  // 구키는 어느 쪽이든 정리
 }
 function _persist(){
   const key=_wsKey(); if(!key) return;
@@ -535,6 +499,7 @@ let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
   const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  _migrateOldKey(key);
   let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
