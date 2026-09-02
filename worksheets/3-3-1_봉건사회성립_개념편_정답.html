@@ -173,6 +173,14 @@ blockquote {
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
+.ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
+.ws-fold-table thead th { background:#eee9dc; font-weight:700; }
+.ws-anim-ctl { display:flex; align-items:center; justify-content:center; gap:10px; margin:8px 0 2px; }
+.ws-anim-ctl button { border:1px solid #cfc8b6; background:#fff; border-radius:8px; padding:6px 16px;
+  cursor:pointer; font-family:inherit; font-size:0.9em; color:#4a5c40; font-weight:700; }
+.ws-anim-ctl button:hover { background:#f1efe6; }
+.ws-anim-ctl span { font-size:0.8em; color:#9a9284; }
 .ws-gal { margin: 22px auto; max-width: 100%; border: 1px solid #ddd7c8; border-radius: 12px;
   background: #fbfaf6; overflow: hidden; }
 .ws-gal-head { padding: 12px 16px 0; font-weight: 700; color: #3a4a34; font-size: 0.98em; }
@@ -228,7 +236,7 @@ blockquote {
 <blockquote>🎙️ 포인트는 <strong>"왕이 못 지켜 줬다"</strong>야. 오늘 배울 것 중 <strong>앞쪽 절반이 전부 여기서 나와</strong> — 기사·장원·농노·지방 분권. 지켜 줄 사람이 멀리 있으면 사람은 가까운 힘에 붙게 되거든.</blockquote>
 <blockquote>다만 뒤쪽 절반인 <strong>교회</strong>는 여기서 나온 게 아니야. 뿌리가 따로 있어. 그 둘이 어디서 만나는지는 5단계에서 보게 될 거야.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/3-3-1_왕이못온이유.webp" alt="왕은 왜 막지 못했을까 — 두 줄이 동시에 움직인다. 위쪽 바이킹은 도착·약탈·떠남을 끝내는데, 아래쪽 왕의 군대는 아직 소집 중이다. 왕이 도착했을 때 그 자리엔 아무도 없다." loading="lazy"><figcaption>왕은 왜 막지 못했을까 — 두 줄이 동시에 움직인다. 위쪽 바이킹은 도착·약탈·떠남을 끝내는데, 아래쪽 왕의 군대는 아직 소집 중이다. 왕이 도착했을 때 그 자리엔 아무도 없다.</figcaption></figure>
+<figure class="ws-fig ws-anim"><img id="anim28" src="images/3-3-1_왕이못온이유.webp" alt="왕은 왜 막지 못했을까 — 두 줄이 동시에 움직인다. 위쪽 바이킹은 도착·약탈·떠남을 끝내는데, 아래쪽 왕의 군대는 아직 소집 중이다. 왕이 도착했을 때 그 자리엔 아무도 없다." data-src="images/3-3-1_왕이못온이유.webp" loading="lazy"><div class="ws-anim-ctl"><button type="button" onclick="replayAnim('anim28')">▶ 다시 보기</button><span>한 번 재생됩니다</span></div><figcaption>왕은 왜 막지 못했을까 — 두 줄이 동시에 움직인다. 위쪽 바이킹은 도착·약탈·떠남을 끝내는데, 아래쪽 왕의 군대는 아직 소집 중이다. 왕이 도착했을 때 그 자리엔 아무도 없다.</figcaption></figure>
 <br>
 <blockquote>🎯 <strong>움직이는 도식이다(3.3초 반복).</strong> 학생에게 <em>"두 줄을 동시에 보라"</em>고 먼저 말할 것 — 따로 보면 그냥 순서도지만, 같이 보면 <strong>왕이 늦는 폭</strong>이 눈에 들어온다.</blockquote>
 <blockquote>⚠️ 고증 — 바이킹 도트에 <strong>뿔 투구를 그리지 않았다.</strong> 뿔 달린 바이킹 투구는 19세기 오페라 의상이 만든 허구이고 실제 유물엔 없다. 학생이 "뿔 어디 갔냐"고 물으면 그대로 짚어 줄 것.</blockquote>
@@ -417,22 +425,26 @@ blockquote {
 <blockquote>🎯 날개 주석은 학습지에 옮겨 적지 않았다. <strong>이 답을 쓴 학생 수 = 교과서를 편 학생 수</strong>다.</blockquote>
 <br>
 <h3>🏛 두 양식, 눈으로 구분하기</h3>
-<p><strong>로마네스크</strong>라는 이름은 <strong>'로마식'</strong>이라는 뜻이다 — 고대 로마 건축의 영향을 받았다는 말. 그래서 로마 건축처럼 <strong>반원형 아치</strong>가 겹겹이 나타난다.</p>
+<p><strong>로마네스크</strong>는 <strong>'로마식'</strong>이라는 뜻이다 — 고대 로마 건축의 영향을 받았다는 말. 두 사진을 <strong>나란히 놓고</strong> 아치 모양과 창 크기부터 보자.</p>
 <br>
-<figure class="ws-fig"><img src="images/3-3-1_피사대성당.jpg" alt="피사 대성당(이탈리아) · 11세기 — 아치의 생김새와 창의 크기를 눈여겨보자. 뒤에 살짝 기운 탑이 그 유명한 '피사의 사탑'이다. (Wikimedia · CC BY-SA 4.0)" loading="lazy"><figcaption>피사 대성당(이탈리아) · 11세기 — 아치의 생김새와 창의 크기를 눈여겨보자. 뒤에 살짝 기운 탑이 그 유명한 '피사의 사탑'이다. (Wikimedia · CC BY-SA 4.0)</figcaption></figure>
+<div class="ws-figrow"><figure class="ws-figrow-item"><img src="images/3-3-1_피사대성당.jpg" alt="피사 대성당(이탈리아) · 11세기 · 로마네스크. 아치가 반원이고 창이 작다. 뒤에 살짝 기운 탑이 '피사의 사탑'이다. (Wikimedia · CC BY-SA 4.0)" loading="lazy"><figcaption>피사 대성당(이탈리아) · 11세기 · 로마네스크. 아치가 반원이고 창이 작다. 뒤에 살짝 기운 탑이 '피사의 사탑'이다. (Wikimedia · CC BY-SA 4.0)</figcaption></figure><figure class="ws-figrow-item"><img src="images/3-3-1_샤르트르대성당.jpg" alt="샤르트르 대성당(프랑스) · 12세기 이후 · 고딕. 탑이 뾰족하고 창이 크다. 가운데 둥근 것이 색유리로 채운 '장미창'이다. (Wikimedia · CC BY-SA 3.0)" loading="lazy"><figcaption>샤르트르 대성당(프랑스) · 12세기 이후 · 고딕. 탑이 뾰족하고 창이 크다. 가운데 둥근 것이 색유리로 채운 '장미창'이다. (Wikimedia · CC BY-SA 3.0)</figcaption></figure></div>
 <br>
-<figure class="ws-fig"><img src="images/3-3-1_샤르트르대성당.jpg" alt="샤르트르 대성당(프랑스) · 12세기 이후 — 위 사진과 나란히 놓고 무엇이 달라졌는지 찾아보자. 가운데 둥근 것은 색유리로 채운 '장미창'이다. (Wikimedia · CC BY-SA 3.0)" loading="lazy"><figcaption>샤르트르 대성당(프랑스) · 12세기 이후 — 위 사진과 나란히 놓고 무엇이 달라졌는지 찾아보자. 가운데 둥근 것은 색유리로 채운 '장미창'이다. (Wikimedia · CC BY-SA 3.0)</figcaption></figure>
+<blockquote>🔍 <strong>두 사진에서 세 가지만 찾아보자</strong> — ① 아치가 둥근가 뾰족한가 ② 창이 큰가 작은가 ③ 탑이 낮고 육중한가, 하늘로 솟았는가.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/3-3-1_샤르트르_장미창.jpg" alt="샤르트르 대성당 북쪽 장미창 — 성당 안에서 올려다본 모습. 캄캄한 실내에 이 빛만 쏟아진다. (Wikimedia · Public domain)" loading="lazy"><figcaption>샤르트르 대성당 북쪽 장미창 — 성당 안에서 올려다본 모습. 캄캄한 실내에 이 빛만 쏟아진다. (Wikimedia · Public domain)</figcaption></figure>
+<figure class="ws-fig"><img src="images/3-3-1_샤르트르_장미창.jpg" alt="샤르트르 대성당 북쪽 장미창 — 성당 **안에서** 올려다본 모습. 캄캄한 실내에 이 빛만 쏟아진다. 로마네스크 성당 안에서는 볼 수 없는 광경이다. (Wikimedia · Public domain)" loading="lazy"><figcaption>샤르트르 대성당 북쪽 장미창 — 성당 <strong>안에서</strong> 올려다본 모습. 캄캄한 실내에 이 빛만 쏟아진다. 로마네스크 성당 안에서는 볼 수 없는 광경이다. (Wikimedia · Public domain)</figcaption></figure>
 <br>
-<blockquote>🔴 <strong>캡션에서 판별 근거를 뺐다 (2026-08-28).</strong> 처음 붙인 캡션이 <em>"뾰족한 것이 하나도 없다 / 벽이 두껍고 창이 작아 안이 어둡다 / 탑이 하늘로 솟아 있다"</em>처럼 <strong>활동 2의 답 4개 중 3개를 그대로 말하고 있었다.</strong> 사진이 활동보다 앞에 있으므로 학생은 캡션을 베끼면 끝이었다. 지금 캡션은 <em>"아치의 생김새와 창의 크기를 눈여겨보자"</em>·<em>"위 사진과 나란히 놓고 무엇이 달라졌는지 찾아보자"</em>로 <strong>관찰만 유도</strong>한다.</blockquote>
-<blockquote>⚠️ 그러니 <strong>판별 근거는 교사가 말로 채워야 한다</strong> — 아래 순서가 그 대본이다.</blockquote>
-<blockquote>🎯 <strong>사진 3장은 활동 2와 한 세트다.</strong> 활동 2가 설명만 읽고 양식을 고르게 하는데, 사진이 없으면 문장 대조 문제가 된다. 순서대로 짚을 것 — ⓐ 피사: <em>뾰족한 게 하나도 없지?</em> ⓑ 샤르트르 외관: <em>탑이 하늘을 찌른다</em> ⓒ 장미창: <em>저 크기가 유리로 가능해진 이유는 벽을 줄이고 창을 키웠기 때문</em>.</blockquote>
-<blockquote><strong>이름 어원이 기억에 강하다</strong> — '로마네스크 = 로마식'을 알려 주면 <em>왜 반원 아치인가</em>(로마의 아치)가 자동으로 설명된다. 고딕은 반대로 <strong>고트족처럼 야만스럽다</strong>는 뜻으로 후대에 붙인 비하 명칭이었으나, ⚠️ 이건 교과서에 없으므로 학생 자료에 넣지 않았다(교사 배경).</blockquote>
+<blockquote>🎙️ 두 양식을 <strong>외우지 말고 '벽이냐 창이냐'로</strong> 잡아. 차이는 취향이 아니라 <strong>기술</strong>에서 나왔어. 아래 표는 다 보고 나서 펼쳐 확인하자.</blockquote>
 <br>
-<blockquote>🎯 <strong>여기가 핵심 — 두 양식은 '벽이냐 창이냐' 하나로 갈린다.</strong> 로마네스크는 무거운 돔 천장을 벽으로 지탱해야 해서 벽이 두껍고 창이 작다 → 내부가 어둡다 → 넓은 벽에 <strong>벽화</strong>. 고딕은 기술 발전으로 벽 부담이 줄어 창을 키울 수 있었다 → <strong>색유리그림</strong>. <em>어둠의 벽화 / 빛의 색유리</em>로 대비시키면 학생이 사진만 보고 구분한다.</blockquote>
-<blockquote><strong>대학의 '자치'</strong>를 가볍게 넘기지 말 것. 교회가 모든 걸 감싼 시대에 — 바로 앞 6단계에서 <em>일생 전체가 교회를 통과한다</em>고 배운 직후에 — <strong>교회의 간섭에서 벗어난 공간</strong>이 생겼다는 건 예외적인 사건이고, 르네상스(3-3-5)로 가는 길목이다. 6단계와 나란히 놓으면 그 예외성이 선명해진다.</blockquote>
-<blockquote><strong>형성 평가</strong>(지도서 제안): "12세기 이후 중세 서유럽에서 유행한 뾰족한 탑과 화려한 색유리그림이 특징인 건축 양식은?" → <strong>고딕 양식</strong></blockquote>
+<details class="ws-fold ws-fold-정리"><summary>왜 하나는 어둡고 하나는 밝은가 — 원인부터 결과까지</summary><div class="ws-fold-body">
+<table class="ws-fold-table"><thead><tr><th></th><th><strong>로마네스크</strong> (11세기)</th><th><strong>고딕</strong> (12세기 이후)</th></tr></thead><tbody><tr><td>① 천장을 무엇으로 버티나</td><td><strong>벽으로</strong> 버틴다</td><td>기술이 발전해 <strong>벽 부담이 줄었다</strong></td></tr><tr><td>② 그래서 벽과 창은</td><td>벽이 <strong>두껍다</strong> · 창이 <strong>작다</strong></td><td>창을 <strong>크게</strong> 낼 수 있다</td></tr><tr><td>③ 실내는</td><td><strong>어둡다</strong></td><td><strong>빛이 쏟아진다</strong></td></tr><tr><td>④ 그래서 장식은</td><td>넓은 벽에 <strong>벽화</strong></td><td>큰 창에 <strong>색유리그림</strong></td></tr><tr><td>아치 모양</td><td><strong>반원</strong></td><td><strong>뾰족</strong></td></tr><tr><td>탑</td><td>낮고 육중하다</td><td><strong>뾰족한 탑</strong> — 하늘로 솟아 <strong>신과 가까워지려는 소망</strong>을 담았다</td></tr><tr><td>대표</td><td>피사 대성당</td><td>샤르트르 대성당</td></tr></tbody></table>
+<p>①→②→③→④가 <strong>하나의 사슬</strong>이다. 벽으로 버티느냐 아니냐가 창을 정하고, 창이 빛을 정하고, 빛이 장식을 정했다.</p>
+<p>그래서 한 줄로 줄이면 — <strong>어둠의 벽화 vs 빛의 색유리.</strong></p>
+</div></details>
+<br>
+<blockquote>🎯 <strong>교과서 93쪽 시각자료를 인과 사슬로 재배열한 것이다.</strong> 교과서는 뜻·특징·장식·시기·예시를 <em>나열</em>하는데, 그러면 학생이 항목 다섯 개를 따로 외운다. <strong>①→②→③→④를 사슬로 묶으면 하나만 기억해도 나머지가 따라 나온다</strong> — <em>"벽으로 버티느냐"</em>가 출발점.</blockquote>
+<blockquote><strong>발문 순서</strong>: ① 사진 두 장을 나란히 놓고 <em>"세 가지만 찾아봐"</em>(아치·창·탑) ② 학생 답을 받은 뒤 <em>"왜 창 크기가 다를까?"</em> ③ 표를 펼쳐 확인.</blockquote>
+<blockquote>⚠️ <strong>표는 접혀 있다</strong> — 먼저 펼치면 활동 2(어느 양식일까)가 무의미해진다. 사진 관찰 → 판별 → 표 확인 순서를 지킬 것.</blockquote>
+<blockquote>💡 교과서에만 있고 우리가 놓쳤던 것을 되살렸다 — <strong>뾰족탑 = 신과 가까워지려는 소망</strong>(교과서 p.93). 기술 이야기로만 끝내면 중세 사람이 <em>왜</em> 그렇게까지 높이 올렸는지가 빠진다.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 계약서를 완성하라 (정답)</h2>
 <table>
@@ -528,6 +540,14 @@ document.addEventListener('click', function(e){
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
   b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
 });
+function replayAnim(id){
+  // 애니메이션 WebP/GIF는 loop=1로 구워져 한 번만 재생된다(WCAG 2.2.2).
+  // src를 캐시버스터와 함께 갈아 끼우면 처음부터 다시 돈다.
+  const im=document.getElementById(id); if(!im) return;
+  const base=im.dataset.src||im.src.split('?')[0];
+  im.src='';
+  setTimeout(()=>{ im.src = base + '?r=' + Date.now(); }, 30);
+}
 function galGo(id,i){
   const g=document.getElementById(id); if(!g) return;
   const n=+g.dataset.n;

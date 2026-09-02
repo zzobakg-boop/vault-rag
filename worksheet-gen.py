@@ -7,6 +7,44 @@ import sys
 import os
 
 
+def _fold_table(rows, inline):
+    """접기 블록 안에서 모은 '|…|' 줄들을 <table>로 만든다.
+       첫 줄을 헤더로 보되, 구분선(|---|)이 있으면 그 앞까지를 헤더로 친다."""
+    cells = []
+    for r in rows:
+        if set(r.replace('|', '').replace(' ', '')) <= set('-:'):
+            continue                      # 구분선은 버린다
+        cells.append([c.strip() for c in r.strip().strip('|').split('|')])
+    if not cells:
+        return ''
+    head, body = cells[0], cells[1:]
+    th = ''.join(f'<th>{inline(c)}</th>' for c in head)
+    tr = ''.join('<tr>' + ''.join(f'<td>{inline(c)}</td>' for c in row) + '</tr>' for row in body)
+    return f'<table class="ws-fold-table"><thead><tr>{th}</tr></thead><tbody>{tr}</tbody></table>'
+
+
+_anim_cache = {}
+def _is_animated(src, out_path):
+    """발행될 HTML 기준 상대경로로 실제 파일을 열어 애니메이션인지 확인한다.
+       ⚠️ 확장자만으로는 정지 WebP와 구분되지 않는다."""
+    if not src.lower().endswith(('.webp', '.gif')):
+        return False
+    key = (src, out_path)
+    if key in _anim_cache:
+        return _anim_cache[key]
+    ok = False
+    try:
+        from PIL import Image as _Im
+        p = os.path.join(os.path.dirname(os.path.abspath(out_path)), src)
+        if os.path.exists(p):
+            with _Im.open(p) as im:
+                ok = getattr(im, 'n_frames', 1) > 1
+    except Exception:
+        ok = False
+    _anim_cache[key] = ok
+    return ok
+
+
 def strip_obsidian_artifacts(text, teacher=False):
     # 2026-08-24: 키워드 카드 섹션은 hero에서만 렌더 → 본문에서는 항상 제거
     text = re.sub(r'^##\s*🔖\s*키워드 카드\s*$.*?(?=^##\s|\Z)', '', text, flags=re.S | re.M)
@@ -107,7 +145,7 @@ def extract_table_answers(answer_file):
     return tables
 
 
-def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=False):
+def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=False, out_path='worksheet.html'):
     """개념편 파일을 읽고, 빈칸을 input으로 교체하여 HTML 생성.
     teacher=True — blank_file로 *정답.md*를 넘긴다. 빈칸이 ( **답** )로 차 있어 input이 안 생기고
     교사 섹션도 보존되어 *완전한 교사 정답본* 본문이 된다 (정답.md 해설·모범답안 그대로 노출)."""
@@ -142,6 +180,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     blank_table_count = 0  # 빈칸 테이블 수
     in_step0 = False  # STEP 0 구간 (채점 제외)
     in_figrow = False  # 가로 비교 figure 행 (:::figrow ... :::)
+    fold_tbl = []             # 접기 블록 안에 누적되는 표 줄 (2026-09-02)
     in_gallery = False        # 2026-08-31: 한 장씩 넘겨 보는 큐레이션 (:::gallery ... :::)
     gallery_items = []
     gallery_title = ''
@@ -317,6 +356,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         # 2026-08-31: 접힌 블록은 '>' 줄이 이어지는 동안만 유효. 헤딩·표·이미지·빈 줄이
         #   오면 여기서 한 번에 닫는다(닫기를 여러 분기에 흩뿌리면 반드시 하나를 빠뜨린다).
         if in_fold and not stripped.startswith('>'):
+            if fold_tbl:
+                html_parts.append(_fold_table(fold_tbl, inline)); fold_tbl = []
             html_parts.append('</div></details>')
             in_fold = False
 
@@ -332,7 +373,18 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     f'<figure class="ws-fig"><video class="ws-fig-video" controls preload="metadata" '
                     f'playsinline><source src="{src}" type="{vtype}">동영상을 재생할 수 없습니다.</video>{fc}</figure>')
             else:
-                html_parts.append(f'<figure class="ws-fig"><img src="{src}" alt="{cap}" loading="lazy">{fc}</figure>')
+                # 2026-09-02: 애니메이션 이미지에는 '다시 보기' 버튼을 단다.
+                #   WCAG 2.2.2를 지키려 loop=1로 구웠더니(룰 -0.82) 한 번 지나가면 다시 못 본다.
+                #   재생 버튼은 사용자에게 제어를 주므로 접근성과 재시청을 동시에 만족한다.
+                if _is_animated(src, out_path):
+                    aid = f'anim{len(html_parts)}'
+                    html_parts.append(
+                        f'<figure class="ws-fig ws-anim"><img id="{aid}" src="{src}" alt="{cap}" '
+                        f'data-src="{src}" loading="lazy">'
+                        f'<div class="ws-anim-ctl"><button type="button" onclick="replayAnim(\'{aid}\')">'
+                        f'▶ 다시 보기</button><span>한 번 재생됩니다</span></div>{fc}</figure>')
+                else:
+                    html_parts.append(f'<figure class="ws-fig"><img src="{src}" alt="{cap}" loading="lazy">{fc}</figure>')
             continue
 
         # 헤딩
@@ -450,7 +502,16 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 in_fold = True
             elif in_fold and stripped.startswith('>'):
                 body = stripped[2:] if stripped.startswith('> ') else stripped[1:]
-                html_parts.append(f'<p>{inline(body)}</p>')
+                # 🔴 2026-09-02: 접기 블록 안의 표도 렌더한다.
+                #   룰 -0.77(blockquote 안 표는 파이프가 그대로 노출)이 접기에도 그대로 적용됐다.
+                #   '|'로 시작하는 줄을 모아 <table>로 낸다. 구분선(|---|)은 헤더 경계로만 쓴다.
+                if body.startswith('|'):
+                    fold_tbl.append(body)
+                    continue
+                if fold_tbl:
+                    html_parts.append(_fold_table(fold_tbl, inline)); fold_tbl = []
+                if body.strip():
+                    html_parts.append(f'<p>{inline(body)}</p>')
             elif stripped.startswith('> [!'):
                 if in_fold:
                     html_parts.append('</div></details>'); in_fold = False
@@ -849,6 +910,14 @@ blockquote {{
 .ws-fig-video {{ max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }}
 .ws-fig img[src*="comic"] {{ max-height: 820px; max-width: 600px; }}
 .ws-fig figcaption {{ margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }}
+.ws-fold-table {{ width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }}
+.ws-fold-table th, .ws-fold-table td {{ border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }}
+.ws-fold-table thead th {{ background:#eee9dc; font-weight:700; }}
+.ws-anim-ctl {{ display:flex; align-items:center; justify-content:center; gap:10px; margin:8px 0 2px; }}
+.ws-anim-ctl button {{ border:1px solid #cfc8b6; background:#fff; border-radius:8px; padding:6px 16px;
+  cursor:pointer; font-family:inherit; font-size:0.9em; color:#4a5c40; font-weight:700; }}
+.ws-anim-ctl button:hover {{ background:#f1efe6; }}
+.ws-anim-ctl span {{ font-size:0.8em; color:#9a9284; }}
 .ws-gal {{ margin: 22px auto; max-width: 100%; border: 1px solid #ddd7c8; border-radius: 12px;
   background: #fbfaf6; overflow: hidden; }}
 .ws-gal-head {{ padding: 12px 16px 0; font-weight: 700; color: #3a4a34; font-size: 0.98em; }}
@@ -904,6 +973,14 @@ document.addEventListener('click', function(e){{
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
   b.querySelector('.kw-caret').textContent = open ? '\u2212' : '\uFF0B';
 }});
+function replayAnim(id){{
+  // 애니메이션 WebP/GIF는 loop=1로 구워져 한 번만 재생된다(WCAG 2.2.2).
+  // src를 캐시버스터와 함께 갈아 끼우면 처음부터 다시 돈다.
+  const im=document.getElementById(id); if(!im) return;
+  const base=im.dataset.src||im.src.split('?')[0];
+  im.src='';
+  setTimeout(()=>{{ im.src = base + '?r=' + Date.now(); }}, 30);
+}}
 function galGo(id,i){{
   const g=document.getElementById(id); if(!g) return;
   const n=+g.dataset.n;
@@ -1203,7 +1280,7 @@ def main():
     ox_answers = extract_ox_answers(answer_file)
     print(f"📋 추출된 정답: 빈칸 {len(answers)}개, OX {len(ox_answers)}개")
 
-    title, content, total, total_ox = build_html_from_blank(blank_file, answers, ox_answers, answer_file)
+    title, content, total, total_ox = build_html_from_blank(blank_file, answers, ox_answers, answer_file, out_path=output_file)
     print(f"🔍 매칭된 빈칸: {total}개, OX: {total_ox}개")
 
     # 2026-08-27: 원문 빈칸을 직접 세어 대조한다.
@@ -1254,7 +1331,7 @@ def main():
     # 정답편 (교사용·제출X·채점X) — 정답.md를 *본문*으로 렌더(교사섹션 유지) → 빈칸 볼드 정답+OX 해설+모범답안+교사 메타 전부 노출.
     # 2026-06-03: 기존 정답편은 개념편 본문에 답만 보여줘 '정답만' 나가는 문제(로마 사고) → 정답.md 본문 직접 렌더로 교정.
     teacher_file = output_file.replace('.html', '_정답.html')
-    t_title, t_content, t_total, t_total_ox = build_html_from_blank(answer_file, [], [], answer_file, teacher=True)
+    t_title, t_content, t_total, t_total_ox = build_html_from_blank(answer_file, [], [], answer_file, teacher=True, out_path=output_file)
     html_teacher = generate_html(t_title, t_content, t_total, t_total_ox, submit_url, mode='teacher', hero=hero, exam=exam_mode)
     with open(teacher_file, 'w', encoding='utf-8') as f:
         f.write(html_teacher)
