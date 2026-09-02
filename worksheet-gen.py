@@ -1272,7 +1272,14 @@ function collectAnswers(){{
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
 // 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
 function scheduleProgress(){{ /* disabled — 제출 시점에만 데이터 전송 */ }}
+// 🔴 전송 중 재진입 가드 (2026-09-02) — 사회(중3) 세션이 시트에서 발견한 중복 제출의 원인.
+//   종전엔 버튼이 한 번도 disabled 되지 않았고, 텍스트는 fetch **응답 후**에야 바뀌었다.
+//   그 왕복 사이에 한 번 더 누르면 그대로 두 번 전송된다 — mode:'no-cors'라 실패해도 조용하다.
+//   실측 중복: 사회 125=126행(8/31 08:16·6반23번) · 역사 21=23행(8/31 14:12·1반18번).
+//   시각·점수·답이 전부 같아 재제출이 아니라 '버튼 두 번'이다. 집계에서 인원이 부푼다.
+let _submitting = false;
 function submitResult(){{
+  if(_submitting) return;                     // 전송 중 두 번째 클릭은 무시
   if(!SUBMIT_URL){{alert('제출 URL이 설정되지 않았습니다.');return;}}
   const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
   if(!cls||!num||!name){{alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}}
@@ -1292,16 +1299,24 @@ function submitResult(){{
     blankScore:bs,oxScore:os,totalScore:ts,
     answers:answers
   }};
+  // 여기서부터 실제 전송 — 잠그고 버튼도 즉시 비활성화한다(응답을 기다리지 않는다).
+  _submitting = true;
+  const _btn=document.getElementById('submitBtn');
+  _btn.disabled = true; _btn.textContent = '전송 중…';
   fetch(SUBMIT_URL,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'application/json'}},body:JSON.stringify(data)}})
   .then(()=>{{
-    document.getElementById('submitBtn').textContent='✅ 제출 완료';
-    document.getElementById('submitBtn').classList.add('btn-submitted');
+    _btn.textContent='✅ 제출 완료';
+    _btn.classList.add('btn-submitted');
     setTimeout(()=>{{
-      document.getElementById('submitBtn').textContent='📤 재제출';
-      document.getElementById('submitBtn').classList.remove('btn-submitted');
+      _btn.textContent='📤 재제출';
+      _btn.classList.remove('btn-submitted');
     }}, 2000);
   }})
-  .catch(e=>alert('제출 실패: '+e));
+  .catch(e=>alert('제출 실패: '+e))
+  .finally(()=>{{                              // 성공·실패 모두 반드시 푼다 — 안 그러면 재제출이 영영 막힌다
+    _submitting = false;
+    _btn.disabled = false;
+  }});
 }}
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
