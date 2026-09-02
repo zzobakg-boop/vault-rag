@@ -184,6 +184,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_gallery = False        # 2026-08-31: 한 장씩 넘겨 보는 큐레이션 (:::gallery ... :::)
     gallery_items = []
     gallery_title = ''
+    in_tb = False             # 2026-09-02: 교과서를 펴는 자리 (:::교과서 <라벨> ... :::)
+    tb_label = ''             #   학습지 안(파랑)과 교과서 밖(황토)을 색으로 갈라 놓는다.
+    tb_lines = []
     figrow_items = []
     essay_count = 0  # 서술형 textarea 수 (제출 수합·세특용 data-id essay-N)
     last_heading = ''  # 가장 최근 heading (essay data-label용·2026-06-24)
@@ -255,6 +258,49 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         # 2026-08-31: ':::gallery' — 한 장씩 넘겨 보는 큐레이션 블록.
         #   교과서 p.94 「세계사×미술」처럼 *여러 장을 차례로 비교*하는 자료용.
         #   figrow(나란히)와 달리 한 번에 한 장만 보여 준다 — 12달을 늘어놓으면 아무도 안 본다.
+        # 📕 교과서를 펴는 자리 (:::교과서 <쪽·자료명> ... :::)  — 2026-09-02 천대현
+        #   학습지 안에서 답이 나오는 파란 계열(빈칸·설명 blockquote)과 *색부터* 갈라 놓는다.
+        #   학생이 화면을 훑을 때 "여기는 책을 펴야 하는 자리"가 한눈에 잡혀야 하기 때문이다.
+        #   본문 규약 — '?' 로 시작하는 줄 = 쓰는 질문 / 나머지 = 무엇을 보는지 안내(쓰지 않는다).
+        #   ⚠️ 안내 줄에 [학생작성]을 넣지 말 것. "굳이 적지 않아도 될 것은 묻지 않는다"가 이 블록의 규칙이다.
+        if stripped.startswith(':::교과서'):
+            in_tb = True
+            tb_label = stripped[len(':::교과서'):].strip()
+            tb_lines = []
+            continue
+        if in_tb:
+            if stripped == ':::':
+                # 🔴 data-label 규약 — 제출 시트·판별식이 "이 칸이 교과서 슬롯인가"를 라벨로 가른다.
+                #   질문 줄을 '?'로 시작하게 바꾸면서 라벨이 '? …'로 시작해 규약을 깰 뻔했다
+                #   (5-1-1 에서 라벨 규약 미준수로 판별식이 0칸을 통과시킨 전례가 있다).
+                #   → 블록 태그를 라벨 앞에 되박아 '교과서 N쪽 — 질문' 형태를 보장한다.
+                #   판별식(teaching-textbook-workflow §교과서 슬롯 라벨 규약):
+                #     ^\s*(교과서\s*\d+\s*쪽에서\s*찾기\s*—|원문에서\s*확인\s*—)
+                #   → 태그에서 첫 쪽수를 뽑아 그 접두어를 **그대로** 만든다.
+                #     '94~95쪽'처럼 범위면 앞 숫자만 쓴다(정규식이 `\d+쪽`만 받는다).
+                _pg = re.search(r'(\d+)\s*[~-]?\s*\d*\s*쪽', tb_label)
+                _pre = f'교과서 {_pg.group(1)}쪽에서 찾기 — ' if _pg else '원문에서 확인 — '
+                def _relabel(h):
+                    def s(m):
+                        cur = re.sub(r'^\?\s*', '', m.group(1)).strip()
+                        return 'data-label="%s"' % (_pre + cur)[:70]
+                    return re.sub(r'data-label="([^"]*)"', s, h)
+                body = []
+                for ln in tb_lines:
+                    if ln.startswith('?'):
+                        body.append(f'<div class="ws-tb-ask">{_relabel(inline(ln[1:].strip()))}</div>')
+                    else:
+                        body.append(f'<div class="ws-tb-see">{inline(ln)}</div>')
+                html_parts.append(
+                    f'<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 {inline(tb_label)}</div>'
+                    f'{"".join(body)}</div>')
+                in_tb = False
+                tb_lines = []
+                continue
+            if stripped:
+                tb_lines.append(stripped)
+            continue
+
         if stripped.startswith(':::gallery'):
             in_gallery = True
             gallery_items = []
@@ -784,6 +830,28 @@ blockquote {{
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }}
+/* 📕 교과서를 펴는 자리 — 2026-09-02.
+   학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
+   교과서 슬롯도 같은 파랑이면 화면상 구분이 안 됐다. 황토/크림으로 계열을 통째로 분리한다. */
+.ws-tb {{
+  background: #fdf8ed; border: 1px solid #e8d9b4; border-left: 6px solid #b8862b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; margin: 14px 0;
+}}
+.ws-tb-tag {{
+  display: inline-block; background: #b8862b; color: #fff;
+  font-size: 0.78em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+}}
+.ws-tb-see {{ font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }}
+.ws-tb-ask {{ font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }}
+.ws-tb-ask strong {{ color: #8a5f12; }}
+.ws-tb input.activity-input {{
+  border-bottom: 2px solid #b8862b; background: #fffdf5; color: #3d3116;
+  text-align: left; padding-left: 8px;
+}}
+.ws-tb input.activity-input:focus {{ border-bottom-color: #8a5f12; background: #fff8e4; }}
+@media print {{ .ws-tb {{ background: #fff; border-left-color: #999; }} }}
+
 .callout {{
   padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
 }}
