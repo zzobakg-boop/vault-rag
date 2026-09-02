@@ -47,6 +47,28 @@ blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }
+/* 📕 교과서를 펴는 자리 — 2026-09-02.
+   학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
+   교과서 슬롯도 같은 파랑이면 화면상 구분이 안 됐다. 황토/크림으로 계열을 통째로 분리한다. */
+.ws-tb {
+  background: #fdf8ed; border: 1px solid #e8d9b4; border-left: 6px solid #b8862b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; margin: 14px 0;
+}
+.ws-tb-tag {
+  display: inline-block; background: #b8862b; color: #fff;
+  font-size: 0.78em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+}
+.ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+.ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
+.ws-tb-ask strong { color: #8a5f12; }
+.ws-tb input.activity-input {
+  border-bottom: 2px solid #b8862b; background: #fffdf5; color: #3d3116;
+  text-align: left; padding-left: 8px;
+}
+.ws-tb input.activity-input:focus { border-bottom-color: #8a5f12; background: #fff8e4; }
+@media print { .ws-tb { background: #fff; border-left-color: #999; } }
+
 .callout {
   padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
 }
@@ -173,6 +195,30 @@ blockquote {
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
+.ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
+.ws-fold-table thead th { background:#eee9dc; font-weight:700; }
+.ws-anim-ctl { display:flex; align-items:center; justify-content:center; gap:10px; margin:8px 0 2px; }
+.ws-anim-ctl button { border:1px solid #cfc8b6; background:#fff; border-radius:8px; padding:6px 16px;
+  cursor:pointer; font-family:inherit; font-size:0.9em; color:#4a5c40; font-weight:700; }
+.ws-anim-ctl button:hover { background:#f1efe6; }
+.ws-anim-ctl span { font-size:0.8em; color:#9a9284; }
+.ws-gal { margin: 22px auto; max-width: 100%; border: 1px solid #ddd7c8; border-radius: 12px;
+  background: #fbfaf6; overflow: hidden; }
+.ws-gal-head { padding: 12px 16px 0; font-weight: 700; color: #3a4a34; font-size: 0.98em; }
+.ws-gal-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px; }
+.ws-gal-dot { border: 1px solid #cfc8b6; background: #fff; color: #5a5344; border-radius: 999px;
+  padding: 5px 12px; font-size: 0.84em; cursor: pointer; font-family: inherit; }
+.ws-gal-dot.on { background: #4a5c40; border-color: #4a5c40; color: #fff; font-weight: 700; }
+.ws-gal-stage { text-align: center; padding: 4px 14px 0; }
+.ws-gal-slide img { max-width: 100%; max-height: 430px; height: auto; border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.14); }
+.ws-gal-slide figcaption { margin: 8px auto 0; max-width: 640px; font-size: 0.86em;
+  color: #5a5344; line-height: 1.55; }
+.ws-gal-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 10px 0 14px; }
+.ws-gal-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px;
+  padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.9em; color: #4a5c40; }
+.ws-gal-count { font-size: 0.86em; color: #8a8272; font-variant-numeric: tabular-nums; }
 .ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
 .ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
@@ -226,7 +272,9 @@ blockquote {
 <br>
 <h2>📖 1단계: 환율이란 무엇일까?</h2>
 <p>나라마다 다른 화폐를 쓰므로 무역·여행 시 그 나라 돈으로 바꿔야 한다. 이때 두 나라 화폐를 교환하는 비율이 ①<input type="text" class="blank-input" data-answer="환율" data-id="1" style="width:60px" placeholder="">이다. 미국 1달러를 얻는 데 우리 돈 1,100원이 필요하면 환율은 '1,100원/달러'로 적는다. 곧 환율은 외국 화폐의 ②<input type="text" class="blank-input" data-answer="가치" data-id="2" style="width:60px" placeholder="">이다.</p>
-<blockquote>(교과서 원문: "두 국가의 화폐를 교환하는 비율이 환율이다. 예를 들어 미국 1달러를 얻기 위해서 우리나라 원화 1,100원을 주어야 한다면 … 환율은 달러당 1,100원이고, '1,100원/달러'로 표기한다. 즉, 환율은 외국 화폐의 가치(가격)이다." — 천재교육 사회②(구정화) 105쪽)</blockquote>
+<details class="ws-fold ws-fold-원문"><summary>교과서 105쪽 원문 — <strong>채운 뒤에</strong> 펼쳐서 맞는지 확인하자</summary><div class="ws-fold-body">
+<p>"두 국가의 화폐를 교환하는 비율이 환율이다. 예를 들어 미국 1달러를 얻기 위해서 우리나라 원화 1,100원을 주어야 한다면 … 환율은 달러당 1,100원이고, '1,100원/달러'로 표기한다. 즉, 환율은 외국 화폐의 가치(가격)이다." — 천재교육 사회②(구정화) 105쪽</p>
+</div></details>
 <br>
 <blockquote>📊 <strong>교과서의 '1,100원'은 언제 이야기일까?</strong> 실제로 <strong>2018년 평균 환율이 1,100원</strong>이었다. 교과서가 틀린 게 아니라 <strong>그때 기준</strong>인 것이다. 그 뒤로는 이렇게 움직였다.</blockquote>
 <br>
@@ -245,13 +293,19 @@ blockquote {
 <br>
 <h2>📖 2단계: 환율은 어떻게 정해질까?</h2>
 <p>재화의 가격이 시장에서 수요와 공급으로 정해지듯, 외국 화폐의 가격인 환율도 그 외화의 ③<input type="text" class="blank-input" data-answer="수요" data-id="3" style="width:60px" placeholder="">와 ④<input type="text" class="blank-input" data-answer="공급" data-id="4" style="width:60px" placeholder="">으로 결정된다. 달러를 사려는 ③<input type="text" class="blank-input" data-answer="수요" data-id="5" style="width:60px" placeholder="">가 늘면 환율이 ⑤<input type="text" class="blank-input" data-answer="상승" data-id="6" style="width:60px" placeholder="">하고(원화 가치 하락), 달러가 들어와 ④<input type="text" class="blank-input" data-answer="공급" data-id="7" style="width:60px" placeholder="">이 늘면 환율이 ⑥<input type="text" class="blank-input" data-answer="하락" data-id="8" style="width:60px" placeholder="">한다(원화 가치 상승).</p>
-<blockquote>(교과서 원문: "재화와 서비스의 가격은 시장에서 수요와 공급으로 결정된다. 마찬가지로 외국 화폐의 가격인 환율도 그 외국 화폐의 수요와 공급으로 결정된다." — 천재교육 사회②(구정화) 105쪽)</blockquote>
+<details class="ws-fold ws-fold-원문"><summary>교과서 105쪽 원문 — <strong>채운 뒤에</strong> 펼쳐서 맞는지 확인하자</summary><div class="ws-fold-body">
+<p>"재화와 서비스의 가격은 시장에서 수요와 공급으로 결정된다. 마찬가지로 외국 화폐의 가격인 환율도 그 외국 화폐의 수요와 공급으로 결정된다." — 천재교육 사회②(구정화) 105쪽</p>
+</div></details>
 <br>
 <blockquote>🎙️ 앞에서 배운 <em>수요·공급 곡선</em>을 그대로 쓰면 돼! 달러 수요가 늘면(곡선 오른쪽 이동) 달러 값(환율)이 오르고, 달러 공급이 늘면 달러 값이 내려. '상품' 자리에 '달러'를 넣은 것뿐이야.</blockquote>
 <br>
 <h2>📖 3단계: 환율이 오르면 원화 가치는 내린다</h2>
 <p>환율이 1,100원에서 1,300원으로 오르면, 1달러를 얻는 데 더 많은 원화가 든다. 즉 환율 상승은 우리 돈의 가치가 ⑦<input type="text" class="blank-input" data-answer="하락" data-id="9" style="width:60px" placeholder="">한 것이다. 반대로 환율이 내리면 원화 가치는 ⑧<input type="text" class="blank-input" data-answer="상승" data-id="10" style="width:60px" placeholder="">한다.</p>
-<blockquote>(교과서 원문(탐구 길잡이): "달러의 수요 증가 = 환율 상승 = 원화 가치 하락 = 달러 가치 상승" / "달러의 공급 증가 = 환율 하락 = 원화 가치 상승 = 달러 가치 하락" — 천재교육 사회②(구정화) 105쪽)</blockquote>
+<details class="ws-fold ws-fold-원문"><summary>교과서 105쪽 원문 — <strong>채운 뒤에</strong> 펼쳐서 맞는지 확인하자</summary><div class="ws-fold-body">
+<p>"달러의 수요 증가 = 환율 상승 = 원화 가치 하락 = 달러 가치 상승" / "달러의 공급 증가 = 환율 하락 = 원화 가치 상승 = 달러 가치 하락" — 천재교육 사회②(구정화) 105쪽</p>
+</div></details>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 105쪽 · 탐구 길잡이</div><div class="ws-tb-see">환율·원화 가치·달러 가치를 등호로 이어 놓은 줄이 있다.</div><div class="ws-tb-ask">달러의 <strong>공급</strong>이 늘면 원화 가치는 어떻게 되는지, 그 줄에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 105쪽에서 찾기 — 달러의 공급이 늘면 원화 가치는 어떻게 되는지, 그 줄에서 찾아 적자" style="width:200px" placeholder=""></div></div>
 <br>
 <figure class="ws-fig"><img src="images/v5-exchange-seesaw.png" alt="환율과 원화 가치가 시소처럼 반대로 움직이는 그림. 환율이 1,100원에서 1,422원으로 오르면 원화 가치는 내려가고, 100달러 굿즈 값은 110,000원에서 142,200원이 된다." loading="lazy"><figcaption>환율과 원화 가치가 시소처럼 반대로 움직이는 그림. 환율이 1,100원에서 1,422원으로 오르면 원화 가치는 내려가고, 100달러 굿즈 값은 110,000원에서 142,200원이 된다.</figcaption></figure>
 <br>
@@ -274,7 +328,9 @@ blockquote {
 <br>
 <h2>📖 4단계: 환율이 변하면 우리 생활은?</h2>
 <p>환율이 오르면(원화 약세) 우리 수출품이 외국에서 싸져 ⑨<input type="text" class="blank-input" data-answer="수출" data-id="11" style="width:60px" placeholder="">이 늘지만, 수입 원자재 값이 올라 국내 물가가 오르고 해외여행·유학 비용이 비싸진다. 환율이 내리면(원화 강세) 수입품이 싸져 물가가 안정되지만, 수출이 줄어 국내 기업의 생산이 위축되고 ⑩<input type="text" class="blank-input" data-answer="실업" data-id="12" style="width:60px" placeholder="">이 늘 수 있다.</p>
-<blockquote>(교과서 원문(표): 환율 상승 — 긍정: 수출 증가→생산·고용 확대 / 부정: 수입 원자재 가격 상승→생산비↑·물가 상승·외채 부담 가중. 환율 하락 — 긍정: 수입 원자재 가격 하락→물가 안정·외채 부담 경감 / 부정: 수입 증가→국내 기업 생산 위축·고용 감소·실업 증가 — 천재교육 사회②(구정화) 105쪽)</blockquote>
+<details class="ws-fold ws-fold-원문"><summary>교과서 105쪽 원문 — <strong>채운 뒤에</strong> 펼쳐서 맞는지 확인하자</summary><div class="ws-fold-body">
+<p>환율 상승 — 긍정: 수출 증가→생산·고용 확대 / 부정: 수입 원자재 가격 상승→생산비↑·물가 상승·외채 부담 가중. 환율 하락 — 긍정: 수입 원자재 가격 하락→물가 안정·외채 부담 경감 / 부정: 수입 증가→국내 기업 생산 위축·고용 감소·실업 증가 — 천재교육 사회②(구정화) 105쪽</p>
+</div></details>
 <br>
 <table>
 <tr><td></td><td>환율 <strong>상승</strong> (원화 약세)</td><td>환율 <strong>하락</strong> (원화 강세)</td></tr>
@@ -285,6 +341,8 @@ blockquote {
 <tr><td><strong>외채 부담</strong></td><td>커짐 ❌</td><td>줄어듦 ✅</td></tr>
 </table>
 <br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 105쪽 · 환율 변동의 영향 표</div><div class="ws-tb-see">위 우리 표와 교과서 표를 나란히 놓고 보자. 우리 표에는 <strong>없는 항목</strong>이 교과서에 하나 더 있다.</div><div class="ws-tb-ask">그 항목이 무엇인지 적고, 환율이 <strong>내릴 때</strong> 그것이 어떻게 된다고 쓰여 있는지도 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 105쪽에서 찾기 — 그 항목이 무엇인지 적고, 환율이 내릴 때 그것이 어떻게 된다고 쓰여" style="width:300px" placeholder=""></div></div>
+<br>
 <blockquote>🔗 <strong>지난 시간과 이어진다.</strong> 5-4에서 국제 거래엔 관문이 셋(관세·통관·<strong>환율</strong>)이라고 했지? 그 마지막 관문이 오늘 이거야. 그리고 <strong>환율이 오르면 물가가 오르는 길</strong>은 5-2에서 배운 <strong>물가 상승 3원인 중 '생산비 상승'</strong> 이야. 수입 원자재가 비싸지니까 만드는 값이 올라가는 거지.</blockquote>
 <br>
 <blockquote>💡 <strong>'환율 오름'이 직구를 비싸게 하는 이유</strong>: 환율이 오르면 같은 10달러 굿즈를 사는 데 더 많은 원화가 필요해 → 직구·해외여행은 <em>불리</em>. 대신 우리 수출 기업은 외국에서 가격 경쟁력이 생겨 <em>유리</em>. 한쪽이 웃으면 한쪽이 우는 셈이지.</blockquote>
@@ -292,10 +350,10 @@ blockquote {
 <h2>✏️ 활동 — 내 지갑으로 환율 재기</h2>
 <p>좋아하는 굿즈를 해외 직구로 산다고 하자. <strong>가격은 40달러</strong>로 똑같다.</p>
 <br>
-<p><strong>1.</strong> 환율이 <strong>1,100원</strong>일 때 원화로 얼마? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="1. 환율이 1,100원일 때 원화로 얼마? · 환율이 1,400원일 때" style="width:160px" placeholder="">  ·  환율이 <strong>1,400원</strong>일 때는? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="1. 환율이 1,100원일 때 원화로 얼마? · 환율이 1,400원일 때" style="width:160px" placeholder=""></p>
+<p><strong>1.</strong> 환율이 <strong>1,100원</strong>일 때 원화로 얼마? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="1. 환율이 1,100원일 때 원화로 얼마? · 환율이 1,400원일 때" style="width:160px" placeholder="">  ·  환율이 <strong>1,400원</strong>일 때는? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="1. 환율이 1,100원일 때 원화로 얼마? · 환율이 1,400원일 때" style="width:160px" placeholder=""></p>
 <blockquote>💡 힌트 — <em>달러 값 × 환율</em>. 계산기 없이도 된다(40 × 11 = 440, 뒤에 0 두 개).</blockquote>
 <br>
-<p><strong>2.</strong> 두 값의 차이는 얼마인가? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="2. 두 값의 차이는 얼마인가? · 굿즈 가격은 변했나?" style="width:140px" placeholder="">  ·  굿즈 가격은 변했나? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="2. 두 값의 차이는 얼마인가? · 굿즈 가격은 변했나?" style="width:140px" placeholder=""></p>
+<p><strong>2.</strong> 두 값의 차이는 얼마인가? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="2. 두 값의 차이는 얼마인가? · 굿즈 가격은 변했나?" style="width:140px" placeholder="">  ·  굿즈 가격은 변했나? <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="2. 두 값의 차이는 얼마인가? · 굿즈 가격은 변했나?" style="width:140px" placeholder=""></p>
 <br>
 <p><strong>3.</strong> 지금까지는 <strong>직구하는 내 지갑</strong> 쪽에서 봤다. 이번엔 반대편에서 보자.</p>
 <p>환율이 <strong>1,100원에서 1,400원으로 오른 이 상황</strong>에서, 우리나라 <strong>수출 기업</strong>은 웃을까 울까? 그렇게 생각한 까닭을 한 문장으로 써 보자.</p>
@@ -308,7 +366,7 @@ blockquote {
 <br>
 <figure class="ws-fig"><img src="images/v5-kakao-ad.png" alt="카카오톡 해외 직구 광고. "엔화 800원대 = 지금이 직구템 쓸어담을 타이밍"." loading="lazy"><figcaption>카카오톡 해외 직구 광고. "엔화 800원대 = 지금이 직구템 쓸어담을 타이밍".</figcaption></figure>
 <br>
-<p>⑴ 이 광고는 왜 <strong>지금</strong>이 좋은 때라고 말할까? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="⑴ 이 광고는 왜 지금이 좋은 때라고 말할까?" style="width:320px" placeholder=""></p>
+<p>⑴ 이 광고는 왜 <strong>지금</strong>이 좋은 때라고 말할까? <input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="⑴ 이 광고는 왜 지금이 좋은 때라고 말할까?" style="width:320px" placeholder=""></p>
 <br>
 <p>⑵ 만약 엔화가 <strong>1,000원대로 오르면</strong> 이 광고는 어떻게 바뀔까? 한 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-3" data-label="✏️ 활동 — 내 지갑으로 환율 재기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
@@ -330,9 +388,9 @@ blockquote {
 <blockquote>오늘 배운 걸 <strong>안 보고</strong> 세 줄로 적어 보자. 틀려도 괜찮아 — 떠올리려고 애쓰는 그 순간에 머리에 박히는 거야.</blockquote>
 <blockquote>✍️ <strong>낱말 세 개가 아니라 문장 세 개로.</strong> 각 줄이 `~다.` 로 끝나게 쓰자. (예: "환율이 오르면 원화 가치는 반대로 떨어진다.")</blockquote>
 <br>
-<p>1. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="1." style="width:240px" placeholder=""></p>
-<p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="2." style="width:240px" placeholder=""></p>
-<p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="3." style="width:240px" placeholder=""></p>
+<p>1. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="1." style="width:240px" placeholder=""></p>
+<p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="2." style="width:240px" placeholder=""></p>
+<p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-10" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 <blockquote>🔗 <strong>단원을 닫으며</strong> — Ⅴ단원 다섯 차시가 여기서 만난다. GDP(몸집) → 물가·실업(체온) → 국제 거래(바깥과의 관계) → 환율(그 관계의 가격표). <strong>나라 경제를 보는 자가 넷</strong> 생긴 셈이야.</blockquote>
 <br>
@@ -365,6 +423,27 @@ document.addEventListener('click', function(e){
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
   b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
 });
+function replayAnim(id){
+  // 애니메이션 WebP/GIF는 loop=1로 구워져 한 번만 재생된다(WCAG 2.2.2).
+  // src를 캐시버스터와 함께 갈아 끼우면 처음부터 다시 돈다.
+  const im=document.getElementById(id); if(!im) return;
+  const base=im.dataset.src||im.src.split('?')[0];
+  im.src='';
+  setTimeout(()=>{ im.src = base + '?r=' + Date.now(); }, 30);
+}
+function galGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n;
+  i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-gal-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-gal-dot').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-gal-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function galStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  galGo(id, (+(g.dataset.cur||0)) + d);
+}
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
@@ -575,7 +654,14 @@ function collectAnswers(){
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
 // 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
 function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+// 🔴 전송 중 재진입 가드 (2026-09-02) — 사회(중3) 세션이 시트에서 발견한 중복 제출의 원인.
+//   종전엔 버튼이 한 번도 disabled 되지 않았고, 텍스트는 fetch **응답 후**에야 바뀌었다.
+//   그 왕복 사이에 한 번 더 누르면 그대로 두 번 전송된다 — mode:'no-cors'라 실패해도 조용하다.
+//   실측 중복: 사회 125=126행(8/31 08:16·6반23번) · 역사 21=23행(8/31 14:12·1반18번).
+//   시각·점수·답이 전부 같아 재제출이 아니라 '버튼 두 번'이다. 집계에서 인원이 부푼다.
+let _submitting = false;
 function submitResult(){
+  if(_submitting) return;                     // 전송 중 두 번째 클릭은 무시
   if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
   const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
   if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
@@ -595,16 +681,24 @@ function submitResult(){
     blankScore:bs,oxScore:os,totalScore:ts,
     answers:answers
   };
+  // 여기서부터 실제 전송 — 잠그고 버튼도 즉시 비활성화한다(응답을 기다리지 않는다).
+  _submitting = true;
+  const _btn=document.getElementById('submitBtn');
+  _btn.disabled = true; _btn.textContent = '전송 중…';
   fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
   .then(()=>{
-    document.getElementById('submitBtn').textContent='✅ 제출 완료';
-    document.getElementById('submitBtn').classList.add('btn-submitted');
+    _btn.textContent='✅ 제출 완료';
+    _btn.classList.add('btn-submitted');
     setTimeout(()=>{
-      document.getElementById('submitBtn').textContent='📤 재제출';
-      document.getElementById('submitBtn').classList.remove('btn-submitted');
+      _btn.textContent='📤 재제출';
+      _btn.classList.remove('btn-submitted');
     }, 2000);
   })
-  .catch(e=>alert('제출 실패: '+e));
+  .catch(e=>alert('제출 실패: '+e))
+  .finally(()=>{                              // 성공·실패 모두 반드시 푼다 — 안 그러면 재제출이 영영 막힌다
+    _submitting = false;
+    _btn.disabled = false;
+  });
 }
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
