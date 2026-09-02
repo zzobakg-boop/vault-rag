@@ -47,6 +47,28 @@ blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }
+/* 📕 교과서를 펴는 자리 — 2026-09-02.
+   학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
+   교과서 슬롯도 같은 파랑이면 화면상 구분이 안 됐다. 황토/크림으로 계열을 통째로 분리한다. */
+.ws-tb {
+  background: #fdf8ed; border: 1px solid #e8d9b4; border-left: 6px solid #b8862b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; margin: 14px 0;
+}
+.ws-tb-tag {
+  display: inline-block; background: #b8862b; color: #fff;
+  font-size: 0.78em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+}
+.ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+.ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
+.ws-tb-ask strong { color: #8a5f12; }
+.ws-tb input.activity-input {
+  border-bottom: 2px solid #b8862b; background: #fffdf5; color: #3d3116;
+  text-align: left; padding-left: 8px;
+}
+.ws-tb input.activity-input:focus { border-bottom-color: #8a5f12; background: #fff8e4; }
+@media print { .ws-tb { background: #fff; border-left-color: #999; } }
+
 .callout {
   padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
 }
@@ -258,8 +280,7 @@ blockquote {
 <br>
 <blockquote>⚙️ <strong>위 그림이 오늘의 출발점이야.</strong> 왕의 군대가 약해서가 아니라 <strong>늦어서</strong> 못 막았어.</blockquote>
 <br>
-<blockquote>📖 <strong>90쪽 도입 그림을 본다</strong> — 성 밖 사람들과 성 안 사람들이 말을 주고받고 있다.</blockquote>
-<blockquote>교과서 90쪽에서 찾기 — 농민이 성으로 들어가고 싶어지는 말풍선을 하나 골라 그대로 옮겨 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 90쪽에서 찾기 — 농민이 성으로 들어가고 싶어지는 말풍선을 하나" style="width:400px" placeholder=""></blockquote>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 90쪽 · 도입 그림</div><div class="ws-tb-see">성 밖 사람과 성 안 사람이 말을 주고받고 있다.</div><div class="ws-tb-ask">성 <strong>밖</strong> 사람의 말풍선에서 한 문장을 골라 그대로 옮겨 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 90쪽에서 찾기 — 성 밖 사람의 말풍선에서 한 문장을 골라 그대로 옮겨 적자." style="width:380px" placeholder=""></div></div>
 <br>
 <h2>📖 2단계: 기사들의 계약 — 주종 관계</h2>
 <blockquote>📕 <strong>교과서 91쪽</strong> 펴고 채우기 · 배정 시간 <strong>8분</strong></blockquote>
@@ -281,8 +302,7 @@ blockquote {
 <br>
 <blockquote>🎙️ 재미있는 건 <strong>출발이 달랐는데 결말이 비슷하다</strong>는 점이야. 한쪽은 핏줄이 멀어져서, 다른 쪽은 계약이 옆으로 안 이어져서 — 둘 다 왕이 약해졌어.</blockquote>
 <br>
-<blockquote>📖 <strong>91쪽 봉건 사회 구조 도식을 본다</strong> — 위에 우리가 그린 도식과 나란히 놓고 보자.</blockquote>
-<blockquote>교과서 91쪽에서 찾기 — 교과서 도식에 <strong>왕에서 기사로 곧장 가는 화살표</strong>가 있나, 없나? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 91쪽에서 찾기 — 교과서 도식에 왕에서 기사로 곧장 가는 화살표" style="width:200px" placeholder=""></blockquote>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 91쪽 · 봉건 사회 구조 도식</div><div class="ws-tb-see">위에서 우리가 그린 도식과 나란히 놓고 보자.</div><div class="ws-tb-ask">교과서 도식에서 <strong>왕과 화살표로 바로 이어진</strong> 사람은 누구인가? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 91쪽에서 찾기 — 교과서 도식에서 왕과 화살표로 바로 이어진 사람은 누구인가?" style="width:200px" placeholder=""></div></div>
 <br>
 <br>
 <figure class="ws-fig"><img src="images/3-3-1_이름정리.png" alt="헷갈리는 이름 정리 — 왼쪽은 사다리에서의 자리(왕·제후·기사·농노), 오른쪽은 같은 제후 한 사람이 상대에 따라 봉신·주군·영주로 불리는 모습. 주군과 봉신은 신분이 아니라 역할이다." loading="lazy"><figcaption>헷갈리는 이름 정리 — 왼쪽은 사다리에서의 자리(왕·제후·기사·농노), 오른쪽은 같은 제후 한 사람이 상대에 따라 봉신·주군·영주로 불리는 모습. 주군과 봉신은 신분이 아니라 역할이다.</figcaption></figure>
@@ -301,10 +321,9 @@ blockquote {
 <h3>📜 같은 해, 다른 삶 — 달력 그림 여섯 장</h3>
 <p>600년 전 프랑스에서 만든 달력 그림이다. <strong>같은 책, 같은 한 해</strong>인데 달마다 나오는 사람이 다르다.</p>
 <br>
-<div class="ws-gal" id="gal75" data-n="6"><div class="ws-gal-head">👉 탭이나 ‹ › 로 한 장씩 넘겨 보자. 각 달에 <strong>누가 무엇을 하고 있는지</strong> 보면서.</div><div class="ws-gal-tabs"><button class="ws-gal-dot on" onclick="galGo('gal75',0)">1월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal75',1)">3월 · 농민</button><button class="ws-gal-dot" onclick="galGo('gal75',2)">5월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal75',3)">7월 · 농민</button><button class="ws-gal-dot" onclick="galGo('gal75',4)">8월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal75',5)">10월 · 농민</button></div><div class="ws-gal-stage"><figure class="ws-gal-slide" data-i="0"><img src="images/3-3-1_베리공_1월.jpg" alt="성 안에서 새해 잔치를 벌인다. 식탁에 음식이 가득하고, 뒤에는 인사하러 온 사람들이 줄을 섰다." loading="lazy"><figcaption><b>1월 · 귀족</b> 성 안에서 새해 잔치를 벌인다. 식탁에 음식이 가득하고, 뒤에는 인사하러 온 사람들이 줄을 섰다.</figcaption></figure><figure class="ws-gal-slide" data-i="1" hidden><img src="images/3-3-1_베리공_3월.jpg" alt="소가 쟁기를 끌고 밭을 간다. 뒤편 언덕 위에 영주의 성이 보인다." loading="lazy"><figcaption><b>3월 · 농민</b> 소가 쟁기를 끌고 밭을 간다. 뒤편 언덕 위에 영주의 성이 보인다.</figcaption></figure><figure class="ws-gal-slide" data-i="2" hidden><img src="images/3-3-1_베리공_5월.jpg" alt="화관을 쓰고 말을 타고 나들이를 간다. 나팔수가 앞장선다." loading="lazy"><figcaption><b>5월 · 귀족</b> 화관을 쓰고 말을 타고 나들이를 간다. 나팔수가 앞장선다.</figcaption></figure><figure class="ws-gal-slide" data-i="3" hidden><img src="images/3-3-1_베리공_7월.jpg" alt="밀을 베고 양털을 깎는다. 역시 뒤편에 성이 서 있다." loading="lazy"><figcaption><b>7월 · 농민</b> 밀을 베고 양털을 깎는다. 역시 뒤편에 성이 서 있다.</figcaption></figure><figure class="ws-gal-slide" data-i="4" hidden><img src="images/3-3-1_베리공_8월.jpg" alt="매를 들고 사냥을 나간다. 그림 뒤쪽에서는 농민들이 밀을 베고 강에서 멱을 감는다." loading="lazy"><figcaption><b>8월 · 귀족</b> 매를 들고 사냥을 나간다. 그림 뒤쪽에서는 농민들이 밀을 베고 강에서 멱을 감는다.</figcaption></figure><figure class="ws-gal-slide" data-i="5" hidden><img src="images/3-3-1_베리공_10월.jpg" alt="말이 끄는 써레로 땅을 고르고 씨를 뿌린다. 강 건너에 왕의 궁전이 있다." loading="lazy"><figcaption><b>10월 · 농민</b> 말이 끄는 써레로 땅을 고르고 씨를 뿌린다. 강 건너에 왕의 궁전이 있다.</figcaption></figure></div><div class="ws-gal-nav"><button onclick="galStep('gal75',-1)">‹ 이전</button><span class="ws-gal-count"><b>1</b> / 6</span><button onclick="galStep('gal75',1)">다음 ›</button></div></div>
+<div class="ws-gal" id="gal73" data-n="6"><div class="ws-gal-head">👉 탭이나 ‹ › 로 한 장씩 넘겨 보자. 각 달에 <strong>누가 무엇을 하고 있는지</strong> 보면서.</div><div class="ws-gal-tabs"><button class="ws-gal-dot on" onclick="galGo('gal73',0)">1월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal73',1)">3월 · 농민</button><button class="ws-gal-dot" onclick="galGo('gal73',2)">5월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal73',3)">7월 · 농민</button><button class="ws-gal-dot" onclick="galGo('gal73',4)">8월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal73',5)">10월 · 농민</button></div><div class="ws-gal-stage"><figure class="ws-gal-slide" data-i="0"><img src="images/3-3-1_베리공_1월.jpg" alt="성 안에서 새해 잔치를 벌인다. 식탁에 음식이 가득하고, 뒤에는 인사하러 온 사람들이 줄을 섰다." loading="lazy"><figcaption><b>1월 · 귀족</b> 성 안에서 새해 잔치를 벌인다. 식탁에 음식이 가득하고, 뒤에는 인사하러 온 사람들이 줄을 섰다.</figcaption></figure><figure class="ws-gal-slide" data-i="1" hidden><img src="images/3-3-1_베리공_3월.jpg" alt="소가 쟁기를 끌고 밭을 간다. 뒤편 언덕 위에 영주의 성이 보인다." loading="lazy"><figcaption><b>3월 · 농민</b> 소가 쟁기를 끌고 밭을 간다. 뒤편 언덕 위에 영주의 성이 보인다.</figcaption></figure><figure class="ws-gal-slide" data-i="2" hidden><img src="images/3-3-1_베리공_5월.jpg" alt="화관을 쓰고 말을 타고 나들이를 간다. 나팔수가 앞장선다." loading="lazy"><figcaption><b>5월 · 귀족</b> 화관을 쓰고 말을 타고 나들이를 간다. 나팔수가 앞장선다.</figcaption></figure><figure class="ws-gal-slide" data-i="3" hidden><img src="images/3-3-1_베리공_7월.jpg" alt="밀을 베고 양털을 깎는다. 역시 뒤편에 성이 서 있다." loading="lazy"><figcaption><b>7월 · 농민</b> 밀을 베고 양털을 깎는다. 역시 뒤편에 성이 서 있다.</figcaption></figure><figure class="ws-gal-slide" data-i="4" hidden><img src="images/3-3-1_베리공_8월.jpg" alt="매를 들고 사냥을 나간다. 그림 뒤쪽에서는 농민들이 밀을 베고 강에서 멱을 감는다." loading="lazy"><figcaption><b>8월 · 귀족</b> 매를 들고 사냥을 나간다. 그림 뒤쪽에서는 농민들이 밀을 베고 강에서 멱을 감는다.</figcaption></figure><figure class="ws-gal-slide" data-i="5" hidden><img src="images/3-3-1_베리공_10월.jpg" alt="말이 끄는 써레로 땅을 고르고 씨를 뿌린다. 강 건너에 왕의 궁전이 있다." loading="lazy"><figcaption><b>10월 · 농민</b> 말이 끄는 써레로 땅을 고르고 씨를 뿌린다. 강 건너에 왕의 궁전이 있다.</figcaption></figure></div><div class="ws-gal-nav"><button onclick="galStep('gal73',-1)">‹ 이전</button><span class="ws-gal-count"><b>1</b> / 6</span><button onclick="galStep('gal73',1)">다음 ›</button></div></div>
 <br>
-<blockquote>📖 <strong>읽고 답하기 — 여섯 장을 다 넘겨 본 뒤에</strong></blockquote>
-<blockquote>원문에서 확인 — 농민이 나오는 달과 귀족이 나오는 달을 각각 세어 보고, <strong>두 쪽 그림 뒤편에 공통으로 서 있는 것</strong>이 무엇인지 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="원문에서 확인 — 농민이 나오는 달과 귀족이 나오는 달을 각각 세어 보고" style="width:400px" placeholder=""></blockquote>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 94~95쪽 · 세계사×미술 (위 여섯 장과 같은 자료)</div><div class="ws-tb-see">여섯 장을 다 넘겨 보고, 농민이 나오는 달과 귀족이 나오는 달을 세어 보자. — 세기만 하고 적지 않아도 된다.</div><div class="ws-tb-ask">여섯 장 <strong>뒤편에 공통으로 서 있는 것</strong>은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 94쪽에서 찾기 — 여섯 장 뒤편에 공통으로 서 있는 것은 무엇인가?" style="width:220px" placeholder=""></div></div>
 <br>
 <blockquote>🎙️ 눈치챘어? <strong>농민이 일하는 그림에도, 귀족이 노는 그림에도 뒤에는 늘 성이 서 있어.</strong> 그게 오늘 배운 거래의 그림판이야 — 성이 지켜 주는 대신, 그 앞의 땅에서 누군가는 계속 일을 해.</blockquote>
 <blockquote><span style="font-size:0.85em;color:#666">『베리 공의 매우 호화로운 기도서』(15세기 초, 랭부르 형제) · 프랑스 콩데 미술관 · Public Domain (Wikimedia Commons) · 교과서 94~95쪽 「세계사×미술」과 같은 자료</span></blockquote>
@@ -329,11 +348,9 @@ blockquote {
 <br>
 <blockquote>💡 <strong>성직자가 영주였다</strong>는 게 이상하지? 이 이상함이 다음 시간(교황과 황제의 싸움) 이야기의 씨앗이야. 기억해 둬.</blockquote>
 <br>
-<blockquote>📖 <strong>91쪽 장원 그림을 본다</strong></blockquote>
-<blockquote>교과서 91쪽에서 찾기 — 경작지 셋 중 <strong>아무것도 심지 않은 땅</strong>의 이름을 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 91쪽에서 찾기 — 경작지 셋 중 아무것도 심지 않은 땅의 이름을" style="width:200px" placeholder=""></blockquote>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 91쪽 · 장원 그림</div><div class="ws-tb-ask">경작지 셋 가운데 <strong>아무것도 심지 않는 땅</strong>의 이름을 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 91쪽에서 찾기 — 경작지 셋 가운데 아무것도 심지 않는 땅의 이름을 적자." style="width:200px" placeholder=""></div></div>
 <br>
-<blockquote>📖 <strong>읽고 답하기 — 92쪽 성직자 설명을 끝까지 읽는다</strong></blockquote>
-<blockquote>원문에서 확인 — 성직자 가운데 일부는 <strong>어떤 다른 역할</strong>도 했나? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="원문에서 확인 — 성직자 가운데 일부는 어떤 다른 역할도 했나?" style="width:340px" placeholder=""></blockquote>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 92쪽 · 성직자 설명 (끝까지 읽기)</div><div class="ws-tb-ask">성직자 가운데 일부는 무엇이기도 했나? 교과서에 나오는 <strong>낱말 하나</strong>로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 92쪽에서 찾기 — 성직자 가운데 일부는 무엇이기도 했나? 교과서에 나오는 낱말 하나로" style="width:200px" placeholder=""></div></div>
 <br>
 <h3>🌾 땅을 셋으로 나눈 이유</h3>
 <p>장원의 경작지는 그냥 한 덩어리가 아니었다. 봄에 씨 뿌리는 <strong>춘경지</strong>, 가을에 씨 뿌리는 <strong>추경지</strong>, 그리고 <strong>아무것도 심지 않고 쉬게 두는</strong> 땅으로 나누어 해마다 돌려 가며 지었다. 땅도 쉬어야 힘을 되찾기 때문이다.</p>
@@ -372,8 +389,7 @@ blockquote {
 <br>
 <blockquote>🎙️ <strong>아리스토텔레스, 어디서 들어 봤지?</strong> 맞아, 고대 그리스 사람이야(2단원). 그런데 그 철학이 어떻게 천 년도 더 지나서 중세 유럽에 "전해"졌을까? — 서유럽이 잊고 있던 그리스 책들을 <strong>이슬람 세계가 번역해서 간직하고 있었거든.</strong> 지난 시간에 배운 이슬람 세계(Ⅲ-2-3)가 여기서 다시 등장하는 거야. 유럽사와 서아시아사가 따로 노는 게 아니라는 증거.</blockquote>
 <br>
-<blockquote>📖 <strong>93쪽 날개(옆쪽 작은 글씨)를 본다</strong></blockquote>
-<blockquote>교과서 93쪽에서 찾기 — 중세 대학이 주로 가르친 <strong>세 과목</strong>은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 93쪽에서 찾기 — 중세 대학이 주로 가르친 세 과목은 무엇인가?" style="width:340px" placeholder=""></blockquote>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 93쪽 · 날개(옆쪽 작은 글씨)</div><div class="ws-tb-ask">중세 대학이 주로 가르친 <strong>세 과목</strong>을 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 93쪽에서 찾기 — 중세 대학이 주로 가르친 세 과목을 적자." style="width:340px" placeholder=""></div></div>
 <br>
 <h3>🏛 두 양식, 눈으로 구분하기</h3>
 <p>두 이름 다 <strong>후대 사람이 붙인 것</strong>이다. 정작 그 성당을 지은 사람들은 그렇게 부르지 않았다.</p>
