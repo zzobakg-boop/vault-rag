@@ -1505,8 +1505,14 @@ def main():
             print(f"   → 개념편에 번호가 중복된 빈칸이 있는지, 정답편에 빠진 항목이 있는지 확인하세요.")
         else:
             print(f"   ⚠️  정답 {-gap}개가 쓰이지 않습니다(정답편 prose의 ( **굵게** ) 오검출 가능).")
-    elif total != len(answers):
-        print(f"⚠️  생성된 입력칸({total})과 정답({len(answers)}) 수 불일치")
+    else:
+        # 🔴 2026-09-03: 종전엔 build_html_from_blank가 돌려준 `total`을 비교했는데,
+        #   그 값이 *실제로 생성된 채점 input 수와 달라* 3건(3-3-3·3-3-5·2-2-2)에서
+        #   멀쩡한 발행본에 경고가 떴다. 오탐이 상시로 뜨면 "경고가 뜨면 멈춘다"는 룰이
+        #   무력해진다(늑대소년). → 생성 결과물에서 직접 센다.
+        _made = len(re.findall(r'class="blank-input(?![^"]*no-score)', content))
+        if _made != len(answers):
+            print(f"⚠️  생성된 채점 입력칸({_made})과 정답({len(answers)}) 수 불일치")
 
     DEFAULT_SUBMIT_URL = os.environ.get('WORKSHEET_SUBMIT_URL', 'https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec')
     submit_url = sys.argv[4] if len(sys.argv) > 4 else DEFAULT_SUBMIT_URL
