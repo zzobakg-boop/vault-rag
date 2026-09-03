@@ -206,6 +206,35 @@ blockquote {
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
 
+/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+.ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  background: #fbf9f4; overflow: hidden; }
+.ws-cmp-head { display: flex; }
+.ws-cmp-head span { flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
+  font-size: .95em; color: #fff; background: #8a7a5c; }
+.ws-cmp-head span:first-child { background: #9a7b3c; }
+.ws-cmp-head span:last-child { background: #5b6b8a; }
+.ws-cmp-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }
+.ws-cmp-tab { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }
+.ws-cmp-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-cmp-stage { padding: 4px 10px 0; }
+.ws-cmp-slide { display: flex; gap: 12px; align-items: flex-start; }
+/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
+   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
+.ws-cmp-slide[hidden] { display: none; }
+.ws-cmp-slide figure { flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }
+.ws-cmp-slide img { width: 100%; max-height: 300px; height: auto; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.ws-cmp-slide figcaption { margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }
+.ws-cmp-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 8px 0 10px; }
+.ws-cmp-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }
+.ws-cmp-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-cmp-slide img { max-height: 190px; } }
+@media print { .ws-cmp-slide[hidden] { display: flex !important; } }  /* 인쇄엔 전부 편다 */
+
 /* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
 .ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
 .ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
@@ -593,13 +622,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>- <strong>로마네스크</strong> = <strong>'로마식'</strong> — 고대 로마 건축을 닮았다는 뜻. 그래서 로마처럼 <strong>반원형 아치</strong>가 겹겹이 나타난다.</p>
 <p>- <strong>고딕</strong> = <strong>'고트족의'</strong> — 사실은 <strong>욕이었다.</strong> 르네상스 시대 이탈리아 사람들이 고대 로마를 되살리려다 중세 건축을 보고 <em>"로마를 무너뜨린 야만족(고트족)이나 지을 법한 것"</em>이라며 낮잡아 부른 말이다. 정작 당대에는 <strong>'프랑스식 작업'</strong>이라 불렸다.</p>
 <br>
-<h4>밖에서 — 아치와 탑을 보자</h4>
-<div class="ws-figrow"><figure class="ws-figrow-item"><img src="images/3-3-1_피사대성당.jpg" alt="피사 대성당(이탈리아) · 11세기 · 로마네스크. 아치가 둥글고 창이 작다. 뒤에 살짝 기운 탑이 '피사의 사탑'. (Wikimedia · CC BY-SA 4.0)" loading="lazy"><figcaption>피사 대성당(이탈리아) · 11세기 · 로마네스크. 아치가 둥글고 창이 작다. 뒤에 살짝 기운 탑이 '피사의 사탑'. (Wikimedia · CC BY-SA 4.0)</figcaption></figure><figure class="ws-figrow-item"><img src="images/3-3-1_샤르트르대성당.jpg" alt="샤르트르 대성당(프랑스) · 12세기 이후 · 고딕. 탑이 뾰족하게 솟았고 창이 크다. (Wikimedia · CC BY-SA 3.0)" loading="lazy"><figcaption>샤르트르 대성당(프랑스) · 12세기 이후 · 고딕. 탑이 뾰족하게 솟았고 창이 크다. (Wikimedia · CC BY-SA 3.0)</figcaption></figure></div>
+<div class="ws-cmp" id="cmp153" data-n="2" data-cur="0"><div class="ws-cmp-head"><span>로마네스크 (11세기)</span><span>고딕 (12세기 이후)</span></div><div class="ws-cmp-tabs"><button type="button" class="ws-cmp-tab on" onclick="cmpGo('cmp153',0)">밖에서 — 아치와 탑</button><button type="button" class="ws-cmp-tab" onclick="cmpGo('cmp153',1)">안에서 — 빛과 장식</button></div><div class="ws-cmp-stage"><div class="ws-cmp-slide" data-i="0"><figure><img src="images/3-3-1_피사대성당.jpg" alt="피사 대성당(이탈리아). 아치가 둥글고 창이 작다. 뒤에 살짝 기운 탑이 '피사의 사탑'. (Wikimedia · CC BY-SA 4.0)"><figcaption>피사 대성당(이탈리아). 아치가 <strong>둥글고</strong> 창이 작다. 뒤에 살짝 기운 탑이 '피사의 사탑'. (Wikimedia · CC BY-SA 4.0)</figcaption></figure><figure><img src="images/3-3-1_샤르트르대성당.jpg" alt="샤르트르 대성당(프랑스). 탑이 뾰족하게 솟았고 창이 크다. (Wikimedia · CC BY-SA 3.0)"><figcaption>샤르트르 대성당(프랑스). 탑이 <strong>뾰족하게</strong> 솟았고 창이 크다. (Wikimedia · CC BY-SA 3.0)</figcaption></figure></div><div class="ws-cmp-slide" data-i="1" hidden><figure><img src="images/3-3-1_피사대성당_내부.jpg" alt="벽이 두껍고 창이 작아 어둡다. 그래서 넓은 벽면에 벽화를 그렸다 — 정면에 크게 보이는 것이 그것이다. (Lucarelli · Wikimedia · CC BY-SA 3.0)"><figcaption>벽이 두껍고 창이 작아 <strong>어둡다</strong>. 그래서 넓은 벽면에 <strong>벽화</strong>를 그렸다 — 정면에 크게 보이는 것이 그것이다. (Lucarelli · Wikimedia · CC BY-SA 3.0)</figcaption></figure><figure><img src="images/3-3-1_샤르트르_장미창.jpg" alt="창이 커서 빛이 쏟아진다. 그래서 그 창에 색유리그림을 넣었다 — 캄캄한 실내에 이 빛만 들어온다. (Wikimedia · Public domain)"><figcaption>창이 커서 <strong>빛이 쏟아진다</strong>. 그래서 그 창에 <strong>색유리그림</strong>을 넣었다 — 캄캄한 실내에 이 빛만 들어온다. (Wikimedia · Public domain)</figcaption></figure></div></div><div class="ws-cmp-nav"><button type="button" onclick="cmpStep('cmp153',-1)">‹ 이전</button><span class="ws-cmp-count"><b>1</b> / 2</span><button type="button" onclick="cmpStep('cmp153',1)">다음 ›</button></div></div>
 <br>
-<h4>그 안에서 — 같은 자리를 비교해 보자</h4>
-<div class="ws-figrow"><figure class="ws-figrow-item"><img src="images/3-3-1_피사대성당_내부.jpg" alt="피사 대성당 **안**. 벽이 두껍고 창이 작아 어둡다. 그래서 넓은 벽면에 **벽화**를 그렸다 — 정면에 크게 보이는 것이 그것이다. (Lucarelli · Wikimedia · CC BY-SA 3.0)" loading="lazy"><figcaption>피사 대성당 <strong>안</strong>. 벽이 두껍고 창이 작아 어둡다. 그래서 넓은 벽면에 <strong>벽화</strong>를 그렸다 — 정면에 크게 보이는 것이 그것이다. (Lucarelli · Wikimedia · CC BY-SA 3.0)</figcaption></figure><figure class="ws-figrow-item"><img src="images/3-3-1_샤르트르_장미창.jpg" alt="샤르트르 대성당 **안**. 창이 커서 빛이 쏟아진다. 그래서 그 창에 **색유리그림**을 넣었다 — 캄캄한 실내에 이 빛만 들어온다. (Wikimedia · Public domain)" loading="lazy"><figcaption>샤르트르 대성당 <strong>안</strong>. 창이 커서 빛이 쏟아진다. 그래서 그 창에 <strong>색유리그림</strong>을 넣었다 — 캄캄한 실내에 이 빛만 들어온다. (Wikimedia · Public domain)</figcaption></figure></div>
-<br>
-<blockquote>🔍 <strong>네 장을 위아래로 비교하자</strong> — ① 밖: 아치가 둥근가 뾰족한가 ② 밖: 창이 큰가 작은가 ③ 안: 어두운가 밝은가 ④ 안: 그림이 <strong>벽에</strong> 있나 <strong>창에</strong> 있나.</blockquote>
+<blockquote>🔍 <strong>탭을 넘기며 같은 자리끼리 견주자</strong> — ① 밖: 아치가 둥근가 뾰족한가 ② 밖: 창이 큰가 작은가 ③ 안: 어두운가 밝은가 ④ 안: 그림이 <strong>벽에</strong> 있나 <strong>창에</strong> 있나.</blockquote>
+<blockquote>위쪽 이름표는 고정이다. <strong>왼쪽은 늘 로마네스크, 오른쪽은 늘 고딕.</strong></blockquote>
 <br>
 <blockquote>🎙️ 두 양식을 <strong>외우지 말고 '벽이냐 창이냐'로</strong> 잡아. 차이는 취향이 아니라 <strong>기술</strong>에서 나왔어. 그리고 위 네 장이 그 결과야 — 아래 표는 다 보고 나서 펼쳐 확인하자.</blockquote>
 <br>
@@ -706,6 +732,18 @@ function galGo(id,i){
 function galStep(id,d){
   const g=document.getElementById(id); if(!g) return;
   galGo(id, (+(g.dataset.cur||0)) + d);
+}
+function cmpGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n; i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function cmpStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  cmpGo(id, (+(g.dataset.cur||0)) + d);
 }
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
