@@ -16,8 +16,17 @@ body {
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
 }
 h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
-h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
-h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h2 {
+  font-size: 1.3em; margin: 30px 0 12px; color: #1d1d1f; font-weight: 800;
+  letter-spacing: -0.01em; padding: 8px 0 8px 14px; border-left: 6px solid #007aff;
+  background: linear-gradient(90deg, #f2f6ff, rgba(255,255,255,0));
+  border-radius: 0 8px 8px 0;
+}
+h2:first-of-type { margin-top: 14px; }
+h3 {
+  font-size: 1.09em; margin: 22px 0 8px; color: #2b3240; font-weight: 750;
+  padding-left: 11px; border-left: 3px solid #b6c4dc;
+}
 h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
 p { margin: 5px 0; font-size: 0.95em; }
 hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
@@ -27,8 +36,13 @@ table {
 /* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
 table.act-table { width: auto; max-width: 100%; }
 table.act-table .activity-input { max-width: 100%; }
-td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
-tr:first-child td { background: #f0f4ff; font-weight: 600; }
+td { border: 1px solid #e2e6ec; padding: 10px 12px; vertical-align: middle; line-height: 1.6; }
+tr:first-child td {
+  background: #e8eefb; font-weight: 750; color: #22314e; vertical-align: middle;
+  border-color: #cfd9ec; font-size: 0.96em;
+}
+tbody tr:nth-child(even):not(:first-child) td { background: #fcfdff; }
+table { border-radius: 10px; overflow: hidden; }
 .ws-fold {
   margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
   border-radius: 8px; background: #fbfaf6; overflow: hidden;
@@ -47,6 +61,93 @@ blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }
+/* 🎮 인물 선택 활동 — 2026-09-03. 표를 정답으로 주지 않고 학생이 고르게 한다.
+   캐릭터 선택 화면의 결: 고르기 전엔 흐리고, 고르면 색이 들어온다. */
+.ws-pick { border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd; padding: 16px; margin: 18px 0; }
+.pk-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-size: 0.94em; font-weight: 700; color: #3d4552; margin-bottom: 12px; }
+.pk-count { color: #c62c3c; white-space: nowrap; }
+.pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 640px) { .pk-grid { grid-template-columns: repeat(2, 1fr); } }
+.pk-card { border: 2px solid #e2e6ec; border-radius: 12px; background: #fff; padding: 10px 8px;
+  text-align: center; transition: transform .22s ease-out, box-shadow .22s, background .22s, border-color .15s; }
+.pk-card img { transition: filter .22s; }
+.pk-card img { width: 72px; height: 72px; image-rendering: pixelated;
+  filter: grayscale(1) opacity(.45); transition: .15s; }
+.pk-card.pk-set img { filter: none; }
+.pk-card.pk-set { border-color: #9aa4b2; background: #fdfdfe; }
+.pk-name { font-weight: 800; font-size: 0.9em; margin-top: 2px; color: #1c242f; }
+.pk-sit { font-size: 0.78em; color: #6b7482; line-height: 1.5; margin: 3px 0 8px; min-height: 2.2em; }
+.pk-btns { display: flex; gap: 5px; }
+.pk-b { flex: 1; border: 1.5px solid #d5dae1; background: #fff; border-radius: 8px;
+  padding: 6px 2px; font: inherit; font-size: 0.78em; font-weight: 700; color: #55607a; cursor: pointer; }
+.pk-b:hover { background: #f3f6fa; }
+.pk-b.on { background: #1c242f; border-color: #1c242f; color: #fff; }
+/* 🙂 기분 상태 — 고르면 캐릭터가 웃거나 운다 (2026-09-03).
+   새 그림을 그리지 않는다: 카드가 뜨거나 내려앉고, 색온도와 채도가 바뀌고, 배지가 붙는다.
+   정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
+.pk-card { position: relative; }
+.pk-card.pk-happy {
+  transform: translateY(-10px) scale(1.04);
+  border-color: #e0b13a;
+  box-shadow: 0 12px 22px rgba(200,150,30,.28), 0 0 0 3px rgba(255,214,102,.35);
+  background: linear-gradient(180deg, #fff9e2, #fff);
+  animation: pkHop .5s cubic-bezier(.34,1.56,.64,1);
+}
+.pk-card.pk-happy img { filter: brightness(1.16) saturate(1.45) contrast(1.06); transform: scale(1.1); }
+.pk-card.pk-sad {
+  transform: translateY(9px) scale(.95) rotate(1.6deg);
+  border-color: #93a3bb;
+  box-shadow: 0 1px 3px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #eef1f6, #f8fafc);
+  animation: pkSlump .45s ease-out;
+}
+.pk-card.pk-sad img {
+  filter: saturate(.22) brightness(.84) contrast(.92) hue-rotate(-14deg);
+  transform: scale(.9) rotate(-2deg);
+}
+.pk-card.pk-sad .pk-name, .pk-card.pk-sad .pk-sit { opacity: .62; }
+@keyframes pkHop {
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-20px) scale(1.09); }
+  100% { transform: translateY(-10px) scale(1.04); }
+}
+@keyframes pkSlump {
+  0%   { transform: translateY(0) scale(1) rotate(0); }
+  60%  { transform: translateY(13px) scale(.93) rotate(2.4deg); }
+  100% { transform: translateY(9px) scale(.95) rotate(1.6deg); }
+}
+.pk-card.pk-happy::after, .pk-card.pk-sad::after {
+  position: absolute; top: -12px; right: -8px; font-size: 1.9em; line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.22));
+}
+.pk-card.pk-happy::after { content: "😀"; animation: pkPop .45s cubic-bezier(.34,1.8,.64,1); }
+.pk-card.pk-sad::after { content: "😢"; animation: pkDrip .45s ease-out; }
+@keyframes pkPop { 0% { transform: scale(0) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes pkDrip { 0% { transform: translateY(-10px) scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; animation: none; }
+  .pk-card.pk-happy::after, .pk-card.pk-sad::after { animation: none; }
+}
+@media print {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; animation: none; }
+  .pk-card.pk-happy img, .pk-card.pk-sad img { transform: none; }
+}
+
+.pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
+.pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
+.pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
+  background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
+.pk-sum { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+@media (max-width: 520px) { .pk-sum { grid-template-columns: 1fr; } }
+.pk-col { background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }
+.pk-col b { display: block; margin-bottom: 5px; font-size: 0.95em; }
+.pk-col span { display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }
+.pk-up { border-color: #1a7a60; color: #15705a; }
+.pk-down { border-color: #c62c3c; color: #b3242f; }
+@media print { .pk-b { display: none; } .pk-card img { filter: none; } }
+
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
 .ws-seesaw {
   border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
@@ -66,7 +167,7 @@ blockquote {
   border-top: 52px solid #96a0ae;
 }
 .ws-seesaw-chip {
-  position: absolute; top: 50%; width: 168px; margin-top: -78px; padding: 9px 6px;
+  position: absolute; top: 50%; width: 168px; padding: 9px 6px;
   text-align: center; border-radius: 12px; border: 3px solid; background: #fff;
   transition: transform .18s ease-out; font-size: 0.88em;
 }
@@ -74,6 +175,9 @@ blockquote {
 .ws-seesaw-chip .v { display: block; font-size: 1.45em; font-weight: 800; margin-top: 2px; }
 .ws-seesaw-chip.ws-l { left: 50%; margin-left: -334px; border-color: #c62c3c; color: #c62c3c; }
 .ws-seesaw-chip.ws-r { left: 50%; margin-left: 166px; border-color: #1e5ca8; color: #1e5ca8; }
+.ws-seesaw-note {
+  text-align: center; font-size: 0.84em; color: #6b7482; margin: 0 0 8px;
+}
 .ws-seesaw-out {
   text-align: center; font-size: 1.02em; font-weight: 700; color: #15705a;
   background: #e0f3ec; border: 1px solid #1a7a60; border-radius: 10px; padding: 9px;
@@ -101,6 +205,62 @@ blockquote {
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+
+/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+.ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  background: #fbf9f4; overflow: hidden; }
+.ws-cmp-head { display: flex; }
+.ws-cmp-head span { flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
+  font-size: .95em; color: #fff; background: #8a7a5c; }
+.ws-cmp-head span:first-child { background: #9a7b3c; }
+.ws-cmp-head span:last-child { background: #5b6b8a; }
+.ws-cmp-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }
+.ws-cmp-tab { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }
+.ws-cmp-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-cmp-stage { padding: 4px 10px 0; }
+.ws-cmp-slide { display: flex; gap: 12px; align-items: flex-start; }
+/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
+   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
+.ws-cmp-slide[hidden] { display: none; }
+.ws-cmp-slide figure { flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }
+.ws-cmp-slide img { width: 100%; max-height: 300px; height: auto; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.ws-cmp-slide figcaption { margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }
+.ws-cmp-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 8px 0 10px; }
+.ws-cmp-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }
+.ws-cmp-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-cmp-slide img { max-height: 190px; } }
+@media print { .ws-cmp-slide[hidden] { display: flex !important; } }  /* 인쇄엔 전부 편다 */
+
+/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
+.ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
+.ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
+  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.ws-flip-in { position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.ws-flip.on .ws-flip-in { transform: rotateY(180deg); }
+.ws-flip:focus-visible .ws-flip-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
+.ws-flip-f, .ws-flip-b { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 12px;
+  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-sizing: border-box; overflow: hidden; }
+.ws-flip-f { background: #f3f0e8; border: 2px solid #cfc4ae; }
+.ws-flip-f b { font-size: 1.15em; color: #3d3116; }
+.ws-flip-f i { font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }
+.ws-flip-f u { text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }
+.ws-flip-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }
+.ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
+.ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
+@media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+@media print {
+  .ws-flip { height: auto; }
+  .ws-flip-in { transform: none !important; }
+  .ws-flip-f, .ws-flip-b { position: static; transform: none; backface-visibility: visible; }
+}
 
 /* 📕 교과서를 펴는 자리 — 2026-09-02.
    학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
@@ -156,10 +316,14 @@ blockquote {
 }
 .ox-group { display: inline-flex; gap: 6px; }
 .ox-btn {
-  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
-  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  width: 44px; height: 44px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1.12em; font-weight: 800;
   cursor: pointer; transition: all 0.2s; line-height: 1;
 }
+.ox-group { gap: 9px; }
+/* OX 표 — 문장 칸은 넓게, 버튼 칸은 좁고 가운데 (2026-09-03) */
+table:has(.ox-group) td:last-child { width: 118px; text-align: center; }
+table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6b7482; }
 .ox-btn:hover { background: #f0f4ff; }
 .ox-btn.selected { background: #007aff; color: white; }
 .ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
@@ -177,10 +341,12 @@ blockquote {
 .btn-submitted { background: #34c759 !important; cursor: default; }
 .submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
 .essay-input {
-  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
-  padding: 10px; font-family: inherit; font-size: 0.93em;
-  resize: vertical; margin: 6px 0; outline: none;
+  width: 100%; min-height: 104px; border: 1.5px solid #ccd4de; border-radius: 10px;
+  padding: 12px 14px; font-family: inherit; font-size: 0.95em; line-height: 1.9;
+  resize: vertical; margin: 8px 0; outline: none; background: #fcfdff;
+  transition: border-color .15s, background .15s;
 }
+.essay-input:focus { border-color: #007aff; background: #fff; }
 .essay-input:focus { border-color: #007aff; }
 .control-bar {
   position: sticky; top: 0; background: white; padding: 10px 0;
@@ -287,8 +453,8 @@ blockquote {
   <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-2 — 눈밭에 선 황제, 끌려간 교황 (중세 크리스트교 세계의 변화)</h1><p class="hero-subtitle">눈밭에 선 황제, 끌려간 교황</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">성직자 임명권 = 누가 사람을 앉히나<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">카노사의 굴욕 = 황제가 빈 자리<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">교황은 해, 황제는 달<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">아비뇽 유수 = 232년 만의 역전<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>성직자 임명권</strong> — 오늘의 모든 사건이 이 한 문제에서 나온다. <em>교회의 사람을 누가 앉히느냐.</em></p><table><thead><tr><th>왕·제후가 임명하면</th><th>교회가 임명하면</th></tr></thead><tbody><tr><td>그 성직자는 <strong>왕 편</strong></td><td>그 성직자는 <strong>교회 편</strong></td></tr></tbody></table><div class="card-quote">💡 <strong>자리에 누구를 앉힐지 정하는 사람</strong>이 진짜 힘을 가진 사람이다. 교회로서는 "우리 사람을 남이 뽑는다"를 견딜 수 없었다.</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>카노사의 굴욕 (1077)</strong> — 황제 <strong>하인리히 4세</strong>가 교황 <strong>그레고리우스 7세</strong>에게 용서를 빈 사건.</p><div class="card-quote">⚠️ <strong>교황의 무기는 칼이 아니라 파문이었다.</strong> 파문당하면 신자 자격이 없어지고 → 제후·기사들이 <em>"저 사람은 파문당했으니 충성할 의무가 없다"</em>며 등을 돌린다. <strong>주종 관계가 무너지는 것</strong>(3-3-1). 황제는 신앙이 아니라 <em>부하들이 떠날까 봐</em> 무릎을 꿇었다.</div><div class="card-quote">⚠️ 여기서 싸움이 끝난 게 <strong>아니다.</strong> 교과서도 "이후 몇 차례 대립이 있었으나"라고 적는다. 결말은 <strong>보름스 협약(1122)</strong> — 교황만이 임명권을 갖는다.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>교황은 해, 황제는 달</strong> — 13세기 교황권 절정기의 자기표현.</p><div class="card-quote">달은 <strong>스스로 빛나지 못하고</strong> 해의 빛을 받아 빛난다. 곧 <em>"황제의 권력은 내가 빌려준 것"</em>이라는 뜻. 자신감의 크기가 이 한마디에 다 들어 있다.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>232년 만의 역전</strong> — 같은 문제, 정반대 결말.</p><table><thead><tr><th></th><th>카노사 (1077)</th><th>아비뇽 (1309~1377)</th></tr></thead><tbody><tr><td>굽힌 쪽</td><td><strong>황제</strong></td><td><strong>교황</strong></td></tr><tr><td>상대</td><td>교황 그레고리우스 7세</td><td>프랑스 왕 필리프 4세</td></tr><tr><td>뒤끝</td><td>보름스 협약 → 교황 승</td><td><strong>교회의 대분열</strong>(약 40년) → 교황 권위 추락</td></tr></tbody></table><div class="card-quote">⚠️ 마지막이 더 심하다 — 교황이 <strong>동시에 두 명</strong>, 한때는 <strong>세 명</strong>까지 있었다. 신자로서는 어느 쪽 말을 들어야 할지 알 수 없었다.</div></div></div><img class="hero-image" src="images/3-3-2_카노사_표지.png" alt=""><div class="hero-hook">1077년 겨울, 신성 로마 제국의 황제가 눈밭에서 사흘을 서 있었어. 성문 안에는 교황이 있었고. 세상에서 제일 힘센 사람이 왜 저러고 있었을까? 그런데 더 놀라운 건 232년 뒤야 — 이번엔 교황이 프랑스 왕에게 끌려가 70년을 남의 나라에서 살게 돼. 같은 문제 하나를 두고 두 사람이 싸웠는데, 결말이 정반대로 뒤집혀. 그 문제가 뭐였는지부터 보자.</div></section>
   <div class="control-bar">
     <div class="score">
-      빈칸: <span id="score">0</span>/11 · OX: <span id="ox-score">0</span>/5
-      · 총: <span id="total-score">0</span>/16 (<span id="pct">0</span>%)
+      빈칸: <span id="score">0</span>/8 · OX: <span id="ox-score">0</span>/5
+      · 총: <span id="total-score">0</span>/13 (<span id="pct">0</span>%)
     </div>
     <div>
       
@@ -322,35 +488,52 @@ blockquote {
 <blockquote>💡 오늘 딱 하나만 잡자 — <strong>성직자 임명권</strong>. <em>"교회의 사람을 누가 앉히느냐"</em> 이 한 문제로 오늘 배울 모든 사건이 벌어져.</blockquote>
 <br>
 <h2>📖 1단계: 교회가 부자가 되자 생긴 일</h2>
-<p>9세기 이후 봉건제가 확대되면서 교회도 왕이나 제후를 주군으로 섬기고 봉토를 받게 되었다. 그러자 왕과 제후가 ①<input type="text" class="blank-input" data-answer="성직자 임명권" data-id="1" style="width:132px" placeholder="">을 차지하는 일이 많아졌고, 교회는 점차 세속화하였다. 성직자가 결혼을 하거나 성직을 사고파는 등 부패한 모습도 나타났다. 이에 10세기 초 일부 ②<input type="text" class="blank-input" data-answer="수도원" data-id="2" style="width:68px" placeholder="">을 중심으로 교회를 개혁하려는 운동이 일어났으며, ③<input type="text" class="blank-input" data-answer="클뤼니" data-id="3" style="width:68px" placeholder=""> 수도원이 앞장서서 기도·고전 연구·노동에 집중하는 삶을 강조하였다.</p>
-<blockquote>(교과서 원문: "9세기 이후 봉건제의 확대로 교회가 왕이나 제후를 주군으로 섬기고 봉토를 받으면서 왕과 제후가 성직자 임명권을 차지하는 일이 많아졌다. 그 결과 교회는 점차 세속화하였고, 성직자가 종교의 규율을 어기고 결혼을 하거나 성직을 사고파는 등 부패한 모습이 나타나기도 하였다. 이에 10세기 초 일부 수도원을 중심으로 교회를 개혁하려는 운동이 일어났다. 수도원 운동에 앞장선 클뤼니 수도원은 기도, 고전 연구, 노동에 집중하는 삶을 강조하였다." — 비상교육 역사①(이병인) p.96)</blockquote>
+<blockquote>📕 <strong>교과서 96쪽 첫 문단</strong> 펴고 채우기 · 배정 시간 <strong>4분</strong></blockquote>
+<br>
+<p>9세기 이후 봉건제가 확대되면서 교회도 왕이나 제후를 주군으로 섬기고 <strong>봉토</strong>를 받게 되었다. 그러자 왕과 제후가 ①<input type="text" class="blank-input" data-answer="성직자 임명권" data-id="1" style="width:132px" placeholder="">을 차지하는 일이 많아졌고, 교회는 점차 <strong>세속화</strong>하였다. 성직자가 결혼을 하거나 성직을 사고파는 등 부패한 모습도 나타났다. 이에 10세기 초 일부 수도원을 중심으로 교회를 개혁하려는 운동이 일어났으며, ②<input type="text" class="blank-input" data-answer="클뤼니" data-id="2" style="width:68px" placeholder=""> 수도원이 그 앞에 섰다.</p>
 <br>
 <blockquote>🎙️ 잠깐, 왜 하필 <strong>임명권</strong>이 문제였을까? 생각해 봐. 어떤 자리에 <strong>누구를 앉힐지 정하는 사람</strong>이 진짜 힘을 가진 사람이야. 왕이 주교를 임명하면 그 주교는 누구 편일까? 당연히 왕 편이지. 교회 입장에선 <em>"우리 사람을 남이 뽑는다"</em>는 게 견딜 수 없었던 거야.</blockquote>
 <br>
+<figure class="ws-fig"><img src="images/3-3-2_임명권.png" alt="성직자 임명권 — 앉히는 사람이 힘을 가진다. 같은 자리에 같은 사람을 앉혀도, 왕이 앉히면 교회의 땅과 사람이 왕의 밑천이 되고, 교회가 앉히면 교회 안에 남는다." loading="lazy"><figcaption>성직자 임명권 — 앉히는 사람이 힘을 가진다. 같은 자리에 같은 사람을 앉혀도, 왕이 앉히면 교회의 땅과 사람이 왕의 밑천이 되고, 교회가 앉히면 교회 안에 남는다.</figcaption></figure>
+<br>
 <blockquote>💡 <strong>수도원이 왜 개혁의 출발점이었나</strong> — 수도사들은 애초에 세상에서 떨어져 살았어. 재산도 안 모으고 결혼도 안 하고. 그러니 <em>"교회가 썩었다"</em>고 말할 자격이 있는 사람이 거기밖에 없었던 거야.</blockquote>
 <br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 96쪽 · 첫 문단 끝</div><div class="ws-tb-ask">클뤼니 수도원이 강조한 삶은 <strong>세 가지</strong>다. 교과서에서 찾아 그대로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 96쪽에서 찾기 — 클뤼니 수도원이 강조한 삶은 세 가지다. 교과서에서 찾아 그대로 적자" style="width:340px" placeholder=""></div></div>
+<br>
 <h2>📖 2단계: 1077년, 눈밭에 선 황제</h2>
-<p>수도원 운동이 성공하면서 교회의 지위는 점차 높아졌다. 11세기 후반 성직자 임명권을 둘러싸고 교황과 신성 로마 제국의 황제가 대립하였다. 교황 ④<input type="text" class="blank-input" data-answer="그레고리우스 7세" data-id="4" style="width:164px" placeholder="">는 세속 군주가 아닌 교회가 임명권을 가져야 한다고 주장하였고, 이에 반발한 황제 하인리히 4세는 결국 카노사에서 교황에게 용서를 빌었다. 이 사건을 ⑤<input type="text" class="blank-input" data-answer="카노사의 굴욕" data-id="5" style="width:132px" placeholder="">이라고 한다.</p>
-<blockquote>(교과서 원문: "수도원 운동이 성공하면서 교회의 지위는 점차 높아졌다. 이러한 가운데 11세기 후반 성직자 임명권을 둘러싸고 교황과 신성 로마 제국의 황제가 대립하였다. 클뤼니 수도원 출신의 교황 그레고리우스 7세는 세속 군주가 아닌 교회가 성직자 임명권을 가져야 한다고 주장하였다. 황제 하인리히 4세가 이에 반발하였으나, 결국 카노사에서 교황에게 용서를 빌었다(카노사의 굴욕)." — 비상교육 역사①(이병인) p.96)</blockquote>
+<blockquote>📕 <strong>교과서 96쪽 가운데</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
 <br>
-<blockquote>🎙️ <strong>왜 황제가 눈밭에 섰나?</strong> 교황이 쓴 무기는 칼이 아니라 <strong>파문</strong>이었어. 파문당하면 신자 자격이 없어져. 그럼 어떻게 되냐면 — <em>제후와 기사들이 "저 사람은 파문당했으니 우리는 충성할 의무가 없다"</em>며 등을 돌려. 지난 시간에 배운 <strong>주종 관계</strong>가 여기서 무너지는 거야. 황제는 신앙 때문이 아니라 <strong>자기 밑의 사람들이 떠날까 봐</strong> 무릎을 꿇은 거지.</blockquote>
+<p>수도원 운동이 성공하면서 교회의 지위는 점차 높아졌다. 11세기 후반 성직자 임명권을 둘러싸고 교황과 신성 로마 제국의 황제가 대립하였다. 클뤼니 수도원 출신의 교황 ③<input type="text" class="blank-input" data-answer="그레고리우스 7세" data-id="3" style="width:164px" placeholder="">는 세속 군주가 아닌 교회가 임명권을 가져야 한다고 주장하였다. 이에 반발한 황제 <strong>하인리히 4세</strong>는 결국 카노사에서 교황에게 용서를 빌었는데, 이 사건을 ④<input type="text" class="blank-input" data-answer="카노사의 굴욕" data-id="4" style="width:132px" placeholder="">이라고 한다.</p>
 <br>
-<blockquote>⚠️ <strong>여기서 오해 주의</strong> — 카노사의 굴욕은 <em>"교황이 황제보다 세다"</em>를 증명한 사건처럼 보이지만, 싸움이 여기서 끝난 게 아니야. 교과서도 <em>"이후 몇 차례 대립이 있었으나"</em>라고 적어. 진짜 결말은 다음 단계에 나와.</blockquote>
+<blockquote>🎙️ <strong>왜 황제가 눈밭에 섰나?</strong> 교황이 쓴 무기는 칼이 아니라 <strong>파문</strong>이었어. 파문당하면 신자 자격이 없어져. 그럼 어떻게 되냐면 — <em>제후와 기사들이 "저 사람은 파문당했으니 우리는 충성할 의무가 없다"</em>며 등을 돌려. 지난 시간에 배운 <strong>주종 관계</strong>가 여기서 풀리는 거야. 아래 그림을 눈으로 따라가 보자.</blockquote>
 <br>
-<h2>📖 3단계: 해와 달 — 교황권의 절정</h2>
-<p>이후 몇 차례 대립이 있었으나 교황과 황제는 ⑥<input type="text" class="blank-input" data-answer="보름스 협약" data-id="6" style="width:116px" placeholder="">을 맺음으로써 교황만이 성직자 임명권을 가질 수 있다고 결정하였다. 교황은 중세 크리스트교도들의 신앙심을 바탕으로 황제를 뛰어넘는 크리스트교 세계의 최고 지배자가 되었고, 그 영향력은 ⑦<input type="text" class="blank-input" data-answer="13세기" data-id="7" style="width:84px" placeholder=""> 무렵 절정에 이르렀다.</p>
-<blockquote>(교과서 원문: "이후 몇 차례 대립이 있었으나 교황과 황제는 보름스 협약을 맺음으로써 교황만이 성직자 임명권을 가질 수 있다고 결정하였다. 교황은 중세 크리스트교도들의 신앙심을 바탕으로 황제를 뛰어넘는 크리스트교 세계의 최고 지배자가 되었다. 교황의 영향력은 계속 커져서 13세기 무렵 절정에 이르렀다." — 비상교육 역사①(이병인) p.96)</blockquote>
+<figure class="ws-fig ws-anim"><img id="anim38" src="images/3-3-2_파문의연쇄.webp" alt="파문이 무서웠던 진짜 이유 — 황제의 반발 → 교황의 파문 선언 → 제후와 기사가 하나씩 등을 돌림 → 홀로 남은 황제. 파문이 실제로 끊는 것은 신앙이 아니라 황제와 부하를 묶은 줄이다." data-src="images/3-3-2_파문의연쇄.webp" loading="lazy"><div class="ws-anim-ctl"><button type="button" onclick="replayAnim('anim38')">▶ 다시 보기</button><span>한 번 재생됩니다</span></div><figcaption>파문이 무서웠던 진짜 이유 — 황제의 반발 → 교황의 파문 선언 → 제후와 기사가 하나씩 등을 돌림 → 홀로 남은 황제. 파문이 실제로 끊는 것은 신앙이 아니라 황제와 부하를 묶은 줄이다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 이 시절 교황이 자기를 어떻게 표현했는지 알아? <strong>"교황은 해, 황제는 달"</strong>. 달은 스스로 빛나지 못하고 해의 빛을 받아서 빛나잖아. 즉 <em>"황제의 권력은 내가 빌려준 것"</em>이라는 뜻이야. 자신감이 어느 정도였는지 이 한마디에 다 들어 있어.</blockquote>
-<blockquote>(교과서 원문: "13세기에 교황은 황제보다 우위에 있음을 과시하고자 ‘교황은 해, 황제는 달’이라고 비유하였다." — 비상교육 역사①(이병인) p.96 날개 주석)</blockquote>
+<blockquote>⚠️ <strong>여기서 오해 주의</strong> — 카노사의 굴욕은 <em>"교황이 황제보다 세다"</em>를 증명하고 <strong>끝난 사건</strong>처럼 보여. 그런데 교과서는 바로 다음 문장에서 그렇지 않다고 말해. 직접 찾아보자.</blockquote>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 96쪽 · 카노사 바로 다음 문장</div><div class="ws-tb-ask">카노사의 굴욕으로 싸움이 끝났을까? <strong>바로 다음 문장</strong>을 찾아 그대로 옮겨 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 96쪽에서 찾기 — 카노사의 굴욕으로 싸움이 끝났을까? 바로 다음 문장을 찾아 그대로 옮" style="width:340px" placeholder=""></div></div>
+<br>
+<h2>📖 3단계: 교황권의 절정</h2>
+<blockquote>📕 <strong>교과서 96쪽 마지막 문단 + 옆쪽 작은 글씨</strong> 펴고 채우기 · 배정 시간 <strong>4분</strong></blockquote>
+<br>
+<p>이후 몇 차례 대립이 있었으나 교황과 황제는 ⑤<input type="text" class="blank-input" data-answer="보름스 협약" data-id="5" style="width:116px" placeholder="">을 맺음으로써 교황만이 성직자 임명권을 가질 수 있다고 결정하였다. 교황은 중세 크리스트교도들의 신앙심을 바탕으로 황제를 뛰어넘는 크리스트교 세계의 <strong>최고 지배자</strong>가 되었고, 그 영향력은 13세기 무렵 절정에 이르렀다.</p>
+<br>
+<blockquote>🎙️ 이 시절 교황이 <strong>자기와 황제를 하늘의 무엇에 비유했는지</strong> 알아? 교과서 96쪽 옆 작은 글씨에 딱 한 줄 있어. 찾아서 읽어 보면, 이 사람 자신감이 어느 정도였는지 그 한마디에 다 들어 있어.</blockquote>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 96쪽 · 날개(옆쪽 작은 글씨)</div><div class="ws-tb-ask">13세기 교황은 자기와 황제를 무엇에 비유했나? 그 비유를 그대로 적고, <strong>왜 그렇게 말했는지</strong> 한 줄로 덧붙이자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 96쪽에서 찾기 — 13세기 교황은 자기와 황제를 무엇에 비유했나? 그 비유를 그대로 적" style="width:400px" placeholder=""></div></div>
 <br>
 <blockquote>💡 <strong>연표에서 한 가지만 보고 가자</strong> — 카노사(1077) 바로 다음 줄이 <strong>십자군 전쟁(1096)</strong>이야. 교황이 최고로 셌던 그 시기에 유럽 전체를 움직이는 전쟁이 시작돼. 다음 시간에 그 이야기를 한다.</blockquote>
 <br>
 <h2>📖 4단계: 232년 뒤, 이번엔 교황이 끌려간다</h2>
-<p>13세기 후반 프랑스 국왕 ⑧<input type="text" class="blank-input" data-answer="필리프 4세" data-id="8" style="width:116px" placeholder="">가 성직자에게 세금을 걷으려 하자 교황 <strong>보니파키우스 8세</strong>가 반대하면서 대립이 다시 심해졌다. 왕은 교황을 통제하고자 로마에 있던 교황청을 프랑스 ⑨<input type="text" class="blank-input" data-answer="아비뇽" data-id="9" style="width:68px" placeholder="">으로 옮겼고, 이후 약 70년 동안 7대에 걸친 교황들이 그곳에서 지냈다. 이를 ⑩<input type="text" class="blank-input" data-answer="아비뇽 유수" data-id="10" style="width:116px" placeholder="">라고 한다. 교황청이 다시 로마로 돌아간 뒤에도 두 곳에서 각각 교황을 뽑으면서 약 40년 동안 ⑪<input type="text" class="blank-input" data-answer="교회의 대분열" data-id="11" style="width:132px" placeholder=""> 시대가 이어졌고, 교황의 권위는 크게 떨어졌다.</p>
-<blockquote>(교과서 원문: "13세기 후반 프랑스가 영토를 넓히는 과정에서 재정이 부족해지자 국왕 필리프 4세는 성직자에게 세금을 걷으려 하였다. …… 필리프 4세는 교황을 통제하고자 이탈리아 로마에 있던 교황청을 프랑스 아비뇽으로 옮겼다. 이후 약 70년 동안 7대에 걸친 교황들은 아비뇽에서 지냈다(아비뇽 유수)." / "교황청이 다시 로마로 돌아간 뒤에도 로마와 아비뇽에서 각각 교황을 뽑으면서 약 40년 동안 교회의 대분열 시대가 이어졌다. 로마 교황과 아비뇽 교황이 서로 정통성을 내세우며 대립하는 과정에서 교황의 권위는 크게 떨어졌다." — 비상교육 역사①(이병인) p.97)</blockquote>
+<blockquote>📕 <strong>교과서 97쪽</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
 <br>
-<blockquote>🎙️ 여기가 오늘의 <strong>반전</strong>이야. 1077년엔 황제가 눈밭에 섰는데, 1309년엔 교황이 남의 나라로 옮겨져. <strong>같은 문제</strong>(교회 일에 왕이 끼어드는 것)를 두고 싸웠는데 결말이 정반대야. 그리고 마지막이 더 심해 — 교황이 <strong>동시에 두 명</strong>, 한때는 <strong>세 명</strong>까지 있었대. 신자 입장에선 어느 쪽 말을 들어야 할지 알 수 없었겠지.</blockquote>
+<p>13세기 후반 프랑스 국왕 ⑥<input type="text" class="blank-input" data-answer="필리프 4세" data-id="6" style="width:116px" placeholder="">가 성직자에게 세금을 걷으려 하자 교황 <strong>보니파키우스 8세</strong>가 반대하면서 대립이 다시 심해졌다. 왕은 교황을 통제하고자 로마에 있던 교황청을 프랑스 <strong>아비뇽</strong>으로 옮겼는데, 이를 ⑦<input type="text" class="blank-input" data-answer="아비뇽 유수" data-id="7" style="width:116px" placeholder="">라고 한다. 교황청이 다시 로마로 돌아간 뒤에도 두 곳에서 각각 교황을 뽑으면서 ⑧<input type="text" class="blank-input" data-answer="교회의 대분열" data-id="8" style="width:132px" placeholder=""> 시대가 이어졌고, 교황의 권위는 크게 떨어졌다.</p>
+<br>
+<blockquote>🎙️ 여기가 오늘의 <strong>반전</strong>이야. 1077년엔 황제가 눈밭에 섰는데, 1309년엔 교황이 남의 나라로 옮겨져. <strong>같은 문제</strong>(교회 일에 왕이 끼어드는 것)를 두고 싸웠는데 결말이 정반대야. 아래 저울이 232년 동안 어느 쪽으로 기우는지 봐.</blockquote>
+<br>
+<figure class="ws-fig ws-anim"><img id="anim62" src="images/3-3-2_232년역전.webp" alt="232년 만의 역전 — 저울이 1077년에는 교황 쪽으로, 1309년에는 왕 쪽으로 기운다. 교황의 힘은 신앙에서, 왕의 힘은 땅·군대·돈에서 나왔고 시간이 갈수록 뒤쪽이 무거워졌다." data-src="images/3-3-2_232년역전.webp" loading="lazy"><div class="ws-anim-ctl"><button type="button" onclick="replayAnim('anim62')">▶ 다시 보기</button><span>한 번 재생됩니다</span></div><figcaption>232년 만의 역전 — 저울이 1077년에는 교황 쪽으로, 1309년에는 왕 쪽으로 기운다. 교황의 힘은 신앙에서, 왕의 힘은 땅·군대·돈에서 나왔고 시간이 갈수록 뒤쪽이 무거워졌다.</figcaption></figure>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 97쪽</div><div class="ws-tb-ask">교황들은 아비뇽에서 <strong>몇 대에 걸쳐 몇 년</strong> 동안 지냈나? 그리고 대분열은 <strong>몇 년</strong> 동안 이어졌나? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 97쪽에서 찾기 — 교황들은 아비뇽에서 몇 대에 걸쳐 몇 년 동안 지냈나? 그리고 대분열" style="width:400px" placeholder=""></div></div>
 <br>
 <blockquote>⚠️ <strong>왜 뒤집혔을까 — 이게 오늘의 핵심 질문이야.</strong> 힌트는 지난 시간에 있어. 봉건 사회가 흔들리면서 <strong>왕들이 다시 강해지고 있었거든.</strong> 교황의 힘은 <em>신앙</em>에서 나왔고 왕의 힘은 <em>땅과 군대와 돈</em>에서 나왔는데, 시간이 갈수록 뒤쪽이 무거워진 거야.</blockquote>
 <br>
@@ -359,9 +542,9 @@ blockquote {
 <br>
 <table class="act-table">
 <tr><td></td><td>카노사의 굴욕 (1077)</td><td>아비뇽 유수 (1309~1377)</td></tr>
-<tr><td>누가 굽혔나</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="누가 굽혔나" style="width:150px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="누가 굽혔나" style="width:150px" placeholder=""></td></tr>
-<tr><td>상대는 누구</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="상대는 누구" style="width:150px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="상대는 누구" style="width:150px" placeholder=""></td></tr>
-<tr><td>다툰 문제</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="다툰 문제" style="width:150px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="다툰 문제" style="width:150px" placeholder=""></td></tr>
+<tr><td>누가 굽혔나</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="누가 굽혔나" style="width:150px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="누가 굽혔나" style="width:150px" placeholder=""></td></tr>
+<tr><td>상대는 누구</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="상대는 누구" style="width:150px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="상대는 누구" style="width:150px" placeholder=""></td></tr>
+<tr><td>다툰 문제</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="다툰 문제" style="width:150px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-10" data-label="다툰 문제" style="width:150px" placeholder=""></td></tr>
 </table>
 <br>
 <blockquote>💬 <strong>두 사건의 다툰 문제를 쓰고 나서 비교해 보자. 무엇을 알 수 있을까?</strong></blockquote>
@@ -394,7 +577,7 @@ blockquote {
 <p>교황의 힘이 절정에 이르던 바로 그 무렵(1096), 유럽 전체를 움직인 전쟁이 시작된다. 교황이 부르자 수십만 명이 십자가를 달고 동쪽으로 떠났어 — 다음 시간 <strong>「이슬람 세계와 크리스트교 세계가 충돌하고 교류하다」</strong>.</p>
 </div>
 <script>
-const TB=11, TOX=5, GT=16;
+const TB=8, TOX=5, GT=13;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
@@ -438,6 +621,18 @@ function galGo(id,i){
 function galStep(id,d){
   const g=document.getElementById(id); if(!g) return;
   galGo(id, (+(g.dataset.cur||0)) + d);
+}
+function cmpGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n; i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function cmpStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  cmpGo(id, (+(g.dataset.cur||0)) + d);
 }
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
