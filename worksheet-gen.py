@@ -930,8 +930,17 @@ body {{
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
 }}
 h1 {{ font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }}
-h2 {{ font-size: 1.25em; margin: 18px 0 10px; color: #333; }}
-h3 {{ font-size: 1.1em; margin: 14px 0 8px; color: #555; }}
+h2 {{
+  font-size: 1.3em; margin: 30px 0 12px; color: #1d1d1f; font-weight: 800;
+  letter-spacing: -0.01em; padding: 8px 0 8px 14px; border-left: 6px solid #007aff;
+  background: linear-gradient(90deg, #f2f6ff, rgba(255,255,255,0));
+  border-radius: 0 8px 8px 0;
+}}
+h2:first-of-type {{ margin-top: 14px; }}
+h3 {{
+  font-size: 1.09em; margin: 22px 0 8px; color: #2b3240; font-weight: 750;
+  padding-left: 11px; border-left: 3px solid #b6c4dc;
+}}
 h4 {{ font-size: 1em; margin: 10px 0 6px; color: #666; }}
 p {{ margin: 5px 0; font-size: 0.95em; }}
 hr {{ border: none; border-top: 1px solid #eee; margin: 16px 0; }}
@@ -941,8 +950,13 @@ table {{
 /* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
 table.act-table {{ width: auto; max-width: 100%; }}
 table.act-table .activity-input {{ max-width: 100%; }}
-td {{ border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }}
-tr:first-child td {{ background: #f0f4ff; font-weight: 600; }}
+td {{ border: 1px solid #e2e6ec; padding: 10px 12px; vertical-align: middle; line-height: 1.6; }}
+tr:first-child td {{
+  background: #e8eefb; font-weight: 750; color: #22314e; vertical-align: middle;
+  border-color: #cfd9ec; font-size: 0.96em;
+}}
+tbody tr:nth-child(even):not(:first-child) td {{ background: #fcfdff; }}
+table {{ border-radius: 10px; overflow: hidden; }}
 .ws-fold {{
   margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
   border-radius: 8px; background: #fbfaf6; overflow: hidden;
@@ -1108,10 +1122,14 @@ blockquote {{
 }}
 .ox-group {{ display: inline-flex; gap: 6px; }}
 .ox-btn {{
-  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
-  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  width: 44px; height: 44px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1.12em; font-weight: 800;
   cursor: pointer; transition: all 0.2s; line-height: 1;
 }}
+.ox-group {{ gap: 9px; }}
+/* OX 표 — 문장 칸은 넓게, 버튼 칸은 좁고 가운데 (2026-09-03) */
+table:has(.ox-group) td:last-child {{ width: 118px; text-align: center; }}
+table:has(.ox-group) td:first-child {{ width: 46px; text-align: center; color: #6b7482; }}
 .ox-btn:hover {{ background: #f0f4ff; }}
 .ox-btn.selected {{ background: #007aff; color: white; }}
 .ox-btn.correct {{ background: #34c759; color: white; border-color: #34c759; }}
@@ -1129,10 +1147,12 @@ blockquote {{
 .btn-submitted {{ background: #34c759 !important; cursor: default; }}
 .submit-msg {{ text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }}
 .essay-input {{
-  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
-  padding: 10px; font-family: inherit; font-size: 0.93em;
-  resize: vertical; margin: 6px 0; outline: none;
+  width: 100%; min-height: 104px; border: 1.5px solid #ccd4de; border-radius: 10px;
+  padding: 12px 14px; font-family: inherit; font-size: 0.95em; line-height: 1.9;
+  resize: vertical; margin: 8px 0; outline: none; background: #fcfdff;
+  transition: border-color .15s, background .15s;
 }}
+.essay-input:focus {{ border-color: #007aff; background: #fff; }}
 .essay-input:focus {{ border-color: #007aff; }}
 .control-bar {{
   position: sticky; top: 0; background: white; padding: 10px 0;
