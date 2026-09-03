@@ -88,26 +88,51 @@ blockquote {
    정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
 .pk-card { position: relative; }
 .pk-card.pk-happy {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(26,122,96,.16);
-  background: linear-gradient(180deg, #fffdf2, #fff);
+  transform: translateY(-10px) scale(1.04);
+  border-color: #e0b13a;
+  box-shadow: 0 12px 22px rgba(200,150,30,.28), 0 0 0 3px rgba(255,214,102,.35);
+  background: linear-gradient(180deg, #fff9e2, #fff);
+  animation: pkHop .5s cubic-bezier(.34,1.56,.64,1);
 }
-.pk-card.pk-happy img { filter: brightness(1.08) saturate(1.15); }
+.pk-card.pk-happy img { filter: brightness(1.16) saturate(1.45) contrast(1.06); transform: scale(1.1); }
 .pk-card.pk-sad {
-  transform: translateY(4px);
-  box-shadow: 0 2px 6px rgba(60,70,90,.10);
-  background: linear-gradient(180deg, #f6f8fc, #fff);
+  transform: translateY(9px) scale(.95) rotate(1.6deg);
+  border-color: #93a3bb;
+  box-shadow: 0 1px 3px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #eef1f6, #f8fafc);
+  animation: pkSlump .45s ease-out;
 }
-.pk-card.pk-sad img { filter: saturate(.55) brightness(.94) hue-rotate(-8deg); }
+.pk-card.pk-sad img {
+  filter: saturate(.22) brightness(.84) contrast(.92) hue-rotate(-14deg);
+  transform: scale(.9) rotate(-2deg);
+}
+.pk-card.pk-sad .pk-name, .pk-card.pk-sad .pk-sit { opacity: .62; }
+@keyframes pkHop {
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-20px) scale(1.09); }
+  100% { transform: translateY(-10px) scale(1.04); }
+}
+@keyframes pkSlump {
+  0%   { transform: translateY(0) scale(1) rotate(0); }
+  60%  { transform: translateY(13px) scale(.93) rotate(2.4deg); }
+  100% { transform: translateY(9px) scale(.95) rotate(1.6deg); }
+}
 .pk-card.pk-happy::after, .pk-card.pk-sad::after {
-  position: absolute; top: 6px; right: 8px; font-size: 1.15em; line-height: 1;
+  position: absolute; top: -12px; right: -8px; font-size: 1.9em; line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.22));
 }
-.pk-card.pk-happy::after { content: "😀"; }
-.pk-card.pk-sad::after { content: "😢"; }
+.pk-card.pk-happy::after { content: "😀"; animation: pkPop .45s cubic-bezier(.34,1.8,.64,1); }
+.pk-card.pk-sad::after { content: "😢"; animation: pkDrip .45s ease-out; }
+@keyframes pkPop { 0% { transform: scale(0) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes pkDrip { 0% { transform: translateY(-10px) scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; }
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; animation: none; }
+  .pk-card.pk-happy::after, .pk-card.pk-sad::after { animation: none; }
 }
-@media print { .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; } }
+@media print {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; animation: none; }
+  .pk-card.pk-happy img, .pk-card.pk-sad img { transform: none; }
+}
 
 .pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
 .pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
@@ -495,17 +520,16 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h3>🌾 땅을 셋으로 나눈 이유</h3>
 <p>장원의 경작지는 그냥 한 덩어리가 아니었다. 봄에 씨 뿌리는 <strong>춘경지</strong>, 가을에 씨 뿌리는 <strong>추경지</strong>, 그리고 <strong>아무것도 심지 않고 쉬게 두는</strong> 땅으로 나누어 해마다 돌려 가며 지었다. 땅도 쉬어야 힘을 되찾기 때문이다.</p>
 <br>
-<figure class="ws-fig"><img src="images/3-3-1_장원배치.png" alt="장원 배치도와 3포제 — 왼쪽은 장원의 생김새, 오른쪽 표는 같은 땅이 해마다 어떻게 돌아가는지 보여 준다." loading="lazy"><figcaption>장원 배치도와 3포제 — 왼쪽은 장원의 생김새, 오른쪽 표는 같은 땅이 해마다 어떻게 돌아가는지 보여 준다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/3-3-1_장원배치.png" alt="장원의 생김새(왼쪽) · 같은 땅이 3년에 한 번 쉬는 순환(오른쪽 위) · 그 밭고랑이 오늘도 남아 있는 영국 들판(오른쪽 아래·2026년 3월 항공 촬영, 사진: Simon Tomson, geograph.org.uk · CC BY-SA 2.0)." loading="lazy"><figcaption>장원의 생김새(왼쪽) · 같은 땅이 3년에 한 번 쉬는 순환(오른쪽 위) · 그 밭고랑이 오늘도 남아 있는 영국 들판(오른쪽 아래·2026년 3월 항공 촬영, 사진: Simon Tomson, geograph.org.uk · CC BY-SA 2.0).</figcaption></figure>
 <br>
-<figure class="ws-fig"><img src="images/3-3-1_장원배치도_실물.png" alt="100년 전 역사 지도책에 실린 실제 중세 장원 평면도. 세 경작지의 이름이 지도에 그대로 적혀 있다. (William R. Shepherd, Historical Atlas, 1923 · 퍼블릭 도메인)" loading="lazy"><figcaption>100년 전 역사 지도책에 실린 실제 중세 장원 평면도. 세 경작지의 이름이 지도에 그대로 적혀 있다. (William R. Shepherd, Historical Atlas, 1923 · 퍼블릭 도메인)</figcaption></figure>
+<blockquote>🎙️ 오른쪽 아래 사진, <strong>올해 3월에 찍은 거야.</strong> 물결무늬 보이지? 저게 800년쯤 전 농민이 쟁기로 갈아 놓은 밭고랑이야. 장원도 영주도 농노도 다 사라졌는데 <strong>땅이 아직 기억하고 있는 거지.</strong></blockquote>
+<blockquote>그리고 쟁기 + 말 + 땅 돌려짓기. 이 셋이 겹치니까 <strong>먹고 남는 게 생겼어.</strong> 남으면? 판다. 팔면? 시장이 선다. 시장이 서면? <strong>도시가 자란다.</strong> — 지금은 그냥 농사 이야기 같지만, 이게 나중에 <em>장원을 무너뜨리는</em> 힘이 돼. 몇 차시 뒤에 다시 만날 거야.</blockquote>
 <br>
-<blockquote>🔍 <strong>찾아보기</strong> — 지도 속 글씨는 세로로 누워 있어. 눈으로 따라가면 「Spring Planting」·「Autumn Planting」·「Fallow」 세 덩어리가 나온다. 우리 교과서의 <strong>춘경지·추경지·휴경지</strong>가 바로 저것이다.</blockquote>
+<details class="ws-fold ws-fold-원문"><summary>🔍 진짜 장원 평면도를 보고 싶다면 (눌러서 펼치기)</summary><div class="ws-fold-body">
+<p>100년 전 역사 지도책에 실린 실제 중세 장원 평면도야. 지도 속 글씨는 세로로 누워 있어서, 눈으로 따라가면 「Spring Planting」·「Autumn Planting」·「Fallow」 세 덩어리가 나와. 우리 교과서의 <strong>춘경지·추경지·휴경지</strong>가 바로 저것.</p>
+</div></details>
 <br>
-<figure class="ws-fig"><img src="images/3-3-1_밭고랑항공.jpg" alt="오늘날 영국 링컨셔의 들판. 물결처럼 이어진 줄무늬는 중세 농민이 쟁기로 남긴 밭고랑이다. 2026년 3월 항공 촬영. (사진: Simon Tomson, geograph.org.uk · CC BY-SA 2.0)" loading="lazy"><figcaption>오늘날 영국 링컨셔의 들판. 물결처럼 이어진 줄무늬는 중세 농민이 쟁기로 남긴 밭고랑이다. 2026년 3월 항공 촬영. (사진: Simon Tomson, geograph.org.uk · CC BY-SA 2.0)</figcaption></figure>
-<br>
-<blockquote>🎙️ 이 사진, <strong>올해 3월에 찍은 거야.</strong> 영국 시골 들판인데 물결무늬가 보이지? 저게 800년쯤 전 중세 농민이 쟁기로 갈아 놓은 밭고랑이야. 장원도 영주도 농노도 다 사라졌는데, <strong>땅이 아직 기억하고 있는 거지.</strong></blockquote>
-<br>
-<blockquote>🎙️ 쟁기 + 말 + 땅 돌려짓기. 이 셋이 겹치니까 <strong>먹고 남는 게 생겼어.</strong> 남으면? 판다. 팔면? 시장이 선다. 시장이 서면? <strong>도시가 자란다.</strong> — 지금은 그냥 농사 이야기 같지만, 이게 나중에 <em>장원을 무너뜨리는</em> 힘이 돼. 몇 차시 뒤에 다시 만날 거야.</blockquote>
+<figure class="ws-fig"><img src="images/3-3-1_장원배치도_실물.png" alt="William R. Shepherd, Historical Atlas (New York, 1923) · 퍼블릭 도메인" loading="lazy"><figcaption>William R. Shepherd, Historical Atlas (New York, 1923) · 퍼블릭 도메인</figcaption></figure>
 <br>
 <h2>📖 6단계: 태어나서 죽을 때까지, 교회 안에서</h2>
 <blockquote>📕 <strong>교과서 92쪽 「종교와 손잡고」</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
@@ -518,14 +542,16 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>📖 7단계: 교회가 감싼 문화</h2>
 <blockquote>📕 <strong>교과서 93쪽</strong> 펴고 채우기 · 배정 시간 <strong>10분</strong></blockquote>
-<p>중세 서유럽의 문화는 크리스트교를 중심으로 자랐다. <strong>학문·교육·건축·문학</strong> 네 갈래가 모두 한 중심에서 뻗어 나온다.</p>
+<p>6단계에서 본 건 <strong>삶</strong>이 교회를 통과한다는 것이었다. 그런데 삶이 통째로 교회 안에 있으면, 그 사람들이 <strong>만드는 것</strong>도 교회 것이 된다. 무엇을 파고들지, 무엇을 짓고 무엇을 노래할지가 다 거기서 정해졌다.</p>
+<p>중세 서유럽의 문화는 그래서 크리스트교를 중심으로 자랐다. <strong>학문·교육·건축·문학</strong> 네 갈래가 모두 한 중심에서 뻗어 나온다.</p>
 <br>
 <figure class="ws-fig"><img src="images/3-3-1_교회문화.png" alt="중세 문화는 교회가 감쌌다 — 크리스트교를 중심으로 학문·교육·건축·문학 네 갈래가 뻗어 나온다. 왼쪽 위, 이슬람 세계를 거쳐 들어온 아리스토텔레스 철학이 학문 갈래로 합류하는 화살표에 주목할 것." loading="lazy"><figcaption>중세 문화는 교회가 감쌌다 — 크리스트교를 중심으로 학문·교육·건축·문학 네 갈래가 뻗어 나온다. 왼쪽 위, 이슬람 세계를 거쳐 들어온 아리스토텔레스 철학이 학문 갈래로 합류하는 화살표에 주목할 것.</figcaption></figure>
 <br>
-<p><strong>학문</strong> — 중심은 ⑫<input type="text" class="blank-input" data-answer="신학" data-id="12" style="width:60px" placeholder="">이었다. 여기에 그리스 철학자 <strong>아리스토텔레스</strong>의 철학이 전해지면서, 신앙과 이성의 조화를 강조한 ⑬<input type="text" class="blank-input" data-answer="스콜라 철학" data-id="13" style="width:116px" placeholder="">이 유행했다(토마스 아퀴나스 『신학 대전』).</p>
-<p><strong>교육</strong> — 12세기 이후 유럽 곳곳에 <strong>대학</strong>이 세워졌다. 교회나 영주의 간섭에서 벗어나 <strong>스스로 운영</strong>되었다.</p>
-<p><strong>건축</strong> — 11세기의 ⑭<input type="text" class="blank-input" data-answer="로마네스크" data-id="14" style="width:100px" placeholder=""> 양식, 12세기 이후의 ⑮<input type="text" class="blank-input" data-answer="고딕" data-id="15" style="width:60px" placeholder=""> 양식. 아래 사진 두 장으로 직접 비교한다.</p>
-<p><strong>문학</strong> — 『아서왕 이야기』·『롤랑의 노래』 같은 <strong>기사도 문학</strong>.</p>
+<p><strong>학문</strong> — 중심은 ⑫<input type="text" class="blank-input" data-answer="신학" data-id="12" style="width:60px" placeholder="">이었다. <em>신을 아는 것이 가장 높은 앎</em>이라고 여겼기 때문이다. 여기에 그리스 철학자 <strong>아리스토텔레스</strong>의 철학이 전해지면서, 신앙과 이성의 조화를 강조한 ⑬<input type="text" class="blank-input" data-answer="스콜라 철학" data-id="13" style="width:116px" placeholder="">이 유행했다(토마스 아퀴나스 『신학 대전』).</p>
+<p><strong>교육</strong> — 12세기 이후 유럽 곳곳에 <strong>대학</strong>이 세워졌다. 배우는 것은 신학·법학·의학이었고, 운영은 교회나 영주의 간섭 없이 <strong>스스로</strong> 했다.</p>
+<blockquote>⚠️ 여기서 헷갈리지 말 것 — <strong>운영은 자율, 배우는 것은 신학이 중심.</strong> 대학은 누구 밑에 있지 않았지만, 그 안에서 가장 높은 학문은 여전히 신학이었다.</blockquote>
+<p><strong>건축</strong> — <strong>신의 집</strong>을 짓는 일이라 마을에서 가장 크고 높게 지었다. 11세기의 ⑭<input type="text" class="blank-input" data-answer="로마네스크" data-id="14" style="width:100px" placeholder=""> 양식, 12세기 이후의 ⑮<input type="text" class="blank-input" data-answer="고딕" data-id="15" style="width:60px" placeholder=""> 양식. 아래 사진 두 장으로 직접 비교한다.</p>
+<p><strong>문학</strong> — 『아서왕 이야기』·『롤랑의 노래』 같은 <strong>기사도 문학</strong>. 싸우는 것이 일인 기사에게 <em>약자를 지켜라·신께 충성하라</em>는 규범을 씌운 것이 기사도다.</p>
 <br>
 <blockquote>🎙️ <strong>아리스토텔레스, 어디서 들어 봤지?</strong> 맞아, 고대 그리스 사람이야(2단원). 그런데 그 철학이 어떻게 천 년도 더 지나서 중세 유럽에 "전해"졌을까? — 서유럽이 잊고 있던 그리스 책들을 <strong>이슬람 세계가 번역해서 간직하고 있었거든.</strong> 지난 시간에 배운 이슬람 세계(Ⅲ-2-3)가 여기서 다시 등장하는 거야. 유럽사와 서아시아사가 따로 노는 게 아니라는 증거.</blockquote>
 <br>
