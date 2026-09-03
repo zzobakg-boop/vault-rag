@@ -184,6 +184,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_gallery = False        # 2026-08-31: 한 장씩 넘겨 보는 큐레이션 (:::gallery ... :::)
     gallery_items = []
     gallery_title = ''
+    in_pick = False; pick_q = ''; pick_rows = []   # 2026-09-03: 인물 선택 활동
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_tb = False             # 2026-09-02: 교과서를 펴는 자리 (:::교과서 <라벨> ... :::)
@@ -301,6 +302,68 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 continue
             if stripped:
                 tb_lines.append(stripped)
+            continue
+
+        # 🎮 인물 선택 활동 (:::인물선택 <발문> / 이름 | 상황 | 웃음|울음 | 이유 ... :::)
+        #   2026-09-03 천대현: "표로 바로 제시하지 말고 캐릭터 선택 화면처럼 고르게 하고,
+        #   다 고르면 구분된 표가 나타나게." 교과서 107쪽도 같은 내용을 역할놀이로 낸다 —
+        #   우리가 활동을 표로 눌러놨던 것이다.
+        #   🔴 제출에 넣지 않는다(입력칸 0) — 평가가 아니라 판단을 흔드는 자리다. act 인덱스 불변.
+        #   정답은 **다 고른 뒤에만** 공개한다(하나씩 즉시 채점하면 찍기로 넘어간다).
+        if stripped.startswith(':::인물선택'):
+            in_pick = True
+            pick_q = stripped[len(':::인물선택'):].strip()
+            pick_rows = []
+            continue
+        if in_pick:
+            if stripped == ':::':
+                pid = f'pk{len(html_parts)}'
+                cards = ''
+                for i, (nm, sit, ans, why, img) in enumerate(pick_rows):
+                    cards += (
+                      f'<div class="pk-card" data-i="{i}" data-ans="{ans}">'
+                      f'<img src="images/people/{img}.png" alt="" loading="lazy">'
+                      f'<div class="pk-name">{inline(nm)}</div>'
+                      f'<div class="pk-sit">{inline(sit)}</div>'
+                      f'<div class="pk-btns">'
+                      f'<button type="button" class="pk-b" data-v="웃음">😀 웃는다</button>'
+                      f'<button type="button" class="pk-b" data-v="울음">😢 운다</button>'
+                      f'</div><div class="pk-why" hidden>{inline(why)}</div></div>')
+                html_parts.append(
+                  f'<div class="ws-pick" id="{pid}">'
+                  f'<div class="pk-head"><span>{inline(pick_q)}</span>'
+                  f'<b class="pk-count">0 / {len(pick_rows)}</b></div>'
+                  f'<div class="pk-grid">{cards}</div>'
+                  f'<div class="pk-result" hidden></div></div>'
+                  f'<script>(function(){{var w=document.getElementById("{pid}");'
+                  f'var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;'
+                  'function done(){return cs.filter(function(c){return c.dataset.pick}).length}'
+                  'function reveal(){var ok=0;cs.forEach(function(c){'
+                  'var right=c.dataset.pick===c.dataset.ans;if(right)ok++;'
+                  'c.classList.add(right?"pk-ok":"pk-no");'
+                  'if(!right)c.querySelector(".pk-why").hidden=false;});'
+                  'var r=w.querySelector(".pk-result");r.hidden=false;'
+                  'r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.'
+                  '<div class=\'pk-sum\'><div class=\'pk-col pk-up\'><b>웃는 사람</b>"'
+                  '+cs.filter(function(c){return c.dataset.ans==="웃음"}).map(function(c){'
+                  'return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")'
+                  '+"</div><div class=\'pk-col pk-down\'><b>우는 사람</b>"'
+                  '+cs.filter(function(c){return c.dataset.ans==="울음"}).map(function(c){'
+                  'return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")'
+                  '+"</div></div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}'
+                  'cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){'
+                  'b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;'
+                  'c.dataset.pick=b.dataset.v;c.classList.add("pk-set");'
+                  'c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});'
+                  'w.querySelector(".pk-count").textContent=done()+" / "+N;'
+                  'if(done()===N){w.classList.add("pk-done");reveal();}});});});'
+                  '})();</script>')
+                in_pick = False
+                pick_rows = []
+            elif stripped and '|' in stripped:
+                parts = [x.strip() for x in stripped.split('|')]
+                while len(parts) < 5: parts.append('')
+                pick_rows.append(tuple(parts[:5]))
             continue
 
         # ⚖️ 움직이는 시소 (:::시소) — 2026-09-03 천대현 "표의 시소를 움직이게 할 수 있나?"
@@ -898,6 +961,41 @@ blockquote {{
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }}
+/* 🎮 인물 선택 활동 — 2026-09-03. 표를 정답으로 주지 않고 학생이 고르게 한다.
+   캐릭터 선택 화면의 결: 고르기 전엔 흐리고, 고르면 색이 들어온다. */
+.ws-pick {{ border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd; padding: 16px; margin: 18px 0; }}
+.pk-head {{ display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-size: 0.94em; font-weight: 700; color: #3d4552; margin-bottom: 12px; }}
+.pk-count {{ color: #c62c3c; white-space: nowrap; }}
+.pk-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }}
+@media (max-width: 640px) {{ .pk-grid {{ grid-template-columns: repeat(2, 1fr); }} }}
+.pk-card {{ border: 2px solid #e2e6ec; border-radius: 12px; background: #fff; padding: 10px 8px;
+  text-align: center; transition: .15s; }}
+.pk-card img {{ width: 72px; height: 72px; image-rendering: pixelated;
+  filter: grayscale(1) opacity(.45); transition: .15s; }}
+.pk-card.pk-set img {{ filter: none; }}
+.pk-card.pk-set {{ border-color: #9aa4b2; background: #fdfdfe; }}
+.pk-name {{ font-weight: 800; font-size: 0.9em; margin-top: 2px; color: #1c242f; }}
+.pk-sit {{ font-size: 0.78em; color: #6b7482; line-height: 1.5; margin: 3px 0 8px; min-height: 2.2em; }}
+.pk-btns {{ display: flex; gap: 5px; }}
+.pk-b {{ flex: 1; border: 1.5px solid #d5dae1; background: #fff; border-radius: 8px;
+  padding: 6px 2px; font: inherit; font-size: 0.78em; font-weight: 700; color: #55607a; cursor: pointer; }}
+.pk-b:hover {{ background: #f3f6fa; }}
+.pk-b.on {{ background: #1c242f; border-color: #1c242f; color: #fff; }}
+.pk-card.pk-ok {{ border-color: #1a7a60; background: #f2fbf7; }}
+.pk-card.pk-no {{ border-color: #c62c3c; background: #fef5f6; }}
+.pk-why {{ font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }}
+.pk-result {{ margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
+  background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }}
+.pk-sum {{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }}
+@media (max-width: 520px) {{ .pk-sum {{ grid-template-columns: 1fr; }} }}
+.pk-col {{ background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }}
+.pk-col b {{ display: block; margin-bottom: 5px; font-size: 0.95em; }}
+.pk-col span {{ display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }}
+.pk-up {{ border-color: #1a7a60; color: #15705a; }}
+.pk-down {{ border-color: #c62c3c; color: #b3242f; }}
+@media print {{ .pk-b {{ display: none; }} .pk-card img {{ filter: none; }} }}
+
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
 .ws-seesaw {{
   border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
