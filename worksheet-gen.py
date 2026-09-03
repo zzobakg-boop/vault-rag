@@ -303,6 +303,44 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 tb_lines.append(stripped)
             continue
 
+        # ⚖️ 움직이는 시소 (:::시소) — 2026-09-03 천대현 "표의 시소를 움직이게 할 수 있나?"
+        #   정지 도식은 '환율↑이면 원화 가치↓'를 *보여만* 준다. 학생이 직접 밀어 보면
+        #   둘이 같이 올라가는 일이 없다는 것을 손으로 확인한다. 원화 가치는 1,100원을
+        #   기준(100%)으로 한 상대값 — 1,100/환율. 산수가 아니라 방향을 보는 장치다.
+        if stripped == ':::시소':
+            sid = f'ss{len(html_parts)}'
+            html_parts.append(f'''<div class="ws-seesaw" id="{sid}">
+  <div class="ws-seesaw-head">환율을 직접 움직여 보자 — 둘이 같이 올라가는 일이 있는지</div>
+  <input class="ws-seesaw-range" type="range" min="1000" max="1500" step="10" value="1100"
+         aria-label="환율 조절">
+  <div class="ws-seesaw-stage">
+    <div class="ws-seesaw-beam"></div>
+    <div class="ws-seesaw-pivot"></div>
+    <div class="ws-seesaw-chip ws-l"><b>환율</b><span class="v">1,100원</span></div>
+    <div class="ws-seesaw-chip ws-r"><b>원화 가치</b><span class="v">100%</span></div>
+  </div>
+  <div class="ws-seesaw-out">100달러짜리 굿즈 = <b>110,000원</b></div>
+</div>
+<script>(function(){{
+  var w=document.getElementById('{sid}');
+  var r=w.querySelector('.ws-seesaw-range'), beam=w.querySelector('.ws-seesaw-beam');
+  var L=w.querySelector('.ws-l'), R=w.querySelector('.ws-r'), out=w.querySelector('.ws-seesaw-out');
+  function draw(){{
+    var fx=+r.value;
+    var deg=(fx-1250)/250*9;                       // 환율이 높을수록 환율 쪽(왼쪽)이 올라간다
+    var dy=-Math.sin(deg*Math.PI/180)*250;
+    beam.style.transform='rotate('+deg+'deg)';
+    L.style.transform='translateY('+dy+'px)';
+    R.style.transform='translateY('+(-dy)+'px)';
+    L.querySelector('.v').textContent=fx.toLocaleString()+'원';
+    R.querySelector('.v').textContent=Math.round(1100/fx*100)+'%';
+    L.classList.toggle('up',deg>0.5); R.classList.toggle('up',deg<-0.5);
+    out.innerHTML='100달러짜리 굿즈 = <b>'+(fx*100).toLocaleString()+'원</b>';
+  }}
+  r.addEventListener('input',draw); draw();
+}})();</script>''')
+            continue
+
         # 📖 표·도식을 읽는 자리 (:::해설 ... :::) — 2026-09-03 천대현
         #   계열이 셋이 된다: 파랑=쓰는 곳(빈칸) · 황토=교과서를 펴는 곳 · 회색=읽는 곳.
         #   표 아래 해설이 본문 문단과 같은 모양이라 "여기도 빈칸이 있나" 하고 보게 됐다.
@@ -852,6 +890,45 @@ blockquote {{
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }}
+/* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
+.ws-seesaw {{
+  border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
+  padding: 16px 18px 18px; margin: 18px 0;
+}}
+.ws-seesaw-head {{ font-size: 0.9em; font-weight: 700; color: #4a5361; margin-bottom: 10px; }}
+.ws-seesaw-range {{ width: 100%; accent-color: #c62c3c; margin-bottom: 6px; }}
+.ws-seesaw-stage {{ position: relative; height: 190px; }}
+.ws-seesaw-beam {{
+  position: absolute; left: 50%; top: 50%; width: 500px; height: 10px;
+  margin-left: -250px; margin-top: -5px; background: #7b8494; border-radius: 5px;
+  transition: transform .18s ease-out;
+}}
+.ws-seesaw-pivot {{
+  position: absolute; left: 50%; top: 50%; margin-left: -26px;
+  border-left: 26px solid transparent; border-right: 26px solid transparent;
+  border-top: 52px solid #96a0ae;
+}}
+.ws-seesaw-chip {{
+  position: absolute; top: 50%; width: 168px; margin-top: -78px; padding: 9px 6px;
+  text-align: center; border-radius: 12px; border: 3px solid; background: #fff;
+  transition: transform .18s ease-out; font-size: 0.88em;
+}}
+.ws-seesaw-chip b {{ display: block; font-size: 0.95em; }}
+.ws-seesaw-chip .v {{ display: block; font-size: 1.45em; font-weight: 800; margin-top: 2px; }}
+.ws-seesaw-chip.ws-l {{ left: 50%; margin-left: -334px; border-color: #c62c3c; color: #c62c3c; }}
+.ws-seesaw-chip.ws-r {{ left: 50%; margin-left: 166px; border-color: #1e5ca8; color: #1e5ca8; }}
+.ws-seesaw-out {{
+  text-align: center; font-size: 1.02em; font-weight: 700; color: #15705a;
+  background: #e0f3ec; border: 1px solid #1a7a60; border-radius: 10px; padding: 9px;
+}}
+@media (max-width: 560px) {{
+  .ws-seesaw-beam {{ width: 300px; margin-left: -150px; }}
+  .ws-seesaw-chip {{ width: 124px; font-size: 0.8em; }}
+  .ws-seesaw-chip.ws-l {{ margin-left: -206px; }}
+  .ws-seesaw-chip.ws-r {{ margin-left: 82px; }}
+}}
+@media print {{ .ws-seesaw-range {{ display: none; }} }}
+
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
