@@ -66,7 +66,7 @@ blockquote {
   border-top: 52px solid #96a0ae;
 }
 .ws-seesaw-chip {
-  position: absolute; top: 50%; width: 168px; margin-top: -78px; padding: 9px 6px;
+  position: absolute; top: 50%; width: 168px; padding: 9px 6px;
   text-align: center; border-radius: 12px; border: 3px solid; background: #fff;
   transition: transform .18s ease-out; font-size: 0.88em;
 }
@@ -373,11 +373,15 @@ blockquote {
   var L=w.querySelector('.ws-l'), R=w.querySelector('.ws-r'), out=w.querySelector('.ws-seesaw-out');
   function draw(){
     var fx=+r.value;
-    var deg=(fx-1250)/250*9;                       // 환율이 높을수록 환율 쪽(왼쪽)이 올라간다
-    var dy=-Math.sin(deg*Math.PI/180)*250;
+    // 🔴 회전 중심은 슬라이더 한가운데(1,250)가 아니라 **기준 환율 1,100원**이다 (2026-09-03 천대현).
+    //   전엔 1,250을 수평으로 잡아 기본값에서부터 -5.4°로 기울어 있었다. 기준은 교과서 값이어야 한다.
+    var deg=Math.max(-9,Math.min(9,(fx-1100)/400*9));
+    var half=beam.offsetWidth/2;                   // 폰 분기(300px)에서도 끝점이 맞도록 실측
+    var dy=-Math.sin(deg*Math.PI/180)*half;        // 왼쪽(환율) 끝의 세로 변위
     beam.style.transform='rotate('+deg+'deg)';
-    L.style.transform='translateY('+dy+'px)';
-    R.style.transform='translateY('+(-dy)+'px)';
+    // 칩 아래끝을 빔 끝에 얹는다 — 높이에 안 기대도록 calc(-100%)로 잡는다
+    L.style.transform='translateY(calc(-100% - 8px + '+dy+'px))';
+    R.style.transform='translateY(calc(-100% - 8px + '+(-dy)+'px))';
     L.querySelector('.v').textContent=fx.toLocaleString()+'원';
     R.querySelector('.v').textContent='$'+(1000/fx).toFixed(2);   // 원화 가치 = 1,000원으로 살 수 있는 달러
     L.classList.toggle('up',deg>0.5); R.classList.toggle('up',deg<-0.5);
