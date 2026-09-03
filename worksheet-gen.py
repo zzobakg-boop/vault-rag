@@ -305,8 +305,11 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
 
         # ⚖️ 움직이는 시소 (:::시소) — 2026-09-03 천대현 "표의 시소를 움직이게 할 수 있나?"
         #   정지 도식은 '환율↑이면 원화 가치↓'를 *보여만* 준다. 학생이 직접 밀어 보면
-        #   둘이 같이 올라가는 일이 없다는 것을 손으로 확인한다. 원화 가치는 1,100원을
-        #   기준(100%)으로 한 상대값 — 1,100/환율. 산수가 아니라 방향을 보는 장치다.
+        #   둘이 같이 올라가는 일이 없다는 것을 손으로 확인한다.
+        #   🔴 원화 가치를 '%'로 쓰지 않는다(2026-09-03 천대현 지적) — 기준(1,100원=100%)이
+        #   화면에 없어 무엇 대비인지 알 수 없고, 기준을 달러 쪽으로 바꾸면 값이 달라진다
+        #   (달러 9.1% 하락 vs 원화 10% 상승). 교과서도 %로 재지 않는다.
+        #   대신 '1,000원으로 살 수 있는 달러'로 쓴다 — 그게 돈의 가치의 정의이고 기준이 문구에 있다.
         if stripped == ':::시소':
             sid = f'ss{len(html_parts)}'
             html_parts.append(f'''<div class="ws-seesaw" id="{sid}">
@@ -317,8 +320,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     <div class="ws-seesaw-beam"></div>
     <div class="ws-seesaw-pivot"></div>
     <div class="ws-seesaw-chip ws-l"><b>환율</b><span class="v">1,100원</span></div>
-    <div class="ws-seesaw-chip ws-r"><b>원화 가치</b><span class="v">100%</span></div>
+    <div class="ws-seesaw-chip ws-r"><b>1,000원으로</b><span class="v">$0.91</span></div>
   </div>
+  <div class="ws-seesaw-note">원화 가치 = <b>1,000원으로 살 수 있는 달러</b>. 환율이 오를수록 줄어든다.</div>
   <div class="ws-seesaw-out">100달러짜리 굿즈 = <b>110,000원</b></div>
 </div>
 <script>(function(){{
@@ -333,7 +337,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     L.style.transform='translateY('+dy+'px)';
     R.style.transform='translateY('+(-dy)+'px)';
     L.querySelector('.v').textContent=fx.toLocaleString()+'원';
-    R.querySelector('.v').textContent=Math.round(1100/fx*100)+'%';
+    R.querySelector('.v').textContent='$'+(1000/fx).toFixed(2);   // 원화 가치 = 1,000원으로 살 수 있는 달러
     L.classList.toggle('up',deg>0.5); R.classList.toggle('up',deg<-0.5);
     out.innerHTML='100달러짜리 굿즈 = <b>'+(fx*100).toLocaleString()+'원</b>';
   }}
@@ -917,6 +921,9 @@ blockquote {{
 .ws-seesaw-chip .v {{ display: block; font-size: 1.45em; font-weight: 800; margin-top: 2px; }}
 .ws-seesaw-chip.ws-l {{ left: 50%; margin-left: -334px; border-color: #c62c3c; color: #c62c3c; }}
 .ws-seesaw-chip.ws-r {{ left: 50%; margin-left: 166px; border-color: #1e5ca8; color: #1e5ca8; }}
+.ws-seesaw-note {{
+  text-align: center; font-size: 0.84em; color: #6b7482; margin: 0 0 8px;
+}}
 .ws-seesaw-out {{
   text-align: center; font-size: 1.02em; font-weight: 700; color: #15705a;
   background: #e0f3ec; border: 1px solid #1a7a60; border-radius: 10px; padding: 9px;
