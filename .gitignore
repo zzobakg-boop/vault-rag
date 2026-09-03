@@ -21,3 +21,9 @@ geodata/
 index_metadata_wiki.json
 *.bak
 *.bak.*
+
+# 🔴 복습용은 기본적으로 발행하지 않는다 (2026-09-03)
+#   worksheet-gen이 호출마다 수업용·복습용·정답편 3종을 만든다. 'git add worksheets/'에
+#   복습용이 쓸려 들어가 **아직 안 나간 차시의 정답 보기 판**이 라이브에 올라가 있었다
+#   (5-5·5-4 실사고). 필요한 차시만 'git add -f'로 명시 추가한다.
+worksheets/*_복습용.html
