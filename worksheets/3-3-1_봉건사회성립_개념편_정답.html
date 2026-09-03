@@ -88,26 +88,51 @@ blockquote {
    정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
 .pk-card { position: relative; }
 .pk-card.pk-happy {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(26,122,96,.16);
-  background: linear-gradient(180deg, #fffdf2, #fff);
+  transform: translateY(-10px) scale(1.04);
+  border-color: #e0b13a;
+  box-shadow: 0 12px 22px rgba(200,150,30,.28), 0 0 0 3px rgba(255,214,102,.35);
+  background: linear-gradient(180deg, #fff9e2, #fff);
+  animation: pkHop .5s cubic-bezier(.34,1.56,.64,1);
 }
-.pk-card.pk-happy img { filter: brightness(1.08) saturate(1.15); }
+.pk-card.pk-happy img { filter: brightness(1.16) saturate(1.45) contrast(1.06); transform: scale(1.1); }
 .pk-card.pk-sad {
-  transform: translateY(4px);
-  box-shadow: 0 2px 6px rgba(60,70,90,.10);
-  background: linear-gradient(180deg, #f6f8fc, #fff);
+  transform: translateY(9px) scale(.95) rotate(1.6deg);
+  border-color: #93a3bb;
+  box-shadow: 0 1px 3px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #eef1f6, #f8fafc);
+  animation: pkSlump .45s ease-out;
 }
-.pk-card.pk-sad img { filter: saturate(.55) brightness(.94) hue-rotate(-8deg); }
+.pk-card.pk-sad img {
+  filter: saturate(.22) brightness(.84) contrast(.92) hue-rotate(-14deg);
+  transform: scale(.9) rotate(-2deg);
+}
+.pk-card.pk-sad .pk-name, .pk-card.pk-sad .pk-sit { opacity: .62; }
+@keyframes pkHop {
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-20px) scale(1.09); }
+  100% { transform: translateY(-10px) scale(1.04); }
+}
+@keyframes pkSlump {
+  0%   { transform: translateY(0) scale(1) rotate(0); }
+  60%  { transform: translateY(13px) scale(.93) rotate(2.4deg); }
+  100% { transform: translateY(9px) scale(.95) rotate(1.6deg); }
+}
 .pk-card.pk-happy::after, .pk-card.pk-sad::after {
-  position: absolute; top: 6px; right: 8px; font-size: 1.15em; line-height: 1;
+  position: absolute; top: -12px; right: -8px; font-size: 1.9em; line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.22));
 }
-.pk-card.pk-happy::after { content: "😀"; }
-.pk-card.pk-sad::after { content: "😢"; }
+.pk-card.pk-happy::after { content: "😀"; animation: pkPop .45s cubic-bezier(.34,1.8,.64,1); }
+.pk-card.pk-sad::after { content: "😢"; animation: pkDrip .45s ease-out; }
+@keyframes pkPop { 0% { transform: scale(0) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes pkDrip { 0% { transform: translateY(-10px) scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; }
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; animation: none; }
+  .pk-card.pk-happy::after, .pk-card.pk-sad::after { animation: none; }
 }
-@media print { .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; } }
+@media print {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; animation: none; }
+  .pk-card.pk-happy img, .pk-card.pk-sad img { transform: none; }
+}
 
 .pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
 .pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
@@ -582,14 +607,22 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>📖 7단계: 교회가 감싼 문화</h2>
 <blockquote>📕 <strong>교과서 93쪽</strong> 펴고 채우기 · 배정 시간 <strong>10분</strong></blockquote>
-<p>중세 서유럽의 문화는 크리스트교를 중심으로 자랐다. <strong>학문·교육·건축·문학</strong> 네 갈래가 모두 한 중심에서 뻗어 나온다.</p>
+<p>6단계에서 본 건 <strong>삶</strong>이 교회를 통과한다는 것이었다. 그런데 삶이 통째로 교회 안에 있으면, 그 사람들이 <strong>만드는 것</strong>도 교회 것이 된다. 무엇을 파고들지, 무엇을 짓고 무엇을 노래할지가 다 거기서 정해졌다.</p>
+<p>중세 서유럽의 문화는 그래서 크리스트교를 중심으로 자랐다. <strong>학문·교육·건축·문학</strong> 네 갈래가 모두 한 중심에서 뻗어 나온다.</p>
 <br>
 <figure class="ws-fig"><img src="images/3-3-1_교회문화.png" alt="중세 문화는 교회가 감쌌다 — 크리스트교를 중심으로 학문·교육·건축·문학 네 갈래가 뻗어 나온다. 왼쪽 위, 이슬람 세계를 거쳐 들어온 아리스토텔레스 철학이 학문 갈래로 합류하는 화살표에 주목할 것." loading="lazy"><figcaption>중세 문화는 교회가 감쌌다 — 크리스트교를 중심으로 학문·교육·건축·문학 네 갈래가 뻗어 나온다. 왼쪽 위, 이슬람 세계를 거쳐 들어온 아리스토텔레스 철학이 학문 갈래로 합류하는 화살표에 주목할 것.</figcaption></figure>
 <br>
-<p><strong>학문</strong> — 중심은 ⑫<span class="blank-filled">신학</span>이었다. 여기에 그리스 철학자 <strong>아리스토텔레스</strong>의 철학이 전해지면서, 신앙과 이성의 조화를 강조한 ⑬<span class="blank-filled">스콜라 철학</span>이 유행했다(토마스 아퀴나스 『신학 대전』).</p>
-<p><strong>교육</strong> — 12세기 이후 유럽 곳곳에 <strong>대학</strong>이 세워졌다. 교회나 영주의 간섭에서 벗어나 <strong>스스로 운영</strong>되었다.</p>
-<p><strong>건축</strong> — 11세기의 ⑭<span class="blank-filled">로마네스크</span> 양식, 12세기 이후의 ⑮<span class="blank-filled">고딕</span> 양식. 아래 사진 두 장으로 직접 비교한다.</p>
-<p><strong>문학</strong> — 『아서왕 이야기』·『롤랑의 노래』 같은 <strong>기사도 문학</strong>.</p>
+<p><strong>학문</strong> — 중심은 ⑫<span class="blank-filled">신학</span>이었다. <em>신을 아는 것이 가장 높은 앎</em>이라고 여겼기 때문이다. 여기에 그리스 철학자 <strong>아리스토텔레스</strong>의 철학이 전해지면서, 신앙과 이성의 조화를 강조한 ⑬<span class="blank-filled">스콜라 철학</span>이 유행했다(토마스 아퀴나스 『신학 대전』).</p>
+<p><strong>교육</strong> — 12세기 이후 유럽 곳곳에 <strong>대학</strong>이 세워졌다. 배우는 것은 신학·법학·의학이었고, 운영은 교회나 영주의 간섭 없이 <strong>스스로</strong> 했다.</p>
+<blockquote>⚠️ 여기서 헷갈리지 말 것 — <strong>운영은 자율, 배우는 것은 신학이 중심.</strong> 대학은 누구 밑에 있지 않았지만, 그 안에서 가장 높은 학문은 여전히 신학이었다.</blockquote>
+<p><strong>건축</strong> — <strong>신의 집</strong>을 짓는 일이라 마을에서 가장 크고 높게 지었다. 11세기의 ⑭<span class="blank-filled">로마네스크</span> 양식, 12세기 이후의 ⑮<span class="blank-filled">고딕</span> 양식. 아래 사진 두 장으로 직접 비교한다.</p>
+<p><strong>문학</strong> — 『아서왕 이야기』·『롤랑의 노래』 같은 <strong>기사도 문학</strong>. 싸우는 것이 일인 기사에게 <em>약자를 지켜라·신께 충성하라</em>는 규범을 씌운 것이 기사도다.</p>
+<br>
+<blockquote>🔴 <strong>여기가 이 차시에서 맥락이 가장 잘 끊기던 자리다 (2026-09-03 천대현 지적·보강).</strong> 종전 도입은 <em>"문화는 크리스트교를 중심으로 자랐다"</em>는 <strong>선언</strong>으로 시작해, 왜 네 갈래가 모두 교회로 모이는지가 없었다. 6단계와의 다리도 없어 두 단계가 따로 놀았다.</blockquote>
+<blockquote><strong>다리 한 줄</strong>: <em>삶이 통째로 교회 안에 있으면, 그 사람들이 <strong>만드는 것</strong>도 교회 것이 된다.</em> — 6단계(일생의 네 관문)를 짚고 이 문장으로 넘어올 것.</blockquote>
+<blockquote><strong>갈래마다 '왜'를 한 줄씩</strong> 넣었다: 학문=신을 아는 것이 가장 높은 앎 / 건축=신의 집이라 가장 크고 높게 / 문학=기사의 무력에 교회가 씌운 규범.</blockquote>
+<blockquote>🔴 <strong>교육 항목은 종전에 자기모순이었다</strong> — 제목은 <em>"교회가 감쌌다"</em>인데 본문은 <em>"교회 간섭에서 벗어나 스스로 운영"</em>이라 학생이 읽으면 어긋난다. <strong>운영(자율) ↔ 내용(신학 중심)을 분리</strong>해 설명하도록 ⚠️ 줄을 넣었다. 교과서 본문(자치 운영)과 날개(신학·법학·의학)가 <strong>둘 다 맞는</strong> 것이므로, 그 둘을 한 문장에서 갈라 주는 것이 지도 포인트다.</blockquote>
+<blockquote>⚠️ <em>"교회가 세운 학문"</em> 같은 표현은 교과서를 넘어선다 — <strong>"배우는 것의 중심은 신학"</strong>까지가 근거 있는 선이다.</blockquote>
 <br>
 <blockquote>🎯 <strong>네 갈래를 먼저 세우고 채우는 순서로 갈 것.</strong> 종전엔 세 문단 산문이라 학생이 <em>"뭐가 몇 개인지"</em>부터 놓쳤다. 도식으로 갈래를 보여 준 뒤 빈칸을 채우게 하면 ⑯~㉑ 여섯 개가 <strong>어느 갈래 소속인지</strong> 함께 기억된다.</blockquote>
 <blockquote>⚠️ 도식에 <strong>볼로냐 대학(법학)·신학/법학/의학</strong>이 이미 들어 있다. 본문에서 뺀 것은 중복이라서다 — 도식을 띄우고 짚을 것.</blockquote>
