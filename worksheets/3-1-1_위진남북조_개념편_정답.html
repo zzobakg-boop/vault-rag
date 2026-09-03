@@ -47,6 +47,83 @@ blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }
+/* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
+.ws-seesaw {
+  border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
+  padding: 16px 18px 18px; margin: 18px 0;
+}
+.ws-seesaw-head { font-size: 0.9em; font-weight: 700; color: #4a5361; margin-bottom: 10px; }
+.ws-seesaw-range { width: 100%; accent-color: #c62c3c; margin-bottom: 6px; }
+.ws-seesaw-stage { position: relative; height: 190px; }
+.ws-seesaw-beam {
+  position: absolute; left: 50%; top: 50%; width: 500px; height: 10px;
+  margin-left: -250px; margin-top: -5px; background: #7b8494; border-radius: 5px;
+  transition: transform .18s ease-out;
+}
+.ws-seesaw-pivot {
+  position: absolute; left: 50%; top: 50%; margin-left: -26px;
+  border-left: 26px solid transparent; border-right: 26px solid transparent;
+  border-top: 52px solid #96a0ae;
+}
+.ws-seesaw-chip {
+  position: absolute; top: 50%; width: 168px; margin-top: -78px; padding: 9px 6px;
+  text-align: center; border-radius: 12px; border: 3px solid; background: #fff;
+  transition: transform .18s ease-out; font-size: 0.88em;
+}
+.ws-seesaw-chip b { display: block; font-size: 0.95em; }
+.ws-seesaw-chip .v { display: block; font-size: 1.45em; font-weight: 800; margin-top: 2px; }
+.ws-seesaw-chip.ws-l { left: 50%; margin-left: -334px; border-color: #c62c3c; color: #c62c3c; }
+.ws-seesaw-chip.ws-r { left: 50%; margin-left: 166px; border-color: #1e5ca8; color: #1e5ca8; }
+.ws-seesaw-out {
+  text-align: center; font-size: 1.02em; font-weight: 700; color: #15705a;
+  background: #e0f3ec; border: 1px solid #1a7a60; border-radius: 10px; padding: 9px;
+}
+@media (max-width: 560px) {
+  .ws-seesaw-beam { width: 300px; margin-left: -150px; }
+  .ws-seesaw-chip { width: 124px; font-size: 0.8em; }
+  .ws-seesaw-chip.ws-l { margin-left: -206px; }
+  .ws-seesaw-chip.ws-r { margin-left: 82px; }
+}
+@media print { .ws-seesaw-range { display: none; } }
+
+/* 📖 표·도식을 읽는 자리 — 2026-09-03.
+   빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
+   표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+.ws-read {
+  background: #f5f6f8; border: 1px solid #dfe3e8; border-left: 5px solid #98a2b3;
+  border-radius: 0 0 10px 10px; padding: 13px 18px 15px; margin: -10px 0 20px;
+  color: #3d4552; font-size: 0.93em; line-height: 1.78;
+}
+.ws-read .ws-read-tag {
+  display: inline-block; font-size: 0.72em; font-weight: 800; color: #7a828f;
+  letter-spacing: 0.06em; margin-bottom: 5px;
+}
+.ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read p:last-child { margin-bottom: 0; }
+@media print { .ws-read { background: #fff; border-left-color: #999; } }
+
+/* 📕 교과서를 펴는 자리 — 2026-09-02.
+   학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
+   교과서 슬롯도 같은 파랑이면 화면상 구분이 안 됐다. 황토/크림으로 계열을 통째로 분리한다. */
+.ws-tb {
+  background: #fdf8ed; border: 1px solid #e8d9b4; border-left: 6px solid #b8862b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; margin: 14px 0;
+}
+.ws-tb-tag {
+  display: inline-block; background: #b8862b; color: #fff;
+  font-size: 0.78em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+}
+.ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+.ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
+.ws-tb-ask strong { color: #8a5f12; }
+.ws-tb input.activity-input {
+  border-bottom: 2px solid #b8862b; background: #fffdf5; color: #3d3116;
+  text-align: left; padding-left: 8px;
+}
+.ws-tb input.activity-input:focus { border-bottom-color: #8a5f12; background: #fff8e4; }
+@media print { .ws-tb { background: #fff; border-left-color: #999; } }
+
 .callout {
   padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
 }
@@ -173,6 +250,30 @@ blockquote {
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
+.ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
+.ws-fold-table thead th { background:#eee9dc; font-weight:700; }
+.ws-anim-ctl { display:flex; align-items:center; justify-content:center; gap:10px; margin:8px 0 2px; }
+.ws-anim-ctl button { border:1px solid #cfc8b6; background:#fff; border-radius:8px; padding:6px 16px;
+  cursor:pointer; font-family:inherit; font-size:0.9em; color:#4a5c40; font-weight:700; }
+.ws-anim-ctl button:hover { background:#f1efe6; }
+.ws-anim-ctl span { font-size:0.8em; color:#9a9284; }
+.ws-gal { margin: 22px auto; max-width: 100%; border: 1px solid #ddd7c8; border-radius: 12px;
+  background: #fbfaf6; overflow: hidden; }
+.ws-gal-head { padding: 12px 16px 0; font-weight: 700; color: #3a4a34; font-size: 0.98em; }
+.ws-gal-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px; }
+.ws-gal-dot { border: 1px solid #cfc8b6; background: #fff; color: #5a5344; border-radius: 999px;
+  padding: 5px 12px; font-size: 0.84em; cursor: pointer; font-family: inherit; }
+.ws-gal-dot.on { background: #4a5c40; border-color: #4a5c40; color: #fff; font-weight: 700; }
+.ws-gal-stage { text-align: center; padding: 4px 14px 0; }
+.ws-gal-slide img { max-width: 100%; max-height: 430px; height: auto; border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.14); }
+.ws-gal-slide figcaption { margin: 8px auto 0; max-width: 640px; font-size: 0.86em;
+  color: #5a5344; line-height: 1.55; }
+.ws-gal-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 10px 0 14px; }
+.ws-gal-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px;
+  padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.9em; color: #4a5c40; }
+.ws-gal-count { font-size: 0.86em; color: #8a8272; font-variant-numeric: tabular-nums; }
 .ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
 .ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
@@ -360,6 +461,27 @@ document.addEventListener('click', function(e){
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
   b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
 });
+function replayAnim(id){
+  // 애니메이션 WebP/GIF는 loop=1로 구워져 한 번만 재생된다(WCAG 2.2.2).
+  // src를 캐시버스터와 함께 갈아 끼우면 처음부터 다시 돈다.
+  const im=document.getElementById(id); if(!im) return;
+  const base=im.dataset.src||im.src.split('?')[0];
+  im.src='';
+  setTimeout(()=>{ im.src = base + '?r=' + Date.now(); }, 30);
+}
+function galGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n;
+  i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-gal-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-gal-dot').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-gal-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function galStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  galGo(id, (+(g.dataset.cur||0)) + d);
+}
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
@@ -570,7 +692,14 @@ function collectAnswers(){
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
 // 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
 function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+// 🔴 전송 중 재진입 가드 (2026-09-02) — 사회(중3) 세션이 시트에서 발견한 중복 제출의 원인.
+//   종전엔 버튼이 한 번도 disabled 되지 않았고, 텍스트는 fetch **응답 후**에야 바뀌었다.
+//   그 왕복 사이에 한 번 더 누르면 그대로 두 번 전송된다 — mode:'no-cors'라 실패해도 조용하다.
+//   실측 중복: 사회 125=126행(8/31 08:16·6반23번) · 역사 21=23행(8/31 14:12·1반18번).
+//   시각·점수·답이 전부 같아 재제출이 아니라 '버튼 두 번'이다. 집계에서 인원이 부푼다.
+let _submitting = false;
 function submitResult(){
+  if(_submitting) return;                     // 전송 중 두 번째 클릭은 무시
   if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
   const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
   if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
@@ -590,16 +719,24 @@ function submitResult(){
     blankScore:bs,oxScore:os,totalScore:ts,
     answers:answers
   };
+  // 여기서부터 실제 전송 — 잠그고 버튼도 즉시 비활성화한다(응답을 기다리지 않는다).
+  _submitting = true;
+  const _btn=document.getElementById('submitBtn');
+  _btn.disabled = true; _btn.textContent = '전송 중…';
   fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
   .then(()=>{
-    document.getElementById('submitBtn').textContent='✅ 제출 완료';
-    document.getElementById('submitBtn').classList.add('btn-submitted');
+    _btn.textContent='✅ 제출 완료';
+    _btn.classList.add('btn-submitted');
     setTimeout(()=>{
-      document.getElementById('submitBtn').textContent='📤 재제출';
-      document.getElementById('submitBtn').classList.remove('btn-submitted');
+      _btn.textContent='📤 재제출';
+      _btn.classList.remove('btn-submitted');
     }, 2000);
   })
-  .catch(e=>alert('제출 실패: '+e));
+  .catch(e=>alert('제출 실패: '+e))
+  .finally(()=>{                              // 성공·실패 모두 반드시 푼다 — 안 그러면 재제출이 영영 막힌다
+    _submitting = false;
+    _btn.disabled = false;
+  });
 }
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
