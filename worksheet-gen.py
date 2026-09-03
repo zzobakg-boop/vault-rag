@@ -187,6 +187,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_pick = False; pick_q = ''; pick_rows = []   # 2026-09-03: 인물 선택 활동
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
+    in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
+    cmp_left = cmp_right = ''
+    cmp_slides = []           # [(제목, [(캡션,경로), (캡션,경로)]), ...]
     in_flip = False           # 2026-09-03: 뒤집는 카드 (:::플립 ... :::)
     flip_items = []
     in_tb = False             # 2026-09-02: 교과서를 펴는 자리 (:::교과서 <라벨> ... :::)
@@ -268,6 +271,56 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   학생이 화면을 훑을 때 "여기는 책을 펴야 하는 자리"가 한눈에 잡혀야 하기 때문이다.
         #   본문 규약 — '?' 로 시작하는 줄 = 쓰는 질문 / 나머지 = 무엇을 보는지 안내(쓰지 않는다).
         #   ⚠️ 안내 줄에 [학생작성]을 넣지 말 것. "굳이 적지 않아도 될 것은 묻지 않는다"가 이 블록의 규칙이다.
+        # ⚖️ 좌우 비교 넘기기 (:::비교 왼쪽이름 | 오른쪽이름 ... :::) — 2026-09-03 천대현
+        #   "양쪽에 카드 형식으로 해서 넘기도록" — figrow(나란히)를 여러 벌 쌓으면 세로로 길어져
+        #   스크롤 없이 못 본다. 좌우 라벨은 **고정**하고 비교 항목만 넘긴다.
+        #   본문 규약: '### 슬라이드 제목' 뒤에 이미지 2장(왼쪽·오른쪽 순).
+        if stripped.startswith(':::비교'):
+            in_cmp = True
+            _hdr = stripped[len(':::비교'):].strip()
+            _lr = [x.strip() for x in _hdr.split('|')]
+            cmp_left  = _lr[0] if _lr else ''
+            cmp_right = _lr[1] if len(_lr) > 1 else ''
+            cmp_slides = []
+            continue
+        if in_cmp:
+            if stripped == ':::':
+                if cmp_slides:
+                    cid = 'cmp%d' % len(html_parts)
+                    _sl = []
+                    for _i, (_ttl, _pair) in enumerate(cmp_slides):
+                        _figs = ''.join(
+                            '<figure><img src="%s" alt="%s"><figcaption>%s</figcaption></figure>'
+                            % (_src, re.sub(r'<[^>]+>', '', inline(_cap)), inline(_cap))
+                            for _cap, _src in _pair)
+                        _sl.append('<div class="ws-cmp-slide" data-i="%d"%s>%s</div>'
+                                   % (_i, '' if _i == 0 else ' hidden', _figs))
+                    _tabs = ''.join(
+                        '<button type="button" class="ws-cmp-tab%s" onclick="cmpGo(\'%s\',%d)">%s</button>'
+                        % (' on' if _i == 0 else '', cid, _i, inline(_t))
+                        for _i, (_t, _) in enumerate(cmp_slides))
+                    html_parts.append(
+                        '<div class="ws-cmp" id="%s" data-n="%d" data-cur="0">'
+                        '<div class="ws-cmp-head"><span>%s</span><span>%s</span></div>'
+                        '<div class="ws-cmp-tabs">%s</div>'
+                        '<div class="ws-cmp-stage">%s</div>'
+                        '<div class="ws-cmp-nav"><button type="button" onclick="cmpStep(\'%s\',-1)">‹ 이전</button>'
+                        '<span class="ws-cmp-count"><b>1</b> / %d</span>'
+                        '<button type="button" onclick="cmpStep(\'%s\',1)">다음 ›</button></div></div>'
+                        % (cid, len(cmp_slides), inline(cmp_left), inline(cmp_right),
+                           _tabs, ''.join(_sl), cid, len(cmp_slides), cid))
+                in_cmp = False
+                cmp_slides = []
+                continue
+            m_h = re.match(r'#{2,4}\s+(.*)', stripped)
+            if m_h:
+                cmp_slides.append((m_h.group(1).strip(), []))
+                continue
+            m_ci = re.match(r'!\[(.*?)\]\(([^)]+)\)\s*$', stripped)
+            if m_ci and cmp_slides:
+                cmp_slides[-1][1].append((m_ci.group(1), m_ci.group(2)))
+            continue
+
         # 🃏 뒤집는 카드 (:::플립 ... :::) — 2026-09-03 천대현
         #   "각 요소를 클릭하면 카드처럼 뒤집히면서 관련 인물이나 사진을 넣으면"
         #   앞면 = 개념(글) · 뒷면 = 그 개념의 **얼굴**(실제 인물·사료).
@@ -1167,6 +1220,35 @@ blockquote {{
 .ws-read p:last-child {{ margin-bottom: 0; }}
 @media print {{ .ws-read {{ background: #fff; border-left-color: #999; }} }}
 
+/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+.ws-cmp {{ border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  background: #fbf9f4; overflow: hidden; }}
+.ws-cmp-head {{ display: flex; }}
+.ws-cmp-head span {{ flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
+  font-size: .95em; color: #fff; background: #8a7a5c; }}
+.ws-cmp-head span:first-child {{ background: #9a7b3c; }}
+.ws-cmp-head span:last-child {{ background: #5b6b8a; }}
+.ws-cmp-tabs {{ display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }}
+.ws-cmp-tab {{ border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }}
+.ws-cmp-tab.on {{ background: #6b5a3a; color: #fff; border-color: #6b5a3a; }}
+.ws-cmp-stage {{ padding: 4px 10px 0; }}
+.ws-cmp-slide {{ display: flex; gap: 12px; align-items: flex-start; }}
+/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
+   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
+.ws-cmp-slide[hidden] {{ display: none; }}
+.ws-cmp-slide figure {{ flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }}
+.ws-cmp-slide img {{ width: 100%; max-height: 300px; height: auto; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }}
+.ws-cmp-slide figcaption {{ margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }}
+.ws-cmp-nav {{ display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 8px 0 10px; }}
+.ws-cmp-nav button {{ border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }}
+.ws-cmp-count {{ font-size: .8em; color: #8a7a5c; }}
+@media (max-width: 520px) {{ .ws-cmp-slide img {{ max-height: 190px; }} }}
+@media print {{ .ws-cmp-slide[hidden] {{ display: flex !important; }} }}  /* 인쇄엔 전부 편다 */
+
 /* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
 .ws-flip-row {{ display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }}
 .ws-flip {{ flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
@@ -1431,6 +1513,18 @@ function galGo(id,i){{
 function galStep(id,d){{
   const g=document.getElementById(id); if(!g) return;
   galGo(id, (+(g.dataset.cur||0)) + d);
+}}
+function cmpGo(id,i){{
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n; i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{{ e.hidden = (+e.dataset.i !== i); }});
+  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}}
+function cmpStep(id,d){{
+  const g=document.getElementById(id); if(!g) return;
+  cmpGo(id, (+(g.dataset.cur||0)) + d);
 }}
 function norm(s){{return (s||'').replace(/\\s+/g,'').replace(/[·,.()（）\\[\\]]/g,'').toLowerCase();}}
 function check(){{
