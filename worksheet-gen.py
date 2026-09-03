@@ -1008,26 +1008,51 @@ blockquote {{
    정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
 .pk-card {{ position: relative; }}
 .pk-card.pk-happy {{
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(26,122,96,.16);
-  background: linear-gradient(180deg, #fffdf2, #fff);
+  transform: translateY(-10px) scale(1.04);
+  border-color: #e0b13a;
+  box-shadow: 0 12px 22px rgba(200,150,30,.28), 0 0 0 3px rgba(255,214,102,.35);
+  background: linear-gradient(180deg, #fff9e2, #fff);
+  animation: pkHop .5s cubic-bezier(.34,1.56,.64,1);
 }}
-.pk-card.pk-happy img {{ filter: brightness(1.08) saturate(1.15); }}
+.pk-card.pk-happy img {{ filter: brightness(1.16) saturate(1.45) contrast(1.06); transform: scale(1.1); }}
 .pk-card.pk-sad {{
-  transform: translateY(4px);
-  box-shadow: 0 2px 6px rgba(60,70,90,.10);
-  background: linear-gradient(180deg, #f6f8fc, #fff);
+  transform: translateY(9px) scale(.95) rotate(1.6deg);
+  border-color: #93a3bb;
+  box-shadow: 0 1px 3px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #eef1f6, #f8fafc);
+  animation: pkSlump .45s ease-out;
 }}
-.pk-card.pk-sad img {{ filter: saturate(.55) brightness(.94) hue-rotate(-8deg); }}
+.pk-card.pk-sad img {{
+  filter: saturate(.22) brightness(.84) contrast(.92) hue-rotate(-14deg);
+  transform: scale(.9) rotate(-2deg);
+}}
+.pk-card.pk-sad .pk-name, .pk-card.pk-sad .pk-sit {{ opacity: .62; }}
+@keyframes pkHop {{
+  0%   {{ transform: translateY(0) scale(1); }}
+  45%  {{ transform: translateY(-20px) scale(1.09); }}
+  100% {{ transform: translateY(-10px) scale(1.04); }}
+}}
+@keyframes pkSlump {{
+  0%   {{ transform: translateY(0) scale(1) rotate(0); }}
+  60%  {{ transform: translateY(13px) scale(.93) rotate(2.4deg); }}
+  100% {{ transform: translateY(9px) scale(.95) rotate(1.6deg); }}
+}}
 .pk-card.pk-happy::after, .pk-card.pk-sad::after {{
-  position: absolute; top: 6px; right: 8px; font-size: 1.15em; line-height: 1;
+  position: absolute; top: -12px; right: -8px; font-size: 1.9em; line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.22));
 }}
-.pk-card.pk-happy::after {{ content: "😀"; }}
-.pk-card.pk-sad::after {{ content: "😢"; }}
+.pk-card.pk-happy::after {{ content: "😀"; animation: pkPop .45s cubic-bezier(.34,1.8,.64,1); }}
+.pk-card.pk-sad::after {{ content: "😢"; animation: pkDrip .45s ease-out; }}
+@keyframes pkPop {{ 0% {{ transform: scale(0) rotate(-30deg); }} 100% {{ transform: scale(1) rotate(0); }} }}
+@keyframes pkDrip {{ 0% {{ transform: translateY(-10px) scale(.4); opacity: 0; }} 100% {{ transform: none; opacity: 1; }} }}
 @media (prefers-reduced-motion: reduce) {{
-  .pk-card.pk-happy, .pk-card.pk-sad {{ transform: none; }}
+  .pk-card.pk-happy, .pk-card.pk-sad {{ transform: none; animation: none; }}
+  .pk-card.pk-happy::after, .pk-card.pk-sad::after {{ animation: none; }}
 }}
-@media print {{ .pk-card.pk-happy, .pk-card.pk-sad {{ transform: none; box-shadow: none; }} }}
+@media print {{
+  .pk-card.pk-happy, .pk-card.pk-sad {{ transform: none; box-shadow: none; animation: none; }}
+  .pk-card.pk-happy img, .pk-card.pk-sad img {{ transform: none; }}
+}}
 
 .pk-card.pk-ok {{ border-color: #1a7a60; background: #f2fbf7; }}
 .pk-card.pk-no {{ border-color: #c62c3c; background: #fef5f6; }}
