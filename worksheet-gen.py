@@ -5,6 +5,7 @@
 import re
 import sys
 import os
+import json
 
 
 def _fold_table(rows, inline):
@@ -404,25 +405,39 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   우리가 활동을 표로 눌러놨던 것이다.
         #   🔴 제출에 넣지 않는다(입력칸 0) — 평가가 아니라 판단을 흔드는 자리다. act 인덱스 불변.
         #   정답은 **다 고른 뒤에만** 공개한다(하나씩 즉시 채점하면 찍기로 넘어간다).
+        #   ⭐ 2026-09-04 일반화 — 옵션을 대괄호로 주면 N지선다가 된다.
+        #      `:::인물선택 발문`                    → 웃음/울음 2지선다(종전과 동일·5-5 무영향)
+        #      `:::인물선택 [자국 이익|힘의 논리|협력] 발문` → 3갈래 분류, 기분 표정 없음
+        #      이미지명을 비우면 <img>를 넣지 않는다 — 실재 사건은 생성 이미지를 쓰지 않으므로.
         if stripped.startswith(':::인물선택'):
             in_pick = True
-            pick_q = stripped[len(':::인물선택'):].strip()
+            _h = stripped[len(':::인물선택'):].strip()
+            pick_opts, pick_mood = ['웃음', '울음'], True
+            if _h.startswith('[') and ']' in _h:
+                _o, _h = _h[1:_h.index(']')], _h[_h.index(']') + 1:].strip()
+                pick_opts = [x.strip() for x in _o.split('|') if x.strip()]
+                pick_mood = (pick_opts == ['웃음', '울음'])
+            pick_q = _h
             pick_rows = []
             continue
         if in_pick:
             if stripped == ':::':
                 pid = f'pk{len(html_parts)}'
                 cards = ''
+                _face = {'웃음': '😀 웃는다', '울음': '😢 운다'}
                 for i, (nm, sit, ans, why, img) in enumerate(pick_rows):
+                    assert ans in pick_opts, f'❌ 정답 "{ans}"가 옵션 {pick_opts}에 없다 — {nm}'
+                    btns = ''.join(
+                        f'<button type="button" class="pk-b" data-v="{o}">'
+                        f'{_face.get(o, o) if pick_mood else o}</button>' for o in pick_opts)
+                    im = (f'<img src="images/people/{img}.png" alt="" loading="lazy">'
+                          if img else '')
                     cards += (
-                      f'<div class="pk-card" data-i="{i}" data-ans="{ans}">'
-                      f'<img src="images/people/{img}.png" alt="" loading="lazy">'
-                      f'<div class="pk-name">{inline(nm)}</div>'
+                      f'<div class="pk-card{"" if img else " pk-noimg"}" data-i="{i}" data-ans="{ans}">'
+                      f'{im}<div class="pk-name">{inline(nm)}</div>'
                       f'<div class="pk-sit">{inline(sit)}</div>'
-                      f'<div class="pk-btns">'
-                      f'<button type="button" class="pk-b" data-v="웃음">😀 웃는다</button>'
-                      f'<button type="button" class="pk-b" data-v="울음">😢 운다</button>'
-                      f'</div><div class="pk-why" hidden>{inline(why)}</div></div>')
+                      f'<div class="pk-btns{"" if len(pick_opts) < 3 else " pk-btns-col"}">{btns}</div>'
+                      f'<div class="pk-why" hidden>{inline(why)}</div></div>')
                 html_parts.append(
                   f'<div class="ws-pick" id="{pid}">'
                   f'<div class="pk-head"><span>{inline(pick_q)}</span>'
@@ -431,29 +446,31 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                   f'<div class="pk-result" hidden></div></div>'
                   f'<script>(function(){{var w=document.getElementById("{pid}");'
                   f'var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;'
+                  f'var OPTS={json.dumps(pick_opts, ensure_ascii=False)},MOOD={"true" if pick_mood else "false"};'
                   'function done(){return cs.filter(function(c){return c.dataset.pick}).length}'
                   'function reveal(){var ok=0;cs.forEach(function(c){'
                   'var right=c.dataset.pick===c.dataset.ans;if(right)ok++;'
                   'c.classList.add(right?"pk-ok":"pk-no");'
                   # 틀렸으면 실제 정답의 기분으로 뒤집는다 — 표정이 바뀌는 것이 곧 피드백이다
-                  'if(!right){c.classList.remove("pk-happy","pk-sad");'
+                  'if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");'
                   'c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}'
                   'if(!right)c.querySelector(".pk-why").hidden=false;});'
                   'var r=w.querySelector(".pk-result");r.hidden=false;'
                   'r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.'
-                  '<div class=\'pk-sum\'><div class=\'pk-col pk-up\'><b>웃는 사람</b>"'
-                  '+cs.filter(function(c){return c.dataset.ans==="웃음"}).map(function(c){'
+                  '<div class=\'pk-sum\'>"+OPTS.map(function(o,oi){'
+                  'var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;'
+                  'var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);'
+                  'return "<div class=\'pk-col "+cls+"\'><b>"+head+"</b>"'
+                  '+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){'
                   'return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")'
-                  '+"</div><div class=\'pk-col pk-down\'><b>우는 사람</b>"'
-                  '+cs.filter(function(c){return c.dataset.ans==="울음"}).map(function(c){'
-                  'return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")'
-                  '+"</div></div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}'
+                  '+"</div>"}).join("")'
+                  '+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}'
                   'cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){'
                   'b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;'
                   'c.dataset.pick=b.dataset.v;c.classList.add("pk-set");'
                   # 🙂 기분 상태 — 고른 순간 카드가 웃거나 운다 (2026-09-03 천대현)
-                  'c.classList.remove("pk-happy","pk-sad");'
-                  'c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");'
+                  'if(MOOD){c.classList.remove("pk-happy","pk-sad");'
+                  'c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}'
                   'c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});'
                   'w.querySelector(".pk-count").textContent=done()+" / "+N;'
                   'if(done()===N){w.classList.add("pk-done");reveal();}});});});'
@@ -1153,13 +1170,24 @@ blockquote {{
 .pk-why {{ font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }}
 .pk-result {{ margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }}
-.pk-sum {{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }}
+.pk-sum {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }}
 @media (max-width: 520px) {{ .pk-sum {{ grid-template-columns: 1fr; }} }}
 .pk-col {{ background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }}
 .pk-col b {{ display: block; margin-bottom: 5px; font-size: 0.95em; }}
 .pk-col span {{ display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }}
 .pk-up {{ border-color: #1a7a60; color: #15705a; }}
 .pk-down {{ border-color: #c62c3c; color: #b3242f; }}
+/* N지선다(기분 없음) 요약 열 — 옵션 순서대로 색이 갈린다 */
+.pk-c0 {{ border-color: #1f6feb; color: #1a5fc8; }}
+.pk-c1 {{ border-color: #b8862b; color: #9a6f1e; }}
+.pk-c2 {{ border-color: #6b4fbb; color: #5b41a4; }}
+.pk-c3 {{ border-color: #1a7a60; color: #15705a; }}
+/* 옵션이 3개 이상이면 버튼을 세로로 — 가로로 늘어놓으면 폰에서 글자가 잘린다 */
+.pk-btns-col {{ flex-direction: column; gap: 4px; }}
+.pk-btns-col .pk-b {{ width: 100%; text-align: center; }}
+/* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+.pk-card.pk-noimg {{ padding-top: 14px; }}
+.pk-card.pk-noimg .pk-name {{ font-size: 1.02em; }}
 @media print {{ .pk-b {{ display: none; }} .pk-card img {{ filter: none; }} }}
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
