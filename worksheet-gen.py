@@ -184,6 +184,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_gallery = False        # 2026-08-31: 한 장씩 넘겨 보는 큐레이션 (:::gallery ... :::)
     gallery_items = []
     gallery_title = ''
+    in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
+    read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_tb = False             # 2026-09-02: 교과서를 펴는 자리 (:::교과서 <라벨> ... :::)
     tb_label = ''             #   학습지 안(파랑)과 교과서 밖(황토)을 색으로 갈라 놓는다.
     tb_lines = []
@@ -299,6 +301,26 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 continue
             if stripped:
                 tb_lines.append(stripped)
+            continue
+
+        # 📖 표·도식을 읽는 자리 (:::해설 ... :::) — 2026-09-03 천대현
+        #   계열이 셋이 된다: 파랑=쓰는 곳(빈칸) · 황토=교과서를 펴는 곳 · 회색=읽는 곳.
+        #   표 아래 해설이 본문 문단과 같은 모양이라 "여기도 빈칸이 있나" 하고 보게 됐다.
+        #   입력칸을 만들지 않는다 — 이 블록은 읽기 전용이다.
+        if stripped.startswith(':::해설'):
+            in_read = True
+            read_lines = []
+            continue
+        if in_read:
+            if stripped == ':::':
+                body = ''.join(f'<p>{inline(x)}</p>' for x in read_lines)
+                html_parts.append(
+                    '<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div>'
+                    + body + '</div>')
+                in_read = False
+                read_lines = []
+            elif stripped:
+                read_lines.append(stripped)
             continue
 
         if stripped.startswith(':::gallery'):
@@ -830,6 +852,22 @@ blockquote {{
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }}
+/* 📖 표·도식을 읽는 자리 — 2026-09-03.
+   빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
+   표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+.ws-read {{
+  background: #f5f6f8; border: 1px solid #dfe3e8; border-left: 5px solid #98a2b3;
+  border-radius: 0 0 10px 10px; padding: 13px 18px 15px; margin: -10px 0 20px;
+  color: #3d4552; font-size: 0.93em; line-height: 1.78;
+}}
+.ws-read .ws-read-tag {{
+  display: inline-block; font-size: 0.72em; font-weight: 800; color: #7a828f;
+  letter-spacing: 0.06em; margin-bottom: 5px;
+}}
+.ws-read p {{ margin: 0 0 7px; font-size: 1em; }}
+.ws-read p:last-child {{ margin-bottom: 0; }}
+@media print {{ .ws-read {{ background: #fff; border-left-color: #999; }} }}
+
 /* 📕 교과서를 펴는 자리 — 2026-09-02.
    학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
    교과서 슬롯도 같은 파랑이면 화면상 구분이 안 됐다. 황토/크림으로 계열을 통째로 분리한다. */
