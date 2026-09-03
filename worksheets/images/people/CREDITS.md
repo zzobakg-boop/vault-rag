@@ -1,40 +1,36 @@
 # 인물 도트 출처·라이선스
 
-**방식 = D안 (LPC 몸체 + PIL 자작 소품)** — 2026-09-03 채택.
+**방식 = B안 (Grok 이미지 생성 + 격자 스냅 후처리)** — 2026-09-03 채택 (천대현 결정).
 
-## 몸·복장·머리
-Liberated Pixel Cup · Universal-LPC-Spritesheet-Character-Generator
-https://github.com/LiberatedPixelCup/Universal-LPC-Spritesheet-Character-Generator
+## 생성
+xAI **Grok Imagine** (`grok-imagine-image-2.0`)로 6종 생성 후 후처리.
 
-🔴 **다중 라이선스는 택일**이므로 `OGA-BY 3.0` 또는 `CC0` 선택지가 있는 레이어만 쓴다
-(ShareAlike 의무 없이 저작자 표시만으로 사용). 사용 레이어:
+후처리(`mkB.py` 절차): ①흰 배경 투명화 ②내용 bbox 정사각 크롭
+③48px 격자 스냅 ④24색 양자화 ⑤192px NEAREST 확대.
+→ **격자 스냅이 핵심이다.** 원본은 고유색 20,823색으로 *도트처럼 보이는 그림*일 뿐
+격자가 없었다(런길이 최빈값 1). 후처리 후 39~46색·격자 정합.
 
-- `body/bodies/male/idle.png`
-- `head/heads/human/male/idle.png`
-- `torso/clothes/longsleeve/longsleeve/male/idle.png`
-- `legs/pants/male/idle.png`
-- `feet/shoes/revised/male/idle.png`
-- `hair/plain/adult/idle.png` · `hair/curly_short/adult/idle.png`
+## 🔴 라이선스 — 확인이 필요한 구간이 있다
+xAI 서비스 약관이 **2026-09-01 개정**되며 산출물 이용 조건에 다음 문구가 확인됐다(시스템 레인 리서치):
 
-## 소품 (자작)
-택배상자 · 밀짚모자+카메라 · 노트북+코인 · 안전모+궤짝 · 캐리어+여권 —
-**LPC에 현대 소품 레이어가 없어 PIL로 직접 그렸다.**
-8/31 역사(중2)가 왕관·낫·도끼를 같은 이유로 직접 그린 것과 같은 처방이다.
+> "When using Output … you are required to obtain our permission and attribute
+>  your generation of the Output to the Service"
 
-유학생 가정의 아이는 **같은 스프라이트를 62% 축소**한 것 — 일관성이 구조적으로 보장된다.
+- 옛 FAQ는 *"we ask that you attribute"*(권유형)였고, **역사(중2) 세션이 확보한 원문 2건도 권유형**이다.
+- x.ai 접근이 403이라 **9/1 개정을 확정도 반증도 못 했다.**
+- 소비자 Imagine에는 제거 불가 워터마크가 있으나 **API 산출물에는 언급이 없다.**
 
-## 왜 이 방식인가 (2026-09-03 4안 비교)
-| | 현대소품 | 일관성 | 72px 식별 | 라이선스 | 고유색 |
-|---|:--:|:--:|:--:|:--:|---|
-| A LPC 단독 | ❌ | ✅✅ | ❌ | ✅ | 34색 |
-| B Grok 이미지 | ✅ | 🔶 | ✅✅ | 🔴 | 20,823색 |
-| C Grok Build 코드 | ✅ | ✅ | ✅✅ | ✅ | 14색 |
-| **D LPC+PIL** | ✅ | ✅✅ | ✅ | ✅ | 32~40색 |
+**우리 대응**: 아래 표기를 이 파일과 학습지 정답편에 남긴다. 표기는 두 해석(권유/요구)을
+모두 충족한다. 다만 *permission* 요구가 실재한다면 표기만으로는 부족하므로,
+**x.ai 접근이 복구되면 재확인 대상**이다.
 
-🔴 **B 탈락은 기술이 아니라 라이선스** — xAI ToS가 2026-09-01 개정되어 출처 표기가
-권유에서 요구로 바뀐 정황이 있고(원문 확인이 403으로 막혀 불명 구간), 학습지는
-공개 GitHub Pages로 나간다.
-🔬 부수 발견 — **이미지 모델은 진짜 도트를 못 만든다.** 고유색 2만 개가 넘고 런길이가
-격자 배수가 아니다. 도트처럼 보이는 그림일 뿐이다.
+> 인물 도트 이미지 생성: xAI Grok Imagine
 
-⚠️ **생성 스크립트 미보유** — 시스템 레인에 요청함. 받으면 이 폴더에 함께 둔다.
+⚠️ 이 학습지는 공개 GitHub Pages로 배포된다. 조건이 확정되어 부적합으로 판명되면
+D안(LPC 몸체 + PIL 자작 소품)으로 즉시 되돌릴 수 있다 — 산출물은
+`~/Downloads/도트캐릭터_비교_20260903/out_D/`에 보관돼 있다.
+
+## 왜 B안인가 (2026-09-03 4안 비교 · 천대현 판단)
+72px 실측에서 인물마다 **실루엣 자체가 다르다** — 정장+택배상자 · 탐험모자+카메라 ·
+앉아서 노트북 · 안전모+궤짝 · 트렌치코트+캐리어 · 어른과 아이.
+D안은 몸이 같아 소품으로만 갈렸다(⑤ 식별에서 B ✅✅ vs D ✅).
