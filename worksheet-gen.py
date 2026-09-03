@@ -341,6 +341,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                   'function reveal(){var ok=0;cs.forEach(function(c){'
                   'var right=c.dataset.pick===c.dataset.ans;if(right)ok++;'
                   'c.classList.add(right?"pk-ok":"pk-no");'
+                  # 틀렸으면 실제 정답의 기분으로 뒤집는다 — 표정이 바뀌는 것이 곧 피드백이다
+                  'if(!right){c.classList.remove("pk-happy","pk-sad");'
+                  'c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}'
                   'if(!right)c.querySelector(".pk-why").hidden=false;});'
                   'var r=w.querySelector(".pk-result");r.hidden=false;'
                   'r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.'
@@ -354,6 +357,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                   'cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){'
                   'b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;'
                   'c.dataset.pick=b.dataset.v;c.classList.add("pk-set");'
+                  # 🙂 기분 상태 — 고른 순간 카드가 웃거나 운다 (2026-09-03 천대현)
+                  'c.classList.remove("pk-happy","pk-sad");'
+                  'c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");'
                   'c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});'
                   'w.querySelector(".pk-count").textContent=done()+" / "+N;'
                   'if(done()===N){w.classList.add("pk-done");reveal();}});});});'
@@ -984,7 +990,8 @@ blockquote {{
 .pk-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }}
 @media (max-width: 640px) {{ .pk-grid {{ grid-template-columns: repeat(2, 1fr); }} }}
 .pk-card {{ border: 2px solid #e2e6ec; border-radius: 12px; background: #fff; padding: 10px 8px;
-  text-align: center; transition: .15s; }}
+  text-align: center; transition: transform .22s ease-out, box-shadow .22s, background .22s, border-color .15s; }}
+.pk-card img {{ transition: filter .22s; }}
 .pk-card img {{ width: 72px; height: 72px; image-rendering: pixelated;
   filter: grayscale(1) opacity(.45); transition: .15s; }}
 .pk-card.pk-set img {{ filter: none; }}
@@ -996,6 +1003,32 @@ blockquote {{
   padding: 6px 2px; font: inherit; font-size: 0.78em; font-weight: 700; color: #55607a; cursor: pointer; }}
 .pk-b:hover {{ background: #f3f6fa; }}
 .pk-b.on {{ background: #1c242f; border-color: #1c242f; color: #fff; }}
+/* 🙂 기분 상태 — 고르면 캐릭터가 웃거나 운다 (2026-09-03).
+   새 그림을 그리지 않는다: 카드가 뜨거나 내려앉고, 색온도와 채도가 바뀌고, 배지가 붙는다.
+   정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
+.pk-card {{ position: relative; }}
+.pk-card.pk-happy {{
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(26,122,96,.16);
+  background: linear-gradient(180deg, #fffdf2, #fff);
+}}
+.pk-card.pk-happy img {{ filter: brightness(1.08) saturate(1.15); }}
+.pk-card.pk-sad {{
+  transform: translateY(4px);
+  box-shadow: 0 2px 6px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #f6f8fc, #fff);
+}}
+.pk-card.pk-sad img {{ filter: saturate(.55) brightness(.94) hue-rotate(-8deg); }}
+.pk-card.pk-happy::after, .pk-card.pk-sad::after {{
+  position: absolute; top: 6px; right: 8px; font-size: 1.15em; line-height: 1;
+}}
+.pk-card.pk-happy::after {{ content: "😀"; }}
+.pk-card.pk-sad::after {{ content: "😢"; }}
+@media (prefers-reduced-motion: reduce) {{
+  .pk-card.pk-happy, .pk-card.pk-sad {{ transform: none; }}
+}}
+@media print {{ .pk-card.pk-happy, .pk-card.pk-sad {{ transform: none; box-shadow: none; }} }}
+
 .pk-card.pk-ok {{ border-color: #1a7a60; background: #f2fbf7; }}
 .pk-card.pk-no {{ border-color: #c62c3c; background: #fef5f6; }}
 .pk-why {{ font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }}
