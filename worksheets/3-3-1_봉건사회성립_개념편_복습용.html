@@ -206,6 +206,33 @@ blockquote {
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
 
+/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
+.ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
+.ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
+  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.ws-flip-in { position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.ws-flip.on .ws-flip-in { transform: rotateY(180deg); }
+.ws-flip:focus-visible .ws-flip-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
+.ws-flip-f, .ws-flip-b { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 12px;
+  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-sizing: border-box; overflow: hidden; }
+.ws-flip-f { background: #f3f0e8; border: 2px solid #cfc4ae; }
+.ws-flip-f b { font-size: 1.15em; color: #3d3116; }
+.ws-flip-f i { font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }
+.ws-flip-f u { text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }
+.ws-flip-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }
+.ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
+.ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
+@media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+@media print {
+  .ws-flip { height: auto; }
+  .ws-flip-in { transform: none !important; }
+  .ws-flip-f, .ws-flip-b { position: static; transform: none; backface-visibility: visible; }
+}
+
 /* 📕 교과서를 펴는 자리 — 2026-09-02.
    학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
    교과서 슬롯도 같은 파랑이면 화면상 구분이 안 됐다. 황토/크림으로 계열을 통째로 분리한다. */
@@ -546,6 +573,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>중세 서유럽의 문화는 그래서 크리스트교를 중심으로 자랐다. <strong>학문·교육·건축·문학</strong> 네 갈래가 모두 한 중심에서 뻗어 나온다.</p>
 <br>
 <figure class="ws-fig"><img src="images/3-3-1_교회문화.png" alt="중세 문화는 교회가 감쌌다 — 크리스트교를 중심으로 학문·교육·건축·문학 네 갈래가 뻗어 나온다. 왼쪽 위, 이슬람 세계를 거쳐 들어온 아리스토텔레스 철학이 학문 갈래로 합류하는 화살표에 주목할 것." loading="lazy"><figcaption>중세 문화는 교회가 감쌌다 — 크리스트교를 중심으로 학문·교육·건축·문학 네 갈래가 뻗어 나온다. 왼쪽 위, 이슬람 세계를 거쳐 들어온 아리스토텔레스 철학이 학문 갈래로 합류하는 화살표에 주목할 것.</figcaption></figure>
+<br>
+<div class="ws-flip-row"><button class="ws-flip" type="button" aria-label="학문 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="ws-flip-in"><span class="ws-flip-f"><b>학문</b><i>신학 · 스콜라 철학</i><u>눌러서 뒤집기</u></span><span class="ws-flip-b"><img src="images/flip_학문.jpg" alt="토마스 아퀴나스 — 손에 든 것이 『신학 대전』이다. 신앙과 이성을 한자리에 놓으려 한 책. (프라 안젤리코, 15세기 · 퍼블릭 도메인)"><i><strong>토마스 아퀴나스</strong> — 손에 든 것이 『신학 대전』이다. 신앙과 이성을 한자리에 놓으려 한 책. (프라 안젤리코, 15세기 · 퍼블릭 도메인)</i></span></span></button><button class="ws-flip" type="button" aria-label="교육 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="ws-flip-in"><span class="ws-flip-f"><b>교육</b><i>대학 · 신학 법학 의학</i><u>눌러서 뒤집기</u></span><span class="ws-flip-b"><img src="images/flip_교육.jpg" alt="700년 전 강의실. 앞줄은 받아 적는데 뒷줄을 보라 — 조는 학생, 딴 데 보는 학생이 그대로 그려져 있다. (라우렌티우스 데 볼톨리나, 14세기 · 퍼블릭 도메인)"><i><strong>700년 전 강의실.</strong> 앞줄은 받아 적는데 뒷줄을 보라 — 조는 학생, 딴 데 보는 학생이 그대로 그려져 있다. (라우렌티우스 데 볼톨리나, 14세기 · 퍼블릭 도메인)</i></span></span></button><button class="ws-flip" type="button" aria-label="건축 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="ws-flip-in"><span class="ws-flip-f"><b>건축</b><i>로마네스크 → 고딕</i><u>눌러서 뒤집기</u></span><span class="ws-flip-b"><img src="images/flip_건축.jpg" alt="샤르트르 대성당 장미창. 고딕이 벽을 얇게 만들 수 있게 되자 그 자리를 빛이 채웠다. (퍼블릭 도메인)"><i><strong>샤르트르 대성당 장미창.</strong> 고딕이 벽을 얇게 만들 수 있게 되자 그 자리를 빛이 채웠다. (퍼블릭 도메인)</i></span></span></button><button class="ws-flip" type="button" aria-label="문학 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="ws-flip-in"><span class="ws-flip-f"><b>문학</b><i>기사도 문학</i><u>눌러서 뒤집기</u></span><span class="ws-flip-b"><img src="images/flip_문학.jpg" alt="롤랑의 죽음. 『롤랑의 노래』의 그 장면 — 지고 있는데도 뿔피리를 분다. 기사도가 무엇을 미덕으로 삼았는지 보인다. (장 푸케, 15세기 · 퍼블릭 도메인)"><i><strong>롤랑의 죽음.</strong> 『롤랑의 노래』의 그 장면 — 지고 있는데도 뿔피리를 분다. 기사도가 무엇을 미덕으로 삼았는지 보인다. (장 푸케, 15세기 · 퍼블릭 도메인)</i></span></span></button></div>
+<br>
+<blockquote>🎙️ 카드를 눌러 보자. <strong>교육 카드</strong>가 특히 볼 만해 — 700년 전 강의실 그림인데, 뒷줄에 조는 학생이 그대로 그려져 있어. 그림 그린 사람이 그걸 굳이 남겨 놨다는 게 재미있지.</blockquote>
 <br>
 <p><strong>학문</strong> — 중심은 ⑫<input type="text" class="blank-input" data-answer="신학" data-id="12" style="width:60px" placeholder="">이었다. <em>신을 아는 것이 가장 높은 앎</em>이라고 여겼기 때문이다. 여기에 그리스 철학자 <strong>아리스토텔레스</strong>의 철학이 전해지면서, 신앙과 이성의 조화를 강조한 ⑬<input type="text" class="blank-input" data-answer="스콜라 철학" data-id="13" style="width:116px" placeholder="">이 유행했다(토마스 아퀴나스 『신학 대전』).</p>
 <p><strong>교육</strong> — 12세기 이후 유럽 곳곳에 <strong>대학</strong>이 세워졌다. 배우는 것은 신학·법학·의학이었고, 운영은 교회나 영주의 간섭 없이 <strong>스스로</strong> 했다.</p>

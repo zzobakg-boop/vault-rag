@@ -187,6 +187,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_pick = False; pick_q = ''; pick_rows = []   # 2026-09-03: 인물 선택 활동
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
+    in_flip = False           # 2026-09-03: 뒤집는 카드 (:::플립 ... :::)
+    flip_items = []
     in_tb = False             # 2026-09-02: 교과서를 펴는 자리 (:::교과서 <라벨> ... :::)
     tb_label = ''             #   학습지 안(파랑)과 교과서 밖(황토)을 색으로 갈라 놓는다.
     tb_lines = []
@@ -266,6 +268,45 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   학생이 화면을 훑을 때 "여기는 책을 펴야 하는 자리"가 한눈에 잡혀야 하기 때문이다.
         #   본문 규약 — '?' 로 시작하는 줄 = 쓰는 질문 / 나머지 = 무엇을 보는지 안내(쓰지 않는다).
         #   ⚠️ 안내 줄에 [학생작성]을 넣지 말 것. "굳이 적지 않아도 될 것은 묻지 않는다"가 이 블록의 규칙이다.
+        # 🃏 뒤집는 카드 (:::플립 ... :::) — 2026-09-03 천대현
+        #   "각 요소를 클릭하면 카드처럼 뒤집히면서 관련 인물이나 사진을 넣으면"
+        #   앞면 = 개념(글) · 뒷면 = 그 개념의 **얼굴**(실제 인물·사료).
+        #   도식이 구조를 말하고 카드가 얼굴을 붙인다 — 도식을 대체하지 않고 그 아래에 둔다.
+        #   ⚠️ 뒷면은 **새 정보**여야 한다. 앞면을 반복하면 뒤집을 이유가 없다.
+        #   본문 규약: ![앞면 제목|앞면 부제|뒷면 설명](이미지)
+        if stripped.startswith(':::플립'):
+            in_flip = True
+            flip_items = []
+            continue
+        if in_flip:
+            if stripped == ':::':
+                if flip_items:
+                    _c = []
+                    for _t, _sub, _back, _src in flip_items:
+                        _c.append(
+                            '<button class="ws-flip" type="button" aria-label="%s 카드 뒤집기" '
+                            'onclick="this.classList.toggle(\'on\')">'
+                            '<span class="ws-flip-in">'
+                            '<span class="ws-flip-f"><b>%s</b><i>%s</i><u>눌러서 뒤집기</u></span>'
+                            '<span class="ws-flip-b"><img src="%s" alt="%s"><i>%s</i></span>'
+                            '</span></button>'
+                            # 🔴 loading="lazy" 금지 — 뒷면은 초기에 rotateY(180deg)로 화면 뒤에 있어
+                            #    브라우저가 "안 보인다"고 판단해 로드를 미룬다(뒤집어도 빈 칸).
+                            #    alt는 태그를 뺀 순수 텍스트로(inline()은 마크다운을 HTML로 바꾼다).
+                            % (inline(_t), inline(_t), inline(_sub), _src,
+                               re.sub(r'<[^>]+>', '', inline(_back)), inline(_back)))
+                    html_parts.append('<div class="ws-flip-row">%s</div>' % ''.join(_c))
+                in_flip = False
+                flip_items = []
+                continue
+            m_fl = re.match(r'!\[(.*?)\]\(([^)]+)\)\s*$', stripped)
+            if m_fl:
+                _cap, _src = m_fl.group(1), m_fl.group(2)
+                _p = [x.strip() for x in _cap.split('|')]
+                while len(_p) < 3: _p.append('')
+                flip_items.append((_p[0], _p[1], _p[2], _src))
+            continue
+
         if stripped.startswith(':::교과서'):
             in_tb = True
             tb_label = stripped[len(':::교과서'):].strip()
@@ -1125,6 +1166,33 @@ blockquote {{
 .ws-read p {{ margin: 0 0 7px; font-size: 1em; }}
 .ws-read p:last-child {{ margin-bottom: 0; }}
 @media print {{ .ws-read {{ background: #fff; border-left-color: #999; }} }}
+
+/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
+.ws-flip-row {{ display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }}
+.ws-flip {{ flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
+  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }}
+.ws-flip-in {{ position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }}
+.ws-flip.on .ws-flip-in {{ transform: rotateY(180deg); }}
+.ws-flip:focus-visible .ws-flip-in {{ outline: 3px solid #8a5f12; outline-offset: 3px; }}
+.ws-flip-f, .ws-flip-b {{ position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 12px;
+  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-sizing: border-box; overflow: hidden; }}
+.ws-flip-f {{ background: #f3f0e8; border: 2px solid #cfc4ae; }}
+.ws-flip-f b {{ font-size: 1.15em; color: #3d3116; }}
+.ws-flip-f i {{ font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }}
+.ws-flip-f u {{ text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }}
+.ws-flip-b {{ background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }}
+.ws-flip-b img {{ width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }}
+.ws-flip-b i {{ font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }}
+@media (prefers-reduced-motion: reduce) {{ .ws-flip-in {{ transition: none; }} }}
+@media print {{
+  .ws-flip {{ height: auto; }}
+  .ws-flip-in {{ transform: none !important; }}
+  .ws-flip-f, .ws-flip-b {{ position: static; transform: none; backface-visibility: visible; }}
+}}
 
 /* 📕 교과서를 펴는 자리 — 2026-09-02.
    학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
