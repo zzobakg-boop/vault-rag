@@ -859,6 +859,18 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     continue
                 if fold_tbl:
                     html_parts.append(_fold_table(fold_tbl, inline)); fold_tbl = []
+                # 🔴 2026-09-04: 접기 블록 안의 이미지도 렌더한다 — 룰 -0.77의 네 번째 재현.
+                #   8/28 blockquote 이미지 → 8/31 blockquote 표 → 9/2 접기 안 표까지 고쳤는데
+                #   '접기 안 이미지'만 남아 있었다. 그래서 3-3-1 장원 평면도가 접기 밖에 놓여
+                #   "눌러서 펼치기"인데 이미 보이는 상태였다(천대현 발견).
+                _mi = re.match(r'!\[(.*?)\]\((.+?)\)\s*$', body.strip())
+                if _mi:
+                    _cap, _src = _mi.group(1), _mi.group(2)
+                    html_parts.append(
+                        f'<figure class="ws-fig"><img src="{_src}" alt="{_cap}" loading="lazy">'
+                        + (f'<figcaption>{inline(_cap)}</figcaption>' if _cap else '')
+                        + '</figure>')
+                    continue
                 if body.strip():
                     html_parts.append(f'<p>{inline(body)}</p>')
             elif stripped.startswith('> [!'):
