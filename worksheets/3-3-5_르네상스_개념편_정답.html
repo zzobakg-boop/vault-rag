@@ -16,8 +16,17 @@ body {
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
 }
 h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
-h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
-h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h2 {
+  font-size: 1.3em; margin: 30px 0 12px; color: #1d1d1f; font-weight: 800;
+  letter-spacing: -0.01em; padding: 8px 0 8px 14px; border-left: 6px solid #007aff;
+  background: linear-gradient(90deg, #f2f6ff, rgba(255,255,255,0));
+  border-radius: 0 8px 8px 0;
+}
+h2:first-of-type { margin-top: 14px; }
+h3 {
+  font-size: 1.09em; margin: 22px 0 8px; color: #2b3240; font-weight: 750;
+  padding-left: 11px; border-left: 3px solid #b6c4dc;
+}
 h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
 p { margin: 5px 0; font-size: 0.95em; }
 hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
@@ -27,8 +36,13 @@ table {
 /* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
 table.act-table { width: auto; max-width: 100%; }
 table.act-table .activity-input { max-width: 100%; }
-td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
-tr:first-child td { background: #f0f4ff; font-weight: 600; }
+td { border: 1px solid #e2e6ec; padding: 10px 12px; vertical-align: middle; line-height: 1.6; }
+tr:first-child td {
+  background: #e8eefb; font-weight: 750; color: #22314e; vertical-align: middle;
+  border-color: #cfd9ec; font-size: 0.96em;
+}
+tbody tr:nth-child(even):not(:first-child) td { background: #fcfdff; }
+table { border-radius: 10px; overflow: hidden; }
 .ws-fold {
   margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
   border-radius: 8px; background: #fbfaf6; overflow: hidden;
@@ -47,6 +61,104 @@ blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }
+/* 🎮 인물 선택 활동 — 2026-09-03. 표를 정답으로 주지 않고 학생이 고르게 한다.
+   캐릭터 선택 화면의 결: 고르기 전엔 흐리고, 고르면 색이 들어온다. */
+.ws-pick { border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd; padding: 16px; margin: 18px 0; }
+.pk-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-size: 0.94em; font-weight: 700; color: #3d4552; margin-bottom: 12px; }
+.pk-count { color: #c62c3c; white-space: nowrap; }
+.pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 640px) { .pk-grid { grid-template-columns: repeat(2, 1fr); } }
+.pk-card { border: 2px solid #e2e6ec; border-radius: 12px; background: #fff; padding: 10px 8px;
+  text-align: center; transition: transform .22s ease-out, box-shadow .22s, background .22s, border-color .15s; }
+.pk-card img { transition: filter .22s; }
+.pk-card img { width: 72px; height: 72px; image-rendering: pixelated;
+  filter: grayscale(1) opacity(.45); transition: .15s; }
+.pk-card.pk-set img { filter: none; }
+.pk-card.pk-set { border-color: #9aa4b2; background: #fdfdfe; }
+.pk-name { font-weight: 800; font-size: 0.9em; margin-top: 2px; color: #1c242f; }
+.pk-sit { font-size: 0.78em; color: #6b7482; line-height: 1.5; margin: 3px 0 8px; min-height: 2.2em; }
+.pk-btns { display: flex; gap: 5px; }
+.pk-b { flex: 1; border: 1.5px solid #d5dae1; background: #fff; border-radius: 8px;
+  padding: 6px 2px; font: inherit; font-size: 0.78em; font-weight: 700; color: #55607a; cursor: pointer; }
+.pk-b:hover { background: #f3f6fa; }
+.pk-b.on { background: #1c242f; border-color: #1c242f; color: #fff; }
+/* 🙂 기분 상태 — 고르면 캐릭터가 웃거나 운다 (2026-09-03).
+   새 그림을 그리지 않는다: 카드가 뜨거나 내려앉고, 색온도와 채도가 바뀌고, 배지가 붙는다.
+   정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
+.pk-card { position: relative; }
+.pk-card.pk-happy {
+  transform: translateY(-10px) scale(1.04);
+  border-color: #e0b13a;
+  box-shadow: 0 12px 22px rgba(200,150,30,.28), 0 0 0 3px rgba(255,214,102,.35);
+  background: linear-gradient(180deg, #fff9e2, #fff);
+  animation: pkHop .5s cubic-bezier(.34,1.56,.64,1);
+}
+.pk-card.pk-happy img { filter: brightness(1.16) saturate(1.45) contrast(1.06); transform: scale(1.1); }
+.pk-card.pk-sad {
+  transform: translateY(9px) scale(.95) rotate(1.6deg);
+  border-color: #93a3bb;
+  box-shadow: 0 1px 3px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #eef1f6, #f8fafc);
+  animation: pkSlump .45s ease-out;
+}
+.pk-card.pk-sad img {
+  filter: saturate(.22) brightness(.84) contrast(.92) hue-rotate(-14deg);
+  transform: scale(.9) rotate(-2deg);
+}
+.pk-card.pk-sad .pk-name, .pk-card.pk-sad .pk-sit { opacity: .62; }
+@keyframes pkHop {
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-20px) scale(1.09); }
+  100% { transform: translateY(-10px) scale(1.04); }
+}
+@keyframes pkSlump {
+  0%   { transform: translateY(0) scale(1) rotate(0); }
+  60%  { transform: translateY(13px) scale(.93) rotate(2.4deg); }
+  100% { transform: translateY(9px) scale(.95) rotate(1.6deg); }
+}
+.pk-card.pk-happy::after, .pk-card.pk-sad::after {
+  position: absolute; top: -12px; right: -8px; font-size: 1.9em; line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.22));
+}
+.pk-card.pk-happy::after { content: "😀"; animation: pkPop .45s cubic-bezier(.34,1.8,.64,1); }
+.pk-card.pk-sad::after { content: "😢"; animation: pkDrip .45s ease-out; }
+@keyframes pkPop { 0% { transform: scale(0) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes pkDrip { 0% { transform: translateY(-10px) scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; animation: none; }
+  .pk-card.pk-happy::after, .pk-card.pk-sad::after { animation: none; }
+}
+@media print {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; animation: none; }
+  .pk-card.pk-happy img, .pk-card.pk-sad img { transform: none; }
+}
+
+.pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
+.pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
+.pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
+  background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
+.pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
+@media (max-width: 520px) { .pk-sum { grid-template-columns: 1fr; } }
+.pk-col { background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }
+.pk-col b { display: block; margin-bottom: 5px; font-size: 0.95em; }
+.pk-col span { display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }
+.pk-up { border-color: #1a7a60; color: #15705a; }
+.pk-down { border-color: #c62c3c; color: #b3242f; }
+/* N지선다(기분 없음) 요약 열 — 옵션 순서대로 색이 갈린다 */
+.pk-c0 { border-color: #1f6feb; color: #1a5fc8; }
+.pk-c1 { border-color: #b8862b; color: #9a6f1e; }
+.pk-c2 { border-color: #6b4fbb; color: #5b41a4; }
+.pk-c3 { border-color: #1a7a60; color: #15705a; }
+/* 옵션이 3개 이상이면 버튼을 세로로 — 가로로 늘어놓으면 폰에서 글자가 잘린다 */
+.pk-btns-col { flex-direction: column; gap: 4px; }
+.pk-btns-col .pk-b { width: 100%; text-align: center; }
+/* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+.pk-card.pk-noimg { padding-top: 14px; }
+.pk-card.pk-noimg .pk-name { font-size: 1.02em; }
+@media print { .pk-b { display: none; } .pk-card img { filter: none; } }
+
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
 .ws-seesaw {
   border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
@@ -66,7 +178,7 @@ blockquote {
   border-top: 52px solid #96a0ae;
 }
 .ws-seesaw-chip {
-  position: absolute; top: 50%; width: 168px; margin-top: -78px; padding: 9px 6px;
+  position: absolute; top: 50%; width: 168px; padding: 9px 6px;
   text-align: center; border-radius: 12px; border: 3px solid; background: #fff;
   transition: transform .18s ease-out; font-size: 0.88em;
 }
@@ -74,6 +186,9 @@ blockquote {
 .ws-seesaw-chip .v { display: block; font-size: 1.45em; font-weight: 800; margin-top: 2px; }
 .ws-seesaw-chip.ws-l { left: 50%; margin-left: -334px; border-color: #c62c3c; color: #c62c3c; }
 .ws-seesaw-chip.ws-r { left: 50%; margin-left: 166px; border-color: #1e5ca8; color: #1e5ca8; }
+.ws-seesaw-note {
+  text-align: center; font-size: 0.84em; color: #6b7482; margin: 0 0 8px;
+}
 .ws-seesaw-out {
   text-align: center; font-size: 1.02em; font-weight: 700; color: #15705a;
   background: #e0f3ec; border: 1px solid #1a7a60; border-radius: 10px; padding: 9px;
@@ -101,6 +216,62 @@ blockquote {
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+
+/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+.ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  background: #fbf9f4; overflow: hidden; }
+.ws-cmp-head { display: flex; }
+.ws-cmp-head span { flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
+  font-size: .95em; color: #fff; background: #8a7a5c; }
+.ws-cmp-head span:first-child { background: #9a7b3c; }
+.ws-cmp-head span:last-child { background: #5b6b8a; }
+.ws-cmp-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }
+.ws-cmp-tab { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }
+.ws-cmp-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-cmp-stage { padding: 4px 10px 0; }
+.ws-cmp-slide { display: flex; gap: 12px; align-items: flex-start; }
+/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
+   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
+.ws-cmp-slide[hidden] { display: none; }
+.ws-cmp-slide figure { flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }
+.ws-cmp-slide img { width: 100%; max-height: 300px; height: auto; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.ws-cmp-slide figcaption { margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }
+.ws-cmp-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 8px 0 10px; }
+.ws-cmp-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }
+.ws-cmp-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-cmp-slide img { max-height: 190px; } }
+@media print { .ws-cmp-slide[hidden] { display: flex !important; } }  /* 인쇄엔 전부 편다 */
+
+/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
+.ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
+.ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
+  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.ws-flip-in { position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.ws-flip.on .ws-flip-in { transform: rotateY(180deg); }
+.ws-flip:focus-visible .ws-flip-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
+.ws-flip-f, .ws-flip-b { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 12px;
+  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-sizing: border-box; overflow: hidden; }
+.ws-flip-f { background: #f3f0e8; border: 2px solid #cfc4ae; }
+.ws-flip-f b { font-size: 1.15em; color: #3d3116; }
+.ws-flip-f i { font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }
+.ws-flip-f u { text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }
+.ws-flip-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }
+.ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
+.ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
+@media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+@media print {
+  .ws-flip { height: auto; }
+  .ws-flip-in { transform: none !important; }
+  .ws-flip-f, .ws-flip-b { position: static; transform: none; backface-visibility: visible; }
+}
 
 /* 📕 교과서를 펴는 자리 — 2026-09-02.
    학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
@@ -156,10 +327,14 @@ blockquote {
 }
 .ox-group { display: inline-flex; gap: 6px; }
 .ox-btn {
-  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
-  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  width: 44px; height: 44px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1.12em; font-weight: 800;
   cursor: pointer; transition: all 0.2s; line-height: 1;
 }
+.ox-group { gap: 9px; }
+/* OX 표 — 문장 칸은 넓게, 버튼 칸은 좁고 가운데 (2026-09-03) */
+table:has(.ox-group) td:last-child { width: 118px; text-align: center; }
+table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6b7482; }
 .ox-btn:hover { background: #f0f4ff; }
 .ox-btn.selected { background: #007aff; color: white; }
 .ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
@@ -177,10 +352,12 @@ blockquote {
 .btn-submitted { background: #34c759 !important; cursor: default; }
 .submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
 .essay-input {
-  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
-  padding: 10px; font-family: inherit; font-size: 0.93em;
-  resize: vertical; margin: 6px 0; outline: none;
+  width: 100%; min-height: 104px; border: 1.5px solid #ccd4de; border-radius: 10px;
+  padding: 12px 14px; font-family: inherit; font-size: 0.95em; line-height: 1.9;
+  resize: vertical; margin: 8px 0; outline: none; background: #fcfdff;
+  transition: border-color .15s, background .15s;
 }
+.essay-input:focus { border-color: #007aff; background: #fff; }
 .essay-input:focus { border-color: #007aff; }
 .control-bar {
   position: sticky; top: 0; background: white; padding: 10px 0;
@@ -294,7 +471,7 @@ blockquote {
 <h2>✨ 오늘의 고급 단어</h2>
 <table>
 <tr><td>낱말</td><td>쉽게 말하면</td><td>한자·어원 뜯어보기</td><td>문장 속에서</td></tr>
-<tr><td><strong>르네상스</strong></td><td>다시 태어남</td><td>(프랑스어 '재생·부활')</td><td>"고대 문화를 되살리려는 <strong>르네상스</strong>가 일어났다."</td></tr>
+<tr><td><strong>르네상스</strong></td><td>다시 태어남</td><td>프랑스어 <strong>re</strong>(다시) + <strong>naissance</strong>(태어남). 가족 낱말: <strong>re</strong>turn·<strong>re</strong>play·<strong>re</strong>cycle — <em>re</em>가 붙으면 '다시'</td><td>"고대 문화를 되살리려는 <strong>르네상스</strong>가 일어났다."</td></tr>
 <tr><td><strong>인문주의</strong></td><td>사람을 중심에 두는 생각</td><td>인(人, 사람) + 문(文, 글·문화)</td><td>"<strong>인문주의</strong>자들은 인간의 삶에 관심을 가졌다."</td></tr>
 <tr><td><strong>후원</strong></td><td>돈이나 힘으로 뒤에서 도와줌</td><td>후(後, 뒤) + 원(援, 도울)</td><td>"상인들이 예술가를 <strong>후원</strong>했다."</td></tr>
 <tr><td><strong>풍자</strong></td><td>웃음으로 비틀어 비판함</td><td>풍(諷, 빗대다) + 자(刺, 찌를)</td><td>"『우신예찬』은 성직자를 <strong>풍자</strong>했다."</td></tr>
@@ -442,6 +619,18 @@ function galGo(id,i){
 function galStep(id,d){
   const g=document.getElementById(id); if(!g) return;
   galGo(id, (+(g.dataset.cur||0)) + d);
+}
+function cmpGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n; i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function cmpStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  cmpGo(id, (+(g.dataset.cur||0)) + d);
 }
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
