@@ -173,6 +173,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     fm_count = 0
     in_code = False
     in_table = False
+    in_voc = False; voc_rows = []; voc_key = ''   # 2026-09-04: :::낱말 아코디언
     in_fold = False   # 2026-08-31: 접힌 콜아웃 '> [!타입]- 제목' → <details>
     in_ox_table = False
     title = "학습지"
@@ -397,6 +398,56 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 continue
             if stripped:
                 tb_lines.append(stripped)
+            continue
+
+        # 📖 고급 단어 아코디언 (:::낱말 [핵심낱말] / 행 | 뜯기 | 문장  +  '+ 뜻 | 가족낱말')
+        #   2026-09-04 천대현: "표 스타일에서 낱말을 클릭하면 그 칸 바로 밑으로 뜻이랑
+        #   가족 낱말이 열리고, 다시 클릭하면 닫히게."
+        #   🔴 왜 전용 블록인가 — 마크다운 접기(> [!타입]-)를 표 셀에 넣으면 평문으로 샌다.
+        #      그러나 그것이 '표를 버리라'는 뜻은 아니다. 이 블록은 <table>과 토글 JS를
+        #      직접 생성하므로 마크다운 파서를 거치지 않는다(:::인물선택·:::시소와 같은 경로).
+        #      2026-09-04에 마크다운 접기로만 재보고 "표는 불가"라고 결론 낸 것은 허수아비 비교였다.
+        #   🔴 입력칸 0 — act 인덱스가 안 밀리므로 기수업 차시에도 넣을 수 있다.
+        #   ♿ 여는 것은 <button> + aria-expanded — <td> onclick만 달면 키보드로 못 연다.
+        if stripped.startswith(':::낱말'):
+            in_voc = True; voc_rows = []
+            _h = stripped[len(':::낱말'):].strip()
+            voc_key = _h[1:_h.index(']')].strip() if _h.startswith('[') and ']' in _h else ''
+            continue
+        if in_voc:
+            if stripped == ':::':
+                vid = f'vc{len(html_parts)}'
+                trs = ''
+                for i, (head, body) in enumerate(voc_rows):
+                    cells = [x.strip() for x in head.strip('|').split('|')]
+                    name = cells[0] if cells else ''
+                    rest = ''.join(f'<td>{inline(c)}</td>' for c in cells[1:])
+                    opened = bool(voc_key) and voc_key in name
+                    trs += (
+                      f'<tr class="vc-head">'
+                      f'<td><button type="button" class="vc-btn" aria-expanded="{"true" if opened else "false"}" '
+                      f'aria-controls="{vid}-{i}">{inline(name)}</button></td>{rest}</tr>'
+                      f'<tr class="vc-body" id="{vid}-{i}"{"" if opened else " hidden"}>'
+                      f'<td colspan="{max(1,len(cells))}">'
+                      + ''.join(f'<p>{inline(x)}</p>' for x in body) + '</td></tr>')
+                html_parts.append(
+                  f'<table class="ws-voc" id="{vid}">'
+                  f'<thead><tr><th>낱말</th><th>한자 뜯어보기</th><th>문장 속에서</th></tr></thead>'
+                  f'<tbody>{trs}</tbody></table>'
+                  f'<script>(function(){{var t=document.getElementById("{vid}");'
+                  't.querySelectorAll(".vc-btn").forEach(function(b){'
+                  'b.addEventListener("click",function(){'
+                  'var r=document.getElementById(b.getAttribute("aria-controls"));'
+                  'var open=b.getAttribute("aria-expanded")==="true";'
+                  'b.setAttribute("aria-expanded",open?"false":"true");r.hidden=open;});});})();</script>')
+                in_voc = False; voc_rows = []
+                continue
+            if stripped.startswith('+'):
+                if voc_rows: voc_rows[-1][1].extend(
+                    [x.strip() for x in stripped[1:].split('|') if x.strip()])
+                continue
+            if stripped.startswith('|') and not set(stripped.replace('|','').replace(' ','')) <= set('-:'):
+                voc_rows.append([stripped, []])
             continue
 
         # 🎮 인물 선택 활동 (:::인물선택 <발문> / 이름 | 상황 | 웃음|울음 | 이유 ... :::)
@@ -1109,6 +1160,18 @@ blockquote {{
 .pk-count {{ color: #c62c3c; white-space: nowrap; }}
 .pk-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }}
 @media (max-width: 640px) {{ .pk-grid {{ grid-template-columns: repeat(2, 1fr); }} }}
+.ws-voc {{ width:100%; border-collapse:collapse; margin:10px 0; font-size:0.94em; }}
+.ws-voc th {{ background:#f2f4f8; color:#42505f; font-weight:700; padding:9px 12px;
+              border:1px solid #dfe4ea; text-align:left; font-size:0.9em; }}
+.ws-voc td {{ padding:9px 12px; border:1px solid #dfe4ea; vertical-align:top; }}
+.vc-btn {{ background:none; border:0; padding:0; font:inherit; font-weight:700; color:#1c2b3a;
+           cursor:pointer; text-align:left; }}
+.vc-btn::before {{ content:"▸ "; color:#7a8f6a; }}
+.vc-btn[aria-expanded="true"]::before {{ content:"▾ "; }}
+.vc-btn:hover {{ color:#0b57d0; }}
+.vc-btn:focus-visible {{ outline:2px solid #0b57d0; outline-offset:2px; border-radius:3px; }}
+.vc-body td {{ background:#fbfaf5; }}
+.vc-body p {{ margin:4px 0; color:#3a352c; line-height:1.65; }}
 .pk-card {{ border: 2px solid #e2e6ec; border-radius: 12px; background: #fff; padding: 10px 8px;
   text-align: center; transition: transform .22s ease-out, box-shadow .22s, background .22s, border-color .15s; }}
 .pk-card img {{ transition: filter .22s; }}
