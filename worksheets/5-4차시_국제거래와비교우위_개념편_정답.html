@@ -69,8 +69,21 @@ blockquote {
 .pk-count { color: #c62c3c; white-space: nowrap; }
 .pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 @media (max-width: 640px) { .pk-grid { grid-template-columns: repeat(2, 1fr); } }
+.ws-voc { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.94em; }
+.ws-voc th { background:#f2f4f8; color:#42505f; font-weight:700; padding:9px 12px;
+              border:1px solid #dfe4ea; text-align:left; font-size:0.9em; }
+.ws-voc td { padding:9px 12px; border:1px solid #dfe4ea; vertical-align:top; }
+.vc-btn { background:none; border:0; padding:0; font:inherit; font-weight:700; color:#1c2b3a;
+           cursor:pointer; text-align:left; }
+.vc-btn::before { content:"▸ "; color:#7a8f6a; }
+.vc-btn[aria-expanded="true"]::before { content:"▾ "; }
+.vc-btn:hover { color:#0b57d0; }
+.vc-btn:focus-visible { outline:2px solid #0b57d0; outline-offset:2px; border-radius:3px; }
+.vc-body td { background:#fbfaf5; }
+.vc-body p { margin:4px 0; color:#3a352c; line-height:1.65; }
 .pk-card { border: 2px solid #e2e6ec; border-radius: 12px; background: #fff; padding: 10px 8px;
-  text-align: center; transition: .15s; }
+  text-align: center; transition: transform .22s ease-out, box-shadow .22s, background .22s, border-color .15s; }
+.pk-card img { transition: filter .22s; }
 .pk-card img { width: 72px; height: 72px; image-rendering: pixelated;
   filter: grayscale(1) opacity(.45); transition: .15s; }
 .pk-card.pk-set img { filter: none; }
@@ -82,18 +95,83 @@ blockquote {
   padding: 6px 2px; font: inherit; font-size: 0.78em; font-weight: 700; color: #55607a; cursor: pointer; }
 .pk-b:hover { background: #f3f6fa; }
 .pk-b.on { background: #1c242f; border-color: #1c242f; color: #fff; }
+/* 🙂 기분 상태 — 고르면 캐릭터가 웃거나 운다 (2026-09-03).
+   새 그림을 그리지 않는다: 카드가 뜨거나 내려앉고, 색온도와 채도가 바뀌고, 배지가 붙는다.
+   정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
+.pk-card { position: relative; }
+.pk-card.pk-happy {
+  transform: translateY(-10px) scale(1.04);
+  border-color: #e0b13a;
+  box-shadow: 0 12px 22px rgba(200,150,30,.28), 0 0 0 3px rgba(255,214,102,.35);
+  background: linear-gradient(180deg, #fff9e2, #fff);
+  animation: pkHop .5s cubic-bezier(.34,1.56,.64,1);
+}
+.pk-card.pk-happy img { filter: brightness(1.16) saturate(1.45) contrast(1.06); transform: scale(1.1); }
+.pk-card.pk-sad {
+  transform: translateY(9px) scale(.95) rotate(1.6deg);
+  border-color: #93a3bb;
+  box-shadow: 0 1px 3px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #eef1f6, #f8fafc);
+  animation: pkSlump .45s ease-out;
+}
+.pk-card.pk-sad img {
+  filter: saturate(.22) brightness(.84) contrast(.92) hue-rotate(-14deg);
+  transform: scale(.9) rotate(-2deg);
+}
+.pk-card.pk-sad .pk-name, .pk-card.pk-sad .pk-sit { opacity: .62; }
+@keyframes pkHop {
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-20px) scale(1.09); }
+  100% { transform: translateY(-10px) scale(1.04); }
+}
+@keyframes pkSlump {
+  0%   { transform: translateY(0) scale(1) rotate(0); }
+  60%  { transform: translateY(13px) scale(.93) rotate(2.4deg); }
+  100% { transform: translateY(9px) scale(.95) rotate(1.6deg); }
+}
+.pk-card.pk-happy::after, .pk-card.pk-sad::after {
+  position: absolute; top: -12px; right: -8px; font-size: 1.9em; line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.22));
+}
+.pk-card.pk-happy::after { content: "😀"; animation: pkPop .45s cubic-bezier(.34,1.8,.64,1); }
+.pk-card.pk-sad::after { content: "😢"; animation: pkDrip .45s ease-out; }
+@keyframes pkPop { 0% { transform: scale(0) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes pkDrip { 0% { transform: translateY(-10px) scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; animation: none; }
+  .pk-card.pk-happy::after, .pk-card.pk-sad::after { animation: none; }
+}
+@media print {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; animation: none; }
+  .pk-card.pk-happy img, .pk-card.pk-sad img { transform: none; }
+}
+
 .pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
 .pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
 .pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
 .pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
-.pk-sum { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
 @media (max-width: 520px) { .pk-sum { grid-template-columns: 1fr; } }
 .pk-col { background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }
 .pk-col b { display: block; margin-bottom: 5px; font-size: 0.95em; }
 .pk-col span { display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }
 .pk-up { border-color: #1a7a60; color: #15705a; }
 .pk-down { border-color: #c62c3c; color: #b3242f; }
+/* N지선다(기분 없음) 요약 열 — 옵션 순서대로 색이 갈린다 */
+code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
+  padding: 1px 5px; font-size: .92em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #384a63; }
+.pk-c0 { border-color: #1f6feb; color: #1a5fc8; }
+.pk-c1 { border-color: #b8862b; color: #9a6f1e; }
+.pk-c2 { border-color: #6b4fbb; color: #5b41a4; }
+.pk-c3 { border-color: #1a7a60; color: #15705a; }
+/* 옵션이 3개 이상이면 버튼을 세로로 — 가로로 늘어놓으면 폰에서 글자가 잘린다 */
+.pk-btns-col { flex-direction: column; gap: 4px; }
+.pk-btns-col .pk-b { width: 100%; text-align: center; }
+/* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+.pk-card.pk-noimg { padding-top: 14px; }
+.pk-card.pk-noimg .pk-name { font-size: 1.02em; }
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
@@ -153,6 +231,62 @@ blockquote {
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+
+/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+.ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  background: #fbf9f4; overflow: hidden; }
+.ws-cmp-head { display: flex; }
+.ws-cmp-head span { flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
+  font-size: .95em; color: #fff; background: #8a7a5c; }
+.ws-cmp-head span:first-child { background: #9a7b3c; }
+.ws-cmp-head span:last-child { background: #5b6b8a; }
+.ws-cmp-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }
+.ws-cmp-tab { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }
+.ws-cmp-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-cmp-stage { padding: 4px 10px 0; }
+.ws-cmp-slide { display: flex; gap: 12px; align-items: flex-start; }
+/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
+   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
+.ws-cmp-slide[hidden] { display: none; }
+.ws-cmp-slide figure { flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }
+.ws-cmp-slide img { width: 100%; max-height: 300px; height: auto; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.ws-cmp-slide figcaption { margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }
+.ws-cmp-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 8px 0 10px; }
+.ws-cmp-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }
+.ws-cmp-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-cmp-slide img { max-height: 190px; } }
+@media print { .ws-cmp-slide[hidden] { display: flex !important; } }  /* 인쇄엔 전부 편다 */
+
+/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
+.ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
+.ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
+  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.ws-flip-in { position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.ws-flip.on .ws-flip-in { transform: rotateY(180deg); }
+.ws-flip:focus-visible .ws-flip-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
+.ws-flip-f, .ws-flip-b { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 12px;
+  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-sizing: border-box; overflow: hidden; }
+.ws-flip-f { background: #f3f0e8; border: 2px solid #cfc4ae; }
+.ws-flip-f b { font-size: 1.15em; color: #3d3116; }
+.ws-flip-f i { font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }
+.ws-flip-f u { text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }
+.ws-flip-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }
+.ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
+.ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
+@media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+@media print {
+  .ws-flip { height: auto; }
+  .ws-flip-in { transform: none !important; }
+  .ws-flip-f, .ws-flip-b { position: static; transform: none; backface-visibility: visible; }
+}
 
 /* 📕 교과서를 펴는 자리 — 2026-09-02.
    학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
@@ -394,12 +528,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🔴 <strong>그런데 본문에서는 두 번 다 정답이 나온다.</strong> 우리나라(컴퓨터 1 vs 옷 0.5 → 컴퓨터 ✅) · 중국(옷 1 vs 컴퓨터 0.5 → 옷 ✅). <strong>그래서 오개념이 한 번도 안 걸린다.</strong></blockquote>
 <blockquote>그리고 <strong>활동에서 무너진다</strong> — 가나라(자동차 1 vs 쌀 2 → <em>쌀</em>, 정답은 자동차 ❌) · 나나라(쌀 1 vs 자동차 0.25 → 쌀 ✅). <strong>둘 다 '쌀'이 나오는 모순.</strong> 학생은 <em>"방법은 똑같이 썼는데 왜 안 되지"</em> 가 된다.</blockquote>
 <blockquote>⭐ <strong>즉 '활동이 본문보다 어렵다'는 호소의 진짜 원인이 이것</strong>이다. 숫자가 어려워서가 아니라 <strong>본문에서 통하던 방법이 깨져서</strong>다.</blockquote>
-<blockquote>⭐ <strong>판서에서 반드시 못 박을 것</strong> — <em>"컴퓨터랑 옷은 비교가 안 된다. 대 하나와 벌 하나 중 뭐가 크냐?"</em> 비교는 늘 <strong>같은 물건을 두 나라가 얼마나 포기하나</strong>. 도식 v3에 브래킷(`여기 둘을 비교한다`)·`vs`·하단 경고를 넣어 두었다.</blockquote>
+<blockquote>⭐ <strong>판서에서 반드시 못 박을 것</strong> — <em>"컴퓨터랑 옷은 비교가 안 된다. 대 하나와 벌 하나 중 뭐가 크냐?"</em> 비교는 늘 <strong>같은 물건을 두 나라가 얼마나 포기하나</strong>. 도식 v3에 브래킷(<code>여기 둘을 비교한다</code>)·<code>vs</code>·하단 경고를 넣어 두었다.</blockquote>
 <blockquote>🔎 <strong>활동 3번 뒤 자가 점검을 신설했다</strong> — <em>"두 답이 같은 나라면 방법이 틀린 거야."</em> 2재화 2국가에서 비교 우위는 <strong>반드시 하나씩 갈린다</strong>(기회비용이 완전히 같은 경우만 예외이나 그런 문항은 내지 않는다). <strong>오답이 스스로 드러나게</strong> 하는 장치라 설명을 늘리지 않고 오개념을 잡는다.</blockquote>
 <br>
 <blockquote>🎯 <strong>여기가 핵심 — 최다 오개념!</strong> <em>절대 우위(많이 만듦) ≠ 비교 우위(덜 포기함)</em>. 서술형·자료제시형 단골.</blockquote>
 <blockquote>⭐ <strong>판서 순서를 지킬 것</strong> — ①표를 먼저 띄우고 <em>"둘 다 우리가 이기네?"</em> 로 절대 우위를 확인시킨 뒤, ②<em>"그럼 둘 다 만들면 되나?"</em> 로 막고, ③그때 <strong>기회비용</strong>을 꺼낸다. 순서를 바꾸면 학생이 두 개념을 뒤섞는다.</blockquote>
-<blockquote>⭐ <strong>④나눗셈은 칠판에 세 줄로 유도할 것</strong> (2026-08-27 신설) — `컴퓨터 10대 또는 옷 5벌` → `컴퓨터 10대 = 옷 5벌` → 양쪽 ÷10 → `컴퓨터 1대 = 옷 0.5벌`. <strong>나눗셈을 규칙으로 주지 말고 등식에서 뽑아낼 것.</strong> 이 세 줄이 첫 번째 도식 그대로다.</blockquote>
+<blockquote>⭐ <strong>④나눗셈은 칠판에 세 줄로 유도할 것</strong> (2026-08-27 신설) — <code>컴퓨터 10대 또는 옷 5벌</code> → <code>컴퓨터 10대 = 옷 5벌</code> → 양쪽 ÷10 → <code>컴퓨터 1대 = 옷 0.5벌</code>. <strong>나눗셈을 규칙으로 주지 말고 등식에서 뽑아낼 것.</strong> 이 세 줄이 첫 번째 도식 그대로다.</blockquote>
 <blockquote>⭐ <strong>3단원 기회비용을 반드시 호명할 것</strong> — <em>"포기한 것 중 가장 큰 것"</em>. 새 개념이 아니라 <strong>이미 아는 것의 재사용</strong>임을 알려야 부담이 준다.</blockquote>
 <figure class="ws-fig"><img src="images/v5-who-makes-it.png" alt="덜 포기한다는 말의 뜻. 컴퓨터 1대가 필요할 때 우리나라 0.5벌·중국 2벌, 옷 1벌이 필요할 때 우리나라 컴퓨터 2대·중국 0.5대가 사라진다." loading="lazy"><figcaption>덜 포기한다는 말의 뜻. 컴퓨터 1대가 필요할 때 우리나라 0.5벌·중국 2벌, 옷 1벌이 필요할 때 우리나라 컴퓨터 2대·중국 0.5대가 사라진다.</figcaption></figure>
 <br>
@@ -408,7 +542,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🔴 <strong>여기서 반드시 짚을 것 — 이득 보는 주체는 '나라'가 아니라 '둘을 합친 쪽'이다.</strong> 학생은 <em>우리나라가 이기는 이야기</em>로 읽으려 한다. 남는 물건(옷 1.5벌 + 컴퓨터 1.5대)을 <strong>나눠 갖기 때문에</strong> 둘 다 늘어나는 것이지, 한쪽이 이기는 게 아니다. 이 한 줄을 놓치면 4번 활동(<em>쓸 수 있는 물건의 양</em>)에서 막힌다.</blockquote>
 <blockquote>🔴 <strong>학생 개념편에서는 아래 둘을 뺐다 — 말로 할 것</strong> (2026-09-02 천대현: <em>"텍스트가 너무 많다"</em>). 도식이 이미 말하는데 글로 또 쓰니 콜아웃 여섯 덩이가 벽이 됐다. <strong>도식이 말하면 글은 지운다</strong>(-0.78). 아래는 <strong>판서·구두 재료</strong>로만 남긴다.</blockquote>
 <p>></p>
-<blockquote><strong>㉮ 이득 보는 주체</strong> — <em>"이득 보는 건 우리나라도 중국도 아니야. <strong>둘을 합친 쪽</strong>에 물건이 더 남고, 그걸 나눠 가지니까 둘 다 많아지는 거야."</em> 도식 하단(`옷 1.5벌 + 컴퓨터 1.5대가 그냥 남는다`)을 짚으며 한 문장으로.</blockquote>
+<blockquote><strong>㉮ 이득 보는 주체</strong> — <em>"이득 보는 건 우리나라도 중국도 아니야. <strong>둘을 합친 쪽</strong>에 물건이 더 남고, 그걸 나눠 가지니까 둘 다 많아지는 거야."</em> 도식 하단(<code>옷 1.5벌 + 컴퓨터 1.5대가 그냥 남는다</code>)을 짚으며 한 문장으로.</blockquote>
 <p>></p>
 <blockquote><strong>㉯ 조별 과제 비유</strong> — 옛 비유(<em>"수학도 영어도 짝꿍보다 잘하는데 한 과목에 붙어라"</em>)는 <strong>한 사람의 시간 배분</strong>이라 <em>짝꿍이 무엇을 맡는지</em>가 안 나온다. 대신 이렇게 말할 것:</blockquote>
 <blockquote><em>"너랑 짝꿍이 조별 과제를 해. 넌 자료 조사도 PPT도 짝꿍보다 빨라. 그런데 네가 PPT 한 장 만드는 동안 자료를 3개 찾을 수 있고, 짝꿍은 1개밖에 못 찾아. → PPT는 짝꿍한테 넘기는 게 이득이야. <strong>네가 더 잘하는데도 넘긴다</strong> — 네 시간이 더 아까우니까."</em></blockquote>
@@ -498,7 +632,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote><strong>OX 해설</strong>: 1 O — 상품·노동·자본·기술 모두. <strong>2 X</strong>: 무역 의존도가 높으면 세계 경제 변화의 영향을 <em>많이</em> 받는다. 3 O — 비교 우위 특화. <strong>4 X — 핵심 함정</strong>: 두 상품 다 절대 우위여도 <em>비교 우위 있는 하나만 특화 수출</em>하고 다른 건 수입하는 게 이득. 5 O — 관세·통관.</blockquote>
 <br>
 <h2>🧠 핵심 3줄 (채점 관점)</h2>
-<blockquote>학생이 <strong>안 보고</strong> 세 문장을 쓰게 한다. 낱말 나열이 아니라 `~다.`로 끝나는 문장인지 볼 것.</blockquote>
+<blockquote>학생이 <strong>안 보고</strong> 세 문장을 쓰게 한다. 낱말 나열이 아니라 <code>~다.</code>로 끝나는 문장인지 볼 것.</blockquote>
 <blockquote><strong>나와야 할 것 (택 3)</strong>: ①비교 우위는 많이 만드는 것이 아니라 덜 포기하는 것으로 정해진다 ②둘 다 잘해도 하나에 특화하는 게 이득이다 ③우리나라는 무역 의존도가 높아 세계 경제의 영향을 크게 받는다 ④국제 거래에는 관세·통관·환율이라는 관문이 있다.</blockquote>
 <blockquote>🎯 <strong>오개념 포착 지점</strong> — <em>"많이 만드는 나라가 비교 우위"</em> 라고 쓰면 3단계가 안 박힌 것이다. 8/18 데이터에서 확인됐듯 <strong>선택형은 이 오개념을 못 잡는다.</strong> 세 줄을 반드시 걷을 것.</blockquote>
 <br>
@@ -553,6 +687,18 @@ function galGo(id,i){
 function galStep(id,d){
   const g=document.getElementById(id); if(!g) return;
   galGo(id, (+(g.dataset.cur||0)) + d);
+}
+function cmpGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n; i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function cmpStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  cmpGo(id, (+(g.dataset.cur||0)) + d);
 }
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
@@ -704,7 +850,7 @@ function _persist(){
   const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
-function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\n※ 제출을 마치면 이 기기에 남긴 답은 지워집니다.'); }
 let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
@@ -714,10 +860,14 @@ function loadProgress(){
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
-  if(info&&!EXAM_MODE){
-    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
-    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
-    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
+  // 🔒 2026-09-04 — 복원 전에 **신원을 대조한다**.
+  //   종전에는 저장된 반·번호·이름을 화면에 그대로 채워 넣었다. 그래서 친구 노트북을 빌린 학생이
+  //   열면 **남의 답과 남의 이름이 이미 적혀 있었고, 이름만 바꾸면 그대로 제출**됐다(천대현 관찰).
+  //   이제 저장된 주인과 지금 앉은 사람이 같을 때만 복원한다.
+  if(info && (info.class||info.number)){
+    const c=_siv('si-cls'), n=_siv('si-num');
+    if(!c || !n) return;                                  // 아직 신원을 안 넣었다 → 보류(넣으면 리스너가 다시 부른다)
+    if(String(info.class)!==String(c) || String(info.number)!==String(n)) return;  // 주인이 다르다 → 복원 안 함
   }
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
@@ -797,6 +947,9 @@ function submitResult(){
   _btn.disabled = true; _btn.textContent = '전송 중…';
   fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
   .then(()=>{
+    // 🔒 제출이 끝나면 **이 기기에 남긴 답을 지운다**(2026-09-04 천대현 요청).
+    //   화면의 답은 그대로라 재제출은 되지만, 새로 열면 남지 않는다 → 빌려준 노트북에 답이 안 남는다.
+    try{ const k=_wsKey(); if(k) localStorage.removeItem(k); }catch(e){}
     _btn.textContent='✅ 제출 완료';
     _btn.classList.add('btn-submitted');
     setTimeout(()=>{
@@ -812,6 +965,12 @@ function submitResult(){
 }
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
+// 신원(반·번호)을 넣거나 바꾸면 다시 복원을 시도한다.
+//   위 대조 때문에 처음엔 보류될 수 있고, 본인이 반·번호를 고른 순간 자기 답이 돌아와야 한다.
+['si-cls','si-num'].forEach(id=>{
+  const el=_siEl(id);
+  if(el) el.addEventListener('change', ()=>{ try{ loadProgress(); }catch(e){} });
+});
 // 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
 document.addEventListener('input', autosave, true);
 document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
