@@ -1791,7 +1791,7 @@ function _persist(){{
   const info={{class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')}};
   try{{ localStorage.setItem(key, JSON.stringify({{info,data,ts:Date.now()}})); }}catch(e){{}}
 }}
-function saveProgress(){{ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }}
+function saveProgress(){{ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\\n※ 제출을 마치면 이 기기에 남긴 답은 지워집니다.'); }}
 let _autosaveT;
 function autosave(){{ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }}
 function loadProgress(){{
@@ -1801,10 +1801,14 @@ function loadProgress(){{
   if(!saved) return;
   let parsed; try{{ parsed=JSON.parse(saved); }}catch(e){{ return; }}
   const info=parsed.info, data=parsed.data;
-  if(info&&!EXAM_MODE){{
-    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
-    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
-    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
+  // 🔒 2026-09-04 — 복원 전에 **신원을 대조한다**.
+  //   종전에는 저장된 반·번호·이름을 화면에 그대로 채워 넣었다. 그래서 친구 노트북을 빌린 학생이
+  //   열면 **남의 답과 남의 이름이 이미 적혀 있었고, 이름만 바꾸면 그대로 제출**됐다(천대현 관찰).
+  //   이제 저장된 주인과 지금 앉은 사람이 같을 때만 복원한다.
+  if(info && (info.class||info.number)){{
+    const c=_siv('si-cls'), n=_siv('si-num');
+    if(!c || !n) return;                                  // 아직 신원을 안 넣었다 → 보류(넣으면 리스너가 다시 부른다)
+    if(String(info.class)!==String(c) || String(info.number)!==String(n)) return;  // 주인이 다르다 → 복원 안 함
   }}
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{{
@@ -1884,6 +1888,9 @@ function submitResult(){{
   _btn.disabled = true; _btn.textContent = '전송 중…';
   fetch(SUBMIT_URL,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'application/json'}},body:JSON.stringify(data)}})
   .then(()=>{{
+    // 🔒 제출이 끝나면 **이 기기에 남긴 답을 지운다**(2026-09-04 천대현 요청).
+    //   화면의 답은 그대로라 재제출은 되지만, 새로 열면 남지 않는다 → 빌려준 노트북에 답이 안 남는다.
+    try{{ const k=_wsKey(); if(k) localStorage.removeItem(k); }}catch(e){{}}
     _btn.textContent='✅ 제출 완료';
     _btn.classList.add('btn-submitted');
     setTimeout(()=>{{
@@ -1899,6 +1906,12 @@ function submitResult(){{
 }}
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
+// 신원(반·번호)을 넣거나 바꾸면 다시 복원을 시도한다.
+//   위 대조 때문에 처음엔 보류될 수 있고, 본인이 반·번호를 고른 순간 자기 답이 돌아와야 한다.
+['si-cls','si-num'].forEach(id=>{{
+  const el=_siEl(id);
+  if(el) el.addEventListener('change', ()=>{{ try{{ loadProgress(); }}catch(e){{}} }});
+}});
 // 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
 document.addEventListener('input', autosave, true);
 document.addEventListener('click', e=>{{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }}, true);
