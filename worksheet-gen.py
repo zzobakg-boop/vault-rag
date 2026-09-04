@@ -784,13 +784,17 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             #   빈칸 답이 바로 아래 R3 인용에 그대로 보여 학생이 교과서를 안 펴던 문제(실측 56%,
             #   최근 차시는 100%)를 풀기 위해 도입. 원문을 '채운 뒤 펼쳐 확인'하는 자리로 옮긴다.
             #   Obsidian 표준 접기 문법과 같아 볼트에서도 접힌 상태로 보인다.
-            m_fold = re.match(r'> \[!([^\]]+)\]-\s*(.*)', stripped)
+            # 🔴 2026-09-04: '+' 도 받는다(옵시디언 표준과 동일 — '+' = 처음부터 펼침).
+            #   §15 카드 목록에서 '핵심 낱말 하나만 펼쳐 둔다'를 쓰려면 필요하다.
+            #   ⚠️ 같이 고친 것: 접기가 연달아 올 때 이전 블록의 '</div>'를 안 닫아
+            #   div가 어긋나던 버그. 카드를 줄줄이 놓는 순간 바로 드러난다.
+            m_fold = re.match(r'> \[!([^\]]+)\]([-+])\s*(.*)', stripped)
             if m_fold:
                 if in_fold:
-                    html_parts.append('</details>')
-                ftype, ftitle = m_fold.group(1), m_fold.group(2)
+                    html_parts.append('</div></details>')
+                ftype, fmark, ftitle = m_fold.group(1), m_fold.group(2), m_fold.group(3)
                 html_parts.append(
-                    f'<details class="ws-fold ws-fold-{ftype}">'
+                    f'<details class="ws-fold ws-fold-{ftype}"{" open" if fmark == "+" else ""}>'
                     f'<summary>{inline(ftitle) or "펼쳐 보기"}</summary>'
                     f'<div class="ws-fold-body">')
                 in_fold = True
