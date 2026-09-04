@@ -139,27 +139,13 @@ blockquote {
 .pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
 .pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
-.pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
+.pk-sum { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
 @media (max-width: 520px) { .pk-sum { grid-template-columns: 1fr; } }
 .pk-col { background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }
 .pk-col b { display: block; margin-bottom: 5px; font-size: 0.95em; }
 .pk-col span { display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }
 .pk-up { border-color: #1a7a60; color: #15705a; }
 .pk-down { border-color: #c62c3c; color: #b3242f; }
-/* N지선다(기분 없음) 요약 열 — 옵션 순서대로 색이 갈린다 */
-code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
-  padding: 1px 5px; font-size: .92em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  color: #384a63; }
-.pk-c0 { border-color: #1f6feb; color: #1a5fc8; }
-.pk-c1 { border-color: #b8862b; color: #9a6f1e; }
-.pk-c2 { border-color: #6b4fbb; color: #5b41a4; }
-.pk-c3 { border-color: #1a7a60; color: #15705a; }
-/* 옵션이 3개 이상이면 버튼을 세로로 — 가로로 늘어놓으면 폰에서 글자가 잘린다 */
-.pk-btns-col { flex-direction: column; gap: 4px; }
-.pk-btns-col .pk-b { width: 100%; text-align: center; }
-/* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
-.pk-card.pk-noimg { padding-top: 14px; }
-.pk-card.pk-noimg .pk-name { font-size: 1.02em; }
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
@@ -219,62 +205,6 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
-
-/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
-.ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
-  background: #fbf9f4; overflow: hidden; }
-.ws-cmp-head { display: flex; }
-.ws-cmp-head span { flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
-  font-size: .95em; color: #fff; background: #8a7a5c; }
-.ws-cmp-head span:first-child { background: #9a7b3c; }
-.ws-cmp-head span:last-child { background: #5b6b8a; }
-.ws-cmp-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }
-.ws-cmp-tab { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
-  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }
-.ws-cmp-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
-.ws-cmp-stage { padding: 4px 10px 0; }
-.ws-cmp-slide { display: flex; gap: 12px; align-items: flex-start; }
-/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
-   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
-.ws-cmp-slide[hidden] { display: none; }
-.ws-cmp-slide figure { flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }
-.ws-cmp-slide img { width: 100%; max-height: 300px; height: auto; object-fit: contain;
-  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
-.ws-cmp-slide figcaption { margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }
-.ws-cmp-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
-  padding: 8px 0 10px; }
-.ws-cmp-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
-  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }
-.ws-cmp-count { font-size: .8em; color: #8a7a5c; }
-@media (max-width: 520px) { .ws-cmp-slide img { max-height: 190px; } }
-@media print { .ws-cmp-slide[hidden] { display: flex !important; } }  /* 인쇄엔 전부 편다 */
-
-/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
-.ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
-.ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
-  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
-  font-family: inherit; -webkit-tap-highlight-color: transparent; }
-.ws-flip-in { position: relative; display: block; width: 100%; height: 100%;
-  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
-.ws-flip.on .ws-flip-in { transform: rotateY(180deg); }
-.ws-flip:focus-visible .ws-flip-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
-.ws-flip-f, .ws-flip-b { position: absolute; inset: 0; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 6px; padding: 12px;
-  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
-  box-sizing: border-box; overflow: hidden; }
-.ws-flip-f { background: #f3f0e8; border: 2px solid #cfc4ae; }
-.ws-flip-f b { font-size: 1.15em; color: #3d3116; }
-.ws-flip-f i { font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }
-.ws-flip-f u { text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }
-.ws-flip-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }
-.ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
-.ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
-@media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
-@media print {
-  .ws-flip { height: auto; }
-  .ws-flip-in { transform: none !important; }
-  .ws-flip-f, .ws-flip-b { position: static; transform: none; backface-visibility: visible; }
-}
 
 /* 📕 교과서를 펴는 자리 — 2026-09-02.
    학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
@@ -581,7 +511,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p><strong>같은 시기에 원화는 달러에는 약해지고 엔에는 강해졌다.</strong> 그래서 미국 직구는 비싸졌는데 일본 직구는 싸졌다. 환율은 <strong>두 나라 돈 사이의 비율</strong>이라, <em>상대가 누구냐</em>에 따라 방향이 달라진다.</p></div>
 <br>
-<blockquote>🔎 <strong>환율엔 늘 “누구에 대해, 얼마당”이 붙어 있어.</strong> 달러는 <code>1달러당</code>, 엔은 <code>100엔당</code>으로 쓰지. 그래서 광고의 <em>"엔화 800원대"</em>도 <strong>100엔당</strong> 800원대라는 말이야 — <em>1엔이 800원이면 큰일 나지.</em> 달러가 오른다고 엔도 오르는 게 아니거든.</blockquote>
+<blockquote>🔎 <strong>환율엔 늘 “누구에 대해, 얼마당”이 붙어 있어.</strong> 달러는 `1달러당`, 엔은 `100엔당`으로 쓰지. 그래서 광고의 <em>"엔화 800원대"</em>도 <strong>100엔당</strong> 800원대라는 말이야 — <em>1엔이 800원이면 큰일 나지.</em> 달러가 오른다고 엔도 오르는 게 아니거든.</blockquote>
 <br>
 <blockquote>🎙️ <strong>어떤 예능에 이런 대화가 나왔어.</strong> <em>"돈 뭐 써요?"</em> <em>"<strong>텡게</strong>요."</em> / <em>"환전할 데 있어요?"</em> <em>"그냥 <strong>카드</strong> 돼요."</em></blockquote>
 <blockquote><strong>카드도 환율을 피하지 못해</strong> — 며칠 뒤 환율로 원화가 되어 청구되거든. 환전을 <strong>안 한 게 아니라 미룬 거야.</strong></blockquote>
@@ -592,7 +522,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>환율 상승 — 긍정: 수출 증가→생산·고용 확대 / 부정: 수입 원자재 가격 상승→생산비↑·물가 상승·외채 부담 가중. 환율 하락 — 긍정: 수입 원자재 가격 하락→물가 안정·외채 부담 경감 / 부정: 수입 증가→국내 기업 생산 위축·고용 감소·실업 증가 — 천재교육 사회②(구정화) 106쪽</p>
 </div></details>
 <br>
-<div class="ws-pick" id="pk75"><div class="pk-head"><span>환율이 1,100원 → 1,450원으로 올랐다. 이 사람들은 웃을까, 울까?</span><b class="pk-count">0 / 6</b></div><div class="pk-grid"><div class="pk-card" data-i="0" data-ans="웃음"><img src="images/people/exporter.png" alt="" loading="lazy"><div class="pk-name">수출업자</div><div class="pk-sit">미국에 하드 디스크를 팔아요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>우리 물건이 외국에서 싸 보여서 더 팔린다</div></div><div class="pk-card" data-i="1" data-ans="웃음"><img src="images/people/tourist.png" alt="" loading="lazy"><div class="pk-name">외국인 관광객</div><div class="pk-sit">한국에 여행 왔어요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>같은 달러로 원화를 더 바꿔 쓸 수 있다</div></div><div class="pk-card" data-i="2" data-ans="웃음"><img src="images/people/remitter.png" alt="" loading="lazy"><div class="pk-name">해외에서 송금</div><div class="pk-sit">미국에서 번 돈을 부모님께 보내요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>같은 달러가 더 큰 원화가 된다</div></div><div class="pk-card" data-i="3" data-ans="울음"><img src="images/people/importer.png" alt="" loading="lazy"><div class="pk-name">수입업자</div><div class="pk-sit">미국에서 오렌지를 사 와요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>같은 물건에 원화를 더 줘야 한다</div></div><div class="pk-card" data-i="4" data-ans="울음"><img src="images/people/traveler.png" alt="" loading="lazy"><div class="pk-name">해외여행 가는 사람</div><div class="pk-sit">다음 달 일본에 가요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>같은 원화로 바꿀 수 있는 외화가 줄어든다</div></div><div class="pk-card" data-i="5" data-ans="울음"><img src="images/people/family.png" alt="" loading="lazy"><div class="pk-name">유학생을 둔 가정</div><div class="pk-sit">딸이 미국에서 공부해요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>부쳐야 할 돈이 커진다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk75");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["웃음", "울음"],MOOD=true;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk75"><div class="pk-head"><span>환율이 1,100원 → 1,450원으로 올랐다. 이 사람들은 웃을까, 울까?</span><b class="pk-count">0 / 6</b></div><div class="pk-grid"><div class="pk-card" data-i="0" data-ans="웃음"><img src="images/people/exporter.png" alt="" loading="lazy"><div class="pk-name">수출업자</div><div class="pk-sit">미국에 하드 디스크를 팔아요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>우리 물건이 외국에서 싸 보여서 더 팔린다</div></div><div class="pk-card" data-i="1" data-ans="웃음"><img src="images/people/tourist.png" alt="" loading="lazy"><div class="pk-name">외국인 관광객</div><div class="pk-sit">한국에 여행 왔어요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>같은 달러로 원화를 더 바꿔 쓸 수 있다</div></div><div class="pk-card" data-i="2" data-ans="웃음"><img src="images/people/remitter.png" alt="" loading="lazy"><div class="pk-name">해외에서 송금</div><div class="pk-sit">미국에서 번 돈을 부모님께 보내요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>같은 달러가 더 큰 원화가 된다</div></div><div class="pk-card" data-i="3" data-ans="울음"><img src="images/people/importer.png" alt="" loading="lazy"><div class="pk-name">수입업자</div><div class="pk-sit">미국에서 오렌지를 사 와요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>같은 물건에 원화를 더 줘야 한다</div></div><div class="pk-card" data-i="4" data-ans="울음"><img src="images/people/traveler.png" alt="" loading="lazy"><div class="pk-name">해외여행 가는 사람</div><div class="pk-sit">다음 달 일본에 가요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>같은 원화로 바꿀 수 있는 외화가 줄어든다</div></div><div class="pk-card" data-i="5" data-ans="울음"><img src="images/people/family.png" alt="" loading="lazy"><div class="pk-name">유학생을 둔 가정</div><div class="pk-sit">딸이 미국에서 공부해요</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃음">😀 웃는다</button><button type="button" class="pk-b" data-v="울음">😢 운다</button></div><div class="pk-why" hidden>부쳐야 할 돈이 커진다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk75");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'><div class='pk-col pk-up'><b>웃는 사람</b>"+cs.filter(function(c){return c.dataset.ans==="웃음"}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div><div class='pk-col pk-down'><b>우는 사람</b>"+cs.filter(function(c){return c.dataset.ans==="울음"}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div></div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>💡 <strong>그리고 우리 모두</strong> — 수입 원자재값이 올라 <strong>물가가 오른다.</strong> 5-2에서 배운 물가 상승 3원인 중 <em>생산비 상승</em>이야. 환율이 <strong>내리면</strong> 위 두 쪽이 그대로 뒤바뀌고.</blockquote>
 <br>
@@ -606,8 +536,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p><strong>1.</strong> 환율이 <strong>1,100원</strong>일 때 원화로 얼마? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="1. 환율이 1,100원일 때 원화로 얼마? · 환율이 1,400원일 때" style="width:160px" placeholder="">  ·  환율이 <strong>1,400원</strong>일 때는? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="1. 환율이 1,100원일 때 원화로 얼마? · 환율이 1,400원일 때" style="width:160px" placeholder=""></p>
 <blockquote>💡 힌트 — <em>달러 값 × 환율</em>. 계산기 없이도 된다(40 × 11 = 440, 뒤에 0 두 개).</blockquote>
 <br>
-<p><strong>2.</strong> 두 값의 차이는 얼마인가? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="2. 두 값의 차이는 얼마인가? · 굿즈 자체가 비싸진 걸까, 돈 바꾸는" style="width:140px" placeholder="">  ·  <strong>굿즈 자체</strong>가 비싸진 걸까, <strong>돈 바꾸는 값</strong>이 오른 걸까? <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="2. 두 값의 차이는 얼마인가? · 굿즈 자체가 비싸진 걸까, 돈 바꾸는" style="width:220px" placeholder=""></p>
-<blockquote>✅ <strong>스스로 점검</strong> — 답을 쓰기 전에 이 활동 <strong>첫 줄</strong>을 다시 읽자. 거기 이미 실마리가 있어.</blockquote>
+<p><strong>2.</strong> 두 값의 차이는 얼마인가? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="2. 두 값의 차이는 얼마인가? · 굿즈 가격은 변했나?" style="width:140px" placeholder="">  ·  굿즈 가격은 변했나? <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="2. 두 값의 차이는 얼마인가? · 굿즈 가격은 변했나?" style="width:140px" placeholder=""></p>
 <br>
 <p><strong>3.</strong> 지금까지는 <strong>직구하는 내 지갑</strong> 쪽에서 봤다. 이번엔 반대편에서 보자.</p>
 <p>환율이 <strong>1,100원에서 1,400원으로 오른 이 상황</strong>에서, 우리나라 <strong>수출 기업</strong>은 웃을까 울까? 그렇게 생각한 까닭을 한 문장으로 써 보자.</p>
@@ -640,7 +569,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
 <blockquote>오늘 배운 걸 <strong>안 보고</strong> 세 줄로 적어 보자. 틀려도 괜찮아 — 떠올리려고 애쓰는 그 순간에 머리에 박히는 거야.</blockquote>
-<blockquote>✍️ <strong>낱말 세 개가 아니라 문장 세 개로.</strong> 각 줄이 <code>~다.</code> 로 끝나게 쓰자. (예: "환율이 오르면 원화 가치는 반대로 떨어진다.")</blockquote>
+<blockquote>✍️ <strong>낱말 세 개가 아니라 문장 세 개로.</strong> 각 줄이 `~다.` 로 끝나게 쓰자. (예: "환율이 오르면 원화 가치는 반대로 떨어진다.")</blockquote>
 <br>
 <p>1. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="1." style="width:240px" placeholder=""></p>
 <p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="2." style="width:240px" placeholder=""></p>
@@ -697,18 +626,6 @@ function galGo(id,i){
 function galStep(id,d){
   const g=document.getElementById(id); if(!g) return;
   galGo(id, (+(g.dataset.cur||0)) + d);
-}
-function cmpGo(id,i){
-  const g=document.getElementById(id); if(!g) return;
-  const n=+g.dataset.n; i=((i%n)+n)%n;
-  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
-  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
-  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
-  g.dataset.cur = i;
-}
-function cmpStep(id,d){
-  const g=document.getElementById(id); if(!g) return;
-  cmpGo(id, (+(g.dataset.cur||0)) + d);
 }
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
