@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>역사① Ⅲ단원 3-3-1 — "지켜 줄게. 대신 넌 여길 못 떠나." (서유럽 봉건 사회의 성립) (복습용)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
+  background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
+}
+.container {
+  max-width: 800px; margin: 0 auto; background: white;
+  border-radius: 16px; padding: 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
+h2 {
+  font-size: 1.3em; margin: 30px 0 12px; color: #1d1d1f; font-weight: 800;
+  letter-spacing: -0.01em; padding: 8px 0 8px 14px; border-left: 6px solid #007aff;
+  background: linear-gradient(90deg, #f2f6ff, rgba(255,255,255,0));
+  border-radius: 0 8px 8px 0;
+}
+h2:first-of-type { margin-top: 14px; }
+h3 {
+  font-size: 1.09em; margin: 22px 0 8px; color: #2b3240; font-weight: 750;
+  padding-left: 11px; border-left: 3px solid #b6c4dc;
+}
+h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
+p { margin: 5px 0; font-size: 0.95em; }
+hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
+}
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
+td { border: 1px solid #e2e6ec; padding: 10px 12px; vertical-align: middle; line-height: 1.6; }
+tr:first-child td {
+  background: #e8eefb; font-weight: 750; color: #22314e; vertical-align: middle;
+  border-color: #cfd9ec; font-size: 0.96em;
+}
+tbody tr:nth-child(even):not(:first-child) td { background: #fcfdff; }
+table { border-radius: 10px; overflow: hidden; }
+.ws-fold {
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}
+.ws-fold > summary {
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}
+.ws-fold > summary::-webkit-details-marker { display: none; }
+.ws-fold > summary::before { content: "▸ "; color: #7a8f6a; }
+.ws-fold[open] > summary::before { content: "▾ "; }
+.ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
+.ws-fold-body { padding: 10px 16px 14px; }
+.ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+blockquote {
+  border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
+  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
+}
+/* 🎮 인물 선택 활동 — 2026-09-03. 표를 정답으로 주지 않고 학생이 고르게 한다.
+   캐릭터 선택 화면의 결: 고르기 전엔 흐리고, 고르면 색이 들어온다. */
+.ws-pick { border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd; padding: 16px; margin: 18px 0; }
+.pk-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-size: 0.94em; font-weight: 700; color: #3d4552; margin-bottom: 12px; }
+.pk-count { color: #c62c3c; white-space: nowrap; }
+.pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 640px) { .pk-grid { grid-template-columns: repeat(2, 1fr); } }
+.pk-card { border: 2px solid #e2e6ec; border-radius: 12px; background: #fff; padding: 10px 8px;
+  text-align: center; transition: transform .22s ease-out, box-shadow .22s, background .22s, border-color .15s; }
+.pk-card img { transition: filter .22s; }
+.pk-card img { width: 72px; height: 72px; image-rendering: pixelated;
+  filter: grayscale(1) opacity(.45); transition: .15s; }
+.pk-card.pk-set img { filter: none; }
+.pk-card.pk-set { border-color: #9aa4b2; background: #fdfdfe; }
+.pk-name { font-weight: 800; font-size: 0.9em; margin-top: 2px; color: #1c242f; }
+.pk-sit { font-size: 0.78em; color: #6b7482; line-height: 1.5; margin: 3px 0 8px; min-height: 2.2em; }
+.pk-btns { display: flex; gap: 5px; }
+.pk-b { flex: 1; border: 1.5px solid #d5dae1; background: #fff; border-radius: 8px;
+  padding: 6px 2px; font: inherit; font-size: 0.78em; font-weight: 700; color: #55607a; cursor: pointer; }
+.pk-b:hover { background: #f3f6fa; }
+.pk-b.on { background: #1c242f; border-color: #1c242f; color: #fff; }
+/* 🙂 기분 상태 — 고르면 캐릭터가 웃거나 운다 (2026-09-03).
+   새 그림을 그리지 않는다: 카드가 뜨거나 내려앉고, 색온도와 채도가 바뀌고, 배지가 붙는다.
+   정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
+.pk-card { position: relative; }
+.pk-card.pk-happy {
+  transform: translateY(-10px) scale(1.04);
+  border-color: #e0b13a;
+  box-shadow: 0 12px 22px rgba(200,150,30,.28), 0 0 0 3px rgba(255,214,102,.35);
+  background: linear-gradient(180deg, #fff9e2, #fff);
+  animation: pkHop .5s cubic-bezier(.34,1.56,.64,1);
+}
+.pk-card.pk-happy img { filter: brightness(1.16) saturate(1.45) contrast(1.06); transform: scale(1.1); }
+.pk-card.pk-sad {
+  transform: translateY(9px) scale(.95) rotate(1.6deg);
+  border-color: #93a3bb;
+  box-shadow: 0 1px 3px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #eef1f6, #f8fafc);
+  animation: pkSlump .45s ease-out;
+}
+.pk-card.pk-sad img {
+  filter: saturate(.22) brightness(.84) contrast(.92) hue-rotate(-14deg);
+  transform: scale(.9) rotate(-2deg);
+}
+.pk-card.pk-sad .pk-name, .pk-card.pk-sad .pk-sit { opacity: .62; }
+@keyframes pkHop {
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-20px) scale(1.09); }
+  100% { transform: translateY(-10px) scale(1.04); }
+}
+@keyframes pkSlump {
+  0%   { transform: translateY(0) scale(1) rotate(0); }
+  60%  { transform: translateY(13px) scale(.93) rotate(2.4deg); }
+  100% { transform: translateY(9px) scale(.95) rotate(1.6deg); }
+}
+.pk-card.pk-happy::after, .pk-card.pk-sad::after {
+  position: absolute; top: -12px; right: -8px; font-size: 1.9em; line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.22));
+}
+.pk-card.pk-happy::after { content: "😀"; animation: pkPop .45s cubic-bezier(.34,1.8,.64,1); }
+.pk-card.pk-sad::after { content: "😢"; animation: pkDrip .45s ease-out; }
+@keyframes pkPop { 0% { transform: scale(0) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes pkDrip { 0% { transform: translateY(-10px) scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; animation: none; }
+  .pk-card.pk-happy::after, .pk-card.pk-sad::after { animation: none; }
+}
+@media print {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; animation: none; }
+  .pk-card.pk-happy img, .pk-card.pk-sad img { transform: none; }
+}
+
+.pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
+.pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
+.pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
+  background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
+.pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
+@media (max-width: 520px) { .pk-sum { grid-template-columns: 1fr; } }
+.pk-col { background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }
+.pk-col b { display: block; margin-bottom: 5px; font-size: 0.95em; }
+.pk-col span { display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }
+.pk-up { border-color: #1a7a60; color: #15705a; }
+.pk-down { border-color: #c62c3c; color: #b3242f; }
+/* N지선다(기분 없음) 요약 열 — 옵션 순서대로 색이 갈린다 */
+.pk-c0 { border-color: #1f6feb; color: #1a5fc8; }
+.pk-c1 { border-color: #b8862b; color: #9a6f1e; }
+.pk-c2 { border-color: #6b4fbb; color: #5b41a4; }
+.pk-c3 { border-color: #1a7a60; color: #15705a; }
+/* 옵션이 3개 이상이면 버튼을 세로로 — 가로로 늘어놓으면 폰에서 글자가 잘린다 */
+.pk-btns-col { flex-direction: column; gap: 4px; }
+.pk-btns-col .pk-b { width: 100%; text-align: center; }
+/* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+.pk-card.pk-noimg { padding-top: 14px; }
+.pk-card.pk-noimg .pk-name { font-size: 1.02em; }
+@media print { .pk-b { display: none; } .pk-card img { filter: none; } }
+
+/* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
+.ws-seesaw {
+  border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
+  padding: 16px 18px 18px; margin: 18px 0;
+}
+.ws-seesaw-head { font-size: 0.9em; font-weight: 700; color: #4a5361; margin-bottom: 10px; }
+.ws-seesaw-range { width: 100%; accent-color: #c62c3c; margin-bottom: 6px; }
+.ws-seesaw-stage { position: relative; height: 190px; }
+.ws-seesaw-beam {
+  position: absolute; left: 50%; top: 50%; width: 500px; height: 10px;
+  margin-left: -250px; margin-top: -5px; background: #7b8494; border-radius: 5px;
+  transition: transform .18s ease-out;
+}
+.ws-seesaw-pivot {
+  position: absolute; left: 50%; top: 50%; margin-left: -26px;
+  border-left: 26px solid transparent; border-right: 26px solid transparent;
+  border-top: 52px solid #96a0ae;
+}
+.ws-seesaw-chip {
+  position: absolute; top: 50%; width: 168px; padding: 9px 6px;
+  text-align: center; border-radius: 12px; border: 3px solid; background: #fff;
+  transition: transform .18s ease-out; font-size: 0.88em;
+}
+.ws-seesaw-chip b { display: block; font-size: 0.95em; }
+.ws-seesaw-chip .v { display: block; font-size: 1.45em; font-weight: 800; margin-top: 2px; }
+.ws-seesaw-chip.ws-l { left: 50%; margin-left: -334px; border-color: #c62c3c; color: #c62c3c; }
+.ws-seesaw-chip.ws-r { left: 50%; margin-left: 166px; border-color: #1e5ca8; color: #1e5ca8; }
+.ws-seesaw-note {
+  text-align: center; font-size: 0.84em; color: #6b7482; margin: 0 0 8px;
+}
+.ws-seesaw-out {
+  text-align: center; font-size: 1.02em; font-weight: 700; color: #15705a;
+  background: #e0f3ec; border: 1px solid #1a7a60; border-radius: 10px; padding: 9px;
+}
+@media (max-width: 560px) {
+  .ws-seesaw-beam { width: 300px; margin-left: -150px; }
+  .ws-seesaw-chip { width: 124px; font-size: 0.8em; }
+  .ws-seesaw-chip.ws-l { margin-left: -206px; }
+  .ws-seesaw-chip.ws-r { margin-left: 82px; }
+}
+@media print { .ws-seesaw-range { display: none; } }
+
+/* 📖 표·도식을 읽는 자리 — 2026-09-03.
+   빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
+   표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+.ws-read {
+  background: #f5f6f8; border: 1px solid #dfe3e8; border-left: 5px solid #98a2b3;
+  border-radius: 0 0 10px 10px; padding: 13px 18px 15px; margin: -10px 0 20px;
+  color: #3d4552; font-size: 0.93em; line-height: 1.78;
+}
+.ws-read .ws-read-tag {
+  display: inline-block; font-size: 0.72em; font-weight: 800; color: #7a828f;
+  letter-spacing: 0.06em; margin-bottom: 5px;
+}
+.ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read p:last-child { margin-bottom: 0; }
+@media print { .ws-read { background: #fff; border-left-color: #999; } }
+
+/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+.ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  background: #fbf9f4; overflow: hidden; }
+.ws-cmp-head { display: flex; }
+.ws-cmp-head span { flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
+  font-size: .95em; color: #fff; background: #8a7a5c; }
+.ws-cmp-head span:first-child { background: #9a7b3c; }
+.ws-cmp-head span:last-child { background: #5b6b8a; }
+.ws-cmp-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }
+.ws-cmp-tab { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }
+.ws-cmp-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-cmp-stage { padding: 4px 10px 0; }
+.ws-cmp-slide { display: flex; gap: 12px; align-items: flex-start; }
+/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
+   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
+.ws-cmp-slide[hidden] { display: none; }
+.ws-cmp-slide figure { flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }
+.ws-cmp-slide img { width: 100%; max-height: 300px; height: auto; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.ws-cmp-slide figcaption { margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }
+.ws-cmp-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 8px 0 10px; }
+.ws-cmp-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }
+.ws-cmp-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-cmp-slide img { max-height: 190px; } }
+@media print { .ws-cmp-slide[hidden] { display: flex !important; } }  /* 인쇄엔 전부 편다 */
+
+/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
+.ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
+.ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
+  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.ws-flip-in { position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.ws-flip.on .ws-flip-in { transform: rotateY(180deg); }
+.ws-flip:focus-visible .ws-flip-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
+.ws-flip-f, .ws-flip-b { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 12px;
+  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-sizing: border-box; overflow: hidden; }
+.ws-flip-f { background: #f3f0e8; border: 2px solid #cfc4ae; }
+.ws-flip-f b { font-size: 1.15em; color: #3d3116; }
+.ws-flip-f i { font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }
+.ws-flip-f u { text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }
+.ws-flip-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }
+.ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
+.ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
+@media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+@media print {
+  .ws-flip { height: auto; }
+  .ws-flip-in { transform: none !important; }
+  .ws-flip-f, .ws-flip-b { position: static; transform: none; backface-visibility: visible; }
+}
+
+/* 📕 교과서를 펴는 자리 — 2026-09-02.
+   학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
+   교과서 슬롯도 같은 파랑이면 화면상 구분이 안 됐다. 황토/크림으로 계열을 통째로 분리한다. */
+.ws-tb {
+  background: #fdf8ed; border: 1px solid #e8d9b4; border-left: 6px solid #b8862b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; margin: 14px 0;
+}
+.ws-tb-tag {
+  display: inline-block; background: #b8862b; color: #fff;
+  font-size: 0.78em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+}
+.ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+.ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
+.ws-tb-ask strong { color: #8a5f12; }
+.ws-tb input.activity-input {
+  border-bottom: 2px solid #b8862b; background: #fffdf5; color: #3d3116;
+  text-align: left; padding-left: 8px;
+}
+.ws-tb input.activity-input:focus { border-bottom-color: #8a5f12; background: #fff8e4; }
+@media print { .ws-tb { background: #fff; border-left-color: #999; } }
+
+.callout {
+  padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
+}
+.callout-info { background: #e8f4fd; border-left: 4px solid #007aff; }
+.callout-warning { background: #fff8e1; border-left: 4px solid #ff9500; }
+.callout-tip { background: #e8f8e8; border-left: 4px solid #34c759; }
+.callout-question { background: #f3e8fd; border-left: 4px solid #af52de; }
+.code-block {
+  background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px;
+  font-family: 'SF Mono', monospace; font-size: 0.82em;
+  overflow-x: auto; margin: 10px 0; white-space: pre;
+}
+.blank-input {
+  border: none; border-bottom: 2px solid #007aff; background: #f8f9ff;
+  padding: 3px 6px; font-size: 0.93em; font-family: inherit;
+  text-align: center; border-radius: 4px 4px 0 0; outline: none;
+  transition: all 0.3s;
+}
+.blank-input:focus { border-bottom-color: #5856d6; background: #f0f0ff; }
+.blank-input.correct { border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.blank-input.wrong { border-bottom-color: #ff3b30; background: #fff0f0; }
+.blank-input.no-score { border-bottom-color: #aaa; }
+.blank-input.code-blank { background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }
+.blank-input.no-score.correct { border-bottom-color: #34c759; }
+.blank-input.no-score.wrong { border-bottom-color: #ff9500; }
+.ox-input {
+  border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
+  font-family: inherit; border-radius: 4px; outline: none;
+  transition: all 0.3s;
+}
+.ox-group { display: inline-flex; gap: 6px; }
+.ox-btn {
+  width: 44px; height: 44px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1.12em; font-weight: 800;
+  cursor: pointer; transition: all 0.2s; line-height: 1;
+}
+.ox-group { gap: 9px; }
+/* OX 표 — 문장 칸은 넓게, 버튼 칸은 좁고 가운데 (2026-09-03) */
+table:has(.ox-group) td:last-child { width: 118px; text-align: center; }
+table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6b7482; }
+.ox-btn:hover { background: #f0f4ff; }
+.ox-btn.selected { background: #007aff; color: white; }
+.ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.ox-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 4px; }
+.choice-btn {
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}
+.choice-btn:hover { background: #f0f4ff; }
+.choice-btn.selected { background: #007aff; color: white; }
+.choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.btn-submitted { background: #34c759 !important; cursor: default; }
+.submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
+.essay-input {
+  width: 100%; min-height: 104px; border: 1.5px solid #ccd4de; border-radius: 10px;
+  padding: 12px 14px; font-family: inherit; font-size: 0.95em; line-height: 1.9;
+  resize: vertical; margin: 8px 0; outline: none; background: #fcfdff;
+  transition: border-color .15s, background .15s;
+}
+.essay-input:focus { border-color: #007aff; background: #fff; }
+.essay-input:focus { border-color: #007aff; }
+.control-bar {
+  position: sticky; top: 0; background: white; padding: 10px 0;
+  border-bottom: 1px solid #eee; margin: -16px 0 16px; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.score { font-size: 1.1em; font-weight: 600; color: #007aff; }
+.btn {
+  padding: 7px 16px; border: none; border-radius: 8px;
+  font-size: 0.88em; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: #007aff; color: white; }
+.btn-secondary { background: #f0f0f5; color: #333; }
+.btn-danger { background: #ff3b30; color: white; }
+.student-info {
+  display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.student-info select { background:#fff; cursor:pointer; }
+.student-info input, .student-info select {
+  border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
+}
+@media (max-width: 600px) {
+  .container { padding: 14px; }
+  .control-bar { flex-direction: column; text-align: center; }
+  table { font-size: 0.82em; }
+  .hero-title { font-size: 26px !important; }
+  .hero-section { padding: 36px 20px !important; }
+}
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
+.hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
+.hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+.card-quote { border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
+.hero-keyword {
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}
+.hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
+.ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
+.ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
+.ws-fold-table thead th { background:#eee9dc; font-weight:700; }
+.ws-anim-ctl { display:flex; align-items:center; justify-content:center; gap:10px; margin:8px 0 2px; }
+.ws-anim-ctl button { border:1px solid #cfc8b6; background:#fff; border-radius:8px; padding:6px 16px;
+  cursor:pointer; font-family:inherit; font-size:0.9em; color:#4a5c40; font-weight:700; }
+.ws-anim-ctl button:hover { background:#f1efe6; }
+.ws-anim-ctl span { font-size:0.8em; color:#9a9284; }
+.ws-gal { margin: 22px auto; max-width: 100%; border: 1px solid #ddd7c8; border-radius: 12px;
+  background: #fbfaf6; overflow: hidden; }
+.ws-gal-head { padding: 12px 16px 0; font-weight: 700; color: #3a4a34; font-size: 0.98em; }
+.ws-gal-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px; }
+.ws-gal-dot { border: 1px solid #cfc8b6; background: #fff; color: #5a5344; border-radius: 999px;
+  padding: 5px 12px; font-size: 0.84em; cursor: pointer; font-family: inherit; }
+.ws-gal-dot.on { background: #4a5c40; border-color: #4a5c40; color: #fff; font-weight: 700; }
+.ws-gal-stage { text-align: center; padding: 4px 14px 0; }
+.ws-gal-slide img { max-width: 100%; max-height: 430px; height: auto; border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.14); }
+.ws-gal-slide figcaption { margin: 8px auto 0; max-width: 640px; font-size: 0.86em;
+  color: #5a5344; line-height: 1.55; }
+.ws-gal-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 10px 0 14px; }
+.ws-gal-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px;
+  padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.9em; color: #4a5c40; }
+.ws-gal-count { font-size: 0.86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+.hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-1 — "지켜 줄게. 대신 넌 여길 못 떠나." (서유럽 봉건 사회의 성립)</h1><p class="hero-subtitle">"지켜 줄게. 대신 넌 여길 못 떠나."</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">왕이 못 지켜 주면 사람들은 어디로 갈까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">받은 땅은 어떤 형태로 굴러갔을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">땅에 매인 농민은 노예와 무엇이 달랐을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">도식은 왕이 꼭대기인데 왜 왕이 약했을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>주종 관계</strong> — 기사와 기사가 맺은 관계. <strong>일방적인 복종이 아니라 서로 의무를 지는 계약</strong>이다.</p><table><thead><tr><th>주군이 하는 일</th><th>봉신이 하는 일</th></tr></thead><tbody><tr><td>봉토(땅)를 주고 <strong>보호</strong>한다</td><td><strong>충성</strong>과 군사적 봉사를 바친다</td></tr></tbody></table><div class="card-quote">⚠️ 어느 한쪽이 의무를 안 지키면 <strong>계약은 깨질 수 있었다.</strong> 시험에 가장 자주 나오는 문장.</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>장원제</strong> — 받은 봉토를 굴리는 방식. 봉신은 장원의 <strong>영주</strong>가 되어 그 안을 다스렸다.</p><p>`세금 징수` · `치안 유지` · `재판` — 원래 <strong>왕이 하던 일</strong>을 영주가 대신 가졌다(불입권).</p><div class="card-quote">💡 그래서 장원은 왕의 손이 닿지 않는 <strong>작은 나라</strong>나 마찬가지였다.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>농노 ≠ 노예</strong> — 이름에 노(奴) 자가 들어가 헷갈리지만 둘은 다르다.</p><table><thead><tr><th></th><th>노예</th><th>농노</th></tr></thead><tbody><tr><td>결혼·가정</td><td>불가</td><td><strong>가능</strong></td></tr><tr><td>재산</td><td>없음</td><td><strong>약간 가질 수 있음</strong></td></tr><tr><td>사고팔기</td><td>물건처럼 거래됨</td><td>아님</td></tr><tr><td>이동</td><td>—</td><td><strong>영주 허락 없이 장원을 못 떠남</strong></td></tr></tbody></table><div class="card-quote">💡 자유를 통째로 잃은 게 아니라, <strong>떠날 자유를 안전과 바꾼 것.</strong></div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>왜 왕이 약해졌나</strong> — 봉건제는 왕이 센 제도가 아니다. 정반대다.</p><p>`장원마다 영주가 왕 노릇` + `기사는 주군 이외의 상위 주군에게 의무 없음` → <strong>지방 세력 강화 · 왕권 약화 → 지방 분권</strong></p><div class="card-quote">⚠️ 교과서 도식은 왕이 꼭대기라 왕이 제일 세 보인다. <strong>착시다.</strong> 왕은 바로 아래 제후만 부릴 수 있었다.</div></div></div><img class="hero-image" src="images/feudal-hero.png" alt=""><div class="hero-hook">바이킹 배가 강을 거슬러 올라온다. 마을이 불탄다. 그런데 왕은 오지 않아. 그때 언덕 위 성에서 누가 외쳐 — "안전하게 지내고 싶으면 이곳으로 오시오." 달려갈까? 가면 살 수는 있어. 대신 그날부터 넌 그 땅을 떠날 수 없게 돼. 중세 유럽은 이 거래 위에 세워진 세계야. 오늘은 그 거래의 조건을 하나씩 읽어 보자.</div></section>
+  <div class="control-bar">
+    <div class="score">
+      빈칸: <span id="score">0</span>/15 · OX: <span id="ox-score">0</span>/5
+      · 총: <span id="total-score">0</span>/20 (<span id="pct">0</span>%)
+    </div>
+    <div>
+      <a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
+      <button class="btn btn-primary" onclick="check()">채점하기</button>
+      <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
+      <button class="btn btn-danger" onclick="reset()">초기화</button>
+      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
+      
+    </div>
+  </div>
+  <div class="student-info">
+    <select id="si-cls"><option value="">반</option><option value="1">1반</option><option value="2">2반</option><option value="3">3반</option><option value="4">4반</option><option value="5">5반</option><option value="6">6반</option></select>
+    <select id="si-num"><option value="">번호</option><option value="1">1번</option><option value="2">2번</option><option value="3">3번</option><option value="4">4번</option><option value="5">5번</option><option value="6">6번</option><option value="7">7번</option><option value="8">8번</option><option value="9">9번</option><option value="10">10번</option><option value="11">11번</option><option value="12">12번</option><option value="13">13번</option><option value="14">14번</option><option value="15">15번</option><option value="16">16번</option><option value="17">17번</option><option value="18">18번</option><option value="19">19번</option><option value="20">20번</option><option value="21">21번</option><option value="22">22번</option><option value="23">23번</option><option value="24">24번</option><option value="25">25번</option><option value="26">26번</option><option value="27">27번</option><option value="28">28번</option><option value="29">29번</option><option value="30">30번</option><option value="31">31번</option><option value="32">32번</option><option value="33">33번</option><option value="34">34번</option><option value="35">35번</option></select>
+    <input type="text" id="si-name" placeholder="이름">
+  </div>
+  <br>
+<blockquote>🎙️ 위 이야기의 <strong>앞부분은 지난 시간에 배운 거야</strong> — 프랑크 왕국이 셋으로 갈라진 그 뒤의 일이거든. 오늘 배울 건 결국 한 문장이야. <strong>"지켜 줄게. 대신 —"</strong> 그 '대신' 뒤에 뭐가 붙었는지 보러 가자.</blockquote>
+<br>
+<h2>📌 학습 목표</h2>
+<p>- 중세 서유럽 <strong>봉건 사회의 특징</strong>을 설명할 수 있다.</p>
+<p>- 중세 서유럽 <strong>문화의 특징</strong>을 파악할 수 있다.</p>
+<br>
+<h2>✨ 오늘의 고급 단어</h2>
+<table>
+<tr><td>낱말</td><td>쉽게 말하면</td><td>한자 뜯어보기</td><td>문장 속에서</td></tr>
+<tr><td><strong>봉건</strong>(封建)</td><td>땅을 나눠 주고 그 대가로 충성을 받는 방식</td><td>봉(封, 내려 줌) + 건(建, 세울)</td><td>"서유럽에 <strong>봉건</strong> 사회가 자리 잡았다."</td></tr>
+<tr><td><strong>주종</strong>(主從) 관계</td><td>주인과 따르는 사람의 관계</td><td>주(主, 주인) + 종(從, 따를)</td><td>"기사와 주군은 <strong>주종 관계</strong>를 맺었다."</td></tr>
+<tr><td><strong>봉토</strong>(封土)</td><td>충성의 대가로 받은 땅</td><td>봉(封, 내려 줌) + 토(土, 땅)</td><td>"주군은 봉신에게 <strong>봉토</strong>를 주었다."</td></tr>
+<tr><td><strong>장원</strong>(莊園)</td><td>영주가 다스리는 자급자족 농촌</td><td>장(莊, 농막) + 원(園, 뜰)</td><td>"봉토는 <strong>장원</strong> 형태로 운영되었다."</td></tr>
+<tr><td><strong>영주</strong>(領主)</td><td>자기 땅을 다스리는 주인</td><td>영(領, 거느릴) + 주(主, 주인)</td><td>"봉신은 장원의 <strong>영주</strong>가 되었다."</td></tr>
+<tr><td><strong>농노</strong>(農奴)</td><td>땅에 매인 농민</td><td>농(農, 농사) + 노(奴, 종)</td><td>"장원의 농민은 대부분 <strong>농노</strong>였다."</td></tr>
+</table>
+<br>
+<blockquote>💡 오늘 딱 두 개만 잡자 — <strong>주종 관계</strong>(위쪽 세계가 어떻게 굴러갔나)와 <strong>농노</strong>(아래쪽 삶이 어땠나).</blockquote>
+<br>
+<h2>📖 1단계: 왕이 오지 않는다</h2>
+<blockquote>📕 <strong>교과서 90~91쪽</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
+<p>프랑크 왕국이 셋으로 나뉜 뒤, 서유럽은 ①<input type="text" class="blank-input" data-answer="바이킹" data-id="1" style="width:68px" placeholder="">을 비롯한 이민족의 침입으로 큰 혼란에 빠졌다. 왕의 힘은 이들을 막기에 너무 약했다. 그러자 힘 있는 사람들이 스스로 성을 쌓고 무력을 갖춘 ②<input type="text" class="blank-input" data-answer="기사" data-id="2" style="width:60px" placeholder="">가 되었다.</p>
+<br>
+<blockquote>🎙️ 포인트는 <strong>"왕이 못 지켜 줬다"</strong>야. 오늘 배울 것 중 <strong>앞쪽 절반이 전부 여기서 나와</strong> — 기사·장원·농노·지방 분권. 지켜 줄 사람이 멀리 있으면 사람은 가까운 힘에 붙게 되거든.</blockquote>
+<blockquote>다만 뒤쪽 절반인 <strong>교회</strong>는 여기서 나온 게 아니야. 뿌리가 따로 있어. 그 둘이 어디서 만나는지는 5단계에서 보게 될 거야.</blockquote>
+<br>
+<figure class="ws-fig ws-anim"><img id="anim28" src="images/3-3-1_왕이못온이유.webp" alt="왕은 왜 막지 못했을까 — 두 줄이 동시에 움직인다. 위쪽 바이킹은 도착·약탈·떠남을 끝내는데, 아래쪽 왕의 군대는 아직 소집 중이다. 왕이 도착했을 때 그 자리엔 아무도 없다." data-src="images/3-3-1_왕이못온이유.webp" loading="lazy"><div class="ws-anim-ctl"><button type="button" onclick="replayAnim('anim28')">▶ 다시 보기</button><span>한 번 재생됩니다</span></div><figcaption>왕은 왜 막지 못했을까 — 두 줄이 동시에 움직인다. 위쪽 바이킹은 도착·약탈·떠남을 끝내는데, 아래쪽 왕의 군대는 아직 소집 중이다. 왕이 도착했을 때 그 자리엔 아무도 없다.</figcaption></figure>
+<br>
+<blockquote>⚙️ <strong>위 그림이 오늘의 출발점이야.</strong> 왕의 군대가 약해서가 아니라 <strong>늦어서</strong> 못 막았어.</blockquote>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 90쪽 · 도입 그림</div><div class="ws-tb-see">성 밖 사람과 성 안 사람이 말을 주고받고 있다.</div><div class="ws-tb-ask">성 <strong>밖</strong> 사람의 말풍선에서 한 문장을 골라 그대로 옮겨 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 90쪽에서 찾기 — 성 밖 사람의 말풍선에서 한 문장을 골라 그대로 옮겨 적자." style="width:380px" placeholder=""></div></div>
+<br>
+<h2>📖 2단계: 기사들의 계약 — 주종 관계</h2>
+<blockquote>📕 <strong>교과서 91쪽</strong> 펴고 채우기 · 배정 시간 <strong>8분</strong></blockquote>
+<p>기사들은 자기보다 강한 기사를 ③<input type="text" class="blank-input" data-answer="주군" data-id="3" style="width:60px" placeholder="">으로 섬기고 충성과 봉사를 맹세했다. 그러면 주군은 그 기사에게 땅, 곧 ④<input type="text" class="blank-input" data-answer="봉토" data-id="4" style="width:60px" placeholder="">를 주고 자기 신하, 곧 <strong>봉신</strong>으로 삼았다. 이렇게 맺어진 관계를 ⑤<input type="text" class="blank-input" data-answer="주종 관계" data-id="5" style="width:100px" placeholder="">라고 한다.</p>
+<p>중요한 건 이게 <strong>일방적인 복종이 아니었다</strong>는 점이다. 주군과 봉신은 <em>서로</em> 의무를 다하자는 ⑥<input type="text" class="blank-input" data-answer="계약" data-id="6" style="width:60px" placeholder="">을 맺은 사이였고, 어느 한쪽이 의무를 지키지 않으면 관계는 깨질 수 있었다.</p>
+<br>
+<blockquote>⚠️ <strong>여기가 시험 단골</strong> — 주종 관계는 <em>양쪽 다 의무가 있는</em> 계약이다. "충성해라, 끝"이 아니라 "충성한다 / 대신 보호하고 땅을 준다"의 <strong>맞교환</strong>. 한쪽이 어기면 깨진다는 문장을 꼭 기억해 둬.</blockquote>
+<br>
+<h3>🔁 이름이 같은 두 봉건제</h3>
+<p>1학기에 배운 <strong>중국 주 왕조의 봉건제</strong>(2단원)와 이름이 같다. 그런데 <strong>뿌리가 다르다.</strong></p>
+<br>
+<table>
+<tr><td></td><td>중국 주 왕조</td><td>중세 서유럽</td></tr>
+<tr><td>무엇으로 묶였나</td><td><strong>혈연</strong> — 왕족·공신을 제후로</td><td><strong>계약</strong> — 주군과 봉신의 약속</td></tr>
+<tr><td>깨질 수 있나</td><td>핏줄은 못 끊는다</td><td><strong>의무를 안 지키면 깨진다</strong></td></tr>
+<tr><td>시간이 지나면</td><td>혈연이 <strong>멀어져</strong> 느슨해짐</td><td>계약이 <strong>당사자끼리만</strong> 유효</td></tr>
+<tr><td>결과</td><td>왕실 권위 약화 → 제후 독자 세력화</td><td>왕권 약화 → 지방 분권</td></tr>
+</table>
+<br>
+<blockquote>🎙️ 재미있는 건 <strong>출발이 달랐는데 결말이 비슷하다</strong>는 점이야. 한쪽은 핏줄이 멀어져서, 다른 쪽은 계약이 옆으로 안 이어져서 — 둘 다 왕이 약해졌어.</blockquote>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 91쪽 · 봉건 사회 구조 도식</div><div class="ws-tb-see">위에서 우리가 그린 도식과 나란히 놓고 보자.</div><div class="ws-tb-ask">교과서 도식에서 <strong>왕과 화살표로 바로 이어진</strong> 사람은 누구인가? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 91쪽에서 찾기 — 교과서 도식에서 왕과 화살표로 바로 이어진 사람은 누구인가?" style="width:200px" placeholder=""></div></div>
+<br>
+<br>
+<figure class="ws-fig"><img src="images/3-3-1_이름정리.png" alt="헷갈리는 이름 정리 — 왼쪽은 사다리에서의 자리(왕·제후·기사·농노), 오른쪽은 같은 제후 한 사람이 상대에 따라 봉신·주군·영주로 불리는 모습. 주군과 봉신은 신분이 아니라 역할이다." loading="lazy"><figcaption>헷갈리는 이름 정리 — 왼쪽은 사다리에서의 자리(왕·제후·기사·농노), 오른쪽은 같은 제후 한 사람이 상대에 따라 봉신·주군·영주로 불리는 모습. 주군과 봉신은 신분이 아니라 역할이다.</figcaption></figure>
+<br>
+<blockquote>🎙️ 이름이 많아서 헷갈리는 게 아니야. <strong>두 가지를 같이 부르고 있어서</strong> 그래.</blockquote>
+<blockquote><strong>왕·제후·기사·농노</strong>는 <em>사다리에서 어디쯤 있나</em>(지위)이고, <strong>주군·봉신</strong>은 <em>지금 누구를 보고 있나</em>(역할)야. 그래서 같은 제후 한 사람이 <strong>위를 보면 봉신, 아래를 보면 주군</strong>, 자기 땅에서는 <strong>영주</strong>가 돼. 한 사람이 이름 셋을 가진 거지.</blockquote>
+<br>
+<h2>📖 3단계: 땅 위의 삶 — 장원과 농노</h2>
+<blockquote>📕 <strong>교과서 91쪽</strong> 펴고 채우기 · 배정 시간 <strong>7분</strong></blockquote>
+<p>봉토는 ⑦<input type="text" class="blank-input" data-answer="장원" data-id="7" style="width:60px" placeholder="">이라는 형태로 운영되었다. 봉신은 그곳의 ⑧<input type="text" class="blank-input" data-answer="영주" data-id="8" style="width:60px" placeholder="">가 되어 주군의 간섭 없이 자기 땅을 다스렸다. 장원에서 농사짓는 사람들은 대부분 ⑨<input type="text" class="blank-input" data-answer="농노" data-id="9" style="width:60px" placeholder="">였다.</p>
+<p>농노는 영주에게 방앗간·빵 가마 같은 시설 사용료와 세금을 바치고, 일주일에 사흘쯤은 영주의 땅에서 농사지어야 했다. 그리고 영주의 허락 없이는 장원을 떠날 수 없었다.</p>
+<p><strong>그렇다고 노예는 아니었다.</strong> 농노는 <strong>결혼</strong>하여 가정을 꾸릴 수 있었고, 약간의 재산도 가질 수 있었다.</p>
+<br>
+<blockquote>💡 <strong>농노 ≠ 노예.</strong> 이 구분이 오늘의 핵심 중 하나야. 노예는 <em>물건</em>처럼 사고팔렸지만, 농노는 가정을 꾸리고 재산을 가질 수 있었어. 대신 <strong>땅에 묶여 있었지.</strong> 자유를 통째로 잃은 게 아니라, <em>떠날 자유</em>를 안전과 바꾼 거야.</blockquote>
+<br>
+<h3>📜 같은 해, 다른 삶 — 달력 그림 여섯 장</h3>
+<p>600년 전 프랑스에서 만든 달력 그림이다. <strong>같은 책, 같은 한 해</strong>인데 달마다 나오는 사람이 다르다.</p>
+<br>
+<div class="ws-gal" id="gal73" data-n="6"><div class="ws-gal-head">👉 탭이나 ‹ › 로 한 장씩 넘겨 보자. 각 달에 <strong>누가 무엇을 하고 있는지</strong> 보면서.</div><div class="ws-gal-tabs"><button class="ws-gal-dot on" onclick="galGo('gal73',0)">1월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal73',1)">3월 · 농민</button><button class="ws-gal-dot" onclick="galGo('gal73',2)">5월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal73',3)">7월 · 농민</button><button class="ws-gal-dot" onclick="galGo('gal73',4)">8월 · 귀족</button><button class="ws-gal-dot" onclick="galGo('gal73',5)">10월 · 농민</button></div><div class="ws-gal-stage"><figure class="ws-gal-slide" data-i="0"><img src="images/3-3-1_베리공_1월.jpg" alt="성 안에서 새해 잔치를 벌인다. 식탁에 음식이 가득하고, 뒤에는 인사하러 온 사람들이 줄을 섰다." loading="lazy"><figcaption><b>1월 · 귀족</b> 성 안에서 새해 잔치를 벌인다. 식탁에 음식이 가득하고, 뒤에는 인사하러 온 사람들이 줄을 섰다.</figcaption></figure><figure class="ws-gal-slide" data-i="1" hidden><img src="images/3-3-1_베리공_3월.jpg" alt="소가 쟁기를 끌고 밭을 간다. 뒤편 언덕 위에 영주의 성이 보인다." loading="lazy"><figcaption><b>3월 · 농민</b> 소가 쟁기를 끌고 밭을 간다. 뒤편 언덕 위에 영주의 성이 보인다.</figcaption></figure><figure class="ws-gal-slide" data-i="2" hidden><img src="images/3-3-1_베리공_5월.jpg" alt="화관을 쓰고 말을 타고 나들이를 간다. 나팔수가 앞장선다." loading="lazy"><figcaption><b>5월 · 귀족</b> 화관을 쓰고 말을 타고 나들이를 간다. 나팔수가 앞장선다.</figcaption></figure><figure class="ws-gal-slide" data-i="3" hidden><img src="images/3-3-1_베리공_7월.jpg" alt="밀을 베고 양털을 깎는다. 역시 뒤편에 성이 서 있다." loading="lazy"><figcaption><b>7월 · 농민</b> 밀을 베고 양털을 깎는다. 역시 뒤편에 성이 서 있다.</figcaption></figure><figure class="ws-gal-slide" data-i="4" hidden><img src="images/3-3-1_베리공_8월.jpg" alt="매를 들고 사냥을 나간다. 그림 뒤쪽에서는 농민들이 밀을 베고 강에서 멱을 감는다." loading="lazy"><figcaption><b>8월 · 귀족</b> 매를 들고 사냥을 나간다. 그림 뒤쪽에서는 농민들이 밀을 베고 강에서 멱을 감는다.</figcaption></figure><figure class="ws-gal-slide" data-i="5" hidden><img src="images/3-3-1_베리공_10월.jpg" alt="말이 끄는 써레로 땅을 고르고 씨를 뿌린다. 강 건너에 왕의 궁전이 있다." loading="lazy"><figcaption><b>10월 · 농민</b> 말이 끄는 써레로 땅을 고르고 씨를 뿌린다. 강 건너에 왕의 궁전이 있다.</figcaption></figure></div><div class="ws-gal-nav"><button onclick="galStep('gal73',-1)">‹ 이전</button><span class="ws-gal-count"><b>1</b> / 6</span><button onclick="galStep('gal73',1)">다음 ›</button></div></div>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 94~95쪽 · 세계사×미술 (위 여섯 장과 같은 자료)</div><div class="ws-tb-see">여섯 장을 다 넘겨 보고, 농민이 나오는 달과 귀족이 나오는 달을 세어 보자. — 세기만 하고 적지 않아도 된다.</div><div class="ws-tb-ask">여섯 장 <strong>뒤편에 공통으로 서 있는 것</strong>은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 94쪽에서 찾기 — 여섯 장 뒤편에 공통으로 서 있는 것은 무엇인가?" style="width:220px" placeholder=""></div></div>
+<br>
+<blockquote>🎙️ 눈치챘어? <strong>농민이 일하는 그림에도, 귀족이 노는 그림에도 뒤에는 늘 성이 서 있어.</strong> 그게 오늘 배운 거래의 그림판이야 — 성이 지켜 주는 대신, 그 앞의 땅에서 누군가는 계속 일을 해.</blockquote>
+<blockquote><span style="font-size:0.85em;color:#666">『베리 공의 매우 호화로운 기도서』(15세기 초, 랭부르 형제) · 프랑스 콩데 미술관 · Public Domain (Wikimedia Commons) · 교과서 94~95쪽 「세계사×미술」과 같은 자료</span></blockquote>
+<br>
+<h2>📖 4단계: 그래서 왕이 약해졌다</h2>
+<blockquote>📕 <strong>교과서 91쪽</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
+<p>3단계에서 영주가 "주군의 간섭 없이 다스렸다"고 했지? 그 <strong>"다스렸다"가 생각보다 무거운 말</strong>이다. 영주는 자기 장원에서 <strong>세금을 걷고, 치안을 지키고, 재판을 했다.</strong> 원래 이건 전부 <em>왕이 하던 일</em>이다. 장원 하나하나가 왕의 손이 닿지 않는 작은 나라였던 셈이다.</p>
+<br>
+<p>여기에 더해, 봉건 사회에는 묘한 구멍이 하나 더 있었다. 주종 관계는 <strong>맺은 당사자끼리만</strong> 성립했기 때문에, 기사는 자기 주군에게만 의무를 졌고 <strong>그 위의 주군(예를 들어 왕)에게는 아무 의무가 없었다.</strong></p>
+<p>그 결과 지방 세력은 점점 강해지고 왕의 힘은 점점 약해져, 서유럽에는 ⑩<input type="text" class="blank-input" data-answer="지방 분권" data-id="10" style="width:100px" placeholder="">적인 정치 체제가 자리 잡았다.</p>
+<br>
+<figure class="ws-fig"><img src="images/3-3-1_봉건구조.png" alt="봉건 사회의 구조 — 땅과 보호는 위에서 아래로, 충성은 아래에서 위로. 왼쪽 붉은 점선의 ✕에 주목할 것." loading="lazy"><figcaption>봉건 사회의 구조 — 땅과 보호는 위에서 아래로, 충성은 아래에서 위로. 왼쪽 붉은 점선의 ✕에 주목할 것.</figcaption></figure>
+<br>
+<blockquote>🎙️ 이거 헷갈리기 쉬운데 — 도식 맨 위에 <strong>왕</strong>이 그려져 있으니까 왕이 제일 세 보이잖아? <strong>정반대야.</strong> 왕은 자기 바로 아래 제후만 부릴 수 있었고, 그 아래 기사들한테는 말이 안 먹혔어. 조직도는 왕이 꼭대기인데 실제 힘은 아래로 흩어진 상태. 그래서 '지방 분권'이라고 부르는 거야.</blockquote>
+<br>
+<h2>📖 5단계: 세 종류의 사람 — 기도하는 자, 싸우는 자, 농사짓는 자</h2>
+<blockquote>📕 <strong>교과서 92쪽</strong> 펴고 채우기 · 배정 시간 <strong>8분</strong></blockquote>
+<p>중세 사람들은 사회를 세 신분으로 나누어 보았다. <strong>성직자</strong>(기도하는 자), <strong>기사</strong>(싸우는 자), <strong>농민</strong>(농사짓는 자)이다.</p>
+<p>농민은 인구의 대부분을 차지했고, 장원 안에서 함께 농사지으며 자급자족했다. 그런데 11세기에 쟁기를 개량하고 <strong>말</strong>을 농사에 이용하면서 생산력이 크게 늘었다. 기사들은 농민의 노동으로 살아가는 대신 공동체를 지키는 걸 자기 의무로 여겼고, 평상시엔 사냥과 마상 시합으로 훈련했다. 성직자는 태어남부터 죽음까지를 신과 이어 주는 역할을 했는데, <strong>일부는 왕이나 제후에게 땅을 받아 영주 노릇도 했다.</strong></p>
+<br>
+<div class="ws-gal" id="gal96" data-n="4"><div class="ws-gal-head">👉 탭을 눌러 보자. 누른 신분이 <strong>남에게 무엇을 주는지</strong>만 화살표가 살아난다.</div><div class="ws-gal-tabs"><button class="ws-gal-dot on" onclick="galGo('gal96',0)">전체</button><button class="ws-gal-dot" onclick="galGo('gal96',1)">성직자</button><button class="ws-gal-dot" onclick="galGo('gal96',2)">기사</button><button class="ws-gal-dot" onclick="galGo('gal96',3)">농민</button></div><div class="ws-gal-stage"><figure class="ws-gal-slide" data-i="0"><img src="images/3-3-1_세신분.png" alt="셋이 서로에게 무엇을 하는지 한눈에. 화살표 여섯 개가 서로를 먹여 살린다." loading="lazy"><figcaption><b>전체</b> 셋이 서로에게 무엇을 하는지 한눈에. 화살표 여섯 개가 서로를 먹여 살린다.</figcaption></figure><figure class="ws-gal-slide" data-i="1" hidden><img src="images/3-3-1_세신분_pray.png" alt="성직자가 주는 것 — 기사에게 축복·기도, 농민에게 풍년을 빈다." loading="lazy"><figcaption><b>성직자</b> 성직자가 주는 것 — 기사에게 축복·기도, 농민에게 풍년을 빈다.</figcaption></figure><figure class="ws-gal-slide" data-i="2" hidden><img src="images/3-3-1_세신분_fight.png" alt="기사가 주는 것 — 농민에게 보호·안전, 교회를 지킨다." loading="lazy"><figcaption><b>기사</b> 기사가 주는 것 — 농민에게 보호·안전, 교회를 지킨다.</figcaption></figure><figure class="ws-gal-slide" data-i="3" hidden><img src="images/3-3-1_세신분_farm.png" alt="농민이 주는 것 — 기사에게 식량·노동, 성직자에게 십일조. 주는 쪽이 가장 많다." loading="lazy"><figcaption><b>농민</b> 농민이 주는 것 — 기사에게 식량·노동, 성직자에게 십일조. 주는 쪽이 가장 많다.</figcaption></figure></div><div class="ws-gal-nav"><button onclick="galStep('gal96',-1)">‹ 이전</button><span class="ws-gal-count"><b>1</b> / 4</span><button onclick="galStep('gal96',1)">다음 ›</button></div></div>
+<br>
+<blockquote>💡 <strong>성직자가 영주였다</strong>는 게 이상하지? 이 이상함이 다음 시간(교황과 황제의 싸움) 이야기의 씨앗이야. 기억해 둬.</blockquote>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 91쪽 · 장원 그림</div><div class="ws-tb-ask">경작지 셋 가운데 <strong>아무것도 심지 않는 땅</strong>의 이름을 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 91쪽에서 찾기 — 경작지 셋 가운데 아무것도 심지 않는 땅의 이름을 적자." style="width:200px" placeholder=""></div></div>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 92쪽 · 성직자 설명 (끝까지 읽기)</div><div class="ws-tb-ask">성직자 가운데 일부는 무엇이기도 했나? 교과서에 나오는 <strong>낱말 하나</strong>로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 92쪽에서 찾기 — 성직자 가운데 일부는 무엇이기도 했나? 교과서에 나오는 낱말 하나로" style="width:200px" placeholder=""></div></div>
+<br>
+<h3>🌾 땅을 셋으로 나눈 이유</h3>
+<p>장원의 경작지는 그냥 한 덩어리가 아니었다. 봄에 씨 뿌리는 <strong>춘경지</strong>, 가을에 씨 뿌리는 <strong>추경지</strong>, 그리고 <strong>아무것도 심지 않고 쉬게 두는</strong> 땅으로 나누어 해마다 돌려 가며 지었다. 땅도 쉬어야 힘을 되찾기 때문이다.</p>
+<br>
+<figure class="ws-fig"><img src="images/3-3-1_장원배치.png" alt="장원의 생김새(왼쪽) · 같은 땅이 3년에 한 번 쉬는 순환(오른쪽 위) · 그 밭고랑이 오늘도 남아 있는 영국 들판(오른쪽 아래·2026년 3월 항공 촬영, 사진: Simon Tomson, geograph.org.uk · CC BY-SA 2.0)." loading="lazy"><figcaption>장원의 생김새(왼쪽) · 같은 땅이 3년에 한 번 쉬는 순환(오른쪽 위) · 그 밭고랑이 오늘도 남아 있는 영국 들판(오른쪽 아래·2026년 3월 항공 촬영, 사진: Simon Tomson, geograph.org.uk · CC BY-SA 2.0).</figcaption></figure>
+<br>
+<blockquote>🎙️ 오른쪽 아래 사진, <strong>올해 3월에 찍은 거야.</strong> 물결무늬 보이지? 저게 800년쯤 전 농민이 쟁기로 갈아 놓은 밭고랑이야. 장원도 영주도 농노도 다 사라졌는데 <strong>땅이 아직 기억하고 있는 거지.</strong></blockquote>
+<blockquote>그리고 쟁기 + 말 + 땅 돌려짓기. 이 셋이 겹치니까 <strong>먹고 남는 게 생겼어.</strong> 남으면? 판다. 팔면? 시장이 선다. 시장이 서면? <strong>도시가 자란다.</strong> — 지금은 그냥 농사 이야기 같지만, 이게 나중에 <em>장원을 무너뜨리는</em> 힘이 돼. 몇 차시 뒤에 다시 만날 거야.</blockquote>
+<br>
+<details class="ws-fold ws-fold-원문"><summary>🔍 진짜 장원 평면도를 보고 싶다면 (눌러서 펼치기)</summary><div class="ws-fold-body">
+<p>100년 전 역사 지도책에 실린 실제 중세 장원 평면도야. 지도 속 글씨는 세로로 누워 있어서, 눈으로 따라가면 「Spring Planting」·「Autumn Planting」·「Fallow」 세 덩어리가 나와. 우리 교과서의 <strong>춘경지·추경지·휴경지</strong>가 바로 저것.</p>
+</div></details>
+<br>
+<figure class="ws-fig"><img src="images/3-3-1_장원배치도_실물.png" alt="William R. Shepherd, Historical Atlas (New York, 1923) · 퍼블릭 도메인" loading="lazy"><figcaption>William R. Shepherd, Historical Atlas (New York, 1923) · 퍼블릭 도메인</figcaption></figure>
+<br>
+<h2>📖 6단계: 태어나서 죽을 때까지, 교회 안에서</h2>
+<blockquote>📕 <strong>교과서 92쪽 「종교와 손잡고」</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
+<p>중세 유럽 사람의 일생은 처음부터 끝까지 교회를 통과했다. 아기가 태어나면 성직자에게 ⑪<input type="text" class="blank-input" data-answer="세례" data-id="11" style="width:60px" placeholder="">를 받았고, 그 뒤로도 결혼·임종·무덤까지 모든 관문이 교회 안에 있었다.</p>
+<br>
+<figure class="ws-fig ws-anim"><img id="anim122" src="images/3-3-1_일생네관문.webp" alt="한 사람이 출생에서 죽음까지 걸어간다. 관문에 닿을 때마다 그 칸이 켜진다 — 세례·결혼식·임종 기도·교회 묘지, 넷 다 교회라는 큰 틀 안에 있다." data-src="images/3-3-1_일생네관문.webp" loading="lazy"><div class="ws-anim-ctl"><button type="button" onclick="replayAnim('anim122')">▶ 다시 보기</button><span>한 번 재생됩니다</span></div><figcaption>한 사람이 출생에서 죽음까지 걸어간다. 관문에 닿을 때마다 그 칸이 켜진다 — 세례·결혼식·임종 기도·교회 묘지, 넷 다 교회라는 큰 틀 안에 있다.</figcaption></figure>
+<br>
+<br>
+<blockquote>🎙️ 이 정도로 삶에 박혀 있었으니, 다음 시간에 배울 <strong>교황의 힘</strong>이 어디서 나왔는지도 짐작이 갈 거야.</blockquote>
+<br>
+<h2>📖 7단계: 교회가 감싼 문화</h2>
+<blockquote>📕 <strong>교과서 93쪽</strong> 펴고 채우기 · 배정 시간 <strong>10분</strong></blockquote>
+<p>6단계에서 본 건 <strong>삶</strong>이 교회를 통과한다는 것이었다. 그런데 삶이 통째로 교회 안에 있으면, 그 사람들이 <strong>만드는 것</strong>도 교회 것이 된다. 무엇을 파고들지, 무엇을 짓고 무엇을 노래할지가 다 거기서 정해졌다.</p>
+<p>중세 서유럽의 문화는 그래서 크리스트교를 중심으로 자랐다. <strong>학문·교육·건축·문학</strong> 네 갈래가 모두 한 중심에서 뻗어 나온다.</p>
+<br>
+<figure class="ws-fig"><img src="images/3-3-1_교회문화.png" alt="중세 문화는 교회가 감쌌다 — 크리스트교를 중심으로 학문·교육·건축·문학 네 갈래가 뻗어 나온다. 왼쪽 위, 이슬람 세계를 거쳐 들어온 아리스토텔레스 철학이 학문 갈래로 합류하는 화살표에 주목할 것." loading="lazy"><figcaption>중세 문화는 교회가 감쌌다 — 크리스트교를 중심으로 학문·교육·건축·문학 네 갈래가 뻗어 나온다. 왼쪽 위, 이슬람 세계를 거쳐 들어온 아리스토텔레스 철학이 학문 갈래로 합류하는 화살표에 주목할 것.</figcaption></figure>
+<br>
+<div class="ws-flip-row"><button class="ws-flip" type="button" aria-label="학문 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="ws-flip-in"><span class="ws-flip-f"><b>학문</b><i>신학 · 스콜라 철학</i><u>눌러서 뒤집기</u></span><span class="ws-flip-b"><img src="images/flip_학문.jpg" alt="토마스 아퀴나스 — 손에 든 것이 『신학 대전』이다. 신앙과 이성을 한자리에 놓으려 한 책. (프라 안젤리코, 15세기 · 퍼블릭 도메인)"><i><strong>토마스 아퀴나스</strong> — 손에 든 것이 『신학 대전』이다. 신앙과 이성을 한자리에 놓으려 한 책. (프라 안젤리코, 15세기 · 퍼블릭 도메인)</i></span></span></button><button class="ws-flip" type="button" aria-label="교육 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="ws-flip-in"><span class="ws-flip-f"><b>교육</b><i>대학 · 신학 법학 의학</i><u>눌러서 뒤집기</u></span><span class="ws-flip-b"><img src="images/flip_교육.jpg" alt="700년 전 강의실. 앞줄은 받아 적는데 뒷줄을 보라 — 조는 학생, 딴 데 보는 학생이 그대로 그려져 있다. (라우렌티우스 데 볼톨리나, 14세기 · 퍼블릭 도메인)"><i><strong>700년 전 강의실.</strong> 앞줄은 받아 적는데 뒷줄을 보라 — 조는 학생, 딴 데 보는 학생이 그대로 그려져 있다. (라우렌티우스 데 볼톨리나, 14세기 · 퍼블릭 도메인)</i></span></span></button><button class="ws-flip" type="button" aria-label="건축 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="ws-flip-in"><span class="ws-flip-f"><b>건축</b><i>로마네스크 → 고딕</i><u>눌러서 뒤집기</u></span><span class="ws-flip-b"><img src="images/flip_건축.jpg" alt="샤르트르 대성당 장미창. 고딕이 벽을 얇게 만들 수 있게 되자 그 자리를 빛이 채웠다. (퍼블릭 도메인)"><i><strong>샤르트르 대성당 장미창.</strong> 고딕이 벽을 얇게 만들 수 있게 되자 그 자리를 빛이 채웠다. (퍼블릭 도메인)</i></span></span></button><button class="ws-flip" type="button" aria-label="문학 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="ws-flip-in"><span class="ws-flip-f"><b>문학</b><i>기사도 문학</i><u>눌러서 뒤집기</u></span><span class="ws-flip-b"><img src="images/flip_문학.jpg" alt="롤랑의 죽음. 『롤랑의 노래』의 그 장면 — 지고 있는데도 뿔피리를 분다. 기사도가 무엇을 미덕으로 삼았는지 보인다. (장 푸케, 15세기 · 퍼블릭 도메인)"><i><strong>롤랑의 죽음.</strong> 『롤랑의 노래』의 그 장면 — 지고 있는데도 뿔피리를 분다. 기사도가 무엇을 미덕으로 삼았는지 보인다. (장 푸케, 15세기 · 퍼블릭 도메인)</i></span></span></button></div>
+<br>
+<blockquote>🎙️ 카드를 눌러 보자. <strong>교육 카드</strong>가 특히 볼 만해 — 700년 전 강의실 그림인데, 뒷줄에 조는 학생이 그대로 그려져 있어. 그림 그린 사람이 그걸 굳이 남겨 놨다는 게 재미있지.</blockquote>
+<br>
+<p><strong>학문</strong> — 중심은 ⑫<input type="text" class="blank-input" data-answer="신학" data-id="12" style="width:60px" placeholder="">이었다. <em>신을 아는 것이 가장 높은 앎</em>이라고 여겼기 때문이다. 여기에 그리스 철학자 <strong>아리스토텔레스</strong>의 철학이 전해지면서, 신앙과 이성의 조화를 강조한 ⑬<input type="text" class="blank-input" data-answer="스콜라 철학" data-id="13" style="width:116px" placeholder="">이 유행했다(토마스 아퀴나스 『신학 대전』).</p>
+<p><strong>교육</strong> — 12세기 이후 유럽 곳곳에 <strong>대학</strong>이 세워졌다. 배우는 것은 신학·법학·의학이었고, 운영은 교회나 영주의 간섭 없이 <strong>스스로</strong> 했다.</p>
+<blockquote>⚠️ 여기서 헷갈리지 말 것 — <strong>운영은 자율, 배우는 것은 신학이 중심.</strong> 대학은 누구 밑에 있지 않았지만, 그 안에서 가장 높은 학문은 여전히 신학이었다.</blockquote>
+<p><strong>건축</strong> — <strong>신의 집</strong>을 짓는 일이라 마을에서 가장 크고 높게 지었다. 11세기의 ⑭<input type="text" class="blank-input" data-answer="로마네스크" data-id="14" style="width:100px" placeholder=""> 양식, 12세기 이후의 ⑮<input type="text" class="blank-input" data-answer="고딕" data-id="15" style="width:60px" placeholder=""> 양식. 아래 사진 두 장으로 직접 비교한다.</p>
+<p><strong>문학</strong> — 『아서왕 이야기』·『롤랑의 노래』 같은 <strong>기사도 문학</strong>. 싸우는 것이 일인 기사에게 <em>약자를 지켜라·신께 충성하라</em>는 규범을 씌운 것이 기사도다.</p>
+<br>
+<blockquote>🎙️ <strong>아리스토텔레스, 어디서 들어 봤지?</strong> 맞아, 고대 그리스 사람이야(2단원). 그런데 그 철학이 어떻게 천 년도 더 지나서 중세 유럽에 "전해"졌을까? — 서유럽이 잊고 있던 그리스 책들을 <strong>이슬람 세계가 번역해서 간직하고 있었거든.</strong> 지난 시간에 배운 이슬람 세계(Ⅲ-2-3)가 여기서 다시 등장하는 거야. 유럽사와 서아시아사가 따로 노는 게 아니라는 증거.</blockquote>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 93쪽 · 날개(옆쪽 작은 글씨)</div><div class="ws-tb-ask">중세 대학이 주로 가르친 <strong>세 과목</strong>을 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 93쪽에서 찾기 — 중세 대학이 주로 가르친 세 과목을 적자." style="width:340px" placeholder=""></div></div>
+<br>
+<h3>🏛 두 양식, 눈으로 구분하기</h3>
+<p>두 이름 다 <strong>후대 사람이 붙인 것</strong>이다. 정작 그 성당을 지은 사람들은 그렇게 부르지 않았다.</p>
+<p>- <strong>로마네스크</strong> = <strong>'로마식'</strong> — 고대 로마 건축을 닮았다는 뜻. 그래서 로마처럼 <strong>반원형 아치</strong>가 겹겹이 나타난다.</p>
+<p>- <strong>고딕</strong> = <strong>'고트족의'</strong> — 사실은 <strong>욕이었다.</strong> 르네상스 시대 이탈리아 사람들이 고대 로마를 되살리려다 중세 건축을 보고 <em>"로마를 무너뜨린 야만족(고트족)이나 지을 법한 것"</em>이라며 낮잡아 부른 말이다. 정작 당대에는 <strong>'프랑스식 작업'</strong>이라 불렸다.</p>
+<br>
+<div class="ws-cmp" id="cmp153" data-n="4" data-cur="0"><div class="ws-cmp-head"><span>로마네스크 (11세기)</span><span>고딕 (12세기 이후)</span></div><div class="ws-cmp-tabs"><button type="button" class="ws-cmp-tab on" onclick="cmpGo('cmp153',0)">밖에서 — 아치와 탑</button><button type="button" class="ws-cmp-tab" onclick="cmpGo('cmp153',1)">천장 — 위 무게를 어떻게 버텼나</button><button type="button" class="ws-cmp-tab" onclick="cmpGo('cmp153',2)">창문 — 그래서 얼마나 커졌나</button><button type="button" class="ws-cmp-tab" onclick="cmpGo('cmp153',3)">안에서 — 빛과 장식</button></div><div class="ws-cmp-stage"><div class="ws-cmp-slide" data-i="0"><figure><img src="images/3-3-1_피사대성당.jpg" alt="피사 대성당(이탈리아). 아치가 둥글고 창이 작다. 뒤에 살짝 기운 탑이 '피사의 사탑'. (Wikimedia · CC BY-SA 4.0)"><figcaption>피사 대성당(이탈리아). 아치가 <strong>둥글고</strong> 창이 작다. 뒤에 살짝 기운 탑이 '피사의 사탑'. (Wikimedia · CC BY-SA 4.0)</figcaption></figure><figure><img src="images/3-3-1_샤르트르대성당.jpg" alt="샤르트르 대성당(프랑스). 탑이 뾰족하게 솟았고 창이 크다. (Wikimedia · CC BY-SA 3.0)"><figcaption>샤르트르 대성당(프랑스). 탑이 <strong>뾰족하게</strong> 솟았고 창이 크다. (Wikimedia · CC BY-SA 3.0)</figcaption></figure></div><div class="ws-cmp-slide" data-i="1" hidden><figure><img src="images/3-3-1_qr카드_03.jpg" alt="아치를 연속으로 이어 무게를 분산시켰다. 대신 그 무게를 받을 벽과 기둥이 두꺼워야 했다. (교과서 93쪽 QR)"><figcaption>아치를 <strong>연속으로 이어</strong> 무게를 분산시켰다. 대신 그 무게를 받을 <strong>벽과 기둥이 두꺼워야</strong> 했다. (교과서 93쪽 QR)</figcaption></figure><figure><img src="images/3-3-1_qr카드_06.jpg" alt="천장을 더 높이고, 무게를 받을 뼈대를 'X' 자로 짰다. 힘이 뼈대를 타고 내려가니 벽이 다 받치지 않아도 되었다. (교과서 93쪽 QR)"><figcaption>천장을 더 높이고, 무게를 받을 <strong>뼈대를 'X' 자로</strong> 짰다. 힘이 뼈대를 타고 내려가니 <strong>벽이 다 받치지 않아도</strong> 되었다. (교과서 93쪽 QR)</figcaption></figure></div><div class="ws-cmp-slide" data-i="2" hidden><figure><img src="images/3-3-1_qr카드_04.jpg" alt="창을 키우면 위 무게를 못 견뎌 무너진다. 그래서 창이 작다. (교과서 93쪽 QR)"><figcaption>창을 키우면 <strong>위 무게를 못 견뎌 무너진다.</strong> 그래서 창이 작다. (교과서 93쪽 QR)</figcaption></figure><figure><img src="images/3-3-1_qr카드_07.jpg" alt="벽이 힘을 덜 받게 되자 창을 키울 수 있었다. 벽이 줄어든 자리를 색유리그림이 채웠다. (교과서 93쪽 QR)"><figcaption>벽이 힘을 덜 받게 되자 <strong>창을 키울 수 있었다.</strong> 벽이 줄어든 자리를 색유리그림이 채웠다. (교과서 93쪽 QR)</figcaption></figure></div><div class="ws-cmp-slide" data-i="3" hidden><figure><img src="images/3-3-1_피사대성당_내부.jpg" alt="벽이 두껍고 창이 작아 어둡다. 그래서 넓은 벽면에 벽화를 그렸다 — 정면에 크게 보이는 것이 그것이다. (Lucarelli · Wikimedia · CC BY-SA 3.0)"><figcaption>벽이 두껍고 창이 작아 <strong>어둡다</strong>. 그래서 넓은 벽면에 <strong>벽화</strong>를 그렸다 — 정면에 크게 보이는 것이 그것이다. (Lucarelli · Wikimedia · CC BY-SA 3.0)</figcaption></figure><figure><img src="images/3-3-1_샤르트르_장미창.jpg" alt="창이 커서 빛이 쏟아진다. 그래서 그 창에 색유리그림을 넣었다 — 캄캄한 실내에 이 빛만 들어온다. (Wikimedia · Public domain)"><figcaption>창이 커서 <strong>빛이 쏟아진다</strong>. 그래서 그 창에 <strong>색유리그림</strong>을 넣었다 — 캄캄한 실내에 이 빛만 들어온다. (Wikimedia · Public domain)</figcaption></figure></div></div><div class="ws-cmp-nav"><button type="button" onclick="cmpStep('cmp153',-1)">‹ 이전</button><span class="ws-cmp-count"><b>1</b> / 4</span><button type="button" onclick="cmpStep('cmp153',1)">다음 ›</button></div></div>
+<br>
+<br>
+<p>위 세 행을 한 줄로 꿰면 이렇다 — <strong>뼈대가 천장 무게를 받아 주니 → 벽이 얇아져도 되고 → 창을 키울 수 있었다.</strong></p>
+<br>
+<blockquote>⚠️ QR 카드 사진은 <strong>교과서 93쪽 QR 콘텐츠</strong>다(비상교육). 수업에서 함께 보는 자료이므로 <strong>밖으로 옮기거나 다시 올리지 말 것.</strong></blockquote>
+<br>
+<br>
+<blockquote>🔍 <strong>탭을 넘기며 같은 자리끼리 견주자</strong> — ① 밖: 아치가 둥근가 뾰족한가 ② 밖: 창이 큰가 작은가 ③ 안: 어두운가 밝은가 ④ 안: 그림이 <strong>벽에</strong> 있나 <strong>창에</strong> 있나.</blockquote>
+<blockquote>위쪽 이름표는 고정이다. <strong>왼쪽은 늘 로마네스크, 오른쪽은 늘 고딕.</strong></blockquote>
+<br>
+<blockquote>🎙️ 두 양식을 <strong>외우지 말고 '벽이냐 창이냐'로</strong> 잡아. 차이는 취향이 아니라 <strong>기술</strong>에서 나왔어. 그리고 위 네 쌍이 그 결과야 — 아래 표는 다 보고 나서 펼쳐 확인하자.</blockquote>
+<br>
+<details class="ws-fold ws-fold-정리"><summary>왜 하나는 어둡고 하나는 밝은가 — 원인부터 결과까지</summary><div class="ws-fold-body">
+<table class="ws-fold-table"><thead><tr><th></th><th><strong>로마네스크</strong> (11세기)</th><th><strong>고딕</strong> (12세기 이후)</th></tr></thead><tbody><tr><td>이름의 뜻</td><td>'로마식' — 닮았다는 <strong>칭찬</strong></td><td>'고트족의' — 야만스럽다는 <strong>욕</strong></td></tr><tr><td>① 천장 모양</td><td><strong>둥근</strong> 천장 · 반원 아치를 이어 붙였다</td><td>아치를 <strong>뾰족하게</strong> · 천장을 높였다</td></tr><tr><td>② 천장을 무엇으로 버티나</td><td><strong>벽과 기둥을 두껍게</strong> 해서 버틴다</td><td>기술이 발전해 <strong>벽 부담이 줄었다</strong></td></tr><tr><td>③ 그래서 벽과 창은</td><td>벽이 <strong>두껍다</strong> · 창이 <strong>작다</strong></td><td>창을 <strong>크게</strong> 낼 수 있다</td></tr><tr><td>④ 실내는</td><td><strong>어둡다</strong></td><td><strong>빛이 쏟아진다</strong></td></tr><tr><td>⑤ 그래서 장식은</td><td>넓은 벽에 <strong>벽화</strong></td><td>큰 창에 <strong>색유리그림</strong></td></tr><tr><td>탑</td><td>낮고 육중하다</td><td><strong>뾰족한 탑</strong> — 하늘로 솟아 <strong>신과 가까워지려는 소망</strong>을 담았다</td></tr><tr><td>대표</td><td>피사 대성당</td><td>샤르트르 대성당</td></tr></tbody></table>
+<p>②→③→④→⑤가 <strong>하나의 사슬</strong>이다. 벽으로 버티느냐 아니냐가 창을 정하고, 창이 빛을 정하고, 빛이 장식을 정했다.</p>
+<p>그래서 한 줄로 줄이면 — <strong>어둠의 벽화 vs 빛의 색유리.</strong></p>
+</div></details>
+<br>
+<h2>✏️ 활동 1 — 계약서를 완성하라</h2>
+<blockquote>주군과 봉신이 계약을 맺는다. 각자 상대에게 <strong>무엇을 주기로</strong> 했는지 써 보자.</blockquote>
+<br>
+<table class="act-table">
+<tr><td>누가</td><td>상대에게 주는 것</td></tr>
+<tr><td>주군 → 봉신</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="주군 → 봉신" style="width:200px" placeholder=""></td></tr>
+<tr><td>봉신 → 주군</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="봉신 → 주군" style="width:200px" placeholder=""></td></tr>
+<tr><td>영주 → 농노</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="영주 → 농노" style="width:200px" placeholder=""></td></tr>
+<tr><td>농노 → 영주</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-10" data-label="농노 → 영주" style="width:200px" placeholder=""></td></tr>
+</table>
+<br>
+<h2>✏️ 활동 2 — 어느 양식일까</h2>
+<blockquote>설명을 읽고 <strong>로마네스크</strong>인지 <strong>고딕</strong>인지 써 보자.</blockquote>
+<br>
+<table class="act-table">
+<tr><td>설명</td><td>양식</td></tr>
+<tr><td>벽이 두껍고 창이 작아 내부가 어둡다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-11" data-label="벽이 두껍고 창이 작아 내부가 어둡다" style="width:120px" placeholder=""></td></tr>
+<tr><td>뾰족한 탑이 하늘로 솟아 있다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-12" data-label="뾰족한 탑이 하늘로 솟아 있다" style="width:120px" placeholder=""></td></tr>
+<tr><td>넓은 벽면에 종교 벽화를 그렸다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-13" data-label="넓은 벽면에 종교 벽화를 그렸다" style="width:120px" placeholder=""></td></tr>
+<tr><td>큰 창에 색유리그림을 넣었다</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-14" data-label="큰 창에 색유리그림을 넣었다" style="width:120px" placeholder=""></td></tr>
+</table>
+<br>
+<h2>✅ OX 퀴즈</h2>
+<table>
+<tr><td>번호</td><td>문장</td><td>O/X</td></tr>
+<tr><td>1</td><td>주종 관계는 봉신만 의무를 지는 일방적인 복종 관계였다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>농노는 노예와 달리 결혼하여 가정을 꾸릴 수 있었다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>봉건 사회가 발전하면서 왕권은 오히려 강해졌다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>중세의 대학은 교회나 영주의 간섭에서 벗어나 자치적으로 운영되었다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>고딕 양식은 뾰족한 탑과 색유리그림을 특징으로 한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+</table>
+<br>
+<h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
+<blockquote>오늘 배운 걸 <strong>안 보고</strong> 세 줄로 적어 보자. 틀려도 괜찮아 — 떠올리려고 애쓰는 그 순간에 머리에 박히는 거야.</blockquote>
+<br>
+<p>1. <input type="text" class="blank-input activity-input no-score" data-id="act-15" data-label="1." style="width:240px" placeholder=""></p>
+<p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-16" data-label="2." style="width:240px" placeholder=""></p>
+<p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-17" data-label="3." style="width:240px" placeholder=""></p>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 93쪽 · QR 카드</div><div class="ws-tb-see">7단계 비교 카드를 좌우로 넘겨 보고, 우리 접기 표와 나란히 놓고 대조하자.</div><div class="ws-tb-ask">고딕 성당은 <strong>어떻게 창을 그렇게 키울 수 있었나?</strong> 위 비교 카드를 근거로, <strong>천장</strong>과 <strong>벽</strong> 두 낱말을 넣어 한 문장으로 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-18" data-label="교과서 93쪽에서 찾기 — 고딕 성당은 어떻게 창을 그렇게 키울 수 있었나? 위 비교 카드를 근" style="width:400px" placeholder=""></div></div>
+<br>
+<h2>💭 더 생각해 보기</h2>
+<p>너는 지금 어느 장원에 살고 있어. <strong>영주</strong>가 되어도 좋고 <strong>농노</strong>가 되어도 좋아.</p>
+<p>둘 중 하나를 골라 그 사람의 <strong>하루 일기</strong>를 써 보자. 오늘 배운 말(주종 관계·봉토·장원·농노·세금·보호 중 <strong>두 개 이상</strong>)이 자연스럽게 들어가야 해.</p>
+<p>그리고 마지막 줄에는 이 질문에 답해 줘 — <strong>"나는 이 거래가 공평하다고 생각하는가?"</strong></p>
+<br>
+<textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<br>
+<hr>
+<p><span style="font-size:0.8em;color:#888">도식 속 인물 그림 — <b>Liberated Pixel Cup</b>(Universal LPC Spritesheet Character Generator) 레이어를 합성해 만든 것이다.<br></p>
+<p>원저작자 여러 명 · <a href="https://github.com/LiberatedPixelCup/Universal-LPC-Spritesheet-Character-Generator">출처 저장소</a> · 라이선스 <a href="https://static.opengameart.org/OGA-BY-3.0.txt">OGA-BY 3.0</a> 및 <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></p>
+<p>(레이어별로 병기된 라이선스 중 <b>택일</b>해 OGA-BY 3.0 또는 CC0를 선택함 — 근거: <a href="https://opengameart.org/content/faq">OpenGameArt FAQ</a> "You must follow only one of the licenses").<br></p>
+<p>레이어별 원저작자 전체 목록은 <a href="images/LPC-CREDITS.md">LPC-CREDITS.md</a>. <b>개작 표기</b>: 위 레이어들을 합성해 캐릭터를 구성한 것은 천대현이며, 왕관·밀짚모자·낫·원형 방패는 자작이다.</span></p>
+</div>
+<script>
+const TB=15, TOX=5, GT=20;
+let usedReveal=false;
+function selectOX(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function selectChoice(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
+function replayAnim(id){
+  // 애니메이션 WebP/GIF는 loop=1로 구워져 한 번만 재생된다(WCAG 2.2.2).
+  // src를 캐시버스터와 함께 갈아 끼우면 처음부터 다시 돈다.
+  const im=document.getElementById(id); if(!im) return;
+  const base=im.dataset.src||im.src.split('?')[0];
+  im.src='';
+  setTimeout(()=>{ im.src = base + '?r=' + Date.now(); }, 30);
+}
+function galGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n;
+  i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-gal-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-gal-dot').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-gal-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function galStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  galGo(id, (+(g.dataset.cur||0)) + d);
+}
+function cmpGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n; i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function cmpStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  cmpGo(id, (+(g.dataset.cur||0)) + d);
+}
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+function check(){
+  let bc=0, oxc=0;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    const a=norm(el.dataset.answer), u=norm(el.value);
+    if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
+    const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
+    if(isCorrect){
+      el.classList.add('correct');el.classList.remove('wrong');
+      bc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const sel=grp.dataset.selected, ans=grp.dataset.answer;
+    if(!sel) return;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');oxc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');bc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
+}
+function reveal(){
+  usedReveal=true;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const ans=grp.dataset.answer;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.getElementById('score').textContent=TB;
+  document.getElementById('ox-score').textContent=TOX;
+  document.getElementById('total-score').textContent=GT;
+  document.getElementById('pct').textContent=100;
+}
+function reset(){
+  usedReveal=false;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value='';el.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.ox-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
+}
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){ return document.getElementById(id); }
+function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
+// 🔴 2026-08-31: 저장 키에 '정답 체계 지문'을 붙인다.
+//   사고 — 3-3-1의 빈칸을 21→15로 줄이자, v1 때 채워 둔 답이 v2 번호로 복원되며
+//   ⑤부터 한 칸씩 밀렸다(⑤에 '봉신', ⑥에 '주종 관계'). 화면만 보면 "답이 노출되고
+//   매칭이 틀린" 것처럼 보이는데, 실제로는 옛 입력이 새 번호에 얹힌 것이다.
+//   빈칸 개수·정답 문자열이 바뀌면 지문이 달라져 옛 답이 붙지 않는다.
+function _wsFp(){
+  let sig='';
+  document.querySelectorAll('.blank-input:not(.activity-input),.ox-group').forEach(el=>{
+    sig += (el.dataset.answer||'') + '|';
+  });
+  let h=5381;
+  for(let i=0;i<sig.length;i++){ h=((h*33)^sig.charCodeAt(i))>>>0; }
+  return h.toString(36);
+}
+function _wsKey(){
+  const fp='::v'+_wsFp();
+  if(!EXAM_MODE) return 'ws_'+document.title+fp;
+  const c=_siv('si-cls'), n=_siv('si-num');
+  if(!c||!n) return null;
+  return 'ws_'+document.title+fp+'::'+c+'-'+n;
+}
+// 지문 도입 이전(=구키)에 저장된 답은, 빈칸 개수가 그대로일 때만 이어받는다.
+//   같으면 단순 재발행이므로 학생이 쓰던 답을 살리고, 다르면 구조가 바뀐 것이므로 버린다.
+function _migrateOldKey(newKey){
+  const oldKey = EXAM_MODE
+    ? 'ws_'+document.title+'::'+_siv('si-cls')+'-'+_siv('si-num')
+    : 'ws_'+document.title;
+  let raw; try{ raw=localStorage.getItem(oldKey); }catch(e){ return; }
+  if(!raw) return;
+  try{
+    const p=JSON.parse(raw), d=p.data||{};
+    const nowN=document.querySelectorAll('.blank-input:not(.activity-input)').length;
+    const oldN=Object.keys(d).filter(k=>/^\d+$/.test(k)).length;
+    if(oldN===nowN) localStorage.setItem(newKey, raw);   // 구조 동일 → 이어받기
+  }catch(e){}
+  try{ localStorage.removeItem(oldKey); }catch(e){}  // 구키는 어느 쪽이든 정리
+}
+function _persist(){
+  const key=_wsKey(); if(!key) return;
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+}
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
+function loadProgress(){
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  _migrateOldKey(key);
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
+  if(!saved) return;
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  if(info&&!EXAM_MODE){
+    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
+    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
+    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
+  }
+  if(!data) return;
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
+}
+// 모든 입력칸에서 Enter→다음칸 이동
+const allInputs=[...document.querySelectorAll('.blank-input')];
+allInputs.forEach((el,i)=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
+  });
+});
+// 제출
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){
+  const ans={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  });
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+  });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
+  return ans;
+}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+// 🔴 전송 중 재진입 가드 (2026-09-02) — 사회(중3) 세션이 시트에서 발견한 중복 제출의 원인.
+//   종전엔 버튼이 한 번도 disabled 되지 않았고, 텍스트는 fetch **응답 후**에야 바뀌었다.
+//   그 왕복 사이에 한 번 더 누르면 그대로 두 번 전송된다 — mode:'no-cors'라 실패해도 조용하다.
+//   실측 중복: 사회 125=126행(8/31 08:16·6반23번) · 역사 21=23행(8/31 14:12·1반18번).
+//   시각·점수·답이 전부 같아 재제출이 아니라 '버튼 두 번'이다. 집계에서 인원이 부푼다.
+let _submitting = false;
+function submitResult(){
+  if(_submitting) return;                     // 전송 중 두 번째 클릭은 무시
+  if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}
+  if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
+  check(); // 먼저 채점
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
+  const answers=collectAnswers();
+  const data={
+    type:'final',
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
+  };
+  // 여기서부터 실제 전송 — 잠그고 버튼도 즉시 비활성화한다(응답을 기다리지 않는다).
+  _submitting = true;
+  const _btn=document.getElementById('submitBtn');
+  _btn.disabled = true; _btn.textContent = '전송 중…';
+  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(()=>{
+    _btn.textContent='✅ 제출 완료';
+    _btn.classList.add('btn-submitted');
+    setTimeout(()=>{
+      _btn.textContent='📤 재제출';
+      _btn.classList.remove('btn-submitted');
+    }, 2000);
+  })
+  .catch(e=>alert('제출 실패: '+e))
+  .finally(()=>{                              // 성공·실패 모두 반드시 푼다 — 안 그러면 재제출이 영영 막힌다
+    _submitting = false;
+    _btn.disabled = false;
+  });
+}
+// 페이지 로드 시 저장된 진행 불러오기
+loadProgress();
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+});
+['si-cls','si-num','si-name'].forEach(id=>{
+  const el=_siEl(id); if(!el) return;
+  el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
+});
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  ['si-cls','si-num','si-name'].forEach(id=>{
+    const el=_siEl(id); if(!el) return;
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
+</script>
+</body>
+</html>
