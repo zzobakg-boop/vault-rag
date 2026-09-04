@@ -139,27 +139,13 @@ blockquote {
 .pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
 .pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
-.pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
+.pk-sum { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
 @media (max-width: 520px) { .pk-sum { grid-template-columns: 1fr; } }
 .pk-col { background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }
 .pk-col b { display: block; margin-bottom: 5px; font-size: 0.95em; }
 .pk-col span { display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }
 .pk-up { border-color: #1a7a60; color: #15705a; }
 .pk-down { border-color: #c62c3c; color: #b3242f; }
-/* N지선다(기분 없음) 요약 열 — 옵션 순서대로 색이 갈린다 */
-code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
-  padding: 1px 5px; font-size: .92em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  color: #384a63; }
-.pk-c0 { border-color: #1f6feb; color: #1a5fc8; }
-.pk-c1 { border-color: #b8862b; color: #9a6f1e; }
-.pk-c2 { border-color: #6b4fbb; color: #5b41a4; }
-.pk-c3 { border-color: #1a7a60; color: #15705a; }
-/* 옵션이 3개 이상이면 버튼을 세로로 — 가로로 늘어놓으면 폰에서 글자가 잘린다 */
-.pk-btns-col { flex-direction: column; gap: 4px; }
-.pk-btns-col .pk-b { width: 100%; text-align: center; }
-/* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
-.pk-card.pk-noimg { padding-top: 14px; }
-.pk-card.pk-noimg .pk-name { font-size: 1.02em; }
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
@@ -219,62 +205,6 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
-
-/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
-.ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
-  background: #fbf9f4; overflow: hidden; }
-.ws-cmp-head { display: flex; }
-.ws-cmp-head span { flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
-  font-size: .95em; color: #fff; background: #8a7a5c; }
-.ws-cmp-head span:first-child { background: #9a7b3c; }
-.ws-cmp-head span:last-child { background: #5b6b8a; }
-.ws-cmp-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }
-.ws-cmp-tab { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
-  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }
-.ws-cmp-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
-.ws-cmp-stage { padding: 4px 10px 0; }
-.ws-cmp-slide { display: flex; gap: 12px; align-items: flex-start; }
-/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
-   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
-.ws-cmp-slide[hidden] { display: none; }
-.ws-cmp-slide figure { flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }
-.ws-cmp-slide img { width: 100%; max-height: 300px; height: auto; object-fit: contain;
-  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
-.ws-cmp-slide figcaption { margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }
-.ws-cmp-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
-  padding: 8px 0 10px; }
-.ws-cmp-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
-  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }
-.ws-cmp-count { font-size: .8em; color: #8a7a5c; }
-@media (max-width: 520px) { .ws-cmp-slide img { max-height: 190px; } }
-@media print { .ws-cmp-slide[hidden] { display: flex !important; } }  /* 인쇄엔 전부 편다 */
-
-/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
-.ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
-.ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
-  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
-  font-family: inherit; -webkit-tap-highlight-color: transparent; }
-.ws-flip-in { position: relative; display: block; width: 100%; height: 100%;
-  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
-.ws-flip.on .ws-flip-in { transform: rotateY(180deg); }
-.ws-flip:focus-visible .ws-flip-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
-.ws-flip-f, .ws-flip-b { position: absolute; inset: 0; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 6px; padding: 12px;
-  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
-  box-sizing: border-box; overflow: hidden; }
-.ws-flip-f { background: #f3f0e8; border: 2px solid #cfc4ae; }
-.ws-flip-f b { font-size: 1.15em; color: #3d3116; }
-.ws-flip-f i { font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }
-.ws-flip-f u { text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }
-.ws-flip-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }
-.ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
-.ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
-@media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
-@media print {
-  .ws-flip { height: auto; }
-  .ws-flip-in { transform: none !important; }
-  .ws-flip-f, .ws-flip-b { position: static; transform: none; backface-visibility: visible; }
-}
 
 /* 📕 교과서를 펴는 자리 — 2026-09-02.
    학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
@@ -509,11 +439,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>⚠️ 환율은 매일 바뀐다. <strong>수업 전날 100엔당 원화를 확인</strong>하고, 광고 문구의 <em>800원대</em>가 여전히 맞는지 볼 것(맞지 않으면 그 자체가 좋은 소재 — <em>"광고는 언제 쓴 걸까?"</em>).</blockquote>
 <br>
 <blockquote>🖼 <strong>인물 도트 출처 표기</strong> (2026-09-03) — 4단계 선택 활동의 도트 6종은 <strong>xAI Grok Imagine</strong>으로 생성한 뒤 격자 스냅·투명화 후처리한 것이다.</blockquote>
-<blockquote>🔴 <strong>라이선스 확인 구간이 있다</strong> — xAI 약관이 2026-09-01 개정되며 산출물 표기가 <em>권유</em>에서 <em>요구</em>로 바뀐 정황이 있으나(역사 세션이 확보한 원문 2건은 여전히 권유형·x.ai 403으로 확정 불가), 학습지는 공개 배포되므로 <strong>표기를 남겨 두 해석을 모두 충족</strong>시킨다. 상세·되돌리기 경로는 <code>worksheets/images/people/CREDITS.md</code>.</blockquote>
+<blockquote>🔴 <strong>라이선스 확인 구간이 있다</strong> — xAI 약관이 2026-09-01 개정되며 산출물 표기가 <em>권유</em>에서 <em>요구</em>로 바뀐 정황이 있으나(역사 세션이 확보한 원문 2건은 여전히 권유형·x.ai 403으로 확정 불가), 학습지는 공개 배포되므로 <strong>표기를 남겨 두 해석을 모두 충족</strong>시킨다. 상세·되돌리기 경로는 `worksheets/images/people/CREDITS.md`.</blockquote>
 <blockquote>⚠️ 조건이 확정되어 부적합으로 판명되면 <strong>D안(LPC 몸체 + 자작 소품)으로 즉시 교체 가능</strong>하다(산출물 보관 중).</blockquote>
 <br>
 <blockquote>🎙️ <strong>예능 대사 인용 — 출처와 주의</strong> (2026-09-02 신설)</blockquote>
-<blockquote>원 장면 = MBC 「나 혼자 산다」 전현무 카자흐스탄 편(260814~15 방송). 유튜브 공식 클립 <code>Prk_xX0iGFM</code> <strong>15:17~15:40</strong>(인천공항 출국 전 대화)·<strong>21:08</strong>(알마티 도착 후 <em>"달러 안 써?"</em>). 자막 실물로 확인했다.</blockquote>
+<blockquote>원 장면 = MBC 「나 혼자 산다」 전현무 카자흐스탄 편(260814~15 방송). 유튜브 공식 클립 `Prk_xX0iGFM` <strong>15:17~15:40</strong>(인천공항 출국 전 대화)·<strong>21:08</strong>(알마티 도착 후 <em>"달러 안 써?"</em>). 자막 실물로 확인했다.</blockquote>
 <blockquote>🔴 <strong>프로그램명·링크를 학습지에 넣지 않았다</strong> — 이 편은 <em>즉흥 여행 조작·협찬</em> 논란이 진행 중이고(연합뉴스TV·YTN 보도), 학습지는 인터넷에 공개되어 남는다. <strong>논란은 몇 달 뒤 학생에게 아무 의미가 없지만 링크는 남는다.</strong> 대사만 가져오면 개념은 살고 논란은 안 따라온다. 수업 중 구두 언급은 교사 판단.</blockquote>
 <blockquote>⚠️ <strong>주의 — 카자흐스탄 공항이 아니라 인천공항 장면</strong>이다. 천대현의 기억은 "카자흐스탄 공항"이었으나 자막 확인 결과 출국 전 대화였다.</blockquote>
 <p>></p>
@@ -548,10 +478,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p><strong>1.</strong> 40달러 × 1,100 = <strong>44,000원</strong> / 40달러 × 1,400 = <strong>56,000원</strong></p>
 <blockquote>💡 계산이 막히면 <em>40 × 11 = 440, 뒤에 0 두 개</em> 로 잡아 줄 것.</blockquote>
 <br>
-<p><strong>2.</strong> 차이 <strong>12,000원</strong>. <strong>굿즈 자체가 비싸진 것이 아니라, 돈 바꾸는 값(환율)이 오른 것</strong>이다 — 가격표는 처음부터 끝까지 40달러다.</p>
+<p><strong>2.</strong> 차이 <strong>12,000원</strong>. 굿즈 가격은 <strong>변하지 않았다</strong>(40달러 그대로).</p>
 <blockquote>⭐ <strong>이 문항이 활동의 심장이다.</strong> <em>물건 값은 그대로인데 내가 낼 돈이 늘었다</em> → <strong>원화의 힘이 약해진 것</strong>. 여기서 '가치'라는 말이 몸으로 이해된다.</blockquote>
-<blockquote>🔴 <strong>발문 교체(2026-09-04 천대현 지적)</strong> — 종전은 <em>"굿즈 가격은 변했나?"</em> 였다. 바로 앞에서 44,000 → 56,000을 계산시켜 놓고 '가격'을 물으니 <strong>그 '가격'이 달러 표시 가격인지 방금 구한 원화인지 갈리지 않았다.</strong> 학생은 방금 계산한 두 수를 보고 자연스럽게 <em>"변했다"</em>로 답하게 된다 — <strong>이 차시가 잡으려는 오개념(환율↑ = 물건값↑)을 문항이 오히려 유도</strong>하고 있었다. 두 선택지를 발문에 박아 갈랐다.</blockquote>
-<blockquote>💡 학생이 <em>"굿즈가 비싸졌다"</em> 로 답하면 활동 첫 줄 — <em>가격은 40달러로 똑같다</em> — 을 손으로 짚어 줄 것. 문장에 이미 있는데 안 읽고 계산부터 한 것이다.</blockquote>
 <br>
 <p><strong>3.</strong> <strong>웃는다.</strong> 원화 약세라 우리 물건이 외국에서 싸 보여 수출에 유리하다.</p>
 <blockquote>⭐ <strong>2026-08-27 개정</strong> — 옛 발문 <em>"이때 수출 기업은"</em> 은 <strong>'이때'가 무엇인지 문항 안에 없었다.</strong> 1·2번은 <em>직구하는 나</em>의 계산인데 3번에서 주어가 수출 기업으로 바뀌므로, <strong>환율 1,100→1,400 상황임을 발문에 다시 적었다.</strong> 또 마무리 입담이 <em>"직구하는 나는 손해, 수출 기업은 이득"</em> 이라며 <strong>3번 답을 먼저 말하고 있어</strong> 신문 읽는 법으로 바꿨다.</blockquote>
@@ -635,18 +563,6 @@ function galGo(id,i){
 function galStep(id,d){
   const g=document.getElementById(id); if(!g) return;
   galGo(id, (+(g.dataset.cur||0)) + d);
-}
-function cmpGo(id,i){
-  const g=document.getElementById(id); if(!g) return;
-  const n=+g.dataset.n; i=((i%n)+n)%n;
-  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
-  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
-  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
-  g.dataset.cur = i;
-}
-function cmpStep(id,d){
-  const g=document.getElementById(id); if(!g) return;
-  cmpGo(id, (+(g.dataset.cur||0)) + d);
 }
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
