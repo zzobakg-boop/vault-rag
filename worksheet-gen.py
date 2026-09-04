@@ -857,6 +857,11 @@ def inline(text):
             # 2026-08-20: [제목](http…) 링크 지원 — 영상 자료 삽입용. 볼드·이탤릭보다 먼저 처리해 URL이 훼손되지 않게.
             part = re.sub(r'\[([^\]]+)\]\((https?://[^)\s]+)\)',
                           r'<a href="\2" target="_blank" rel="noopener">\1</a>', part)
+            # 2026-09-04: `인라인 코드` 지원. 종전엔 처리가 없어 **백틱이 학생 화면에 글자로 나갔다**
+            #   (실측: 발행본 120개 중 41개에 미변환 백틱 — 34%). 볼드·이탤릭보다 먼저 처리해
+            #   코드 안의 별표가 강조로 먹히지 않게 한다.
+            part = re.sub(r'`([^`\n]+?)`', lambda m: '<code>' + m.group(1)
+                          .replace('&','&amp;').replace('<','&lt;').replace('>','&gt;') + '</code>', part)
             part = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', part)
             part = re.sub(r'\*([^*\n]+?)\*', r'<em>\1</em>', part)  # 2026-05-30: *이탤릭* 지원 (입담 voice 강조어)
             result.append(part)
@@ -1178,6 +1183,9 @@ blockquote {{
 .pk-up {{ border-color: #1a7a60; color: #15705a; }}
 .pk-down {{ border-color: #c62c3c; color: #b3242f; }}
 /* N지선다(기분 없음) 요약 열 — 옵션 순서대로 색이 갈린다 */
+code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
+  padding: 1px 5px; font-size: .92em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #384a63; }}
 .pk-c0 {{ border-color: #1f6feb; color: #1a5fc8; }}
 .pk-c1 {{ border-color: #b8862b; color: #9a6f1e; }}
 .pk-c2 {{ border-color: #6b4fbb; color: #5b41a4; }}
