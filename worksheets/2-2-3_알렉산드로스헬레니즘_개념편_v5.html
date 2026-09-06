@@ -16,20 +16,300 @@ body {
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
 }
 h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
-h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
-h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h2 {
+  font-size: 1.3em; margin: 30px 0 12px; color: #1d1d1f; font-weight: 800;
+  letter-spacing: -0.01em; padding: 8px 0 8px 14px; border-left: 6px solid #007aff;
+  background: linear-gradient(90deg, #f2f6ff, rgba(255,255,255,0));
+  border-radius: 0 8px 8px 0;
+}
+h2:first-of-type { margin-top: 14px; }
+h3 {
+  font-size: 1.09em; margin: 22px 0 8px; color: #2b3240; font-weight: 750;
+  padding-left: 11px; border-left: 3px solid #b6c4dc;
+}
 h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
 p { margin: 5px 0; font-size: 0.95em; }
 hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
 table {
   width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
 }
-td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
-tr:first-child td { background: #f0f4ff; font-weight: 600; }
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
+td { border: 1px solid #e2e6ec; padding: 10px 12px; vertical-align: middle; line-height: 1.6; }
+tr:first-child td {
+  background: #e8eefb; font-weight: 750; color: #22314e; vertical-align: middle;
+  border-color: #cfd9ec; font-size: 0.96em;
+}
+tbody tr:nth-child(even):not(:first-child) td { background: #fcfdff; }
+table { border-radius: 10px; overflow: hidden; }
+.ws-fold {
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}
+.ws-fold > summary {
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}
+.ws-fold > summary::-webkit-details-marker { display: none; }
+.ws-fold > summary::before { content: "▸ "; color: #7a8f6a; }
+.ws-fold[open] > summary::before { content: "▾ "; }
+.ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
+.ws-fold-body { padding: 10px 16px 14px; }
+.ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }
+/* 🎮 인물 선택 활동 — 2026-09-03. 표를 정답으로 주지 않고 학생이 고르게 한다.
+   캐릭터 선택 화면의 결: 고르기 전엔 흐리고, 고르면 색이 들어온다. */
+.ws-pick { border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd; padding: 16px; margin: 18px 0; }
+.pk-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-size: 0.94em; font-weight: 700; color: #3d4552; margin-bottom: 12px; }
+.pk-count { color: #c62c3c; white-space: nowrap; }
+.pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 640px) { .pk-grid { grid-template-columns: repeat(2, 1fr); } }
+.ws-voc { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.94em; }
+.ws-voc th { background:#f2f4f8; color:#42505f; font-weight:700; padding:9px 12px;
+              border:1px solid #dfe4ea; text-align:left; font-size:0.9em; }
+.ws-voc td { padding:9px 12px; border:1px solid #dfe4ea; vertical-align:top; }
+.vc-btn { background:none; border:0; padding:0; font:inherit; font-weight:700; color:#1c2b3a;
+           cursor:pointer; text-align:left; }
+.vc-btn::before { content:"▸ "; color:#7a8f6a; }
+.vc-btn[aria-expanded="true"]::before { content:"▾ "; }
+.vc-btn:hover { color:#0b57d0; }
+.vc-btn:focus-visible { outline:2px solid #0b57d0; outline-offset:2px; border-radius:3px; }
+.vc-body td { background:#fbfaf5; }
+.vc-body p { margin:4px 0; color:#3a352c; line-height:1.65; }
+.pk-card { border: 2px solid #e2e6ec; border-radius: 12px; background: #fff; padding: 10px 8px;
+  text-align: center; transition: transform .22s ease-out, box-shadow .22s, background .22s, border-color .15s; }
+.pk-card img { transition: filter .22s; }
+.pk-card img { width: 72px; height: 72px; image-rendering: pixelated;
+  filter: grayscale(1) opacity(.45); transition: .15s; }
+.pk-card.pk-set img { filter: none; }
+.pk-card.pk-set { border-color: #9aa4b2; background: #fdfdfe; }
+.pk-name { font-weight: 800; font-size: 0.9em; margin-top: 2px; color: #1c242f; }
+.pk-sit { font-size: 0.78em; color: #6b7482; line-height: 1.5; margin: 3px 0 8px; min-height: 2.2em; }
+.pk-btns { display: flex; gap: 5px; }
+.pk-b { flex: 1; border: 1.5px solid #d5dae1; background: #fff; border-radius: 8px;
+  padding: 6px 2px; font: inherit; font-size: 0.78em; font-weight: 700; color: #55607a; cursor: pointer; }
+.pk-b:hover { background: #f3f6fa; }
+.pk-b.on { background: #1c242f; border-color: #1c242f; color: #fff; }
+/* 🙂 기분 상태 — 고르면 캐릭터가 웃거나 운다 (2026-09-03).
+   새 그림을 그리지 않는다: 카드가 뜨거나 내려앉고, 색온도와 채도가 바뀌고, 배지가 붙는다.
+   정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
+.pk-card { position: relative; }
+.pk-card.pk-happy {
+  transform: translateY(-10px) scale(1.04);
+  border-color: #e0b13a;
+  box-shadow: 0 12px 22px rgba(200,150,30,.28), 0 0 0 3px rgba(255,214,102,.35);
+  background: linear-gradient(180deg, #fff9e2, #fff);
+  animation: pkHop .5s cubic-bezier(.34,1.56,.64,1);
+}
+.pk-card.pk-happy img { filter: brightness(1.16) saturate(1.45) contrast(1.06); transform: scale(1.1); }
+.pk-card.pk-sad {
+  transform: translateY(9px) scale(.95) rotate(1.6deg);
+  border-color: #93a3bb;
+  box-shadow: 0 1px 3px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #eef1f6, #f8fafc);
+  animation: pkSlump .45s ease-out;
+}
+.pk-card.pk-sad img {
+  filter: saturate(.22) brightness(.84) contrast(.92) hue-rotate(-14deg);
+  transform: scale(.9) rotate(-2deg);
+}
+.pk-card.pk-sad .pk-name, .pk-card.pk-sad .pk-sit { opacity: .62; }
+@keyframes pkHop {
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-20px) scale(1.09); }
+  100% { transform: translateY(-10px) scale(1.04); }
+}
+@keyframes pkSlump {
+  0%   { transform: translateY(0) scale(1) rotate(0); }
+  60%  { transform: translateY(13px) scale(.93) rotate(2.4deg); }
+  100% { transform: translateY(9px) scale(.95) rotate(1.6deg); }
+}
+.pk-card.pk-happy::after, .pk-card.pk-sad::after {
+  position: absolute; top: -12px; right: -8px; font-size: 1.9em; line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.22));
+}
+.pk-card.pk-happy::after { content: "😀"; animation: pkPop .45s cubic-bezier(.34,1.8,.64,1); }
+.pk-card.pk-sad::after { content: "😢"; animation: pkDrip .45s ease-out; }
+@keyframes pkPop { 0% { transform: scale(0) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes pkDrip { 0% { transform: translateY(-10px) scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; animation: none; }
+  .pk-card.pk-happy::after, .pk-card.pk-sad::after { animation: none; }
+}
+@media print {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; animation: none; }
+  .pk-card.pk-happy img, .pk-card.pk-sad img { transform: none; }
+}
+
+.pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
+.pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
+.pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
+  background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
+.pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
+@media (max-width: 520px) { .pk-sum { grid-template-columns: 1fr; } }
+.pk-col { background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }
+.pk-col b { display: block; margin-bottom: 5px; font-size: 0.95em; }
+.pk-col span { display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }
+.pk-up { border-color: #1a7a60; color: #15705a; }
+.pk-down { border-color: #c62c3c; color: #b3242f; }
+/* N지선다(기분 없음) 요약 열 — 옵션 순서대로 색이 갈린다 */
+code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
+  padding: 1px 5px; font-size: .92em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #384a63; }
+.pk-c0 { border-color: #1f6feb; color: #1a5fc8; }
+.pk-c1 { border-color: #b8862b; color: #9a6f1e; }
+.pk-c2 { border-color: #6b4fbb; color: #5b41a4; }
+.pk-c3 { border-color: #1a7a60; color: #15705a; }
+/* 옵션이 3개 이상이면 버튼을 세로로 — 가로로 늘어놓으면 폰에서 글자가 잘린다 */
+.pk-btns-col { flex-direction: column; gap: 4px; }
+.pk-btns-col .pk-b { width: 100%; text-align: center; }
+/* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+.pk-card.pk-noimg { padding-top: 14px; }
+.pk-card.pk-noimg .pk-name { font-size: 1.02em; }
+@media print { .pk-b { display: none; } .pk-card img { filter: none; } }
+
+/* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
+.ws-seesaw {
+  border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
+  padding: 16px 18px 18px; margin: 18px 0;
+}
+.ws-seesaw-head { font-size: 0.9em; font-weight: 700; color: #4a5361; margin-bottom: 10px; }
+.ws-seesaw-range { width: 100%; accent-color: #c62c3c; margin-bottom: 6px; }
+.ws-seesaw-stage { position: relative; height: 190px; }
+.ws-seesaw-beam {
+  position: absolute; left: 50%; top: 50%; width: 500px; height: 10px;
+  margin-left: -250px; margin-top: -5px; background: #7b8494; border-radius: 5px;
+  transition: transform .18s ease-out;
+}
+.ws-seesaw-pivot {
+  position: absolute; left: 50%; top: 50%; margin-left: -26px;
+  border-left: 26px solid transparent; border-right: 26px solid transparent;
+  border-top: 52px solid #96a0ae;
+}
+.ws-seesaw-chip {
+  position: absolute; top: 50%; width: 168px; padding: 9px 6px;
+  text-align: center; border-radius: 12px; border: 3px solid; background: #fff;
+  transition: transform .18s ease-out; font-size: 0.88em;
+}
+.ws-seesaw-chip b { display: block; font-size: 0.95em; }
+.ws-seesaw-chip .v { display: block; font-size: 1.45em; font-weight: 800; margin-top: 2px; }
+.ws-seesaw-chip.ws-l { left: 50%; margin-left: -334px; border-color: #c62c3c; color: #c62c3c; }
+.ws-seesaw-chip.ws-r { left: 50%; margin-left: 166px; border-color: #1e5ca8; color: #1e5ca8; }
+.ws-seesaw-note {
+  text-align: center; font-size: 0.84em; color: #6b7482; margin: 0 0 8px;
+}
+.ws-seesaw-out {
+  text-align: center; font-size: 1.02em; font-weight: 700; color: #15705a;
+  background: #e0f3ec; border: 1px solid #1a7a60; border-radius: 10px; padding: 9px;
+}
+@media (max-width: 560px) {
+  .ws-seesaw-beam { width: 300px; margin-left: -150px; }
+  .ws-seesaw-chip { width: 124px; font-size: 0.8em; }
+  .ws-seesaw-chip.ws-l { margin-left: -206px; }
+  .ws-seesaw-chip.ws-r { margin-left: 82px; }
+}
+@media print { .ws-seesaw-range { display: none; } }
+
+/* 📖 표·도식을 읽는 자리 — 2026-09-03.
+   빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
+   표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+.ws-read {
+  background: #f5f6f8; border: 1px solid #dfe3e8; border-left: 5px solid #98a2b3;
+  border-radius: 0 0 10px 10px; padding: 13px 18px 15px; margin: -10px 0 20px;
+  color: #3d4552; font-size: 0.93em; line-height: 1.78;
+}
+.ws-read .ws-read-tag {
+  display: inline-block; font-size: 0.72em; font-weight: 800; color: #7a828f;
+  letter-spacing: 0.06em; margin-bottom: 5px;
+}
+.ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read p:last-child { margin-bottom: 0; }
+@media print { .ws-read { background: #fff; border-left-color: #999; } }
+
+/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+.ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  background: #fbf9f4; overflow: hidden; }
+.ws-cmp-head { display: flex; }
+.ws-cmp-head span { flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
+  font-size: .95em; color: #fff; background: #8a7a5c; }
+.ws-cmp-head span:first-child { background: #9a7b3c; }
+.ws-cmp-head span:last-child { background: #5b6b8a; }
+.ws-cmp-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }
+.ws-cmp-tab { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }
+.ws-cmp-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-cmp-stage { padding: 4px 10px 0; }
+.ws-cmp-slide { display: flex; gap: 12px; align-items: flex-start; }
+/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
+   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
+.ws-cmp-slide[hidden] { display: none; }
+.ws-cmp-slide figure { flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }
+.ws-cmp-slide img { width: 100%; max-height: 300px; height: auto; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.ws-cmp-slide figcaption { margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }
+.ws-cmp-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 8px 0 10px; }
+.ws-cmp-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }
+.ws-cmp-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-cmp-slide img { max-height: 190px; } }
+@media print { .ws-cmp-slide[hidden] { display: flex !important; } }  /* 인쇄엔 전부 편다 */
+
+/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
+.ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
+.ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
+  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.ws-flip-in { position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.ws-flip.on .ws-flip-in { transform: rotateY(180deg); }
+.ws-flip:focus-visible .ws-flip-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
+.ws-flip-f, .ws-flip-b { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 12px;
+  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-sizing: border-box; overflow: hidden; }
+.ws-flip-f { background: #f3f0e8; border: 2px solid #cfc4ae; }
+.ws-flip-f b { font-size: 1.15em; color: #3d3116; }
+.ws-flip-f i { font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }
+.ws-flip-f u { text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }
+.ws-flip-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }
+.ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
+.ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
+@media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+@media print {
+  .ws-flip { height: auto; }
+  .ws-flip-in { transform: none !important; }
+  .ws-flip-f, .ws-flip-b { position: static; transform: none; backface-visibility: visible; }
+}
+
+/* 📕 교과서를 펴는 자리 — 2026-09-02.
+   학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
+   교과서 슬롯도 같은 파랑이면 화면상 구분이 안 됐다. 황토/크림으로 계열을 통째로 분리한다. */
+.ws-tb {
+  background: #fdf8ed; border: 1px solid #e8d9b4; border-left: 6px solid #b8862b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; margin: 14px 0;
+}
+.ws-tb-tag {
+  display: inline-block; background: #b8862b; color: #fff;
+  font-size: 0.78em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+}
+.ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+.ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
+.ws-tb-ask strong { color: #8a5f12; }
+.ws-tb input.activity-input {
+  border-bottom: 2px solid #b8862b; background: #fffdf5; color: #3d3116;
+  text-align: left; padding-left: 8px;
+}
+.ws-tb input.activity-input:focus { border-bottom-color: #8a5f12; background: #fff8e4; }
+@media print { .ws-tb { background: #fff; border-left-color: #999; } }
+
 .callout {
   padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
 }
@@ -62,10 +342,14 @@ blockquote {
 }
 .ox-group { display: inline-flex; gap: 6px; }
 .ox-btn {
-  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
-  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  width: 44px; height: 44px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1.12em; font-weight: 800;
   cursor: pointer; transition: all 0.2s; line-height: 1;
 }
+.ox-group { gap: 9px; }
+/* OX 표 — 문장 칸은 넓게, 버튼 칸은 좁고 가운데 (2026-09-03) */
+table:has(.ox-group) td:last-child { width: 118px; text-align: center; }
+table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6b7482; }
 .ox-btn:hover { background: #f0f4ff; }
 .ox-btn.selected { background: #007aff; color: white; }
 .ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
@@ -83,10 +367,12 @@ blockquote {
 .btn-submitted { background: #34c759 !important; cursor: default; }
 .submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
 .essay-input {
-  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
-  padding: 10px; font-family: inherit; font-size: 0.93em;
-  resize: vertical; margin: 6px 0; outline: none;
+  width: 100%; min-height: 104px; border: 1.5px solid #ccd4de; border-radius: 10px;
+  padding: 12px 14px; font-family: inherit; font-size: 0.95em; line-height: 1.9;
+  resize: vertical; margin: 8px 0; outline: none; background: #fcfdff;
+  transition: border-color .15s, background .15s;
 }
+.essay-input:focus { border-color: #007aff; background: #fff; }
 .essay-input:focus { border-color: #007aff; }
 .control-bar {
   position: sticky; top: 0; background: white; padding: 10px 0;
@@ -105,7 +391,8 @@ blockquote {
 .student-info {
   display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
 }
-.student-info input {
+.student-info select { background:#fff; cursor:pointer; }
+.student-info input, .student-info select {
   border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
 }
 @media (max-width: 600px) {
@@ -130,6 +417,20 @@ blockquote {
 .hero-title { font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
 .hero-subtitle { font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }
 .hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+.card-quote { border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
 .hero-keyword {
   padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
   font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
@@ -138,8 +439,33 @@ blockquote {
 .hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
+.ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
+.ws-fold-table thead th { background:#eee9dc; font-weight:700; }
+.ws-anim-ctl { display:flex; align-items:center; justify-content:center; gap:10px; margin:8px 0 2px; }
+.ws-anim-ctl button { border:1px solid #cfc8b6; background:#fff; border-radius:8px; padding:6px 16px;
+  cursor:pointer; font-family:inherit; font-size:0.9em; color:#4a5c40; font-weight:700; }
+.ws-anim-ctl button:hover { background:#f1efe6; }
+.ws-anim-ctl span { font-size:0.8em; color:#9a9284; }
+.ws-gal { margin: 22px auto; max-width: 100%; border: 1px solid #ddd7c8; border-radius: 12px;
+  background: #fbfaf6; overflow: hidden; }
+.ws-gal-head { padding: 12px 16px 0; font-weight: 700; color: #3a4a34; font-size: 0.98em; }
+.ws-gal-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px; }
+.ws-gal-dot { border: 1px solid #cfc8b6; background: #fff; color: #5a5344; border-radius: 999px;
+  padding: 5px 12px; font-size: 0.84em; cursor: pointer; font-family: inherit; }
+.ws-gal-dot.on { background: #4a5c40; border-color: #4a5c40; color: #fff; font-weight: 700; }
+.ws-gal-stage { text-align: center; padding: 4px 14px 0; }
+.ws-gal-slide img { max-width: 100%; max-height: 430px; height: auto; border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.14); }
+.ws-gal-slide figcaption { margin: 8px auto 0; max-width: 640px; font-size: 0.86em;
+  color: #5a5344; line-height: 1.55; }
+.ws-gal-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 10px 0 14px; }
+.ws-gal-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px;
+  padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.9em; color: #4a5c40; }
+.ws-gal-count { font-size: 0.86em; color: #8a8272; font-variant-numeric: tabular-nums; }
 .ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
 .ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
@@ -152,13 +478,10 @@ blockquote {
 <div class="container">
   
   <div class="control-bar">
-    <div class="score">
-      빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/0
-      · 총: <span id="total-score">0</span>/12 (<span id="pct">0</span>%)
-    </div>
+    <div></div>
     <div>
       
-      <button class="btn btn-primary" onclick="check()">채점하기</button>
+      
       
       <button class="btn btn-danger" onclick="reset()">초기화</button>
       <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
@@ -166,9 +489,9 @@ blockquote {
     </div>
   </div>
   <div class="student-info">
-    <input type="text" placeholder="반">
-    <input type="text" placeholder="번호">
-    <input type="text" placeholder="이름">
+    <select id="si-cls"><option value="">반</option><option value="1">1반</option><option value="2">2반</option><option value="3">3반</option><option value="4">4반</option><option value="5">5반</option><option value="6">6반</option></select>
+    <select id="si-num"><option value="">번호</option><option value="1">1번</option><option value="2">2번</option><option value="3">3번</option><option value="4">4번</option><option value="5">5번</option><option value="6">6번</option><option value="7">7번</option><option value="8">8번</option><option value="9">9번</option><option value="10">10번</option><option value="11">11번</option><option value="12">12번</option><option value="13">13번</option><option value="14">14번</option><option value="15">15번</option><option value="16">16번</option><option value="17">17번</option><option value="18">18번</option><option value="19">19번</option><option value="20">20번</option><option value="21">21번</option><option value="22">22번</option><option value="23">23번</option><option value="24">24번</option><option value="25">25번</option><option value="26">26번</option><option value="27">27번</option><option value="28">28번</option><option value="29">29번</option><option value="30">30번</option><option value="31">31번</option><option value="32">32번</option><option value="33">33번</option><option value="34">34번</option><option value="35">35번</option></select>
+    <input type="text" id="si-name" placeholder="이름">
   </div>
   <h1>역사① Ⅱ단원 15차시 — 한 사람의 13년이 1,000년을 만들다</h1>
 <br>
@@ -207,10 +530,10 @@ blockquote {
 <br>
 <table>
 <tr><td>시기</td><td>일어난 일</td></tr>
-<tr><td>B.C. 356</td><td>마케도니아 ①<input type="text" class="blank-input" data-answer="왕자" data-id="1" style="width:60px" placeholder=""> 출생·<em>아리스토텔레스가 가르침</em></td></tr>
+<tr><td>B.C. 356</td><td>마케도니아 ①(　　　　) 출생·<em>아리스토텔레스가 가르침</em></td></tr>
 <tr><td>B.C. 336</td><td>부친 암살·<strong>20세</strong> 즉위</td></tr>
-<tr><td>B.C. 334~</td><td>②<input type="text" class="blank-input" data-answer="페르시아" data-id="2" style="width:84px" placeholder=""> 원정 시작</td></tr>
-<tr><td>B.C. 326</td><td>인도 ③<input type="text" class="blank-input" data-answer="인더스" data-id="3" style="width:68px" placeholder=""> 강 도달 → 군대 항명으로 회군</td></tr>
+<tr><td>B.C. 334~</td><td>②(　　　　) 원정 시작</td></tr>
+<tr><td>B.C. 326</td><td>인도 ③(　　　) 강 도달 → 군대 항명으로 회군</td></tr>
 <tr><td>B.C. 323</td><td>바빌론에서 <em>열병으로 사망</em>·<strong>33세</strong></td></tr>
 </table>
 <br>
@@ -219,7 +542,7 @@ blockquote {
 <blockquote>⚠️ <strong>반전 — 왕도 군대 마음은 못 이긴다</strong>: 더 정복하려 했지만 10년 원정에 지친 군대가 <em>집단 항명</em> → 회군. 인도 본토는 못 가졌고, 그 자리에 훗날 마우리아 왕조가 선다.</blockquote>
 <br>
 <h3>정복의 <em>진짜 효과</em></h3>
-<p>- 70개 ④<input type="text" class="blank-input" data-answer="알렉산드리아" data-id="4" style="width:116px" placeholder=""> 도시 건설 (이집트 알렉산드리아 = <em>100m 등대·수십만 권 도서관</em>의 학문 중심지)</p>
+<p>- 70개 ④(　　　　　　) 도시 건설 (이집트 알렉산드리아 = <em>100m 등대·수십만 권 도서관</em>의 학문 중심지)</p>
 <p>- <em>그리스인 + 동방인</em> 결혼·이주 (알렉산드로스 본인도 페르시아 공주와 결혼)</p>
 <p>- <em>그리스어(코이네)</em>를 공용어로</p>
 <br>
@@ -230,8 +553,8 @@ blockquote {
 <br>
 <table>
 <tr><td>인물</td><td>어떤 사람?</td></tr>
-<tr><td>⑤<input type="text" class="blank-input" data-answer="알렉산드로스" data-id="5" style="width:116px" placeholder=""> (다 가진 자)</td><td>세계 정복이 목표·13년에 3 대륙</td></tr>
-<tr><td>⑥<input type="text" class="blank-input" data-answer="디오게네스" data-id="6" style="width:100px" placeholder=""> (다 버린 자)</td><td>욕망을 다 버린 자유·<em>"햇빛 가리지 마라(비키라)"</em></td></tr>
+<tr><td>⑤(　　　　　　　) (다 가진 자)</td><td>세계 정복이 목표·13년에 3 대륙</td></tr>
+<tr><td>⑥(　　　　　) (다 버린 자)</td><td>욕망을 다 버린 자유·<em>"햇빛 가리지 마라(비키라)"</em></td></tr>
 </table>
 <br>
 <blockquote>💡 <strong>왜 헬레니즘엔 이 둘이 동시에 인기였을까?</strong> 폴리스가 무너져 <em>나라를 위한 삶</em>이 흔들리자, 사람들은 <em>세계를 품는 삶(알렉산드로스)</em>과 <em>내 마음만 챙기는 삶(디오게네스)</em> — <strong>밖으로 넓히거나, 안으로 줄이거나</strong> 두 갈래로 갔다. (→ 4단계 ⑫세계시민주의·⑩개인주의)</blockquote>
@@ -239,7 +562,7 @@ blockquote {
 <hr>
 <br>
 <h2>📖 4단계: 헬레니즘 — <em>폴리스가 무너지자 4가지가 바뀌었다</em></h2>
-<p><strong>헬레니즘</strong>은 ⑦<input type="text" class="blank-input" data-answer="그리스" data-id="7" style="width:68px" placeholder=""> 문화와 ⑧<input type="text" class="blank-input" data-answer="동방" data-id="8" style="width:60px" placeholder=""> 문화가 만나 만들어진 새 문화다 (B.C. 4~1세기, 약 300년).</p>
+<p><strong>헬레니즘</strong>은 ⑦(　　　) 문화와 ⑧(　　) 문화가 만나 만들어진 새 문화다 (B.C. 4~1세기, 약 300년).</p>
 <br>
 <blockquote>(교과서: "그리스 문화가 동방으로 전파되어 헬레니즘 문화가 형성되었다." / "폴리스 중심의 공동체 의식이 줄어들고 개인의 행복을 추구하는 개인주의가 등장하였다." 비상교육 역사①(이병인) p.47)</blockquote>
 <br>
@@ -251,10 +574,10 @@ blockquote {
 <br>
 <table>
 <tr><td>특징</td><td><strong>왜 그렇게 됐나</strong></td><td>예</td></tr>
-<tr><td>⑨<input type="text" class="blank-input" data-answer="개방성" data-id="9" style="width:68px" placeholder=""></td><td>그리스+동방 <em>섞임</em>을 당연시 — 알렉산드로스부터 동방인과 결혼·등용</td><td>코이네·간다라 부처</td></tr>
-<tr><td>⑩<input type="text" class="blank-input" data-answer="개인주의" data-id="10" style="width:84px" placeholder=""></td><td><em>내 한 표가 없어지자</em> 시선을 안으로 → 내 마음·행복에서 의미</td><td>에피쿠로스·스토아</td></tr>
-<tr><td>⑪<input type="text" class="blank-input" data-answer="자연주의" data-id="11" style="width:84px" placeholder=""> 예술</td><td>완벽한 신(이상화) X → <em>고통·감정을 사실대로</em>. 관심이 <em>신→현실 인간</em>으로</td><td>「라오콘」의 비명</td></tr>
-<tr><td>⑫<input type="text" class="blank-input" data-answer="세계 시민주의" data-id="12" style="width:132px" placeholder=""></td><td><em>"나는 아테네인"</em> 대신 <em>"나는 세계의 시민"</em> — 울타리가 넓어짐</td><td>디오게네스·알렉산드리아</td></tr>
+<tr><td>⑨(　　　)</td><td>그리스+동방 <em>섞임</em>을 당연시 — 알렉산드로스부터 동방인과 결혼·등용</td><td>코이네·간다라 부처</td></tr>
+<tr><td>⑩(　　　　)</td><td><em>내 한 표가 없어지자</em> 시선을 안으로 → 내 마음·행복에서 의미</td><td>에피쿠로스·스토아</td></tr>
+<tr><td>⑪(　　　　　) 예술</td><td>완벽한 신(이상화) X → <em>고통·감정을 사실대로</em>. 관심이 <em>신→현실 인간</em>으로</td><td>「라오콘」의 비명</td></tr>
+<tr><td>⑫(　　　　　　)</td><td><em>"나는 아테네인"</em> 대신 <em>"나는 세계의 시민"</em> — 울타리가 넓어짐</td><td>디오게네스·알렉산드리아</td></tr>
 </table>
 <br>
 <blockquote>💡 <strong>한 줄</strong>: 폴리스가 무너지자 → 시선은 <em>안으로</em>(⑩)·울타리는 <em>밖으로</em>(⑫)·예술은 <em>이상에서 현실로</em>(⑪)·사회는 <em>섞임으로</em>(⑨).</blockquote>
@@ -278,7 +601,7 @@ blockquote {
 <pre class="code-block">
 간다라 부처 (AD 1~2세기·쿠샨 왕조)
 
-   → 중국 둔황 막고굴 → 한국 ⑬<input type="text" class="blank-input code-blank" data-answer="석굴암" data-id="13" style="width:60px" placeholder="">·반가사유상 (통일신라 8세기) → 일본
+   → 중국 둔황 막고굴 → 한국 ⑬<input type="text" class="blank-input code-blank no-score" data-id="0" style="width:80px" placeholder="">·반가사유상 (통일신라 8세기) → 일본
 
 </pre>
 <p>- <em>비단길</em>을 타고 부처상이 <em>동쪽으로</em> 1,000년에 걸쳐 전해졌다.</p>
@@ -290,7 +613,7 @@ blockquote {
 <br>
 <h2>🔗 핵심 정리 — 인과 사슬</h2>
 <pre class="code-block">
-펠로폰네소스 전쟁으로 폴리스 쇠퇴 → 마케도니아 대두 (⑭<input type="text" class="blank-input code-blank" data-answer="아리스토텔레스" data-id="14" style="width:98px" placeholder="">가 알렉산드로스 교육)
+펠로폰네소스 전쟁으로 폴리스 쇠퇴 → 마케도니아 대두 (⑭<input type="text" class="blank-input code-blank no-score" data-id="0" style="width:80px" placeholder="">가 알렉산드로스 교육)
 
 → 알렉산드로스 13년 정복(3 대륙) → 70 알렉산드리아·이주·결혼 정책
 
@@ -307,13 +630,13 @@ blockquote {
 <blockquote>정답이 정해진 문제가 아니야. <em>네 경험과 판단</em>을 솔직하게.</blockquote>
 <br>
 <p><strong>활동 1. 너는 누구에 가까워?</strong> — 알렉산드로스(다 가짐·정복) · 디오게네스(다 버림·자유) · 간다라 조각가(섞어서 새것). <em>지금의 너</em>와 가장 닮은 사람을 고르고, <em>왜 그런지</em> 너의 경험과 함께 써 보자.</p>
-<textarea class="essay-input" data-id="essay-1" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-1" data-label="✏️ 활동 — 내 생각 쓰기 (제출에 포함돼요)" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <p><strong>활동 2. 내 일상 속 헬레니즘.</strong> 어제 하루 중 <em>헬레니즘의 흔적</em>(① 개방성=섞임 · ② 개인주의=내 행복 · ③ 자연주의=자연스러움 · ④ 세계시민주의=세계 연결) 하나를 찾아, <em>무엇이고 4특징 중 무엇과 연결되는지</em> 써 보자. (예: K-팝의 전 세계 팬덤 = 세계시민주의)</p>
-<textarea class="essay-input" data-id="essay-2" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-2" data-label="✏️ 활동 — 내 생각 쓰기 (제출에 포함돼요)" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <p><strong>활동 3. 다시 보는 한국 문화.</strong> 우리 국보 <em>석굴암</em>이 <em>그리스 조각의 후손</em>이라는 사실은, '한국 문화'를 어떻게 다시 생각하게 할까? 네 생각을 써 보자.</p>
-<textarea class="essay-input" data-id="essay-3" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-3" data-label="✏️ 활동 — 내 생각 쓰기 (제출에 포함돼요)" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <hr>
 <br>
@@ -321,7 +644,7 @@ blockquote {
 <blockquote><strong>다음 시간:</strong> 로마가 제국으로 성장하다 — 헬레니즘을 이어받은 <em>법과 실용의 제국</em> (2-2-4)</blockquote>
 </div>
 <script>
-const TB=12, TOX=0, GT=12;
+const TB=0, TOX=0, GT=0;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
@@ -334,6 +657,49 @@ function selectChoice(btn, val){
   grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
   grp.dataset.selected=val;
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
+function replayAnim(id){
+  // 애니메이션 WebP/GIF는 loop=1로 구워져 한 번만 재생된다(WCAG 2.2.2).
+  // src를 캐시버스터와 함께 갈아 끼우면 처음부터 다시 돈다.
+  const im=document.getElementById(id); if(!im) return;
+  const base=im.dataset.src||im.src.split('?')[0];
+  im.src='';
+  setTimeout(()=>{ im.src = base + '?r=' + Date.now(); }, 30);
+}
+function galGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n;
+  i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-gal-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-gal-dot').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-gal-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function galStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  galGo(id, (+(g.dataset.cur||0)) + d);
+}
+function cmpGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n; i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function cmpStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  cmpGo(id, (+(g.dataset.cur||0)) + d);
 }
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
@@ -429,30 +795,80 @@ function reset(){
   }
 }
 // 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){ return document.getElementById(id); }
+function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
+// 🔴 2026-08-31: 저장 키에 '정답 체계 지문'을 붙인다.
+//   사고 — 3-3-1의 빈칸을 21→15로 줄이자, v1 때 채워 둔 답이 v2 번호로 복원되며
+//   ⑤부터 한 칸씩 밀렸다(⑤에 '봉신', ⑥에 '주종 관계'). 화면만 보면 "답이 노출되고
+//   매칭이 틀린" 것처럼 보이는데, 실제로는 옛 입력이 새 번호에 얹힌 것이다.
+//   빈칸 개수·정답 문자열이 바뀌면 지문이 달라져 옛 답이 붙지 않는다.
+function _wsFp(){
+  let sig='';
+  document.querySelectorAll('.blank-input:not(.activity-input),.ox-group').forEach(el=>{
+    sig += (el.dataset.answer||'') + '|';
+  });
+  let h=5381;
+  for(let i=0;i<sig.length;i++){ h=((h*33)^sig.charCodeAt(i))>>>0; }
+  return h.toString(36);
+}
+function _wsKey(){
+  const fp='::v'+_wsFp();
+  if(!EXAM_MODE) return 'ws_'+document.title+fp;
+  const c=_siv('si-cls'), n=_siv('si-num');
+  if(!c||!n) return null;
+  return 'ws_'+document.title+fp+'::'+c+'-'+n;
+}
+// 지문 도입 이전(=구키)에 저장된 답은, 빈칸 개수가 그대로일 때만 이어받는다.
+//   같으면 단순 재발행이므로 학생이 쓰던 답을 살리고, 다르면 구조가 바뀐 것이므로 버린다.
+function _migrateOldKey(newKey){
+  const oldKey = EXAM_MODE
+    ? 'ws_'+document.title+'::'+_siv('si-cls')+'-'+_siv('si-num')
+    : 'ws_'+document.title;
+  let raw; try{ raw=localStorage.getItem(oldKey); }catch(e){ return; }
+  if(!raw) return;
+  try{
+    const p=JSON.parse(raw), d=p.data||{};
+    const nowN=document.querySelectorAll('.blank-input:not(.activity-input)').length;
+    const oldN=Object.keys(d).filter(k=>/^\d+$/.test(k)).length;
+    if(oldN===nowN) localStorage.setItem(newKey, raw);   // 구조 동일 → 이어받기
+  }catch(e){}
+  try{ localStorage.removeItem(oldKey); }catch(e){}  // 구키는 어느 쪽이든 정리
+}
 function _persist(){
+  const key=_wsKey(); if(!key) return;
   const data={};
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
     data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
   });
   document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
   document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
-  const si=document.querySelectorAll('.student-info input');
-  const info={class:si[0]?si[0].value:'',number:si[1]?si[1].value:'',name:si[2]?si[2].value:''};
-  try{ localStorage.setItem('ws_'+document.title, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+  const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
-function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\n※ 제출을 마치면 이 기기에 남긴 답은 지워집니다.'); }
 let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
-  let saved; try{ saved=localStorage.getItem('ws_'+document.title); }catch(e){}
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  _migrateOldKey(key);
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
-  if(info){
-    const inputs=document.querySelectorAll('.student-info input');
-    if(info.class&&inputs[0]) inputs[0].value=info.class;
-    if(info.number&&inputs[1]) inputs[1].value=info.number;
-    if(info.name&&inputs[2]) inputs[2].value=info.name;
+  // 🔒 2026-09-04 — 복원 전에 **신원을 대조한다**.
+  //   종전에는 저장된 반·번호·이름을 화면에 그대로 채워 넣었다. 그래서 친구 노트북을 빌린 학생이
+  //   열면 **남의 답과 남의 이름이 이미 적혀 있었고, 이름만 바꾸면 그대로 제출**됐다(천대현 관찰).
+  //   이제 저장된 주인과 지금 앉은 사람이 같을 때만 복원한다.
+  if(info && (info.class||info.number)){
+    const c=_siv('si-cls'), n=_siv('si-num');
+    if(!c || !n) return;                                  // 아직 신원을 안 넣었다 → 보류(넣으면 리스너가 다시 부른다)
+    if(String(info.class)!==String(c) || String(info.number)!==String(n)) return;  // 주인이 다르다 → 복원 안 함
   }
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
@@ -488,17 +904,30 @@ function collectAnswers(){
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
   });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  const lbl={};
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
 // 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
 function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+// 🔴 전송 중 재진입 가드 (2026-09-02) — 사회(중3) 세션이 시트에서 발견한 중복 제출의 원인.
+//   종전엔 버튼이 한 번도 disabled 되지 않았고, 텍스트는 fetch **응답 후**에야 바뀌었다.
+//   그 왕복 사이에 한 번 더 누르면 그대로 두 번 전송된다 — mode:'no-cors'라 실패해도 조용하다.
+//   실측 중복: 사회 125=126행(8/31 08:16·6반23번) · 역사 21=23행(8/31 14:12·1반18번).
+//   시각·점수·답이 전부 같아 재제출이 아니라 '버튼 두 번'이다. 집계에서 인원이 부푼다.
+let _submitting = false;
 function submitResult(){
+  if(_submitting) return;                     // 전송 중 두 번째 클릭은 무시
   if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
-  const cls=document.querySelector('.student-info input:nth-child(1)').value.trim();
-  const num=document.querySelector('.student-info input:nth-child(2)').value.trim();
-  const name=document.querySelector('.student-info input:nth-child(3)').value.trim();
-  if(!cls||!num||!name){alert('반, 번호, 이름을 모두 입력해주세요. (빈칸은 일부만 채워도 OK)');return;}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}
   if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
   check(); // 먼저 채점
   const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
@@ -513,19 +942,36 @@ function submitResult(){
     blankScore:bs,oxScore:os,totalScore:ts,
     answers:answers
   };
+  // 여기서부터 실제 전송 — 잠그고 버튼도 즉시 비활성화한다(응답을 기다리지 않는다).
+  _submitting = true;
+  const _btn=document.getElementById('submitBtn');
+  _btn.disabled = true; _btn.textContent = '전송 중…';
   fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
   .then(()=>{
-    document.getElementById('submitBtn').textContent='✅ 제출 완료';
-    document.getElementById('submitBtn').classList.add('btn-submitted');
+    // 🔒 제출이 끝나면 **이 기기에 남긴 답을 지운다**(2026-09-04 천대현 요청).
+    //   화면의 답은 그대로라 재제출은 되지만, 새로 열면 남지 않는다 → 빌려준 노트북에 답이 안 남는다.
+    try{ const k=_wsKey(); if(k) localStorage.removeItem(k); }catch(e){}
+    _btn.textContent='✅ 제출 완료';
+    _btn.classList.add('btn-submitted');
     setTimeout(()=>{
-      document.getElementById('submitBtn').textContent='📤 재제출';
-      document.getElementById('submitBtn').classList.remove('btn-submitted');
+      _btn.textContent='📤 재제출';
+      _btn.classList.remove('btn-submitted');
     }, 2000);
   })
-  .catch(e=>alert('제출 실패: '+e));
+  .catch(e=>alert('제출 실패: '+e))
+  .finally(()=>{                              // 성공·실패 모두 반드시 푼다 — 안 그러면 재제출이 영영 막힌다
+    _submitting = false;
+    _btn.disabled = false;
+  });
 }
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
+// 신원(반·번호)을 넣거나 바꾸면 다시 복원을 시도한다.
+//   위 대조 때문에 처음엔 보류될 수 있고, 본인이 반·번호를 고른 순간 자기 답이 돌아와야 한다.
+['si-cls','si-num'].forEach(id=>{
+  const el=_siEl(id);
+  if(el) el.addEventListener('change', ()=>{ try{ loadProgress(); }catch(e){} });
+});
 // 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
 document.addEventListener('input', autosave, true);
 document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
@@ -536,9 +982,18 @@ document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
 document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
   b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
 });
-document.querySelectorAll('.student-info input').forEach(el=>{
+['si-cls','si-num','si-name'].forEach(id=>{
+  const el=_siEl(id); if(!el) return;
   el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
 });
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  ['si-cls','si-num','si-name'].forEach(id=>{
+    const el=_siEl(id); if(!el) return;
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
 </script>
 </body>
 </html>
