@@ -16,8 +16,17 @@ body {
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
 }
 h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
-h2 { font-size: 1.25em; margin: 18px 0 10px; color: #333; }
-h3 { font-size: 1.1em; margin: 14px 0 8px; color: #555; }
+h2 {
+  font-size: 1.3em; margin: 30px 0 12px; color: #1d1d1f; font-weight: 800;
+  letter-spacing: -0.01em; padding: 8px 0 8px 14px; border-left: 6px solid #007aff;
+  background: linear-gradient(90deg, #f2f6ff, rgba(255,255,255,0));
+  border-radius: 0 8px 8px 0;
+}
+h2:first-of-type { margin-top: 14px; }
+h3 {
+  font-size: 1.09em; margin: 22px 0 8px; color: #2b3240; font-weight: 750;
+  padding-left: 11px; border-left: 3px solid #b6c4dc;
+}
 h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
 p { margin: 5px 0; font-size: 0.95em; }
 hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
@@ -27,8 +36,13 @@ table {
 /* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
 table.act-table { width: auto; max-width: 100%; }
 table.act-table .activity-input { max-width: 100%; }
-td { border: 1px solid #ddd; padding: 7px 10px; vertical-align: top; }
-tr:first-child td { background: #f0f4ff; font-weight: 600; }
+td { border: 1px solid #e2e6ec; padding: 10px 12px; vertical-align: middle; line-height: 1.6; }
+tr:first-child td {
+  background: #e8eefb; font-weight: 750; color: #22314e; vertical-align: middle;
+  border-color: #cfd9ec; font-size: 0.96em;
+}
+tbody tr:nth-child(even):not(:first-child) td { background: #fcfdff; }
+table { border-radius: 10px; overflow: hidden; }
 .ws-fold {
   margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
   border-radius: 8px; background: #fbfaf6; overflow: hidden;
@@ -47,6 +61,119 @@ blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
 }
+/* 🎮 인물 선택 활동 — 2026-09-03. 표를 정답으로 주지 않고 학생이 고르게 한다.
+   캐릭터 선택 화면의 결: 고르기 전엔 흐리고, 고르면 색이 들어온다. */
+.ws-pick { border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd; padding: 16px; margin: 18px 0; }
+.pk-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-size: 0.94em; font-weight: 700; color: #3d4552; margin-bottom: 12px; }
+.pk-count { color: #c62c3c; white-space: nowrap; }
+.pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 640px) { .pk-grid { grid-template-columns: repeat(2, 1fr); } }
+.ws-voc { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.94em; }
+.ws-voc th { background:#f2f4f8; color:#42505f; font-weight:700; padding:9px 12px;
+              border:1px solid #dfe4ea; text-align:left; font-size:0.9em; }
+.ws-voc td { padding:9px 12px; border:1px solid #dfe4ea; vertical-align:top; }
+.vc-btn { background:none; border:0; padding:0; font:inherit; font-weight:700; color:#1c2b3a;
+           cursor:pointer; text-align:left; }
+.vc-btn::before { content:"▸ "; color:#7a8f6a; }
+.vc-btn[aria-expanded="true"]::before { content:"▾ "; }
+.vc-btn:hover { color:#0b57d0; }
+.vc-btn:focus-visible { outline:2px solid #0b57d0; outline-offset:2px; border-radius:3px; }
+.vc-body td { background:#fbfaf5; }
+.vc-body p { margin:4px 0; color:#3a352c; line-height:1.65; }
+.pk-card { border: 2px solid #e2e6ec; border-radius: 12px; background: #fff; padding: 10px 8px;
+  text-align: center; transition: transform .22s ease-out, box-shadow .22s, background .22s, border-color .15s; }
+.pk-card img { transition: filter .22s; }
+.pk-card img { width: 72px; height: 72px; image-rendering: pixelated;
+  filter: grayscale(1) opacity(.45); transition: .15s; }
+.pk-card.pk-set img { filter: none; }
+.pk-card.pk-set { border-color: #9aa4b2; background: #fdfdfe; }
+.pk-name { font-weight: 800; font-size: 0.9em; margin-top: 2px; color: #1c242f; }
+.pk-sit { font-size: 0.78em; color: #6b7482; line-height: 1.5; margin: 3px 0 8px; min-height: 2.2em; }
+.pk-btns { display: flex; gap: 5px; }
+.pk-b { flex: 1; border: 1.5px solid #d5dae1; background: #fff; border-radius: 8px;
+  padding: 6px 2px; font: inherit; font-size: 0.78em; font-weight: 700; color: #55607a; cursor: pointer; }
+.pk-b:hover { background: #f3f6fa; }
+.pk-b.on { background: #1c242f; border-color: #1c242f; color: #fff; }
+/* 🙂 기분 상태 — 고르면 캐릭터가 웃거나 운다 (2026-09-03).
+   새 그림을 그리지 않는다: 카드가 뜨거나 내려앉고, 색온도와 채도가 바뀌고, 배지가 붙는다.
+   정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
+.pk-card { position: relative; }
+.pk-card.pk-happy {
+  transform: translateY(-10px) scale(1.04);
+  border-color: #e0b13a;
+  box-shadow: 0 12px 22px rgba(200,150,30,.28), 0 0 0 3px rgba(255,214,102,.35);
+  background: linear-gradient(180deg, #fff9e2, #fff);
+  animation: pkHop .5s cubic-bezier(.34,1.56,.64,1);
+}
+.pk-card.pk-happy img { filter: brightness(1.16) saturate(1.45) contrast(1.06); transform: scale(1.1); }
+.pk-card.pk-sad {
+  transform: translateY(9px) scale(.95) rotate(1.6deg);
+  border-color: #93a3bb;
+  box-shadow: 0 1px 3px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #eef1f6, #f8fafc);
+  animation: pkSlump .45s ease-out;
+}
+.pk-card.pk-sad img {
+  filter: saturate(.22) brightness(.84) contrast(.92) hue-rotate(-14deg);
+  transform: scale(.9) rotate(-2deg);
+}
+.pk-card.pk-sad .pk-name, .pk-card.pk-sad .pk-sit { opacity: .62; }
+@keyframes pkHop {
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-20px) scale(1.09); }
+  100% { transform: translateY(-10px) scale(1.04); }
+}
+@keyframes pkSlump {
+  0%   { transform: translateY(0) scale(1) rotate(0); }
+  60%  { transform: translateY(13px) scale(.93) rotate(2.4deg); }
+  100% { transform: translateY(9px) scale(.95) rotate(1.6deg); }
+}
+.pk-card.pk-happy::after, .pk-card.pk-sad::after {
+  position: absolute; top: -12px; right: -8px; font-size: 1.9em; line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.22));
+}
+.pk-card.pk-happy::after { content: "😀"; animation: pkPop .45s cubic-bezier(.34,1.8,.64,1); }
+.pk-card.pk-sad::after { content: "😢"; animation: pkDrip .45s ease-out; }
+@keyframes pkPop { 0% { transform: scale(0) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes pkDrip { 0% { transform: translateY(-10px) scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; animation: none; }
+  .pk-card.pk-happy::after, .pk-card.pk-sad::after { animation: none; }
+}
+@media print {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; animation: none; }
+  .pk-card.pk-happy img, .pk-card.pk-sad img { transform: none; }
+}
+
+.pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
+.pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
+.pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
+  background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
+.pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
+@media (max-width: 520px) { .pk-sum { grid-template-columns: 1fr; } }
+.pk-col { background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }
+.pk-col b { display: block; margin-bottom: 5px; font-size: 0.95em; }
+.pk-col span { display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }
+.pk-up { border-color: #1a7a60; color: #15705a; }
+.pk-down { border-color: #c62c3c; color: #b3242f; }
+/* N지선다(기분 없음) 요약 열 — 옵션 순서대로 색이 갈린다 */
+code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
+  padding: 1px 5px; font-size: .92em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #384a63; }
+.pk-c0 { border-color: #1f6feb; color: #1a5fc8; }
+.pk-c1 { border-color: #b8862b; color: #9a6f1e; }
+.pk-c2 { border-color: #6b4fbb; color: #5b41a4; }
+.pk-c3 { border-color: #1a7a60; color: #15705a; }
+/* 옵션이 3개 이상이면 버튼을 세로로 — 가로로 늘어놓으면 폰에서 글자가 잘린다 */
+.pk-btns-col { flex-direction: column; gap: 4px; }
+.pk-btns-col .pk-b { width: 100%; text-align: center; }
+/* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+.pk-card.pk-noimg { padding-top: 14px; }
+.pk-card.pk-noimg .pk-name { font-size: 1.02em; }
+@media print { .pk-b { display: none; } .pk-card img { filter: none; } }
+
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
 .ws-seesaw {
   border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
@@ -66,7 +193,7 @@ blockquote {
   border-top: 52px solid #96a0ae;
 }
 .ws-seesaw-chip {
-  position: absolute; top: 50%; width: 168px; margin-top: -78px; padding: 9px 6px;
+  position: absolute; top: 50%; width: 168px; padding: 9px 6px;
   text-align: center; border-radius: 12px; border: 3px solid; background: #fff;
   transition: transform .18s ease-out; font-size: 0.88em;
 }
@@ -74,6 +201,9 @@ blockquote {
 .ws-seesaw-chip .v { display: block; font-size: 1.45em; font-weight: 800; margin-top: 2px; }
 .ws-seesaw-chip.ws-l { left: 50%; margin-left: -334px; border-color: #c62c3c; color: #c62c3c; }
 .ws-seesaw-chip.ws-r { left: 50%; margin-left: 166px; border-color: #1e5ca8; color: #1e5ca8; }
+.ws-seesaw-note {
+  text-align: center; font-size: 0.84em; color: #6b7482; margin: 0 0 8px;
+}
 .ws-seesaw-out {
   text-align: center; font-size: 1.02em; font-weight: 700; color: #15705a;
   background: #e0f3ec; border: 1px solid #1a7a60; border-radius: 10px; padding: 9px;
@@ -101,6 +231,62 @@ blockquote {
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+
+/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+.ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  background: #fbf9f4; overflow: hidden; }
+.ws-cmp-head { display: flex; }
+.ws-cmp-head span { flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
+  font-size: .95em; color: #fff; background: #8a7a5c; }
+.ws-cmp-head span:first-child { background: #9a7b3c; }
+.ws-cmp-head span:last-child { background: #5b6b8a; }
+.ws-cmp-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }
+.ws-cmp-tab { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }
+.ws-cmp-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-cmp-stage { padding: 4px 10px 0; }
+.ws-cmp-slide { display: flex; gap: 12px; align-items: flex-start; }
+/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
+   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
+.ws-cmp-slide[hidden] { display: none; }
+.ws-cmp-slide figure { flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }
+.ws-cmp-slide img { width: 100%; max-height: 300px; height: auto; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.ws-cmp-slide figcaption { margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }
+.ws-cmp-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 8px 0 10px; }
+.ws-cmp-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }
+.ws-cmp-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-cmp-slide img { max-height: 190px; } }
+@media print { .ws-cmp-slide[hidden] { display: flex !important; } }  /* 인쇄엔 전부 편다 */
+
+/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
+.ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
+.ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
+  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.ws-flip-in { position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.ws-flip.on .ws-flip-in { transform: rotateY(180deg); }
+.ws-flip:focus-visible .ws-flip-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
+.ws-flip-f, .ws-flip-b { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 12px;
+  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-sizing: border-box; overflow: hidden; }
+.ws-flip-f { background: #f3f0e8; border: 2px solid #cfc4ae; }
+.ws-flip-f b { font-size: 1.15em; color: #3d3116; }
+.ws-flip-f i { font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }
+.ws-flip-f u { text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }
+.ws-flip-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }
+.ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
+.ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
+@media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+@media print {
+  .ws-flip { height: auto; }
+  .ws-flip-in { transform: none !important; }
+  .ws-flip-f, .ws-flip-b { position: static; transform: none; backface-visibility: visible; }
+}
 
 /* 📕 교과서를 펴는 자리 — 2026-09-02.
    학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
@@ -156,10 +342,14 @@ blockquote {
 }
 .ox-group { display: inline-flex; gap: 6px; }
 .ox-btn {
-  width: 36px; height: 36px; border: 2px solid #007aff; border-radius: 50%;
-  background: white; color: #007aff; font-size: 1em; font-weight: 700;
+  width: 44px; height: 44px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1.12em; font-weight: 800;
   cursor: pointer; transition: all 0.2s; line-height: 1;
 }
+.ox-group { gap: 9px; }
+/* OX 표 — 문장 칸은 넓게, 버튼 칸은 좁고 가운데 (2026-09-03) */
+table:has(.ox-group) td:last-child { width: 118px; text-align: center; }
+table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6b7482; }
 .ox-btn:hover { background: #f0f4ff; }
 .ox-btn.selected { background: #007aff; color: white; }
 .ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
@@ -177,10 +367,12 @@ blockquote {
 .btn-submitted { background: #34c759 !important; cursor: default; }
 .submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
 .essay-input {
-  width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 8px;
-  padding: 10px; font-family: inherit; font-size: 0.93em;
-  resize: vertical; margin: 6px 0; outline: none;
+  width: 100%; min-height: 104px; border: 1.5px solid #ccd4de; border-radius: 10px;
+  padding: 12px 14px; font-family: inherit; font-size: 0.95em; line-height: 1.9;
+  resize: vertical; margin: 8px 0; outline: none; background: #fcfdff;
+  transition: border-color .15s, background .15s;
 }
+.essay-input:focus { border-color: #007aff; background: #fff; }
 .essay-input:focus { border-color: #007aff; }
 .control-bar {
   position: sticky; top: 0; background: white; padding: 10px 0;
@@ -284,7 +476,7 @@ blockquote {
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-1-1 — 같은 문제, 두 번의 답 (영국 혁명)</h1><p class="hero-subtitle">같은 문제, 두 번의 답</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">의회가 왕에게 처음 건 것은 무엇이었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">왕의 목을 자른 답은 왜 실패했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">피를 안 흘린 답은 무엇이 달랐을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">왕이 남았는데 왕이 아니라는 말<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>권리 청원 (1628)</strong> — 의회가 왕에게 던진 <strong>첫 제동</strong>. 핵심은 딱 한 문장이다.</p><div class="card-quote"><strong>"의회의 동의 없이 세금을 부과할 수 없다."</strong></div><div class="card-quote">💡 자유도 신앙도 아니라 <strong>돈</strong>부터 걸었다. 왕이 무엇을 하든 돈이 필요하기 때문 — <strong>의회의 힘은 돈에서 나온다.</strong></div><div class="card-quote">⚠️ 찰스 1세는 이걸 <strong>받아들이고도 의회를 해산했다.</strong> 그래서 내전이 났다.</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>청교도 혁명 (1642~1649)</strong> — 첫 번째 답. <strong>왕을 죽였다.</strong></p><table><thead><tr><th>누가 싸웠나</th><th></th></tr></thead><tbody><tr><td><strong>의회파</strong></td><td>청교도가 중심 · 크롬웰이 이끔</td></tr><tr><td><strong>왕당파</strong></td><td>국왕 찰스 1세 지지</td></tr></tbody></table><div class="card-quote">결과: 의회파 승리 → 찰스 1세 <strong>처형</strong> → <strong>공화정</strong>(왕 없는 정치)</div><div class="card-quote">⚠️ <strong>그런데 크롬웰도 의회를 해산하고 독재를 했다.</strong> 찰스 1세와 똑같은 짓이다. <strong>사람은 바뀌었는데 규칙은 안 바뀐 것</strong> — 이것이 첫 번째 답이 실패한 이유.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>명예혁명 (1688)</strong> — 두 번째 답. <strong>왕을 바꿨다.</strong></p><p>`제임스 2세 축출` → `메리 + 윌리엄 공동 왕` → `권리 장전 수용`</p><div class="card-quote"><strong>이름의 유래</strong> — <em>피를 흘리지 않고</em> 정치 형태를 바꾸었기 때문에 '명예'다.</div><div class="card-quote">💡 앞에서 왕의 목을 잘랐던 나라가 이번엔 <strong>왕을 갈아 끼우고 조건을 붙이는 것으로</strong> 끝냈다.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>권리 장전 → 입헌 군주제</strong> — 왕관에 조건이 붙었다.</p><table><thead><tr><th>조항</th><th>무엇을 막았나</th></tr></thead><tbody><tr><td>제1조</td><td><strong>법</strong> — 의회 동의 없이 법을 정지·방해 못 함</td></tr><tr><td>제4조</td><td><strong>돈</strong> — 의회 승인 없이 세금 못 걷음</td></tr><tr><td>제6조</td><td><strong>군대</strong> — 의회 동의 없이 군대 못 모음</td></tr></tbody></table><div class="card-quote">나라를 움직이는 <strong>법·돈·군대</strong> 셋을 전부 의회 손에 걸었다.</div><div class="card-quote">💡 <strong>왕은 남아 있다.</strong> 그런데 법 아래 있다 — 이것이 <strong>입헌 군주제</strong>다. 영국에 지금도 왕이 있는 이유이고, 왕이 마음대로 못 하는 이유다.</div></div></div><img class="hero-image" src="images/5-1-1_표지.jpg" alt=""><div class="hero-hook">영국엔 지금도 왕이 있어. 2023년 대관식 뉴스 봤을지도 몰라. 그런데 이상하지 — 왕이 있는데 왕 마음대로 못 해. 법은 의회가 만들고, 세금도 의회가 정하고, 군대도 의회 허락이 있어야 해. 왕인데 왕이 아닌 셈이야. 언제 이렇게 됐을까? 17세기 영국에서 같은 문제를 두고 두 번 답이 나왔는데, 첫 번째 답은 왕의 목을 잘랐고 두 번째 답은 피 한 방울 안 흘렸어. 살아남은 건 두 번째야.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-1-1 — 같은 문제, 두 번의 답 (영국 혁명)</h1><p class="hero-subtitle">같은 문제, 두 번의 답</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">의회가 왕에게 처음 건 것은 무엇이었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">왕의 목을 자른 답은 왜 실패했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">피를 안 흘린 답은 무엇이 달랐을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">왕이 남았는데 왕이 아니라는 말<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>권리 청원 (1628)</strong> — 의회가 왕에게 던진 <strong>첫 제동</strong>. 핵심은 딱 한 문장이다.</p><div class="card-quote"><strong>"의회의 동의 없이 세금을 부과할 수 없다."</strong></div><div class="card-quote">💡 자유도 신앙도 아니라 <strong>돈</strong>부터 걸었다. 왕이 무엇을 하든 돈이 필요하기 때문 — <strong>의회의 힘은 돈에서 나온다.</strong></div><div class="card-quote">⚠️ 찰스 1세는 이걸 <strong>받아들이고도 의회를 해산했다.</strong> 그래서 내전이 났다.</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>청교도 혁명 (1642~1649)</strong> — 첫 번째 답. <strong>왕을 죽였다.</strong></p><table><thead><tr><th>누가 싸웠나</th><th></th></tr></thead><tbody><tr><td><strong>의회파</strong></td><td>청교도가 중심 · 크롬웰이 이끔</td></tr><tr><td><strong>왕당파</strong></td><td>국왕 찰스 1세 지지</td></tr></tbody></table><div class="card-quote">결과: 의회파 승리 → 찰스 1세 <strong>처형</strong> → <strong>공화정</strong>(왕 없는 정치)</div><div class="card-quote">⚠️ <strong>그런데 크롬웰도 의회를 해산하고 독재를 했다.</strong> 찰스 1세와 똑같은 짓이다. <strong>사람은 바뀌었는데 규칙은 안 바뀐 것</strong> — 이것이 첫 번째 답이 실패한 이유.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>명예혁명 (1688)</strong> — 두 번째 답. <strong>왕을 바꿨다.</strong></p><p><code>제임스 2세 축출</code> → <code>메리 + 윌리엄 공동 왕</code> → <code>권리 장전 수용</code></p><div class="card-quote"><strong>이름의 유래</strong> — <em>피를 흘리지 않고</em> 정치 형태를 바꾸었기 때문에 '명예'다.</div><div class="card-quote">💡 앞에서 왕의 목을 잘랐던 나라가 이번엔 <strong>왕을 갈아 끼우고 조건을 붙이는 것으로</strong> 끝냈다.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>권리 장전 → 입헌 군주제</strong> — 왕관에 조건이 붙었다.</p><table><thead><tr><th>조항</th><th>무엇을 막았나</th></tr></thead><tbody><tr><td>제1조</td><td><strong>법</strong> — 의회 동의 없이 법을 정지·방해 못 함</td></tr><tr><td>제4조</td><td><strong>돈</strong> — 의회 승인 없이 세금 못 걷음</td></tr><tr><td>제6조</td><td><strong>군대</strong> — 의회 동의 없이 군대 못 모음</td></tr></tbody></table><div class="card-quote">나라를 움직이는 <strong>법·돈·군대</strong> 셋을 전부 의회 손에 걸었다.</div><div class="card-quote">💡 <strong>왕은 남아 있다.</strong> 그런데 법 아래 있다 — 이것이 <strong>입헌 군주제</strong>다. 영국에 지금도 왕이 있는 이유이고, 왕이 마음대로 못 하는 이유다.</div></div></div><img class="hero-image" src="images/5-1-1_표지.jpg" alt=""><div class="hero-hook">영국엔 지금도 왕이 있어. 2023년 대관식 뉴스 봤을지도 몰라. 그런데 이상하지 — 왕이 있는데 왕 마음대로 못 해. 법은 의회가 만들고, 세금도 의회가 정하고, 군대도 의회 허락이 있어야 해. 왕인데 왕이 아닌 셈이야. 언제 이렇게 됐을까? 17세기 영국에서 같은 문제를 두고 두 번 답이 나왔는데, 첫 번째 답은 왕의 목을 잘랐고 두 번째 답은 피 한 방울 안 흘렸어. 살아남은 건 두 번째야.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/8 · OX: <span id="ox-score">0</span>/5
@@ -480,6 +672,18 @@ function galStep(id,d){
   const g=document.getElementById(id); if(!g) return;
   galGo(id, (+(g.dataset.cur||0)) + d);
 }
+function cmpGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n; i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function cmpStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  cmpGo(id, (+(g.dataset.cur||0)) + d);
+}
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
 function check(){
   let bc=0, oxc=0;
@@ -630,7 +834,7 @@ function _persist(){
   const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
-function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기·브라우저에서 다시 열면 그대로 이어집니다. (다른 PC로 옮기면 안 남으니, 끝나면 꼭 📤 제출!)'); }
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\n※ 제출을 마치면 이 기기에 남긴 답은 지워집니다.'); }
 let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 function loadProgress(){
@@ -640,10 +844,14 @@ function loadProgress(){
   if(!saved) return;
   let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
   const info=parsed.info, data=parsed.data;
-  if(info&&!EXAM_MODE){
-    if(info.class&&_siEl('si-cls')) _siEl('si-cls').value=info.class;
-    if(info.number&&_siEl('si-num')) _siEl('si-num').value=info.number;
-    if(info.name&&_siEl('si-name')) _siEl('si-name').value=info.name;
+  // 🔒 2026-09-04 — 복원 전에 **신원을 대조한다**.
+  //   종전에는 저장된 반·번호·이름을 화면에 그대로 채워 넣었다. 그래서 친구 노트북을 빌린 학생이
+  //   열면 **남의 답과 남의 이름이 이미 적혀 있었고, 이름만 바꾸면 그대로 제출**됐다(천대현 관찰).
+  //   이제 저장된 주인과 지금 앉은 사람이 같을 때만 복원한다.
+  if(info && (info.class||info.number)){
+    const c=_siv('si-cls'), n=_siv('si-num');
+    if(!c || !n) return;                                  // 아직 신원을 안 넣었다 → 보류(넣으면 리스너가 다시 부른다)
+    if(String(info.class)!==String(c) || String(info.number)!==String(n)) return;  // 주인이 다르다 → 복원 안 함
   }
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
@@ -723,6 +931,9 @@ function submitResult(){
   _btn.disabled = true; _btn.textContent = '전송 중…';
   fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
   .then(()=>{
+    // 🔒 제출이 끝나면 **이 기기에 남긴 답을 지운다**(2026-09-04 천대현 요청).
+    //   화면의 답은 그대로라 재제출은 되지만, 새로 열면 남지 않는다 → 빌려준 노트북에 답이 안 남는다.
+    try{ const k=_wsKey(); if(k) localStorage.removeItem(k); }catch(e){}
     _btn.textContent='✅ 제출 완료';
     _btn.classList.add('btn-submitted');
     setTimeout(()=>{
@@ -738,6 +949,12 @@ function submitResult(){
 }
 // 페이지 로드 시 저장된 진행 불러오기
 loadProgress();
+// 신원(반·번호)을 넣거나 바꾸면 다시 복원을 시도한다.
+//   위 대조 때문에 처음엔 보류될 수 있고, 본인이 반·번호를 고른 순간 자기 답이 돌아와야 한다.
+['si-cls','si-num'].forEach(id=>{
+  const el=_siEl(id);
+  if(el) el.addEventListener('change', ()=>{ try{ loadProgress(); }catch(e){} });
+});
 // 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
 document.addEventListener('input', autosave, true);
 document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
