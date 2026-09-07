@@ -192,7 +192,10 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
     in_seat = False           # 2026-09-07: 좌석 구성 눌러 보기 (:::좌석표 ... :::)
+    in_pk = False             # 2026-09-07: 카드 골라 쓰기 (:::카드선택 ... :::)
+    pk_title, pk_rows, pk_ask, pk_cred = '', [], '', ''
     seat_title, seat_rows, seat_note = '', [], ''
+    seat_bg, seat_cap = '', ''
     cmp_left = cmp_right = ''
     cmp_slides = []           # [(제목, [(캡션,경로), (캡션,경로)]), ...]
     in_flip = False           # 2026-09-03: 뒤집는 카드 (:::플립 ... :::)
@@ -276,6 +279,81 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   학생이 화면을 훑을 때 "여기는 책을 펴야 하는 자리"가 한눈에 잡혀야 하기 때문이다.
         #   본문 규약 — '?' 로 시작하는 줄 = 쓰는 질문 / 나머지 = 무엇을 보는지 안내(쓰지 않는다).
         #   ⚠️ 안내 줄에 [학생작성]을 넣지 말 것. "굳이 적지 않아도 될 것은 묻지 않는다"가 이 블록의 규칙이다.
+        # 🃏 카드 골라 쓰기 (:::카드선택 <안내> ... :::) — 2026-09-07 천대현
+        #   "1단계를 관련 이미지를 넣어 카드 형식으로. 세 개 카드 중 하나를 골라
+        #    그 이미지가 보여 주는 장면이 무엇인지 쓰도록. 포켓몬 카드 스타일로."
+        #   교과서 삽화를 글로 지시하던 자리를 실제 그림 카드로 바꾼다.
+        #   행 규약: | 타입 | 카드 이름 | 이미지파일 | 한 줄 설명 |
+        #   '? …[학생작성:N]' = 답 쓰는 줄 · '= …' = 출처 표기(선택)
+        if stripped.startswith(':::카드선택'):
+            in_pk = True
+            pk_title = stripped[len(':::카드선택'):].strip()
+            pk_rows, pk_ask, pk_cred = [], '', ''
+            continue
+        if in_pk:
+            if stripped == ':::':
+                if pk_rows:
+                    kid = 'pk3%d' % len(html_parts)
+                    cards = []
+                    for i, (ty, nm, img, fl) in enumerate(pk_rows):
+                        cards.append(
+                            '<button type="button" class="pk3-card pk3-t%d" data-i="%d" aria-pressed="false">'
+                            '<span class="pk3-in">'
+                            '<span class="pk3-top"><span class="pk3-name">%s</span>'
+                            '<span class="pk3-badge">%s</span></span>'
+                            '<span class="pk3-win"><img src="images/%s" alt="%s" loading="lazy">'
+                            '<span class="pk3-holo"></span></span>'
+                            '<span class="pk3-cap">%s</span>'
+                            '<span class="pk3-flavor">%s</span>'
+                            '<span class="pk3-foot">이 카드로 고르기</span>'
+                            '</span></button>'
+                            % (i % 3, i, inline(ty), inline(ty),
+                               img, re.sub(r'<[^>]+>', '', inline(nm)), inline(nm), inline(fl)))
+                    ask = ('<div class="pk3-ask"><div class="pk3-pick">아직 고르지 않았다</div>%s</div>'
+                           % inline(pk_ask)) if pk_ask else ''
+                    cred = ('<div class="pk3-cred">%s</div>' % inline(pk_cred)) if pk_cred else ''
+                    names = json.dumps([r[0] for r in pk_rows], ensure_ascii=False)
+                    html_parts.append(
+                        '<div class="ws-pk3" id="%s">'
+                        '<div class="pk3-head">%s</div>'
+                        '<div class="pk3-deck">%s</div>%s%s</div>'
+                        '<script>(function(){var w=document.getElementById("%s");'
+                        'var NM=%s,cs=w.querySelectorAll(".pk3-card"),'
+                        'pk=w.querySelector(".pk3-pick"),'
+                        'inp=w.querySelector(".pk3-ask input,.pk3-ask textarea");'
+                        'function tag(v,t){v=String(v||"").replace(/^\[[^\]]*\]\s*/,"");'
+                        'return t?("["+t+"] "+v):v;}'
+                        'cs.forEach(function(c){c.addEventListener("click",function(){'
+                        'var off=c.classList.contains("on");'
+                        'cs.forEach(function(x){x.classList.remove("on","dim");'
+                        'x.setAttribute("aria-pressed","false");});'
+                        'if(off){if(pk)pk.textContent="아직 고르지 않았다";'
+                        'if(inp){inp.value=tag(inp.value,null);'
+                        'inp.dispatchEvent(new Event("input",{bubbles:true}));}return;}'
+                        'c.classList.add("on");c.setAttribute("aria-pressed","true");'
+                        'cs.forEach(function(x){if(x!==c)x.classList.add("dim");});'
+                        'var t=NM[+c.dataset.i];'
+                        'if(pk)pk.textContent="고른 카드 — "+t;'
+                        'if(inp){inp.value=tag(inp.value,t);'
+                        'inp.dispatchEvent(new Event("input",{bubbles:true}));inp.focus();}'
+                        '});});})();</script>'
+                        % (kid, inline(pk_title), ''.join(cards), ask, cred, kid, names))
+                in_pk = False
+                pk_rows, pk_ask, pk_cred = [], '', ''
+                continue
+            if stripped.startswith('?'):
+                pk_ask = stripped[1:].strip()
+                continue
+            if stripped.startswith('= '):
+                pk_cred = stripped[2:].strip()
+                continue
+            if stripped.startswith('|'):
+                c = [x.strip() for x in stripped.strip('|').split('|')]
+                if len(c) >= 4:
+                    pk_rows.append((c[0], c[1], c[2], c[3]))
+                continue
+            continue
+
         # 🪑 좌석 구성 눌러 보기 (:::좌석표 <제목> ... :::) — 2026-09-07 천대현
         #   "카드식으로 넘겨 보게. 5개 10개 클릭할 때 효과 좀 넣자."
         #   한 장의 큰 그림에 설명을 다 얹으면 호흡이 길어 학생이 안 읽는다.
@@ -286,6 +364,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             in_seat = True
             seat_title = stripped[len(':::좌석표'):].strip()
             seat_rows, seat_note = [], ''
+            seat_bg, seat_cap = '', ''
             continue
         if in_seat:
             if stripped == ':::':
@@ -316,11 +395,12 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         '<div class="st-title">%s</div>'
                         '<div class="st-hint">아래 단추를 눌러 보자. 누른 쪽 자리만 살아난다.</div>'
                         '<div class="st-btns">%s</div>'
+                        '<div class="st-stage%s"%s>%s'
                         '<svg class="st-svg" viewBox="0 0 520 366" role="img" aria-label="%s">'
                         '<circle class="st-hub" cx="%d" cy="%d" r="62"/>'
                         '<text class="st-hub-n" x="%d" y="%d" text-anchor="middle">%d</text>'
                         '<text class="st-hub-t" x="%d" y="%d" text-anchor="middle">자리</text>'
-                        '%s</svg>'
+                        '%s</svg></div>%s'
                         '<div class="st-cards">%s</div>%s</div>'
                         '<script>(function(){var w=document.getElementById("%s");'
                         'var seen={},n=%d;'
@@ -338,11 +418,20 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         'if(nt&&Object.keys(seen).length>=n){nt.hidden=false;}'
                         '});});})();</script>'
                         % (sid, len(seat_rows), inline(seat_title), btns,
+                           ' has-bg' if seat_bg else '',
+                           (' style="background-image:url(images/%s)"' % seat_bg) if seat_bg else '',
+                           '<span class="st-veil"></span>' if seat_bg else '',
                            re.sub(r'<[^>]+>', '', inline(seat_title)),
                            CX, CY, CX, CY + 2, tot, CX, CY + 30, ''.join(seats),
+                           ('<div class="st-cap">%s</div>' % inline(seat_cap)) if seat_cap else '',
                            cards, note, sid, len(seat_rows)))
                 in_seat = False
                 seat_rows, seat_note = [], ''
+                continue
+            if stripped.startswith('@ '):
+                _b = [x.strip() for x in stripped[2:].split('|')]
+                seat_bg = _b[0]
+                seat_cap = _b[1] if len(_b) > 1 else ''
                 continue
             if stripped.startswith('+ '):
                 seat_note = stripped[2:].strip()
@@ -1418,6 +1507,73 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print {{ .ws-read {{ background: #fff; border-left-color: #999; }} }}
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+/* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */
+.st-stage {{ position: relative; border-radius: 10px; overflow: hidden; margin: 2px 0 6px; }}
+.st-stage.has-bg {{ background-size: cover; background-position: center 42%;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.25); }}
+.st-veil {{ position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 52%, rgba(12,10,8,.42) 0%,
+    rgba(12,10,8,.68) 55%, rgba(12,10,8,.82) 100%); }}
+.st-stage.has-bg .st-svg {{ position: relative; }}
+.st-stage.has-bg .st-seat {{ fill: rgba(255,255,255,.30); stroke: rgba(255,255,255,.72);
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,.55)); }}
+.st-stage.has-bg .st-seat.dim {{ opacity: .3; }}
+.st-stage.has-bg .st-seat[data-g="0"].on {{ fill: #d64b42; stroke: #ffd9d5;
+  filter: drop-shadow(0 0 9px rgba(255,90,78,.95)) drop-shadow(0 4px 6px rgba(0,0,0,.6)); }}
+.st-stage.has-bg .st-seat[data-g="1"].on {{ fill: #7fb4ee; stroke: #e6f2ff;
+  filter: drop-shadow(0 0 9px rgba(126,180,238,.95)) drop-shadow(0 4px 6px rgba(0,0,0,.6)); }}
+.st-stage.has-bg .st-hub {{ fill: rgba(10,9,8,.55); stroke: rgba(255,255,255,.45); }}
+.st-stage.has-bg .st-hub-n {{ fill: #fff; }}
+.st-stage.has-bg .st-hub-t {{ fill: rgba(255,255,255,.8); }}
+.st-cap {{ font-size: .76em; color: #8a857c; line-height: 1.55; margin: 0 0 10px; }}
+/* 🃏 카드 골라 쓰기 (2026-09-07) — 포켓몬 카드 결: 금테 + 이름표 + 창 + 홀로 */
+.ws-pk3 {{ margin: 18px 0; }}
+.pk3-head {{ font-size: 1.06em; font-weight: 700; color: #22201e; margin-bottom: 10px; }}
+.pk3-deck {{ display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }}
+.pk3-card {{ display: block; width: 100%; text-align: left; cursor: pointer;
+  padding: 7px; border: 0; border-radius: 15px; font: inherit;
+  background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
+  box-shadow: 0 3px 9px rgba(0,0,0,.18);
+  transition: transform .18s ease, box-shadow .18s ease, filter .25s ease; }}
+.pk3-card:hover {{ transform: translateY(-6px) rotate(-.7deg);
+  box-shadow: 0 12px 24px rgba(0,0,0,.24); }}
+.pk3-card:focus-visible {{ outline: 3px solid #2b6cb0; outline-offset: 3px; }}
+.pk3-in {{ display: block; background: #fdf7e6; border-radius: 10px; padding: 9px 9px 10px; }}
+.pk3-top {{ display: flex; align-items: center; justify-content: space-between; gap: 6px;
+  margin-bottom: 7px; }}
+.pk3-name {{ font-size: 1.14em; font-weight: 800; color: #2c2419; letter-spacing: -.01em; }}
+.pk3-badge {{ font-size: .74em; font-weight: 800; color: #fff; padding: 3px 9px;
+  border-radius: 999px; white-space: nowrap; }}
+.pk3-t0 .pk3-badge {{ background: #a9683c; }}
+.pk3-t1 .pk3-badge {{ background: #3f7fc4; }}
+.pk3-t2 .pk3-badge {{ background: #c99a12; }}
+.pk3-win {{ position: relative; display: block; overflow: hidden; border-radius: 5px;
+  border: 4px solid #d9c98e; background: #efe7cf; }}
+.pk3-win img {{ display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }}
+.pk3-holo {{ position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  background: repeating-linear-gradient(115deg, rgba(255,90,140,.55) 0 12px,
+    rgba(255,220,90,.55) 12px 24px, rgba(110,240,190,.55) 24px 36px,
+    rgba(120,170,255,.55) 36px 48px);
+  background-size: 240% 240%; mix-blend-mode: color-dodge; transition: opacity .3s; }}
+.pk3-cap {{ display: block; margin-top: 8px; font-size: .96em; font-weight: 700; color: #2c2419; }}
+.pk3-flavor {{ display: block; margin-top: 5px; font-size: .87em; line-height: 1.5;
+  color: #574d3c; font-style: italic; border-top: 1px solid #e2d5ad; padding-top: 6px; }}
+.pk3-foot {{ display: block; margin-top: 8px; text-align: center; font-size: .82em;
+  font-weight: 800; color: #7a6636; background: #f2e7c4; border-radius: 6px; padding: 5px; }}
+.pk3-card.on {{ transform: translateY(-6px) scale(1.03); box-shadow: 0 0 0 4px #e7b625,
+  0 14px 30px rgba(201,153,46,.45); }}
+.pk3-card.on .pk3-holo {{ opacity: .42; animation: pk3sheen 3.4s linear infinite; }}
+.pk3-card.on .pk3-foot {{ background: #c9992e; color: #fff; }}
+.pk3-card.dim {{ filter: grayscale(.8); opacity: .45; transform: none; }}
+@keyframes pk3sheen {{ 0% {{ background-position: 0% 0%; }} 100% {{ background-position: 240% 0%; }} }}
+@media (prefers-reduced-motion: reduce) {{
+  .pk3-card, .pk3-card:hover, .pk3-card.on {{ transition: none; transform: none; }}
+  .pk3-card.on .pk3-holo {{ animation: none; }} }}
+.pk3-ask {{ margin-top: 14px; padding: 13px 15px; border-radius: 10px;
+  background: #fbf5e4; border: 2px solid #d9c98e; }}
+.pk3-pick {{ font-size: .87em; font-weight: 800; color: #8a7434; margin-bottom: 7px; }}
+.pk3-cred {{ margin-top: 8px; font-size: .76em; color: #8a857c; line-height: 1.55; }}
 /* 🪑 좌석 구성 눌러 보기 (2026-09-07) — 그림 먼저, 설명은 누를 때만 */
 .ws-seat {{ border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
   padding: 16px 14px 14px; background: #fdfbf7; }}
