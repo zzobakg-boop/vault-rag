@@ -757,8 +757,15 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         f'{_face.get(o, o) if pick_mood else o}</button>' for o in pick_opts)
                     # 확장자가 붙어 있으면 images/ 바로 아래, 아니면 옛 people 규약 유지
                     _src = f'images/{img}' if '.' in img else f'images/people/{img}.png'
-                    im = (f'<span class="pk-win"><img src="{_src}" alt="{re.sub(chr(60)+"[^"+chr(62)+"]*"+chr(62), "", inline(nm))}" loading="lazy"></span>'
-                          if img else '')
+                    # 🔴 래퍼는 카드형일 때만 — 옛 인물선택 차시(5-5 등)의 출력이
+                    #    글자 하나까지 같아야 "재발행해도 안전"이 성립한다.
+                    if not img:
+                        im = ''
+                    elif pick_gold:
+                        _alt = re.sub(r'<[^>]+>', '', inline(nm))
+                        im = f'<span class="pk-win"><img src="{_src}" alt="{_alt}" loading="lazy"></span>'
+                    else:
+                        im = f'<img src="{_src}" alt="" loading="lazy">' 
                     cards += (
                       f'<div class="pk-card{"" if img else " pk-noimg"}" data-i="{i}" data-ans="{ans}">'
                       f'{im}<div class="pk-name">{inline(nm)}</div>'
