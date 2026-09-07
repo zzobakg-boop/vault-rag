@@ -3,6 +3,7 @@
 정답 파일에서 답을 순서대로 추출하고, 개념편의 빈칸에 순서대로 매칭한다."""
 
 import re
+import math
 import sys
 import os
 import json
@@ -190,6 +191,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
+    in_seat = False           # 2026-09-07: 좌석 구성 눌러 보기 (:::좌석표 ... :::)
+    seat_title, seat_rows, seat_note = '', [], ''
     cmp_left = cmp_right = ''
     cmp_slides = []           # [(제목, [(캡션,경로), (캡션,경로)]), ...]
     in_flip = False           # 2026-09-03: 뒤집는 카드 (:::플립 ... :::)
@@ -273,6 +276,85 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   학생이 화면을 훑을 때 "여기는 책을 펴야 하는 자리"가 한눈에 잡혀야 하기 때문이다.
         #   본문 규약 — '?' 로 시작하는 줄 = 쓰는 질문 / 나머지 = 무엇을 보는지 안내(쓰지 않는다).
         #   ⚠️ 안내 줄에 [학생작성]을 넣지 말 것. "굳이 적지 않아도 될 것은 묻지 않는다"가 이 블록의 규칙이다.
+        # 🪑 좌석 구성 눌러 보기 (:::좌석표 <제목> ... :::) — 2026-09-07 천대현
+        #   "카드식으로 넘겨 보게. 5개 10개 클릭할 때 효과 좀 넣자."
+        #   한 장의 큰 그림에 설명을 다 얹으면 호흡이 길어 학생이 안 읽는다.
+        #   → 자리 그림만 먼저 보여 주고, 그룹을 누를 때 그 자리들만 살아나며 설명 카드가 뜬다.
+        #   행 규약: | 그룹명 | 자리수 | red|blue | 항목(쉼표) | 한 줄 성격 |
+        #   '+ ' 줄 = 두 그룹을 다 본 뒤 드러나는 결론.
+        if stripped.startswith(':::좌석표'):
+            in_seat = True
+            seat_title = stripped[len(':::좌석표'):].strip()
+            seat_rows, seat_note = [], ''
+            continue
+        if in_seat:
+            if stripped == ':::':
+                if seat_rows:
+                    sid = 'seat%d' % len(html_parts)
+                    tot = sum(r[1] for r in seat_rows)
+                    CX, CY, R = 260, 208, 132
+                    seats, gi, idx = [], 0, 0
+                    for gi, (nm, cnt, col, items, desc) in enumerate(seat_rows):
+                        for _ in range(cnt):
+                            a = math.radians(-90 + idx * (360.0 / tot))
+                            seats.append(
+                                '<circle class="st-seat" data-g="%d" r="15" cx="%.1f" cy="%.1f"/>'
+                                % (gi, CX + R * math.cos(a), CY + R * math.sin(a)))
+                            idx += 1
+                    btns = ''.join(
+                        '<button type="button" class="st-btn st-%s" data-g="%d">%s <b>%d</b></button>'
+                        % (r[2], i, inline(r[0]), r[1]) for i, r in enumerate(seat_rows))
+                    cards = ''.join(
+                        '<div class="st-card st-%s" data-g="%d" hidden>'
+                        '<div class="st-card-h">%s <span>%d자리</span></div>'
+                        '<div class="st-card-i">%s</div><div class="st-card-d">%s</div></div>'
+                        % (r[2], i, inline(r[0]), r[1], inline(r[3]), inline(r[4]))
+                        for i, r in enumerate(seat_rows))
+                    note = ('<div class="st-note" hidden>%s</div>' % inline(seat_note)) if seat_note else ''
+                    html_parts.append(
+                        '<div class="ws-seat" id="%s" data-n="%d">'
+                        '<div class="st-title">%s</div>'
+                        '<div class="st-hint">아래 단추를 눌러 보자. 누른 쪽 자리만 살아난다.</div>'
+                        '<div class="st-btns">%s</div>'
+                        '<svg class="st-svg" viewBox="0 0 520 366" role="img" aria-label="%s">'
+                        '<circle class="st-hub" cx="%d" cy="%d" r="62"/>'
+                        '<text class="st-hub-n" x="%d" y="%d" text-anchor="middle">%d</text>'
+                        '<text class="st-hub-t" x="%d" y="%d" text-anchor="middle">자리</text>'
+                        '%s</svg>'
+                        '<div class="st-cards">%s</div>%s</div>'
+                        '<script>(function(){var w=document.getElementById("%s");'
+                        'var seen={},n=%d;'
+                        'w.querySelectorAll(".st-btn").forEach(function(b){b.addEventListener("click",function(){'
+                        'var g=b.dataset.g,off=b.classList.contains("on");'
+                        'w.querySelectorAll(".st-btn").forEach(function(x){x.classList.remove("on")});'
+                        'w.querySelectorAll(".st-card").forEach(function(x){x.hidden=true});'
+                        'w.querySelectorAll(".st-seat").forEach(function(s){s.classList.remove("on","dim")});'
+                        'if(off){return;}'
+                        'b.classList.add("on");seen[g]=1;'
+                        'w.querySelector(\'.st-card[data-g="\'+g+\'"]\').hidden=false;'
+                        'w.querySelectorAll(".st-seat").forEach(function(s){'
+                        's.classList.add(s.dataset.g===g?"on":"dim");});'
+                        'var nt=w.querySelector(".st-note");'
+                        'if(nt&&Object.keys(seen).length>=n){nt.hidden=false;}'
+                        '});});})();</script>'
+                        % (sid, len(seat_rows), inline(seat_title), btns,
+                           re.sub(r'<[^>]+>', '', inline(seat_title)),
+                           CX, CY, CX, CY + 2, tot, CX, CY + 30, ''.join(seats),
+                           cards, note, sid, len(seat_rows)))
+                in_seat = False
+                seat_rows, seat_note = [], ''
+                continue
+            if stripped.startswith('+ '):
+                seat_note = stripped[2:].strip()
+                continue
+            if stripped.startswith('|'):
+                c = [x.strip() for x in stripped.strip('|').split('|')]
+                if len(c) >= 5 and c[1].isdigit():
+                    seat_rows.append((c[0], int(c[1]),
+                                      'red' if c[2] not in ('red', 'blue') else c[2], c[3], c[4]))
+                continue
+            continue
+
         # ⚖️ 좌우 비교 넘기기 (:::비교 왼쪽이름 | 오른쪽이름 ... :::) — 2026-09-03 천대현
         #   "양쪽에 카드 형식으로 해서 넘기도록" — figrow(나란히)를 여러 벌 쌓으면 세로로 길어져
         #   스크롤 없이 못 본다. 좌우 라벨은 **고정**하고 비교 항목만 넘긴다.
@@ -1336,6 +1418,42 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print {{ .ws-read {{ background: #fff; border-left-color: #999; }} }}
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+/* 🪑 좌석 구성 눌러 보기 (2026-09-07) — 그림 먼저, 설명은 누를 때만 */
+.ws-seat {{ border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  padding: 16px 14px 14px; background: #fdfbf7; }}
+.st-title {{ font-size: 1.16em; font-weight: 700; color: #22201e; }}
+.st-hint {{ font-size: .88em; color: #6e6862; margin: 4px 0 12px; }}
+.st-btns {{ display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }}
+.st-btn {{ flex: 1 1 180px; padding: 11px 14px; border-radius: 10px; cursor: pointer;
+  font-size: 1em; font-weight: 700; background: #fff; transition: transform .12s, box-shadow .12s; }}
+.st-btn b {{ font-size: 1.24em; margin-left: 4px; }}
+.st-btn.st-red {{ border: 2px solid #b03a34; color: #b03a34; }}
+.st-btn.st-blue {{ border: 2px solid #3c608a; color: #3c608a; }}
+.st-btn:hover {{ transform: translateY(-2px); }}
+.st-btn.st-red.on {{ background: #b03a34; color: #fff; box-shadow: 0 4px 12px rgba(176,58,52,.35); }}
+.st-btn.st-blue.on {{ background: #3c608a; color: #fff; box-shadow: 0 4px 12px rgba(60,96,138,.35); }}
+.st-svg {{ display: block; width: 100%; max-width: 520px; margin: 2px auto 6px; }}
+.st-hub {{ fill: #f0ebe4; stroke: #cec6bc; stroke-width: 2; }}
+.st-hub-n {{ font-size: 34px; font-weight: 700; fill: #22201e; }}
+.st-hub-t {{ font-size: 16px; fill: #6e6862; }}
+.st-seat {{ fill: #e6e1d9; stroke: #b9b1a6; stroke-width: 2.5;
+  transition: fill .28s, stroke .28s, opacity .28s, r .28s; }}
+.st-seat.dim {{ opacity: .22; }}
+.st-seat[data-g="0"].on {{ fill: #b03a34; stroke: #8d2a25; r: 18; }}
+.st-seat[data-g="1"].on {{ fill: #d8e2ee; stroke: #3c608a; r: 18; }}
+.st-cards {{ min-height: 108px; }}
+.st-card {{ border-radius: 10px; padding: 13px 15px; }}
+.st-card.st-red {{ background: #f6eeec; border: 2px solid #b03a34; }}
+.st-card.st-blue {{ background: #eaf0f7; border: 2px solid #3c608a; }}
+.st-card-h {{ font-size: 1.1em; font-weight: 700; margin-bottom: 7px; }}
+.st-card.st-red .st-card-h {{ color: #b03a34; }}
+.st-card.st-blue .st-card-h {{ color: #3c608a; }}
+.st-card-h span {{ float: right; font-weight: 700; }}
+.st-card-i {{ font-size: 1em; color: #22201e; margin-bottom: 5px; }}
+.st-card-d {{ font-size: .95em; color: #55504a; }}
+.st-note {{ margin-top: 12px; padding: 12px 15px; border-radius: 10px;
+  background: #fff4e8; border: 2px solid #c98a3c; font-weight: 700; color: #22201e; }}
+@media (max-width: 640px) {{ .st-btn {{ flex: 1 1 100%; }} }}
 .ws-cmp {{ border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
   background: #fbf9f4; overflow: hidden; }}
 .ws-cmp-head {{ display: flex; }}
