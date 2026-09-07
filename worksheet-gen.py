@@ -605,9 +605,14 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     cells = [x.strip() for x in name.strip('|').split('|')]
                     while len(cells) < 4: cells.append('')
                     raw = cells[0].replace('**', '').strip()
-                    mh = re.match(r'^(.*?)\s*\(([^)]*)\)\s*$', raw)
-                    ko = (mh.group(1) if mh else raw).strip()
-                    hanja = (mh.group(2) if mh else '').strip()
+                    # 🔴 괄호는 이름 '끝'에만 오지 않는다 — `주종(主從) 관계`처럼 뒤에 말이 붙는다.
+                    #   끝에서만 찾던 정규식이 이 경우를 놓쳐 한자가 안 커졌다(2026-09-07 실측).
+                    #   → 한자 괄호를 위치 무관하게 찾고, 남은 글자를 한글 이름으로 쓴다.
+                    #   한자가 없는 낱말(성직 매매)은 매치가 안 되므로 종전대로 한글만 크게 선다.
+                    mh = re.search(r'\(\s*([一-鿿]+)\s*\)', raw)
+                    hanja = mh.group(1) if mh else ''
+                    ko = (raw[:mh.start()] + raw[mh.end():] if mh else raw).strip()
+                    ko = re.sub(r'\s{2,}', ' ', ko)
                     img = cells[3].strip()
                     face = (f'<span class="vcd-hanja">{hanja}</span>' if hanja else '')
                     # 한자가 없는 낱말(예: 성직 매매)은 한글을 크게 세워 카드가 비지 않게 한다.
