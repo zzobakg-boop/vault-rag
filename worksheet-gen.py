@@ -175,6 +175,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_code = False
     in_table = False
     in_voc = False; voc_rows = []; voc_key = ''   # 2026-09-04: :::낱말 아코디언
+    in_vcd = False; vcd_rows = []; vcd_head = ''  # 2026-09-07: :::낱말카드 (한자 카드·가로)
     in_fold = False   # 2026-08-31: 접힌 콜아웃 '> [!타입]- 제목' → <details>
     in_ox_table = False
     title = "학습지"
@@ -580,6 +581,97 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #      2026-09-04에 마크다운 접기로만 재보고 "표는 불가"라고 결론 낸 것은 허수아비 비교였다.
         #   🔴 입력칸 0 — act 인덱스가 안 밀리므로 기수업 차시에도 넣을 수 있다.
         #   ♿ 여는 것은 <button> + aria-expanded — <td> onclick만 달면 키보드로 못 연다.
+        # 🀄 고급 단어 한자 카드 (:::낱말카드 [머리말] / 낱말|뜯어보기|문장|이미지  + 뜻|가족낱말)
+        #   2026-09-07 천대현: "한자 카드 스타일로 정보는 그대로 담으면서 이미지까지.
+        #   클릭하면 뒤집히는 스타일로. 단어가 많으면 아래로 내리지 말고 옆으로 넘기는 방식."
+        #   앞면 = 이미지 + 한자 + 한글(무엇인지 추측) / 뒷면 = 뜯어보기·뜻·문장·가족 낱말.
+        #   :::낱말(표 아코디언)과 정보량은 같다 — 형태만 다르다. 표가 나은 차시는 표를 쓴다.
+        #   🔴 이 검사는 반드시 ':::낱말'보다 **앞**에 온다 — startswith(':::낱말')이
+        #      ':::낱말카드'도 삼켜서, 뒤에 두면 카드가 조용히 표로 렌더된다.
+        #   🔴 lazy 금지 — 앞면이라 지금은 보이지만, 캐러셀에서 화면 밖 카드는
+        #      브라우저가 "안 보인다"고 판단해 넘겨도 빈 칸이 뜬다(:::플립 뒷면과 같은 함정).
+        #   🔴 입력칸 0 — act 인덱스 불변이라 기수업 차시에도 넣을 수 있다.
+        #   ♿ 카드는 <button>(키보드 Enter/Space로 뒤집힘) · 넘기기는 스크롤 + ◀▶ 버튼 둘 다.
+        if stripped.startswith(':::낱말카드'):
+            in_vcd = True; vcd_rows = []
+            _h = stripped[len(':::낱말카드'):].strip()
+            vcd_head = _h[1:_h.index(']')].strip() if _h.startswith('[') and ']' in _h else ''
+            continue
+        if in_vcd:
+            if stripped == ':::':
+                cid = f'vd{len(html_parts)}'
+                cards = []
+                for name, extra in vcd_rows:
+                    cells = [x.strip() for x in name.strip('|').split('|')]
+                    while len(cells) < 4: cells.append('')
+                    raw = cells[0].replace('**', '').strip()
+                    mh = re.match(r'^(.*?)\s*\(([^)]*)\)\s*$', raw)
+                    ko = (mh.group(1) if mh else raw).strip()
+                    hanja = (mh.group(2) if mh else '').strip()
+                    img = cells[3].strip()
+                    face = (f'<span class="vcd-hanja">{hanja}</span>' if hanja else '')
+                    # 한자가 없는 낱말(예: 성직 매매)은 한글을 크게 세워 카드가 비지 않게 한다.
+                    face += f'<span class="vcd-ko{"" if hanja else " vcd-ko-solo"}">{ko}</span>'
+                    back = f'<span class="vcd-split">{inline(cells[1])}</span>' if cells[1] else ''
+                    if extra:
+                        back += f'<span class="vcd-mean">{inline(extra[0])}</span>'
+                    if cells[2]:
+                        back += f'<span class="vcd-sent">{inline(cells[2])}</span>'
+                    if len(extra) > 1:
+                        back += f'<span class="vcd-fam">{inline(extra[1])}</span>'
+                    cards.append(
+                        f'<button type="button" class="ws-vcard" aria-label="{ko} 카드 뒤집기" '
+                        'onclick="this.classList.toggle(\'on\')">'
+                        '<span class="vcd-in">'
+                        '<span class="vcd-f">'
+                        + (f'<img src="images/{img}" alt="">' if img else
+                           '<span class="vcd-noimg">🀄</span>')
+                        + face + '<span class="vcd-turn">눌러서 뒤집기</span></span>'
+                        f'<span class="vcd-b"><span class="vcd-bko">{ko}</span>{back}</span>'
+                        '</span></button>')
+                html_parts.append(
+                    f'<div class="ws-vcd" id="{cid}">'
+                    + (f'<div class="ws-vcd-head">{inline(vcd_head)}</div>' if vcd_head else '')
+                    + f'<div class="ws-vcd-track">{"".join(cards)}</div>'
+                    '<div class="ws-vcd-nav">'
+                    f'<button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button>'
+                    f'<span class="vcd-count"><b>1</b> / {len(cards)}</span>'
+                    f'<button type="button" class="vcd-next" aria-label="다음 낱말">▶</button>'
+                    '</div></div>'
+                    f'<script>(function(){{var r=document.getElementById("{cid}");'
+                    'var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");'
+                    'var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));'
+                    # step = 카드 폭 + gap. 카드가 1장뿐이면 0으로 나누게 되므로 방어한다.
+                    'function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}'
+                    'function idx(){return Math.max(0,Math.min(cs.length-1,'
+                    'Math.round(t.scrollLeft/step())));}'
+                    # 🔴 끝에 닿으면 마지막 번호를 보이고 버튼을 잠근다 — 안 그러면
+                    #    "▶를 눌렀는데 아무 일도 안 난다"(마지막 카드가 이미 보이는 상태)로 읽힌다.
+                    'var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");'
+                    'function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;'
+                    'c.textContent=e?cs.length:idx()+1;'
+                    'P.disabled=t.scrollLeft<=2;N.disabled=e;}'
+                    'function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}'
+                    'P.addEventListener("click",function(){go(-1);});'
+                    'N.addEventListener("click",function(){go(1);});'
+                    't.addEventListener("scroll",function(){clearTimeout(t._z);'
+                    't._z=setTimeout(sync,90);});'
+                    # 🔴 낱말이 적어 한 줄에 다 들어오면 ◀▶는 눌러도 안 움직인다 —
+                    #    작동하지 않는 버튼을 보여 주느니 감춘다. 폰에서 좁아지면 다시 나온다.
+                    'function navfit(){var s=t.scrollWidth-t.clientWidth;'
+                    'r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}'
+                    'navfit();sync();addEventListener("resize",function(){navfit();sync();});'
+                    '})();</script>')
+                in_vcd = False; vcd_rows = []
+                continue
+            if stripped.startswith('+'):
+                if vcd_rows: vcd_rows[-1][1].extend(
+                    [x.strip() for x in stripped[1:].split('|') if x.strip()])
+                continue
+            if stripped.startswith('|') and not set(stripped.replace('|','').replace(' ','')) <= set('-:'):
+                vcd_rows.append([stripped, []])
+            continue
+
         if stripped.startswith(':::낱말'):
             in_voc = True; voc_rows = []
             _h = stripped[len(':::낱말'):].strip()
@@ -1688,6 +1780,70 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-flip-b img {{ width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }}
 .ws-flip-b i {{ font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }}
 @media (prefers-reduced-motion: reduce) {{ .ws-flip-in {{ transition: none; }} }}
+
+/* 🀄 한자 카드 — 2026-09-07. 「오늘의 고급 단어」를 표 대신 카드로.
+   앞면=이미지+한자 / 뒷면=뜯어보기·뜻·문장·가족 낱말. 세로로 안 늘리고 옆으로 넘긴다. */
+.ws-vcd {{ margin: 18px 0 22px; }}
+.ws-vcd-head {{ font-size: .88em; color: #7a6a4a; margin: 0 2px 8px; }}
+/* 🔴 카드 폭·간격은 "낱말 4개가 한 줄에 딱 들어가는" 값이다(실측 1040 폭 → 트랙 736).
+   4×174 + 3×10 = 726. 이보다 키우면 4번째가 반쯤 잘린 채 ▶로는 한 칸도 못 넘어간다
+   (196px일 때 넘길 여지가 94px뿐이라 카운터가 1에서 안 움직였다). */
+.ws-vcd-track {{ display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory;
+  /* 카드 그림자가 잘리지 않도록 위아래 여백 · 스크롤바는 얇게 */
+  padding: 6px 2px 12px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }}
+.ws-vcd-track::-webkit-scrollbar {{ height: 6px; }}
+.ws-vcd-track::-webkit-scrollbar-thumb {{ background: #d8cfb8; border-radius: 3px; }}
+.ws-vcard {{ flex: 0 0 174px; width: 174px; height: 268px; scroll-snap-align: start;
+  perspective: 1000px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }}
+.vcd-in {{ position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }}
+.ws-vcard.on .vcd-in {{ transform: rotateY(180deg); }}
+.ws-vcard:focus-visible .vcd-in {{ outline: 3px solid #8a5f12; outline-offset: 3px; }}
+.vcd-f, .vcd-b {{ position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; border-radius: 13px; backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; box-sizing: border-box; overflow: hidden;
+  box-shadow: 0 3px 10px rgba(60,48,20,.13); }}
+.vcd-f {{ background: #f6f2e7; border: 2px solid #cfc4ae; justify-content: flex-start; padding: 0 0 10px; }}
+.vcd-f img {{ width: 100%; height: 132px; object-fit: cover; border-bottom: 1px solid #ddd3ba; }}
+.vcd-noimg {{ width: 100%; height: 132px; display: flex; align-items: center; justify-content: center;
+  font-size: 2.4em; background: #ece6d6; border-bottom: 1px solid #ddd3ba; opacity: .5; }}
+/* 위아래 auto 둘이 남는 공간을 나눠 가져 글자 묶음이 이미지 아래 가운데 선다.
+   (hanja에 고정 margin을 주면 글자가 위에 붙고 카드 아래가 텅 빈다) */
+.vcd-hanja {{ font-size: 1.62em; letter-spacing: .06em; color: #6b4f14; margin-top: auto;
+  font-weight: 700; line-height: 1.15; text-align: center; }}
+.vcd-ko {{ font-size: .92em; color: #3d3116; margin-top: 4px; font-weight: 700; text-align: center; }}
+.vcd-ko-solo {{ font-size: 1.22em; margin-top: auto; color: #6b4f14; }}
+.vcd-turn {{ font-size: .7em; color: #a08a5c; margin-top: auto; padding-top: 4px; }}
+.vcd-b {{ background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg);
+  justify-content: flex-start; padding: 13px 13px 11px; gap: 6px; text-align: center;
+  /* 뒷면은 글이 많다 — 넘치면 카드 안에서만 스크롤한다(카드 키가 들쭉날쭉해지지 않게) */
+  overflow-y: auto; }}
+.vcd-bko {{ font-size: 1.02em; font-weight: 700; color: #6b4f14;
+  border-bottom: 1px solid #ead9b4; padding-bottom: 6px; width: 100%; }}
+.vcd-split {{ font-size: .8em; color: #7a6134; }}
+.vcd-mean {{ font-size: .84em; color: #2f2a1e; font-weight: 600; }}
+.vcd-sent {{ font-size: .78em; color: #4a3f2a; font-style: italic; line-height: 1.45; }}
+.vcd-fam {{ font-size: .74em; color: #6b5a3a; line-height: 1.5; margin-top: auto;
+  border-top: 1px dashed #e3d7ba; padding-top: 6px; width: 100%; }}
+.ws-vcd-nav {{ display: flex; align-items: center; justify-content: center; gap: 14px; }}
+.ws-vcd-nav button {{ border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }}
+.ws-vcd-nav button:disabled {{ opacity: .32; cursor: default; }}
+.vcd-count {{ font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }}
+@media (prefers-reduced-motion: reduce) {{
+  .vcd-in {{ transition: none; }}
+  .ws-vcd-track {{ scroll-behavior: auto; }}
+}}
+@media print {{
+  /* 인쇄는 넘길 수 없다 — 카드를 펼쳐 앞뒤를 나란히 둔다 */
+  .ws-vcd-track {{ display: flex; flex-wrap: wrap; overflow: visible; }}
+  .ws-vcard {{ height: auto; }}
+  .vcd-in {{ transform: none !important; }}
+  .vcd-f, .vcd-b {{ position: static; transform: none; backface-visibility: visible; }}
+  .ws-vcd-nav {{ display: none; }}
+}}
+
 @media print {{
   .ws-flip {{ height: auto; }}
   .ws-flip-in {{ transform: none !important; }}
