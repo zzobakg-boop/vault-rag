@@ -634,6 +634,12 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         if stripped.startswith(':::인물선택'):
             in_pick = True
             _h = stripped[len(':::인물선택'):].strip()
+            # 2026-09-07: ':::인물선택카드' = 포켓몬 카드 결(금테·창·풋터).
+            #   별도 이름으로 둔 이유 — .pk-card 자체에 금테를 주면 5-5 등
+            #   기존 인물선택 차시가 재발행 순간 같이 바뀐다. 옛 차시는 그대로 둔다.
+            pick_gold = _h.startswith('카드')
+            if pick_gold:
+                _h = _h[2:].strip()
             pick_opts, pick_mood = ['웃음', '울음'], True
             if _h.startswith('[') and ']' in _h:
                 _o, _h = _h[1:_h.index(']')], _h[_h.index(']') + 1:].strip()
@@ -652,7 +658,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     btns = ''.join(
                         f'<button type="button" class="pk-b" data-v="{o}">'
                         f'{_face.get(o, o) if pick_mood else o}</button>' for o in pick_opts)
-                    im = (f'<img src="images/people/{img}.png" alt="" loading="lazy">'
+                    # 확장자가 붙어 있으면 images/ 바로 아래, 아니면 옛 people 규약 유지
+                    _src = f'images/{img}' if '.' in img else f'images/people/{img}.png'
+                    im = (f'<span class="pk-win"><img src="{_src}" alt="{re.sub(chr(60)+"[^"+chr(62)+"]*"+chr(62), "", inline(nm))}" loading="lazy"></span>'
                           if img else '')
                     cards += (
                       f'<div class="pk-card{"" if img else " pk-noimg"}" data-i="{i}" data-ans="{ans}">'
@@ -664,7 +672,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                   f'<div class="ws-pick" id="{pid}">'
                   f'<div class="pk-head"><span>{inline(pick_q)}</span>'
                   f'<b class="pk-count">0 / {len(pick_rows)}</b></div>'
-                  f'<div class="pk-grid">{cards}</div>'
+                  f'<div class="pk-grid{" pk-gold" if pick_gold else ""}">{cards}</div>'
                   f'<div class="pk-result" hidden></div></div>'
                   f'<script>(function(){{var w=document.getElementById("{pid}");'
                   f'var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;'
@@ -1444,6 +1452,27 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col {{ flex-direction: column; gap: 4px; }}
 .pk-btns-col .pk-b {{ width: 100%; text-align: center; }}
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
+.pk-gold .pk-card {{ padding: 7px; border: 0; border-radius: 15px;
+  background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
+  box-shadow: 0 3px 9px rgba(0,0,0,.18); }}
+.pk-gold .pk-card {{ display: flex; flex-direction: column; gap: 0; }}
+.pk-gold .pk-win {{ display: block; overflow: hidden; border-radius: 5px 5px 0 0;
+  border: 4px solid #d9c98e; border-bottom: 0; background: #efe7cf; margin: 0; }}
+/* 도트 스프라이트용 규칙(72px·pixelated·grayscale)이 사진 카드에 걸리면
+   고르기 전에는 사진이 안 보인다 — 사진에는 단서가 있어야 한다. */
+.pk-gold .pk-win img {{ image-rendering: auto; filter: none; height: auto; }}
+.pk-gold .pk-win img {{ display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }}
+.pk-gold .pk-name {{ background: #fdf7e6; margin: 0; padding: 10px 10px 0;
+  font-size: 1.06em; font-weight: 800; color: #2c2419; }}
+.pk-gold .pk-sit {{ background: #fdf7e6; margin: 0; padding: 5px 10px 8px;
+  font-size: .87em; line-height: 1.5; color: #574d3c; font-style: italic; }}
+.pk-gold .pk-btns {{ background: #fdf7e6; margin: 0; padding: 0 10px 10px;
+  border-radius: 0 0 10px 10px; }}
+.pk-gold .pk-why {{ background: #fdf7e6; margin: 0; padding: 0 10px 10px;
+  border-radius: 0 0 10px 10px; }}
+.pk-gold .pk-card.pk-ok {{ box-shadow: 0 0 0 4px #4a9d5f, 0 10px 22px rgba(74,157,95,.4); }}
+.pk-gold .pk-card.pk-no {{ box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }}
 .pk-card.pk-noimg {{ padding-top: 14px; }}
 .pk-card.pk-noimg .pk-name {{ font-size: 1.02em; }}
 @media print {{ .pk-b {{ display: none; }} .pk-card img {{ filter: none; }} }}
