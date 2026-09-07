@@ -170,6 +170,27 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
+.pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
+  background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
+  box-shadow: 0 3px 9px rgba(0,0,0,.18); }
+.pk-gold .pk-card { display: flex; flex-direction: column; gap: 0; }
+.pk-gold .pk-win { display: block; overflow: hidden; border-radius: 5px 5px 0 0;
+  border: 4px solid #d9c98e; border-bottom: 0; background: #efe7cf; margin: 0; }
+/* 도트 스프라이트용 규칙(72px·pixelated·grayscale)이 사진 카드에 걸리면
+   고르기 전에는 사진이 안 보인다 — 사진에는 단서가 있어야 한다. */
+.pk-gold .pk-win img { image-rendering: auto; filter: none; height: auto; }
+.pk-gold .pk-win img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.pk-gold .pk-name { background: #fdf7e6; margin: 0; padding: 10px 10px 0;
+  font-size: 1.06em; font-weight: 800; color: #2c2419; }
+.pk-gold .pk-sit { background: #fdf7e6; margin: 0; padding: 5px 10px 8px;
+  font-size: .87em; line-height: 1.5; color: #574d3c; font-style: italic; }
+.pk-gold .pk-btns { background: #fdf7e6; margin: 0; padding: 0 10px 10px;
+  border-radius: 0 0 10px 10px; }
+.pk-gold .pk-why { background: #fdf7e6; margin: 0; padding: 0 10px 10px;
+  border-radius: 0 0 10px 10px; }
+.pk-gold .pk-card.pk-ok { box-shadow: 0 0 0 4px #4a9d5f, 0 10px 22px rgba(74,157,95,.4); }
+.pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
@@ -233,6 +254,109 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+/* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */
+.st-stage { position: relative; border-radius: 10px; overflow: hidden; margin: 2px 0 6px; }
+.st-stage.has-bg { background-size: cover; background-position: center 42%;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.25); }
+.st-veil { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 52%, rgba(12,10,8,.42) 0%,
+    rgba(12,10,8,.68) 55%, rgba(12,10,8,.82) 100%); }
+.st-stage.has-bg .st-svg { position: relative; }
+.st-stage.has-bg .st-seat { fill: rgba(255,255,255,.30); stroke: rgba(255,255,255,.72);
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,.55)); }
+.st-stage.has-bg .st-seat.dim { opacity: .3; }
+.st-stage.has-bg .st-seat[data-g="0"].on { fill: #d64b42; stroke: #ffd9d5;
+  filter: drop-shadow(0 0 9px rgba(255,90,78,.95)) drop-shadow(0 4px 6px rgba(0,0,0,.6)); }
+.st-stage.has-bg .st-seat[data-g="1"].on { fill: #7fb4ee; stroke: #e6f2ff;
+  filter: drop-shadow(0 0 9px rgba(126,180,238,.95)) drop-shadow(0 4px 6px rgba(0,0,0,.6)); }
+.st-stage.has-bg .st-hub { fill: rgba(10,9,8,.55); stroke: rgba(255,255,255,.45); }
+.st-stage.has-bg .st-hub-n { fill: #fff; }
+.st-stage.has-bg .st-hub-t { fill: rgba(255,255,255,.8); }
+.st-cap { font-size: .76em; color: #8a857c; line-height: 1.55; margin: 0 0 10px; }
+/* 🃏 카드 골라 쓰기 (2026-09-07) — 포켓몬 카드 결: 금테 + 이름표 + 창 + 홀로 */
+.ws-pk3 { margin: 18px 0; }
+.pk3-head { font-size: 1.06em; font-weight: 700; color: #22201e; margin-bottom: 10px; }
+.pk3-deck { display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.pk3-card { display: block; width: 100%; text-align: left; cursor: pointer;
+  padding: 7px; border: 0; border-radius: 15px; font: inherit;
+  background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
+  box-shadow: 0 3px 9px rgba(0,0,0,.18);
+  transition: transform .18s ease, box-shadow .18s ease, filter .25s ease; }
+.pk3-card:hover { transform: translateY(-6px) rotate(-.7deg);
+  box-shadow: 0 12px 24px rgba(0,0,0,.24); }
+.pk3-card:focus-visible { outline: 3px solid #2b6cb0; outline-offset: 3px; }
+.pk3-in { display: block; background: #fdf7e6; border-radius: 10px; padding: 9px 9px 10px; }
+.pk3-top { display: flex; align-items: center; justify-content: space-between; gap: 6px;
+  margin-bottom: 7px; }
+.pk3-name { font-size: 1.14em; font-weight: 800; color: #2c2419; letter-spacing: -.01em; }
+.pk3-badge { font-size: .74em; font-weight: 800; color: #fff; padding: 3px 9px;
+  border-radius: 999px; white-space: nowrap; }
+.pk3-t0 .pk3-badge { background: #a9683c; }
+.pk3-t1 .pk3-badge { background: #3f7fc4; }
+.pk3-t2 .pk3-badge { background: #c99a12; }
+.pk3-win { position: relative; display: block; overflow: hidden; border-radius: 5px;
+  border: 4px solid #d9c98e; background: #efe7cf; }
+.pk3-win img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.pk3-holo { position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  background: repeating-linear-gradient(115deg, rgba(255,90,140,.55) 0 12px,
+    rgba(255,220,90,.55) 12px 24px, rgba(110,240,190,.55) 24px 36px,
+    rgba(120,170,255,.55) 36px 48px);
+  background-size: 240% 240%; mix-blend-mode: color-dodge; transition: opacity .3s; }
+.pk3-cap { display: block; margin-top: 8px; font-size: .96em; font-weight: 700; color: #2c2419; }
+.pk3-flavor { display: block; margin-top: 5px; font-size: .87em; line-height: 1.5;
+  color: #574d3c; font-style: italic; border-top: 1px solid #e2d5ad; padding-top: 6px; }
+.pk3-foot { display: block; margin-top: 8px; text-align: center; font-size: .82em;
+  font-weight: 800; color: #7a6636; background: #f2e7c4; border-radius: 6px; padding: 5px; }
+.pk3-card.on { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 0 4px #e7b625,
+  0 14px 30px rgba(201,153,46,.45); }
+.pk3-card.on .pk3-holo { opacity: .42; animation: pk3sheen 3.4s linear infinite; }
+.pk3-card.on .pk3-foot { background: #c9992e; color: #fff; }
+.pk3-card.dim { filter: grayscale(.8); opacity: .45; transform: none; }
+@keyframes pk3sheen { 0% { background-position: 0% 0%; } 100% { background-position: 240% 0%; } }
+@media (prefers-reduced-motion: reduce) {
+  .pk3-card, .pk3-card:hover, .pk3-card.on { transition: none; transform: none; }
+  .pk3-card.on .pk3-holo { animation: none; } }
+.pk3-ask { margin-top: 14px; padding: 13px 15px; border-radius: 10px;
+  background: #fbf5e4; border: 2px solid #d9c98e; }
+.pk3-pick { font-size: .87em; font-weight: 800; color: #8a7434; margin-bottom: 7px; }
+.pk3-cred { margin-top: 8px; font-size: .76em; color: #8a857c; line-height: 1.55; }
+/* 🪑 좌석 구성 눌러 보기 (2026-09-07) — 그림 먼저, 설명은 누를 때만 */
+.ws-seat { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  padding: 16px 14px 14px; background: #fdfbf7; }
+.st-title { font-size: 1.16em; font-weight: 700; color: #22201e; }
+.st-hint { font-size: .88em; color: #6e6862; margin: 4px 0 12px; }
+.st-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.st-btn { flex: 1 1 180px; padding: 11px 14px; border-radius: 10px; cursor: pointer;
+  font-size: 1em; font-weight: 700; background: #fff; transition: transform .12s, box-shadow .12s; }
+.st-btn b { font-size: 1.24em; margin-left: 4px; }
+.st-btn.st-red { border: 2px solid #b03a34; color: #b03a34; }
+.st-btn.st-blue { border: 2px solid #3c608a; color: #3c608a; }
+.st-btn:hover { transform: translateY(-2px); }
+.st-btn.st-red.on { background: #b03a34; color: #fff; box-shadow: 0 4px 12px rgba(176,58,52,.35); }
+.st-btn.st-blue.on { background: #3c608a; color: #fff; box-shadow: 0 4px 12px rgba(60,96,138,.35); }
+.st-svg { display: block; width: 100%; max-width: 520px; margin: 2px auto 6px; }
+.st-hub { fill: #f0ebe4; stroke: #cec6bc; stroke-width: 2; }
+.st-hub-n { font-size: 34px; font-weight: 700; fill: #22201e; }
+.st-hub-t { font-size: 16px; fill: #6e6862; }
+.st-seat { fill: #e6e1d9; stroke: #b9b1a6; stroke-width: 2.5;
+  transition: fill .28s, stroke .28s, opacity .28s, r .28s; }
+.st-seat.dim { opacity: .22; }
+.st-seat[data-g="0"].on { fill: #b03a34; stroke: #8d2a25; r: 18; }
+.st-seat[data-g="1"].on { fill: #d8e2ee; stroke: #3c608a; r: 18; }
+.st-cards { min-height: 108px; }
+.st-card { border-radius: 10px; padding: 13px 15px; }
+.st-card.st-red { background: #f6eeec; border: 2px solid #b03a34; }
+.st-card.st-blue { background: #eaf0f7; border: 2px solid #3c608a; }
+.st-card-h { font-size: 1.1em; font-weight: 700; margin-bottom: 7px; }
+.st-card.st-red .st-card-h { color: #b03a34; }
+.st-card.st-blue .st-card-h { color: #3c608a; }
+.st-card-h span { float: right; font-weight: 700; }
+.st-card-i { font-size: 1em; color: #22201e; margin-bottom: 5px; }
+.st-card-d { font-size: .95em; color: #55504a; }
+.st-note { margin-top: 12px; padding: 12px 15px; border-radius: 10px;
+  background: #fff4e8; border: 2px solid #c98a3c; font-weight: 700; color: #22201e; }
+@media (max-width: 640px) { .st-btn { flex: 1 1 100%; } }
 .ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
   background: #fbf9f4; overflow: hidden; }
 .ws-cmp-head { display: flex; }
@@ -282,6 +406,70 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
 .ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
 @media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+
+/* 🀄 한자 카드 — 2026-09-07. 「오늘의 고급 단어」를 표 대신 카드로.
+   앞면=이미지+한자 / 뒷면=뜯어보기·뜻·문장·가족 낱말. 세로로 안 늘리고 옆으로 넘긴다. */
+.ws-vcd { margin: 18px 0 22px; }
+.ws-vcd-head { font-size: .88em; color: #7a6a4a; margin: 0 2px 8px; }
+/* 🔴 카드 폭·간격은 "낱말 4개가 한 줄에 딱 들어가는" 값이다(실측 1040 폭 → 트랙 736).
+   4×174 + 3×10 = 726. 이보다 키우면 4번째가 반쯤 잘린 채 ▶로는 한 칸도 못 넘어간다
+   (196px일 때 넘길 여지가 94px뿐이라 카운터가 1에서 안 움직였다). */
+.ws-vcd-track { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory;
+  /* 카드 그림자가 잘리지 않도록 위아래 여백 · 스크롤바는 얇게 */
+  padding: 6px 2px 12px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.ws-vcd-track::-webkit-scrollbar { height: 6px; }
+.ws-vcd-track::-webkit-scrollbar-thumb { background: #d8cfb8; border-radius: 3px; }
+.ws-vcard { flex: 0 0 174px; width: 174px; height: 268px; scroll-snap-align: start;
+  perspective: 1000px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.vcd-in { position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.ws-vcard.on .vcd-in { transform: rotateY(180deg); }
+.ws-vcard:focus-visible .vcd-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
+.vcd-f, .vcd-b { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; border-radius: 13px; backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; box-sizing: border-box; overflow: hidden;
+  box-shadow: 0 3px 10px rgba(60,48,20,.13); }
+.vcd-f { background: #f6f2e7; border: 2px solid #cfc4ae; justify-content: flex-start; padding: 0 0 10px; }
+.vcd-f img { width: 100%; height: 132px; object-fit: cover; border-bottom: 1px solid #ddd3ba; }
+.vcd-noimg { width: 100%; height: 132px; display: flex; align-items: center; justify-content: center;
+  font-size: 2.4em; background: #ece6d6; border-bottom: 1px solid #ddd3ba; opacity: .5; }
+/* 위아래 auto 둘이 남는 공간을 나눠 가져 글자 묶음이 이미지 아래 가운데 선다.
+   (hanja에 고정 margin을 주면 글자가 위에 붙고 카드 아래가 텅 빈다) */
+.vcd-hanja { font-size: 1.62em; letter-spacing: .06em; color: #6b4f14; margin-top: auto;
+  font-weight: 700; line-height: 1.15; text-align: center; }
+.vcd-ko { font-size: .92em; color: #3d3116; margin-top: 4px; font-weight: 700; text-align: center; }
+.vcd-ko-solo { font-size: 1.22em; margin-top: auto; color: #6b4f14; }
+.vcd-turn { font-size: .7em; color: #a08a5c; margin-top: auto; padding-top: 4px; }
+.vcd-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg);
+  justify-content: flex-start; padding: 13px 13px 11px; gap: 6px; text-align: center;
+  /* 뒷면은 글이 많다 — 넘치면 카드 안에서만 스크롤한다(카드 키가 들쭉날쭉해지지 않게) */
+  overflow-y: auto; }
+.vcd-bko { font-size: 1.02em; font-weight: 700; color: #6b4f14;
+  border-bottom: 1px solid #ead9b4; padding-bottom: 6px; width: 100%; }
+.vcd-split { font-size: .8em; color: #7a6134; }
+.vcd-mean { font-size: .84em; color: #2f2a1e; font-weight: 600; }
+.vcd-sent { font-size: .78em; color: #4a3f2a; font-style: italic; line-height: 1.45; }
+.vcd-fam { font-size: .74em; color: #6b5a3a; line-height: 1.5; margin-top: auto;
+  border-top: 1px dashed #e3d7ba; padding-top: 6px; width: 100%; }
+.ws-vcd-nav { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.ws-vcd-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }
+.ws-vcd-nav button:disabled { opacity: .32; cursor: default; }
+.vcd-count { font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  .vcd-in { transition: none; }
+  .ws-vcd-track { scroll-behavior: auto; }
+}
+@media print {
+  /* 인쇄는 넘길 수 없다 — 카드를 펼쳐 앞뒤를 나란히 둔다 */
+  .ws-vcd-track { display: flex; flex-wrap: wrap; overflow: visible; }
+  .ws-vcard { height: auto; }
+  .vcd-in { transform: none !important; }
+  .vcd-f, .vcd-b { position: static; transform: none; backface-visibility: visible; }
+  .ws-vcd-nav { display: none; }
+}
+
 @media print {
   .ws-flip { height: auto; }
   .ws-flip-in { transform: none !important; }
@@ -489,7 +677,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🎯 <strong>1~2분만.</strong> 위 🔑 한 줄까지만 시키고 바로 누르게 한다. 핵심 낱말 하나는 처음부터 열려 있다.</blockquote>
 <blockquote>🎯 <strong>말로 던질 한 줄</strong> — <strong>파문(破門)</strong>을 보자. <em>문을 깨뜨린다</em> — 무엇을 하는 벌일지 글자만 보고 짐작해 보자. (교문·정문의 그 門이다.)</blockquote>
 <br>
-<table class="ws-voc" id="vc12"><thead><tr><th>낱말</th><th>한자 뜯어보기</th><th>문장 속에서</th></tr></thead><tbody><tr class="vc-head"><td><button type="button" class="vc-btn" aria-expanded="false" aria-controls="vc12-0"><strong>세속화(世俗化)</strong></button></td><td>세(世, 세상) + 속(俗, 풍속)</td><td>"교회는 점차 <strong>세속화</strong>하였다."</td></tr><tr class="vc-body" id="vc12-0" hidden><td colspan="3"><p>종교가 세상일에 물드는 것</p><p>世 → <strong>세계 · 세기 · 출세</strong> / 俗 → <strong>민속 · 풍속 · 속담</strong></p></td></tr><tr class="vc-head"><td><button type="button" class="vc-btn" aria-expanded="false" aria-controls="vc12-1"><strong>성직 매매</strong></button></td><td>성직 + 매매(賣買, 팔고 삼)</td><td>"<strong>성직 매매</strong>는 대표적인 부패였다."</td></tr><tr class="vc-body" id="vc12-1" hidden><td colspan="3"><p>성직자 자리를 돈으로 사고파는 일</p><p><strong>賣 = 판다 · 買 = 산다</strong> → 파는 쪽(판매)과 사는 쪽(구매)의 글자가 다르다. 둘을 붙이면 <strong>매매</strong></p></td></tr><tr class="vc-head"><td><button type="button" class="vc-btn" aria-expanded="false" aria-controls="vc12-2"><strong>파문(破門)</strong></button></td><td>파(破, 깨뜨림) + 문(門, 문)</td><td>"교황은 황제를 <strong>파문</strong>하였다."</td></tr><tr class="vc-body" id="vc12-2" hidden><td colspan="3"><p>신자 자격을 끊어 내는 벌</p><p><strong>破 = 깨뜨린다</strong> → 파괴 · 돌파 · 파손 · 그리고 <strong>파문</strong>(문을 깨뜨려 밖으로 내보낸다) / 門 → 정문 · 교문</p></td></tr><tr class="vc-head"><td><button type="button" class="vc-btn" aria-expanded="false" aria-controls="vc12-3"><strong>협약(協約)</strong></button></td><td>협(協, 화합) + 약(約, 약속)</td><td>"보름스 <strong>협약</strong>으로 대립이 정리되었다."</td></tr><tr class="vc-body" id="vc12-3" hidden><td colspan="3"><p>서로 합의해 맺은 약속</p><p>協 → <strong>협력 · 협동 · 협상</strong> / 約 → <strong>약속 · 계약 · 조약</strong></p></td></tr></tbody></table><script>(function(){var t=document.getElementById("vc12");t.querySelectorAll(".vc-btn").forEach(function(b){b.addEventListener("click",function(){var r=document.getElementById(b.getAttribute("aria-controls"));var open=b.getAttribute("aria-expanded")==="true";b.setAttribute("aria-expanded",open?"false":"true");r.hidden=open;});});})();</script>
+<div class="ws-vcd" id="vd12"><div class="ws-vcd-head">그림을 보고 무슨 말일지 짐작해 본 뒤, 카드를 눌러 뒤집어 확인하자. ▶로 넘긴다.</div><div class="ws-vcd-track"><button type="button" class="ws-vcard" aria-label="세속화 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-2_voc_세속화.jpg" alt=""><span class="vcd-hanja">世俗化</span><span class="vcd-ko">세속화</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">세속화</span><span class="vcd-split">세(世, 세상) + 속(俗, 풍속)</span><span class="vcd-mean">종교가 세상일에 물드는 것</span><span class="vcd-sent">"교회는 점차 <strong>세속화</strong>하였다."</span><span class="vcd-fam">世 → <strong>세계 · 세기 · 출세</strong> / 俗 → <strong>민속 · 풍속 · 속담</strong></span></span></span></button><button type="button" class="ws-vcard" aria-label="성직 매매 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-2_voc_성직매매.jpg" alt=""><span class="vcd-ko vcd-ko-solo">성직 매매</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">성직 매매</span><span class="vcd-split">성직 + 매매(賣買, 팔고 삼)</span><span class="vcd-mean">성직자 자리를 돈으로 사고파는 일</span><span class="vcd-sent">"<strong>성직 매매</strong>는 대표적인 부패였다."</span><span class="vcd-fam"><strong>賣 = 판다 · 買 = 산다</strong> → 파는 쪽(판매)과 사는 쪽(구매)의 글자가 다르다. 둘을 붙이면 <strong>매매</strong></span></span></span></button><button type="button" class="ws-vcard" aria-label="파문 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-2_voc_파문.jpg" alt=""><span class="vcd-hanja">破門</span><span class="vcd-ko">파문</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">파문</span><span class="vcd-split">파(破, 깨뜨림) + 문(門, 문)</span><span class="vcd-mean">신자 자격을 끊어 내는 벌</span><span class="vcd-sent">"교황은 황제를 <strong>파문</strong>하였다."</span><span class="vcd-fam"><strong>破 = 깨뜨린다</strong> → 파괴 · 돌파 · 파손 · 그리고 <strong>파문</strong>(문을 깨뜨려 밖으로 내보낸다) / 門 → 정문 · 교문</span></span></span></button><button type="button" class="ws-vcard" aria-label="협약 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-2_voc_협약.jpg" alt=""><span class="vcd-hanja">協約</span><span class="vcd-ko">협약</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">협약</span><span class="vcd-split">협(協, 화합) + 약(約, 약속)</span><span class="vcd-mean">서로 합의해 맺은 약속</span><span class="vcd-sent">"보름스 <strong>협약</strong>으로 대립이 정리되었다."</span><span class="vcd-fam">協 → <strong>협력 · 협동 · 협상</strong> / 約 → <strong>약속 · 계약 · 조약</strong></span></span></span></button></div><div class="ws-vcd-nav"><button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button><span class="vcd-count"><b>1</b> / 4</span><button type="button" class="vcd-next" aria-label="다음 낱말">▶</button></div></div><script>(function(){var r=document.getElementById("vd12");var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}function idx(){return Math.max(0,Math.min(cs.length-1,Math.round(t.scrollLeft/step())));}var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;c.textContent=e?cs.length:idx()+1;P.disabled=t.scrollLeft<=2;N.disabled=e;}function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}P.addEventListener("click",function(){go(-1);});N.addEventListener("click",function(){go(1);});t.addEventListener("scroll",function(){clearTimeout(t._z);t._z=setTimeout(sync,90);});function navfit(){var s=t.scrollWidth-t.clientWidth;r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}navfit();sync();addEventListener("resize",function(){navfit();sync();});})();</script>
 <br>
 <blockquote>💡 오늘 딱 하나만 잡자 — <strong>성직자 임명권</strong>. <em>"교회의 사람을 누가 앉히느냐"</em> 이 한 문제로 오늘 배울 모든 사건이 벌어져.</blockquote>
 <h2>📖 1단계: 교회가 부자가 되자 생긴 일</h2>
