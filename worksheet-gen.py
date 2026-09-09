@@ -2081,6 +2081,25 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .blank-input.correct {{ border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }}
 .blank-input.wrong {{ border-bottom-color: #ff3b30; background: #fff0f0; }}
 .blank-input.no-score {{ border-bottom-color: #aaa; }}
+/* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
+   문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
+   2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
+   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+      흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
+   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+.blank-input.activity-input {{ max-width: 100%; }}
+/* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
+   3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
+   2026-09-09 실측: 표를 숨기면 문서폭 417→392(뷰포트 390). 폰에서만 조인다. */
+@media (max-width: 560px) {{
+  table {{ font-size: 0.84em; table-layout: fixed; }}
+  td, th {{ padding: 7px 6px; line-height: 1.5; word-break: break-word; }}
+  tr:first-child td {{ font-size: 0.94em; }}
+  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+     폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
+  table.act-table {{ width: 100%; }}
+  table.act-table .activity-input {{ width: 100% !important; }}
+}}
 .blank-input.code-blank {{ background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }}
 .blank-input.no-score.correct {{ border-bottom-color: #34c759; }}
 .blank-input.no-score.wrong {{ border-bottom-color: #ff9500; }}
