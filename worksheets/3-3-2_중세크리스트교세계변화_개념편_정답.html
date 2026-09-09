@@ -237,6 +237,53 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }
 @media print { .ws-seesaw-range { display: none; } }
 
+/* 🕰 연표 시소 (:::연표시소) — 2026-09-09. 글자를 전부 HTML로 옮겨 폰에서도 같은 크기로 읽힌다. */
+.ws-tl { border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
+  padding: 16px 18px 18px; margin: 18px 0; }
+.ws-tl-head { font-size: 0.9em; font-weight: 700; color: #4a5361; margin-bottom: 10px; }
+.ws-tl-tabs { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  margin-bottom: 10px; padding-bottom: 2px; }
+.tl-tab { flex: 0 0 auto; border: 1px solid #cfd6df; background: #fff; color: #4a5361;
+  border-radius: 8px; padding: 6px 14px; font-family: inherit; font-size: 0.88em; cursor: pointer; }
+.tl-tab[aria-selected="true"] { background: #22314e; border-color: #22314e; color: #fff; font-weight: 700; }
+.ws-tl-stage { position: relative; height: 156px; }
+.ws-tl-beam { position: absolute; left: 50%; top: 50%; width: 420px; height: 10px;
+  margin-left: -210px; margin-top: -5px; background: #7b8494; border-radius: 5px;
+  transition: transform .22s ease-out; }
+.ws-tl-pivot { position: absolute; left: 50%; top: 50%; margin-left: -22px;
+  border-left: 22px solid transparent; border-right: 22px solid transparent;
+  border-top: 44px solid #96a0ae; }
+.ws-tl-chip { position: absolute; top: 50%; width: 150px; padding: 8px 6px; text-align: center;
+  border-radius: 12px; border: 3px solid #b9c2cf; background: #fff; color: #3d4552;
+  transition: transform .22s ease-out, opacity .22s; font-size: 0.86em; }
+.ws-tl-chip b { display: block; font-size: 1.02em; }
+.ws-tl-chip .s { display: block; font-size: 0.86em; color: #7c8593; margin-top: 2px; }
+.ws-tl-chip.tl-l { left: 50%; margin-left: -285px; }
+.ws-tl-chip.tl-r { left: 50%; margin-left: 135px; }
+.ws-tl-chip.dn { border-color: #22314e; color: #22314e; }
+.ws-tl-chip.up { opacity: .72; }
+.ws-tl-tag { position: absolute; top: 50%; font-size: 0.8em; font-weight: 700; color: #22314e;
+  white-space: nowrap; }
+.ws-tl-say { min-height: 2.6em; margin-top: 10px; font-size: 0.92em; color: #3d4552;
+  line-height: 1.7; text-align: center; }
+/* 🔴 폰에서 「13세기」 설명이 3줄이 되어 시점을 넘길 때 12px 시프트가 났다(9222 실측).
+   설명 칸을 3줄분으로 고정해 레이아웃 시프트를 0으로 만든다. */
+@media (max-width: 560px) { .ws-tl-say { min-height: 4.8em; } }
+.tl-print { display: none; }
+@media (max-width: 560px) {
+  .ws-tl-stage { height: 130px; }
+  .ws-tl-beam { width: 180px; margin-left: -90px; }
+  .ws-tl-chip { width: 104px; font-size: 0.74em; padding: 6px 4px; }
+  .ws-tl-chip.tl-l { margin-left: -142px; }
+  .ws-tl-chip.tl-r { margin-left: 38px; }
+  .ws-tl-pivot { margin-left: -16px; border-left-width: 16px; border-right-width: 16px;
+    border-top-width: 34px; }
+}
+@media print {
+  .ws-tl-tabs, .ws-tl-stage, .ws-tl-say { display: none; }
+  .tl-print { display: table; width: 100%; }
+}
+
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
@@ -664,7 +711,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-2 — 눈밭에 선 황제, 끌려간 교황 (정답·모범답안)</h1><p class="hero-subtitle">눈밭에 선 황제, 끌려간 교황</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">성직자 임명권 = 누가 사람을 앉히나<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">카노사의 굴욕 = 황제가 빈 자리<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">교황은 해, 황제는 달<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">아비뇽 유수 = 232년 만의 역전<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>성직자 임명권</strong> — 오늘의 모든 사건이 이 한 문제에서 나온다. <em>교회의 사람을 누가 앉히느냐.</em></p><table><thead><tr><th>왕·제후가 임명하면</th><th>교회가 임명하면</th></tr></thead><tbody><tr><td>그 성직자는 <strong>왕 편</strong></td><td>그 성직자는 <strong>교회 편</strong></td></tr></tbody></table><div class="card-quote">💡 <strong>자리에 누구를 앉힐지 정하는 사람</strong>이 진짜 힘을 가진 사람이다. 교회로서는 "우리 사람을 남이 뽑는다"를 견딜 수 없었다.</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>카노사의 굴욕 (1077)</strong> — 황제 <strong>하인리히 4세</strong>가 교황 <strong>그레고리우스 7세</strong>에게 용서를 빈 사건.</p><div class="card-quote">⚠️ <strong>교황의 무기는 칼이 아니라 파문이었다.</strong> 파문당하면 신자 자격이 없어지고 → 제후·기사들이 <em>"저 사람은 파문당했으니 충성할 의무가 없다"</em>며 등을 돌린다. <strong>주종 관계가 무너지는 것</strong>(3-3-1). 황제는 신앙이 아니라 <em>부하들이 떠날까 봐</em> 무릎을 꿇었다.</div><div class="card-quote">⚠️ 여기서 싸움이 끝난 게 <strong>아니다.</strong> 교과서도 "이후 몇 차례 대립이 있었으나"라고 적는다. 결말은 <strong>보름스 협약(1122)</strong> — 교황만이 임명권을 갖는다.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>교황은 해, 황제는 달</strong> — 13세기 교황권 절정기의 자기표현.</p><div class="card-quote">달은 <strong>스스로 빛나지 못하고</strong> 해의 빛을 받아 빛난다. 곧 <em>"황제의 권력은 내가 빌려준 것"</em>이라는 뜻. 자신감의 크기가 이 한마디에 다 들어 있다.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>232년 만의 역전</strong> — 같은 문제, 정반대 결말.</p><table><thead><tr><th></th><th>카노사 (1077)</th><th>아비뇽 (1309~1377)</th></tr></thead><tbody><tr><td>굽힌 쪽</td><td><strong>황제</strong></td><td><strong>교황</strong></td></tr><tr><td>상대</td><td>교황 그레고리우스 7세</td><td>프랑스 왕 필리프 4세</td></tr><tr><td>뒤끝</td><td>보름스 협약 → 교황 승</td><td><strong>교회의 대분열</strong>(약 40년) → 교황 권위 추락</td></tr></tbody></table><div class="card-quote">⚠️ 마지막이 더 심하다 — 교황이 <strong>동시에 두 명</strong>, 한때는 <strong>세 명</strong>까지 있었다. 신자로서는 어느 쪽 말을 들어야 할지 알 수 없었다.</div></div></div><img class="hero-image" src="images/3-3-2_카노사_표지.png" alt=""><div class="hero-hook">1077년 겨울, 신성 로마 제국의 황제가 눈밭에서 사흘을 서 있었어. 성문 안에는 교황이 있었고. 세상에서 제일 힘센 사람이 왜 저러고 있었을까? 그런데 더 놀라운 건 232년 뒤야 — 이번엔 교황이 프랑스 왕에게 끌려가 70년을 남의 나라에서 살게 돼. 같은 문제 하나를 두고 두 사람이 싸웠는데, 결말이 정반대로 뒤집혀. 그 문제가 뭐였는지부터 보자.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-2 — 눈밭에 선 황제, 끌려간 교황 (정답·모범답안)</h1><p class="hero-subtitle">눈밭에 선 황제, 끌려간 교황</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">성직자 임명권 = 누가 사람을 앉히나<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">카노사의 굴욕 = 황제가 빈 자리<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">교황은 해, 황제는 달<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">아비뇽 유수 = 232년 만의 역전<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>성직자 임명권</strong> — 오늘의 모든 사건이 이 한 문제에서 나온다. <em>교회의 사람을 누가 앉히느냐.</em></p><table><thead><tr><th>왕·제후가 임명하면</th><th>교회가 임명하면</th></tr></thead><tbody><tr><td>그 성직자는 <strong>왕 편</strong></td><td>그 성직자는 <strong>교회 편</strong></td></tr></tbody></table><div class="card-quote">💡 <strong>자리에 누구를 앉힐지 정하는 사람</strong>이 진짜 힘을 가진 사람이다. 교회로서는 "우리 사람을 남이 뽑는다"를 견딜 수 없었다.</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>카노사의 굴욕 (1077)</strong> — 황제 <strong>하인리히 4세</strong>가 교황 <strong>그레고리우스 7세</strong>에게 용서를 빈 사건.</p><div class="card-quote">⚠️ <strong>교황의 무기는 칼이 아니라 파문이었다.</strong> 파문당하면 신자 자격이 없어지고 → 제후·기사들이 <em>"저 사람은 파문당했으니 충성할 의무가 없다"</em>며 등을 돌린다. <strong>주종 관계가 무너지는 것</strong>(3-3-1). 황제는 신앙이 아니라 <em>부하들이 떠날까 봐</em> 무릎을 꿇었다.</div><div class="card-quote">⚠️ 여기서 싸움이 끝난 게 <strong>아니다.</strong> 교과서도 "이후 몇 차례 대립이 있었으나"라고 적는다. 결말은 <strong>보름스 협약(1122)</strong> — 교황만이 임명권을 갖는다.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>교황은 해, 황제는 달</strong> — 13세기 교황권 절정기의 자기표현.</p><div class="card-quote">달은 <strong>스스로 빛나지 못하고</strong> 해의 빛을 받아 빛난다. 곧 <em>"황제의 권력은 내가 빌려준 것"</em>이라는 뜻. 자신감의 크기가 이 한마디에 다 들어 있다.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>232년 만의 역전</strong> — 같은 문제를 두고 싸웠는데 <strong>굽힌 쪽이 반대로 바뀌었다.</strong></p><div class="card-quote">⚠️ 뒤끝이 더 심하다 — 교황청이 로마로 돌아온 뒤에도 로마와 아비뇽에서 각각 교황을 뽑아 <strong>교회의 대분열</strong>(약 40년)이 이어졌다. 신자로서는 어느 쪽 말을 들어야 할지 알 수 없었다.</div></div></div><img class="hero-image" src="images/3-3-2_카노사_표지.png" alt=""><div class="hero-hook">1077년 겨울, 신성 로마 제국의 황제가 눈밭에서 사흘을 서 있었어. 성문 안에는 교황이 있었고. 세상에서 제일 힘센 사람이 왜 저러고 있었을까? 그런데 더 놀라운 건 232년 뒤야 — 이번엔 교황이 프랑스 왕에게 끌려가 70년을 남의 나라에서 살게 돼. 같은 문제 하나를 두고 두 사람이 싸웠는데, 결말이 정반대로 뒤집혀. 그 문제가 뭐였는지부터 보자.</div></section>
   <div class="control-bar"><div></div><div><a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a></div></div>
   <br>
 <blockquote>🎙️ 지난 시간에 배웠지 — 봉건 사회가 커질수록 <strong>왕의 힘은 오히려 약해졌다</strong>고. 그럼 그 빈자리를 누가 채웠을까? 답은 <strong>교회</strong>야. 그런데 교회가 힘을 얻자 이상한 일이 벌어져. 성직자가 결혼을 하고, 성직을 돈으로 사고팔기 시작한 거야. 오늘 이야기는 거기서 출발해서 — <strong>1077년 눈밭에 선 황제</strong>와 <strong>1309년 끌려간 교황</strong>, 정반대로 끝난 두 장면까지 간다.</blockquote>
@@ -686,31 +733,58 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>9세기 이후 봉건제가 확대되면서 교회도 왕이나 제후를 주군으로 섬기고 <strong>봉토</strong>를 받게 되었다. 그러자 왕과 제후가 ①<span class="blank-filled">성직자 임명권</span>을 차지하는 일이 많아졌고, 교회는 점차 <strong>세속화</strong>하였다. 성직자가 결혼을 하거나 성직을 사고파는 등 부패한 모습도 나타났다. 이에 10세기 초 일부 수도원을 중심으로 교회를 개혁하려는 운동이 일어났으며, ②<span class="blank-filled">클뤼니</span> 수도원이 그 앞에 섰다.</p>
 <blockquote>(교과서 원문: "9세기 이후 봉건제의 확대로 교회가 왕이나 제후를 주군으로 섬기고 봉토를 받으면서 왕과 제후가 성직자 임명권을 차지하는 일이 많아졌다. 그 결과 교회는 점차 세속화하였고, 성직자가 종교의 규율을 어기고 결혼을 하거나 성직을 사고파는 등 부패한 모습이 나타나기도 하였다. 이에 10세기 초 일부 수도원을 중심으로 교회를 개혁하려는 운동이 일어났다. 수도원 운동에 앞장선 클뤼니 수도원은 기도, 고전 연구, 노동에 집중하는 삶을 강조하였다." — 비상교육 역사①(이병인) p.96)</blockquote>
 <br>
-<blockquote>🎙️ 잠깐, 왜 하필 <strong>임명권</strong>이 문제였을까? 어떤 자리에 <strong>누구를 앉힐지 정하는 사람</strong>이 진짜 힘을 가진 사람이다. 왕이 주교를 임명하면 그 주교는 왕 편이 된다.</blockquote>
+<blockquote>🎙️ 잠깐, 왜 하필 <strong>임명권</strong>이 문제였을까? 어떤 자리에 <strong>누구를 앉힐지 정하는 사람</strong>이 진짜 힘을 가진 사람이다. 왕이 주교를 임명하면 그 주교는 왕 편이 된다. 교회로서는 <em>"우리 사람을 남이 뽑는다"</em>를 견딜 수 없었다.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/3-3-2_임명권.png" alt="성직자 임명권 — 앉히는 사람이 힘을 가진다." loading="lazy"><figcaption>성직자 임명권 — 앉히는 사람이 힘을 가진다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/3-3-2_임명권.png" alt="성직자 임명권 — 같은 자리에 같은 사람을 앉혀도, 왕이 앉히면 왕의 밑천이 되고 교회가 앉히면 교회에 남는다." loading="lazy"><figcaption>성직자 임명권 — 같은 자리에 같은 사람을 앉혀도, 왕이 앉히면 왕의 밑천이 되고 교회가 앉히면 교회에 남는다.</figcaption></figure>
 <br>
 <blockquote>🎯 <strong>도식을 이렇게 쓴다</strong> — 왼쪽 칸부터 손으로 짚어 가며 읽힌다: <em>앉히는 사람 → 앉은 사람 → 그래서 누구 편 → 그래서 재산이 어디로</em>. 마지막 칸이 좌우로 갈리는 것이 이 도식의 요지다(왕의 밑천이 되나 / 교회 안에 남나).</blockquote>
-<br>
-<blockquote>💡 <strong>수도원이 왜 개혁의 출발점이었나</strong> — 수도사들은 재산도 안 모으고 결혼도 안 했다. <em>"교회가 썩었다"</em>고 말할 자격이 있는 사람이 거기밖에 없었다.</blockquote>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 96쪽 · 첫 문단 끝</div><div class="ws-tb-ask">클뤼니 수도원이 강조한 삶은 <strong>세 가지</strong>다. 교과서에서 찾아 그대로 적자.</div></div>
 <blockquote><strong>답: 기도 · 고전 연구 · 노동</strong> (교과서 p.96)</blockquote>
 <blockquote>🎯 <strong>이 세 낱말을 학습지 본문에서 일부러 뺐다.</strong> 교과서를 펴야만 나온다 — <strong>이 답을 쓴 학생 수 = 교과서를 편 학생 수.</strong> 채점하지 말고 <strong>몇 명이 썼는지만 세어</strong> 읽기 여부를 가늠할 것.</blockquote>
 <blockquote>⚠️ '고전 연구'를 <strong>'공부'·'학문'</strong>으로 뭉개 쓰는 답이 많을 것이다. 교과서 표현 그대로가 목표이므로 그 자리에서 한 번 짚어 줄 것.</blockquote>
 <br>
+<blockquote>🔎 <strong>나란히 놓고 보자</strong> — 여섯 칸 전부 교과서 96쪽이야(📎 왜 성공했는지는 교과서에 없다).</blockquote>
+<br>
+<table>
+<tr><td>무엇을 볼까</td><td>세속화한 교회</td><td>수도원</td></tr>
+<tr><td>어디에 있었나</td><td>왕·제후를 <strong>주군으로 섬기고 봉토</strong>를 받았다</td><td>세속에서 <strong>떨어져</strong> 있었다</td></tr>
+<tr><td>돈</td><td>성직을 <strong>사고팔았다</strong></td><td>재산을 <strong>모으지 않았다</strong></td></tr>
+<tr><td>어떻게 살았나</td><td>규율을 어기고 <strong>결혼</strong>까지 했다</td><td><strong>함께 모여</strong> 정해진 하루를 살았다</td></tr>
+</table>
+<br>
+<blockquote>(교과서 원문: "수도사들은 세속으로부터 분리되어 공동생활을 하였으며 기도와 노동, 독서 등으로 짜인 청빈한 생활을 하였다." — 비상교육 역사①(이병인) p.96 날개 ➊)</blockquote>
+<blockquote>🎯 <strong>입력칸 0 · 읽고 넘어가는 자리다. 40초만 쓴다.</strong> 왼쪽 → 오른쪽으로 한 행씩 손으로 짚고 <em>"둘 중 어느 쪽 말을 믿겠어?"</em> 한 번만 묻는다.</blockquote>
+<blockquote>🔴 <strong>이 표에 「기도 · 고전 연구 · 노동」 세 낱말을 하나도 쓰지 않았다.</strong> 바로 위 계측(교과서를 편 학생 수)이 이 규칙에 걸려 있다. 날개 ➊의 「기도·노동·독서」도 마찬가지로 금지 — 셋 중 둘이 답과 글자까지 같다. 위 R3 각주는 <strong>정답편에만</strong> 둔다.</blockquote>
+<blockquote>⚠️ 답을 「기도·노동·독서」로 쓴 학생은 본문이 아니라 96쪽 옆 작은 글씨를 본 것이다. 틀렸다고 하지 말고 <em>"본문에서 클뤼니를 찾아라"</em>로 되돌려 보내고, 교과서를 편 학생 수 집계에서는 제외한다.</blockquote>
+<blockquote>🎯 <strong>다음 단계로 넘기기 전 소리 내어</strong> — <em>"다음 단계에서 교황 이름 앞에 뭐라고 붙어 있지?"</em> → <strong>클뤼니 수도원 출신.</strong> 이 한 번을 건너뛰면 표가 장식이 된다. 개혁을 외치던 쪽에서 교회의 제일 높은 자리가 나온 것 — 이것을 성공의 실물 증거로 읽을 수 있다(교사 해석).</blockquote>
+<blockquote>⚠️ <strong>성공의 «이유»는 교과서에도 지도서에도 없다.</strong> 시험 출제·서술형 채점 기준으로 쓸 수 없고, 문항은행에 적립하지 않는다. 표의 여섯 칸(사실)은 전부 p.96이므로 사실 확인 문항은 가능하다.</blockquote>
+<blockquote>⚠️ <strong>오개념 1순위</strong> — <em>"수도사들이 착해서 이겼다"</em>로 끝나면 절반만 간 것이다. 요지는 <strong>비교할 대상이 실물로 존재했다</strong>는 것.</blockquote>
+<br>
 <h2>📖 2단계: 1077년, 눈밭에 선 황제</h2>
 <blockquote>📕 <strong>교과서 96쪽 가운데</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
 <br>
-<p>수도원 운동이 성공하면서 교회의 지위는 점차 높아졌다. 11세기 후반 성직자 임명권을 둘러싸고 교황과 신성 로마 제국의 황제가 대립하였다. 클뤼니 수도원 출신의 교황 ③<span class="blank-filled">그레고리우스 7세</span>는 세속 군주가 아닌 교회가 임명권을 가져야 한다고 주장하였다. 이에 반발한 황제 <strong>하인리히 4세</strong>는 결국 카노사에서 교황에게 용서를 빌었는데, 이 사건을 ④<span class="blank-filled">카노사의 굴욕</span>이라고 한다.</p>
+<p>수도원 운동이 성공하면서 교회의 지위는 점차 높아졌다. 11세기 후반 성직자 임명권을 둘러싸고 교황과 신성 로마 제국의 황제가 대립하였다. <strong>클뤼니 수도원 출신의</strong> 교황 ③<span class="blank-filled">그레고리우스 7세</span>는 세속 군주가 아닌 교회가 임명권을 가져야 한다고 주장하였다. 이에 반발한 황제 <strong>하인리히 4세</strong>는 결국 카노사에서 교황에게 용서를 빌었는데, 이 사건을 ④<span class="blank-filled">카노사의 굴욕</span>이라고 한다.</p>
 <blockquote>(교과서 원문: "수도원 운동이 성공하면서 교회의 지위는 점차 높아졌다. 이러한 가운데 11세기 후반 성직자 임명권을 둘러싸고 교황과 신성 로마 제국의 황제가 대립하였다. 클뤼니 수도원 출신의 교황 그레고리우스 7세는 세속 군주가 아닌 교회가 성직자 임명권을 가져야 한다고 주장하였다. 황제 하인리히 4세가 이에 반발하였으나, 결국 카노사에서 교황에게 용서를 빌었다(카노사의 굴욕)." — 같은 책 p.96)</blockquote>
 <br>
-<blockquote>🎙️ <strong>왜 황제가 눈밭에 섰나?</strong> 교황의 무기는 칼이 아니라 <strong>파문</strong>이었다. 파문당하면 신자 자격이 없어지고 → 제후·기사들이 <em>"저 사람은 파문당했으니 충성할 의무가 없다"</em>며 등을 돌린다. 3-3-1의 <strong>주종 관계가 여기서 풀린다.</strong></blockquote>
+<blockquote>💡 <strong>'신성 로마 제국'이 뭐지?</strong> 3-2-5에서 학생이 직접 채운 두 조각을 잇는다 — ① 교황이 카롤루스 대제에게 <strong>「서로마 황제」의 관</strong>을 수여했다 ② 갈라진 <strong>동쪽 땅</strong>이 오늘날 독일의 기원이 되었다. 오늘 맞서는 황제는 그 동쪽 땅에서 <strong>「로마 황제」라는 이름을 다시 내건 나라</strong>의 황제다(📎 마지막 조각은 교과서 밖 배경).</blockquote>
+<blockquote>🎯 <strong>본문을 채우게 하기 «전에» 말로 한 줄만 던진다</strong> — <em>"황제라는 자리, 누가 씌워 줬는지 프랑크 왕국에서 봤지?"</em> 걸림돌은 본문 첫 문장에 있는데 지면 설명은 문단 뒤에 있다. <strong>지면은 직후, 말은 머리</strong>로 나눈 것이다. 대답을 기다리지 말고 곧바로 채우게 할 것(10초).</blockquote>
+<blockquote>⚠️ <strong>962년·오토 1세는 말하지 말 것.</strong> 이 차시 어느 빈칸·OX·활동에도 쓰이지 않는다. 인명이 이미 넷(그레고리우스 7세·하인리히 4세·필리프 4세·보니파키우스 8세)이라 다섯 번째를 얹으면 오늘 잡아야 할 <strong>성직자 임명권</strong> 하나가 묻힌다.</blockquote>
+<blockquote>⚠️ <strong>"왜 '신성'이야?"는 반드시 나온다.</strong> <em>"크리스트교 세계의 제국이라는 뜻으로 붙은 이름"</em>까지만 답하고 넘어갈 것. 언제·왜 붙었는지는 학설이 갈리고 교과서 밖이다.</blockquote>
+<blockquote>⚠️ <strong>"오늘날 독일과 같은 나라가 아니다"</strong> — 영역이 현대 독일과 같지 않다. 학생 지면에는 <strong>넣지 않았다</strong>(이 차시는 영역을 묻지 않고, 넣으면 "독일인데 독일 아니래"만 남는다). 활동 1 「누가 굽혔나」에 <em>"독일 황제"</em>라고 쓰면 <em>"신성 로마 제국의 황제"</em>로 고쳐 줄 것.</blockquote>
+<blockquote>🔴 <strong>「황제라는 자리 자체가 교황이 씌운 관에서 나왔다」고 말하지 말 것.</strong> 그것은 서임권 투쟁에서 <strong>교황 측의 주장</strong>이고, 카드 3이 그것을 「자기표현」으로 다루기로 되어 있으며, 3단계 덧붙임 모범답안(<em>"황제의 권력은 교황이 빌려준 것"</em>)을 20줄 앞에서 새게 한다.</blockquote>
 <br>
-<figure class="ws-fig ws-anim"><img id="anim42" src="images/3-3-2_파문의연쇄.webp" alt="파문이 무서웠던 진짜 이유 — 반발 → 파문 → 봉신 이탈 → 홀로 남은 황제." data-src="images/3-3-2_파문의연쇄.webp" loading="lazy"><div class="ws-anim-ctl"><button type="button" onclick="replayAnim('anim42')">▶ 다시 보기</button><span>한 번 재생됩니다</span></div><figcaption>파문이 무서웠던 진짜 이유 — 반발 → 파문 → 봉신 이탈 → 홀로 남은 황제.</figcaption></figure>
+<blockquote>🎙️ <strong>왜 황제가 눈밭에 섰나?</strong> 교황의 무기는 칼이 아니라 <strong>파문</strong>이었다. 파문당하면 신자 자격이 없어진다. 📌 <em>교과서 밖 보충</em> — 봉신이 주군에게 바친 <strong>맹세는 신 앞에서 한 약속</strong>이었고, 신자 자격이 끊기면 그 약속을 받쳐 주던 자리가 사라진다. 등을 돌린 제후들은 약속을 어긴 것이 아니라 약속이 <strong>풀린</strong> 것이다. 게다가 그들은 이미 자기 장원에서 <strong>세금을 걷고 재판까지</strong> 하고 있었다(3-3-1 4단계) — 떠날 힘이 있었다.</blockquote>
+<br>
+<figure class="ws-fig"><img src="images/3-3-2_파문의연쇄.webp" alt="파문이 무서웠던 진짜 이유 — 황제의 반발 → 교황의 파문 선언 → 제후와 기사가 하나씩 등을 돌림 → 홀로 남은 황제." loading="lazy"><figcaption>파문이 무서웠던 진짜 이유 — 황제의 반발 → 교황의 파문 선언 → 제후와 기사가 하나씩 등을 돌림 → 홀로 남은 황제.</figcaption></figure>
 <br>
 <blockquote>🎯 <strong>이 도식이 잡는 오개념 1순위</strong> — 학생 다수가 카노사를 <em>"황제가 신앙이 깊어서 회개한 일"</em>로 읽는다. 실제 기제는 <strong>부하가 떠나 군사·재정 기반이 사라진 것</strong>이다. 애니가 끝난 뒤 <em>"황제가 무릎을 꿇은 진짜 이유가 무엇이었지?"</em> 한 번만 물을 것. <strong>4.4초·loop=1</strong>이므로 「▶ 다시 보기」로 두 번 보여 준다.</blockquote>
-<blockquote>⚠️ 파문을 <em>"신자 자격 박탈"</em>까지만 설명하고 끝내면 이 차시가 무너진다. <strong>파문 → 주종 관계 해제 → 군대 없음</strong>의 세 고리를 반드시 말로 이어 줄 것.</blockquote>
+<blockquote>⚠️ 파문을 <em>"신자 자격 박탈"</em>까지만 설명하고 끝내면 이 차시가 무너진다. <strong>① 맹세는 신 앞에서 했다 → ② 파문이 그 앞자리를 끊는다 → ③ 봉신이 떠나면 군대·재정이 사라진다</strong>를 반드시 말로 이어 줄 것. 2026-09-09에 새로 더한 것은 <strong>①의 근거</strong>(신 앞에서 한 맹세)다. 그 근거가 없으면 ②→③이 학생 머릿속에서 "다들 그러기로 했다"가 된다.</blockquote>
+<blockquote>🎯 <strong>3-3-1 낱말카드 그림을 말로 불러올 것</strong> — 「주종」 카드 그림이 <em>봉신이 두 손을 주군의 손 사이에 넣는</em> 신종례였다. <em>"그 장면 기억나? 저게 악수가 아니라 신 앞에서 하는 의식이었어."</em> 한 줄이면 ①이 눈에 붙는다. <strong>그림을 여기 다시 싣지 않는다</strong>(세로 +6~8줄).</blockquote>
+<blockquote>🎯 <strong>말로 던질 확인 한 줄</strong>(지면에 넣지 않았다) — <em>"제후들이 등을 돌린 걸 배신이라고 부르는 게 맞을까?"</em> <strong>손만 들게 하고 채점하지 말 것.</strong> <em>"사람 마음으로는 배신처럼 보이지. 그런데 그때 규칙으로는 약속이 풀린 거야"</em>로 받는다. <strong>"제후가 나빴다"로 정리되면 이 차시는 실패</strong>다.</blockquote>
+<blockquote>⚠️ 학생 지면의 📌가 콜아웃이 아니라 <strong>문장 안 라벨</strong>로 들어갔다(세로 제약). 읽힐 때 <em>"여기 📌는 교과서에 없는 이야기야"</em> 한 번 짚어 줄 것.</blockquote>
+<blockquote>📌 <strong>교과서 밖 근거 · 시험 출제 금지 · 문항은행 적립 금지</strong> — p.96은 「파문」을 카노사 삽화 대사에서만 쓰고 효과를 설명하지 않는다.</blockquote>
+<blockquote>⚠️ <strong>도식은 재생성하지 않았다.</strong> 다만 애니 마지막 프레임 배너가 <em>"부하가 다 떠나서 무릎을 꿇었다"</em>로 구워져 있어 카드 2의 <em>"떠날까 봐"</em>와 어긋난다. 역사적으로는 <strong>「떠날까 봐」가 정확</strong>하다(카노사행은 폐위 논의 «전»의 선제 행동). 그림 안 글자는 못 고치므로(-0.83) <strong>말로 고쳐 줄 것.</strong></blockquote>
 <br>
 <blockquote>⚠️ <strong>여기서 오해 주의</strong> — 카노사의 굴욕은 <em>"교황이 황제보다 세다"</em>를 증명하고 끝난 사건처럼 보이지만, 교과서는 바로 다음 문장에서 그렇지 않다고 말한다.</blockquote>
 <br>
@@ -733,27 +807,27 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🎯 <strong>입담에서 비유 자체를 일부러 말하지 않았다.</strong> 종전 원고는 본문에 <em>"교황은 해, 황제는 달"</em>을 그대로 써 두어 학생이 교과서를 펼 이유가 없었다(2026-09-04 전환). 지금은 <strong>호기심 hook만 남기고 답은 날개에 있다.</strong></blockquote>
 <blockquote>⚠️ 채점은 <strong>덧붙임 한 줄로 가른다.</strong> 비유만 옮겨 적으면 베낀 것이고, <em>"스스로 빛나지 못한다"</em>는 관계를 쓰면 교황권 절정의 의미를 잡은 것이다.</blockquote>
 <br>
-<blockquote>💡 <strong>연표에서 한 가지만 보고 가자</strong> — 카노사(1077) 바로 다음 줄이 <strong>십자군 전쟁(1096)</strong>이다. 교황이 최고로 셌던 그 시기에 유럽 전체를 움직이는 전쟁이 시작된다(다음 차시 3-3-3).</blockquote>
-<br>
 <h2>📖 4단계: 232년 뒤, 이번엔 교황이 끌려간다</h2>
 <blockquote>📕 <strong>교과서 97쪽</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
 <br>
-<p>13세기 후반 프랑스 국왕 ⑥<span class="blank-filled">필리프 4세</span>가 성직자에게 세금을 걷으려 하자 교황 <strong>보니파키우스 8세</strong>가 반대하면서 대립이 다시 심해졌다. 왕은 교황을 통제하고자 로마에 있던 교황청을 프랑스 <strong>아비뇽</strong>으로 옮겼는데, 이를 ⑦<span class="blank-filled">아비뇽 유수</span>라고 한다. 교황청이 다시 로마로 돌아간 뒤에도 두 곳에서 각각 교황을 뽑으면서 ⑧<span class="blank-filled">교회의 대분열</span> 시대가 이어졌고, 교황의 권위는 크게 떨어졌다.</p>
+<p>13세기 후반 프랑스는 <strong>영토를 넓히는 과정에서</strong> 재정이 부족해졌다. 그러자 국왕 ⑥<span class="blank-filled">필리프 4세</span>가 성직자에게 세금을 걷으려 하였고, 교황 <strong>보니파키우스 8세</strong>가 반대하면서 대립이 다시 심해졌다. 보니파키우스 8세가 세상을 떠난 뒤, 왕은 교황을 통제하고자 로마에 있던 교황청을 프랑스 <strong>아비뇽</strong>으로 옮겼는데, 이를 ⑦<span class="blank-filled">아비뇽 유수</span>라고 한다. 교황청이 다시 로마로 돌아간 뒤에도 두 곳에서 각각 교황을 뽑으면서 ⑧<span class="blank-filled">교회의 대분열</span> 시대가 이어졌고, 교황의 권위는 크게 떨어졌다.</p>
 <blockquote>(교과서 원문: "13세기 후반 프랑스가 영토를 넓히는 과정에서 재정이 부족해지자 국왕 필리프 4세는 성직자에게 세금을 걷으려 하였다. …… 필리프 4세는 교황을 통제하고자 이탈리아 로마에 있던 교황청을 프랑스 아비뇽으로 옮겼다. 이후 약 70년 동안 7대에 걸친 교황들은 아비뇽에서 지냈다(아비뇽 유수)." / "교황청이 다시 로마로 돌아간 뒤에도 로마와 아비뇽에서 각각 교황을 뽑으면서 약 40년 동안 교회의 대분열 시대가 이어졌다. 로마 교황과 아비뇽 교황이 서로 정통성을 내세우며 대립하는 과정에서 교황의 권위는 크게 떨어졌다." — 같은 책 p.97)</blockquote>
 <br>
-<blockquote>🎙️ 여기가 오늘의 <strong>반전</strong>이다. 1077년엔 황제가 눈밭에 섰는데, 1309년엔 교황이 남의 나라로 옮겨진다. <strong>같은 문제</strong>를 두고 싸웠는데 결말이 정반대다.</blockquote>
+<blockquote>🎙️ 여기가 오늘의 <strong>반전</strong>이다. <strong>같은 문제</strong>(교회 일에 왕이 끼어드는 것)를 두고 싸웠는데 결말이 정반대다. 아래 연표에서 <strong>연도를 하나씩 눌러</strong> 보게 할 것 — 교황의 상대가 누구로 바뀌는지.</blockquote>
 <br>
-<figure class="ws-fig ws-anim"><img id="anim78" src="images/3-3-2_232년역전.webp" alt="232년 만의 역전 — 저울이 교황 쪽에서 왕 쪽으로 기운다." data-src="images/3-3-2_232년역전.webp" loading="lazy"><div class="ws-anim-ctl"><button type="button" onclick="replayAnim('anim78')">▶ 다시 보기</button><span>한 번 재생됩니다</span></div><figcaption>232년 만의 역전 — 저울이 교황 쪽에서 왕 쪽으로 기운다.</figcaption></figure>
+<div class="ws-tl" id="tl103"><div class="ws-tl-head">교황의 상대는 누구였나 — 연도를 눌러 보자 · ⚖️ 힘이 센 쪽이 무거워서 아래로 내려간다</div><div class="ws-tl-tabs" role="tablist"><button type="button" role="tab" class="tl-tab" data-i="0" aria-selected="true">1077</button><button type="button" role="tab" class="tl-tab" data-i="1" aria-selected="false">1122</button><button type="button" role="tab" class="tl-tab" data-i="2" aria-selected="false">13세기</button><button type="button" role="tab" class="tl-tab" data-i="3" aria-selected="false">1309</button></div><div class="ws-tl-stage"><div class="ws-tl-beam"></div><div class="ws-tl-pivot"></div><div class="ws-tl-chip tl-l"><b></b><span class="s"></span></div><div class="ws-tl-chip tl-r"><b></b><span class="s"></span></div><div class="ws-tl-tag"></div></div><div class="ws-tl-say"></div><table class="tl-print"><tr><td>시점</td><td>내려간 쪽</td><td>교황의 상대</td><td>무슨 일이 있었나</td></tr><tr><td>1077</td><td>교황</td><td>황제 · 신성 로마 제국</td><td>황제가 카노사에서 교황에게 용서를 빌었다.</td></tr><tr><td>1122</td><td>교황</td><td>황제 · 신성 로마 제국</td><td>교황만이 성직자 임명권을 갖기로 정해졌다.</td></tr><tr><td>13세기</td><td>교황</td><td>황제 · 신성 로마 제국</td><td>교황이 황제를 뛰어넘는 크리스트교 세계의 최고 지배자가 되었다.</td></tr><tr><td>1309</td><td>프랑스 왕</td><td>프랑스 왕 · 프랑스</td><td>왕이 교황청을 로마에서 아비뇽으로 옮겼다.</td></tr></table></div><script>(function(){var D=[{"lab": "1077", "deg": -6.0, "l0": "교황", "l1": "", "r0": "황제", "r1": "신성 로마 제국", "say": "황제가 카노사에서 교황에게 용서를 빌었다."}, {"lab": "1122", "deg": -8.0, "l0": "교황", "l1": "", "r0": "황제", "r1": "신성 로마 제국", "say": "교황만이 성직자 임명권을 갖기로 정해졌다."}, {"lab": "13세기", "deg": -9.0, "l0": "교황", "l1": "", "r0": "황제", "r1": "신성 로마 제국", "say": "교황이 황제를 뛰어넘는 크리스트교 세계의 최고 지배자가 되었다."}, {"lab": "1309", "deg": 7.0, "l0": "교황", "l1": "", "r0": "프랑스 왕", "r1": "프랑스", "say": "왕이 교황청을 로마에서 아비뇽으로 옮겼다."}];var w=document.getElementById("tl103");var beam=w.querySelector(".ws-tl-beam"),L=w.querySelector(".tl-l"),R=w.querySelector(".tl-r"),tag=w.querySelector(".ws-tl-tag"),say=w.querySelector(".ws-tl-say");var tabs=[].slice.call(w.querySelectorAll(".tl-tab"));function draw(i){var d=D[i],deg=d.deg,half=beam.offsetWidth/2;var dy=-Math.sin(deg*Math.PI/180)*half;beam.style.transform="rotate("+deg+"deg)";L.style.transform="translateY(calc(-100% - 8px + "+dy+"px))";R.style.transform="translateY(calc(-100% - 8px + "+(-dy)+"px))";L.querySelector("b").textContent=d.l0;L.querySelector(".s").textContent=d.l1;R.querySelector("b").textContent=d.r0;R.querySelector(".s").textContent=d.r1;L.classList.toggle("dn",deg<0);L.classList.toggle("up",deg>0);R.classList.toggle("dn",deg>0);R.classList.toggle("up",deg<0);tag.hidden=(deg===0);tag.textContent="여기가 셌다";tag.style.left=(deg<0?"20%":"80%");tag.style.transform="translate(-50%,"+(Math.abs(dy)+6)+"px)";say.textContent=d.say;tabs.forEach(function(b,j){b.setAttribute("aria-selected",j===i?"true":"false");});}tabs.forEach(function(b,j){b.addEventListener("click",function(){draw(j);});});w.addEventListener("keydown",function(e){var i=0;tabs.forEach(function(b,j){if(b.getAttribute("aria-selected")==="true")i=j;});if(e.key==="ArrowRight"&&i<tabs.length-1){draw(i+1);tabs[i+1].focus();}if(e.key==="ArrowLeft"&&i>0){draw(i-1);tabs[i-1].focus();}});draw(0);})();</script>
 <br>
-<blockquote>🎯 <strong>표가 아니라 저울로 만든 이유</strong> — 표는 두 사건이 <em>다르다</em>는 것까지만 보여 준다. 저울은 <strong>기울기가 서서히 넘어갔다</strong>는 것, 즉 뒤집힘이 사건이 아니라 <strong>추세</strong>였음을 보여 준다. 「더 생각해 보기」의 답이 여기서 나온다.</blockquote>
-<blockquote>⚠️ 저울에서 <strong>무거운 쪽이 내려간다</strong>는 것을 한 번 확인해 줄 것(그림을 거꾸로 읽는 학생이 나온다).</blockquote>
+<blockquote>🎯 <strong>연도 버튼으로 만든 이유</strong> — 표는 두 사건이 <em>다르다</em>는 것까지만 보여 준다. 눌러 넘기면 <strong>오른쪽 칩의 글자가 바뀌는 것</strong>이 보인다: 황제(신성 로마 제국) → 프랑스 왕(프랑스). 이 차시가 가르치는 것은 승패가 아니라 <strong>상대의 교체</strong>다.</blockquote>
+<blockquote>🎯 <strong>「무거운 쪽이 내려간다」를 먼저 설명하지 말 것.</strong> 기본 시점을 1077로 두었다. 학생이 방금 2단계에서 읽은 <em>"황제가 빌었다"</em>와 저울(교황 쪽이 내려감)이 한 화면에 있으므로, 거꾸로 읽는 학생은 그 자리에서 어긋난다. <strong>교사가 먼저 말하면 이 자가 교정이 사라진다 — 학생이 물을 때만 답한다.</strong></blockquote>
+<blockquote>🎯 <strong>정지 도식(232년역전.webp)을 뺐다</strong> — 그 그림은 (a) 폰 배율 0.266에서 연도 글자가 <strong>4.8px</strong>라 안 읽히고(-0.83) (b) 좌우 칩이 「교황권/왕권」 한 낱말이라 <strong>상대의 교체를 지워 버렸으며</strong> (c) 하단 배너에 <em>"왕의 힘은 땅·군대·돈에서 나왔다"</em>, 상단에 <em>"한때 셋"</em>이라는 <strong>교과서 밖 단정 두 개가 글자로 구워져</strong> 있었다. 파일은 <code>images/</code>에 보존한다(참조만 제거).</blockquote>
+<blockquote>🧑‍🏫 <strong>기울기 크기는 저자 표현이다</strong> — 교과서는 힘을 수치로 재지 않는다. 순서(1077 < 1122 < 13세기)만 p.96 <em>"교황의 영향력은 계속 커져서 13세기 무렵 절정에 이르렀다"</em>에 근거한다. 화면에 각도 수치를 노출하지 않는다.</blockquote>
+<blockquote>⚠️ <strong>「이후」(대분열)를 저울에 넣지 않았다.</strong> 저울 규약(무거운 쪽이 내려간다)에서 수평은 «두 힘이 같다»이고 직전이 +7이었으므로 <strong>«교황 쪽이 되돌아왔다 = 회복»으로 읽힌다</strong> — p.97 <em>"교황의 권위는 크게 떨어졌다"</em>와 정반대다. 저울은 «양쪽 동시 하락»을 원리적으로 표현하지 못한다. 대분열은 바로 아래 <code>:::교과서 97쪽</code> 질문과 카드 4가 받는다.</blockquote>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 97쪽</div><div class="ws-tb-ask">교황들은 아비뇽에서 <strong>몇 대에 걸쳐 몇 년</strong> 동안 지냈나? 그리고 대분열은 <strong>몇 년</strong> 동안 이어졌나?</div></div>
 <blockquote><strong>답: 7대에 걸쳐 약 70년 · 대분열은 약 40년</strong> (교과서 p.97)</blockquote>
 <blockquote>🎯 이 수치들을 학습지 본문에서 뺐다. <strong>숫자를 외우게 하려는 게 아니라</strong> 교과서 97쪽을 실제로 훑게 하려는 자리다. 채점 비중을 두지 말 것.</blockquote>
 <br>
-<blockquote>⚠️ <strong>왜 뒤집혔을까 — 이게 오늘의 핵심 질문이다.</strong> 봉건 사회가 흔들리며 <strong>왕들이 다시 강해지고 있었다.</strong> 교황의 힘은 <em>신앙</em>에서, 왕의 힘은 <em>땅·군대·돈</em>에서 나왔고 시간이 갈수록 뒤쪽이 무거워졌다.</blockquote>
-<blockquote>🎯 <strong>여기까지 오면 3-3-3(십자군)이 준비된다</strong> — 십자군 실패로 <em>교황 권위 하락 · 제후·기사 약화 → 왕권 강화</em>가 이 저울을 한 번 더 밀어 준다. 다음 차시에서 이 그림을 다시 불러올 것.</blockquote>
+<blockquote>🎯 <strong>여기까지 오면 3-3-3(십자군)이 준비된다</strong> — 십자군 실패로 <em>교황 권위 하락 · 제후·기사 약화 → 왕권 강화</em>가 이어진다. ⚠️ <strong>이 인과는 다음 차시 것이다. 오늘 학생에게 근거로 제시하지 않는다.</strong> 3-3-3에서 이 연표를 다시 부를 때는 그림을 불러오는 것이 아니라 <code>:::연표시소</code>에 <strong>행 하나를 추가</strong>해 같은 블록을 이어 쓴다.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 두 장면, 정반대 결말 (모범답안)</h2>
 <br>
@@ -764,7 +838,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>다툰 문제</td><td>성직자를 <strong>누가 임명하는가</strong></td><td>성직자에게 <strong>세금을 걷을 수 있는가</strong></td></tr>
 </table>
 <br>
-<blockquote><strong>비교에서 알 수 있는 것(모범답안)</strong>: 같은 「교회와 세속 군주의 대립」인데 굽힌 쪽이 반대로 바뀌었다. 약 230년 사이에 교황의 힘은 약해지고 왕의 힘은 강해졌음을 알 수 있다.</blockquote>
+<blockquote><strong>비교에서 알 수 있는 것(모범답안)</strong>: 같은 「교회와 세속 군주의 대립」인데 <strong>굽힌 쪽이 반대로 바뀌었다.</strong> 교황의 상대가 신성 로마 제국의 황제에서 프랑스 국왕으로 달라졌다.</blockquote>
 <blockquote>🧑‍🏫 <strong>채점 관점</strong> — 표 세 칸은 사실 확인이므로 부분 점수. <strong>아래 비교 문장에서 "굽힌 쪽이 바뀌었다"는 역전을 스스로 지적하면 도달</strong>로 본다. <em>"교황이 약해졌다"</em>까지만 써도 인정하고, <em>"왕이 세졌다"</em>가 함께 나오면 상위.</blockquote>
 <br>
 <h2>✏️ 활동 2 — 사료 읽기: 보름스 협약 (1122) (모범답안)</h2>
@@ -789,10 +863,23 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>2 O — 기도·고전 연구·노동을 강조했다.</blockquote>
 <blockquote><strong>3 X — 핵심 함정.</strong> 교과서는 <em>"이후 몇 차례 대립이 있었으나"</em>라고 명시한다. 카노사는 결말이 아니라 <strong>과정의 한 장면</strong>이고, 정리된 것은 1122년 보름스 협약이다.</blockquote>
 <blockquote><strong>4 X — 주어 뒤집기 함정.</strong> 보름스 협약으로 임명권을 갖게 된 쪽은 <strong>교황</strong>이다. "협약을 맺었다"는 사실만 외우고 <em>누가 얻었는지</em>를 놓치면 걸린다.</blockquote>
-<blockquote>5 O — 두 교황이 폐위를 거부해 <strong>한때 세 명</strong>이 존재하기도 하였다.</blockquote>
+<blockquote>5 O — 교황청이 로마로 돌아온 뒤에도 <strong>로마와 아비뇽에서 각각 교황을 뽑았다</strong>(p.97). ⚠️ 「한때 세 명」은 교과서 밖 배경이므로 채점 근거로 쓰지 않는다.</blockquote>
 <br>
 <h2>🤔 더 생각해 보기 (채점 관점)</h2>
-<blockquote><strong>발문</strong>: 카노사의 굴욕(1077)에서는 황제가 교황에게 굽혔지만, 아비뇽 유수(1309)에서는 교황이 프랑스 왕에게 끌려갔다. 약 230년 사이에 무엇이 달라졌기에 결과가 뒤집혔을까?</blockquote>
+<blockquote><strong>발문</strong>: 카노사의 굴욕에서는 황제가 교황에게 굽혔는데, 아비뇽 유수에서는 교황이 프랑스 왕에게 끌려갔다. 약 230년 사이에 무엇이 달라졌을까? 오늘 4단계 첫 문장에 프랑스에 대한 한 마디가 적혀 있다. 그 한 마디를 근거로 삼아, 왕 쪽에 무엇이 달라져 있었는지 쓴다.</blockquote>
+<br>
+<blockquote><strong>모범답안</strong>: 교과서 97쪽은 13세기 후반 프랑스가 「영토를 넓히는 과정에서」 재정이 부족해질 만큼 커져 있었다고 적는다. 교황의 상대가 그만큼 달라졌기 때문에, 같은 문제로 싸웠는데도 이번에는 교황 쪽이 밀린 것이다.</blockquote>
+<br>
+<table>
+<tr><td>수준</td><td>기준</td></tr>
+<tr><td><strong>상</strong></td><td>97쪽의 「영토를 넓히는 과정에서」(또는 «프랑스가 커지고 있었다»는 취지)를 <strong>근거로 들고</strong>, 그 때문에 결과가 뒤집혔다는 인과를 문장으로 연결한다</td></tr>
+<tr><td><strong>중</strong></td><td>근거 없이 "왕이 강해져서" 또는 "교황이 약해져서" 한쪽만 쓴다</td></tr>
+<tr><td><strong>하</strong></td><td>"시대가 달라져서"처럼 결과를 원인으로 되풀이하거나 두 사건을 나열만 한다</td></tr>
+</table>
+<br>
+<blockquote>⚠️ <strong>인정 범위</strong> — <em>"교황이 약해져서"</em>만 쓴 답을 <strong>틀렸다고 하지 말 것.</strong> 교과서도 권위 하락을 적었으므로 사실 오류가 아니라 <strong>순서 오류</strong>다. 4단계 본문을 짚어 <em>"권위가 떨어졌다는 문장이 대분열 «뒤»에 있지?"</em>로 되돌린다.</blockquote>
+<blockquote>⚠️ 「봉건 사회의 <strong>변화</strong>」라는 옛 표현을 발문에서 뺐다. 3-3-1은 성립·구조까지만 다뤘고 변화는 3-3-4다 — <strong>학생이 배우지 않은 것을 근거로 요구하던 발문</strong>이었다.</blockquote>
+<blockquote>🧑‍🏫 <strong>「왕이 왜 커졌나」에 오늘 답하지 말 것.</strong> 흑사병·화폐 경제·백년 전쟁은 3-3-4다. 학생이 물으면 <em>"그게 두 시간 뒤 수업의 첫 질문"</em>이라고만 답한다. 여기서 답을 주면 3-3-4의 도입이 죽는다.</blockquote>
 <br>
 <blockquote><strong>모범답안</strong>: 카노사 때는 파문이 두려울 만큼 교황의 종교적 권위가 컸고 왕의 힘은 약했다. 그러나 시간이 지나면서 왕들이 관료와 군대를 갖추고 세금을 거두며 강해졌고, 교회의 부패와 대분열로 교황의 권위는 떨어졌다. 힘의 크기가 서로 뒤바뀌었기 때문에 결과도 반대로 나타났다.</blockquote>
 <br>

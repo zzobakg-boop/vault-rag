@@ -193,6 +193,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
     in_seat = False           # 2026-09-07: 좌석 구성 눌러 보기 (:::좌석표 ... :::)
+    in_tl = False; tl_head = ''; tl_rows = []   # 2026-09-09: 연표 시소 (:::연표시소 ... :::)
     in_pk = False             # 2026-09-07: 카드 골라 쓰기 (:::카드선택 ... :::)
     pk_title, pk_rows, pk_ask, pk_cred = '', [], '', ''
     seat_title, seat_rows, seat_note = '', [], ''
@@ -861,6 +862,97 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
   }}
   r.addEventListener('input',draw); draw();
 }})();</script>''')
+            continue
+
+        # 🕰 연표 시소 (:::연표시소 <머리말>  /  <라벨> | <기울기> | <왼쪽> | <오른쪽> | <설명>)
+        #   2026-09-09. 정지 도식(3-3-2_232년역전.webp)을 대체한다. 그 그림은
+        #   (a) 폰 배율 0.266에서 연도 글자가 4.8px라 안 읽히고(-0.83 Images of Text)
+        #   (b) 좌우 칩이 '교황권/왕권' 한 낱말이라 그 차시의 줄거리인 **상대의 교체**를 지웠으며
+        #   (c) 교과서 밖 단정 두 개("왕의 힘은 땅·군대·돈에서" / "한때 셋")가 글자로 구워져 있었다.
+        #   ⚠️ :::시소(환율)와 클래스를 공유하지 않는다 — 그쪽은 좌=빨강/우=파랑과 초록 결과 상자가
+        #      하드코딩이라 재사용하면 환율 색이 딸려 온다. 기하(half/dy) 식만 같다.
+        #   ⚠️ 이산 사건이라 슬라이더가 아니라 버튼이다. 슬라이더는 '사이 값'을 약속하는데
+        #      1200년쯤의 중간 기울기는 교과서에 없는 사실이다.
+        #   ⚠️ 입력칸을 만들지 않는다 → act 인덱스 불변(-0.81).
+        #   ⚠️ 형제 파서의 선행 파이프 함정: .strip('|') 로 첫 필드 밀림을 막는다.
+        if stripped.startswith(':::연표시소'):
+            in_tl = True
+            tl_head = stripped[len(':::연표시소'):].strip()
+            tl_rows = []
+            continue
+        if in_tl:
+            if stripped != ':::':
+                if stripped:
+                    tl_rows.append(stripped)
+                continue
+            rows = []
+            for _r in tl_rows:
+                _p = [x.strip() for x in _r.strip().strip('|').split('|')]
+                while len(_p) < 5:
+                    _p.append('')
+                _lab, _deg, _ln, _rn, _say = _p[:5]
+                _l0, _, _l1 = _ln.partition('/')
+                _r0, _, _r1 = _rn.partition('/')
+                try:
+                    _d = float(_deg)
+                except ValueError:
+                    _d = 0.0
+                rows.append({'lab': _lab, 'deg': _d,
+                             'l0': _l0.strip(), 'l1': _l1.strip(),
+                             'r0': _r0.strip(), 'r1': _r1.strip(), 'say': _say})
+            if rows:
+                tid = f'tl{len(html_parts)}'
+                btns = ''.join(
+                    f'<button type="button" role="tab" class="tl-tab" data-i="{i}" '
+                    f'aria-selected="{"true" if i == 0 else "false"}">{inline(r["lab"])}</button>'
+                    for i, r in enumerate(rows))
+                prow = ''.join(
+                    '<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(
+                        inline(r['lab']),
+                        inline(r['l0'] if r['deg'] < 0 else (r['r0'] if r['deg'] > 0 else '―')),
+                        inline(r['r0'] + (' · ' + r['r1'] if r['r1'] else '')),
+                        inline(r['say'])) for r in rows)
+                html_parts.append(
+                    f'<div class="ws-tl" id="{tid}">'
+                    f'<div class="ws-tl-head">{inline(tl_head)}</div>'
+                    f'<div class="ws-tl-tabs" role="tablist">{btns}</div>'
+                    f'<div class="ws-tl-stage"><div class="ws-tl-beam"></div>'
+                    f'<div class="ws-tl-pivot"></div>'
+                    f'<div class="ws-tl-chip tl-l"><b></b><span class="s"></span></div>'
+                    f'<div class="ws-tl-chip tl-r"><b></b><span class="s"></span></div>'
+                    f'<div class="ws-tl-tag"></div></div>'
+                    f'<div class="ws-tl-say"></div>'
+                    f'<table class="tl-print"><tr><td>시점</td><td>내려간 쪽</td>'
+                    f'<td>교황의 상대</td><td>무슨 일이 있었나</td></tr>{prow}</table></div>'
+                    f'<script>(function(){{'
+                    f'var D={json.dumps(rows, ensure_ascii=False)};'
+                    f'var w=document.getElementById("{tid}");'
+                    'var beam=w.querySelector(".ws-tl-beam"),L=w.querySelector(".tl-l"),'
+                    'R=w.querySelector(".tl-r"),tag=w.querySelector(".ws-tl-tag"),'
+                    'say=w.querySelector(".ws-tl-say");'
+                    'var tabs=[].slice.call(w.querySelectorAll(".tl-tab"));'
+                    'function draw(i){var d=D[i],deg=d.deg,half=beam.offsetWidth/2;'
+                    'var dy=-Math.sin(deg*Math.PI/180)*half;'
+                    'beam.style.transform="rotate("+deg+"deg)";'
+                    'L.style.transform="translateY(calc(-100% - 8px + "+dy+"px))";'
+                    'R.style.transform="translateY(calc(-100% - 8px + "+(-dy)+"px))";'
+                    'L.querySelector("b").textContent=d.l0;L.querySelector(".s").textContent=d.l1;'
+                    'R.querySelector("b").textContent=d.r0;R.querySelector(".s").textContent=d.r1;'
+                    'L.classList.toggle("dn",deg<0);L.classList.toggle("up",deg>0);'
+                    'R.classList.toggle("dn",deg>0);R.classList.toggle("up",deg<0);'
+                    'tag.hidden=(deg===0);tag.textContent="여기가 셌다";'
+                    'tag.style.left=(deg<0?"20%":"80%");'
+                    'tag.style.transform="translate(-50%,"+(Math.abs(dy)+6)+"px)";'
+                    'say.textContent=d.say;'
+                    'tabs.forEach(function(b,j){b.setAttribute("aria-selected",j===i?"true":"false");});}'
+                    'tabs.forEach(function(b,j){b.addEventListener("click",function(){draw(j);});});'
+                    'w.addEventListener("keydown",function(e){var i=0;'
+                    'tabs.forEach(function(b,j){if(b.getAttribute("aria-selected")==="true")i=j;});'
+                    'if(e.key==="ArrowRight"&&i<tabs.length-1){draw(i+1);tabs[i+1].focus();}'
+                    'if(e.key==="ArrowLeft"&&i>0){draw(i-1);tabs[i-1].focus();}});'
+                    'draw(0);})();</script>')
+            in_tl = False
+            tl_rows = []
             continue
 
         # 📖 표·도식을 읽는 자리 (:::해설 ... :::) — 2026-09-03 천대현
@@ -1622,6 +1714,53 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   .ws-seesaw-chip.ws-r {{ margin-left: 82px; }}
 }}
 @media print {{ .ws-seesaw-range {{ display: none; }} }}
+
+/* 🕰 연표 시소 (:::연표시소) — 2026-09-09. 글자를 전부 HTML로 옮겨 폰에서도 같은 크기로 읽힌다. */
+.ws-tl {{ border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
+  padding: 16px 18px 18px; margin: 18px 0; }}
+.ws-tl-head {{ font-size: 0.9em; font-weight: 700; color: #4a5361; margin-bottom: 10px; }}
+.ws-tl-tabs {{ display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  margin-bottom: 10px; padding-bottom: 2px; }}
+.tl-tab {{ flex: 0 0 auto; border: 1px solid #cfd6df; background: #fff; color: #4a5361;
+  border-radius: 8px; padding: 6px 14px; font-family: inherit; font-size: 0.88em; cursor: pointer; }}
+.tl-tab[aria-selected="true"] {{ background: #22314e; border-color: #22314e; color: #fff; font-weight: 700; }}
+.ws-tl-stage {{ position: relative; height: 156px; }}
+.ws-tl-beam {{ position: absolute; left: 50%; top: 50%; width: 420px; height: 10px;
+  margin-left: -210px; margin-top: -5px; background: #7b8494; border-radius: 5px;
+  transition: transform .22s ease-out; }}
+.ws-tl-pivot {{ position: absolute; left: 50%; top: 50%; margin-left: -22px;
+  border-left: 22px solid transparent; border-right: 22px solid transparent;
+  border-top: 44px solid #96a0ae; }}
+.ws-tl-chip {{ position: absolute; top: 50%; width: 150px; padding: 8px 6px; text-align: center;
+  border-radius: 12px; border: 3px solid #b9c2cf; background: #fff; color: #3d4552;
+  transition: transform .22s ease-out, opacity .22s; font-size: 0.86em; }}
+.ws-tl-chip b {{ display: block; font-size: 1.02em; }}
+.ws-tl-chip .s {{ display: block; font-size: 0.86em; color: #7c8593; margin-top: 2px; }}
+.ws-tl-chip.tl-l {{ left: 50%; margin-left: -285px; }}
+.ws-tl-chip.tl-r {{ left: 50%; margin-left: 135px; }}
+.ws-tl-chip.dn {{ border-color: #22314e; color: #22314e; }}
+.ws-tl-chip.up {{ opacity: .72; }}
+.ws-tl-tag {{ position: absolute; top: 50%; font-size: 0.8em; font-weight: 700; color: #22314e;
+  white-space: nowrap; }}
+.ws-tl-say {{ min-height: 2.6em; margin-top: 10px; font-size: 0.92em; color: #3d4552;
+  line-height: 1.7; text-align: center; }}
+/* 🔴 폰에서 「13세기」 설명이 3줄이 되어 시점을 넘길 때 12px 시프트가 났다(9222 실측).
+   설명 칸을 3줄분으로 고정해 레이아웃 시프트를 0으로 만든다. */
+@media (max-width: 560px) {{ .ws-tl-say {{ min-height: 4.8em; }} }}
+.tl-print {{ display: none; }}
+@media (max-width: 560px) {{
+  .ws-tl-stage {{ height: 130px; }}
+  .ws-tl-beam {{ width: 180px; margin-left: -90px; }}
+  .ws-tl-chip {{ width: 104px; font-size: 0.74em; padding: 6px 4px; }}
+  .ws-tl-chip.tl-l {{ margin-left: -142px; }}
+  .ws-tl-chip.tl-r {{ margin-left: 38px; }}
+  .ws-tl-pivot {{ margin-left: -16px; border-left-width: 16px; border-right-width: 16px;
+    border-top-width: 34px; }}
+}}
+@media print {{
+  .ws-tl-tabs, .ws-tl-stage, .ws-tl-say {{ display: none; }}
+  .tl-print {{ display: table; width: 100%; }}
+}}
 
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
