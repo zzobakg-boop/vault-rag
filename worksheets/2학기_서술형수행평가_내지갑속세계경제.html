@@ -150,6 +150,21 @@ blockquote {
 .ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
+
+/* ── 폰 가로 밀림 처방 (2026-09-10 주입 · worksheet-gen.py 원문 그대로) ── */
+.blank-input.activity-input { max-width: 100%; }
+/* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
+   3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
+   2026-09-09 실측: 표를 숨기면 문서폭 417→392(뷰포트 390). 폰에서만 조인다. */
+@media (max-width: 560px) {
+  table { font-size: 0.84em; table-layout: fixed; }
+  td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
+  tr:first-child td { font-size: 0.94em; }
+  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+     폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
+  table.act-table { width: 100%; }
+  table.act-table .activity-input { width: 100% !important; }
+}
 </style>
 </head>
 <body>
