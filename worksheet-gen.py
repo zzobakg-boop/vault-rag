@@ -193,7 +193,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
     in_seat = False           # 2026-09-07: 좌석 구성 눌러 보기 (:::좌석표 ... :::)
-    in_tl = False; tl_head = ''; tl_rows = []   # 2026-09-09: 연표 시소 (:::연표시소 ... :::)
+    in_tl = False; tl_head = ''; tl_rows = []; tl_spr = ('', '')   # 2026-09-09: 연표 시소 (:::연표시소 ... :::)
     in_pk = False             # 2026-09-07: 카드 골라 쓰기 (:::카드선택 ... :::)
     pk_title, pk_rows, pk_ask, pk_cred = '', [], '', ''
     seat_title, seat_rows, seat_note = '', [], ''
@@ -878,6 +878,13 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         if stripped.startswith(':::연표시소'):
             in_tl = True
             tl_head = stripped[len(':::연표시소'):].strip()
+            tl_spr = ('', '')
+            # [왼쪽 스프라이트 | 오른쪽 스프라이트] 접두 옵션 — :::낱말카드 와 같은 규약
+            if tl_head.startswith('[') and ']' in tl_head:
+                _in = tl_head[1:tl_head.index(']')]
+                _pp = [x.strip() for x in _in.split('|')]
+                tl_spr = (_pp[0] if _pp else '', _pp[1] if len(_pp) > 1 else '')
+                tl_head = tl_head[tl_head.index(']') + 1:].strip()
             tl_rows = []
             continue
         if in_tl:
@@ -912,37 +919,41 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         inline(r['l0'] if r['deg'] < 0 else (r['r0'] if r['deg'] > 0 else '―')),
                         inline(r['r0'] + (' · ' + r['r1'] if r['r1'] else '')),
                         inline(r['say'])) for r in rows)
+                _sl = f'<img class="tl-spr" src="{tl_spr[0]}" alt="">' if tl_spr[0] else ''
+                _sr = f'<img class="tl-spr" src="{tl_spr[1]}" alt="">' if tl_spr[1] else ''
                 html_parts.append(
                     f'<div class="ws-tl" id="{tid}">'
                     f'<div class="ws-tl-head">{inline(tl_head)}</div>'
-                    f'<div class="ws-tl-tabs" role="tablist">{btns}</div>'
                     f'<div class="ws-tl-stage"><div class="ws-tl-beam"></div>'
-                    f'<div class="ws-tl-pivot"></div>'
-                    f'<div class="ws-tl-chip tl-l"><b></b><span class="s"></span></div>'
-                    f'<div class="ws-tl-chip tl-r"><b></b><span class="s"></span></div>'
-                    f'<div class="ws-tl-tag"></div></div>'
+                    f'<div class="ws-tl-pivot"></div><div class="ws-tl-base"></div>'
+                    f'<div class="ws-tl-chip tl-l"><span class="rope"></span>'
+                    f'<span class="box">{_sl}<b></b><span class="s"></span></span>'
+                    f'<span class="win">▲ 우세</span></div>'
+                    f'<div class="ws-tl-chip tl-r"><span class="rope"></span>'
+                    f'<span class="box">{_sr}<b></b><span class="s"></span></span>'
+                    f'<span class="win">▲ 우세</span></div></div>'
                     f'<div class="ws-tl-say"></div>'
+                    f'<div class="ws-tl-tabs" role="tablist">{btns}</div>'
                     f'<table class="tl-print"><tr><td>시점</td><td>내려간 쪽</td>'
                     f'<td>교황의 상대</td><td>무슨 일이 있었나</td></tr>{prow}</table></div>'
                     f'<script>(function(){{'
                     f'var D={json.dumps(rows, ensure_ascii=False)};'
                     f'var w=document.getElementById("{tid}");'
                     'var beam=w.querySelector(".ws-tl-beam"),L=w.querySelector(".tl-l"),'
-                    'R=w.querySelector(".tl-r"),tag=w.querySelector(".ws-tl-tag"),'
+                    'R=w.querySelector(".tl-r"),'
                     'say=w.querySelector(".ws-tl-say");'
                     'var tabs=[].slice.call(w.querySelectorAll(".tl-tab"));'
                     'function draw(i){var d=D[i],deg=d.deg,half=beam.offsetWidth/2;'
                     'var dy=-Math.sin(deg*Math.PI/180)*half;'
                     'beam.style.transform="rotate("+deg+"deg)";'
-                    'L.style.transform="translateY(calc(-100% - 8px + "+dy+"px))";'
-                    'R.style.transform="translateY(calc(-100% - 8px + "+(-dy)+"px))";'
+                    'L.style.transform="translateY("+dy+"px)";'
+                    'R.style.transform="translateY("+(-dy)+"px)";'
                     'L.querySelector("b").textContent=d.l0;L.querySelector(".s").textContent=d.l1;'
                     'R.querySelector("b").textContent=d.r0;R.querySelector(".s").textContent=d.r1;'
                     'L.classList.toggle("dn",deg<0);L.classList.toggle("up",deg>0);'
                     'R.classList.toggle("dn",deg>0);R.classList.toggle("up",deg<0);'
-                    'tag.hidden=(deg===0);tag.textContent="여기가 셌다";'
-                    'tag.style.left=(deg<0?"20%":"80%");'
-                    'tag.style.transform="translate(-50%,"+(Math.abs(dy)+6)+"px)";'
+                    'L.querySelector(".win").style.visibility=(deg<-0.2?"visible":"hidden");'
+                    'R.querySelector(".win").style.visibility=(deg>0.2?"visible":"hidden");'
                     'say.textContent=d.say;'
                     'tabs.forEach(function(b,j){b.setAttribute("aria-selected",j===i?"true":"false");});}'
                     'tabs.forEach(function(b,j){b.addEventListener("click",function(){draw(j);});});'
@@ -1715,51 +1726,76 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }}
 @media print {{ .ws-seesaw-range {{ display: none; }} }}
 
-/* 🕰 연표 시소 (:::연표시소) — 2026-09-09. 글자를 전부 HTML로 옮겨 폰에서도 같은 크기로 읽힌다. */
-.ws-tl {{ border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
-  padding: 16px 18px 18px; margin: 18px 0; }}
-.ws-tl-head {{ font-size: 0.9em; font-weight: 700; color: #4a5361; margin-bottom: 10px; }}
-.ws-tl-tabs {{ display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch;
-  margin-bottom: 10px; padding-bottom: 2px; }}
-.tl-tab {{ flex: 0 0 auto; border: 1px solid #cfd6df; background: #fff; color: #4a5361;
-  border-radius: 8px; padding: 6px 14px; font-family: inherit; font-size: 0.88em; cursor: pointer; }}
-.tl-tab[aria-selected="true"] {{ background: #22314e; border-color: #22314e; color: #fff; font-weight: 700; }}
-.ws-tl-stage {{ position: relative; height: 156px; }}
-.ws-tl-beam {{ position: absolute; left: 50%; top: 50%; width: 420px; height: 10px;
-  margin-left: -210px; margin-top: -5px; background: #7b8494; border-radius: 5px;
-  transition: transform .22s ease-out; }}
-.ws-tl-pivot {{ position: absolute; left: 50%; top: 50%; margin-left: -22px;
-  border-left: 22px solid transparent; border-right: 22px solid transparent;
-  border-top: 44px solid #96a0ae; }}
-.ws-tl-chip {{ position: absolute; top: 50%; width: 150px; padding: 8px 6px; text-align: center;
-  border-radius: 12px; border: 3px solid #b9c2cf; background: #fff; color: #3d4552;
-  transition: transform .22s ease-out, opacity .22s; font-size: 0.86em; }}
-.ws-tl-chip b {{ display: block; font-size: 1.02em; }}
-.ws-tl-chip .s {{ display: block; font-size: 0.86em; color: #7c8593; margin-top: 2px; }}
-.ws-tl-chip.tl-l {{ left: 50%; margin-left: -285px; }}
-.ws-tl-chip.tl-r {{ left: 50%; margin-left: 135px; }}
-.ws-tl-chip.dn {{ border-color: #22314e; color: #22314e; }}
-.ws-tl-chip.up {{ opacity: .72; }}
-.ws-tl-tag {{ position: absolute; top: 50%; font-size: 0.8em; font-weight: 700; color: #22314e;
-  white-space: nowrap; }}
-.ws-tl-say {{ min-height: 2.6em; margin-top: 10px; font-size: 0.92em; color: #3d4552;
-  line-height: 1.7; text-align: center; }}
-/* 🔴 폰에서 「13세기」 설명이 3줄이 되어 시점을 넘길 때 12px 시프트가 났다(9222 실측).
-   설명 칸을 3줄분으로 고정해 레이아웃 시프트를 0으로 만든다. */
-@media (max-width: 560px) {{ .ws-tl-say {{ min-height: 4.8em; }} }}
+/* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+      크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
+      줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
+      새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+.ws-tl {{ border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
+  padding: 16px 18px 14px; margin: 18px 0; }}
+.ws-tl-head {{ font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }}
+.ws-tl-stage {{ position: relative; height: 300px; }}
+.ws-tl-beam {{ position: absolute; left: 50%; top: 70px; width: 460px; height: 12px;
+  margin-left: -230px; background: #8c8070; border-radius: 6px;
+  transition: transform .28s ease-out; }}
+.ws-tl-pivot {{ position: absolute; left: 50%; top: 74px; margin-left: -14px;
+  border-left: 14px solid transparent; border-right: 14px solid transparent;
+  border-top: 122px solid #c6bAaa; }}
+.ws-tl-base {{ position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
+  height: 8px; background: #b2a694; border-radius: 4px; }}
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+   빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
+.ws-tl-chip {{ position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
+  transition: transform .28s ease-out; }}
+.ws-tl-chip .rope {{ display: block; width: 3px; height: 40px; margin: 0 auto; background: #b9ad9b; }}
+.ws-tl-chip .box {{ display: block; background: #fff; border: 3px solid #b9ad9b; border-radius: 12px;
+  padding: 6px 8px 8px; }}
+.ws-tl-chip .tl-spr {{ display: block; height: 52px; width: auto; margin: 0 auto 2px;
+  image-rendering: pixelated; }}
+.ws-tl-chip b {{ display: block; font-size: 0.95em; font-weight: 800; }}
+.ws-tl-chip .s {{ display: block; font-size: 0.78em; color: #9a9284; margin-top: 1px; }}
+.ws-tl-chip .win {{ display: block; margin-top: 4px; font-size: 0.8em; font-weight: 800;
+  visibility: hidden; }}
+.ws-tl-chip.tl-l {{ margin-left: -300px; }}
+.ws-tl-chip.tl-r {{ margin-left: 110px; }}
+/* 교황 = 보라 · 상대 = 적갈 (기존 도식 CH·KING 그대로) */
+.ws-tl-chip.tl-l .box {{ border-color: #7a4a84; }} .ws-tl-chip.tl-l b, .ws-tl-chip.tl-l .win {{ color: #7a4a84; }}
+.ws-tl-chip.tl-l .rope {{ background: #7a4a84; }}
+.ws-tl-chip.tl-r .box {{ border-color: #964e2c; }} .ws-tl-chip.tl-r b, .ws-tl-chip.tl-r .win {{ color: #964e2c; }}
+.ws-tl-chip.tl-r .rope {{ background: #964e2c; }}
+.ws-tl-chip.up .box {{ opacity: .6; }}
+.ws-tl-say {{ min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
+  line-height: 1.7; text-align: center; font-weight: 600; }}
+/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+.ws-tl-tabs {{ display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }}
+.tl-tab {{ flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
+  font-size: 0.84em; color: #9a9284; padding: 0; position: relative; }}
+.tl-tab::before {{ content: ""; display: block; width: 13px; height: 13px; border-radius: 50%;
+  background: #d8cdb8; margin: -8px auto 5px; border: 3px solid #faf7f0; }}
+.tl-tab[aria-selected="true"] {{ color: #262018; font-weight: 800; }}
+.tl-tab[aria-selected="true"]::before {{ background: #b07e1a; }}
 .tl-print {{ display: none; }}
 @media (max-width: 560px) {{
-  .ws-tl-stage {{ height: 130px; }}
-  .ws-tl-beam {{ width: 180px; margin-left: -90px; }}
-  .ws-tl-chip {{ width: 104px; font-size: 0.74em; padding: 6px 4px; }}
-  .ws-tl-chip.tl-l {{ margin-left: -142px; }}
-  .ws-tl-chip.tl-r {{ margin-left: 38px; }}
-  .ws-tl-pivot {{ margin-left: -16px; border-left-width: 16px; border-right-width: 16px;
-    border-top-width: 34px; }}
+  .ws-tl {{ padding: 14px 10px 12px; }}
+  .ws-tl-stage {{ height: 250px; }}
+  .ws-tl-beam {{ width: 216px; margin-left: -108px; top: 56px; height: 9px; }}
+  .ws-tl-pivot {{ top: 60px; margin-left: -11px; border-left-width: 11px; border-right-width: 11px;
+    border-top-width: 100px; }}
+  .ws-tl-base {{ top: 156px; width: 58px; margin-left: -29px; height: 6px; }}
+  .ws-tl-chip {{ width: 122px; top: 73px; }}
+  .ws-tl-chip.tl-l {{ margin-left: -152px; }}
+  .ws-tl-chip.tl-r {{ margin-left: 30px; }}
+  .ws-tl-chip .rope {{ height: 30px; }}
+  .ws-tl-chip .tl-spr {{ height: 40px; }}
+  .ws-tl-chip b {{ font-size: 0.8em; }} .ws-tl-chip .s {{ font-size: 0.68em; }}
+  .ws-tl-say {{ min-height: 4.8em; font-size: 0.88em; }}
+  .tl-tab {{ font-size: 0.72em; }}
 }}
 @media print {{
   .ws-tl-tabs, .ws-tl-stage, .ws-tl-say {{ display: none; }}
   .tl-print {{ display: table; width: 100%; }}
+}}
 }}
 
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.

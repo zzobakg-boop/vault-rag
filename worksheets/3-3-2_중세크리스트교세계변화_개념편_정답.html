@@ -237,51 +237,76 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }
 @media print { .ws-seesaw-range { display: none; } }
 
-/* 🕰 연표 시소 (:::연표시소) — 2026-09-09. 글자를 전부 HTML로 옮겨 폰에서도 같은 크기로 읽힌다. */
-.ws-tl { border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
-  padding: 16px 18px 18px; margin: 18px 0; }
-.ws-tl-head { font-size: 0.9em; font-weight: 700; color: #4a5361; margin-bottom: 10px; }
-.ws-tl-tabs { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch;
-  margin-bottom: 10px; padding-bottom: 2px; }
-.tl-tab { flex: 0 0 auto; border: 1px solid #cfd6df; background: #fff; color: #4a5361;
-  border-radius: 8px; padding: 6px 14px; font-family: inherit; font-size: 0.88em; cursor: pointer; }
-.tl-tab[aria-selected="true"] { background: #22314e; border-color: #22314e; color: #fff; font-weight: 700; }
-.ws-tl-stage { position: relative; height: 156px; }
-.ws-tl-beam { position: absolute; left: 50%; top: 50%; width: 420px; height: 10px;
-  margin-left: -210px; margin-top: -5px; background: #7b8494; border-radius: 5px;
-  transition: transform .22s ease-out; }
-.ws-tl-pivot { position: absolute; left: 50%; top: 50%; margin-left: -22px;
-  border-left: 22px solid transparent; border-right: 22px solid transparent;
-  border-top: 44px solid #96a0ae; }
-.ws-tl-chip { position: absolute; top: 50%; width: 150px; padding: 8px 6px; text-align: center;
-  border-radius: 12px; border: 3px solid #b9c2cf; background: #fff; color: #3d4552;
-  transition: transform .22s ease-out, opacity .22s; font-size: 0.86em; }
-.ws-tl-chip b { display: block; font-size: 1.02em; }
-.ws-tl-chip .s { display: block; font-size: 0.86em; color: #7c8593; margin-top: 2px; }
-.ws-tl-chip.tl-l { left: 50%; margin-left: -285px; }
-.ws-tl-chip.tl-r { left: 50%; margin-left: 135px; }
-.ws-tl-chip.dn { border-color: #22314e; color: #22314e; }
-.ws-tl-chip.up { opacity: .72; }
-.ws-tl-tag { position: absolute; top: 50%; font-size: 0.8em; font-weight: 700; color: #22314e;
-  white-space: nowrap; }
-.ws-tl-say { min-height: 2.6em; margin-top: 10px; font-size: 0.92em; color: #3d4552;
-  line-height: 1.7; text-align: center; }
-/* 🔴 폰에서 「13세기」 설명이 3줄이 되어 시점을 넘길 때 12px 시프트가 났다(9222 실측).
-   설명 칸을 3줄분으로 고정해 레이아웃 시프트를 0으로 만든다. */
-@media (max-width: 560px) { .ws-tl-say { min-height: 4.8em; } }
+/* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+      크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
+      줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
+      새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+.ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
+  padding: 16px 18px 14px; margin: 18px 0; }
+.ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
+.ws-tl-stage { position: relative; height: 300px; }
+.ws-tl-beam { position: absolute; left: 50%; top: 70px; width: 460px; height: 12px;
+  margin-left: -230px; background: #8c8070; border-radius: 6px;
+  transition: transform .28s ease-out; }
+.ws-tl-pivot { position: absolute; left: 50%; top: 74px; margin-left: -14px;
+  border-left: 14px solid transparent; border-right: 14px solid transparent;
+  border-top: 122px solid #c6bAaa; }
+.ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
+  height: 8px; background: #b2a694; border-radius: 4px; }
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+   빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
+.ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
+  transition: transform .28s ease-out; }
+.ws-tl-chip .rope { display: block; width: 3px; height: 40px; margin: 0 auto; background: #b9ad9b; }
+.ws-tl-chip .box { display: block; background: #fff; border: 3px solid #b9ad9b; border-radius: 12px;
+  padding: 6px 8px 8px; }
+.ws-tl-chip .tl-spr { display: block; height: 52px; width: auto; margin: 0 auto 2px;
+  image-rendering: pixelated; }
+.ws-tl-chip b { display: block; font-size: 0.95em; font-weight: 800; }
+.ws-tl-chip .s { display: block; font-size: 0.78em; color: #9a9284; margin-top: 1px; }
+.ws-tl-chip .win { display: block; margin-top: 4px; font-size: 0.8em; font-weight: 800;
+  visibility: hidden; }
+.ws-tl-chip.tl-l { margin-left: -300px; }
+.ws-tl-chip.tl-r { margin-left: 110px; }
+/* 교황 = 보라 · 상대 = 적갈 (기존 도식 CH·KING 그대로) */
+.ws-tl-chip.tl-l .box { border-color: #7a4a84; } .ws-tl-chip.tl-l b, .ws-tl-chip.tl-l .win { color: #7a4a84; }
+.ws-tl-chip.tl-l .rope { background: #7a4a84; }
+.ws-tl-chip.tl-r .box { border-color: #964e2c; } .ws-tl-chip.tl-r b, .ws-tl-chip.tl-r .win { color: #964e2c; }
+.ws-tl-chip.tl-r .rope { background: #964e2c; }
+.ws-tl-chip.up .box { opacity: .6; }
+.ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
+  line-height: 1.7; text-align: center; font-weight: 600; }
+/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+.ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
+.tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
+  font-size: 0.84em; color: #9a9284; padding: 0; position: relative; }
+.tl-tab::before { content: ""; display: block; width: 13px; height: 13px; border-radius: 50%;
+  background: #d8cdb8; margin: -8px auto 5px; border: 3px solid #faf7f0; }
+.tl-tab[aria-selected="true"] { color: #262018; font-weight: 800; }
+.tl-tab[aria-selected="true"]::before { background: #b07e1a; }
 .tl-print { display: none; }
 @media (max-width: 560px) {
-  .ws-tl-stage { height: 130px; }
-  .ws-tl-beam { width: 180px; margin-left: -90px; }
-  .ws-tl-chip { width: 104px; font-size: 0.74em; padding: 6px 4px; }
-  .ws-tl-chip.tl-l { margin-left: -142px; }
-  .ws-tl-chip.tl-r { margin-left: 38px; }
-  .ws-tl-pivot { margin-left: -16px; border-left-width: 16px; border-right-width: 16px;
-    border-top-width: 34px; }
+  .ws-tl { padding: 14px 10px 12px; }
+  .ws-tl-stage { height: 250px; }
+  .ws-tl-beam { width: 216px; margin-left: -108px; top: 56px; height: 9px; }
+  .ws-tl-pivot { top: 60px; margin-left: -11px; border-left-width: 11px; border-right-width: 11px;
+    border-top-width: 100px; }
+  .ws-tl-base { top: 156px; width: 58px; margin-left: -29px; height: 6px; }
+  .ws-tl-chip { width: 122px; top: 73px; }
+  .ws-tl-chip.tl-l { margin-left: -152px; }
+  .ws-tl-chip.tl-r { margin-left: 30px; }
+  .ws-tl-chip .rope { height: 30px; }
+  .ws-tl-chip .tl-spr { height: 40px; }
+  .ws-tl-chip b { font-size: 0.8em; } .ws-tl-chip .s { font-size: 0.68em; }
+  .ws-tl-say { min-height: 4.8em; font-size: 0.88em; }
+  .tl-tab { font-size: 0.72em; }
 }
 @media print {
   .ws-tl-tabs, .ws-tl-stage, .ws-tl-say { display: none; }
   .tl-print { display: table; width: 100%; }
+}
 }
 
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.
@@ -776,7 +801,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ <strong>왜 황제가 눈밭에 섰나?</strong> 교황의 무기는 칼이 아니라 <strong>파문</strong>이었다. 파문당하면 신자 자격이 없어진다. 📌 <em>교과서 밖 보충</em> — 봉신이 주군에게 바친 <strong>맹세는 신 앞에서 한 약속</strong>이었고, 신자 자격이 끊기면 그 약속을 받쳐 주던 자리가 사라진다. 등을 돌린 제후들은 약속을 어긴 것이 아니라 약속이 <strong>풀린</strong> 것이다. 게다가 그들은 이미 자기 장원에서 <strong>세금을 걷고 재판까지</strong> 하고 있었다(3-3-1 4단계) — 떠날 힘이 있었다.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/3-3-2_파문의연쇄.webp" alt="파문이 무서웠던 진짜 이유 — 황제의 반발 → 교황의 파문 선언 → 제후와 기사가 하나씩 등을 돌림 → 홀로 남은 황제." loading="lazy"><figcaption>파문이 무서웠던 진짜 이유 — 황제의 반발 → 교황의 파문 선언 → 제후와 기사가 하나씩 등을 돌림 → 홀로 남은 황제.</figcaption></figure>
+<figure class="ws-fig ws-anim"><img id="anim64" src="images/3-3-2_파문의연쇄.webp" alt="파문이 무서웠던 진짜 이유 — 황제의 반발 → 교황의 파문 선언 → 제후와 기사가 하나씩 등을 돌림 → 홀로 남은 황제." data-src="images/3-3-2_파문의연쇄.webp" loading="lazy"><div class="ws-anim-ctl"><button type="button" onclick="replayAnim('anim64')">▶ 다시 보기</button><span>한 번 재생됩니다</span></div><figcaption>파문이 무서웠던 진짜 이유 — 황제의 반발 → 교황의 파문 선언 → 제후와 기사가 하나씩 등을 돌림 → 홀로 남은 황제.</figcaption></figure>
 <br>
 <blockquote>🎯 <strong>이 도식이 잡는 오개념 1순위</strong> — 학생 다수가 카노사를 <em>"황제가 신앙이 깊어서 회개한 일"</em>로 읽는다. 실제 기제는 <strong>부하가 떠나 군사·재정 기반이 사라진 것</strong>이다. 애니가 끝난 뒤 <em>"황제가 무릎을 꿇은 진짜 이유가 무엇이었지?"</em> 한 번만 물을 것. <strong>4.4초·loop=1</strong>이므로 「▶ 다시 보기」로 두 번 보여 준다.</blockquote>
 <blockquote>⚠️ 파문을 <em>"신자 자격 박탈"</em>까지만 설명하고 끝내면 이 차시가 무너진다. <strong>① 맹세는 신 앞에서 했다 → ② 파문이 그 앞자리를 끊는다 → ③ 봉신이 떠나면 군대·재정이 사라진다</strong>를 반드시 말로 이어 줄 것. 2026-09-09에 새로 더한 것은 <strong>①의 근거</strong>(신 앞에서 한 맹세)다. 그 근거가 없으면 ②→③이 학생 머릿속에서 "다들 그러기로 했다"가 된다.</blockquote>
@@ -815,7 +840,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ 여기가 오늘의 <strong>반전</strong>이다. <strong>같은 문제</strong>(교회 일에 왕이 끼어드는 것)를 두고 싸웠는데 결말이 정반대다. 아래 연표에서 <strong>연도를 하나씩 눌러</strong> 보게 할 것 — 교황의 상대가 누구로 바뀌는지.</blockquote>
 <br>
-<div class="ws-tl" id="tl103"><div class="ws-tl-head">교황의 상대는 누구였나 — 연도를 눌러 보자 · ⚖️ 힘이 센 쪽이 무거워서 아래로 내려간다</div><div class="ws-tl-tabs" role="tablist"><button type="button" role="tab" class="tl-tab" data-i="0" aria-selected="true">1077</button><button type="button" role="tab" class="tl-tab" data-i="1" aria-selected="false">1122</button><button type="button" role="tab" class="tl-tab" data-i="2" aria-selected="false">13세기</button><button type="button" role="tab" class="tl-tab" data-i="3" aria-selected="false">1309</button></div><div class="ws-tl-stage"><div class="ws-tl-beam"></div><div class="ws-tl-pivot"></div><div class="ws-tl-chip tl-l"><b></b><span class="s"></span></div><div class="ws-tl-chip tl-r"><b></b><span class="s"></span></div><div class="ws-tl-tag"></div></div><div class="ws-tl-say"></div><table class="tl-print"><tr><td>시점</td><td>내려간 쪽</td><td>교황의 상대</td><td>무슨 일이 있었나</td></tr><tr><td>1077</td><td>교황</td><td>황제 · 신성 로마 제국</td><td>황제가 카노사에서 교황에게 용서를 빌었다.</td></tr><tr><td>1122</td><td>교황</td><td>황제 · 신성 로마 제국</td><td>교황만이 성직자 임명권을 갖기로 정해졌다.</td></tr><tr><td>13세기</td><td>교황</td><td>황제 · 신성 로마 제국</td><td>교황이 황제를 뛰어넘는 크리스트교 세계의 최고 지배자가 되었다.</td></tr><tr><td>1309</td><td>프랑스 왕</td><td>프랑스 왕 · 프랑스</td><td>왕이 교황청을 로마에서 아비뇽으로 옮겼다.</td></tr></table></div><script>(function(){var D=[{"lab": "1077", "deg": -6.0, "l0": "교황", "l1": "", "r0": "황제", "r1": "신성 로마 제국", "say": "황제가 카노사에서 교황에게 용서를 빌었다."}, {"lab": "1122", "deg": -8.0, "l0": "교황", "l1": "", "r0": "황제", "r1": "신성 로마 제국", "say": "교황만이 성직자 임명권을 갖기로 정해졌다."}, {"lab": "13세기", "deg": -9.0, "l0": "교황", "l1": "", "r0": "황제", "r1": "신성 로마 제국", "say": "교황이 황제를 뛰어넘는 크리스트교 세계의 최고 지배자가 되었다."}, {"lab": "1309", "deg": 7.0, "l0": "교황", "l1": "", "r0": "프랑스 왕", "r1": "프랑스", "say": "왕이 교황청을 로마에서 아비뇽으로 옮겼다."}];var w=document.getElementById("tl103");var beam=w.querySelector(".ws-tl-beam"),L=w.querySelector(".tl-l"),R=w.querySelector(".tl-r"),tag=w.querySelector(".ws-tl-tag"),say=w.querySelector(".ws-tl-say");var tabs=[].slice.call(w.querySelectorAll(".tl-tab"));function draw(i){var d=D[i],deg=d.deg,half=beam.offsetWidth/2;var dy=-Math.sin(deg*Math.PI/180)*half;beam.style.transform="rotate("+deg+"deg)";L.style.transform="translateY(calc(-100% - 8px + "+dy+"px))";R.style.transform="translateY(calc(-100% - 8px + "+(-dy)+"px))";L.querySelector("b").textContent=d.l0;L.querySelector(".s").textContent=d.l1;R.querySelector("b").textContent=d.r0;R.querySelector(".s").textContent=d.r1;L.classList.toggle("dn",deg<0);L.classList.toggle("up",deg>0);R.classList.toggle("dn",deg>0);R.classList.toggle("up",deg<0);tag.hidden=(deg===0);tag.textContent="여기가 셌다";tag.style.left=(deg<0?"20%":"80%");tag.style.transform="translate(-50%,"+(Math.abs(dy)+6)+"px)";say.textContent=d.say;tabs.forEach(function(b,j){b.setAttribute("aria-selected",j===i?"true":"false");});}tabs.forEach(function(b,j){b.addEventListener("click",function(){draw(j);});});w.addEventListener("keydown",function(e){var i=0;tabs.forEach(function(b,j){if(b.getAttribute("aria-selected")==="true")i=j;});if(e.key==="ArrowRight"&&i<tabs.length-1){draw(i+1);tabs[i+1].focus();}if(e.key==="ArrowLeft"&&i>0){draw(i-1);tabs[i-1].focus();}});draw(0);})();</script>
+<div class="ws-tl" id="tl103"><div class="ws-tl-head">교황의 상대는 누구였나 — 아래 연도를 눌러 보자 · ⚖️ 힘이 센 쪽이 무거워서 내려간다</div><div class="ws-tl-stage"><div class="ws-tl-beam"></div><div class="ws-tl-pivot"></div><div class="ws-tl-base"></div><div class="ws-tl-chip tl-l"><span class="rope"></span><span class="box"><img class="tl-spr" src="images/3-3-2_tl_cleric.png" alt=""><b></b><span class="s"></span></span><span class="win">▲ 우세</span></div><div class="ws-tl-chip tl-r"><span class="rope"></span><span class="box"><img class="tl-spr" src="images/3-3-2_tl_king.png" alt=""><b></b><span class="s"></span></span><span class="win">▲ 우세</span></div></div><div class="ws-tl-say"></div><div class="ws-tl-tabs" role="tablist"><button type="button" role="tab" class="tl-tab" data-i="0" aria-selected="true">1077</button><button type="button" role="tab" class="tl-tab" data-i="1" aria-selected="false">1122</button><button type="button" role="tab" class="tl-tab" data-i="2" aria-selected="false">13세기</button><button type="button" role="tab" class="tl-tab" data-i="3" aria-selected="false">1309</button></div><table class="tl-print"><tr><td>시점</td><td>내려간 쪽</td><td>교황의 상대</td><td>무슨 일이 있었나</td></tr><tr><td>1077</td><td>교황</td><td>황제 · 신성 로마 제국</td><td>황제가 카노사에서 교황에게 용서를 빌었다.</td></tr><tr><td>1122</td><td>교황</td><td>황제 · 신성 로마 제국</td><td>교황만이 성직자 임명권을 갖기로 정해졌다.</td></tr><tr><td>13세기</td><td>교황</td><td>황제 · 신성 로마 제국</td><td>교황이 황제를 뛰어넘는 크리스트교 세계의 최고 지배자가 되었다.</td></tr><tr><td>1309</td><td>프랑스 왕</td><td>프랑스 왕 · 프랑스</td><td>왕이 교황청을 로마에서 아비뇽으로 옮겼다.</td></tr></table></div><script>(function(){var D=[{"lab": "1077", "deg": -6.0, "l0": "교황", "l1": "", "r0": "황제", "r1": "신성 로마 제국", "say": "황제가 카노사에서 교황에게 용서를 빌었다."}, {"lab": "1122", "deg": -8.0, "l0": "교황", "l1": "", "r0": "황제", "r1": "신성 로마 제국", "say": "교황만이 성직자 임명권을 갖기로 정해졌다."}, {"lab": "13세기", "deg": -9.0, "l0": "교황", "l1": "", "r0": "황제", "r1": "신성 로마 제국", "say": "교황이 황제를 뛰어넘는 크리스트교 세계의 최고 지배자가 되었다."}, {"lab": "1309", "deg": 7.0, "l0": "교황", "l1": "", "r0": "프랑스 왕", "r1": "프랑스", "say": "왕이 교황청을 로마에서 아비뇽으로 옮겼다."}];var w=document.getElementById("tl103");var beam=w.querySelector(".ws-tl-beam"),L=w.querySelector(".tl-l"),R=w.querySelector(".tl-r"),say=w.querySelector(".ws-tl-say");var tabs=[].slice.call(w.querySelectorAll(".tl-tab"));function draw(i){var d=D[i],deg=d.deg,half=beam.offsetWidth/2;var dy=-Math.sin(deg*Math.PI/180)*half;beam.style.transform="rotate("+deg+"deg)";L.style.transform="translateY("+dy+"px)";R.style.transform="translateY("+(-dy)+"px)";L.querySelector("b").textContent=d.l0;L.querySelector(".s").textContent=d.l1;R.querySelector("b").textContent=d.r0;R.querySelector(".s").textContent=d.r1;L.classList.toggle("dn",deg<0);L.classList.toggle("up",deg>0);R.classList.toggle("dn",deg>0);R.classList.toggle("up",deg<0);L.querySelector(".win").style.visibility=(deg<-0.2?"visible":"hidden");R.querySelector(".win").style.visibility=(deg>0.2?"visible":"hidden");say.textContent=d.say;tabs.forEach(function(b,j){b.setAttribute("aria-selected",j===i?"true":"false");});}tabs.forEach(function(b,j){b.addEventListener("click",function(){draw(j);});});w.addEventListener("keydown",function(e){var i=0;tabs.forEach(function(b,j){if(b.getAttribute("aria-selected")==="true")i=j;});if(e.key==="ArrowRight"&&i<tabs.length-1){draw(i+1);tabs[i+1].focus();}if(e.key==="ArrowLeft"&&i>0){draw(i-1);tabs[i-1].focus();}});draw(0);})();</script>
 <br>
 <blockquote>🎯 <strong>연도 버튼으로 만든 이유</strong> — 표는 두 사건이 <em>다르다</em>는 것까지만 보여 준다. 눌러 넘기면 <strong>오른쪽 칩의 글자가 바뀌는 것</strong>이 보인다: 황제(신성 로마 제국) → 프랑스 왕(프랑스). 이 차시가 가르치는 것은 승패가 아니라 <strong>상대의 교체</strong>다.</blockquote>
 <blockquote>🎯 <strong>「무거운 쪽이 내려간다」를 먼저 설명하지 말 것.</strong> 기본 시점을 1077로 두었다. 학생이 방금 2단계에서 읽은 <em>"황제가 빌었다"</em>와 저울(교황 쪽이 내려감)이 한 화면에 있으므로, 거꾸로 읽는 학생은 그 자리에서 어긋난다. <strong>교사가 먼저 말하면 이 자가 교정이 사라진다 — 학생이 물을 때만 답한다.</strong></blockquote>
