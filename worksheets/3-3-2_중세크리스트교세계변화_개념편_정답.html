@@ -307,19 +307,29 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   .ws-tl-tabs, .ws-tl-stage, .ws-tl-say { display: none; }
   .tl-print { display: table; width: 100%; }
 }
-}
 
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+/* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
+   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+      파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
+      computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
+      — 디자인이 약한 게 아니라 **없었다.**
+   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+      16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
+      음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
+   계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
+   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
 .ws-read {
-  background: #f5f6f8; border: 1px solid #dfe3e8; border-left: 5px solid #98a2b3;
-  border-radius: 0 0 10px 10px; padding: 13px 18px 15px; margin: -10px 0 20px;
-  color: #3d4552; font-size: 0.93em; line-height: 1.78;
+  background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
+  color: #3a4351; font-size: 0.93em; line-height: 1.78;
 }
 .ws-read .ws-read-tag {
-  display: inline-block; font-size: 0.72em; font-weight: 800; color: #7a828f;
-  letter-spacing: 0.06em; margin-bottom: 5px;
+  display: inline-block; background: #64748b; color: #fff;
+  font-size: 0.76em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
@@ -879,18 +889,16 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🧑‍🏫 <strong>기울기 크기는 저자 표현이다</strong> — 교과서는 힘을 수치로 재지 않는다. 순서(1077 < 1122 < 13세기)만 p.96 <em>"교황의 영향력은 계속 커져서 13세기 무렵 절정에 이르렀다"</em>에 근거한다. 화면에 각도 수치를 노출하지 않는다.</blockquote>
 <blockquote>⚠️ <strong>「이후」(대분열)를 저울에 넣지 않았다.</strong> 저울 규약(무거운 쪽이 내려간다)에서 수평은 «두 힘이 같다»이고 직전이 +7이었으므로 <strong>«교황 쪽이 되돌아왔다 = 회복»으로 읽힌다</strong> — p.97 <em>"교황의 권위는 크게 떨어졌다"</em>와 정반대다. 저울은 «양쪽 동시 하락»을 원리적으로 표현하지 못한다. 대분열은 바로 아래 <code>:::교과서 97쪽</code> 질문과 카드 4가 받는다.</blockquote>
 <br>
-<blockquote>⚠️ <strong>왜 뒤집혔을까 — 이게 오늘의 핵심 질문이야.</strong> 교황이 약해진 걸까? 표를 보면 다른 게 보여.</blockquote>
+<blockquote>⚠️ <strong>왜 뒤집혔을까 — 이게 오늘의 핵심 질문이야.</strong> 교황이 약해진 걸까? 그림을 보면 다른 게 보여.</blockquote>
 <br>
-<table>
-<tr><td>교황이 맞선 사람</td><td>1077 카노사</td><td>1309 아비뇽</td></tr>
-<tr><td><strong>누구였나</strong></td><td>신성 로마 제국의 <strong>황제</strong></td><td>프랑스의 <strong>왕</strong></td></tr>
-<tr><td><strong>그 힘은 어디서</strong></td><td>제후들이 바친 <strong>충성</strong></td><td><strong>영토</strong>와 거기서 걷는 <strong>세금</strong></td></tr>
-<tr><td><strong>교황이 끊을 수 있었나</strong></td><td>⭕ 파문하면 충성이 풀렸다</td><td>❌ 땅과 세금은 못 끊는다</td></tr>
-</table>
+<figure class="ws-fig"><img src="images/3-3-2_빌린힘가진힘.png" alt="빌린 힘과 가진 힘 — 1077년 황제의 힘은 제후들이 바친 충성에 **매달려** 있었다. 교황이 파문으로 그 줄을 끊자 무너졌다. 1309년 프랑스 왕의 힘은 자기 영토에서 걷는 세금이라 **끊을 줄이 없었다.** 교황이 약해진 것이 아니라 맞은편에 선 사람이 달라졌다." loading="lazy"><figcaption>빌린 힘과 가진 힘 — 1077년 황제의 힘은 제후들이 바친 충성에 <strong>매달려</strong> 있었다. 교황이 파문으로 그 줄을 끊자 무너졌다. 1309년 프랑스 왕의 힘은 자기 영토에서 걷는 세금이라 <strong>끊을 줄이 없었다.</strong> 교황이 약해진 것이 아니라 맞은편에 선 사람이 달라졌다.</figcaption></figure>
 <br>
-<blockquote>🎯 <strong>이 표가 이 차시의 결론이다.</strong> 학생이 4단계에서 반드시 묻는 <em>"왜 뒤집혔어요?"</em>에 <strong>3-3-4를 앞당기지 않고</strong> 답하는 유일한 길이다. 2행의 근거는 전부 교과서 안에 있다 — 1077은 2단계 파문 기제(제후의 충성), 1309는 <strong>4단계 첫 문장</strong> <em>"영토를 넓히는 과정에서"</em>(p.97).</blockquote>
+<blockquote>🎯 <strong>이 그림이 이 차시의 결론이다.</strong> 학생이 4단계에서 반드시 묻는 <em>"왜 뒤집혔어요?"</em>에 <strong>3-3-4를 앞당기지 않고</strong> 답하는 유일한 길이다. 두 힘의 출처는 전부 교과서 안에 있다 — 1077은 2단계 파문 기제(제후의 충성), 1309는 <strong>4단계 첫 문장</strong> <em>"영토를 넓히는 과정에서"</em>(p.97).</blockquote>
 <blockquote>🔴 <strong>「교황이 약해졌다」로 정리되면 절반이다.</strong> 교과서도 권위 추락을 적지만 그것은 <strong>대분열 «뒤»</strong>의 일이다(p.97 서술 순서: 아비뇽 유수 → 대분열 → 권위 추락). 먼저 달라진 것은 <strong>맞은편에 선 사람</strong>이고, 권위 추락은 그 결과다. 학생이 "교황이 약해져서"라고 하면 틀렸다고 하지 말고 <strong>4단계 본문의 순서를 짚어</strong> 되돌린다.</blockquote>
-<blockquote>⚠️ <strong>3행 「교황이 끊을 수 있었나」의 ❌는 «파문했는데 안 통했다»는 뜻이 아니다.</strong> 교과서에 필리프 4세 파문 기록은 없다. <em>땅과 세금은 교황이 손댈 수 있는 것이 아니었다</em>는 성질 대조다. 학생이 <em>"그럼 파문하면 되잖아요"</em>라고 물으면 여기로 답한다.</blockquote>
+<blockquote>⚠️ <strong>오른쪽 흐린 가위는 «파문했는데 안 통했다»는 뜻이 아니다.</strong> 교과서에 필리프 4세 파문 기록은 없다. <em>땅과 세금은 교황이 손댈 수 있는 것이 아니었다</em>는 성질 대조다. 학생이 <em>"그럼 파문하면 되잖아요"</em>라고 물으면 여기로 답한다.</blockquote>
+<blockquote>🎯 <strong>2026-09-11 표 → 도식 교체 (천대현)</strong> — <em>"표와 설명을 봐도 이해가 쉽지 않다."</em> 3행×2열이 전부 <strong>추상 명사</strong>였다(충성 / 영토·세금 / 끊을 수 있었나). 중2에게 <em>"충성은 끊기고 세금은 안 끊긴다"</em>는 문장은 <strong>동어반복처럼 들린다</strong> — 왜 하나는 끊기고 하나는 안 끊기는지가 말로는 안 보인다. <strong>매달린 줄</strong>과 <strong>딛고 선 땅</strong>으로 바꾸니 그 차이가 눈으로 갈린다. 표가 말하던 3행이 그림 한 장에 다 들어 있다(누구였나=인물 라벨 / 힘의 출처=줄 vs 땅 / 끊을 수 있나=가위가 무는가).</blockquote>
+<blockquote>🔴 <strong>제미나이 정리를 그대로 넣지 않았다</strong> — 천대현이 함께 준 설명은 «왕실 직할지 확대·화폐 경제·도시 성장»을 든다. 셋 다 <strong>맞는 이야기이고 우리 3-3-4가 이미 교과서 문장으로 가르친다</strong>(2단계 화폐, 3단계 도시·길드, 4단계 상공업자가 국왕을 도움). 여기서 앞당기면 <strong>3-3-4의 도입이 죽고</strong>, 「왕실 직할지」는 비상 교과서에 없는 말이라 R3도 못 댄다. 제미나이의 세 번째 항목(카노사=간접적 충성 의존 vs 아비뇽=실물 경제력)만이 이 차시 범위이고, <strong>그게 이 도식이 그린 바로 그것</strong>이다.</blockquote>
+<blockquote>🧑‍🏫 <strong>가위는 은유다 — 필리프 4세가 실제로 파문당했다는 뜻이 아니다.</strong> 오른쪽 가위를 흐리게 둔 것은 <em>«그 도구가 여기서는 물 것이 없다»</em>는 뜻이다. 학생이 <em>"파문하면 되잖아요"</em>라고 물으면 왼쪽 줄을 가리키며 <strong>끊을 줄이 있느냐</strong>로 되묻는다.</blockquote>
 <blockquote>🎯 <strong>활동 1과 축이 다르다</strong> — 활동 1은 <em>황제·교황 중 누가 굽혔나</em>(사실 확인), 이 표는 <em>교황이 맞선 상대의 성질</em>(대조). 인명을 겹쳐 쓰지 않았으므로 베껴 쓰기가 안 된다.</blockquote>
 <blockquote>🔜 <strong>「왕이 왜 커졌나」에 오늘 답하지 말 것.</strong> 흑사병·화약·백년 전쟁은 3-3-4다. 학생 지면에는 세 낱말만 예고로 던져 두었다 — <em>"그게 두 시간 뒤 수업의 첫 질문"</em>으로 받고 넘어간다. 여기서 답을 주면 3-3-4의 도입이 죽는다.</blockquote>
 <br>
