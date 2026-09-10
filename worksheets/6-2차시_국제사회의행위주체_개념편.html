@@ -307,19 +307,29 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   .ws-tl-tabs, .ws-tl-stage, .ws-tl-say { display: none; }
   .tl-print { display: table; width: 100%; }
 }
-}
 
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+/* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
+   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+      파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
+      computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
+      — 디자인이 약한 게 아니라 **없었다.**
+   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+      16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
+      음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
+   계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
+   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
 .ws-read {
-  background: #f5f6f8; border: 1px solid #dfe3e8; border-left: 5px solid #98a2b3;
-  border-radius: 0 0 10px 10px; padding: 13px 18px 15px; margin: -10px 0 20px;
-  color: #3d4552; font-size: 0.93em; line-height: 1.78;
+  background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
+  color: #3a4351; font-size: 0.93em; line-height: 1.78;
 }
 .ws-read .ws-read-tag {
-  display: inline-block; font-size: 0.72em; font-weight: 800; color: #7a828f;
-  letter-spacing: 0.06em; margin-bottom: 5px;
+  display: inline-block; background: #64748b; color: #fff;
+  font-size: 0.76em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
