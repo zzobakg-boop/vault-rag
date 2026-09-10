@@ -307,19 +307,29 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   .ws-tl-tabs, .ws-tl-stage, .ws-tl-say { display: none; }
   .tl-print { display: table; width: 100%; }
 }
-}
 
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+/* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
+   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+      파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
+      computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
+      — 디자인이 약한 게 아니라 **없었다.**
+   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+      16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
+      음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
+   계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
+   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
 .ws-read {
-  background: #f5f6f8; border: 1px solid #dfe3e8; border-left: 5px solid #98a2b3;
-  border-radius: 0 0 10px 10px; padding: 13px 18px 15px; margin: -10px 0 20px;
-  color: #3d4552; font-size: 0.93em; line-height: 1.78;
+  background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
+  color: #3a4351; font-size: 0.93em; line-height: 1.78;
 }
 .ws-read .ws-read-tag {
-  display: inline-block; font-size: 0.72em; font-weight: 800; color: #7a828f;
-  letter-spacing: 0.06em; margin-bottom: 5px;
+  display: inline-block; background: #64748b; color: #fff;
+  font-size: 0.76em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
@@ -848,16 +858,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 97쪽</div><div class="ws-tb-ask">교황들은 아비뇽에서 <strong>몇 대에 걸쳐 몇 년</strong> 동안 지냈나? 그리고 대분열은 <strong>몇 년</strong> 동안 이어졌나? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 97쪽에서 찾기 — 교황들은 아비뇽에서 몇 대에 걸쳐 몇 년 동안 지냈나? 그리고 대분열" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>⚠️ <strong>왜 뒤집혔을까 — 이게 오늘의 핵심 질문이야.</strong> 교황이 약해진 걸까? 표를 보면 다른 게 보여.</blockquote>
+<blockquote>⚠️ <strong>왜 뒤집혔을까 — 이게 오늘의 핵심 질문이야.</strong> 교황이 약해진 걸까? 그림을 보면 다른 게 보여.</blockquote>
 <br>
-<table>
-<tr><td>교황이 맞선 사람</td><td>1077 카노사</td><td>1309 아비뇽</td></tr>
-<tr><td><strong>누구였나</strong></td><td>신성 로마 제국의 <strong>황제</strong></td><td>프랑스의 <strong>왕</strong></td></tr>
-<tr><td><strong>그 힘은 어디서</strong></td><td>제후들이 바친 <strong>충성</strong></td><td><strong>영토</strong>와 거기서 걷는 <strong>세금</strong></td></tr>
-<tr><td><strong>교황이 끊을 수 있었나</strong></td><td>⭕ 파문하면 충성이 풀렸다</td><td>❌ 땅과 세금은 못 끊는다</td></tr>
-</table>
+<figure class="ws-fig"><img src="images/3-3-2_빌린힘가진힘.png" alt="빌린 힘과 가진 힘 — 1077년 황제의 힘은 제후들이 바친 충성에 **매달려** 있었다. 교황이 파문으로 그 줄을 끊자 무너졌다. 1309년 프랑스 왕의 힘은 자기 영토에서 걷는 세금이라 **끊을 줄이 없었다.** 교황이 약해진 것이 아니라 맞은편에 선 사람이 달라졌다." loading="lazy"><figcaption>빌린 힘과 가진 힘 — 1077년 황제의 힘은 제후들이 바친 충성에 <strong>매달려</strong> 있었다. 교황이 파문으로 그 줄을 끊자 무너졌다. 1309년 프랑스 왕의 힘은 자기 영토에서 걷는 세금이라 <strong>끊을 줄이 없었다.</strong> 교황이 약해진 것이 아니라 맞은편에 선 사람이 달라졌다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 보이지? <strong>교황이 약해진 게 아니라 맞은편에 선 사람이 달라진 거야.</strong> 1077년 황제의 힘은 «남이 바친 것»이라 교황이 끊을 수 있었어. 그런데 1309년 프랑스 왕의 힘은 4단계 첫 문장에 있어 — <em>"영토를 넓히는 과정에서"</em>. <strong>자기 땅에서 나오는 힘</strong>은 파문으로 못 끊어.</blockquote>
+<blockquote>🎙️ 왼쪽 황제는 <strong>줄에 매달려</strong> 있어. 그 줄이 «제후들이 바친 충성»이야 — <strong>남이 준 것</strong>이라 교황이 파문 한 번으로 끊을 수 있었지. 오른쪽 왕은 <strong>땅을 딛고 서 있어.</strong> 그 힘은 4단계 첫 문장에 있어 — <em>"영토를 넓히는 과정에서"</em>. <strong>자기 땅에서 올라오는 힘</strong>은 자를 줄이 없어.</blockquote>
 <blockquote>🔜 <strong>그럼 왕은 언제 그렇게 커졌을까?</strong> 봉건 사회가 흔들리면서인데, 그 이야기는 <strong>두 시간 뒤(3-3-4)</strong>에 나와 — <em>흑사병 · 화약 · 백년 전쟁</em>이 영주와 기사를 깎는 이야기야. 오늘은 <strong>"상대가 달라졌다"</strong>까지만 잡고 가자.</blockquote>
 <br>
 <br>
