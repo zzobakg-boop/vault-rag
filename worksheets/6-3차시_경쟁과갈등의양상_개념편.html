@@ -307,19 +307,29 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   .ws-tl-tabs, .ws-tl-stage, .ws-tl-say { display: none; }
   .tl-print { display: table; width: 100%; }
 }
-}
 
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+/* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
+   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+      파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
+      computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
+      — 디자인이 약한 게 아니라 **없었다.**
+   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+      16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
+      음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
+   계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
+   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
 .ws-read {
-  background: #f5f6f8; border: 1px solid #dfe3e8; border-left: 5px solid #98a2b3;
-  border-radius: 0 0 10px 10px; padding: 13px 18px 15px; margin: -10px 0 20px;
-  color: #3d4552; font-size: 0.93em; line-height: 1.78;
+  background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
+  color: #3a4351; font-size: 0.93em; line-height: 1.78;
 }
 .ws-read .ws-read-tag {
-  display: inline-block; font-size: 0.72em; font-weight: 800; color: #7a828f;
-  letter-spacing: 0.06em; margin-bottom: 5px;
+  display: inline-block; background: #64748b; color: #fff;
+  font-size: 0.76em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
@@ -751,18 +761,6 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
-
-/* ── 읽고 넘어가는 곳 재설계 (2026-09-10 주입 · worksheet-gen.py 원문 그대로) ── */
-.ws-read {
-  background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
-  border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
-  color: #3a4351; font-size: 0.93em; line-height: 1.78;
-}
-.ws-read .ws-read-tag {
-  display: inline-block; background: #64748b; color: #fff;
-  font-size: 0.76em; font-weight: 700; letter-spacing: 0.02em;
-  padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
-}
 </style>
 </head>
 <body>
@@ -823,7 +821,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ <strong>요즘으로 치면 이런 거야.</strong> 학년 전체가 "우리 반 대 너희 반"으로만 갈려 있을 땐 반 안에서 누가 누구랑 안 맞는지는 안 보여. 그런데 그 대결이 끝나면 그제야 <strong>원래 있던 자잘한 갈등들이 하나씩 떠오르지.</strong> 냉전이 끝난 뒤 세계가 딱 그랬어.</blockquote>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>🔑 <strong>새로 생긴 것이 아니라 가려져 있던 것이 드러난 것</strong>이다. 큰 대립 하나가 사라지자, 그 아래 있던 여러 갈래가 보이게 됐다.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>🔑 <strong>새로 생긴 것이 아니라 가려져 있던 것이 드러난 것</strong>이다. 큰 대립 하나가 사라지자, 그 아래 있던 여러 갈래가 보이게 됐다.</p><p>⚠️ <strong>교과서에는 「새로운 갈등 요소」라고 적혀 있다.</strong> 그 「새로운」은 <em>그전에 없던</em>이 아니라 <strong>이제야 드러난</strong>이라는 뜻이다 — 바로 앞에 「묻혀 있었던」이 붙어 있으니 그렇게 읽어야 한다. 낱말 하나로 뜻이 뒤집히는 자리다.</p></div>
 <br>
 <h2>📖 3단계: 경쟁은 어떻게 분쟁이 되나</h2>
 <br>
@@ -842,7 +840,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>전쟁을 위해 갖춘 군사 시설과 장비를 ⑦<input type="text" class="blank-input" data-answer="군비" data-id="7" style="width:60px" placeholder="">라고 하는데, 이것을 늘리는 경쟁도 물리적 폭력에 해당하는 갈등이다.</p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 117쪽 · 스스로 탐구 「국가 간 갈등의 유형과 사례」</div><div class="ws-tb-see">표에 일곱 영역이 나온다 — 경제 · 환경 · 보건 · 범죄 · 물리적 폭력 · 식량과 자원 · 문화적 차이 · 사이버 공간.</div><div class="ws-tb-ask">그중 <strong>네 생활과 가장 가깝다고 느껴지는 것</strong> 하나를 고르고, 왜 그런지 한 줄로 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 117쪽에서 찾기 — 그중 네 생활과 가장 가깝다고 느껴지는 것 하나를 고르고, 왜 그런지" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 117쪽 · 스스로 탐구 「국가 간 갈등의 유형과 사례」</div><div class="ws-tb-see">표에 여러 영역이 나온다 — 경제 · 환경 · 보건 · 범죄 · 물리적 폭력 · 식량과 자원 · 문화적 차이 · 사이버 공간.</div><div class="ws-tb-ask">그중 <strong>네 생활과 가장 가깝다고 느껴지는 것</strong> 하나를 고르고, 왜 그런지 한 줄로 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 117쪽에서 찾기 — 그중 네 생활과 가장 가깝다고 느껴지는 것 하나를 고르고, 왜 그런지" style="width:400px" placeholder=""></div></div>
 <br>
 <p>표에서 눈에 띄는 것은 ⑧<input type="text" class="blank-input" data-answer="사이버" data-id="8" style="width:68px" placeholder=""> 공간까지 갈등의 무대가 됐다는 점이다. 옛날에는 다툴 일이 없던 곳이다.</p>
 <br>
@@ -855,6 +853,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <div class="ws-pick" id="pk66"><div class="pk-head"><span>넷은 각각 어느 단계일까? 다 고르면 답이 열린다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid"><div class="pk-card pk-noimg" data-i="0" data-ans="경쟁"><div class="pk-name">우주 개발 앞서기</div><div class="pk-sit">미국은 2030년까지 화성 왕복을, 중국은 우주 정거장을 목표로 서로 앞서려 한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>서로 앞서려 할 뿐 아직 부딪히지는 않았다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="갈등"><div class="pk-name">난민 배정</div><div class="pk-sit">EU 회원국들이 난민을 몇 명씩 받을지를 두고 합의하지 못하고 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>이익이 서로 어긋나 부딪히는 중이다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="분쟁"><div class="pk-name">영유권 다툼</div><div class="pk-sit">두 나라가 같은 바다와 섬을 자기 관할이라 주장하며 맞선다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>어긋남이 밖으로 터져 실제 다툼이 됐다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="경쟁"><div class="pk-name">국방비 늘리기</div><div class="pk-sit">서로를 의식하며 국방비와 신무기 개발에 더 많은 돈을 쓴다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>아직은 앞서려는 단계다 — 다만 여기서 갈등으로 넘어가기 쉽다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk66");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["경쟁", "갈등", "분쟁"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>✅ <strong>스스로 점검</strong> — 셋은 칼로 자르듯 나뉘지 않아. 그래도 갈라 보는 기준은 하나야 — <strong>아직 앞서려는 중인가, 이미 부딪히는가, 밖으로 터졌는가.</strong> 나라 수나 사건의 크기로 고르면 어긋난다.</blockquote>
+<br>
+<h2>✏️ 활동 2 — 어느 영역의 갈등일까?</h2>
+<br>
+<div class="ws-pick" id="pk72"><div class="pk-head"><span>다섯은 각각 어느 영역일까? <strong>교과서 117쪽 표</strong>를 펴고 고르자. 다 고르면 답이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid"><div class="pk-card pk-noimg" data-i="0" data-ans="경제"><div class="pk-name">관세 맞대응</div><div class="pk-sit">한 나라가 상대국 물건에 세금을 더 매기자, 그 나라도 똑같이 되갚았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="물리적 폭력">물리적 폭력</button></div><div class="pk-why" hidden>서로의 시장을 두고 부딪히는 다툼이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="경제"><div class="pk-name">꼭 필요한 광물</div><div class="pk-sit">산업에 없어서는 안 될 광물의 수출을 한 나라가 막자 다른 나라들이 대응에 나섰다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="물리적 폭력">물리적 폭력</button></div><div class="pk-why" hidden>자원 문제로 보이지만, 부딪히는 자리는 «물건을 만들어 파는 일»이다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="보건"><div class="pk-name">백신 먼저 확보</div><div class="pk-sit">전염병이 퍼지자 나라마다 자국민 몫을 먼저 챙기려 했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="물리적 폭력">물리적 폭력</button></div><div class="pk-why" hidden>건강 문제도 국경을 넘으면 갈등이 된다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="범죄"><div class="pk-name">수사 자료 거부</div><div class="pk-sit">국경을 넘나드는 조직을 쫓는데 상대국이 자료를 넘겨주지 않았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="물리적 폭력">물리적 폭력</button></div><div class="pk-why" hidden>한 나라 힘만으로는 못 잡는 종류의 문제다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="물리적 폭력"><div class="pk-name">테러와 보복</div><div class="pk-sit">테러가 일어나자 피해국이 무력으로 되갚았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="물리적 폭력">물리적 폭력</button></div><div class="pk-why" hidden>힘이 직접 오가는, 가장 무거운 자리다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk72");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["경제", "보건", "범죄", "물리적 폭력"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<br>
+<blockquote>✅ <strong>스스로 점검</strong> — <strong>사건의 소재로 고르면 어긋난다.</strong> 「꼭 필요한 광물」은 자원 이야기처럼 보이지만 나라들이 부딪히는 자리는 <em>물건을 만들어 파는 일</em>이다. 기준은 <strong>무엇을 두고 다투는가</strong>야.</blockquote>
 <br>
 <h2>❓ OX 퀴즈</h2>
 <br>
