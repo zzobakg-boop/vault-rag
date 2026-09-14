@@ -516,9 +516,19 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             in_rad = True
             _rh = stripped[len(':::펼침'):].strip()
             rad_center, rad_note = '분쟁', ''
+            rad_fig, rad_hot = '', ''
             if _rh.startswith('[') and ']' in _rh:
                 rad_center = _rh[1:_rh.index(']')].strip()
-                rad_note = _rh[_rh.index(']') + 1:].strip()
+                _rh = _rh[_rh.index(']') + 1:].strip()
+            # 2026-09-14 도식 통합 모드 — 천대현 "3단계 도식 안에서 펼쳐지도록 통합 안 되니?"
+            #   @ <이미지> | <left,top,width,height 퍼센트> | <안내>
+            #   도식 위 그 칸에 투명 핫스팟을 얹는다. 누르면 도식이 흐려지고 그 자리에서 펼쳐진다
+            #   (세로가 늘지 않는다). 좌표는 도식 생성 스크립트의 box() 값에서 곧바로 나온다.
+            if _rh.startswith('@'):
+                _seg = [x.strip() for x in _rh[1:].split('|')]
+                rad_fig = _seg[0] if _seg else ''
+                rad_hot = _seg[1] if len(_seg) > 1 else ''
+                rad_note = _seg[2] if len(_seg) > 2 else ''
             else:
                 rad_note = _rh
             rad_rows = []
@@ -539,13 +549,29 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         panels.append(
                             '<div class="rd-panel" data-i="%d" hidden><b>%s</b><p>%s</p><i>%s</i>%s</div>'
                             % (k, inline(nm), inline(desc), inline(where), _go))
-                    html_parts.append(
-                        '<div class="ws-rad" id="%s" style="--n:%d">%s'
-                        '<div class="rd-stage"><button type="button" class="rd-core">%s<u>누르기</u></button>'
-                        '%s</div><div class="rd-panels">%s</div></div>'
-                        % (rid, n,
-                           ('<div class="rd-note">%s</div>' % inline(rad_note)) if rad_note else '',
-                           inline(rad_center), ''.join(chips), ''.join(panels)))
+                    _note = ('<div class="rd-note">%s</div>' % inline(rad_note)) if rad_note else ''
+                    if rad_fig and rad_hot:
+                        _h4 = [x.strip() for x in rad_hot.split(',')]
+                        while len(_h4) < 4: _h4.append('0')
+                        _src = rad_fig if '/' in rad_fig else ('images/' + rad_fig)
+                        html_parts.append(
+                            '<div class="ws-rad rad-onfig" id="%s" style="--n:%d">%s'
+                            '<div class="rd-fig"><img src="%s" alt="%s">'
+                            '<button type="button" class="rd-hot" '
+                            'style="left:%s%%;top:%s%%;width:%s%%;height:%s%%" '
+                            'aria-label="%s 눌러 영역 펼치기"><span>%s</span></button>'
+                            '%s</div><div class="rd-panels">%s</div></div>'
+                            % (rid, n, _note, _src,
+                               re.sub(r'<[^>]+>', '', inline(rad_center)) + ' 단계가 든 도식',
+                               _h4[0], _h4[1], _h4[2], _h4[3],
+                               re.sub(r'<[^>]+>', '', inline(rad_center)),
+                               inline(rad_center), ''.join(chips), ''.join(panels)))
+                    else:
+                        html_parts.append(
+                            '<div class="ws-rad" id="%s" style="--n:%d">%s'
+                            '<div class="rd-stage"><button type="button" class="rd-core">%s<u>누르기</u></button>'
+                            '%s</div><div class="rd-panels">%s</div></div>'
+                            % (rid, n, _note, inline(rad_center), ''.join(chips), ''.join(panels)))
                 in_rad = False
                 rad_rows = []
                 continue
@@ -2106,6 +2132,33 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-go {{ display: inline-block; margin-left: 8px; font-size: .82em; font-weight: 700;
   color: #b8862b; border-bottom: 1px dashed #b8862b; cursor: pointer; }}
 .rd-flash {{ animation: rdflash 1.5s ease-out 1; }}
+/* 🎯 도식 통합 모드 — 도식 칸을 눌러 그 자리에서 펼친다(세로 증가 0) */
+.rad-onfig .rd-fig {{ position: relative; }}
+.rad-onfig .rd-fig > img {{ width: 100%; height: auto; display: block;
+  transition: opacity .32s, filter .32s; }}
+.rad-onfig.on .rd-fig > img {{ opacity: .26; filter: grayscale(.35); }}
+.rd-hot {{ position: absolute; background: rgba(192,57,43,.05); border: 0; cursor: pointer;
+  border-radius: 14px; padding: 0; transition: background .2s, box-shadow .2s; z-index: 2; }}
+.rd-hot span {{ position: absolute; left: -9999px; }}
+.rd-hot:hover {{ background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }}
+.rd-hot:focus-visible {{ box-shadow: inset 0 0 0 3px #c0392b; outline: none; }}
+.rad-onfig.on .rd-hot {{ background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }}
+/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+.rad-onfig .rd-chip {{ position: absolute; left: 50%; top: 50%; z-index: 3; }}
+/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+   칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
+.ws-rad.rad-onfig {{ --r: 150px; }}
+.ws-rad.rad-onfig.on .rd-chip {{
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(calc(-1 * var(--r))) rotate(calc(-1 * var(--a))) scale(1); }}
+@media (max-width: 900px) {{ .ws-rad.rad-onfig {{ --r: 118px; }} }}
+@media (max-width: 700px) {{ .ws-rad.rad-onfig {{ --r: 96px; }} }}
+@media (max-width: 560px) {{
+  /* 🔴 폰(390)에서 도식은 330px — 원형에 칩 8개는 못 들어간다. 도식은 그대로 두고 칩만 아래 그리드로. */
+  .rad-onfig .rd-chip {{ position: static; transform: none !important; }}
+  .ws-rad.rad-onfig.on .rd-fig {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }}
+  .ws-rad.rad-onfig.on .rd-fig > img {{ grid-column: 1 / -1; opacity: 1; filter: none; }}
+  .rad-onfig.on .rd-hot {{ display: none; }}
+}}
 @keyframes rdflash {{ 0%,100% {{ box-shadow: none; }} 18% {{ box-shadow: 0 0 0 5px rgba(184,134,43,.45); }} }}
 @media (max-width: 560px) {{
   .rd-stage {{ aspect-ratio: auto; max-width: 100%; display: grid;
@@ -2753,7 +2806,7 @@ if(EXAM_MODE){{
 
 /* 🎯 방사형 펼침 — 중심 클릭으로 펼치고, 칩 클릭으로 설명을 연다 */
 document.querySelectorAll('.ws-rad').forEach(function(rad){{
-  var core = rad.querySelector('.rd-core');
+  var core = rad.querySelector('.rd-core') || rad.querySelector('.rd-hot');
   var chips = rad.querySelectorAll('.rd-chip');
   var panels = rad.querySelectorAll('.rd-panel');
   function hideAll(){{ panels.forEach(function(p){{ p.hidden = true; }});
