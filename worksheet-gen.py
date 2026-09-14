@@ -202,6 +202,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     cmp_slides = []           # [(제목, [(캡션,경로), (캡션,경로)]), ...]
     in_flip = False           # 2026-09-03: 뒤집는 카드 (:::플립 ... :::)
     flip_items = []
+    in_rad = False            # 2026-09-14: 방사형 펼침 (:::펼침 ... :::)
+    rad_rows = []
+    rad_center, rad_note = '', ''
     in_tb = False             # 2026-09-02: 교과서를 펴는 자리 (:::교과서 <라벨> ... :::)
     tb_label = ''             #   학습지 안(파랑)과 교과서 밖(황토)을 색으로 갈라 놓는다.
     tb_lines = []
@@ -502,6 +505,56 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   도식이 구조를 말하고 카드가 얼굴을 붙인다 — 도식을 대체하지 않고 그 아래에 둔다.
         #   ⚠️ 뒷면은 **새 정보**여야 한다. 앞면을 반복하면 뒤집을 이유가 없다.
         #   본문 규약: ![앞면 제목|앞면 부제|뒷면 설명](이미지)
+        # 🎯 방사형 펼침 (:::펼침 ... :::) — 2026-09-14 천대현
+        #   "분쟁을 클릭하면 MX Master 마우스 도구처럼 동그랗게 사례들이 표시되고
+        #    하나씩 클릭할 수 있고, 클릭하면 해당 자료로 연결"
+        #   중심 = 한 개념 · 둘레 = 그 개념이 갈라지는 영역 · 칩 클릭 = 설명 + 차시 안 이동.
+        #   🔴 판정 활동이 뒤에 있는 영역은 «사례»를 적지 말 것 — 답을 미리 준다.
+        #      그 영역은 안내만 둔다(«활동에서 직접 판정»).
+        #   규약: <영역> | <한 줄 설명> | <어디서 만나나> | [CSS 선택자(생략 가능)]
+        if stripped.startswith(':::펼침'):
+            in_rad = True
+            _rh = stripped[len(':::펼침'):].strip()
+            rad_center, rad_note = '분쟁', ''
+            if _rh.startswith('[') and ']' in _rh:
+                rad_center = _rh[1:_rh.index(']')].strip()
+                rad_note = _rh[_rh.index(']') + 1:].strip()
+            else:
+                rad_note = _rh
+            rad_rows = []
+            continue
+        if in_rad:
+            if stripped == ':::':
+                if rad_rows:
+                    rid = 'rd%d' % len(html_parts)
+                    n = len(rad_rows)
+                    chips, panels = [], []
+                    for k, (nm, desc, where, sel) in enumerate(rad_rows):
+                        ang = -90 + (360.0 / n) * k
+                        chips.append(
+                            '<button type="button" class="rd-chip" style="--a:%.2fdeg" '
+                            'data-i="%d" aria-label="%s 보기">%s</button>'
+                            % (ang, k, re.sub(r'<[^>]+>', '', inline(nm)), inline(nm)))
+                        _go = ('<span class="rd-go" data-sel="%s">눌러서 그 자리로</span>' % sel) if sel else ''
+                        panels.append(
+                            '<div class="rd-panel" data-i="%d" hidden><b>%s</b><p>%s</p><i>%s</i>%s</div>'
+                            % (k, inline(nm), inline(desc), inline(where), _go))
+                    html_parts.append(
+                        '<div class="ws-rad" id="%s" style="--n:%d">%s'
+                        '<div class="rd-stage"><button type="button" class="rd-core">%s<u>누르기</u></button>'
+                        '%s</div><div class="rd-panels">%s</div></div>'
+                        % (rid, n,
+                           ('<div class="rd-note">%s</div>' % inline(rad_note)) if rad_note else '',
+                           inline(rad_center), ''.join(chips), ''.join(panels)))
+                in_rad = False
+                rad_rows = []
+                continue
+            if '|' in stripped:
+                _c = [x.strip() for x in stripped.strip('|').split('|')]
+                while len(_c) < 4: _c.append('')
+                if _c[0]: rad_rows.append((_c[0], _c[1], _c[2], _c[3]))
+            continue
+
         if stripped.startswith(':::플립'):
             in_flip = True
             _fh = stripped[len(':::플립'):].strip()
@@ -2019,6 +2072,52 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   object-fit: contain; border-radius: 8px; }}
 .flip-wide .ws-flip-b i {{ font-size: .82em; margin-top: 8px; padding: 0 4px; }}
 .flip-wide .ws-flip-f u {{ font-size: .8em; }}
+/* 🎯 방사형 펼침 — 2026-09-14. 중심 개념을 누르면 영역들이 둘레로 펼쳐진다.
+   🔴 폰에서 원형은 좁다 — 560px 아래에서는 원을 풀고 그리드로 내린다(칩 글자가 겹치는 것보다 낫다). */
+.ws-rad {{ margin: 18px 0 22px; }}
+.rd-note {{ font-size: .88em; color: #7a6a4a; margin: 0 2px 10px; }}
+.rd-stage {{ position: relative; width: 100%; max-width: 520px; margin: 0 auto;
+  aspect-ratio: 1 / 1; }}
+.rd-core {{ position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 112px; height: 112px; border-radius: 50%; cursor: pointer;
+  background: #fdecec; border: 3px solid #c0392b; color: #7d241a;
+  font-family: inherit; font-size: 1.18em; font-weight: 800; line-height: 1.2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  box-shadow: 0 3px 10px rgba(192,57,43,.18); transition: transform .2s, box-shadow .2s; z-index: 3; }}
+.rd-core u {{ text-decoration: none; font-size: .52em; font-weight: 600; color: #b2685f; }}
+.rd-core:hover {{ transform: translate(-50%,-50%) scale(1.04); }}
+.ws-rad.on .rd-core {{ box-shadow: 0 0 0 7px rgba(192,57,43,.10), 0 3px 10px rgba(192,57,43,.2); }}
+.rd-chip {{ position: absolute; left: 50%; top: 50%; cursor: pointer;
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(0) rotate(calc(-1 * var(--a))) scale(.4);
+  opacity: 0; pointer-events: none;
+  background: #fff; border: 2px solid #cfd5de; border-radius: 999px;
+  padding: 7px 13px; font-family: inherit; font-size: .84em; font-weight: 700; color: #3a4351;
+  white-space: nowrap; transition: transform .42s cubic-bezier(.34,1.3,.5,1), opacity .3s; }}
+.ws-rad.on .rd-chip {{ opacity: 1; pointer-events: auto;
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(-178px) rotate(calc(-1 * var(--a))) scale(1); }}
+.rd-chip:hover {{ border-color: #64748b; background: #f6f8fb; }}
+.rd-chip.sel {{ background: #64748b; border-color: #64748b; color: #fff; }}
+.rd-panels {{ margin-top: 6px; }}
+.rd-panel {{ background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; }}
+.rd-panel b {{ display: block; font-size: 1.04em; color: #2f3846; margin-bottom: 5px; }}
+.rd-panel p {{ margin: 0 0 6px; font-size: .93em; color: #3a4351; line-height: 1.7; }}
+.rd-panel i {{ font-style: normal; font-size: .86em; color: #6b7480; }}
+.rd-go {{ display: inline-block; margin-left: 8px; font-size: .82em; font-weight: 700;
+  color: #b8862b; border-bottom: 1px dashed #b8862b; cursor: pointer; }}
+.rd-flash {{ animation: rdflash 1.5s ease-out 1; }}
+@keyframes rdflash {{ 0%,100% {{ box-shadow: none; }} 18% {{ box-shadow: 0 0 0 5px rgba(184,134,43,.45); }} }}
+@media (max-width: 560px) {{
+  .rd-stage {{ aspect-ratio: auto; max-width: 100%; display: grid;
+    grid-template-columns: repeat(2, 1fr); gap: 7px; }}
+  .rd-core {{ position: static; transform: none; width: 100%; height: 62px; border-radius: 12px;
+    grid-column: 1 / -1; }}
+  .rd-core:hover {{ transform: none; }}
+  .rd-chip {{ position: static; transform: none !important; opacity: 1; pointer-events: auto;
+    white-space: normal; padding: 9px 6px; text-align: center; }}
+  .ws-rad:not(.on) .rd-chip {{ display: none; }}
+}}
+@media (prefers-reduced-motion: reduce) {{ .rd-chip {{ transition: none; }} .rd-flash {{ animation: none; }} }}
 
 /* 🀄 한자 카드 — 2026-09-07. 「오늘의 고급 단어」를 표 대신 카드로.
    앞면=이미지+한자 / 뒷면=뜯어보기·뜻·문장·가족 낱말. 세로로 안 늘리고 옆으로 넘긴다. */
@@ -2651,6 +2750,36 @@ if(EXAM_MODE){{
     el.addEventListener('change',()=>{{ if(_wsKey()) loadProgress(); }});
   }});
 }}
+
+/* 🎯 방사형 펼침 — 중심 클릭으로 펼치고, 칩 클릭으로 설명을 연다 */
+document.querySelectorAll('.ws-rad').forEach(function(rad){{
+  var core = rad.querySelector('.rd-core');
+  var chips = rad.querySelectorAll('.rd-chip');
+  var panels = rad.querySelectorAll('.rd-panel');
+  function hideAll(){{ panels.forEach(function(p){{ p.hidden = true; }});
+                       chips.forEach(function(c){{ c.classList.remove('sel'); }}); }}
+  core.addEventListener('click', function(){{
+    rad.classList.toggle('on');
+    if(!rad.classList.contains('on')) hideAll();
+  }});
+  chips.forEach(function(c){{
+    c.addEventListener('click', function(){{
+      var i = c.getAttribute('data-i');
+      var was = !panels[i].hidden;
+      hideAll();
+      if(!was){{ panels[i].hidden = false; c.classList.add('sel'); }}
+    }});
+  }});
+  rad.querySelectorAll('.rd-go').forEach(function(g){{
+    g.addEventListener('click', function(){{
+      var t = document.querySelector(g.getAttribute('data-sel'));
+      if(!t) return;
+      t.scrollIntoView({{behavior:'smooth', block:'center'}});
+      t.classList.add('rd-flash');
+      setTimeout(function(){{ t.classList.remove('rd-flash'); }}, 1600);
+    }});
+  }});
+}});
 </script>
 </body>
 </html>'''
