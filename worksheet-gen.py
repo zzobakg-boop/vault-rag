@@ -504,10 +504,33 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   본문 규약: ![앞면 제목|앞면 부제|뒷면 설명](이미지)
         if stripped.startswith(':::플립'):
             in_flip = True
+            _fh = stripped[len(':::플립'):].strip()
+            # 2026-09-14 와이드 변종 — 천대현 "3단계 도식을 뒤집으면 사진이 나오도록".
+            #   기본 플립은 카드가 260x232 이고 뒷면 이미지를 136px 로 **잘라** 넣는다(object-fit:cover).
+            #   도식↔실물 사진 쌍은 그 크기에 안 들어가므로 한 장짜리 와이드로 받는다.
+            #   규약: 첫 이미지 = 앞면(도식) · 둘째 = 뒷면(실물). 캡션이 곧 뒷면 설명.
+            flip_wide = _fh.startswith('와이드')
             flip_items = []
             continue
         if in_flip:
             if stripped == ':::':
+                if flip_items and flip_wide and len(flip_items) >= 2:
+                    _f_src = flip_items[0][3]
+                    _b_t, _b_sub, _b_back, _b_src = flip_items[1]
+                    _alt = re.sub(r'<[^>]+>', '', inline(flip_items[0][0]))
+                    _bal = re.sub(r'<[^>]+>', '', inline(_b_back or _b_t))
+                    html_parts.append(
+                        '<div class="ws-flip-row fw-row">'
+                        '<button class="ws-flip flip-wide" type="button" aria-label="도식 뒤집어 실물 사진 보기" '
+                        'onclick="this.classList.toggle(\'on\')">'
+                        '<span class="ws-flip-in">'
+                        '<span class="ws-flip-f"><img src="%s" alt="%s"><u>눌러서 «실제 모습» 보기</u></span>'
+                        '<span class="ws-flip-b"><img src="%s" alt="%s"><i>%s</i></span>'
+                        '</span></button></div>'
+                        % (_f_src, _alt, _b_src, _bal, inline(_b_back or _b_t)))
+                    in_flip = False
+                    flip_items = []
+                    continue
                 if flip_items:
                     _c = []
                     for _t, _sub, _back, _src in flip_items:
@@ -1983,6 +2006,19 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-flip-b img {{ width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }}
 .ws-flip-b i {{ font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }}
 @media (prefers-reduced-motion: reduce) {{ .ws-flip-in {{ transition: none; }} }}
+/* 🃏 와이드 플립 — 도식(앞) ↔ 실물 사진(뒤). 2026-09-14.
+   🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
+      그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
+      도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+.ws-flip-row.fw-row {{ display: block; margin: 16px 0 20px; }}
+.ws-flip.flip-wide {{ display: block; width: 100%; max-width: 100%; height: auto;
+  aspect-ratio: 1200 / 720; perspective: 1400px; }}
+.flip-wide .ws-flip-f, .flip-wide .ws-flip-b {{ padding: 10px; gap: 8px; }}
+.flip-wide .ws-flip-f img {{ width: 100%; height: auto; max-height: 84%; object-fit: contain; }}
+.flip-wide .ws-flip-b img {{ width: 100%; height: auto; max-height: 74%;
+  object-fit: contain; border-radius: 8px; }}
+.flip-wide .ws-flip-b i {{ font-size: .82em; margin-top: 8px; padding: 0 4px; }}
+.flip-wide .ws-flip-f u {{ font-size: .8em; }}
 
 /* 🀄 한자 카드 — 2026-09-07. 「오늘의 고급 단어」를 표 대신 카드로.
    앞면=이미지+한자 / 뒷면=뜯어보기·뜻·문장·가족 낱말. 세로로 안 늘리고 옆으로 넘긴다. */
