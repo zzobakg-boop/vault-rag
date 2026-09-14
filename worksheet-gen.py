@@ -1299,26 +1299,32 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
 
 
 def inline(text):
-    """인라인 마크다운 → HTML"""
-    # input 태그 보호
-    parts = re.split(r'(<input[^>]+>)', text)
-    result = []
-    for part in parts:
-        if part.startswith('<input') or part.startswith('<textarea'):
-            result.append(part)
-        else:
-            # 2026-08-20: [제목](http…) 링크 지원 — 영상 자료 삽입용. 볼드·이탤릭보다 먼저 처리해 URL이 훼손되지 않게.
-            part = re.sub(r'\[([^\]]+)\]\((https?://[^)\s]+)\)',
-                          r'<a href="\2" target="_blank" rel="noopener">\1</a>', part)
-            # 2026-09-04: `인라인 코드` 지원. 종전엔 처리가 없어 **백틱이 학생 화면에 글자로 나갔다**
-            #   (실측: 발행본 120개 중 41개에 미변환 백틱 — 34%). 볼드·이탤릭보다 먼저 처리해
-            #   코드 안의 별표가 강조로 먹히지 않게 한다.
-            part = re.sub(r'`([^`\n]+?)`', lambda m: '<code>' + m.group(1)
-                          .replace('&','&amp;').replace('<','&lt;').replace('>','&gt;') + '</code>', part)
-            part = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', part)
-            part = re.sub(r'\*([^*\n]+?)\*', r'<em>\1</em>', part)  # 2026-05-30: *이탤릭* 지원 (입담 voice 강조어)
-            result.append(part)
-    return ''.join(result)
+    """인라인 마크다운 → HTML
+
+    🔴 2026-09-14 — 종전에는 input 태그를 기준으로 문자열을 **쪼개** 조각마다
+       강조를 처리했다. 그래서 강조가 빈칸을 걸치면(`**서로 다른 ⑥(　)**`)
+       `**` 의 짝이 서로 다른 조각에 나뉘어 **어느 쪽도 매칭되지 않고 별표가
+       학생 화면에 글자로 나갔다.** 실측: 발행본 18개(사회·역사 공통).
+       → 태그를 자리표로 치환해 **한 문자열로** 처리한 뒤 되돌린다.
+       자리표에는 `*`·백틱·대괄호가 없으므로 강조·코드·링크 어느 것도 태그를
+       건드리지 못한다(종전 «보호»의 목적은 그대로 지킨다).
+    """
+    holds = []
+
+    def _stash(m):
+        holds.append(m.group(0))
+        return '\x00%d\x00' % (len(holds) - 1)
+
+    text = re.sub(r'<textarea[^>]*>.*?</textarea>|<input[^>]*>', _stash, text, flags=re.S)
+    # [제목](http…) 링크 — 볼드·이탤릭보다 먼저 처리해 URL이 훼손되지 않게.
+    text = re.sub(r'\[([^\]]+)\]\((https?://[^)\s]+)\)',
+                  r'<a href="\2" target="_blank" rel="noopener">\1</a>', text)
+    # `인라인 코드` — 볼드·이탤릭보다 먼저(코드 안 별표가 강조로 먹히지 않게).
+    text = re.sub(r'`([^`\n]+?)`', lambda m: '<code>' + m.group(1)
+                  .replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;') + '</code>', text)
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    text = re.sub(r'\*([^*\n]+?)\*', r'<em>\1</em>', text)
+    return re.sub(r'\x00(\d+)\x00', lambda m: holds[int(m.group(1))], text)
 
 
 def md_to_html(md):
