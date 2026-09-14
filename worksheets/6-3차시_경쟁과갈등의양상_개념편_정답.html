@@ -307,19 +307,29 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   .ws-tl-tabs, .ws-tl-stage, .ws-tl-say { display: none; }
   .tl-print { display: table; width: 100%; }
 }
-}
 
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+/* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
+   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+      파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
+      computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
+      — 디자인이 약한 게 아니라 **없었다.**
+   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+      16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
+      음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
+   계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
+   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
 .ws-read {
-  background: #f5f6f8; border: 1px solid #dfe3e8; border-left: 5px solid #98a2b3;
-  border-radius: 0 0 10px 10px; padding: 13px 18px 15px; margin: -10px 0 20px;
-  color: #3d4552; font-size: 0.93em; line-height: 1.78;
+  background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
+  color: #3a4351; font-size: 0.93em; line-height: 1.78;
 }
 .ws-read .ws-read-tag {
-  display: inline-block; font-size: 0.72em; font-weight: 800; color: #7a828f;
-  letter-spacing: 0.06em; margin-bottom: 5px;
+  display: inline-block; background: #64748b; color: #fff;
+  font-size: 0.76em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
@@ -799,6 +809,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>📕 교과서 원문: "제2차 세계 대전 이후 미국과 구소련을 중심으로 한 이념 경쟁이 치열하였으나, 1990년대 들어서는 이념 경쟁에 묻혀 있었던 새로운 갈등 요소들이 나타나고 있다. 우선 세계화 시대에 접어들면서, 자국의 경제적 이익을 추구하는 과정에서 국가 간 경쟁이 더욱 치열해지고 있다." — 천재교육 사회②(구정화) 116쪽</blockquote>
 <br>
 <blockquote>💡 <strong>"묻혀 있었던"이라는 말을 놓치지 말 것.</strong> 교과서가 <em>새로 생겼다</em>가 아니라 <em>묻혀 있었다</em>고 쓴다. 큰 대립 하나가 사라지자 그 아래 있던 갈래가 보이게 된 것이다. <strong>OX 2번이 정확히 이 낱말 하나를 묻는다.</strong></blockquote>
+<blockquote>⚠️ 🔴 <strong>같은 문장에 「새로운」도 함께 있다</strong> — <em>"묻혀 있었던 <strong>새로운</strong> 갈등 요소들"</em>. 학생이 교과서를 펴면 그 낱말이 먼저 눈에 들어와 <em>"새로 생긴 것"</em> 으로 읽을 수 있다. 개념편 2단계 해설에 <strong>「그전에 없던」이 아니라 「이제야 드러난」</strong>이라고 못 박아 두었으니 그 대목을 함께 짚어 줄 것.</blockquote>
+<blockquote>📌 <strong>2026 2학기 1차 지필 17번이 정확히 이 자리에서 복수 정답 위험이 났다</strong> — 오답 선지 <em>"그전에는 존재하지 않던 갈등이 새로 생겨났다"</em> 가 교과서 같은 문장의 뒷부분으로 방어됐다(문항은 대상을 「민족·종교 갈등」으로 좁혀 확정). 이 낱말은 <strong>시험까지 이어지는 자리</strong>다.</blockquote>
 <blockquote>배경 보충 — 제2차 세계 대전 이후 국제 사회는 미국 중심 자유주의 진영과 구소련 중심 사회주의 진영으로 나뉘어 대립했다.</blockquote>
 <br>
 <h2>📖 3단계: 경쟁은 어떻게 분쟁이 되나</h2>
@@ -831,7 +843,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ <strong>사이버 공간이 갈등의 무대라는 말, 남 얘기 같지?</strong> 네가 쓰는 앱이 어느 나라 것인지, 네 사진이 어느 나라 서버에 저장되는지 생각해 봐. <strong>나라끼리 그걸 두고 다툰다.</strong> 100년 전 사람들은 상상도 못 한 다툼거리야.</blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 117쪽 · 스스로 탐구 「국가 간 갈등의 유형과 사례」</div><div class="ws-tb-see">표에 일곱 영역이 나온다 — 경제 · 환경 · 보건 · 범죄 · 물리적 폭력 · 식량과 자원 · 문화적 차이 · 사이버 공간.</div><div class="ws-tb-ask">그중 <strong>네 생활과 가장 가깝다고 느껴지는 것</strong> 하나를 고르고, 왜 그런지 한 줄로 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 117쪽에서 찾기 — 그중 네 생활과 가장 가깝다고 느껴지는 것 하나를 고르고, 왜 그런지" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 117쪽 · 스스로 탐구 「국가 간 갈등의 유형과 사례」</div><div class="ws-tb-see">표에 여러 영역이 나온다 — 경제 · 환경 · 보건 · 범죄 · 물리적 폭력 · 식량과 자원 · 문화적 차이 · 사이버 공간.</div><div class="ws-tb-ask">그중 <strong>네 생활과 가장 가깝다고 느껴지는 것</strong> 하나를 고르고, 왜 그런지 한 줄로 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 117쪽에서 찾기 — 그중 네 생활과 가장 가깝다고 느껴지는 것 하나를 고르고, 왜 그런지" style="width:400px" placeholder=""></div></div>
 <br>
 <blockquote><strong>답: 정답이 없다.</strong> 고른 영역과 까닭이 이어지면 인정한다. 보건(전염병), 사이버 공간(사이버 범죄), 환경(대기 오염)이 학생 경험과 가장 가깝게 나온다.</blockquote>
 <br>
@@ -853,6 +865,15 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🔑 <strong>나라 수나 사건의 무게로 고르면 어긋난다.</strong> 우주 개발도 미국·중국 두 나라 일이고 규모도 크지만 <strong>경쟁</strong>이다. 기준은 오직 <strong>어디까지 왔나</strong>다.</blockquote>
 <blockquote>교과서 톡톡톡 보충 — 미국은 2030년까지 인류의 화성 왕복을 목표로 하고, 중국은 2011년 9월 톈궁 1호를 발사해 미국·러시아에 이어 세계 3번째로 우주 정거장을 보유했다. 우주 개발 외 경쟁 분야로는 <strong>국방비 증액·신무기 개발·자원 확보·올림픽·특허</strong>가 있다.</blockquote>
 <br>
+<h2>✏️ 활동 2 — 어느 영역의 갈등일까?</h2>
+<br>
+<div class="ws-pick" id="pk101"><div class="pk-head"><span>다섯은 각각 어느 영역일까? <strong>교과서 117쪽 표</strong>를 펴고 고르자. 다 고르면 답이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid"><div class="pk-card pk-noimg" data-i="0" data-ans="경제"><div class="pk-name">관세 맞대응</div><div class="pk-sit">한 나라가 상대국 물건에 세금을 더 매기자, 그 나라도 똑같이 되갚았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="물리적 폭력">물리적 폭력</button></div><div class="pk-why" hidden>서로의 시장을 두고 부딪히는 다툼이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="경제"><div class="pk-name">꼭 필요한 광물</div><div class="pk-sit">산업에 없어서는 안 될 광물의 수출을 한 나라가 막자 다른 나라들이 대응에 나섰다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="물리적 폭력">물리적 폭력</button></div><div class="pk-why" hidden>자원 문제로 보이지만, 부딪히는 자리는 «물건을 만들어 파는 일»이다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="보건"><div class="pk-name">백신 먼저 확보</div><div class="pk-sit">전염병이 퍼지자 나라마다 자국민 몫을 먼저 챙기려 했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="물리적 폭력">물리적 폭력</button></div><div class="pk-why" hidden>건강 문제도 국경을 넘으면 갈등이 된다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="범죄"><div class="pk-name">수사 자료 거부</div><div class="pk-sit">국경을 넘나드는 조직을 쫓는데 상대국이 자료를 넘겨주지 않았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="물리적 폭력">물리적 폭력</button></div><div class="pk-why" hidden>한 나라 힘만으로는 못 잡는 종류의 문제다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="물리적 폭력"><div class="pk-name">테러와 보복</div><div class="pk-sit">테러가 일어나자 피해국이 무력으로 되갚았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="물리적 폭력">물리적 폭력</button></div><div class="pk-why" hidden>힘이 직접 오가는, 가장 무거운 자리다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk101");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["경제", "보건", "범죄", "물리적 폭력"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<br>
+<blockquote>✅ <strong>스스로 점검</strong> — <strong>사건의 소재로 고르면 어긋난다.</strong> 「꼭 필요한 광물」은 자원 이야기처럼 보이지만 나라들이 부딪히는 자리는 <em>물건을 만들어 파는 일</em>이다. 기준은 <strong>무엇을 두고 다투는가</strong>야.</blockquote>
+<br>
+<blockquote>🔑 <strong>왜 이 다섯을 골랐나</strong> — 본문 4단계가 다루는 영역(민족·종교·자원·환경·가치관·사이버)과 <strong>겹치지 않는 영역</strong>으로만 짰다. 교과서 117쪽 표를 펴지 않으면 고르기 어렵게 하려는 것이다.</blockquote>
+<blockquote>⚠️ <strong>「꼭 필요한 광물」이 이 활동의 판별 지점</strong>이다 — <em>식량과 자원</em>으로 고르는 학생이 나올 수 있다. 교과서 표가 그 사례를 어느 칸에 두었는지 <strong>수업 전에 한 번 확인</strong>해 두면 좋다. 표와 다르면 그 칸 이름으로 고쳐 준다.</blockquote>
+<br>
 <h2>❓ OX 퀴즈 (정답·해설)</h2>
 <br>
 <table>
@@ -860,7 +881,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>1</td><td>국제 사회의 경쟁은 그 자체로 나쁜 것이므로 없애야 한다.</td><td><strong>X</strong></td><td>경쟁 자체가 문제가 아니라 갈등·분쟁으로 넘어갈 때가 문제다</td></tr>
 <tr><td>2</td><td>1990년대에 들어 드러난 갈등 요소들은 그전에는 아예 없던 것들이다.</td><td><strong>X</strong></td><td>교과서는 <em>"이념 경쟁에 묻혀 있었던"</em> 이라고 쓴다. 없던 것이 아니라 가려져 있었다</td></tr>
 <tr><td>3</td><td>인권을 보는 눈이 다른 것처럼, 서로 다른 가치관도 갈등의 원인이 될 수 있다.</td><td><strong>O</strong></td><td>교과서 116쪽 마지막 문장</td></tr>
-<tr><td>4</td><td>갈등의 영역에는 경제와 영토뿐 아니라 보건·사이버 공간도 포함된다.</td><td><strong>O</strong></td><td>117쪽 표의 일곱 영역</td></tr>
+<tr><td>4</td><td>갈등의 영역에는 경제와 영토뿐 아니라 보건·사이버 공간도 포함된다.</td><td><strong>O</strong></td><td>117쪽 표의 여러 영역</td></tr>
 <tr><td>5</td><td>난민 배정을 둘러싼 유럽 연합의 갈등은 회원국들의 목표가 정반대였기 때문에 생겼다.</td><td><strong>X</strong></td><td>목표는 같았고 <strong>부담을 누가 얼마나 질 것인가</strong>에서 갈렸다</td></tr>
 </table>
 <br>
