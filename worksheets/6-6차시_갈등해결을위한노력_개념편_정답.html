@@ -193,6 +193,16 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
+/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+   차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
+   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
+   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+.pk-gold .pk-card.pk-noimg { padding-top: 0; }
+.pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
+.pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
+.pk-gold .pk-card.pk-noimg .pk-btns .pk-b { flex: 0 0 auto; }
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
@@ -990,6 +1000,17 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>💡 <strong>반크(VANK)는 Voluntary Agency Network of Korea의 줄임말</strong>이다. 학생이 은행(bank)으로 잘못 듣는 일이 실제로 잦아 입담에 그 오해를 먼저 꺼내 뒀다.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 누가 하는 일인가 (정답·해설)</h2>
+<br>
+<blockquote>🃏 🔴 <strong>2026-09-15 — 그림 카드로 올리려다 접었다.</strong> 6-1~6-4의 활동 1은 전부 <code>:::인물선택카드</code>(그림)인데 6-5·6-6만 글자 카드였다. 6-5는 셋에 사진을 붙여 올렸지만 <strong>6-6은 넷 중 하나밖에 자료가 없었다.</strong></blockquote>
+<blockquote>| 카드 | 자유 라이선스 자료 |</blockquote>
+<blockquote>|---|---|</blockquote>
+<blockquote>| 동북아역사재단 | 있음 — 재단 주최 「동북아역사 아카데미」 행사 사진(2014·KOCIS · CC BY-SA 2.0) |</blockquote>
+<blockquote>| 반크 | <strong>없음</strong> — 검색어 「VANK」는 이란 이스파한의 <strong>반크 대성당</strong>만 나온다 |</blockquote>
+<blockquote>| 민관 협력 위원회 | <strong>없음</strong> |</blockquote>
+<blockquote>| 인천광역시 의회 | <strong>없음</strong> |</blockquote>
+<blockquote>🔑 <strong>한 장만 좋은 묶음은 안 넣느니만 못하다</strong> — 6-2 3단계(국경없는의사회·세이브더칠드런·그린피스)에서 세운 판정을 그대로 적용했다. 금테 카드 넷 중 하나만 사진이 있으면 그 하나가 정답처럼 도드라진다.</blockquote>
+<blockquote>⚠️ <strong>이 차시의 카드는 「이름으로 고르면 틀린다」가 핵심</strong>이어서, 사진이 오히려 힌트가 될 위험도 있다(재단 건물 사진 = 「정부 같다」). 글자 카드가 이 활동에는 맞다는 판단이다.</blockquote>
+<br>
 <br>
 <table>
 <tr><td>사례</td><td>답</td><td>왜</td></tr>
