@@ -488,6 +488,92 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
 .ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
 @media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+/* 🃏 와이드 플립 — 도식(앞) ↔ 실물 사진(뒤). 2026-09-14.
+   🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
+      그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
+      도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+.ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
+.ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
+  aspect-ratio: 1200 / 720; perspective: 1400px; }
+.flip-wide .ws-flip-f, .flip-wide .ws-flip-b { padding: 10px; gap: 8px; }
+.flip-wide .ws-flip-f img { width: 100%; height: auto; max-height: 84%; object-fit: contain; }
+.flip-wide .ws-flip-b img { width: 100%; height: auto; max-height: 74%;
+  object-fit: contain; border-radius: 8px; }
+.flip-wide .ws-flip-b i { font-size: .82em; margin-top: 8px; padding: 0 4px; }
+.flip-wide .ws-flip-f u { font-size: .8em; }
+/* 🎯 방사형 펼침 — 2026-09-14. 중심 개념을 누르면 영역들이 둘레로 펼쳐진다.
+   🔴 폰에서 원형은 좁다 — 560px 아래에서는 원을 풀고 그리드로 내린다(칩 글자가 겹치는 것보다 낫다). */
+.ws-rad { margin: 18px 0 22px; }
+.rd-note { font-size: .88em; color: #7a6a4a; margin: 0 2px 10px; }
+.rd-stage { position: relative; width: 100%; max-width: 520px; margin: 0 auto;
+  aspect-ratio: 1 / 1; }
+.rd-core { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 112px; height: 112px; border-radius: 50%; cursor: pointer;
+  background: #fdecec; border: 3px solid #c0392b; color: #7d241a;
+  font-family: inherit; font-size: 1.18em; font-weight: 800; line-height: 1.2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  box-shadow: 0 3px 10px rgba(192,57,43,.18); transition: transform .2s, box-shadow .2s; z-index: 3; }
+.rd-core u { text-decoration: none; font-size: .52em; font-weight: 600; color: #b2685f; }
+.rd-core:hover { transform: translate(-50%,-50%) scale(1.04); }
+.ws-rad.on .rd-core { box-shadow: 0 0 0 7px rgba(192,57,43,.10), 0 3px 10px rgba(192,57,43,.2); }
+.rd-chip { position: absolute; left: 50%; top: 50%; cursor: pointer;
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(0) rotate(calc(-1 * var(--a))) scale(.4);
+  opacity: 0; pointer-events: none;
+  background: #fff; border: 2px solid #cfd5de; border-radius: 999px;
+  padding: 7px 13px; font-family: inherit; font-size: .84em; font-weight: 700; color: #3a4351;
+  white-space: nowrap; transition: transform .42s cubic-bezier(.34,1.3,.5,1), opacity .3s; }
+.ws-rad.on .rd-chip { opacity: 1; pointer-events: auto;
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(-178px) rotate(calc(-1 * var(--a))) scale(1); }
+.rd-chip:hover { border-color: #64748b; background: #f6f8fb; }
+.rd-chip.sel { background: #64748b; border-color: #64748b; color: #fff; }
+.rd-panels { margin-top: 6px; }
+.rd-panel { background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; }
+.rd-panel b { display: block; font-size: 1.04em; color: #2f3846; margin-bottom: 5px; }
+.rd-panel p { margin: 0 0 6px; font-size: .93em; color: #3a4351; line-height: 1.7; }
+.rd-panel i { font-style: normal; font-size: .86em; color: #6b7480; }
+.rd-go { display: inline-block; margin-left: 8px; font-size: .82em; font-weight: 700;
+  color: #b8862b; border-bottom: 1px dashed #b8862b; cursor: pointer; }
+.rd-flash { animation: rdflash 1.5s ease-out 1; }
+/* 🎯 도식 통합 모드 — 도식 칸을 눌러 그 자리에서 펼친다(세로 증가 0) */
+.rad-onfig .rd-fig { position: relative; }
+.rad-onfig .rd-fig > img { width: 100%; height: auto; display: block;
+  transition: opacity .32s, filter .32s; }
+.rad-onfig.on .rd-fig > img { opacity: .26; filter: grayscale(.35); }
+.rd-hot { position: absolute; background: rgba(192,57,43,.05); border: 0; cursor: pointer;
+  border-radius: 14px; padding: 0; transition: background .2s, box-shadow .2s; z-index: 2; }
+.rd-hot span { position: absolute; left: -9999px; }
+.rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
+.rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
+.rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
+/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+.rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
+/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+   칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
+.ws-rad.rad-onfig { --r: 150px; }
+.ws-rad.rad-onfig.on .rd-chip {
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(calc(-1 * var(--r))) rotate(calc(-1 * var(--a))) scale(1); }
+@media (max-width: 900px) { .ws-rad.rad-onfig { --r: 118px; } }
+@media (max-width: 700px) { .ws-rad.rad-onfig { --r: 96px; } }
+@media (max-width: 560px) {
+  /* 🔴 폰(390)에서 도식은 330px — 원형에 칩 8개는 못 들어간다. 도식은 그대로 두고 칩만 아래 그리드로. */
+  .rad-onfig .rd-chip { position: static; transform: none !important; }
+  .ws-rad.rad-onfig.on .rd-fig { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
+  .ws-rad.rad-onfig.on .rd-fig > img { grid-column: 1 / -1; opacity: 1; filter: none; }
+  .rad-onfig.on .rd-hot { display: none; }
+}
+@keyframes rdflash { 0%,100% { box-shadow: none; } 18% { box-shadow: 0 0 0 5px rgba(184,134,43,.45); } }
+@media (max-width: 560px) {
+  .rd-stage { aspect-ratio: auto; max-width: 100%; display: grid;
+    grid-template-columns: repeat(2, 1fr); gap: 7px; }
+  .rd-core { position: static; transform: none; width: 100%; height: 62px; border-radius: 12px;
+    grid-column: 1 / -1; }
+  .rd-core:hover { transform: none; }
+  .rd-chip { position: static; transform: none !important; opacity: 1; pointer-events: auto;
+    white-space: normal; padding: 9px 6px; text-align: center; }
+  .ws-rad:not(.on) .rd-chip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .rd-chip { transition: none; } .rd-flash { animation: none; } }
 
 /* 🀄 한자 카드 — 2026-09-07. 「오늘의 고급 단어」를 표 대신 카드로.
    앞면=이미지+한자 / 뒷면=뜯어보기·뜻·문장·가족 낱말. 세로로 안 늘리고 옆으로 넘긴다. */
@@ -759,6 +845,35 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+.ws-mos { margin: 20px auto 24px; max-width: 100%; }
+.ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
+.ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.ws-mos-cell { margin: 0; cursor: pointer; background: #fff; border: 1px solid #d8d2c4;
+  border-radius: 12px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  transition: box-shadow 0.18s, border-color 0.18s; }
+.ws-mos-cell:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.14); }
+.ws-mos-cell:focus-visible { outline: 3px solid #4a5c40; outline-offset: 2px; }
+.ws-mos-cell.on { border-color: #4a5c40; }
+.mos-shot { position: relative; display: block; }
+.mos-shot img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.mos-badge { position: absolute; left: 8px; bottom: 8px; background: rgba(28,34,26,0.84);
+  color: #fff; font-size: 0.78em; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.mos-note { display: none; text-align: left; padding: 10px 12px 12px; font-size: 0.86em;
+  line-height: 1.72; color: #3f4a3a; background: #f7f6f0; border-top: 1px solid #e6e1d4; }
+.ws-mos-cell.on .mos-note { display: block; }
+.ws-mos-cell::after { content: '눌러서 보기'; display: block; padding: 6px 12px 8px;
+  font-size: 0.74em; color: #8a8272; }
+.ws-mos-cell.on::after { display: none; }
+@media (max-width: 700px) {
+  .ws-mos-grid { gap: 8px; }
+  .mos-badge { font-size: 0.7em; padding: 3px 8px; left: 6px; bottom: 6px; }
+  .mos-note { font-size: 0.8em; padding: 8px 10px 10px; }
+  .ws-mos-cell::after { font-size: 0.68em; padding: 5px 10px 7px; }
+}
+/* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
+@media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
@@ -831,13 +946,17 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 3단계: 왜 협력이 필요해졌나</h2>
 <blockquote>📕 <strong>교과서 119쪽 펴고 · 배정 시간 8분</strong></blockquote>
 <br>
+<blockquote>사다리 끝까지 가도 강제할 힘이 없다고 했지. <strong>그런데 나라들은 왜 그런 사다리까지 만들어 두었을까.</strong> 아래 넉 장이 그 이유다.</blockquote>
+<br>
+<div class="ws-mos"><div class="ws-mos-head">넉 장 다 <strong>한 나라 힘으로는 못 푼 일</strong>이다. 눌러서 무슨 일이었는지 확인하자.</div><div class="ws-mos-grid"><figure class="ws-mos-cell" tabindex="0" role="button" aria-label="1945 · 전쟁 — 눌러서 설명 보기" onclick="this.classList.toggle('on')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('on');}"><span class="mos-shot"><img src="images/6-4_mos_전쟁.jpg" alt="제2차 세계 대전 말기인 1945년 1월의 폴란드 바르샤바를 높은 곳에서 찍은 사진. 도시 전체가 무너진 건물 뼈대만 남아 끝까지 이어진다" loading="lazy"><span class="mos-badge">1945 · 전쟁</span></span><figcaption class="mos-note">전쟁이 지나간 뒤 도시는 이렇게 남았다. 두 번을 겪고 나서야 <strong>"여기까지는 가지 말자"</strong> 는 생각이 국제 사회에 퍼졌다 — 교과서가 말하는 <em>"지나친 경쟁과 갈등을 멀리해야 한다는 인식"</em> 이 여기서 나왔다.</figcaption></figure><figure class="ws-mos-cell" tabindex="0" role="button" aria-label="2020 · 전염병 — 눌러서 설명 보기" onclick="this.classList.toggle('on')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('on');}"><span class="mos-shot"><img src="images/6-4_mos_전염병.jpg" alt="2020년 3월 2일 대구의 한 초등학교 정문. 접이식 철문이 닫혀 있고 안내문이 붙어 있으며 운동장은 비어 있다" loading="lazy"><span class="mos-badge">2020 · 전염병</span></span><figcaption class="mos-note">🎙️ <strong>남 얘기 같지?</strong> 개학날인데 학교 문이 닫혀 있어. 다른 나라에서 시작된 전염병이 <strong>내 시간표를 바꿔 놓은</strong> 날의 사진이야. <em>"국제 사회의 문제가 개인에게 미치는 영향이 커졌다"</em> 는 말이 딱 이거지.</figcaption></figure><figure class="ws-mos-cell" tabindex="0" role="button" aria-label="2023 · 기후 — 눌러서 설명 보기" onclick="this.classList.toggle('on')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('on');}"><span class="mos-shot"><img src="images/6-4_mos_기후.jpg" alt="산불 연기로 하늘 전체가 주황색이 된 미국 뉴저지. 공항 관제탑이 연기에 가려 흐릿하게 보인다" loading="lazy"><span class="mos-badge">2023 · 기후</span></span><figcaption class="mos-note">캐나다에서 난 산불의 연기가 <strong>국경을 넘어</strong> 미국 하늘을 덮었다. 연기는 여권을 보여 주지 않는다 — 우리가 아무리 잘 막아도 옆에서 나면 같이 겪는다.</figcaption></figure><figure class="ws-mos-cell" tabindex="0" role="button" aria-label="2023 · AI — 눌러서 설명 보기" onclick="this.classList.toggle('on')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('on');}"><span class="mos-shot"><img src="images/6-4_mos_ai.jpg" alt="「AI SAFETY SUMMIT」이라고 적힌 현수막 앞에 스무 명 넘는 각국 장관이 줄지어 선 단체 사진" loading="lazy"><span class="mos-badge">2023 · AI</span></span><figcaption class="mos-note">28개 나라와 유럽 연합이 영국에 모여 <strong>AI를 얼마나 빨리, 어디까지 만들지 함께 살피자</strong>고 약속했다. 한 나라만 속도를 줄여 봐야 소용이 없으니까. 이듬해 <strong>2024년에는 서울에서</strong> 열렸다.</figcaption></figure></div></div>
+<br>
+<blockquote>📷 바르샤바 폐허 1945 (Public domain) · 대구 대명초등학교 2020-03-02 (Namoroka · CC BY-SA 4.0) · 뉴저지 산불 연기 2023 (Anthony Quintano · CC BY 2.0) · AI 안전 정상회의 2023 (Marcel Grabowski / UK Government · CC BY 2.0) — Wikimedia Commons</blockquote>
+<br>
 <p>두 차례의 세계 대전을 겪으면서 <strong>지나친 경쟁과 갈등을 멀리해야 한다</strong>는 인식이 국제 사회에 퍼졌다. 또 세계화로 국제 교류가 늘면서, 국제 사회에서 생긴 문제가 <strong>개인에게 미치는 영향</strong>이 커졌다.</p>
 <br>
 <p>테러, 전염병 확산, 지구 온난화로 인한 기상 이변, 에너지 위기, 식량 가격 상승은 <strong>국제 ⑦<input type="text" class="blank-input" data-answer="협력" data-id="7" style="width:60px" placeholder=""> 없이는 해결할 수 없는</strong> 문제다.</p>
 <br>
-<blockquote>🎙️ <strong>이건 남 얘기가 아니야.</strong> 다른 나라에서 시작된 전염병이 우리 학교 등교 방식까지 바꿔 놨던 걸 기억할 거야. <em>"국제 사회의 문제가 개인에게 미치는 영향이 커졌다"</em> 는 말이 딱 그거야 — 뉴스 속 일이 내 시간표를 바꾼다는 뜻이지.</blockquote>
-<br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>6-3에서 본 '불씨' 목록과 겹치는 것을 눈여겨보자. <strong>같은 문제가 갈등의 원인이면서 동시에 협력의 이유</strong>다.</p><p>혼자 풀 수 없다는 사실이, 다투던 나라들을 같은 자리에 앉힌다.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>넉 장의 연도를 이어 보자 — <strong>1945년에서 2023년까지</strong>다. 첫 장은 이미 <em>"다시는 그러지 말자"</em> 로 끝난 일이고, 마지막 장은 아직 <strong>답을 찾는 중</strong>인 일이다. 협력해야 할 일은 줄지 않고 종류만 바뀐다.</p><p>6-3에서 본 '불씨' 목록과 겹치는 것도 눈여겨보자. <strong>같은 문제가 갈등의 원인이면서 동시에 협력의 이유</strong>다.</p><p>혼자 풀 수 없다는 사실이, 다투던 나라들을 같은 자리에 앉힌다.</p></div>
 <br>
 <h2>📖 4단계: 실제로는 이렇게 한다</h2>
 <blockquote>📕 <strong>교과서 118~119쪽 펴고 · 배정 시간 8분</strong></blockquote>
@@ -852,7 +971,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>✏️ 활동 1 — 누가 나선 것일까?</h2>
 <br>
-<div class="ws-pick" id="pk68"><div class="pk-head"><span>넷은 각각 누가 나선 것일까? 다 고르면 답이 열린다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="당사국끼리"><span class="pk-win"><img src="images/6-4_b1_핑퐁.jpg" alt="핑퐁 외교" loading="lazy"></span><div class="pk-name">핑퐁 외교</div><div class="pk-sit">1971년 미국 탁구 대표단이 중국을 방문해 막혀 있던 교류에 길을 냈다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="당사국끼리">당사국끼리</button><button type="button" class="pk-b" data-v="정부 간 국제기구">정부 간 국제기구</button><button type="button" class="pk-b" data-v="국제 비정부 기구">국제 비정부 기구</button></div><div class="pk-why" hidden>두 나라가 직접 움직였다 — 사다리의 맨 윗칸이다</div></div><div class="pk-card" data-i="1" data-ans="정부 간 국제기구"><span class="pk-win"><img src="images/6-4_b1_평화유지군.jpg" alt="평화 유지군 파견" loading="lazy"></span><div class="pk-name">평화 유지군 파견</div><div class="pk-sit">푸른 헬멧을 쓴 부대가 분쟁 지역에 들어가 평화 유지 활동을 한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="당사국끼리">당사국끼리</button><button type="button" class="pk-b" data-v="정부 간 국제기구">정부 간 국제기구</button><button type="button" class="pk-b" data-v="국제 비정부 기구">국제 비정부 기구</button></div><div class="pk-why" hidden>국제 연합 산하이고 안전 보장 이사회의 결정으로 움직인다</div></div><div class="pk-card" data-i="2" data-ans="국제 비정부 기구"><span class="pk-win"><img src="images/6-2_act_msf.jpg" alt="국경 없는 의사회의 의료 지원" loading="lazy"></span><div class="pk-name">국경 없는 의사회의 의료 지원</div><div class="pk-sit">정치적 상황과 관계없이 도움이 필요한 곳에 들어간다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="당사국끼리">당사국끼리</button><button type="button" class="pk-b" data-v="정부 간 국제기구">정부 간 국제기구</button><button type="button" class="pk-b" data-v="국제 비정부 기구">국제 비정부 기구</button></div><div class="pk-why" hidden>정부가 아니라 사람들이 만든 민간단체다</div></div><div class="pk-card" data-i="3" data-ans="당사국끼리"><span class="pk-win"><img src="images/6-2_act_mofa.jpg" alt="한·중·일 '평창 선언'" loading="lazy"></span><div class="pk-name">한·중·일 '평창 선언'</div><div class="pk-sit">세 나라 스포츠 장관이 모여 교류로 평화를 다지자고 서명했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="당사국끼리">당사국끼리</button><button type="button" class="pk-b" data-v="정부 간 국제기구">정부 간 국제기구</button><button type="button" class="pk-b" data-v="국제 비정부 기구">국제 비정부 기구</button></div><div class="pk-why" hidden>나라 수가 늘어도 당사국들이 직접 맺은 약속이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk68");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["당사국끼리", "정부 간 국제기구", "국제 비정부 기구"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk72"><div class="pk-head"><span>넷은 각각 누가 나선 것일까? 다 고르면 답이 열린다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="당사국끼리"><span class="pk-win"><img src="images/6-4_b1_핑퐁.jpg" alt="핑퐁 외교" loading="lazy"></span><div class="pk-name">핑퐁 외교</div><div class="pk-sit">1971년 미국 탁구 대표단이 중국을 방문해 막혀 있던 교류에 길을 냈다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="당사국끼리">당사국끼리</button><button type="button" class="pk-b" data-v="정부 간 국제기구">정부 간 국제기구</button><button type="button" class="pk-b" data-v="국제 비정부 기구">국제 비정부 기구</button></div><div class="pk-why" hidden>두 나라가 직접 움직였다 — 사다리의 맨 윗칸이다</div></div><div class="pk-card" data-i="1" data-ans="정부 간 국제기구"><span class="pk-win"><img src="images/6-4_b1_평화유지군.jpg" alt="평화 유지군 파견" loading="lazy"></span><div class="pk-name">평화 유지군 파견</div><div class="pk-sit">푸른 헬멧을 쓴 부대가 분쟁 지역에 들어가 평화 유지 활동을 한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="당사국끼리">당사국끼리</button><button type="button" class="pk-b" data-v="정부 간 국제기구">정부 간 국제기구</button><button type="button" class="pk-b" data-v="국제 비정부 기구">국제 비정부 기구</button></div><div class="pk-why" hidden>국제 연합 산하이고 안전 보장 이사회의 결정으로 움직인다</div></div><div class="pk-card" data-i="2" data-ans="국제 비정부 기구"><span class="pk-win"><img src="images/6-2_act_msf.jpg" alt="국경 없는 의사회의 의료 지원" loading="lazy"></span><div class="pk-name">국경 없는 의사회의 의료 지원</div><div class="pk-sit">정치적 상황과 관계없이 도움이 필요한 곳에 들어간다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="당사국끼리">당사국끼리</button><button type="button" class="pk-b" data-v="정부 간 국제기구">정부 간 국제기구</button><button type="button" class="pk-b" data-v="국제 비정부 기구">국제 비정부 기구</button></div><div class="pk-why" hidden>정부가 아니라 사람들이 만든 민간단체다</div></div><div class="pk-card" data-i="3" data-ans="당사국끼리"><span class="pk-win"><img src="images/6-2_act_mofa.jpg" alt="한·중·일 '평창 선언'" loading="lazy"></span><div class="pk-name">한·중·일 '평창 선언'</div><div class="pk-sit">세 나라 스포츠 장관이 모여 교류로 평화를 다지자고 서명했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="당사국끼리">당사국끼리</button><button type="button" class="pk-b" data-v="정부 간 국제기구">정부 간 국제기구</button><button type="button" class="pk-b" data-v="국제 비정부 기구">국제 비정부 기구</button></div><div class="pk-why" hidden>나라 수가 늘어도 당사국들이 직접 맺은 약속이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk72");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["당사국끼리", "정부 간 국제기구", "국제 비정부 기구"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>✅ <strong>스스로 점검</strong> — <strong>나라 수로 고르면 어긋난다.</strong> 세 나라가 모여도 당사국끼리이고, 한 기구가 움직여도 그 기구를 만든 것은 여러 나라다. 기준은 <strong>누가 나섰나</strong>야.</blockquote>
 <br>
@@ -1234,6 +1353,36 @@ if(EXAM_MODE){
     el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
   });
 }
+
+/* 🎯 방사형 펼침 — 중심 클릭으로 펼치고, 칩 클릭으로 설명을 연다 */
+document.querySelectorAll('.ws-rad').forEach(function(rad){
+  var core = rad.querySelector('.rd-core') || rad.querySelector('.rd-hot');
+  var chips = rad.querySelectorAll('.rd-chip');
+  var panels = rad.querySelectorAll('.rd-panel');
+  function hideAll(){ panels.forEach(function(p){ p.hidden = true; });
+                       chips.forEach(function(c){ c.classList.remove('sel'); }); }
+  core.addEventListener('click', function(){
+    rad.classList.toggle('on');
+    if(!rad.classList.contains('on')) hideAll();
+  });
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      var i = c.getAttribute('data-i');
+      var was = !panels[i].hidden;
+      hideAll();
+      if(!was){ panels[i].hidden = false; c.classList.add('sel'); }
+    });
+  });
+  rad.querySelectorAll('.rd-go').forEach(function(g){
+    g.addEventListener('click', function(){
+      var t = document.querySelector(g.getAttribute('data-sel'));
+      if(!t) return;
+      t.scrollIntoView({behavior:'smooth', block:'center'});
+      t.classList.add('rd-flash');
+      setTimeout(function(){ t.classList.remove('rd-flash'); }, 1600);
+    });
+  });
+});
 </script>
 </body>
 </html>

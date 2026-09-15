@@ -188,6 +188,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_gallery = False        # 2026-08-31: 한 장씩 넘겨 보는 큐레이션 (:::gallery ... :::)
     gallery_items = []
     gallery_title = ''
+    in_mos = False            # 2026-09-15: 모자이크 (:::모자이크 ... :::)
+    mos_items = []
+    mos_head = ''
     in_pick = False; pick_q = ''; pick_rows = []   # 2026-09-03: 인물 선택 활동
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
@@ -1086,6 +1089,47 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 read_lines = []
             elif stripped:
                 read_lines.append(stripped)
+            continue
+
+        # 🧩 모자이크 (:::모자이크 [머리말] ... :::) — 2026-09-15 천대현
+        #   "갈등·분쟁에서 갑자기 협력으로 넘어가는 2단계→3단계 연결이 매끄럽지 않다.
+        #    세계 대전 사례와 최근 AI 속도 조절을 이미지로 «연결 기반»으로 넣자.
+        #    여러 가지를 모자이크 형태로."
+        #   🔴 왜 :::gallery 가 아닌가 — 여기서 학생이 얻어야 하는 것은 «이 많은 것이
+        #      다 혼자서는 못 푸는 일»이라는 **한눈에 오는 느낌**이다. 한 장씩 넘기면
+        #      그 «겹쳐 보임»이 사라지고, 넘기는 수고만 남는다.
+        #   행 규약:  <라벨> | <이미지파일> | <대체텍스트> | <누르면 열리는 설명>
+        #   ⚠️ 2열 고정이다(폰도 2열). 한 줄로 늘어놓으면 그냥 figrow 이고 모자이크가 아니다.
+        #   ⚠️ 타일은 object-fit:cover 로 4:3에 맞춰 자른다 — 글자가 들어 있는 사진은
+        #      위아래 11%가 깎이는 것을 감안해 고를 것(현수막 문구가 잘리면 뜻이 반쯤 죽는다).
+        if stripped.startswith(':::모자이크'):
+            in_mos = True; mos_items = []
+            _mh = stripped[len(':::모자이크'):].strip()
+            mos_head = _mh[1:_mh.index(']')].strip() if _mh.startswith('[') and ']' in _mh else ''
+            continue
+        if in_mos:
+            if stripped == ':::':
+                if mos_items:
+                    cells = ''.join(
+                        '<figure class="ws-mos-cell" tabindex="0" role="button" '
+                        f'aria-label="{lab} — 눌러서 설명 보기" '
+                        'onclick="this.classList.toggle(\'on\')" '
+                        'onkeydown="if(event.key===\'Enter\'||event.key===\' \')'
+                        '{event.preventDefault();this.classList.toggle(\'on\');}">'
+                        f'<span class="mos-shot"><img src="images/{src}" alt="{alt}" loading="lazy">'
+                        f'<span class="mos-badge">{inline(lab)}</span></span>'
+                        f'<figcaption class="mos-note">{inline(note)}</figcaption></figure>'
+                        for lab, src, alt, note in mos_items)
+                    html_parts.append(
+                        '<div class="ws-mos">'
+                        + (f'<div class="ws-mos-head">{inline(mos_head)}</div>' if mos_head else '')
+                        + f'<div class="ws-mos-grid">{cells}</div></div>')
+                in_mos = False; mos_items = []
+                continue
+            if '|' in stripped:
+                _p = [x.strip() for x in stripped.strip('|').split('|')]
+                while len(_p) < 4: _p.append('')
+                mos_items.append((_p[0], _p[1], _p[2], _p[3]))
             continue
 
         if stripped.startswith(':::gallery'):
@@ -2442,6 +2486,35 @@ table:has(.ox-group) td:first-child {{ width: 46px; text-align: center; color: #
 .ws-figrow-item {{ flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }}
 .ws-figrow-item img {{ width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
 .ws-figrow-item figcaption {{ margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }}
+
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+.ws-mos {{ margin: 20px auto 24px; max-width: 100%; }}
+.ws-mos-head {{ font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }}
+.ws-mos-grid {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }}
+.ws-mos-cell {{ margin: 0; cursor: pointer; background: #fff; border: 1px solid #d8d2c4;
+  border-radius: 12px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  transition: box-shadow 0.18s, border-color 0.18s; }}
+.ws-mos-cell:hover {{ box-shadow: 0 4px 14px rgba(0,0,0,0.14); }}
+.ws-mos-cell:focus-visible {{ outline: 3px solid #4a5c40; outline-offset: 2px; }}
+.ws-mos-cell.on {{ border-color: #4a5c40; }}
+.mos-shot {{ position: relative; display: block; }}
+.mos-shot img {{ display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }}
+.mos-badge {{ position: absolute; left: 8px; bottom: 8px; background: rgba(28,34,26,0.84);
+  color: #fff; font-size: 0.78em; font-weight: 700; padding: 4px 10px; border-radius: 999px; }}
+.mos-note {{ display: none; text-align: left; padding: 10px 12px 12px; font-size: 0.86em;
+  line-height: 1.72; color: #3f4a3a; background: #f7f6f0; border-top: 1px solid #e6e1d4; }}
+.ws-mos-cell.on .mos-note {{ display: block; }}
+.ws-mos-cell::after {{ content: '눌러서 보기'; display: block; padding: 6px 12px 8px;
+  font-size: 0.74em; color: #8a8272; }}
+.ws-mos-cell.on::after {{ display: none; }}
+@media (max-width: 700px) {{
+  .ws-mos-grid {{ gap: 8px; }}
+  .mos-badge {{ font-size: 0.7em; padding: 3px 8px; left: 6px; bottom: 6px; }}
+  .mos-note {{ font-size: 0.8em; padding: 8px 10px 10px; }}
+  .ws-mos-cell::after {{ font-size: 0.68em; padding: 5px 10px 7px; }}
+}}
+/* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
+@media print {{ .mos-note {{ display: block; }} .ws-mos-cell::after {{ display: none; }} }}
 .hero-hook {{ margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }}
 .blank-filled {{ display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }}
 </style>
