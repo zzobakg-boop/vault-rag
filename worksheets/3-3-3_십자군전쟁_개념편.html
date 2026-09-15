@@ -307,19 +307,29 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   .ws-tl-tabs, .ws-tl-stage, .ws-tl-say { display: none; }
   .tl-print { display: table; width: 100%; }
 }
-}
 
 /* 📖 표·도식을 읽는 자리 — 2026-09-03.
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+/* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
+   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+      파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
+      computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
+      — 디자인이 약한 게 아니라 **없었다.**
+   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+      16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
+      음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
+   계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
+   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
 .ws-read {
-  background: #f5f6f8; border: 1px solid #dfe3e8; border-left: 5px solid #98a2b3;
-  border-radius: 0 0 10px 10px; padding: 13px 18px 15px; margin: -10px 0 20px;
-  color: #3d4552; font-size: 0.93em; line-height: 1.78;
+  background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
+  color: #3a4351; font-size: 0.93em; line-height: 1.78;
 }
 .ws-read .ws-read-tag {
-  display: inline-block; font-size: 0.72em; font-weight: 800; color: #7a828f;
-  letter-spacing: 0.06em; margin-bottom: 5px;
+  display: inline-block; background: #64748b; color: #fff;
+  font-size: 0.76em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
 .ws-read p:last-child { margin-bottom: 0; }
@@ -478,6 +488,92 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
 .ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
 @media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+/* 🃏 와이드 플립 — 도식(앞) ↔ 실물 사진(뒤). 2026-09-14.
+   🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
+      그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
+      도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+.ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
+.ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
+  aspect-ratio: 1200 / 720; perspective: 1400px; }
+.flip-wide .ws-flip-f, .flip-wide .ws-flip-b { padding: 10px; gap: 8px; }
+.flip-wide .ws-flip-f img { width: 100%; height: auto; max-height: 84%; object-fit: contain; }
+.flip-wide .ws-flip-b img { width: 100%; height: auto; max-height: 74%;
+  object-fit: contain; border-radius: 8px; }
+.flip-wide .ws-flip-b i { font-size: .82em; margin-top: 8px; padding: 0 4px; }
+.flip-wide .ws-flip-f u { font-size: .8em; }
+/* 🎯 방사형 펼침 — 2026-09-14. 중심 개념을 누르면 영역들이 둘레로 펼쳐진다.
+   🔴 폰에서 원형은 좁다 — 560px 아래에서는 원을 풀고 그리드로 내린다(칩 글자가 겹치는 것보다 낫다). */
+.ws-rad { margin: 18px 0 22px; }
+.rd-note { font-size: .88em; color: #7a6a4a; margin: 0 2px 10px; }
+.rd-stage { position: relative; width: 100%; max-width: 520px; margin: 0 auto;
+  aspect-ratio: 1 / 1; }
+.rd-core { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 112px; height: 112px; border-radius: 50%; cursor: pointer;
+  background: #fdecec; border: 3px solid #c0392b; color: #7d241a;
+  font-family: inherit; font-size: 1.18em; font-weight: 800; line-height: 1.2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  box-shadow: 0 3px 10px rgba(192,57,43,.18); transition: transform .2s, box-shadow .2s; z-index: 3; }
+.rd-core u { text-decoration: none; font-size: .52em; font-weight: 600; color: #b2685f; }
+.rd-core:hover { transform: translate(-50%,-50%) scale(1.04); }
+.ws-rad.on .rd-core { box-shadow: 0 0 0 7px rgba(192,57,43,.10), 0 3px 10px rgba(192,57,43,.2); }
+.rd-chip { position: absolute; left: 50%; top: 50%; cursor: pointer;
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(0) rotate(calc(-1 * var(--a))) scale(.4);
+  opacity: 0; pointer-events: none;
+  background: #fff; border: 2px solid #cfd5de; border-radius: 999px;
+  padding: 7px 13px; font-family: inherit; font-size: .84em; font-weight: 700; color: #3a4351;
+  white-space: nowrap; transition: transform .42s cubic-bezier(.34,1.3,.5,1), opacity .3s; }
+.ws-rad.on .rd-chip { opacity: 1; pointer-events: auto;
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(-178px) rotate(calc(-1 * var(--a))) scale(1); }
+.rd-chip:hover { border-color: #64748b; background: #f6f8fb; }
+.rd-chip.sel { background: #64748b; border-color: #64748b; color: #fff; }
+.rd-panels { margin-top: 6px; }
+.rd-panel { background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; }
+.rd-panel b { display: block; font-size: 1.04em; color: #2f3846; margin-bottom: 5px; }
+.rd-panel p { margin: 0 0 6px; font-size: .93em; color: #3a4351; line-height: 1.7; }
+.rd-panel i { font-style: normal; font-size: .86em; color: #6b7480; }
+.rd-go { display: inline-block; margin-left: 8px; font-size: .82em; font-weight: 700;
+  color: #b8862b; border-bottom: 1px dashed #b8862b; cursor: pointer; }
+.rd-flash { animation: rdflash 1.5s ease-out 1; }
+/* 🎯 도식 통합 모드 — 도식 칸을 눌러 그 자리에서 펼친다(세로 증가 0) */
+.rad-onfig .rd-fig { position: relative; }
+.rad-onfig .rd-fig > img { width: 100%; height: auto; display: block;
+  transition: opacity .32s, filter .32s; }
+.rad-onfig.on .rd-fig > img { opacity: .26; filter: grayscale(.35); }
+.rd-hot { position: absolute; background: rgba(192,57,43,.05); border: 0; cursor: pointer;
+  border-radius: 14px; padding: 0; transition: background .2s, box-shadow .2s; z-index: 2; }
+.rd-hot span { position: absolute; left: -9999px; }
+.rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
+.rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
+.rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
+/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+.rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
+/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+   칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
+.ws-rad.rad-onfig { --r: 150px; }
+.ws-rad.rad-onfig.on .rd-chip {
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(calc(-1 * var(--r))) rotate(calc(-1 * var(--a))) scale(1); }
+@media (max-width: 900px) { .ws-rad.rad-onfig { --r: 118px; } }
+@media (max-width: 700px) { .ws-rad.rad-onfig { --r: 96px; } }
+@media (max-width: 560px) {
+  /* 🔴 폰(390)에서 도식은 330px — 원형에 칩 8개는 못 들어간다. 도식은 그대로 두고 칩만 아래 그리드로. */
+  .rad-onfig .rd-chip { position: static; transform: none !important; }
+  .ws-rad.rad-onfig.on .rd-fig { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
+  .ws-rad.rad-onfig.on .rd-fig > img { grid-column: 1 / -1; opacity: 1; filter: none; }
+  .rad-onfig.on .rd-hot { display: none; }
+}
+@keyframes rdflash { 0%,100% { box-shadow: none; } 18% { box-shadow: 0 0 0 5px rgba(184,134,43,.45); } }
+@media (max-width: 560px) {
+  .rd-stage { aspect-ratio: auto; max-width: 100%; display: grid;
+    grid-template-columns: repeat(2, 1fr); gap: 7px; }
+  .rd-core { position: static; transform: none; width: 100%; height: 62px; border-radius: 12px;
+    grid-column: 1 / -1; }
+  .rd-core:hover { transform: none; }
+  .rd-chip { position: static; transform: none !important; opacity: 1; pointer-events: auto;
+    white-space: normal; padding: 9px 6px; text-align: center; }
+  .ws-rad:not(.on) .rd-chip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .rd-chip { transition: none; } .rd-flash { animation: none; } }
 
 /* 🀄 한자 카드 — 2026-09-07. 「오늘의 고급 단어」를 표 대신 카드로.
    앞면=이미지+한자 / 뒷면=뜯어보기·뜻·문장·가족 낱말. 세로로 안 늘리고 옆으로 넘긴다. */
@@ -749,6 +845,35 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+.ws-mos { margin: 20px auto 24px; max-width: 100%; }
+.ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
+.ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.ws-mos-cell { margin: 0; cursor: pointer; background: #fff; border: 1px solid #d8d2c4;
+  border-radius: 12px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  transition: box-shadow 0.18s, border-color 0.18s; }
+.ws-mos-cell:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.14); }
+.ws-mos-cell:focus-visible { outline: 3px solid #4a5c40; outline-offset: 2px; }
+.ws-mos-cell.on { border-color: #4a5c40; }
+.mos-shot { position: relative; display: block; }
+.mos-shot img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.mos-badge { position: absolute; left: 8px; bottom: 8px; background: rgba(28,34,26,0.84);
+  color: #fff; font-size: 0.78em; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.mos-note { display: none; text-align: left; padding: 10px 12px 12px; font-size: 0.86em;
+  line-height: 1.72; color: #3f4a3a; background: #f7f6f0; border-top: 1px solid #e6e1d4; }
+.ws-mos-cell.on .mos-note { display: block; }
+.ws-mos-cell::after { content: '눌러서 보기'; display: block; padding: 6px 12px 8px;
+  font-size: 0.74em; color: #8a8272; }
+.ws-mos-cell.on::after { display: none; }
+@media (max-width: 700px) {
+  .ws-mos-grid { gap: 8px; }
+  .mos-badge { font-size: 0.7em; padding: 3px 8px; left: 6px; bottom: 6px; }
+  .mos-note { font-size: 0.8em; padding: 8px 10px 10px; }
+  .ws-mos-cell::after { font-size: 0.68em; padding: 5px 10px 7px; }
+}
+/* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
+@media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
 .hero-hook { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
@@ -1233,6 +1358,36 @@ if(EXAM_MODE){
     el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
   });
 }
+
+/* 🎯 방사형 펼침 — 중심 클릭으로 펼치고, 칩 클릭으로 설명을 연다 */
+document.querySelectorAll('.ws-rad').forEach(function(rad){
+  var core = rad.querySelector('.rd-core') || rad.querySelector('.rd-hot');
+  var chips = rad.querySelectorAll('.rd-chip');
+  var panels = rad.querySelectorAll('.rd-panel');
+  function hideAll(){ panels.forEach(function(p){ p.hidden = true; });
+                       chips.forEach(function(c){ c.classList.remove('sel'); }); }
+  core.addEventListener('click', function(){
+    rad.classList.toggle('on');
+    if(!rad.classList.contains('on')) hideAll();
+  });
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      var i = c.getAttribute('data-i');
+      var was = !panels[i].hidden;
+      hideAll();
+      if(!was){ panels[i].hidden = false; c.classList.add('sel'); }
+    });
+  });
+  rad.querySelectorAll('.rd-go').forEach(function(g){
+    g.addEventListener('click', function(){
+      var t = document.querySelector(g.getAttribute('data-sel'));
+      if(!t) return;
+      t.scrollIntoView({behavior:'smooth', block:'center'});
+      t.classList.add('rd-flash');
+      setTimeout(function(){ t.classList.remove('rd-flash'); }, 1600);
+    });
+  });
+});
 </script>
 </body>
 </html>
