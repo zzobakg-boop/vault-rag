@@ -1562,24 +1562,29 @@ def extract_hero_meta(blank_file):
 def build_hero_html(title, hero):
     if not any([hero.get('keywords'), hero.get('image'), hero.get('hook')]):
         return ''
-    eyebrow = f'<div class="hero-eyebrow">{hero["eyebrow"]}</div>' if hero.get('eyebrow') else ''
-    sub = f'<p class="hero-subtitle">{hero["subtitle"]}</p>' if hero.get('subtitle') else ''
+    # 🔴 2026-09-16 천대현 — *"표지 아래 설명에 **속마음이 다 달랐거든.** 별표 정리 좀 하자."*
+    #   hero 필드는 frontmatter 에서 곧장 오므로 **inline() 을 타지 않았다.** 9/14 에 본문
+    #   별표를 고치고도(발행본 18개) **표지만 그대로 남아** 있었다 — 실측 12개 파일
+    #   (역사 굽타·십자군 · 사회 6-2). 같은 결함인데 «경로가 둘»이라 한쪽만 고쳐졌다.
+    #   🔑 픽스는 «증상»이 아니라 «그 증상이 나올 수 있는 경로 전부»를 훑어야 한다.
+    eyebrow = f'<div class="hero-eyebrow">{inline(hero["eyebrow"])}</div>' if hero.get('eyebrow') else ''
+    sub = f'<p class="hero-subtitle">{inline(hero["subtitle"])}</p>' if hero.get('subtitle') else ''
     # 2026-08-24: 키워드 칩 클릭 → 개념 카드 펼침(아코디언).
     # 카드가 없으면 이전과 100% 동일한 <span>을 낸다(회귀 0).
     cards = hero.get('cards') or {}
     _kw = []
     for i, k in enumerate(list(hero.get('keywords') or [])[:6], 1):
         if str(i) in cards:
-            _kw.append(f'<button type="button" class="hero-keyword has-card" data-card="{i}" aria-expanded="false">{k}<span class="kw-caret">＋</span></button>')
+            _kw.append(f'<button type="button" class="hero-keyword has-card" data-card="{i}" aria-expanded="false">{inline(k)}<span class="kw-caret">＋</span></button>')
         else:
-            _kw.append(f'<span class="hero-keyword">{k}</span>')
+            _kw.append(f'<span class="hero-keyword">{inline(k)}</span>')
     kws = ''.join(_kw)
     card_html = ''.join(
         f'<div class="hero-card" id="hero-card-{i}" hidden><div class="hero-card-inner">{h}</div></div>'
         for i, h in sorted(cards.items(), key=lambda kv: int(kv[0])))
     kws_html = f'<div class="hero-keywords">{kws}</div>{card_html}' if kws else ''
     img = f'<img class="hero-image" src="{hero["image"]}" alt="">' if hero.get('image') else ''
-    hook = f'<div class="hero-hook">{hero["hook"]}</div>' if hero.get('hook') else ''
+    hook = f'<div class="hero-hook">{inline(hero["hook"])}</div>' if hero.get('hook') else ''
     return f'<section class="hero-section">{eyebrow}<h1 class="hero-title">{title}</h1>{sub}{kws_html}{img}{hook}</section>'
 
 
