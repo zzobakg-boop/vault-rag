@@ -193,6 +193,16 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
+/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+   차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
+   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
+   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+.pk-gold .pk-card.pk-noimg { padding-top: 0; }
+.pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
+.pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
+.pk-gold .pk-card.pk-noimg .pk-btns .pk-b { flex: 0 0 auto; }
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
@@ -1079,16 +1089,16 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>⚠️ 「봉건 사회의 <strong>변화</strong>」라는 옛 표현을 발문에서 뺐다. 3-3-1은 성립·구조까지만 다뤘고 변화는 3-3-4다 — <strong>학생이 배우지 않은 것을 근거로 요구하던 발문</strong>이었다.</blockquote>
 <blockquote>🧑‍🏫 <strong>「왕이 왜 커졌나」에 오늘 답하지 말 것.</strong> 흑사병·화폐 경제·백년 전쟁은 3-3-4다. 학생이 물으면 <em>"그게 두 시간 뒤 수업의 첫 질문"</em>이라고만 답한다. 여기서 답을 주면 3-3-4의 도입이 죽는다.</blockquote>
 <br>
-<blockquote><strong>모범답안</strong>: 카노사 때는 파문이 두려울 만큼 교황의 종교적 권위가 컸고 왕의 힘은 약했다. 그러나 시간이 지나면서 왕들이 관료와 군대를 갖추고 세금을 거두며 강해졌고, 교회의 부패와 대분열로 교황의 권위는 떨어졌다. 힘의 크기가 서로 뒤바뀌었기 때문에 결과도 반대로 나타났다.</blockquote>
+<blockquote>🔴 <strong>옛 모범답안·채점표를 여기서 지웠다 (2026-09-16).</strong> 발문을 <em>«4단계 첫 문장을 근거로»</em> 로 고친 뒤에도 <strong>옛 채점표(«교황 약화 + 왕권 성장을 함께»)가 아래에 남아 있어 한 문서 안에 기준이 둘이었다.</strong> 게다가 옛 「지도 참고」는 <em>"«왕이 강해지고 있었다»를 스스로 말하게 하라"</em> 였는데, 바로 위 🧑‍🏫 노트는 <em>"「왕이 왜 커졌나」에 오늘 답하지 말 것"</em> 이다 — <strong>지도가 서로 반대</strong>였다. 3-3-4를 지키는 쪽(위)이 맞다.</blockquote>
 <br>
-<table>
-<tr><td>수준</td><td>기준</td></tr>
-<tr><td><strong>상</strong></td><td>교황의 권위 약화와 <strong>왕권의 성장</strong>을 <strong>함께</strong> 들고, 그 변화가 결과를 뒤집었다는 인과를 문장으로 연결한다</td></tr>
-<tr><td><strong>중</strong></td><td>한쪽만 서술한다(예: "교황이 약해져서" 또는 "왕이 세져서")</td></tr>
-<tr><td><strong>하</strong></td><td>"시대가 달라져서"·"사람들이 변해서"처럼 결과를 원인으로 되풀이하거나, 두 사건을 나열만 한다</td></tr>
-</table>
+<blockquote>⚠️ <strong>외부 평가의 꼬리 질문은 쓰지 않는다 (2026-09-16).</strong> <em>"영토가 넓어진 것이 왕의 돈(세금)과 힘에 어떤 변화를 주었을까?"</em> 를 덧붙이자는 제안이 있었으나 <strong>두 가지가 어긋난다.</strong></blockquote>
+<blockquote>ⓐ <strong>교과서의 인과가 반대다</strong> — 4단계 첫 문장은 <em>"영토를 넓히는 과정에서 <strong>재정이 부족해졌다</strong>"</em> 이다. 영토 확장이 곧 세금 증가가 아니라 <strong>돈이 모자라서</strong> 성직자에게까지 세금을 걷으려 한 것이고, 그것이 아비뇽 유수의 방아쇠다. 꼬리 질문은 학생을 <strong>교과서와 반대 방향</strong>으로 민다.</blockquote>
+<blockquote>ⓑ <strong>3-3-4의 도입을 미리 써 버린다</strong> — <em>"왕은 무엇으로 강해졌나"</em> 는 3-3-4의 첫 질문이다(위 🧑‍🏫 노트).</blockquote>
+<blockquote>🎯 <strong>표면적 답변</strong>(<em>"프랑스가 영토를 넓혔기 때문이다"</em>) 대응은 <strong>꼬리 질문이 아니라 채점표 (중)이 맡는다.</strong> 그 답을 받으면 되묻는다 — <em>"그래서 230년 전과 결과가 왜 반대로 나왔지?"</em> <strong>인과를 잇게 하는 것이지 새 지식을 주는 것이 아니다.</strong></blockquote>
 <br>
-<blockquote>🧑‍🏫 <strong>지도 참고</strong> — 이 발문은 <strong>3-3-4(중세 서유럽 사회의 위기와 변화)의 중앙 집권 국가 등장</strong>과 직결된다. 여기서 "왕이 강해지고 있었다"를 스스로 말한 학생은 다음다음 차시에서 훨씬 빨리 붙는다. 답이 안 나오면 3-3-1의 <em>"봉건 사회가 발전하면서 왕권이 약해졌다"</em>를 먼저 상기시키고 "그 뒤에는?"으로 물어볼 것.</blockquote>
+<blockquote>🧭 <strong>발문 개정안 (천대현 판단 대기 — 진도 여부에 달렸다)</strong> — (상) 기준이 <em>«근거 + 인과 연결»</em> 인데 발문은 근거까지만 말한다. 아래처럼 한 조각을 이으면 표면적 답변이 그 자리에서 걸린다.</blockquote>
+<blockquote><em>"…왕 쪽에 무엇이 달라져 있었는지 쓰자. 그리고 <strong>그것 때문에 230년 전과 결과가 왜 반대로 나왔는지</strong>까지 이어서 두세 문장으로 써 보자."</em></blockquote>
+<blockquote>⚠️ <strong>이 차시가 이미 나갔다면 발문은 손대지 않는다</strong>(룰 -0.5). 기준을 바꾸는 것이 아니라 드러내는 것뿐이라 채점에는 영향이 없으나, <strong>옛 발문을 보고 답한 학생이 있다</strong>는 점은 채점 때 감안할 것.</blockquote>
 <br>
 <h2>다음 시간 예고</h2>
 <p>교황의 힘이 절정에 이르던 바로 그 무렵(1096), 유럽 전체를 움직인 전쟁이 시작된다. 교황이 부르자 수십만 명이 십자가를 달고 동쪽으로 떠났어 — 다음 시간 <strong>「이슬람 세계와 크리스트교 세계가 충돌하고 교류하다」</strong>.</p>
