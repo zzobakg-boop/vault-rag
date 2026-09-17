@@ -856,6 +856,32 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
 
+/* ▶️ 영상 자리 (2026-09-17) — 사진이 포스터가 되고, 누르면 그 자리에서 재생된다. */
+.ws-vid { margin: 20px auto 24px; max-width: 760px; }
+.vid-poster { position: relative; display: block; width: 100%; padding: 0; border: 0;
+  background: #000; border-radius: 10px; overflow: hidden; cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.vid-poster img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.vid-scrim { position: absolute; inset: 0; background:
+  radial-gradient(ellipse at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.42) 100%); }
+.vid-play { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px;
+  border-radius: 50%; background: rgba(216,32,32,0.92); box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+  transition: transform 0.18s, background 0.18s; }
+.vid-play::after { content: ''; position: absolute; left: 30px; top: 23px;
+  border-left: 26px solid #fff; border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+.vid-poster:hover .vid-play { transform: scale(1.09); background: rgba(232,28,28,0.98); }
+.vid-poster:focus-visible { outline: 3px solid #4a5c40; outline-offset: 3px; }
+.vid-badge { position: absolute; right: 10px; bottom: 10px; background: rgba(12,14,18,0.86);
+  color: #fff; font-size: 0.8em; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+.vid-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 10px;
+  overflow: hidden; background: #000; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.ws-vid figcaption { margin-top: 8px; font-size: 0.88em; line-height: 1.6; color: #4a5344; text-align: center; }
+.ws-vid figcaption b { display: block; color: #2f3a2a; }
+.vid-meta { font-size: 0.9em; color: #8a8272; }
+/* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
+@media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
+  .vid-poster { box-shadow: none; } }
 /* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
@@ -930,8 +956,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 1단계: 다투던 나라에 담요를 보냈다</h2>
 <blockquote>📕 <strong>교과서 122쪽 펴고 · 배정 시간 7분</strong></blockquote>
 <br>
-<figure class="ws-fig"><img src="images/6-6_step1_구마모토.jpg" alt="무너져 쏟아진 일본 구마모토성의 성벽. 다듬은 돌이 산처럼 쌓여 흘러내렸고 그 위로 떨어진 기와 구조물이 비스듬히 걸쳐 있으며, 오른쪽에는 아직 무너지지 않은 돌벽이 남아 있다" loading="lazy"><figcaption>무너져 쏟아진 일본 구마모토성의 성벽. 다듬은 돌이 산처럼 쌓여 흘러내렸고 그 위로 떨어진 기와 구조물이 비스듬히 걸쳐 있으며, 오른쪽에는 아직 무너지지 않은 돌벽이 남아 있다</figcaption></figure>
-<blockquote>📷 2016년 지진으로 무너진 <strong>구마모토성 성벽</strong>. 우리 정부가 담요·천막·생수를 보낸 그 지진이다. (hyolee2 · CC BY-SA 3.0 · Wikimedia Commons)</blockquote>
+<figure class="ws-vid"><button type="button" class="vid-poster" data-yt="TQOoL3hc3AE" aria-label="영상 재생 — 정부, 日 지진 피해지역에 구호품…日 "감사"" onclick="ytPlay(this)"><img src="images/6-6_step1_구마모토.jpg" alt="무너져 쏟아진 일본 구마모토성의 성벽. 다듬은 돌이 산처럼 쌓여 흘러내렸고 오른쪽에는 아직 무너지지 않은 돌벽이 남아 있다. 누르면 영상이 재생된다" loading="lazy"><span class="vid-scrim"></span><span class="vid-play"></span><span class="vid-badge">▶ 영상 · 29초</span></button><figcaption><b>정부, 日 지진 피해지역에 구호품…日 "감사"</b><span class="vid-meta">SBS · 2016-04 · 29초 · <a href="https://www.youtube.com/watch?v=TQOoL3hc3AE" target="_blank" rel="noopener">유튜브에서 열기</a></span></figcaption></figure>
+<blockquote>📷 사진 = 2016년 지진으로 무너진 <strong>구마모토성 성벽</strong>. (hyolee2 · CC BY-SA 3.0 · Wikimedia Commons)</blockquote>
+<blockquote>🎬 <strong>29초다. 꼭 눌러 보자.</strong> 🔑 <strong>교과서가 인용한 바로 그 뉴스</strong>다 — <em>담요·천막·생수 10만 달러 치를 군수송기 두 대에 실어 보냈고</em>, 일본 정부는 <em>"마음을 따뜻하게 하는 한국 정부의 지원에 감사"</em> 라고 했다.</blockquote>
 <br>
 <blockquote>🎙️ <strong>400년 넘게 서 있던 돌벽이 저렇게 쏟아졌어.</strong> 이때 우리 정부가 담요·천막·생수를 보냈지.</blockquote>
 <blockquote>🔑 여기서 한번 멈춰 보자 — <strong>6-5에서 본 그 나라</strong>다. 독도로도, 교과서로도, '위안부' 문제로도 다투고 있는 상대. 그런데 담요를 보냈어. <strong>왜 그랬을까</strong>가 오늘 1단계의 물음이다.</blockquote>
@@ -953,8 +980,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>셋 이상의 나라가 동시에 서로를 상대하며 협력 방안을 찾아가는 것을 ④<input type="text" class="blank-input" data-answer="다자 외교" data-id="4" style="width:100px" placeholder="">라고 한다. 국제 연합이나 G20 정상 회의가 대표적인 무대다.</p>
 <br>
-<figure class="ws-fig"><img src="images/6-6_step2_g20.jpg" alt="G20 오사카 정상 회의장. 「G20 OSAKA SUMMIT 2019」이라고 적힌 벽 앞에 여러 나라의 국기가 줄지어 서 있고 그 앞에 각국 정상들이 나란히 앉아 있다" loading="lazy"><figcaption>G20 오사카 정상 회의장. 「G20 OSAKA SUMMIT 2019」이라고 적힌 벽 앞에 여러 나라의 국기가 줄지어 서 있고 그 앞에 각국 정상들이 나란히 앉아 있다</figcaption></figure>
-<blockquote>📷 2019년 일본 오사카에서 열린 <strong>G20 정상 회의</strong>. 벽 앞에 참가국 국기가 줄지어 서 있다. (Garrett Marquis · Public domain · Wikimedia Commons)</blockquote>
+<figure class="ws-vid"><button type="button" class="vid-poster" data-yt="7J5_l7KU5AM" aria-label="영상 재생 — G20 정상회의 개막…세계경제·무역 투자 등 논의" onclick="ytPlay(this)"><img src="images/6-6_step2_g20.jpg" alt="G20 오사카 정상 회의장. 「G20 OSAKA SUMMIT 2019」이라고 적힌 벽 앞에 여러 나라의 국기가 줄지어 서 있고 그 앞에 각국 정상들이 나란히 앉아 있다. 누르면 영상이 재생된다" loading="lazy"><span class="vid-scrim"></span><span class="vid-play"></span><span class="vid-badge">▶ 영상 · 1분 48초</span></button><figcaption><b>G20 정상회의 개막…세계경제·무역 투자 등 논의</b><span class="vid-meta">KBS · 2019-06 · 1분 48초 · <a href="https://www.youtube.com/watch?v=7J5_l7KU5AM" target="_blank" rel="noopener">유튜브에서 열기</a></span></figcaption></figure>
+<blockquote>📷 사진 = 2019년 일본 오사카에서 열린 <strong>G20 정상 회의</strong>. (Garrett Marquis · Public domain · Wikimedia Commons)</blockquote>
+<blockquote>🎬 <strong>눌러 보자 — 사진과 «같은 회의»다.</strong> 스무 나라가 이틀 동안 <strong>여덟 가지 의제</strong>를 논의한다. 두 나라가 마주 앉는 것과 어떻게 다른지 보이지.</blockquote>
 <br>
 <blockquote>🎙️ <strong>«G20»의 20이 무슨 숫자일까.</strong> 열아홉 나라와 <strong>유럽 연합</strong>을 합친 수야. 두 나라가 마주 앉은 게 아니라 스무 자리가 한 방에 있는 거지.</blockquote>
 <blockquote>🔑 둘이 만나면 힘센 쪽이 밀어붙일 수 있어. 여럿이 앉으면 그게 어려워지지 — 6-1에서 배운 <strong>«힘의 논리»를 조금이나마 누르는 장치</strong>인 셈이야.</blockquote>
@@ -989,7 +1017,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>✏️ 활동 1 — 이건 누가 하는 일일까?</h2>
 <br>
-<div class="ws-pick" id="pk80"><div class="pk-head"><span>넷은 각각 누가 하는 일일까? 다 고르면 답이 열린다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="정부"><span class="pk-win"><img src="images/6-6_b1_동북아역사재단.jpg" alt="동북아역사재단" loading="lazy"></span><div class="pk-name">동북아역사재단</div><div class="pk-sit">역사 왜곡과 독도 문제에 장기적으로 대응하려고 만든 교육부 산하 재단이다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="정부">정부</button><button type="button" class="pk-b" data-v="민관 협력">민관 협력</button><button type="button" class="pk-b" data-v="시민 사회">시민 사회</button></div><div class="pk-why" hidden>교육부 산하다 — 이름에 재단이 붙어도 정부 기관이다</div></div><div class="pk-card" data-i="1" data-ans="시민 사회"><span class="pk-win"><img src="images/6-6_b1_반크.png" alt="반크" loading="lazy"></span><div class="pk-name">반크</div><div class="pk-sit">전자 우편으로 외국인에게 한국을 바르게 알리는 사이버 단체다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="정부">정부</button><button type="button" class="pk-b" data-v="민관 협력">민관 협력</button><button type="button" class="pk-b" data-v="시민 사회">시민 사회</button></div><div class="pk-why" hidden>1999년에 만들어진 민간 단체다</div></div><div class="pk-card" data-i="2" data-ans="민관 협력"><span class="pk-win"><img src="images/6-6_b1_민관협력.png" alt="민관 협력 위원회" loading="lazy"></span><div class="pk-name">민관 협력 위원회</div><div class="pk-sit">교육부·외교부 산하 7개 단체와 반크 같은 민간단체가 함께 참여한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="정부">정부</button><button type="button" class="pk-b" data-v="민관 협력">민관 협력</button><button type="button" class="pk-b" data-v="시민 사회">시민 사회</button></div><div class="pk-why" hidden>정부와 민간이 한자리에서 같이 움직인다</div></div><div class="pk-card" data-i="3" data-ans="정부"><span class="pk-win"><img src="images/6-6_b1_인천시의회.jpg" alt="인천광역시 의회" loading="lazy"></span><div class="pk-name">인천광역시 의회</div><div class="pk-sit">나고야 시 의회 대표단의 방문을 거절하고 교과서 채택 반대 결의문을 전달했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="정부">정부</button><button type="button" class="pk-b" data-v="민관 협력">민관 협력</button><button type="button" class="pk-b" data-v="시민 사회">시민 사회</button></div><div class="pk-why" hidden>지방 의회도 정부 쪽이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk80");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["정부", "민관 협력", "시민 사회"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk82"><div class="pk-head"><span>넷은 각각 누가 하는 일일까? 다 고르면 답이 열린다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="정부"><span class="pk-win"><img src="images/6-6_b1_동북아역사재단.jpg" alt="동북아역사재단" loading="lazy"></span><div class="pk-name">동북아역사재단</div><div class="pk-sit">역사 왜곡과 독도 문제에 장기적으로 대응하려고 만든 교육부 산하 재단이다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="정부">정부</button><button type="button" class="pk-b" data-v="민관 협력">민관 협력</button><button type="button" class="pk-b" data-v="시민 사회">시민 사회</button></div><div class="pk-why" hidden>교육부 산하다 — 이름에 재단이 붙어도 정부 기관이다</div></div><div class="pk-card" data-i="1" data-ans="시민 사회"><span class="pk-win"><img src="images/6-6_b1_반크.png" alt="반크" loading="lazy"></span><div class="pk-name">반크</div><div class="pk-sit">전자 우편으로 외국인에게 한국을 바르게 알리는 사이버 단체다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="정부">정부</button><button type="button" class="pk-b" data-v="민관 협력">민관 협력</button><button type="button" class="pk-b" data-v="시민 사회">시민 사회</button></div><div class="pk-why" hidden>1999년에 만들어진 민간 단체다</div></div><div class="pk-card" data-i="2" data-ans="민관 협력"><span class="pk-win"><img src="images/6-6_b1_민관협력.png" alt="민관 협력 위원회" loading="lazy"></span><div class="pk-name">민관 협력 위원회</div><div class="pk-sit">교육부·외교부 산하 7개 단체와 반크 같은 민간단체가 함께 참여한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="정부">정부</button><button type="button" class="pk-b" data-v="민관 협력">민관 협력</button><button type="button" class="pk-b" data-v="시민 사회">시민 사회</button></div><div class="pk-why" hidden>정부와 민간이 한자리에서 같이 움직인다</div></div><div class="pk-card" data-i="3" data-ans="정부"><span class="pk-win"><img src="images/6-6_b1_인천시의회.jpg" alt="인천광역시 의회" loading="lazy"></span><div class="pk-name">인천광역시 의회</div><div class="pk-sit">나고야 시 의회 대표단의 방문을 거절하고 교과서 채택 반대 결의문을 전달했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="정부">정부</button><button type="button" class="pk-b" data-v="민관 협력">민관 협력</button><button type="button" class="pk-b" data-v="시민 사회">시민 사회</button></div><div class="pk-why" hidden>지방 의회도 정부 쪽이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk82");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["정부", "민관 협력", "시민 사회"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>📷 동북아역사재단이 주최한 「동북아역사 아카데미」 2014 (Republic of Korea · KOCIS · CC BY-SA 2.0) · 인천광역시의회 건물 (Narubaru7 · CC BY 4.0) — Wikimedia Commons. <strong>반크와 민관 협력 위원회는 사진이 없어 우리가 그림으로 만들었다.</strong></blockquote>
 <br>
@@ -1072,6 +1100,18 @@ function replayAnim(id){
   const base=im.dataset.src||im.src.split('?')[0];
   im.src='';
   setTimeout(()=>{ im.src = base + '?r=' + Date.now(); }, 30);
+}
+function ytPlay(b){
+  var id = b.dataset.yt, w = document.createElement('div');
+  w.className = 'vid-frame';
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + id +
+          '?rel=0&modestbranding=1&playsinline=1&autoplay=1';
+  f.title = '영상';
+  f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+  f.setAttribute('allowfullscreen', '');
+  w.appendChild(f);
+  b.replaceWith(w);
 }
 function galGo(id,i){
   const g=document.getElementById(id); if(!g) return;

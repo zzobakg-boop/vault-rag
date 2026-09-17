@@ -856,6 +856,32 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
 
+/* ▶️ 영상 자리 (2026-09-17) — 사진이 포스터가 되고, 누르면 그 자리에서 재생된다. */
+.ws-vid { margin: 20px auto 24px; max-width: 760px; }
+.vid-poster { position: relative; display: block; width: 100%; padding: 0; border: 0;
+  background: #000; border-radius: 10px; overflow: hidden; cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.vid-poster img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.vid-scrim { position: absolute; inset: 0; background:
+  radial-gradient(ellipse at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.42) 100%); }
+.vid-play { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px;
+  border-radius: 50%; background: rgba(216,32,32,0.92); box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+  transition: transform 0.18s, background 0.18s; }
+.vid-play::after { content: ''; position: absolute; left: 30px; top: 23px;
+  border-left: 26px solid #fff; border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+.vid-poster:hover .vid-play { transform: scale(1.09); background: rgba(232,28,28,0.98); }
+.vid-poster:focus-visible { outline: 3px solid #4a5c40; outline-offset: 3px; }
+.vid-badge { position: absolute; right: 10px; bottom: 10px; background: rgba(12,14,18,0.86);
+  color: #fff; font-size: 0.8em; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+.vid-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 10px;
+  overflow: hidden; background: #000; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.ws-vid figcaption { margin-top: 8px; font-size: 0.88em; line-height: 1.6; color: #4a5344; text-align: center; }
+.ws-vid figcaption b { display: block; color: #2f3a2a; }
+.vid-meta { font-size: 0.9em; color: #8a8272; }
+/* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
+@media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
+  .vid-poster { box-shadow: none; } }
 /* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
@@ -924,8 +950,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>⚠️ <strong>2단계 입담의 선은 여기다</strong> — 5천 명이 살았다는 «섬의 규모»와 «바다 한가운데»라는 지리 사실까지다. <strong>강제 노동의 내용이나 피해자의 처지를 입담 어조로 말하지 않는다.</strong> 그 부분은 위 배경 설명과 본문이 담담하게 진다.</blockquote>
 <blockquote>🔑 <strong>「입담 없는 단계 5」는 결함 절반, 판정 절반이었다</strong> — <code>lesson_lint</code>가 단원 최저로 표시했지만 1·2단계의 0은 <strong>의도</strong>였다. 계측표는 대조표이지 게이트가 아니라는 것이 이런 자리에서 드러난다.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/6-5_step1_소녀상.jpg" alt="주한 일본 대사관 건물을 마주 보고 의자에 앉은 평화의 소녀상을 뒤에서 찍은 사진. 소녀상은 뜨개 모자와 목도리를 걸치고 있고, 그 오른쪽에 아무도 앉지 않은 빈 의자가 놓여 있다" loading="lazy"><figcaption>주한 일본 대사관 건물을 마주 보고 의자에 앉은 평화의 소녀상을 뒤에서 찍은 사진. 소녀상은 뜨개 모자와 목도리를 걸치고 있고, 그 오른쪽에 아무도 앉지 않은 빈 의자가 놓여 있다</figcaption></figure>
-<blockquote>📷 소녀상이 <strong>마주 보고 있는 건물</strong>이 주한 일본 대사관이다. 오른쪽이 그 <strong>빈 의자</strong>다. (Sakaori · CC BY-SA 3.0 · Wikimedia Commons)</blockquote>
+<figure class="ws-vid"><button type="button" class="vid-poster" data-yt="zbYfYpDHjG4" aria-label="영상 재생 — 미 댈러스에 세워진 일본군 '위안부' 피해자 이옥선 할머니 기림비" onclick="ytPlay(this)"><img src="images/6-5_step1_소녀상.jpg" alt="주한 일본 대사관 건물을 마주 보고 의자에 앉은 평화의 소녀상을 뒤에서 찍은 사진. 오른쪽에 아무도 앉지 않은 빈 의자가 놓여 있다. 누르면 영상이 재생된다" loading="lazy"><span class="vid-scrim"></span><span class="vid-play"></span><span class="vid-badge">▶ 영상 · 2분 56초</span></button><figcaption><b>미 댈러스에 세워진 일본군 '위안부' 피해자 이옥선 할머니 기림비</b><span class="vid-meta">YTN · 2026-05 · 2분 56초 · <a href="https://www.youtube.com/watch?v=zbYfYpDHjG4" target="_blank" rel="noopener">유튜브에서 열기</a></span></figcaption></figure>
+<blockquote>📷 사진 = 소녀상이 <strong>마주 보고 있는 건물</strong>이 주한 일본 대사관이다. 오른쪽이 그 <strong>빈 의자</strong>다. (Sakaori · CC BY-SA 3.0 · Wikimedia Commons)</blockquote>
+<blockquote>🎬 <strong>눌러 보자.</strong> 본문의 <em>"미국과 독일 등 해외에도 서 있다"</em> 가 이 영상이다 — 이옥선 할머니가 10년 전 <em>"우리를 잊지 말아 달라"</em> 고 호소했던 <strong>바로 그 자리</strong>에 기림비가 세워졌다.</blockquote>
 <br>
 <blockquote>💡 <strong>사진을 띄우고 무엇을 물을까</strong> — <em>"소녀상이 어디를 보고 있나"</em> 한 번만 물으면 된다. 위 자료 배경(높이 130cm·치마저고리·단발머리)을 먼저 설명하면 학생이 사진을 보지 않는다. <strong>보고 나서 설명하는 순서</strong>로 둘 것.</blockquote>
 <br>
@@ -945,8 +972,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>💡 <strong>핵심 구분</strong> — 학생이 "세계 문화유산에 올린 것 자체가 잘못"이라고 답하기 쉽다. 그것이 아니라 <strong>알리기로 한 약속을 안 지킨 것</strong>이 문제다. OX 5번이 이 구분을 다시 묻는다.</blockquote>
 <blockquote>배경 — 하시마는 섬 모양이 군함을 닮아 군함도라 불린다. 1943~1945년 약 500~800명의 조선인이 끌려가 강제 노동을 한 것으로 추정된다.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/6-5_step2_군함도.jpg" alt="바다 위에 낮게 떠 있는 하시마 섬. 섬 전체가 콘크리트 방파제로 둘러싸이고 그 안에 무너져 가는 회색 건물들이 빽빽하게 서 있다" loading="lazy"><figcaption>바다 위에 낮게 떠 있는 하시마 섬. 섬 전체가 콘크리트 방파제로 둘러싸이고 그 안에 무너져 가는 회색 건물들이 빽빽하게 서 있다</figcaption></figure>
-<blockquote>📷 일본 나가사키 앞바다의 <strong>하시마 섬</strong>. 섬 모양이 군함을 닮아 「군함도」라 불린다. 지금은 아무도 살지 않는다. (ノーマルエディタ · CC BY-SA 4.0 · Wikimedia Commons)</blockquote>
+<figure class="ws-vid"><button type="button" class="vid-poster" data-yt="ciAfyXKUdCU" aria-label="영상 재생 — 일본 군함도 약속 안 지켰는데…유네스코 점검 중단" onclick="ytPlay(this)"><img src="images/6-5_step2_군함도.jpg" alt="바다 위에 낮게 떠 있는 하시마 섬. 섬 전체가 콘크리트 방파제로 둘러싸이고 그 안에 무너져 가는 회색 건물들이 빽빽하게 서 있다. 누르면 영상이 재생된다" loading="lazy"><span class="vid-scrim"></span><span class="vid-play"></span><span class="vid-badge">▶ 영상 · 2분 32초</span></button><figcaption><b>일본 군함도 약속 안 지켰는데…유네스코 점검 중단</b><span class="vid-meta">SBS · 2025-07 · 2분 32초 · <a href="https://www.youtube.com/watch?v=ciAfyXKUdCU" target="_blank" rel="noopener">유튜브에서 열기</a></span></figcaption></figure>
+<blockquote>📷 사진 = 일본 나가사키 앞바다의 <strong>하시마 섬</strong>. 섬 모양이 군함을 닮아 「군함도」라 불린다. 지금은 아무도 살지 않는다. (ノーマルエディタ · CC BY-SA 4.0 · Wikimedia Commons)</blockquote>
+<blockquote>🎬 <strong>눌러 보자.</strong> 2015년에 한 약속이 <strong>10년 동안 어떻게 됐는지</strong>를 따라간다 — 정보 센터는 5년 뒤 군함도가 아닌 <strong>도쿄</strong>에 세워졌고 강제 동원 사실은 적히지 않았다.</blockquote>
 <br>
 <blockquote>🎙️ <strong>저 작은 섬에 한때 5천 명이 넘게 살았다.</strong> 탄광 때문이었고, 그래서 세계에서 가장 빽빽한 땅이라고 불렸어. 탄광이 문을 닫자 사람들이 떠나 지금은 콘크리트만 남았지.</blockquote>
 <blockquote>🔑 사진을 한 번 더 봐 — <strong>바다 한가운데다.</strong> 배가 오지 않으면 나갈 수 없는 곳이었다는 뜻이야.</blockquote>
@@ -965,8 +993,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>💡 <strong>동북공정을 어느 칸에 넣을지가 이 차시에서 가장 어려운 판단이다.</strong> 땅 이야기로 보이지만 다투는 대상은 <strong>지난 역사를 어떻게 볼 것이냐</strong>이므로 도식에서는 「끝나지 않은 과거」에 두었다. 다만 그 주장이 <strong>영토 주장의 근거</strong>가 된다는 연결을 반드시 말로 짚어 줄 것 — 그래야 두 칸이 이어진다.</blockquote>
 <blockquote>최근 국내에서 '간도 되찾기 운동 본부' 등이 동북공정에 맞서는 움직임을 보이고 있다(지도서 121쪽).</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/6-5_step3_광개토대왕릉비.jpg" alt="건물 안에 세워진 거대한 사각 돌비석. 표면 전체에 한자가 새겨져 있고 아래쪽은 붉은 줄로 둘러 막아 두었다" loading="lazy"><figcaption>건물 안에 세워진 거대한 사각 돌비석. 표면 전체에 한자가 새겨져 있고 아래쪽은 붉은 줄로 둘러 막아 두었다</figcaption></figure>
-<blockquote>📷 <strong>광개토대왕릉비</strong> — 414년에 고구려가 세웠고, 지금 서 있는 곳은 <strong>중국 지린성 지안</strong>이다. (Yumeto · CC BY-SA 4.0 · Wikimedia Commons)</blockquote>
+<figure class="ws-vid"><button type="button" class="vid-poster" data-yt="o5YhHmXIVJw" aria-label="영상 재생 — 고구려·발해 지운 한국사 연표…동북공정 꼼수?" onclick="ytPlay(this)"><img src="images/6-5_step3_광개토대왕릉비.jpg" alt="건물 안에 세워진 거대한 사각 돌비석. 표면 전체에 한자가 새겨져 있고 아래쪽은 붉은 줄로 둘러 막아 두었다. 누르면 영상이 재생된다" loading="lazy"><span class="vid-scrim"></span><span class="vid-play"></span><span class="vid-badge">▶ 영상 · 2분 5초</span></button><figcaption><b>고구려·발해 지운 한국사 연표…동북공정 꼼수?</b><span class="vid-meta">MBC · 2022-09 · 2분 5초 · <a href="https://www.youtube.com/watch?v=o5YhHmXIVJw" target="_blank" rel="noopener">유튜브에서 열기</a></span></figcaption></figure>
+<blockquote>📷 사진 = <strong>광개토대왕릉비</strong> — 414년에 고구려가 세웠고, 지금 서 있는 곳은 <strong>중국 지린성 지안</strong>이다. (Yumeto · CC BY-SA 4.0 · Wikimedia Commons)</blockquote>
+<blockquote>🎬 <strong>눌러 보자.</strong> 동북공정이 <strong>지금도 벌어지는 일</strong>이라는 걸 보여 준다 — 중국 국가 박물관이 우리 국립중앙박물관이 준 한국사 연표에서 <strong>고구려와 발해를 지워</strong> 전시했다.</blockquote>
 <br>
 <blockquote>🎙️ <strong>이 비석이 «어디 있는지»가 이 이야기의 핵심이야.</strong> 고구려가 세운 비석인데, 지금 그 자리는 중국 땅이지. 중2 역사에서 광개토대왕을 배웠을 텐데, 그 비석을 직접 보려면 <strong>중국에 가서 봐야 해.</strong></blockquote>
 <blockquote>🔑 유물은 옮길 수 없다. 그러니 다툼은 <strong>그 유물을 «누구의 역사»로 설명하느냐</strong>에서 벌어진다.</blockquote>
@@ -1072,6 +1101,23 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>- <strong>하</strong> — 감정 표현만 있고 이유를 쓰지 못한 경우</blockquote>
 <blockquote>🔑 교과서 답은 <em>"피해 실상을 세계에 널리 알려 일본이 과거를 반성하는 자세를 갖도록 촉구하기 위함"</em>이다. 여기에 <strong>6-1의 '중앙 정부가 없다'</strong>를 얹으면 왜 하필 <em>다른 나라에</em> 세우는지가 설명된다. 이 연결이 상 답안의 갈림길이다.</blockquote>
 <br>
+<h2>🎬 영상 — 학생 화면에 들어가 있다 (2026-09-17)</h2>
+<br>
+<p>천대현 <em>"사진이 들어가는 자리에 관련 영상을 바로 재생할 수 있도록."</em> → <strong>세 자리의 사진이 그대로 포스터가 됐고, 누르면 그 자리에서 재생된다.</strong></p>
+<br>
+<table>
+<tr><td>단계</td><td>영상</td><td>채널·길이</td><td>왜 이것인가</td></tr>
+<tr><td>1단계</td><td>미 댈러스 이옥선 할머니 기림비</td><td>YTN · 2:56</td><td>본문 <em>"미국과 독일 등 해외에도 서 있다"</em> 를 그대로 뒷받침</td></tr>
+<tr><td>2단계</td><td>군함도 약속 안 지켰는데…유네스코 점검 중단</td><td>SBS · 2:32</td><td><em>"등재가 아니라 지키지 않은 약속"</em> 을 10년 흐름으로 설명</td></tr>
+<tr><td>3단계</td><td>고구려·발해 지운 한국사 연표…동북공정 꼼수?</td><td>MBC · 2:05</td><td>동북공정이 <strong>지금도 벌어지는 일</strong>임을 보여 준다</td></tr>
+</table>
+<br>
+<blockquote>🔴 <strong>수업 전 확인은 «발행 주소»에서 한다.</strong> 유튜브 임베드는 유효한 HTTP(S) 리퍼러를 요구해서 <strong>로컬 파일로 열면 「오류 153」</strong>이 뜬다. 발행된 https 주소에서 눌러 볼 것.</blockquote>
+<blockquote>⚠️ <strong>학교 망이 유튜브를 막으면 재생이 안 된다</strong> — 그때를 위해 캡션에 <strong>「유튜브에서 열기」 링크</strong>를 함께 뒀다. 막힌 망이어도 <strong>페이지 자체는 멀쩡하다</strong>(클릭 전에는 유튜브에 요청이 가지 않는 구조).</blockquote>
+<blockquote>🔴 <strong>1단계 영상에는 피해자 증언이 나온다</strong>(<em>"14살 어린 나이에 끌려가"</em>). 1단계에 입담을 두지 않은 것과 같은 이유로, <strong>영상 앞뒤에 가벼운 말을 얹지 않는다.</strong> 보고 나서 한 박자 두는 편이 낫다.</blockquote>
+<blockquote>💡 <strong>여벌 후보</strong>(같은 자리에 바꿔 쓸 것) — 군함도: KBS 「"강제동원 없었다"…'군함도' 왜곡 전시관 개관」(2020·2:05) / 광개토대왕릉비 자체: YTN 「광개토대왕릉비 디지털로 재현」(2024·2:25).</blockquote>
+<blockquote>🔑 <strong>제목만 보고 고르지 않았다</strong> — 자막을 받아 읽었고 그 과정에서 셋이 걸러졌다(묶음 코너·가십·다른 해 사건). 영상을 바꿀 때도 같은 절차로.</blockquote>
+<br>
 <h2>📎 각주</h2>
 <p>- 교과서: 천재교육 사회②(구정화) 120~121쪽</p>
 <p>- 지도서: 「이렇게 수업해 보세요」 '사물 떠올리기' — 고정관념·선입견 해소 토론(121쪽)</p>
@@ -1109,6 +1155,18 @@ function replayAnim(id){
   const base=im.dataset.src||im.src.split('?')[0];
   im.src='';
   setTimeout(()=>{ im.src = base + '?r=' + Date.now(); }, 30);
+}
+function ytPlay(b){
+  var id = b.dataset.yt, w = document.createElement('div');
+  w.className = 'vid-frame';
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + id +
+          '?rel=0&modestbranding=1&playsinline=1&autoplay=1';
+  f.title = '영상';
+  f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+  f.setAttribute('allowfullscreen', '');
+  w.appendChild(f);
+  b.replaceWith(w);
 }
 function galGo(id,i){
   const g=document.getElementById(id); if(!g) return;
