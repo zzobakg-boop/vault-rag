@@ -1091,6 +1091,37 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 read_lines.append(stripped)
             continue
 
+        # ▶️ 영상 자리 (:::영상 <유튜브ID> | <포스터> | <제목> | <메타> | <대체텍스트>) — 2026-09-17 천대현
+        #   "사진이 들어가는 자리에 관련 영상을 바로 재생할 수 있도록."
+        #   🔑 설계의 핵심 = **기존 사진을 그대로 포스터로 쓴다.** 사진이 사라지고 영상이
+        #      오는 것이 아니라, 그 사진을 누르면 그 자리에서 영상이 된다.
+        #   🔴 클릭 전에는 유튜브에 요청이 가지 않는다(lite embed) — 이유 셋:
+        #      ① 한 페이지에 iframe 넷이면 폰에서 무겁다 ② 학교 네트워크가 유튜브를
+        #      막아도 페이지는 멀쩡하다 ③ 열지 않은 영상까지 추적당하지 않는다.
+        #   ⚠️ figcaption에 **원본 링크**를 함께 둔다 — 임베드가 막히는 망에서 유일한 탈출구다.
+        #   ⚠️ 한 줄 블록이다(닫는 ::: 없음). 설명은 주변 blockquote가 맡는다.
+        if stripped.startswith(':::영상'):
+            _vp = [x.strip() for x in stripped[len(':::영상'):].strip().split('|')]
+            while len(_vp) < 5: _vp.append('')
+            _vid, _pos, _ttl, _meta, _alt = _vp[:5]
+            if _vid:
+                _lnk = f'https://www.youtube.com/watch?v={_vid}'
+                html_parts.append(
+                    '<figure class="ws-vid">'
+                    f'<button type="button" class="vid-poster" data-yt="{_vid}" '
+                    f'aria-label="영상 재생 — {_ttl}" '
+                    'onclick="ytPlay(this)">'
+                    + (f'<img src="images/{_pos}" alt="{_alt}" loading="lazy">' if _pos else '')
+                    + '<span class="vid-scrim"></span><span class="vid-play"></span>'
+                    + (f'<span class="vid-badge">▶ 영상 · {inline(_meta.split("·")[-1].strip())}</span>'
+                       if _meta else '<span class="vid-badge">▶ 영상</span>')
+                    + '</button>'
+                    f'<figcaption><b>{inline(_ttl)}</b>'
+                    f'<span class="vid-meta">{inline(_meta)} · '
+                    f'<a href="{_lnk}" target="_blank" rel="noopener">유튜브에서 열기</a></span>'
+                    '</figcaption></figure>')
+            continue
+
         # 🧩 모자이크 (:::모자이크 [머리말] ... :::) — 2026-09-15 천대현
         #   "갈등·분쟁에서 갑자기 협력으로 넘어가는 2단계→3단계 연결이 매끄럽지 않다.
         #    세계 대전 사례와 최근 AI 속도 조절을 이미지로 «연결 기반»으로 넣자.
@@ -2502,6 +2533,32 @@ table:has(.ox-group) td:first-child {{ width: 46px; text-align: center; color: #
 .ws-figrow-item img {{ width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
 .ws-figrow-item figcaption {{ margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }}
 
+/* ▶️ 영상 자리 (2026-09-17) — 사진이 포스터가 되고, 누르면 그 자리에서 재생된다. */
+.ws-vid {{ margin: 20px auto 24px; max-width: 760px; }}
+.vid-poster {{ position: relative; display: block; width: 100%; padding: 0; border: 0;
+  background: #000; border-radius: 10px; overflow: hidden; cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18); }}
+.vid-poster img {{ display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }}
+.vid-scrim {{ position: absolute; inset: 0; background:
+  radial-gradient(ellipse at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.42) 100%); }}
+.vid-play {{ position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px;
+  border-radius: 50%; background: rgba(216,32,32,0.92); box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+  transition: transform 0.18s, background 0.18s; }}
+.vid-play::after {{ content: ''; position: absolute; left: 30px; top: 23px;
+  border-left: 26px solid #fff; border-top: 15px solid transparent; border-bottom: 15px solid transparent; }}
+.vid-poster:hover .vid-play {{ transform: scale(1.09); background: rgba(232,28,28,0.98); }}
+.vid-poster:focus-visible {{ outline: 3px solid #4a5c40; outline-offset: 3px; }}
+.vid-badge {{ position: absolute; right: 10px; bottom: 10px; background: rgba(12,14,18,0.86);
+  color: #fff; font-size: 0.8em; font-weight: 700; padding: 4px 10px; border-radius: 6px; }}
+.vid-frame {{ position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 10px;
+  overflow: hidden; background: #000; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }}
+.vid-frame iframe {{ position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }}
+.ws-vid figcaption {{ margin-top: 8px; font-size: 0.88em; line-height: 1.6; color: #4a5344; text-align: center; }}
+.ws-vid figcaption b {{ display: block; color: #2f3a2a; }}
+.vid-meta {{ font-size: 0.9em; color: #8a8272; }}
+/* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
+@media print {{ .vid-play, .vid-scrim, .vid-badge {{ display: none; }}
+  .vid-poster {{ box-shadow: none; }} }}
 /* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos {{ margin: 20px auto 24px; max-width: 100%; }}
 .ws-mos-head {{ font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }}
@@ -2572,6 +2629,18 @@ function replayAnim(id){{
   const base=im.dataset.src||im.src.split('?')[0];
   im.src='';
   setTimeout(()=>{{ im.src = base + '?r=' + Date.now(); }}, 30);
+}}
+function ytPlay(b){{
+  var id = b.dataset.yt, w = document.createElement('div');
+  w.className = 'vid-frame';
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + id +
+          '?rel=0&modestbranding=1&playsinline=1&autoplay=1';
+  f.title = '영상';
+  f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+  f.setAttribute('allowfullscreen', '');
+  w.appendChild(f);
+  b.replaceWith(w);
 }}
 function galGo(id,i){{
   const g=document.getElementById(id); if(!g) return;
