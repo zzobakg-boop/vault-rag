@@ -1651,7 +1651,11 @@ def generate_html(title, content, total, total_ox, submit_url='', mode='class', 
         reveal_btn = '<button class="btn btn-secondary" onclick="reveal()">정답 보기</button>' if mode == 'review' else ''
         submit_btn = '<button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>' if mode == 'class' else ''
         # 📋 목록(허브) 링크 — 학생 제출용(class)엔 X (이탈·딴 학습지 답 열람 방지·6/8 천대현). 복습용엔 유지.
-        list_btn = '' if mode == 'class' else '<a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>'
+        # 🔴 2026-09-22: 허브에는 «정답편 카드»가 함께 있다(실측 125개 중 121개).
+        #    복습용을 학생에게 직접 배포할 땐 이 링크가 정답편으로 가는 문이 된다.
+        #    → 환경변수 WORKSHEET_LIST_URL 로 학생용 목차를 가리키게 한다. 기본값은 종전 허브(동작 불변).
+        _list_url = os.environ.get('WORKSHEET_LIST_URL', 'https://zzobakg-boop.github.io/worksheets/')
+        list_btn = '' if mode == 'class' else f'<a href="{_list_url}" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>'
         # 자동 채점 대상(빈칸·OX)이 없으면(서술형 수행평가 등) 점수칸·채점 버튼 숨김 — NaN% 방지 (6/8)
         scorable = grand_total > 0
         score_block = (f'''<div class="score">
