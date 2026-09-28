@@ -252,6 +252,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
 .ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }
 .ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
@@ -979,8 +999,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <table>
 <tr><td></td><td>무엇을 보나</td><td>이름</td></tr>
-<tr><td>①</td><td><strong>얼마나 많이</strong> 만드는가</td><td>①<input type="text" class="blank-input" data-answer="md를 계측기에 맞추지 않는다" data-id="1" style="width:276px" placeholder=""></td></tr>
-<tr><td>②</td><td>그것을 만들려고 <strong>무엇을 얼마나 포기</strong>하는가</td><td>②<input type="text" class="blank-input" data-answer="절대 우위" data-id="2" style="width:100px" placeholder=""></td></tr>
+<tr><td>①</td><td><strong>얼마나 많이</strong> 만드는가</td><td>①<input type="text" class="blank-input" data-answer="절대 우위" data-id="1" style="width:100px" placeholder=""></td></tr>
+<tr><td>②</td><td>그것을 만들려고 <strong>무엇을 얼마나 포기</strong>하는가</td><td>②<input type="text" class="blank-input" data-answer="비교 우위" data-id="2" style="width:100px" placeholder=""></td></tr>
 </table>
 <br>
 <figure class="ws-fig"><img src="images/v5-comparative-advantage.png" alt="비교 우위 판정표. 컴퓨터를 한 대 더 만들려면 우리나라는 옷 0.5벌, 중국은 옷 2벌을 포기한다. 옷을 한 벌 더 만들려면 우리나라는 컴퓨터 2대, 중국은 0.5대를 포기한다. 비교하는 것은 물건끼리가 아니라 같은 물건을 두 나라가 얼마나 포기하는지다." loading="lazy"><figcaption>비교 우위 판정표. 컴퓨터를 한 대 더 만들려면 우리나라는 옷 0.5벌, 중국은 옷 2벌을 포기한다. 옷을 한 벌 더 만들려면 우리나라는 컴퓨터 2대, 중국은 0.5대를 포기한다. 비교하는 것은 물건끼리가 아니라 같은 물건을 두 나라가 얼마나 포기하는지다.</figcaption></figure>
@@ -1019,8 +1039,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <table>
 <tr><td></td><td>누가</td><td>예</td></tr>
-<tr><td>③<input type="text" class="blank-input" data-answer="비교 우위" data-id="3" style="width:100px" placeholder=""> 외교</td><td>두 나라가 <strong>일대일</strong>로 상대한다</td><td>한미 정상 회담</td></tr>
-<tr><td>④<input type="text" class="blank-input" data-answer="양자" data-id="4" style="width:60px" placeholder=""> 외교</td><td><strong>셋 이상</strong>의 나라가 동시에 서로를 상대하며 한 가지 문제의 협력 방안을 찾는다</td><td>국제 연합(UN) · G20 정상 회의</td></tr>
+<tr><td>③<input type="text" class="blank-input" data-answer="양자" data-id="3" style="width:60px" placeholder=""> 외교</td><td>두 나라가 <strong>일대일</strong>로 상대한다</td><td>한미 정상 회담</td></tr>
+<tr><td>④<input type="text" class="blank-input" data-answer="다자" data-id="4" style="width:60px" placeholder=""> 외교</td><td><strong>셋 이상</strong>의 나라가 동시에 서로를 상대하며 한 가지 문제의 협력 방안을 찾는다</td><td>국제 연합(UN) · G20 정상 회의</td></tr>
 </table>
 <br>
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>🔑 <strong>낱말이 답을 알려 준다.</strong> 多(많을 다) → 여럿이 함께 · 兩(두 량) → 둘이서.</p><p>🔑 <strong>왜 굳이 여럿이 모이나</strong> — 기후 변화나 감염병처럼 <strong>한 나라가 혼자 풀 수 없는 문제</strong>가 있기 때문이다. 6-1에서 배운 <em>"국제 사회에는 중앙 정부가 없다"</em> 와 이어진다. 시킬 사람이 없으니 <strong>모여서 정하는 수밖에</strong> 없다.</p></div>
@@ -1032,7 +1052,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-fig"><img src="images/v5-trade-dependency.png" alt="무역 의존도 도식. 수출액과 수입액을 합한 뒤 국내 총생산으로 나눈 비율이 무역 의존도다." loading="lazy"><figcaption>무역 의존도 도식. 수출액과 수입액을 합한 뒤 국내 총생산으로 나눈 비율이 무역 의존도다.</figcaption></figure>
 <br>
-<p>무역 의존도 = (수출액 + 수입액) ÷ ⑤<input type="text" class="blank-input" data-answer="다자" data-id="5" style="width:60px" placeholder=""></p>
+<p>무역 의존도 = (수출액 + 수입액) ÷ ⑤<input type="text" class="blank-input" data-answer="국내 총생산" data-id="5" style="width:116px" placeholder=""></p>
 <br>
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>🔑 <strong>비율이므로 나라끼리 «금액»을 견주는 데는 쓸 수 없다.</strong> 무역 의존도가 80%인 작은 나라와 20%인 큰 나라 중 <strong>무역 «액수»가 더 큰 쪽은 큰 나라일 수 있다.</strong> 의존도는 <em>"그 나라 경제에서 무역이 차지하는 몫"</em> 이지 <em>"무역을 얼마나 많이 하나"</em> 가 아니다.</p></div>
 <br>
