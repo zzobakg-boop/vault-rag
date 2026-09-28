@@ -252,6 +252,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
 .ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }
 .ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
@@ -916,7 +936,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-1-2 — 같은 말이 바다를 건넜다 (미국 혁명)</h1><p class="hero-subtitle">같은 말이 바다를 건넜다</p><div class="hero-keywords"><span class="hero-keyword">왜 바다 건너까지 가서 의회를 만들었을까</span><span class="hero-keyword">세금을 정하는 자리에 우리 자리가 없다</span><span class="hero-keyword">차 상자를 왜 바다에 던졌을까</span><span class="hero-keyword">왕을 안 두기로 한 나라</span></div><div class="hero-hook">지난 시간 영국 의회가 왕에게 건 조건 기억나? — "의회의 동의 없이 세금을 부과할 수 없다." 그런데 100여 년 뒤, 대서양 건너에서 거의 똑같은 말이 다시 나와. "대표 없는 곳에 과세할 수 없다." 다른 점이 하나 있어. 이번에 그 말을 하는 사람들은 영국 의회가 아니라 영국의 식민지야. 같은 말인데 상대가 바뀌면 결말도 달라져 — 영국에서는 왕을 갈아 끼우는 것으로 끝났지만, 여기서는 나라가 하나 새로 생겨.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-1-2 — 같은 말이 바다를 건넜다 (미국 혁명)</h1><p class="hero-subtitle">같은 말이 바다를 건넜다</p><div class="hero-keywords"><span class="hero-keyword">왜 바다 건너까지 가서 의회를 만들었을까</span><span class="hero-keyword">세금을 정하는 자리에 우리 자리가 없다</span><span class="hero-keyword">차 상자를 왜 바다에 던졌을까</span><span class="hero-keyword">왕을 안 두기로 한 나라</span></div><div class="hero-hook">지난 시간 영국 의회가 왕에게 내민 요구 기억나? — "의회의 동의 없이 세금을 부과할 수 없다." 그런데 100여 년 뒤, 대서양 건너에서 거의 똑같은 말이 다시 나와. 어떤 말인지는 오늘 네가 직접 찾아 채워 봐. 다른 점이 하나 있어. 이번에 그 말을 하는 사람들은 영국 의회가 아니라 영국의 식민지야. 같은 말인데 상대가 바뀌면 결말도 달라져 — 영국에서는 왕을 갈아 끼우는 것으로 끝났지만, 여기서는 나라가 하나 새로 생겨.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/8 · OX: <span id="ox-score">0</span>/5
@@ -937,7 +957,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ 지난 시간 영국 의회가 왕에게 건 조건 기억나? — <strong>"의회의 동의 없이 세금을 부과할 수 없다."</strong> 그런데 100여 년 뒤, <strong>대서양 건너에서 거의 똑같은 말이 다시 나와.</strong> <em>"대표 없는 곳에 과세할 수 없다."</em> 다른 점이 하나 있어. 이번에 그 말을 하는 사람들은 영국 의회가 아니라 <strong>영국의 식민지</strong>야. 같은 말인데 <strong>상대가 바뀌면 결말도 달라져</strong> — 영국에서는 왕을 갈아 끼우는 것으로 끝났지만, 여기서는 <strong>나라가 하나 새로 생겨.</strong></blockquote>
+<blockquote>🎙️ 지난 시간 영국 의회가 왕에게 내민 요구 기억나? — <strong>"의회의 동의 없이 세금을 부과할 수 없다."</strong> 그런데 100여 년 뒤, <strong>대서양 건너에서 거의 똑같은 말이 다시 나와.</strong> 어떤 말인지는 오늘 네가 직접 찾아 채워 봐. 다른 점이 하나 있어. 이번에 그 말을 하는 사람들은 영국 의회가 아니라 <strong>영국의 식민지</strong>야. 같은 말인데 <strong>상대가 바뀌면 결말도 달라져</strong> — 영국에서는 왕을 갈아 끼우는 것으로 끝났지만, 여기서는 <strong>나라가 하나 새로 생겨.</strong></blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- <strong>미국 혁명의 전개 과정</strong>을 설명할 수 있다.</p>
@@ -947,69 +967,69 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <table>
 <tr><td>낱말</td><td>쉽게 말하면</td><td>한자 뜯어보기</td><td>문장 속에서</td></tr>
 <tr><td><strong>식민지</strong>(植民地)</td><td>다른 나라가 다스리는 땅</td><td>식(植, 심음) + 민(民, 사람) + 지(地, 땅)</td><td>"대서양 연안에 13개의 <strong>식민지</strong>를 세웠다."</td></tr>
-<tr><td><strong>과세</strong>(課稅)</td><td>세금을 매기는 것</td><td>과(課, 매김) + 세(稅, 세금)</td><td>"대표 없는 곳에 <strong>과세</strong>할 수 없다."</td></tr>
+<tr><td><strong>과세</strong>(課稅)</td><td>세금을 매기는 것</td><td>과(課, 매김) + 세(稅, 세금)</td><td>"정부가 수입 과일에 <strong>과세</strong>하자 과일값이 올랐다."</td></tr>
 <tr><td><strong>연방제</strong>(聯邦制)</td><td>여러 주가 모여 한 나라를 이루되 각자 살림도 하는 방식</td><td>연(聯, 이음) + 방(邦, 나라)</td><td>"<strong>연방제</strong>를 특징으로 하는 헌법을 만들었다."</td></tr>
-<tr><td><strong>분립</strong>(分立)</td><td>갈라서 따로 세우는 것</td><td>분(分, 나눔) + 립(立, 세움)</td><td>"삼권 <strong>분립</strong>의 원칙이 담겨 있었다."</td></tr>
+<tr><td><strong>분립</strong>(分立)</td><td>갈라서 따로 세우는 것</td><td>분(分, 나눔) + 립(立, 세움)</td><td>"학생회와 선도부를 <strong>분립</strong>해 두면 한쪽이 모든 일을 정하지 못한다."</td></tr>
 </table>
 <br>
-<blockquote>💡 오늘 딱 두 개만 잡자 — <em>"<strong>대표</strong> 없는 곳에 과세할 수 없다"</em>(무엇이 없다는 말인가)와 <strong>삼권 분립</strong>(무엇을 셋으로 나눴나).</blockquote>
+<blockquote>💡 오늘 딱 두 가지만 잡자 — 식민지 사람들이 외친 한 마디(<strong>무엇이 없다는 말인가</strong>)와, 새 나라가 힘을 무엇으로 나눴나.</blockquote>
 <br>
 <h2>📖 1단계: 바다 건너에 생긴 13개 식민지</h2>
 <blockquote>📕 <strong>교과서 146쪽 첫 문단</strong> 펴고 채우기 · 배정 시간 <strong>4분</strong></blockquote>
 <br>
 <p>17세기 이후 많은 영국인이 종교적 탄압을 피하거나 경제적 기회를 찾아 <strong>북아메리카</strong>로 떠났다. 이들은 북아메리카 동부의 대서양 연안에 <strong>13개의 식민지</strong>를 세우고, 영국과는 별개로 <strong>독자적인</strong> ①<input type="text" class="blank-input" data-answer="의회" data-id="1" style="width:60px" placeholder="">를 구성하여 <strong>자유와 자치</strong>를 누렸다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-1-2_열세식민지.png" alt="대서양 건너 13개 식민지 — 영국인들이 북아메리카 동부 연안에 세운 13개 식민지. 영국과는 별개로 자기들의 의회를 두고 자유와 자치를 누렸다." loading="lazy"><figcaption>대서양 건너 13개 식민지 — 영국인들이 북아메리카 동부 연안에 세운 13개 식민지. 영국과는 별개로 자기들의 의회를 두고 자유와 자치를 누렸다.</figcaption></figure>
-<br>
-<blockquote>🎙️ 여기서 <strong>한 낱말만 붙잡자 — 「별개로」.</strong> 영국 땅에서 온 사람들인데 영국 의회 말고 <strong>자기들 의회를 따로 뒀어.</strong> 배로 몇 달 걸리는 거리였거든. 멀어서 어쩔 수 없이 그렇게 시작한 건데, 그게 <strong>100년 넘게 이어지면 «당연한 것»이 돼.</strong> 오늘 벌어지는 모든 일이 이 «당연함»을 영국이 건드리면서 시작돼.</blockquote>
-<br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 146쪽 · 첫 문단</div><div class="ws-tb-ask">영국인들이 북아메리카로 떠난 까닭을 교과서는 <strong>두 가지</strong>로 적는다. 찾아서 그대로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 146쪽에서 찾기 — 영국인들이 북아메리카로 떠난 까닭을 교과서는 두 가지로 적는다. 찾아" style="width:400px" placeholder=""></div></div>
 <br>
-<h2>📖 2단계: 영국이 손을 뻗다 — "대표 없는 곳에 과세할 수 없다"</h2>
+<figure class="ws-fig"><img src="images/5-1-2_열세식민지_v2.png" alt="대서양 건너 13개 식민지 — 영국인들이 북아메리카 동부 연안에 세운 13개 식민지. 영국에서 배로 한두 달 걸리는 거리였다." loading="lazy"><figcaption>대서양 건너 13개 식민지 — 영국인들이 북아메리카 동부 연안에 세운 13개 식민지. 영국에서 배로 한두 달 걸리는 거리였다.</figcaption></figure>
+<br>
+<blockquote>🎙️ 여기서 <strong>한 낱말만 붙잡자 — 「별개로」.</strong> 영국 땅에서 온 사람들인데 영국 의회 말고 <strong>자기들 의회를 따로 뒀어.</strong> 배로 한두 달 걸리는 거리였거든. 멀리 떨어져 있으니 자기 일은 자기들이 정하는 게 자연스러웠지. 그게 <strong>100년 넘게 이어지면 «당연한 것»이 돼.</strong> 오늘 벌어지는 모든 일이 이 «당연함»을 영국이 건드리면서 시작돼.</blockquote>
+<br>
+<h2>📖 2단계: 영국이 손을 뻗다 — 식민지가 되받아친 한 마디</h2>
 <blockquote>📕 <strong>교과서 146쪽 + 날개(옆쪽 작은 글씨)</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
 <br>
-<p>영국은 <strong>7년 전쟁</strong>의 영향으로 많은 돈이 필요해지면서 식민지를 간섭하기 시작하였다. 영국 정부는 식민지 주민들에게 각종 문서나 신문 등에 <strong>인지</strong>를 사서 붙이게 하는 방식으로 세금을 징수하였다(②<input type="text" class="blank-input" data-answer="인지세" data-id="2" style="width:68px" placeholder="">). 이에 식민지 주민들이 <strong>"③<input type="text" class="blank-input" data-answer="대표" data-id="3" style="width:60px" placeholder=""> 없는 곳에 과세할 수 없다."</strong>라며 저항하자 영국 정부는 결국 이 세금을 폐지하였다. 그러나 곧 식민지로 들어오는 <strong>설탕과 차</strong> 등에 세금을 부과하였다.</p>
-<br>
-<figure class="ws-fig"><img src="images/5-1-2_대표없는곳.png" alt="세금을 정하는 자리에 우리 자리가 없다 — 영국 의회에는 식민지 대표석이 없는데 세금은 그 의회가 정한다. 지난 시간 영국 의회가 왕에게 걸었던 조건이 이번엔 식민지가 영국 의회에 거는 조건이 되었다." loading="lazy"><figcaption>세금을 정하는 자리에 우리 자리가 없다 — 영국 의회에는 식민지 대표석이 없는데 세금은 그 의회가 정한다. 지난 시간 영국 의회가 왕에게 걸었던 조건이 이번엔 식민지가 영국 의회에 거는 조건이 되었다.</figcaption></figure>
-<br>
-<blockquote>🎙️ <strong>"대표 없는 곳에 과세할 수 없다"</strong> — 이 말이 오늘의 열쇠야. 무슨 뜻일까? 세금을 정하는 곳은 <strong>영국 의회</strong>인데, 거기에 <strong>식민지 사람 자리가 하나도 없어.</strong> 내 돈을 얼마나 내라고 정하는 회의에 <strong>나는 못 들어간다</strong>는 거지. 요즘으로 치면, 우리 반 회비를 옆 반 회의에서 정하는 셈이야.</blockquote>
-<blockquote>🔁 <strong>지난 시간과 겹쳐 봐.</strong> 영국 의회가 찰스 1세에게 건 조건이 <em>"의회의 동의 없이 세금을 부과할 수 없다"</em>였잖아. <strong>거의 같은 말이 바다를 건너온 거야.</strong> 다만 이번엔 그 말을 듣는 쪽이 왕이 아니라 <strong>영국 의회 자신</strong>이야.</blockquote>
+<p>영국은 <strong>7년 전쟁</strong>의 영향으로 많은 돈이 필요해지면서 식민지를 간섭하기 시작하였다. 영국 정부는 식민지 주민들에게 각종 문서나 신문 등에 <strong>인지</strong>를 사서 붙이게 하는 방식으로 세금을 징수하였다(②<input type="text" class="blank-input" data-answer="인지세" data-id="2" style="width:68px" placeholder="">). 이에 식민지 주민들이 "<strong>③<input type="text" class="blank-input" data-answer="대표" data-id="3" style="width:60px" placeholder=""> 없는 곳에 과세할 수 없다.</strong>"라며 저항하자 영국 정부는 결국 이 세금을 폐지하였다. 그러나 곧 식민지로 들어오는 <strong>설탕과 차</strong> 등에 세금을 부과하였다.</p>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 146쪽 · 날개(옆쪽 작은 글씨)</div><div class="ws-tb-ask"><strong>인지</strong>란 무엇인지 교과서 설명을 그대로 옮겨 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 146쪽에서 찾기 — 인지란 무엇인지 교과서 설명을 그대로 옮겨 적자." style="width:340px" placeholder=""></div></div>
+<br>
+<figure class="ws-fig"><img src="images/5-1-2_대표없는곳_v2.png" alt="세금을 정하는 자리에 우리 자리가 없다 — 영국 의회에는 식민지 대표석이 없는데 세금은 그 의회가 정한다. 지난 시간 영국 의회가 왕에게 내민 요구와 거의 같은 말이, 이번엔 바다 건너에서 나왔다." loading="lazy"><figcaption>세금을 정하는 자리에 우리 자리가 없다 — 영국 의회에는 식민지 대표석이 없는데 세금은 그 의회가 정한다. 지난 시간 영국 의회가 왕에게 내민 요구와 거의 같은 말이, 이번엔 바다 건너에서 나왔다.</figcaption></figure>
+<br>
+<blockquote>🎙️ <strong>"대표 없는 곳에 과세할 수 없다"</strong> — 이 말이 오늘의 열쇠야. 무슨 뜻일까? 세금을 정하는 곳은 <strong>영국 의회</strong>인데, 거기에 <strong>식민지 사람 자리가 하나도 없어.</strong> 내 돈을 얼마나 내라고 정하는 회의에 <strong>나는 못 들어간다</strong>는 거지. 요즘으로 치면, 우리 반 회비를 옆 반 회의에서 정하는 셈이야.</blockquote>
+<blockquote>🔁 <strong>지난 시간과 겹쳐 봐.</strong> 영국 의회가 찰스 1세에게 내민 권리 청원이 "<em>의회의 동의 없이 세금을 부과할 수 없다</em>"였잖아. <strong>거의 같은 말이 바다를 건너온 거야.</strong> 다만 이번엔 그 말을 듣는 쪽이 누구인지 잘 봐 — 활동 1에서 채울 거야.</blockquote>
 <br>
 <h2>📖 3단계: 차 상자를 바다에 던지다</h2>
 <blockquote>📕 <strong>교과서 146쪽 + 「이 사건!」 상자</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
 <br>
 <p>식민지 주민들은 영국 정부에 강하게 저항하였고, 보스턴항에 정박해 있던 영국 <strong>동인도 회사</strong>의 배를 습격하여 안에 있던 차 상자를 바다에 던졌다(④<input type="text" class="blank-input" data-answer="보스턴 차 사건" data-id="4" style="width:148px" placeholder="">, 1773). 영국이 보스턴항을 <strong>봉쇄</strong>하고 주민들을 탄압하자, 식민지 대표들은 ⑤<input type="text" class="blank-input" data-answer="대륙 회의" data-id="5" style="width:100px" placeholder="">를 열어 영국에 항의하였다(1774). 이후 식민지 <strong>민병대</strong>와 영국군이 충돌하면서 <strong>독립 전쟁</strong>이 일어났다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-1-2_차사건연쇄.png" alt="차 사건에서 전쟁까지 여섯 칸 — ① 차에 세금·독점 판매 → ② 불매 운동 → ③ 처벌 → ④ 배를 습격해 차 상자를 바다에 → ⑤ 항구 봉쇄·탄압 → ⑥ 대륙 회의와 충돌. 한 칸씩 따라가면 왜 세금 이야기가 전쟁이 되는지 보인다." loading="lazy"><figcaption>차 사건에서 전쟁까지 여섯 칸 — ① 차에 세금·독점 판매 → ② 불매 운동 → ③ 처벌 → ④ 배를 습격해 차 상자를 바다에 → ⑤ 항구 봉쇄·탄압 → ⑥ 대륙 회의와 충돌. 한 칸씩 따라가면 왜 세금 이야기가 전쟁이 되는지 보인다.</figcaption></figure>
-<br>
-<blockquote>⚠️ <strong>여기서 칸을 건너뛰면 안 돼.</strong> 교과서는 이 여섯 칸을 한 문단에 눌러 담았어. 그래서 <em>"세금 이야기하다 갑자기 전쟁"</em>처럼 읽히지. 도식에서 <strong>한 칸씩</strong> 짚어 봐 — 어느 칸에서 «말»이 «힘»으로 바뀌는지.</blockquote>
-<br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 146쪽 · 「이 사건!」 상자</div><div class="ws-tb-ask">식민지 주민들은 차 상자를 던지기 <strong>전에</strong> 먼저 무엇을 했나? 그리고 배를 습격할 때 <strong>어떤 모습으로 변장</strong>했나? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 146쪽에서 찾기 — 식민지 주민들은 차 상자를 던지기 전에 먼저 무엇을 했나? 그리고 배" style="width:400px" placeholder=""></div></div>
+<br>
+<figure class="ws-fig"><img src="images/5-1-2_차사건연쇄_v2.png" alt="차 사건에서 전쟁까지 여섯 칸 — ① 차에 세금·독점 판매 → ② 불매 운동 → ③ 처벌 → ④ 배를 습격해 차 상자를 바다에 → ⑤ 항구 봉쇄·탄압 → ⑥ 대륙 회의와 충돌. 한 칸씩 따라가면 왜 세금 이야기가 전쟁이 되는지 보인다." loading="lazy"><figcaption>차 사건에서 전쟁까지 여섯 칸 — ① 차에 세금·독점 판매 → ② 불매 운동 → ③ 처벌 → ④ 배를 습격해 차 상자를 바다에 → ⑤ 항구 봉쇄·탄압 → ⑥ 대륙 회의와 충돌. 한 칸씩 따라가면 왜 세금 이야기가 전쟁이 되는지 보인다.</figcaption></figure>
+<br>
+<blockquote>⚠️ <strong>여기서 칸을 건너뛰면 안 돼.</strong> 교과서는 이 여섯 칸을 한 문단에 눌러 담았어. 그래서 "<em>세금 이야기하다 갑자기 전쟁</em>"처럼 읽히지. 도식에서 <strong>한 칸씩</strong> 짚어 봐 — 어느 칸에서 «말»이 «힘»으로 바뀌는지.</blockquote>
 <br>
 <h2>📖 4단계: 독립을 선언하고, 이겨서 인정받다</h2>
 <blockquote>📕 <strong>교과서 147쪽 첫 문단 + 각주 ➊</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
 <br>
 <p>식민지 대표들은 ⑥<input type="text" class="blank-input" data-answer="조지 워싱턴" data-id="6" style="width:116px" placeholder="">을 총사령관에 임명하고, <strong>미국 독립 선언문</strong>을 발표하였다(1776). 독립 선언문에는 <strong>모든 인간은 평등하게 태어났으며, 생명·자유·행복을 추구할 수 있는 권리를 갖는다</strong>는 내용이 담겨 있었다. 식민지군은 <strong>프랑스</strong>를 비롯한 여러 나라의 지원을 받아 전쟁에서 승리하였고, 마침내 영국 정부로부터 독립을 인정받았다(<strong>파리 조약</strong>, 1783).</p>
 <br>
-<figure class="ws-fig"><img src="images/5-1-2_전쟁의세지점.png" alt="전쟁의 세 지점 — 보스턴에서 차 사건이 일어나고, 필라델피아에서 독립을 선언하고, 요크타운에서 승부가 갈렸다. 식민지군은 프랑스를 비롯한 여러 나라의 지원을 받았다." loading="lazy"><figcaption>전쟁의 세 지점 — 보스턴에서 차 사건이 일어나고, 필라델피아에서 독립을 선언하고, 요크타운에서 승부가 갈렸다. 식민지군은 프랑스를 비롯한 여러 나라의 지원을 받았다.</figcaption></figure>
-<br>
-<blockquote>🎙️ <strong>혼자 이긴 게 아니야.</strong> 교과서에 <em>"프랑스를 비롯한 여러 나라의 지원을 받아"</em>라고 분명히 적혀 있어. 왜 프랑스가 도왔을까? 영국과 사이가 나빴거든(7년 전쟁을 떠올려 봐). <strong>적의 적을 돕는 거야.</strong> 그런데 이 선택이 나중에 프랑스에 부메랑으로 돌아와 — 다음 차시에서 보게 될 거야.</blockquote>
-<br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 147쪽 · 각주 ➊</div><div class="ws-tb-ask"><strong>요크타운 전투</strong>(1781)에서 무슨 일이 있었는지, 그리고 그 전투가 왜 중요했는지 각주에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 147쪽에서 찾기 — 요크타운 전투(1781)에서 무슨 일이 있었는지, 그리고 그 전투가" style="width:400px" placeholder=""></div></div>
+<br>
+<figure class="ws-fig"><img src="images/5-1-2_전쟁의세지점_v2.png" alt="전쟁의 세 지점 — 보스턴에서 차 사건이 일어나고, 필라델피아에서 독립을 선언하고, 요크타운에서 승부가 갈렸다. 식민지군은 프랑스를 비롯한 여러 나라의 지원을 받았다." loading="lazy"><figcaption>전쟁의 세 지점 — 보스턴에서 차 사건이 일어나고, 필라델피아에서 독립을 선언하고, 요크타운에서 승부가 갈렸다. 식민지군은 프랑스를 비롯한 여러 나라의 지원을 받았다.</figcaption></figure>
+<br>
+<blockquote>🎙️ <strong>혼자 이긴 게 아니야.</strong> 교과서에 "<em>프랑스를 비롯한 여러 나라의 지원을 받아</em>"라고 분명히 적혀 있어. 왜 프랑스가 도왔을까? 2단계에 나온 <strong>7년 전쟁</strong> 기억나? 그 전쟁에서 프랑스는 영국에 져서 북아메리카 땅을 많이 잃었어. 적의 적을 돕는 거야. 그런데 이 선택이 나중에 프랑스에 부메랑으로 돌아와 — 다음 차시에서 보게 될 거야.</blockquote>
 <br>
 <h2>📖 5단계: 세계 최초의 민주 공화국</h2>
 <blockquote>📕 <strong>교과서 147쪽 둘째 문단</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
 <br>
-<p>독립을 이룬 13개 식민지들은 <strong>연방제</strong>를 특징으로 하는 헌법을 만들었다. 이에 따라 각 주는 통합적인 <strong>연방 정부</strong> 아래에서 <strong>광범위한 자치</strong>를 누릴 수 있게 되었다. 또한 헌법에는 <strong>주권이 국민에게 있다</strong>는 것과 국가의 권력을 <strong>입법·행정·사법</strong>으로 분리한다는 ⑦<input type="text" class="blank-input" data-answer="삼권 분립" data-id="7" style="width:100px" placeholder="">의 원칙이 담겨 있었다. 이후 각 주의 대표들은 조지 워싱턴을 <strong>초대 대통령</strong>으로 선출하고, 세계 최초의 민주 공화국인 ⑧<input type="text" class="blank-input" data-answer="아메리카 합중국" data-id="8" style="width:148px" placeholder="">을 수립하였다(1789).</p>
+<p>독립을 이룬 13개 식민지들은 <strong>연방제</strong>를 특징으로 하는 헌법을 만들었다. 이에 따라 각 주는 통합적인 <strong>연방 정부</strong> 아래에서 <strong>광범위한 자치</strong>를 누릴 수 있게 되었다. 또한 헌법에는 <strong>주권이 국민에게 있다</strong>는 것과 국가의 권력을 <strong>입법·행정·사법</strong>으로 분리한다는 ⑦<input type="text" class="blank-input" data-answer="삼권 분립" data-id="7" style="width:100px" placeholder="">의 원칙이 담겨 있었다. 이후 각 주의 대표들은 전쟁을 이끈 그 총사령관을 <strong>초대 대통령</strong>으로 선출하고, 세계 최초의 민주 공화국인 ⑧<input type="text" class="blank-input" data-answer="아메리카 합중국" data-id="8" style="width:148px" placeholder="">을 수립하였다(1789).</p>
 <br>
-<figure class="ws-fig"><img src="images/5-1-2_힘을나누다.png" alt="힘을 두 방향으로 나눴다 — 위아래로는 연방 정부와 각 주가 나눠 갖고(연방제), 좌우로는 입법·행정·사법이 나눠 갖는다(삼권 분립). 한 사람에게 몰리지 않게 하는 두 개의 장치다." loading="lazy"><figcaption>힘을 두 방향으로 나눴다 — 위아래로는 연방 정부와 각 주가 나눠 갖고(연방제), 좌우로는 입법·행정·사법이 나눠 갖는다(삼권 분립). 한 사람에게 몰리지 않게 하는 두 개의 장치다.</figcaption></figure>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 147쪽 · 마지막 문장</div><div class="ws-tb-ask">미국 혁명이 영향을 준 것을 교과서는 <strong>두 가지</strong>로 적는다. 찾아서 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 147쪽에서 찾기 — 미국 혁명이 영향을 준 것을 교과서는 두 가지로 적는다. 찾아서 적자" style="width:340px" placeholder=""></div></div>
+<br>
+<figure class="ws-fig"><img src="images/5-1-2_힘을나누다_v2.png" alt="힘을 두 방향으로 나눴다 — 위아래로는 연방 정부와 각 주가 나눠 갖고(연방제), 좌우로는 입법·행정·사법이 나눠 갖는다(삼권 분립). 한 사람에게 몰리지 않게 하는 두 개의 장치다." loading="lazy"><figcaption>힘을 두 방향으로 나눴다 — 위아래로는 연방 정부와 각 주가 나눠 갖고(연방제), 좌우로는 입법·행정·사법이 나눠 갖는다(삼권 분립). 한 사람에게 몰리지 않게 하는 두 개의 장치다.</figcaption></figure>
 <br>
 <blockquote>🎙️ <strong>왜 이렇게 복잡하게 나눴을까?</strong> 방금까지 «한 사람이 다 정하는 것»에 맞서 싸운 사람들이잖아. 그 기억이 헌법에 그대로 들어간 거야. <strong>위아래로 한 번</strong>(연방 ↔ 주), <strong>좌우로 한 번</strong>(입법·행정·사법) — 두 번 나눴어. 힘이 한 군데로 못 모이게.</blockquote>
 <blockquote>🔁 그리고 <strong>왕을 아예 두지 않았어.</strong> 영국은 왕을 남겨 두고 힘만 묶었지(입헌 군주제). 미국은 왕 없이 대통령을 뽑았어(민주 공화국). <strong>같은 문제에 두 나라가 다른 답을 낸 거야.</strong></blockquote>
-<br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 147쪽 · 마지막 문장</div><div class="ws-tb-ask">미국 혁명이 영향을 준 것을 교과서는 <strong>두 가지</strong>로 적는다. 찾아서 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 147쪽에서 찾기 — 미국 혁명이 영향을 준 것을 교과서는 두 가지로 적는다. 찾아서 적자" style="width:340px" placeholder=""></div></div>
 <br>
 <h2>✏️ 활동 1 — 같은 말, 다른 상대</h2>
 <br>
@@ -1044,9 +1064,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>💭 더 생각해 보기</h2>
 <br>
-<p>독립 선언문은 <em>"모든 인간은 평등하게 태어났다"</em>고 밝혔다.</p>
+<p>독립 선언문은 "<em>모든 인간은 평등하게 태어났다</em>"고 밝혔다.</p>
 <br>
-<p>? 그런데 이 선언이 나온 뒤에도 미국에는 노예 제도가 남아 있었다. <strong>"모든 인간"</strong>이라는 말과 이 사실은 어떻게 맞물릴까? 네 생각을 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="? 그런데 이 선언이 나온 뒤에도 미국에는 노예 제도가 남아 있었다. “" style="width:400px" placeholder=""></p>
+<p>? 그런데 이 선언이 나온 뒤에도 미국에는 노예 제도가 남아 있었다. "<strong>모든 인간</strong>"이라는 말과 이 사실은 어떻게 맞물릴까? 네 생각을 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="? 그런데 이 선언이 나온 뒤에도 미국에는 노예 제도가 남아 있었다. “" style="width:400px" placeholder=""></p>
 <br>
 <h2>다음 시간 예고</h2>
 <br>

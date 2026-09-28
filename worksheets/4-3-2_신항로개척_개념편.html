@@ -252,6 +252,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
 .ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }
 .ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
@@ -856,6 +876,32 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
 
+/* ▶️ 영상 자리 (2026-09-17) — 사진이 포스터가 되고, 누르면 그 자리에서 재생된다. */
+.ws-vid { margin: 20px auto 24px; max-width: 760px; }
+.vid-poster { position: relative; display: block; width: 100%; padding: 0; border: 0;
+  background: #000; border-radius: 10px; overflow: hidden; cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.vid-poster img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.vid-scrim { position: absolute; inset: 0; background:
+  radial-gradient(ellipse at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.42) 100%); }
+.vid-play { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px;
+  border-radius: 50%; background: rgba(216,32,32,0.92); box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+  transition: transform 0.18s, background 0.18s; }
+.vid-play::after { content: ''; position: absolute; left: 30px; top: 23px;
+  border-left: 26px solid #fff; border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+.vid-poster:hover .vid-play { transform: scale(1.09); background: rgba(232,28,28,0.98); }
+.vid-poster:focus-visible { outline: 3px solid #4a5c40; outline-offset: 3px; }
+.vid-badge { position: absolute; right: 10px; bottom: 10px; background: rgba(12,14,18,0.86);
+  color: #fff; font-size: 0.8em; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+.vid-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 10px;
+  overflow: hidden; background: #000; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.ws-vid figcaption { margin-top: 8px; font-size: 0.88em; line-height: 1.6; color: #4a5344; text-align: center; }
+.ws-vid figcaption b { display: block; color: #2f3a2a; }
+.vid-meta { font-size: 0.9em; color: #8a8272; }
+/* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
+@media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
+  .vid-poster { box-shadow: none; } }
 /* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
@@ -890,11 +936,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅳ단원 4-3-2 — 후추 한 줌 때문에 바다로 (신항로 개척)</h1><p class="hero-subtitle">왜 유럽은 목숨을 걸고 바다로 나갔을까?</p><div class="hero-keywords"><span class="hero-keyword">배경 = 동방 상품 인기 + 중간 상인 독점 → 직접 가자</span><span class="hero-keyword">기술 = 나침반·항해 지도·캐러벨선</span><span class="hero-keyword">포르투갈(동)·에스파냐(서) — 디아스·다가마·콜럼버스·마젤란</span><span class="hero-keyword">결과의 두 얼굴: 대서양 삼각 무역 vs 아메리카·아프리카의 비극</span></div><div class="hero-hook">자, 네가 15세기 유럽 사람이라고 해보자. 고기 요리에 후추를 뿌리고 싶은데, 값이 어마어마해. 왜? 후추는 인도에서 오는데 중간에 이슬람 상인, 이탈리아 상인을 거치며 값이 계속 붙거든. 그때 누군가 말한다 — '그럼 우리가 직접 인도로 가면 되잖아?' 지도도 없고 죽을 수도 있는 길인데 사람들이 배를 탄다. 그 결과 세계는 하나로 이어졌지만, 그 대가는 누군가에게 너무 잔인했어. 오늘은 그 양면의 이야기.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅳ단원 4-3-2 — 후추 한 줌 때문에 바다로 (신항로 개척)</h1><p class="hero-subtitle">왜 유럽은 목숨을 걸고 바다로 나갔을까?</p><div class="hero-keywords"><span class="hero-keyword">후추 한 줌이 왜 그렇게 비쌌을까</span><span class="hero-keyword">마음만으로는 못 간다 — 무엇이 더 필요했나</span><span class="hero-keyword">동쪽으로 간 나라, 서쪽으로 간 나라</span><span class="hero-keyword">같은 사건, 다른 얼굴</span></div><div class="hero-hook">자, 네가 15세기 유럽 사람이라고 해보자. 고기 요리에 후추를 뿌리고 싶은데, 값이 어마어마해. 왜? 후추는 인도에서 오는데 중간에 이슬람 상인, 이탈리아 상인을 거치며 값이 계속 붙거든. 그때 누군가 말한다 — '그럼 우리가 직접 인도로 가면 되잖아?' 지도도 없고 죽을 수도 있는 길인데 사람들이 배를 탄다. 그 결과 세계는 하나로 이어졌지만, 그 대가는 누군가에게 너무 잔인했어. 오늘은 그 양면의 이야기.</div></section>
   <div class="control-bar">
     <div class="score">
-      빈칸: <span id="score">0</span>/4 · OX: <span id="ox-score">0</span>/3
-      · 총: <span id="total-score">0</span>/7 (<span id="pct">0</span>%)
+      빈칸: <span id="score">0</span>/5 · OX: <span id="ox-score">0</span>/5
+      · 총: <span id="total-score">0</span>/10 (<span id="pct">0</span>%)
     </div>
     <div>
       
@@ -912,90 +958,142 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   </div>
   <br>
 <br>
+<blockquote>🎙️ 자, 네가 15세기 유럽 사람이라고 해보자. 고기 요리에 후추를 뿌리고 싶은데, 값이 어마어마해. 왜? 후추는 인도에서 오는데 중간에 이슬람 상인, 이탈리아 상인을 거치며 값이 계속 붙거든. 그때 누군가 말한다 — <em>"그럼 우리가 직접 인도로 가면 되잖아?"</em> 죽을 수도 있는 길인데 사람들이 배를 탄다. 그 결과 세계는 하나로 이어졌지만, 그 대가는 누군가에게 너무 잔인했어. 오늘은 그 두 얼굴의 이야기야.</blockquote>
+<br>
 <h2>📌 학습 목표</h2>
 <p>- 신항로 개척의 <strong>배경과 과정</strong>을 이해할 수 있다.</p>
-<p>- 신항로 개척으로 만들어진 <strong>세계 교역망이 여러 지역에 미친 영향</strong>을 파악할 수 있다.</p>
+<p>- 신항로 개척으로 확립된 <strong>세계 교역망이 세계 여러 지역에 미친 영향</strong>을 파악할 수 있다.</p>
 <br>
 <h2>✨ 오늘의 고급 단어</h2>
 <table>
 <tr><td>낱말</td><td>쉽게 말하면</td><td>한자 뜯어보기</td><td>문장 속에서</td></tr>
-<tr><td><strong>향신료</strong></td><td>음식에 맛과 향을 더하는 조미료</td><td>향(香, 향기) + 신(辛, 매울) + 료(料, 재료)</td><td>"후추 같은 <strong>향신료</strong>는 값이 매우 비쌌다."</td></tr>
-<tr><td><strong>독점</strong></td><td>혼자 다 차지함</td><td>독(獨, 홀로) + 점(占, 차지할)</td><td>"이슬람·이탈리아 상인이 무역을 <strong>독점</strong>했다."</td></tr>
+<tr><td><strong>향신료</strong></td><td>음식에 맵거나 향기로운 맛을 더하는 조미료</td><td>향(香, 향기) + 신(辛, 매울) + 료(料, 재료)</td><td>"후추 같은 <strong>향신료</strong>는 값이 매우 비쌌다."</td></tr>
+<tr><td><strong>독점</strong></td><td>혼자 다 차지함</td><td>독(獨, 홀로) + 점(占, 차지할)</td><td>"동네에 빵집이 하나뿐이면 그 가게가 빵 장사를 <strong>독점</strong>한다."</td></tr>
 <tr><td><strong>개척</strong></td><td>새 길을 열어 냄</td><td>개(開, 열) + 척(拓, 넓힐)</td><td>"새로운 항로를 <strong>개척</strong>했다."</td></tr>
 <tr><td><strong>식민지</strong></td><td>다른 나라에 지배받는 땅</td><td>식(植, 심을) + 민(民, 백성) + 지(地, 땅)</td><td>"에스파냐는 라틴 아메리카를 <strong>식민지</strong>로 삼았다."</td></tr>
 </table>
 <br>
-<blockquote>💡 오늘의 열쇳말은 <strong>독점</strong> — 이것 때문에 사람들이 바다로 나갔다.</blockquote>
+<blockquote>💡 오늘의 열쇳말은 «중간에서 다 차지한 사람들» — 이것 때문에 사람들이 바다로 나갔다.</blockquote>
 <br>
 <h2>📖 1단계: 왜 바다로 나갔나 — 후추가 너무 비쌌다</h2>
-<p>13세기 이후 유럽인들은 마르코 폴로의 『동방견문록』 같은 여행기를 읽으며 동방에 호기심을 가졌다. 십자군 전쟁 이후 무역이 활발해지며 향신료·비단·도자기 같은 동방 상품이 큰 인기를 끌었다.</p>
+<blockquote>📕 <strong>교과서 130쪽 첫 문단 + 날개</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
 <br>
-<p><strong>그런데 문제가 있었다.</strong> 동방 상품은 이탈리아 상인과 이슬람 상인이 ①<input type="text" class="blank-input" data-answer="독점" data-id="1" style="width:60px" placeholder="">해서 값이 매우 비쌌다. 그래서 유럽인들은 동방과 <strong>직접</strong> 교류할 새 항로를 찾아 나섰다.</p>
-<blockquote>(교과서 원문: "동방의 상품은 이탈리아 상인과 이슬람 상인이 독점하여 가격이 비쌌다. 이에 유럽인들은 동방과 직접 교류하고자 새로운 항로를 찾아 나섰다." — 비상교육 역사①(이병인) p.130)</blockquote>
+<p>13세기 이후 유럽인들은 마르코 폴로의 『동방견문록』 같은 여행기를 읽으며 동방에 호기심을 가졌다. 십자군 전쟁 이후 무역이 활발해지면서 향신료·비단·도자기 같은 동방 상품이 큰 인기를 끌었다. 그러나 동방의 상품은 이탈리아 상인과 이슬람 상인이 ①<input type="text" class="blank-input" data-answer="독점" data-id="1" style="width:60px" placeholder="">하여 값이 비쌌다. 그래서 유럽인들은 동방과 <strong>직접</strong> 교류할 새 항로를 찾아 나섰다.</p>
 <br>
-<blockquote>🎙️ 요즘으로 치면 이런 거야. 좋아하는 굿즈가 있는데 국내 판매처가 하나뿐이라 값이 세 배야. 그래서 "직구하자!"가 된 거지. 다만 이 직구는 목숨을 걸어야 했어.</blockquote>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 130쪽 · 날개(옆쪽 작은 글씨)</div><div class="ws-tb-ask">후추 같은 향신료가 중세 유럽인에게 인기가 많았던 까닭을 날개에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 130쪽에서 찾기 — 후추 같은 향신료가 중세 유럽인에게 인기가 많았던 까닭을 날개에서 찾" style="width:340px" placeholder=""></div></div>
+<br>
+<figure class="ws-fig"><img src="images/4-3-2_후추따기.jpg" alt="15세기 초 파리에서 만든 마르코 폴로 『동방견문록』 필사본(『경이의 서』)의 그림. 인도 남쪽에서 사람들이 후추를 따 바구니에 담고, 오른쪽 사람이 통에 모인 후추를 만져 보고 있다. (부시코 화가 · 1410년 무렵 · 프랑스 국립도서관 · 퍼블릭 도메인 · Wikimedia Commons)" loading="lazy"><figcaption>15세기 초 파리에서 만든 마르코 폴로 『동방견문록』 필사본(『경이의 서』)의 그림. 인도 남쪽에서 사람들이 후추를 따 바구니에 담고, 오른쪽 사람이 통에 모인 후추를 만져 보고 있다. (부시코 화가 · 1410년 무렵 · 프랑스 국립도서관 · 퍼블릭 도메인 · Wikimedia Commons)</figcaption></figure>
+<br>
+<blockquote>🎙️ 요즘으로 치면 이런 거야. 좋아하는 굿즈가 있는데 파는 곳이 하나뿐이라 값이 세 배야. 그래서 "직구하자!"가 된 거지. 다만 이 직구는 목숨을 걸어야 했어.</blockquote>
+<blockquote>🎙️ 위 그림은 『동방견문록』을 옮겨 쓴 책에 들어간 그림이야. 그린 사람은 파리의 화가였어. 인도를 직접 본 게 아니라 글을 읽고 그렸지. 유럽 사람들이 동방을 얼마나 궁금해했는지 보이지?</blockquote>
 <br>
 <h2>📖 2단계: 갈 수 있게 된 이유 — 기술</h2>
-<p>마음만으로는 못 간다. 이 무렵 <strong>천문학·지리학</strong>이 발전해 더 정확한 항해 지도가 만들어졌고, ②<input type="text" class="blank-input" data-answer="나침반" data-id="2" style="width:68px" placeholder="">·육분의 같은 항해 도구와 선박 제조 기술도 발달했다. 포르투갈이 개발한 <strong>캐러벨선</strong>은 큰 삼각돛을 달아 빠르고 안전하게 항해할 수 있었다.</p>
+<blockquote>📕 <strong>교과서 131쪽 첫 문단 + 사진 설명</strong> 펴고 채우기 · 배정 시간 <strong>4분</strong></blockquote>
 <br>
-<h2>📖 3단계: 누가 어디로 갔나</h2>
-<p>대서양 연안의 <strong>포르투갈</strong>과 <strong>에스파냐</strong>가 앞장섰다.</p>
+<p>이 무렵 <strong>천문학과 지리학</strong>이 발전하여 이전보다 정확한 항해 지도가 만들어졌고, ②<input type="text" class="blank-input" data-answer="나침반" data-id="2" style="width:68px" placeholder=""> 등의 항해 도구와 선박 제조 기술도 발달하였다. 먼 거리를 항해할 수 있게 되자 신항로 개척은 더욱 활기를 띠었다.</p>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 131쪽 · 「캐러벨선」 사진 설명</div><div class="ws-tb-ask">포르투갈이 개발한 캐러벨선은 <strong>어떤 돛</strong>을 달았고, 그 덕분에 무엇이 좋아졌나? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 131쪽에서 찾기 — 포르투갈이 개발한 캐러벨선은 어떤 돛을 달았고, 그 덕분에 무엇이 좋" style="width:340px" placeholder=""></div></div>
+<br>
+<figure class="ws-fig"><img src="images/4-3-2_칸티노지도1502.jpg" alt="1502년 포르투갈에서 그린 세계 지도(칸티노 지도). 가운데 아프리카의 해안선이 거의 오늘날 모양으로 그려져 있다. 뱃사람들이 직접 다녀온 바닷길을 따라 그렸기 때문이다. 왼쪽 끝에는 새로 알게 된 아메리카의 해안이 조금 보인다. (작자 미상 · 이탈리아 에스텐세 도서관 · 퍼블릭 도메인 · Wikimedia Commons)" loading="lazy"><figcaption>1502년 포르투갈에서 그린 세계 지도(칸티노 지도). 가운데 아프리카의 해안선이 거의 오늘날 모양으로 그려져 있다. 뱃사람들이 직접 다녀온 바닷길을 따라 그렸기 때문이다. 왼쪽 끝에는 새로 알게 된 아메리카의 해안이 조금 보인다. (작자 미상 · 이탈리아 에스텐세 도서관 · 퍼블릭 도메인 · Wikimedia Commons)</figcaption></figure>
+<br>
+<blockquote>🎙️ 마음만으로는 못 가. 1단계가 «가고 싶다»였다면 2단계는 «갈 수 있다»야. 둘이 만났을 때 배가 떠났어. 위 지도를 봐 — 아프리카 해안이 거의 지금 모양이지? 뱃사람들이 한 굽이씩 직접 다녀오며 그렸기 때문이야.</blockquote>
+<br>
+<h2>📖 3단계: 누가 어디로 갔나 — 동쪽 팀, 서쪽 팀</h2>
+<blockquote>📕 <strong>교과서 130쪽 지도 + 131쪽 본문</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
+<br>
+<p>대서양 연안의 <strong>포르투갈</strong>과 <strong>에스파냐</strong>가 앞장섰다. 포르투갈은 아시아로 가는 <strong>동쪽</strong> 항로를, 에스파냐는 대서양으로 돌아가는 <strong>서쪽</strong> 항로를 열었다.</p>
 <br>
 <table>
-<tr><td>인물</td><td>나라</td><td>업적</td></tr>
-<tr><td>바르톨로메우 디아스</td><td>포르투갈</td><td>아프리카 남쪽 끝 <strong>희망봉</strong> 도착(1488)</td></tr>
-<tr><td>바스쿠 다가마</td><td>포르투갈</td><td>희망봉을 돌아 인도 <strong>캘리컷</strong> 도착(1498)</td></tr>
-<tr><td>③<input type="text" class="blank-input" data-answer="콜럼버스" data-id="3" style="width:84px" placeholder=""></td><td>에스파냐</td><td>대서양을 건너 서인도 제도 도착(1492)</td></tr>
-<tr><td>마젤란 함대</td><td>에스파냐</td><td>최초로 <strong>세계 일주</strong>(1519~1522)</td></tr>
+<tr><td>인물</td><td>나라</td><td>한 일</td></tr>
+<tr><td>바르톨로메우 디아스</td><td>포르투갈</td><td>아프리카 남쪽 끝 <strong>희망봉</strong>에 도착(1488)</td></tr>
+<tr><td>바스쿠 다가마</td><td>포르투갈</td><td>희망봉을 돌아 인도 <strong>캘리컷</strong>에 도착(1498)</td></tr>
+<tr><td>③<input type="text" class="blank-input" data-answer="콜럼버스" data-id="3" style="width:84px" placeholder=""></td><td>에스파냐</td><td>대서양을 건너 <strong>서인도 제도</strong>에 도착(1492)</td></tr>
+<tr><td>마젤란 함대</td><td>에스파냐</td><td>태평양을 가로질러 최초로 <strong>세계 일주</strong>(1519~1522)</td></tr>
 </table>
 <br>
-<h2>📖 4단계: 세계가 하나로 — 대서양 삼각 무역</h2>
-<p>신항로 개척 이후 무역의 중심지가 <strong>지중해 → ④<input type="text" class="blank-input" data-answer="대서양" data-id="4" style="width:68px" placeholder=""></strong>으로 옮겨 갔다.</p>
-<blockquote>(교과서 원문: "신항로가 개척된 이후 무역의 중심지는 지중해에서 대서양으로 옮겨 갔다." — 같은 책 p.132)</blockquote>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 130쪽 · 지도 「신항로 개척의 전개」</div><div class="ws-tb-ask">지도에서 ③의 배가 대서양을 건너 처음 닿은 <strong>섬 이름</strong>을 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 130쪽에서 찾기 — 지도에서 ③의 배가 대서양을 건너 처음 닿은 섬 이름을 찾아 적자." style="width:340px" placeholder=""></div></div>
 <br>
-<p>대서양 무역은 유럽·아메리카·아프리카를 잇는 <strong>삼각 무역</strong>으로 발전했다.</p>
+<blockquote>🎙️ 이름에 흔적이 남았어. 콜럼버스는 자기가 <strong>아시아(인도) 근처</strong>에 왔다고 믿었어. 그래서 그곳이 지금도 «서인도» 제도야. 인도가 아닌데 인도라는 이름이 붙은 거지.</blockquote>
+<br>
+<h2>📖 4단계: 세계가 하나로 — 삼각 무역과 은</h2>
+<blockquote>📕 <strong>교과서 132쪽</strong> 펴고 채우기 · 배정 시간 <strong>7분</strong></blockquote>
+<br>
+<p>신항로가 개척된 이후 무역의 중심지는 지중해에서 ④<input type="text" class="blank-input" data-answer="대서양" data-id="4" style="width:68px" placeholder="">으로 옮겨 갔다. 새 중심지의 무역은 유럽·아메리카·아프리카를 잇는 <strong>삼각 무역</strong>으로 발전하였다. 유럽 사람들은 아프리카에 총과 옷감 등을 주고 <strong>노예</strong>를 공급받았다. 이들은 아메리카에 대농장을 짓고 아프리카 노예를 동원하여 작물을 생산한 뒤, 그 작물을 유럽에 되팔아 큰 이익을 남겼다.</p>
+<br>
 <pre class="code-block">
 유럽 ──(총·옷감)──▶ 아프리카
 
 아프리카 ──(노예)──▶ 아메리카
 
-아메리카 ──(은·설탕 등 원재료)──▶ 유럽
+아메리카 ──(은·작물)──▶ 유럽
 
 </pre>
 <br>
+<p>한편 유럽은 새 항로를 따라 아시아와도 교역하였다. 네덜란드·영국·프랑스 등은 각각 <strong>동인도 회사</strong>를 세우고 아시아로 진출하였다. 유럽은 아시아의 향신료·면직물·도자기·비단·차를 사들이고, 아메리카에서 얻어 낸 ⑤<input type="text" class="blank-input" data-answer="은" data-id="5" style="width:60px" placeholder="">으로 값을 치렀다. 많은 양의 금과 은이 유럽에 들어오면서 <strong>물가가 크게 올랐다.</strong></p>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 132쪽 · 「이 음식!」</div><div class="ws-tb-ask">신항로 개척 뒤 유럽에 전해진 작물 가운데 <strong>하나</strong>를 골라, 처음 유럽에 갔을 때 어떤 대접을 받았는지 교과서 설명에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 132쪽에서 찾기 — 신항로 개척 뒤 유럽에 전해진 작물 가운데 하나를 골라, 처음 유럽에" style="width:400px" placeholder=""></div></div>
+<br>
+<blockquote>🎙️ 요즘 네가 먹는 감자튀김, 초콜릿 — 둘 다 이때 대서양을 건너왔어. 그런데 처음엔 둘 다 환영받지 못했지.</blockquote>
+<blockquote>🎙️ 은을 따라가 봐. 아메리카 광산에서 캔 은이 유럽으로 가고, 유럽은 그 은으로 아시아의 차와 비단을 샀어. 은 한 덩이가 세 대륙을 한 줄로 꿴 셈이야.</blockquote>
+<br>
 <h2>📖 5단계: ⭐ 같은 사건, 다른 얼굴</h2>
+<blockquote>📕 <strong>교과서 133쪽</strong> 펴고 읽기 · 배정 시간 <strong>7분</strong></blockquote>
+<br>
 <blockquote>🎙️ 여기서 반전이야. 유럽에겐 '발견의 시대'였지만, 다른 쪽에선 전혀 다른 일이 벌어지고 있었어.</blockquote>
 <br>
-<p><strong>아메리카</strong> — 멕시코고원의 아스테카 문명, 안데스고원의 잉카 문명이 유럽인의 진출로 빠르게 파괴되었다. 원주민은 대농장·광산에서 가혹한 노동에 시달렸고, 유럽에서 들어온 <strong>천연두·홍역</strong> 같은 새 질병으로 많은 사람이 목숨을 잃었다.</p>
+<p><strong>아메리카</strong> — 오래전부터 멕시코고원에는 <strong>아스테카 문명</strong>, 안데스고원에는 <strong>잉카 문명</strong>이 발달하였다. 그러나 이 문명들은 유럽인들이 아메리카에 진출하면서 빠르게 파괴되었다. 에스파냐인들은 원주민을 동원해 대농장에서 사탕수수·담배 같은 상품 작물을 재배하고, 광산에서 금과 은을 캤다. 원주민은 가혹한 노동에 시달렸고, 유럽에서 들어온 <strong>천연두·홍역</strong> 같은 새 질병으로 많은 사람이 목숨을 잃었다.</p>
 <br>
-<p><strong>아프리카</strong> — 원주민 인구가 줄어 노동력이 부족해지자 유럽인은 아프리카 사람을 노예로 동원했다(노예 무역). 아프리카는 인구가 줄고 성비가 무너졌으며 부족 간 갈등도 깊어졌다.</p>
-<blockquote>(교과서 원문: "독자적인 문화를 누리던 아프리카는 노예 무역으로 인구가 줄고 성비가 불균형해졌으며, 부족 간의 갈등도 깊어졌다." — 같은 책 p.133)</blockquote>
+<figure class="ws-fig"><img src="images/4-3-2_테노치티틀란1524.jpg" alt="1524년 독일 뉘른베르크에서 찍어 낸 아스테카의 수도 테노치티틀란 지도. 정복자 코르테스가 에스파냐 왕에게 보낸 편지와 함께 실렸다. 오른쪽이 도시, 왼쪽은 멕시코만이다. (뉴베리 도서관 · 퍼블릭 도메인 · Wikimedia Commons)" loading="lazy"><figcaption>1524년 독일 뉘른베르크에서 찍어 낸 아스테카의 수도 테노치티틀란 지도. 정복자 코르테스가 에스파냐 왕에게 보낸 편지와 함께 실렸다. 오른쪽이 도시, 왼쪽은 멕시코만이다. (뉴베리 도서관 · 퍼블릭 도메인 · Wikimedia Commons)</figcaption></figure>
+<br>
+<blockquote>🔍 <strong>지도에서 하나만 찾아보자</strong> — 이 도시는 <strong>어디 위에</strong> 세워져 있지? 육지와는 무엇으로 이어져 있을까?</blockquote>
+<blockquote>🎙️ 이 지도는 코르테스의 편지와 함께 유럽에서 찍혔어. 유럽 사람들이 처음 본 아스테카의 수도야. 그런데 지도가 나왔을 때 이 도시는 이미 전쟁으로 무너진 뒤였어.</blockquote>
+<br>
+<p><strong>아프리카</strong> — 원주민 인구가 줄어 노동력이 부족해지자 유럽인은 아프리카 원주민을 노예로 동원하였다(노예 무역). 독자적인 문화를 누리던 아프리카는 인구가 줄고 성비가 불균형해졌으며, 부족 간의 갈등도 깊어졌다.</p>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 133쪽 · 「노예 무역의 비극」</div><div class="ws-tb-ask">19세기까지 약 <strong>몇 명</strong>의 아프리카인이 노예로 아메리카에 팔려 갔다고 적혀 있나? 그리고 배 안에서 노예들은 <strong>어떤 상태로</strong> 옮겨졌나? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 133쪽에서 찾기 — 19세기까지 약 몇 명의 아프리카인이 노예로 아메리카에 팔려 갔다고" style="width:400px" placeholder=""></div></div>
+<br>
+<figure class="ws-fig"><img src="images/4-3-2_사탕수수농장1823.jpg" alt="1823년 카리브해 앤티가섬의 사탕수수 농장. 아프리카에서 끌려온 사람들과 그 자손이 사탕수수를 베어 묶고, 오른쪽에서 말을 탄 관리인이 지켜본다. (윌리엄 클라크 · 영국 도서관 · 퍼블릭 도메인 · Wikimedia Commons)" loading="lazy"><figcaption>1823년 카리브해 앤티가섬의 사탕수수 농장. 아프리카에서 끌려온 사람들과 그 자손이 사탕수수를 베어 묶고, 오른쪽에서 말을 탄 관리인이 지켜본다. (윌리엄 클라크 · 영국 도서관 · 퍼블릭 도메인 · Wikimedia Commons)</figcaption></figure>
+<br>
+<blockquote>🎙️ 교과서 132쪽 사탕수수 설명 기억나? «벌 없이 꿀을 주는 갈대». 그 달콤함 뒤에 이 장면이 있었어. 설탕이 인기를 끌수록 아프리카에서 더 많은 사람이 끌려왔지.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 한 사건, 두 개의 제목</h2>
 <blockquote>같은 신항로 개척을 두고, 아래 두 입장에서 각각 <strong>신문 제목</strong>을 지어 보자. (10자 내외)</blockquote>
 <br>
 <table class="act-table">
 <tr><td>입장</td><td>내가 지은 제목</td></tr>
-<tr><td>유럽 상인</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="유럽 상인" style="width:240px" placeholder=""></td></tr>
-<tr><td>아메리카 원주민</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="아메리카 원주민" style="width:240px" placeholder=""></td></tr>
+<tr><td>유럽 상인</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="유럽 상인" style="width:240px" placeholder=""></td></tr>
+<tr><td>아메리카 원주민</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="아메리카 원주민" style="width:240px" placeholder=""></td></tr>
 </table>
+<br>
+<h2>✏️ 활동 2 — 우리 해 보자: 신항로 개척은 오늘까지 이어진다</h2>
+<blockquote>📕 <strong>교과서 134쪽 「우리 해 보자</strong>」의 자료 1(브라질 카니발)·자료 2(단일 작물 재배)를 읽고 표를 채우자.</blockquote>
+<br>
+<table class="act-table">
+<tr><td>자료</td><td>무엇이 오늘까지 남았나</td><td>긍정·부정</td></tr>
+<tr><td>자료 1 브라질 카니발</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="자료 1 브라질 카니발" style="width:150px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="자료 1 브라질 카니발" style="width:80px" placeholder=""></td></tr>
+<tr><td>자료 2 단일 작물 재배</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-10" data-label="자료 2 단일 작물 재배" style="width:150px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-11" data-label="자료 2 단일 작물 재배" style="width:80px" placeholder=""></td></tr>
+</table>
+<br>
+<p>? 나는 신항로 개척의 <strong>긍정적 / 부정적</strong> 영향이 더 크다고 생각한다. 그렇게 생각하는 까닭을 오늘 배운 사실 <strong>하나 이상</strong>을 들어 두 문장으로 써 보자. <input type="text" class="blank-input activity-input no-score" data-id="act-12" data-label="? 나는 신항로 개척의 긍정적 / 부정적 영향이 더 크다고 생각한다. 그" style="width:400px" placeholder=""></p>
 <br>
 <h2>✅ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
 <tr><td>1</td><td>유럽인이 새 항로를 찾아 나선 것은 중간 상인의 독점으로 동방 상품 값이 비쌌기 때문이다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>신항로 개척 이후 무역의 중심지는 대서양에서 지중해로 옮겨 갔다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>신항로 개척은 아메리카 원주민에게 인구 감소와 문명 파괴를 가져왔다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>캐러벨선은 에스파냐가 개발한 배다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>신항로 개척 이후 무역의 중심지는 대서양에서 지중해로 옮겨 갔다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>유럽은 아시아의 상품을 사들이고 아메리카에서 얻은 은으로 값을 치렀다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>신항로 개척은 아메리카 원주민에게 인구 감소와 문명 파괴를 가져왔다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 <h2>💭 더 생각해 보기</h2>
-<p>우리는 흔히 이 시기를 <strong>'대항해 시대'</strong>나 <strong>'발견의 시대'</strong>라고 불러.</p>
+<p>우리는 흔히 이 시기를 '<strong>대항해 시대</strong>'나 '<strong>발견의 시대</strong>'라고 불러.</p>
 <p>그런데 아메리카 원주민의 입장에서 보면 이 이름이 적절할까? 적절하다면 왜, 적절하지 않다면 어떤 이름이 좋을지 두세 문장으로 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>
 <script>
-const TB=4, TOX=3, GT=7;
+const TB=5, TOX=5, GT=10;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
@@ -1026,6 +1124,18 @@ function replayAnim(id){
   const base=im.dataset.src||im.src.split('?')[0];
   im.src='';
   setTimeout(()=>{ im.src = base + '?r=' + Date.now(); }, 30);
+}
+function ytPlay(b){
+  var id = b.dataset.yt, w = document.createElement('div');
+  w.className = 'vid-frame';
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + id +
+          '?rel=0&modestbranding=1&playsinline=1&autoplay=1';
+  f.title = '영상';
+  f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+  f.setAttribute('allowfullscreen', '');
+  w.appendChild(f);
+  b.replaceWith(w);
 }
 function galGo(id,i){
   const g=document.getElementById(id); if(!g) return;

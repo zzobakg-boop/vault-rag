@@ -252,6 +252,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
 .ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }
 .ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
@@ -916,7 +936,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-1-3 — 전부인데 아무것도 아니었던 사람들 (프랑스 혁명)</h1><p class="hero-subtitle">전부인데 아무것도 아니었던 사람들</p><div class="hero-keywords"><span class="hero-keyword">세금은 누가 내고 특권은 누가 가졌을까</span><span class="hero-keyword">표를 어떻게 세느냐가 왜 싸움이 됐을까</span><span class="hero-keyword">밖에서 눌렀는데 왜 안이 더 뜨거워졌을까</span><span class="hero-keyword">혁명을 끝낸 사람이 혁명을 퍼뜨렸다는 말</span></div><div class="hero-hook">프랑스 하면 떠오르는 게 하나 있지 — 길쭉한 빵, 바게트. 그런데 그 빵을 프랑스 사람들이 언제부터 그렇게 먹게 됐을까? 오늘 이야기가 그 즈음이야. 당시 프랑스에서는 인구의 2%가 땅을 많이 가지고도 세금을 안 냈고, 나머지 98%가 세금을 거의 다 냈어. 그런데 그 98%는 정치에서는 없는 사람 취급을 받았지. 어떤 사람이 이렇게 물었어 — "제3 신분은 무엇인가? 전부이다. 그런데 지금은? 아무것도 아니다." 전부인데 아무것도 아닌 사람들. 그 모순이 터진 이야기야.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-1-3 — 전부인데 아무것도 아니었던 사람들 (프랑스 혁명)</h1><p class="hero-subtitle">전부인데 아무것도 아니었던 사람들</p><div class="hero-keywords"><span class="hero-keyword">세금은 누가 내고 특권은 누가 가졌을까</span><span class="hero-keyword">표를 어떻게 세느냐가 왜 싸움이 됐을까</span><span class="hero-keyword">밖에서 눌렀는데 왜 안이 더 뜨거워졌을까</span><span class="hero-keyword">혁명을 끝낸 사람이 혁명을 퍼뜨렸다는 말</span></div><div class="hero-hook">프랑스 하면 떠오르는 게 하나 있지 — 길쭉한 빵, 바게트. 그런데 그 빵을 프랑스 사람들이 언제부터 그렇게 먹게 됐을까? 오늘 이야기가 그 즈음이야. 당시 프랑스에서는 인구의 2%가 땅을 많이 가지고도 세금을 안 냈고, 나머지 98%가 세금을 거의 다 냈어. 그런데 그 98%는 정치에서는 없는 사람 취급을 받았지. 어떤 사람은 이들을 두고, 수로는 전부인데 정치에서는 아무것도 아니라고 적었어. 전부인데 아무것도 아닌 사람들. 그 모순이 터진 이야기야.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/8 · OX: <span id="ox-score">0</span>/6
@@ -938,7 +958,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   </div>
   <br>
 <blockquote>🎙️ 프랑스 하면 떠오르는 게 하나 있지 — 길쭉한 빵, <strong>바게트.</strong> 그런데 그 빵을 프랑스 사람들이 <strong>언제부터</strong> 그렇게 먹게 됐을까? 오늘 이야기가 그 즈음이야.</blockquote>
-<blockquote>당시 프랑스에서는 인구의 <strong>2%</strong>가 땅을 많이 가지고도 <strong>세금을 안 냈고</strong>, 나머지 <strong>98%</strong>가 세금을 거의 다 냈어. 그런데 그 98%는 <strong>정치에서는 없는 사람 취급</strong>을 받았지. 어떤 사람이 이렇게 물었어 — <em>"제3 신분은 무엇인가? <strong>전부</strong>이다. 그런데 지금은? <strong>아무것도 아니다.</strong>"</em> 전부인데 아무것도 아닌 사람들. 그 모순이 터진 이야기야.</blockquote>
+<blockquote>당시 프랑스에서는 인구의 <strong>2</strong>%가 땅을 많이 가지고도 <strong>세금을 안 냈고</strong>, 나머지 <strong>98</strong>%가 세금을 거의 다 냈어. 그런데 그 98%는 <strong>정치에서는 없는 사람 취급</strong>을 받았지. 어떤 사람은 이들을 두고, 수로는 <strong>전부</strong>인데 정치에서는 <strong>아무것도 아니라고</strong> 적었어. 전부인데 아무것도 아닌 사람들. 그 모순이 터진 이야기야.</blockquote>
 <br>
 <blockquote>📌 <strong>오늘은 두 시간짜리야.</strong> 1교시는 «혁명이 일어나기까지», 2교시는 «혁명이 굴러가다가 한 사람에게 넘어가기까지».</blockquote>
 <br>
@@ -950,12 +970,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <table>
 <tr><td>낱말</td><td>쉽게 말하면</td><td>한자 뜯어보기</td><td>문장 속에서</td></tr>
 <tr><td><strong>특권</strong>(特權)</td><td>특별히 주어진 권리</td><td>특(特, 특별함) + 권(權, 권리)</td><td>"세금을 내지 않는 <strong>특권</strong>을 누렸다."</td></tr>
-<tr><td><strong>공화정</strong>(共和政)</td><td>왕 없이 다스리는 정치</td><td>공(共, 함께) + 화(和, 어울림)</td><td>"국민 공회는 <strong>공화정</strong>을 선포하였다."</td></tr>
-<tr><td><strong>급진</strong>(急進)</td><td>급하게 밀어붙이는 것</td><td>급(急, 급함) + 진(進, 나아감)</td><td>"<strong>급진</strong>파 세력이 공포 정치를 펼쳤다."</td></tr>
-<tr><td><strong>봉쇄</strong>(封鎖)</td><td>막아서 통하지 못하게 하는 것</td><td>봉(封, 막음) + 쇄(鎖, 자물쇠)</td><td>"대륙 <strong>봉쇄</strong>령을 내렸다."</td></tr>
+<tr><td><strong>공화정</strong>(共和政)</td><td>왕 없이 다스리는 정치</td><td>공(共, 함께) + 화(和, 어울림)</td><td>"왕이 없는 나라를 공화국이라 하고, 그 나라의 정치를 <strong>공화정</strong>이라 한다."</td></tr>
+<tr><td><strong>급진</strong>(急進)</td><td>급하게 밀어붙이는 것</td><td>급(急, 급함) + 진(進, 나아감)</td><td>"싸운 다음 날 바로 절교하자는 건 너무 <strong>급진</strong>적인 해결이야."</td></tr>
+<tr><td><strong>봉쇄</strong>(封鎖)</td><td>막아서 통하지 못하게 하는 것</td><td>봉(封, 막음) + 쇄(鎖, 자물쇠)</td><td>"태풍이 오자 해안 도로가 <strong>봉쇄</strong>되었다."</td></tr>
 </table>
 <br>
-<blockquote>💡 오늘 딱 두 개만 잡자 — <strong>인권 선언</strong>(무엇을 뒤집었나)과 <strong>정부 이름 네 개의 순서</strong>(국민 의회 → 입법 의회 → 국민 공회 → 총재 정부).</blockquote>
+<blockquote>💡 오늘 딱 두 가지만 잡자 — 1789년에 나온 선언이 <strong>무엇을 뒤집었나</strong>, 그리고 혁명 동안 정부가 바뀐 순서.</blockquote>
 <br>
 <h1>🕐 1교시 — 혁명이 일어나기까지</h1>
 <br>
@@ -964,36 +984,36 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>18세기 프랑스에서는 강력한 왕정 아래 <strong>불평등한 신분제</strong>가 계속되었다. 당시 프랑스 사회는 <strong>세 신분</strong>으로 나뉘어 있었다. 제1 신분인 <strong>성직자</strong>와 제2 신분인 <strong>귀족</strong>은 많은 토지를 가지고 있으면서도 <strong>세금을 내지 않는 특권</strong>을 누렸다. 반면 제3 신분인 <strong>평민</strong>은 국가 세금의 대부분을 부담하면서도 <strong>정치적 권리를 얻지 못하였다.</strong> 이러한 상황에서 <strong>계몽사상</strong>과 <strong>미국 혁명</strong>의 영향을 받은 시민들은 자유와 평등을 꿈꾸며 기존의 낡은 질서(①<input type="text" class="blank-input" data-answer="구제도" data-id="1" style="width:68px" placeholder="">)를 무너뜨리고자 하였다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-1-3_이퍼센트.png" alt="2%와 98% — 성직자와 귀족은 전 인구의 약 2%인데 땅을 많이 가지고도 세금을 내지 않았고, 평민은 약 98%인데 세금을 거의 다 내면서 정치적 권리를 얻지 못했다." loading="lazy"><figcaption>2%와 98% — 성직자와 귀족은 전 인구의 약 2%인데 땅을 많이 가지고도 세금을 내지 않았고, 평민은 약 98%인데 세금을 거의 다 내면서 정치적 권리를 얻지 못했다.</figcaption></figure>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 148쪽 · 날개 ➊ 「구제도의 모순 풍자화」</div><div class="ws-tb-ask">풍자화에 사람이 셋 나온다. <strong>누가 누구 위에 올라타 있는지</strong>, 그리고 <strong>맨 아래 사람은 어떤 표정·자세인지</strong> 보고 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 148쪽에서 찾기 — 풍자화에 사람이 셋 나온다. 누가 누구 위에 올라타 있는지, 그리고" style="width:400px" placeholder=""></div></div>
+<br>
+<figure class="ws-fig"><img src="images/5-1-3_이퍼센트_v2.png" alt="2%와 98% — 성직자와 귀족은 전 인구의 약 2%인데 땅을 많이 가지고도 세금을 내지 않았고, 평민은 약 98%인데 세금을 거의 다 내면서 정치적 권리를 얻지 못했다." loading="lazy"><figcaption>2%와 98% — 성직자와 귀족은 전 인구의 약 2%인데 땅을 많이 가지고도 세금을 내지 않았고, 평민은 약 98%인데 세금을 거의 다 내면서 정치적 권리를 얻지 못했다.</figcaption></figure>
 <br>
 <blockquote>🎙️ 숫자를 다시 봐. <strong>2% 대 98%야.</strong> 반이 서른 명이라면 특권층은 <strong>한 명도 안 되는</strong> 셈이지. 그 한 명이 땅을 제일 많이 갖고, 세금은 안 내고, 자리는 다 차지해. 나머지 스물아홉 명이 세금을 다 내면서 <strong>결정에는 못 낀다.</strong></blockquote>
-<blockquote>🔁 <strong>지난 시간을 겹쳐 봐.</strong> 미국 식민지가 뭐라고 했지? <em>"대표 없는 곳에 과세할 수 없다."</em> 프랑스 제3 신분도 똑같은 자리에 있었어 — <strong>돈은 내는데 자리가 없는 자리.</strong> 그래서 교과서가 <em>"미국 혁명의 영향을 받았다"</em>고 적은 거야.</blockquote>
-<br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 148쪽 · 날개 ➊ 「구제도의 모순 풍자화」</div><div class="ws-tb-ask">풍자화에 사람이 셋 나온다. <strong>누가 누구 위에 올라타 있는지</strong>, 그리고 <strong>맨 아래 사람은 어떤 표정·자세인지</strong> 보고 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 148쪽에서 찾기 — 풍자화에 사람이 셋 나온다. 누가 누구 위에 올라타 있는지, 그리고" style="width:400px" placeholder=""></div></div>
+<blockquote>🔁 <strong>지난 시간을 겹쳐 봐.</strong> 미국 식민지가 뭐라고 했지? <em>"대표 없는 곳에 과세할 수 없다."</em> 프랑스 제3 신분도 똑같은 자리에 있었어 — <strong>돈은 내는데 자리가 없는 자리.</strong> 그래서 교과서가 "<em>미국 혁명의 영향을 받았다</em>"고 적은 거야.</blockquote>
 <br>
 <h2>📖 2단계: 표를 어떻게 세느냐가 전부였다</h2>
 <blockquote>📕 <strong>교과서 148쪽 「혁명의 시작」 + 날개</strong> 펴고 채우기 · 배정 시간 <strong>8분</strong></blockquote>
 <br>
 <p>프랑스는 계속되는 <strong>전쟁과 왕실의 사치</strong>로 경제적 상황이 어려워졌다. 루이 16세는 이를 해결하고자 ②<input type="text" class="blank-input" data-answer="삼부회" data-id="2" style="width:68px" placeholder="">를 소집하였다. 여기서 제3 신분 대표들은 기존의 <strong>신분별 투표</strong>가 아닌 <strong>머릿수에 따른 투표</strong>를 요구하였으나 받아들여지지 않았다. 그러자 이들은 독자적으로 ③<input type="text" class="blank-input" data-answer="국민 의회" data-id="3" style="width:100px" placeholder="">를 세우고, <strong>새로운 헌법이 만들어질 때까지 흩어지지 않겠다</strong>고 선언했는데, 이것을 <strong>테니스코트의 서약</strong>이라고 한다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-1-3_표세는법.png" alt="표를 어떻게 세느냐 — 신분별로 세면 제1·제2 신분이 2표, 제3 신분이 1표라 언제나 진다. 머릿수로 세면 98%인 제3 신분이 이긴다. 같은 사람들이 모여도 세는 방법이 결론을 정한다." loading="lazy"><figcaption>표를 어떻게 세느냐 — 신분별로 세면 제1·제2 신분이 2표, 제3 신분이 1표라 언제나 진다. 머릿수로 세면 98%인 제3 신분이 이긴다. 같은 사람들이 모여도 세는 방법이 결론을 정한다.</figcaption></figure>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 148쪽 · 날개(옆쪽 작은 글씨)</div><div class="ws-tb-ask">②에 들어갈 회의가 어떤 회의인지 날개 설명을 그대로 적자. 그리고 제3 신분 대표들이 <strong>왜 하필 테니스코트로 갔는지</strong> 날개 ➋에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 148쪽에서 찾기 — ②에 들어갈 회의가 어떤 회의인지 날개 설명을 그대로 적자. 그리고" style="width:400px" placeholder=""></div></div>
+<br>
+<figure class="ws-fig"><img src="images/5-1-3_표세는법_v2.png" alt="표를 어떻게 세느냐 — 신분별로 세면 제1·제2 신분이 2표, 제3 신분이 1표라 언제나 진다. 머릿수로 세면 98%인 제3 신분이 이긴다. 같은 사람들이 모여도 세는 방법이 결론을 정한다." loading="lazy"><figcaption>표를 어떻게 세느냐 — 신분별로 세면 제1·제2 신분이 2표, 제3 신분이 1표라 언제나 진다. 머릿수로 세면 98%인 제3 신분이 이긴다. 같은 사람들이 모여도 세는 방법이 결론을 정한다.</figcaption></figure>
 <br>
 <blockquote>🎙️ <strong>여기가 오늘 제일 중요한 자리야.</strong> <em>"신분별로 셀까, 머릿수로 셀까"</em> — 이게 왜 싸움이 됐을까? 계산해 보면 바로 보여. <strong>신분별로 세면 신분마다 1표</strong>니까 성직자 1 + 귀족 1 = <strong>2표</strong>, 평민 <strong>1표</strong>야. 평민이 아무리 많아도 <strong>언제나 2대 1로 진다.</strong> 그런데 <strong>머릿수로 세면</strong> 98%가 이겨. 같은 사람들이 같은 방에 모였는데, <strong>세는 방법 하나로 결론이 미리 정해져 있었던 거야.</strong></blockquote>
-<blockquote>🎙️ 그래서 제3 신분은 <strong>회의장을 나와 버렸어.</strong> 자기들끼리 «국민 의회»라 이름 붙이고, 근처 <strong>테니스코트</strong>에 모여 <em>"헌법이 만들어질 때까지 안 흩어진다"</em>고 맹세했지. <strong>왕이 부른 회의에서, 왕이 안 부른 회의가 태어난 거야.</strong></blockquote>
+<blockquote>🎙️ 요구가 받아들여지지 않자 제3 신분은 <strong>자기들끼리</strong> «국민 의회»라 이름 붙였어. 회의장 문이 닫히자 근처 <strong>테니스코트</strong>에 모여 "<em>헌법이 만들어질 때까지 안 흩어진다</em>"고 맹세했지. <strong>왕이 부른 회의에서, 왕이 안 부른 회의가 태어난 거야.</strong></blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 148쪽 · 날개 「삼부회」·「테니스코트의 서약」</div><div class="ws-tb-ask"><strong>삼부회</strong>가 어떤 회의인지 날개 설명을 그대로 적자. 그리고 제3 신분 대표들이 <strong>왜 하필 테니스코트로 갔는지</strong> 날개 ➋에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 148쪽에서 찾기 — 삼부회가 어떤 회의인지 날개 설명을 그대로 적자. 그리고 제3 신분" style="width:400px" placeholder=""></div></div>
-<br>
-<h2>📖 3단계: 바스티유, 그리고 인권 선언</h2>
+<h2>📖 3단계: 감옥이 무너지고, 선언이 나오다</h2>
 <blockquote>📕 <strong>교과서 148쪽 아래 + 연표</strong> 펴고 채우기 · 배정 시간 <strong>7분</strong></blockquote>
 <br>
 <p>루이 16세가 국민 의회를 억압하려 하자 분노한 파리 민중은 당시 <strong>구제도의 상징</strong>이었던 ④<input type="text" class="blank-input" data-answer="바스티유" data-id="4" style="width:84px" placeholder="">를 습격하였다. 이후 혁명은 전국으로 퍼졌고, 국민 의회는 <strong>봉건제 폐지</strong>를 선언하였다. 그리고 자유와 평등의 이념을 담은 <strong>'인간과 시민의 권리 선언'</strong>(⑤<input type="text" class="blank-input" data-answer="인권 선언" data-id="5" style="width:100px" placeholder="">)을 발표하였다(1789).</p>
 <br>
-<figure class="ws-fig"><img src="images/5-1-3_인권선언이뒤집은것.png" alt="인권 선언이 뒤집은 것 — 구제도에서는 태어난 신분이 권리를 정했지만, 인권 선언은 인간이 자유롭고 평등한 권리를 가지고 태어났다고 못 박았다. 주권의 원천도 왕이 아니라 국민이다." loading="lazy"><figcaption>인권 선언이 뒤집은 것 — 구제도에서는 태어난 신분이 권리를 정했지만, 인권 선언은 인간이 자유롭고 평등한 권리를 가지고 태어났다고 못 박았다. 주권의 원천도 왕이 아니라 국민이다.</figcaption></figure>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 148쪽 · 연표</div><div class="ws-tb-ask">교과서 연표에서 <strong>1789년에 일어난 일 세 가지</strong>를 순서대로 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 148쪽에서 찾기 — 교과서 연표에서 1789년에 일어난 일 세 가지를 순서대로 찾아 적자" style="width:340px" placeholder=""></div></div>
+<br>
+<figure class="ws-fig"><img src="images/5-1-3_인권선언이뒤집은것_v2.png" alt="인권 선언이 뒤집은 것 — 구제도에서는 태어난 신분이 권리를 정했지만, 인권 선언은 인간이 자유롭고 평등한 권리를 가지고 태어났다고 못 박았다. 주권의 원천도 왕이 아니라 국민이다." loading="lazy"><figcaption>인권 선언이 뒤집은 것 — 구제도에서는 태어난 신분이 권리를 정했지만, 인권 선언은 인간이 자유롭고 평등한 권리를 가지고 태어났다고 못 박았다. 주권의 원천도 왕이 아니라 국민이다.</figcaption></figure>
 <br>
 <blockquote>🎙️ <strong>1789년 한 해에 이게 다 일어났어.</strong> 삼부회가 열리고, 국민 의회가 생기고, 바스티유가 무너지고, 인권 선언이 나왔어. <strong>한 해야.</strong></blockquote>
 <blockquote>🎙️ 인권 선언 제1조를 읽어 봐 — <em>"인간은 자유롭게 그리고 평등한 권리를 가지고 <strong>태어났다</strong>."</em> 이 «태어났다»가 핵심이야. 1단계에서 봤지? 구제도에서는 <strong>태어난 신분이</strong> 권리를 정했어. 인권 선언은 그걸 정면으로 뒤집어 — <strong>태어날 때부터 자유롭고 평등하다</strong>고. 같은 「태어남」인데 뜻이 정반대야.</blockquote>
-<br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 148쪽 · 연표</div><div class="ws-tb-ask">교과서 연표에서 <strong>1789년에 일어난 일 세 가지</strong>를 순서대로 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 148쪽에서 찾기 — 교과서 연표에서 1789년에 일어난 일 세 가지를 순서대로 찾아 적자" style="width:340px" placeholder=""></div></div>
 <br>
 <h1>🕐 2교시 — 혁명이 굴러가고, 한 사람이 그것을 접수한다</h1>
 <br>
@@ -1002,48 +1022,49 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>국민 의회는 <strong>입헌 군주제</strong>를 특징으로 하는 헌법을 만들었다. 새 헌법에 따라 국민 의회가 해산되고 <strong>입법 의회</strong>가 등장하였다. 이러한 가운데 <strong>오스트리아와 프로이센</strong> 등은 <strong>혁명이 자국 내에 퍼지는 것을 막고자</strong> 프랑스를 위협하였고, 입법 의회는 이에 맞서 <strong>전쟁</strong>을 벌였다. 계속되는 전쟁으로 생활이 어려워진 파리 민중은 <strong>왕궁을 습격</strong>하였다. 이처럼 혁명이 더욱 과격해지면서 결국 <strong>왕권이 정지</strong>되었고, 입법 의회 대신 <strong>국민 공회</strong>가 들어섰다.</p>
 <br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 149쪽 · 아래 특집</div><div class="ws-tb-ask">프랑스의 <strong>국기</strong>와 <strong>국가</strong>에 대한 설명을 찾아, 각각 무엇이고 언제 만들어졌는지 한 줄씩 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 149쪽에서 찾기 — 프랑스의 국기와 국가에 대한 설명을 찾아, 각각 무엇이고 언제 만들어" style="width:400px" placeholder=""></div></div>
+<br>
 <figure class="ws-fig"><img src="images/5-1-3_밖에서누르니.png" alt="밖에서 누르니 안이 더 뜨거워졌다 — 오스트리아와 프로이센이 혁명이 번질까 봐 프랑스를 위협하자 전쟁이 벌어졌고, 그 전쟁이 파리 민중의 생활을 어렵게 만들어 왕궁 습격과 왕권 정지로 이어졌다." loading="lazy"><figcaption>밖에서 누르니 안이 더 뜨거워졌다 — 오스트리아와 프로이센이 혁명이 번질까 봐 프랑스를 위협하자 전쟁이 벌어졌고, 그 전쟁이 파리 민중의 생활을 어렵게 만들어 왕궁 습격과 왕권 정지로 이어졌다.</figcaption></figure>
 <br>
 <blockquote>🎙️ <strong>이웃 나라들은 왜 쳐들어왔을까?</strong> 프랑스가 미워서가 아니야. 교과서에 이유가 딱 적혀 있어 — <em>"<strong>혁명이 자국 내에 퍼지는 것을 막고자</strong>"</em>. 오스트리아도 프로이센도 <strong>왕이 다스리는 나라</strong>였거든. 옆집에서 왕을 밀어냈다는 소식이 자기 나라에 들어오면 곤란하지.</blockquote>
-<blockquote>🎙️ 그런데 <strong>결과가 반대로 났어.</strong> 전쟁 때문에 물가가 오르고 먹고살기 힘들어진 파리 사람들이 <strong>왕궁으로 몰려갔고</strong>, 그 바람에 왕권이 아예 정지됐어. <strong>누르려던 힘이 오히려 더 세게 밀어 버린 거야.</strong></blockquote>
-<blockquote>🇫🇷 이 전쟁 중에 오늘날 프랑스의 <strong>국기(삼색기)</strong>와 <strong>국가(「라 마르세예즈」)</strong>가 태어났어. 노랫말이 이래 — <em>"무기를 잡으라, 시민들이여! 무리를 지어라, 행진하자!"</em> 지금도 프랑스 국가야.</blockquote>
-<br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 149쪽 · 아래 특집</div><div class="ws-tb-ask">프랑스의 <strong>국기</strong>와 <strong>국가</strong>에 대한 설명을 찾아, 각각 무엇이고 언제 만들어졌는지 한 줄씩 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 149쪽에서 찾기 — 프랑스의 국기와 국가에 대한 설명을 찾아, 각각 무엇이고 언제 만들어" style="width:400px" placeholder=""></div></div>
+<blockquote>🎙️ 그런데 <strong>결과가 반대로 났어.</strong> 전쟁이 길어지면서 먹고살기 힘들어진 파리 사람들이 <strong>왕궁으로 몰려갔고</strong>, 그 바람에 왕권이 아예 정지됐어. <strong>누르려던 힘이 오히려 더 세게 밀어 버린 거야.</strong></blockquote>
+<blockquote>🎙️ 혁명과 전쟁을 거치면서 오늘날 프랑스의 <strong>국기</strong>(삼색기)와 <strong>국가</strong>(「라 마르세예즈」)가 태어났어. 노랫말이 이래 — <em>"무기를 잡으라, 시민들이여! 무리를 지어라, 행진하자!"</em> 지금도 프랑스 국가야.</blockquote>
 <br>
 <h2>📖 5단계: 정부가 네 번 바뀐다</h2>
 <blockquote>📕 <strong>교과서 149쪽 「국민 공회 시기」 + 연표</strong> 펴고 채우기 · 배정 시간 <strong>8분</strong></blockquote>
 <br>
 <p>새롭게 등장한 국민 공회는 ⑥<input type="text" class="blank-input" data-answer="공화정" data-id="6" style="width:68px" placeholder="">을 선포하고, <strong>루이 16세를 처형</strong>하였다. 이어 <strong>로베스피에르</strong>가 이끄는 급진파 세력이 혁명에 반대하는 사람들까지 처형하는 등 ⑦<input type="text" class="blank-input" data-answer="공포 정치" data-id="7" style="width:100px" placeholder="">를 펼쳤다. 이에 시민들의 불만이 점점 커졌고, 마침내 로베스피에르를 반대하는 세력이 <strong>그를 처형</strong>하면서 그 정치는 끝이 났다. 이후 <strong>5명의 총재</strong>가 이끄는 <strong>총재 정부</strong>가 등장하였다. 그러나 총재 정부도 프랑스의 혼란스러운 상황을 해결하지 못하였다. 이를 틈타 <strong>나폴레옹이 쿠데타</strong>를 일으켜 총재 정부를 무너뜨렸고(1799), 이로써 프랑스 혁명은 사실상 막을 내렸다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-1-3_정부가네번.png" alt="정부가 네 번 바뀐다 — 국민 의회에서 입법 의회, 국민 공회, 총재 정부로 이어지고 나폴레옹의 통령 정부로 끝난다. 그 위에서 왕은 왕이었다가, 왕권이 정지되고, 처형된다." loading="lazy"><figcaption>정부가 네 번 바뀐다 — 국민 의회에서 입법 의회, 국민 공회, 총재 정부로 이어지고 나폴레옹의 통령 정부로 끝난다. 그 위에서 왕은 왕이었다가, 왕권이 정지되고, 처형된다.</figcaption></figure>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 149쪽 · 연표</div><div class="ws-tb-ask">연표를 보고 <strong>루이 16세 처형 · 총재 정부 수립 · 입법 의회 설립</strong>을 일어난 순서대로 늘어놓자. 그리고 ⑥이 선포된 것은 그 가운데 <strong>어느 두 사건 사이</strong>인지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 149쪽에서 찾기 — 연표를 보고 루이 16세 처형 · 총재 정부 수립 · 입법 의회 설립" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>⚠️ <strong>이름이 넷이라 여기서 다들 헝클어져.</strong> 도식에서 <strong>왼쪽에서 오른쪽으로</strong> 한 번만 따라가 보자. 그리고 도식 위쪽 줄을 봐 — <strong>왕이 어떻게 되는지</strong>가 정부 이름과 나란히 가. 왕이 있는 동안엔 «의회», 왕이 없어지자 «공회», 그다음이 «총재», 마지막이 «통령»이야.</blockquote>
+<figure class="ws-fig"><img src="images/5-1-3_정부가네번_v2.png" alt="정부가 네 번 바뀐다 — 국민 의회에서 입법 의회, 국민 공회, 총재 정부로 이어지고 나폴레옹의 통령 정부로 끝난다. 그 위에서 왕은 왕이었다가, 왕권이 정지되고, 처형된다." loading="lazy"><figcaption>정부가 네 번 바뀐다 — 국민 의회에서 입법 의회, 국민 공회, 총재 정부로 이어지고 나폴레옹의 통령 정부로 끝난다. 그 위에서 왕은 왕이었다가, 왕권이 정지되고, 처형된다.</figcaption></figure>
+<br>
+<blockquote>⚠️ <strong>이름이 넷이라 여기서 다들 헝클어져.</strong> 도식에서 <strong>왼쪽에서 오른쪽으로</strong> 한 번만 따라가 보자. 그리고 도식 위쪽 줄을 봐 — <strong>왕이 어떻게 되는지</strong>가 정부 이름과 나란히 가. 왕이 있는 동안엔 «의회», 왕권이 정지되자 «공회», 그다음이 «총재», 마지막이 «통령»이야.</blockquote>
 <blockquote>🎙️ <strong>로베스피에르는 사람을 죽이다가 자기가 죽었어.</strong> 혁명에 반대하는 사람을 처형하던 사람이, 그를 반대하는 사람들 손에 처형됐지. 그리고 그 혼란을 틈타 <strong>군인 한 명</strong>이 정부를 통째로 뒤엎어. 다음 단계에서 만날 사람이야.</blockquote>
-<br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 149쪽 · 연표</div><div class="ws-tb-ask">연표에서 <strong>입법 의회 설립 · 공화정 선포 · 루이 16세 처형 · 총재 정부 수립</strong>이 각각 몇 년인지 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 149쪽에서 찾기 — 연표에서 입법 의회 설립 · 공화정 선포 · 루이 16세 처형 · 총" style="width:400px" placeholder=""></div></div>
 <br>
 <h2>📖 6단계: 혁명을 끝낸 사람이 혁명을 퍼뜨렸다</h2>
 <blockquote>📕 <strong>교과서 151쪽 「나폴레옹 시대」 + 지도</strong> 펴고 채우기 · 배정 시간 <strong>9분</strong></blockquote>
 <br>
-<p>나폴레옹은 <strong>통령 정부</strong>를 세우고 제1 통령이 되었다. 집권 이후 그는 <strong>대프랑스 동맹</strong>을 격파하는 한편, <strong>국민 교육 제도</strong>를 도입하고 <strong>중앙 집권적 행정 제도</strong>를 마련하는 등 개혁을 실시하였다. 또한 <strong>『나폴레옹 법전』</strong>을 편찬하여 새로운 시민 사회의 규범을 마련하였다. 이러한 개혁으로 국민의 지지를 얻은 나폴레옹은 <strong>국민 투표를 거쳐 황제</strong>의 자리에 올랐다.</p>
+<p>나폴레옹은 <strong>통령 정부</strong>를 세우고 제1 통령이 되었다. 집권 이후 그는 <strong>대프랑스 동맹</strong>을 격파하는 한편, <strong>국민 교육 제도</strong>를 도입하고 <strong>중앙 집권적 행정 제도</strong>를 마련하는 등 개혁을 실시하였다. 또한 『<strong>나폴레옹 법전</strong>』을 편찬하여 새로운 시민 사회의 규범을 마련하였다. 이러한 개혁으로 국민의 지지를 얻은 나폴레옹은 <strong>국민 투표를 거쳐 황제</strong>의 자리에 올랐다.</p>
 <p>이후 나폴레옹은 유럽 대부분 지역을 침략하였고, 유럽 국가들은 이에 대항하고자 다시 동맹을 맺었다. 특히 <strong>영국</strong>이 강하게 저항하였는데, 나폴레옹은 영국을 굴복시키고자 유럽 대륙과 영국 사이의 무역을 금지하는 ⑧<input type="text" class="blank-input" data-answer="대륙 봉쇄령" data-id="8" style="width:116px" placeholder="">을 내렸다. <strong>러시아</strong>가 이를 무시하고 영국과 계속 교류하자 나폴레옹은 <strong>러시아 원정</strong>에 나섰다(1812). 그러나 <strong>혹독한 추위</strong>에 원정은 실패하였고, 이어 대프랑스 동맹에 크게 패하면서 나폴레옹은 <strong>몰락</strong>하였다.</p>
 <p>나폴레옹의 정복 전쟁 과정에서 유럽 곳곳에 프랑스 혁명의 이념인 <strong>자유주의</strong>가 퍼졌으며, 민족의 단결을 주장하는 <strong>민족주의</strong> 의식이 자라나기 시작하였다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-1-3_나폴레옹의유럽.png" alt="나폴레옹 시기의 유럽 — 프랑스가 유럽 대부분을 지배하고, 영국을 굴복시키려 대륙 봉쇄령을 내렸다. 러시아가 이를 어기자 원정에 나섰다가 추위에 실패하고 몰락했다." loading="lazy"><figcaption>나폴레옹 시기의 유럽 — 프랑스가 유럽 대부분을 지배하고, 영국을 굴복시키려 대륙 봉쇄령을 내렸다. 러시아가 이를 어기자 원정에 나섰다가 추위에 실패하고 몰락했다.</figcaption></figure>
-<br>
-<blockquote>🎙️ <strong>여기서 머리가 좀 복잡해져.</strong> 나폴레옹은 혁명을 <strong>끝낸</strong> 사람이야(총재 정부를 뒤엎고 결국 <strong>황제</strong>가 됐지 — 왕을 없앤 나라에서 황제라니!). 그런데 동시에 그가 유럽을 휩쓸고 다니면서 <strong>혁명의 생각을 퍼뜨렸어.</strong> 자유와 평등, 그리고 <em>"우리는 하나의 민족"</em>이라는 생각을.</blockquote>
-<blockquote>🎙️ 그래서 다음 시간이 「<strong>자유주의와 민족주의가 퍼져 나가다</strong>」야. <strong>나폴레옹이 밟고 간 자리에서 그 두 가지가 자란다.</strong> 4단계를 떠올려 봐 — 밖에서 누르니 안이 뜨거워졌지? 이번엔 <strong>밖으로 밀고 나가니 그쪽이 뜨거워진</strong> 거야.</blockquote>
-<br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 151쪽 · 날개 ➎ 「나폴레옹의 황제 대관식」</div><div class="ws-tb-ask">그림에서 나폴레옹이 <strong>누구에게 관을 씌우고 있는지</strong>, 그리고 <strong>교황은 무엇을 하고 있는지</strong> 보고 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 151쪽에서 찾기 — 그림에서 나폴레옹이 누구에게 관을 씌우고 있는지, 그리고 교황은 무엇" style="width:400px" placeholder=""></div></div>
 <br>
-<h2>✏️ 활동 1 — "제3 신분은 무엇인가?"</h2>
+<figure class="ws-fig"><img src="images/5-1-3_나폴레옹의유럽.png" alt="나폴레옹 시기의 유럽 — 프랑스가 유럽 대부분을 지배하고, 영국을 굴복시키려 대륙 봉쇄령을 내렸다. 러시아가 이를 어기자 원정에 나섰다가 추위에 실패하고 몰락했다." loading="lazy"><figcaption>나폴레옹 시기의 유럽 — 프랑스가 유럽 대부분을 지배하고, 영국을 굴복시키려 대륙 봉쇄령을 내렸다. 러시아가 이를 어기자 원정에 나섰다가 추위에 실패하고 몰락했다.</figcaption></figure>
+<br>
+<blockquote>🎙️ <strong>여기서 머리가 좀 복잡해져.</strong> 나폴레옹은 혁명을 <strong>끝낸</strong> 사람이야(총재 정부를 뒤엎고 결국 <strong>황제</strong>가 됐지 — 왕을 없앤 나라에서 황제라니!). 그런데 동시에 그가 유럽을 휩쓸고 다니면서 <strong>혁명의 생각을 퍼뜨렸어.</strong> 자유와 평등, 그리고 "<em>우리는 하나의 민족</em>"이라는 생각을.</blockquote>
+<blockquote>🎙️ 그래서 다음 시간이 「<strong>자유주의와 민족주의가 퍼져 나가다</strong>」야. <strong>나폴레옹이 밟고 간 자리에서 그 두 가지가 자란다.</strong> 4단계를 떠올려 봐 — 밖에서 누르니 안이 뜨거워졌지? 이번엔 <strong>밖으로 밀고 나가니 그쪽이 뜨거워진</strong> 거야.</blockquote>
+<br>
+<h2>✏️ 활동 1 — "㉠은 무엇인가?"</h2>
 <br>
 <p>혁명 직전에 시에예스라는 사람이 이런 글을 썼다. (교과서 150쪽 자료 1)</p>
 <br>
 <blockquote>㉠은/는 무엇인가? <strong>전부</strong>이다. …… ㉠이/가 전부에서 <strong>20분의 19</strong>를 이루고 있으며, 이들은 참으로 힘든 일들, 즉 특권 계층이 하려고 하지 않는 의무를 도맡아 하고 …… 명예롭고 이익을 얻을 수 있는 자리들은 <strong>오직 특권 신분만이 장악</strong>하고 있다. …… 그러므로 ㉠은/는 무엇인가? 전부이다. 그러나 <strong>족쇄가 채워지고 억압받고 있는 전부</strong>일 뿐이다.</blockquote>
+<blockquote>(사료: 시에예스가 1789년 초에 펴낸 소책자 — 비상교육 역사①(이병인) p.150 자료 1)</blockquote>
 <br>
 <p>? <strong>(1)</strong> ㉠에 들어갈 말은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="? (1) ㉠에 들어갈 말은 무엇인가?" style="width:200px" placeholder=""></p>
-<p>? <strong>(2)</strong> 글쓴이는 <em>"전부이다"</em>라고 했다가 <em>"족쇄가 채워진 전부"</em>라고 한다. <strong>같은 사람들을 두고 왜 두 가지로 말했을까?</strong> 1단계 도식의 두 숫자를 근거로 써 보자. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="? (2) 글쓴이는 “전부이다“라고 했다가 “족쇄가 채워진 전부“라고 한" style="width:400px" placeholder=""></p>
+<p>? <strong>(2)</strong> 글쓴이는 "<em>전부이다</em>"라고 했다가 "<em>족쇄가 채워진 전부</em>"라고 한다. <strong>같은 사람들을 두고 왜 두 가지로 말했을까?</strong> 1단계 도식의 두 숫자를 근거로 써 보자. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="? (2) 글쓴이는 “전부이다“라고 했다가 “족쇄가 채워진 전부“라고 한" style="width:400px" placeholder=""></p>
 <p>? <strong>(3)</strong> 교과서 150쪽 자료 2(인권 선언)에서 <strong>㉠이 원했던 것이 실제로 문장이 된 조항</strong>을 하나 찾아 그대로 옮겨 적고, 왜 그 조항을 골랐는지 한 줄 덧붙이자. <input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="? (3) 교과서 150쪽 자료 2(인권 선언)에서 ㉠이 원했던 것이 실" style="width:400px" placeholder=""></p>
 <br>
 <h2>✏️ 활동 2 — 나폴레옹 재판</h2>
@@ -1072,7 +1093,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>💭 더 생각해 보기</h2>
 <br>
-<p>인권 선언 제1조는 <em>"인간은 자유롭게 그리고 평등한 권리를 가지고 태어났다"</em>고 했다.</p>
+<p>인권 선언 제1조는 "<em>인간은 자유롭게 그리고 평등한 권리를 가지고 태어났다</em>"고 했다.</p>
 <br>
 <p>? 그런데 이 선언이 나온 뒤에도 프랑스에서 <strong>여성은 투표를 할 수 없었다</strong>(📌 이건 <em>교과서에 없는 보충</em>이야). 지난 시간 미국 독립 선언문(<em>"모든 인간은 평등하게 태어났다"</em>)에도 비슷한 일이 있었지. <strong>두 선언이 왜 이렇게 닮은 한계를 가졌을까?</strong> 그리고 그럼에도 이 선언들이 남긴 것은 무엇일까? <input type="text" class="blank-input activity-input no-score" data-id="act-11" data-label="? 그런데 이 선언이 나온 뒤에도 프랑스에서 여성은 투표를 할 수 없었다" style="width:400px" placeholder=""></p>
 <br>
