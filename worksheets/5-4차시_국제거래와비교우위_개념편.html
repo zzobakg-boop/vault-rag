@@ -252,6 +252,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
 .ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }
 .ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
@@ -955,7 +975,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>💡 오늘 딱 두 개만 잡자 — <strong>특화</strong>(하나에만 집중)와 <strong>우위</strong>(더 나은 자리). 이 둘이 붙으면 오늘의 핵심 '비교 우위'가 된다.</blockquote>
 <br>
-<blockquote>🎙️ <strong>무역(貿易)이 왜 '바꿀 무 + 바꿀 역'일까?</strong> 두 글자가 <strong>똑같이 '바꾸다'</strong>야. 옛날 사람들은 무역을 <em>돈 버는 일</em>이 아니라 <strong>서로 바꾸는 일</strong>로 봤다는 뜻이지. 오늘 배울 비교 우위도 결국 <em>"내가 잘하는 걸 주고, 네가 잘하는 걸 받는다"</em>는 맞바꿈 이야기야.</blockquote>
+<blockquote>🎙️ <strong>무역(貿易)이 왜 '바꿀 무 + 바꿀 역'일까?</strong> 두 글자가 <strong>똑같이 '바꾸다</strong>'야. 글자 그대로 읽으면 무역은 <em>돈 버는 일</em>이기 전에 <strong>서로 바꾸는 일</strong>이야. 오늘 배울 비교 우위도 결국 "<em>내가 잘하는 걸 주고, 네가 잘하는 걸 받는다</em>"는 맞바꿈 이야기야.</blockquote>
 <br>
 <h2>📖 1단계: 국제 거래란 무엇일까?</h2>
 <p>국가 간에 상품·노동·자본·기술 등이 국경을 넘어 거래되는 것을 ①<input type="text" class="blank-input" data-answer="국제 거래" data-id="1" style="width:100px" placeholder="">라고 한다. 국제 거래가 활발해지면서 국가 사이의 ②<input type="text" class="blank-input" data-answer="상호 의존" data-id="2" style="width:100px" placeholder="">이 심화하고, 교통·통신의 발달로 거래가 더 쉬워지고 있다. 특히 우리나라는 ③<input type="text" class="blank-input" data-answer="무역 의존도" data-id="3" style="width:116px" placeholder="">가 높아 세계 경제 변화의 영향을 많이 받는다.</p>
@@ -976,7 +996,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <figure class="ws-fig"><img src="images/v5-trade-dependency.png" alt="무역 의존도 국제 비교 막대그래프. 대한민국 86%, 일본 44%, 미국 25%. 우리나라는 미국의 3배가 넘는다." loading="lazy"><figcaption>무역 의존도 국제 비교 막대그래프. 대한민국 86%, 일본 44%, 미국 25%. 우리나라는 미국의 3배가 넘는다.</figcaption></figure>
 <blockquote>📷 무역 의존도 국제 비교 — World Bank, Trade(% of GDP) · 2025 · 2026-08 조회. 위 표의 금액은 이해를 돕기 위해 단순하게 잡은 값이다.</blockquote>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p><strong>① 금액으로 먼저 보자.</strong> 나라가 만든 것이 2,000조인데 사고판 것이 1,720조다. 거의 맞먹지? 이 "거의 맞먹는다"를 숫자 하나로 줄인 것이 무역 의존도야.</p><p><strong>② 그걸 퍼센트로.</strong> 1,720 ÷ 2,000 = 0.86 → 여기에 100을 곱해 <strong>86%</strong>라고 부른다. 0.86과 86%는 옷만 갈아입은 같은 수야.</p><p><strong>③ 거꾸로도 된다.</strong> 86%만 알아도 사고판 금액을 되살릴 수 있어 — 2,000조 × 0.86 = 1,720조. 그래서 "무역 의존도 86%"와 "수출입을 더하면 국내 총생산의 86%"는 <strong>같은 말</strong>이다.</p><p><strong>④ 그래서 우리나라는?</strong> 2025년 약 86%(2022년엔 90%를 넘기기도 했다). 미국은 25% 안팎, 일본은 40%대니 <strong>우리는 두 배가 넘는다.</strong> 다른 나라에서 일어난 일이 우리 밥상까지 곧장 오는 이유고, 뉴스의 "환율이 올랐다"·"관세를 매긴다"가 우리한테 유난히 크게 들리는 이유야.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p><strong>① 금액으로 먼저 보자.</strong> 나라가 만든 것이 2,000조인데 사고판 것이 1,720조다. 거의 맞먹지? 이 "거의 맞먹는다"를 숫자 하나로 줄인 것이 무역 의존도야.</p><p><strong>② 그걸 퍼센트로.</strong> 1,720 ÷ 2,000 = 0.86 → 여기에 100을 곱해 <strong>86</strong>%라고 부른다. 0.86과 86%는 옷만 갈아입은 같은 수야.</p><p><strong>③ 거꾸로도 된다.</strong> 86%만 알아도 사고판 금액을 되살릴 수 있어 — 2,000조 × 0.86 = 1,720조. 그래서 "무역 의존도 86%"와 "수출입을 더하면 국내 총생산의 86%"는 <strong>같은 말</strong>이다.</p><p><strong>④ 그래서 우리나라는?</strong> 2025년 약 86%(2022년엔 90%를 넘기기도 했다). 미국은 25% 안팎, 일본은 40%대니 <strong>우리는 두 배가 넘는다.</strong> 다른 나라에서 일어난 일이 우리 밥상까지 곧장 오는 이유고, 뉴스의 "환율이 올랐다"·"관세를 매긴다"가 우리한테 유난히 크게 들리는 이유야.</p></div>
 <br>
 <blockquote>🎬 <strong>3분만 보고 가자</strong> — <a href="https://www.youtube.com/watch?v=09aePTR7fjI" target="_blank" rel="noopener">중3 사회 5단원 국제거래 (워니비 · 3분 31초)</a></blockquote>
 <blockquote>영상도 우리랑 똑같이 시작해 — <em>"여러분 주변을 둘러보세요. 얼마나 많은 물건이 외국에서 왔나요?"</em> 갤럭시와 아이폰 이야기로 국제 거래를 연다. <strong>관세·법·제도·문화가 다르다</strong>는 4단계 내용까지 미리 스치니, 오늘 배울 길 전체를 3분에 훑는 셈이야.</blockquote>
@@ -1059,7 +1079,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p><strong>1.</strong> 자동차와 쌀, <strong>둘 다 절대 우위</strong>를 가진 나라는? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="1. 자동차와 쌀, 둘 다 절대 우위를 가진 나라는?" style="width:120px" placeholder=""></p>
 <br>
 <p><strong>2.</strong> <strong>가나라</strong>가 자동차 1대를 만들 때 포기하는 쌀은 몇 가마? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="2. 가나라가 자동차 1대를 만들 때 포기하는 쌀은 몇 가마? · 나나라" style="width:120px" placeholder="">  ·  <strong>나나라</strong>는? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="2. 가나라가 자동차 1대를 만들 때 포기하는 쌀은 몇 가마? · 나나라" style="width:120px" placeholder=""></p>
-<blockquote>💡 힌트 — <strong>자동차 1대“당”</strong>을 물었으니 <strong>자동차 수로</strong> 나눈다. 가나라는 <code>쌀 12 ÷ 자동차 6</code>.</blockquote>
+<blockquote>💡 힌트 — <strong>자동차 1대“당</strong>”을 물었으니 <strong>자동차 수로</strong> 나눈다. 가나라는 <code>쌀 12 ÷ 자동차 6</code>.</blockquote>
 <br>
 <p><strong>3.</strong> 그럼 <strong>자동차에 비교 우위</strong>가 있는 나라는? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="3. 그럼 자동차에 비교 우위가 있는 나라는? · 쌀은?" style="width:160px" placeholder="">  ·  <strong>쌀</strong>은? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="3. 그럼 자동차에 비교 우위가 있는 나라는? · 쌀은?" style="width:160px" placeholder=""></p>
 <blockquote>🔎 <strong>답 쓰고 나서 확인해 봐</strong> — 두 답이 <strong>같은 나라</strong>로 나왔다면 방법이 틀린 거야. 비교 우위는 <strong>반드시 하나씩 나눠 갖게</strong> 돼 있거든.</blockquote>
@@ -1093,7 +1113,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🔗 <strong>다음 시간 예고</strong> — 오늘 4단계에서 만난 세 관문 중 마지막, <strong>환율</strong>을 깊이 판다. 돈을 바꾸는 비율 하나가 왜 우리 지갑을 흔드는지 보게 될 거야.</blockquote>
 <br>
 <h2>💭 더 생각해 보기</h2>
-<p>우리나라가 컴퓨터와 옷을 모두 중국보다 잘 만든다고 하자. 그래도 옷을 중국에서 수입하는 것이 이득인 까닭은 무엇일까? <strong>'비교 우위'와 '특화'</strong>라는 말을 넣어 한두 문장으로 써 보자.</p>
+<p>우리나라가 컴퓨터와 옷을 모두 중국보다 잘 만든다고 하자. 그래도 옷을 중국에서 수입하는 것이 이득인 까닭은 무엇일까? <strong>'비교 우위'와 '특화</strong>'라는 말을 넣어 한두 문장으로 써 보자.</p>
 <p>그리고 한 가지 더 — 이렇게 특화하면 <strong>국내에서 옷을 만들던 사람들</strong>은 어떻게 될까? 좋은 점만 있는 건 아니라는 점도 함께 생각해 보자.</p>
 <textarea class="essay-input" data-id="essay-2" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>

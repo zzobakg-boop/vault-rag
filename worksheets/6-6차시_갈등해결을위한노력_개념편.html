@@ -252,6 +252,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
 .ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }
 .ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
@@ -963,7 +983,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ <strong>400년 넘게 서 있던 돌벽이 저렇게 쏟아졌어.</strong> 이때 우리 정부가 담요·천막·생수를 보냈지 — 독도로도, 교과서로도, '위안부' 문제로도 다투고 있는 그 나라에.</blockquote>
 <br>
-<p>2016년, 큰 지진으로 피해를 입은 일본에 우리나라 정부가 담요·천막·생수 등 10만 달러 상당의 ①<input type="text" class="blank-input" data-answer="구호" data-id="1" style="width:60px" placeholder=""> 물품을 보냈다. 일본 정부는 <em>"한국 정부의 마음이 따뜻해지는 지원에 감사드리고 싶다"</em>고 밝혔다.</p>
+<p>2016년, 큰 지진으로 피해를 입은 일본에 우리나라 정부가 담요·천막·생수 등 10만 달러 상당의 ①<input type="text" class="blank-input" data-answer="구호" data-id="1" style="width:60px" placeholder=""> 물품을 보냈다. 일본 정부는 "<em>한국 정부의 마음이 따뜻해지는 지원에 감사드리고 싶다</em>"고 밝혔다.</p>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 122쪽 · 생각 열기 「정부, 일본에 구호 물품 제공」</div><div class="ws-tb-ask">우리나라 정부가 일본을 돕는 이유는 무엇일까? 글을 읽고 적어 보자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 122쪽에서 찾기 — 우리나라 정부가 일본을 돕는 이유는 무엇일까? 글을 읽고 적어 보자." style="width:400px" placeholder=""></div></div>
 <br>
@@ -985,7 +1005,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>사진은 2019년 일본 오사카에서 열린 <strong>G20 정상 회의</strong>다. 벽 앞에 참가국 국기가 줄지어 서 있다.</p><p>🎬 <strong>눌러 보자 — 사진과 «같은 회의»다.</strong> 스무 나라가 이틀 동안 <strong>여덟 가지 의제</strong>를 논의한다. 두 나라가 마주 앉는 것과 어떻게 다른지 보이지.</p><p>🔑 둘이 만나면 힘센 쪽이 밀어붙일 수 있다. 여럿이 앉으면 그게 어려워진다 — 6-1에서 배운 <strong>「힘의 논리」를 조금이나마 누르는 장치</strong>인 셈이다.</p></div>
 <br>
-<blockquote>🎙️ <strong>«G20»의 20이 무슨 숫자일까.</strong> 열아홉 나라와 <strong>유럽 연합</strong>을 합친 수야.</blockquote>
+<blockquote>🎙️ <strong>«G20»의 20이 무슨 숫자일까.</strong> 열아홉 나라와 <strong>유럽 연합</strong>을 합친 수야. 2023년에는 <strong>아프리카 연합</strong>도 들어왔지만 이름은 그대로 G20이야.</blockquote>
 <br>
 <h2>📖 3단계: 빨리 끝내는 게 좋을까</h2>
 <blockquote>📕 <strong>교과서 123쪽 펴고 · 배정 시간 7분</strong></blockquote>

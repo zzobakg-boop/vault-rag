@@ -252,6 +252,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
 .ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }
 .ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }

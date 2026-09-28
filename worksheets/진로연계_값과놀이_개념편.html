@@ -252,6 +252,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
 .ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }
 .ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
@@ -961,7 +981,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>(교과서 원문: "생산 요소 시장은 노동, 자본, 자연 자원(토지)을 거래하는 시장으로 가계가 공급자, 기업이 수요자인 시장이다.")</blockquote>
 <br>
-<blockquote>🎙️ 아이돌 월급은 왜 셀까? 하고 싶은 사람은 <em>엄청 많은데</em>(공급↑) 진짜 되는 사람은 <em>극소수</em>(희소)라서야. 반대로 누구나 금방 할 수 있는 일은 값이 잘 안 오르지. 매정하게 들려도, 이게 '값'의 원리야.</blockquote>
+<blockquote>🎙️ 잘나가는 아이돌은 왜 그렇게 많이 벌까? 아이돌이 되고 싶은 사람은 <em>엄청 많아.</em> 그런데 사람들이 돈을 내고 보러 가는 스타는 <em>극소수</em>지. 보고 싶어 하는 마음(수요)이 그 몇 명에게 <strong>몰리니까</strong> 값이 치솟는 거야. 연습생 대부분은 오히려 거의 못 벌어. 매정하게 들려도, 이게 '값'의 원리야.</blockquote>
 <br>
 <blockquote>⚠️ 그런데 — <strong>임금이 그 일의 가치를 <em>전부</em> 말해 줄까?</strong> 잠깐 그 질문을 들고 다음으로 가자.</blockquote>
 <br>
@@ -999,7 +1019,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>수요·공급·희소·숙련으로 정해짐</td><td>숫자로 환원되지 않음</td></tr>
 </table>
 <br>
-<blockquote>🎙️ AI는 어떤 일이든 <em>값은</em> 척척 매길 수 있어. 그런데 "그 일이 <em>왜 너한테</em> 좋은지"는 AI가 모른다. 그건 <strong>네가</strong> 안다.</blockquote>
+<blockquote>🎙️ AI한테 물으면 어떤 일이 보통 얼마 버는지는 금방 알려 줄 거야. 그런데 "그 일이 <em>왜 너한테</em> 좋은지"는 AI가 모른다. 그건 <strong>네가</strong> 안다.</blockquote>
 <br>
 <blockquote>💡 진로를 고를 때는 셋을 같이 보자 — <strong>① 내가 끌리는 마음 + ② 현실적인 가능성 + ③ 바깥의 제약(자리·돈·기회).</strong> "좋아하면 다 된다"도, "돈만 보면 된다"도 아니야. <em>함께</em> 보는 것.</blockquote>
 <br>
@@ -1013,7 +1033,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>💭 더 생각해 보기</h2>
 <p>"값이 잘 매겨지지 않는 일(예: 돌봄·가사·자원봉사)도 <em>가치가 있다</em>고 할 수 있을까? 있다면 왜 그럴까?" — 내 생각을 두세 문장으로.</p>
 <br>
-<textarea class="essay-input" data-id="essay-2" data-label="🌱 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-2" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 </div>
 <script>
 const TB=3, TOX=2, GT=5;
