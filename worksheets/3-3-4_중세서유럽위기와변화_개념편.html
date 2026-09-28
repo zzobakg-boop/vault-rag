@@ -252,6 +252,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
 .ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }
 .ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
@@ -989,10 +1009,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 100쪽 · 첫 문단</div><div class="ws-tb-ask">원거리 무역이 늘면서 도시가 성장한 <strong>바다 세 곳</strong>을 교과서에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 100쪽에서 찾기 — 원거리 무역이 늘면서 도시가 성장한 바다 세 곳을 교과서에서 찾아 적" style="width:340px" placeholder=""></div></div>
 <br>
-<blockquote>💡 <strong>자치권이 뭐가 그렇게 대단한가?</strong> 그때까지 모든 땅은 누군가의 영주가 다스렸어. 그런데 도시가 "<em>우리 일은 우리가 정한다</em>"는 권리를 얻은 거야. 중세 유럽에 <strong>영주가 아닌 사람들이 스스로 운영하는 공간</strong>이 처음 생긴 셈이지.</blockquote>
+<blockquote>💡 <strong>자치권이 뭐가 그렇게 대단한가?</strong> 장원에서는 영주가 세금을 걷고, 치안을 지키고, 재판까지 했어. 원래 왕이 하던 일이야. 그런데 도시는 돈을 내거나 싸워서 "<em>우리 일은 우리가 정한다</em>"는 권리를 얻어 냈어. 영주의 손에서 벗어나 <strong>사람들이 스스로 운영하는 공간</strong>이 생긴 셈이지.</blockquote>
 <br>
-<details class="ws-fold ws-fold-더보기"><summary>🏰 «도시에서 1년 넘게 살면 자유» · 부르주아라는 말</summary><div class="ws-fold-body">
-<p>장원을 도망친 농노도 도시로 가서 1년 넘게 살면 자유를 얻을 수 있었어. 영주의 손이 도시 성벽 안까지는 닿지 않았던 거지.</p>
+<details class="ws-fold ws-fold-더보기"><summary>🏰 «도시의 공기는 자유를 준다» · 부르주아라는 말</summary><div class="ws-fold-body">
+<p>중세 유럽에는 «도시의 공기는 자유를 준다»는 말이 있었어. 도시들이 받은 특허장에는 <strong>도시에서 1년 하고 하루를 살면 누구든 자유민이 된다</strong>는 내용이 들어 있었거든. 장원을 떠난 농노도 영주의 손이 닿지 않는 도시에서 1년을 버티면 자유민이 될 수 있었던 거야.</p>
 <p>성벽으로 둘러싼 도시를 «부르그»라고 했고, 그 안에 사는 상공업자를 «부르주아»라고 불렀어. 지금도 «부르주아»는 부유한 시민을 가리키는 말로 쓰여.</p>
 </div></details>
 <br>
@@ -1001,7 +1021,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>장원이 해체되면서 영주의 힘이 점차 약해지고, 화약과 대포 등 새로운 무기가 등장하여 ⑦<input type="text" class="blank-input" data-answer="기사" data-id="7" style="width:60px" placeholder="">　계급이 몰락하였다. 반면 새롭게 성장한 도시 상공업자들은 국왕을 도우며 세력을 키웠다. 유럽 각국의 국왕은 이들의 지원에 힘입어 <strong>관료와 군대를 정비하며 왕권을 강화</strong>해 나갔다.</p>
 <br>
-<blockquote>🎙️ <strong>화약이 왜 기사를 무너뜨렸을까?</strong> 기사는 어릴 때부터 훈련받고 비싼 갑옷과 말을 갖춰야 하는 <strong>소수 정예</strong>였어. 그런데 대포 한 방이면 성벽이 뚫리고, 총을 든 평민 병사도 갑옷 입은 기사를 쓰러뜨릴 수 있게 된 거야. 수십 년 갈고닦은 실력이 <strong>화약 앞에서 값이 떨어진</strong> 거지.</blockquote>
+<blockquote>🎙️ <strong>화약이 왜 기사를 무너뜨렸을까?</strong> 기사는 어릴 때부터 훈련받고 비싼 갑옷과 말을 갖춰야 하는 <strong>소수 정예</strong>였어. 그런데 중국에서 전해진 화약 무기가 전쟁에 쓰이자 두꺼운 갑옷도, 높은 성벽도 예전만큼 버티지 못했어. 오래 갈고닦은 실력이 <strong>화약 앞에서 값이 떨어진</strong> 거지.</blockquote>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 100쪽 · 아래 문단</div><div class="ws-tb-ask">도시 상공업자들이 국왕을 도운 방식은 <strong>두 가지</strong>다. 교과서에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 100쪽에서 찾기 — 도시 상공업자들이 국왕을 도운 방식은 두 가지다. 교과서에서 찾아 적" style="width:340px" placeholder=""></div></div>
 <br>
@@ -1019,7 +1039,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h3>⚔️ 전세가 뒤집힌 자리</h3>
 <p>전쟁 초반은 프랑스의 참패였다. 수도 <strong>파리까지 함락</strong>됐다. 그런데 <strong>잔 다르크</strong>가 나타나 프랑스군의 사기를 되살렸고, 전세를 뒤집은 프랑스가 연달아 이기면서 전쟁은 프랑스의 승리로 끝났다.</p>
 <br>
-<blockquote>🎙️ 두 왕이 서로 이렇게 우겼대. 영국 에드워드 3세 — <em>"나의 어머니가 샤를 4세의 동생이오. 왕의 <strong>조카</strong>인 내가 왕위를 이어받아야 하오."</em> 프랑스 필리프 6세 — <em>"조카보다는 <strong>사촌</strong>인 내가 마땅하오. 무엇보다 <strong>영국 왕이 프랑스 왕이 될 수는 없소.</strong>"</em> … 이 말싸움이 116년을 갔어.</blockquote>
+<blockquote>🎙️ 두 왕이 서로 이렇게 우겼대. 영국 에드워드 3세 — <em>"나의 어머니가 샤를 4세의 동생이오. 왕의 <strong>조카</strong>인 내가 왕위를 이어받아야 하오."</em> 프랑스 필리프 6세 — <em>"조카보다는 <strong>사촌</strong>인 내가 마땅하오. 무엇보다 <strong>영국 왕이 프랑스 왕이 될 수는 없소.</strong>"</em> … 이 다툼이 116년(1337~1453)을 갔어.</blockquote>
 <br>
 <figure class="ws-fig"><img src="images/3-3-4_네갈래_v2.png" alt="네 갈래가 한 곳으로 — 흑사병·화폐·화약·전쟁은 원인이 서로 다른데 넷 다 **영주와 기사를 깎았다.** 그 빈자리에서 도시 상공업자가 돈과 일손으로 왕을 받쳤다." loading="lazy"><figcaption>네 갈래가 한 곳으로 — 흑사병·화폐·화약·전쟁은 원인이 서로 다른데 넷 다 <strong>영주와 기사를 깎았다.</strong> 그 빈자리에서 도시 상공업자가 돈과 일손으로 왕을 받쳤다.</figcaption></figure>
 <br>
@@ -1038,11 +1058,20 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>8</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="8" style="width:170px" placeholder=""></td></tr>
 </table>
 <br>
-<h2>✏️ 활동 2 — 그래프 읽기</h2>
-<blockquote>교과서 100쪽 「흑사병의 유행에 따른 변화」 그래프를 보자. 13~15세기 영국의 <strong>인구</strong>와 <strong>농민 임금</strong>이 함께 그려져 있어.</blockquote>
+<h2>✏️ 활동 2 — 중세 봉건 사회의 해체는 어떻게 일어났을까?</h2>
+<blockquote>교과서 100쪽 「우리 해 보자」를 옮겨 왔어. <strong>▶</strong>를 누르거나 막대를 밀어서 두 선이 어떻게 움직이는지 보자.</blockquote>
+<br>
+<h3>자료 1 — 흑사병의 유행에 따른 변화</h3>
+<div class="ws-gr" id="gr107"><div class="ws-gr-head">13~15세기 영국의 인구와 농민 임금의 변화</div><svg class="ws-gr-svg" viewBox="0 0 480 300" role="img" aria-label="13~15세기 영국의 인구와 농민 임금의 변화 — 농민의 임금(%) · 영국의 인구(백만 명)"></svg><div class="ws-gr-legend"><span class="gr-key"><i style="background:#4f9a1f"></i>농민의 임금</span><span class="gr-key"><i style="background:#e0532a"></i>영국의 인구</span><span class="gr-key"><i class="gr-band-key"></i>흑사병의 유행</span></div><div class="ws-gr-ctl"><button type="button" class="ws-gr-play" aria-label="처음부터 그려 보기">▶</button><input type="range" class="ws-gr-range" min="0" max="20" value="0" step="1" aria-label="연대 고르기"></div><div class="ws-gr-read" aria-live="polite"></div><div class="ws-gr-src">교과서 100쪽 그래프(『농업 위기와 농업 경기』, 2011)의 값을 읽어 다시 그림</div></div><script>(function(){var D={"x": ["1250", "1260", "1270", "1280", "1290", "1300", "1310", "1320", "1330", "1340", "1350", "1360", "1370", "1380", "1390", "1400", "1410", "1420", "1430", "1440", "1450"], "s": [{"name": "농민의 임금", "unit": "%", "lo": 40.0, "hi": 240.0, "col": "#4f9a1f", "v": [103.0, 104.0, 108.0, 112.0, 111.0, 120.0, 128.0, 142.0, 153.0, 157.0, 163.0, 191.0, 219.0, 225.0, 225.0, 228.0, 229.0, 229.0, 228.0, 229.0, 226.0], "d": 0}, {"name": "영국의 인구", "unit": "백만 명", "lo": 0.0, "hi": 5.0, "col": "#e0532a", "v": [4.33, 4.39, 4.46, 4.77, 4.74, 4.72, 4.3, 4.35, 4.66, 2.6, 2.57, 2.54, 2.42, 2.24, 2.09, 2.07, 2.05, 2.03, 1.95, 1.91, 1.95], "d": 1}], "band": {"name": "흑사병의 유행", "a": "1340", "b": "1410"}};var w=document.getElementById("gr107"),svg=w.querySelector("svg"),rg=w.querySelector(".ws-gr-range"),rd=w.querySelector(".ws-gr-read"),pl=w.querySelector(".ws-gr-play");var NS="http://www.w3.org/2000/svg",L=52,R=428,T=24,B=256,n=D.x.length;function el(t,a,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;svg.appendChild(e);return e;}function X(i){return L+(R-L)*i/(n-1);}function Y(s,v){return B-(B-T)*(v-s.lo)/(s.hi-s.lo);}function fmt(v,d){if(d==null)return (Math.round(v*10)/10).toString();var m=Math.pow(10,d);return (Math.round(v*m+1e-9)/m).toFixed(d);}if(D.band){var a=D.x.indexOf(D.band.a),b=D.x.indexOf(D.band.b);if(a>=0&&b>=0)el("rect",{x:X(a),y:T,width:X(b)-X(a),height:B-T,"class":"gr-band"});}for(var g=0;g<=5;g++){var yy=B-(B-T)*g/5;el("line",{x1:L,x2:R,y1:yy,y2:yy,"class":"gr-grid"});D.s.forEach(function(s,k){var v=s.lo+(s.hi-s.lo)*g/5;if(g===0&&k===0&&s.lo>0)return;el("text",{x:k===0?L-8:R+8,y:yy+5,"text-anchor":k===0?"end":"start","class":"gr-tick",fill:s.col},fmt(v));});}D.s.forEach(function(s,k){el("text",{x:k===0?L-8:R+8,y:T-4,"text-anchor":k===0?"end":"start","class":"gr-unit",fill:s.col},"("+s.unit+")");});var step=Math.max(1,Math.round((n-1)/4));for(var i=0;i<n;i+=step){el("text",{x:X(i),y:B+26,"text-anchor":"middle","class":"gr-tick"},D.x[i]);}el("line",{x1:L,x2:R,y1:B,y2:B,"class":"gr-axis"});var cur=el("line",{x1:L,x2:L,y1:T,y2:B,"class":"gr-cur"});var lines=D.s.map(function(s){return el("polyline",{fill:"none",stroke:s.col,"stroke-width":4,"stroke-linejoin":"round","stroke-linecap":"round",points:""});});var dots=D.s.map(function(s){return el("circle",{r:6,fill:s.col,stroke:"#fff","stroke-width":2});});function draw(i){i=+i;D.s.forEach(function(s,k){var p=[];for(var j=0;j<=i;j++)p.push(X(j)+","+Y(s,s.v[j]));lines[k].setAttribute("points",p.join(" "));dots[k].setAttribute("cx",X(i));dots[k].setAttribute("cy",Y(s,s.v[i]));});cur.setAttribute("x1",X(i));cur.setAttribute("x2",X(i));rd.innerHTML="<b>"+D.x[i]+"년대</b> — "+D.s.map(function(s){return s.name+" <b style=\"color:"+s.col+"\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");rg.value=i;}rg.addEventListener("input",function(){draw(rg.value);});var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){draw(n-1);return;}var i=0;draw(0);pl.textContent="■";tm=setInterval(function(){i++;draw(i);if(i>=n-1){clearInterval(tm);tm=null;pl.textContent="▶";}},260);});window.addEventListener("beforeprint",function(){draw(n-1);});draw(0);})();</script>
 <br>
 <blockquote>💬 <strong>인구가 감소한 시기에 농민의 임금은 어떻게 변했는지 쓰고, 왜 그렇게 되었는지 이유도 함께 써 보자.</strong></blockquote>
-<textarea class="essay-input" data-id="essay-1" data-label="✏️ 활동 2 — 그래프 읽기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-1" data-label="자료 1 — 흑사병의 유행에 따른 변화" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<br>
+<h3>자료 2 — 14세기의 농민 반란</h3>
+<div class="ws-flip-row"><button class="ws-flip" type="button" aria-label="자크리의 난 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="ws-flip-in"><span class="ws-flip-f"><b>자크리의 난</b><i>1358년 · 프랑스</i><u>눌러서 뒤집기</u></span><span class="ws-flip-b"><img src="images/3-3-4_자크리의난.jpg" alt="모(Meaux) 시장의 요새를 공격하던 농민들이 기사들에게 밀려 강으로 떨어진다. 불공평한 세금 징수와 재판 등에 반발한 농민들이 일으킨 반란이다. — 프루아사르 『연대기』 필사본(15세기) · 프랑스 국립도서관 · 퍼블릭 도메인"><i>모(Meaux) 시장의 요새를 공격하던 농민들이 기사들에게 밀려 강으로 떨어진다. 불공평한 세금 징수와 재판 등에 반발한 농민들이 일으킨 반란이다. — 프루아사르 『연대기』 필사본(15세기) · 프랑스 국립도서관 · 퍼블릭 도메인</i></span></span></button><button class="ws-flip" type="button" aria-label="와트 타일러의 난 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="ws-flip-in"><span class="ws-flip-f"><b>와트 타일러의 난</b><i>1381년 · 영국</i><u>눌러서 뒤집기</u></span><span class="ws-flip-b"><img src="images/3-3-4_와트타일러의난.jpg" alt="배를 탄 어린 왕 리처드 2세가 강가에 모인 반란군을 만난다. 농노제 폐지를 주장하며 일어난 영국 최대 규모의 농민 반란이다. 1단계에서 읽은 존 볼의 설교가 이 반란 때였다. — 프루아사르 『연대기』 필사본(15세기) · 프랑스 국립도서관 · 퍼블릭 도메인"><i>배를 탄 어린 왕 리처드 2세가 강가에 모인 반란군을 만난다. 농노제 폐지를 주장하며 일어난 영국 최대 규모의 농민 반란이다. 1단계에서 읽은 존 볼의 설교가 이 반란 때였다. — 프루아사르 『연대기』 필사본(15세기) · 프랑스 국립도서관 · 퍼블릭 도메인</i></span></span></button></div>
+<br>
+<blockquote>💬 <strong>자료 2와 같은 반란이 일어난 배경을, 1단계에서 배운 내용과 이어서 써 보자.</strong></blockquote>
+<textarea class="essay-input" data-id="essay-2" data-label="자료 2 — 14세기의 농민 반란" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <h2>⭕ OX 퀴즈</h2>
 <table>
@@ -1057,7 +1086,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>💭 더 생각해 보기</h2>
 <blockquote>3-3-2에서 이렇게 물었지 — <em>카노사의 굴욕에서는 황제가 교황에게 굽혔는데, 아비뇽 유수에서는 교황이 프랑스 왕에게 끌려갔어. 약 230년 사이에 무엇이 달라졌을까?</em> 오늘 배운 변화 가운데 <strong>하나</strong>를 골라, 그 변화가 어떻게 왕을 교황보다 세게 만들었는지 이어서 한두 문장으로 써 보자.</blockquote>
 <blockquote>💡 막히면 이렇게 이어 봐 — «○○ 때문에 왕이 △△을 갖게 됐다 → 그래서 교황과 부딪쳤을 때 …»</blockquote>
-<textarea class="essay-input" data-id="essay-2" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<textarea class="essay-input" data-id="essay-3" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <h2>다음 시간 예고</h2>
 <p>장원이 무너지고 도시가 자라던 그 무렵, 이탈리아의 도시들에서는 전혀 다른 일이 시작되고 있었어. 사람들이 천 년 전 그리스·로마를 다시 꺼내 보기 시작한 거야 — 다음 시간 <strong>「유럽에서 르네상스가 일어나다」</strong>.</p>

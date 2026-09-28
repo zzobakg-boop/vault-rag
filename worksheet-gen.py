@@ -197,6 +197,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
     in_seat = False           # 2026-09-07: 좌석 구성 눌러 보기 (:::좌석표 ... :::)
     in_tl = False; tl_head = ''; tl_rows = []; tl_spr = ('', '')   # 2026-09-09: 연표 시소 (:::연표시소 ... :::)
+    in_gr = False; gr_head = ''; gr_rows = []   # 2026-09-28: 움직이는 선그래프 (:::그래프 ... :::)
     in_pk = False             # 2026-09-07: 카드 골라 쓰기 (:::카드선택 ... :::)
     pk_title, pk_rows, pk_ask, pk_cred = '', [], '', ''
     seat_title, seat_rows, seat_note = '', [], ''
@@ -1071,6 +1072,99 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             tl_rows = []
             continue
 
+        # 📈 움직이는 선그래프 (:::그래프 제목 ... :::) — 2026-09-28 천대현
+        #   "교사용 교과서 그래프를 동적으로 변환해서 학습지에" — 3-3-4 「우리 해 보자」 자료 1.
+        #   교과서 그래프를 스캔해 싣지 않고(-0.84 저작권·공개 URL) 값을 읽어 다시 그린다.
+        #   슬라이더를 움직이면 두 선이 그 연대까지 그려지고, 그때의 값이 글자로 읽힌다.
+        #   문법:  x | 1250 | 1260 | …
+        #          선 | 이름 | 단위 | 최소~최대 | 색 | 값 | 값 | …      (2개까지 · 첫째=왼쪽 축 · 둘째=오른쪽 축)
+        #          띠 | 이름 | 시작 x | 끝 x                             (선택 · 음영 구간)
+        #          출처 | 글                                             (선택)
+        #   ⚠️ 입력칸을 만들지 않는다 — range 는 .blank-input 이 아니라 수합·저장에 안 잡힌다(act 불변).
+        #   ⚠️ 자동 재생하지 않는다(WCAG 2.2.2) · 인쇄 직전 전체를 그린다(beforeprint).
+        if stripped.startswith(':::그래프'):
+            in_gr = True
+            gr_head = stripped[len(':::그래프'):].strip()
+            gr_rows = []
+            continue
+        if in_gr:
+            if stripped != ':::':
+                if stripped:
+                    gr_rows.append([x.strip() for x in stripped.strip().strip('|').split('|')])
+                continue
+            _xs = []; _ser = []; _band = None; _src = ''
+            for _r in gr_rows:
+                if _r[0] == 'x':
+                    _xs = _r[1:]
+                elif _r[0] == '선' and len(_r) >= 6:
+                    _lo, _, _hi = _r[3].partition('~')
+                    try:
+                        _vals = [v for v in _r[5:] if v != '']
+                        _ser.append({'name': _r[1], 'unit': _r[2], 'lo': float(_lo), 'hi': float(_hi),
+                                     'col': _r[4], 'v': [float(v) for v in _vals],
+                                     'd': 1 if any('.' in v for v in _vals) else 0})
+                    except ValueError:
+                        pass
+                elif _r[0] == '띠' and len(_r) >= 4:
+                    _band = {'name': _r[1], 'a': _r[2], 'b': _r[3]}
+                elif _r[0] == '출처' and len(_r) >= 2:
+                    _src = '|'.join(_r[1:])
+            if _xs and _ser:
+                gid = f'gr{len(html_parts)}'
+                _leg = ''.join(f'<span class="gr-key"><i style="background:{x["col"]}"></i>{inline(x["name"])}</span>'
+                               for x in _ser)
+                if _band:
+                    _leg += f'<span class="gr-key"><i class="gr-band-key"></i>{inline(_band["name"])}</span>'
+                _alt = ' · '.join(f'{x["name"]}({x["unit"]})' for x in _ser)
+                _D = {'x': _xs, 's': _ser, 'band': _band}
+                html_parts.append(
+                    f'<div class="ws-gr" id="{gid}">'
+                    f'<div class="ws-gr-head">{inline(gr_head)}</div>'
+                    f'<svg class="ws-gr-svg" viewBox="0 0 480 300" role="img" aria-label="{gr_head} — {_alt}"></svg>'
+                    f'<div class="ws-gr-legend">{_leg}</div>'
+                    f'<div class="ws-gr-ctl"><button type="button" class="ws-gr-play" aria-label="처음부터 그려 보기">▶</button>'
+                    f'<input type="range" class="ws-gr-range" min="0" max="{len(_xs)-1}" value="0" step="1" aria-label="연대 고르기">'
+                    f'</div>'
+                    f'<div class="ws-gr-read" aria-live="polite"></div>'
+                    + (f'<div class="ws-gr-src">{inline(_src)}</div>' if _src else '') +
+                    f'</div>'
+                    f'<script>(function(){{'
+                    f'var D={json.dumps(_D, ensure_ascii=False)};'
+                    f'var w=document.getElementById("{gid}"),svg=w.querySelector("svg"),'
+                    'rg=w.querySelector(".ws-gr-range"),rd=w.querySelector(".ws-gr-read"),pl=w.querySelector(".ws-gr-play");'
+                    'var NS="http://www.w3.org/2000/svg",L=52,R=428,T=24,B=256,n=D.x.length;'
+                    'function el(t,a,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;svg.appendChild(e);return e;}'
+                    'function X(i){return L+(R-L)*i/(n-1);}'
+                    'function Y(s,v){return B-(B-T)*(v-s.lo)/(s.hi-s.lo);}'
+                    'function fmt(v,d){if(d==null)return (Math.round(v*10)/10).toString();var m=Math.pow(10,d);return (Math.round(v*m+1e-9)/m).toFixed(d);}'
+                    'if(D.band){var a=D.x.indexOf(D.band.a),b=D.x.indexOf(D.band.b);'
+                    'if(a>=0&&b>=0)el("rect",{x:X(a),y:T,width:X(b)-X(a),height:B-T,"class":"gr-band"});}'
+                    'for(var g=0;g<=5;g++){var yy=B-(B-T)*g/5;el("line",{x1:L,x2:R,y1:yy,y2:yy,"class":"gr-grid"});'
+                    'D.s.forEach(function(s,k){var v=s.lo+(s.hi-s.lo)*g/5;'
+                    'if(g===0&&k===0&&s.lo>0)return;'
+                    'el("text",{x:k===0?L-8:R+8,y:yy+5,"text-anchor":k===0?"end":"start","class":"gr-tick",fill:s.col},fmt(v));});}'
+                    'D.s.forEach(function(s,k){el("text",{x:k===0?L-8:R+8,y:T-4,"text-anchor":k===0?"end":"start","class":"gr-unit",fill:s.col},"("+s.unit+")");});'
+                    'var step=Math.max(1,Math.round((n-1)/4));'
+                    'for(var i=0;i<n;i+=step){el("text",{x:X(i),y:B+26,"text-anchor":"middle","class":"gr-tick"},D.x[i]);}'
+                    'el("line",{x1:L,x2:R,y1:B,y2:B,"class":"gr-axis"});'
+                    'var cur=el("line",{x1:L,x2:L,y1:T,y2:B,"class":"gr-cur"});'
+                    'var lines=D.s.map(function(s){return el("polyline",{fill:"none",stroke:s.col,"stroke-width":4,"stroke-linejoin":"round","stroke-linecap":"round",points:""});});'
+                    'var dots=D.s.map(function(s){return el("circle",{r:6,fill:s.col,stroke:"#fff","stroke-width":2});});'
+                    'function draw(i){i=+i;D.s.forEach(function(s,k){var p=[];for(var j=0;j<=i;j++)p.push(X(j)+","+Y(s,s.v[j]));'
+                    'lines[k].setAttribute("points",p.join(" "));dots[k].setAttribute("cx",X(i));dots[k].setAttribute("cy",Y(s,s.v[i]));});'
+                    'cur.setAttribute("x1",X(i));cur.setAttribute("x2",X(i));'
+                    'rd.innerHTML="<b>"+D.x[i]+"년대</b> — "+D.s.map(function(s){return s.name+" <b style=\\"color:"+s.col+"\\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");'
+                    'rg.value=i;}'
+                    'rg.addEventListener("input",function(){draw(rg.value);});'
+                    'var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}'
+                    'if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){draw(n-1);return;}'
+                    'var i=0;draw(0);pl.textContent="■";tm=setInterval(function(){i++;draw(i);if(i>=n-1){clearInterval(tm);tm=null;pl.textContent="▶";}},260);});'
+                    'window.addEventListener("beforeprint",function(){draw(n-1);});'
+                    'draw(0);})();</script>')
+            in_gr = False
+            gr_rows = []
+            continue
+
         # 📖 표·도식을 읽는 자리 (:::해설 ... :::) — 2026-09-03 천대현
         #   계열이 셋이 된다: 파랑=쓰는 곳(빈칸) · 황토=교과서를 펴는 곳 · 회색=읽는 곳.
         #   표 아래 해설이 본문 문단과 같은 모양이라 "여기도 빈칸이 있나" 하고 보게 됐다.
@@ -1933,6 +2027,26 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr {{ border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }}
+.ws-gr-head {{ font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }}
+.ws-gr-svg {{ display: block; width: 100%; height: auto; }}
+.ws-gr-svg .gr-grid {{ stroke: #d9dee5; stroke-dasharray: 3 4; }}
+.ws-gr-svg .gr-axis {{ stroke: #8a94a3; stroke-width: 1.5; }}
+.ws-gr-svg .gr-tick {{ font-size: 17px; fill: #4b5563; }}
+.ws-gr-svg .gr-unit {{ font-size: 15px; }}
+.ws-gr-svg .gr-band {{ fill: #f8c98a; opacity: .45; }}
+.ws-gr-svg .gr-cur {{ stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }}
+.ws-gr-legend {{ display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }}
+.ws-gr-legend .gr-key i {{ display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }}
+.ws-gr-legend .gr-key i.gr-band-key {{ height: 12px; background: #f8c98a; opacity: .8; }}
+.ws-gr-ctl {{ display: flex; align-items: center; gap: 10px; }}
+.ws-gr-play {{ flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }}
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible {{ outline: 3px solid #007aff; outline-offset: 2px; }}
+.ws-gr-range {{ flex: 1; accent-color: #243040; min-width: 0; }}
+.ws-gr-read {{ min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }}
+.ws-gr-src {{ font-size: .8em; color: #6b7280; margin-top: 4px; }}
+@media print {{ .ws-gr-ctl {{ display: none; }} }}
 .ws-tl {{ border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }}
 .ws-tl-head {{ font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }}
