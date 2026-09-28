@@ -8,15 +8,37 @@
 «2026 동성여중/정답편 (교사용)/» 로 복사하고, 그 파일이 쓰는 images/ 만 따라 복사하고,
 목록 index.html 을 새로 만든다. 원본은 건드리지 않는다. 발행 뒤마다 다시 돌리면 된다.
 
-사용: python3 ~/vault-rag/answer_key_sync.py            (복사)
+사용: python3 ~/vault-rag/answer_key_sync.py            (바뀐 것만 복사)
       python3 ~/vault-rag/answer_key_sync.py --dry-run  (무엇을 옮길지만)
+      python3 ~/vault-rag/answer_key_sync.py --force    (원본이 안 바뀌었어도 대조)
 """
-import html, os, re, shutil, sys, unicodedata
+import fcntl, filecmp, html, os, re, shutil, sys, unicodedata
 
 N = lambda s: unicodedata.normalize("NFC", s)
 SRCS = [os.path.expanduser("~/vault-rag/worksheets"), os.path.expanduser("~/worksheets")]
 DST = os.path.expanduser("~/Library/Mobile Documents/com~apple~CloudDocs/2026 동성여중/정답편 (교사용)")
 DRY = "--dry-run" in sys.argv
+FORCE = "--force" in sys.argv
+CACHE = os.path.expanduser("~/.cache/answer-key-sync")
+os.makedirs(CACHE, exist_ok=True)
+
+# 🔴 동시 실행 금지 — 9/28 메인·역사·사회가 몇 분 사이로 돌려 iCloud 충돌 사본 23개(«… 2.html»)가 생겼다.
+_lock = open(os.path.join(CACHE, "lock"), "w")
+try:
+    fcntl.flock(_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+except BlockingIOError:
+    print("다른 동기화가 도는 중 — 건너뜀")
+    sys.exit(0)
+
+
+def put(src, dst):
+    """내용이 같으면 쓰지 않는다 — iCloud는 같은 파일을 다시 써도 충돌 사본을 만든다."""
+    if os.path.exists(dst) and filecmp.cmp(src, dst, shallow=False):
+        return False
+    tmp = dst + ".tmp-sync"
+    shutil.copy2(src, tmp)
+    os.replace(tmp, dst)
+    return True
 
 
 def subject(name):
@@ -49,14 +71,19 @@ print(f"정답편 {len(files)}편 · 이미지 {len(imgs)}개 → {DST}")
 if DRY:
     sys.exit(0)
 
+# 원본이 지난번과 같으면 바로 끝낸다 — 30초 주기 자동 실행이 매번 iCloud를 건드리지 않게.
+sig = "\n".join(f"{n}|{os.path.getmtime(p)}|{os.path.getsize(p)}" for p, n, _ in files)
+sig_path = os.path.join(CACHE, "sig")
+if not FORCE and os.path.exists(sig_path) and open(sig_path).read() == sig:
+    print("변화 없음")
+    sys.exit(0)
+
 os.makedirs(DST, exist_ok=True)
-for p, name, _ in files:
-    shutil.copy2(p, os.path.join(DST, name))
+changed = sum(put(p, os.path.join(DST, name)) for p, name, _ in files)
 for q, rel in imgs:
     out = os.path.join(DST, rel)
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    if not os.path.exists(out) or os.path.getmtime(out) < os.path.getmtime(q):
-        shutil.copy2(q, out)
+    changed += put(q, out)
 
 groups = {}
 for _, name, title in files:
@@ -75,5 +102,10 @@ li{{margin:.25em 0}}a{{color:#1d4f91;text-decoration:none}}a:hover{{text-decorat
 <h1>정답편 (교사용)</h1>
 <p>공개 사이트에서 내린 정답편 사본입니다. 이 폴더는 iCloud로만 동기화되며 링크를 학생에게 주지 않습니다. 발행 뒤 동기화 스크립트를 다시 돌리면 갱신됩니다.</p>
 {''.join(parts)}"""
-open(os.path.join(DST, "index.html"), "w", encoding="utf-8").write(page)
-print("완료 — index.html 갱신")
+idx = os.path.join(DST, "index.html")
+if not os.path.exists(idx) or open(idx, encoding="utf-8").read() != page:
+    open(idx + ".tmp-sync", "w", encoding="utf-8").write(page)
+    os.replace(idx + ".tmp-sync", idx)
+    changed += 1
+open(sig_path, "w").write(sig)
+print(f"완료 — 바뀐 파일 {changed}개")
