@@ -827,6 +827,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
 .kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
 .hero-card { margin-top: 12px; }
+.hero-lock-note { margin-top: 10px; padding: 8px 12px; border-radius: 8px; background: rgba(255,255,255,0.92); color: #5a3e00; font-size: 13px; }
 .hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
 .hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
 .hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
@@ -958,7 +959,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   </div>
   <br>
 <br>
-<blockquote>🎙️ 자, 네가 15세기 유럽 사람이라고 해보자. 고기 요리에 후추를 뿌리고 싶은데, 값이 어마어마해. 왜? 후추는 인도에서 오는데 중간에 이슬람 상인, 이탈리아 상인을 거치며 값이 계속 붙거든. 그때 누군가 말한다 — <em>"그럼 우리가 직접 인도로 가면 되잖아?"</em> 죽을 수도 있는 길인데 사람들이 배를 탄다. 그 결과 세계는 하나로 이어졌지만, 그 대가는 누군가에게 너무 잔인했어. 오늘은 그 두 얼굴의 이야기야.</blockquote>
+<figure class="ws-fig"><img src="images/4-3-2_입담_후추값.png" alt="그때 누군가 말한다 — «그럼 우리가 직접 인도로 가면 되잖아?» 죽을 수도 있는 길인데 사람들이 배를 탔어. 세계는 하나로 이어졌지만, 그 대가는 누군가에게 너무 잔인했지. 오늘은 그 두 얼굴의 이야기야. (AI 생성 삽화 · 자체 제작)" loading="lazy"><figcaption>그때 누군가 말한다 — «그럼 우리가 직접 인도로 가면 되잖아?» 죽을 수도 있는 길인데 사람들이 배를 탔어. 세계는 하나로 이어졌지만, 그 대가는 누군가에게 너무 잔인했지. 오늘은 그 두 얼굴의 이야기야. (AI 생성 삽화 · 자체 제작)</figcaption></figure>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 신항로 개척의 <strong>배경과 과정</strong>을 이해할 수 있다.</p>
@@ -1033,7 +1034,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 132쪽 · 「이 음식!」</div><div class="ws-tb-ask">신항로 개척 뒤 유럽에 전해진 작물 가운데 <strong>하나</strong>를 골라, 처음 유럽에 갔을 때 어떤 대접을 받았는지 교과서 설명에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 132쪽에서 찾기 — 신항로 개척 뒤 유럽에 전해진 작물 가운데 하나를 골라, 처음 유럽에" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 요즘 네가 먹는 감자튀김, 초콜릿 — 둘 다 이때 대서양을 건너왔어. 그런데 처음엔 둘 다 환영받지 못했지.</blockquote>
+<figure class="ws-fig"><img src="images/4-3-2_입담_감자초콜릿.png" alt="요즘 네가 먹는 감자튀김, 초콜릿 — 둘 다 이때 대서양을 건너왔어. 그런데 처음엔 둘 다 환영받지 못했지. (AI 생성 삽화 · 자체 제작)" loading="lazy"><figcaption>요즘 네가 먹는 감자튀김, 초콜릿 — 둘 다 이때 대서양을 건너왔어. 그런데 처음엔 둘 다 환영받지 못했지. (AI 생성 삽화 · 자체 제작)</figcaption></figure>
 <blockquote>🎙️ 은을 따라가 봐. 아메리카 광산에서 캔 은이 유럽으로 가고, 유럽은 그 은으로 아시아의 차와 비단을 샀어. 은 한 덩이가 세 대륙을 한 줄로 꿴 셈이야.</blockquote>
 <br>
 <h2>📖 5단계: ⭐ 같은 사건, 다른 얼굴</h2>
@@ -1116,6 +1117,13 @@ document.addEventListener('click', function(e){
   if (!b) return;
   var card = document.getElementById('hero-card-' + b.dataset.card);
   if (!card) return;
+  if (window.HERO_LOCK) {
+    var n = document.getElementById('hero-lock-note');
+    if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      b.parentElement.insertAdjacentElement('afterend', n); }
+    n.hidden = false; return;
+  }
   var open = card.hasAttribute('hidden');
   if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -1167,7 +1175,9 @@ function cmpStep(id,d){
   cmpGo(id, (+(g.dataset.cur||0)) + d);
 }
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+window.HERO_LOCK = true;
 function check(){
+  window.HERO_LOCK = false; var _hn = document.getElementById('hero-lock-note'); if (_hn) _hn.hidden = true;
   let bc=0, oxc=0;
   document.querySelectorAll('.blank-input').forEach(el=>{
     const a=norm(el.dataset.answer), u=norm(el.value);
