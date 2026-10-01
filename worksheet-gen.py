@@ -1780,6 +1780,10 @@ def generate_html(title, content, total, total_ox, submit_url='', mode='class', 
     <select id="si-num"><option value="">번호</option>{num_opts}</select>
     <input type="text" id="si-name" placeholder="이름">
   </div>'''
+    # ⭐ 2026-09-30 천대현 승인: 표지 키워드 카드는 수업용에서 «채점하기» 전엔 잠근다.
+    #    답 누출 검사(3-3-4 9/9)·전수 대조(카드 안에 빈칸 답 118/489). 칩(질문형)은 보이고 카드 본문만 채점 뒤에 열린다.
+    #    복습용·정답편·채점 없는 페이지는 잠그지 않는다(역사·사회 합의).
+    hero_lock = 'true' if (mode == 'class' and grand_total > 0) else 'false'
     return f'''<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -2609,6 +2613,7 @@ table:has(.ox-group) td:first-child {{ width: 46px; text-align: center; color: #
 .hero-keyword.has-card[aria-expanded="true"] {{ background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }}
 .kw-caret {{ margin-left: 7px; font-size: 11px; opacity: 0.75; }}
 .hero-card {{ margin-top: 12px; }}
+.hero-lock-note {{ margin-top: 10px; padding: 8px 12px; border-radius: 8px; background: rgba(255,255,255,0.92); color: #5a3e00; font-size: 13px; }}
 .hero-card-inner {{ background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }}
 .hero-card-inner table {{ width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }}
 .hero-card-inner th, .hero-card-inner td {{ border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }}
@@ -2742,6 +2747,13 @@ document.addEventListener('click', function(e){{
   if (!b) return;
   var card = document.getElementById('hero-card-' + b.dataset.card);
   if (!card) return;
+  if (window.HERO_LOCK) {{
+    var n = document.getElementById('hero-lock-note');
+    if (!n) {{ n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      b.parentElement.insertAdjacentElement('afterend', n); }}
+    n.hidden = false; return;
+  }}
   var open = card.hasAttribute('hidden');
   if (open) {{ card.removeAttribute('hidden'); }} else {{ card.setAttribute('hidden',''); }}
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -2793,7 +2805,9 @@ function cmpStep(id,d){{
   cmpGo(id, (+(g.dataset.cur||0)) + d);
 }}
 function norm(s){{return (s||'').replace(/\\s+/g,'').replace(/[·,.()（）\\[\\]]/g,'').toLowerCase();}}
+window.HERO_LOCK = {hero_lock};
 function check(){{
+  window.HERO_LOCK = false; var _hn = document.getElementById('hero-lock-note'); if (_hn) _hn.hidden = true;
   let bc=0, oxc=0;
   document.querySelectorAll('.blank-input').forEach(el=>{{
     const a=norm(el.dataset.answer), u=norm(el.value);
