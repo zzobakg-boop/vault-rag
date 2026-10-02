@@ -1215,12 +1215,16 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   자료 왼쪽 · 질문과 답 칸 오른쪽. 안쪽은 평소 처리(그래프·플립·입력칸 그대로, data-id 순서 불변).
         #   ⚠️ 안쪽 블록(그래프·플립 등)은 이 처리기보다 앞에서 자기 닫는 ':::'를 먼저 가져간다 — 순서를 바꾸지 말 것.
         if stripped.startswith(':::2단'):
-            _r = stripped[len(':::2단'):].strip() or '1.2:1'
+            _opts = stripped[len(':::2단'):].split()
+            _r = next((o for o in _opts if ':' in o), '1.2:1')
+            _mid = '가운데' in _opts          # 2026-10-02: 사진 + 짧은 설명 — 글을 세로 가운데에(천대현 «예쁘게»)
+            _card = '카드' in _opts           # 오른쪽 단을 설명 카드로
             try:
                 _a, _b = [float(x) for x in _r.split(':')]
             except Exception:
                 _a, _b = 1.2, 1.0
-            html_parts.append(f'<div class="ws-2c" style="grid-template-columns:minmax(0,{_a}fr) minmax(0,{_b}fr)"><div class="c2-a">')
+            _cls = 'ws-2c' + (' c2-mid' if _mid else '') + (' c2-card' if _card else '')
+            html_parts.append(f'<div class="{_cls}" style="grid-template-columns:minmax(0,{_a}fr) minmax(0,{_b}fr)"><div class="c2-a">')
             in_2c = True
             continue
         if in_2c and stripped == ':::다음칸':
@@ -2242,6 +2246,10 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c > div > :first-child {{ margin-top: 0; }}
 .ws-2c > div > br {{ display: none; }}
 @media (max-width: 640px) {{ .ws-2c {{ grid-template-columns: 1fr !important; }} }}
+.ws-2c.c2-mid {{ align-items: center; }}
+.ws-2c.c2-card > .c2-b {{ background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }}
+.ws-2c.c2-card > .c2-b p {{ margin: 0 0 8px; }} .ws-2c.c2-card > .c2-b p:last-child {{ margin-bottom: 0; }}
+.ws-2c .ws-fig {{ margin: 0; }}
 .ws-ipdam {{
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
