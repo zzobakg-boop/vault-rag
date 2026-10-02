@@ -1867,6 +1867,7 @@ def generate_html(title, content, total, total_ox, submit_url='', mode='class', 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <title>{title}{' (복습용)' if mode == 'review' else ''}</title>
 <style>
 * {{ margin: 0; padding: 0; box-sizing: border-box; }}
@@ -2721,7 +2722,9 @@ table:has(.ox-group) td:first-child {{ width: 46px; text-align: center; color: #
 .hero-section {{
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  font-family: 'Pretendard', 'Noto Serif KR', serif;
+  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+     (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
+  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
   position: relative; overflow: hidden;
 }}
@@ -2730,8 +2733,8 @@ table:has(.ox-group) td:first-child {{ width: 46px; text-align: center; color: #
   background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
 }}
 .hero-eyebrow {{ font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }}
-.hero-title {{ font-size: 32px; font-weight: 700; margin: 0 0 14px; letter-spacing: -0.5px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }}
-.hero-subtitle {{ font-size: 15px; color: #a8a89e; margin: 0 0 22px; line-height: 1.5; }}
+.hero-title {{ font-size: 34px; font-weight: 300; margin: 0 0 14px; letter-spacing: -0.6px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }}
+.hero-subtitle {{ font-size: 16px; color: #d4af37; font-weight: 500; margin: 0 0 22px; line-height: 1.5; letter-spacing: -0.2px; }}
 .hero-keywords {{ display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }}
 .hero-keyword.has-card {{ cursor: pointer; font-family: inherit; }}
 .hero-keyword.has-card:hover {{ background: rgba(255,255,255,0.14); border-color: #8a8a80; }}
@@ -2843,7 +2846,7 @@ table:has(.ox-group) td:first-child {{ width: 46px; text-align: center; color: #
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print {{ .mos-note {{ display: block; }} .ws-mos-cell::after {{ display: none; }} }}
 /* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
-.hero-hook {{ margin-top: 24px; padding: 16px 20px; border-left: 3px solid #d4af37; background: rgba(255,255,255,0.06); border-radius: 0 8px 8px 0; font-size: 16px; color: #ecebe4; line-height: 1.8; font-style: normal; word-break: keep-all; font-family: 'Pretendard', -apple-system, 'Noto Sans KR', 'Malgun Gothic', sans-serif; font-weight: 500; }}
+.hero-hook {{ margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }}
 .blank-filled {{ display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }}
 </style>
 </head>
