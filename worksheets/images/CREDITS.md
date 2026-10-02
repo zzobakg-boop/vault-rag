@@ -41,3 +41,6 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 |---|---|---|
 | 3-3-4_이프르직물회관.jpg | 이프르 직물 회관, 1890~1900년 무렵 포토크롬 | Detroit Publishing Co. · 미국 의회도서관 LCCN 2017659139 · 퍼블릭 도메인 |
 | 3-3-4_플랑드르_v2.png · 3-3-4_두왕가계도.png | 자체 제작(해안선 Natural Earth, 가계도 얼굴은 자체 AI 삽화) | — |
+
+## 새 지도 렌더러로 그린 지도 (2026-10-02~)
+`3-3-4_플랑드르_v3.png` 등 — 해안선·강·호수·지형 음영: Natural Earth(퍼블릭 도메인) · 1300·1400년 무렵 경계: A. Ourednik, historical-basemaps (GPL-3.0), https://github.com/aourednik/historical-basemaps — 경계 정밀도가 낮아 개념도로만 쓴다.
