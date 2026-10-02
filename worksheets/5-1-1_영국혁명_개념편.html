@@ -351,6 +351,44 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
    태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+.ws-saryo {
+  position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
+  background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
+  border-left: 1px solid #d6c08f; border-right: 1px solid #d6c08f;
+  box-shadow: inset 0 0 34px rgba(150, 110, 45, 0.22), 0 3px 10px rgba(60, 40, 10, 0.12);
+  color: #4a3720;
+}
+.ws-saryo::before, .ws-saryo::after {
+  content: ""; position: absolute; left: -10px; right: -10px; height: 16px; border-radius: 8px;
+  background: linear-gradient(180deg, #e2c992 0%, #b8925a 55%, #8f6a37 100%);
+  box-shadow: 0 2px 4px rgba(60, 40, 10, 0.25);
+}
+.ws-saryo::before { top: -8px; }
+.ws-saryo::after { bottom: -8px; }
+.ws-saryo .sr-tag {
+  display: inline-block; font-size: 0.78em; font-weight: 700; letter-spacing: 0.04em;
+  color: #7a5426; border: 1px solid #b8925a; border-radius: 999px; padding: 2px 11px; margin-bottom: 10px;
+  background: rgba(255, 250, 235, 0.6);
+}
+.ws-saryo .sr-q {
+  margin: 0; padding: 0; border: none; background: none;
+  font-family: "Nanum Myeongjo", "AppleMyungjo", "Noto Serif KR", "Batang", serif;
+  font-size: 1.04em; line-height: 1.85; color: #3d2c17;
+}
+.ws-saryo .sr-c { margin-top: 10px; text-align: right; font-size: 0.82em; color: #7a6040; }
+@media print { .ws-saryo { background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; } }
+.ws-ipdam {
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 16px; align-items: center; margin: 16px 0 20px;
+}
+.ws-ipdam .ipd-fig { margin: 0; }
+.ws-ipdam .ipd-fig img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.ws-ipdam .ipd-fig figcaption { font-size: 0.72em; color: #8a8174; margin-top: 4px; text-align: center; }
+.ws-ipdam .ipd-t { margin: 0; }
+.ws-ipdam .ipd-t p { margin: 0 0 8px; }
+.ws-ipdam .ipd-t p:last-child { margin-bottom: 0; }
+@media (max-width: 640px) { .ws-ipdam { grid-template-columns: 1fr; gap: 8px; } }
+@media print { .ws-ipdam { break-inside: avoid; } }
 .ws-read {
   background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
   border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
@@ -1014,7 +1052,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>📕 <strong>교과서 145쪽</strong> 펴고 채우기 · 배정 시간 <strong>4분</strong></blockquote>
 <p>크롬웰이 죽자 다시 왕정이 시작되어 찰스 2세가 즉위했다. 찰스 2세와 그 뒤를 이은 제임스 2세도 의회를 무시하며 권력을 잡으려 했다. 이에 맞서 의회는 제임스 2세를 왕위에서 몰아내고, 그의 딸 메리와 남편 윌리엄을 공동 왕으로 세웠다. 이 사건을 ⑥<input type="text" class="blank-input" data-answer="명예혁명" data-id="6" style="width:84px" placeholder="">이라고 한다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-1-1_입담_왕관과약속.png" alt="왜 이런 이름이 붙었을까? 교과서 날개 주석을 봐. 앞에서 왕의 목을 잘랐던 그 나라가, 이번엔 피를 흘리지 않고 왕을 갈아 끼우는 것으로 끝냈어. (AI 생성 삽화 · 자체 제작)" loading="lazy"><figcaption>왜 이런 이름이 붙었을까? 교과서 날개 주석을 봐. 앞에서 왕의 목을 잘랐던 그 나라가, 이번엔 피를 흘리지 않고 왕을 갈아 끼우는 것으로 끝냈어. (AI 생성 삽화 · 자체 제작)</figcaption></figure>
+<div class="ws-ipdam"><figure class="ipd-fig"><img src="images/5-1-1_입담_왕관과약속.png" alt="삽화 — 의회 · 윌리엄 3세" loading="lazy"><figcaption>AI 생성 삽화 · 자체 제작</figcaption></figure><blockquote class="ipd-t"><p>🎙️ 왜 이런 이름이 붙었을까? 교과서 날개 주석을 봐. 앞에서 왕의 목을 잘랐던 그 나라가, 이번엔 피를 흘리지 않고 왕을 갈아 끼우는 것으로 끝냈어.</p></blockquote></div>
 <blockquote>🎙️ 그리고 결정적인 차이가 하나 더 있어. 이번엔 새 왕이 <strong>의회가 정한 규칙을 받아들였다는 거야.</strong></blockquote>
 <br>
 <h2>📖 6단계: 조건이 붙은 왕관</h2>
@@ -1031,11 +1069,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>✍️ 이 판화는 사건이 있고 <strong>약 100년 뒤</strong>(1783년) 영국 화가가 새긴 거야. 화가는 그 자리에 없었어. 이 그림에서 <strong>믿을 만한 것</strong> 하나와 <strong>조심해서 볼 것</strong> 하나를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="✍️ 이 판화는 사건이 있고 약 100년 뒤(1783년) 영국 화가가 새" style="width:400px" placeholder=""></p>
 <br>
-<blockquote>사료: 권리 장전(1689) 가운데</blockquote>
-<blockquote><strong>제1조</strong> 국왕은 의회의 동의 없이 법의 효력을 정지하거나 법의 집행을 막을 수 없다.</blockquote>
-<blockquote><strong>제4조</strong> 국왕이 의회의 승인 없이 세금을 거두는 것은 위법이다.</blockquote>
-<blockquote><strong>제6조</strong> 의회의 동의 없이 왕국 내에서 군대를 모으거나 유지하는 것은 위법이다.</blockquote>
-<blockquote>— 비상교육 역사①(이병인) p.145 사료</blockquote>
+<figure class="ws-saryo"><div class="sr-tag">📜 사료 · 권리 장전(1689) 가운데</div><blockquote class="sr-q"><p><strong>제1조</strong> 국왕은 의회의 동의 없이 법의 효력을 정지하거나 법의 집행을 막을 수 없다.</p><p><strong>제4조</strong> 국왕이 의회의 승인 없이 세금을 거두는 것은 위법이다.</p><p><strong>제6조</strong> 의회의 동의 없이 왕국 내에서 군대를 모으거나 유지하는 것은 위법이다.</p></blockquote><figcaption class="sr-c">— 비상교육 역사①(이병인) p.145 사료</figcaption></figure>
 <br>
 <h2>✏️ 활동 1 — 두 번의 답, 무엇이 달랐나</h2>
 <blockquote>같은 문제(왕이 의회를 무시한다)에 두 번 답이 나왔어. 표를 채우며 <strong>무엇이 갈랐는지</strong> 찾아보자.</blockquote>

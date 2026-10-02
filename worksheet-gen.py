@@ -200,6 +200,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     mos_head = ''
     in_pick = False; pick_q = ''; pick_rows = []   # 2026-09-03: 인물 선택 활동
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
+    in_ipd = False; ipd_lines = []; ipd_img = ''; ipd_alt = ''   # 2026-10-02: 입담 삽화 2단 (:::입담 ... :::)
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
     in_seat = False           # 2026-09-07: 좌석 구성 눌러 보기 (:::좌석표 ... :::)
@@ -225,8 +226,23 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     def _hlabel(t):
         return t.replace('*', '').replace('`', '').replace('#', '').replace('"', '').replace('_', '').strip()[:40]
 
+    sr_buf = None   # 📜 여러 줄 사료(> 사료: 제목 / > 조항… / > — 출처) 모으는 중
+    def _sr_flush(buf):
+        _title, _rows = buf[0], buf[1:]
+        _cite = ''
+        if _rows and _rows[-1].lstrip().startswith('— '):
+            _cite = _rows.pop()[2:].strip() if _rows[-1].startswith('— ') else _rows.pop().lstrip()[2:].strip()
+        return ('<figure class="ws-saryo"><div class="sr-tag">📜 사료'
+                + (f' · {inline(_title)}' if _title else '') + '</div>'
+                + '<blockquote class="sr-q">' + ''.join(f'<p>{inline(r)}</p>' for r in _rows) + '</blockquote>'
+                + (f'<figcaption class="sr-c">— {inline(_cite)}</figcaption>' if _cite else '')
+                + '</figure>')
     for line in lines:
         stripped = line.strip()
+        if sr_buf is not None:
+            if stripped.startswith('> ') and not stripped.startswith('> [!'):
+                sr_buf.append(stripped[2:].strip()); continue
+            html_parts.append(_sr_flush(sr_buf)); sr_buf = None
 
         # STEP 0 구간 감지 (채점 제외 영역)
         if re.match(r'^##\s+STEP\s*0', stripped):
@@ -1172,6 +1188,28 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             gr_rows = []
             continue
 
+        # 🎙️ 입담 삽화 2단 (:::입담 <그림> | <대체텍스트>  …입담 글…  :::) — 2026-10-02 천대현
+        #   "입담 삽화와 글을 2단으로 분리해서 배치하는 건?" — 삽화(380px)를 글 위에 쌓으면
+        #   입담 하나마다 학습지가 길어진다. 그림 왼쪽·글 오른쪽으로 나란히 두면 높이가 그림만큼만 든다.
+        #   폰(≤640px)에서는 위아래로 바뀐다. 입력칸을 만들지 않는다(data-id 무관).
+        if stripped.startswith(':::입담'):
+            _ip = [x.strip() for x in stripped[len(':::입담'):].strip().split('|')]
+            ipd_img = _ip[0]; ipd_alt = _ip[1] if len(_ip) > 1 else ''
+            in_ipd = True; ipd_lines = []
+            continue
+        if in_ipd:
+            if stripped == ':::':
+                body = ''.join(f'<p>{inline(x)}</p>' for x in ipd_lines)
+                html_parts.append(
+                    '<div class="ws-ipdam"><figure class="ipd-fig">'
+                    f'<img src="images/{ipd_img}" alt="{ipd_alt.replace(chr(34), "&quot;")}" loading="lazy">'
+                    '<figcaption>AI 생성 삽화 · 자체 제작</figcaption></figure>'
+                    f'<blockquote class="ipd-t">{body}</blockquote></div>')
+                in_ipd = False; ipd_lines = []
+            elif stripped:
+                ipd_lines.append(stripped)
+            continue
+
         # 📖 표·도식을 읽는 자리 (:::해설 ... :::) — 2026-09-03 천대현
         #   계열이 셋이 된다: 파랑=쓰는 곳(빈칸) · 황토=교과서를 펴는 곳 · 회색=읽는 곳.
         #   표 아래 해설이 본문 문단과 같은 모양이라 "여기도 빈칸이 있나" 하고 보게 됐다.
@@ -1548,6 +1586,21 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             elif stripped.startswith('> '):
                 if in_fold:
                     html_parts.append('</div></details>'); in_fold = False
+                # 📜 사료 두루마리 — 2026-10-02 천대현 «사료는 두루마리 종이 배경에. 입담과 같은 상자라 구분이 안 된다»
+                #   '> (사료: "…" — 출처)' 줄만 골라 양피지 상자로. 출처는 마지막 « — » 뒤.
+                _sm = re.match(r'>\s*\(?사료[:：]\s*(.*?)\)?\s*$', stripped)
+                if _sm and not re.match(r'>\s*\(사료', stripped) and '"' not in _sm.group(1):
+                    sr_buf = [_sm.group(1).strip()]   # 여러 줄 사료 — 다음 > 줄들을 모은다
+                    continue
+                if _sm:
+                    _body = _sm.group(1)
+                    _q, _c = (_body.rsplit(' — ', 1) + [''])[:2] if ' — ' in _body else (_body, '')
+                    html_parts.append(
+                        '<figure class="ws-saryo"><div class="sr-tag">📜 사료</div>'
+                        f'<blockquote class="sr-q">{inline(_q)}</blockquote>'
+                        + (f'<figcaption class="sr-c">— {inline(_c)}</figcaption>' if _c else '')
+                        + '</figure>')
+                    continue
                 html_parts.append(f'<blockquote>{inline(stripped[2:])}</blockquote>')
             elif stripped == '':
                 html_parts.append('<br>')
@@ -2137,6 +2190,44 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
    태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+.ws-saryo {{
+  position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
+  background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
+  border-left: 1px solid #d6c08f; border-right: 1px solid #d6c08f;
+  box-shadow: inset 0 0 34px rgba(150, 110, 45, 0.22), 0 3px 10px rgba(60, 40, 10, 0.12);
+  color: #4a3720;
+}}
+.ws-saryo::before, .ws-saryo::after {{
+  content: ""; position: absolute; left: -10px; right: -10px; height: 16px; border-radius: 8px;
+  background: linear-gradient(180deg, #e2c992 0%, #b8925a 55%, #8f6a37 100%);
+  box-shadow: 0 2px 4px rgba(60, 40, 10, 0.25);
+}}
+.ws-saryo::before {{ top: -8px; }}
+.ws-saryo::after {{ bottom: -8px; }}
+.ws-saryo .sr-tag {{
+  display: inline-block; font-size: 0.78em; font-weight: 700; letter-spacing: 0.04em;
+  color: #7a5426; border: 1px solid #b8925a; border-radius: 999px; padding: 2px 11px; margin-bottom: 10px;
+  background: rgba(255, 250, 235, 0.6);
+}}
+.ws-saryo .sr-q {{
+  margin: 0; padding: 0; border: none; background: none;
+  font-family: "Nanum Myeongjo", "AppleMyungjo", "Noto Serif KR", "Batang", serif;
+  font-size: 1.04em; line-height: 1.85; color: #3d2c17;
+}}
+.ws-saryo .sr-c {{ margin-top: 10px; text-align: right; font-size: 0.82em; color: #7a6040; }}
+@media print {{ .ws-saryo {{ background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; }} }}
+.ws-ipdam {{
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 16px; align-items: center; margin: 16px 0 20px;
+}}
+.ws-ipdam .ipd-fig {{ margin: 0; }}
+.ws-ipdam .ipd-fig img {{ width: 100%; height: auto; display: block; border-radius: 10px; }}
+.ws-ipdam .ipd-fig figcaption {{ font-size: 0.72em; color: #8a8174; margin-top: 4px; text-align: center; }}
+.ws-ipdam .ipd-t {{ margin: 0; }}
+.ws-ipdam .ipd-t p {{ margin: 0 0 8px; }}
+.ws-ipdam .ipd-t p:last-child {{ margin-bottom: 0; }}
+@media (max-width: 640px) {{ .ws-ipdam {{ grid-template-columns: 1fr; gap: 8px; }} }}
+@media print {{ .ws-ipdam {{ break-inside: avoid; }} }}
 .ws-read {{
   background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
   border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
