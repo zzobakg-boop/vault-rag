@@ -200,7 +200,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     mos_head = ''
     in_pick = False; pick_q = ''; pick_rows = []   # 2026-09-03: 인물 선택 활동
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
-    in_ipd = False; ipd_lines = []; ipd_img = ''; ipd_alt = ''   # 2026-10-02: 입담 삽화 2단 (:::입담 ... :::)
+    in_ipd = False   # 2026-10-02: 삽화 + 본문 2단 (:::입담 ... :::)
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
     in_seat = False           # 2026-09-07: 좌석 구성 눌러 보기 (:::좌석표 ... :::)
@@ -1188,26 +1188,24 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             gr_rows = []
             continue
 
-        # 🎙️ 입담 삽화 2단 (:::입담 <그림> | <대체텍스트>  …입담 글…  :::) — 2026-10-02 천대현
-        #   "입담 삽화와 글을 2단으로 분리해서 배치하는 건?" — 삽화(380px)를 글 위에 쌓으면
-        #   입담 하나마다 학습지가 길어진다. 그림 왼쪽·글 오른쪽으로 나란히 두면 높이가 그림만큼만 든다.
-        #   폰(≤640px)에서는 위아래로 바뀐다. 입력칸을 만들지 않는다(data-id 무관).
+        # 🎙️ 삽화 + 본문 2단 (:::입담 <그림> | <대체텍스트> | <캡션>  …본문(빈칸 포함)…  :::) — 2026-10-02 천대현
+        #   "입담 삽화와 글을 2단으로" → 정정: 옆 단은 입담 글이 아니라 **그 단계의 본문(빈칸 문단)**이다.
+        #   그래서 안쪽 줄은 모으지 않고 평소 처리(빈칸→입력칸, data-id 순서 그대로)에 흘려보낸다.
+        #   여는 줄에서 그림 단을 열고, 닫는 ':::'에서 두 단을 닫는다. 폰(≤640px)은 위아래.
         if stripped.startswith(':::입담'):
             _ip = [x.strip() for x in stripped[len(':::입담'):].strip().split('|')]
-            ipd_img = _ip[0]; ipd_alt = _ip[1] if len(_ip) > 1 else ''
-            in_ipd = True; ipd_lines = []
+            while len(_ip) < 3: _ip.append('')
+            _img, _alt, _cap = _ip[:3]
+            html_parts.append(
+                '<div class="ws-ipdam"><figure class="ipd-fig">'
+                f'<img src="images/{_img}" alt="{_alt.replace(chr(34), "&quot;")}" loading="lazy">'
+                f'<figcaption>{inline(_cap) + " · " if _cap else ""}AI 생성 삽화 · 자체 제작</figcaption></figure>'
+                '<div class="ipd-t">')
+            in_ipd = True
             continue
-        if in_ipd:
-            if stripped == ':::':
-                body = ''.join(f'<p>{inline(x)}</p>' for x in ipd_lines)
-                html_parts.append(
-                    '<div class="ws-ipdam"><figure class="ipd-fig">'
-                    f'<img src="images/{ipd_img}" alt="{ipd_alt.replace(chr(34), "&quot;")}" loading="lazy">'
-                    '<figcaption>AI 생성 삽화 · 자체 제작</figcaption></figure>'
-                    f'<blockquote class="ipd-t">{body}</blockquote></div>')
-                in_ipd = False; ipd_lines = []
-            elif stripped:
-                ipd_lines.append(stripped)
+        if in_ipd and stripped == ':::':
+            html_parts.append('</div></div>')
+            in_ipd = False
             continue
 
         # 📖 표·도식을 읽는 자리 (:::해설 ... :::) — 2026-09-03 천대현
@@ -2218,14 +2216,14 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print {{ .ws-saryo {{ background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; }} }}
 .ws-ipdam {{
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: 16px; align-items: center; margin: 16px 0 20px;
+  gap: 22px; align-items: start; margin: 16px 0 20px;
 }}
 .ws-ipdam .ipd-fig {{ margin: 0; }}
 .ws-ipdam .ipd-fig img {{ width: 100%; height: auto; display: block; border-radius: 10px; }}
-.ws-ipdam .ipd-fig figcaption {{ font-size: 0.72em; color: #8a8174; margin-top: 4px; text-align: center; }}
-.ws-ipdam .ipd-t {{ margin: 0; }}
-.ws-ipdam .ipd-t p {{ margin: 0 0 8px; }}
-.ws-ipdam .ipd-t p:last-child {{ margin-bottom: 0; }}
+.ws-ipdam .ipd-fig figcaption {{ font-size: 0.78em; color: #7a7064; margin-top: 6px; line-height: 1.5; }}
+.ws-ipdam .ipd-t {{ margin: 0; min-width: 0; }}
+.ws-ipdam .ipd-t > :first-child {{ margin-top: 0; }}
+.ws-ipdam .ipd-t > br {{ display: none; }}
 @media (max-width: 640px) {{ .ws-ipdam {{ grid-template-columns: 1fr; gap: 8px; }} }}
 @media print {{ .ws-ipdam {{ break-inside: avoid; }} }}
 .ws-read {{

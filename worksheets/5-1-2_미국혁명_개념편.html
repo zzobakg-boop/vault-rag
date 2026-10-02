@@ -379,14 +379,14 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-saryo { background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: 16px; align-items: center; margin: 16px 0 20px;
+  gap: 22px; align-items: start; margin: 16px 0 20px;
 }
 .ws-ipdam .ipd-fig { margin: 0; }
 .ws-ipdam .ipd-fig img { width: 100%; height: auto; display: block; border-radius: 10px; }
-.ws-ipdam .ipd-fig figcaption { font-size: 0.72em; color: #8a8174; margin-top: 4px; text-align: center; }
-.ws-ipdam .ipd-t { margin: 0; }
-.ws-ipdam .ipd-t p { margin: 0 0 8px; }
-.ws-ipdam .ipd-t p:last-child { margin-bottom: 0; }
+.ws-ipdam .ipd-fig figcaption { font-size: 0.78em; color: #7a7064; margin-top: 6px; line-height: 1.5; }
+.ws-ipdam .ipd-t { margin: 0; min-width: 0; }
+.ws-ipdam .ipd-t > :first-child { margin-top: 0; }
+.ws-ipdam .ipd-t > br { display: none; }
 @media (max-width: 640px) { .ws-ipdam { grid-template-columns: 1fr; gap: 8px; } }
 @media print { .ws-ipdam { break-inside: avoid; } }
 .ws-read {
@@ -1050,13 +1050,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 4단계: 독립을 선언하고, 이겨서 인정받다</h2>
 <blockquote>📕 <strong>교과서 147쪽 첫 문단 + 각주 ➊</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
 <br>
+<div class="ws-ipdam"><figure class="ipd-fig"><img src="images/5-1-2_입담_적의적.png" alt="삽화 — 프랑스 장교 · 식민지 군인" loading="lazy"><figcaption>7년 전쟁에서 영국에 진 프랑스가 적의 적을 도왔다. · AI 생성 삽화 · 자체 제작</figcaption></figure><div class="ipd-t">
 <p>식민지 대표들은 ⑥<input type="text" class="blank-input" data-answer="조지 워싱턴" data-id="6" style="width:116px" placeholder="">을 총사령관에 임명하고, <strong>미국 독립 선언문</strong>을 발표하였다(1776). 독립 선언문에는 <strong>모든 인간은 평등하게 태어났으며, 생명·자유·행복을 추구할 수 있는 권리를 갖는다</strong>는 내용이 담겨 있었다. 식민지군은 <strong>프랑스</strong>를 비롯한 여러 나라의 지원을 받아 전쟁에서 승리하였고, 마침내 영국 정부로부터 독립을 인정받았다(<strong>파리 조약</strong>, 1783).</p>
+</div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 147쪽 · 각주 ➊</div><div class="ws-tb-ask"><strong>요크타운 전투</strong>(1781)에서 무슨 일이 있었는지, 그리고 그 전투가 왜 중요했는지 각주에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 147쪽에서 찾기 — 요크타운 전투(1781)에서 무슨 일이 있었는지, 그리고 그 전투가" style="width:400px" placeholder=""></div></div>
 <br>
 <figure class="ws-fig"><img src="images/5-1-2_전쟁의세지점_v2.png" alt="전쟁의 세 지점 — 보스턴에서 차 사건이 일어나고, 필라델피아에서 독립을 선언하고, 요크타운에서 승부가 갈렸다. 식민지군은 프랑스를 비롯한 여러 나라의 지원을 받았다." loading="lazy"><figcaption>전쟁의 세 지점 — 보스턴에서 차 사건이 일어나고, 필라델피아에서 독립을 선언하고, 요크타운에서 승부가 갈렸다. 식민지군은 프랑스를 비롯한 여러 나라의 지원을 받았다.</figcaption></figure>
 <br>
-<div class="ws-ipdam"><figure class="ipd-fig"><img src="images/5-1-2_입담_적의적.png" alt="삽화 — 프랑스 장교 · 식민지 군인" loading="lazy"><figcaption>AI 생성 삽화 · 자체 제작</figcaption></figure><blockquote class="ipd-t"><p>🎙️ 혼자 이긴 게 아니야. 7년 전쟁에서 영국에 져서 북아메리카 땅을 잃은 프랑스가 적의 적을 도운 거야. 그런데 이 선택이 나중에 프랑스에 부메랑으로 돌아와 — 다음 차시에서 보게 될 거야.</p></blockquote></div>
 <br>
 <h2>📖 5단계: 세계 최초의 민주 공화국</h2>
 <blockquote>📕 <strong>교과서 147쪽 둘째 문단</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
