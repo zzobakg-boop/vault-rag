@@ -201,6 +201,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_pick = False; pick_q = ''; pick_rows = []   # 2026-09-03: 인물 선택 활동
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
     in_ipd = False   # 2026-10-02: 삽화 + 본문 2단 (:::입담 ... :::)
+    in_2c = False    # 2026-10-02: 자료 + 발문 2단 (:::2단 … :::다음칸 … :::)
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
     in_seat = False           # 2026-09-07: 좌석 구성 눌러 보기 (:::좌석표 ... :::)
@@ -1206,6 +1207,28 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         if in_ipd and stripped == ':::':
             html_parts.append('</div></div>')
             in_ipd = False
+            continue
+
+        # ↔️ 자료 + 발문 2단 (:::2단 [비율]  …왼쪽…  :::다음칸  …오른쪽…  :::) — 2026-10-02 천대현
+        #   "활동하기 내용들을 비율을 좀 조정하면 학습지 길이를 줄일 수 있지 않을까?"
+        #   그래프(660px)·플립 카드 아래에 💬 질문과 답 칸이 따로 쌓여 활동 2가 1,638px였다.
+        #   자료 왼쪽 · 질문과 답 칸 오른쪽. 안쪽은 평소 처리(그래프·플립·입력칸 그대로, data-id 순서 불변).
+        #   ⚠️ 안쪽 블록(그래프·플립 등)은 이 처리기보다 앞에서 자기 닫는 ':::'를 먼저 가져간다 — 순서를 바꾸지 말 것.
+        if stripped.startswith(':::2단'):
+            _r = stripped[len(':::2단'):].strip() or '1.2:1'
+            try:
+                _a, _b = [float(x) for x in _r.split(':')]
+            except Exception:
+                _a, _b = 1.2, 1.0
+            html_parts.append(f'<div class="ws-2c" style="grid-template-columns:minmax(0,{_a}fr) minmax(0,{_b}fr)"><div class="c2-a">')
+            in_2c = True
+            continue
+        if in_2c and stripped == ':::다음칸':
+            html_parts.append('</div><div class="c2-b">')
+            continue
+        if in_2c and stripped == ':::':
+            html_parts.append('</div></div>')
+            in_2c = False
             continue
 
         # 📖 표·도식을 읽는 자리 (:::해설 ... :::) — 2026-09-03 천대현
@@ -2214,6 +2237,11 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }}
 .ws-saryo .sr-c {{ margin-top: 10px; text-align: right; font-size: 0.82em; color: #7a6040; }}
 @media print {{ .ws-saryo {{ background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; }} }}
+.ws-2c {{ display: grid; gap: 22px; align-items: start; margin: 12px 0 18px; }}
+.ws-2c > div {{ min-width: 0; }}
+.ws-2c > div > :first-child {{ margin-top: 0; }}
+.ws-2c > div > br {{ display: none; }}
+@media (max-width: 640px) {{ .ws-2c {{ grid-template-columns: 1fr !important; }} }}
 .ws-ipdam {{
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
