@@ -2842,7 +2842,8 @@ table:has(.ox-group) td:first-child {{ width: 46px; text-align: center; color: #
 }}
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print {{ .mos-note {{ display: block; }} .ws-mos-cell::after {{ display: none; }} }}
-.hero-hook {{ margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #c4c4ba; line-height: 1.6; font-style: italic; }}
+/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+.hero-hook {{ margin-top: 24px; padding: 16px 20px; border-left: 3px solid #d4af37; background: rgba(255,255,255,0.06); border-radius: 0 8px 8px 0; font-size: 16px; color: #ecebe4; line-height: 1.8; font-style: normal; word-break: keep-all; font-family: 'Pretendard', -apple-system, 'Noto Sans KR', 'Malgun Gothic', sans-serif; font-weight: 500; }}
 .blank-filled {{ display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }}
 </style>
 </head>
