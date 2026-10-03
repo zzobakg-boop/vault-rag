@@ -74,3 +74,14 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-1-4_링컨.jpg | Abraham Lincoln November 1863.jpg | 알렉산더 가드너 | 퍼블릭 도메인 |
 
 자체 제작: 5-1-4_조각에서하나로.png(지도, `hq/hq_514_unify.py` · 경계 historical-basemaps 1815·1880 GPL-3.0 · Natural Earth PD) · 5-1-4_자유주의민족주의_표지.png(배경은 AI 생성 가상 장면 — 1840년대 거리의 바리케이드, 실재 장소·인물 아님 · 제목 PIL).
+
+## 5-1-5 라틴 아메리카 국가들이 독립하다 (2026-10-04)
+
+| 파일 | 원본 (Wikimedia Commons) | 저작자 | 라이선스 |
+|---|---|---|---|
+| 5-1-5_투생.jpg | Toussaint Louverture - Girardin.jpg | 알렉상드르 지라르댕 (인물 확실치 않음) | 퍼블릭 도메인 |
+| 5-1-5_볼리바르.jpg | José Gil de Castro - Simón Bolívar - Google Art Project.jpg | 호세 길 데 카스트로 | 퍼블릭 도메인 |
+| 5-1-5_이달고.jpg | Generalísimo Miguel Hidalgo y Costilla.png | 호아킨 라미레스 | 퍼블릭 도메인 |
+| 5-1-5_먼로.jpg | Gilbert Stuart, James Monroe, c. 1817, NGA 56915.jpg | 길버트 스튜어트 | CC0 (미국 국립미술관) |
+
+자체 제작: 5-1-5_독립뒤돈의흐름.png(도식, `fig_515_trade.py`) · 5-1-5_라틴아메리카독립_표지.png(배경은 AI 생성 가상 장면 — 19세기 초 카리브해 해안, 실재 장소 아님 · 제목 PIL).
