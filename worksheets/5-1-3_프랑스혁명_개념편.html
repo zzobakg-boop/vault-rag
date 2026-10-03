@@ -378,6 +378,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }
 .ws-saryo .sr-c { margin-top: 10px; text-align: right; font-size: 0.82em; color: #7a6040; }
 @media print { .ws-saryo { background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; } }
+.ws-2c { display: grid; gap: 22px; align-items: start; margin: 12px 0 18px; }
+.ws-2c > div { min-width: 0; }
+.ws-2c > div > :first-child { margin-top: 0; }
+.ws-2c > div > br { display: none; }
+@media (max-width: 640px) { .ws-2c { grid-template-columns: 1fr !important; } }
+.ws-2c.c2-mid { align-items: center; }
+.ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
+.ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
+.ws-2c .ws-fig { margin: 0; }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -849,6 +858,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+     (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
   position: relative; overflow: hidden;
@@ -970,6 +981,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
+/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
@@ -1065,7 +1077,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 149쪽 · 아래 특집</div><div class="ws-tb-ask">프랑스의 <strong>국기</strong>와 <strong>국가</strong>에 대한 설명을 찾아, 각각 무엇이고 언제 만들어졌는지 한 줄씩 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 149쪽에서 찾기 — 프랑스의 국기와 국가에 대한 설명을 찾아, 각각 무엇이고 언제 만들어" style="width:400px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/5-1-3_밖에서누르니.png" alt="밖에서 누르니 안이 더 뜨거워졌다 — 오스트리아와 프로이센이 혁명이 번질까 봐 프랑스를 위협하자 전쟁이 벌어졌고, 그 전쟁이 파리 민중의 생활을 어렵게 만들어 왕궁 습격과 왕권 정지로 이어졌다." loading="lazy"><figcaption>밖에서 누르니 안이 더 뜨거워졌다 — 오스트리아와 프로이센이 혁명이 번질까 봐 프랑스를 위협하자 전쟁이 벌어졌고, 그 전쟁이 파리 민중의 생활을 어렵게 만들어 왕궁 습격과 왕권 정지로 이어졌다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-1-3_밖에서누르니_v2.png" alt="밖에서 누르니 안이 더 뜨거워졌다 — 오스트리아와 프로이센이 혁명이 번질까 봐 프랑스를 위협하자 전쟁이 벌어졌고, 그 전쟁이 파리 민중의 생활을 어렵게 만들어 왕궁 습격과 왕권 정지로 이어졌다." loading="lazy"><figcaption>밖에서 누르니 안이 더 뜨거워졌다 — 오스트리아와 프로이센이 혁명이 번질까 봐 프랑스를 위협하자 전쟁이 벌어졌고, 그 전쟁이 파리 민중의 생활을 어렵게 만들어 왕궁 습격과 왕권 정지로 이어졌다.</figcaption></figure>
 <br>
 <blockquote>🎙️ <strong>이웃 나라들은 왜 쳐들어왔을까?</strong> 프랑스가 미워서가 아니야. 교과서에 이유가 딱 적혀 있어 — <em>"<strong>혁명이 자국 내에 퍼지는 것을 막고자</strong>"</em>. 오스트리아도 프로이센도 <strong>왕이 다스리는 나라</strong>였거든. 옆집에서 왕을 밀어냈다는 소식이 자기 나라에 들어오면 곤란하지.</blockquote>
 <blockquote>🎙️ 그런데 <strong>결과가 반대로 났어.</strong> 전쟁이 길어지면서 먹고살기 힘들어진 파리 사람들이 <strong>왕궁으로 몰려갔고</strong>, 그 바람에 왕권이 아예 정지됐어. <strong>누르려던 힘이 오히려 더 세게 밀어 버린 거야.</strong></blockquote>
@@ -1092,7 +1104,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 151쪽 · 날개 ➎ 「나폴레옹의 황제 대관식」</div><div class="ws-tb-ask">그림에서 나폴레옹이 <strong>누구에게 관을 씌우고 있는지</strong>, 그리고 <strong>교황은 무엇을 하고 있는지</strong> 보고 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 151쪽에서 찾기 — 그림에서 나폴레옹이 누구에게 관을 씌우고 있는지, 그리고 교황은 무엇" style="width:400px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/5-1-3_나폴레옹의유럽.png" alt="나폴레옹 시기의 유럽 — 프랑스가 유럽 대부분을 지배하고, 영국을 굴복시키려 대륙 봉쇄령을 내렸다. 러시아가 이를 어기자 원정에 나섰다가 추위에 실패하고 몰락했다." loading="lazy"><figcaption>나폴레옹 시기의 유럽 — 프랑스가 유럽 대부분을 지배하고, 영국을 굴복시키려 대륙 봉쇄령을 내렸다. 러시아가 이를 어기자 원정에 나섰다가 추위에 실패하고 몰락했다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-1-3_나폴레옹의유럽_v2.png" alt="나폴레옹 시기의 유럽 — 프랑스가 유럽 대부분을 지배하고, 영국을 굴복시키려 대륙 봉쇄령을 내렸다. 러시아가 이를 어기자 원정에 나섰다가 추위에 실패하고 몰락했다." loading="lazy"><figcaption>나폴레옹 시기의 유럽 — 프랑스가 유럽 대부분을 지배하고, 영국을 굴복시키려 대륙 봉쇄령을 내렸다. 러시아가 이를 어기자 원정에 나섰다가 추위에 실패하고 몰락했다.</figcaption></figure>
 <br>
 <blockquote>🎙️ <strong>여기서 머리가 좀 복잡해져.</strong> 나폴레옹은 혁명을 <strong>끝낸</strong> 사람이야(총재 정부를 뒤엎고 결국 <strong>황제</strong>가 됐지 — 왕을 없앤 나라에서 황제라니!). 그런데 동시에 그가 유럽을 휩쓸고 다니면서 <strong>혁명의 생각을 퍼뜨렸어.</strong> 자유와 평등, 그리고 "<em>우리는 하나의 민족</em>"이라는 생각을.</blockquote>
 <blockquote>🎙️ 그래서 다음 시간이 「<strong>자유주의와 민족주의가 퍼져 나가다</strong>」야. <strong>나폴레옹이 밟고 간 자리에서 그 두 가지가 자란다.</strong> 4단계를 떠올려 봐 — 밖에서 누르니 안이 뜨거워졌지? 이번엔 <strong>밖으로 밀고 나가니 그쪽이 뜨거워진</strong> 거야.</blockquote>
