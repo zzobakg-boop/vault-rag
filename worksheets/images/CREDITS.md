@@ -106,3 +106,12 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-2-2_하와이.jpg | Lowering the Hawaiian flag at Annexation ceremony (PPWD-8-3-006).jpg (하와이 주립 문서 보관소) | 프랭크 데이비 스튜디오 | 퍼블릭 도메인 |
 
 자체 제작: 5-2-2_아프리카분할.png(지도, `hq/hq_522_africa.py` · 경계 historical-basemaps 1914 GPL-3.0 · Natural Earth PD) · 5-2-2_제국주의_표지.png(배경은 AI 생성 가상 장면 — 19세기 말 아프리카 해안과 군함, 실재 장소 아님 · 제목 PIL).
+
+## 5-2-3 산업화와 제국주의가 세계적으로 영향을 미치다 (2026-10-04)
+
+| 파일 | 원본 (Wikimedia Commons) | 저작자 | 라이선스 |
+|---|---|---|---|
+| 5-2-3_엘리스섬.jpg | Immigrants just arrived from Foreign Countries-Immigrant Building, Ellis Island, New York Harbor LCCN97501095.jpg (미국 의회 도서관) | 언더우드 앤드 언더우드 | 퍼블릭 도메인 (입체사진 테두리·글씨 잘라 냄) |
+| 5-2-3_토끼.jpg | Rabbits MyxomatosisTrial WardangIsland 1938.jpg | 작자 미상 | 퍼블릭 도메인 |
+
+자체 제작: 5-2-3_산업화제국주의영향_표지.png(배경은 AI 생성 가상 장면 — 19세기 말 기차역과 항구, 실재 장소 아님 · 제목 PIL).
