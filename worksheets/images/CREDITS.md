@@ -115,3 +115,10 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-2-3_토끼.jpg | Rabbits MyxomatosisTrial WardangIsland 1938.jpg | 작자 미상 | 퍼블릭 도메인 |
 
 자체 제작: 5-2-3_산업화제국주의영향_표지.png(배경은 AI 생성 가상 장면 — 19세기 말 기차역과 항구, 실재 장소 아님 · 제목 PIL).
+
+## 5-1-1 보강 (2026-10-04)
+
+| 파일 | 원본 (Wikimedia Commons) | 저작자 | 라이선스 |
+|---|---|---|---|
+| 5-1-1_1640하원.jpg | Platform of the Lower House of this Present Parliament (of England) Assembled at Westminster 1640.jpg | 작자 미상 판화(1640) | 퍼블릭 도메인 (가운데 회의장만 잘라 냄) |
+| 5-1-1_찰스1세세얼굴.jpg | Charles I in Three Positions.jpg | 안토니 반다이크(1635) | 퍼블릭 도메인 |

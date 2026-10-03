@@ -378,6 +378,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }
 .ws-saryo .sr-c { margin-top: 10px; text-align: right; font-size: 0.82em; color: #7a6040; }
 @media print { .ws-saryo { background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; } }
+.ws-2c { display: grid; gap: 22px; align-items: start; margin: 12px 0 18px; }
+.ws-2c > div { min-width: 0; }
+.ws-2c > div > :first-child { margin-top: 0; }
+.ws-2c > div > br { display: none; }
+@media (max-width: 640px) { .ws-2c { grid-template-columns: 1fr !important; } }
+.ws-2c.c2-mid { align-items: center; }
+.ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
+.ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
+.ws-2c .ws-fig { margin: 0; }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -849,6 +858,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+     (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
   position: relative; overflow: hidden;
@@ -970,6 +981,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
+/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
@@ -1000,7 +1012,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🎙️ 영국엔 <strong>지금도 왕이 있어.</strong> 대관식 뉴스 본 적 있지? 그런데 이상해 — 왕이 있는데 <strong>왕 마음대로 못 해.</strong> 법은 의회가 만들고, 세금도 의회가 정하고, 군대도 의회 허락이 있어야 하거든. 왕인데 왕이 아닌 셈이야. 언제 이렇게 됐을까? 오늘 그 이야기야. 17세기 영국에서 <strong>같은 문제</strong>를 두고 두 번 답이 나오는데, 첫 번째 답은 <strong>왕의 목을 잘랐고</strong> 두 번째 답은 <strong>피 한 방울 안 흘렸어.</strong></blockquote>
 <br>
 <h2>📌 학습 목표</h2>
-<p>- <strong>청교도 혁명과 명예혁명</strong>의 전개 과정을 설명할 수 있다.</p>
+<p>- 17세기 영국에서 일어난 <strong>두 번의 혁명</strong>의 전개 과정을 설명할 수 있다.</p>
 <p>- <strong>영국 혁명의 의의</strong>를 파악할 수 있다.</p>
 <br>
 <h2>✨ 오늘의 고급 단어</h2>
@@ -1022,13 +1034,25 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ 이 두 단어가 왜 먼저 나올까? <strong>누가 의회에 앉아 있느냐</strong>가 뒤에 벌어질 모든 일을 결정하거든. 젠트리는 <em>땅을 가진 사람들</em> — 돈이 있어. 청교도는 <em>국교회에 반대한 사람들</em> — 왕과 종교가 안 맞아. <strong>돈은 있는데 왕과 생각이 다른 사람들</strong>이 의회에 모인 거야. 불씨가 쌓인 셈이지.</blockquote>
 <br>
-<h2>📖 2단계: 첫 번째 제동 — 권리 청원</h2>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.4fr)"><div class="c2-a">
+<figure class="ws-fig"><img src="images/5-1-1_1640하원.jpg" alt="1640년 4월 13일 런던 웨스트민스터의 하원 — 왕이 11년 만에 의회를 다시 열었다. 긴 의자에 빽빽이 앉은 사람들이 의원이고, 맨 안쪽 높은 자리가 의장석이다. 이 방에 앉은 사람들 가운데 땅을 가진 지주와 국교회에 반대하는 신앙인이 많았다. (작자 미상 판화, 1640 · 퍼블릭 도메인)" loading="lazy"><figcaption>1640년 4월 13일 런던 웨스트민스터의 하원 — 왕이 11년 만에 의회를 다시 열었다. 긴 의자에 빽빽이 앉은 사람들이 의원이고, 맨 안쪽 높은 자리가 의장석이다. 이 방에 앉은 사람들 가운데 땅을 가진 지주와 국교회에 반대하는 신앙인이 많았다. (작자 미상 판화, 1640 · 퍼블릭 도메인)</figcaption></figure>
+</div><div class="c2-b">
+<blockquote>🎙️ 이 판화가 나온 해, 찰스 1세는 11년 동안 의회를 한 번도 열지 않다가 전쟁 비용이 모자라 할 수 없이 다시 불렀어. 그런데 모인 의원들은 돈 이야기보다 불만부터 꺼냈지. 왕은 3주 만에 의회를 다시 닫아 버렸어. 판화 속 빽빽한 의자들, 이 사람들이 곧 왕과 맞서게 돼.</blockquote>
+</div></div>
+<br>
+<h2>📖 2단계: 첫 번째 제동 — 돈줄을 잡다</h2>
 <blockquote>📕 <strong>교과서 145쪽</strong> 펴고 채우기 · 배정 시간 <strong>4분</strong></blockquote>
 <p>찰스 1세가 의회를 무시하고 청교도를 탄압하자, 의회는 "<strong>의회의 동의 없이 세금을 부과할 수 없다.</strong>"라는 내용의 ③<input type="text" class="blank-input" data-answer="권리 청원" data-id="3" style="width:100px" placeholder="">을 제출했다.</p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 145쪽 · 첫 문단</div><div class="ws-tb-ask">찰스 1세는 권리 청원을 받아들였을까, 거부했을까? 그다음엔 무엇을 했을까? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 145쪽에서 찾기 — 찰스 1세는 권리 청원을 받아들였을까, 거부했을까? 그다음엔 무엇을" style="width:340px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 145쪽 · 첫 문단</div><div class="ws-tb-ask">찰스 1세는 의회의 이 요구를 받아들였을까, 거부했을까? 그다음엔 무엇을 했을까? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 145쪽에서 찾기 — 찰스 1세는 의회의 이 요구를 받아들였을까, 거부했을까? 그다음엔 무" style="width:340px" placeholder=""></div></div>
 <br>
 <blockquote>⚠️ <strong>여기가 시험 단골</strong> — 권리 청원이 맨 앞에 내세운 것은 세금이었어. "우리 동의 없이 세금을 걷지 마라." 왕이 전쟁을 하든 무엇을 하든 돈이 필요한데, 그 돈줄에 의회가 손을 얹겠다는 선언이야. 함께 요구한 것도 있어 — 법에 어긋나게 사람을 잡아 가두지 말라는 것. 의회의 힘은 돈줄에서 나온다 — 이 말이 오늘 내내 반복돼.</blockquote>
+<br>
+<div class="ws-2c c2-mid c2-card" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.3fr)"><div class="c2-a">
+<figure class="ws-fig"><img src="images/5-1-1_찰스1세세얼굴.jpg" alt="찰스 1세의 세 얼굴(1635) — 옆모습·앞모습·반대쪽 옆모습을 한 화폭에 그렸다. 이 그림은 로마의 조각가 베르니니에게 보내져, 왕을 직접 보지 못한 조각가가 흉상을 만드는 데 쓰였다. (안토니 반다이크 그림 · 영국 왕실 소장 · 퍼블릭 도메인)" loading="lazy"><figcaption>찰스 1세의 세 얼굴(1635) — 옆모습·앞모습·반대쪽 옆모습을 한 화폭에 그렸다. 이 그림은 로마의 조각가 베르니니에게 보내져, 왕을 직접 보지 못한 조각가가 흉상을 만드는 데 쓰였다. (안토니 반다이크 그림 · 영국 왕실 소장 · 퍼블릭 도메인)</figcaption></figure>
+</div><div class="c2-b">
+<blockquote>🎙️ 4-3-3에서 본 루이 14세, 기억나? «왕의 힘은 신이 준 것»이라는 생각, 바다 건너 찰스 1세도 똑같이 믿었어. 그래서 의회가 세금에 손을 대는 걸 참을 수 없었지. 그런데 같은 17세기에 두 나라는 정반대로 갔어. 프랑스에서는 왕이 더 세졌고, 영국에서는 의회가 왕을 묶었어. 오늘은 영국이 어떻게 그 길로 갔는지 따라가 보자.</blockquote>
+</div></div>
 <br>
 <h2>📖 3단계: 첫 번째 답 — 왕을 죽이다</h2>
 <blockquote>📕 <strong>교과서 145쪽</strong> 펴고 채우기 · 배정 시간 <strong>4분</strong></blockquote>
@@ -1046,6 +1070,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>⚠️ <strong>이 한 문장을 그냥 넘기지 마.</strong> 왕이 의회를 무시하다 목이 잘렸는데, 그 왕을 죽인 사람이 왕과 같은 길을 갔어.</blockquote>
 <blockquote>그래서 첫 번째 답은 실패야. <strong>사람을 바꿨을 뿐 규칙을 안 바꿨거든.</strong></blockquote>
+<br>
+<blockquote>🎙️ 1653년 크롬웰은 병사들을 데리고 의회에 들어가 «당신들은 너무 오래 앉아 있었소. 하느님의 이름으로, 나가시오!»라고 외쳤다고 전해져. 왕의 목을 자른 의회파의 대장이, 왕이 했던 것처럼 의회 문을 닫은 거야. 그 뒤 그는 «호국경»이라는 이름으로 나라를 혼자 다스렸어. 왕관만 안 썼을 뿐이지.</blockquote>
 <br>
 <figure class="ws-fig"><img src="images/5-1-1_크롬웰의회해산.jpg" alt="크롬웰이 병사들을 이끌고 의회에 들어가 의원들을 내보낸 뒤 걸어 나오는 장면. 250여 년 뒤인 1907년에 영국 화가 앤드루 캐릭 고가 그린 그림이다. 계단 아래 의원들이 쫓겨나고 있다. (퍼블릭 도메인 · Wikimedia Commons)" loading="lazy"><figcaption>크롬웰이 병사들을 이끌고 의회에 들어가 의원들을 내보낸 뒤 걸어 나오는 장면. 250여 년 뒤인 1907년에 영국 화가 앤드루 캐릭 고가 그린 그림이다. 계단 아래 의원들이 쫓겨나고 있다. (퍼블릭 도메인 · Wikimedia Commons)</figcaption></figure>
 <br>
@@ -1072,6 +1098,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>✍️ 이 판화는 사건이 있고 <strong>약 100년 뒤</strong>(1783년) 영국 화가가 새긴 거야. 화가는 그 자리에 없었어. 이 그림에서 <strong>믿을 만한 것</strong> 하나와 <strong>조심해서 볼 것</strong> 하나를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="✍️ 이 판화는 사건이 있고 약 100년 뒤(1783년) 영국 화가가 새" style="width:400px" placeholder=""></p>
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료 · 권리 장전(1689) 가운데</div><blockquote class="sr-q"><p><strong>제1조</strong> 국왕은 의회의 동의 없이 법의 효력을 정지하거나 법의 집행을 막을 수 없다.</p><p><strong>제4조</strong> 국왕이 의회의 승인 없이 세금을 거두는 것은 위법이다.</p><p><strong>제6조</strong> 의회의 동의 없이 왕국 내에서 군대를 모으거나 유지하는 것은 위법이다.</p></blockquote><figcaption class="sr-c">— 비상교육 역사①(이병인) p.145 사료</figcaption></figure>
+<br>
+<blockquote>🎙️ 지금 영국 왕도 의회가 만든 법에 마지막으로 서명을 해. 그런데 왕이 서명을 거부한 것은 1708년이 마지막이야. 300년 넘게 한 번도 거부하지 않았지. «왕은 있지만 법은 의회가 만든다» — 권리 장전에서 시작된 규칙이 지금까지 이어지고 있는 거야.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 두 번의 답, 무엇이 달랐나</h2>
 <blockquote>같은 문제(왕이 의회를 무시한다)에 두 번 답이 나왔어. 표를 채우며 <strong>무엇이 갈랐는지</strong> 찾아보자.</blockquote>
