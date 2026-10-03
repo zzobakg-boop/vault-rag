@@ -44,3 +44,20 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 
 ## 새 지도 렌더러로 그린 지도 (2026-10-02~)
 `3-3-4_플랑드르_v3.png` 등 — 해안선·강·호수·지형 음영: Natural Earth(퍼블릭 도메인) · 1300·1400년 무렵 경계: A. Ourednik, historical-basemaps (GPL-3.0), https://github.com/aourednik/historical-basemaps — 경계 정밀도가 낮아 개념도로만 쓴다.
+
+## 4-3-3 유럽에서 재정·군사 국가가 나타나다 (2026-10-04)
+
+| 파일 | 원본 (Wikimedia Commons) | 저작자 | 라이선스 |
+|---|---|---|---|
+| 4-3-3_반박문문.jpg | Thesentür (Schlosskirche Wittenberg).jpg | Avi1111 dr. avishai teicher | CC BY-SA 4.0 |
+| 4-3-3_베스트팔렌.jpg | The Ratification of the Treaty of Munster, Gerard Ter Borch (1648).jpg | 헤라르트 테르보르흐 | 퍼블릭 도메인 |
+| 4-3-3_요새.jpg | Luchtfoto Naarden-Vesting.jpg | Nederlands Vestingmuseum | CC BY-SA 4.0 |
+| 4-3-3_콜베르.jpg | Jean-Baptiste Colbert (1619–1683) MET DT223758.jpg | 필리프 드 샹파뉴 | CC0 (메트로폴리탄 미술관) |
+| 4-3-3_엘리자베스.jpg | Elizabeth I (Armada Portrait).jpg | 작가 미상(조지 가워 전칭) | 퍼블릭 도메인 |
+| 4-3-3_루이14세.jpg | Rigaud Louis XIV 1701.jpg | 이아생트 리고 | 퍼블릭 도메인 |
+| 4-3-3_거울의방.jpg | Chateau Versailles Galerie des Glaces.jpg | Myrabella | CC BY-SA 3.0 |
+| 4-3-3_몽테스키외.jpg | Montesquieu 1.png | 자크앙투안 다시에 원작 | 퍼블릭 도메인 |
+| 4-3-3_볼테르.jpg | Nicolas de Largillière - Portrait de Voltaire (1694-1778) en 1718 - P208 - musée Carnavalet.jpg | 니콜라 드 라르질리에르 | CC0 (파리 박물관) |
+| 4-3-3_루소.jpg | Maurice Quentin de La Tour - Portrait of Jean-Jacques Rousseau - adjusted.jpg | 모리스 캉탱 드 라투르 | 퍼블릭 도메인 |
+
+자체 제작: 4-3-3_전쟁과금고.png(도식, `fig_433_chain.py`) · 4-3-3_재정군사국가_표지.png(배경은 AI 생성 가상 장면 — 17세기 금고 지하실, 사람·실재 장소 아님 · 제목 PIL).
