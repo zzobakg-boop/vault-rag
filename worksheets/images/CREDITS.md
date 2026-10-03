@@ -85,3 +85,15 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-1-5_먼로.jpg | Gilbert Stuart, James Monroe, c. 1817, NGA 56915.jpg | 길버트 스튜어트 | CC0 (미국 국립미술관) |
 
 자체 제작: 5-1-5_독립뒤돈의흐름.png(도식, `fig_515_trade.py`) · 5-1-5_라틴아메리카독립_표지.png(배경은 AI 생성 가상 장면 — 19세기 초 카리브해 해안, 실재 장소 아님 · 제목 PIL).
+
+## 5-2-1 산업 혁명이 일어나다 (2026-10-04)
+
+| 파일 | 원본 (Wikimedia Commons) | 저작자 | 라이선스 |
+|---|---|---|---|
+| 5-2-1_제니방적기.png | Spinning Jenny improved 203 Marsden.png | R. 마즈던의 책(1884) 삽화 | 퍼블릭 도메인 |
+| 5-2-1_직조공장.jpg | Powerloom weaving in 1835.jpg | 토머스 앨럼 그림·제임스 팅글 판화 | 퍼블릭 도메인 |
+| 5-2-1_철도개통.jpg | Opening of the Liverpool and Manchester Railway.jpg | 아이작 쇼 | 퍼블릭 도메인 |
+| 5-2-1_콜레라지도.jpg | Snow-cholera-map-1.jpg | 존 스노 | 퍼블릭 도메인 (브로드가 둘레만 잘라 냄 · 펌프 동그라미는 학습지에서 더함) |
+| 5-2-1_마르크스.jpg | Karl Marx 001.jpg | 존 메이얼 | 퍼블릭 도메인 |
+
+그래프 값: Maddison Project Database 2023 (Bolt & van Zanden 2024) · Our World in Data 내려받기(CC BY). 자체 제작: 5-2-1_산업혁명_표지.png(배경은 AI 생성 가상 장면 — 1830년대 영국 면직 공업 도시, 실재 장소 아님 · 제목 PIL).
