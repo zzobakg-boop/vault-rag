@@ -1116,7 +1116,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if stripped:
                     gr_rows.append([x.strip() for x in stripped.strip().strip('|').split('|')])
                 continue
-            _xs = []; _ser = []; _band = None; _src = ''
+            _xs = []; _ser = []; _band = None; _src = ''; _dec = None
             for _r in gr_rows:
                 if _r[0] == 'x':
                     _xs = _r[1:]
@@ -1133,6 +1133,10 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     _band = {'name': _r[1], 'a': _r[2], 'b': _r[3]}
                 elif _r[0] == '출처' and len(_r) >= 2:
                     _src = '|'.join(_r[1:])
+                elif _r[0] == '소수' and len(_r) >= 2 and _r[1].strip().isdigit():
+                    _dec = int(_r[1])   # 2026-10-04 사회 7-7: 0.72명이 0.7로 보이던 것 — 표시 소수 자릿수를 정한다(없으면 종전대로 0 또는 1)
+            if _dec is not None:
+                for _sr in _ser: _sr['d'] = _dec
             if _xs and _ser:
                 gid = f'gr{len(html_parts)}'
                 _leg = ''.join(f'<span class="gr-key"><i style="background:{x["col"]}"></i>{inline(x["name"])}</span>'
