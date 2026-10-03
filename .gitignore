@@ -32,3 +32,8 @@ worksheets/*_복습용.html
 #   공개 Pages에 정답편 50편이 있었고 44편에 교과서 원문 인용 — 저작권법 제25조⑫(접근제한·복제방지) 미충족.
 #   교사 사본은 iCloud «2026 동성여중/정답편 (교사용)/» — ~/vault-rag/answer_key_sync.py 로 동기화.
 worksheets/*정답*.html
+
+# 🔴 교사 전용 이미지 — 공개 발행 금지 (2026-10-04 천대현 «애니는 캡처·정지 화면만»)
+#   애니·방송 장면 스틸은 저작권 자료라 공개 Pages에 올리지 않는다. 정답편(비공개)만 참조하고,
+#   answer_key_sync.py가 iCloud «정답편 (교사용)/images/교사전용/»으로 따라 복사한다.
+worksheets/images/교사전용/
