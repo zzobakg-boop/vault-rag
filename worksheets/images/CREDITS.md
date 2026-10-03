@@ -97,3 +97,12 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-2-1_마르크스.jpg | Karl Marx 001.jpg | 존 메이얼 | 퍼블릭 도메인 |
 
 그래프 값: Maddison Project Database 2023 (Bolt & van Zanden 2024) · Our World in Data 내려받기(CC BY). 자체 제작: 5-2-1_산업혁명_표지.png(배경은 AI 생성 가상 장면 — 1830년대 영국 면직 공업 도시, 실재 장소 아님 · 제목 PIL).
+
+## 5-2-2 제국주의가 등장하다 (2026-10-04)
+
+| 파일 | 원본 (Wikimedia Commons) | 저작자 | 라이선스 |
+|---|---|---|---|
+| 5-2-2_스펜서.jpg | Herbert Spencer. Photograph, 1889. Wellcome V0027201.jpg | 웰컴 컬렉션(Wellcome Collection) | CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/ |
+| 5-2-2_하와이.jpg | Lowering the Hawaiian flag at Annexation ceremony (PPWD-8-3-006).jpg (하와이 주립 문서 보관소) | 프랭크 데이비 스튜디오 | 퍼블릭 도메인 |
+
+자체 제작: 5-2-2_아프리카분할.png(지도, `hq/hq_522_africa.py` · 경계 historical-basemaps 1914 GPL-3.0 · Natural Earth PD) · 5-2-2_제국주의_표지.png(배경은 AI 생성 가상 장면 — 19세기 말 아프리카 해안과 군함, 실재 장소 아님 · 제목 PIL).
