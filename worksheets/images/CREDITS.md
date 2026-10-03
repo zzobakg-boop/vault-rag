@@ -61,3 +61,16 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 4-3-3_루소.jpg | Maurice Quentin de La Tour - Portrait of Jean-Jacques Rousseau - adjusted.jpg | 모리스 캉탱 드 라투르 | 퍼블릭 도메인 |
 
 자체 제작: 4-3-3_전쟁과금고.png(도식, `fig_433_chain.py`) · 4-3-3_재정군사국가_표지.png(배경은 AI 생성 가상 장면 — 17세기 금고 지하실, 사람·실재 장소 아님 · 제목 PIL).
+
+## 5-1-4 자유주의와 민족주의가 퍼져 나가다 (2026-10-04)
+
+| 파일 | 원본 (Wikimedia Commons) | 저작자 | 라이선스 |
+|---|---|---|---|
+| 5-1-4_빈회의.jpg | CONGRES DE VIENNE … J. Isabey … J. Godefroy - 1819 - btv1b52512175v (1 of 2).jpg (프랑스 국립도서관) | 장바티스트 이자베 원화·장 고드프루아 판화 | 퍼블릭 도메인 (테두리 잘라 냄) |
+| 5-1-4_라마르틴.jpg | Henri Félix Philippoteaux - Lamartine repoussant le drapeau rouge à l'Hôtel de Ville … Musée Carnavalet.jpg | 앙리 펠릭스 필리포토 | 퍼블릭 도메인 |
+| 5-1-4_차티스트.jpg | Chartist meeting on Kennington Common by William Edward Kilburn 1848 - restoration1.jpg | 윌리엄 에드워드 킬번 | 퍼블릭 도메인 |
+| 5-1-4_가리발디.jpg | Le Gray, Gustave (1820-1884) - Palerme. Portrait de Giuseppe Garibaldi, juillet 1860.jpg | 귀스타브 르 그레 | 퍼블릭 도메인 |
+| 5-1-4_테아노.jpg | Pietro Aldi - Victor Emanuel II Meeting Giuseppe Garibaldi at Teano - Google Art Project.jpg | 피에트로 알디 | 퍼블릭 도메인 (건축 틀 잘라 냄) |
+| 5-1-4_링컨.jpg | Abraham Lincoln November 1863.jpg | 알렉산더 가드너 | 퍼블릭 도메인 |
+
+자체 제작: 5-1-4_조각에서하나로.png(지도, `hq/hq_514_unify.py` · 경계 historical-basemaps 1815·1880 GPL-3.0 · Natural Earth PD) · 5-1-4_자유주의민족주의_표지.png(배경은 AI 생성 가상 장면 — 1840년대 거리의 바리케이드, 실재 장소·인물 아님 · 제목 PIL).
