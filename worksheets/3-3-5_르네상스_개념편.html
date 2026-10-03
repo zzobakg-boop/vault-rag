@@ -858,6 +858,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+     (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
   position: relative; overflow: hidden;
@@ -979,6 +981,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
+/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
@@ -1032,7 +1035,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <figure class="ws-fig"><img src="images/3-3-5_왜이탈리아.png" alt="왜 하필 이탈리아였을까 — 「유산」(고대 로마의 중심지)·「사람」(비잔티움 학자들의 이주)·「돈」(지중해 무역으로 번 상인) 셋이 **같은 자리에서 만났다.** 아래 띠는 그 「돈」이 어디서 왔는지다 — 십자군 전쟁 → 지중해 뱃길 → 상인의 부 → 예술가 후원." loading="lazy"><figcaption>왜 하필 이탈리아였을까 — 「유산」(고대 로마의 중심지)·「사람」(비잔티움 학자들의 이주)·「돈」(지중해 무역으로 번 상인) 셋이 <strong>같은 자리에서 만났다.</strong> 아래 띠는 그 「돈」이 어디서 왔는지다 — 십자군 전쟁 → 지중해 뱃길 → 상인의 부 → 예술가 후원.</figcaption></figure>
 <br>
 <br>
-<h2>📖 2단계: 신에서 사람으로 — 인문주의</h2>
+<h2>📖 2단계: 신에서 사람으로</h2>
 <p>르네상스 시기에는 그리스·로마 문화를 본받아 인간의 <strong>개성과 능력</strong>을 중요하게 여기는 ②<input type="text" class="blank-input" data-answer="인문주의" data-id="2" style="width:84px" placeholder="">가 발달했다. 이들은 신이 중심이던 중세의 세계관에서 벗어나 <strong>인간의 삶</strong>에 관심을 가졌다.</p>
 <br>
 <blockquote>🎙️ <strong>「신에서 사람으로」가 무슨 말일까.</strong> 중세 천 년 동안 그림의 주인공은 대개 신이었어. 그런데 르네상스 화가들은 <strong>신을 그리면서도 사람 몸을 진짜처럼</strong> 그리기 시작해. 아래 그림을 봐 — 성경 이야기인데, 눈이 가는 건 <strong>팔의 근육과 손가락 사이의 그 틈</strong>이야. 신이 주제인데 <strong>사람이 화면을 차지한</strong> 거지.</blockquote>
