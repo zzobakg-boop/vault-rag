@@ -93,6 +93,23 @@ try:
 except Exception as e:
     warn.append(f"폰 폭 측정 못 함({str(e)[:40]})")
 
+# 오늘의 고급 단어 — 형식(코어 룰 15·§15-a2) (10/4 천대현 «낱말 카드 제대로 들어갔는지» — 역사 Ⅴ~Ⅶ가 정적 표로 나가는 것을 검사가 못 잡았다)
+#   카드(:::낱말카드)가 기본이다(9/16 «한자의 뜻»으로 그림을 고르면 추상어도 거의 다 된다). 표(:::낱말)는 ⚠️, 정적 표·블록 없음은 🔴.
+vb = re.sub(r"<style.*?</style>|<script.*?</script>", "", body, flags=re.S)
+mv = re.search(r"<h2>[^<]*오늘의 고급 단어</h2>(.*?)(?=<h[12]>)", vb, re.S)
+if mv:
+    sec = mv.group(1)
+    vcards = re.findall(r'<button type="button" class="ws-vcard".*?</button>', sec, re.S)
+    if vcards:
+        noimg = sum("vcd-noimg" in c for c in vcards)
+        (red if noimg else ok).append(f"고급 단어 낱말카드 {len(vcards)}장" + (f" · 그림 없는 카드 {noimg}" if noimg else ""))
+    elif 'class="ws-voc"' in sec:
+        warn.append("고급 단어가 표(:::낱말) — 낱말카드로 올릴 수 있는지(§15-a2)")
+    else:
+        red.append("고급 단어가 정적 표·블록 없음 — :::낱말카드(또는 최소 :::낱말)로")
+else:
+    warn.append("「오늘의 고급 단어」 절 없음")
+
 # 카드 블록 머리말 숫자 ↔ 실제 카드 수 (10/4 사회 요청 — 하루에 세 번 어긋남: 9-1 «여섯 장면»인데 다섯 장)
 if md and os.path.exists(md):
     NUM = {"한": 1, "하나": 1, "두": 2, "둘": 2, "세": 3, "셋": 3, "네": 4, "넷": 4, "다섯": 5, "여섯": 6,
