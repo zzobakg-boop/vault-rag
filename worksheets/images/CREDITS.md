@@ -145,3 +145,14 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 6-1-2_팽크허스트.jpg | Mrs Emmeline Pankhurst … arrested outside Buckingham Palace … May 1914. Q81486.jpg | 작자 미상(1914) | 퍼블릭 도메인 |
 
 자체 제작: 6-1-2_정치체제변화_표지.png(배경은 AI 생성 가상 장면 — 1917년 겨울 러시아 도시의 빵 줄, 실재 장소 아님 · 제목 PIL).
+
+## 6-1-3 제2차 세계 대전이 일어나다 (2026-10-04)
+
+| 파일 | 원본 (Wikimedia Commons) | 저작자 | 라이선스 |
+|---|---|---|---|
+| 6-1-3_무료급식.jpg | Unemployed men queued outside a depression soup kitchen opened in Chicago by Al Capone, 02-1931 - NARA - 541927.jpg | 미국 국립 기록 관리청 | 퍼블릭 도메인 |
+| 6-1-3_팔짱.jpg | August-Landmesser-Almanya-1936-circle-removed.png | 작자 미상(1936) | 퍼블릭 도메인 |
+| 6-1-3_노르망디.jpg | Into the Jaws of Death 23-0455M edit.jpg | 로버트 F. 서전트(미국 해안 경비대) | 퍼블릭 도메인 |
+| 6-1-3_승전기념.jpg | Winston Churchill waves to crowds in Whitehall in London as they celebrate VE Day, 8 May 1945. H41849.jpg | 영국 정보부 사진과 | 퍼블릭 도메인 |
+
+그래프 값: 미국 실업률 = BLS 추계 · *Historical Statistics of the US* D-86 / 나치스 득표율 = 제국 의회 선거 결과. 자체 제작: 6-1-3_제2차세계대전_표지.png(배경은 AI 생성 가상 장면 — 1945년 폭격 맞은 유럽 도시, 실재 장소 아님 · 제목 PIL).
