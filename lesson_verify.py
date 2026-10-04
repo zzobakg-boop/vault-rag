@@ -110,7 +110,7 @@ if md and os.path.exists(md):
                 break
             if l2.count("|") >= 4:
                 rows += 1
-        hm = re.search(r"(\d+|한|하나|두|둘|세|셋|네|넷|다섯|여섯|일곱|여덟|아홉|열)\s*(장면|사람|명|카드|장|가지|곳)", head)
+        hm = re.search(r"(?<![가-힣0-9])(\d+|한|하나|두|둘|세|셋|네|넷|다섯|여섯|일곱|여덟|아홉|열)\s*(장면|사람|명|카드|장|가지|곳)", head)  # 앞이 한글이면 숫자 아님(«맞이한 곳» 오탐·10/4 사회)
         if hm:
             n = int(hm.group(1)) if hm.group(1).isdigit() else NUM[hm.group(1)]
             if n != rows:
