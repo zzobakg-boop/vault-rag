@@ -134,3 +134,14 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 6-1-1_다이슨만평.jpg | Versailles cannonfodder.jpg (*Daily Herald* 1919-05) | 윌 다이슨 | 퍼블릭 도메인 |
 
 자체 제작: 6-1-1_두편두전선.png(지도, `hq/hq_611_ww1.py` · 경계 historical-basemaps 1914 GPL-3.0 · Natural Earth PD) · 6-1-1_제1차세계대전_표지.png(배경은 AI 생성 가상 장면 — 1914년 플랑드르의 크리스마스이브, 사람 없음, 실재 장소 아님 · 제목 PIL).
+
+## 6-1-2 유럽 각국의 정치 체제가 변화하다 (2026-10-04)
+
+| 파일 | 원본 (Wikimedia Commons) | 저작자 | 라이선스 |
+|---|---|---|---|
+| 6-1-2_피의일요일.jpg | The Russian Revolution, 1905 Q81561.jpg (런던 제국 전쟁 박물관 등록본) | 이반 블라디미로프 그림 | 퍼블릭 도메인 |
+| 6-1-2_여성시위.jpg | Демострация работниц Путиловского завода в первый день Февральской революции 1917.jpg | 작자 미상(1917) | 퍼블릭 도메인 |
+| 6-1-2_레닌.jpg | After Lenin Speech 1920.jpg | 그리고리 골드시테인(1920) | 퍼블릭 도메인 |
+| 6-1-2_팽크허스트.jpg | Mrs Emmeline Pankhurst … arrested outside Buckingham Palace … May 1914. Q81486.jpg | 작자 미상(1914) | 퍼블릭 도메인 |
+
+자체 제작: 6-1-2_정치체제변화_표지.png(배경은 AI 생성 가상 장면 — 1917년 겨울 러시아 도시의 빵 줄, 실재 장소 아님 · 제목 PIL).
