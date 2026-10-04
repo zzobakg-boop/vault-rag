@@ -155,7 +155,7 @@ if ak_md and os.path.exists(ak_md):
         rest = rest[rest.find("\n:::\n") + 5 if "\n:::\n" in rest else 0:]
         step = rest.split("\n## ", 1)[0] + "\n" + ox
         before = stu[:sl]  # 슬롯 앞에서 이미 나온 낱말은 주제어라 빼고, 슬롯 뒤에 처음 나오는 답 낱말만 본다
-        hit = sorted(w for w in words(ans) if w in step and w not in before)
+        hit = sorted(w for w in words(ans) if re.search(r"(?<![가-힣])" + re.escape(w), step) and w not in before)  # 낱말 머리에서만 — «오르드루프» 속 «루프» 오탐(역사 6-2-1)
         if hit:
             pairs.append(f"«{mm.group(1)[:30]}» 답 낱말이 뒤에 보임: {', '.join(hit[:8])}")
     if pairs:
