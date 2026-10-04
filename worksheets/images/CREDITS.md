@@ -167,3 +167,16 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 6-2-1_오르드루프.jpg | [Buchenwald Ohrdruf Patton Eisenhower 64082](https://commons.wikimedia.org/wiki/File:Buchenwald_Ohrdruf_Patton_Eisenhower_64082.jpg) | 미국 육군 통신대 | 퍼블릭 도메인 |
 
 자체 제작: 6-2-1_전쟁범죄_표지.png (Gemini 배경 + PIL 제목)
+
+## 6-2-2 인권 회복과 평화 실현을 위해 노력하다 (2026-10-04)
+| 파일 | 원본 | 저작자 | 라이선스 |
+|---|---|---|---|
+| 6-2-2_대서양회담.jpg | [President Roosevelt and Winston Churchill seated on the quarterdeck of HMS PRINCE OF WALES … A4815](https://commons.wikimedia.org/wiki/File:President_Roosevelt_and_Winston_Churchill_seated_on_the_quarterdeck_of_HMS_PRINCE_OF_WALES_for_a_Sunday_service_during_the_Atlantic_Conference,_10_August_1941._A4815.jpg) | Lt L. C. Priest, Royal Navy (IWM) | 퍼블릭 도메인 |
+| 6-2-2_안보리.jpg | [United Nations Security Council in New York City](https://commons.wikimedia.org/wiki/File:United_Nations_Security_Council_in_New_York_City.JPG) (아래쪽만 잘라 씀 — 벽화 제외) | MusikAnimal | CC BY-SA 4.0 |
+| 6-2-2_뉘른베르크.jpg | [Defendants in the dock at the Nuremberg Trials](https://commons.wikimedia.org/wiki/File:Defendants_in_the_dock_at_the_Nuremberg_Trials.jpg) | 미국 정부 | 퍼블릭 도메인 |
+| 6-2-2_도쿄재판.jpg | [IMTFE defendants](https://commons.wikimedia.org/wiki/File:IMTFE_defendants.jpg) | 작자 미상 | 퍼블릭 도메인 |
+| 6-2-2_아이히만.jpg | [Adolf Eichmann is sentenced to death … USHMM 65289](https://commons.wikimedia.org/wiki/File:Adolf_Eichmann_is_sentenced_to_death_at_the_conclusion_of_the_Eichmann_Trial_USHMM_65289.jpg) | 이스라엘 정부 언론실 | 퍼블릭 도메인 |
+| 6-2-2_브란트.jpg | [2022 Warszawa pomnik Willy'ego Brandta, 2](https://commons.wikimedia.org/wiki/File:2022_Warszawa_pomnik_Willy%27ego_Brandta,_2.jpg) | Wikimedia Commons 올린이 | CC0 |
+| 6-2-2_야드바셈.jpg | [Yad Vashem Hall of Names by David Shankbone](https://commons.wikimedia.org/wiki/File:Yad_Vashem_Hall_of_Names_by_David_Shankbone.jpg) | David Shankbone | CC BY-SA 3.0 |
+
+자체 제작: 6-2-2_평화노력_표지.png (Gemini 배경 + PIL 제목)
