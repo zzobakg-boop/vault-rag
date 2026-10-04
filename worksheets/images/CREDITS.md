@@ -191,3 +191,12 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-1-1_케네디흐루쇼프.jpg | [John Kennedy, Nikita Khrushchev 1961](https://commons.wikimedia.org/wiki/File:John_Kennedy,_Nikita_Khrushchev_1961.jpg) | 미국 국무부 | 퍼블릭 도메인 |
 
 자체 제작: 7-1-1_냉전체제_표지.png (Gemini 배경 + PIL 제목) · 7-1-1_두동맹지도.png (map-render/hq/hq_711_blocs.py · 해안선·지형 Natural Earth 퍼블릭 도메인)
+
+## 7-1-2 제3 세계가 나타나다 (2026-10-04)
+| 파일 | 원본 | 저작자 | 라이선스 |
+|---|---|---|---|
+| 7-1-2_가나독립문.jpg | [Independence Arch Accra Ghana](https://commons.wikimedia.org/wiki/File:Independence_Arch_Accra_Ghana.jpg) (위쪽만 잘라 씀) | Wikimedia Commons 올린이 | CC BY 2.0 |
+| 7-1-2_브리오니.jpg | [Stevan Kragujevic, Tito, Naser, Nehru, Dolazak na Brione](https://commons.wikimedia.org/wiki/File:Stevan_Kragujevic,_Tito,_Naser,_Nehru,_Dolazak_na_Brione.jpg) | Stevan Kragujević | CC BY-SA 4.0 |
+| 7-1-2_반둥.jpg | [1955年4月周恩来、尼赫鲁与吴努在万隆会议期间交谈](https://commons.wikimedia.org/wiki/File:1955%E5%B9%B44%E6%9C%88%E5%91%A8%E6%81%A9%E6%9D%A5%E3%80%81%E5%B0%BC%E8%B5%AB%E9%B2%81%E4%B8%8E%E5%90%B4%E5%8A%AA%E5%9C%A8%E4%B8%87%E9%9A%86%E4%BC%9A%E8%AE%AE%E6%9C%9F%E9%97%B4%E4%BA%A4%E8%B0%88.jpg) | 작자 미상 | 퍼블릭 도메인 |
+
+자체 제작: 7-1-2_제3세계_표지.png (Gemini 배경 + PIL 제목)
