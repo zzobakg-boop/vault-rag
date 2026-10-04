@@ -47,6 +47,13 @@ ids = re.findall(r'data-id="([^"]+)"', body)
 dup = sorted({i for i in ids if ids.count(i) > 1})
 (red if dup else ok).append(f"data-id {len(ids)}개 · 중복 {dup or 0}")
 
+# 깨진 그림 — 상대 경로가 실제 파일로 이어지나(10/4 사회 8-1: «images/images/» 이중 경로를 폰 화면에서야 찾았다)
+base = os.path.dirname(path)
+srcs = re.findall(r'<img[^>]*\bsrc="([^"]+)"', body) + re.findall(r'data-src="([^"]+)"', body)
+broken = sorted({x for x in srcs if not re.match(r"(https?:|data:|//)", x)
+                 and not os.path.exists(os.path.join(base, html.unescape(x).split("?")[0].split("#")[0]))})
+(red if broken else ok).append(f"그림 경로 {len(srcs)}개 · 깨짐 {len(broken)}" + (f" {broken[:3]}" if broken else ""))
+
 # 허브 주소
 (red if 'github.io/worksheets/"' in s and "복습용" not in path else ok).append("허브 주소 없음" if 'github.io/worksheets/"' not in s else "허브 주소 있음")
 
