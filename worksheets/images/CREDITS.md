@@ -180,3 +180,14 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 6-2-2_야드바셈.jpg | [Yad Vashem Hall of Names by David Shankbone](https://commons.wikimedia.org/wiki/File:Yad_Vashem_Hall_of_Names_by_David_Shankbone.jpg) | David Shankbone | CC BY-SA 3.0 |
 
 자체 제작: 6-2-2_평화노력_표지.png (Gemini 배경 + PIL 제목)
+
+## 7-1-1 냉전 체제가 형성되다 (2026-10-04)
+| 파일 | 원본 | 저작자 | 라이선스 |
+|---|---|---|---|
+| 7-1-1_풀턴열차.jpg | [Photograph of President Truman waving his hat and Winston Churchill … NARA 199350](https://commons.wikimedia.org/wiki/File:Photograph_of_President_Truman_waving_his_hat_and_Winston_Churchill_flashing_his_famous_%22V_for_Victory%22_sign_from_the..._-_NARA_-_199350.jpg) | 미국 국립 기록 관리청 | 퍼블릭 도메인 |
+| 7-1-1_베를린공수.jpg | [C-47s at Tempelhof Airport Berlin 1948](https://commons.wikimedia.org/wiki/File:C-47s_at_Tempelhof_Airport_Berlin_1948.jpg) | 미국 공군(미 해군 항공 박물관 소장) | 퍼블릭 도메인 |
+| 7-1-1_인천상륙.jpg | [80-G-420027 Inchon Invasion, September 1950](https://commons.wikimedia.org/wiki/File:80-G-420027_Inchon_Invasion,_September_1950.jpg) | 미국 해병대 | 퍼블릭 도메인 |
+| 7-1-1_쿠바정찰.jpg | [Photograph of MRBM Field Launch Site No. 2 in San Cristobal, Cuba, 14 October 1962](https://commons.wikimedia.org/wiki/File:Photograph_of_MRBM_Field_Launch_Site_No._2_in_San_Cristobal,_Cuba,_14_October_1962_-_DPLA_-_46c5a1f6a35d08aaa73208f96901a46f.gif) | 미국 국방부 | 퍼블릭 도메인 |
+| 7-1-1_케네디흐루쇼프.jpg | [John Kennedy, Nikita Khrushchev 1961](https://commons.wikimedia.org/wiki/File:John_Kennedy,_Nikita_Khrushchev_1961.jpg) | 미국 국무부 | 퍼블릭 도메인 |
+
+자체 제작: 7-1-1_냉전체제_표지.png (Gemini 배경 + PIL 제목) · 7-1-1_두동맹지도.png (map-render/hq/hq_711_blocs.py · 해안선·지형 Natural Earth 퍼블릭 도메인)
