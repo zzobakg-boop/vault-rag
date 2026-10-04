@@ -92,6 +92,32 @@ try:
 except Exception as e:
     warn.append(f"폰 폭 측정 못 함({str(e)[:40]})")
 
+# 카드 블록 머리말 숫자 ↔ 실제 카드 수 (10/4 사회 요청 — 하루에 세 번 어긋남: 9-1 «여섯 장면»인데 다섯 장)
+if md and os.path.exists(md):
+    NUM = {"한": 1, "하나": 1, "두": 2, "둘": 2, "세": 3, "셋": 3, "네": 4, "넷": 4, "다섯": 5, "여섯": 6,
+           "일곱": 7, "여덟": 8, "아홉": 9, "열": 10}
+    lines = open(md, encoding="utf-8").read().split("\n")
+    mism, nblk = [], 0
+    for i, l in enumerate(lines):
+        mm = re.match(r"^:::(인물선택카드|카드선택|인물선택)\b(.*)$", l.strip())
+        if not mm:
+            continue
+        nblk += 1
+        head = mm.group(2)
+        rows = 0
+        for l2 in lines[i + 1:]:
+            if l2.strip() == ":::":
+                break
+            if l2.count("|") >= 4:
+                rows += 1
+        hm = re.search(r"(\d+|한|하나|두|둘|세|셋|네|넷|다섯|여섯|일곱|여덟|아홉|열)\s*(장면|사람|명|카드|장|가지|곳)", head)
+        if hm:
+            n = int(hm.group(1)) if hm.group(1).isdigit() else NUM[hm.group(1)]
+            if n != rows:
+                mism.append(f"{i+1}행 «{hm.group(0)}» ↔ 카드 {rows}장")
+    if nblk:
+        (red if mism else ok).append(f"카드 블록 {nblk}개 · 머리말 숫자 어긋남 {len(mism)}" + (f" {mism}" if mism else ""))
+
 print(f"■ {os.path.basename(path)}")
 for x in red: print("  🔴", x)
 for x in warn: print("  ⚠️", x)
