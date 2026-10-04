@@ -200,3 +200,15 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-1-2_반둥.jpg | [1955年4月周恩来、尼赫鲁与吴努在万隆会议期间交谈](https://commons.wikimedia.org/wiki/File:1955%E5%B9%B44%E6%9C%88%E5%91%A8%E6%81%A9%E6%9D%A5%E3%80%81%E5%B0%BC%E8%B5%AB%E9%B2%81%E4%B8%8E%E5%90%B4%E5%8A%AA%E5%9C%A8%E4%B8%87%E9%9A%86%E4%BC%9A%E8%AE%AE%E6%9C%9F%E9%97%B4%E4%BA%A4%E8%B0%88.jpg) | 작자 미상 | 퍼블릭 도메인 |
 
 자체 제작: 7-1-2_제3세계_표지.png (Gemini 배경 + PIL 제목)
+
+## 7-1-3 국제 질서가 변화하다 (2026-10-04)
+| 파일 | 원본 | 저작자 | 라이선스 |
+|---|---|---|---|
+| 7-1-3_SALT.jpg | [Carter Brezhnev sign SALT II](https://commons.wikimedia.org/wiki/File:Carter_Brezhnev_sign_SALT_II.jpg) | Bill Fitz-Patrick, 미국 백악관 | 퍼블릭 도메인 |
+| 7-1-3_닉슨마오.jpg | [President Nixon meets with China's Communist Party Leader, Mao Tse-Tung, NARA 194759](https://commons.wikimedia.org/wiki/File:President_Nixon_meets_with_China%27s_Communist_Party_Leader,_Mao_Tse-_Tung,_02-29-1972_-_NARA_-_194759.tif) | 미국 국립 기록 관리청 | 퍼블릭 도메인 |
+| 7-1-3_몰타.jpg | [Bush and Gorbachev at the Malta summit in 1989](https://commons.wikimedia.org/wiki/File:Bush_and_Gorbachev_at_the_Malta_summit_in_1989.gif) | David Valdez, 미국 백악관 | 퍼블릭 도메인 |
+| 7-1-3_장벽붕괴.jpg | [Berlin Wall Collapse (cropped)](https://commons.wikimedia.org/wiki/File:Berlin_Wall_Collapse_(cropped).jpg) (위쪽 잘라 씀) | SanFranMan59 | CC BY 3.0 |
+| 7-1-3_덩샤오핑.jpg | [Deng Xiaoping and Jimmy Carter at the arrival ceremony … NARA 183157-restored](https://commons.wikimedia.org/wiki/File:Deng_Xiaoping_and_Jimmy_Carter_at_the_arrival_ceremony_for_the_Vice_Premier_of_China._-_NARA_-_183157-restored.jpg) | 미국 국립 기록 관리청 | 퍼블릭 도메인 |
+| 7-1-3_유럽연합기.jpg | [Flag of Europe](https://commons.wikimedia.org/wiki/File:Flag_of_Europe.svg) | — | 퍼블릭 도메인 |
+
+자체 제작: 7-1-3_국제질서변화_표지.png (Gemini 배경 + PIL 제목)
