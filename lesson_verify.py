@@ -12,6 +12,7 @@
   🔴 허브 주소(정답편 카드로 가는 문)가 학생 파일에 있음            — 게이트 -1.0
   ⚠️ 빈칸 답이 그 빈칸보다 앞의 «보이는» 글에 그대로 있음(카드·접기 밖) — 누출 후보
   ⚠️ 정답편이 교사 iCloud 사본에 아직 없음                          — 30초 자동 동기화 대기일 수 있음
+  ⚠️ 교과서 슬롯 답의 낱말이 슬롯 뒤 학생 글(입담·카드·OX)에 처음 나옴 — --md 때만 · 판정은 사람
 
 사용: python3 ~/vault-rag/lesson_verify.py worksheets/<id>_개념편.html [--md <개념편.md>]
 """
@@ -118,11 +119,54 @@ if md and os.path.exists(md):
     if nblk:
         (red if mism else ok).append(f"카드 블록 {nblk}개 · 머리말 숫자 어긋남 {len(mism)}" + (f" {mism}" if mism else ""))
 
+# 슬롯 답 ↔ 그 뒤 학생 글 (10/4 사회 제안 — «슬롯 답을 바로 아래 입담이 말한다»가 체크리스트에 올린 뒤에도 여섯 번 나왔다)
+# 교과서 슬롯의 정답편 «답»에 든 낱말이, 같은 단계의 슬롯 뒤 학생 글(입담·카드)과 OX에 그대로 있으면 나란히 보여 준다. 판정은 사람.
+pairs = []
+ak_md = md.replace(" 개념편.md", " 개념편 정답.md") if md else None
+if ak_md and os.path.exists(ak_md):
+    JOSA = ("으로써", "으로서", "에서는", "이라는", "에게", "에서", "으로", "이다", "하는", "하고", "라는", "이며", "까지",
+            "부터", "보다", "처럼", "은", "는", "이", "가", "을", "를", "의", "에", "도", "와", "과", "로", "만", "고", "다")
+    STOP = {"교사용", "예시", "답안", "교과서", "사회", "톡톡톡", "생각", "열기", "까닭", "위해서", "위해", "때문", "있다", "한다", "된다", "모두", "여러", "나라", "우리나라", "우리", "실제", "경제", "어려움"}
+    def words(t):
+        out = set()
+        for w in re.findall(r"[가-힣]{2,}", t):
+            for j in JOSA:
+                if w.endswith(j) and len(w) - len(j) >= 2:
+                    w = w[:-len(j)]; break
+            # 동사·형용사 활용형(않는·많은·좋아·받지…)은 답의 핵심이 아니라 빼고, 이름·개념어만 남긴다
+            if w not in STOP and not re.search(r"(는|은|고|지|게|라|아|어|해|었|았|었|기|할|된|하|져|올|낸다|없다)$", w):
+                out.add(w)
+        return out
+    akl = open(ak_md, encoding="utf-8").read().split("\n")
+    stu = open(md, encoding="utf-8").read()
+    ox = stu.split("## ❓", 1)[1].split("\n## ", 1)[0] if "## ❓" in stu else ""
+    for i, l in enumerate(akl):
+        mm = re.match(r"^:::교과서\s*(.*)$", l.strip())
+        if not mm:
+            continue
+        ans = next((x for x in akl[i + 1:i + 15] if x.startswith("> **답")), None)
+        if not ans:
+            continue
+        ans = re.sub(r"—\s*(교사용|교과서).*$", "", ans)
+        sl = stu.find(l.strip())
+        if sl < 0:
+            continue
+        rest = stu[sl + len(l.strip()):]
+        rest = rest[rest.find("\n:::\n") + 5 if "\n:::\n" in rest else 0:]
+        step = rest.split("\n## ", 1)[0] + "\n" + ox
+        before = stu[:sl]  # 슬롯 앞에서 이미 나온 낱말은 주제어라 빼고, 슬롯 뒤에 처음 나오는 답 낱말만 본다
+        hit = sorted(w for w in words(ans) if w in step and w not in before)
+        if hit:
+            pairs.append(f"«{mm.group(1)[:30]}» 답 낱말이 뒤에 보임: {', '.join(hit[:8])}")
+    if pairs:
+        warn.append(f"슬롯 답 ↔ 뒤 학생 글 겹침 {len(pairs)}곳 (사람이 판정)")
+
 print(f"■ {os.path.basename(path)}")
 for x in red: print("  🔴", x)
 for x in warn: print("  ⚠️", x)
 for x in ok: print("  ✓", x)
 for l in leaks[:8]: print("     ·", l)
+for l in pairs: print("     ·", l)
 if md:
     print("■ lesson_lint (대조표)")
     r = subprocess.run([sys.executable, os.path.expanduser("~/scripts/curriculum-designer/lesson_lint.py"), md], capture_output=True, text=True)
