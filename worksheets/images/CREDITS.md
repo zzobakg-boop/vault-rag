@@ -156,3 +156,14 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 6-1-3_승전기념.jpg | Winston Churchill waves to crowds in Whitehall in London as they celebrate VE Day, 8 May 1945. H41849.jpg | 영국 정보부 사진과 | 퍼블릭 도메인 |
 
 그래프 값: 미국 실업률 = BLS 추계 · *Historical Statistics of the US* D-86 / 나치스 득표율 = 제국 의회 선거 결과. 자체 제작: 6-1-3_제2차세계대전_표지.png(배경은 AI 생성 가상 장면 — 1945년 폭격 맞은 유럽 도시, 실재 장소 아님 · 제목 PIL).
+
+## 6-2-1 두 차례 세계 대전 중에 전쟁 범죄가 발생하다 (2026-10-04)
+| 파일 | 원본 | 저작자 | 라이선스 |
+|---|---|---|---|
+| 6-2-1_드레스덴.jpg | [Fotothek df ps 0000010 Blick vom Rathausturm](https://commons.wikimedia.org/wiki/File:Fotothek_df_ps_0000010_Blick_vom_Rathausturm.jpg) | Richard Peter sen. / Deutsche Fotothek | CC BY-SA 3.0 de |
+| 6-2-1_731부대터.jpg | [Building on the site of the Harbin bioweapon facility of Unit 731](https://commons.wikimedia.org/wiki/File:Building_on_the_site_of_the_Harbin_bioweapon_facility_of_Unit_731.jpg) | Wikimedia Commons 올린이 | Copyrighted free use (저작권자가 조건 없이 사용 허락 · CC 아님) |
+| 6-2-1_보트린.jpg | [Minnie Vautrin before 1938](https://commons.wikimedia.org/wiki/File:Minnie_Vautrin_before_1938.jpg) (위쪽 잘라 씀) | 작자 미상 | 퍼블릭 도메인 |
+| 6-2-1_아우슈비츠정문.jpg | [Auschwitz-Work Set Free-new](https://commons.wikimedia.org/wiki/File:Auschwitz-Work_Set_Free-new.JPG) | Bibi595 | CC BY-SA 3.0 |
+| 6-2-1_오르드루프.jpg | [Buchenwald Ohrdruf Patton Eisenhower 64082](https://commons.wikimedia.org/wiki/File:Buchenwald_Ohrdruf_Patton_Eisenhower_64082.jpg) | 미국 육군 통신대 | 퍼블릭 도메인 |
+
+자체 제작: 6-2-1_전쟁범죄_표지.png (Gemini 배경 + PIL 제목)
