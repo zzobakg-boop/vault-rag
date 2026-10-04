@@ -122,3 +122,15 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 |---|---|---|---|
 | 5-1-1_1640하원.jpg | Platform of the Lower House of this Present Parliament (of England) Assembled at Westminster 1640.jpg | 작자 미상 판화(1640) | 퍼블릭 도메인 (가운데 회의장만 잘라 냄) |
 | 5-1-1_찰스1세세얼굴.jpg | Charles I in Three Positions.jpg | 안토니 반다이크(1635) | 퍼블릭 도메인 |
+
+## 6-1-1 제1차 세계 대전이 일어나다 (2026-10-04)
+
+| 파일 | 원본 (Wikimedia Commons) | 저작자 | 라이선스 |
+|---|---|---|---|
+| 6-1-1_사라예보.jpg | Franz Ferdinand & Sophie Leave Sarajevo Guildhall in a Car.jpg | W. 타우슈(1914) | 퍼블릭 도메인 |
+| 6-1-1_크리스마스정전.jpg | Christmas Truce by Frederic Villiers.jpg (*Illustrated London News* 1915-01-09) | 프레더릭 빌리어스 | 퍼블릭 도메인 |
+| 6-1-1_참호.jpg | Cheshire Regiment trench Somme 1916.jpg | 영국군 사진(1916) | 퍼블릭 도메인 |
+| 6-1-1_거울의방.jpg | Orpen, William (Sir) (RA) - The Signing of Peace in the Hall of Mirrors, Versailles, 28th June 1919 - Google Art Project.jpg | 윌리엄 오펀(1919) | 퍼블릭 도메인 |
+| 6-1-1_다이슨만평.jpg | Versailles cannonfodder.jpg (*Daily Herald* 1919-05) | 윌 다이슨 | 퍼블릭 도메인 |
+
+자체 제작: 6-1-1_두편두전선.png(지도, `hq/hq_611_ww1.py` · 경계 historical-basemaps 1914 GPL-3.0 · Natural Earth PD) · 6-1-1_제1차세계대전_표지.png(배경은 AI 생성 가상 장면 — 1914년 플랑드르의 크리스마스이브, 사람 없음, 실재 장소 아님 · 제목 PIL).
