@@ -131,7 +131,7 @@ if ak_md and os.path.exists(ak_md):
         out = set()
         for w in re.findall(r"[가-힣]{2,}", t):
             for j in JOSA:
-                if w.endswith(j) and len(w) - len(j) >= 2:
+                if w.endswith(j) and len(w) - len(j) >= 2 and not (j == "의" and w.endswith("주의")):  # 사회주의·민족주의의 «의»는 조사가 아니다
                     w = w[:-len(j)]; break
             # 동사·형용사 활용형(않는·많은·좋아·받지…)은 답의 핵심이 아니라 빼고, 이름·개념어만 남긴다
             if w not in STOP and not re.search(r"(는|은|고|지|게|라|아|어|해|었|았|었|기|할|된|하|되|져|올|낸다|없다)$", w):
