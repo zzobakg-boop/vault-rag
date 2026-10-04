@@ -134,7 +134,7 @@ if ak_md and os.path.exists(ak_md):
                 if w.endswith(j) and len(w) - len(j) >= 2:
                     w = w[:-len(j)]; break
             # 동사·형용사 활용형(않는·많은·좋아·받지…)은 답의 핵심이 아니라 빼고, 이름·개념어만 남긴다
-            if w not in STOP and not re.search(r"(는|은|고|지|게|라|아|어|해|었|았|었|기|할|된|하|져|올|낸다|없다)$", w):
+            if w not in STOP and not re.search(r"(는|은|고|지|게|라|아|어|해|었|았|었|기|할|된|하|되|져|올|낸다|없다)$", w):
                 out.add(w)
         return out
     akl = open(ak_md, encoding="utf-8").read().split("\n")
