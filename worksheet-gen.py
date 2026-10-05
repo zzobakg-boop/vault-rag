@@ -1314,11 +1314,12 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             _r = next((o for o in _opts if ':' in o), '1.2:1')
             _mid = '가운데' in _opts          # 2026-10-02: 사진 + 짧은 설명 — 글을 세로 가운데에(천대현 «예쁘게»)
             _card = '카드' in _opts           # 오른쪽 단을 설명 카드로
+            _keep = '폰도2단' in _opts       # 2026-10-06 사회 7-1: 위치·영역 지도 두 장 — 폰에서도 나란히(쌓으면 단계가 173px 길어졌다)
             try:
                 _a, _b = [float(x) for x in _r.split(':')]
             except Exception:
                 _a, _b = 1.2, 1.0
-            _cls = 'ws-2c' + (' c2-mid' if _mid else '') + (' c2-card' if _card else '')
+            _cls = 'ws-2c' + (' c2-mid' if _mid else '') + (' c2-card' if _card else '') + (' c2-keep' if _keep else '')
             html_parts.append(f'<div class="{_cls}" style="grid-template-columns:minmax(0,{_a}fr) minmax(0,{_b}fr)"><div class="c2-a">')
             in_2c = True
             continue
@@ -2384,7 +2385,7 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c > div {{ min-width: 0; }}
 .ws-2c > div > :first-child {{ margin-top: 0; }}
 .ws-2c > div > br {{ display: none; }}
-@media (max-width: 640px) {{ .ws-2c {{ grid-template-columns: 1fr !important; }} }}
+@media (max-width: 640px) {{ .ws-2c:not(.c2-keep) {{ grid-template-columns: 1fr !important; }} .ws-2c.c2-keep {{ gap: 10px; }} .ws-2c.c2-keep figcaption {{ font-size: 12px; }} }}
 .ws-2c.c2-mid {{ align-items: center; }}
 .ws-2c.c2-card > .c2-b {{ background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }}
 .ws-2c.c2-card > .c2-b p {{ margin: 0 0 8px; }} .ws-2c.c2-card > .c2-b p:last-child {{ margin-bottom: 0; }}
