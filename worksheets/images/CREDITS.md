@@ -730,3 +730,32 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 4-1-1_voc_압박.jpg | [An engineer's vise.jpg](https://commons.wikimedia.org/wiki/File%3AAn_engineer%27s_vise.jpg) | Dmitry Makeev · CC BY-SA 4.0 |
 | 4-1-1_voc_재정.jpg | [String of 200 Cash Coins - Northern Song Dynasty - Scott Semans.jpg](https://commons.wikimedia.org/wiki/File%3AString_of_200_Cash_Coins_-_Northern_Song_Dynasty_-_Scott_Semans.jpg) | Scott Semans · CC BY 3.0 |
 | 4-1-1_voc_번성.jpg | [Qingming shanghe tu bridge.jpg](https://commons.wikimedia.org/wiki/File%3AQingming_shanghe_tu_bridge.jpg) | Zhang Zeduan (張擇端) · Public domain |
+
+## 4-2-2 일본 무사 정권 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 4-2-2_갑옷.jpg | [Armor (Yoroi) MET DT784.jpg](https://commons.wikimedia.org/wiki/File%3AArmor_%28Yoroi%29_MET_DT784.jpg) | Metropolitan Museum of Art · CC0 |
+| 4-2-2_원의침략.jpg | [Mōko Shūrai Ekotoba.jpg](https://commons.wikimedia.org/wiki/File%3AM%C5%8Dko_Sh%C5%ABrai_Ekotoba.jpg) | 작자 미상(다케자키 스에나가 주문, 13세기 말) · Public domain |
+| 4-2-2_니혼바시행렬.jpg | [Hiroshige le pont Nihonbashi à l'aube.jpg](https://commons.wikimedia.org/wiki/File%3AHiroshige_le_pont_Nihonbashi_%C3%A0_l%27aube.jpg) | Utagawa Hiroshige · Public domain |
+| 4-2-2_가부키.jpg | Met Open Access 55768 (Cooling at Nakazu / Kabuki Theater, DP136973) | Utagawa Toyoharu · CC0 (Met Open Access) |
+| 4-2-2_데지마.jpg | [View of Dejima in Nagasaki Bay Folding Screen by Kawahara Keiga c1836.jpg](https://commons.wikimedia.org/wiki/File%3AView_of_Dejima_in_Nagasaki_Bay_Folding_Screen_by_Kawahara_Keiga_c1836.jpg) | Kawahara Keiga · CC BY-SA 4.0 |
+| 4-2-2_voc_무예.jpg | [Zushi Yabusame 2010 11.jpg](https://commons.wikimedia.org/wiki/File%3AZushi_Yabusame_2010_11.jpg) | Urashimataro · Public domain |
+| 4-2-2_voc_영지.jpg | Met Open Access 36960 (Okazaki, Tenshin no Hashi, DP122219) | Utagawa Hiroshige · CC0 (Met Open Access) |
+| 4-2-2_voc_행렬.jpg | Met Open Access 73647 (Daimyo's Processions Passing along the Tōkaidō, DP148144) | Utagawa (Gountei) Sadahide · CC0 (Met Open Access) |
+| 4-2-2_voc_개항.jpg | [Nagasaki Harbour (c1833-6), by Kawahara Keiga.jpg](https://commons.wikimedia.org/wiki/File%3ANagasaki_Harbour_%28c1833-6%29%2C_by_Kawahara_Keiga.jpg) | Kawahara Keiga · Public domain |
+| 4-2-2_일본무사정권_표지.png | (AI 생성 배경 gemini + PIL 한글) | 자체 제작 · — |
+
+## 5-3-2 인도 국민 국가 건설 운동 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 5-3-2_전투뒤.jpg | [Robert Clive and Mir Jafar after the Battle of Plassey, 1757 by Francis Hayman.jpg](https://commons.wikimedia.org/wiki/File%3ARobert_Clive_and_Mir_Jafar_after_the_Battle_of_Plassey%2C_1757_by_Francis_Hayman.jpg) | Francis Hayman (c.1760) · Public domain |
+| 5-3-2_델리성문.jpg | [1857 cashmeri gate delhi.jpg](https://commons.wikimedia.org/wiki/File%3A1857_cashmeri_gate_delhi.jpg) | Samuel Bourne (1860s) · Public domain |
+| 5-3-2_첫대회.jpg | [1st INC1885.jpg](https://commons.wikimedia.org/wiki/File%3A1st_INC1885.jpg) | Unknown author (1885) · Public domain |
+| 5-3-2_타고르.jpg | [Rabindranath Tagore 1905-1906 Sukumar Ray.jpg](https://commons.wikimedia.org/wiki/File%3ARabindranath_Tagore_1905-1906_Sukumar_Ray.jpg) | Sukumar Ray (1905) · Public domain |
+| 5-3-2_voc_용병.jpg | [Bengal-native-army2.jpg](https://commons.wikimedia.org/wiki/File%3ABengal-native-army2.jpg) | Unknown author (19th century) · Public domain |
+| 5-3-2_voc_직물.jpg | [A Tantee or Indian weaver.jpg](https://commons.wikimedia.org/wiki/File%3AA_Tantee_or_Indian_weaver.jpg) | Charles D'Oyly (1827) · Public domain |
+| 5-3-2_voc_폐위.jpg | [Bahadur Shah in exile.jpg](https://commons.wikimedia.org/wiki/File%3ABahadur_Shah_in_exile.jpg) | Horatio Gordon Robley · Public domain |
+| 5-3-2_voc_배척.jpg | [Boston Tea Party Currier colored.jpg](https://commons.wikimedia.org/wiki/File%3ABoston_Tea_Party_Currier_colored.jpg) | Nathaniel Currier (1846) · Public domain |
+| 5-3-2_인도국민국가운동_표지.png | (AI 생성 배경 · grok-imagine-image-2.0 + PIL 한글) | 자체 제작 · — |
