@@ -417,7 +417,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
 |---|---|---|
 | 11-3_voc_경쟁력.jpg | 줄다리기에서 밧줄을 잡고 온몸으로 버티는 미군 병사들(다리·손만 보이게 자름), 미국 메릴랜드 아나폴리스 «Tug of War XV», 2012 (Fort Meade Soldiers participate in Annapolis tug-of-war.jpg) | Fort George G. Meade Public Affairs Office · CC BY 2.0 |
-| 11-3_voc_보편적.jpg | 넓은 밭과 들판 위로 하늘 전체에 번진 해돋이 빛, 영국 햄프셔 모어스테드, 2020 (Sunrise over Morestead, Hampshire.jpg) | Forbes Johnston · CC BY 2.0 |
+| 11-3_voc_보편적.jpg | 달려 나가는 사람 그림의 비상구 표지 — 말이 달라도 어디서나 통하는 공통 기호, 普(두루)·遍(두루) (Emergency exit light.jpg) | Erik1980 · CC BY-SA 4.0 |
 | 11-3_voc_특산물.jpg | 제주 올레 7코스 길가의 귤밭, 열매가 가득 달린 감귤나무, 2021 (Jejuolle-route-07(4).jpg) | Jeju Olle Foundation(제주올레) · CC BY-SA 4.0 |
 
 ## 11-4 효과적인 지역화 전략 — 고급 단어 카드
@@ -500,3 +500,54 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 8-8_voc_풍요.jpg | 인도네시아 서수마트라, 수확 앞둔 누런 논, 2017-06 (Golden Light Before Harvest, Kinari rice field, West Sumatra.jpg) | Dionbagindo · CC BY-SA 4.0 |
 | 8-8_voc_쾌적.jpg | 넓은 잔디밭과 꽃나무 아래 쉬는 사람들(먼 거리), 영국 2011-04 (Relaxing on the lawn - geograph.org.uk - 2361908.jpg) | Stephen Craven · CC BY-SA 2.0 |
 | 8-8_voc_공생.jpg | 말미잘 속에 사는 흰동가리, 파푸아뉴기니 2013-03 (Amphiprion ocellaris (Clown anemonefish) by Nick Hobgood.jpg) | Nick Hobgood · CC BY-SA 3.0 |
+
+## 7-1 세계의 인구 분포 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 7-1_voc_분포.jpg | 씨앗이 바람에 흩어져 나가는 민들레 씨앗 머리, 2011 (Dandelion seeds flying off.jpg) | Meganbeckett27 · CC BY-SA 3.0 |
+| 7-1_voc_밀집.jpg | 홍콩 쿼리베이 익청 빌딩·익팟 빌딩 — 아파트가 빈틈없이 둘러싼 안뜰, 2015 (Yick Cheong Building and Yick Fat Building. Aug. 2015.A.JPG) | Sakaori · CC BY 3.0 |
+| 7-1_voc_희박.jpg | 몽골 만달고비 근처 초원에 홀로 선 게르 한 채, 2010 (Mongolian Ger.jpg) | Mark Fischer · CC BY-SA 2.0 |
+
+## 7-2 우리나라의 인구 분포 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 7-2_voc_이촌향도.jpg | 멀리 뉴욕 고층 빌딩 쪽으로 뻗은 도로와 그 길을 달리는 옛 자동차 (Vintage cars on a road to New York (Unsplash).jpg) | Les Anderson · CC0 |
+| 7-2_voc_수도권.jpg | 한국 지도 북서부 — 서울(빨강)을 인천·경기(보라·초록)가 둘러싼 수도권 (Sudogwon.svg, PNG 렌더) | ASDFGHJ · CC BY-SA 3.0 |
+| 7-2_voc_도시화.jpg | 미국 아이오와주 댈러스 카운티 — 농장 건물 뒤로 농지를 메운 새 주택 단지, 2011 (NRCSIA00011 - Iowa (2225)(NRCS Photo Gallery).jpg) | Lynn Betts, USDA NRCS · Public domain |
+
+## 7-3 인구 이동의 요인 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 7-3_voc_이주.jpg | 케냐 소티크에서 이삿짐(소파·가구)을 가득 실은 픽업트럭, 2019 (Putting All Furniture in One "Basket".jpg) | Douglas Mbura · CC BY-SA 4.0 |
+| 7-3_voc_난민.jpg | 자이르(현 콩고 민주 공화국) 고마의 키붐바 난민 캠프 천막들, 1994 (Kibumba refugee camp at Goma, 6506675, 330-CFD-DF-ST-99-05606.jpg) | TSGT Val Gempis (미 국방부) · CC0 |
+| 7-3_voc_정착.jpg | 미국 네브래스카주 벨우드, 개척민이 지어 눌러살던 뗏장집(소드 하우스)과 그 앞의 주인, 1934 (Gustav Rohrich Sod House, Bellwood, Nebraska - photograph.jpg) | W. L. Yanike (HABS) · Public domain |
+
+## 7-4 인구 이동의 영향 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 7-4_voc_유입.jpg | 미국 미네소타 템퍼런스강이 슈피리어호로 흘러 들어가는 어귀, 2024 (Temperance River flowing into Lake Superior (54021077193).jpg) | Courtney Celley / U.S. Fish and Wildlife Service · Public domain |
+| 7-4_voc_유출.jpg | 인도 카르나타카 나라얀푸르 댐 수문에서 물이 쏟아져 나가는 모습, 2025 (Narayanpur Dam spillway discharge downstream Krishna River bridge Karnataka India.jpg) | Vraj Acharya, WELL Labs · CC BY-SA 4.0 |
+| 7-4_voc_원주민.jpg | 경북 안동 하회 마을 — 대대로 살아온 옛 마을 전경, 2022 (Hahoe Folk Village 03.jpg) | Bernard Gagnon · CC0 |
+
+## 7-5 선진국의 인구 문제 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 7-5_voc_저출산.jpg | 전남 무안 몽탄북초등학교 — 2010년 문을 닫은 학교의 빈 운동장 (Mongtanbuk Elementary School Muan.jpg) | nsq · CC BY-SA 3.0 |
+| 7-5_voc_고령화.jpg | 포르투갈 포르투코부 광장 벤치에 앉은 노인들(먼 거리), 2016 (Elderly sitting on a park bench at Praça Marquês de Pombal, Porto Covo, Portugal julesvernex2.jpg) | Jules Verne Times Two · CC BY-SA 4.0 |
+| 7-5_voc_부양.jpg | 주름진 어른 손가락을 꼭 쥔 아기 손, 2021 (Young and Old Hands (51586111200).jpg) | AL.Eyad · CC BY 2.0 |
+
+## 7-6 개발 도상국의 인구 문제 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 7-6_voc_과밀.jpg | 인도 뭄바이 교외 전철 — 문 밖까지 매달린 승객들, 2006 (Mumbai Suburban Railway passengers hanging off doors Mumbai India 17Aug2006.jpg) | Everhard van Eimeren · CC BY-SA 4.0 |
+| 7-6_voc_기아.jpg | 1876~78 인도 대기근 — 마드라스주 벨러리 지방, 쓰러진 소 옆의 굶주린 사람들(『The Graphic』 1877년 10월 6일 판화) (Bellary Zilla,Great Famine of 1876–78..jpg) | Horace Harral · Public domain |
+| 7-6_voc_성비.jpg | 여자·남자 그림이 나란히 그려진 화장실 표지판, 2016 (Restroom sign.jpg) | MarkBuckawicki · CC0 |
+
+## 7-7 우리나라의 인구 문제 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 7-7_voc_노후.jpg | 손을 잡고 걸어가는 노부부의 뒷모습, 2018 (Senior-3336451 1920.jpg) | pasja1000 (Pixabay) · CC0 |
+| 7-7_voc_유급.jpg | 독일 볼켄슈타인 종이 공장 노동자의 주급 봉투(1925), 작센-보헤미아 에르츠산맥 박물관 소장 (Museum sächsisch-böhmisches Erzgebirge Lohntüte.jpg) | Geolina163 · CC BY-SA 4.0 |
+| 7-7_voc_할당.jpg | 여덟 조각으로 나눈 피자(5-1 «분배» 카드와 같은 사진) — 割(나눌)·當(마땅) (Pizza-3007395.jpg) | igorovsyannykov · CC0 |
+
+> 메모: 수도권 지도는 원본이 SVG라 API thumburl(1280px PNG)로 받았다. 원본 폭이 1280 미만인 파일(성비 1024·저출산 1000)은 원본 URL이 429로 막혀 API `iiurlwidth=960` 표준 썸네일(thumburl)을 썼다.
