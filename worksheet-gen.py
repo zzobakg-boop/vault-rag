@@ -1754,7 +1754,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     _segs = re.split(r'(?=<h2>)', content)
     content = ''.join(
         (f'<section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div>{seg}</section>'
-         if seg.startswith('<h2>') and seg[4:].lstrip().startswith(_DO) else seg)
+         if seg.startswith('<h2>') and (seg[4:].lstrip().startswith(_DO) or seg[4:].lstrip().startswith('✅ OX')) else seg)   # 역사 OX 절은 «✅ OX 퀴즈»(교사용 «✅ … 대조» 절은 감싸지 않는다)
         for seg in _segs)
     # ⭐ 6/18: 활동 입력칸(activity-input)이 든 표는 폭 100% 강제 대신 내용 폭(auto)으로.
     #    짧은 단답 칸(120px)이 넓은 셀에 떠 보이는 비율 깨짐 방지 (21-22 학습지 사고).
