@@ -440,3 +440,63 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 11-6_voc_단축.jpg | 공원 잔디밭을 비스듬히 가로질러 사람들이 밟아 생긴 지름길, 포르투갈 리스본 벨렝, 2015 (Desire path (19811581366).jpg) | Metro Centric · CC BY 2.0 |
 | 11-6_voc_횡단.jpg | 위에서 내려다본 시부야 스크램블 교차로 — 사람들이 횡단보도를 가로질러 건넘, 일본 도쿄, 2020 (Scramble from above, SHIBUYA SKY (49367160502) (cropped).jpg) | Sei F from Tokyo, Japan · CC BY-SA 2.0 |
 | 11-6_voc_육로.jpg | 초원 사이로 끝없이 이어지는 흙길, 몽골 울란바토르 동쪽, 2018 (DirtRoadMongolia (1).jpg) | CeeGee · CC BY-SA 4.0 |
+
+# g09 — 사회② Ⅷ 사람이 만든 삶터, 도시 (8-1~8-8) 고급 단어 카드 출처
+
+모든 그림: Wikimedia Commons · API thumburl(iiurlwidth=1280, 원본이 1280보다 작은 2장은 표준 960) → 1.48:1 크롭 → 900×608 JPEG.
+
+## 8-1 기린 뒤에 고층 빌딩이 있는 도시 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 8-1_voc_수도.jpg | 서울 경복궁 광화문 — 나라의 머리 도시 한복판 궁궐 정문, 2016-08 (Gyeongbokgung - Gwanghwamun Gate.jpg) | Yuliya Boda · CC BY-SA 4.0 |
+| 8-1_voc_성지.jpg | 예루살렘 통곡의 벽 앞에서 기도하는 사람들(먼 군중), 2013-12 (Prayers at the Western Wall 2.jpg) | Askii · CC BY-SA 3.0 |
+| 8-1_voc_명성.jpg | 할리우드 명예의 거리 별 — 이름(LEONARD BERNSTEIN)을 새긴 별과 음반 기호, 로스앤젤레스 2012-07 (Los Angeles (California, USA), Hollywood Boulevard, Leonard Bernstein -- 2012 -- 4971.jpg) | Dietmar Rabich · CC BY-SA 4.0 |
+
+## 8-2 다시 가고 싶은 도시의 비밀 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 8-2_voc_수려.jpg | 중국 구이린 리강의 카르스트 봉우리와 강, 2017-05 (The famous Li River karsts now begin to show (35910345682).jpg) | shankar s. · CC BY 2.0 |
+| 8-2_voc_유적.jpg | 그리스 고대 메세네의 쓰러진 기둥 조각들, 2017-09 (Column remains in Ancient Messene.jpg) | Peulle · CC BY-SA 4.0 |
+| 8-2_voc_운치.jpg | 미국 버몬트주 몬트필리어 다리 위 기타 거리 연주자, 2016-10 (Street Musician State Street Bridge Montpelier VT October 2016.jpg) | Artaxerxes · CC BY-SA 3.0 |
+
+## 8-3 도시의 한가운데에서 바깥까지 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 8-3_voc_경관.jpg | 시카고 존 핸콕 센터 전망대에서 내려다본 도심 고층 건물과 호숫가, 2013-11 (Looking South from John Hancock Center Observatory, Chicago, Illinois (11004335326).jpg) | Ken Lund · CC BY-SA 2.0 |
+| 8-3_voc_밀집.jpg | 홍콩 쿼리베이의 창문·에어컨이 빽빽한 고층 아파트 벽면, 2018-01 (Dense city living, Hong Kong (48429963527).jpg) | Romain Pontida · CC BY-SA 2.0 |
+| 8-3_voc_팽창.jpg | 캔버라에서 버너 불로 부풀어 오르는 열기구, 2015-03 (Hot air balloon hot air inflation 1.JPG) | Neuroxic · CC BY 4.0 |
+
+## 8-4 한 평에 6억 원인 땅 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 8-4_voc_지가.jpg | 영국 들판에 세운 「FOR SALE 24 acres of land」 땅 매매 표지판, 2010-12 (Land for sale sign - geograph.org.uk - 2200402.jpg) | Steve Fareham · CC BY-SA 2.0 |
+| 8-4_voc_임대료.jpg | 아일랜드 드로이더 웨스트 스트리트, 셔터 내린 빈 가게에 붙은 「TO LET」(세놓음) 표지, 2011-04 (Drogheda - Shop To Let (35 West Street) (5633906231).jpg) | William Murphy · CC BY-SA 2.0 |
+| 8-4_voc_효율.jpg | 좁은 터에 차를 4층으로 쌓은 기계식 주차 설비(뉴욕 거리), 2024 (Multi-Level-Stack-Parking-in-NYC.jpg) | Rajesh Natraj · CC0 |
+
+## 8-5 굴뚝이 숲처럼 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 8-5_voc_도시화율.jpg | 나라별 도시 인구 비율(0~100%) 세계 지도, 2018 CIA 자료 (Urbanized population 2018.png) — 흰 여백을 붙여 비율 맞춤 | Wikignuthor · CC BY-SA 4.0 |
+| 8-5_voc_가속.jpg | 바늘이 시속 200km를 넘어간 자동차 속도계 (Speedometer (kmh).JPG) | Bluescan (sv.wikipedia) · 퍼블릭 도메인 |
+| 8-5_voc_양식.jpg | 옷 본(패턴)을 트레이싱지에 따라 그린 모습 — 정해진 모양대로 만드는 틀, 2012-11 (Tracing pattern sewing.jpg) | MissMessie · CC BY-SA 2.0 |
+
+## 8-6 63년 차이로 온 같은 안개 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 8-6_voc_체증.jpg | 고속도로에 줄지어 멈춰 선 차들, 2016-08 (Traffic jam on the highway (28733397590).jpg) | Susanne Nilsson · CC BY-SA 2.0 |
+| 8-6_voc_집중.jpg | 도쿄 시부야 스크램블 교차로 한가운데로 몰려든 사람들(장노출로 흐릿한 군중), 2008-05 (Shibuya Crossing (2562167490).jpg) | Michael Day · CC BY 2.0 |
+| 8-6_voc_공공.jpg | 뉴욕 공립 도서관 열람실 — 여럿이 함께 쓰는 긴 책상, 2006-01 (NYC Public Library Research Room Jan 2006.jpg) | Diliff · CC BY 2.5 |
+
+## 8-7 쓰레기 매립지에서 살고 싶은 동네로 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 8-7_voc_쇠퇴.jpg | 미국 펜실베이니아 베들레헴 철강의 녹슨 채 멈춘 용광로, 2018-07 (Bethlehem blast furnaces PA1.jpg) | Acroterion · CC BY-SA 4.0 |
+| 8-7_voc_낙후.jpg | 창을 판자로 막고 덤불에 덮인 빈집, 영국 손힐스 2012 (Boarded up house at Thornhills - geograph.org.uk - 2849591.jpg) | John Slater · CC BY-SA 2.0 |
+| 8-7_voc_확충.jpg | 런던 영국 도서관 옆 증축 공사 현장, 2026-06 (Building site, British Library extension - geograph.org.uk - 8349078.jpg) | Dylan Moore · CC BY-SA 2.0 |
+
+## 8-8 1위 도시는 해마다 바뀐다 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 8-8_voc_풍요.jpg | 인도네시아 서수마트라, 수확 앞둔 누런 논, 2017-06 (Golden Light Before Harvest, Kinari rice field, West Sumatra.jpg) | Dionbagindo · CC BY-SA 4.0 |
+| 8-8_voc_쾌적.jpg | 넓은 잔디밭과 꽃나무 아래 쉬는 사람들(먼 거리), 영국 2011-04 (Relaxing on the lawn - geograph.org.uk - 2361908.jpg) | Stephen Craven · CC BY-SA 2.0 |
+| 8-8_voc_공생.jpg | 말미잘 속에 사는 흰동가리, 파푸아뉴기니 2013-03 (Amphiprion ocellaris (Clown anemonefish) by Nick Hobgood.jpg) | Nick Hobgood · CC BY-SA 3.0 |
