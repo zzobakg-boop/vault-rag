@@ -789,3 +789,65 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-3-4_voc_신성.jpg | [Sacred tree bound with a shimenawa at Suwa Shrine in Nagasaki, 20240815 1403 3686.jpg](https://commons.wikimedia.org/wiki/File%3ASacred_tree_bound_with_a_shimenawa_at_Suwa_Shrine_in_Nagasaki%2C_20240815_1403_3686.jpg) | Jakub Hałun · CC BY 4.0 |
 | 5-3-4_voc_팽창.jpg | [Hot Air Balloon Inflation (20424825693).jpg](https://commons.wikimedia.org/wiki/File%3AHot_Air_Balloon_Inflation_%2820424825693%29.jpg) | Paul VanDerWerf · CC BY 2.0 |
 | 5-3-4_일본제국주의_표지.png | (AI 생성 배경 — Grok Aurora · make-cover.sh) | 자체 제작 · - |
+
+## 6-3-2 서아시아·아프리카 민족 운동 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 6-3-2_세브르.jpg | [Treaty of Sèvres 1920.svg](https://commons.wikimedia.org/wiki/File%3ATreaty_of_S%C3%A8vres_1920.svg) | Spesh531 외(영어판·갱신) · CC BY-SA 4.0 |
+| 6-3-2_여성의원.jpg | [First female MPs of the Turkish Parliament (1935).jpg](https://commons.wikimedia.org/wiki/File%3AFirst_female_MPs_of_the_Turkish_Parliament_%281935%29.jpg) | 작자 미상(원 업로더 Kemalist Yurtsever) · Public domain |
+| 6-3-2_1917편지.jpg | [Balfour declaration unmarked.jpg](https://commons.wikimedia.org/wiki/File%3ABalfour_declaration_unmarked.jpg) | 영국 정부(아서 밸푸어 서명) · Public domain |
+| 6-3-2_1916지도.jpg | [MPK1-426 Sykes Picot Agreement Map signed 8 May 1916.jpg](https://commons.wikimedia.org/wiki/File%3AMPK1-426_Sykes_Picot_Agreement_Map_signed_8_May_1916.jpg) | Royal Geographical Society 지도·영국 국립기록원 MPK 1/426 · Public domain |
+| 6-3-2_파리회의1919.jpg | [A session of the Pan-African Congress, Paris, February 19-22, 1919.jpg](https://commons.wikimedia.org/wiki/File%3AA_session_of_the_Pan-African_Congress%2C_Paris%2C_February_19-22%2C_1919.jpg) | 작자 미상 · Public domain |
+| 6-3-2_voc_망명.jpg | [Sultanvahideddin.jpg](https://commons.wikimedia.org/wiki/File%3ASultanvahideddin.jpg) | 작자 미상 · Public domain |
+| 6-3-2_voc_성지.jpg | [Western Wall and Dome of the Rock 2013.jpg](https://commons.wikimedia.org/wiki/File%3AWestern_Wall_and_Dome_of_the_Rock_2013.jpg) | Radosław Botev · CC BY 3.0 pl |
+| 6-3-2_voc_주둔.jpg | [Australian 9th and 10th battalions Egypt December 1914 AWM C02588.jpeg](https://commons.wikimedia.org/wiki/File%3AAustralian_9th_and_10th_battalions_Egypt_December_1914_AWM_C02588.jpeg) | 작자 미상(오스트레일리아 전쟁기념관 C02588) · Public domain |
+| 6-3-2_voc_반영.jpg | [Cairo-Demonstrations1919.jpg](https://commons.wikimedia.org/wiki/File%3ACairo-Demonstrations1919.jpg) | 작자 미상 · Public domain |
+| 6-3-2_서아시아아프리카민족운동_표지.png | (AI 생성 배경 · Grok Aurora · 자체 제작) | 자체 제작 · - |
+
+## 6-3-1 동아시아·인도 민족 운동 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 6-3-1_오사운동.jpg | [Beijing students protesting the Treaty of Versailles (May 4, 1919).jpg](https://commons.wikimedia.org/wiki/File%3ABeijing_students_protesting_the_Treaty_of_Versailles_%28May_4%2C_1919%29.jpg) | 작자 미상 · Public domain |
+| 6-3-1_황푸.jpg | [Sun Yat-sen in Whampoa Military Academy open ceremony.jpg](https://commons.wikimedia.org/wiki/File%3ASun_Yat-sen_in_Whampoa_Military_Academy_open_ceremony.jpg) | 작자 미상 · Public domain |
+| 6-3-1_소금행진.jpg | [Marche sel.jpg](https://commons.wikimedia.org/wiki/File%3AMarche_sel.jpg) | 작자 미상 · Public domain |
+| 6-3-1_파리청년.jpg | [Nguyen Aïn Nuä'C (Ho-Chi-Minh), délégué indochinois, Congrès communiste de Marseille, 1921, Meurisse, BNF Gallica.jpg](https://commons.wikimedia.org/wiki/File%3ANguyen_A%C3%AFn_Nu%C3%A4%27C_%28Ho-Chi-Minh%29%2C_d%C3%A9l%C3%A9gu%C3%A9_indochinois%2C_Congr%C3%A8s_communiste_de_Marseille%2C_1921%2C_Meurisse%2C_BNF_Gallica.jpg) | Agence Meurisse · Public domain |
+| 6-3-1_반둥재판.jpg | [P.N.I. proces te Bandoeng 1930 - Nationaal Archief.jpg](https://commons.wikimedia.org/wiki/File%3AP.N.I._proces_te_Bandoeng_1930_-_Nationaal_Archief.jpg) | Fotograaf Onbekend / DLC (Nationaal Archief) · CC0 |
+| 6-3-1_voc_자치.jpg | [Landsgemeinde Glarus, 2009.jpg](https://commons.wikimedia.org/wiki/File%3ALandsgemeinde_Glarus%2C_2009.jpg) | Marc Schlumpf · CC BY-SA 3.0 |
+| 6-3-1_voc_조인.jpg | [Signatures du traité de Versailles 28 juin 1919 - page 215.jpg](https://commons.wikimedia.org/wiki/File%3ASignatures_du_trait%C3%A9_de_Versailles_28_juin_1919_-_page_215.jpg) | Amalgamated Press Ltd · Public domain |
+| 6-3-1_voc_불매.jpg | [Burn Japanese goods, Tsinghua School, 1919.jpg](https://commons.wikimedia.org/wiki/File%3ABurn_Japanese_goods%2C_Tsinghua_School%2C_1919.jpg) | Tsinghua University · Public domain |
+| 6-3-1_voc_군벌.jpg | [Zhang Zuolin3.jpg](https://commons.wikimedia.org/wiki/File%3AZhang_Zuolin3.jpg) | 작자 미상 · Public domain |
+| 6-3-1_동아시아인도민족운동_표지.png | (AI 생성 배경 · Grok Aurora · make-cover.sh) | 자체 제작 · 자체 제작 |
+
+## 5-3-5 조선 국민 국가 건설 운동 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 5-3-5_연무당조약.jpg | [GanghwaTreaty.jpg](https://commons.wikimedia.org/wiki/File%3AGanghwaTreaty.jpg) | 작자 미상(일본 판화, 1880년 무렵) · Public domain |
+| 5-3-5_김옥균.jpg | [Kim Ok-kyun's 1880s.jpg](https://commons.wikimedia.org/wiki/File%3AKim_Ok-kyun%27s_1880s.jpg) | 작자 미상(1881) · Public domain |
+| 5-3-5_전봉준.jpg | [Jeon Bong-jun under arrest (27 February 1895).jpg](https://commons.wikimedia.org/wiki/File%3AJeon_Bong-jun_under_arrest_%2827_February_1895%29.jpg) | 무라카미 덴신(村上天眞) · Public domain |
+| 5-3-5_독립신문.jpg | [독립신문 제4권 108호.jpg](https://commons.wikimedia.org/wiki/File%3A%EB%8F%85%EB%A6%BD%EC%8B%A0%EB%AC%B8_%EC%A0%9C4%EA%B6%8C_108%ED%98%B8.jpg) | 국립중앙박물관 · KOGL Type 1 |
+| 5-3-5_독립문.jpg | [독립문 (1900s).jpg](https://commons.wikimedia.org/wiki/File%3A%EB%8F%85%EB%A6%BD%EB%AC%B8_%281900s%29.jpg) | 작자 미상(1900년대) · Public domain |
+| 5-3-5_황궁우.jpg | [Temple of Heaven in Seoul Korea.jpg](https://commons.wikimedia.org/wiki/File%3ATemple_of_Heaven_in_Seoul_Korea.jpg) | 작자 미상(일제 강점기 엽서 · 올린 이 KEIM) · Public domain |
+| 5-3-5_의병.jpg | [Company of Korean rebels 1907 by F.A. McKenzie.png](https://commons.wikimedia.org/wiki/File%3ACompany_of_Korean_rebels_1907_by_F.A._McKenzie.png) | F. A. 매켄지(Frederick Arthur McKenzie) · Public domain |
+| 5-3-5_voc_개화.jpg | [Seoul Korea 1899 Streetcar.jpg](https://commons.wikimedia.org/wiki/File%3ASeoul_Korea_1899_Streetcar.jpg) | 작자 미상 · CC BY 4.0 |
+| 5-3-5_voc_봉기.jpg | [Black-banded honeybee (Apis nigrocincta), swarming behavior (Bukidnon, Mindanao, Philippines) 00.jpg](https://commons.wikimedia.org/wiki/File%3ABlack-banded_honeybee_%28Apis_nigrocincta%29%2C_swarming_behavior_%28Bukidnon%2C_Mindanao%2C_Philippines%29_00.jpg) | Obsidian Soul · CC0 |
+| 5-3-5_voc_병합.jpg | [Aerial image of the Deutsches Eck.jpg](https://commons.wikimedia.org/wiki/File%3AAerial_image_of_the_Deutsches_Eck.jpg) | Carsten Steger · CC BY-SA 4.0 |
+| 5-3-5_voc_수호.jpg | [Deoksugungchangingofguard1.jpg](https://commons.wikimedia.org/wiki/File%3ADeoksugungchangingofguard1.jpg) | Flickr 사용자 32005048@N06 · CC BY 2.0 |
+| 5-3-5_조선국민국가운동_표지.png | 자체 제작(AI 생성 배경 + 한글 오버레이) | — |
+
+## 5-3-1 오스만 제국 국민 국가 건설 운동 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 5-3-1_환자풍자.jpg | [The sick man of Europe is being doctored at last - JM Staniforth.png](https://commons.wikimedia.org/wiki/File%3AThe_sick_man_of_Europe_is_being_doctored_at_last_-_JM_Staniforth.png) | Joseph Morewood Staniforth (1898) · Public domain |
+| 5-3-1_압뒬메지트.jpg | [Abdulmejid I (1823-1861).jpg](https://commons.wikimedia.org/wiki/File%3AAbdulmejid_I_%281823-1861%29.jpg) | 작가 미기재 · Public domain |
+| 5-3-1_재상사진.jpg | [Nadar - Portrait of Midhat Pasha.jpg](https://commons.wikimedia.org/wiki/File%3ANadar_-_Portrait_of_Midhat_Pasha.jpg) | Nadar · Public domain |
+| 5-3-1_의회개원.jpg | [Opening of the Turkish Parliament by the Sultan, at the Palace of Dolma-Bagtche, Constantinople - ILN 1877.jpg](https://commons.wikimedia.org/wiki/File%3AOpening_of_the_Turkish_Parliament_by_the_Sultan%2C_at_the_Palace_of_Dolma-Bagtche%2C_Constantinople_-_ILN_1877.jpg) | The Illustrated London News (1877-04-07) · Public domain |
+| 5-3-1_혁명전단.jpg | [Young Turk Revolution - Flyer for the constitution.png](https://commons.wikimedia.org/wiki/File%3AYoung_Turk_Revolution_-_Flyer_for_the_constitution.png) | Charles Roden Buxton (Turkey in Revolution, 1909) · Public domain |
+| 5-3-1_voc_쇠퇴.jpg | [Ruined castle wall - geograph.org.uk - 5917727.jpg](https://commons.wikimedia.org/wiki/File%3ARuined_castle_wall_-_geograph.org.uk_-_5917727.jpg) | N Chadwick · CC BY-SA 2.0 |
+| 5-3-1_voc_헌법.jpg | [Kanun-i Esasi.jpg](https://commons.wikimedia.org/wiki/File%3AKanun-i_Esasi.jpg) | Ahmed Kamil Printing House (1876) · Public domain |
+| 5-3-1_voc_의회.jpg | [A Sitting of the New Turkish Parliament at Constantinople - ILN 1877.jpg](https://commons.wikimedia.org/wiki/File%3AA_Sitting_of_the_New_Turkish_Parliament_at_Constantinople_-_ILN_1877.jpg) | The Illustrated London News (1877) · Public domain |
+| 5-3-1_voc_언론.jpg | [Le Progrès de Salonique 25 July 1908.JPG](https://commons.wikimedia.org/wiki/File%3ALe_Progr%C3%A8s_de_Salonique_25_July_1908.JPG) | Progrès de Salonique · Public domain |
+| 5-3-1_오스만국민국가운동_표지.png | (AI 생성 배경 grok-imagine-image-2.0 + PIL 한글) | 자체 제작 · - |
