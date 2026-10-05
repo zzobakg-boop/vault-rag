@@ -350,7 +350,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 3-2-4_이드리시지도.jpg | [Al-Idrisi's world map.JPG](https://commons.wikimedia.org/wiki/File%3AAl-Idrisi%27s_world_map.JPG) | al-Idrisi(원본 1154) · Public domain |
 | 3-2-4_의학전범.jpg | [The Canon of Medicine.jpg](https://commons.wikimedia.org/wiki/File%3AThe_Canon_of_Medicine.jpg) | Coffeetalkh · CC BY-SA 3.0 |
 | 3-2-4_voc_교역.jpg | [Caravan in the desert.jpg](https://commons.wikimedia.org/wiki/File%3ACaravan_in_the_desert.jpg) | Sergey Pesterev · CC BY-SA 4.0 |
-| 3-2-4_voc_금융.jpg | [Khalili Collection Hajj and Arts of Pilgrimage AV 1032a.jpg](https://commons.wikimedia.org/wiki/File%3AKhalili_Collection_Hajj_and_Arts_of_Pilgrimage_AV_1032a.jpg) | Khalili Collections · CC BY-SA 3.0 IGO |
+| 3-2-4_voc_화폐.jpg | [Khalili Collection Hajj and Arts of Pilgrimage AV 1032a.jpg](https://commons.wikimedia.org/wiki/File%3AKhalili_Collection_Hajj_and_Arts_of_Pilgrimage_AV_1032a.jpg) | Khalili Collections · CC BY-SA 3.0 IGO |
 | 3-2-4_voc_규범.jpg | [Berlin, gr.2" Zu 5956 Samarkand Samarkand Kufic Quran facsimile fol 259r Sura 18 Aya 94.jpg](https://commons.wikimedia.org/wiki/File%3ABerlin%2C_gr.2%22_Zu_5956_Samarkand_Samarkand_Kufic_Quran_facsimile_fol_259r_Sura_18_Aya_94.jpg) | 작자 미상 · Public domain |
 | 3-2-4_voc_집대성.jpg | [Maqamat hariri.jpg](https://commons.wikimedia.org/wiki/File%3AMaqamat_hariri.jpg) | 작자 미상 · Public domain |
 | 3-2-4_이슬람문화권_표지.png | 자체 제작(AI 생성 배경 + 한글 오버레이) | — |
