@@ -339,3 +339,60 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 6-1_voc_주권.jpg | 회원국 국기가 크기 차이 없이 나란히 선 «국기의 길», 제네바 유엔 사무소, 2021 — 主(주인)·權(권세) (Alley of flags UNO Geneva.jpg) | Tinux · CC0 |
 | 6-1_voc_권위.jpg | 경복궁 근정전 어좌와 일월오봉도, 2014 — 權(권세)·威(위엄) (Seoul Throne in Geunjeongjeon 01.jpg) | Spike · CC BY-SA 4.0 |
 | 6-1_voc_공존.jpg | 한 풀밭에서 함께 풀을 뜯는 누 떼와 얼룩말, 탄자니아 응고롱고로 — 共(함께)·存(있을) (Blue Wildebeests (Connochaetes taurinus) and Plains Zebras (Equus quagga) gathered together in the short grass of the Ngorongoro Crater, Tanzania.jpg) | Rasheedhrasheed · CC BY-SA 4.0 |
+
+## 3-2-4 이슬람 문화권 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 3-2-4_다우선.jpg | [Arab ship or Indian ocean ship from 13th century Maqamat al-Hariri, reproduced in 1883 French edition of Ajayib al-Hind.jpg](https://commons.wikimedia.org/wiki/File%3AArab_ship_or_Indian_ocean_ship_from_13th_century_Maqamat_al-Hariri%2C_reproduced_in_1883_French_edition_of_Ajayib_al-Hind.jpg) | Yaḥyā ibn Maḥmūd al-Wāsiṭī · Public domain |
+| 3-2-4_사마라탑.jpg | [Samara spiralovity minaret rijen1973.jpg](https://commons.wikimedia.org/wiki/File%3ASamara_spiralovity_minaret_rijen1973.jpg) | IgorF · CC BY-SA 3.0 |
+| 3-2-4_아스트롤라베.jpg | [Planispheric Astrolabe MET DP105325.jpg](https://commons.wikimedia.org/wiki/File%3APlanispheric_Astrolabe_MET_DP105325.jpg) | Metropolitan Museum of Art · CC0 |
+| 3-2-4_이드리시지도.jpg | [Al-Idrisi's world map.JPG](https://commons.wikimedia.org/wiki/File%3AAl-Idrisi%27s_world_map.JPG) | al-Idrisi(원본 1154) · Public domain |
+| 3-2-4_의학전범.jpg | [The Canon of Medicine.jpg](https://commons.wikimedia.org/wiki/File%3AThe_Canon_of_Medicine.jpg) | Coffeetalkh · CC BY-SA 3.0 |
+| 3-2-4_voc_교역.jpg | [Caravan in the desert.jpg](https://commons.wikimedia.org/wiki/File%3ACaravan_in_the_desert.jpg) | Sergey Pesterev · CC BY-SA 4.0 |
+| 3-2-4_voc_금융.jpg | [Khalili Collection Hajj and Arts of Pilgrimage AV 1032a.jpg](https://commons.wikimedia.org/wiki/File%3AKhalili_Collection_Hajj_and_Arts_of_Pilgrimage_AV_1032a.jpg) | Khalili Collections · CC BY-SA 3.0 IGO |
+| 3-2-4_voc_규범.jpg | [Berlin, gr.2" Zu 5956 Samarkand Samarkand Kufic Quran facsimile fol 259r Sura 18 Aya 94.jpg](https://commons.wikimedia.org/wiki/File%3ABerlin%2C_gr.2%22_Zu_5956_Samarkand_Samarkand_Kufic_Quran_facsimile_fol_259r_Sura_18_Aya_94.jpg) | 작자 미상 · Public domain |
+| 3-2-4_voc_집대성.jpg | [Maqamat hariri.jpg](https://commons.wikimedia.org/wiki/File%3AMaqamat_hariri.jpg) | 작자 미상 · Public domain |
+| 3-2-4_이슬람문화권_표지.png | 자체 제작(AI 생성 배경 + 한글 오버레이) | — |
+
+## 9-1 농업의 세계화 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 9-1_voc_원산지.jpg | 오렌지 과수원에서 막 딴 오렌지를 상자에 담는 일꾼들, 미국 캘리포니아 샌타애나, 1900년 무렵 (Orange fruit pickers, Santa Ana, ca.1900 (CHS-154).jpg) | 작자 미상 · 퍼블릭 도메인 |
+| 9-1_voc_광활.jpg | 끝없이 트인 몽골 초원, 2011 (Mongolian Steppes (6228096139).jpg) | Francisco Anzola · CC BY 2.0 |
+| 9-1_voc_종자.jpg | 여러 손바닥에 올린 갖가지 씨앗, 2019 (ECHO seeds in hand.jpg) | Deejriley · CC BY-SA 4.0 |
+
+## 9-2 농업 세계화의 영향 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 9-2_voc_개방.jpg | 활짝 열린 나무 대문 너머 연등 마당, 경주 불국사, 2024 (Open gate leaning to a courtyard of colorful paper lanterns at Bulguksa temple in Gyeongju South Korea.jpg) | Basile Morin · CC BY-SA 4.0 |
+| 9-2_voc_방부제.jpg | 사흘 만에 곰팡이가 핀 빵, 2006 (Mouldy bread.jpg) | Matt Wharton · CC BY-SA 2.0 |
+| 9-2_voc_공정.jpg | 두 접시가 수평을 이룬 옛 접시저울, 2011 (Balance scale IMGP9722.jpg) | Nikodem Nijaki · CC BY-SA 3.0 |
+
+## 9-3 다국적 기업의 공간적 분업 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 9-3_voc_분업.jpg | 컨베이어 라인에서 노동자마다 한 공정씩 맡아 조립하는 모습, 미국 포드 공장, 1913 (Ford assembly line - 1913 (restored).jpg) | 작자 미상 · 퍼블릭 도메인 |
+| 9-3_voc_원료.jpg | 무두질을 마친 소가죽 원단 여러 장, 필리핀 메이카우아얀 가죽 공방 제품 매장, 2025 (Tannery Manila luxury leather cow hideF.jpg) | Valenzuela400 · CC BY-SA 4.0 |
+| 9-3_voc_확보.jpg | «Table Réservée» 팻말을 세워 미리 잡아 둔 카페 탁자 (Reserved table sign.jpg) | David Baron · CC BY-SA 2.0 |
+
+## 9-4 다국적 기업과 생산 지역 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 9-4_voc_이전.jpg | 이삿짐 트럭, 미국 미시간주 입실랜티, 2012 (Mayflower Moving Truck Ypsilanti Michigan.JPG) | Dwight Burdette · CC BY 3.0 |
+| 9-4_voc_폐쇄.jpg | 쇠사슬과 자물쇠로 잠긴 주차장 문, 미국 캘리포니아 이스턴 시에라 합동 방문자 센터, 2013년 연방정부 셧다운 때 (Gov't Shutdown, Locked.. - Flickr - daveynin.jpg) | daveynin · CC BY 2.0 |
+| 9-4_voc_실직.jpg | 대공황 때 무료 급식소 앞에 줄 선 실업자들, 미국 시카고, 1931년 2월 (Unemployed men queued outside a depression soup kitchen opened in Chicago by Al Capone, 02-1931 - NARA - 541927 (cropped).jpg) | 작자 미상(미국 국립문서기록관리청) · 퍼블릭 도메인 |
+
+## 9-5 서비스업의 세계화 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 9-5_voc_욕구.jpg | 크리스마스 장난감 진열창을 들여다보는 소년, 미국 뉴욕, 1910년대 (Boy looking at Xmas toys in shop window LCCN2014684428.jpg) | Bain News Service · 퍼블릭 도메인 |
+| 9-5_voc_오지.jpg | 캅카스산맥 깊숙이 자리한 산골 마을 히날루그, 아제르바이잔, 2021 (Azərbaycan, Xınalıq. Azerbaijan, Khinalug.jpg) | Musa Abdulragimli · CC BY-SA 4.0 |
+| 9-5_voc_임대.jpg | 빨간 «FOR RENT» 임대 팻말, 2012 (For-rent-sign.jpg) | Photos public domain · 퍼블릭 도메인 |
+
+## 9-6 서비스업 세계화와 생활 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 9-6_voc_대행.jpg | 여행사 창구가 늘어선 공항 «Reisemarkt», 독일 뮌헨 공항 제1터미널, 2006 (Travel agent counters at Franz Josef Strauss International Airport near Munich, Germany (Terminal 1) 2006-04-30.jpg) | Mattes · 퍼블릭 도메인 |
+| 9-6_voc_제휴.jpg | 카페 탁자 위에서 맞잡은 두 손, 2017 (Business agreement handshake at coffee shop.jpg) | rawpixel.com · CC0 |
+| 9-6_voc_대중화.jpg | 공연장 객석에서 저마다 스마트폰을 든 관객들, 홍콩 북구대회당, 2022 (HK NDH 上水 Sheung Shui 北區大會堂 Northern District City Hall Theatre 舞臺 stage 台下觀眾 Audience visitors holding smartphones camera night June 2022 SS2 01.jpg) | BorGorZHUTze M0615 · CC BY-SA 4.0 |
