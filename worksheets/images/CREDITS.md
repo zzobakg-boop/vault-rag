@@ -865,3 +865,75 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-2-1_voc_독재.jpg | [Germany, King's Throne Room, Munich, Munich Residence.jpg](https://commons.wikimedia.org/wiki/File%3AGermany%2C_King%27s_Throne_Room%2C_Munich%2C_Munich_Residence.jpg) | Wilfredor · CC0 |
 | 7-2-1_voc_진압.jpg | [Members from the 3rd Iraqi Federal Police, line up in a riot control formation at Ghuzlani Training Site of Ninewa province, Iraq, June 25, 2011 110625-A-YV529-002.jpg](https://commons.wikimedia.org/wiki/File%3AMembers_from_the_3rd_Iraqi_Federal_Police%2C_line_up_in_a_riot_control_formation_at_Ghuzlani_Training_Site_of_Ninewa_province%2C_Iraq%2C_June_25%2C_2011_110625-A-YV529-002.jpg) | PFC Nikko-Angelo Matos, U.S. Army · Public domain |
 | 7-2-1_반전평화운동_표지.png | (AI 생성 배경 · Grok Aurora + PIL 한글) | 자체 제작 · 자체 제작 |
+
+## 7-2-2 민권·노동·여성 운동 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 7-2-2_버스.jpg | [Rosa Parks Bus.jpg](https://commons.wikimedia.org/wiki/File%3ARosa_Parks_Bus.jpg) | Rmhermen · CC BY-SA 3.0 |
+| 7-2-2_링컨기념관군중.jpg | [Civil Rights March on Washington, D.C. (Aerial view of the crowd assembling with a good view of the Reflecting Pool... - NARA - 542047.tif](https://commons.wikimedia.org/wiki/File%3ACivil_Rights_March_on_Washington%2C_D.C._%28Aerial_view_of_the_crowd_assembling_with_a_good_view_of_the_Reflecting_Pool..._-_NARA_-_542047.tif) | U.S. National Archives and Records Administration (작가 미상) · Public domain |
+| 7-2-2_더반해변.jpg | [DurbanSign1989.jpg](https://commons.wikimedia.org/wiki/File%3ADurbanSign1989.jpg) | Guinnog · CC BY-SA 3.0 |
+| 7-2-2_여성행진.jpg | [Leffler - WomensLib1970 WashingtonDC (cropped).jpg](https://commons.wikimedia.org/wiki/File%3ALeffler_-_WomensLib1970_WashingtonDC_%28cropped%29.jpg) | Warren K. Leffler (U.S. News & World Report, Library of Congress) · Public domain |
+| 7-2-2_voc_분리.jpg | [At the bus station in Durham, North Carolina. 1940.jpg](https://commons.wikimedia.org/wiki/File%3AAt_the_bus_station_in_Durham%2C_North_Carolina._1940.jpg) | Jack Delano (FSA/OWI, Library of Congress) · Public domain |
+| 7-2-2_voc_행진.jpg | [Selma to Montgomery Marches.jpg](https://commons.wikimedia.org/wiki/File%3ASelma_to_Montgomery_Marches.jpg) | Peter Pettus (Library of Congress) · Public domain |
+| 7-2-2_voc_종신형.jpg | [Nelson Mandela's prison cell at Robben Island.jpg](https://commons.wikimedia.org/wiki/File%3ANelson_Mandela%27s_prison_cell_at_Robben_Island.jpg) | www.namastesouthafrica.com · CC BY 3.0 |
+| 7-2-2_민권노동여성운동_표지.png | (AI 생성 배경 — Grok Aurora grok-imagine-image-2.0, 한글 PIL 오버레이) | 자체 제작 · 자체 제작 |
+
+## 7-2-3 환경 운동 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 7-2-3_카슨.jpg | [Rachel-Carson.jpg](https://commons.wikimedia.org/wiki/File%3ARachel-Carson.jpg) | U.S. Fish and Wildlife Service · Public domain |
+| 7-2-3_아랄해위성.jpg | [AralSea1989 2014.jpg](https://commons.wikimedia.org/wiki/File%3AAralSea1989_2014.jpg) | NASA (collage by Producercunningham) · Public domain |
+| 7-2-3_아랄해배.jpg | [Moynaq, Aral Sea (6226807306).jpg](https://commons.wikimedia.org/wiki/File%3AMoynaq%2C_Aral_Sea_%286226807306%29.jpg) | Arian Zwegers · CC BY 2.0 |
+| 7-2-3_스톡홀름.jpg | [UN-environment-in-Stockholm-1972.jpg](https://commons.wikimedia.org/wiki/File%3AUN-environment-in-Stockholm-1972.jpg) | Unknown author / Pressens Bild · Public domain |
+| 7-2-3_레인보워리어.jpg | [Rainbow Warrior III.JPG](https://commons.wikimedia.org/wiki/File%3ARainbow_Warrior_III.JPG) | Illegal-Mexican · CC BY-SA 3.0 |
+| 7-2-3_voc_배출.jpg | [Berlin- An electricity power plant smokestack in - 3982.jpg](https://commons.wikimedia.org/wiki/File%3ABerlin-_An_electricity_power_plant_smokestack_in_-_3982.jpg) | Jorge Royan · CC BY-SA 3.0 |
+| 7-2-3_voc_악화.jpg | [Beijing smog comparison August 2005.png](https://commons.wikimedia.org/wiki/File%3ABeijing_smog_comparison_August_2005.png) | Bobak · CC BY-SA 2.5 |
+| 7-2-3_voc_침수.jpg | [Sunken cars on flooded street in Cedar Rapids Iowa.jpg](https://commons.wikimedia.org/wiki/File%3ASunken_cars_on_flooded_street_in_Cedar_Rapids_Iowa.jpg) | Don Becker, USGS · Public domain |
+| 7-2-3_voc_보전.jpg | [Hatchlings released at Turtle Islands Wildlife Sanctuary.jpg](https://commons.wikimedia.org/wiki/File%3AHatchlings_released_at_Turtle_Islands_Wildlife_Sanctuary.jpg) | Bangsamoro Ministry of Environment, Natural Resources, and Energy · Public domain |
+| 7-2-3_환경운동_표지.png | (AI 생성 배경 · Grok Aurora make-cover.sh + cover_overlay) | 자체 제작 · 자체 제작 |
+
+## 7-3-1 새로운 세계 질서 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 7-3-1_폭스바겐공장.jpg | [Volkswagen Assembly Line in Wolfsburg (1960).jpg](https://commons.wikimedia.org/wiki/File%3AVolkswagen_Assembly_Line_in_Wolfsburg_%281960%29.jpg) | Roger Wollstadt · CC BY-SA 2.0 |
+| 7-3-1_석유통.jpg | [SOME MOTORISTS RAN OUT OF GAS SUCH AS THIS MAN IN PORTLAND AND HAD TO STAND IN LINE WITH A GAS CAN DURING THE FUEL... - NARA - 555460.jpg](https://commons.wikimedia.org/wiki/File%3ASOME_MOTORISTS_RAN_OUT_OF_GAS_SUCH_AS_THIS_MAN_IN_PORTLAND_AND_HAD_TO_STAND_IN_LINE_WITH_A_GAS_CAN_DURING_THE_FUEL..._-_NARA_-_555460.jpg) | David Falconer (미국 국립 기록 관리청 DOCUMERICA) · Public domain |
+| 7-3-1_부산항.jpg | [Busan Container Terminal 2006.jpg](https://commons.wikimedia.org/wiki/File%3ABusan_Container_Terminal_2006.jpg) | Niels Johannes · CC BY-SA 4.0 |
+| 7-3-1_케밥.jpg | [Döner Kebab, Berlin, 2010 (01).jpg](https://commons.wikimedia.org/wiki/File%3AD%C3%B6ner_Kebab%2C_Berlin%2C_2010_%2801%29.jpg) | AleGranholm · CC BY 2.0 |
+| 7-3-1_voc_위축.jpg | [WiltedSunflower.jpg](https://commons.wikimedia.org/wiki/File%3AWiltedSunflower.jpg) | TheBrick517 · CC BY 4.0 |
+| 7-3-1_voc_관세.jpg | [Customs Post in Sabi (4321896336).jpg](https://commons.wikimedia.org/wiki/File%3ACustoms_Post_in_Sabi_%284321896336%29.jpg) | Barry Pousman · CC BY 2.0 |
+| 7-3-1_voc_개방.jpg | [Open gate leaning to a courtyard of colorful paper lanterns at Bulguksa temple in Gyeongju South Korea.jpg](https://commons.wikimedia.org/wiki/File%3AOpen_gate_leaning_to_a_courtyard_of_colorful_paper_lanterns_at_Bulguksa_temple_in_Gyeongju_South_Korea.jpg) | Basile Morin · CC BY-SA 4.0 |
+| 7-3-1_voc_격차.jpg | [Kochi India slums.jpg](https://commons.wikimedia.org/wiki/File%3AKochi_India_slums.jpg) | k r ranjith · CC BY 2.0 |
+| 7-3-1_새세계질서_표지.png | (AI 생성 배경 · Grok Aurora grok-imagine-image-2.0 + PIL 한글) | 자체 제작 · - |
+
+## 7-3-2 과학 기술과 대중문화 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 7-3-2_달착륙.jpg | [Aldrin Apollo 11 original.jpg](https://commons.wikimedia.org/wiki/File%3AAldrin_Apollo_11_original.jpg) | Neil Armstrong / NASA · Public domain |
+| 7-3-2_제트기.jpg | [BOAC Comet 1952.jpg](https://commons.wikimedia.org/wiki/File%3ABOAC_Comet_1952.jpg) | Ministry of Information official photographer · Public domain |
+| 7-3-2_에니악.jpg | [Glen Beck and Betty Snyder program the ENIAC in building 328 at the Ballistic Research Laboratory.jpg](https://commons.wikimedia.org/wiki/File%3AGlen_Beck_and_Betty_Snyder_program_the_ENIAC_in_building_328_at_the_Ballistic_Research_Laboratory.jpg) | U.S. Army (unknown author) · Public domain |
+| 7-3-2_텔레비전.jpg | [Family watching television 1958.jpg](https://commons.wikimedia.org/wiki/File%3AFamily_watching_television_1958.jpg) | Evert F. Baumgardner / U.S. National Archives · Public domain |
+| 7-3-2_voc_궤도.jpg | [One-point perspective of the Dresser Subdivision railway.jpg](https://commons.wikimedia.org/wiki/File%3AOne-point_perspective_of_the_Dresser_Subdivision_railway.jpg) | PinchyCC · CC BY 4.0 |
+| 7-3-2_voc_비약.jpg | [Athlete performing the broad jump, or standing long jump, at the Turner Games.jpg](https://commons.wikimedia.org/wiki/File%3AAthlete_performing_the_broad_jump%2C_or_standing_long_jump%2C_at_the_Turner_Games.jpg) | Louis Melsheimer · Public domain |
+| 7-3-2_voc_방사선.jpg | [First medical X-ray by Wilhelm Röntgen of his wife Anna Bertha Ludwig's hand - 18951222.jpg](https://commons.wikimedia.org/wiki/File%3AFirst_medical_X-ray_by_Wilhelm_R%C3%B6ntgen_of_his_wife_Anna_Bertha_Ludwig%27s_hand_-_18951222.jpg) | Wilhelm Röntgen · Public domain |
+| 7-3-2_voc_복제.jpg | [Sheet of China Shanghai 1893 2c Jubilee stamps cto.JPG](https://commons.wikimedia.org/wiki/File%3ASheet_of_China_Shanghai_1893_2c_Jubilee_stamps_cto.JPG) | Government of China (Shanghai Local Post) · Public domain |
+| 7-3-2_과학기술대중문화_표지.png | (AI 생성 배경 · Grok Aurora + PIL 한글) | 자체 제작 · 자체 제작 |
+
+## 7-3-3 현대 세계의 문제와 해결 노력 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 7-3-3_모스타르다리.jpg | [Mostar Old Town Panorama 2007.jpg](https://commons.wikimedia.org/wiki/File%3AMostar_Old_Town_Panorama_2007.jpg) | Ramirez · CC BY-SA 4.0 |
+| 7-3-3_추모연못.jpg | [New York - National September 11 Memorial South Pool - April 2012 - 9693C.jpg](https://commons.wikimedia.org/wiki/File%3ANew_York_-_National_September_11_Memorial_South_Pool_-_April_2012_-_9693C.jpg) | NormanB · CC BY-SA 3.0 |
+| 7-3-3_남중국해지도.jpg | [South China Sea claims map.svg](https://commons.wikimedia.org/wiki/File%3ASouth_China_Sea_claims_map.svg) | Voice of America (vectorised by HueMan1) · Public domain |
+| 7-3-3_밤의지구.jpg | [Earth's City Lights by DMSP, 1994-1995 (large).jpg](https://commons.wikimedia.org/wiki/File%3AEarth%27s_City_Lights_by_DMSP%2C_1994-1995_%28large%29.jpg) | NASA GSFC (Craig Mayhew, Robert Simmon) · NOAA NGDC · Public domain |
+| 7-3-3_평화유지군.jpg | [LAF and UNIFIL Joint Patrol along the Blue Line with Pte Mark Slattery of Clare(3) (6868975337).jpg](https://commons.wikimedia.org/wiki/File%3ALAF_and_UNIFIL_Joint_Patrol_along_the_Blue_Line_with_Pte_Mark_Slattery_of_Clare%283%29_%286868975337%29.jpg) | Irish Defence Forces · CC BY 2.0 |
+| 7-3-3_황금레코드.jpg | [The Sounds of Earth Record Cover - GPN-2000-001978.jpg](https://commons.wikimedia.org/wiki/File%3AThe_Sounds_of_Earth_Record_Cover_-_GPN-2000-001978.jpg) | NASA/JPL · Public domain |
+| 7-3-3_voc_매립.jpg | [Palm Island Resort.jpg](https://commons.wikimedia.org/wiki/File%3APalm_Island_Resort.jpg) | Leroy Chiao (NASA, ISS) · Public domain |
+| 7-3-3_voc_기아.jpg | [Empty white bowl.png](https://commons.wikimedia.org/wiki/File%3AEmpty_white_bowl.png) | Alorin · CC BY 4.0 |
+| 7-3-3_voc_사면.jpg | [CELL DOOR IN OPEN POSITION - Hale Paahao (Prison), Wainee and Prison Roads, Lahaina, Maui County, HI HABS HI,5-LAHA,4-8.tif](https://commons.wikimedia.org/wiki/File%3ACELL_DOOR_IN_OPEN_POSITION_-_Hale_Paahao_%28Prison%29%2C_Wainee_and_Prison_Roads%2C_Lahaina%2C_Maui_County%2C_HI_HABS_HI%2C5-LAHA%2C4-8.tif) | Historic American Buildings Survey (Library of Congress) · Public domain |
+| 7-3-3_voc_실천.jpg | [Footprints in the sand - geograph.org.uk - 6403260.jpg](https://commons.wikimedia.org/wiki/File%3AFootprints_in_the_sand_-_geograph.org.uk_-_6403260.jpg) | John Lucas · CC BY-SA 2.0 |
+| 7-3-3_현대세계과제_표지.png | (AI 생성 배경 · Grok Aurora + PIL 한글) | 자체 제작 · — |
