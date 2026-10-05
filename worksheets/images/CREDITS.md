@@ -217,23 +217,23 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 파일 | 원본 | 저작자 · 라이선스 |
 |---|---|---|
 | 3-2-5_voc_라틴.jpg | [Trajan (2959610060).jpg](https://commons.wikimedia.org/wiki/File%3ATrajan_%282959610060%29.jpg) | Jeremy Keith from Brighton &amp; Hove, United Kingdom · CC BY 2.0 |
-| 3-2-5_voc_성상.jpg | [Christ Icon Sinai 6th century.jpg](https://commons.wikimedia.org/wiki/File%3AChrist_Icon_Sinai_6th_century.jpg) | 작자 미상 · Public domain |
+| 3-2-5_voc_멸망.jpg | [Claude Lorrain - Capriccio with ruins of the Roman Forum - Google Art Project.jpg](https://commons.wikimedia.org/wiki/File%3AClaude_Lorrain_-_Capriccio_with_ruins_of_the_Roman_Forum_-_Google_Art_Project.jpg) | Claude Lorrain · Public domain |
 | 3-2-5_voc_수장.jpg | [Justinian mosaic, San Vitale, consecrated 547, Ravenna, Italy.jpg](https://commons.wikimedia.org/wiki/File%3AJustinian_mosaic%2C_San_Vitale%2C_consecrated_547%2C_Ravenna%2C_Italy.jpg) | Steven Zucker · CC BY 2.0 |
 | 3-2-5_voc_용병.jpg | [Wapen 1545 Straßburg (Strasbourg) koloriert.png](https://commons.wikimedia.org/wiki/File%3AWapen_1545_Stra%C3%9Fburg_%28Strasbourg%29_koloriert.png) | Jakob Kallenberg · Public domain |
 | 3-2-5_voc_융합.jpg | [In-stream inoculation addition while molten cast iron is poured to a green sand mold in a foundry in Bangladesh.jpg](https://commons.wikimedia.org/wiki/File%3AIn-stream_inoculation_addition_while_molten_cast_iron_is_poured_to_a_green_sand_mold_in_a_foundry_in_Bangladesh.jpg) | Sm faysal · CC BY-SA 4.0 |
 | 3-3-5_voc_르네상스.jpg | [The School of Athens Fresco by Raphael (Ank Kumar, Infosys Limited) 02.jpg](https://commons.wikimedia.org/wiki/File%3AThe_School_of_Athens_Fresco_by_Raphael_%28Ank_Kumar%2C_Infosys_Limited%29_02.jpg) | Ank Kumar · CC BY-SA 4.0 |
-| 3-3-5_voc_인문주의.jpg | [Petrarch-bnf-lat-6069F.jpg](https://commons.wikimedia.org/wiki/File%3APetrarch-bnf-lat-6069F.jpg) | Attributed to Altichiero · Public domain |
+| 3-3-5_voc_인쇄.jpg | [Gutenberg press.png](https://commons.wikimedia.org/wiki/File%3AGutenberg_press.png) | International Printing Museum · CC0 |
 | 3-3-5_voc_풍자.jpg | [Marginal Drawings for The Praise of Folly (5), by Hans Holbein the Younger.jpg](https://commons.wikimedia.org/wiki/File%3AMarginal_Drawings_for_The_Praise_of_Folly_%285%29%2C_by_Hans_Holbein_the_Younger.jpg) | Hans Holbein the Younger · Public domain |
 | 3-3-5_voc_후원.jpg | [Lorenzo de Medici.jpg](https://commons.wikimedia.org/wiki/File%3ALorenzo_de_Medici.jpg) | Workshop of Bronzino · Public domain |
 | 4-3-2_voc_개척.jpg | [Tree fellers withe the Madera Sugar Pine Company, around 1911.jpg](https://commons.wikimedia.org/wiki/File%3ATree_fellers_withe_the_Madera_Sugar_Pine_Company%2C_around_1911.jpg) | Madera Sugar Pine Company · Public domain |
-| 4-3-2_voc_독점.jpg | [Solex 99 30 padlock with keys (DSCF2659).jpg](https://commons.wikimedia.org/wiki/File%3ASolex_99_30_padlock_with_keys_%28DSCF2659%29.jpg) | Trougnouf · CC BY 4.0 |
+| 4-3-2_voc_정복.jpg | [Conquista-de-México-por-Cortés-Tenochtitlan-Painting.png](https://commons.wikimedia.org/wiki/File%3AConquista-de-M%C3%A9xico-por-Cort%C3%A9s-Tenochtitlan-Painting.png) | 작자 미상 · Public domain |
 | 4-3-2_voc_식민지.jpg | [James Fort Site, Historic Jamestowne, Colonial National Historical Park, Jamestown, Virginia (14445783923).jpg](https://commons.wikimedia.org/wiki/File%3AJames_Fort_Site%2C_Historic_Jamestowne%2C_Colonial_National_Historical_Park%2C_Jamestown%2C_Virginia_%2814445783923%29.jpg) | Ken Lund from Reno, Nevada, USA · CC BY-SA 2.0 |
 | 4-3-2_voc_향신료.jpg | [Spices of Saúde flea market, São Paulo, Brazil.jpg](https://commons.wikimedia.org/wiki/File%3ASpices_of_Sa%C3%BAde_flea_market%2C_S%C3%A3o_Paulo%2C_Brazil.jpg) | Wilfredor · CC BY-SA 4.0 |
 | 4-3-3_voc_관세.jpg | [Customs House in 1990 - geograph.org.uk - 7139014.jpg](https://commons.wikimedia.org/wiki/File%3ACustoms_House_in_1990_-_geograph.org.uk_-_7139014.jpg) | Kevin Waterhouse · CC BY-SA 2.0 |
 | 4-3-3_voc_상비군.jpg | [Lange Kerls Grenadier.JPG](https://commons.wikimedia.org/wiki/File%3ALange_Kerls_Grenadier.JPG) | wahrscheinlich Kopie eines Werkes von Johann Christof Merck · Public domain |
 | 4-3-3_voc_수장.jpg | [After Hans Holbein the Younger - Portrait of Henry VIII - Google Art Project.jpg](https://commons.wikimedia.org/wiki/File%3AAfter_Hans_Holbein_the_Younger_-_Portrait_of_Henry_VIII_-_Google_Art_Project.jpg) | Workshop of Hans Holbein the Younger · Public domain |
 | 4-3-3_voc_재정.jpg | [Golden treasure of Kosice, detail of the exposition.jpg](https://commons.wikimedia.org/wiki/File%3AGolden_treasure_of_Kosice%2C_detail_of_the_exposition.jpg) | Own work · Public domain |
-| 5-1-1_voc_공화정.jpg | [Cicero Denounces Catiline in the Roman Senate by Cesare Maccari.png](https://commons.wikimedia.org/wiki/File%3ACicero_Denounces_Catiline_in_the_Roman_Senate_by_Cesare_Maccari.png) | Cesare Maccari · Public domain |
+| 5-1-1_voc_내전.jpg | [Pike Charge Battle of Maidstone Military Odyssey.jpg](https://commons.wikimedia.org/wiki/File%3APike_Charge_Battle_of_Maidstone_Military_Odyssey.jpg) | Laurence Ferrett · CC BY-SA 3.0 |
 | 5-1-1_voc_의회.jpg | [Palace of Westminster, London - Feb 2007.jpg](https://commons.wikimedia.org/wiki/File%3APalace_of_Westminster%2C_London_-_Feb_2007.jpg) | Diliff · CC BY-SA 2.5 |
 | 5-1-1_voc_입헌.jpg | [Allegory of the English Bill of Rights.png](https://commons.wikimedia.org/wiki/File%3AAllegory_of_the_English_Bill_of_Rights.png) | Unknown engraver · Public domain |
 | 5-1-1_voc_청원.jpg | [Fairburn's Edition of Magna Charta (1799?, Petition of Right).jpg](https://commons.wikimedia.org/wiki/File%3AFairburn%27s_Edition_of_Magna_Charta_%281799%3F%2C_Petition_of_Right%29.jpg) | Scanned by Smuconlaw. · Public domain |
@@ -241,7 +241,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-1-2_voc_분립.jpg | [Roman Forum Temple of Castor and Pollux.jpg](https://commons.wikimedia.org/wiki/File%3ARoman_Forum_Temple_of_Castor_and_Pollux.jpg) | Nicholas Hartmann · CC BY-SA 4.0 |
 | 5-1-2_voc_식민지.jpg | [James Fort Site, Historic Jamestowne, Colonial National Historical Park, Jamestown, Virginia (14445783923).jpg](https://commons.wikimedia.org/wiki/File%3AJames_Fort_Site%2C_Historic_Jamestowne%2C_Colonial_National_Historical_Park%2C_Jamestown%2C_Virginia_%2814445783923%29.jpg) | Ken Lund from Reno, Nevada, USA · CC BY-SA 2.0 |
 | 5-1-2_voc_연방제.jpg | [Benjamin Franklin - Join or Die.jpg](https://commons.wikimedia.org/wiki/File%3ABenjamin_Franklin_-_Join_or_Die.jpg) | Benjamin Franklin · Public domain |
-| 5-1-3_voc_공화정.jpg | [Cicero Denounces Catiline in the Roman Senate by Cesare Maccari.png](https://commons.wikimedia.org/wiki/File%3ACicero_Denounces_Catiline_in_the_Roman_Senate_by_Cesare_Maccari.png) | Cesare Maccari · Public domain |
+| 5-1-3_voc_평등.jpg | [DetalleNivelDeBurbuja.jpg](https://commons.wikimedia.org/wiki/File%3ADetalleNivelDeBurbuja.jpg) | aTarom · Public domain |
 | 5-1-3_voc_급진.jpg | [Louis Léopold Boilly - Portrait du chanteur Simon Chenard (1758-1832), en costume de sans-culotte, portant un drapeau à la - P8 - Musée Carnavalet.jpg](https://commons.wikimedia.org/wiki/File%3ALouis_L%C3%A9opold_Boilly_-_Portrait_du_chanteur_Simon_Chenard_%281758-1832%29%2C_en_costume_de_sans-culotte%2C_portant_un_drapeau_%C3%A0_la_-_P8_-_Mus%C3%A9e_Carnavalet.jpg) | Louis-Léopold Boilly · Public domain |
 | 5-1-3_voc_봉쇄.jpg | [Swan Valley Nyungah Community gnangarra.JPG](https://commons.wikimedia.org/wiki/File%3ASwan_Valley_Nyungah_Community_gnangarra.JPG) | Gnangarra · CC BY 2.5 au |
 | 5-1-3_voc_특권.jpg | [The National Assembly or Meeting of the Three Estates (BM 1868,0808.5907).jpg](https://commons.wikimedia.org/wiki/File%3AThe_National_Assembly_or_Meeting_of_the_Three_Estates_%28BM_1868%2C0808.5907%29.jpg) | 작자 미상 · Public domain |
@@ -251,7 +251,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-1-4_voc_자유주의.jpg | [Statue of Liberty Close.jpg](https://commons.wikimedia.org/wiki/File%3AStatue_of_Liberty_Close.jpg) | Darkshaed · CC BY-SA 4.0 |
 | 5-1-5_voc_식민지.jpg | [James Fort Site, Historic Jamestowne, Colonial National Historical Park, Jamestown, Virginia (14445783923).jpg](https://commons.wikimedia.org/wiki/File%3AJames_Fort_Site%2C_Historic_Jamestowne%2C_Colonial_National_Historical_Park%2C_Jamestown%2C_Virginia_%2814445783923%29.jpg) | Ken Lund from Reno, Nevada, USA · CC BY-SA 2.0 |
 | 5-1-5_voc_이권.jpg | [Mina de Chuquicamata, Calama, Chile, 2016-02-01, DD 110-112 PAN.JPG](https://commons.wikimedia.org/wiki/File%3AMina_de_Chuquicamata%2C_Calama%2C_Chile%2C_2016-02-01%2C_DD_110-112_PAN.JPG) | Diego Delso · CC BY-SA 4.0 |
-| 5-1-5_voc_정변.jpg | [Museo del Bicentenario - "Manifiesto al Pueblo".jpg](https://commons.wikimedia.org/wiki/File%3AMuseo_del_Bicentenario_-_%22Manifiesto_al_Pueblo%22.jpg) | José Félix Uriburu · CC BY-SA 3.0 |
+| 5-1-5_voc_정변_v2.jpg | [Félix Uriburu, presidente (de facto) argentino y sus ministros presenciando el paso de las tropas.png](https://commons.wikimedia.org/wiki/File%3AF%C3%A9lix_Uriburu%2C_presidente_%28de_facto%29_argentino_y_sus_ministros_presenciando_el_paso_de_las_tropas.png) | Revista Plus Ultra (Argentina) · Public domain |
 | 5-1-5_voc_혼혈.jpg | [Miguel Cabrera painting, Museo de América.jpg](https://commons.wikimedia.org/wiki/File%3AMiguel_Cabrera_painting%2C_Museo_de_Am%C3%A9rica.jpg) | Miguel Cabrera · CC BY-SA 3.0 |
 | 5-2-1_voc_가내.jpg | [Nicolaes Maes - Old woman reading at a spinning wheel, 1658.jpg](https://commons.wikimedia.org/wiki/File%3ANicolaes_Maes_-_Old_woman_reading_at_a_spinning_wheel%2C_1658.jpg) | Nicolaes Maes · Public domain |
 | 5-2-1_voc_생산수단.jpg | [Power loom weaving. Wellcome L0011293.jpg](https://commons.wikimedia.org/wiki/File%3APower_loom_weaving._Wellcome_L0011293.jpg) | 작자 미상 · CC BY 4.0 |
@@ -289,14 +289,14 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-1-1_voc_열전.jpg | [HA-SC-98-06983-Crew of M24 along Naktong River front-Korean war-17 Aug 1950.JPEG](https://commons.wikimedia.org/wiki/File%3AHA-SC-98-06983-Crew_of_M24_along_Naktong_River_front-Korean_war-17_Aug_1950.JPEG) | Camera Operator: SGT. RILEY · Public domain |
 | 7-1-1_voc_원조.jpg | [Marshall Plan poster.JPG](https://commons.wikimedia.org/wiki/File%3AMarshall_Plan_poster.JPG) | E. Spreckmeester (also credited as "I. Spreekmeester"), published Economic Cooperation Adm · Public domain |
 | 7-1-1_voc_진영.jpg | [Military encampment in the center of Davenport. Taken c. 1890. (59962df6-e976-4ebf-ad85-0f7ae763a8cd).jpg](https://commons.wikimedia.org/wiki/File%3AMilitary_encampment_in_the_center_of_Davenport._Taken_c._1890._%2859962df6-e976-4ebf-ad85-0f7ae763a8cd%29.jpg) | NPS photo · Public domain |
-| 7-1-2_voc_개발도상국.jpg | [A road construction worker at work.jpg](https://commons.wikimedia.org/wiki/File%3AA_road_construction_worker_at_work.jpg) | EbenCoded · CC BY-SA 4.0 |
+| 7-1-2_voc_개발도상국_v2.jpg | [Paving Machines.jpg](https://commons.wikimedia.org/wiki/File%3APaving_Machines.jpg) | باراد · CC BY-SA 4.0 |
 | 7-1-2_voc_국유화.jpg | [Ever Given in Suez Canal viewed from ISS.jpg](https://commons.wikimedia.org/wiki/File%3AEver_Given_in_Suez_Canal_viewed_from_ISS.jpg) | NASA JSC ISS image library · Public domain |
 | 7-1-2_voc_독립.jpg | [KwameNkrumahOnGhanianIndependenceDay6March1957PostageStamp.JPG](https://commons.wikimedia.org/wiki/File%3AKwameNkrumahOnGhanianIndependenceDay6March1957PostageStamp.JPG) | Paasikivi · CC BY-SA 4.0 |
 | 7-1-2_voc_동맹.jpg | [Truman signing North Atlantic Treaty.jpg](https://commons.wikimedia.org/wiki/File%3ATruman_signing_North_Atlantic_Treaty.jpg) | Abbie Rowe · Public domain |
 | 7-1-3_voc_수교.jpg | [Nixon and Zhou toast.jpg](https://commons.wikimedia.org/wiki/File%3ANixon_and_Zhou_toast.jpg) | White House Photographer · Public domain |
 | 7-1-3_voc_완화.jpg | [Adventuress - rope and rigging 10.jpg](https://commons.wikimedia.org/wiki/File%3AAdventuress_-_rope_and_rigging_10.jpg) | Joe Mabel · CC BY 3.0 |
 | 7-1-3_voc_해체.jpg | [Berlin, Berliner Mauer -- um 1990 -- 5.jpg](https://commons.wikimedia.org/wiki/File%3ABerlin%2C_Berliner_Mauer_--_um_1990_--_5.jpg) | Dietmar Rabich · CC BY-SA 4.0 |
-| 7-1-3_voc_흡수.jpg | [Sponge 1 Davy Crocker Reef 20230712.jpg](https://commons.wikimedia.org/wiki/File%3ASponge_1_Davy_Crocker_Reef_20230712.jpg) | Jstuby · CC0 |
+| 7-1-3_voc_흡수_v2.jpg | [A glass of orange juice (2015-10-10).JPG](https://commons.wikimedia.org/wiki/File%3AA_glass_of_orange_juice_%282015-10-10%29.JPG) | Lombroso · CC BY-SA 4.0 |
 
 ## 5-1 국내총생산과 경제생활 — 고급 단어 카드
 | 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
