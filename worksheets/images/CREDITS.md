@@ -551,3 +551,48 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-7_voc_할당.jpg | 여덟 조각으로 나눈 피자(5-1 «분배» 카드와 같은 사진) — 割(나눌)·當(마땅) (Pizza-3007395.jpg) | igorovsyannykov · CC0 |
 
 > 메모: 수도권 지도는 원본이 SVG라 API thumburl(1280px PNG)로 받았다. 원본 폭이 1280 미만인 파일(성비 1024·저출산 1000)은 원본 URL이 429로 막혀 API `iiurlwidth=960` 표준 썸네일(thumburl)을 썼다.
+
+# g11 — 사회② Ⅺ단원(10-1~10-6) 고급 단어 카드 출처
+
+
+## 10-1 기후 변화와 지역 변화 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 10-1_voc_벌목.jpg | 벌목꾼 둘이 동력 톱으로 큰 나무 밑동을 베는 장면, 미국 오리건주 틸라무크, 1943 (1943. Fallers undercutting fire-killed tree with power saw. Stimson Lumber Company. T1S R6W Section 2. Tillamook Burn, Oregon. (34851650942).jpg) | R6, State & Private Forestry, Forest Health Protection · Public domain |
+| 10-1_voc_만년설.jpg | 구름 위로 솟은 눈 덮인 글레이시어 피크, 미국 워싱턴주 레이니어산 국립공원 데지 피크에서, 2020 (Look north from Dege Peak for a distant view of Glacier Peak, another volcano. (a59bfbe4-55c4-41d4-b7c6-3969537802ab).JPG) | NPS Photo · Public domain |
+| 10-1_voc_침식.jpg | 파도에 깎여 무너져 내린 해안 절벽, 잉글랜드 위던시 남쪽, 2018 (Coastal erosion south of Withernsea (geograph 6054927).jpg) | Hugh Venables · CC BY-SA 2.0 |
+
+## 10-2 기후 변화 해결 노력 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 10-2_voc_협정.jpg | 한국·EU 대표가 서명한 협정 문서를 맞바꾸는 장면, 브뤼셀 유럽위원회, 2026 (Signing ceremony of the Association Agreement with South Korea on secure satellite connectivity (P-070455-00-02).jpg) | Lukasz Kobus · CC BY 4.0 |
+| 10-2_voc_자발적.jpg | 해변 쓰레기를 줍는 자원봉사자들(뒷모습), 미국 캘리포니아 반덴버그 미니트맨 해변, 2024 (Vandenberg Space Force Base Beach Clean-up Day 2024 (8216504).jpg) | U.S. Space Force SLD30 by Senior Airman Joshua LeRoi · Public domain |
+| 10-2_voc_구속력.jpg | 옛 러시아 수갑(박물관 소장품), 모스크바 박물관, 19세기 말~20세기 초 (Handcuffs - 19-20c - Museum of Moscow.jpg) | Лапоть · CC0 |
+
+## 10-3 공해 산업의 이동 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 10-3_voc_공해.jpg | 주택가 위로 연기를 뿜는 알루미늄 공장 굴뚝, 미국 루이지애나 찰멧, 1973 (THE KAISER ALUMINUM PLANT SMOKESTACK SPREADS FUMES OVER THE RESIDENTIAL AREA IN THE CHALMETTE SECTION - NARA - 546039.jpg) | John Messina · Public domain |
+| 10-3_voc_누출.jpg | 녹슨 수도관 굽은 곳에서 물이 새는 모습(근접), 2019 (Leak in rusted pipe side view.jpg) | Shamrock Lee · CC BY 4.0 |
+| 10-3_voc_발암물질.jpg | «ASBESTOS — CANCER AND LUNG DISEASE HAZARD» 경고판이 걸린 숲, 미국 어류야생동물국 석면 매립지 (Asbestos dump hazard sign.jpg) | Hollingsworth John and Karen, U.S. Fish and Wildlife Service · Public domain |
+
+## 10-4 환경 문제의 지역적 불평등 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 10-4_voc_유해.jpg | «위험 폐기물(RESIDUOS PELIGROSOS)» 글자가 적힌 파란 드럼통 더미(스페인어권), 2008 (Drums with toxic waste 2776.jpg) | Mampato · Public domain |
+| 10-4_voc_협약.jpg | 두 사람이 맞잡은 손(악수, 손만), 2005 (Hermandad - friendship.jpg) | Rufino · CC BY-SA 2.0 |
+| 10-4_voc_회수.jpg | 다 쓴 건전지를 거두는 «BATTERIE BOX» 수거함, 룩셈부르크 알드린겐, 2012 (Batterie box Aldringen.jpg) | Jwh · CC BY-SA 3.0 lu |
+
+## 10-5 생활 속 환경 이슈 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 10-5_voc_대립.jpg | 마주 서서 뿔을 맞댄 큰뿔양 두 마리, 미국 남서부, 2013 (Two rams square off (14177313182).jpg) | Pacific Southwest Region USFWS from Sacramento, US · Public domain |
+| 10-5_voc_소각.jpg | 길가에서 쓰레기 더미를 태우는 모습, 나이지리아, 2023 (Burning of waste.jpg) | Apdoull · CC BY-SA 4.0 |
+| 10-5_voc_예보.jpg | 일본 기상청이 낸 지역별 날씨 예보 지도, 2023-05-10 (Weather forecast by JMA 20230511.png) | 気象庁 · CC BY 4.0 |
+
+## 10-6 환경 이슈에 대한 내 생각 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 10-6_voc_반사.jpg | 저녁 해가 바다 물결에 반사되어 생긴 빛길, 웨일스 란드윈섬, 2025 (Sunset Reflection on the Irish Sea from Llanddwyn Island – July 2025.jpg) | TXGemGem · CC BY-SA 4.0 |
+| 10-6_voc_제철.jpg | 가을에 쌓아 놓고 파는 감(후유·하치야), 미국 보스턴 슈퍼마켓 (Fuyu and Hachiya Persimmons for sale in Boston.jpg) | 4300streetcar · CC BY 4.0 |
+| 10-6_voc_후원.jpg | 눈에 빠진 차를 뒤에서 밀어 주는 사람들(뒷모습), 미국 뉴욕 맨해튼, 2026-01-25 (January 25, 2026 Snow Storm in Manhattan, people pushing car stuck in the snow on 95th and Lex, Carnegie Hill, Upper East Side 01.jpg) | Deans Charbal · CC BY-SA 4.0 |
