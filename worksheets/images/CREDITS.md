@@ -629,3 +629,52 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 4-1-2_voc_차별.jpg | [Negro drinking at "Colored" water cooler in streetcar terminal, Oklahoma City, Oklahoma by Russell Lee.jpg](https://commons.wikimedia.org/wiki/File%3ANegro_drinking_at_%22Colored%22_water_cooler_in_streetcar_terminal%2C_Oklahoma_City%2C_Oklahoma_by_Russell_Lee.jpg) | Russell Lee (FSA, 1939) · Public domain |
 | 4-1-2_voc_애환.jpg | [Mosaic depicting theatrical masks of Tragedy and Comedy (Thermae Decianae).jpg](https://commons.wikimedia.org/wiki/File%3AMosaic_depicting_theatrical_masks_of_Tragedy_and_Comedy_%28Thermae_Decianae%29.jpg) | Carole Raddato (Capitoline Museums mosaic) · Public domain |
 | 4-1-2_몽골제국_표지.png | (AI 생성 배경 gemini-3-pro-image + PIL 한글) | 자체 제작 · - |
+
+## 12-1 기아 문제 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 12-1_voc_기아.jpg | 위에서 내려다본 빈 흰 그릇, 2018 (File:Empty white bowl.png) | Alorin · CC BY 4.0 |
+| 12-1_voc_영양실조.jpg | 마을 보건요원이 아이 위팔 둘레(MUAC)를 줄자로 재는 모습, 짐바브웨, 2016 (File:Village health worker checks, Zimbabwe (36273604714).jpg) | USAID in Africa · Public domain |
+| 12-1_voc_악순환.jpg | 제 꼬리를 문 뱀(우로보로스), 비잔틴 연금술 필사본, 1478 (File:Serpiente alquimica.jpg) | 중세 필사본 화가(미상) · Public domain |
+
+## 12-2 영토·영해 분쟁 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 12-2_voc_분쟁.jpg | 줄다리기 밧줄을 당기는 두 손(얼굴 제외 크롭), 미 공군 기지 행사, 2003 (File:Tug-of-war.jpg) | Tech. Sgt. Dan Neely(미 공군) · Public domain |
+| 12-2_voc_수호.jpg | 경복궁 문 앞을 지키는 수문장 교대식 군사들, 서울, 2011 (File:Gyeongbok Palace Guards, Seoul.jpg) | Ken Eckert · CC BY-SA 4.0 |
+| 12-2_voc_암초.jpg | 맑은 바닷물 아래 잠긴 바위들, 크림반도 초르노모르스케 해안, 2013 (File:Ukraine, Krym, Chornomorske - Пустынный пляж WMID4292989.jpg) | kukusik · CC BY-SA 3.0 |
+
+## 12-3 생물 다양성 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 12-3_voc_다양성.jpg | 모양·색이 제각각인 딱정벌레 표본 진열장, 빈 자연사 박물관, 2013 (File:Beetle collection (Naturhistorisches Museum Wien).jpg) | James Steakley · CC BY-SA 3.0 |
+| 12-3_voc_서식.jpg | 갯벌 위의 농게(Minuca rapax), 미국 플로리다 빅파인키, 2023 (File:342 365 - Mudflat Fiddler Crab - Minuca rapax, Big Pine Key, Florida, December 8, 2023 (53385506234).jpg) | Judy Gallagher · CC BY 2.0 |
+| 12-3_voc_가루받이.jpg | 꽃가루 뭉치를 다리에 단 채 꽃 위를 나는 꿀벌, 2017 (File:Bee on flower loaded with pollen.jpg) | Matteo.Valerio · CC BY-SA 4.0 |
+
+## 12-4 발전 수준 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 12-4_voc_지표.jpg | 바늘이 눈금 숫자를 가리키는 압력·온도계, 2026 (File:Pressure gauge shows measurement on equipment in a workshop setting with tools and machinery around it.jpg) | Shixart1985 · CC BY 2.0 |
+| 12-4_voc_기대수명.jpg | 모래가 거의 다 내려간 것과 남은 것, 모래시계 두 개, 2024 (File:Hourglasses.jpg) | Aaaatu · CC BY-SA 4.0 |
+| 12-4_voc_저개발국.jpg | 포장 안 된 흙길을 짐 싣고 달리는 시골 버스, 탄자니아, 2017 (File:Transport in Tanzania rural areas.jpg) | Erasmus Kamugisha · CC BY-SA 4.0 |
+
+## 12-5 빈곤 극복 노력 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 12-5_voc_빈곤.jpg | 녹슨 함석지붕 판잣집이 빽빽한 키베라 빈민가 항공사진, 케냐 나이로비, 2010 (File:Kibera aerial view western part.jpg) | Kreuzschnabel · CC BY-SA 3.0 |
+| 12-5_voc_자립.jpg | 마른 흙을 뚫고 혼자 일어선 토마토 새싹, 인도, 2022 (File:Young seedling of tomato emerging from soil - India.jpg) | Ksheera Piraati · CC BY 4.0 |
+| 12-5_voc_무담보.jpg | 물건을 맡기고 돈을 빌리는 전당포 가게 앞, 미국 루이지애나 메테리, 2021 (File:Pawn Shop Instant Cash - Airline Highway, Metairie, Louisiana, August 2021.jpg) | Infrogmation of New Orleans · CC BY-SA 4.0 |
+
+## 12-6 불평등 완화 노력 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 12-6_voc_원조.jpg | 원조 식량 자루를 트럭에서 내리는 사람들, 중국, 1948 (File:Photograph of Food Aid being Unloaded from a Truck in China - NARA - 5900042.jpg) | 미상(미국 국립문서기록관리청 소장) · Public domain |
+| 12-6_voc_극빈자.jpg | 녹슨 함석지붕 판잣집이 빽빽한 키베라 빈민가 항공사진(12-5 «빈곤»과 같은 사진 — 실제 사람을 «극빈자»로 이름 붙이지 않으려고 사람 없는 장면으로), 케냐 나이로비, 2010 (File:Kibera aerial view western part.jpg) | Kreuzschnabel · CC BY-SA 3.0 |
+| 12-6_voc_수혜국.jpg | 배급 곡물가루를 그릇에 받는 손(얼굴 제외 크롭), 우간다 라이노 캠프 난민 정착지, 2019 (File:Food distribution for new arrivals at Ocea Reception center Rhino camp refugee settlement Uganda.jpg) | Emmanuel chandiga · CC BY-SA 4.0 |
+
+## 12-7 연대와 협력 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 12-7_voc_연대.jpg | 도로를 따라 손을 맞잡고 길게 늘어선 사람들, 「발트의 길」 인간 띠, 라트비아, 1989(2022 컬러 복원판) (File:Baltic Way Colorized.jpg) | Laimonis Stīpnieks · CC BY-SA 4.0 |
+| 12-7_voc_생산자.jpg | 커피나무에서 익은 열매를 손으로 따는 모습, 2021 (File:Hands-that-are-picking-coffee-beans-from-coffee-tree.jpg) | Saddymonster · CC BY-SA 4.0 |
+| 12-7_voc_인증.jpg | 문서 봉투를 봉한 붉은 밀랍 인장, 1860 매사추세츠 선거인단 투표 증명서, 미국 국립문서보관소 (File:Seal from Certificate of Vote 1860 for Lincoln from Massachusetts (54090411826).jpg) | archivesnews(미국 국립문서보관소) · Public domain |
