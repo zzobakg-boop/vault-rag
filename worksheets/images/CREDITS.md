@@ -417,7 +417,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
 |---|---|---|
 | 11-3_voc_경쟁력.jpg | 줄다리기에서 밧줄을 잡고 온몸으로 버티는 미군 병사들(다리·손만 보이게 자름), 미국 메릴랜드 아나폴리스 «Tug of War XV», 2012 (Fort Meade Soldiers participate in Annapolis tug-of-war.jpg) | Fort George G. Meade Public Affairs Office · CC BY 2.0 |
-| 11-3_voc_보편적.jpg | 달려 나가는 사람 그림의 비상구 표지 — 말이 달라도 어디서나 통하는 공통 기호, 普(두루)·遍(두루) (Emergency exit light.jpg) | Erik1980 · CC BY-SA 4.0 |
+| 11-3_voc_보편적_v2.jpg | 달려 나가는 사람 그림의 비상구 표지 — 말이 달라도 어디서나 통하는 공통 기호, 普(두루)·遍(두루) (Emergency exit light.jpg) | Erik1980 · CC BY-SA 4.0 |
 | 11-3_voc_특산물.jpg | 제주 올레 7코스 길가의 귤밭, 열매가 가득 달린 감귤나무, 2021 (Jejuolle-route-07(4).jpg) | Jeju Olle Foundation(제주올레) · CC BY-SA 4.0 |
 
 ## 11-4 효과적인 지역화 전략 — 고급 단어 카드
