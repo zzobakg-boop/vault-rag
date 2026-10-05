@@ -207,6 +207,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_seat = False           # 2026-09-07: 좌석 구성 눌러 보기 (:::좌석표 ... :::)
     in_tl = False; tl_head = ''; tl_rows = []; tl_spr = ('', '')   # 2026-09-09: 연표 시소 (:::연표시소 ... :::)
     in_gr = False; gr_head = ''; gr_rows = []   # 2026-09-28: 움직이는 선그래프 (:::그래프 ... :::)
+    in_mb = False; mb_head = ''; mb_rows = []   # 2026-10-06: 지도 + 연도 막대 (:::지도막대 ... :::)
     in_pk = False             # 2026-09-07: 카드 골라 쓰기 (:::카드선택 ... :::)
     pk_title, pk_rows, pk_ask, pk_cred = '', [], '', ''
     seat_title, seat_rows, seat_note = '', [], ''
@@ -1193,6 +1194,96 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             gr_rows = []
             continue
 
+        # 🗺 지도 + 연도 막대 (:::지도막대 머리말 ... :::) — 2026-10-06 메인 결정(천대현 «같은 시대, 다른 공간» 시안 숙의)
+        #   지리는 «같은 문제, 다른 지역» — 같은 지표가 나라마다 언제 바뀌었나를 지도 핀으로 나란히 본다.
+        #   바탕 지도는 글자 없는 그림(map-render/hq), 핀 이름·값은 HTML(-0.83 · 폰에서도 글자가 줄지 않는다).
+        #   문법:  지도 | 파일 | 대체텍스트
+        #          연도 | 1970 | 1980 | …
+        #          단위 | 명            소수 | 2            (선택)
+        #          기준 | 2.1 | 설명     (선택 · 핀 색이 기준 위/아래로 갈린다)
+        #          핀 | 이름 | x% | y% | 왼/오/위/아래 | 값 | 값 | …   (x·y는 그림 왼쪽 위 기준 백분율 · 이름표 방향 — 폰에서 가장자리 핀은 위/아래)
+        #          출처 | 글
+        #   ⚠️ 입력칸을 만들지 않는다(range 는 수합·저장에 안 잡힌다 — act 불변) · 자동 재생 없음(WCAG 2.2.2) · 인쇄 직전 마지막 해.
+        #   ⚠️ 핀 이름이 빈칸 답이면 빈칸 뒤에 둔다(-0.97).
+        if stripped.startswith(':::지도막대'):
+            in_mb = True
+            mb_head = stripped[len(':::지도막대'):].strip()
+            mb_rows = []
+            continue
+        if in_mb:
+            if stripped != ':::':
+                if stripped:
+                    mb_rows.append([x.strip() for x in stripped.strip().strip('|').split('|')])
+                continue
+            _img = ''; _alt = ''; _yrs = []; _unit = ''; _dec = 1; _base = None; _pins = []; _src = ''
+            for _r in mb_rows:
+                if _r[0] == '지도' and len(_r) >= 2:
+                    _img = _r[1]; _alt = _r[2] if len(_r) > 2 else ''
+                elif _r[0] == '연도':
+                    _yrs = _r[1:]
+                elif _r[0] == '단위' and len(_r) >= 2:
+                    _unit = _r[1]
+                elif _r[0] == '소수' and len(_r) >= 2 and _r[1].isdigit():
+                    _dec = int(_r[1])
+                elif _r[0] == '기준' and len(_r) >= 2:
+                    try: _base = {'v': float(_r[1]), 't': _r[2] if len(_r) > 2 else ''}
+                    except ValueError: pass
+                elif _r[0] == '핀' and len(_r) >= 6:
+                    try:
+                        _pins.append({'n': _r[1], 'x': float(_r[2].rstrip('%')), 'y': float(_r[3].rstrip('%')),
+                                      's': {'왼': 'l', '위': 'u', '아래': 'd'}.get(_r[4][:2] if _r[4].startswith('아래') else _r[4][:1], 'r'), 'v': [float(v) for v in _r[5:] if v != '']})
+                    except ValueError:
+                        pass
+                elif _r[0] == '출처' and len(_r) >= 2:
+                    _src = '|'.join(_r[1:])
+            if _img and _yrs and _pins:
+                mid = f'mb{len(html_parts)}'
+                _pinh = ''.join(
+                    f'<span class="mb-pin mb-{p["s"]}" style="left:{p["x"]}%;top:{p["y"]}%"><i></i>'
+                    f'<b class="mb-lab">{inline(p["n"])} <em></em></b></span>' for p in _pins)
+                _leg = ''
+                if _base:
+                    _leg = (f'<div class="ws-mb-legend"><span><i class="mb-hi"></i>{_base["v"]}{inline(_unit)}보다 높다</span>'
+                            f'<span><i class="mb-lo"></i>{_base["v"]}{inline(_unit)}보다 낮다</span>'
+                            + (f'<span class="mb-bt">{inline(_base["t"])}</span>' if _base["t"] else '') + '</div>')
+                _D = {'y': _yrs, 'p': [{'n': p['n'], 'v': p['v']} for p in _pins], 'u': _unit, 'd': _dec,
+                      'b': _base['v'] if _base else None}
+                html_parts.append(
+                    f'<div class="ws-mapbar" id="{mid}">'
+                    f'<div class="ws-mb-head">{inline(mb_head)}</div>'
+                    f'<div class="ws-mb-map"><img src="images/{_img}" alt="{_alt.replace(chr(34), "&quot;")}" loading="lazy">{_pinh}</div>'
+                    + _leg +
+                    f'<div class="ws-mb-ctl"><button type="button" class="ws-mb-play" aria-label="처음부터 넘겨 보기">▶</button>'
+                    f'<input type="range" class="ws-mb-range" min="0" max="{len(_yrs)-1}" value="0" step="1" aria-label="연도 고르기">'
+                    f'<span class="ws-mb-yr"></span></div>'
+                    f'<div class="ws-mb-read" aria-live="polite"></div>'
+                    + (f'<div class="ws-mb-src">{inline(_src)}</div>' if _src else '') +
+                    f'</div>'
+                    f'<script>(function(){{'
+                    f'var D={json.dumps(_D, ensure_ascii=False)};'
+                    f'var w=document.getElementById("{mid}"),rg=w.querySelector(".ws-mb-range"),yr=w.querySelector(".ws-mb-yr"),'
+                    'rd=w.querySelector(".ws-mb-read"),pl=w.querySelector(".ws-mb-play"),ps=w.querySelectorAll(".mb-pin"),mp=w.querySelector(".ws-mb-map"),n=D.y.length;'
+                    'var mx=0;D.p.forEach(function(p){p.v.forEach(function(v){if(v>mx)mx=v;});});'
+                    'function fmt(v){var m=Math.pow(10,D.d);return (Math.round(v*m+1e-9)/m).toFixed(D.d);}'
+                    'function draw(i){i=+i;D.p.forEach(function(p,k){var v=p.v[i],e=ps[k],r=Math.round((8+22*Math.sqrt(v/mx))*Math.max(.55,Math.min(1,mp.clientWidth/700)));'
+                    'var dot=e.querySelector("i");dot.style.width=dot.style.height=r+"px";dot.style.marginLeft=dot.style.marginTop=(-r/2)+"px";'
+                    'e.classList.toggle("mb-up",D.b!=null&&v>=D.b);e.classList.toggle("mb-dn",D.b!=null&&v<D.b);'
+                    'e.querySelector("em").textContent=fmt(v);});'
+                    'yr.textContent=D.y[i]+"년";'
+                    'var o=D.p.map(function(p){return p;}).sort(function(a,b){return b.v[i]-a.v[i];});'
+                    'rd.innerHTML="<b>"+D.y[i]+"년</b> — "+o.map(function(p){return p.n+" <b>"+fmt(p.v[i])+"</b>";}).join(" · ")+(D.u?" ("+D.u+")":"");'
+                    'rg.value=i;}'
+                    'rg.addEventListener("input",function(){draw(rg.value);});'
+                    'var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}'
+                    'if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){draw(n-1);return;}'
+                    'var i=0;draw(0);pl.textContent="■";tm=setInterval(function(){i++;draw(i);if(i>=n-1){clearInterval(tm);tm=null;pl.textContent="▶";}},900);});'
+                    'addEventListener("resize",function(){draw(rg.value);});'
+                    'window.addEventListener("beforeprint",function(){draw(n-1);});'
+                    'draw(0);})();</script>')
+            in_mb = False
+            mb_rows = []
+            continue
+
         # 🎙️ 삽화 + 본문 2단 (:::입담 <그림> | <대체텍스트> | <캡션>  …본문(빈칸 포함)…  :::) — 2026-10-02 천대현
         #   "입담 삽화와 글을 2단으로" → 정정: 옆 단은 입담 글이 아니라 **그 단계의 본문(빈칸 문단)**이다.
         #   그래서 안쪽 줄은 모으지 않고 평소 처리(빈칸→입력칸, data-id 순서 그대로)에 흘려보낸다.
@@ -2121,6 +2212,41 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 🗺 :::지도막대 — 2026-10-06 (지도 + 연도 막대 · 핀·값은 HTML) */
+.ws-mapbar {{ border: 1px solid #dcd3bf; border-radius: 14px; background: #fbf8f1; padding: 14px 14px 10px; margin: 16px 0; }}
+.ws-mb-head {{ font-weight: 800; font-size: 1.02em; margin-bottom: 8px; color: #3a3226; }}
+.ws-mb-map {{ position: relative; line-height: 0; border-radius: 10px; overflow: hidden; }}
+.ws-mb-map img {{ display: block; width: 100%; height: auto; }}
+.mb-pin {{ position: absolute; width: 0; height: 0; line-height: 1.2; }}
+.mb-pin i {{ position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #8a7f6c; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); opacity: .9;
+  transition: width .5s, height .5s, margin .5s, background .5s; }}
+.mb-pin.mb-up i {{ background: #c2593a; }}
+.mb-pin.mb-dn i {{ background: #3f6fa8; }}
+.mb-lab {{ position: absolute; top: -9px; white-space: nowrap; font-size: 13px; font-weight: 700; color: #2b2419;
+  background: rgba(255,255,255,.86); border-radius: 6px; padding: 1px 5px; }}
+.mb-r .mb-lab {{ left: 12px; }}
+.mb-l .mb-lab {{ right: 12px; }}
+.mb-u .mb-lab, .mb-d .mb-lab {{ left: 0; transform: translateX(-50%); }}
+.mb-u .mb-lab {{ top: -30px; }}
+.mb-d .mb-lab {{ top: 12px; }}
+.mb-lab em {{ font-style: normal; color: #7a2e1a; font-variant-numeric: tabular-nums; }}
+.mb-dn .mb-lab em {{ color: #244f86; }}
+.ws-mb-legend {{ display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86em; color: #4a4234; margin: 8px 2px 4px; }}
+.ws-mb-legend i {{ display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; }}
+.ws-mb-legend i.mb-hi {{ background: #c2593a; }}
+.ws-mb-legend i.mb-lo {{ background: #3f6fa8; }}
+.ws-mb-legend .mb-bt {{ color: #6b6252; }}
+.ws-mb-ctl {{ display: flex; align-items: center; gap: 10px; margin-top: 6px; }}
+.ws-mb-play {{ flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #cfc4ae; background: #fff; font-size: 16px; cursor: pointer; }}
+.ws-mb-play:focus-visible, .ws-mb-range:focus-visible {{ outline: 3px solid #8a5f12; outline-offset: 2px; }}
+.ws-mb-range {{ flex: 1; accent-color: #7a5a2a; min-width: 0; }}
+.ws-mb-yr {{ flex: none; min-width: 4.2em; font-weight: 800; color: #3a3226; font-variant-numeric: tabular-nums; }}
+.ws-mb-read {{ min-height: 3.2em; margin-top: 6px; font-size: .95em; line-height: 1.6; color: #2b2419; }}
+.ws-mb-src {{ font-size: .8em; color: #6b6252; margin-top: 4px; }}
+@media (max-width: 560px) {{ .mb-lab {{ font-size: 11px; padding: 0 3px; }} .mb-r .mb-lab {{ left: 8px; }} .mb-l .mb-lab {{ right: 8px; }} .mb-u .mb-lab {{ top: -24px; }} .mb-d .mb-lab {{ top: 9px; }} }}
+@media (prefers-reduced-motion: reduce) {{ .mb-pin i {{ transition: none; }} }}
+@media print {{ .ws-mb-ctl {{ display: none; }} }}
 /* 📈 :::그래프 — 2026-09-28 */
 .ws-gr {{ border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }}
 .ws-gr-head {{ font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }}

@@ -1075,3 +1075,9 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 |---|---|---|
 | 5-2-1_런던스모그.jpg | [Nelson's Column during the Great Smog of 1952.jpg](https://commons.wikimedia.org/wiki/File%3ANelson%27s_Column_during_the_Great_Smog_of_1952.jpg) | N T Stobbs · CC BY-SA 2.0 |
 | 5-2-2_곧은국경.png | 자체 제작(map-render/hq · Natural Earth 1:1천만 admin0) | Natural Earth · Public domain |
+
+# 사회② 7-7 단원 정리 지도 (2026-10-06)
+
+| 파일 | 내용 | 저작자 · 라이선스 |
+|---|---|---|
+| 7-7_tfr_world.png | 글자 없는 세계 바탕지도(Equal Earth 투영) — :::지도막대 바탕. 핀·값은 HTML, 값은 세계은행 합계 출산율(UN WPP 기반) | 자체 제작 · 해안선·국경 Natural Earth(퍼블릭 도메인) |

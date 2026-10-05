@@ -253,6 +253,41 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 🗺 :::지도막대 — 2026-10-06 (지도 + 연도 막대 · 핀·값은 HTML) */
+.ws-mapbar { border: 1px solid #dcd3bf; border-radius: 14px; background: #fbf8f1; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-mb-head { font-weight: 800; font-size: 1.02em; margin-bottom: 8px; color: #3a3226; }
+.ws-mb-map { position: relative; line-height: 0; border-radius: 10px; overflow: hidden; }
+.ws-mb-map img { display: block; width: 100%; height: auto; }
+.mb-pin { position: absolute; width: 0; height: 0; line-height: 1.2; }
+.mb-pin i { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #8a7f6c; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); opacity: .9;
+  transition: width .5s, height .5s, margin .5s, background .5s; }
+.mb-pin.mb-up i { background: #c2593a; }
+.mb-pin.mb-dn i { background: #3f6fa8; }
+.mb-lab { position: absolute; top: -9px; white-space: nowrap; font-size: 13px; font-weight: 700; color: #2b2419;
+  background: rgba(255,255,255,.86); border-radius: 6px; padding: 1px 5px; }
+.mb-r .mb-lab { left: 12px; }
+.mb-l .mb-lab { right: 12px; }
+.mb-u .mb-lab, .mb-d .mb-lab { left: 0; transform: translateX(-50%); }
+.mb-u .mb-lab { top: -30px; }
+.mb-d .mb-lab { top: 12px; }
+.mb-lab em { font-style: normal; color: #7a2e1a; font-variant-numeric: tabular-nums; }
+.mb-dn .mb-lab em { color: #244f86; }
+.ws-mb-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86em; color: #4a4234; margin: 8px 2px 4px; }
+.ws-mb-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; }
+.ws-mb-legend i.mb-hi { background: #c2593a; }
+.ws-mb-legend i.mb-lo { background: #3f6fa8; }
+.ws-mb-legend .mb-bt { color: #6b6252; }
+.ws-mb-ctl { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.ws-mb-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #cfc4ae; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-mb-play:focus-visible, .ws-mb-range:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; }
+.ws-mb-range { flex: 1; accent-color: #7a5a2a; min-width: 0; }
+.ws-mb-yr { flex: none; min-width: 4.2em; font-weight: 800; color: #3a3226; font-variant-numeric: tabular-nums; }
+.ws-mb-read { min-height: 3.2em; margin-top: 6px; font-size: .95em; line-height: 1.6; color: #2b2419; }
+.ws-mb-src { font-size: .8em; color: #6b6252; margin-top: 4px; }
+@media (max-width: 560px) { .mb-lab { font-size: 11px; padding: 0 3px; } .mb-r .mb-lab { left: 8px; } .mb-l .mb-lab { right: 8px; } .mb-u .mb-lab { top: -24px; } .mb-d .mb-lab { top: 9px; } }
+@media (prefers-reduced-motion: reduce) { .mb-pin i { transition: none; } }
+@media print { .ws-mb-ctl { display: none; } }
 /* 📈 :::그래프 — 2026-09-28 */
 .ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
 .ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
@@ -896,7 +931,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
-.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -1102,6 +1137,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>1. <input type="text" class="blank-input activity-input no-score" data-id="act-13" data-label="1." style="width:240px" placeholder=""></p>
 <p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-14" data-label="2." style="width:240px" placeholder=""></p>
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-15" data-label="3." style="width:240px" placeholder=""></p>
+<br>
+<h2>🗺 단원 정리 — 같은 문제, 다른 나라</h2>
+<blockquote>🎙️ Ⅶ단원에서 만난 여섯 나라를 한 지도에 모았어. 막대를 밀어 1970년에서 2024년으로 가 보자. 원이 줄어들며 파랗게 바뀌는 나라는 어디고, 아직 붉은 나라는 어디일까? 우리나라 원이 얼마나 빨리 작아지는지도 봐.</blockquote>
+<br>
+<div class="ws-mapbar" id="mb99"><div class="ws-mb-head">여섯 나라의 합계 출산율 — 1970년부터 2024년까지</div><div class="ws-mb-map"><img src="images/7-7_tfr_world.png" alt="세계 지도 위에 한국·일본·인도·니제르·프랑스·스웨덴의 위치를 원으로 표시한 지도" loading="lazy"><span class="mb-pin mb-l" style="left:81.7%;top:26.3%"><i></i><b class="mb-lab">한국 <em></em></b></span><span class="mb-pin mb-u" style="left:84.3%;top:26.3%"><i></i><b class="mb-lab">일본 <em></em></b></span><span class="mb-pin mb-d" style="left:70.7%;top:36.9%"><i></i><b class="mb-lab">인도 <em></em></b></span><span class="mb-pin mb-l" style="left:52.2%;top:41.3%"><i></i><b class="mb-lab">니제르 <em></em></b></span><span class="mb-pin mb-l" style="left:50.3%;top:19.2%"><i></i><b class="mb-lab">프랑스 <em></em></b></span><span class="mb-pin mb-r" style="left:53.0%;top:9.7%"><i></i><b class="mb-lab">스웨덴 <em></em></b></span></div><div class="ws-mb-legend"><span><i class="mb-hi"></i>2.1명보다 높다</span><span><i class="mb-lo"></i>2.1명보다 낮다</span><span class="mb-bt">인구가 늘지도 줄지도 않는 수준</span></div><div class="ws-mb-ctl"><button type="button" class="ws-mb-play" aria-label="처음부터 넘겨 보기">▶</button><input type="range" class="ws-mb-range" min="0" max="6" value="0" step="1" aria-label="연도 고르기"><span class="ws-mb-yr"></span></div><div class="ws-mb-read" aria-live="polite"></div><div class="ws-mb-src">세계은행 «합계 출산율»(UN 세계 인구 전망 기반·2026-07 갱신) · 바탕 지도 Natural Earth(퍼블릭 도메인)</div></div><script>(function(){var D={"y": ["1970", "1980", "1990", "2000", "2010", "2020", "2024"], "p": [{"n": "한국", "v": [4.53, 2.82, 1.57, 1.48, 1.23, 0.84, 0.75]}, {"n": "일본", "v": [2.13, 1.75, 1.54, 1.36, 1.39, 1.33, 1.15]}, {"n": "인도", "v": [5.62, 4.78, 4.04, 3.35, 2.6, 2.05, 1.96]}, {"n": "니제르", "v": [7.51, 7.78, 7.81, 7.83, 7.64, 6.37, 5.93]}, {"n": "프랑스", "v": [2.55, 1.85, 1.77, 1.89, 2.03, 1.82, 1.61]}, {"n": "스웨덴", "v": [1.92, 1.68, 2.13, 1.54, 1.98, 1.67, 1.43]}], "u": "명", "d": 2, "b": 2.1};var w=document.getElementById("mb99"),rg=w.querySelector(".ws-mb-range"),yr=w.querySelector(".ws-mb-yr"),rd=w.querySelector(".ws-mb-read"),pl=w.querySelector(".ws-mb-play"),ps=w.querySelectorAll(".mb-pin"),mp=w.querySelector(".ws-mb-map"),n=D.y.length;var mx=0;D.p.forEach(function(p){p.v.forEach(function(v){if(v>mx)mx=v;});});function fmt(v){var m=Math.pow(10,D.d);return (Math.round(v*m+1e-9)/m).toFixed(D.d);}function draw(i){i=+i;D.p.forEach(function(p,k){var v=p.v[i],e=ps[k],r=Math.round((8+22*Math.sqrt(v/mx))*Math.max(.55,Math.min(1,mp.clientWidth/700)));var dot=e.querySelector("i");dot.style.width=dot.style.height=r+"px";dot.style.marginLeft=dot.style.marginTop=(-r/2)+"px";e.classList.toggle("mb-up",D.b!=null&&v>=D.b);e.classList.toggle("mb-dn",D.b!=null&&v<D.b);e.querySelector("em").textContent=fmt(v);});yr.textContent=D.y[i]+"년";var o=D.p.map(function(p){return p;}).sort(function(a,b){return b.v[i]-a.v[i];});rd.innerHTML="<b>"+D.y[i]+"년</b> — "+o.map(function(p){return p.n+" <b>"+fmt(p.v[i])+"</b>";}).join(" · ")+(D.u?" ("+D.u+")":"");rg.value=i;}rg.addEventListener("input",function(){draw(rg.value);});var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){draw(n-1);return;}var i=0;draw(0);pl.textContent="■";tm=setInterval(function(){i++;draw(i);if(i>=n-1){clearInterval(tm);tm=null;pl.textContent="▶";}},900);});addEventListener("resize",function(){draw(rg.value);});window.addEventListener("beforeprint",function(){draw(n-1);});draw(0);})();</script>
 <br>
 <h2>💭 더 생각해 보기</h2>
 <p>📂 <strong>포트폴리오 ③ 종합</strong> — 7-5·7-6의 마지막 칸과 활동 1 비교표를 바탕으로 쓴다.</p>
