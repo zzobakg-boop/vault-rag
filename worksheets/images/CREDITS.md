@@ -1041,7 +1041,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 3-1-4_voc_공유.jpg | [Seoul Bike 22907.jpg](https://commons.wikimedia.org/wiki/File%3ASeoul_Bike_22907.jpg) | *Youngjin · CC BY-SA 3.0 |
 | 3-1-4_voc_교류.jpg | [Kentoshi-sen Osaka port Japan01n.jpg](https://commons.wikimedia.org/wiki/File%3AKentoshi-sen_Osaka_port_Japan01n.jpg) | 663highland · CC BY 2.5 |
 | 3-1-4_voc_율령.jpg | [CADAL06044863 唐律疏義·卷一.djvu (p.3)](https://commons.wikimedia.org/wiki/File%3ACADAL06044863_%E5%94%90%E5%BE%8B%E7%96%8F%E7%BE%A9%C2%B7%E5%8D%B7%E4%B8%80.djvu_%28p.3%29) | 長孫無忌 등 撰 · 사고전서본 (CADAL 스캔) · Public domain |
-| 3-1-4_voc_경전.jpg | [Rongo Analects 02.jpg](https://commons.wikimedia.org/wiki/File%3ARongo_Analects_02.jpg) | 작자 미상 (『논어』 판본) · Public domain |
+| 3-1-4_voc_경전_v2.jpg | [Korea-Haeinsa Tripitaka Koreana woodblock 2770-06a.jpg](https://commons.wikimedia.org/wiki/File%3AKorea-Haeinsa_Tripitaka_Koreana_woodblock_2770-06a.jpg) | Steve46814 · CC BY-SA 3.0 |
 
 ## 3-2-1 — 고급 단어 카드 (2026-10-06)
 
@@ -1065,6 +1065,6 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 
 | 파일 | 원본 | 저작자 · 라이선스 |
 |---|---|---|
-| 3-2-3_voc_순례.jpg | [Aerial view of hajj party on mountain bluff approaching Mecca, Saudi Arabia.jpg](https://commons.wikimedia.org/wiki/File%3AAerial_view_of_hajj_party_on_mountain_bluff_approaching_Mecca%2C_Saudi_Arabia.jpg) | GLady (Pixabay) · CC0 |
+| 3-2-3_voc_순례_v2.jpg | [Aerial view of hajj party on mountain bluff approaching Mecca, Saudi Arabia.jpg](https://commons.wikimedia.org/wiki/File%3AAerial_view_of_hajj_party_on_mountain_bluff_approaching_Mecca%2C_Saudi_Arabia.jpg) | GLady (Pixabay) · CC0 |
 | 3-2-3_voc_제지술.jpg | [Japanese paper making 02.jpg](https://commons.wikimedia.org/wiki/File%3AJapanese_paper_making_02.jpg) | TR15336300101 · CC BY-SA 4.0 |
 | 3-2-3_voc_분열.jpg | [Split Apple Rock 2019.jpg](https://commons.wikimedia.org/wiki/File%3ASplit_Apple_Rock_2019.jpg) | Wikibphil · CC BY-SA 4.0 |
