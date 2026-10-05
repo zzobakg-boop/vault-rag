@@ -1746,6 +1746,16 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         html_parts.append('</table>')
 
     content = '\n'.join(html_parts)
+    # ✍️ 2026-10-06 천대현 «활동하기 쪽은 개념 정리하는 쪽이랑 다른 디자인» — 9/3 «활동·OX·핵심 3줄·더 생각 가독성» 요청을
+    #    그때는 모든 h2·표를 같이 다듬는 것으로 처리해 활동 쪽이 개념 쪽과 똑같은 파란 띠였다.
+    #    «해 보는 곳»(✏️ 활동 · ❓ OX · 🧠 핵심 3줄 · 💭 더 생각) 절을 통째로 초록 상자로 감싼다.
+    #    h2 태그는 그대로 둔다 — 검증 도구들이 '<h2>' 패턴을 쓴다. data-id·입력칸 불변(감싸기만).
+    _DO = ('✏️', '❓', '🧠', '💭')
+    _segs = re.split(r'(?=<h2>)', content)
+    content = ''.join(
+        (f'<section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div>{seg}</section>'
+         if seg.startswith('<h2>') and seg[4:].lstrip().startswith(_DO) else seg)
+        for seg in _segs)
     # ⭐ 6/18: 활동 입력칸(activity-input)이 든 표는 폭 100% 강제 대신 내용 폭(auto)으로.
     #    짧은 단답 칸(120px)이 넓은 셀에 떠 보이는 비율 깨짐 방지 (21-22 학습지 사고).
     def _mark_act_table(m):
@@ -2418,6 +2428,14 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-read .ws-fold-table td:last-child {{ white-space: nowrap; }}
 .ws-read p:last-child {{ margin-bottom: 0; }}
 @media print {{ .ws-read {{ background: #fff; border-left-color: #999; }} }}
+/* ✍️ 해 보는 곳 — 2026-10-06. 계열 넷: 파랑=빈칸(본문) · 황토=교과서 · 슬레이트=읽는 곳 · 초록=직접 해 보는 곳 */
+.ws-do {{ background: #f2f8f3; border: 1px solid #cfe5d5; border-radius: 16px; padding: 14px 20px 18px; margin: 30px 0; }}
+.ws-do > h2 {{ margin-top: 8px; border-left-color: #2f8f55; background: linear-gradient(90deg, #dff0e4, rgba(255,255,255,0)); }}
+.ws-do-tag {{ display: inline-block; background: #2f8f55; color: #fff; font-size: 0.76em; font-weight: 700;
+  letter-spacing: 0.02em; padding: 3px 11px; border-radius: 999px; }}
+.ws-do + .ws-do {{ margin-top: 18px; }}
+@media (max-width: 560px) {{ .ws-do {{ padding: 10px 6px 14px; margin-left: -10px; margin-right: -10px; border-radius: 12px; }} }}
+@media print {{ .ws-do {{ background: #fff; border-color: #bbb; }} }}
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
 /* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */

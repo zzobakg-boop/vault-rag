@@ -450,6 +450,14 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-read .ws-fold-table td:last-child { white-space: nowrap; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+/* ✍️ 해 보는 곳 — 2026-10-06. 계열 넷: 파랑=빈칸(본문) · 황토=교과서 · 슬레이트=읽는 곳 · 초록=직접 해 보는 곳 */
+.ws-do { background: #f2f8f3; border: 1px solid #cfe5d5; border-radius: 16px; padding: 14px 20px 18px; margin: 30px 0; }
+.ws-do > h2 { margin-top: 8px; border-left-color: #2f8f55; background: linear-gradient(90deg, #dff0e4, rgba(255,255,255,0)); }
+.ws-do-tag { display: inline-block; background: #2f8f55; color: #fff; font-size: 0.76em; font-weight: 700;
+  letter-spacing: 0.02em; padding: 3px 11px; border-radius: 999px; }
+.ws-do + .ws-do { margin-top: 18px; }
+@media (max-width: 560px) { .ws-do { padding: 10px 6px 14px; margin-left: -10px; margin-right: -10px; border-radius: 12px; } }
+@media print { .ws-do { background: #fff; border-color: #bbb; } }
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
 /* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */
@@ -1117,27 +1125,23 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <div class="ws-2c c2-mid c2-keep" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.4fr)"><div class="c2-a">
 <figure class="ws-fig"><img src="images/7-1_loc_alaska_globe.png" alt="위치 — 알래스카는 북아메리카의 북서쪽 끝이다. 미국 본토와 떨어져 있고, 베링 해협을 사이에 두고 러시아와 마주 본다. (Natural Earth 자료로 자체 제작 · 퍼블릭 도메인)" loading="lazy"><figcaption>위치 — 알래스카는 북아메리카의 북서쪽 끝이다. 미국 본토와 떨어져 있고, 베링 해협을 사이에 두고 러시아와 마주 본다. (Natural Earth 자료로 자체 제작 · 퍼블릭 도메인)</figcaption></figure>
 </div><div class="c2-b">
-<figure class="ws-fig"><img src="images/7-1_loc_alaska_area.png" alt="영역 — 붉은 곳이 알래스카주다. 동쪽은 캐나다, 북쪽은 북극해와 닿는다. (Natural Earth 자료로 자체 제작 · 퍼블릭 도메인)" loading="lazy"><figcaption>영역 — 붉은 곳이 알래스카주다. 동쪽은 캐나다, 북쪽은 북극해와 닿는다. (Natural Earth 자료로 자체 제작 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-1_anchorage.jpg" alt="알래스카주에서 가장 큰 도시 앵커리지. 높은 건물들이 늘어선 시내 뒤로 눈 덮인 산맥이 펼쳐져 있다. (Quintin Soloviev · CC BY 4.0 · Wikimedia Commons)" loading="lazy"><figcaption>알래스카주에서 가장 큰 도시 앵커리지. 높은 건물들이 늘어선 시내 뒤로 눈 덮인 산맥이 펼쳐져 있다. (Quintin Soloviev · CC BY 4.0 · Wikimedia Commons)</figcaption></figure>
 </div></div>
 <br>
-<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.2fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-1_anchorage.jpg" alt="알래스카주에서 가장 큰 도시 앵커리지. 높은 건물들이 늘어선 시내 뒤로 눈 덮인 산맥이 펼쳐져 있다. (Quintin Soloviev · CC BY 4.0 · Wikimedia Commons)" loading="lazy"><figcaption>알래스카주에서 가장 큰 도시 앵커리지. 높은 건물들이 늘어선 시내 뒤로 눈 덮인 산맥이 펼쳐져 있다. (Quintin Soloviev · CC BY 4.0 · Wikimedia Commons)</figcaption></figure>
-</div><div class="c2-b">
 <blockquote>🎙️ 러시아는 이 땅을 <strong>쓸모없다</strong>고 여겨 미국에 팔았어. 그런데 요즘 알래스카는 인구가 늘고 있어. <strong>추운 날씨는 그대로인데</strong> 뭐가 달라졌을까?</blockquote>
-</div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 129쪽 · 사회 톡톡톡 「알래스카의 석유 산업과 인구 증가」</div><div class="ws-tb-see">알래스카는 미국의 주 가운데 면적은 가장 넓은데 인구는 가장 적은 곳이다.</div><div class="ws-tb-ask">이렇게 춥고 척박한 곳에 <strong>요즘 젊은이들이 모여드는 까닭</strong>은 무엇일까? 글에서 찾아 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 129쪽에서 찾기 — 이렇게 춥고 척박한 곳에 요즘 젊은이들이 모여드는 까닭은 무엇일까?" style="width:400px" placeholder=""></div></div>
 <br>
 <br>
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>알래스카는 3단계의 <strong>실물</strong>이다. 춥다는 자연 조건은 바뀌지 않았다. 바뀐 것은 <strong>자원 개발과 산업, 그리고 일자리</strong>다.</p><p>🔑 자연이 불리해도 인문·사회적 요인이 강하면 사람이 모인다 — 이것이 「오늘날에는 인문·사회적 요인이 더 크다」의 뜻이다.</p><p>그렇다고 자연이 힘을 잃은 것은 아니다. 이집트 사람의 약 95%는 국토의 5% 남짓인 나일강 양쪽 20km 안에 산다 — 사막에서는 오늘도 물이 사람이 살 곳을 정한다.</p><p>산업이 발달한 캐나다도 사람의 3분의 2(66%, 2021년)가 미국 국경에서 100km 안, 덜 추운 남쪽 끝에 몰려 산다.</p><p>그러니 «인문·사회적 요인이 더 크다»는 «자연은 이제 상관없다»는 말이 아니다. 자연이 정한 테두리 안에서, 그중 어디에 모이느냐를 일자리가 정한다고 읽자.</p></div>
 <br>
-<h2>✏️ 활동 1 — 여기는 사람이 많을까, 적을까?</h2>
+<section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1 — 여기는 사람이 많을까, 적을까?</h2>
 <br>
-<div class="ws-pick" id="pk88"><div class="pk-head"><span>교과서 129쪽 「스스로 탐구」의 다섯 지역이다. 사진과 설명을 보고 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="인구 밀집"><span class="pk-win"><img src="images/7-1_act_bangladesh.jpg" alt="방글라데시" loading="lazy"></span><div class="pk-name">방글라데시</div><div class="pk-sit">강수량이 풍부하고 큰 강 주변에 넓은 평야가 펼쳐져 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="인구 밀집">인구 밀집</button><button type="button" class="pk-b" data-v="인구 희박">인구 희박</button></div><div class="pk-why" hidden>비옥한 평야에서 벼농사가 잘 되어 많은 사람이 먹고살 수 있다</div></div><div class="pk-card" data-i="1" data-ans="인구 희박"><span class="pk-win"><img src="images/7-1_act_sahara.jpg" alt="사하라 사막" loading="lazy"></span><div class="pk-name">사하라 사막</div><div class="pk-sit">비가 거의 오지 않아 물을 구하기 어렵다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="인구 밀집">인구 밀집</button><button type="button" class="pk-b" data-v="인구 희박">인구 희박</button></div><div class="pk-why" hidden>물이 없으면 농사도 생활도 어렵다 — 자연 조건이 불리하다</div></div><div class="pk-card" data-i="2" data-ans="인구 희박"><span class="pk-win"><img src="images/7-1_act_canada.jpg" alt="캐나다 북부" loading="lazy"></span><div class="pk-name">캐나다 북부</div><div class="pk-sit">기온이 매우 낮아 여름에도 나무가 자라지 못한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="인구 밀집">인구 밀집</button><button type="button" class="pk-b" data-v="인구 희박">인구 희박</button></div><div class="pk-why" hidden>너무 추워 농업에 불리하다</div></div><div class="pk-card" data-i="3" data-ans="인구 밀집"><span class="pk-win"><img src="images/7-1_act_westeurope.jpg" alt="서부 유럽" loading="lazy"></span><div class="pk-name">서부 유럽</div><div class="pk-sit">기후가 온화하고 일찍부터 산업이 발달했다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="인구 밀집">인구 밀집</button><button type="button" class="pk-b" data-v="인구 희박">인구 희박</button></div><div class="pk-why" hidden>온화한 기후(자연)에 산업과 일자리(인문·사회)가 더해졌다</div></div><div class="pk-card" data-i="4" data-ans="인구 희박"><span class="pk-win"><img src="images/7-1_act_amazon.jpg" alt="아마존 분지" loading="lazy"></span><div class="pk-name">아마존 분지</div><div class="pk-sit">덥고 습하며 열대 밀림이 빽빽하게 우거져 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="인구 밀집">인구 밀집</button><button type="button" class="pk-b" data-v="인구 희박">인구 희박</button></div><div class="pk-why" hidden>밀림이 우거져 살 곳을 만들고 길을 내기 어렵다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk88");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["인구 밀집", "인구 희박"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk84"><div class="pk-head"><span>교과서 129쪽 「스스로 탐구」의 다섯 지역이다. 사진과 설명을 보고 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="인구 밀집"><span class="pk-win"><img src="images/7-1_act_bangladesh.jpg" alt="방글라데시" loading="lazy"></span><div class="pk-name">방글라데시</div><div class="pk-sit">강수량이 풍부하고 큰 강 주변에 넓은 평야가 펼쳐져 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="인구 밀집">인구 밀집</button><button type="button" class="pk-b" data-v="인구 희박">인구 희박</button></div><div class="pk-why" hidden>비옥한 평야에서 벼농사가 잘 되어 많은 사람이 먹고살 수 있다</div></div><div class="pk-card" data-i="1" data-ans="인구 희박"><span class="pk-win"><img src="images/7-1_act_sahara.jpg" alt="사하라 사막" loading="lazy"></span><div class="pk-name">사하라 사막</div><div class="pk-sit">비가 거의 오지 않아 물을 구하기 어렵다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="인구 밀집">인구 밀집</button><button type="button" class="pk-b" data-v="인구 희박">인구 희박</button></div><div class="pk-why" hidden>물이 없으면 농사도 생활도 어렵다 — 자연 조건이 불리하다</div></div><div class="pk-card" data-i="2" data-ans="인구 희박"><span class="pk-win"><img src="images/7-1_act_canada.jpg" alt="캐나다 북부" loading="lazy"></span><div class="pk-name">캐나다 북부</div><div class="pk-sit">기온이 매우 낮아 여름에도 나무가 자라지 못한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="인구 밀집">인구 밀집</button><button type="button" class="pk-b" data-v="인구 희박">인구 희박</button></div><div class="pk-why" hidden>너무 추워 농업에 불리하다</div></div><div class="pk-card" data-i="3" data-ans="인구 밀집"><span class="pk-win"><img src="images/7-1_act_westeurope.jpg" alt="서부 유럽" loading="lazy"></span><div class="pk-name">서부 유럽</div><div class="pk-sit">기후가 온화하고 일찍부터 산업이 발달했다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="인구 밀집">인구 밀집</button><button type="button" class="pk-b" data-v="인구 희박">인구 희박</button></div><div class="pk-why" hidden>온화한 기후(자연)에 산업과 일자리(인문·사회)가 더해졌다</div></div><div class="pk-card" data-i="4" data-ans="인구 희박"><span class="pk-win"><img src="images/7-1_act_amazon.jpg" alt="아마존 분지" loading="lazy"></span><div class="pk-name">아마존 분지</div><div class="pk-sit">덥고 습하며 열대 밀림이 빽빽하게 우거져 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="인구 밀집">인구 밀집</button><button type="button" class="pk-b" data-v="인구 희박">인구 희박</button></div><div class="pk-why" hidden>밀림이 우거져 살 곳을 만들고 길을 내기 어렵다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk84");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["인구 밀집", "인구 희박"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>📷 방글라데시 쿨나의 논 (Masum Ibn Musa · CC BY-SA 4.0) · 알제리 사하라 사막 (Fiontain · CC BY-SA 4.0) · 캐나다 누나부트 팡니르퉁 근처 툰드라 (Lindsay Nicole Terry · CC BY 2.0) · 영국 런던 도심 (Lewis Clarke · CC BY-SA 2.0) · 브라질 아마존 열대 우림 (lubasi · CC BY-SA 2.0) — 모두 Wikimedia Commons</blockquote>
 <br>
-<h2>✏️ 활동 2 — 까닭을 두 갈래로 나누자</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 2 — 까닭을 두 갈래로 나누자</h2>
 <br>
 <p>위 다섯 지역을 <strong>인구 밀집 지역</strong>과 <strong>인구 희박 지역</strong>으로 나누고, 영향을 준 요인을 적자. 가능하면 <strong>자연적 요인</strong>과 <strong>인문·사회적 요인</strong>을 구분해서 써 보자.</p>
 <br>
@@ -1149,7 +1153,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>✅ <strong>스스로 점검</strong> — 서부 유럽을 <strong>자연적 요인만</strong>으로 설명했다면 하나가 빠졌어. 교과서 설명에 「일찍부터 <strong>산업</strong>이 발달」이 들어 있다.</blockquote>
 <br>
-<h2>❓ OX 퀴즈</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
@@ -1160,7 +1164,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>5</td><td>인구 왜상 지도에서 크게 그려진 나라는 실제 땅이 넓은 나라다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
-<h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
 <blockquote>오늘 배운 걸 <strong>안 보고</strong> 세 줄로 적어 보자. 틀려도 괜찮아 — 떠올리려고 애쓰는 그 순간에 머리에 박히는 거야.</blockquote>
 <blockquote>✍️ <strong>낱말 세 개가 아니라 문장 세 개로.</strong> 각 줄이 <code>~다.</code> 로 끝나게 쓰자.</blockquote>
 <blockquote>🔍 다 쓰면 셋 중 가장 자신 없는 줄 끝에 (?)를 붙이자. 그 줄만 교과서 128~129쪽을 다시 펴서 맞는지 확인하는 거야.</blockquote>
@@ -1169,11 +1173,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="2." style="width:240px" placeholder=""></p>
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="3." style="width:240px" placeholder=""></p>
 <br>
-<h2>💭 더 생각해 보기</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <p>과학 기술이 계속 발달하면, 언젠가 사막이나 극지방에도 사람이 많이 모여 살게 될까? <strong>알래스카 이야기</strong>를 근거로 들어 네 생각을 두세 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
-<h2>📎 각주</h2>
+</section><h2>📎 각주</h2>
 <p>- 교과서: 천재교육 사회②(구정화) 128~129쪽</p>
 <p>- 세계 인구: 국제 연합 「세계 인구 전망 2024」(2024년 약 82억 명) · 인도가 중국을 앞선 시점: 국제 연합 경제사회국 정책 브리프 153호(2023년 4월)</p>
 </div>
