@@ -2764,7 +2764,7 @@ table:has(.ox-group) td:first-child {{ width: 46px; text-align: center; color: #
 .ws-fig {{ max-width: 100%; margin: 22px auto; text-align: center; }}
 .ws-fig img {{ max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
 .ws-fig-video {{ max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }}
-.ws-fig img[src*="comic"] {{ max-height: 820px; max-width: 600px; }}
+.ws-fig img[src*="comic"] {{ max-height: 820px; max-width: min(600px, 100%); }}
 .ws-fig figcaption {{ margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }}
 .ws-fold-table {{ width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }}
 .ws-fold-table th, .ws-fold-table td {{ border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }}

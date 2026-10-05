@@ -937,3 +937,57 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-3-3_voc_사면.jpg | [CELL DOOR IN OPEN POSITION - Hale Paahao (Prison), Wainee and Prison Roads, Lahaina, Maui County, HI HABS HI,5-LAHA,4-8.tif](https://commons.wikimedia.org/wiki/File%3ACELL_DOOR_IN_OPEN_POSITION_-_Hale_Paahao_%28Prison%29%2C_Wainee_and_Prison_Roads%2C_Lahaina%2C_Maui_County%2C_HI_HABS_HI%2C5-LAHA%2C4-8.tif) | Historic American Buildings Survey (Library of Congress) · Public domain |
 | 7-3-3_voc_실천.jpg | [Footprints in the sand - geograph.org.uk - 6403260.jpg](https://commons.wikimedia.org/wiki/File%3AFootprints_in_the_sand_-_geograph.org.uk_-_6403260.jpg) | John Lucas · CC BY-SA 2.0 |
 | 7-3-3_현대세계과제_표지.png | (AI 생성 배경 · Grok Aurora + PIL 한글) | 자체 제작 · — |
+
+# 사회② 1학기 고급 단어 카드 (2026-10-06 국소 주입)
+
+## 11-12 합리적 경제생활과 경제 체제 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 11-12_voc_희소성.jpg | 진열대 대부분이 빈 슈퍼마켓 파스타 코너(사재기), 호주, 2020 (File:Dried pasta shelves empty in an Australian supermarket.jpg) | Christopher Corneschi · CC BY-SA 4.0 |
+| 11-12_voc_재화서비스.jpg | 구두가 걸린 수선 가게에서 재봉틀로 구두를 고치는 사람, 미국 루이지애나 케너, 1938 (File:Shoemaker in his shop, Kenner, Louisiana 1938 crop.jpg) | Russell Lee · Public domain |
+| 11-12_voc_기회비용.jpg | 두 갈래로 갈라지는 숲속 길, 영국, 2013 (File:A fork in the forest track - geograph.org.uk - 3650714.jpg) | Ann Cook · CC BY-SA 2.0 |
+| 11-12_voc_편익.jpg | 바닷가 나무 사이 해먹에 누워 쉬는 사람(먼 거리), 스웨덴 비스뷔 알메달렌, 2014 (File:Relaxing in the hammock by the sea near Almedalen.jpg) | Joakim Berndes · CC BY-SA 4.0 |
+| 11-12_voc_매몰비용.jpg | 물속에 가라앉은 난파선 위를 지나는 잠수부, 괌 아프라 항 (File:Diver on shipwreck in Apra Harbor, Guam.jpeg) | COMSEVENTHFLT · CC BY-SA 2.0 |
+| 11-12_voc_기본경제문제.jpg | 공원 바닥에 놓인 물음표 모양 벤치 조형물, 덴마크 에스비에르 (File:Question mark in Esbjerg (327122302).jpg) | Alexander Henning Drachmann from Esbjerg, Denmark · CC BY-SA 2.0 |
+| 11-12_voc_경제체제.jpg | 서로 맞물려 돌아가는 톱니바퀴들 (File:Gears - Thomas Claveirole.jpg) | Thomas Claveirole · CC BY-SA 2.0 |
+
+## 15-16 금융 생활의 중요성 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 15-16_voc_생애주기.jpg | 요람에서 무덤까지 나이별로 계단을 오르내리는 「인생의 단계」 손으로 채색한 석판화, 미국, 1856~1907 사이 (File:Life and age of man- stages of man's life from the cradle to the grave LCCN2002708524.jpg) | Popular Graphic Arts · Public domain |
+| 15-16_voc_자산.jpg | 동전을 모아 둔 유리 저금병, 2020 (File:-finance -wealth -savings -security -coin.jpg) | Free Images (Lemon Loco Designs) · CC BY 2.0 |
+| 15-16_voc_포트폴리오.jpg | 여러 바구니에 나눠 담긴 부활절 달걀, 폴란드 크라쿠프 시장, 2023 (File:Targi Wielkanocne na Rynku w Krakowie 2023 - 27.jpg) | Dwxn · CC BY-SA 4.0 |
+| 15-16_voc_신용.jpg | 새끼손가락을 걸어 약속하는 두 손, 2014 (File:Pinky swear.JPG) | Oreo Priest · Public domain |
+| 15-16_voc_연체.jpg | 차가 꽉 막힌 저녁 도로, 태국 방콕 (File:Bangkok evening traffic jam.jpg) | TomaszSwatowski · CC BY-SA 4.0 |
+
+## 17-18 시장의 의미와 종류 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 17-18_voc_수요.jpg | 정육점 앞에 사람들이 줄을 선 거리(먼 거리), 영국, 2020 (File:People queue outside a shop 202012 040004.jpg) | Gwydion M. Williams · CC BY 2.0 |
+| 17-18_voc_공급.jpg | 시장에서 픽업트럭 짐칸의 채소 꾸러미를 내리는 상인(밤), 2025 (File:DFC 1737 A man transfers bags of fresh produce from the back of a pickup truck at a busy outdoor market at night.jpg) | PattayaPatrol · CC BY-SA 4.0 |
+| 17-18_voc_재화서비스.jpg | 구두 수선공이 작업장에서 신발을 고치는 손(얼굴 제외 크롭), 북마케도니아 비톨라, 2025 (File:Cobbler repairing shoes in old workshop (Bazaar in Bitola, Macedonia, 2025).jpg) | Petar Milošević · CC BY-SA 4.0 |
+| 17-18_voc_생산요소.jpg | 논(땅)에서 농부가 경운기(기계)로 일하는 모습, 라오스 방비엥 (File:Two farmers driving a tractor towing a raft loaded with green rice sheaves in a paddy field of Vang Vieng Laos.jpg) | Basile Morin · CC BY-SA 4.0 |
+
+## 19-20 시장 가격의 결정 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 19-20_voc_수요량.jpg | 극장 매표소 앞에 길게 늘어선 줄, 우크라이나 하르키우, 1981 (File:Kharkov 1981 Kassy kinoteatra Ukraina.jpg) | Л.П. Джепко · CC BY-SA 3.0 |
+| 19-20_voc_공급량.jpg | 도매시장 트럭에서 내린 상자와 생선, 멕시코시티 라 누에바 비가 수산시장, 2011 (File:UnloadingtruckNuevaViga.JPG) | AlejandroLinaresGarcia · CC BY-SA 4.0 |
+| 19-20_voc_균형.jpg | 양쪽 접시가 수평을 이룬 윗접시 저울 (File:Simple balance scales-02.jpg) | Lilly_M · CC BY-SA 3.0 |
+| 19-20_voc_초과.jpg | 댐 꼭대기를 넘어 흘러내리는 물, 일본 간나 댐, 2024 (File:Overflowing at Kanna Dam 202406 01.jpg) | Kugel~commonswiki · CC BY-SA 4.0 |
+
+## 21-22 시장 가격의 변동 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 21-22_voc_대체재.jpg | 축구 경기의 선수 교체판(OUT/IN)을 들어 올린 손(얼굴 제외 크롭), 2026 (File:Substitution board being used in a football match.jpg) | Samson Ssemakadde · CC0 |
+| 21-22_voc_보완재.jpg | 잉크젯 프린터 안에 끼워진 잉크 카트리지 두 개 (File:Ink-jet printer inside-cartridges.jpg) | Julo · Public domain |
+| 21-22_voc_수요량의변화.jpg | 폐점 할인(SALE) 발표 다음 날 가게 앞에 몰린 손님들, 영국 하운즐로 울워스, 2008 (File:Woolworths Hounslow - Closing Down Sale - Exterior.jpg) | KTo288 · CC BY-SA 3.0 |
+| 21-22_voc_수요의변화.jpg | 비 오는 날 우산을 쓰고 걷는 인파, 타이완 타이베이 시먼딩, 2016 (File:People with Umbrellas Walking into Hanzhong Street, Taipei 20160610.jpg) | 玄史生 · CC0 |
+
+## 23-24 가격의 기능 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 23-24_voc_신호등.jpg | 빨간불이 켜진 LED 신호등, 미국 노스캐롤라이나, 2009 (File:LED traffic light on red.jpg) | Kevin Payravi · CC BY-SA 4.0 |
+| 23-24_voc_배분.jpg | 참치 경매장에서 경매 전 생선을 살펴보는 중개인들, 일본 나리타 도매시장, 2009 (File:Tuna auction at Narita Wholesale Market.jpg) | Sin imai · CC0 |
+| 23-24_voc_합리적선택.jpg | 슈퍼마켓 다섯 곳의 장바구니 값을 비교한 막대그래프 게시물, 네덜란드 로테르담, 2023 (File:Price comparisons of supermarkets, Hillegersberg, Rotterdam (2023).jpg) | Donald Trung Quoc Don · CC BY-SA 4.0 |
+| 23-24_voc_가격통제.jpg | 미국 물가관리국(OPA) «최고 가격» 포스터 부분(모델 얼굴 대부분 제외 크롭), 1945 (File:OPA CEILING PRICES - DON'T BE OVERCHARGED - NARA - 515131.jpg) | 미국 정부(NARA 소장) · Public domain |
