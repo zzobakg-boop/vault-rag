@@ -1068,3 +1068,10 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 3-2-3_voc_순례_v2.jpg | [Aerial view of hajj party on mountain bluff approaching Mecca, Saudi Arabia.jpg](https://commons.wikimedia.org/wiki/File%3AAerial_view_of_hajj_party_on_mountain_bluff_approaching_Mecca%2C_Saudi_Arabia.jpg) | GLady (Pixabay) · CC0 |
 | 3-2-3_voc_제지술.jpg | [Japanese paper making 02.jpg](https://commons.wikimedia.org/wiki/File%3AJapanese_paper_making_02.jpg) | TR15336300101 · CC BY-SA 4.0 |
 | 3-2-3_voc_분열.jpg | [Split Apple Rock 2019.jpg](https://commons.wikimedia.org/wiki/File%3ASplit_Apple_Rock_2019.jpg) | Wikibphil · CC BY-SA 4.0 |
+
+## 같은 시대·다른 과목 연결 카드 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 5-2-1_런던스모그.jpg | [Nelson's Column during the Great Smog of 1952.jpg](https://commons.wikimedia.org/wiki/File%3ANelson%27s_Column_during_the_Great_Smog_of_1952.jpg) | N T Stobbs · CC BY-SA 2.0 |
+| 5-2-2_곧은국경.png | 자체 제작(map-render/hq · Natural Earth 1:1천만 admin0) | Natural Earth · Public domain |
