@@ -991,3 +991,80 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 23-24_voc_배분.jpg | 참치 경매장에서 경매 전 생선을 살펴보는 중개인들, 일본 나리타 도매시장, 2009 (File:Tuna auction at Narita Wholesale Market.jpg) | Sin imai · CC0 |
 | 23-24_voc_합리적선택.jpg | 슈퍼마켓 다섯 곳의 장바구니 값을 비교한 막대그래프 게시물, 네덜란드 로테르담, 2023 (File:Price comparisons of supermarkets, Hillegersberg, Rotterdam (2023).jpg) | Donald Trung Quoc Don · CC BY-SA 4.0 |
 | 23-24_voc_가격통제.jpg | 미국 물가관리국(OPA) «최고 가격» 포스터 부분(모델 얼굴 대부분 제외 크롭), 1945 (File:OPA CEILING PRICES - DON'T BE OVERCHARGED - NARA - 515131.jpg) | 미국 정부(NARA 소장) · Public domain |
+
+## 2-2-2 — 고급 단어 카드 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 2-2-2_voc_민주정.jpg | [Landsgemeinde Glarus, 2009.jpg](https://commons.wikimedia.org/wiki/File%3ALandsgemeinde_Glarus%2C_2009.jpg) | Marc Schlumpf, www.icarus-design.ch · CC BY-SA 3.0 |
+| 2-2-2_voc_참정권.jpg | [Women inside the gate of the city polling station voting for the first time in a Queensland state election, 25 May 1907 (28008208515).jpg](https://commons.wikimedia.org/wiki/File%3AWomen_inside_the_gate_of_the_city_polling_station_voting_for_the_first_time_in_a_Queensland_state_election%2C_25_May_1907_%2828008208515%29.jpg) | State Library of Queensland, Australia · No restrictions |
+| 2-2-2_voc_배심원.jpg | [Boone County Courthouse jury box.jpg](https://commons.wikimedia.org/wiki/File%3ABoone_County_Courthouse_jury_box.jpg) | Brandonrush · CC0 |
+
+## 2-2-4 — 고급 단어 카드 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 2-2-4_voc_빈부격차.jpg | [Slums and Skyscrapers in La Paz.jpg](https://commons.wikimedia.org/wiki/File%3ASlums_and_Skyscrapers_in_La_Paz.jpg) | Edgar Claure · CC BY-SA 4.0 |
+| 2-2-4_voc_성문법.jpg | [Crete - law of Gortyn - boustrophedon.JPG](https://commons.wikimedia.org/wiki/File%3ACrete_-_law_of_Gortyn_-_boustrophedon.JPG) | PRA · CC BY-SA 3.0 |
+| 2-2-4_voc_수도교.jpg | [Aqueduct of Segovia 08.jpg](https://commons.wikimedia.org/wiki/File%3AAqueduct_of_Segovia_08.jpg) | Bernard Gagnon · CC BY-SA 3.0 |
+
+## 3-1-1 — 고급 단어 카드 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 3-1-1_voc_분열.jpg | [Split Apple Rock (8511299348).jpg](https://commons.wikimedia.org/wiki/File%3ASplit_Apple_Rock_%288511299348%29.jpg) | Tristan Schmurr from Luxembourg, Luxembourg · CC BY 2.0 |
+| 3-1-1_voc_유목.jpg | [Two brothers lead a herd of horses across a river in Western Mongolia.jpg](https://commons.wikimedia.org/wiki/File%3ATwo_brothers_lead_a_herd_of_horses_across_a_river_in_Western_Mongolia.jpg) | Bfreeproductions · CC BY-SA 4.0 |
+| 3-1-1_voc_피란.jpg | [KoreanWarRefugees.jpg](https://commons.wikimedia.org/wiki/File%3AKoreanWarRefugees.jpg) | Cpl. Walter Calmus. (Army) · Public domain |
+
+## 3-1-2 — 고급 단어 카드 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 3-1-2_voc_문벌.jpg | [Genealogy Book of Leung.jpg](https://commons.wikimedia.org/wiki/File%3AGenealogy_Book_of_Leung.jpg) | Zdu110 · CC BY-SA 4.0 |
+| 3-1-2_voc_왕권.jpg | [Korea-Silla kingdom-Gold crown from Geumgwanchong-No.191-01.jpg](https://commons.wikimedia.org/wiki/File%3AKorea-Silla_kingdom-Gold_crown_from_Geumgwanchong-No.191-01.jpg) | Seon Kwang Haengja (Flickr) · CC BY-SA 2.0 |
+| 3-1-2_voc_원정.jpg | [Napoleons retreat from Moscow by Adolph Northen.jpg](https://commons.wikimedia.org/wiki/File%3ANapoleons_retreat_from_Moscow_by_Adolph_Northen.jpg) | Adolph Northen (1851) · Public domain |
+| 3-1-2_voc_소작농.jpg | [Danwon Byeotajak.jpg](https://commons.wikimedia.org/wiki/File%3ADanwon_Byeotajak.jpg) | 김홍도 (단원풍속도첩 「벼타작」) · Public domain |
+
+## 3-1-3 — 고급 단어 카드 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 3-1-3_voc_통합.jpg | [Devprayag Confluence Oct 2019.jpg](https://commons.wikimedia.org/wiki/File%3ADevprayag_Confluence_Oct_2019.jpg) | Ashishjalan8 · CC BY-SA 4.0 |
+| 3-1-3_voc_국호.jpg | [South Korea New Passport Cover.png](https://commons.wikimedia.org/wiki/File%3ASouth_Korea_New_Passport_Cover.png) | 대한민국 외교부 · Public domain |
+| 3-1-3_voc_사찰.jpg | [Daeungjeon, Bulguksa 01.jpg](https://commons.wikimedia.org/wiki/File%3ADaeungjeon%2C_Bulguksa_01.jpg) | Bernard Gagnon · CC0 |
+| 3-1-3_voc_목조.jpg | [Ikaruga, soliveau du temple Horyu-ji,.jpg](https://commons.wikimedia.org/wiki/File%3AIkaruga%2C_soliveau_du_temple_Horyu-ji%2C.jpg) | Pierre André Leclercq · CC BY-SA 4.0 |
+
+## 3-1-4 — 고급 단어 카드 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 3-1-4_voc_공유.jpg | [Seoul Bike 22907.jpg](https://commons.wikimedia.org/wiki/File%3ASeoul_Bike_22907.jpg) | *Youngjin · CC BY-SA 3.0 |
+| 3-1-4_voc_교류.jpg | [Kentoshi-sen Osaka port Japan01n.jpg](https://commons.wikimedia.org/wiki/File%3AKentoshi-sen_Osaka_port_Japan01n.jpg) | 663highland · CC BY 2.5 |
+| 3-1-4_voc_율령.jpg | [CADAL06044863 唐律疏義·卷一.djvu (p.3)](https://commons.wikimedia.org/wiki/File%3ACADAL06044863_%E5%94%90%E5%BE%8B%E7%96%8F%E7%BE%A9%C2%B7%E5%8D%B7%E4%B8%80.djvu_%28p.3%29) | 長孫無忌 등 撰 · 사고전서본 (CADAL 스캔) · Public domain |
+| 3-1-4_voc_경전.jpg | [Rongo Analects 02.jpg](https://commons.wikimedia.org/wiki/File%3ARongo_Analects_02.jpg) | 작자 미상 (『논어』 판본) · Public domain |
+
+## 3-2-1 — 고급 단어 카드 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 3-2-1_voc_출토.jpg | [Archaeologists excavating a ceramic at 86 Lexden Road, Colchester, Essex, January 2023.jpg](https://commons.wikimedia.org/wiki/File%3AArchaeologists_excavating_a_ceramic_at_86_Lexden_Road%2C_Colchester%2C_Essex%2C_January_2023.jpg) | Tabitha Lawrence, Colchester Archaeological Trust · CC BY 4.0 |
+| 3-2-1_voc_포로.jpg | [The triumph of Shapur I over the Roman emperors Valerian and Philip the Arab, Naqsh-e Rostam, Iran (48098758973).jpg](https://commons.wikimedia.org/wiki/File%3AThe_triumph_of_Shapur_I_over_the_Roman_emperors_Valerian_and_Philip_the_Arab%2C_Naqsh-e_Rostam%2C_Iran_%2848098758973%29.jpg) | Carole Raddato · CC BY-SA 2.0 |
+| 3-2-1_voc_공용어.jpg | [Panneau STOP-ARRÊT à Rouleauville.jpg](https://commons.wikimedia.org/wiki/File%3APanneau_STOP-ARR%C3%8AT_%C3%A0_Rouleauville.jpg) | WCL20 Lycée Louis Pasteur Justemila · CC BY-SA 4.0 |
+| 3-2-1_voc_독점.jpg | [Standard oil octopus loc color.jpg](https://commons.wikimedia.org/wiki/File%3AStandard_oil_octopus_loc_color.jpg) | Udo J. Keppler (Puck, 1904) · Public domain |
+
+## 3-2-2 — 고급 단어 카드 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 3-2-2_voc_자전.jpg | [Star stack Star trail.jpg](https://commons.wikimedia.org/wiki/File%3AStar_stack_Star_trail.jpg) | Youniverse Multiverse · CC0 |
+| 3-2-2_voc_석굴.jpg | [Ellora Caves, India, Rock-cut monastery temple caves.jpg](https://commons.wikimedia.org/wiki/File%3AEllora_Caves%2C_India%2C_Rock-cut_monastery_temple_caves.jpg) | Argenberg (Vyacheslav Argenberg) · CC BY 4.0 |
+| 3-2-2_voc_제사.jpg | [Korean ancestor veneration-Jesa-01.jpg](https://commons.wikimedia.org/wiki/File%3AKorean_ancestor_veneration-Jesa-01.jpg) | Joseph Steinberg (Flickr rokinfidel) · CC BY-SA 2.0 |
+| 3-2-2_voc_서사시.jpg | [Dhritarashtra hearing narratives on Kurukshetra war from Sanjaya Wellcome L0030649.jpg](https://commons.wikimedia.org/wiki/File%3ADhritarashtra_hearing_narratives_on_Kurukshetra_war_from_Sanjaya_Wellcome_L0030649.jpg) | Wellcome Collection · CC BY 4.0 |
+
+## 3-2-3 — 고급 단어 카드 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 3-2-3_voc_순례.jpg | [Aerial view of hajj party on mountain bluff approaching Mecca, Saudi Arabia.jpg](https://commons.wikimedia.org/wiki/File%3AAerial_view_of_hajj_party_on_mountain_bluff_approaching_Mecca%2C_Saudi_Arabia.jpg) | GLady (Pixabay) · CC0 |
+| 3-2-3_voc_제지술.jpg | [Japanese paper making 02.jpg](https://commons.wikimedia.org/wiki/File%3AJapanese_paper_making_02.jpg) | TR15336300101 · CC BY-SA 4.0 |
+| 3-2-3_voc_분열.jpg | [Split Apple Rock 2019.jpg](https://commons.wikimedia.org/wiki/File%3ASplit_Apple_Rock_2019.jpg) | Wikibphil · CC BY-SA 4.0 |
