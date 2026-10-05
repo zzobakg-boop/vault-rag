@@ -1081,3 +1081,5 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 파일 | 내용 | 저작자 · 라이선스 |
 |---|---|---|
 | 7-7_tfr_world.png | 글자 없는 세계 바탕지도(Equal Earth 투영) — :::지도막대 바탕. 핀·값은 HTML, 값은 세계은행 합계 출산율(UN WPP 기반) | 자체 제작 · 해안선·국경 Natural Earth(퍼블릭 도메인) |
+| 7-1_voc_온화.jpg | 벚꽃이 활짝 핀 공원 길을 걷는 사람들(먼 거리) — 따뜻하고 부드러운 봄날, 뉴질랜드 크라이스트처치 해글리 공원 2022-09 (Spring cherry blossoms in Hagley Park.jpg) | Bernard Spragg. NZ · 퍼블릭 도메인 |
+| 7-1_voc_비옥.jpg | 갈아 놓은 붉은 흙 밭이 지평선까지 펼쳐진 들판, 브라질 파라나주 로안다 2008-05 (Uma terra fértil (fertile soil) (2532905279).jpg) | Claudemir Brundani · CC BY-SA 2.0 |
