@@ -678,3 +678,55 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 12-7_voc_연대.jpg | 도로를 따라 손을 맞잡고 길게 늘어선 사람들, 「발트의 길」 인간 띠, 라트비아, 1989(2022 컬러 복원판) (File:Baltic Way Colorized.jpg) | Laimonis Stīpnieks · CC BY-SA 4.0 |
 | 12-7_voc_생산자.jpg | 커피나무에서 익은 열매를 손으로 따는 모습, 2021 (File:Hands-that-are-picking-coffee-beans-from-coffee-tree.jpg) | Saddymonster · CC BY-SA 4.0 |
 | 12-7_voc_인증.jpg | 문서 봉투를 봉한 붉은 밀랍 인장, 1860 매사추세츠 선거인단 투표 증명서, 미국 국립문서보관소 (File:Seal from Certificate of Vote 1860 for Lincoln from Massachusetts (54090411826).jpg) | archivesnews(미국 국립문서보관소) · Public domain |
+
+## 4-2-3 무굴 제국 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 4-2-3_강건너기.jpg | [Babur, crossing the River Saun, Baburnama, National Museum, New Delhi. Dated 1598.jpg](https://commons.wikimedia.org/wiki/File%3ABabur%2C_crossing_the_River_Saun%2C_Baburnama%2C_National_Museum%2C_New_Delhi._Dated_1598.jpg) | Baburnama 1598 manuscript (Mughal court artist) · Public domain |
+| 4-2-3_종교토론.jpg | [Jesuits at Akbar's court.jpg](https://commons.wikimedia.org/wiki/File%3AJesuits_at_Akbar%27s_court.jpg) | Akbarnama illustration, c.1605 (attr. Nar Singh), Chester Beatty Library · Public domain |
+| 4-2-3_말년황제.jpg | [Aurangzeb reading the Quran.jpg](https://commons.wikimedia.org/wiki/File%3AAurangzeb_reading_the_Quran.jpg) | Unknown artist, c.1700 · Public domain |
+| 4-2-3_황금사원.jpg | [Harmandir Sahib, Amritsar, India.jpg](https://commons.wikimedia.org/wiki/File%3AHarmandir_Sahib%2C_Amritsar%2C_India.jpg) | Dey.sandip · CC BY-SA 4.0 |
+| 4-2-3_대리석무덤.jpg | [Taj Mahal, Agra, India edit3.jpg](https://commons.wikimedia.org/wiki/File%3ATaj_Mahal%2C_Agra%2C_India_edit3.jpg) | Yann; edited by King of Hearts; derivative Jbarta · CC BY-SA 3.0 |
+| 4-2-3_궁정그림.jpg | [Turkey Cock, by Mansur, opaque watercolour and gold on paper, Mughal, ca. 1612.jpg](https://commons.wikimedia.org/wiki/File%3ATurkey_Cock%2C_by_Mansur%2C_opaque_watercolour_and_gold_on_paper%2C_Mughal%2C_ca._1612.jpg) | Ustad Mansur · Public domain |
+| 4-2-3_인도면직물.jpg | [Chintz wall panel MET DP364557.jpg](https://commons.wikimedia.org/wiki/File%3AChintz_wall_panel_MET_DP364557.jpg) | Metropolitan Museum of Art (Coromandel Coast, after Jean Bérain) · CC0 |
+| 4-2-3_voc_관용.jpg | [Starr-170322-7495-Citrus sinensis-variety Vanilla Blood in fruit bowl with pepino dulce peach strawberries Largo and Manini bananas Washington navel oragne and papaya-Hawea Pl Olinda-Maui (33297132503).jpg](https://commons.wikimedia.org/wiki/File%3AStarr-170322-7495-Citrus_sinensis-variety_Vanilla_Blood_in_fruit_bowl_with_pepino_dulce_peach_strawberries_Largo_and_Manini_bananas_Washington_navel_oragne_and_papaya-Hawea_Pl_Olinda-Maui_%2833297132503%29.jpg) | Forest and Kim Starr · CC BY 3.0 US |
+| 4-2-3_voc_절충.jpg | [Sally's apizza half tomato half with cheese (72126).jpg](https://commons.wikimedia.org/wiki/File%3ASally%27s_apizza_half_tomato_half_with_cheese_%2872126%29.jpg) | Rhododendrites · CC BY-SA 4.0 |
+| 4-2-3_voc_융합.jpg | [Molten Metal Pouring from a Ladle.jpg](https://commons.wikimedia.org/wiki/File%3AMolten_Metal_Pouring_from_a_Ladle.jpg) | Mnooralam11 · CC BY 4.0 |
+| 4-2-3_voc_쇠퇴.jpg | [Wilted flowers on Friedhof Obermenzing 01.jpg](https://commons.wikimedia.org/wiki/File%3AWilted_flowers_on_Friedhof_Obermenzing_01.jpg) | Kritzolina · CC BY-SA 4.0 |
+| 4-2-3_무굴제국_표지.png | (AI 생성 배경 · 자체 제작, gemini 2.5 flash image + cover_overlay) | 자체 제작 · 자체 제작 |
+
+## 4-2-1 명과 청 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 4-2-1_홍무제.jpg | [A Seated Portrait of Ming Emperor Taizu.jpg](https://commons.wikimedia.org/wiki/File%3AA_Seated_Portrait_of_Ming_Emperor_Taizu.jpg) | Unknown Ming court painter · Public domain |
+| 4-2-1_기린도.jpg | [Tribute Giraffe with Attendant.jpg](https://commons.wikimedia.org/wiki/File%3ATribute_Giraffe_with_Attendant.jpg) | Shen Du (attrib.) · Public domain |
+| 4-2-1_누르하치.jpg | [清 佚名 《清太祖天命皇帝朝服像》.jpg](https://commons.wikimedia.org/wiki/File%3A%E6%B8%85_%E4%BD%9A%E5%90%8D_%E3%80%8A%E6%B8%85%E5%A4%AA%E7%A5%96%E5%A4%A9%E5%91%BD%E7%9A%87%E5%B8%9D%E6%9C%9D%E6%9C%8D%E5%83%8F%E3%80%8B.jpg) | Unknown Qing court painter · Public domain |
+| 4-2-1_변발.jpg | [-Chinese Man- MET DP155379.jpg](https://commons.wikimedia.org/wiki/File%3A-Chinese_Man-_MET_DP155379.jpg) | Raimund von Stillfried (The Met) · CC0 |
+| 4-2-1_쑤저우.jpg | [Xu Yang - Changmen street in Suzhou.jpg](https://commons.wikimedia.org/wiki/File%3AXu_Yang_-_Changmen_street_in_Suzhou.jpg) | Xu Yang · Public domain |
+| 4-2-1_무대공연.jpg | [Xu Yang - Theatre play.jpg](https://commons.wikimedia.org/wiki/File%3AXu_Yang_-_Theatre_play.jpg) | Xu Yang · Public domain |
+| 4-2-1_광저우.jpg | [William Daniell - The European Factories, Canton - Google Art Project.jpg](https://commons.wikimedia.org/wiki/File%3AWilliam_Daniell_-_The_European_Factories%2C_Canton_-_Google_Art_Project.jpg) | William Daniell · Public domain |
+| 4-2-1_곤여만국전도.jpg | [Kunyu Wanguo Quantu (坤輿萬國全圖).jpg](https://commons.wikimedia.org/wiki/File%3AKunyu_Wanguo_Quantu_%28%E5%9D%A4%E8%BC%BF%E8%90%AC%E5%9C%8B%E5%85%A8%E5%9C%96%29.jpg) | Matteo Ricci · Public domain |
+| 4-2-1_말굽화폐.jpg | [Ming Silver Ingot 01.jpg](https://commons.wikimedia.org/wiki/File%3AMing_Silver_Ingot_01.jpg) | Gary Lee Todd · CC0 |
+| 4-2-1_voc_함대.jpg | [Ships steam in formation. (38714948102).jpg](https://commons.wikimedia.org/wiki/File%3AShips_steam_in_formation._%2838714948102%29.jpg) | U.S. Navy · Public domain |
+| 4-2-1_voc_재정.jpg | [Stack of coins 0214.jpg](https://commons.wikimedia.org/wiki/File%3AStack_of_coins_0214.jpg) | Dori · Public domain |
+| 4-2-1_voc_서민.jpg | [Namdaemun market in Seoul I.jpg](https://commons.wikimedia.org/wiki/File%3ANamdaemun_market_in_Seoul_I.jpg) | Smiley.toerist · CC BY-SA 4.0 |
+| 4-2-1_voc_개방.jpg | [Myeongjeongjeon seen through the wooden Gate Hyehwamun at Changgyeonggung Palace in Seoul.jpg](https://commons.wikimedia.org/wiki/File%3AMyeongjeongjeon_seen_through_the_wooden_Gate_Hyehwamun_at_Changgyeonggung_Palace_in_Seoul.jpg) | Basile Morin · CC BY-SA 4.0 |
+| 4-2-1_명청_표지.png | (AI 생성 배경 gemini-3-pro-image + PIL 한글) | 자체 제작 · - |
+
+## 4-1-1 송과 북방 민족 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 4-1-1_송태조.jpg | [Song Taizu.jpg](https://commons.wikimedia.org/wiki/File%3ASong_Taizu.jpg) | 작자 미상 (타이베이 국립고궁박물원) · Public domain |
+| 4-1-1_거란기마.jpg | [Khitans.jpg](https://commons.wikimedia.org/wiki/File%3AKhitans.jpg) | Hu Gui (胡瓌) 전칭 · Public domain |
+| 4-1-1_거란문자.jpg | [Khitan mirror from Korea.jpg](https://commons.wikimedia.org/wiki/File%3AKhitan_mirror_from_Korea.jpg) | John S Y Lee · CC BY-SA 2.0 |
+| 4-1-1_청명상하도.jpg | [Qingming shanghe tu bridge.jpg](https://commons.wikimedia.org/wiki/File%3AQingming_shanghe_tu_bridge.jpg) | Zhang Zeduan (張擇端) · Public domain |
+| 4-1-1_송북방민족_표지.png | (AI 생성 배경 + PIL 한글) | 자체 제작 · - |
+| 4-1-1_은덩이.jpg | [Song Silver Ingot (33549231071).jpg](https://commons.wikimedia.org/wiki/File%3ASong_Silver_Ingot_%2833549231071%29.jpg) | Gary Todd · CC0 |
+| 4-1-1_취안저우배.jpg | [Song Dynasty Ancient Ship of Quanzhou Bay 20061229.jpg](https://commons.wikimedia.org/wiki/File%3ASong_Dynasty_Ancient_Ship_of_Quanzhou_Bay_20061229.jpg) | meckleychina · CC BY 2.0 |
+| 4-1-1_voc_우대.jpg | [Shenzhen metro priority seats cropped.jpg](https://commons.wikimedia.org/wiki/File%3AShenzhen_metro_priority_seats_cropped.jpg) | Shenzybaby · CC BY-SA 4.0 |
+| 4-1-1_voc_압박.jpg | [An engineer's vise.jpg](https://commons.wikimedia.org/wiki/File%3AAn_engineer%27s_vise.jpg) | Dmitry Makeev · CC BY-SA 4.0 |
+| 4-1-1_voc_재정.jpg | [String of 200 Cash Coins - Northern Song Dynasty - Scott Semans.jpg](https://commons.wikimedia.org/wiki/File%3AString_of_200_Cash_Coins_-_Northern_Song_Dynasty_-_Scott_Semans.jpg) | Scott Semans · CC BY 3.0 |
+| 4-1-1_voc_번성.jpg | [Qingming shanghe tu bridge.jpg](https://commons.wikimedia.org/wiki/File%3AQingming_shanghe_tu_bridge.jpg) | Zhang Zeduan (張擇端) · Public domain |
