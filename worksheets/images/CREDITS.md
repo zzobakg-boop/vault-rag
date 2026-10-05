@@ -297,3 +297,45 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-1-3_voc_완화.jpg | [Adventuress - rope and rigging 10.jpg](https://commons.wikimedia.org/wiki/File%3AAdventuress_-_rope_and_rigging_10.jpg) | Joe Mabel · CC BY 3.0 |
 | 7-1-3_voc_해체.jpg | [Berlin, Berliner Mauer -- um 1990 -- 5.jpg](https://commons.wikimedia.org/wiki/File%3ABerlin%2C_Berliner_Mauer_--_um_1990_--_5.jpg) | Dietmar Rabich · CC BY-SA 4.0 |
 | 7-1-3_voc_흡수.jpg | [Sponge 1 Davy Crocker Reef 20230712.jpg](https://commons.wikimedia.org/wiki/File%3ASponge_1_Davy_Crocker_Reef_20230712.jpg) | Jstuby · CC0 |
+
+## 5-1 국내총생산과 경제생활 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 5-1_voc_총생산.jpg | 컨베이어로 쏟아부어 산처럼 쌓인 곡물 더미, 미국 워싱턴주 동부, 2011 — 總(모두)·生産(만듦) (64895903 40756c454c z - sparktography grain photo - Flickr - USDAgov.jpg) | Sparktography / U.S. Department of Agriculture · Public domain |
+| 5-1_voc_최종생산물.jpg | 조립 라인 끝에서 막 나온 완성 승용차, 포드 롱비치 조립공장, 1936 — 最終(맨 끝) (Neg. No. F-174A, Apr 24, 1936, INTERIOR-ASSEMBLY BUILDING, FINISHED CARS AT THE END OF THE ASSEMBLY LINE - Ford Motor Company Long Beach Assembly Plant, Assembly Building, 700 HAER CAL,19-LONGB,2-A-91.tif) | HAER (Library of Congress) · Public domain |
+| 5-1_voc_경기.jpg | 사람과 간판으로 붐비는 서울 남대문시장 거리, 2024 — 景氣(형편·기운) (Namdaemun shopping street.jpg) | Sgroey · CC BY-SA 4.0 |
+| 5-1_voc_분배.jpg | 여덟 조각으로 나눈 피자 — 分配(나눌·몫) (Pizza-3007395.jpg) | igorovsyannykov · CC0 |
+
+## 5-2 물가와 실업 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 5-2_voc_물가.jpg | 고추 더미에 꽂힌 «1kg 4.00€» 가격표, 이탈리아 볼로냐 시장, 2009 — 物(물건)·價(값) (28 Friggitello green sweet chili peppers - vegetable price in Bologna, Italy.jpg) | Marek Ślusarczyk (Tupungato) · CC BY 3.0 |
+| 5-2_voc_지수.jpg | 눈금 위 숫자를 가리키는 압력·온도계 바늘 — 指(가리킬)·數(셈) (Pressure gauge shows measurement on equipment in a workshop setting with tools and machinery around it.jpg) | Shixart1985 · CC BY 2.0 |
+| 5-2_voc_구매력.jpg | 위에서 내려다본, 물건이 가득 찬 장바구니 카트, 네덜란드, 2011 — 購買(사다)·力(힘) (Full shopping cart (seen from above).jpg) | Sander van der Wel · CC BY-SA 2.0 |
+| 5-2_voc_실업.jpg | «실업자에게 무료 수프» 간판 앞에 늘어선 줄, 시카고, 1931 — 失(잃을)·業(일) (Unemployed men queued outside a depression soup kitchen opened in Chicago by Al Capone, 02-1931 - NARA - 541927.jpg) | 작자 미상(NARA) · Public domain |
+| 5-2_voc_인플레이션.jpg | 바람을 불어넣어 부풀리는 열기구, 영국 바스 로열빅토리아공원 — inflare(부풀다) (Yellow.balloon.inflation.arp.jpg) | Adrian Pingstone · Public domain |
+
+## 5-4 국제 거래와 비교 우위 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 5-4_voc_무역.jpg | 컨테이너선에서 짐을 내리고 싣는 크레인, 미국 서배너항, 2023 — 貿·易(바꿀) (Port of Savannah Non-Intrusive Inspections (NII) and Cargo Operations (53069306863).jpg) | CBP Photography · Public domain |
+| 5-4_voc_특화.jpg | 한 가지 꽃만 끝까지 심은 튤립 밭, 네덜란드 힐레홈, 2017 — 特(특별할)·化(될) (Pink-Tulip-Fields Bollenstreek Hillegom.jpg) | acediscovery · CC BY 4.0 |
+| 5-4_voc_우위.jpg | 1·2·3 숫자가 붙은 빈 시상대, 핀란드, 2015 — 優(뛰어날)·位(자리) (Podium 2015.JPG) | Santeri Viinamäki · CC BY-SA 4.0 |
+| 5-4_voc_관세.jpg | 차단봉(빗장)이 내려진 국경 세관, 에스토니아 나르바, 1991 — 關(빗장·관문)·稅(세금) (RIAN archive 472705 Estonian customs office in Narva.jpg) | Sergey Kompanichenko (RIA Novosti) · CC BY-SA 3.0 |
+| 5-4_voc_의존도.jpg | 나무 버팀목 여러 개에 가지를 기대고 선 늙은 소나무, 일본 겐로쿠엔 — 依存(기댐) (Kenroku-en - Kenrokuen651.jpg) | lumoplank · CC0 |
+
+## 5-5 환율의 결정과 영향 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 5-5_voc_환율.jpg | 나라별 돈을 바꾸는 비율 전광판, 2022 — 換(바꿀)·率(비율) (Exchange rates sign.jpg) | Dvortygirl · CC BY-SA 4.0 |
+| 5-5_voc_외화.jpg | 여러 나라 지폐를 줄줄이 걸어 둔 벽, 한국의 한 호텔, 2023 — 外(바깥)·貨(돈) (001 International money collection - various currencies displayed in a hotel reception in South Korea.jpg) | Marek Ślusarczyk (Tupungato) · CC BY 3.0 |
+| 5-5_voc_가치.jpg | 작은 저울로 금화의 값을 다는 손, 피터르 더 호흐 「저울을 든 여인」(부분), 1664년경 — 價·値(값) (A woman with a pair of scales, by Pieter de Hooch.jpg) | Pieter de Hooch · Public domain |
+| 5-5_voc_강세.jpg | 1900 파리 올림픽 줄다리기(덴마크·스웨덴 대 프랑스) — 強弱(셀·약할)·勢(기세) (Tug of war.jpg) | 작자 미상 · Public domain |
+| 5-5_voc_외채.jpg | 쿠바 독립운동이 미국에서 발행한 100페소 채권, 1869 — 外(바깥)·債(빚) (Cuba Liberty Loan 1869.jpg) | Julie Ceccaldi(스캔) · CC0 |
+
+## 6-1 국제 사회의 의미와 특성 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 6-1_voc_주권.jpg | 회원국 국기가 크기 차이 없이 나란히 선 «국기의 길», 제네바 유엔 사무소, 2021 — 主(주인)·權(권세) (Alley of flags UNO Geneva.jpg) | Tinux · CC0 |
+| 6-1_voc_권위.jpg | 경복궁 근정전 어좌와 일월오봉도, 2014 — 權(권세)·威(위엄) (Seoul Throne in Geunjeongjeon 01.jpg) | Spike · CC BY-SA 4.0 |
+| 6-1_voc_공존.jpg | 한 풀밭에서 함께 풀을 뜯는 누 떼와 얼룩말, 탄자니아 응고롱고로 — 共(함께)·存(있을) (Blue Wildebeests (Connochaetes taurinus) and Plains Zebras (Equus quagga) gathered together in the short grass of the Ngorongoro Crater, Tanzania.jpg) | Rasheedhrasheed · CC BY-SA 4.0 |
