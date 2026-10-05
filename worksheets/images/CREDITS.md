@@ -759,3 +759,33 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-3-2_voc_폐위.jpg | [Bahadur Shah in exile.jpg](https://commons.wikimedia.org/wiki/File%3ABahadur_Shah_in_exile.jpg) | Horatio Gordon Robley · Public domain |
 | 5-3-2_voc_배척.jpg | [Boston Tea Party Currier colored.jpg](https://commons.wikimedia.org/wiki/File%3ABoston_Tea_Party_Currier_colored.jpg) | Nathaniel Currier (1846) · Public domain |
 | 5-3-2_인도국민국가운동_표지.png | (AI 생성 배경 · grok-imagine-image-2.0 + PIL 한글) | 자체 제작 · — |
+
+## 5-3-3 중국 국민 국가 건설 운동 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 5-3-3_아편창고.jpg | [A busy stacking room in the opium factory at Patna, India. L Wellcome V0019154.jpg](https://commons.wikimedia.org/wiki/File%3AA_busy_stacking_room_in_the_opium_factory_at_Patna%2C_India._L_Wellcome_V0019154.jpg) | W. S. Sherwill (Wellcome Collection) · Public domain |
+| 5-3-3_네메시스호.jpg | [Destroying Chinese war junks, by E. Duncan (1843).jpg](https://commons.wikimedia.org/wiki/File%3ADestroying_Chinese_war_junks%2C_by_E._Duncan_%281843%29.jpg) | Edward Duncan · Public domain |
+| 5-3-3_용포.jpg | [Hong Xiuquan's Silk Dragon Robe (10151794584).jpg](https://commons.wikimedia.org/wiki/File%3AHong_Xiuquan%27s_Silk_Dragon_Robe_%2810151794584%29.jpg) | Gary Todd · CC0 |
+| 5-3-3_정원호.jpg | [Dingyuan (ship, 1884) - NH 1926 - cropped.jpg](https://commons.wikimedia.org/wiki/File%3ADingyuan_%28ship%2C_1884%29_-_NH_1926_-_cropped.jpg) | Unknown author (US Naval History and Heritage Command NH 1926) · Public domain |
+| 5-3-3_연합군.jpg | [Within historic grounds of the Forbidden City in Pekin, China, on November 28 celebrated the victory of the Allies., ca. - NARA - 532582.jpg](https://commons.wikimedia.org/wiki/File%3AWithin_historic_grounds_of_the_Forbidden_City_in_Pekin%2C_China%2C_on_November_28_celebrated_the_victory_of_the_Allies.%2C_ca._-_NARA_-_532582.jpg) | Unknown (US National Archives 532582) · Public domain |
+| 5-3-3_우창군정부.jpg | [Hubei Military Government.jpg](https://commons.wikimedia.org/wiki/File%3AHubei_Military_Government.jpg) | Unknown · Public domain |
+| 5-3-3_voc_개항.jpg | [The Bund in front of the British concession in 1869, Shanghai.jpg](https://commons.wikimedia.org/wiki/File%3AThe_Bund_in_front_of_the_British_concession_in_1869%2C_Shanghai.jpg) | John Thomson · Public domain |
+| 5-3-3_voc_배상금.jpg | [Ming Silver Ingot 02.jpg](https://commons.wikimedia.org/wiki/File%3AMing_Silver_Ingot_02.jpg) | Gary Lee Todd · CC0 |
+| 5-3-3_voc_균등.jpg | [Scales MET 164134.jpg](https://commons.wikimedia.org/wiki/File%3AScales_MET_164134.jpg) | The Metropolitan Museum of Art · CC0 |
+| 5-3-3_voc_퇴위.jpg | [DragonThroneHallofSupremeHarmony.jpg](https://commons.wikimedia.org/wiki/File%3ADragonThroneHallofSupremeHarmony.jpg) | 秋水平湖 · CC BY-SA 4.0 |
+| 5-3-3_중국국민국가운동_표지.png | (AI 생성 배경 — Grok Aurora grok-imagine-image-2.0 + PIL 한글) | 자체 제작 · — |
+
+## 5-3-4 일본의 제국주의 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 5-3-4_흑선.jpg | [Ca. 1853 Kawaraban - Commodore Perry's Arrival in Edo Bay.jpg](https://commons.wikimedia.org/wiki/File%3ACa._1853_Kawaraban_-_Commodore_Perry%27s_Arrival_in_Edo_Bay.jpg) | Anonymous (가와라반, c.1853) · Public domain |
+| 5-3-4_사절단.jpg | [Iwakura mission.jpg](https://commons.wikimedia.org/wiki/File%3AIwakura_mission.jpg) | Unknown author (1872) · Public domain |
+| 5-3-4_헌법발표.jpg | [Illustration of the Ceremony for the Promulgation of the Constitution of Great Japan.jpg](https://commons.wikimedia.org/wiki/File%3AIllustration_of_the_Ceremony_for_the_Promulgation_of_the_Constitution_of_Great_Japan.jpg) | Utagawa Kunisada III (1889) · Public domain |
+| 5-3-4_비고풍자화.jpg | [China Japan Russia Coree.png](https://commons.wikimedia.org/wiki/File%3AChina_Japan_Russia_Coree.png) | Georges Ferdinand Bigot (1887) · Public domain |
+| 5-3-4_voc_물가.jpg | [28 Friggitello green sweet chili peppers - vegetable price in Bologna, Italy.jpg](https://commons.wikimedia.org/wiki/File%3A28_Friggitello_green_sweet_chili_peppers_-_vegetable_price_in_Bologna%2C_Italy.jpg) | Marek Ślusarczyk (Tupungato) · CC BY 3.0 |
+| 5-3-4_voc_유학.jpg | [Iwakura und Damen.jpg](https://commons.wikimedia.org/wiki/File%3AIwakura_und_Damen.jpg) | Horace Harral (c.1872) · Public domain |
+| 5-3-4_voc_신성.jpg | [Sacred tree bound with a shimenawa at Suwa Shrine in Nagasaki, 20240815 1403 3686.jpg](https://commons.wikimedia.org/wiki/File%3ASacred_tree_bound_with_a_shimenawa_at_Suwa_Shrine_in_Nagasaki%2C_20240815_1403_3686.jpg) | Jakub Hałun · CC BY 4.0 |
+| 5-3-4_voc_팽창.jpg | [Hot Air Balloon Inflation (20424825693).jpg](https://commons.wikimedia.org/wiki/File%3AHot_Air_Balloon_Inflation_%2820424825693%29.jpg) | Paul VanDerWerf · CC BY 2.0 |
+| 5-3-4_일본제국주의_표지.png | (AI 생성 배경 — Grok Aurora · make-cover.sh) | 자체 제작 · - |
