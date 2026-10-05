@@ -242,9 +242,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }
 @media (max-width: 560px) {
   .ws-seesaw-beam { width: 300px; margin-left: -150px; }
-  .ws-seesaw-chip { width: 124px; font-size: 0.8em; }
-  .ws-seesaw-chip.ws-l { margin-left: -206px; }
-  .ws-seesaw-chip.ws-r { margin-left: 82px; }
+  .ws-seesaw-chip { width: 108px; font-size: 0.78em; }   /* 2026-10-04: 124px·±206은 폰 반폭(≈165)을 9px 넘었다 */
+  .ws-seesaw-chip.ws-l { margin-left: -161px; }
+  .ws-seesaw-chip.ws-r { margin-left: 53px; }
 }
 @media print { .ws-seesaw-range { display: none; } }
 
@@ -1015,13 +1015,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>- 산업화와 제국주의가 <strong>생태환경</strong>에 미친 영향을 이해할 수 있다.</p>
 <br>
 <h2>✨ 오늘의 고급 단어</h2>
-<table>
-<tr><td>낱말</td><td>쉽게 말하면</td><td>한자 뜯어보기</td><td>문장 속에서</td></tr>
-<tr><td><strong>문물</strong>(文物)</td><td>한 사회가 만든 제도·기술·물건·문화</td><td>문(文, 글월) + 물(物, 물건)</td><td>"개항 뒤 서양의 <strong>문물</strong>이 들어왔다."</td></tr>
-<tr><td><strong>자오선</strong>(子午線)</td><td>북극과 남극을 잇는 세로선(경선)</td><td>자(子, 북쪽) + 오(午, 남쪽) + 선(線, 줄)</td><td>"같은 <strong>자오선</strong> 위의 마을은 정오가 같다."</td></tr>
-<tr><td><strong>이주</strong>(移住)</td><td>사는 곳을 옮김</td><td>이(移, 옮길) + 주(住, 살)</td><td>"그는 일자리를 찾아 미국으로 <strong>이주</strong>했다."</td></tr>
-<tr><td><strong>천적</strong>(天敵)</td><td>어떤 동물을 잡아먹어 수를 줄이는 동물</td><td>천(天, 하늘) + 적(敵, 원수)</td><td>"<strong>천적</strong>이 없으면 그 동물의 수가 크게 는다."</td></tr>
-</table>
+<div class="ws-vcd" id="vd8"><div class="ws-vcd-head">그림을 보고 무슨 말일지 짐작해 본 뒤, 카드를 눌러 뒤집어 확인하자. ▶로 넘긴다.</div><div class="ws-vcd-track"><button type="button" class="ws-vcard" aria-label="문물 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-3_voc_문물.jpg" alt=""><span class="vcd-hanja">文物</span><span class="vcd-ko">문물</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">문물</span><span class="vcd-split">문(文, 글월) + 물(物, 물건)</span><span class="vcd-mean">한 사회가 만든 제도·기술·물건·문화</span><span class="vcd-sent">"개항 뒤 서양의 <strong>문물</strong>이 들어왔다."</span><span class="vcd-fam">文 → 문화 · 문명 · 문학 / 物 → 물건 · 동물 · 박물관</span></span></span></button><button type="button" class="ws-vcard" aria-label="자오선 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-3_voc_자오선.jpg" alt=""><span class="vcd-hanja">子午線</span><span class="vcd-ko">자오선</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">자오선</span><span class="vcd-split">자(子, 북쪽) + 오(午, 남쪽) + 선(線, 줄)</span><span class="vcd-mean">북극과 남극을 잇는 세로선(경선)</span><span class="vcd-sent">"같은 <strong>자오선</strong> 위의 마을은 정오가 같다."</span><span class="vcd-fam">子 = 열두 띠의 첫째(쥐) · 북쪽 / 午 = 일곱째(말) · 남쪽 → 정오(낮 12시) · 오전 · 오후</span></span></span></button><button type="button" class="ws-vcard" aria-label="이주 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-3_voc_이주.jpg" alt=""><span class="vcd-hanja">移住</span><span class="vcd-ko">이주</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">이주</span><span class="vcd-split">이(移, 옮길) + 주(住, 살)</span><span class="vcd-mean">사는 곳을 옮김</span><span class="vcd-sent">"그는 일자리를 찾아 미국으로 <strong>이주</strong>했다."</span><span class="vcd-fam"><strong>移 = 옮긴다</strong> → 이동 · 이사 · 이민 / 住 → 주소 · 주민 · 거주</span></span></span></button><button type="button" class="ws-vcard" aria-label="천적 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-3_voc_천적.jpg" alt=""><span class="vcd-hanja">天敵</span><span class="vcd-ko">천적</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">천적</span><span class="vcd-split">천(天, 하늘) + 적(敵, 원수)</span><span class="vcd-mean">어떤 동물을 잡아먹어 수를 줄이는 동물</span><span class="vcd-sent">"<strong>천적</strong>이 없으면 그 동물의 수가 크게 는다."</span><span class="vcd-fam">天 → 하늘 · 천국 · 천재 / 敵 → 적군 · 무적 · 적수</span></span></span></button></div><div class="ws-vcd-nav"><button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button><span class="vcd-count"><b>1</b> / 4</span><button type="button" class="vcd-next" aria-label="다음 낱말">▶</button></div></div><script>(function(){var r=document.getElementById("vd8");var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}function idx(){return Math.max(0,Math.min(cs.length-1,Math.round(t.scrollLeft/step())));}var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;c.textContent=e?cs.length:idx()+1;P.disabled=t.scrollLeft<=2;N.disabled=e;}function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}P.addEventListener("click",function(){go(-1);});N.addEventListener("click",function(){go(1);});t.addEventListener("scroll",function(){clearTimeout(t._z);t._z=setTimeout(sync,90);});function navfit(){var s=t.scrollWidth-t.clientWidth;r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}navfit();sync();addEventListener("resize",function(){navfit();sync();});})();</script>
 <br>
 <blockquote>💡 오늘 딱 하나만 잡자 — 세계가 <strong>하나로 이어지자</strong> 좋은 것만 건너간 게 아니었다. 시계와 사상도, 기울어진 무역도, 토끼도 함께 건너갔다.</blockquote>
 <br>

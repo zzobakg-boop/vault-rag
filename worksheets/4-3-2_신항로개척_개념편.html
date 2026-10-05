@@ -242,9 +242,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }
 @media (max-width: 560px) {
   .ws-seesaw-beam { width: 300px; margin-left: -150px; }
-  .ws-seesaw-chip { width: 124px; font-size: 0.8em; }
-  .ws-seesaw-chip.ws-l { margin-left: -206px; }
-  .ws-seesaw-chip.ws-r { margin-left: 82px; }
+  .ws-seesaw-chip { width: 108px; font-size: 0.78em; }   /* 2026-10-04: 124px·±206은 폰 반폭(≈165)을 9px 넘었다 */
+  .ws-seesaw-chip.ws-l { margin-left: -161px; }
+  .ws-seesaw-chip.ws-r { margin-left: 53px; }
 }
 @media print { .ws-seesaw-range { display: none; } }
 
@@ -378,6 +378,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }
 .ws-saryo .sr-c { margin-top: 10px; text-align: right; font-size: 0.82em; color: #7a6040; }
 @media print { .ws-saryo { background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; } }
+.ws-2c { display: grid; gap: 22px; align-items: start; margin: 12px 0 18px; }
+.ws-2c > div { min-width: 0; }
+.ws-2c > div > :first-child { margin-top: 0; }
+.ws-2c > div > br { display: none; }
+@media (max-width: 640px) { .ws-2c { grid-template-columns: 1fr !important; } }
+.ws-2c.c2-mid { align-items: center; }
+.ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
+.ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
+.ws-2c .ws-fig { margin: 0; }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -849,6 +858,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+     (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
   position: relative; overflow: hidden;
@@ -970,6 +981,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
+/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
@@ -1006,13 +1018,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </div></div>
 <br>
 <h2>✨ 오늘의 고급 단어</h2>
-<table>
-<tr><td>낱말</td><td>쉽게 말하면</td><td>한자 뜯어보기</td><td>문장 속에서</td></tr>
-<tr><td><strong>향신료</strong></td><td>음식에 맵거나 향기로운 맛을 더하는 조미료</td><td>향(香, 향기) + 신(辛, 매울) + 료(料, 재료)</td><td>"후추 같은 <strong>향신료</strong>는 값이 매우 비쌌다."</td></tr>
-<tr><td><strong>독점</strong></td><td>혼자 다 차지함</td><td>독(獨, 홀로) + 점(占, 차지할)</td><td>"동네에 빵집이 하나뿐이면 그 가게가 빵 장사를 <strong>독점</strong>한다."</td></tr>
-<tr><td><strong>개척</strong></td><td>새 길을 열어 냄</td><td>개(開, 열) + 척(拓, 넓힐)</td><td>"새로운 항로를 <strong>개척</strong>했다."</td></tr>
-<tr><td><strong>식민지</strong></td><td>다른 나라에 지배받는 땅</td><td>식(植, 심을) + 민(民, 백성) + 지(地, 땅)</td><td>"에스파냐는 라틴 아메리카를 <strong>식민지</strong>로 삼았다."</td></tr>
-</table>
+<div class="ws-vcd" id="vd11"><div class="ws-vcd-head">그림을 보고 무슨 말일지 짐작해 본 뒤, 카드를 눌러 뒤집어 확인하자. ▶로 넘긴다.</div><div class="ws-vcd-track"><button type="button" class="ws-vcard" aria-label="향신료 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/4-3-2_voc_향신료.jpg" alt=""><span class="vcd-ko vcd-ko-solo">향신료</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">향신료</span><span class="vcd-split">향(香, 향기) + 신(辛, 매울) + 료(料, 재료)</span><span class="vcd-mean">음식에 맵거나 향기로운 맛을 더하는 조미료</span><span class="vcd-sent">"후추 같은 <strong>향신료</strong>는 값이 매우 비쌌다."</span><span class="vcd-fam">香 → 향기 · 향수 · 향초 / 料 → 재료 · 조미료 · 음료</span></span></span></button><button type="button" class="ws-vcard" aria-label="독점 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/4-3-2_voc_독점.jpg" alt=""><span class="vcd-ko vcd-ko-solo">독점</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">독점</span><span class="vcd-split">독(獨, 홀로) + 점(占, 차지할)</span><span class="vcd-mean">혼자 다 차지함</span><span class="vcd-sent">"동네에 빵집이 하나뿐이면 그 가게가 빵 장사를 <strong>독점</strong>한다."</span><span class="vcd-fam"><strong>占 = 차지한다</strong> → 점령 · 점유 · 그리고 <strong>독점</strong>(혼자 차지한다) / 獨 → 독립 · 독도 · 단독</span></span></span></button><button type="button" class="ws-vcard" aria-label="개척 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/4-3-2_voc_개척.jpg" alt=""><span class="vcd-ko vcd-ko-solo">개척</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">개척</span><span class="vcd-split">개(開, 열) + 척(拓, 넓힐)</span><span class="vcd-mean">새 길을 열어 냄</span><span class="vcd-sent">"새로운 항로를 <strong>개척</strong>했다."</span><span class="vcd-fam"><strong>開 = 연다 · 拓 = 넓힌다</strong> → 개업 · 개학 · 개방 / 拓 → 간척(바다를 막아 땅을 넓힘)</span></span></span></button><button type="button" class="ws-vcard" aria-label="식민지 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/4-3-2_voc_식민지.jpg" alt=""><span class="vcd-ko vcd-ko-solo">식민지</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">식민지</span><span class="vcd-split">식(植, 심을) + 민(民, 백성) + 지(地, 땅)</span><span class="vcd-mean">다른 나라에 지배받는 땅</span><span class="vcd-sent">"에스파냐는 라틴 아메리카를 <strong>식민지</strong>로 삼았다."</span><span class="vcd-fam"><strong>植 = 심는다</strong> → 식물 · 식목일 · 이식 · 그리고 <strong>식민</strong>(사람을 옮겨 심는다)</span></span></span></button></div><div class="ws-vcd-nav"><button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button><span class="vcd-count"><b>1</b> / 4</span><button type="button" class="vcd-next" aria-label="다음 낱말">▶</button></div></div><script>(function(){var r=document.getElementById("vd11");var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}function idx(){return Math.max(0,Math.min(cs.length-1,Math.round(t.scrollLeft/step())));}var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;c.textContent=e?cs.length:idx()+1;P.disabled=t.scrollLeft<=2;N.disabled=e;}function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}P.addEventListener("click",function(){go(-1);});N.addEventListener("click",function(){go(1);});t.addEventListener("scroll",function(){clearTimeout(t._z);t._z=setTimeout(sync,90);});function navfit(){var s=t.scrollWidth-t.clientWidth;r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}navfit();sync();addEventListener("resize",function(){navfit();sync();});})();</script>
 <br>
 <blockquote>💡 오늘의 열쇳말은 «중간에서 다 차지한 사람들» — 이것 때문에 사람들이 바다로 나갔다.</blockquote>
 <br>
