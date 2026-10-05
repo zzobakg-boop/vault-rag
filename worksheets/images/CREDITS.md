@@ -393,7 +393,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 ## 9-6 서비스업 세계화와 생활 — 고급 단어 카드
 | 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
 |---|---|---|
-| 9-6_voc_대행.jpg | 여행사 창구가 늘어선 공항 «Reisemarkt», 독일 뮌헨 공항 제1터미널, 2006 (Travel agent counters at Franz Josef Strauss International Airport near Munich, Germany (Terminal 1) 2006-04-30.jpg) | Mattes · 퍼블릭 도메인 |
+| 9-6_voc_대행_v2.jpg | 택배 기사가 상자를 받는 사람에게 건네는 일러스트(얼굴 없음) — 남의 물건을 대신 날라 줌, 2022 (A Courier Delivering a Parcel.jpg) | Meanwell Packaging · CC BY 2.0 |
 | 9-6_voc_제휴.jpg | 카페 탁자 위에서 맞잡은 두 손, 2017 (Business agreement handshake at coffee shop.jpg) | rawpixel.com · CC0 |
 | 9-6_voc_대중화.jpg | 공연장 객석에서 저마다 스마트폰을 든 관객들, 홍콩 북구대회당, 2022 (HK NDH 上水 Sheung Shui 北區大會堂 Northern District City Hall Theatre 舞臺 stage 台下觀眾 Audience visitors holding smartphones camera night June 2022 SS2 01.jpg) | BorGorZHUTze M0615 · CC BY-SA 4.0 |
 
