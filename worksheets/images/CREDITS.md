@@ -851,3 +851,17 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-3-1_voc_의회.jpg | [A Sitting of the New Turkish Parliament at Constantinople - ILN 1877.jpg](https://commons.wikimedia.org/wiki/File%3AA_Sitting_of_the_New_Turkish_Parliament_at_Constantinople_-_ILN_1877.jpg) | The Illustrated London News (1877) · Public domain |
 | 5-3-1_voc_언론.jpg | [Le Progrès de Salonique 25 July 1908.JPG](https://commons.wikimedia.org/wiki/File%3ALe_Progr%C3%A8s_de_Salonique_25_July_1908.JPG) | Progrès de Salonique · Public domain |
 | 5-3-1_오스만국민국가운동_표지.png | (AI 생성 배경 grok-imagine-image-2.0 + PIL 한글) | 자체 제작 · - |
+
+## 7-2-1 반전 평화 운동과 민주화 운동 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 7-2-1_소르본.jpg | [Frankrijk. Sorbonne bezet door studenten, Bestanddeelnr 921-3968.jpg](https://commons.wikimedia.org/wiki/File%3AFrankrijk._Sorbonne_bezet_door_studenten%2C_Bestanddeelnr_921-3968.jpg) | Eric Koch / Anefo (Nationaal Archief) · CC0 |
+| 7-2-1_꽃.jpg | [Vietnamdem-clean.jpg](https://commons.wikimedia.org/wiki/File%3AVietnamdem-clean.jpg) | S.Sgt. Albert R. Simpson, U.S. Department of Defense · Public domain |
+| 7-2-1_탱크.jpg | [František Dostál Srpen 1968 4 (cropped).jpg](https://commons.wikimedia.org/wiki/File%3AFranti%C5%A1ek_Dost%C3%A1l_Srpen_1968_4_%28cropped%29.jpg) | František Dostál · CC BY-SA 4.0 |
+| 7-2-1_큰길.jpg | [Tunisia Unrest - VOA - Tunis 14 Jan 2011 (2).jpg](https://commons.wikimedia.org/wiki/File%3ATunisia_Unrest_-_VOA_-_Tunis_14_Jan_2011_%282%29.jpg) | L. Bryant / VOA · Public domain |
+| 7-2-1_voc_시위.jpg | [Women march in street for voting rights carrying banners.jpg](https://commons.wikimedia.org/wiki/File%3AWomen_march_in_street_for_voting_rights_carrying_banners.jpg) | Kheel Center, Cornell University · CC BY 2.0 |
+| 7-2-1_voc_반전.jpg | [Public Reactions, The March on the Pentagon - NARA - 192605.tif](https://commons.wikimedia.org/wiki/File%3APublic_Reactions%2C_The_March_on_the_Pentagon_-_NARA_-_192605.tif) | Frank Wolfe / U.S. National Archives · Public domain |
+| 7-2-1_voc_독재.jpg | [Germany, King's Throne Room, Munich, Munich Residence.jpg](https://commons.wikimedia.org/wiki/File%3AGermany%2C_King%27s_Throne_Room%2C_Munich%2C_Munich_Residence.jpg) | Wilfredor · CC0 |
+| 7-2-1_voc_진압.jpg | [Members from the 3rd Iraqi Federal Police, line up in a riot control formation at Ghuzlani Training Site of Ninewa province, Iraq, June 25, 2011 110625-A-YV529-002.jpg](https://commons.wikimedia.org/wiki/File%3AMembers_from_the_3rd_Iraqi_Federal_Police%2C_line_up_in_a_riot_control_formation_at_Ghuzlani_Training_Site_of_Ninewa_province%2C_Iraq%2C_June_25%2C_2011_110625-A-YV529-002.jpg) | PFC Nikko-Angelo Matos, U.S. Army · Public domain |
+| 7-2-1_반전평화운동_표지.png | (AI 생성 배경 · Grok Aurora + PIL 한글) | 자체 제작 · 자체 제작 |
