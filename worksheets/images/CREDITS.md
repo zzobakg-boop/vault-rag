@@ -634,7 +634,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
 |---|---|---|
 | 12-1_voc_기아.jpg | 위에서 내려다본 빈 흰 그릇, 2018 (File:Empty white bowl.png) | Alorin · CC BY 4.0 |
-| 12-1_voc_영양실조.jpg | 마을 보건요원이 아이 위팔 둘레(MUAC)를 줄자로 재는 모습, 짐바브웨, 2016 (File:Village health worker checks, Zimbabwe (36273604714).jpg) | USAID in Africa · Public domain |
+| 12-1_voc_영양실조_v2.jpg | 마을 보건요원이 아이 위팔 둘레(MUAC)를 줄자로 재는 모습(띠와 팔만 남게 잘라 얼굴을 뺌), 짐바브웨, 2016 (File:Village health worker checks, Zimbabwe (36273604714).jpg) | USAID in Africa · Public domain |
 | 12-1_voc_악순환.jpg | 제 꼬리를 문 뱀(우로보로스), 비잔틴 연금술 필사본, 1478 (File:Serpiente alquimica.jpg) | 중세 필사본 화가(미상) · Public domain |
 
 ## 12-2 영토·영해 분쟁 — 고급 단어 카드
@@ -663,7 +663,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 |---|---|---|
 | 12-5_voc_빈곤.jpg | 녹슨 함석지붕 판잣집이 빽빽한 키베라 빈민가 항공사진, 케냐 나이로비, 2010 (File:Kibera aerial view western part.jpg) | Kreuzschnabel · CC BY-SA 3.0 |
 | 12-5_voc_자립.jpg | 마른 흙을 뚫고 혼자 일어선 토마토 새싹, 인도, 2022 (File:Young seedling of tomato emerging from soil - India.jpg) | Ksheera Piraati · CC BY 4.0 |
-| 12-5_voc_무담보.jpg | 물건을 맡기고 돈을 빌리는 전당포 가게 앞, 미국 루이지애나 메테리, 2021 (File:Pawn Shop Instant Cash - Airline Highway, Metairie, Louisiana, August 2021.jpg) | Infrogmation of New Orleans · CC BY-SA 4.0 |
+| 12-5_voc_무담보_v2.jpg | 둘러앉은 여성 자조 모임 — 맡길 물건 대신 서로를 보증 삼아 돈을 빌리는 모임, 인도 타밀나두 쿠달로르, 2017 (Women self help group foundation.jpg) | Pondicherry17 · CC BY-SA 4.0 |
 
 ## 12-6 불평등 완화 노력 — 고급 단어 카드
 | 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
