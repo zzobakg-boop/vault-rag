@@ -253,6 +253,41 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 🗺 :::지도막대 — 2026-10-06 (지도 + 연도 막대 · 핀·값은 HTML) */
+.ws-mapbar { border: 1px solid #dcd3bf; border-radius: 14px; background: #fbf8f1; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-mb-head { font-weight: 800; font-size: 1.02em; margin-bottom: 8px; color: #3a3226; }
+.ws-mb-map { position: relative; line-height: 0; border-radius: 10px; overflow: hidden; }
+.ws-mb-map img { display: block; width: 100%; height: auto; }
+.mb-pin { position: absolute; width: 0; height: 0; line-height: 1.2; }
+.mb-pin i { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #8a7f6c; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); opacity: .9;
+  transition: width .5s, height .5s, margin .5s, background .5s; }
+.mb-pin.mb-up i { background: #c2593a; }
+.mb-pin.mb-dn i { background: #3f6fa8; }
+.mb-lab { position: absolute; top: -9px; white-space: nowrap; font-size: 13px; font-weight: 700; color: #2b2419;
+  background: rgba(255,255,255,.86); border-radius: 6px; padding: 1px 5px; }
+.mb-r .mb-lab { left: 12px; }
+.mb-l .mb-lab { right: 12px; }
+.mb-u .mb-lab, .mb-d .mb-lab { left: 0; transform: translateX(-50%); }
+.mb-u .mb-lab { top: -30px; }
+.mb-d .mb-lab { top: 12px; }
+.mb-lab em { font-style: normal; color: #7a2e1a; font-variant-numeric: tabular-nums; }
+.mb-dn .mb-lab em { color: #244f86; }
+.ws-mb-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86em; color: #4a4234; margin: 8px 2px 4px; }
+.ws-mb-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; }
+.ws-mb-legend i.mb-hi { background: #c2593a; }
+.ws-mb-legend i.mb-lo { background: #3f6fa8; }
+.ws-mb-legend .mb-bt { color: #6b6252; }
+.ws-mb-ctl { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.ws-mb-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #cfc4ae; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-mb-play:focus-visible, .ws-mb-range:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; }
+.ws-mb-range { flex: 1; accent-color: #7a5a2a; min-width: 0; }
+.ws-mb-yr { flex: none; min-width: 4.2em; font-weight: 800; color: #3a3226; font-variant-numeric: tabular-nums; }
+.ws-mb-read { min-height: 3.2em; margin-top: 6px; font-size: .95em; line-height: 1.6; color: #2b2419; }
+.ws-mb-src { font-size: .8em; color: #6b6252; margin-top: 4px; }
+@media (max-width: 560px) { .mb-lab { font-size: 11px; padding: 0 3px; } .mb-r .mb-lab { left: 8px; } .mb-l .mb-lab { right: 8px; } .mb-u .mb-lab { top: -24px; } .mb-d .mb-lab { top: 9px; } }
+@media (prefers-reduced-motion: reduce) { .mb-pin i { transition: none; } }
+@media print { .ws-mb-ctl { display: none; } }
 /* 📈 :::그래프 — 2026-09-28 */
 .ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
 .ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
@@ -410,6 +445,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read .ws-fold-table { background: #fff; font-variant-numeric: tabular-nums; }
+.ws-read .ws-fold-table td:last-child, .ws-read .ws-fold-table th:last-child { text-align: right; }
+.ws-read .ws-fold-table td:last-child { white-space: nowrap; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
 
@@ -896,7 +934,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
-.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -1032,7 +1070,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ 이 지도는 <strong>땅 크기가 아니라 사람 수</strong>로 나라를 그렸어. 그래서 사람은 적고 땅만 넓은 캐나다·러시아·오스트레일리아는 쪼그라들고, 땅은 작아도 사람이 많은 일본은 부풀었지.</blockquote>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p><strong>교과서의 답은 「2015년 기준 중국」이다.</strong> 그런데 지금은 달라졌다 — <strong>2023년 4월 무렵 인도가 중국을 앞질러</strong> 인구가 가장 많은 나라가 되었다.</p><p>세계 인구도 교과서가 쓴 2015년 약 73억 명에서 <strong>2024년 약 82억 명</strong>으로 늘었다.</p><p>🔑 교과서 숫자에는 늘 <strong>「언제의 값인가」</strong>가 붙어 있다. 위 지도(2018년)에서는 아직 중국이 조금 더 크다.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p><strong>교과서의 답은 「2015년 기준 중국」이다.</strong> 그런데 지금은 달라졌다 — <strong>2023년 4월 무렵 인도가 중국을 앞질러</strong> 인구가 가장 많은 나라가 되었다.</p><p>세계 인구도 교과서가 쓴 2015년 약 73억 명에서 <strong>2024년 약 82억 명</strong>으로 늘었다.</p><p>🔑 교과서 숫자에는 늘 <strong>「언제의 값인가」</strong>가 붙어 있다. 위 지도(2018년)에서는 아직 중국이 조금 더 크다.</p><p>지도 속 숫자는 영어로 적혀 있다. billion은 10억, million은 100만이다. 그래서 India 1.35 billion은 약 13억 5천만 명, China 1.42 billion은 약 14억 2천만 명이다(2018년).</p><p>그럼 지금은 어떨까? 2024년 인구가 가장 많은 열 나라와 우리나라다.</p><table class="ws-fold-table"><thead><tr><th>순위</th><th>나라</th><th>인구(명)</th></tr></thead><tbody><tr><td>1</td><td>인도</td><td>약 14억 5,100만</td></tr><tr><td>2</td><td>중국</td><td>약 14억 900만</td></tr><tr><td>3</td><td>미국</td><td>약 3억 4,000만</td></tr><tr><td>4</td><td>인도네시아</td><td>약 2억 8,300만</td></tr><tr><td>5</td><td>파키스탄</td><td>약 2억 5,100만</td></tr><tr><td>6</td><td>나이지리아</td><td>약 2억 3,300만</td></tr><tr><td>7</td><td>브라질</td><td>약 2억 1,200만</td></tr><tr><td>8</td><td>방글라데시</td><td>약 1억 7,400만</td></tr><tr><td>9</td><td>러시아</td><td>약 1억 4,400만</td></tr><tr><td>10</td><td>에티오피아</td><td>약 1억 3,200만</td></tr><tr><td>29</td><td>대한민국</td><td>약 5,175만</td></tr></tbody></table><p>출처: 세계은행 «인구 총계»(2024년 · 국제 연합 자료 바탕) · 2026-10 조회</p></div>
 <br>
 <h2>📖 2단계: 사람들은 지구 어디에 몰려 살까?</h2>
 <blockquote>📕 <strong>교과서 128쪽 펴고 · 배정 시간 8분</strong></blockquote>

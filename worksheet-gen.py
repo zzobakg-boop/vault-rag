@@ -1340,7 +1340,15 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             continue
         if in_read:
             if stripped == ':::':
-                body = ''.join(f'<p>{inline(x)}</p>' for x in read_lines)
+                # 2026-10-06 사회 7-1: 해설 안 표 — 종전엔 줄마다 <p>라 파이프가 그대로 나갔다(-0.77 같은 병).
+                body = ''; _tb = []
+                for x in read_lines + ['']:
+                    if x.startswith('|'):
+                        _tb.append(x); continue
+                    if _tb:
+                        body += _fold_table(_tb, inline); _tb = []
+                    if x:
+                        body += f'<p>{inline(x)}</p>'
                 html_parts.append(
                     '<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div>'
                     + body + '</div>')
@@ -2404,6 +2412,9 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }}
 .ws-read p {{ margin: 0 0 7px; font-size: 1em; }}
+.ws-read .ws-fold-table {{ background: #fff; font-variant-numeric: tabular-nums; }}
+.ws-read .ws-fold-table td:last-child, .ws-read .ws-fold-table th:last-child {{ text-align: right; }}
+.ws-read .ws-fold-table td:last-child {{ white-space: nowrap; }}
 .ws-read p:last-child {{ margin-bottom: 0; }}
 @media print {{ .ws-read {{ background: #fff; border-left-color: #999; }} }}
 
