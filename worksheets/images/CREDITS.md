@@ -596,3 +596,36 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 10-6_voc_반사.jpg | 저녁 해가 바다 물결에 반사되어 생긴 빛길, 웨일스 란드윈섬, 2025 (Sunset Reflection on the Irish Sea from Llanddwyn Island – July 2025.jpg) | TXGemGem · CC BY-SA 4.0 |
 | 10-6_voc_제철.jpg | 가을에 쌓아 놓고 파는 감(후유·하치야), 미국 보스턴 슈퍼마켓 (Fuyu and Hachiya Persimmons for sale in Boston.jpg) | 4300streetcar · CC BY 4.0 |
 | 10-6_voc_후원.jpg | 눈에 빠진 차를 뒤에서 밀어 주는 사람들(뒷모습), 미국 뉴욕 맨해튼, 2026-01-25 (January 25, 2026 Snow Storm in Manhattan, people pushing car stuck in the snow on 95th and Lex, Carnegie Hill, Upper East Side 01.jpg) | Deans Charbal · CC BY-SA 4.0 |
+
+## 4-3-1 오스만 제국 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 4-3-1_함선육로.jpg | [Le siège de Constantinople (1453) by Jean Le Tavernier after 1455.jpg](https://commons.wikimedia.org/wiki/File%3ALe_si%C3%A8ge_de_Constantinople_%281453%29_by_Jean_Le_Tavernier_after_1455.jpg) | Jean Le Tavernier (Source gallica.bnf.fr / Bibliothèque nationale de France) · Public domain |
+| 4-3-1_voc_함락.jpg | [Le siège de Constantinople (1453) by Jean Le Tavernier after 1455.jpg](https://commons.wikimedia.org/wiki/File%3ALe_si%C3%A8ge_de_Constantinople_%281453%29_by_Jean_Le_Tavernier_after_1455.jpg) | Jean Le Tavernier (Source gallica.bnf.fr / Bibliothèque nationale de France) · Public domain |
+| 4-3-1_셀림.jpg | [I Selim.jpg](https://commons.wikimedia.org/wiki/File%3AI_Selim.jpg) | Ottoman miniature painter (16th c.) · Public domain |
+| 4-3-1_빈포위.jpg | [Hunername hazine 1524 257b.jpg](https://commons.wikimedia.org/wiki/File%3AHunername_hazine_1524_257b.jpg) | Nakkaş Osman (Hünername, 1588) · Public domain |
+| 4-3-1_소년징집.jpg | [Janissary Recruitment in the Balkans-Suleymanname.jpg](https://commons.wikimedia.org/wiki/File%3AJanissary_Recruitment_in_the_Balkans-Suleymanname.jpg) | Ali Amir Beg (Süleymanname, 1558) · Public domain |
+| 4-3-1_시장.jpg | [Istanbul - Grand Bazaar (55105990794).jpg](https://commons.wikimedia.org/wiki/File%3AIstanbul_-_Grand_Bazaar_%2855105990794%29.jpg) | Jorge Franganillo · CC BY 4.0 |
+| 4-3-1_성소피아.jpg | [Hagia Sophia (Aya Sofya) front facade, Istanbul, Turkey (9606808746).jpg](https://commons.wikimedia.org/wiki/File%3AHagia_Sophia_%28Aya_Sofya%29_front_facade%2C_Istanbul%2C_Turkey_%289606808746%29.jpg) | l0da_ralta · CC BY 2.0 |
+| 4-3-1_사원내부.jpg | [Turkey-03259 - Interior of the Blue Mosque (11312815636).jpg](https://commons.wikimedia.org/wiki/File%3ATurkey-03259_-_Interior_of_the_Blue_Mosque_%2811312815636%29.jpg) | Dennis G. Jarvis · CC BY-SA 2.0 |
+| 4-3-1_voc_교차.jpg | [Turkey (Istanbul) Aerial view of Bosphorus Bridge. (25081022543).jpg](https://commons.wikimedia.org/wiki/File%3ATurkey_%28Istanbul%29_Aerial_view_of_Bosphorus_Bridge._%2825081022543%29.jpg) | Güldem Üstün · CC BY 2.0 |
+| 4-3-1_voc_첨탑.jpg | [Facade and Minaret of Suleymaniye Mosque - Suleymaniye District - Istanbul - Turkey (5726417515).jpg](https://commons.wikimedia.org/wiki/File%3AFacade_and_Minaret_of_Suleymaniye_Mosque_-_Suleymaniye_District_-_Istanbul_-_Turkey_%285726417515%29.jpg) | Adam Jones · CC BY-SA 2.0 |
+| 4-3-1_voc_융합.jpg | [Mary, Muhammad & Jesus.jpg](https://commons.wikimedia.org/wiki/File%3AMary%2C_Muhammad_%26_Jesus.jpg) | Jonah Bettio · CC BY-SA 2.0 |
+| 4-3-1_오스만제국_표지.png | (AI 생성 배경 · 자체 제작) | gemini-2.5-flash-image + cover_overlay.py · 자체 제작 |
+
+## 4-1-2 몽골 제국 (2026-10-05)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 4-1-2_건국자초상.jpg | [YuanEmperorAlbumGenghisPortrait.jpg](https://commons.wikimedia.org/wiki/File%3AYuanEmperorAlbumGenghisPortrait.jpg) | 원 궁정 화가(작자 미상)·타이베이 국립 고궁 박물원 · Public domain |
+| 4-1-2_쿠빌라이.jpg | [YuanEmperorAlbumKhubilaiPortrait.jpg](https://commons.wikimedia.org/wiki/File%3AYuanEmperorAlbumKhubilaiPortrait.jpg) | 아니가(Araniko)로 전함·타이베이 국립 고궁 박물원 · Public domain |
+| 4-1-2_원지폐.jpg | [Yuan dynasty banknote with its printing plate 1287.jpg](https://commons.wikimedia.org/wiki/File%3AYuan_dynasty_banknote_with_its_printing_plate_1287.jpg) | PHGCOM · CC BY-SA 3.0 |
+| 4-1-2_통행패.jpg | [八思巴文鐡牌-Safe Conduct Pass (Paiza) with Inscription in Phakpa Script MET DT7051.jpg](https://commons.wikimedia.org/wiki/File%3A%E5%85%AB%E6%80%9D%E5%B7%B4%E6%96%87%E9%90%A1%E7%89%8C-Safe_Conduct_Pass_%28Paiza%29_with_Inscription_in_Phakpa_Script_MET_DT7051.jpg) | The Metropolitan Museum of Art · CC0 |
+| 4-1-2_카탈루냐지도.jpg | [Caravane sur la Route de la soie - Atlas catalan.jpg](https://commons.wikimedia.org/wiki/File%3ACaravane_sur_la_Route_de_la_soie_-_Atlas_catalan.jpg) | Abraham Cresques (Source gallica.bnf.fr / Bibliothèque nationale de France) · Public domain |
+| 4-1-2_청화백자.jpg | [Yuan Underglaze Blue Jingdezhen Porcelain Jar.jpg](https://commons.wikimedia.org/wiki/File%3AYuan_Underglaze_Blue_Jingdezhen_Porcelain_Jar.jpg) | Gary Lee Todd · CC0 |
+| 4-1-2_voc_추대.jpg | [Temüjin proclaimed as Genghis Khan in 1206 Jami' al-tawarikh manuscript (trimmed).jpg](https://commons.wikimedia.org/wiki/File%3ATem%C3%BCjin_proclaimed_as_Genghis_Khan_in_1206_Jami%27_al-tawarikh_manuscript_%28trimmed%29.jpg) | Sayf al-Vâhidî (Herat, 1430) · Public domain |
+| 4-1-2_voc_연합.jpg | [Palace of Nations - flags.JPG](https://commons.wikimedia.org/wiki/File%3APalace_of_Nations_-_flags.JPG) | Wikidata Q42790984 (Wikimedia Commons user) · CC0 |
+| 4-1-2_voc_차별.jpg | [Negro drinking at "Colored" water cooler in streetcar terminal, Oklahoma City, Oklahoma by Russell Lee.jpg](https://commons.wikimedia.org/wiki/File%3ANegro_drinking_at_%22Colored%22_water_cooler_in_streetcar_terminal%2C_Oklahoma_City%2C_Oklahoma_by_Russell_Lee.jpg) | Russell Lee (FSA, 1939) · Public domain |
+| 4-1-2_voc_애환.jpg | [Mosaic depicting theatrical masks of Tragedy and Comedy (Thermae Decianae).jpg](https://commons.wikimedia.org/wiki/File%3AMosaic_depicting_theatrical_masks_of_Tragedy_and_Comedy_%28Thermae_Decianae%29.jpg) | Carole Raddato (Capitoline Museums mosaic) · Public domain |
+| 4-1-2_몽골제국_표지.png | (AI 생성 배경 gemini-3-pro-image + PIL 한글) | 자체 제작 · - |
