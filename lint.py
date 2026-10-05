@@ -13,6 +13,7 @@ vault-lint — 볼트 건강 검진 (LLM Wiki의 Lint 워크플로우)
 
 import os
 import re
+import unicodedata
 import sys
 from collections import defaultdict
 from datetime import datetime
@@ -112,6 +113,12 @@ def main():
     for p in files:
         name_to_paths[name_stem(p)].append(p)
 
+    # 첨부(.pdf·이미지 등)도 링크 대상이다 — [[x.pdf]]는 옵시디언에서 정상 링크 (10/5 오탐)
+    attachments = set()
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS]
+        attachments.update(unicodedata.normalize("NFC", fn) for fn in filenames if not fn.endswith(".md"))
+
     orphans = []
     broken_links = []  # (source_file, target_name)
     missing_fm = []  # (file, missing_fields)
@@ -146,7 +153,7 @@ def main():
         for t in targets:
             outgoing[src_stem].add(t)
             incoming[t].add(src_stem)
-            if t not in name_to_paths:
+            if t not in name_to_paths and unicodedata.normalize("NFC", t) not in attachments:
                 broken_links.append((p, t))
 
     # 고아 노트: 자기 포워드링크 없고, 누구도 자신을 링크 안 함
