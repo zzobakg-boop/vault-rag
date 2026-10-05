@@ -396,3 +396,47 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 9-6_voc_대행.jpg | 여행사 창구가 늘어선 공항 «Reisemarkt», 독일 뮌헨 공항 제1터미널, 2006 (Travel agent counters at Franz Josef Strauss International Airport near Munich, Germany (Terminal 1) 2006-04-30.jpg) | Mattes · 퍼블릭 도메인 |
 | 9-6_voc_제휴.jpg | 카페 탁자 위에서 맞잡은 두 손, 2017 (Business agreement handshake at coffee shop.jpg) | rawpixel.com · CC0 |
 | 9-6_voc_대중화.jpg | 공연장 객석에서 저마다 스마트폰을 든 관객들, 홍콩 북구대회당, 2022 (HK NDH 上水 Sheung Shui 北區大會堂 Northern District City Hall Theatre 舞臺 stage 台下觀眾 Audience visitors holding smartphones camera night June 2022 SS2 01.jpg) | BorGorZHUTze M0615 · CC BY-SA 4.0 |
+
+# 사회② 12단원(11-1~11-6) 고급 단어 카드 — 그림 출처
+
+## 11-1 우리나라의 영역 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 11-1_voc_영역.jpg | 벨기에(B)와 네덜란드(NL) 국경이 보도블록 위에 십자 표시 줄로 그어진 모습, 바를러(Baarle), 2024 (Baarle border 110330.jpg) | Quahadi · CC BY-SA 4.0 |
+| 11-1_voc_해리.jpg | 미국 매사추세츠 채텀 앞바다 폴록 립 수로 해도 일부 — 바다 위에 수심 숫자와 항로가 표시됨 (Pollock Rip Channel nautical chart.jpg) | NOAA(미국 해양대기청) · 퍼블릭 도메인 |
+| 11-1_voc_배타적.jpg | 흙더미 앞 나무 말뚝에 세운 «KEEP OUT» 출입 금지 표지판, 2021 (Keep Out Sign.jpg) | MarkBuckawicki · CC0 |
+
+## 11-2 소중한 우리의 땅 독도 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 11-2_voc_요충지.jpg | 문경새재 제1관문(주흘관)과 산 사이 길목을 막아선 성벽, 경북 문경, 2007 (Saejae first gate.jpg) | Visviva · 퍼블릭 도메인 |
+| 11-2_voc_관할.jpg | 미국 미네소타 61번 도로 가의 «Cook County» 군 경계 표지판, 2019 (Sign at the county line border of Cook County, Minnesota.jpg) | Tony Webster · CC BY 2.0 |
+| 11-2_voc_보고.jpg | 1700년 무렵 영국에서 묻힌 은화 더미, 영국박물관 소장, 2007 촬영 (Silver coin hoard.jpg) | Hans Hillewaert · CC BY-SA 3.0 |
+
+## 11-3 지역화 전략 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 11-3_voc_경쟁력.jpg | 줄다리기에서 밧줄을 잡고 온몸으로 버티는 미군 병사들(다리·손만 보이게 자름), 미국 메릴랜드 아나폴리스 «Tug of War XV», 2012 (Fort Meade Soldiers participate in Annapolis tug-of-war.jpg) | Fort George G. Meade Public Affairs Office · CC BY 2.0 |
+| 11-3_voc_보편적.jpg | 넓은 밭과 들판 위로 하늘 전체에 번진 해돋이 빛, 영국 햄프셔 모어스테드, 2020 (Sunrise over Morestead, Hampshire.jpg) | Forbes Johnston · CC BY 2.0 |
+| 11-3_voc_특산물.jpg | 제주 올레 7코스 길가의 귤밭, 열매가 가득 달린 감귤나무, 2021 (Jejuolle-route-07(4).jpg) | Jeju Olle Foundation(제주올레) · CC BY-SA 4.0 |
+
+## 11-4 효과적인 지역화 전략 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 11-4_voc_불황.jpg | 문을 닫고 유리창에 «FOR LEASE»(임대) 안내를 붙인 식료품 가게, 미국 플로리다 포트샬럿, 2022 (Closed Grocery Store in Port Charlotte.jpg) | PCHS-NJROTC · CC BY-SA 4.0 |
+| 11-4_voc_슬로건.jpg | 1939년 영국 정부 포스터 «KEEP CALM AND CARRY ON» 원본, 영국 앨닉 바터 북스 전시, 2011 촬영 (Keep Calm And Carry On - Original poster - Barter Books - 17-Oct-2011.jpg) | UK Government · 퍼블릭 도메인 |
+| 11-4_voc_협력.jpg | 여러 사람이 긴 장대로 함께 헛간 뼈대를 밀어 세우는 «헛간 올리기», 미국, 1905년 무렵 (Men raising a barn (I0003941).tif) | 작자 미상 · 퍼블릭 도메인 |
+
+## 11-5 통일의 필요성 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 11-5_voc_분단.jpg | 임진각 옛 철교의 끊어진 교각과 뒤편 철교, 경기 파주 (Old Railroad Pillars at Imjingak Bridge, Demilitarized Zone (DMZ), South Korea.jpg) | Lance Vanlewen · CC BY-SA 4.0 |
+| 11-5_voc_실향민.jpg | 임진각 망배단(望拜壇) — 고향에 못 가는 사람들이 북쪽을 향해 절하는 제단, 경기 파주 (Mangbaedan 01.JPG) | Abasaa · 퍼블릭 도메인 |
+| 11-5_voc_편익.jpg | 지하철역 입구의 계단 바로 옆에 놓인 에스컬레이터, 미국 필라델피아 프랭클린 스퀘어역, 2025 (Franklin Square Station Platform Access.jpg) | WinstonAtlasA · CC0 |
+
+## 11-6 통일 이후 국토 — 고급 단어 카드
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 11-6_voc_단축.jpg | 공원 잔디밭을 비스듬히 가로질러 사람들이 밟아 생긴 지름길, 포르투갈 리스본 벨렝, 2015 (Desire path (19811581366).jpg) | Metro Centric · CC BY 2.0 |
+| 11-6_voc_횡단.jpg | 위에서 내려다본 시부야 스크램블 교차로 — 사람들이 횡단보도를 가로질러 건넘, 일본 도쿄, 2020 (Scramble from above, SHIBUYA SKY (49367160502) (cropped).jpg) | Sei F from Tokyo, Japan · CC BY-SA 2.0 |
+| 11-6_voc_육로.jpg | 초원 사이로 끝없이 이어지는 흙길, 몽골 울란바토르 동쪽, 2018 (DirtRoadMongolia (1).jpg) | CeeGee · CC BY-SA 4.0 |
