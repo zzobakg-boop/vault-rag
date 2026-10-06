@@ -1273,7 +1273,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     f'<b class="mb-lab">{inline(e["n"])} <em>{e["yr"]}</em></b></button>' for k, e in enumerate(_evs))
                 _ln = ''.join(
                     f'<line data-l="{k}" x1="{_evs[_nm.index(l["a"])]["x"]}" y1="{_evs[_nm.index(l["a"])]["y"]}" '
-                    f'x2="{_evs[_nm.index(l["b"])]["x"]}" y2="{_evs[_nm.index(l["b"])]["y"]}" class="{"mb-sol" if l["s"] else "mb-dot"}" hidden/>'
+                    f'x2="{_evs[_nm.index(l["b"])]["x"]}" y2="{_evs[_nm.index(l["b"])]["y"]}" class="{"mb-sol" if l["s"] else "mb-dot"}" style="display:none"/>'
                     for k, l in enumerate(_lks))
                 _D = {'y': [int(y) for y in _yrs], 'e': [{'n': inline(e['n']), 'y': e['yr'], 't': inline(e['t'])} for e in _evs],
                       'l': [{'a': _nm.index(l['a']), 'b': _nm.index(l['b']), 's': l['s'], 'w': inline(l['w'])} for l in _lks]}
@@ -1282,6 +1282,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     '.ws-mapbar.mb-evmode .mb-ev i{width:16px;height:16px;margin:-8px 0 0 -8px;background:#b23b2e;opacity:.9}'
                     '.ws-mapbar.mb-evmode .mb-ev.mb-now i{background:#e0a32a;box-shadow:0 0 0 4px rgba(224,163,42,.35)}'
                     '.ws-mapbar.mb-evmode .mb-ev.mb-sel i{box-shadow:0 0 0 4px rgba(35,80,140,.45)}'
+                    '.ws-mapbar.mb-evmode .mb-ev:focus{outline:none}.ws-mapbar.mb-evmode .mb-ev:focus-visible i{outline:3px solid #23508c;outline-offset:3px}'
                     '.ws-mapbar.mb-evmode .ws-mb-links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}'
                     '.ws-mapbar.mb-evmode .ws-mb-links line{stroke:#23508c;vector-effect:non-scaling-stroke;stroke-width:3}'
                     '.ws-mapbar.mb-evmode .ws-mb-links line.mb-dot{stroke:#6b6b6b;stroke-dasharray:6 6}'
@@ -1309,7 +1310,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     'h+="<br>"+(l.s?"━ ":"┅ ")+o.n+" ("+o.y+") — "+(l.s?"건너간 것: "+l.w:"그냥 같은 때");});return h;}'
                     'function draw(i){i=+i;var Y=D.y[i];'
                     'D.e.forEach(function(e,k){var p=ps[k];p.hidden=e.y>Y;p.classList.toggle("mb-now",e.y>Y-(i>0?D.y[i]-D.y[i-1]:1)&&e.y<=Y);p.classList.toggle("mb-sel",k===sel);});'
-                    'D.l.forEach(function(l,k){ls[k].hidden=D.e[l.a].y>Y||D.e[l.b].y>Y;});'
+                    'D.l.forEach(function(l,k){ls[k].style.display=(D.e[l.a].y>Y||D.e[l.b].y>Y)?"none":"";});'
                     'yr.textContent=Y+"년";'
                     'if(sel>=0&&D.e[sel].y<=Y){rd.innerHTML=card(sel);}else{sel=-1;var o=D.e.filter(function(e){return e.y<=Y;});'
                     'rd.innerHTML="<b>"+Y+"년까지</b> — "+(o.length?o.map(function(e){return e.n+" ("+e.y+")";}).join(" · "):"아직 일어난 사건이 없다")+" · 핀을 누르면 카드가 열린다";}'
