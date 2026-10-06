@@ -150,6 +150,8 @@ blockquote {
 .pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
 .pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
 .pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-tap { cursor: pointer; }
+.pk-ok .pk-why { color: #1f6b3a; }
 .pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
 .pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
@@ -253,6 +255,41 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 🗺 :::지도막대 — 2026-10-06 (지도 + 연도 막대 · 핀·값은 HTML) */
+.ws-mapbar { border: 1px solid #dcd3bf; border-radius: 14px; background: #fbf8f1; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-mb-head { font-weight: 800; font-size: 1.02em; margin-bottom: 8px; color: #3a3226; }
+.ws-mb-map { position: relative; line-height: 0; border-radius: 10px; overflow: hidden; }
+.ws-mb-map img { display: block; width: 100%; height: auto; }
+.mb-pin { position: absolute; width: 0; height: 0; line-height: 1.2; }
+.mb-pin i { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #8a7f6c; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); opacity: .9;
+  transition: width .5s, height .5s, margin .5s, background .5s; }
+.mb-pin.mb-up i { background: #c2593a; }
+.mb-pin.mb-dn i { background: #3f6fa8; }
+.mb-lab { position: absolute; top: -9px; white-space: nowrap; font-size: 13px; font-weight: 700; color: #2b2419;
+  background: rgba(255,255,255,.86); border-radius: 6px; padding: 1px 5px; }
+.mb-r .mb-lab { left: 12px; }
+.mb-l .mb-lab { right: 12px; }
+.mb-u .mb-lab, .mb-d .mb-lab { left: 0; transform: translateX(-50%); }
+.mb-u .mb-lab { top: -30px; }
+.mb-d .mb-lab { top: 12px; }
+.mb-lab em { font-style: normal; color: #7a2e1a; font-variant-numeric: tabular-nums; }
+.mb-dn .mb-lab em { color: #244f86; }
+.ws-mb-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86em; color: #4a4234; margin: 8px 2px 4px; }
+.ws-mb-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; }
+.ws-mb-legend i.mb-hi { background: #c2593a; }
+.ws-mb-legend i.mb-lo { background: #3f6fa8; }
+.ws-mb-legend .mb-bt { color: #6b6252; }
+.ws-mb-ctl { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.ws-mb-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #cfc4ae; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-mb-play:focus-visible, .ws-mb-range:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; }
+.ws-mb-range { flex: 1; accent-color: #7a5a2a; min-width: 0; }
+.ws-mb-yr { flex: none; min-width: 4.2em; font-weight: 800; color: #3a3226; font-variant-numeric: tabular-nums; }
+.ws-mb-read { min-height: 3.2em; margin-top: 6px; font-size: .95em; line-height: 1.6; color: #2b2419; }
+.ws-mb-src { font-size: .8em; color: #6b6252; margin-top: 4px; }
+@media (max-width: 560px) { .mb-lab { font-size: 11px; padding: 0 3px; } .mb-r .mb-lab { left: 8px; } .mb-l .mb-lab { right: 8px; } .mb-u .mb-lab { top: -24px; } .mb-d .mb-lab { top: 9px; } }
+@media (prefers-reduced-motion: reduce) { .mb-pin i { transition: none; } }
+@media print { .ws-mb-ctl { display: none; } }
 /* 📈 :::그래프 — 2026-09-28 */
 .ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
 .ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
@@ -382,7 +419,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c > div { min-width: 0; }
 .ws-2c > div > :first-child { margin-top: 0; }
 .ws-2c > div > br { display: none; }
-@media (max-width: 640px) { .ws-2c { grid-template-columns: 1fr !important; } }
+@media (max-width: 640px) { .ws-2c:not(.c2-keep) { grid-template-columns: 1fr !important; } .ws-2c.c2-keep { gap: 10px; } .ws-2c.c2-keep figcaption { font-size: 12px; } }
 .ws-2c.c2-mid { align-items: center; }
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
@@ -410,8 +447,19 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read .ws-fold-table { background: #fff; font-variant-numeric: tabular-nums; }
+.ws-read .ws-fold-table td:last-child, .ws-read .ws-fold-table th:last-child { text-align: right; }
+.ws-read .ws-fold-table td:last-child { white-space: nowrap; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+/* ✍️ 해 보는 곳 — 2026-10-06. 계열 넷: 파랑=빈칸(본문) · 황토=교과서 · 슬레이트=읽는 곳 · 초록=직접 해 보는 곳 */
+.ws-do { background: #f2f8f3; border: 1px solid #cfe5d5; border-radius: 16px; padding: 14px 20px 18px; margin: 30px 0; }
+.ws-do > h2 { margin-top: 8px; border-left-color: #2f8f55; background: linear-gradient(90deg, #dff0e4, rgba(255,255,255,0)); }
+.ws-do-tag { display: inline-block; background: #2f8f55; color: #fff; font-size: 0.76em; font-weight: 700;
+  letter-spacing: 0.02em; padding: 3px 11px; border-radius: 999px; }
+.ws-do + .ws-do { margin-top: 18px; }
+@media (max-width: 560px) { .ws-do { padding: 10px 6px 14px; margin-left: -10px; margin-right: -10px; border-radius: 12px; } }
+@media print { .ws-do { background: #fff; border-color: #bbb; } }
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
 /* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */
@@ -896,7 +944,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
-.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -1040,9 +1088,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>두 요인은 여러 측면에서 찾을 수 있다. 일자리와 임금 같은 경제적 요인, 전쟁과 분쟁 같은 정치적 요인, 종교의 자유 같은 종교적 요인, 그리고 기후 변화 같은 환경적 요인이다.</p>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>같은 일자리도 어느 쪽에서 보느냐에 따라 이름이 바뀐다. 고향에 <strong>일자리가 없는 것</strong>은 사람을 떠나게 하는 힘이고, 도착할 곳에 <strong>일자리가 많은 것</strong>은 사람을 불러들이는 힘이다.</p><p>그래서 이동은 언제나 <strong>두 곳을 함께</strong> 봐야 설명된다 — 떠난 곳과 도착한 곳.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>같은 일자리도 어느 쪽에서 보느냐에 따라 이름이 바뀐다. 고향에 <strong>일자리가 없는 것</strong>은 사람을 떠나게 하는 힘이고, 도착할 곳에 <strong>일자리가 많은 것</strong>은 사람을 불러들이는 힘이다.</p><p>그래서 이동은 언제나 <strong>두 곳을 함께</strong> 봐야 설명된다 — 떠난 곳과 도착한 곳.</p><p>그런데 두 힘이 있다고 모두 떠나지는 않는다. 그 사이에 <strong>벽</strong>이 있기 때문이다 — 먼 거리, 비행기 값, 비자, 낯선 말. 그래서 가장 가난한 사람이 가장 많이 떠나는 것도 아니다. 떠나려면 그 벽을 넘을 돈과 정보가 있어야 한다.</p></div>
 <br>
-<div class="ws-pick" id="pk35"><div class="pk-head"><span>실제로 있었던 이동 다섯 가지다. 사람들을 움직인 요인을 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="경제적"><div class="pk-name">멕시코 → 미국</div><div class="pk-sit">더 높은 임금과 일자리를 찾아 국경을 넘는다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제적">경제적</button><button type="button" class="pk-b" data-v="정치적">정치적</button><button type="button" class="pk-b" data-v="종교적">종교적</button><button type="button" class="pk-b" data-v="환경적">환경적</button></div><div class="pk-why" hidden>일자리·임금 차이가 사람을 움직였다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="정치적"><div class="pk-name">시리아 → 튀르키예·유럽</div><div class="pk-sit">2011년부터 이어진 내전을 피해 나라를 떠났다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제적">경제적</button><button type="button" class="pk-b" data-v="정치적">정치적</button><button type="button" class="pk-b" data-v="종교적">종교적</button><button type="button" class="pk-b" data-v="환경적">환경적</button></div><div class="pk-why" hidden>전쟁과 분쟁이 사람을 밀어냈다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="종교적"><div class="pk-name">영국 → 북아메리카(17세기)</div><div class="pk-sit">청교도들이 마음대로 신앙생활을 하려고 바다를 건넜다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제적">경제적</button><button type="button" class="pk-b" data-v="정치적">정치적</button><button type="button" class="pk-b" data-v="종교적">종교적</button><button type="button" class="pk-b" data-v="환경적">환경적</button></div><div class="pk-why" hidden>종교의 자유를 찾아 떠났다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="환경적"><div class="pk-name">투발루 → 오스트레일리아</div><div class="pk-sit">바닷물이 차올라 살던 섬이 잠길 위험이 커졌다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제적">경제적</button><button type="button" class="pk-b" data-v="정치적">정치적</button><button type="button" class="pk-b" data-v="종교적">종교적</button><button type="button" class="pk-b" data-v="환경적">환경적</button></div><div class="pk-why" hidden>기후 변화로 생긴 환경 문제가 사람을 밀어냈다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="경제적"><div class="pk-name">베트남 → 안산</div><div class="pk-sit">공장 일자리를 찾아 한국에 왔다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제적">경제적</button><button type="button" class="pk-b" data-v="정치적">정치적</button><button type="button" class="pk-b" data-v="종교적">종교적</button><button type="button" class="pk-b" data-v="환경적">환경적</button></div><div class="pk-why" hidden>1단계 원곡동 사람들처럼 일자리를 따라 왔다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk35");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["경제적", "정치적", "종교적", "환경적"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk35"><div class="pk-head"><span>실제로 있었던 이동 다섯 가지다. 사람들을 움직인 요인을 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="경제적"><div class="pk-name">멕시코 → 미국</div><div class="pk-sit">더 높은 임금과 일자리를 찾아 국경을 넘는다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제적">경제적</button><button type="button" class="pk-b" data-v="정치적">정치적</button><button type="button" class="pk-b" data-v="종교적">종교적</button><button type="button" class="pk-b" data-v="환경적">환경적</button></div><div class="pk-why" hidden>일자리·임금 차이가 사람을 움직였다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="정치적"><div class="pk-name">시리아 → 튀르키예·유럽</div><div class="pk-sit">2011년부터 이어진 내전을 피해 나라를 떠났다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제적">경제적</button><button type="button" class="pk-b" data-v="정치적">정치적</button><button type="button" class="pk-b" data-v="종교적">종교적</button><button type="button" class="pk-b" data-v="환경적">환경적</button></div><div class="pk-why" hidden>전쟁과 분쟁이 사람을 밀어냈다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="종교적"><div class="pk-name">영국 → 북아메리카(17세기)</div><div class="pk-sit">청교도들이 마음대로 신앙생활을 하려고 바다를 건넜다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제적">경제적</button><button type="button" class="pk-b" data-v="정치적">정치적</button><button type="button" class="pk-b" data-v="종교적">종교적</button><button type="button" class="pk-b" data-v="환경적">환경적</button></div><div class="pk-why" hidden>종교의 자유를 찾아 떠났다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="환경적"><div class="pk-name">투발루 → 오스트레일리아</div><div class="pk-sit">바닷물이 차올라 살던 섬이 잠길 위험이 커졌다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제적">경제적</button><button type="button" class="pk-b" data-v="정치적">정치적</button><button type="button" class="pk-b" data-v="종교적">종교적</button><button type="button" class="pk-b" data-v="환경적">환경적</button></div><div class="pk-why" hidden>기후 변화로 생긴 환경 문제가 사람을 밀어냈다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="경제적"><div class="pk-name">베트남 → 안산</div><div class="pk-sit">공장 일자리를 찾아 한국에 왔다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제적">경제적</button><button type="button" class="pk-b" data-v="정치적">정치적</button><button type="button" class="pk-b" data-v="종교적">종교적</button><button type="button" class="pk-b" data-v="환경적">환경적</button></div><div class="pk-why" hidden>1단계 원곡동 사람들처럼 일자리를 따라 왔다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk35");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["경제적", "정치적", "종교적", "환경적"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>🎙️ 가수 두아 리파 알지? 런던에서 태어났지만 부모님은 원래 코소보 프리슈티나에 살았어. 1992년, 옛 유고슬라비아가 쪼개지며 전쟁이 번지자 두 사람은 고향을 떠나 런던에 와서 식당 일을 하며 새로 시작했지. 두 사람을 고향에서 밀어낸 건 네 가지 요인 가운데 무엇이었을까?</blockquote>
 <br>
@@ -1069,7 +1117,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ 짜장면은 중국에서 그대로 온 음식이 아니야. 100여 년 전 인천항에서 짐을 나르던 중국 산둥 사람들이 고향식 볶은 장에 국수를 비벼 먹었는데, 그게 한국 사람 입맛에 맞게 달라지면서 지금의 짜장면이 됐어. 인천 차이나타운에는 짜장면 박물관까지 있지.</blockquote>
 <br>
-<h2>✏️ 활동 1 — 음식 지도 그리기</h2>
+<section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1 — 음식 지도 그리기</h2>
 <br>
 <p>세 음식을 만든 사람들의 이동을 정리해 보자. 떠난 곳과 도착한 곳을 둘 다 봐야 한다.</p>
 <br>
@@ -1081,7 +1129,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>✅ <strong>스스로 점검</strong> — 두 줄의 «배출 요인»이 네 가지 요인 가운데 어느 쪽인지 적어 보자. 오늘날 가장 많은 이동과 같은 쪽인가?</blockquote>
 <br>
-<h2>✏️ 활동 2 — 우리 동네의 이동</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 2 — 우리 동네의 이동</h2>
 <br>
 <p>광주로 오고 광주를 떠나는 세 사람이다. 각자 무엇이 떠나게 했고 무엇이 불러들였을지 짐작해 적자.</p>
 <br>
@@ -1092,7 +1140,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>광주를 떠나 서울의 대학으로 간 언니</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-13" data-label="광주를 떠나 서울의 대학으로 간 언니" style="width:200px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-14" data-label="광주를 떠나 서울의 대학으로 간 언니" style="width:200px" placeholder=""></td></tr>
 </table>
 <br>
-<h2>❓ OX 퀴즈</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
@@ -1103,7 +1151,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>5</td><td>바닷물이 차올라 섬을 떠나는 것은 환경적 요인에 의한 이동이다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
-<h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
 <blockquote>오늘 배운 걸 <strong>안 보고</strong> 세 줄로 적어 보자. 틀려도 괜찮아 — 떠올리려고 애쓰는 그 순간에 머리에 박히는 거야.</blockquote>
 <blockquote>✍️ <strong>낱말 세 개가 아니라 문장 세 개로.</strong> 각 줄이 <code>~다.</code> 로 끝나게 쓰자.</blockquote>
 <blockquote>🔍 다 쓰면 셋 중 가장 자신 없는 줄 끝에 (?)를 붙이자. 그 줄만 교과서 132~133쪽을 다시 펴서 맞는지 확인하는 거야.</blockquote>
@@ -1112,11 +1160,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-16" data-label="2." style="width:240px" placeholder=""></p>
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-17" data-label="3." style="width:240px" placeholder=""></p>
 <br>
-<h2>💭 더 생각해 보기</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <p>10년 뒤 너는 어디에 살고 싶어? 그곳이 너를 <strong>끌어당기는 힘</strong> 하나와, 지금 사는 곳에서 너를 <strong>떠나게 할 수 있는 힘</strong> 하나를 들어 두세 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
-<h2>📎 각주</h2>
+</section><h2>📎 각주</h2>
 <p>- 교과서: 천재교육 사회②(구정화) 132~133쪽</p>
 <p>- 19세기 유럽인 대이주: 1820~1920년대 5천만~6천만 명 — T. Hatton·J. Williamson, 『The Age of Mass Migration』(1998)</p>
 <p>- 두아 리파 가족: 브리태니커 «Dua Lipa» · 짜장면: 인천 중구 짜장면박물관 · 타코스 알 파스토르: J. Pilcher, 『Planet Taco』(2012)</p>

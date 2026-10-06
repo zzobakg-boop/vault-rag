@@ -150,6 +150,8 @@ blockquote {
 .pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
 .pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
 .pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-tap { cursor: pointer; }
+.pk-ok .pk-why { color: #1f6b3a; }
 .pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
 .pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
@@ -253,6 +255,41 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 🗺 :::지도막대 — 2026-10-06 (지도 + 연도 막대 · 핀·값은 HTML) */
+.ws-mapbar { border: 1px solid #dcd3bf; border-radius: 14px; background: #fbf8f1; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-mb-head { font-weight: 800; font-size: 1.02em; margin-bottom: 8px; color: #3a3226; }
+.ws-mb-map { position: relative; line-height: 0; border-radius: 10px; overflow: hidden; }
+.ws-mb-map img { display: block; width: 100%; height: auto; }
+.mb-pin { position: absolute; width: 0; height: 0; line-height: 1.2; }
+.mb-pin i { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #8a7f6c; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); opacity: .9;
+  transition: width .5s, height .5s, margin .5s, background .5s; }
+.mb-pin.mb-up i { background: #c2593a; }
+.mb-pin.mb-dn i { background: #3f6fa8; }
+.mb-lab { position: absolute; top: -9px; white-space: nowrap; font-size: 13px; font-weight: 700; color: #2b2419;
+  background: rgba(255,255,255,.86); border-radius: 6px; padding: 1px 5px; }
+.mb-r .mb-lab { left: 12px; }
+.mb-l .mb-lab { right: 12px; }
+.mb-u .mb-lab, .mb-d .mb-lab { left: 0; transform: translateX(-50%); }
+.mb-u .mb-lab { top: -30px; }
+.mb-d .mb-lab { top: 12px; }
+.mb-lab em { font-style: normal; color: #7a2e1a; font-variant-numeric: tabular-nums; }
+.mb-dn .mb-lab em { color: #244f86; }
+.ws-mb-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86em; color: #4a4234; margin: 8px 2px 4px; }
+.ws-mb-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; }
+.ws-mb-legend i.mb-hi { background: #c2593a; }
+.ws-mb-legend i.mb-lo { background: #3f6fa8; }
+.ws-mb-legend .mb-bt { color: #6b6252; }
+.ws-mb-ctl { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.ws-mb-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #cfc4ae; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-mb-play:focus-visible, .ws-mb-range:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; }
+.ws-mb-range { flex: 1; accent-color: #7a5a2a; min-width: 0; }
+.ws-mb-yr { flex: none; min-width: 4.2em; font-weight: 800; color: #3a3226; font-variant-numeric: tabular-nums; }
+.ws-mb-read { min-height: 3.2em; margin-top: 6px; font-size: .95em; line-height: 1.6; color: #2b2419; }
+.ws-mb-src { font-size: .8em; color: #6b6252; margin-top: 4px; }
+@media (max-width: 560px) { .mb-lab { font-size: 11px; padding: 0 3px; } .mb-r .mb-lab { left: 8px; } .mb-l .mb-lab { right: 8px; } .mb-u .mb-lab { top: -24px; } .mb-d .mb-lab { top: 9px; } }
+@media (prefers-reduced-motion: reduce) { .mb-pin i { transition: none; } }
+@media print { .ws-mb-ctl { display: none; } }
 /* 📈 :::그래프 — 2026-09-28 */
 .ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
 .ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
@@ -382,7 +419,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c > div { min-width: 0; }
 .ws-2c > div > :first-child { margin-top: 0; }
 .ws-2c > div > br { display: none; }
-@media (max-width: 640px) { .ws-2c { grid-template-columns: 1fr !important; } }
+@media (max-width: 640px) { .ws-2c:not(.c2-keep) { grid-template-columns: 1fr !important; } .ws-2c.c2-keep { gap: 10px; } .ws-2c.c2-keep figcaption { font-size: 12px; } }
 .ws-2c.c2-mid { align-items: center; }
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
@@ -410,8 +447,19 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read .ws-fold-table { background: #fff; font-variant-numeric: tabular-nums; }
+.ws-read .ws-fold-table td:last-child, .ws-read .ws-fold-table th:last-child { text-align: right; }
+.ws-read .ws-fold-table td:last-child { white-space: nowrap; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+/* ✍️ 해 보는 곳 — 2026-10-06. 계열 넷: 파랑=빈칸(본문) · 황토=교과서 · 슬레이트=읽는 곳 · 초록=직접 해 보는 곳 */
+.ws-do { background: #f2f8f3; border: 1px solid #cfe5d5; border-radius: 16px; padding: 14px 20px 18px; margin: 30px 0; }
+.ws-do > h2 { margin-top: 8px; border-left-color: #2f8f55; background: linear-gradient(90deg, #dff0e4, rgba(255,255,255,0)); }
+.ws-do-tag { display: inline-block; background: #2f8f55; color: #fff; font-size: 0.76em; font-weight: 700;
+  letter-spacing: 0.02em; padding: 3px 11px; border-radius: 999px; }
+.ws-do + .ws-do { margin-top: 18px; }
+@media (max-width: 560px) { .ws-do { padding: 10px 6px 14px; margin-left: -10px; margin-right: -10px; border-radius: 12px; } }
+@media print { .ws-do { background: #fff; border-color: #bbb; } }
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
 /* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */
@@ -896,7 +944,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
-.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -1072,24 +1120,24 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>나라 밖과 견주면 우리나라는 사람이 들어오는 쪽이다. 2024년에 우리나라에 사는 외국인 주민은 258만 명으로, 전체 인구의 5.0%였다.</p>
 <br>
-<blockquote>🎙️ 7-2에서 광주와 곡성을 견줘 봤지? 그때는 «어디에 사람이 많은가»를 봤고, 오늘은 «사람이 빠져나가면 그곳에 무슨 일이 생기는가»를 보는 거야. 한 나라 안에도 유입 지역과 유출 지역이 같이 있어.</blockquote>
+<blockquote>🎙️ 7-2에서 광주와 곡성을 견줘 봤지? 그때는 «어디에 사람이 많은가»를 봤고, 오늘은 «사람이 빠져나가면 그곳에 무슨 일이 생기는가»를 보는 거야. 한 나라 안에도 유입 지역과 유출 지역이 같이 있어. 하나만 더 — 한 동네 인구가 바뀌는 길은 딱 둘이야. 태어나고 세상을 떠나는 것, 들어오고 나가는 것. 지난 시간과 오늘은 둘째 길을 봤고, 다음 시간부터 세 차시는 첫째 길을 봐.</blockquote>
 <br>
-<h2>✏️ 활동 1 — 미국으로 간 히스패닉</h2>
+<section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1 — 미국으로 간 히스패닉</h2>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 135쪽 · 함께하는 창의 교실 자료 1 「증가하는 미국 내 히스패닉의 힘」</div><div class="ws-tb-see">자료 1의 글과 지도를 읽고 세 칸을 채우자.</div><div class="ws-tb-ask">히스패닉이 미국으로 옮겨 간 까닭은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 135쪽에서 찾기 — 히스패닉이 미국으로 옮겨 간 까닭은 무엇인가?" style="width:360px" placeholder=""></div><div class="ws-tb-ask">히스패닉의 유입이 미국에 준 좋은 영향 하나를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 135쪽에서 찾기 — 히스패닉의 유입이 미국에 준 좋은 영향 하나를 적자." style="width:360px" placeholder=""></div><div class="ws-tb-ask">히스패닉의 유입으로 생긴 문제점 하나를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 135쪽에서 찾기 — 히스패닉의 유입으로 생긴 문제점 하나를 적자." style="width:360px" placeholder=""></div></div>
 <br>
 <blockquote>✅ <strong>스스로 점검</strong> — 좋은 영향과 문제점을 둘 다 적었나? 한쪽만 적었다면 자료 1을 한 번 더 읽어 보자.</blockquote>
 <br>
-<h2>✏️ 활동 2 — 난민을 받아들일까?</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 2 — 난민을 받아들일까?</h2>
 <br>
 <p>교과서 135쪽 자료 2는 2011년부터 내전이 이어진 시리아에서 유럽으로 건너오는 난민 이야기다. 유럽 사람들 사이에서 나온 말들을 찬성 쪽과 반대 쪽으로 나눠 보자.</p>
 <br>
-<div class="ws-pick" id="pk77"><div class="pk-head"><span>말 여섯 개를 어느 쪽 근거인지 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="찬성 쪽 근거"><div class="pk-name">말 하나</div><div class="pk-sit">난민도 안전하고 행복하게 살 권리가 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>사람의 권리를 근거로 받아들이자는 말이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="찬성 쪽 근거"><div class="pk-name">말 둘</div><div class="pk-sit">일손이 모자란 일을 맡아 경제가 살아날 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>유입 지역의 좋은 점을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="찬성 쪽 근거"><div class="pk-name">말 셋</div><div class="pk-sit">인구가 줄어 모자라진 일할 사람을 채울 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>인구가 줄어드는 선진국의 사정을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="반대 쪽 근거"><div class="pk-name">말 넷</div><div class="pk-sit">난민을 받아들이고 돌보는 데 드는 비용이 크다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>받아들이는 나라가 지는 부담을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="반대 쪽 근거"><div class="pk-name">말 다섯</div><div class="pk-sit">이주민과 일자리를 두고 경쟁하게 된다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>원주민이 느끼는 걱정을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="반대 쪽 근거"><div class="pk-name">말 여섯</div><div class="pk-sit">생활 방식이 달라 갈등이 커질 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>유입 지역의 문제점을 근거로 들었다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk77");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["찬성 쪽 근거", "반대 쪽 근거"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk77"><div class="pk-head"><span>말 여섯 개를 어느 쪽 근거인지 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="찬성 쪽 근거"><div class="pk-name">말 하나</div><div class="pk-sit">난민도 안전하고 행복하게 살 권리가 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>사람의 권리를 근거로 받아들이자는 말이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="찬성 쪽 근거"><div class="pk-name">말 둘</div><div class="pk-sit">일손이 모자란 일을 맡아 경제가 살아날 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>유입 지역의 좋은 점을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="찬성 쪽 근거"><div class="pk-name">말 셋</div><div class="pk-sit">인구가 줄어 모자라진 일할 사람을 채울 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>인구가 줄어드는 선진국의 사정을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="반대 쪽 근거"><div class="pk-name">말 넷</div><div class="pk-sit">난민을 받아들이고 돌보는 데 드는 비용이 크다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>받아들이는 나라가 지는 부담을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="반대 쪽 근거"><div class="pk-name">말 다섯</div><div class="pk-sit">이주민과 일자리를 두고 경쟁하게 된다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>원주민이 느끼는 걱정을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="반대 쪽 근거"><div class="pk-name">말 여섯</div><div class="pk-sit">생활 방식이 달라 갈등이 커질 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>유입 지역의 문제점을 근거로 들었다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk77");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["찬성 쪽 근거", "반대 쪽 근거"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <p>✍️ 너는 어느 쪽이야? 근거 하나를 들고, 반대쪽이 걱정하는 점 하나에 어떻게 답할지도 함께 두세 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="✏️ 활동 2 — 난민을 받아들일까?" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
-<h2>❓ OX 퀴즈</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
@@ -1100,7 +1148,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>5</td><td>곡성처럼 젊은 사람이 빠져나간 곳에서는 노인의 비율이 높아진다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
-<h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
 <blockquote>오늘 배운 걸 <strong>안 보고</strong> 세 줄로 적어 보자. 틀려도 괜찮아 — 떠올리려고 애쓰는 그 순간에 머리에 박히는 거야.</blockquote>
 <blockquote>✍️ <strong>낱말 세 개가 아니라 문장 세 개로.</strong> 각 줄이 <code>~다.</code> 로 끝나게 쓰자.</blockquote>
 <blockquote>🔍 다 쓰면 셋 중 가장 자신 없는 줄 끝에 (?)를 붙이자. 그 줄만 교과서 134~135쪽을 다시 펴서 맞는지 확인하는 거야.</blockquote>
@@ -1109,11 +1157,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="2." style="width:240px" placeholder=""></p>
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="3." style="width:240px" placeholder=""></p>
 <br>
-<h2>💭 더 생각해 보기</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <p>곡성에서 젊은 사람이 계속 떠난다면 10년 뒤 곡성에는 어떤 일이 생길까? <strong>걱정되는 점</strong> 하나와, 그래도 <strong>곡성에 남는 좋은 점이나 해볼 만한 방법</strong> 하나를 들어 두세 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-2" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
-<h2>📎 각주</h2>
+</section><h2>📎 각주</h2>
 <p>- 교과서: 천재교육 사회②(구정화) 134~135쪽</p>
 <p>- 햄트램크: 넓이 2제곱마일·2015년 이슬람교도 다수 시의회 — Christian Science Monitor, 2015-11-08·09 · 출발점 위성 『도시 대 도시!』(조지욱)</p>
 <p>- 부르키니 금지: 2016년 8월 26일 프랑스 국사원(최고 행정 법원) 효력 정지 결정 — UN 인권최고대표사무소 논평(2016-08-30) · Washington Post 2016-08-26</p>
