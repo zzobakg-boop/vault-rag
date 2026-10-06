@@ -198,7 +198,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_mos = False            # 2026-09-15: 모자이크 (:::모자이크 ... :::)
     mos_items = []
     mos_head = ''
-    in_pick = False; pick_q = ''; pick_rows = []   # 2026-09-03: 인물 선택 활동
+    in_pick = False; pick_q = ''; pick_rows = []; pick_open = False   # 2026-09-03: 인물 선택 활동
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
     in_ipd = False   # 2026-10-02: 삽화 + 본문 2단 (:::입담 ... :::)
     in_2c = False    # 2026-10-02: 자료 + 발문 2단 (:::2단 … :::다음칸 … :::)
@@ -874,6 +874,10 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 _o, _h = _h[1:_h.index(']')], _h[_h.index(']') + 1:].strip()
                 pick_opts = [x.strip() for x in _o.split('|') if x.strip()]
                 pick_mood = (pick_opts == ['웃음', '울음'])
+            # 2026-10-06 메인·역사: «까닭펼침» — 다 고른 뒤 맞힌 카드까지 까닭을 모두 펼친다(«같은 시대» 카드처럼 까닭이 활동의 핵심일 때)
+            pick_open = _h.startswith('까닭펼침')
+            if pick_open:
+                _h = _h[len('까닭펼침'):].strip()
             pick_q = _h
             pick_rows = []
             continue
@@ -912,7 +916,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                   f'<div class="pk-result" hidden></div></div>'
                   f'<script>(function(){{var w=document.getElementById("{pid}");'
                   f'var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;'
-                  f'var OPTS={json.dumps(pick_opts, ensure_ascii=False)},MOOD={"true" if pick_mood else "false"};'
+                  f'var OPTS={json.dumps(pick_opts, ensure_ascii=False)},MOOD={"true" if pick_mood else "false"},OPEN={"true" if pick_open else "false"};'
                   'function done(){return cs.filter(function(c){return c.dataset.pick}).length}'
                   'function reveal(){var ok=0;cs.forEach(function(c){'
                   'var right=c.dataset.pick===c.dataset.ans;if(right)ok++;'
@@ -920,9 +924,12 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                   # 틀렸으면 실제 정답의 기분으로 뒤집는다 — 표정이 바뀌는 것이 곧 피드백이다
                   'if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");'
                   'c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}'
-                  'if(!right)c.querySelector(".pk-why").hidden=false;});'
+                  'if(!right||OPEN)c.querySelector(".pk-why").hidden=false;'
+                  # 2026-10-06 메인 판단(사회 7-1 서부 유럽): 맞힌 카드는 까닭을 볼 길이 없었다 — 다 고른 뒤 카드를 누르면 열린다(기본은 닫힘)
+                  'if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){'
+                  'if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});'
                   'var r=w.querySelector(".pk-result");r.hidden=false;'
-                  'r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.'
+                  'r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"'
                   '<div class=\'pk-sum\'>"+OPTS.map(function(o,oi){'
                   'var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;'
                   'var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);'
@@ -2128,6 +2135,8 @@ blockquote {{
 .pk-card.pk-ok {{ border-color: #1a7a60; background: #f2fbf7; }}
 .pk-card.pk-no {{ border-color: #c62c3c; background: #fef5f6; }}
 .pk-why {{ font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }}
+.pk-tap {{ cursor: pointer; }}
+.pk-ok .pk-why {{ color: #1f6b3a; }}
 .pk-result {{ margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }}
 .pk-sum {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }}
