@@ -1243,6 +1243,87 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         pass
                 elif _r[0] == '출처' and len(_r) >= 2:
                     _src = '|'.join(_r[1:])
+            # 🕰 «사건» 모드 — 2026-10-06 메인 결정(천대현 «역사판도 만들자») · 역사 구현 · 사회가 블록 주인으로 검토.
+            #   `사건` 줄이 하나라도 있으면 이 경로만 탄다 — 값 모드(사회 7-7)는 코드·CSS 모두 그대로(출력 바이트 불변).
+            #   문법:  지도 | 파일 | 대체텍스트      연도 | 1750 | 1760 | …   (막대 눈금)
+            #          사건 | 이름 | x% | y% | 왼/오/위/아래 | 연도 | 카드 한 줄
+            #          연결 | 실선 | 출발 사건 | 도착 사건 | 건너간 것(필수)      연결 | 점선 | 사건 | 사건
+            #          출처 | 글
+            #   막대를 그해로 옮기면 그해까지 일어난 사건 핀이 나타나고, 두 끝이 다 보이는 연결선이 그려진다. 핀을 누르면 카드 한 줄.
+            #   ⚠️ 입력칸 0 · 자동 재생 없음(▶만) · 인쇄 직전 마지막 해 · CSS는 이 블록 안 <style>로만(전역 CSS 불변).
+            _evs = []; _lks = []
+            for _r in mb_rows:
+                if _r[0] == '사건' and len(_r) >= 7:
+                    _evs.append({'n': _r[1], 'x': float(_r[2].rstrip('%')), 'y': float(_r[3].rstrip('%')),
+                                 's': {'왼': 'l', '위': 'u', '아래': 'd'}.get(_r[4][:2] if _r[4].startswith('아래') else _r[4][:1], 'r'),
+                                 'yr': int(_r[5]), 't': '|'.join(_r[6:])})
+                elif _r[0] == '연결' and len(_r) >= 4:
+                    _solid = _r[1].startswith('실')
+                    _what = _r[4].strip() if len(_r) > 4 else ''
+                    assert (not _solid) or _what, f'🔴 :::지도막대 사건 모드 — 실선 연결 «{_r[2]}→{_r[3]}»에 «건너간 것»이 없다'
+                    _lks.append({'a': _r[2], 'b': _r[3], 's': 1 if _solid else 0, 'w': _what})
+            if _evs:
+                assert _img and _yrs, '🔴 :::지도막대 사건 모드 — 지도·연도 줄이 필요하다'
+                _nm = [e['n'] for e in _evs]
+                for _l in _lks:
+                    assert _l['a'] in _nm and _l['b'] in _nm, f'🔴 :::지도막대 연결 — 없는 사건 이름: {_l["a"]} / {_l["b"]}'
+                mid = f'mb{len(html_parts)}'
+                _pinh = ''.join(
+                    f'<button type="button" class="mb-pin mb-ev mb-{e["s"]}" style="left:{e["x"]}%;top:{e["y"]}%" data-k="{k}" hidden><i></i>'
+                    f'<b class="mb-lab">{inline(e["n"])} <em>{e["yr"]}</em></b></button>' for k, e in enumerate(_evs))
+                _ln = ''.join(
+                    f'<line data-l="{k}" x1="{_evs[_nm.index(l["a"])]["x"]}" y1="{_evs[_nm.index(l["a"])]["y"]}" '
+                    f'x2="{_evs[_nm.index(l["b"])]["x"]}" y2="{_evs[_nm.index(l["b"])]["y"]}" class="{"mb-sol" if l["s"] else "mb-dot"}" hidden/>'
+                    for k, l in enumerate(_lks))
+                _D = {'y': [int(y) for y in _yrs], 'e': [{'n': inline(e['n']), 'y': e['yr'], 't': inline(e['t'])} for e in _evs],
+                      'l': [{'a': _nm.index(l['a']), 'b': _nm.index(l['b']), 's': l['s'], 'w': inline(l['w'])} for l in _lks]}
+                html_parts.append(
+                    '<style>.ws-mapbar.mb-evmode .mb-ev{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit}'
+                    '.ws-mapbar.mb-evmode .mb-ev i{width:16px;height:16px;margin:-8px 0 0 -8px;background:#b23b2e;opacity:.9}'
+                    '.ws-mapbar.mb-evmode .mb-ev.mb-now i{background:#e0a32a;box-shadow:0 0 0 4px rgba(224,163,42,.35)}'
+                    '.ws-mapbar.mb-evmode .mb-ev.mb-sel i{box-shadow:0 0 0 4px rgba(35,80,140,.45)}'
+                    '.ws-mapbar.mb-evmode .ws-mb-links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}'
+                    '.ws-mapbar.mb-evmode .ws-mb-links line{stroke:#23508c;vector-effect:non-scaling-stroke;stroke-width:3}'
+                    '.ws-mapbar.mb-evmode .ws-mb-links line.mb-dot{stroke:#6b6b6b;stroke-dasharray:6 6}'
+                    '.ws-mapbar.mb-evmode .ws-mb-legend i.mb-ls{display:inline-block;width:26px;height:0;border-top:3px solid #23508c;vertical-align:middle;margin-right:6px;border-radius:0}'
+                    '.ws-mapbar.mb-evmode .ws-mb-legend i.mb-ld{display:inline-block;width:26px;height:0;border-top:3px dashed #6b6b6b;vertical-align:middle;margin-right:6px;border-radius:0}'
+                    '</style>'
+                    f'<div class="ws-mapbar mb-evmode" id="{mid}">'
+                    f'<div class="ws-mb-head">{inline(mb_head)}</div>'
+                    f'<div class="ws-mb-map"><img src="images/{_img}" alt="{_alt.replace(chr(34), "&quot;")}" loading="lazy">'
+                    f'<svg class="ws-mb-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">{_ln}</svg>{_pinh}</div>'
+                    '<div class="ws-mb-legend"><span><i class="mb-ls"></i>영향을 주고받음 — 무엇인가 건너갔다</span>'
+                    '<span><i class="mb-ld"></i>그냥 같은 때 — 건너간 것이 없다</span></div>'
+                    f'<div class="ws-mb-ctl"><button type="button" class="ws-mb-play" aria-label="처음부터 넘겨 보기">▶</button>'
+                    f'<input type="range" class="ws-mb-range" min="0" max="{len(_yrs)-1}" value="0" step="1" aria-label="연도 고르기">'
+                    f'<span class="ws-mb-yr"></span></div>'
+                    f'<div class="ws-mb-read" aria-live="polite"></div>'
+                    + (f'<div class="ws-mb-src">{inline(_src)}</div>' if _src else '') +
+                    f'</div>'
+                    f'<script>(function(){{'
+                    f'var D={json.dumps(_D, ensure_ascii=False)};'
+                    f'var w=document.getElementById("{mid}"),rg=w.querySelector(".ws-mb-range"),yr=w.querySelector(".ws-mb-yr"),'
+                    'rd=w.querySelector(".ws-mb-read"),pl=w.querySelector(".ws-mb-play"),ps=w.querySelectorAll(".mb-ev"),ls=w.querySelectorAll(".ws-mb-links line"),n=D.y.length,sel=-1;'
+                    'function card(k){var e=D.e[k],h="<b>"+e.n+" · "+e.y+"년</b> — "+e.t;'
+                    'D.l.forEach(function(l){if(l.a!==k&&l.b!==k)return;var o=D.e[l.a===k?l.b:l.a];'
+                    'h+="<br>"+(l.s?"━ ":"┅ ")+o.n+" ("+o.y+") — "+(l.s?"건너간 것: "+l.w:"그냥 같은 때");});return h;}'
+                    'function draw(i){i=+i;var Y=D.y[i];'
+                    'D.e.forEach(function(e,k){var p=ps[k];p.hidden=e.y>Y;p.classList.toggle("mb-now",e.y>Y-(i>0?D.y[i]-D.y[i-1]:1)&&e.y<=Y);p.classList.toggle("mb-sel",k===sel);});'
+                    'D.l.forEach(function(l,k){ls[k].hidden=D.e[l.a].y>Y||D.e[l.b].y>Y;});'
+                    'yr.textContent=Y+"년";'
+                    'if(sel>=0&&D.e[sel].y<=Y){rd.innerHTML=card(sel);}else{sel=-1;var o=D.e.filter(function(e){return e.y<=Y;});'
+                    'rd.innerHTML="<b>"+Y+"년까지</b> — "+(o.length?o.map(function(e){return e.n+" ("+e.y+")";}).join(" · "):"아직 일어난 사건이 없다")+" · 핀을 누르면 카드가 열린다";}'
+                    'rg.value=i;}'
+                    'ps.forEach(function(p,k){p.addEventListener("click",function(){sel=(sel===k?-1:k);draw(rg.value);});});'
+                    'rg.addEventListener("input",function(){draw(rg.value);});'
+                    'var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}'
+                    'if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){draw(n-1);return;}'
+                    'var i=0;sel=-1;draw(0);pl.textContent="■";tm=setInterval(function(){i++;draw(i);if(i>=n-1){clearInterval(tm);tm=null;pl.textContent="▶";}},1100);});'
+                    'window.addEventListener("beforeprint",function(){draw(n-1);});'
+                    'draw(0);})();</script>')
+                in_mb = False
+                mb_rows = []
+                continue
             if _img and _yrs and _pins:
                 mid = f'mb{len(html_parts)}'
                 _pinh = ''.join(

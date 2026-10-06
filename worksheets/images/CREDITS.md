@@ -1086,3 +1086,9 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-1_loc_alaska_globe.png | 알래스카 위치 지도(지구본, 정사 투영) — 알래스카 붉게·땅 회색·경위선 20°, 글자 없음 | 자체 제작 · Natural Earth(퍼블릭 도메인) |
 | 7-1_voc_왜상.jpg | 휘어진 거울에 비친 건물 — 기둥과 붉은 벽이 활처럼 휘어 보인다(사람 없음) (Funhouse Mirror in the City - panoramio.jpg) | agracier · CC BY-SA 3.0 |
 | 7-1_입담_자연과일자리.png | 입담 삽화 — 알래스카 석유 일꾼 · 나일강 가 농부(가상 인물, 손글씨 대사 PIL) | AI 생성(Grok Aurora 배경 — Google 이미지 API 월 상한 429로 대체) + 자체 합성 |
+
+## 5-3-5 단원 정리 지도 (2026-10-06)
+
+| 파일 | 원본 | 저작자 · 라이선스 |
+|---|---|---|
+| 5-3-5_혁명의시대지도.png | 자체 제작(map-render/hq · historical-basemaps world_1783 + Natural Earth 1:1천만) | aourednik historical-basemaps · GPL-3.0(개념도 정밀도) / Natural Earth · Public domain |
