@@ -1189,8 +1189,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     'function draw(i){i=+i;D.s.forEach(function(s,k){var p=[];for(var j=0;j<=i;j++)p.push(X(j)+","+Y(s,s.v[j]));'
                     'lines[k].setAttribute("points",p.join(" "));dots[k].setAttribute("cx",X(i));dots[k].setAttribute("cy",Y(s,s.v[i]));});'
                     'cur.setAttribute("x1",X(i));cur.setAttribute("x2",X(i));'
-                    # 2026-10-06 «년대»는 10년 간격·끝자리 0일 때만 — 종전 «간격 ≤10»이라 5년·1년 간격에 «2024년대»·«1929년대»가 찍혔다(사회 7-6에서 발견)
-                    'rd.innerHTML="<b>"+D.x[i]+((+D.x[1]-+D.x[0])==10&&D.x.every(function(v){return +v%10==0;})?"년대":"년")+"</b> — "+D.s.map(function(s){return s.name+" <b style=\\"color:"+s.col+"\\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");'
+                    # 2026-10-06 «년대»는 10년 간격·끝자리 0일 때만 — 종전 «간격 ≤10»이라 5년·1년 간격에 «2024년대»·«1929년대»가 찍혔다(사회 7-6에서 발견) · x가 «YYYY.M»(연·월)이면 «YYYY년 M월»(역사 6-1-3 선거 그래프 제안)
+                    'rd.innerHTML="<b>"+(/^[0-9]{4}[.][0-9]{1,2}$/.test(D.x[i])?String(D.x[i]).replace(/^([0-9]{4})[.]([0-9]{1,2})$/,"$1년 $2월"):D.x[i]+((+D.x[1]-+D.x[0])==10&&D.x.every(function(v){return +v%10==0;})?"년대":"년"))+"</b> — "+D.s.map(function(s){return s.name+" <b style=\\"color:"+s.col+"\\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");'
                     'rg.value=i;}'
                     'rg.addEventListener("input",function(){draw(rg.value);});'
                     'var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}'
