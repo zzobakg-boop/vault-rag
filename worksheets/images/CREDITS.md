@@ -1085,3 +1085,4 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-1_voc_비옥.jpg | 갈아 놓은 붉은 흙 밭이 지평선까지 펼쳐진 들판, 브라질 파라나주 로안다 2008-05 (Uma terra fértil (fertile soil) (2532905279).jpg) | Claudemir Brundani · CC BY-SA 2.0 |
 | 7-1_loc_alaska_globe.png | 알래스카 위치 지도(지구본, 정사 투영) — 알래스카 붉게·땅 회색·경위선 20°, 글자 없음 | 자체 제작 · Natural Earth(퍼블릭 도메인) |
 | 7-1_voc_왜상.jpg | 휘어진 거울에 비친 건물 — 기둥과 붉은 벽이 활처럼 휘어 보인다(사람 없음) (Funhouse Mirror in the City - panoramio.jpg) | agracier · CC BY-SA 3.0 |
+| 7-1_입담_자연과일자리.png | 입담 삽화 — 알래스카 석유 일꾼 · 나일강 가 농부(가상 인물, 손글씨 대사 PIL) | AI 생성(Grok Aurora 배경 — Google 이미지 API 월 상한 429로 대체) + 자체 합성 |
