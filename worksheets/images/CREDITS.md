@@ -514,6 +514,9 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-2_voc_이촌향도.jpg | 멀리 뉴욕 고층 빌딩 쪽으로 뻗은 도로와 그 길을 달리는 옛 자동차 (Vintage cars on a road to New York (Unsplash).jpg) | Les Anderson · CC0 |
 | 7-2_voc_수도권.jpg | 한국 지도 북서부 — 서울(빨강)을 인천·경기(보라·초록)가 둘러싼 수도권 (Sudogwon.svg, PNG 렌더) | ASDFGHJ · CC BY-SA 3.0 |
 | 7-2_voc_도시화.jpg | 미국 아이오와주 댈러스 카운티 — 농장 건물 뒤로 농지를 메운 새 주택 단지, 2011 (NRCSIA00011 - Iowa (2225)(NRCS Photo Gallery).jpg) | Lynn Betts, USDA NRCS · Public domain |
+| 7-2_density.jpg | 우리나라의 인구 밀도, 2000년 — 1㎢당 사람 수 | CIESIN 컬럼비아대학교 · SEDACMaps · CC BY 2.0 · Wikimedia Commons |
+| 7-2_gokseong.jpg | 곡성읍 전경(전라남도 곡성군) — 촬영 연도 미상 | 한국학중앙연구원 · 공공누리 제1유형 · Wikimedia Commons |
+| 7-2_hero_peninsula_night.jpg | 국제 우주 정거장에서 본 한반도의 밤, 2024-01-24 (ISS070-E-80670) | NASA · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-2_voc_산업화.jpg | 울산 현대자동차 공장의 조립 라인 — 차체가 라인을 따라 움직인다 (Hyundai car assembly line.jpg, 900×608로 축소) | Anonyme · CC BY 2.5 |
 | 7-2_voc_중화학공업.jpg | 울산 현대중공업 조선소의 골리앗 크레인, 주전 봉수대에서 본 모습, 2023 (Hyundai Heavy Industries Ulsan Shipyard from Jujeon Beacon Mound - 2023-07-24.jpg, 잘라 냄) | Wvdp · CC0 |
 | 7-2_seats_2026.png | 자체 제작 — 시도별 지역구 국회 의원 수(공직선거법 별표 1, 2026. 4. 22.) | 경계 geoBoundaries KOR ADM2 2020(CC BY 3.0)·Natural Earth(퍼블릭 도메인) |
