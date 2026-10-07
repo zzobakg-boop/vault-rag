@@ -205,10 +205,11 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
-.pk-gold .pk-card.pk-noimg .pk-btns { align-items: flex-end; }
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { align-items: flex-end; }
 /* 2026-10-07 — 위 «flex: 0 0 auto»는 버튼 높이를 묶으려던 것인데 버튼 줄이 가로라 폭이 글자 크기로 묶였다
    (사회 7-4 «양» 17px · «비율» 28px). 폭은 똑같이 나누고(1 1 0) 높이는 아래 정렬로 고정한다. */
-.pk-gold .pk-card.pk-noimg .pk-btns .pk-b { flex: 1 1 0; }
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b { flex: 1 1 0; }
+.pk-gold .pk-card.pk-noimg .pk-btns-col .pk-b { flex: 0 0 auto; }   /* 세로(선택지 셋 이상)는 높이 고정 그대로 */
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
