@@ -128,11 +128,11 @@ if md and os.path.exists(md):
                 break
             if l2.count("|") >= 4:
                 rows += 1
-        hm = re.search(r"(?<![가-힣0-9])(\d+|한|하나|두|둘|세|셋|네|넷|다섯|여섯|일곱|여덟|아홉|열)\s*(장면|사람|명|카드|장|가지|곳)", head)  # 앞이 한글이면 숫자 아님(«맞이한 곳» 오탐·10/4 사회)
-        if hm:
-            n = int(hm.group(1)) if hm.group(1).isdigit() else NUM[hm.group(1)]
-            if n != rows:
-                mism.append(f"{i+1}행 «{hm.group(0)}» ↔ 카드 {rows}장")
+        # 앞이 한글이면 숫자 아님(«맞이한 곳» 오탐·10/4 사회) · 뒤에 «당»이 붙으면 단위(«한 사람당»·«1,000명당» 오탐·10/7 사회)
+        # 머리말에 숫자가 여럿이면(«노선 3개 … 다섯 사람» 8-4) 하나라도 카드 수와 맞으면 통과
+        hms = list(re.finditer(r"(?<![가-힣0-9,])(\d+|한|하나|두|둘|세|셋|네|넷|다섯|여섯|일곱|여덟|아홉|열)\s*(장면|사람|명|카드|장|가지|곳|개)(?!당)", head))
+        if hms and all((int(h.group(1)) if h.group(1).isdigit() else NUM[h.group(1)]) != rows for h in hms):
+            mism.append(f"{i+1}행 «{'·'.join(h.group(0) for h in hms)}» ↔ 카드 {rows}장")
     if nblk:
         (red if mism else ok).append(f"카드 블록 {nblk}개 · 머리말 숫자 어긋남 {len(mism)}" + (f" {mism}" if mism else ""))
 
