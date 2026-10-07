@@ -219,6 +219,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_rad = False            # 2026-09-14: 방사형 펼침 (:::펼침 ... :::)
     rad_rows = []
     rad_center, rad_note = '', ''
+    in_2c_tb = False
+    in_follow = False
     in_tb = False             # 2026-09-02: 교과서를 펴는 자리 (:::교과서 <라벨> ... :::)
     tb_label = ''             #   학습지 안(파랑)과 교과서 밖(황토)을 색으로 갈라 놓는다.
     tb_lines = []
@@ -1399,8 +1401,35 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   그래프(660px)·플립 카드 아래에 💬 질문과 답 칸이 따로 쌓여 활동 2가 1,638px였다.
         #   자료 왼쪽 · 질문과 답 칸 오른쪽. 안쪽은 평소 처리(그래프·플립·입력칸 그대로, data-id 순서 불변).
         #   ⚠️ 안쪽 블록(그래프·플립 등)은 이 처리기보다 앞에서 자기 닫는 ':::'를 먼저 가져간다 — 순서를 바꾸지 말 것.
+        # ↪️ :::이어서 [| 태그] … ::: — 2026-10-07 사회 7-2(천대현 «10년 동안 무엇이 달라졌을까?는 위 지도와 함께 한 눈에»)
+        #   바로 앞 교과서 상자(:::교과서 또는 :::2단 … 교과서)를 닫지 않고 그 안에 이어 넣는다. 안쪽은 평소대로 처리.
+        if stripped.startswith(':::이어서') and not in_2c:
+            _lab = stripped.partition('|')[2].strip()
+            _k = len(html_parts) - 1
+            while _k >= 0 and html_parts[_k].strip() in ('', '<br>'):
+                _k -= 1
+            if _k >= 0 and html_parts[_k] == '<!--tb-end--></div>':
+                del html_parts[_k:]
+            elif _k >= 0 and html_parts[_k].startswith('<div class="ws-tb">') and html_parts[_k].endswith('</div>'):
+                html_parts[_k] = html_parts[_k][:-len('</div>')]; del html_parts[_k + 1:]
+            else:
+                html_parts.append('<div class="ws-tb">')
+            html_parts.append('<div class="ws-tb-join">' + (f'<div class="ws-tb-tag ws-tb-tag2">{inline(_lab)}</div>' if _lab else ''))
+            in_follow = True
+            continue
+        if in_follow and stripped == ':::':
+            if in_table:   # 표는 «표 아닌 다음 줄»에서 닫히므로 여기서 먼저 닫는다
+                html_parts.append('</table>'); in_table = False; table_row_idx = 0
+            html_parts.append('</div>')
+            html_parts.append('<!--tb-end--></div>')
+            in_follow = False
+            continue
         if stripped.startswith(':::2단'):
-            _opts = stripped[len(':::2단'):].split()
+            # 2026-10-07 사회 7-2 천대현 «생각 열기 아래 지도·표가 따로 논다» — `교과서 | 태그 글`을 붙이면
+            #   2단 전체를 :::교과서 상자와 같은 황토 테두리·태그로 감싸 바로 위 교과서 상자에 이어 붙인다.
+            _head, _, _tblab = stripped.partition('|')
+            _opts = _head[len(':::2단'):].split()
+            _tb2 = '교과서' in _opts
             _r = next((o for o in _opts if ':' in o), '1.2:1')
             _mid = '가운데' in _opts          # 2026-10-02: 사진 + 짧은 설명 — 글을 세로 가운데에(천대현 «예쁘게»)
             _card = '카드' in _opts           # 오른쪽 단을 설명 카드로
@@ -1410,15 +1439,30 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             except Exception:
                 _a, _b = 1.2, 1.0
             _cls = 'ws-2c' + (' c2-mid' if _mid else '') + (' c2-card' if _card else '') + (' c2-keep' if _keep else '')
+            if _tb2:
+                # 바로 앞이 :::교과서 상자면 그 상자를 닫지 않고 안에 이어 넣는다(두 상자가 떨어져 보이지 않게).
+                _k = len(html_parts) - 1
+                while _k >= 0 and html_parts[_k].strip() in ('', '<br>'):   # 빈 줄이 <br>로 들어온다
+                    _k -= 1
+                if _k >= 0 and html_parts[_k].startswith('<div class="ws-tb">') and html_parts[_k].endswith('</div>'):
+                    html_parts[_k] = html_parts[_k][:-len('</div>')]
+                    del html_parts[_k + 1:]
+                    html_parts.append(f'<div class="ws-tb-join"><div class="ws-tb-tag ws-tb-tag2">{inline(_tblab.strip() or "📕 교과서")}</div>')
+                    _tb2 = 'join'
+                else:
+                    html_parts.append(f'<div class="ws-tb ws-tb-2c"><div class="ws-tb-tag">{inline(_tblab.strip() or "📕 교과서")}</div>')
             html_parts.append(f'<div class="{_cls}" style="grid-template-columns:minmax(0,{_a}fr) minmax(0,{_b}fr)"><div class="c2-a">')
             in_2c = True
+            in_2c_tb = _tb2
             continue
         if in_2c and stripped == ':::다음칸':
             html_parts.append('</div><div class="c2-b">')
             continue
         if in_2c and stripped == ':::':
-            html_parts.append('</div></div>')
-            in_2c = False
+            html_parts.append('</div></div>' + ('</div>' if in_2c_tb == 'join' else ''))   # join = 이음 칸
+            if in_2c_tb:
+                html_parts.append('<!--tb-end--></div>')   # 교과서 상자 닫힘 — :::이어서 가 다시 열 수 있게 표식
+            in_2c = False; in_2c_tb = False
             continue
 
         # 📖 표·도식을 읽는 자리 (:::해설 ... :::) — 2026-09-03 천대현
@@ -2273,10 +2317,11 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-noimg {{ padding-top: 0; }}
 .pk-gold .pk-card.pk-noimg .pk-name {{ padding-top: 14px; border-radius: 5px 5px 0 0; }}
 .pk-gold .pk-card.pk-noimg .pk-btns {{ flex: 1 1 auto; justify-content: flex-start; }}
-.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) {{ align-items: flex-end; }}
+/* 2026-10-07 격자로 — 한 버튼만 두 줄로 꺾여도(폰 «인문·사회») 두 버튼 높이·폭이 같게. 줄은 아래에 붙인다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) {{ display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-content: end; }}
 /* 2026-10-07 — 위 «flex: 0 0 auto»는 버튼 높이를 묶으려던 것인데 버튼 줄이 가로라 폭이 글자 크기로 묶였다
    (사회 7-4 «양» 17px · «비율» 28px). 폭은 똑같이 나누고(1 1 0) 높이는 아래 정렬로 고정한다. */
-.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b {{ flex: 1 1 0; }}
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b {{ flex: none; }}
 .pk-gold .pk-card.pk-noimg .pk-btns-col .pk-b {{ flex: 0 0 auto; }}   /* 세로(선택지 셋 이상)는 높이 고정 그대로 */
 @media print {{ .pk-b {{ display: none; }} .pk-card img {{ filter: none; }} }}
 
@@ -2855,6 +2900,14 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
 }}
 .ws-tb-see {{ font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }}
+/* 2026-10-07 :::2단 … 교과서 — 교과서 상자 바로 아래에 붙여 «생각 열기의 뒷이야기»로 읽히게(위 상자와 간격 줄임) */
+.ws-tb + .ws-tb-2c {{ margin-top: -6px; }}
+.ws-tb-join {{ border-top: 1px dashed #d9c48f; margin-top: 12px; padding-top: 12px; }}
+.ws-tb-join .ws-2c {{ margin: 4px 0 0; }} .ws-tb-join table {{ background: #fff; }} .ws-tb-join .c2-b {{ font-size: 0.95em; color: #3d3116; }}
+.ws-tb-tag2 {{ background: #7a6742; }}
+.ws-tb-2c .ws-2c {{ margin: 4px 0 0; }}
+.ws-tb-2c table {{ background: #fff; }}
+.ws-tb-2c .c2-b {{ font-size: 0.95em; color: #3d3116; }}
 .ws-tb-ask {{ font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }}
 .ws-tb-ask strong {{ color: #8a5f12; }}
 .ws-tb input.activity-input {{

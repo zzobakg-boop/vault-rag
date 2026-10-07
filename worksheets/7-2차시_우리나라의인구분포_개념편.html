@@ -205,10 +205,11 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
-.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { align-items: flex-end; }
+/* 2026-10-07 격자로 — 한 버튼만 두 줄로 꺾여도(폰 «인문·사회») 두 버튼 높이·폭이 같게. 줄은 아래에 붙인다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-content: end; }
 /* 2026-10-07 — 위 «flex: 0 0 auto»는 버튼 높이를 묶으려던 것인데 버튼 줄이 가로라 폭이 글자 크기로 묶였다
    (사회 7-4 «양» 17px · «비율» 28px). 폭은 똑같이 나누고(1 1 0) 높이는 아래 정렬로 고정한다. */
-.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b { flex: 1 1 0; }
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b { flex: none; }
 .pk-gold .pk-card.pk-noimg .pk-btns-col .pk-b { flex: 0 0 auto; }   /* 세로(선택지 셋 이상)는 높이 고정 그대로 */
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
@@ -787,6 +788,14 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
 }
 .ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+/* 2026-10-07 :::2단 … 교과서 — 교과서 상자 바로 아래에 붙여 «생각 열기의 뒷이야기»로 읽히게(위 상자와 간격 줄임) */
+.ws-tb + .ws-tb-2c { margin-top: -6px; }
+.ws-tb-join { border-top: 1px dashed #d9c48f; margin-top: 12px; padding-top: 12px; }
+.ws-tb-join .ws-2c { margin: 4px 0 0; } .ws-tb-join table { background: #fff; } .ws-tb-join .c2-b { font-size: 0.95em; color: #3d3116; }
+.ws-tb-tag2 { background: #7a6742; }
+.ws-tb-2c .ws-2c { margin: 4px 0 0; }
+.ws-tb-2c table { background: #fff; }
+.ws-tb-2c .c2-b { font-size: 0.95em; color: #3d3116; }
 .ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
 .ws-tb-ask strong { color: #8a5f12; }
 .ws-tb input.activity-input {
@@ -1040,7 +1049,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 인구 변화와 인구 문제 7-2차시 — 밤에 보면 왜 한쪽만 환할까? (우리나라 사람들은 어디에 살고 있을까?)</h1><p class="hero-subtitle">밤에 보면 왜 한쪽만 환할까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">국회 의원 수는 무엇으로 정할까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">옛날 사람들은 우리나라 어디에 많이 살았을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">1960년대 이후 사람들은 어디로 떠났을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">광주와 곡성은 무엇이 다를까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>인구</strong>로 정한다. 선거구는 사람 수에 맞춰 나누기 때문에, 인구가 많은 곳일수록 선거구가 많고 국회 의원도 많다. 그래서 국회 의원 지도는 거꾸로 읽으면 인구 지도가 된다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>벼농사에 유리한 <strong>남서부</strong> 평야 지역이다. 기후가 온화하고 평야가 넓어 쌀을 많이 거둘 수 있었다. 춥고 산이 많은 <strong>북동부</strong>는 사람이 적었다 — 이때는 <strong>자연적 요인</strong>이 사람을 불렀다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>일자리가 있는 <strong>도시</strong>로 떠났다. 농촌을 떠나 도시로 향하는 <strong>이촌 향도</strong>다. 그 결과 대도시와 <strong>수도권</strong>, <strong>남동 임해 공업 지역</strong>에 사람이 몰렸다 — 이번에는 <strong>인문·사회적 요인</strong>이다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>광주는 1㎢에 1,000명이 넘고 곡성군은 100명이 안 된다(교사용 교과서 131쪽 예시). 산지가 많은 지형(자연)에 더해 일자리·교통·생활 편의 시설(인문·사회)의 차이가 사람 수를 가른다.</p></div></div><img class="hero-image" src="images/7-2_hero_peninsula_night.jpg" alt=""><div class="hero-hook">우주 정거장에서 밤에 내려다본 우리나라다. 위쪽 한 덩어리만 유난히 하얗게 빛나고, 산이 많은 쪽은 깜깜하다. 불빛은 곧 사람이다. 우리나라 사람들은 어디에 몰려 살고, 왜 하필 거기일까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 인구 변화와 인구 문제 7-2차시 — 밤에 보면 왜 한쪽만 환할까? (우리나라 사람들은 어디에 살고 있을까?)</h1><p class="hero-subtitle">밤에 보면 왜 한쪽만 환할까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">국회 의원 수는 무엇으로 정할까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">옛날 사람들은 우리나라 어디에 많이 살았을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">1960년대 이후 사람들은 어디로 떠났을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">광주와 곡성은 무엇이 다를까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>인구</strong>로 정한다. 선거구는 사람 수에 맞춰 나누기 때문에, 인구가 많은 곳일수록 선거구가 많고 국회 의원도 많다. 그래서 국회 의원 지도는 거꾸로 읽으면 인구 지도가 된다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>벼농사에 유리한 <strong>남서부</strong> 평야 지역이다. 기후가 온화하고 평야가 넓어 쌀을 많이 거둘 수 있었다. 춥고 산이 많은 <strong>북동부</strong>는 사람이 적었다 — 이때는 <strong>자연적 요인</strong>이 사람을 불렀다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>일자리가 있는 <strong>도시</strong>로 떠났다. 농촌을 떠나 도시로 향하는 <strong>이촌 향도</strong>다. 그 결과 대도시와 <strong>수도권</strong>, <strong>남동 임해 공업 지역</strong>에 사람이 몰렸다 — 이번에는 <strong>인문·사회적 요인</strong>이다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>광주는 1㎢에 1,000명이 넘고 곡성군은 100명이 안 된다(교사용 교과서 131쪽 예시). 산지가 많은 지형(자연)에 더해 일자리·교통·생활 편의 시설(인문·사회)의 차이가 사람 수를 가른다.</p><div class="card-quote">그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</div></div></div><img class="hero-image" src="images/7-2_hero_peninsula_night.jpg" alt=""><div class="hero-hook">우주 정거장에서 밤에 내려다본 우리나라다. 위쪽 한 덩어리만 유난히 하얗게 빛나고, 산이 많은 쪽은 깜깜하다. 불빛은 곧 사람이다. 우리나라 사람들은 어디에 몰려 살고, 왜 하필 거기일까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/7 · OX: <span id="ox-score">0</span>/5
@@ -1077,16 +1086,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 1단계: 국회 의원 수에 숨은 인구 지도</h2>
 <blockquote>📕 <strong>교과서 130쪽 펴고 · 배정 시간 6분</strong></blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 130쪽 · 생각 열기</div><div class="ws-tb-see">지도에 지역마다 뽑는 국회 의원 수가 적혀 있다. 하나의 선거구에서 국회 의원 한 명을 뽑는다.</div><div class="ws-tb-ask">서울과 부산은 <strong>면적에 비해</strong> 국회 의원 수가 많다. 왜 그럴까? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 130쪽에서 찾기 — 서울과 부산은 면적에 비해 국회 의원 수가 많다. 왜 그럴까?" style="width:360px" placeholder=""></div></div>
-<br>
-<blockquote>🎙️ 교과서 지도는 2016년 것이야. 지금 지도로 다시 보자.</blockquote>
-<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 130쪽 · 생각 열기</div><div class="ws-tb-see">지도에 지역마다 뽑는 국회 의원 수가 적혀 있다. 하나의 선거구에서 국회 의원 한 명을 뽑는다.</div><div class="ws-tb-ask">서울과 부산은 <strong>면적에 비해</strong> 국회 의원 수가 많다. 왜 그럴까? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 130쪽에서 찾기 — 서울과 부산은 면적에 비해 국회 의원 수가 많다. 왜 그럴까?" style="width:360px" placeholder=""></div>
+<div class="ws-tb-join"><div class="ws-tb-tag ws-tb-tag2">📕 교과서 지도는 2016년 — 2026년 지금은?</div>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-2_seats_2026.png" alt="2026년 시도별 지역구 국회 의원 수 지도. 숫자는 의원 수, 색은 넓이 1,000㎢당 의원 수다." loading="lazy"><figcaption>2026년 시도별 지역구 국회 의원 수 지도. 숫자는 의원 수, 색은 넓이 1,000㎢당 의원 수다.</figcaption></figure>
-<blockquote>🗺 자체 제작 · 공직선거법 [별표 1](2026. 4. 22. 개정) 지역구 254 · 경계 geoBoundaries(CC BY 3.0)·Natural Earth</blockquote>
+<figure class="ws-fig"><img src="images/7-2_seats_2026.png" alt="지역구 국회 의원 수(2026년)" loading="lazy"><figcaption>지역구 국회 의원 수(2026년)</figcaption></figure>
 </div><div class="c2-b">
-<p><strong>2016년 교과서 지도와 지금</strong></p>
-<br>
 <table>
 <tr><td></td><td>2016년</td><td>2026년</td></tr>
 <tr><td>전국 지역구</td><td>253명</td><td>254명</td></tr>
@@ -1096,20 +1100,19 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>세종</td><td>1명</td><td>2명</td></tr>
 </table>
 <br>
-<p>2026년 7월 1일 광주광역시와 전라남도가 합쳐 <strong>전남광주통합특별시</strong>가 되었다. 그래서 지금 지도에는 '광주 8 + 전남 10'이 '전남광주 18'로 나온다.</p>
+<p>2026년 7월 광주와 전라남도가 합쳐 <strong>전남광주통합특별시</strong>가 되었다. 그래서 '광주 8 + 전남 10'이 지금은 '전남광주 18'이다.</p>
 <br>
-<p>🔍 <strong>숫자와 색을 따로 읽자.</strong> 숫자는 의원이 <strong>몇 명</strong>인지, 색은 같은 넓이에 의원이 <strong>얼마나 빽빽한지</strong>다. 경기는 60명으로 가장 많은데 색은 서울이 더 진하다.</p>
-</div></div>
-<br>
-<div class="ws-pick" id="pk42"><div class="pk-head"><span>이 숫자는 어떻게 만든 숫자일까? 사람·물건을 하나하나 센 숫자(몇 명·몇 개)이면 '센 수', 전체나 넓이·사람 수로 나눠 견준 숫자(몇 %·○○당)이면 '견준 값'을 고르자. 다 고르면 정답이 나오고, 틀린 카드는 까닭이 먼저 펼쳐진다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="센 수"><div class="pk-name">경기 지역구 60명</div><div class="pk-sit">2026년 경기도에서 뽑는 지역구 국회 의원</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>의원이 몇 명인지 그대로 센 수다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="견준 값"><div class="pk-name">서울 넓이 0.6%</div><div class="pk-sit">우리나라 땅 가운데 서울이 차지하는 넓이</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>나라 전체 넓이를 100으로 놓고 견준 값이다 — 서울 넓이 자체(605㎢)가 아니다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="견준 값"><div class="pk-name">서울 1,000㎢당 79명</div><div class="pk-sit">서울 넓이에 견준 지역구 의원 수</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>'○○당'은 넓이로 나눠 견준 값이다 — 서울 의원 수 자체는 48명이다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="센 수"><div class="pk-name">부산 20대 4,500명</div><div class="pk-sit">2025년 부산을 떠난 20대에서 들어온 20대를 뺀 수</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>사람 수를 그대로 센 값이다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="견준 값"><div class="pk-name">서울 1㎢에 1만 5천 명 넘게</div><div class="pk-sit">서울 넓이 1㎢마다 사는 사람</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>사람 수를 넓이로 나눈 값, 곧 인구 밀도다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="센 수"><div class="pk-name">경기 인구 1,378만 명</div><div class="pk-sit">2026년 9월 경기도에 주민 등록을 한 사람</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>사람 수를 그대로 센 값이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk42");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["센 수", "견준 값"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
-<br>
-<blockquote>🎙️ 시험에서 '무역 의존도가 높다 = 수출을 많이 한다'로 읽어서 틀린 친구들이 많았지? 견준 값(%)은 무엇으로 나눴는지에 따라 달라져서 크기 자체를 말해 주지 않아. 인구 단원에는 이런 숫자가 계속 나와.</blockquote>
+<p>🔍 숫자는 의원이 <strong>몇 명</strong>인지, 색은 같은 넓이에 <strong>얼마나 빽빽한지</strong>다. 경기가 60명으로 가장 많은데 왜 서울 색이 더 진할까?</p>
+</div></div></div>
+<!--tb-end--></div>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>답을 쓴 뒤에 펼쳐 보기 — 국회 의원 지도는 무엇을 보여 줄까</summary><div class="ws-fold-body">
 <p>🎙️ 국회 의원을 뽑는 선거구는 <strong>사람 수</strong>에 맞춰 나눠. 그래서 국회 의원 지도를 거꾸로 읽으면 <strong>인구 지도</strong>가 돼.</p>
+<p>그런데 10년 사이 수도권 사람이 늘었는데도 수도권 의원 수는 그대로다. 선거구마다 사람 수가 조금씩 달라도 되게 범위를 두고 전체 의석수도 거의 그대로라, 사람 수가 조금 바뀐다고 의원 수가 곧바로 따라 바뀌지는 않는다.</p>
+<p>🎙️ 국회 의원만 그런 게 아니야. 프로야구 10개 구단 가운데 LG·두산·키움 셋이 서울을 연고지로 쓰고, 인천 SSG와 수원 KT까지 더하면 다섯이 수도권이야. 사람이 많은 곳에 팬도 많으니까. 우리 KIA는 광주 하나뿐이지.</p>
 </div></details>
 <br>
-<blockquote>🎙️ 국회 의원만 그런 게 아니야. 프로야구 10개 구단 가운데 LG·두산·키움 셋이 서울을 연고지로 쓰고, 인천 SSG와 수원 KT까지 더하면 다섯이 수도권이야. 사람이 많은 곳에 팬도 많으니까. 우리 KIA는 광주 하나뿐이지.</blockquote>
+<div class="ws-pick" id="pk44"><div class="pk-head"><span>🔢 이 숫자는 하나하나 '센 수'(몇 명·몇 개)일까, 무엇으로 나눠 '견준 값'(몇 %·○○당)일까?</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="센 수"><div class="pk-name">경기 지역구 60명</div><div class="pk-sit">2026년 경기도에서 뽑는 지역구 국회 의원</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>의원이 몇 명인지 그대로 센 수다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="견준 값"><div class="pk-name">서울 넓이 0.6%</div><div class="pk-sit">우리나라 땅 가운데 서울이 차지하는 넓이</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>나라 전체 넓이를 100으로 놓고 견준 값이다 — 서울 넓이 자체(605㎢)가 아니다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="견준 값"><div class="pk-name">서울 1,000㎢당 79명</div><div class="pk-sit">서울 넓이에 견준 지역구 의원 수</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>'○○당'은 넓이로 나눠 견준 값이다 — 서울 의원 수 자체는 48명이다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="센 수"><div class="pk-name">부산 20대 4,500명</div><div class="pk-sit">2025년 부산을 떠난 20대에서 들어온 20대를 뺀 수</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>사람 수를 그대로 센 값이다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="견준 값"><div class="pk-name">서울 1㎢에 1만 5천 명 넘게</div><div class="pk-sit">서울 넓이 1㎢마다 사는 사람</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>사람 수를 넓이로 나눈 값, 곧 인구 밀도다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="센 수"><div class="pk-name">경기 인구 1,378만 명</div><div class="pk-sit">2026년 9월 경기도에 주민 등록을 한 사람</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>사람 수를 그대로 센 값이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk44");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["센 수", "견준 값"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <h2>📖 2단계: 산업화 이전 — 사람은 논을 따라 살았다</h2>
 <blockquote>📕 <strong>교과서 130쪽 펴고 · 배정 시간 6분</strong></blockquote>
@@ -1126,20 +1129,17 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>지금 우리나라 인구는 서울을 중심으로 하는 수도권에 전체의 ⑥<input type="text" class="blank-input" data-answer="절반" data-id="6" style="width:60px" placeholder=""> 정도가 살고, 그 밖에 부산·대구 같은 대도시에 밀집해 있다. 반면 태백산맥과 소백산맥 일대의 ⑦<input type="text" class="blank-input" data-answer="산간" data-id="7" style="width:60px" placeholder=""> 지역과 농어촌 지역은 인구가 감소하거나 정체되어 희박하다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-2_density.jpg" alt="우리나라의 인구 밀도 지도, 2000년. 1㎢에 사는 사람 수를 색으로 나타냈다. 진한 밤색일수록 빽빽하다." loading="lazy"><figcaption>우리나라의 인구 밀도 지도, 2000년. 1㎢에 사는 사람 수를 색으로 나타냈다. 진한 밤색일수록 빽빽하다.</figcaption></figure>
-<blockquote>📷 우리나라의 인구 밀도, 2000년 (CIESIN 컬럼비아대학교 · SEDACMaps · CC BY 2.0 · Wikimedia Commons) — 범례 'Persons per km²'는 '1㎢당 사람 수'다.</blockquote>
+<figure class="ws-fig"><img src="images/7-2_density.jpg" alt="우리나라 인구 밀도(2000년) — 진할수록 빽빽하다 · Persons per km² = 1㎢당 사람 수" loading="lazy"><figcaption>우리나라 인구 밀도(2000년) — 진할수록 빽빽하다 · Persons per km² = 1㎢당 사람 수</figcaption></figure>
 </div><div class="c2-b">
-<figure class="ws-fig"><img src="images/7-2_mountain_ranges.png" alt="태백산맥과 소백산맥 지도. 태백산맥은 동해안을 따라 설악산에서 태백산을 지나 남쪽으로, 소백산맥은 태백산에서 갈라져 소백산·속리산을 지나 지리산까지 남서쪽으로 뻗는다. 일대의 시·군으로 정선·태백·단양·영주·문경·무주·남원을 표시했다." loading="lazy"><figcaption>태백산맥과 소백산맥 지도. 태백산맥은 동해안을 따라 설악산에서 태백산을 지나 남쪽으로, 소백산맥은 태백산에서 갈라져 소백산·속리산을 지나 지리산까지 남서쪽으로 뻗는다. 일대의 시·군으로 정선·태백·단양·영주·문경·무주·남원을 표시했다.</figcaption></figure>
-<blockquote>🗺 자체 제작 · 지형 음영 Natural Earth · 산맥 선은 주요 산을 이은 개념도</blockquote>
+<figure class="ws-fig"><img src="images/7-2_mountain_ranges.png" alt="태백산맥과 소백산맥 — 대표 산과 일대의 시·군" loading="lazy"><figcaption>태백산맥과 소백산맥 — 대표 산과 일대의 시·군</figcaption></figure>
 </div></div>
 <br>
 <p>빈칸을 채웠으면 지도로 확인하자. 왼쪽 지도에서 <strong>가장 진한 덩어리 셋</strong>을 찾아 어느 지역인지 말해 보자. 그다음 오른쪽 산맥 지도와 견주어 보자 — 왼쪽 지도에서 옅은 띠가 어디를 따라 이어지는가?</p>
 <br>
-<blockquote>🎙️ 태백산맥 쪽에는 정선·태백, 소백산맥 쪽에는 단양·영주·문경·무주·남원 같은 시·군이 있어. 정선군은 1㎢에 30명이 안 되고, 단양군은 40명이 안 돼. 서울은 같은 넓이에 1만 5천 명 넘게 살아.</blockquote>
+<blockquote>🎙️ 표지 사진에서 하얗게 빛나던 덩어리가 수도권, 그 사이 깜깜한 산줄기가 오른쪽 지도의 산맥이야. 태백산맥 쪽에는 정선·태백, 소백산맥 쪽에는 단양·영주·문경·무주·남원 같은 시·군이 있어. 정선군은 1㎢에 30명이 안 되고, 단양군은 40명이 안 돼. 서울은 같은 넓이에 1만 5천 명 넘게 살아.</blockquote>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.2fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-2_coastal_industry.png" alt="영일만의 포항에서 울산·부산·창원·거제를 지나 여수·광양까지 남동쪽 바닷가를 따라 공업 도시가 띠처럼 이어진 지도. 도시마다 제철·자동차·조선·석유 화학·기계 같은 대표 산업을 적었다." loading="lazy"><figcaption>영일만의 포항에서 울산·부산·창원·거제를 지나 여수·광양까지 남동쪽 바닷가를 따라 공업 도시가 띠처럼 이어진 지도. 도시마다 제철·자동차·조선·석유 화학·기계 같은 대표 산업을 적었다.</figcaption></figure>
-<blockquote>🗺 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) · 시도 경계 geoBoundaries(CC BY 3.0) · 띠는 개념도</blockquote>
+<figure class="ws-fig"><img src="images/7-2_coastal_industry.png" alt="남동쪽 바닷가의 공업 도시 — 빨간 글자는 대표 산업" loading="lazy"><figcaption>남동쪽 바닷가의 공업 도시 — 빨간 글자는 대표 산업</figcaption></figure>
 </div><div class="c2-b">
 <p>지도의 붉은 띠가 빈칸 ⑤에 들어갈 공업 지역이다. 영일만의 포항에서 울산·부산을 거쳐 광양만까지 남동쪽 바닷가를 따라 이어진다.</p>
 <br>
@@ -1148,44 +1148,33 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>🔍 지도에서 빨간 글자를 보자. 쇠를 만들고(제철), 배를 짓고(조선), 기름에서 원료를 뽑는(석유 화학) <strong>무거운 공업</strong>이 많다.</p>
 </div></div>
 <br>
-<details class="ws-fold ws-fold-더보기"><summary>다 채운 뒤에 — 이름의 뜻</summary><div class="ws-fold-body">
-<p>⑤의 '임해'(臨海)는 '바다에 닿아 있다'는 뜻이다. 남동쪽 바닷가에 닿아 있는 공업 지역이라는 이름이다.</p>
-</div></details>
-<br>
-<blockquote>🎙️ 표지 사진의 그 하얀 덩어리가 바로 수도권이야. 오른쪽 아래 끝에서 빛나는 곳이 부산이고, 그 사이 산줄기는 깜깜하지.</blockquote>
-<br>
-<details class="ws-fold ws-fold-더보기"><summary>다 채운 뒤에 — 밀집한 대도시 부산의 반전</summary><div class="ws-fold-body">
-<p>🎙️ 그런데 반전이 있어. 교과서는 부산을 '사람이 밀집한 대도시'로 들었지? 사람이 많이 사는 곳이라고 사람이 계속 들어오는 건 아니야. 2025년에 부산은 들어온 사람보다 떠난 사람이 1만 2천 명 많았고, 그 가운데 20대가 4천 5백 명으로 나이대 중에서 가장 많았어. 떠난 까닭으로 가장 많이 꼽은 건 <strong>일자리</strong>였고, 부산을 떠나 수도권으로 간 사람이 다른 어느 시·도보다 많았어. 1960년대 시골 청년이 일자리를 찾아 부산에 왔듯, 지금은 부산 청년이 일자리를 찾아 수도권으로 가는 거야.</p>
-</div></details>
-<br>
-<details class="ws-fold ws-fold-더보기"><summary>다 채운 뒤에 — 지금 값과 다른 나라</summary><div class="ws-fold-body">
-<p>지금 값 — 교과서는 '절반 정도'라고 썼다. 2026년 9월 주민등록 인구로 수도권은 <strong>51.1%</strong>다. 2019년에 처음 절반을 넘었다.</p>
-<p>수도권 사람은 늘었는데 의원 수는 왜 그대로일까? 교사용 교과서 자료 해설은 '수도권 인구 약 2,527만 명(2015년), 전체의 49.5%, 지역구 의원 122명'이다. 2025년에는 2,638만 명(50.9%)으로 늘었는데 수도권 지역구는 여전히 122명이다(서울이 1명 줄고 인천이 1명 늘었다). 선거구는 사람 수에 맞춰 나누지만 선거구마다 사람 수가 조금씩 다를 수 있게 범위를 두고 전체 의석수도 거의 그대로라, 사람 수가 조금 바뀐다고 의원 수가 곧바로 따라 바뀌지는 않는다.</p>
-<p>아이슬란드는 국민의 약 3분의 2(64%)가 수도 레이캬비크와 그 둘레에 산다(아이슬란드 통계청, 2024).</p>
-<p>인도네시아는 국토의 7%도 안 되는 자와섬에 국민의 56%가 산다(인도네시아 통계청 인구 총조사, 2020).</p>
-<p>🎙️ 한곳에 몰리는 건 우리만의 일은 아니야. 그런데 왜 몰렸는지는 나라마다 달라. 아이슬란드는 땅 대부분이 얼음과 화산이라서, 자와섬은 땅이 기름져서야. 우리나라는 무엇 때문이었지?</p>
+<details class="ws-fold ws-fold-더보기"><summary>다 채운 뒤에 — 빈칸 너머 이야기</summary><div class="ws-fold-body">
+<p><strong>⑤ 이름의 뜻</strong> — '임해'(臨海)는 '바다에 닿아 있다'는 뜻이다.</p>
+<p><strong>⑥ 지금은</strong> — 수도권에 사는 사람은 51.1%(2026년 9월)다. 2019년에 처음 절반을 넘었다.</p>
+<p><strong>부산의 반전</strong> — 2025년 부산은 들어온 사람보다 떠난 사람이 1만 2천 명 많았고, 떠난 사람은 20대가 가장 많았다. 1960년대엔 부산으로 오던 청년이 지금은 일자리를 찾아 수도권으로 간다.</p>
+<p><strong>다른 나라도 몰려 산다</strong> — 아이슬란드 사람 64%는 수도 둘레에(땅 대부분이 얼음과 화산), 인도네시아 사람 56%는 국토의 7%도 안 되는 자와섬에(화산재 땅이 기름져서) 산다.</p>
+<p>🎙️ 몰리는 까닭은 나라마다 달라. 우리나라는 무엇 때문이었지?</p>
 </div></details>
 <br>
 <h2>📖 4단계: 우리 동네는 어떨까 — 광주와 곡성</h2>
 <blockquote>📕 <strong>교과서 131쪽 펴고 · 배정 시간 8분</strong></blockquote>
 <br>
-<p>교과서 131쪽 지도는 2015년이다. 같은 자료(인구주택총조사)와 같은 색 구간으로 2015년과 2025년을 다시 그려 나란히 놓았다.</p>
 <br>
+<div class="ws-tb ws-tb-2c"><div class="ws-tb-tag">📕 교과서 131쪽 지도는 2015년 — 10년 뒤 2025년은? 오른쪽 동그라미가 바뀐 곳</div>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-2_density_2015.png" alt="2015년 시군구 인구 밀도 지도. 교과서 131쪽과 같은 여섯 구간으로 칠했다." loading="lazy"><figcaption>2015년 시군구 인구 밀도 지도. 교과서 131쪽과 같은 여섯 구간으로 칠했다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2_density_2015.png" alt="2015년 — 교과서 131쪽과 같은 자료·같은 색 구간으로 다시 그림" loading="lazy"><figcaption>2015년 — 교과서 131쪽과 같은 자료·같은 색 구간으로 다시 그림</figcaption></figure>
 </div><div class="c2-b">
-<figure class="ws-fig"><img src="images/7-2_density_2025.png" alt="2025년 시군구 인구 밀도 지도. 2015년 지도와 같은 여섯 구간으로 칠했다." loading="lazy"><figcaption>2025년 시군구 인구 밀도 지도. 2015년 지도와 같은 여섯 구간으로 칠했다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2_density_2025.png" alt="2025년 — 동그라미가 바뀐 곳" loading="lazy"><figcaption>2025년 — 동그라미가 바뀐 곳</figcaption></figure>
 </div></div>
-<blockquote>🗺 자체 제작 · 통계청·국가데이터처 인구주택총조사(2015·2025년 11월 1일) · 경계 geoBoundaries(CC BY 3.0) — 넓이는 경계 자료로 잰 값이라 실제와 조금 다를 수 있다</blockquote>
+<div class="ws-tb-join"><div class="ws-tb-tag ws-tb-tag2">🔍 10년 동안 무엇이 달라졌을까?</div>
+<table>
+<tr><td>그대로인 것</td><td>🔴 진해진 곳</td><td>🔵 옅어진 곳</td></tr>
+<tr><td>수도권·대도시는 진하고, 강원·경북 북부와 소백산맥을 따라 옅다</td><td><strong>화성</strong> 61만 → 103만 명 · <strong>세종</strong> 20만 → 39만 명 · 인천 <strong>송도·청라</strong> — 새 아파트 단지·공장·정부 청사</td><td><strong>부여·남원·경남 고성</strong> — 1㎢에 100명 아래로 · <strong>곡성</strong>도 50명 아래로</td></tr>
+</table>
 <br>
-<p>🔍 <strong>10년 동안 무엇이 달라졌을까?</strong></p>
-<p><strong>그대로인 것</strong> — 큰 모양이다. 수도권과 대도시는 진하고, 강원·경북 북부와 소백산맥을 따라 옅다.</p>
-<br>
-<p><strong>진해진 곳</strong> — 경기 <strong>화성시</strong>는 61만 명에서 103만 명으로 늘어 한 단계 진해졌다. <strong>세종시</strong>(20만 → 39만 명)와 인천 <strong>송도·청라</strong>가 있는 연수구·서구도 진해졌다. 새 아파트 단지와 공장, 정부 청사가 들어선 곳이다.</p>
-<br>
-<p><strong>옅어진 곳</strong> — 충남 부여군, 전북 남원시, 경남 고성군은 1㎢에 100명이 넘다가 100명 아래로 내려갔다. 곡성군도 1㎢에 50명 남짓이던 것이 50명 아래로 줄었다.</p>
-<br>
-<blockquote>🎙️ 2015년과 2025년 지도를 처음 보면 '똑같은데?' 싶을 거야. 바로 그게 첫째 답이야 — 사람이 모이는 큰 틀은 10년 만에 잘 바뀌지 않아. 바뀐 건 새 도시가 생긴 몇 곳과, 조금씩 비어 가는 시골이야.</blockquote>
+<p>🎙️ 처음 보면 '똑같은데?' 싶지? 그게 첫째 답이야 — 사람이 모이는 큰 틀은 10년 만에 잘 안 바뀌어. 바뀐 건 새 도시가 생긴 몇 곳과, 조금씩 비어 가는 시골이야.</p>
+</div>
+<!--tb-end--></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 131쪽 · 스스로 탐구 「우리나라의 인구 분포」</div><div class="ws-tb-see">2번 표에서 요인 넷(지형·산업·교통·생활 편의 시설)을 '인구 분포 특징'과 연결해 보자.</div><div class="ws-tb-ask">넷 가운데 <strong>산지가 많은 강원도</strong>의 인구가 적은 까닭이 되는 요인 두 개를 골라, 왜 그 요인인지 한 줄씩 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 131쪽에서 찾기 — 넷 가운데 산지가 많은 강원도의 인구가 적은 까닭이 되는 요인 두 개" style="width:360px" placeholder=""></div></div>
 <br>
@@ -1194,12 +1183,13 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>🎙️ 놀러 오는 사람이 아무리 많아도 인구 지도는 <strong>그곳에 사는 사람</strong>을 세. '인구가 희박한 도'라는 말 안에도 사람이 모인 도시와 빈 산골이 같이 있는 거야.</p>
 </div></details>
 <br>
-<blockquote>🎙️ 광주 바로 옆에 곡성군이 있어. 광주는 1㎢에 1,000명이 넘게 살고, 곡성군은 100명이 안 돼. 2026년 7월부터 둘은 같은 '전남광주통합특별시'가 됐지만, 이름이 하나가 됐다고 사는 모습까지 같아지지는 않아. 이웃한 두 곳이 왜 이렇게 다를까?</blockquote>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.1fr)"><div class="c2-a">
+<figure class="ws-fig"><img src="images/7-2_gokseong.jpg" alt="곡성읍 — 작은 읍내 뒤로 논과 산줄기" loading="lazy"><figcaption>곡성읍 — 작은 읍내 뒤로 논과 산줄기</figcaption></figure>
+</div><div class="c2-b">
+<p>🎙️ 광주 바로 옆에 곡성군이 있어. 광주는 1㎢에 1,000명이 넘게 살고, 곡성군은 100명이 안 돼. 2026년 7월부터 둘은 같은 '전남광주통합특별시'가 됐지만, 이름이 하나가 됐다고 사는 모습까지 같아지지는 않아. 이웃한 두 곳이 왜 이렇게 다를까?</p>
+</div></div>
 <br>
-<figure class="ws-fig"><img src="images/7-2_gokseong.jpg" alt="전라남도 곡성군 곡성읍을 높은 곳에서 내려다본 모습. 낮은 건물과 학교 운동장이 모인 작은 읍내 뒤로 논이 펼쳐지고, 그 너머를 산줄기가 둘러싸고 있다." loading="lazy"><figcaption>전라남도 곡성군 곡성읍을 높은 곳에서 내려다본 모습. 낮은 건물과 학교 운동장이 모인 작은 읍내 뒤로 논이 펼쳐지고, 그 너머를 산줄기가 둘러싸고 있다.</figcaption></figure>
-<blockquote>📷 곡성읍 전경 (한국학중앙연구원 · 공공누리 제1유형 · Wikimedia Commons) — 촬영 연도 미상</blockquote>
-<br>
-<div class="ws-pick" id="pk140"><div class="pk-head"><span>사람을 부르는 조건 여섯 가지다. 사람이 만든 것인지 아닌지로 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="자연적 요인"><div class="pk-name">온화한 기후</div><div class="pk-sit">벼농사에 알맞게 따뜻하다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연적 요인">자연적 요인</button><button type="button" class="pk-b" data-v="인문·사회적 요인">인문·사회적 요인</button></div><div class="pk-why" hidden>날씨는 사람이 만들지 않았다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="자연적 요인"><div class="pk-name">넓은 평야</div><div class="pk-sit">논을 넓게 만들 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연적 요인">자연적 요인</button><button type="button" class="pk-b" data-v="인문·사회적 요인">인문·사회적 요인</button></div><div class="pk-why" hidden>땅의 생김새는 자연이 만든 조건이다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="자연적 요인"><div class="pk-name">산이 많은 땅</div><div class="pk-sit">길을 내고 집을 짓기 어렵다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연적 요인">자연적 요인</button><button type="button" class="pk-b" data-v="인문·사회적 요인">인문·사회적 요인</button></div><div class="pk-why" hidden>지형은 자연이 만든 조건이다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="인문·사회적 요인"><div class="pk-name">공장과 회사</div><div class="pk-sit">일자리가 많다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연적 요인">자연적 요인</button><button type="button" class="pk-b" data-v="인문·사회적 요인">인문·사회적 요인</button></div><div class="pk-why" hidden>사람이 세운 산업이다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="인문·사회적 요인"><div class="pk-name">고속 도로와 철도</div><div class="pk-sit">오가기 편하다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연적 요인">자연적 요인</button><button type="button" class="pk-b" data-v="인문·사회적 요인">인문·사회적 요인</button></div><div class="pk-why" hidden>사람이 만든 교통이다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="인문·사회적 요인"><div class="pk-name">대학 병원과 백화점</div><div class="pk-sit">생활이 편리하다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연적 요인">자연적 요인</button><button type="button" class="pk-b" data-v="인문·사회적 요인">인문·사회적 요인</button></div><div class="pk-why" hidden>사람이 만든 생활 편의 시설이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk140");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["자연적 요인", "인문·사회적 요인"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk121"><div class="pk-head"><span>사람을 부르는 조건 여섯 가지다. 자연이 준 조건(자연적 요인)인지, 사람이 만든 조건(인문·사회적 요인)인지 골라 보자. 다 고르면 정답이 나오고, 틀린 카드는 까닭이 먼저 펼쳐진다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="자연"><div class="pk-name">온화한 기후</div><div class="pk-sit">벼농사에 알맞게 따뜻하다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연">자연</button><button type="button" class="pk-b" data-v="인문·사회">인문·사회</button></div><div class="pk-why" hidden>날씨는 사람이 만들지 않았다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="자연"><div class="pk-name">넓은 평야</div><div class="pk-sit">논을 넓게 만들 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연">자연</button><button type="button" class="pk-b" data-v="인문·사회">인문·사회</button></div><div class="pk-why" hidden>땅의 생김새는 자연이 만든 조건이다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="자연"><div class="pk-name">산이 많은 땅</div><div class="pk-sit">길을 내고 집을 짓기 어렵다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연">자연</button><button type="button" class="pk-b" data-v="인문·사회">인문·사회</button></div><div class="pk-why" hidden>지형은 자연이 만든 조건이다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="인문·사회"><div class="pk-name">공장과 회사</div><div class="pk-sit">일자리가 많다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연">자연</button><button type="button" class="pk-b" data-v="인문·사회">인문·사회</button></div><div class="pk-why" hidden>사람이 세운 산업이다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="인문·사회"><div class="pk-name">고속 도로와 철도</div><div class="pk-sit">오가기 편하다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연">자연</button><button type="button" class="pk-b" data-v="인문·사회">인문·사회</button></div><div class="pk-why" hidden>사람이 만든 교통이다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="인문·사회"><div class="pk-name">대학 병원과 백화점</div><div class="pk-sit">생활이 편리하다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="자연">자연</button><button type="button" class="pk-b" data-v="인문·사회">인문·사회</button></div><div class="pk-why" hidden>사람이 만든 생활 편의 시설이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk121");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["자연", "인문·사회"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1 — 광주와 곡성, 무엇이 다를까?</h2>
 <br>
@@ -1247,17 +1237,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <p>우리나라 사람의 절반이 수도권에 산다. 이렇게 한곳에 몰리면 <strong>수도권</strong>과 <strong>곡성 같은 지역</strong>에 각각 어떤 일이 생길까? 하나씩 들어 두세 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
-<br>
-</section><h2>📎 각주</h2>
-<p>- 교과서: 천재교육 사회②(구정화) 130~131쪽</p>
-<p>- 지역구 의석: 「공직선거법」 [별표 1] 국회의원지역선거구구역표(2026. 4. 22. 개정) 지역구 254, 수도권 122(서울 48·경기 60·인천 14) · 2016년 값은 교과서 130쪽 지도</p>
-<p>- 전남광주통합특별시: 「전남광주통합특별시 설치를 위한 특별법」 제7조 · 2026년 7월 1일 출범</p>
-<p>- 수도권 인구: 국가데이터처 2025년 인구주택총조사(2,638만 명·50.9%) · 행정안전부 주민등록 인구통계 2026년 9월(51.1%)</p>
-<p>- 부산 인구 이동: 국가데이터처 2025년 국내인구이동통계(2026년 1월 발표)</p>
-<p>- 강원 시군 인구: 행정안전부 주민등록 인구통계(2026년 8~9월)</p>
-<p>- 시군구 인구 밀도(2015·2025): 통계청·국가데이터처 인구주택총조사 시군구별 총인구 · 경계 geoBoundaries KOR ADM2(CC BY 3.0) · 자체 제작</p>
-<p>- 고급 단어 사진: 울산 현대자동차 조립 라인(CC BY 2.5) · 울산 현대중공업 조선소(Wvdp · CC0) — Wikimedia Commons</p>
-<p>- 표지: 국제 우주 정거장에서 본 한반도의 밤, 2024년 1월 24일 (NASA · 퍼블릭 도메인 · Wikimedia Commons)</p>
+<br></section>
 </div>
 <script>
 const TB=7, TOX=5, GT=12;
