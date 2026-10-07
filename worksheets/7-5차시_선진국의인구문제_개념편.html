@@ -205,10 +205,11 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
-.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { align-items: flex-end; }
+/* 2026-10-07 격자로 — 한 버튼만 두 줄로 꺾여도(폰 «인문·사회») 두 버튼 높이·폭이 같게. 줄은 아래에 붙인다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-content: end; }
 /* 2026-10-07 — 위 «flex: 0 0 auto»는 버튼 높이를 묶으려던 것인데 버튼 줄이 가로라 폭이 글자 크기로 묶였다
    (사회 7-4 «양» 17px · «비율» 28px). 폭은 똑같이 나누고(1 1 0) 높이는 아래 정렬로 고정한다. */
-.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b { flex: 1 1 0; }
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b { flex: none; }
 .pk-gold .pk-card.pk-noimg .pk-btns-col .pk-b { flex: 0 0 auto; }   /* 세로(선택지 셋 이상)는 높이 고정 그대로 */
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
@@ -787,6 +788,14 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
 }
 .ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+/* 2026-10-07 :::2단 … 교과서 — 교과서 상자 바로 아래에 붙여 «생각 열기의 뒷이야기»로 읽히게(위 상자와 간격 줄임) */
+.ws-tb + .ws-tb-2c { margin-top: -6px; }
+.ws-tb-join { border-top: 1px dashed #d9c48f; margin-top: 12px; padding-top: 12px; }
+.ws-tb-join .ws-2c { margin: 4px 0 0; } .ws-tb-join table { background: #fff; } .ws-tb-join .c2-b { font-size: 0.95em; color: #3d3116; }
+.ws-tb-tag2 { background: #7a6742; }
+.ws-tb-2c .ws-2c { margin: 4px 0 0; }
+.ws-tb-2c table { background: #fff; }
+.ws-tb-2c .c2-b { font-size: 0.95em; color: #3d3116; }
 .ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
 .ws-tb-ask strong { color: #8a5f12; }
 .ws-tb input.activity-input {
@@ -1040,7 +1049,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 인구 변화와 인구 문제 7-5차시 — 가게가 트럭을 타고 찾아오는 마을 (선진국의 인구 문제와 대책은?)</h1><p class="hero-subtitle">가게가 트럭을 타고 찾아오는 마을</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">일본 산골에는 왜 가게가 트럭을 타고 찾아갈까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">아이는 적게 태어나고 노인은 늘어나면 무엇이 문제일까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">선진국은 이 문제에 어떻게 대응하고 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">노인이 노인을 돕는 집은 어떻게 생겼을까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>일본은 걷거나 운전하기 어려운 <strong>노인</strong>이 많아, 가게가 트럭을 타고 마을을 찾아간다. 일본의 65세 이상 인구는 2026년 <strong>29.6%</strong>로, 열 명 가운데 셋 가까이다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>저출산</strong>은 여성의 사회 참여와 결혼·출산에 대한 생각의 변화로, <strong>고령화</strong>는 <strong>평균 수명</strong>이 늘어나서 생긴다. 두 현상이 이어지면 젊은 <strong>노동력</strong>이 줄고 노인 <strong>부양 비용</strong>이 늘어난다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>선진국은 출산 <strong>장려</strong> 정책과 노인 <strong>복지</strong> 정책을 펴고, 외국인 근로자를 받기도 한다. 그러나 정책을 편 프랑스·스웨덴의 출산율도 다시 내려갔다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>핀란드의 <strong>로푸키리</strong>('마지막 질주')는 노인들이 스스로 조합을 만들어 세운 공동 주택이다. 노인들이 서로 돕고 의지하며 산다.</p></div></div><img class="hero-image" src="images/7-5_hero_mobile_shop.jpg" alt=""><div class="hero-hook">눈 덮인 일본 니가타현의 산골 마을. 작은 트럭 한 대가 멈추자 짐칸이 열리고 과일과 반찬이 진열된다. 이 트럭은 평일마다 마을 열아홉 곳을 돈다. 가게가 왜 사람을 찾아가야 할까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 인구 변화와 인구 문제 7-5차시 — 가게가 트럭을 타고 찾아오는 마을 (선진국의 인구 문제와 대책은?)</h1><p class="hero-subtitle">가게가 트럭을 타고 찾아오는 마을</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">일본 산골에는 왜 가게가 트럭을 타고 찾아갈까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">아이는 적게 태어나고 노인은 늘어나면 무엇이 문제일까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">선진국은 이 문제에 어떻게 대응하고 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">노인이 노인을 돕는 집은 어떻게 생겼을까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>일본은 걷거나 운전하기 어려운 <strong>노인</strong>이 많아, 가게가 트럭을 타고 마을을 찾아간다. 일본의 65세 이상 인구는 2026년 <strong>29.6%</strong>로, 열 명 가운데 셋 가까이다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>저출산</strong>은 여성의 사회 참여와 결혼·출산에 대한 생각의 변화로, <strong>고령화</strong>는 <strong>평균 수명</strong>이 늘어나서 생긴다. 두 현상이 이어지면 젊은 <strong>노동력</strong>이 줄고 노인 <strong>부양 비용</strong>이 늘어난다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>선진국은 출산 <strong>장려</strong> 정책과 노인 <strong>복지</strong> 정책을 펴고, 외국인 근로자를 받기도 한다. 그러나 정책을 편 프랑스·스웨덴의 출산율도 다시 내려갔다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>핀란드의 <strong>로푸키리</strong>('마지막 질주')는 노인들이 스스로 조합을 만들어 세운 공동 주택이다. 노인들이 서로 돕고 의지하며 산다.</p><div class="card-quote">그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</div></div></div><img class="hero-image" src="images/7-5_hero_mobile_shop.jpg" alt=""><div class="hero-hook">눈 덮인 일본 니가타현의 산골 마을. 작은 트럭 한 대가 멈추자 짐칸이 열리고 과일과 반찬이 진열된다. 이 트럭은 평일마다 마을 열아홉 곳을 돈다. 가게가 왜 사람을 찾아가야 할까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/5 · OX: <span id="ox-score">0</span>/5
@@ -1163,13 +1172,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>2. <strong>대책</strong> 하나를 들고, 왜 그 대책이 도움이 되는지 <strong>근거</strong>를 붙인다.</p>
 <p>3. 3단계 접기의 프랑스·스웨덴 <strong>지금 값</strong>을 보고, 그 대책만으로 충분한지 <strong>네 생각</strong>을 밝힌다.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
-<br>
-</section><h2>📎 각주</h2>
-<p>- 교과서: 천재교육 사회②(구정화) 136~137쪽</p>
-<p>- 일본 65세 이상 29.6%(2026-09-15 기준): 일본 총무성 통계국 「통계로 본 우리나라의 고령자」 통계 토픽스 No.149(2026-09-20)</p>
-<p>- 우리나라 65세 이상 20.00%(2024-12-23): 행정안전부 주민등록 인구 통계</p>
-<p>- 프랑스 합계 출산율 1.56명(2025): INSEE 「Bilan démographique 2025」 · 스웨덴 1.43명(2024): 스웨덴 통계청(SCB)</p>
-<p>- 표지: 니가타현 미나미우오누마시 편의점 이동 판매차, 2023년 (古峰 · CC BY-SA 4.0 · Wikimedia Commons)</p>
+<br></section>
 </div>
 <script>
 const TB=5, TOX=5, GT=10;

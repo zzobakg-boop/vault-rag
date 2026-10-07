@@ -1101,3 +1101,26 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 파일 | 원본 | 저작자 · 라이선스 |
 |---|---|---|
 | 5-3-5_혁명의시대지도.png | 자체 제작(map-render/hq · historical-basemaps world_1783 + Natural Earth 1:1천만) | aourednik historical-basemaps · GPL-3.0(개념도 정밀도) / Natural Earth · Public domain |
+
+## 사회② Ⅶ 인구 — 본문·표지 그림 (2026-10-07 학생용 출처 줄을 이 표로 옮김)
+| 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
+|---|---|---|
+| 7-1_hero_citylights.jpg | 밤의 지구 — 인공위성에서 본 세계의 불빛 | NASA · 퍼블릭 도메인 |
+| 7-1_cartogram.png | 세계 인구 왜상 지도, 2018년 인구 기준 | Max Roser · Our World in Data · CC BY 4.0 · Wikimedia Commons |
+| 7-1_density.jpg | 세계의 인구 밀도, 2020년 — 1㎢당 사람 수 | CIESIN 컬럼비아대학교 · SEDACMaps · CC BY 2.0 · Wikimedia Commons |
+| 7-1_anchorage.jpg | 알래스카 앵커리지 시내와 뒤쪽 산맥 | Quintin Soloviev · CC BY 4.0 · Wikimedia Commons |
+| 7-1_act_bangladesh.jpg | 방글라데시 쿨나의 논 | Masum Ibn Musa · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-1_act_sahara.jpg | 알제리 사하라 사막 | Fiontain · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-1_act_canada.jpg | 캐나다 누나부트 팡니르퉁 근처 툰드라 | Lindsay Nicole Terry · CC BY 2.0 · Wikimedia Commons |
+| 7-1_act_westeurope.jpg | 영국 런던 도심 | Lewis Clarke · CC BY-SA 2.0 · Wikimedia Commons |
+| 7-1_act_amazon.jpg | 브라질 아마존 열대 우림 | lubasi · CC BY-SA 2.0 · Wikimedia Commons |
+| 7-3_hero_ansan_market.jpg | 안산시 시장, 2014년 | Piotrus · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_wongok_signs.jpg | 안산시 원곡동 거리의 여러 나라 간판, 2010년 | 대한민국 정부 Korea.net · CC BY-SA 2.0 · Wikimedia Commons |
+| 7-3_jajangmyeon.jpg | 짜장면 | 최광모 · CC0 · Wikimedia Commons |
+| 7-3_ny_pizza.jpg | 뉴욕식 피자 | Wikiuser100 · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_tacos_al_pastor.jpg | 타코스 알 파스토르 | Li.Cheu · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-4_hero_hamtramck.jpg · 7-4_hamtramck_polish_shop.jpg | 미국 미시간주 햄트램크 조지프 캠퍼 거리, 2012년 | Andrew Jameson · CC BY-SA 3.0 · Wikimedia Commons |
+| 7-4_manila_airport.jpg | 마닐라 니노이 아키노 국제공항 출국 심사대, 2023년 | 마닐라 국제공항공사 · 퍼블릭 도메인 · Wikimedia Commons |
+| 7-5_hero_mobile_shop.jpg | 니가타현 미나미우오누마시 편의점 이동 판매차, 2023년 | 古峰 · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-6_hero_lagos.jpg | 라고스 오주엘레그바의 출근길, 2019년 | Baragew · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-6_makoko_aerial.jpg | 하늘에서 본 라고스 마코코 지역, 2019년 | Kateregga1 · CC BY-SA 4.0 · Wikimedia Commons |
