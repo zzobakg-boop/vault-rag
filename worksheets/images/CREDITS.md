@@ -1095,6 +1095,8 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-1_loc_alaska_globe.png | 알래스카 위치 지도(지구본, 정사 투영) — 알래스카 붉게·땅 회색·경위선 20°, 글자 없음 | 자체 제작 · Natural Earth(퍼블릭 도메인) |
 | 7-1_voc_왜상.jpg | 휘어진 거울에 비친 건물 — 기둥과 붉은 벽이 활처럼 휘어 보인다(사람 없음) (Funhouse Mirror in the City - panoramio.jpg) | agracier · CC BY-SA 3.0 |
 | 7-1_입담_자연과일자리.png | 입담 삽화 — 알래스카 석유 일꾼 · 나일강 가 농부(가상 인물, 손글씨 대사 PIL) | AI 생성(Grok Aurora 배경 — Google 이미지 API 월 상한 429로 대체) + 자체 합성 |
+| 7-2_입담_부산의반전.png | 입담 삽화 — 1970년대 부산에 온 언니(여공) · 2025년 부산을 떠나는 20대(가상 인물, 손글씨 대사 PIL) | AI 생성(Grok Aurora 배경 — Google 이미지 API 429로 대체) + 자체 합성 |
+| 7-2_입담_놀러온사람사는사람.png | 입담 삽화 — 주말 관광객 · 정선에 사는 할머니(가상 인물, 실재 장소 배경 없음, 손글씨 대사 PIL) | AI 생성(Grok Aurora 배경 — Google 이미지 API 429로 대체) + 자체 합성 |
 
 ## 5-3-5 단원 정리 지도 (2026-10-06)
 
