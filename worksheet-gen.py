@@ -3131,7 +3131,7 @@ document.addEventListener('click', function(e){{
   if (window.HERO_LOCK) {{
     var n = document.getElementById('hero-lock-note');
     if (!n) {{ n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }}
     n.hidden = false; return;
   }}
