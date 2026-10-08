@@ -734,8 +734,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         if in_vcd:
             if stripped == ':::':
                 cid = f'vd{len(html_parts)}'
-                cards = []
-                for name, extra in vcd_rows:
+                cards = []; subs_html = []
+                def _vcard(name, extra, cls='ws-vcard', tag=''):
                     cells = [x.strip() for x in name.strip('|').split('|')]
                     while len(cells) < 4: cells.append('')
                     raw = cells[0].replace('**', '').strip()
@@ -758,16 +758,32 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         back += f'<span class="vcd-sent">{inline(cells[2])}</span>'
                     if len(extra) > 1:
                         back += f'<span class="vcd-fam">{inline(extra[1])}</span>'
-                    cards.append(
-                        f'<button type="button" class="ws-vcard" aria-label="{ko} 카드 뒤집기" '
+                    return (
+                        f'<button type="button" class="{cls}" aria-label="{ko} 카드 뒤집기" '
                         'onclick="this.classList.toggle(\'on\')">'
                         '<span class="vcd-in">'
                         '<span class="vcd-f">'
                         + (f'<img src="images/{img}" alt="">' if img else
                            '<span class="vcd-noimg">🀄</span>')
-                        + face + '<span class="vcd-turn">눌러서 뒤집기</span></span>'
+                        + tag + face + '<span class="vcd-turn">눌러서 뒤집기</span></span>'
                         f'<span class="vcd-b"><span class="vcd-bko">{ko}</span>{back}</span>'
-                        '</span></button>')
+                        '</span></button>'), ko
+                # 2026-10-08 천대현 «산업화 메인 카드에 하위 카드(1·2·3차 산업)» — `↳ [머리말]`·`↳ | 낱말 | … ` 줄이
+                #   바로 위 메인 카드의 하위 카드가 된다(+ 줄은 바로 위 카드에 붙는다). 하위 카드는 캐러셀 밖,
+                #   덱 아래 접힘(<details>) 안에 한 줄로 펼친다 — 셋을 나란히 놓고 «무엇으로 가르나»를 견주게.
+                #   클래스가 «ws-vcard ws-vsubcard»라 캐러셀 넘기기·lesson_verify 카드 수(class="ws-vcard" 정확 일치)에 안 섞인다.
+                for row in vcd_rows:
+                    name, extra = row[0], row[1]; subs = row[2] if len(row) > 2 else []
+                    tag = (f'<span class="vcd-subtag">＋ 하위 카드 {len(subs)}장 · 아래</span>' if subs else '')
+                    html_c, ko_main = _vcard(name, extra, tag=tag)
+                    cards.append(html_c)
+                    if subs:
+                        sh = row[3] if len(row) > 3 else ''
+                        sc = ''.join(_vcard(n2, e2, cls='ws-vcard ws-vsubcard')[0] for n2, e2 in subs)
+                        subs_html.append(
+                            f'<details class="ws-vsub"><summary>🗂 <b>{ko_main}</b> 더 파고들기 — 하위 카드 {len(subs)}장</summary>'
+                            + (f'<div class="ws-vsub-head">{inline(sh)}</div>' if sh else '')
+                            + f'<div class="ws-vsub-grid">{sc}</div></details>')
                 html_parts.append(
                     f'<div class="ws-vcd" id="{cid}">'
                     + (f'<div class="ws-vcd-head">{inline(vcd_head)}</div>' if vcd_head else '')
@@ -776,7 +792,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     f'<button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button>'
                     f'<span class="vcd-count"><b>1</b> / {len(cards)}</span>'
                     f'<button type="button" class="vcd-next" aria-label="다음 낱말">▶</button>'
-                    '</div></div>'
+                    '</div>' + ''.join(subs_html) + '</div>'
                     f'<script>(function(){{var r=document.getElementById("{cid}");'
                     'var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");'
                     'var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));'
@@ -803,12 +819,22 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     '})();</script>')
                 in_vcd = False; vcd_rows = []
                 continue
+            if stripped.startswith('↳'):
+                _r = stripped[1:].strip()
+                if vcd_rows:
+                    _m = vcd_rows[-1]
+                    while len(_m) < 4: _m.append([] if len(_m) == 2 else '')
+                    if _r.startswith('[') and _r.endswith(']'):
+                        _m[3] = _r[1:-1].strip()
+                    elif _r.startswith('|'):
+                        _m[2].append([_r, []]); vcd_last = _m[2][-1]
+                continue
             if stripped.startswith('+'):
-                if vcd_rows: vcd_rows[-1][1].extend(
-                    [x.strip() for x in stripped[1:].split('|') if x.strip()])
+                if vcd_rows:   # + 줄은 바로 위 카드(메인이든 하위든)에 붙는다
+                    vcd_last[1].extend([x.strip() for x in stripped[1:].split('|') if x.strip()])
                 continue
             if stripped.startswith('|') and not set(stripped.replace('|','').replace(' ','')) <= set('-:'):
-                vcd_rows.append([stripped, []])
+                vcd_rows.append([stripped, []]); vcd_last = vcd_rows[-1]
             continue
 
         if stripped.startswith(':::낱말'):
@@ -2868,6 +2894,23 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }}
 .ws-vcd-nav button:disabled {{ opacity: .32; cursor: default; }}
 .vcd-count {{ font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }}
+/* 2026-10-08 하위 카드 — 메인 낱말카드 아래 접힘 안에 나란히(캐러셀 밖) */
+.vcd-subtag {{ position: absolute; top: 8px; right: 8px; font-size: .68em; font-weight: 700; color: #fff;
+  background: #7a6742; border-radius: 10px; padding: 2px 8px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }}
+.ws-vsub {{ margin: 12px 0 0; border: 1px solid #d9c48f; border-radius: 10px; background: #fffaf0; }}
+.ws-vsub > summary {{ cursor: pointer; padding: 10px 14px; font-size: .9em; color: #6b4f14; list-style: none; }}
+.ws-vsub > summary::-webkit-details-marker {{ display: none; }}
+.ws-vsub > summary::after {{ content: " ▾"; color: #a08a5c; }}
+.ws-vsub[open] > summary::after {{ content: " ▴"; }}
+.ws-vsub > summary:focus-visible {{ outline: 3px solid #8a5f12; outline-offset: 2px; border-radius: 10px; }}
+.ws-vsub-head {{ font-size: .86em; color: #5a4a2a; margin: 0 14px 10px; line-height: 1.55; }}
+.ws-vsub-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 10px; padding: 0 12px 14px; max-width: 640px; }}
+.ws-vsubcard {{ flex: none; width: auto; }}
+.ws-vsubcard .vcd-f {{ background: #fbf7ec; border-color: #d9c48f; }}
+.ws-vsubcard .vcd-b > * {{ order: 2; }}
+.ws-vsubcard .vcd-b > .vcd-bko {{ order: 0; }}
+.ws-vsubcard .vcd-b > .vcd-fam {{ order: 1; margin: 2px 0 4px; padding: 6px 8px; border: 0; border-radius: 6px;
+  background: #fff1cc; color: #5a3f0c; font-weight: 700; font-size: .78em; line-height: 1.45; }}
 @media (prefers-reduced-motion: reduce) {{
   .vcd-in {{ transition: none; }}
   .ws-vcd-track {{ scroll-behavior: auto; }}

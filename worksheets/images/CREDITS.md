@@ -519,6 +519,9 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-2_hero_peninsula_night.jpg | 국제 우주 정거장에서 본 한반도의 밤, 2024-01-24 (ISS070-E-80670) | NASA · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-2_voc_산업화.jpg | 울산 현대자동차 공장의 조립 라인 — 차체가 라인을 따라 움직인다 (Hyundai car assembly line.jpg, 900×608로 축소) | Anonyme · CC BY 2.5 |
 | 7-2_voc_중화학공업.jpg | 울산 현대중공업 조선소의 골리앗 크레인, 주전 봉수대에서 본 모습, 2023 (Hyundai Heavy Industries Ulsan Shipyard from Jujeon Beacon Mound - 2023-07-24.jpg, 잘라 냄) | Wvdp · CC0 |
+| 7-2_voc_1차산업.jpg | 일본 지바현 가토리시 논의 벼 수확 콤바인 — 하위 카드 1차 산업 (Rice-combine-harvester, Katori-city, Japan.jpg) | katorisi · CC BY 3.0 |
+| 7-2_voc_2차산업.jpg | 중국 광둥성 허위안시 식품 공장의 생산 라인, 2026 (…BaiJiaXian Food production line April 2026 N13P 07.jpg, 아래 촬영 표기 잘라 냄) — 하위 카드 2차 산업 | LANENWM Meso Amermbalin · CC0 |
+| 7-2_voc_3차산업.jpg | 이발소에서 빗과 가위로 머리를 자르는 이발사, 뒷모습 — 하위 카드 3차 산업 (Barber cutting hair with comb. Back view of man in barber shop.jpg) | Nenad Stojkovic · CC BY 2.0 |
 | 7-2_seats_2026.png | 자체 제작 — 시도별 지역구 국회 의원 수(공직선거법 별표 1, 2026. 4. 22.) | 경계 geoBoundaries KOR ADM2 2020(CC BY 3.0)·Natural Earth(퍼블릭 도메인) |
 | 7-2_coastal_industry.png | 자체 제작 — 영일만~광양만 남동쪽 바닷가 공업 도시(개념도) | Natural Earth(퍼블릭 도메인)·geoBoundaries(CC BY 3.0) |
 | 7-2_mountain_ranges.png | 자체 제작 — 태백산맥·소백산맥과 일대 시·군(산맥 선은 개념도) | Natural Earth 지형 음영(퍼블릭 도메인)·geoBoundaries(CC BY 3.0) |
