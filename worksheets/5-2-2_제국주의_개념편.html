@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -320,7 +320,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -343,7 +343,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -378,15 +378,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -659,9 +659,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -804,9 +804,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -815,7 +815,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -893,7 +893,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -988,7 +988,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -1016,14 +1016,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-2-2 — 공장이 배고프면 군함이 떠났다 (제국주의)</h1><p class="hero-subtitle">공장이 배고프면 군함이 떠났다</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">공장은 왜 바다 건너 땅이 필요했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">남의 땅을 빼앗으면서 무엇이라고 변명했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">아프리카의 경계선은 누가 그었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">아시아와 태평양은 누구의 차지가 되었을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>제국주의</strong> — 19세기 후반 열강이 원료 공급지·상품 시장·자본 투자처를 얻으려고 군사력으로 약소국을 식민지로 삼은 팽창 정책.</p><div class="card-quote">💡 정당화의 논리: 사회 진화론(약한 나라는 지배받는 게 당연) + 인종주의(백인이 우월) → «문명화의 의무»(백인의 짐).</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>아프리카 분할</strong></p><table><thead><tr><th></th><th>방향</th><th>이은 곳</th></tr></thead><tbody><tr><td>영국 — 종단 정책</td><td>남북</td><td>카이로 ↔ 케이프타운</td></tr><tr><td>프랑스 — 횡단 정책</td><td>동서</td><td>서아프리카 ↔ 동쪽 해안</td></tr></tbody></table><div class="card-quote">💡 두 나라가 맞부딪친 곳 = 파쇼다(1898). 독립을 지킨 나라 = 라이베리아·에티오피아.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>아시아와 태평양</strong> — 영국(인도·오스트레일리아·뉴질랜드), 프랑스(인도차이나반도), 네덜란드(인도네시아), 미국(필리핀·괌·하와이), 독일(마셜·캐롤라인 제도). 중국은 여러 열강이 이권을 빼앗음.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>백인의 짐</strong> — 영국 작가 키플링의 시(1899). 식민지 지배를 «문명을 가르치는 백인의 고생스러운 의무»로 꾸몄다.</p></div></div><img class="hero-image" src="images/5-2-2_제국주의_표지.png" alt=""><div class="hero-hook">1884년 겨울, 유럽의 한 도시 회의장에 유럽 여러 나라의 대표들이 모였어. 탁자 위에는 커다란 아프리카 지도가 펼쳐져 있었지. 그런데 그 방에 아프리카 사람은 한 명도 없었어. 그날부터 30년 뒤, 아프리카에서 스스로 나라를 지킨 곳은 두 나라뿐이었어. 지난 시간에 본 공장들은 왜 바다 건너 남의 땅이 필요했을까? 그리고 그 땅을 빼앗으면서 무엇이라고 변명했을까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-2-2 — 공장이 배고프면 군함이 떠났다 (제국주의)</h1><p class="hero-subtitle">공장이 배고프면 군함이 떠났다</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">공장은 왜 바다 건너 땅이 필요했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">남의 땅을 빼앗으면서 무엇이라고 변명했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">아프리카의 경계선은 누가 그었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">아시아와 태평양은 누구의 차지가 되었을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>제국주의</strong> — 19세기 후반 열강이 원료 공급지·상품 시장·자본 투자처를 얻으려고 군사력으로 약소국을 식민지로 삼은 팽창 정책.</p><div class="card-quote">💡 정당화의 논리: 사회 진화론(약한 나라는 지배받는 게 당연) + 인종주의(백인이 우월) → '문명화의 의무'(백인의 짐).</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>아프리카 분할</strong></p><table><thead><tr><th></th><th>방향</th><th>이은 곳</th></tr></thead><tbody><tr><td>영국 — 종단 정책</td><td>남북</td><td>카이로 ↔ 케이프타운</td></tr><tr><td>프랑스 — 횡단 정책</td><td>동서</td><td>서아프리카 ↔ 동쪽 해안</td></tr></tbody></table><div class="card-quote">💡 두 나라가 맞부딪친 곳 = 파쇼다(1898). 독립을 지킨 나라 = 라이베리아·에티오피아.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>아시아와 태평양</strong> — 영국(인도·오스트레일리아·뉴질랜드), 프랑스(인도차이나반도), 네덜란드(인도네시아), 미국(필리핀·괌·하와이), 독일(마셜·캐롤라인 제도). 중국은 여러 열강이 이권을 빼앗음.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>백인의 짐</strong> — 영국 작가 키플링의 시(1899). 식민지 지배를 '문명을 가르치는 백인의 고생스러운 의무'로 꾸몄다.</p></div></div><img class="hero-image" src="images/5-2-2_제국주의_표지.png" alt=""><div class="hero-hook">1884년 겨울, 유럽의 한 도시 회의장에 유럽 여러 나라의 대표들이 모였어. 탁자 위에는 커다란 아프리카 지도가 펼쳐져 있었지. 그런데 그 방에 아프리카 사람은 한 명도 없었어. 그날부터 30년 뒤, 아프리카에서 스스로 나라를 지킨 곳은 두 나라뿐이었어. 지난 시간에 본 공장들은 왜 바다 건너 남의 땅이 필요했을까? 그리고 그 땅을 빼앗으면서 무엇이라고 변명했을까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/8 · OX: <span id="ox-score">0</span>/4
@@ -1045,7 +1045,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   </div>
   <br>
 <br>
-<blockquote>📌 <strong>오늘은 두 시간짜리야.</strong> 1교시는 «왜, 그리고 무슨 변명으로»(열강이 바다 밖으로 나간 까닭과 그 핑계), 2교시는 «어디를, 어떻게»(아프리카·아시아·태평양).</blockquote>
+<blockquote>📌 <strong>오늘은 두 시간짜리야.</strong> 1교시는 '왜, 그리고 무슨 변명으로'(열강이 바다 밖으로 나간 까닭과 그 핑계), 2교시는 '어디를, 어떻게'(아프리카·아시아·태평양).</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 산업 혁명 이후 국민 국가가 <strong>열강</strong>으로 커지며 바깥으로 팽창하는 과정을 이해할 수 있다.</p>
@@ -1054,7 +1054,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>✨ 오늘의 고급 단어</h2>
 <div class="ws-vcd" id="vd10"><div class="ws-vcd-head">그림을 보고 무슨 말일지 짐작해 본 뒤, 카드를 눌러 뒤집어 확인하자. ▶로 넘긴다.</div><div class="ws-vcd-track"><button type="button" class="ws-vcard" aria-label="열강 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-2_voc_열강.jpg" alt=""><span class="vcd-hanja">列強</span><span class="vcd-ko">열강</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">열강</span><span class="vcd-split">열(列, 벌일) + 강(強, 강할)</span><span class="vcd-mean">여러 강한 나라</span><span class="vcd-sent">"19세기 말 <strong>열강</strong>은 앞다투어 식민지를 넓혔다."</span><span class="vcd-fam"><strong>列 = 줄지어 늘어선다</strong> → 행렬 · 나열 · 진열 / 強 → 강국 · 강력</span></span></span></button><button type="button" class="ws-vcard" aria-label="약소국 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-2_voc_약소국.jpg" alt=""><span class="vcd-hanja">弱小國</span><span class="vcd-ko">약소국</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">약소국</span><span class="vcd-split">약(弱, 약할) + 소(小, 작을) + 국(國, 나라)</span><span class="vcd-mean">힘이 약하고 작은 나라</span><span class="vcd-sent">"<strong>약소국</strong>은 강대국의 간섭을 받기 쉬웠다."</span><span class="vcd-fam">弱 → 약점 · 약자 · 연약 / 小 → 소수 · 축소 · 최소</span></span></span></button><button type="button" class="ws-vcard" aria-label="미개 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-2_voc_미개.jpg" alt=""><span class="vcd-hanja">未開</span><span class="vcd-ko">미개</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">미개</span><span class="vcd-split">미(未, 아닐) + 개(開, 열)</span><span class="vcd-mean">사회가 덜 발전했다고 낮잡아 보는 말</span><span class="vcd-sent">"열강은 아프리카를 <strong>미개</strong>하다고 깎아내렸다."</span><span class="vcd-fam"><strong>未 = 아직 아니다</strong> → 미래 · 미완성 · 미성년 / <strong>開 = 연다</strong> → 개방 · 개학</span></span></span></button><button type="button" class="ws-vcard" aria-label="분할 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-2_voc_분할.jpg" alt=""><span class="vcd-hanja">分割</span><span class="vcd-ko">분할</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">분할</span><span class="vcd-split">분(分, 나눌) + 할(割, 벨)</span><span class="vcd-mean">여럿으로 나누어 쪼갬</span><span class="vcd-sent">"열강은 지도 위에서 아프리카를 <strong>분할</strong>했다."</span><span class="vcd-fam"><strong>分 = 나눈다 · 割 = 칼로 벤다</strong> → 분배 · 분리 / 할인 · 할부</span></span></span></button></div><div class="ws-vcd-nav"><button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button><span class="vcd-count"><b>1</b> / 4</span><button type="button" class="vcd-next" aria-label="다음 낱말">▶</button></div></div><script>(function(){var r=document.getElementById("vd10");var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}function idx(){return Math.max(0,Math.min(cs.length-1,Math.round(t.scrollLeft/step())));}var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;c.textContent=e?cs.length:idx()+1;P.disabled=t.scrollLeft<=2;N.disabled=e;}function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}P.addEventListener("click",function(){go(-1);});N.addEventListener("click",function(){go(1);});t.addEventListener("scroll",function(){clearTimeout(t._z);t._z=setTimeout(sync,90);});function navfit(){var s=t.scrollWidth-t.clientWidth;r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}navfit();sync();addEventListener("resize",function(){navfit();sync();});})();</script>
 <br>
-<blockquote>💡 오늘 딱 하나만 잡자 — 공장이 커질수록 <strong>만들 재료와 팔 곳</strong>이 더 필요했고, 열강은 그것을 <strong>군대</strong>로 얻으면서 «<strong>문명을 베푼다</strong>»고 둘러댔다.</blockquote>
+<blockquote>💡 오늘 딱 하나만 잡자 — 공장이 커질수록 <strong>만들 재료와 팔 곳</strong>이 더 필요했고, 열강은 그것을 <strong>군대</strong>로 얻으면서 '<strong>문명을 베푼다</strong>'고 둘러댔다.</blockquote>
 <br>
 <h1>🕐 1교시 — 왜, 그리고 무슨 변명으로</h1>
 <br>
@@ -1068,21 +1068,21 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 163쪽 · 「우리 해 보자」 사진 ➊ 풍자화</div><div class="ws-tb-see">기계 둘레에 선 세 사람과 기계에 눌린 한 사람을 본다.</div><div class="ws-tb-ask">기계를 돌리는 사람과 책을 들고 있는 사람은 각각 <strong>누구</strong>라고 적혀 있나? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 163쪽에서 찾기 — 기계를 돌리는 사람과 책을 들고 있는 사람은 각각 누구라고 적혀 있나" style="width:300px" placeholder=""></div></div>
 <br>
 <br>
-<h2>📖 2단계: 빼앗으면서 «은혜»라고 불렀다</h2>
+<h2>📖 2단계: 빼앗으면서 '은혜'라고 불렀다</h2>
 <blockquote>📕 <strong>교과서 163쪽 첫 소제목 둘째 문단 + 「우리 해 보자」</strong> 펴고 채우기 · 배정 시간 <strong>12분</strong></blockquote>
 <br>
-<p>열강은 약소국이 강대국의 지배를 받는 것이 당연하다는 ②<input type="text" class="blank-input" data-answer="사회 진화론" data-id="2" style="width:116px" placeholder="">을 내세웠다. 나아가 백인종이 유색 인종보다 우월하다는 ③<input type="text" class="blank-input" data-answer="인종주의" data-id="3" style="width:84px" placeholder="">에 따라, «미개한» 아시아·아프리카 지역을 식민지로 삼아 <strong>문명화하는 것이 자신들의 의무</strong>이며 이는 식민지 사람들에게 베푸는 <strong>은혜</strong>라고 주장하였다. 열강은 이를 바탕으로 식민지 침략을 정당화하였다.</p>
+<p>열강은 약소국이 강대국의 지배를 받는 것이 당연하다는 ②<input type="text" class="blank-input" data-answer="사회 진화론" data-id="2" style="width:116px" placeholder="">을 내세웠다. 나아가 백인종이 유색 인종보다 우월하다는 ③<input type="text" class="blank-input" data-answer="인종주의" data-id="3" style="width:84px" placeholder="">에 따라, '미개한' 아시아·아프리카 지역을 식민지로 삼아 <strong>문명화하는 것이 자신들의 의무</strong>이며 이는 식민지 사람들에게 베푸는 <strong>은혜</strong>라고 주장하였다. 열강은 이를 바탕으로 식민지 침략을 정당화하였다.</p>
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"우리 큰 산업에 무엇보다 모자라는 것은 판로(물건을 팔 곳)입니다. … 우월한 인종에게는 열등한 인종에 대한 권리가 있습니다. 그들에게 의무가 있기 때문입니다. 열등한 인종을 문명화할 의무 말입니다."</blockquote><figcaption class="sr-c">— 쥘 페리(프랑스 총리를 지낸 정치인)의 하원 연설, 1885</figcaption></figure>
 <br>
 <p>페리가 식민지를 가져야 한다며 든 까닭 두 가지를 각각 짧게 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="페리가 식민지를 가져야 한다며 든 까닭 두 가지를 각각 짧게 적자." style="width:420px" placeholder=""></p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 163쪽 · 「우리 해 보자」 키플링 「백인의 짐」</div><div class="ws-tb-ask">시는 식민지 사람들을 <strong>«절반은 무엇, 절반은 무엇»</strong> 같은 자들이라고 불렀나? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 163쪽에서 찾기 — 시는 식민지 사람들을 «절반은 무엇, 절반은 무엇» 같은 자들이라고" style="width:300px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 163쪽 · 「우리 해 보자」 키플링 「백인의 짐」</div><div class="ws-tb-ask">시는 식민지 사람들을 <strong>'절반은 무엇, 절반은 무엇'</strong> 같은 자들이라고 불렀나? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 163쪽에서 찾기 — 시는 식민지 사람들을 «절반은 무엇, 절반은 무엇» 같은 자들이라고" style="width:300px" placeholder=""></div></div>
 <br>
 <div class="ws-2c c2-mid c2-card" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.6fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/5-2-2_스펜서.jpg" alt="허버트 스펜서(1889) — 영국의 사회학자. «적자생존»이라는 말을 처음 만들었다. 자연에서 강한 것이 살아남듯 사회에서도 강한 쪽이 이기는 것이 자연스럽다고 보았다. (웰컴 컬렉션 · CC BY 4.0)" loading="lazy"><figcaption>허버트 스펜서(1889) — 영국의 사회학자. «적자생존»이라는 말을 처음 만들었다. 자연에서 강한 것이 살아남듯 사회에서도 강한 쪽이 이기는 것이 자연스럽다고 보았다. (웰컴 컬렉션 · CC BY 4.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-2-2_스펜서.jpg" alt="허버트 스펜서(1889) — 영국의 사회학자. '적자생존'이라는 말을 처음 만들었다. 자연에서 강한 것이 살아남듯 사회에서도 강한 쪽이 이기는 것이 자연스럽다고 보았다. (웰컴 컬렉션)" loading="lazy"><figcaption>허버트 스펜서(1889) — 영국의 사회학자. '적자생존'이라는 말을 처음 만들었다. 자연에서 강한 것이 살아남듯 사회에서도 강한 쪽이 이기는 것이 자연스럽다고 보았다. (웰컴 컬렉션)</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ «적자생존»이라는 말, 다윈이 만든 줄 아는 사람이 많은데 사실은 스펜서가 먼저 썼어. 다윈은 생물이 어떻게 변해 왔는지를 설명했을 뿐인데, 사람들은 그걸 <strong>사람 사이, 나라 사이</strong>로 끌고 왔지. «강한 나라가 약한 나라를 먹는 건 자연의 법칙»이라고. 생물학에서 빌린 말이 침략의 핑계가 된 거야.</blockquote>
+<blockquote>🎙️ '적자생존'이라는 말, 다윈이 만든 줄 아는 사람이 많은데 사실은 스펜서가 먼저 썼어. 다윈은 생물이 어떻게 변해 왔는지를 설명했을 뿐인데, 사람들은 그걸 <strong>사람 사이, 나라 사이</strong>로 끌고 왔지. '강한 나라가 약한 나라를 먹는 건 자연의 법칙'이라고. 생물학에서 빌린 말이 침략의 핑계가 된 거야.</blockquote>
 </div></div>
 <br>
 <h1>🕑 2교시 — 어디를, 어떻게</h1>
@@ -1096,7 +1096,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 164쪽 · 지도 「열강의 아프리카와 아시아 침략」</div><div class="ws-tb-ask">지도에서 열강의 식민지가 되지 않고 <strong>독립을 지킨 아프리카 나라 두 곳</strong>을 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 164쪽에서 찾기 — 지도에서 열강의 식민지가 되지 않고 독립을 지킨 아프리카 나라 두 곳" style="width:300px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/5-2-2_아프리카분할.png" alt="1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있어, 영국의 꿈은 끝내 이어지지 못했다. (지도는 학습지에서 그림 · 경계는 개념도 정밀도)" loading="lazy"><figcaption>1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있어, 영국의 꿈은 끝내 이어지지 못했다. (지도는 학습지에서 그림 · 경계는 개념도 정밀도)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-2-2_아프리카분할.png" alt="1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있어, 영국의 꿈은 끝내 이어지지 못했다. (경계는 개념도 정밀도)" loading="lazy"><figcaption>1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있어, 영국의 꿈은 끝내 이어지지 못했다. (경계는 개념도 정밀도)</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 164쪽 · 사진 「벨기에의 콩고 침략 풍자화」</div><div class="ws-tb-ask">풍자화에서 벨기에의 왕은 <strong>어떤 동물</strong>로 그려졌고, 무엇을 하고 있나? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 164쪽에서 찾기 — 풍자화에서 벨기에의 왕은 어떤 동물로 그려졌고, 무엇을 하고 있나?" style="width:340px" placeholder=""></div></div>
 <br>
@@ -1111,10 +1111,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>열강은 <strong>태평양</strong>에도 손을 뻗었다. 영국은 오스트레일리아와 뉴질랜드를, 독일은 마셜 제도와 캐롤라인 제도 등을 차지하였다. <strong>미국</strong>은 하와이를 병합하고 필리핀과 괌을 차지하였다. 그 결과 20세기 초에는 아시아와 태평양의 대부분이 열강의 지배를 받게 되었다.</p>
 <br>
 <div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/5-2-2_하와이.jpg" alt="1898년 8월 12일 하와이 호놀룰루의 이올라니 궁전 — 하와이 왕국의 깃발이 내려가고 있다. 이 날 하와이는 미국에 병합되었다. 5년 전 미국인 사업가들이 군대를 끌어들여 하와이 여왕을 끌어내린 뒤의 일이다. (하와이 주립 문서 보관소 · 퍼블릭 도메인)" loading="lazy"><figcaption>1898년 8월 12일 하와이 호놀룰루의 이올라니 궁전 — 하와이 왕국의 깃발이 내려가고 있다. 이 날 하와이는 미국에 병합되었다. 5년 전 미국인 사업가들이 군대를 끌어들여 하와이 여왕을 끌어내린 뒤의 일이다. (하와이 주립 문서 보관소 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-2-2_하와이.jpg" alt="1898년 8월 12일 하와이 호놀룰루의 이올라니 궁전 — 하와이 왕국의 깃발이 내려가고 있다. 이 날 하와이는 미국에 병합되었다. 5년 전 미국인 사업가들이 군대를 끌어들여 하와이 여왕을 끌어내린 뒤의 일이다. (하와이 주립 문서 보관소)" loading="lazy"><figcaption>1898년 8월 12일 하와이 호놀룰루의 이올라니 궁전 — 하와이 왕국의 깃발이 내려가고 있다. 이 날 하와이는 미국에 병합되었다. 5년 전 미국인 사업가들이 군대를 끌어들여 하와이 여왕을 끌어내린 뒤의 일이다. (하와이 주립 문서 보관소)</figcaption></figure>
 </div><div class="c2-b">
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 165쪽 · 「한국사 나란히 보기」</div><div class="ws-tb-ask">1866년과 1871년에 통상을 요구하며 조선을 침략한 나라는 <strong>각각</strong> 어디인가? <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 165쪽에서 찾기 — 1866년과 1871년에 통상을 요구하며 조선을 침략한 나라는 각각" style="width:260px" placeholder=""></div></div>
-<blockquote>🎙️ 같은 무렵 조선 바닷가에도 서양 군함이 나타났어. 하와이 깃발이 내려가던 그 시절, 조선은 이 물결을 어떻게 맞았을까? 그 이야기는 «역사②»에서 이어져.</blockquote>
+<blockquote>🎙️ 같은 무렵 조선 바닷가에도 서양 군함이 나타났어. 하와이 깃발이 내려가던 그 시절, 조선은 이 물결을 어떻게 맞았을까? 그 이야기는 '역사②'에서 이어져.</blockquote>
 </div></div>
 <br>
 <h2>✏️ 활동 1 — 누가 어디를 차지했나</h2>
@@ -1145,14 +1145,15 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </table>
 <br>
 <h2>💭 더 생각해 보기</h2>
-<p>열강은 «약한 나라는 강한 나라의 지배를 받는 것이 자연스럽다», «피부색에 따라 사람의 우열이 있다»는 생각으로 침략을 꾸몄어. 이런 생각이 <strong>오늘날에도 남아 있는 모습</strong> 하나를 들고, 그 생각이 <strong>왜 틀렸는지</strong> 두세 문장으로 써 보자.</p>
+<p>열강은 '약한 나라는 강한 나라의 지배를 받는 것이 자연스럽다', '피부색에 따라 사람의 우열이 있다'는 생각으로 침략을 꾸몄어. 이런 생각이 <strong>오늘날에도 남아 있는 모습</strong> 하나를 들고, 그 생각이 <strong>왜 틀렸는지</strong> 두세 문장으로 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <h2>🔗 다른 과목에서 본 같은 장면</h2>
-<figure class="ws-fig"><img src="images/5-2-2_곧은국경.png" alt="오늘의 북아프리카 — 이집트와 리비아, 이집트와 수단 사이 국경이 경도·위도 선을 그대로 따라간다. (Natural Earth 자료로 자체 제작 · 퍼블릭 도메인)" loading="lazy"><figcaption>오늘의 북아프리카 — 이집트와 리비아, 이집트와 수단 사이 국경이 경도·위도 선을 그대로 따라간다. (Natural Earth 자료로 자체 제작 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-2-2_곧은국경.png" alt="오늘의 북아프리카 — 이집트와 리비아, 이집트와 수단 사이 국경이 경도·위도 선을 그대로 따라간다." loading="lazy"><figcaption>오늘의 북아프리카 — 이집트와 리비아, 이집트와 수단 사이 국경이 경도·위도 선을 그대로 따라간다.</figcaption></figure>
 <br>
-<p>오늘 아프리카 지도에는 자로 그은 듯한 국경이 많다. 사막 한가운데라 강이나 산 같은 경계가 없는 곳에 유럽 나라들이 위도·경도를 따라 선을 그었기 때문이다. 이집트와 수단 사이 북위 22도선 근처의 비르 타윌은 두 나라 모두 «우리 땅이 아니다»라고 하는 땅이다. 사회 과목에서도 국경을 두고 다투는 곳들을 이어서 다룬다.</p>
+<p>오늘 아프리카 지도에는 자로 그은 듯한 국경이 많다. 사막 한가운데라 강이나 산 같은 경계가 없는 곳에 유럽 나라들이 위도·경도를 따라 선을 그었기 때문이다. 이집트와 수단 사이 북위 22도선 근처의 비르 타윌은 두 나라 모두 '우리 땅이 아니다'라고 하는 땅이다. 사회 과목에서도 국경을 두고 다투는 곳들을 이어서 다룬다.</p>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=8, TOX=4, GT=12;
@@ -1177,7 +1178,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

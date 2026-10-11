@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,14 +981,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅶ단원 7-2-3 — 새소리가 사라진 봄 (환경 운동이 일어나다)</h1><p class="hero-subtitle">새소리가 사라진 봄</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">새가 노래하지 않는 봄은 왜 찾아왔을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">호수였던 곳에 왜 배가 모래 위에 서 있을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">여러 나라는 무엇을 함께 약속했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">전 세계가 같은 날 함께 한 일은 무엇일까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>환경 문제의 원인</strong> — 산업화·과학 기술 발달 → 무분별한 개발(삼림 파괴·사막화) · 화석 연료 사용 → 온실가스 증가 → 지구 온난화 가속.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>환경 문제의 영향</strong> — 빙하가 녹고 해수면 상승·침수 · 기상 이변 · 미세 먼지·쓰레기 섬·아랄해 → 인류의 생존 위협.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>국제 사회의 노력</strong> — 스톡홀름 회의(1972) → 리우 선언(1992, 지속가능한 발전) → 기후 변화 협약(1994) → 교토 의정서(1997, 선진국 감축 목표) → 파리 협정(2015, 개발 도상국도 동참) · 신재생 에너지.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>민간단체와 개인</strong> — 『침묵의 봄』(1962) · 비정부 기구(그린피스·세계 자연 기금) · 지구의 시간 운동 · 세계 시민으로서 관심과 실천.</p></div></div><img class="hero-image" src="images/7-2-3_환경운동_표지.png" alt=""><div class="hero-hook">1962년 미국에서 레이철 카슨이라는 생물학자가 책 한 권을 냈어. 첫 장에는 이상한 마을이 나와. 봄이 왔는데 새소리가 하나도 들리지 않고, 사과꽃이 피었는데 그 사이를 날아다니는 벌이 없는 마을이야. 카슨은 벌레를 없애려고 마구 뿌린 약이 새와 물고기, 결국 사람까지 해칠 수 있다고 경고했지. 화학 회사들은 거세게 반발했지만 이 책은 수많은 사람을 움직였어. 오늘은 사람들이 «지구가 아프다»는 것을 깨닫고 함께 움직이기 시작한 이야기야.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅶ단원 7-2-3 — 새소리가 사라진 봄 (환경 운동이 일어나다)</h1><p class="hero-subtitle">새소리가 사라진 봄</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">새가 노래하지 않는 봄은 왜 찾아왔을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">호수였던 곳에 왜 배가 모래 위에 서 있을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">여러 나라는 무엇을 함께 약속했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">전 세계가 같은 날 함께 한 일은 무엇일까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>환경 문제의 원인</strong> — 산업화·과학 기술 발달 → 무분별한 개발(삼림 파괴·사막화) · 화석 연료 사용 → 온실가스 증가 → 지구 온난화 가속.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>환경 문제의 영향</strong> — 빙하가 녹고 해수면 상승·침수 · 기상 이변 · 미세 먼지·쓰레기 섬·아랄해 → 인류의 생존 위협.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>국제 사회의 노력</strong> — 스톡홀름 회의(1972) → 리우 선언(1992, 지속가능한 발전) → 기후 변화 협약(1994) → 교토 의정서(1997, 선진국 감축 목표) → 파리 협정(2015, 개발 도상국도 동참) · 신재생 에너지.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>민간단체와 개인</strong> — 『침묵의 봄』(1962) · 비정부 기구(그린피스·세계 자연 기금) · 지구의 시간 운동 · 세계 시민으로서 관심과 실천.</p></div></div><img class="hero-image" src="images/7-2-3_환경운동_표지.png" alt=""><div class="hero-hook">1962년 미국에서 레이철 카슨이라는 생물학자가 책 한 권을 냈어. 첫 장에는 이상한 마을이 나와. 봄이 왔는데 새소리가 하나도 들리지 않고, 사과꽃이 피었는데 그 사이를 날아다니는 벌이 없는 마을이야. 카슨은 벌레를 없애려고 마구 뿌린 약이 새와 물고기, 결국 사람까지 해칠 수 있다고 경고했지. 화학 회사들은 거세게 반발했지만 이 책은 수많은 사람을 움직였어. 오늘은 사람들이 '지구가 아프다'는 것을 깨닫고 함께 움직이기 시작한 이야기야.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/9 · OX: <span id="ox-score">0</span>/5
@@ -1029,9 +1029,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"그것은 소리 없는 봄이었다. … 들판과 숲과 늪 위에는 오직 침묵만이 깔려 있었다."</blockquote><figcaption class="sr-c">— 레이철 카슨, 『침묵의 봄』(1962) 1장 「내일을 위한 우화」</figcaption></figure>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.6fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-2-3_카슨.jpg" alt="레이철 카슨 — 미국 정부에서 물고기와 야생 동물을 연구한 생물학자다. 1944년 무렵 찍은 사진이다. (미국 어류 및 야생 동물국 · 퍼블릭 도메인)" loading="lazy"><figcaption>레이철 카슨 — 미국 정부에서 물고기와 야생 동물을 연구한 생물학자다. 1944년 무렵 찍은 사진이다. (미국 어류 및 야생 동물국 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-3_카슨.jpg" alt="레이철 카슨 — 미국 정부에서 물고기와 야생 동물을 연구한 생물학자다. 1944년 무렵 찍은 사진이다. (미국 어류 및 야생 동물국)" loading="lazy"><figcaption>레이철 카슨 — 미국 정부에서 물고기와 야생 동물을 연구한 생물학자다. 1944년 무렵 찍은 사진이다. (미국 어류 및 야생 동물국)</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ 위 사료는 『침묵의 봄』 첫 장이야. 그런데 이 마을은 실제로 있는 곳이 아니야. 카슨이 여러 곳에서 실제로 벌어진 일을 모아 한 마을로 그린 거지. 벌레를 죽이려고 뿌린 약이 먹이를 타고 새와 물고기에게, 결국 사람에게까지 간다는 경고였어. 책이 나오자 많은 사람이 이렇게 묻기 시작했어. «과학 기술이 주는 편리함에도 값이 있지 않을까?» 이 물음이 환경 운동의 출발점 가운데 하나야.</blockquote>
+<blockquote>🎙️ 위 사료는 『침묵의 봄』 첫 장이야. 그런데 이 마을은 실제로 있는 곳이 아니야. 카슨이 여러 곳에서 실제로 벌어진 일을 모아 한 마을로 그린 거지. 벌레를 죽이려고 뿌린 약이 먹이를 타고 새와 물고기에게, 결국 사람에게까지 간다는 경고였어. 책이 나오자 많은 사람이 이렇게 묻기 시작했어. '과학 기술이 주는 편리함에도 값이 있지 않을까?' 이 물음이 환경 운동의 출발점 가운데 하나야.</blockquote>
 </div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 232쪽 · 왼쪽 사진 「기후 시계」</div><div class="ws-tb-ask">이 시계는 지구 평균 기온이 <strong>언제</strong>보다 <strong>몇 °C</strong> 오르기까지 남은 시간을 보여 주나? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 232쪽에서 찾기 — 이 시계는 지구 평균 기온이 언제보다 몇 °C 오르기까지 남은 시간을" style="width:300px" placeholder=""></div></div>
@@ -1044,7 +1044,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
 <figure class="ws-fig"><img src="images/7-2-3_아랄해위성.jpg" alt="아랄해를 우주에서 본 모습 — 왼쪽은 1989년, 오른쪽은 2014년이다. 짙은 물빛이 25년 사이에 대부분 사라졌다. (미국 항공 우주국(NASA) 위성 사진을 나란히 놓은 것 · 퍼블릭 도메인)" loading="lazy"><figcaption>아랄해를 우주에서 본 모습 — 왼쪽은 1989년, 오른쪽은 2014년이다. 짙은 물빛이 25년 사이에 대부분 사라졌다. (미국 항공 우주국(NASA) 위성 사진을 나란히 놓은 것 · 퍼블릭 도메인)</figcaption></figure>
 </div><div class="c2-b">
-<figure class="ws-fig"><img src="images/7-2-3_아랄해배.jpg" alt="우즈베키스탄 무이나크 — 물이 빠진 모래 위에 고기잡이배가 녹슨 채 남아 있다. (Arian Zwegers 사진, 2008 · CC BY 2.0)" loading="lazy"><figcaption>우즈베키스탄 무이나크 — 물이 빠진 모래 위에 고기잡이배가 녹슨 채 남아 있다. (Arian Zwegers 사진, 2008 · CC BY 2.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-3_아랄해배.jpg" alt="우즈베키스탄 무이나크 — 물이 빠진 모래 위에 고기잡이배가 녹슨 채 남아 있다. (Arian Zwegers 사진, 2008)" loading="lazy"><figcaption>우즈베키스탄 무이나크 — 물이 빠진 모래 위에 고기잡이배가 녹슨 채 남아 있다. (Arian Zwegers 사진, 2008)</figcaption></figure>
 </div></div>
 <br>
 <blockquote>🎙️ 교과서 사진 3이 바로 이 호수야. 아랄해는 한때 세계에서 네 번째로 큰 호수였어. 그런데 1960년대 소련이 목화를 기르려고 호수로 흘러들던 두 강의 물길을 돌려 밭에 댔지. 물이 들어오지 않으니 호수는 점점 짜지고 줄어들었어. 위성 사진 두 장을 나란히 봐. 하룻밤에 일어난 일이 아니야. 해마다 조금씩, 수십 년에 걸쳐 일어난 일이야. 1단계 빈칸 ①이 실제로 일어난 곳이 어디인지 이제 알겠지?</blockquote>
@@ -1056,9 +1056,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"… 인간은 지금 세대와 앞으로 올 세대를 위하여 환경을 보호하고 개선할 엄숙한 책임을 진다."</blockquote><figcaption class="sr-c">— 「국제 연합 인간 환경 회의 선언」(스톡홀름, 1972) 원칙 1</figcaption></figure>
 <br>
-<p>환경 문제는 한 나라의 노력만으로는 해결하기 어렵기 때문에 전 세계가 함께 힘을 모아야 한다. 1992년 브라질 리우데자네이루에서 열린 국제 연합 환경 개발 회의에서는 ⑤<input type="text" class="blank-input" data-answer="지속가능한 발전" data-id="5" style="width:148px" placeholder="">을 실현하기 위한 협력 방안으로 «환경과 개발에 관한 리우 선언»이 채택되었다. 1997년 ⑥<input type="text" class="blank-input" data-answer="교토 의정서" data-id="6" style="width:116px" placeholder="">에서는 선진국이 온실가스를 얼마나 줄일지 목표치를 정하였고, 2015년 ⑦<input type="text" class="blank-input" data-answer="파리 협정" data-id="7" style="width:100px" placeholder="">에서는 개발 도상국도 온실가스 감축에 함께하기로 하였다. 또 세계 여러 나라는 화석 연료를 대신할 신재생 에너지를 개발하는 등 노력을 이어 가고 있다.</p>
+<p>환경 문제는 한 나라의 노력만으로는 해결하기 어렵기 때문에 전 세계가 함께 힘을 모아야 한다. 1992년 브라질 리우데자네이루에서 열린 국제 연합 환경 개발 회의에서는 ⑤<input type="text" class="blank-input" data-answer="지속가능한 발전" data-id="5" style="width:148px" placeholder="">을 실현하기 위한 협력 방안으로 '환경과 개발에 관한 리우 선언'이 채택되었다. 1997년 ⑥<input type="text" class="blank-input" data-answer="교토 의정서" data-id="6" style="width:116px" placeholder="">에서는 선진국이 온실가스를 얼마나 줄일지 목표치를 정하였고, 2015년 ⑦<input type="text" class="blank-input" data-answer="파리 협정" data-id="7" style="width:100px" placeholder="">에서는 개발 도상국도 온실가스 감축에 함께하기로 하였다. 또 세계 여러 나라는 화석 연료를 대신할 신재생 에너지를 개발하는 등 노력을 이어 가고 있다.</p>
 <br>
-<figure class="ws-fig"><img src="images/7-2-3_스톡홀름.jpg" alt="1972년 6월 스웨덴 스톡홀름 — 국제 연합 인간 환경 회의에 모인 사람들이 자전거를 타고 거리를 달리고 있다. (Pressens Bild 사진 · 퍼블릭 도메인)" loading="lazy"><figcaption>1972년 6월 스웨덴 스톡홀름 — 국제 연합 인간 환경 회의에 모인 사람들이 자전거를 타고 거리를 달리고 있다. (Pressens Bild 사진 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-3_스톡홀름.jpg" alt="1972년 6월 스웨덴 스톡홀름 — 국제 연합 인간 환경 회의에 모인 사람들이 자전거를 타고 거리를 달리고 있다." loading="lazy"><figcaption>1972년 6월 스웨덴 스톡홀름 — 국제 연합 인간 환경 회의에 모인 사람들이 자전거를 타고 거리를 달리고 있다.</figcaption></figure>
 <br>
 <blockquote>🎙️ 환경 문제를 두고 세계 여러 나라가 처음 크게 모인 곳은 1972년 스웨덴이었어. 위 사료가 그때 나온 선언이야. 회의가 끝난 뒤 국제 연합 안에 환경 문제를 맡는 기구도 생겼지. 그 뒤 1992년, 1997년, 2015년… 약속이 한 번에 끝나지 않고 하나씩 쌓였어. 빈칸 ⑥과 ⑦을 나란히 놓고 봐. 온실가스를 줄이기로 한 나라의 범위가 어떻게 달라졌지?</blockquote>
 <br>
@@ -1069,7 +1069,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>나라들뿐 아니라 민간단체의 환경 운동도 활발하였다. 그린피스와 세계 자연 기금(WWF) 같은 ⑧<input type="text" class="blank-input" data-answer="비정부 기구" data-id="8" style="width:116px" placeholder="">는 환경 문제를 해결하려고 운동을 벌이고, 생태계를 보전하기 위한 연구도 활발히 하고 있다. 환경 문제는 우리 삶과 깊이 이어져 있다. 따라서 국제 사회나 단체뿐 아니라 개인도 ⑨<input type="text" class="blank-input" data-answer="세계 시민" data-id="9" style="width:100px" placeholder="">으로서 환경 문제에 관심을 가지고, 이를 해결하려고 노력해야 한다.</p>
 <br>
-<figure class="ws-fig"><img src="images/7-2-3_레인보워리어.jpg" alt="그린피스의 배 «레인보 워리어 3호» — 배 옆면에 단체 이름이 적혀 있다. 이 단체가 바다에서 활동할 때 쓰는 배다. (2011년 사진 · CC BY-SA 3.0)" loading="lazy"><figcaption>그린피스의 배 «레인보 워리어 3호» — 배 옆면에 단체 이름이 적혀 있다. 이 단체가 바다에서 활동할 때 쓰는 배다. (2011년 사진 · CC BY-SA 3.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-3_레인보워리어.jpg" alt="그린피스의 배 '레인보 워리어 3호' — 배 옆면에 단체 이름이 적혀 있다. 이 단체가 바다에서 활동할 때 쓰는 배다." loading="lazy"><figcaption>그린피스의 배 '레인보 워리어 3호' — 배 옆면에 단체 이름이 적혀 있다. 이 단체가 바다에서 활동할 때 쓰는 배다.</figcaption></figure>
 <br>
 <blockquote>🎙️ 그린피스는 1971년, 핵 실험을 막겠다며 낡은 배 한 척을 타고 바다로 나간 사람들에게서 시작했어. 나라도 군대도 아닌 보통 사람들이었지. 교과서 233쪽 아래 사진 두 장을 봐. 위쪽은 그린피스가 연 시위이고, 아래쪽은 또 다른 단체가 해마다 여는 행사야. 그 행사는 너도 오늘 밤 집에서 따라 할 수 있어. 무엇을 하는지는 칸에서 직접 찾아봐.</blockquote>
 <br>
@@ -1100,10 +1100,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </table>
 <br>
 <h2>💭 더 생각해 보기</h2>
-<p>교과서는 «환경 문제는 한 국가의 노력으로만 해결하기 어렵다»고 했다.</p>
+<p>교과서는 '환경 문제는 한 국가의 노력으로만 해결하기 어렵다'고 했다.</p>
 <p>오늘 본 장면 가운데 하나(아랄해, 쓰레기 섬, 미세 먼지, 눈이 녹은 스키장)를 골라, 그 문제를 <strong>한 나라의 힘만으로는</strong> 풀기 어려운 까닭을 두세 문장으로 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=9, TOX=5, GT=14;
@@ -1128,7 +1129,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

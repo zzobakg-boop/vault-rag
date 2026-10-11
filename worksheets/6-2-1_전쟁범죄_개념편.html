@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,14 +981,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅵ단원 6-2-1 — 잊지 않으려고 남긴 기록 (두 차례 세계 대전 중의 전쟁 범죄)</h1><p class="hero-subtitle">잊지 않으려고 남긴 기록</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">군인보다 민간인이 더 많이 죽은 나라가 있었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">차별은 어떤 계단을 밟아 내려갔을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">왜 그 낱말에는 작은따옴표를 붙일까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">살아남은 사람들은 왜 기록을 남겼을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>민간인의 희생</strong> — 폭격기·전차·대량 살상 무기 → 도시 폭격, 미국의 원자 폭탄 투하. 많은 나라에서 민간인 희생이 군인보다 컸다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>인권 침해</strong> — 식민지 주민 강제 동원(전쟁터·군수 공장), 독일 수용소와 일본 731 부대의 생체 실험.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>대량 학살</strong> — 난징 대학살(1937, 일본군) · 홀로코스트(나치스, 유대인 약 600만 명). 홀로코스트는 차별법 → 격리 → 수용소 → 학살의 단계를 밟았다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>일본군 '위안부'</strong> — 일본군이 점령지 여성을 끌고 가 강요한 성 노예 생활. 작은따옴표 = «그렇게 불렸을 뿐», 일본군 = 범죄의 주체. 1991년 김학순의 첫 공개 증언 → 지금도 해결되지 않았다.</p></div></div><img class="hero-image" src="images/6-2-1_전쟁범죄_표지.png" alt=""><div class="hero-hook">1942년 열세 살 생일에 빨간 체크무늬 일기장을 선물받은 소녀가 있었어. 한 달 뒤 소녀의 가족은 네덜란드 암스테르담의 한 건물 뒤쪽 숨은 방으로 들어갔고, 2년 넘게 밖에 나가지 못했어. 유대인이라는 까닭 하나로. 1944년 여름 은신처가 발각됐고, 소녀는 이듬해 수용소에서 숨졌어. 가족 가운데 아버지 한 사람만 살아 돌아와 딸의 일기를 책으로 냈지. 소녀의 이름은 안네 프랑크야. 오늘은 이렇게 «남긴 기록»으로 전쟁을 다시 읽어 보자.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅵ단원 6-2-1 — 잊지 않으려고 남긴 기록 (두 차례 세계 대전 중의 전쟁 범죄)</h1><p class="hero-subtitle">잊지 않으려고 남긴 기록</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">군인보다 민간인이 더 많이 죽은 나라가 있었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">차별은 어떤 계단을 밟아 내려갔을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">왜 그 낱말에는 작은따옴표를 붙일까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">살아남은 사람들은 왜 기록을 남겼을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>민간인의 희생</strong> — 폭격기·전차·대량 살상 무기 → 도시 폭격, 미국의 원자 폭탄 투하. 많은 나라에서 민간인 희생이 군인보다 컸다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>인권 침해</strong> — 식민지 주민 강제 동원(전쟁터·군수 공장), 독일 수용소와 일본 731 부대의 생체 실험.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>대량 학살</strong> — 난징 대학살(1937, 일본군) · 홀로코스트(나치스, 유대인 약 600만 명). 홀로코스트는 차별법 → 격리 → 수용소 → 학살의 단계를 밟았다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>일본군 '위안부'</strong> — 일본군이 점령지 여성을 끌고 가 강요한 성 노예 생활. 작은따옴표 = '그렇게 불렸을 뿐', 일본군 = 범죄의 주체. 1991년 김학순의 첫 공개 증언 → 지금도 해결되지 않았다.</p></div></div><img class="hero-image" src="images/6-2-1_전쟁범죄_표지.png" alt=""><div class="hero-hook">1942년 열세 살 생일에 빨간 체크무늬 일기장을 선물받은 소녀가 있었어. 한 달 뒤 소녀의 가족은 네덜란드 암스테르담의 한 건물 뒤쪽 숨은 방으로 들어갔고, 2년 넘게 밖에 나가지 못했어. 유대인이라는 까닭 하나로. 1944년 여름 은신처가 발각됐고, 소녀는 이듬해 수용소에서 숨졌어. 가족 가운데 아버지 한 사람만 살아 돌아와 딸의 일기를 책으로 냈지. 소녀의 이름은 안네 프랑크야. 오늘은 이렇게 '남긴 기록'으로 전쟁을 다시 읽어 보자.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/5 · OX: <span id="ox-score">0</span>/5
@@ -1028,27 +1028,27 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 197쪽 · 그래프 ① 「제2차 세계 대전 희생자 수」</div><div class="ws-tb-see">그래프의 두 색이 각각 무엇을 뜻하는지부터 확인하자.</div><div class="ws-tb-ask">군인보다 <strong>민간인</strong>이 훨씬 많이 죽은 나라를 <strong>두 곳</strong> 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 197쪽에서 찾기 — 군인보다 민간인이 훨씬 많이 죽은 나라를 두 곳 적자." style="width:240px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/6-2-1_드레스덴.jpg" alt="1945년 독일 드레스덴 — 시청 탑 꼭대기의 조각상이 폭격으로 무너진 도시를 내려다보고 있다. 1945년 2월 영국군과 미군의 폭격으로 도시 한가운데가 거의 사라졌다. (리하르트 페터 사진, 1945 · 독일 포토테크 · CC BY-SA 3.0 de)" loading="lazy"><figcaption>1945년 독일 드레스덴 — 시청 탑 꼭대기의 조각상이 폭격으로 무너진 도시를 내려다보고 있다. 1945년 2월 영국군과 미군의 폭격으로 도시 한가운데가 거의 사라졌다. (리하르트 페터 사진, 1945 · 독일 포토테크 · CC BY-SA 3.0 de)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-1_드레스덴.jpg" alt="1945년 독일 드레스덴 — 시청 탑 꼭대기의 조각상이 폭격으로 무너진 도시를 내려다보고 있다. 1945년 2월 영국군과 미군의 폭격으로 도시 한가운데가 거의 사라졌다. (리하르트 페터 사진, 1945 · 독일 포토테크)" loading="lazy"><figcaption>1945년 독일 드레스덴 — 시청 탑 꼭대기의 조각상이 폭격으로 무너진 도시를 내려다보고 있다. 1945년 2월 영국군과 미군의 폭격으로 도시 한가운데가 거의 사라졌다. (리하르트 페터 사진, 1945 · 독일 포토테크)</figcaption></figure>
 <br>
-<blockquote>🎙️ 6-1-1에서 «총력전»을 배웠지? 나라 전체가 전쟁에 매달리면, 공장도 철도도 그걸 돌리는 사람들의 동네도 다 «목표»가 돼. 그래서 두 번째 세계 대전에서는 전쟁터와 집의 경계가 무너졌어. 드레스덴은 피란민이 많이 몰려 있던 도시였는데, 그곳도 폭격을 피하지 못했어.</blockquote>
+<blockquote>🎙️ 6-1-1에서 '총력전'을 배웠지? 나라 전체가 전쟁에 매달리면, 공장도 철도도 그걸 돌리는 사람들의 동네도 다 '목표'가 돼. 그래서 두 번째 세계 대전에서는 전쟁터와 집의 경계가 무너졌어. 드레스덴은 피란민이 많이 몰려 있던 도시였는데, 그곳도 폭격을 피하지 못했어.</blockquote>
 <br>
 <h2>📖 2단계: 사람을 전쟁의 재료로</h2>
 <blockquote>📕 <strong>교과서 197쪽 마지막 문단</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
 <br>
 <p>제2차 세계 대전 중에는 인권을 침해하는 일들이 많이 일어났다. 식민지 주민들은 점령국이 일으킨 전쟁에 강제로 끌려가 전쟁터의 총알받이가 되거나 군수 공장 등에 동원되어 힘든 노동에 시달렸다. 독일과 일본은 의학 지식을 얻는다는 핑계로 살아 있는 사람을 상대로 실험을 하기도 하였다. 독일은 수용소에 가둔 사람들에게 잔인한 실험을 하였고, 일본은 만주에 ②<input type="text" class="blank-input" data-answer="731 부대" data-id="2" style="width:116px" placeholder="">를 설치하고 한국인과 중국인을 대상으로 비인간적인 실험을 자행하였다.</p>
 <br>
-<figure class="ws-fig"><img src="images/6-2-1_731부대터.jpg" alt="중국 하얼빈 교외에 남아 있는 옛 일본군 부대 본부 건물 — 빈칸 ②의 부대가 쓰던 곳으로, 지금은 생체 실험을 고발하는 전시관이 되었다. (Wikimedia Commons · 저작권자가 제한 없는 사용을 허락함 «Copyrighted free use»)" loading="lazy"><figcaption>중국 하얼빈 교외에 남아 있는 옛 일본군 부대 본부 건물 — 빈칸 ②의 부대가 쓰던 곳으로, 지금은 생체 실험을 고발하는 전시관이 되었다. (Wikimedia Commons · 저작권자가 제한 없는 사용을 허락함 «Copyrighted free use»)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-1_731부대터.jpg" alt="중국 하얼빈 교외에 남아 있는 옛 일본군 부대 본부 건물 — 빈칸 ②의 부대가 쓰던 곳으로, 지금은 생체 실험을 고발하는 전시관이 되었다. (저작권자가 제한 없는 사용을 허락함 'Copyrighted free use')" loading="lazy"><figcaption>중국 하얼빈 교외에 남아 있는 옛 일본군 부대 본부 건물 — 빈칸 ②의 부대가 쓰던 곳으로, 지금은 생체 실험을 고발하는 전시관이 되었다. (저작권자가 제한 없는 사용을 허락함 'Copyrighted free use')</figcaption></figure>
 <br>
-<blockquote>🎙️ «식민지 주민»이라는 말에서 멈춰 보자. 이 시기 우리나라는 일본의 식민지였어. 교과서가 말하는 «강제로 끌려간 사람들» 가운데에는 우리 할아버지·할머니 세대가 있어. 이 이야기는 3학년 한국사 시간에 다시 자세히 만나게 될 거야.</blockquote>
+<blockquote>🎙️ '식민지 주민'이라는 말에서 멈춰 보자. 이 시기 우리나라는 일본의 식민지였어. 교과서가 말하는 '강제로 끌려간 사람들' 가운데에는 우리 할아버지·할머니 세대가 있어. 이 이야기는 3학년 한국사 시간에 다시 자세히 만나게 될 거야.</blockquote>
 <br>
 <h2>📖 3단계: 1937년 겨울, 한 나라의 수도에서</h2>
 <blockquote>📕 <strong>교과서 198쪽 첫 소제목 + 200쪽 첫 증언</strong> 펴고 채우기 · 배정 시간 <strong>7분</strong></blockquote>
 <br>
 <p>일본은 1930년대에 이르러 적극적으로 침략에 나섰다. 1937년에는 중국 본토를 공격하여 중일 전쟁을 일으켰고, 중화민국의 수도 난징을 점령하여 도시를 파괴하였다. 일본군은 난징을 점령하는 동안 중국군 포로뿐 아니라 여성과 아이를 포함한 민간인까지 폭행하고 살해하였다. 수십만 명이 희생된 이 사건을 ③<input type="text" class="blank-input" data-answer="난징 대학살" data-id="3" style="width:116px" placeholder="">이라고 한다.</p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 200쪽 · 특집의 첫 번째 일기</div><div class="ws-tb-see">이 일기를 쓴 사람이 어느 나라 사람이었고 난징에서 무슨 일을 했는지, 사진 설명까지 읽자.</div><div class="ws-tb-ask">일기를 쓴 사람은 «전쟁의 결과»를 무엇이라고 적었나? 두 낱말로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 200쪽에서 찾기 — 일기를 쓴 사람은 «전쟁의 결과»를 무엇이라고 적었나? 두 낱말로 적" style="width:200px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 200쪽 · 특집의 첫 번째 일기</div><div class="ws-tb-see">이 일기를 쓴 사람이 어느 나라 사람이었고 난징에서 무슨 일을 했는지, 사진 설명까지 읽자.</div><div class="ws-tb-ask">일기를 쓴 사람은 '전쟁의 결과'를 무엇이라고 적었나? 두 낱말로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 200쪽에서 찾기 — 일기를 쓴 사람은 «전쟁의 결과»를 무엇이라고 적었나? 두 낱말로 적" style="width:200px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/6-2-1_보트린.jpg" alt="미니 보트린(1886~1941) — 미국 일리노이주 출신 선교사. 난징 진링 여자 대학을 맡고 있었다. (1938년 이전 사진 · 퍼블릭 도메인)" loading="lazy"><figcaption>미니 보트린(1886~1941) — 미국 일리노이주 출신 선교사. 난징 진링 여자 대학을 맡고 있었다. (1938년 이전 사진 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-1_보트린.jpg" alt="미니 보트린(1886~1941) — 미국 일리노이주 출신 선교사. 난징 진링 여자 대학을 맡고 있었다." loading="lazy"><figcaption>미니 보트린(1886~1941) — 미국 일리노이주 출신 선교사. 난징 진링 여자 대학을 맡고 있었다.</figcaption></figure>
 <br>
 <blockquote>🎙️ 일기를 쓴 미니 보트린은 난징의 여자 대학을 맡고 있던 미국인 선교사야. 일본군이 들어오자 학교를 피란처로 열어 1만 명이 넘는 여성과 아이를 받아들였어. 그리고 날마다 본 것을 적었지. 그 기록이 남아서, 그곳에 없던 우리가 지금 그 겨울을 알게 된 거야.</blockquote>
 <br>
@@ -1062,14 +1062,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>언제</td><td>무엇을 했나</td></tr>
 <tr><td>1933년</td><td>유대인 가게 안 사기 운동, 공무원·의사·교사 같은 일자리에서 쫓아냄</td></tr>
 <tr><td>1935년</td><td>법으로 독일인과의 결혼을 막고 시민권을 빼앗음</td></tr>
-<tr><td>1938년</td><td>하룻밤 사이 독일 곳곳의 유대인 가게와 회당을 부숨(«수정의 밤»)</td></tr>
+<tr><td>1938년</td><td>하룻밤 사이 독일 곳곳의 유대인 가게와 회당을 부숨('수정의 밤')</td></tr>
 <tr><td>1939년~</td><td>전쟁이 나자 점령지 유대인을 좁은 구역(게토)에 몰아넣음</td></tr>
 <tr><td>1941년~</td><td>수용소로 실어 보내 강제 노동·학살</td></tr>
 </table>
 <br>
-<figure class="ws-fig"><img src="images/6-2-1_아우슈비츠정문.jpg" alt="폴란드 오시비엥침의 아우슈비츠 수용소 정문 — 문 위에 «ARBEIT MACHT FREI»라는 독일어 글자가 걸려 있다. (Bibi595 사진 · Wikimedia Commons · CC BY-SA 3.0)" loading="lazy"><figcaption>폴란드 오시비엥침의 아우슈비츠 수용소 정문 — 문 위에 «ARBEIT MACHT FREI»라는 독일어 글자가 걸려 있다. (Bibi595 사진 · Wikimedia Commons · CC BY-SA 3.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-1_아우슈비츠정문.jpg" alt="폴란드 오시비엥침의 아우슈비츠 수용소 정문 — 문 위에 'ARBEIT MACHT FREI'라는 독일어 글자가 걸려 있다." loading="lazy"><figcaption>폴란드 오시비엥침의 아우슈비츠 수용소 정문 — 문 위에 'ARBEIT MACHT FREI'라는 독일어 글자가 걸려 있다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 문 위 글자는 «노동이 너를 자유롭게 하리라»라는 뜻이야. 이 수용소에 끌려온 사람 가운데 많은 이가 다시 나오지 못했어. 표를 다시 봐. 1933년에 가게 안 사기 운동이 시작됐을 때 가스실을 떠올린 사람은 거의 없었을 거야. 그런데 계단이 한 칸씩 내려갈 때마다 «이 정도면 괜찮겠지» 하고 넘어간 사람이 많았어. 첫 칸에서 멈추게 하는 게 가장 쉬웠던 거지.</blockquote>
+<blockquote>🎙️ 문 위 글자는 '노동이 너를 자유롭게 하리라'라는 뜻이야. 이 수용소에 끌려온 사람 가운데 많은 이가 다시 나오지 못했어. 표를 다시 봐. 1933년에 가게 안 사기 운동이 시작됐을 때 가스실을 떠올린 사람은 거의 없었을 거야. 그런데 계단이 한 칸씩 내려갈 때마다 '이 정도면 괜찮겠지' 하고 넘어간 사람이 많았어. 첫 칸에서 멈추게 하는 게 가장 쉬웠던 거지.</blockquote>
 <br>
 <h2>📖 5단계: 작은따옴표를 붙이는 까닭</h2>
 <blockquote>📕 <strong>교과서 199쪽 본문 + 날개 + 그림 「끌려감」</strong> 펴고 채우기 · 배정 시간 <strong>8분</strong></blockquote>
@@ -1080,10 +1080,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 199쪽 · 그림 「끌려감」</div><div class="ws-tb-see">그림을 그린 사람이 누구인지 사진 설명을 읽자. 화가가 아니라 피해자 자신이 그렸다.</div></div>
 <br>
-<blockquote>🎙️ 1991년 8월, 김학순 할머니가 처음으로 자기 이름과 얼굴을 밝히고 «내가 피해자»라고 말했어. 전쟁이 끝나고 46년이 지나서였지. 그 뒤로 여러 나라의 피해자들이 잇따라 입을 열었어. 그런데 교과서 199쪽 아래를 봐. 이 문제는 지금도 끝나지 않았어.</blockquote>
+<blockquote>🎙️ 1991년 8월, 김학순 할머니가 처음으로 자기 이름과 얼굴을 밝히고 '내가 피해자'라고 말했어. 전쟁이 끝나고 46년이 지나서였지. 그 뒤로 여러 나라의 피해자들이 잇따라 입을 열었어. 그런데 교과서 199쪽 아래를 봐. 이 문제는 지금도 끝나지 않았어.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 어느 사건의 장면일까</h2>
-<div class="ws-pick" id="pk76"><div class="pk-head"><span>여섯 장면이다. 어느 사건에 속할까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="중국의 수도"><div class="pk-name">수도의 겨울</div><div class="pk-sit">1937년 12월, 한 나라의 수도가 점령된 뒤 몇 주 동안 포로와 시민이 살해되었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>난징 대학살 — 일본군이 중화민국의 수도 난징을 점령하고 저지른 일이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="유럽의 수용소"><div class="pk-name">가게 유리창</div><div class="pk-sit">1938년 11월, 하룻밤 사이 한 민족의 가게와 회당 유리창이 산산조각 났다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>홀로코스트 — 나치스의 유대인 박해가 폭력으로 넘어간 «수정의 밤»이다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="유럽의 수용소"><div class="pk-name">문 위의 글자</div><div class="pk-sit">수용소 문 위에 «노동이 너를 자유롭게 하리라»라는 글자가 걸려 있었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>홀로코스트 — 아우슈비츠 수용소 정문의 문구다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="일본군 위안소"><div class="pk-name">1991년 8월</div><div class="pk-sit">한 할머니가 처음으로 이름과 얼굴을 밝히고 자신이 피해자라고 말했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>일본군 '위안부' — 김학순 할머니의 첫 공개 증언이다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="중국의 수도"><div class="pk-name">여자 대학의 피란처</div><div class="pk-sit">한 미국인 선교사가 학교 문을 열어 수많은 여성과 아이를 숨겨 주고 날마다 일기를 썼다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>난징 대학살 — 미니 보트린이 난징에서 남긴 기록이다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="일본군 위안소"><div class="pk-name">날인된 공문서</div><div class="pk-sit">군대가 여성을 모아 데려가는 일에 군 고위 관리가 도장을 찍은 문서가 남아 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>일본군 '위안부' — 일본 정부가 위안소 운영에 관여했음을 보여 주는 증거다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk76");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["중국의 수도", "유럽의 수용소", "일본군 위안소"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk76"><div class="pk-head"><span>여섯 장면이다. 어느 사건에 속할까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="중국의 수도"><div class="pk-name">수도의 겨울</div><div class="pk-sit">1937년 12월, 한 나라의 수도가 점령된 뒤 몇 주 동안 포로와 시민이 살해되었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>난징 대학살 — 일본군이 중화민국의 수도 난징을 점령하고 저지른 일이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="유럽의 수용소"><div class="pk-name">가게 유리창</div><div class="pk-sit">1938년 11월, 하룻밤 사이 한 민족의 가게와 회당 유리창이 산산조각 났다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>홀로코스트 — 나치스의 유대인 박해가 폭력으로 넘어간 '수정의 밤'이다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="유럽의 수용소"><div class="pk-name">문 위의 글자</div><div class="pk-sit">수용소 문 위에 '노동이 너를 자유롭게 하리라'라는 글자가 걸려 있었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>홀로코스트 — 아우슈비츠 수용소 정문의 문구다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="일본군 위안소"><div class="pk-name">1991년 8월</div><div class="pk-sit">한 할머니가 처음으로 이름과 얼굴을 밝히고 자신이 피해자라고 말했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>일본군 '위안부' — 김학순 할머니의 첫 공개 증언이다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="중국의 수도"><div class="pk-name">여자 대학의 피란처</div><div class="pk-sit">한 미국인 선교사가 학교 문을 열어 수많은 여성과 아이를 숨겨 주고 날마다 일기를 썼다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>난징 대학살 — 미니 보트린이 난징에서 남긴 기록이다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="일본군 위안소"><div class="pk-name">날인된 공문서</div><div class="pk-sit">군대가 여성을 모아 데려가는 일에 군 고위 관리가 도장을 찍은 문서가 남아 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="중국의 수도">중국의 수도</button><button type="button" class="pk-b" data-v="유럽의 수용소">유럽의 수용소</button><button type="button" class="pk-b" data-v="일본군 위안소">일본군 위안소</button></div><div class="pk-why" hidden>일본군 '위안부' — 일본 정부가 위안소 운영에 관여했음을 보여 주는 증거다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk76");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["중국의 수도", "유럽의 수용소", "일본군 위안소"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <h2>📖 6단계: 왜 기록을 남겼나</h2>
 <blockquote>📕 <strong>교과서 200~201쪽 특집 「살아남은 사람들이 들려주는 그날의 진실」</strong> 펴고 채우기 · 배정 시간 <strong>7분</strong></blockquote>
@@ -1092,9 +1092,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 200~201쪽 · 증언과 기록 다섯</div><div class="ws-tb-ask">다섯 기록 가운데 하나를 골라, <strong>누가</strong> 남긴 기록인지와 그 사람이 <strong>잊지 말아 달라고 한 장면</strong>을 한 줄로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 200쪽에서 찾기 — 다섯 기록 가운데 하나를 골라, 누가 남긴 기록인지와 그 사람이 잊지" style="width:480px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/6-2-1_오르드루프.jpg" alt="1945년 4월 12일 독일 오르드루프 수용소 — 아이젠하워와 미군 장군들이 수용소 안을 둘러보고 있다. (미국 육군 통신대 사진 · 퍼블릭 도메인)" loading="lazy"><figcaption>1945년 4월 12일 독일 오르드루프 수용소 — 아이젠하워와 미군 장군들이 수용소 안을 둘러보고 있다. (미국 육군 통신대 사진 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-1_오르드루프.jpg" alt="1945년 4월 12일 독일 오르드루프 수용소 — 아이젠하워와 미군 장군들이 수용소 안을 둘러보고 있다." loading="lazy"><figcaption>1945년 4월 12일 독일 오르드루프 수용소 — 아이젠하워와 미군 장군들이 수용소 안을 둘러보고 있다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 아이젠하워는 피해자가 아니라 독일을 무너뜨린 쪽의 사령관이야. 그런데도 이 사람이 걱정한 건 «언젠가 사람들이 이 일을 없었던 일이라고 말할지 모른다»는 거였어. 수용소를 처음 본 날 그는 근처 부대 병사들에게도 와서 직접 보게 했어. 기록은 피해자의 것만이 아니야. 본 사람 모두의 몫이었던 거지.</blockquote>
+<blockquote>🎙️ 아이젠하워는 피해자가 아니라 독일을 무너뜨린 쪽의 사령관이야. 그런데도 이 사람이 걱정한 건 '언젠가 사람들이 이 일을 없었던 일이라고 말할지 모른다'는 거였어. 수용소를 처음 본 날 그는 근처 부대 병사들에게도 와서 직접 보게 했어. 기록은 피해자의 것만이 아니야. 본 사람 모두의 몫이었던 거지.</blockquote>
 <br>
 <h2>✅ OX 퀴즈</h2>
 <table>
@@ -1107,10 +1107,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </table>
 <br>
 <h2>💭 더 생각해 보기</h2>
-<p>교과서 199쪽 「우리 해 보자」는 «전쟁 범죄를 기억해야 하는 이유는 무엇일까?»라고 묻는다.</p>
-<p>오늘 배운 전쟁 범죄 가운데 하나를 골라, 그 일을 모르는 친구에게 알리는 SNS 글을 써 보자. 글에는 ① 무슨 일이 있었는지 한 문장, ② 우리가 그 일을 <strong>기억해야 하는 까닭</strong> 한 문장이 꼭 들어가야 한다. 4단계의 «계단» 표나 6단계 아이젠하워의 편지를 근거로 써도 좋다.</p>
+<p>교과서 199쪽 「우리 해 보자」는 '전쟁 범죄를 기억해야 하는 이유는 무엇일까?'라고 묻는다.</p>
+<p>오늘 배운 전쟁 범죄 가운데 하나를 골라, 그 일을 모르는 친구에게 알리는 SNS 글을 써 보자. 글에는 ① 무슨 일이 있었는지 한 문장, ② 우리가 그 일을 <strong>기억해야 하는 까닭</strong> 한 문장이 꼭 들어가야 한다. 4단계의 '계단' 표나 6단계 아이젠하워의 편지를 근거로 써도 좋다.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=5, TOX=5, GT=10;
@@ -1135,7 +1136,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

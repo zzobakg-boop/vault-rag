@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,14 +981,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅶ단원 7-2-1 — 꽃을 든 청년, 광장의 시민 (반전 평화 운동과 민주화 운동)</h1><p class="hero-subtitle">꽃을 든 청년, 광장의 시민</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">청년들은 왜 어른들의 세상에 맞섰을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">총을 든 군인에게 왜 꽃을 내밀었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">탱크 앞에 선 시민들은 무엇을 바랐을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">광장에 모인 시민들은 무엇을 바꾸었을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>탈권위주의 운동</strong> — 냉전·물질만능주의 → 오래된 관습·기존 체제에서 벗어나려 함 · 청년·학생 중심 · 프랑스 68 운동(대학생 시위 + 노동자 총파업) → 반전 평화·민주화·민권·여성 운동으로.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>반전 평화 운동</strong> — 베트남 전쟁 계기 · 1960년대 미국 청년 → 독일·프랑스 · 핵무기 반대(평화 기호) · 핵 확산 금지 조약(NPT) · 오늘날에도 계속.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>민주화 운동 ①</strong> — 학생·시민이 독재 정권에 대항 · 한국 4·19 혁명(1960) · 체코슬로바키아 프라하의 봄(1968, 소련과 동맹국의 군대에 저항).</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>민주화 운동 ②</strong> — 에스파냐(프랑코, 1970년대) · 필리핀(마르코스, 에드사 혁명 1986) · 중국(톈안먼 사건 1989) · 동유럽(1980년대 이후) · 튀니지(2010년대) → 아랍 지역.</p></div></div><img class="hero-image" src="images/7-2-1_반전평화운동_표지.png" alt=""><div class="hero-hook">1969년 8월, 미국 뉴욕주의 한 시골 농장에 사흘 동안 수십만 명의 젊은이가 몰려들었어. 비가 쏟아져 풀밭이 진흙탕이 됐는데도 사람들은 돌아가지 않았지. 무대에서 울려 퍼진 노래는 자유와 평화, 사랑이었어. 우드스톡 음악 축제야. 그 무렵 바다 건너 먼 나라에서는 미국 군인들이 몇 년째 전쟁을 치르고 있었고, 대학과 거리에서는 «이건 아니다»라고 외치는 목소리가 점점 커지고 있었어. 이 젊은이들은 무엇에 맞서고 있었을까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅶ단원 7-2-1 — 꽃을 든 청년, 광장의 시민 (반전 평화 운동과 민주화 운동)</h1><p class="hero-subtitle">꽃을 든 청년, 광장의 시민</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">청년들은 왜 어른들의 세상에 맞섰을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">총을 든 군인에게 왜 꽃을 내밀었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">탱크 앞에 선 시민들은 무엇을 바랐을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">광장에 모인 시민들은 무엇을 바꾸었을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>탈권위주의 운동</strong> — 냉전·물질만능주의 → 오래된 관습·기존 체제에서 벗어나려 함 · 청년·학생 중심 · 프랑스 68 운동(대학생 시위 + 노동자 총파업) → 반전 평화·민주화·민권·여성 운동으로.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>반전 평화 운동</strong> — 베트남 전쟁 계기 · 1960년대 미국 청년 → 독일·프랑스 · 핵무기 반대(평화 기호) · 핵 확산 금지 조약(NPT) · 오늘날에도 계속.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>민주화 운동 ①</strong> — 학생·시민이 독재 정권에 대항 · 한국 4·19 혁명(1960) · 체코슬로바키아 프라하의 봄(1968, 소련과 동맹국의 군대에 저항).</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>민주화 운동 ②</strong> — 에스파냐(프랑코, 1970년대) · 필리핀(마르코스, 에드사 혁명 1986) · 중국(톈안먼 사건 1989) · 동유럽(1980년대 이후) · 튀니지(2010년대) → 아랍 지역.</p></div></div><img class="hero-image" src="images/7-2-1_반전평화운동_표지.png" alt=""><div class="hero-hook">1969년 8월, 미국 뉴욕주의 한 시골 농장에 사흘 동안 수십만 명의 젊은이가 몰려들었어. 비가 쏟아져 풀밭이 진흙탕이 됐는데도 사람들은 돌아가지 않았지. 무대에서 울려 퍼진 노래는 자유와 평화, 사랑이었어. 우드스톡 음악 축제야. 그 무렵 바다 건너 먼 나라에서는 미국 군인들이 몇 년째 전쟁을 치르고 있었고, 대학과 거리에서는 '이건 아니다'라고 외치는 목소리가 점점 커지고 있었어. 이 젊은이들은 무엇에 맞서고 있었을까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/8 · OX: <span id="ox-score">0</span>/5
@@ -1021,15 +1021,15 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>💡 오늘 딱 하나만 잡자 — 냉전 시대의 청년과 시민들은 <strong>낡은 관습, 전쟁, 독재</strong>에 맞서 거리로 나왔고, 그 물결은 오늘날에도 이어지고 있다.</blockquote>
 <br>
-<h2>📖 1단계: «왜?»라고 묻기 시작한 청년들</h2>
+<h2>📖 1단계: '왜?'라고 묻기 시작한 청년들</h2>
 <blockquote>📕 <strong>교과서 227쪽 첫 소제목 + 날개 ❶</strong> 펴고 채우기 · 배정 시간 <strong>10분</strong></blockquote>
 <br>
 <p>20세기 후반 세계는 냉전으로 이념 대립이 깊어졌고, 산업화로 돈과 물건을 가장 중요하게 여기는 물질만능주의가 널리 퍼졌다. 이런 분위기 속에서 오래된 관습과 기존의 정치 체제에서 벗어나려는 ①<input type="text" class="blank-input" data-answer="탈권위주의" data-id="1" style="width:100px" placeholder=""> 운동이 일어났다. 이 운동은 청년과 학생들이 이끌었는데, 1968년 프랑스에서 일어난 68 운동이 대표적이다. 프랑스 대학생들은 정부의 잘못된 정치와 사회의 모순에 맞서 시위를 벌였고, 노동자들도 ②<input type="text" class="blank-input" data-answer="총파업" data-id="2" style="width:68px" placeholder="">으로 함께하였다. 프랑스의 68 운동은 실패하였지만 세계 곳곳의 저항 운동과 영향을 주고받으며 이런 흐름이 자라는 밑거름이 되었다. 이 흐름은 반전 평화 운동, 민주화 운동, 민권 운동, 여성 운동 등 여러 모습으로 펼쳐졌다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.2fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-2-1_소르본.jpg" alt="1968년 5월 프랑스 파리 소르본 대학 — 학생들이 대학 건물을 차지하고 큰 강의실을 빈자리 없이 가득 메웠다. (에릭 코흐 사진, 네덜란드 국립 기록 보관소 · CC0)" loading="lazy"><figcaption>1968년 5월 프랑스 파리 소르본 대학 — 학생들이 대학 건물을 차지하고 큰 강의실을 빈자리 없이 가득 메웠다. (에릭 코흐 사진, 네덜란드 국립 기록 보관소 · CC0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-1_소르본.jpg" alt="1968년 5월 프랑스 파리 소르본 대학 — 학생들이 대학 건물을 차지하고 큰 강의실을 빈자리 없이 가득 메웠다. (에릭 코흐 사진, 네덜란드 국립 기록 보관소)" loading="lazy"><figcaption>1968년 5월 프랑스 파리 소르본 대학 — 학생들이 대학 건물을 차지하고 큰 강의실을 빈자리 없이 가득 메웠다. (에릭 코흐 사진, 네덜란드 국립 기록 보관소)</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ 사진 속 강의실, 빈자리가 하나도 없지? 이건 수업 시간이 아니야. 학생들이 학교 건물을 차지하고 날마다 모여 회의를 연 거야. 이들은 어른들이 «원래 그런 거야»라고 정해 둔 것들에 «왜?»라고 묻기 시작했어. 그리고 1968년 한 해 동안 미국, 멕시코, 서독, 이탈리아, 그리고 3단계에서 만날 나라에서도 학생들이 거리로 나왔어. 그래서 1968년을 «세계가 함께 들끓은 해»라고도 해.</blockquote>
+<blockquote>🎙️ 사진 속 강의실, 빈자리가 하나도 없지? 이건 수업 시간이 아니야. 학생들이 학교 건물을 차지하고 날마다 모여 회의를 연 거야. 이들은 어른들이 '원래 그런 거야'라고 정해 둔 것들에 '왜?'라고 묻기 시작했어. 그리고 1968년 한 해 동안 미국, 멕시코, 서독, 이탈리아, 그리고 3단계에서 만날 나라에서도 학생들이 거리로 나왔어. 그래서 1968년을 '세계가 함께 들끓은 해'라고도 해.</blockquote>
 </div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 227쪽 · 날개 ❶ 「프랑스 68 운동」</div><div class="ws-tb-ask">프랑스 대학생들이 시위에서 외친 구호를 찾아 적자. 그리고 학생들이 반대한 것 세 가지를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 227쪽에서 찾기 — 프랑스 대학생들이 시위에서 외친 구호를 찾아 적자. 그리고 학생들이" style="width:400px" placeholder=""></div></div>
@@ -1042,9 +1042,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>전쟁에 반대하고 평화를 지키려는 반전 평화 운동은 ③<input type="text" class="blank-input" data-answer="베트남 전쟁" data-id="3" style="width:116px" placeholder="">을 계기로 전 세계로 퍼졌다. 1960년대 미국에서는 청년들을 중심으로 이 전쟁에 반대하는 시위가 일어났고, 시위는 독일, 프랑스 등지로 번져 나갔다. 핵무기를 비롯한 대량 살상 무기의 개발이 계속되자, 이런 무기를 쓰지 말자는 운동도 세계 곳곳에서 일어났다. 국제 사회는 ④<input type="text" class="blank-input" data-answer="핵 확산 금지 조약" data-id="4" style="width:180px" placeholder="">을 맺는 등 대량 살상 무기를 줄이려고 노력하였다. 전쟁은 오늘날에도 세계 곳곳에서 일어나고 있고, 이에 맞선 반전 평화 운동도 이어지고 있다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.2fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-2-1_꽃.jpg" alt="1967년 10월 미국 국방부 건물(펜타곤) 앞 — 전쟁에 반대하는 시위에 나온 한 여성이 경비를 서는 헌병에게 꽃 한 송이를 내밀고 있다. (앨버트 R. 심프슨 하사 사진, 미국 국방부 · 퍼블릭 도메인)" loading="lazy"><figcaption>1967년 10월 미국 국방부 건물(펜타곤) 앞 — 전쟁에 반대하는 시위에 나온 한 여성이 경비를 서는 헌병에게 꽃 한 송이를 내밀고 있다. (앨버트 R. 심프슨 하사 사진, 미국 국방부 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-1_꽃.jpg" alt="1967년 10월 미국 국방부 건물(펜타곤) 앞 — 전쟁에 반대하는 시위에 나온 한 여성이 경비를 서는 헌병에게 꽃 한 송이를 내밀고 있다." loading="lazy"><figcaption>1967년 10월 미국 국방부 건물(펜타곤) 앞 — 전쟁에 반대하는 시위에 나온 한 여성이 경비를 서는 헌병에게 꽃 한 송이를 내밀고 있다.</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ 헬멧을 쓴 헌병 앞에 내민 꽃 한 송이, 보이지? 교과서 227쪽 사진 ②와 견주어 봐. 꽃은 이 무렵 «평화»를 나타내는 표시였어. 전쟁 초기에는 미국 사람 대부분이 이 전쟁을 지지했어. 그런데 전쟁터의 참혹한 모습이 알려지고 목숨을 잃는 미군이 늘어나자 생각이 바뀌기 시작했지. 결국 미국 대통령은 1973년에 군대를 빼겠다고 선언했어.</blockquote>
+<blockquote>🎙️ 헬멧을 쓴 헌병 앞에 내민 꽃 한 송이, 보이지? 교과서 227쪽 사진 ②와 견주어 봐. 꽃은 이 무렵 '평화'를 나타내는 표시였어. 전쟁 초기에는 미국 사람 대부분이 이 전쟁을 지지했어. 그런데 전쟁터의 참혹한 모습이 알려지고 목숨을 잃는 미군이 늘어나자 생각이 바뀌기 시작했지. 결국 미국 대통령은 1973년에 군대를 빼겠다고 선언했어.</blockquote>
 </div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 227쪽 · 그림 「평화 기호」</div><div class="ws-tb-ask">평화 기호는 어느 나라의 어떤 단체가 만들었나? 그리고 기호에 들어간 두 수기 신호 N과 D는 무엇의 약자인가? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 227쪽에서 찾기 — 평화 기호는 어느 나라의 어떤 단체가 만들었나? 그리고 기호에 들어간" style="width:400px" placeholder=""></div></div>
@@ -1055,7 +1055,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>20세기 후반에는 세계 여러 지역에서 학생과 시민들이 중심이 되어 독재 정권에 맞서는 민주화 운동이 일어났다. 한국에서는 1960년의 4·19 혁명을 시작으로 독재에 저항하는 운동이 꾸준히 이어졌다. 1968년에는 체코슬로바키아에서 공산주의 체제의 틀을 벗어나려는 움직임이 일어나자, 이를 막으려는 소련과 그 동맹국이 군대를 보냈고 시민들은 이에 저항하였다. 이 일을 ⑤<input type="text" class="blank-input" data-answer="프라하의 봄" data-id="5" style="width:116px" placeholder="">이라고 부른다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.2fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-2-1_탱크.jpg" alt="1968년 8월 21일 체코슬로바키아의 수도 — 시가지에 들어온 외국 군대의 탱크 곁에 시민들이 서 있다. (프란티셰크 도스탈 사진 · CC BY-SA 4.0)" loading="lazy"><figcaption>1968년 8월 21일 체코슬로바키아의 수도 — 시가지에 들어온 외국 군대의 탱크 곁에 시민들이 서 있다. (프란티셰크 도스탈 사진 · CC BY-SA 4.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-1_탱크.jpg" alt="1968년 8월 21일 체코슬로바키아의 수도 — 시가지에 들어온 외국 군대의 탱크 곁에 시민들이 서 있다." loading="lazy"><figcaption>1968년 8월 21일 체코슬로바키아의 수도 — 시가지에 들어온 외국 군대의 탱크 곁에 시민들이 서 있다.</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 7-1-1에서 소련이 동유럽 나라들과 맺은 군사 동맹, 바르샤바 조약 기구 기억나? 서로 지켜 주자고 만든 동맹이었는데, 1968년 여름에는 그 동맹 군대가 같은 편 나라로 탱크를 몰고 들어왔어. 체코슬로바키아 사람들은 공산주의 체제의 틀에서 조금 벗어나 보려고 했을 뿐인데 말이야. 교과서 228쪽 아래 큰 사진을 봐. 시민들이 탱크를 둘러싸고 군대와 맞서고 있지.</blockquote>
 </div></div>
@@ -1087,7 +1087,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </table>
 <br>
 <h2>✏️ 활동 2 — 무엇에 맞선 장면일까</h2>
-<div class="ws-pick" id="pk80"><div class="pk-head"><span>여섯 장면이다. 이 사람들은 무엇에 맞섰을까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="낡은 관습"><div class="pk-name">점거된 강의실</div><div class="pk-sit">1968년 5월, 대학생들이 학교 건물을 차지하고 밤낮으로 회의를 열었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>프랑스 68 운동 — 기성 사회의 낡은 관습과 체제에 저항하였다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="낡은 관습"><div class="pk-name">긴 머리와 청바지</div><div class="pk-sit">1960년대, 젊은이들이 어른들이 싫어하는 옷차림과 음악을 즐겼다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>기성세대의 관습에 맞선 움직임이 대중문화로도 나타났다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="전쟁"><div class="pk-name">헌병 앞의 꽃</div><div class="pk-sit">1967년, 한 여성이 총을 든 헌병에게 꽃을 내밀었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>미국의 반전 시위 — 꽃은 평화를 나타냈다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="전쟁"><div class="pk-name">더 이상 전쟁은 그만</div><div class="pk-sit">2004년, 거리에 «더 이상 전쟁은 안 된다»는 펼침막이 걸렸다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>반전 평화 운동은 오늘날에도 이어진다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="독재"><div class="pk-name">탱크 곁의 시민</div><div class="pk-sit">1968년 8월, 시민들이 외국 군대의 탱크를 둘러쌌다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>체코슬로바키아 — 소련과 동맹국의 억압에 저항하였다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="독재"><div class="pk-name">가득 찬 큰길</div><div class="pk-sit">1986년, 수많은 시민이 큰길을 메워 20여 년 이어진 정권에 맞섰다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>필리핀 — 시민들이 독재 정권을 무너뜨렸다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk80");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["낡은 관습", "전쟁", "독재"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk80"><div class="pk-head"><span>여섯 장면이다. 이 사람들은 무엇에 맞섰을까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="낡은 관습"><div class="pk-name">점거된 강의실</div><div class="pk-sit">1968년 5월, 대학생들이 학교 건물을 차지하고 밤낮으로 회의를 열었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>프랑스 68 운동 — 기성 사회의 낡은 관습과 체제에 저항하였다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="낡은 관습"><div class="pk-name">긴 머리와 청바지</div><div class="pk-sit">1960년대, 젊은이들이 어른들이 싫어하는 옷차림과 음악을 즐겼다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>기성세대의 관습에 맞선 움직임이 대중문화로도 나타났다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="전쟁"><div class="pk-name">헌병 앞의 꽃</div><div class="pk-sit">1967년, 한 여성이 총을 든 헌병에게 꽃을 내밀었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>미국의 반전 시위 — 꽃은 평화를 나타냈다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="전쟁"><div class="pk-name">더 이상 전쟁은 그만</div><div class="pk-sit">2004년, 거리에 '더 이상 전쟁은 안 된다'는 펼침막이 걸렸다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>반전 평화 운동은 오늘날에도 이어진다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="독재"><div class="pk-name">탱크 곁의 시민</div><div class="pk-sit">1968년 8월, 시민들이 외국 군대의 탱크를 둘러쌌다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>체코슬로바키아 — 소련과 동맹국의 억압에 저항하였다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="독재"><div class="pk-name">가득 찬 큰길</div><div class="pk-sit">1986년, 수많은 시민이 큰길을 메워 20여 년 이어진 정권에 맞섰다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="낡은 관습">낡은 관습</button><button type="button" class="pk-b" data-v="전쟁">전쟁</button><button type="button" class="pk-b" data-v="독재">독재</button></div><div class="pk-why" hidden>필리핀 — 시민들이 독재 정권을 무너뜨렸다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk80");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["낡은 관습", "전쟁", "독재"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <h2>✅ OX 퀴즈</h2>
 <table>
@@ -1100,10 +1100,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </table>
 <br>
 <h2>💭 더 생각해 보기</h2>
-<p>1단계의 청년들은 오래된 관습과 체제에 «왜?»라고 물었고, 3·4단계의 시민들은 독재에 맞섰다. 그렇다면 학교 규칙이나 어른들의 말처럼 우리 곁의 <strong>모든 것</strong>에 맞서야 할까?</p>
+<p>1단계의 청년들은 오래된 관습과 체제에 '왜?'라고 물었고, 3·4단계의 시민들은 독재에 맞섰다. 그렇다면 학교 규칙이나 어른들의 말처럼 우리 곁의 <strong>모든 것</strong>에 맞서야 할까?</p>
 <p>오늘 배운 사례 하나를 근거로 들어, <strong>맞서야 할 힘</strong>과 <strong>따를 만한 약속</strong>을 가르는 기준을 두세 문장으로 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=8, TOX=5, GT=13;
@@ -1128,7 +1129,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

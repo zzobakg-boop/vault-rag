@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,14 +981,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅵ단원 6-2-2 — 명령은 핑계가 되지 못한다 (인권 회복과 평화 실현을 위한 노력)</h1><p class="hero-subtitle">명령은 핑계가 되지 못한다</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">전쟁이 끝나기도 전에 왜 전쟁 뒤를 의논했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">두 번째 국제기구는 첫 번째와 무엇이 달랐을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">«시키는 대로 했을 뿐»은 왜 받아들여지지 않았을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">한 나라의 총리는 왜 무릎을 꿇었을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>전후 처리 회담</strong> — 대서양 헌장(1941, 미·영 평화 원칙) → 카이로 회담(1943, 한국 독립) → 얄타 회담(1945, 독일 분할 점령·소련 대일 참전) → 포츠담 회담.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>국제 연합(UN, 1945)</strong> — 미국·소련 참여, 군사적 수단(평화 유지군). 안전 보장 이사회 상임 이사국 다섯(거부권).</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>전범 재판</strong> — 뉘른베르크 재판(독일, 사형 12, «반인륜적 범죄» 첫 적용) · 극동 국제 군사 재판(일본, 사형 7, 천황·731 부대 책임자는 재판받지 않음). 아이히만 재판(1961) — «명령에 따랐을 뿐»은 받아들여지지 않았다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>평화와 기억</strong> — 제1차 세계 대전 뒤 제노바·로카르노·켈로그·브리앙 조약 · 브란트 총리의 사죄(1970) · 공동 역사 교과서 · 박물관·추모관(야드바셈).</p></div></div><img class="hero-image" src="images/6-2-2_평화노력_표지.png" alt=""><div class="hero-hook">1960년 5월, 아르헨티나의 한 도시에서 버스에서 내린 남자가 집으로 걷다가 붙잡혔어. 남자는 15년 동안 다른 이름으로 공장에서 일하며 살고 있었지. 이스라엘로 옮겨진 그는 이듬해 유리 칸막이 안 피고석에 앉았어. 그리고 법정에서 이렇게 말했어. «나는 단 한 사람도 내 손으로 죽이지 않았습니다.» 그의 말은 사실이었을까? 그렇다면 그는 죄가 없는 걸까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅵ단원 6-2-2 — 명령은 핑계가 되지 못한다 (인권 회복과 평화 실현을 위한 노력)</h1><p class="hero-subtitle">명령은 핑계가 되지 못한다</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">전쟁이 끝나기도 전에 왜 전쟁 뒤를 의논했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">두 번째 국제기구는 첫 번째와 무엇이 달랐을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">'시키는 대로 했을 뿐'은 왜 받아들여지지 않았을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">한 나라의 총리는 왜 무릎을 꿇었을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>전후 처리 회담</strong> — 대서양 헌장(1941, 미·영 평화 원칙) → 카이로 회담(1943, 한국 독립) → 얄타 회담(1945, 독일 분할 점령·소련 대일 참전) → 포츠담 회담.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>국제 연합(UN, 1945)</strong> — 미국·소련 참여, 군사적 수단(평화 유지군). 안전 보장 이사회 상임 이사국 다섯(거부권).</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>전범 재판</strong> — 뉘른베르크 재판(독일, 사형 12, '반인륜적 범죄' 첫 적용) · 극동 국제 군사 재판(일본, 사형 7, 천황·731 부대 책임자는 재판받지 않음). 아이히만 재판(1961) — '명령에 따랐을 뿐'은 받아들여지지 않았다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>평화와 기억</strong> — 제1차 세계 대전 뒤 제노바·로카르노·켈로그·브리앙 조약 · 브란트 총리의 사죄(1970) · 공동 역사 교과서 · 박물관·추모관(야드바셈).</p></div></div><img class="hero-image" src="images/6-2-2_평화노력_표지.png" alt=""><div class="hero-hook">1960년 5월, 아르헨티나의 한 도시에서 버스에서 내린 남자가 집으로 걷다가 붙잡혔어. 남자는 15년 동안 다른 이름으로 공장에서 일하며 살고 있었지. 이스라엘로 옮겨진 그는 이듬해 유리 칸막이 안 피고석에 앉았어. 그리고 법정에서 이렇게 말했어. '나는 단 한 사람도 내 손으로 죽이지 않았습니다.' 그의 말은 사실이었을까? 그렇다면 그는 죄가 없는 걸까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/7 · OX: <span id="ox-score">0</span>/5
@@ -1010,7 +1010,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   </div>
   <br>
 <br>
-<blockquote>📌 <strong>오늘은 두 시간짜리야.</strong> 1교시는 «전쟁 뒤의 세계를 어떻게 다시 짰나», 2교시는 «책임을 묻고, 사과하고, 기억하는 일».</blockquote>
+<blockquote>📌 <strong>오늘은 두 시간짜리야.</strong> 1교시는 '전쟁 뒤의 세계를 어떻게 다시 짰나', 2교시는 '책임을 묻고, 사과하고, 기억하는 일'.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 국제 사회가 <strong>인권 회복</strong>을 위해 펼친 활동을 이해할 수 있다.</p>
@@ -1028,11 +1028,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>제2차 세계 대전이 진행되는 동안 연합국 대표들은 전쟁 뒤의 문제를 처리하고 새로운 질서를 세우려고 여러 차례 모여 의논하였다. 1941년에는 미국과 영국의 대표가 만나 영토를 넓히지 않고 여러 민족의 자결을 인정하는 등 전쟁 뒤 평화 원칙을 담은 ①<input type="text" class="blank-input" data-answer="대서양 헌장" data-id="1" style="width:116px" placeholder="">을 발표하였다. 1943년에 열린 ②<input type="text" class="blank-input" data-answer="카이로 회담" data-id="2" style="width:116px" placeholder="">에서 연합국 대표들은 한국의 독립과 일본의 무조건 항복 문제를 의논하였다. 1945년 <strong>얄타 회담</strong>에서는 전쟁 뒤 미국, 영국, 프랑스, 소련이 독일 영토를 나누어 점령하고, 소련이 연합군과 함께 일본을 공격하기로 하였다. 이어 <strong>포츠담 회담</strong>에서 전후 처리 문제가 정해졌다.</p>
 <br>
-<figure class="ws-fig"><img src="images/6-2-2_대서양회담.jpg" alt="1941년 8월 10일 북대서양 뉴펀들랜드 섬 앞바다, 영국 전함 갑판에서 열린 일요 예배 — 앞줄에 앉은 두 사람이 미국의 루스벨트 대통령(왼쪽)과 영국의 처칠 총리다. (L. C. 프리스트 사진, 영국 해군 · 퍼블릭 도메인)" loading="lazy"><figcaption>1941년 8월 10일 북대서양 뉴펀들랜드 섬 앞바다, 영국 전함 갑판에서 열린 일요 예배 — 앞줄에 앉은 두 사람이 미국의 루스벨트 대통령(왼쪽)과 영국의 처칠 총리다. (L. C. 프리스트 사진, 영국 해군 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-2_대서양회담.jpg" alt="1941년 8월 10일 북대서양 뉴펀들랜드 섬 앞바다, 영국 전함 갑판에서 열린 일요 예배 — 앞줄에 앉은 두 사람이 미국의 루스벨트 대통령(왼쪽)과 영국의 처칠 총리다." loading="lazy"><figcaption>1941년 8월 10일 북대서양 뉴펀들랜드 섬 앞바다, 영국 전함 갑판에서 열린 일요 예배 — 앞줄에 앉은 두 사람이 미국의 루스벨트 대통령(왼쪽)과 영국의 처칠 총리다.</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 202쪽 · 날개</div><div class="ws-tb-ask">전쟁 뒤 미군의 관리를 받던 일본은 어느 회의의 결정으로 주권을 되찾았나? 회의 이름과 해를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 202쪽에서 찾기 — 전쟁 뒤 미군의 관리를 받던 일본은 어느 회의의 결정으로 주권을 되찾" style="width:340px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 이 사진이 찍힌 1941년 8월에 미국은 아직 전쟁에 뛰어들지도 않았어. 진주만 공격은 넉 달 뒤야. 그런데도 두 사람은 바다 위 군함에서 «전쟁이 끝나면 세계를 어떻게 할까»를 먼저 적었지. 6-1-1에서 윌슨의 14개조를 기억해? 전쟁이 끝난 뒤에 급하게 원칙을 세웠다가 실패한 경험이 있으니, 이번엔 미리 그려 둔 거야. 그리고 1943년 회의에서 처음으로 «한국의 독립»이 연합국의 약속이 됐어.</blockquote>
+<blockquote>🎙️ 이 사진이 찍힌 1941년 8월에 미국은 아직 전쟁에 뛰어들지도 않았어. 진주만 공격은 넉 달 뒤야. 그런데도 두 사람은 바다 위 군함에서 '전쟁이 끝나면 세계를 어떻게 할까'를 먼저 적었지. 6-1-1에서 윌슨의 14개조를 기억해? 전쟁이 끝난 뒤에 급하게 원칙을 세웠다가 실패한 경험이 있으니, 이번엔 미리 그려 둔 거야. 그리고 1943년 회의에서 처음으로 '한국의 독립'이 연합국의 약속이 됐어.</blockquote>
 <br>
 <h2>📖 2단계: 두 번째 국제기구</h2>
 <blockquote>📕 <strong>교과서 202쪽 본문 둘째 문단 + 「궁금해 이 기구!」</strong> 펴고 채우기 · 배정 시간 <strong>13분</strong></blockquote>
@@ -1048,9 +1048,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 202쪽 · 「궁금해 이 기구!」</div><div class="ws-tb-ask">빈칸 ④의 <strong>상임 이사국</strong> 다섯 나라를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 202쪽에서 찾기 — 빈칸 ④의 상임 이사국 다섯 나라를 적자." style="width:400px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/6-2-2_안보리.jpg" alt="미국 뉴욕에 있는 빈칸 ③ 본부의 한 회의장 — 말굽 모양 탁자에 이사국 대표들이 앉는다. (MusikAnimal 사진 · Wikimedia Commons · CC BY-SA 4.0, 위쪽 벽화를 잘라 냄)" loading="lazy"><figcaption>미국 뉴욕에 있는 빈칸 ③ 본부의 한 회의장 — 말굽 모양 탁자에 이사국 대표들이 앉는다. (MusikAnimal 사진 · Wikimedia Commons · CC BY-SA 4.0, 위쪽 벽화를 잘라 냄)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-2_안보리.jpg" alt="미국 뉴욕에 있는 빈칸 ③ 본부의 한 회의장 — 말굽 모양 탁자에 이사국 대표들이 앉는다." loading="lazy"><figcaption>미국 뉴욕에 있는 빈칸 ③ 본부의 한 회의장 — 말굽 모양 탁자에 이사국 대표들이 앉는다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 이 기구의 헌장 맨 앞 문장을 우리말로 옮기면 이래. «우리 일생 중에 두 번이나 말할 수 없는 슬픔을 인류에게 가져온 전쟁의 불행에서 다음 세대를 구하고…» 두 번이라는 말, 6-1-1과 6-1-3을 다 겪은 사람들의 말이야. 그래서 국제 연맹이 걸려 넘어졌던 두 돌부리 — 강대국이 빠진 것, 힘이 없던 것 — 를 치웠어. 그런데 표의 마지막 줄을 봐. 돌부리를 치우자 새 돌부리가 하나 생겼지. 이건 7단원 냉전에서 다시 만나.</blockquote>
+<blockquote>🎙️ 이 기구의 헌장 맨 앞 문장을 우리말로 옮기면 이래. '우리 일생 중에 두 번이나 말할 수 없는 슬픔을 인류에게 가져온 전쟁의 불행에서 다음 세대를 구하고…' 두 번이라는 말, 6-1-1과 6-1-3을 다 겪은 사람들의 말이야. 그래서 국제 연맹이 걸려 넘어졌던 두 돌부리 — 강대국이 빠진 것, 힘이 없던 것 — 를 치웠어. 그런데 표의 마지막 줄을 봐. 돌부리를 치우자 새 돌부리가 하나 생겼지. 이건 7단원 냉전에서 다시 만나.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 어느 기구 이야기일까</h2>
 <div class="ws-pick" id="pk46"><div class="pk-head"><span>여섯 문장이다. 어느 기구에 맞는 말일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="1920년의 기구"><div class="pk-name">빠진 나라</div><div class="pk-sit">이 기구를 만들자고 한 나라의 의회가 가입을 거부했다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="1920년의 기구">1920년의 기구</button><button type="button" class="pk-b" data-v="1945년의 기구">1945년의 기구</button></div><div class="pk-why" hidden>국제 연맹 — 윌슨이 제안했지만 미국 상원이 가입을 거부하였다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="1945년의 기구"><div class="pk-name">평화 유지군</div><div class="pk-sit">분쟁 지역에 여러 나라에서 보낸 부대를 파견할 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="1920년의 기구">1920년의 기구</button><button type="button" class="pk-b" data-v="1945년의 기구">1945년의 기구</button></div><div class="pk-why" hidden>1945년의 기구 — 상임 이사국을 둔 이사회 아래에 평화 유지군이 있다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="1920년의 기구"><div class="pk-name">떠나는 나라들</div><div class="pk-sit">1930년대에 일본·독일·이탈리아가 차례로 탈퇴했다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="1920년의 기구">1920년의 기구</button><button type="button" class="pk-b" data-v="1945년의 기구">1945년의 기구</button></div><div class="pk-why" hidden>국제 연맹 — 침략을 막지 못하고 침략국이 빠져나갔다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="1945년의 기구"><div class="pk-name">한 나라의 반대</div><div class="pk-sit">다섯 나라 가운데 한 나라만 반대해도 결정이 멈춘다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="1920년의 기구">1920년의 기구</button><button type="button" class="pk-b" data-v="1945년의 기구">1945년의 기구</button></div><div class="pk-why" hidden>1945년의 기구 — 상임 이사국의 거부권이다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="1920년의 기구"><div class="pk-name">경제 제재뿐</div><div class="pk-sit">침략한 나라에 물건을 팔지 않는 것 말고는 막을 수단이 거의 없었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="1920년의 기구">1920년의 기구</button><button type="button" class="pk-b" data-v="1945년의 기구">1945년의 기구</button></div><div class="pk-why" hidden>국제 연맹 — 군사적 수단이 없었다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="1945년의 기구"><div class="pk-name">대서양의 약속</div><div class="pk-sit">1941년 바다 위에서 발표된 원칙의 정신에 따라 세워졌다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="1920년의 기구">1920년의 기구</button><button type="button" class="pk-b" data-v="1945년의 기구">1945년의 기구</button></div><div class="pk-why" hidden>1945년의 기구 — 1941년 미국과 영국이 바다 위에서 발표한 원칙의 정신을 이었다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk46");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["1920년의 기구", "1945년의 기구"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
@@ -1061,9 +1061,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>제2차 세계 대전 시기에는 이전까지 볼 수 없었던 수많은 전쟁 범죄가 일어났다. 전쟁이 끝난 뒤 연합국 대표들은 런던에 모여 침략 전쟁과 대량 학살 같은 비인간적인 행위를 범죄로 정하였다. 이에 따라 독일과 일본에서 전쟁 범죄자를 처벌하는 국제 군사 재판이 열렸다. 독일에서 열린 ⑤<input type="text" class="blank-input" data-answer="뉘른베르크 재판" data-id="5" style="width:148px" placeholder="">에서는 나치스의 주요 인사를 포함한 전쟁 범죄자들을 재판하여 12명에게 사형을 선고하였고, 유럽 여러 나라에서도 나치스에 협력한 사람들을 처벌하였다. 일본 도쿄에서 열린 ⑥<input type="text" class="blank-input" data-answer="극동 국제 군사 재판" data-id="6" style="width:196px" placeholder="">에서는 총리를 포함해 전쟁을 이끈 7명이 사형을 선고받았다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/6-2-2_뉘른베르크.jpg" alt="1945~1946년 독일의 한 법정 — 피고석 앞줄에 나치스의 지도자들이 앉아 있다. 뒤에는 흰 헬멧을 쓴 미군 헌병이 서 있다. (미국 정부 사진 · 퍼블릭 도메인)" loading="lazy"><figcaption>1945~1946년 독일의 한 법정 — 피고석 앞줄에 나치스의 지도자들이 앉아 있다. 뒤에는 흰 헬멧을 쓴 미군 헌병이 서 있다. (미국 정부 사진 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-2_뉘른베르크.jpg" alt="1945~1946년 독일의 한 법정 — 피고석 앞줄에 나치스의 지도자들이 앉아 있다. 뒤에는 흰 헬멧을 쓴 미군 헌병이 서 있다." loading="lazy"><figcaption>1945~1946년 독일의 한 법정 — 피고석 앞줄에 나치스의 지도자들이 앉아 있다. 뒤에는 흰 헬멧을 쓴 미군 헌병이 서 있다.</figcaption></figure>
 </div><div class="c2-b">
-<figure class="ws-fig"><img src="images/6-2-2_도쿄재판.jpg" alt="1946년 일본 도쿄의 법정 — 일본의 전쟁 지도자들이 피고석에 서 있다. (작자 미상 · 퍼블릭 도메인)" loading="lazy"><figcaption>1946년 일본 도쿄의 법정 — 일본의 전쟁 지도자들이 피고석에 서 있다. (작자 미상 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-2_도쿄재판.jpg" alt="1946년 일본 도쿄의 법정 — 일본의 전쟁 지도자들이 피고석에 서 있다. (작자 미상)" loading="lazy"><figcaption>1946년 일본 도쿄의 법정 — 일본의 전쟁 지도자들이 피고석에 서 있다. (작자 미상)</figcaption></figure>
 </div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 203쪽 · 「우리 해 보자」 자료 1</div><div class="ws-tb-ask">이 재판에서 <strong>처음으로</strong> 법 집행에 적용한 개념은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 203쪽에서 찾기 — 이 재판에서 처음으로 법 집행에 적용한 개념은 무엇인가?" style="width:240px" placeholder=""></div></div>
@@ -1072,19 +1072,19 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h1>🕑 2교시 — 책임을 묻고, 사과하고, 기억하다</h1>
 <br>
-<h2>📖 4단계: «명령에 따랐을 뿐입니다»</h2>
+<h2>📖 4단계: '명령에 따랐을 뿐입니다'</h2>
 <blockquote>📕 <strong>교과서 203쪽 「우리 해 보자」 자료 2</strong> 펴고 채우기 · 배정 시간 <strong>13분</strong></blockquote>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 203쪽 · 「우리 해 보자」 자료 2</div><div class="ws-tb-see">아이히만이 법정에서 한 말을 소리 내어 읽자.</div><div class="ws-tb-ask">아이히만은 전쟁 중에 어떤 업무를 맡았나? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 203쪽에서 찾기 — 아이히만은 전쟁 중에 어떤 업무를 맡았나?" style="width:400px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/6-2-2_아이히만.jpg" alt="1961년 12월 15일 이스라엘 예루살렘 — 왼쪽 유리 칸막이 안에 선 아이히만이 사형 판결을 듣고 있다. (이스라엘 정부 언론실 사진 · 퍼블릭 도메인)" loading="lazy"><figcaption>1961년 12월 15일 이스라엘 예루살렘 — 왼쪽 유리 칸막이 안에 선 아이히만이 사형 판결을 듣고 있다. (이스라엘 정부 언론실 사진 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-2_아이히만.jpg" alt="1961년 12월 15일 이스라엘 예루살렘 — 왼쪽 유리 칸막이 안에 선 아이히만이 사형 판결을 듣고 있다." loading="lazy"><figcaption>1961년 12월 15일 이스라엘 예루살렘 — 왼쪽 유리 칸막이 안에 선 아이히만이 사형 판결을 듣고 있다.</figcaption></figure>
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"국제법을 어기는 범죄는 추상적인 무엇이 아니라 사람이 저지른다. 그런 범죄를 저지른 개인을 처벌해야만 국제법이 지켜질 수 있다. … 개인에게는 자기 나라가 지운 복종의 의무를 넘어서는 국제적 의무가 있다."</blockquote><figcaption class="sr-c">— 『주요 전쟁 범죄자 재판』 1권, 국제 군사 재판소 판결문, 1946</figcaption></figure>
 <br>
-<blockquote>💬 <strong>아이히만의 주장 «유대인 학살은 국가의 명령에 따른 결과입니다. 단 한 사람도 내 손으로 죽이지 않았습니다»에 반박하는 글을 두세 문장으로 써 보자. 위 판결문의 생각을 근거로 써도 좋다.</strong></blockquote>
+<blockquote>💬 <strong>아이히만의 주장 '유대인 학살은 국가의 명령에 따른 결과입니다. 단 한 사람도 내 손으로 죽이지 않았습니다'에 반박하는 글을 두세 문장으로 써 보자. 위 판결문의 생각을 근거로 써도 좋다.</strong></blockquote>
 <textarea class="essay-input" data-id="essay-1" data-label="📖 4단계: «명령에 따랐을 뿐입니다»" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
-<blockquote>🎙️ 이 재판을 끝까지 지켜본 철학자 한나 아렌트는 깜짝 놀랐어. 아이히만은 괴물처럼 생긴 사람이 아니라 서류를 잘 챙기는 평범한 공무원 같았거든. 그는 «악의 평범성»이라는 말을 남겼어. 엄청난 악은 생각을 멈춘 평범한 사람들이 «내 일»만 할 때 일어날 수 있다는 거야. 6-2-1의 계단 표에서 칸마다 서류를 처리한 사람들이 있었던 것처럼.</blockquote>
+<blockquote>🎙️ 이 재판을 끝까지 지켜본 철학자 한나 아렌트는 깜짝 놀랐어. 아이히만은 괴물처럼 생긴 사람이 아니라 서류를 잘 챙기는 평범한 공무원 같았거든. 그는 '악의 평범성'이라는 말을 남겼어. 엄청난 악은 생각을 멈춘 평범한 사람들이 '내 일'만 할 때 일어날 수 있다는 거야. 6-2-1의 계단 표에서 칸마다 서류를 처리한 사람들이 있었던 것처럼.</blockquote>
 <br>
 <h2>📖 5단계: 무릎 꿇은 총리</h2>
 <blockquote>📕 <strong>교과서 204쪽 「평화 실현을 위한 노력」</strong> 펴고 채우기 · 배정 시간 <strong>10분</strong></blockquote>
@@ -1094,9 +1094,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>제2차 세계 대전이 끝난 뒤에는 가해국이 스스로 잘못을 인정하는 일도 있었다. 1970년 서독의 <strong>빌리 브란트</strong> 총리는 폴란드 바르샤바에서 홀로코스트로 희생된 유대인을 기리는 위령탑을 찾아가 나치스의 죄를 인정하며 무릎을 꿇고 사죄하였다.</p>
 <br>
 <div class="ws-2c c2-mid c2-card" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.3fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/6-2-2_브란트.jpg" alt="폴란드 바르샤바 «빌리 브란트 광장»에 세워진 부조 — 무릎 꿇은 브란트의 모습을 새겼다. (2022년 사진 · Wikimedia Commons · CC0)" loading="lazy"><figcaption>폴란드 바르샤바 «빌리 브란트 광장»에 세워진 부조 — 무릎 꿇은 브란트의 모습을 새겼다. (2022년 사진 · Wikimedia Commons · CC0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-2_브란트.jpg" alt="폴란드 바르샤바 '빌리 브란트 광장'에 세워진 부조 — 무릎 꿇은 브란트의 모습을 새겼다." loading="lazy"><figcaption>폴란드 바르샤바 '빌리 브란트 광장'에 세워진 부조 — 무릎 꿇은 브란트의 모습을 새겼다.</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ 이날 일정에는 화환을 놓는 것까지만 있었어. 브란트는 화환을 놓고 한 걸음 물러서더니 갑자기 돌바닥에 무릎을 꿇었지. 30초쯤 아무 말 없이. 나중에 그는 «말이 통하지 않을 때 사람이 하는 일을 했다»고 했어. 그는 나치에 맞서다 나라 밖으로 피했던 사람이야. 자기가 저지른 죄가 아닌데도, 나라를 대표해서 무릎을 꿇은 거야.</blockquote>
+<blockquote>🎙️ 이날 일정에는 화환을 놓는 것까지만 있었어. 브란트는 화환을 놓고 한 걸음 물러서더니 갑자기 돌바닥에 무릎을 꿇었지. 30초쯤 아무 말 없이. 나중에 그는 '말이 통하지 않을 때 사람이 하는 일을 했다'고 했어. 그는 나치에 맞서다 나라 밖으로 피했던 사람이야. 자기가 저지른 죄가 아닌데도, 나라를 대표해서 무릎을 꿇은 거야.</blockquote>
 </div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 204쪽 · 본문 둘째 문단</div><div class="ws-tb-ask">유럽의 여러 나라가 과거를 반성하고 올바른 역사 인식을 갖추려고 <strong>함께 만든 것</strong>은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 204쪽에서 찾기 — 유럽의 여러 나라가 과거를 반성하고 올바른 역사 인식을 갖추려고 함께" style="width:300px" placeholder=""></div></div>
@@ -1106,9 +1106,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>전쟁이 끝난 뒤 여러 나라에서는 전쟁의 상처를 잊지 않으려고 전쟁의 기록을 담은 박물관을 세웠다. 또 기념관이나 추모관을 만들어 희생자를 추모하며, 끔찍한 역사가 되풀이되지 않도록 노력하고 있다.</p>
 <br>
-<figure class="ws-fig"><img src="images/6-2-2_야드바셈.jpg" alt="이스라엘 예루살렘의 야드바셈 «이름의 전당» — 홀로코스트 희생자들의 사진이 둥근 천장을 가득 채우고 있다. (데이비드 생크본 사진 · Wikimedia Commons · CC BY-SA 3.0)" loading="lazy"><figcaption>이스라엘 예루살렘의 야드바셈 «이름의 전당» — 홀로코스트 희생자들의 사진이 둥근 천장을 가득 채우고 있다. (데이비드 생크본 사진 · Wikimedia Commons · CC BY-SA 3.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-2-2_야드바셈.jpg" alt="이스라엘 예루살렘의 야드바셈 '이름의 전당' — 홀로코스트 희생자들의 사진이 둥근 천장을 가득 채우고 있다." loading="lazy"><figcaption>이스라엘 예루살렘의 야드바셈 '이름의 전당' — 홀로코스트 희생자들의 사진이 둥근 천장을 가득 채우고 있다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 이곳은 희생자 한 사람 한 사람의 이름과 얼굴을 모으는 곳이야. «600만 명»은 숫자지만, 여기서는 한 장 한 장이 누군가의 딸이고 친구야. 숫자를 사람으로 되돌려 놓는 일, 그게 기억이야.</blockquote>
+<blockquote>🎙️ 이곳은 희생자 한 사람 한 사람의 이름과 얼굴을 모으는 곳이야. '600만 명'은 숫자지만, 여기서는 한 장 한 장이 누군가의 딸이고 친구야. 숫자를 사람으로 되돌려 놓는 일, 그게 기억이야.</blockquote>
 <br>
 <h2>✏️ 활동 2 — 우리 반 추모 공간 기획하기</h2>
 <blockquote>교과서 205쪽처럼 6-2-1에서 배운 전쟁 범죄 하나를 골라, 그 일을 기억하는 공간을 소개하는 짧은 영상을 만든다고 해 보자.</blockquote>
@@ -1132,10 +1132,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </table>
 <br>
 <h2>💭 더 생각해 보기</h2>
-<p>뉘른베르크와 도쿄의 법정에는 <strong>전쟁에서 진 나라</strong> 사람만 섰다. 6-2-1에서 본 드레스덴 폭격이나 원자 폭탄 투하는 재판을 받지 않았다. 그래서 어떤 사람들은 이 재판을 «이긴 쪽의 재판»이라고 부른다.</p>
-<p>«이긴 쪽이 연 재판이니 의미가 없다»는 주장에 대해 네 생각을 두세 문장으로 써 보자. 재판이 <strong>해낸 것</strong> 하나와 <strong>하지 못한 것</strong> 하나를 꼭 넣자.</p>
+<p>뉘른베르크와 도쿄의 법정에는 <strong>전쟁에서 진 나라</strong> 사람만 섰다. 6-2-1에서 본 드레스덴 폭격이나 원자 폭탄 투하는 재판을 받지 않았다. 그래서 어떤 사람들은 이 재판을 '이긴 쪽의 재판'이라고 부른다.</p>
+<p>'이긴 쪽이 연 재판이니 의미가 없다'는 주장에 대해 네 생각을 두세 문장으로 써 보자. 재판이 <strong>해낸 것</strong> 하나와 <strong>하지 못한 것</strong> 하나를 꼭 넣자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-2" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=7, TOX=5, GT=12;
@@ -1160,7 +1161,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

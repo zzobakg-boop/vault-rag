@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,14 +981,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅶ단원 7-1-2 — 어느 편에도 서지 않겠다 (제3 세계의 등장)</h1><p class="hero-subtitle">어느 편에도 서지 않겠다</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">한 해에 열일곱 나라가 생길 수 있을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">바닷길 하나가 왜 나라의 자존심이 되었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">두 편으로 갈린 세계에서 어느 편도 고르지 않을 수 있을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">새로 생긴 나라들은 왜 평화부터 외쳤을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>아시아·아프리카의 독립</strong> — 인도(1947)·인도네시아·이스라엘(1948) · 이집트 나세르(1952 공화정, 1956 수에즈 운하 국유화) · 1960년 아프리카 17개국 독립(«아프리카의 해»).</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>독립 뒤의 분쟁</strong> — 열강이 민족·종교를 무시하고 그은 국경선 → 영토 분쟁·빈곤·기아.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>제3 세계</strong> — 제1 세계(자본주의)·제2 세계(공산주의) 어느 쪽에도 속하지 않는 비동맹주의.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>평화의 약속</strong> — 평화 5원칙(1954, 인도·중국) → 아시아·아프리카 회의(1955, 반둥, 29개국) · 평화 10원칙 → 1961년부터 정기 회의.</p></div></div><img class="hero-image" src="images/7-1-2_제3세계_표지.png" alt=""><div class="hero-hook">1957년 3월 6일 자정, 아프리카 서쪽 바닷가 도시 아크라의 한 운동장. 영국 국기가 내려가고 빨강·노랑·초록에 검은 별이 박힌 새 국기가 올라갔어. 연단에 선 은크루마가 외쳤지. «마침내 싸움이 끝났습니다. 가나, 여러분의 사랑하는 나라는 이제 영원히 자유입니다!» 가나는 사하라 사막 남쪽의 식민지 가운데 가장 이르게 독립한 나라로 흔히 꼽혀. 그리고 3년 뒤, 아프리카에서는 한 해에 열일곱 나라가 한꺼번에 태어났어.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅶ단원 7-1-2 — 어느 편에도 서지 않겠다 (제3 세계의 등장)</h1><p class="hero-subtitle">어느 편에도 서지 않겠다</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">한 해에 열일곱 나라가 생길 수 있을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">바닷길 하나가 왜 나라의 자존심이 되었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">두 편으로 갈린 세계에서 어느 편도 고르지 않을 수 있을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">새로 생긴 나라들은 왜 평화부터 외쳤을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>아시아·아프리카의 독립</strong> — 인도(1947)·인도네시아·이스라엘(1948) · 이집트 나세르(1952 공화정, 1956 수에즈 운하 국유화) · 1960년 아프리카 17개국 독립('아프리카의 해').</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>독립 뒤의 분쟁</strong> — 열강이 민족·종교를 무시하고 그은 국경선 → 영토 분쟁·빈곤·기아.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>제3 세계</strong> — 제1 세계(자본주의)·제2 세계(공산주의) 어느 쪽에도 속하지 않는 비동맹주의.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>평화의 약속</strong> — 평화 5원칙(1954, 인도·중국) → 아시아·아프리카 회의(1955, 반둥, 29개국) · 평화 10원칙 → 1961년부터 정기 회의.</p></div></div><img class="hero-image" src="images/7-1-2_제3세계_표지.png" alt=""><div class="hero-hook">1957년 3월 6일 자정, 아프리카 서쪽 바닷가 도시 아크라의 한 운동장. 영국 국기가 내려가고 빨강·노랑·초록에 검은 별이 박힌 새 국기가 올라갔어. 연단에 선 은크루마가 외쳤지. '마침내 싸움이 끝났습니다. 가나, 여러분의 사랑하는 나라는 이제 영원히 자유입니다!' 가나는 사하라 사막 남쪽의 식민지 가운데 가장 이르게 독립한 나라로 흔히 꼽혀. 그리고 3년 뒤, 아프리카에서는 한 해에 열일곱 나라가 한꺼번에 태어났어.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/6 · OX: <span id="ox-score">0</span>/5
@@ -1024,9 +1024,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>제2차 세계 대전이 끝난 뒤 아시아와 아프리카의 여러 나라는 서양 열강의 식민 지배에서 벗어나고자 하였다. 영국의 식민지였던 인도는 1947년에 독립하였고, 동남아시아에서는 인도네시아 등 많은 나라가 독립하였다. 서아시아에서는 유대인이 영국, 미국 등의 도움을 받아 이스라엘을 세웠다(1948). 아프리카에서는 1951년 리비아의 독립을 시작으로 많은 나라가 독립하였다. 1960년에는 아프리카에서 17개국이 독립하여 이해를 ①<input type="text" class="blank-input" data-answer="아프리카의 해" data-id="1" style="width:132px" placeholder="">라고 부른다.</p>
 <br>
-<div class="ws-gr" id="gr17"><div class="ws-gr-head">아프리카의 독립국 수(그해까지 독립한 나라를 모두 센 수)</div><svg class="ws-gr-svg" viewBox="0 0 480 300" role="img" aria-label="아프리카의 독립국 수(그해까지 독립한 나라를 모두 센 수) — 독립국 수(개국)"></svg><div class="ws-gr-legend"><span class="gr-key"><i style="background:#2e7d4f"></i>독립국 수</span></div><div class="ws-gr-ctl"><button type="button" class="ws-gr-play" aria-label="처음부터 그려 보기">▶</button><input type="range" class="ws-gr-range" min="0" max="7" value="0" step="1" aria-label="연대 고르기"></div><div class="ws-gr-read" aria-live="polite"></div><div class="ws-gr-src">오늘날 아프리카 54개국의 독립 연도를 세어 다시 그림(에리트레아 1993·남수단 2011은 이후)</div></div><script>(function(){var D={"x": ["1950", "1955", "1960", "1965", "1970", "1975", "1980", "1990"], "s": [{"name": "독립국 수", "unit": "개국", "lo": 0.0, "hi": 60.0, "col": "#2e7d4f", "v": [4.0, 5.0, 27.0, 37.0, 42.0, 48.0, 51.0, 52.0], "d": 0}], "band": null};var w=document.getElementById("gr17"),svg=w.querySelector("svg"),rg=w.querySelector(".ws-gr-range"),rd=w.querySelector(".ws-gr-read"),pl=w.querySelector(".ws-gr-play");var NS="http://www.w3.org/2000/svg",L=52,R=428,T=40,B=256,n=D.x.length;function el(t,a,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;svg.appendChild(e);return e;}function X(i){return L+(R-L)*i/(n-1);}function Y(s,v){return B-(B-T)*(v-s.lo)/(s.hi-s.lo);}function fmt(v,d){if(d==null)return (Math.round(v*10)/10).toString();var m=Math.pow(10,d);return (Math.round(v*m+1e-9)/m).toFixed(d);}if(D.band){var a=D.x.indexOf(D.band.a),b=D.x.indexOf(D.band.b);if(a>=0&&b>=0)el("rect",{x:X(a),y:T,width:X(b)-X(a),height:B-T,"class":"gr-band"});}for(var g=0;g<=5;g++){var yy=B-(B-T)*g/5;el("line",{x1:L,x2:R,y1:yy,y2:yy,"class":"gr-grid"});D.s.forEach(function(s,k){var v=s.lo+(s.hi-s.lo)*g/5;if(g===0&&k===0&&s.lo>0)return;el("text",{x:k===0?L-8:R+8,y:yy+5,"text-anchor":k===0?"end":"start","class":"gr-tick",fill:s.col},fmt(v));});}D.s.forEach(function(s,k){el("text",{x:k===0?L-8:R+8,y:T-18,"text-anchor":k===0?"end":"start","class":"gr-unit",fill:s.col},"("+s.unit+")");});var step=Math.max(1,Math.round((n-1)/4));for(var i=0;i<n;i+=step){el("text",{x:X(i),y:B+26,"text-anchor":"middle","class":"gr-tick"},D.x[i]);}el("line",{x1:L,x2:R,y1:B,y2:B,"class":"gr-axis"});var cur=el("line",{x1:L,x2:L,y1:T,y2:B,"class":"gr-cur"});var lines=D.s.map(function(s){return el("polyline",{fill:"none",stroke:s.col,"stroke-width":4,"stroke-linejoin":"round","stroke-linecap":"round",points:""});});var dots=D.s.map(function(s){return el("circle",{r:6,fill:s.col,stroke:"#fff","stroke-width":2});});function draw(i){i=+i;D.s.forEach(function(s,k){var p=[];for(var j=0;j<=i;j++)p.push(X(j)+","+Y(s,s.v[j]));lines[k].setAttribute("points",p.join(" "));dots[k].setAttribute("cx",X(i));dots[k].setAttribute("cy",Y(s,s.v[i]));});cur.setAttribute("x1",X(i));cur.setAttribute("x2",X(i));rd.innerHTML="<b>"+(/^[0-9]{4}[.][0-9]{1,2}$/.test(D.x[i])?String(D.x[i]).replace(/^([0-9]{4})[.]([0-9]{1,2})$/,"$1년 $2월"):D.x[i]+((+D.x[1]-+D.x[0])==10&&D.x.every(function(v){return +v%10==0;})?"년대":"년"))+"</b> — "+D.s.map(function(s){return s.name+" <b style=\"color:"+s.col+"\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");rg.value=i;}rg.addEventListener("input",function(){draw(rg.value);});var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){draw(n-1);return;}var i=0;draw(0);pl.textContent="■";tm=setInterval(function(){i++;draw(i);if(i>=n-1){clearInterval(tm);tm=null;pl.textContent="▶";}},260);});window.addEventListener("beforeprint",function(){draw(n-1);});draw(0);})();</script>
+<div class="ws-gr" id="gr17"><div class="ws-gr-head">아프리카의 독립국 수(그해까지 독립한 나라를 모두 센 수)</div><svg class="ws-gr-svg" viewBox="0 0 480 300" role="img" aria-label="아프리카의 독립국 수(그해까지 독립한 나라를 모두 센 수) — 독립국 수(개국)"></svg><div class="ws-gr-legend"><span class="gr-key"><i style="background:#2e7d4f"></i>독립국 수</span></div><div class="ws-gr-ctl"><button type="button" class="ws-gr-play" aria-label="처음부터 그려 보기">▶</button><input type="range" class="ws-gr-range" min="0" max="7" value="0" step="1" aria-label="연대 고르기"></div><div class="ws-gr-read" aria-live="polite"></div></div><script>(function(){var D={"x": ["1950", "1955", "1960", "1965", "1970", "1975", "1980", "1990"], "s": [{"name": "독립국 수", "unit": "개국", "lo": 0.0, "hi": 60.0, "col": "#2e7d4f", "v": [4.0, 5.0, 27.0, 37.0, 42.0, 48.0, 51.0, 52.0], "d": 0}], "band": null};var w=document.getElementById("gr17"),svg=w.querySelector("svg"),rg=w.querySelector(".ws-gr-range"),rd=w.querySelector(".ws-gr-read"),pl=w.querySelector(".ws-gr-play");var NS="http://www.w3.org/2000/svg",L=52,R=428,T=40,B=256,n=D.x.length;function el(t,a,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;svg.appendChild(e);return e;}function X(i){return L+(R-L)*i/(n-1);}function Y(s,v){return B-(B-T)*(v-s.lo)/(s.hi-s.lo);}function fmt(v,d){if(d==null)return (Math.round(v*10)/10).toString();var m=Math.pow(10,d);return (Math.round(v*m+1e-9)/m).toFixed(d);}if(D.band){var a=D.x.indexOf(D.band.a),b=D.x.indexOf(D.band.b);if(a>=0&&b>=0)el("rect",{x:X(a),y:T,width:X(b)-X(a),height:B-T,"class":"gr-band"});}for(var g=0;g<=5;g++){var yy=B-(B-T)*g/5;el("line",{x1:L,x2:R,y1:yy,y2:yy,"class":"gr-grid"});D.s.forEach(function(s,k){var v=s.lo+(s.hi-s.lo)*g/5;if(g===0&&k===0&&s.lo>0)return;el("text",{x:k===0?L-8:R+8,y:yy+5,"text-anchor":k===0?"end":"start","class":"gr-tick",fill:s.col},fmt(v));});}D.s.forEach(function(s,k){el("text",{x:k===0?L-8:R+8,y:T-18,"text-anchor":k===0?"end":"start","class":"gr-unit",fill:s.col},"("+s.unit+")");});var step=Math.max(1,Math.round((n-1)/4));for(var i=0;i<n;i+=step){el("text",{x:X(i),y:B+26,"text-anchor":"middle","class":"gr-tick"},D.x[i]);}el("line",{x1:L,x2:R,y1:B,y2:B,"class":"gr-axis"});var cur=el("line",{x1:L,x2:L,y1:T,y2:B,"class":"gr-cur"});var lines=D.s.map(function(s){return el("polyline",{fill:"none",stroke:s.col,"stroke-width":4,"stroke-linejoin":"round","stroke-linecap":"round",points:""});});var dots=D.s.map(function(s){return el("circle",{r:6,fill:s.col,stroke:"#fff","stroke-width":2});});function draw(i){i=+i;D.s.forEach(function(s,k){var p=[];for(var j=0;j<=i;j++)p.push(X(j)+","+Y(s,s.v[j]));lines[k].setAttribute("points",p.join(" "));dots[k].setAttribute("cx",X(i));dots[k].setAttribute("cy",Y(s,s.v[i]));});cur.setAttribute("x1",X(i));cur.setAttribute("x2",X(i));rd.innerHTML="<b>"+(/^[0-9]{4}[.][0-9]{1,2}$/.test(D.x[i])?String(D.x[i]).replace(/^([0-9]{4})[.]([0-9]{1,2})$/,"$1년 $2월"):D.x[i]+((+D.x[1]-+D.x[0])==10&&D.x.every(function(v){return +v%10==0;})?"년대":"년"))+"</b> — "+D.s.map(function(s){return s.name+" <b style=\"color:"+s.col+"\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");rg.value=i;}rg.addEventListener("input",function(){draw(rg.value);});var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){draw(n-1);return;}var i=0;draw(0);pl.textContent="■";tm=setInterval(function(){i++;draw(i);if(i>=n-1){clearInterval(tm);tm=null;pl.textContent="▶";}},260);});window.addEventListener("beforeprint",function(){draw(n-1);});draw(0);})();</script>
 <br>
-<figure class="ws-fig"><img src="images/7-1-2_가나독립문.jpg" alt="가나의 수도 아크라에 있는 독립 기념문 — 가나의 독립을 기념하여 1961년에 세워졌다. (Wikimedia Commons · CC BY 2.0)" loading="lazy"><figcaption>가나의 수도 아크라에 있는 독립 기념문 — 가나의 독립을 기념하여 1961년에 세워졌다. (Wikimedia Commons · CC BY 2.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-1-2_가나독립문.jpg" alt="가나의 수도 아크라에 있는 독립 기념문 — 가나의 독립을 기념하여 1961년에 세워졌다." loading="lazy"><figcaption>가나의 수도 아크라에 있는 독립 기념문 — 가나의 독립을 기념하여 1961년에 세워졌다.</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 220쪽 · 날개 ②</div><div class="ws-tb-ask">독립한 뒤 아프리카의 여러 나라에서 영토를 둘러싼 분쟁이 자주 일어난 까닭은 무엇인가? 날개를 읽고 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 220쪽에서 찾기 — 독립한 뒤 아프리카의 여러 나라에서 영토를 둘러싼 분쟁이 자주 일어난" style="width:400px" placeholder=""></div></div>
 <br>
@@ -1037,9 +1037,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>이집트에서는 나세르가 왕정을 몰아내고 공화정을 세웠다(1952). 이후 대통령이 된 그는 지중해와 홍해를 잇는 ②<input type="text" class="blank-input" data-answer="수에즈 운하" data-id="2" style="width:116px" placeholder="">의 국유화를 선언하고 영국과 프랑스로부터 운영권을 되찾았다(1956).</p>
 <br>
-<figure class="ws-fig"><img src="images/7-1-2_브리오니.jpg" alt="1956년 7월 유고슬라비아 브리오니섬 — 이집트의 나세르(왼쪽), 인도의 네루(가운데), 유고슬라비아의 티토(오른쪽)가 함께 걷고 있다. (스테반 크라구예비치 사진 · CC BY-SA 4.0)" loading="lazy"><figcaption>1956년 7월 유고슬라비아 브리오니섬 — 이집트의 나세르(왼쪽), 인도의 네루(가운데), 유고슬라비아의 티토(오른쪽)가 함께 걷고 있다. (스테반 크라구예비치 사진 · CC BY-SA 4.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-1-2_브리오니.jpg" alt="1956년 7월 유고슬라비아 브리오니섬 — 이집트의 나세르(왼쪽), 인도의 네루(가운데), 유고슬라비아의 티토(오른쪽)가 함께 걷고 있다." loading="lazy"><figcaption>1956년 7월 유고슬라비아 브리오니섬 — 이집트의 나세르(왼쪽), 인도의 네루(가운데), 유고슬라비아의 티토(오른쪽)가 함께 걷고 있다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 이 운하는 유럽에서 아시아로 가는 배가 아프리카를 빙 돌지 않아도 되게 해 주는 길이야. 그런데 이집트 땅을 지나는데도 운영과 이익은 영국·프랑스 회사가 쥐고 있었어. 나세르가 이것을 나라의 것으로 하겠다고 선언하자, 영국·프랑스·이스라엘이 군대를 보냈어. 그런데 이번엔 미국과 소련이 둘 다 «물러나라»고 했지. 결국 세 나라가 물러났고, 나세르는 아시아·아프리카의 영웅이 됐어. 사진을 보면 이 일이 일어나기 바로 며칠 전, 세 지도자가 만나 «어느 편에도 서지 않겠다»는 생각을 나누고 있었어.</blockquote>
+<blockquote>🎙️ 이 운하는 유럽에서 아시아로 가는 배가 아프리카를 빙 돌지 않아도 되게 해 주는 길이야. 그런데 이집트 땅을 지나는데도 운영과 이익은 영국·프랑스 회사가 쥐고 있었어. 나세르가 이것을 나라의 것으로 하겠다고 선언하자, 영국·프랑스·이스라엘이 군대를 보냈어. 그런데 이번엔 미국과 소련이 둘 다 '물러나라'고 했지. 결국 세 나라가 물러났고, 나세르는 아시아·아프리카의 영웅이 됐어. 사진을 보면 이 일이 일어나기 바로 며칠 전, 세 지도자가 만나 '어느 편에도 서지 않겠다'는 생각을 나누고 있었어.</blockquote>
 <br>
 <h2>📖 3단계: 어느 편에도 서지 않겠다</h2>
 <blockquote>📕 <strong>교과서 221쪽 「제3 세계의 등장」 + 「우리 해 보자」</strong> 펴고 채우기 · 배정 시간 <strong>15분</strong></blockquote>
@@ -1048,18 +1048,18 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"이것은 인류 역사에서 처음 열린, 유색 인종의 대륙 사이 회의입니다."</blockquote><figcaption class="sr-c">— 인도네시아 대통령 수카르노의 개막 연설, 반둥, 1955년 4월 18일</figcaption></figure>
 <br>
-<figure class="ws-fig"><img src="images/7-1-2_반둥.jpg" alt="1955년 4월 반둥 — 회의 기간에 중국의 저우언라이, 인도의 네루, 미얀마의 우 누 등이 차를 마시며 이야기를 나누고 있다. (작자 미상 · 퍼블릭 도메인)" loading="lazy"><figcaption>1955년 4월 반둥 — 회의 기간에 중국의 저우언라이, 인도의 네루, 미얀마의 우 누 등이 차를 마시며 이야기를 나누고 있다. (작자 미상 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-1-2_반둥.jpg" alt="1955년 4월 반둥 — 회의 기간에 중국의 저우언라이, 인도의 네루, 미얀마의 우 누 등이 차를 마시며 이야기를 나누고 있다. (작자 미상)" loading="lazy"><figcaption>1955년 4월 반둥 — 회의 기간에 중국의 저우언라이, 인도의 네루, 미얀마의 우 누 등이 차를 마시며 이야기를 나누고 있다. (작자 미상)</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 221쪽 · 「우리 해 보자」 자료 2</div><div class="ws-tb-see">자료 2의 원칙들을 하나씩 소리 내어 읽자.</div><div class="ws-tb-ask">가장 중요하다고 생각하는 조항 하나를 번호로 고르고, 그 까닭을 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 221쪽에서 찾기 — 가장 중요하다고 생각하는 조항 하나를 번호로 고르고, 그 까닭을 한" style="width:480px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 수카르노의 말을 다시 봐. «유색 인종의 대륙 사이 회의». 백 년 넘게 유럽 사람들이 «우리가 너희를 다스려야 한다»고 하던 나라들이 처음으로 자기들끼리 모여 세계 문제를 말한 거야. 그것도 미국도 소련도 부르지 않고. 그런데 이 나라들이 맨 먼저 내세운 것은 «부자가 되자»도 «복수하자»도 아니라 «서로 침략하지 말자»였어. 왜일까? 교과서 자료 1에서 수카르노가 그 답을 말해.</blockquote>
+<blockquote>🎙️ 수카르노의 말을 다시 봐. '유색 인종의 대륙 사이 회의'. 백 년 넘게 유럽 사람들이 '우리가 너희를 다스려야 한다'고 하던 나라들이 처음으로 자기들끼리 모여 세계 문제를 말한 거야. 그것도 미국도 소련도 부르지 않고. 그런데 이 나라들이 맨 먼저 내세운 것은 '부자가 되자'도 '복수하자'도 아니라 '서로 침략하지 말자'였어. 왜일까? 교과서 자료 1에서 수카르노가 그 답을 말해.</blockquote>
 <br>
 <h2>📖 4단계: 세 번째 목소리</h2>
 <blockquote>📕 <strong>교과서 221쪽 본문 마지막 문단 + 「우리 해 보자」 자료 1</strong> 펴고 채우기 · 배정 시간 <strong>8분</strong></blockquote>
 <br>
 <p>제3 세계에 속한 나라들은 1961년부터 정기적으로 회의를 열어 개발 도상국의 이익과 권리를 지키려고 노력하였다. 그리고 국제적으로 영향력을 키워 나가면서 미국과 소련이 이끌던 냉전 체제에 변화를 주었다.</p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 221쪽 · 「우리 해 보자」 자료 1</div><div class="ws-tb-ask">수카르노가 말한 «우리»는 어떤 나라들을 가리키나? 본문에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 221쪽에서 찾기 — 수카르노가 말한 «우리»는 어떤 나라들을 가리키나? 본문에서 찾아 적" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 221쪽 · 「우리 해 보자」 자료 1</div><div class="ws-tb-ask">수카르노가 말한 '우리'는 어떤 나라들을 가리키나? 본문에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 221쪽에서 찾기 — 수카르노가 말한 «우리»는 어떤 나라들을 가리키나? 본문에서 찾아 적" style="width:400px" placeholder=""></div></div>
 <br>
 <blockquote>🎙️ 6-2-2에서 국제 연합을 배웠지? 1945년에 국제 연합을 만든 나라는 51개국이었어. 그런데 20년 뒤에는 회원국이 110개국을 훌쩍 넘었어. 늘어난 나라 대부분이 오늘 본 아시아·아프리카의 새 나라들이야. 국제 연합 총회에서는 큰 나라든 작은 나라든 한 나라에 한 표야. 이 나라들이 모이자 미국도 소련도 이들의 표를 얻으려고 애써야 했어. 두 편만 있던 세계에 세 번째 목소리가 생긴 거지.</blockquote>
 <br>
@@ -1077,10 +1077,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </table>
 <br>
 <h2>💭 더 생각해 보기</h2>
-<p>교과서 221쪽 자료 1에서 수카르노는 «평화가 없다면 우리의 독립은 별 의미가 없다»고 말했다.</p>
+<p>교과서 221쪽 자료 1에서 수카르노는 '평화가 없다면 우리의 독립은 별 의미가 없다'고 말했다.</p>
 <p>네가 1955년에 막 독립한 나라의 대표라고 해 보자. 미국이나 소련 편에 들어가면 <strong>얻는 것</strong> 한 가지와 <strong>잃는 것</strong> 한 가지를 쓰고, 그래도 어느 편에도 서지 않기로 한 까닭을 두세 문장으로 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=6, TOX=5, GT=11;
@@ -1105,7 +1106,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

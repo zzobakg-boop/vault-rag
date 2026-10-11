@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,7 +981,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
@@ -1010,7 +1010,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   </div>
   <br>
 <br>
-<blockquote>📌 <strong>오늘은 두 시간짜리야.</strong> 1교시는 «얼음이 녹기 시작하다», 2교시는 «한쪽이 무너지고, 새 질서가 오다».</blockquote>
+<blockquote>📌 <strong>오늘은 두 시간짜리야.</strong> 1교시는 '얼음이 녹기 시작하다', 2교시는 '한쪽이 무너지고, 새 질서가 오다'.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 두 진영의 대립이 <strong>누그러진 과정</strong>을 파악할 수 있다.</p>
@@ -1028,9 +1028,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>1960년대 이후 냉전 체제에 변화가 나타났다. 공산주의 진영에서는 동유럽 나라들이 소련에 반대하는 운동을 벌였고, 중국과 소련이 이념과 국경 문제로 다투면서 소련의 영향력이 약해졌다. 자본주의 진영에서는 프랑스가 북대서양 조약 기구의 군사 조직에서 빠져나와 자기 길을 걸었고, 미국은 베트남 전쟁에서 어려움을 겪었다. 여기에 제3 세계의 등장, 일본과 서독의 경제 성장이 더해지면서, 국제 질서는 미국과 소련 두 나라가 이끌던 양극 체제에서 여러 나라가 힘을 나누는 ①<input type="text" class="blank-input" data-answer="다극 체제" data-id="1" style="width:100px" placeholder="">로 바뀌어 갔다.</p>
 <br>
-<figure class="ws-fig"><img src="images/7-1-3_SALT.jpg" alt="1979년 6월 오스트리아 빈 — 미국의 카터 대통령(왼쪽)과 소련의 브레즈네프 서기장이 핵무기를 줄이자는 협정에 서명하고 있다. (빌 피츠패트릭 사진, 미국 백악관 · 퍼블릭 도메인)" loading="lazy"><figcaption>1979년 6월 오스트리아 빈 — 미국의 카터 대통령(왼쪽)과 소련의 브레즈네프 서기장이 핵무기를 줄이자는 협정에 서명하고 있다. (빌 피츠패트릭 사진, 미국 백악관 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-1-3_SALT.jpg" alt="1979년 6월 오스트리아 빈 — 미국의 카터 대통령(왼쪽)과 소련의 브레즈네프 서기장이 핵무기를 줄이자는 협정에 서명하고 있다. (빌 피츠패트릭 사진, 미국 백악관)" loading="lazy"><figcaption>1979년 6월 오스트리아 빈 — 미국의 카터 대통령(왼쪽)과 소련의 브레즈네프 서기장이 핵무기를 줄이자는 협정에 서명하고 있다. (빌 피츠패트릭 사진, 미국 백악관)</figcaption></figure>
 <br>
-<blockquote>🎙️ 7-1-1 지도에서 유럽은 파랑과 빨강, 두 색이었지? 그런데 빨강 안에서 가장 큰 두 나라, 소련과 중국이 1969년에는 국경 강가에서 총격전까지 벌였어. 파랑 안에서도 프랑스는 «미국이 시키는 대로만 하지 않겠다»며 나토 군사 조직에서 나갔어. 두 덩어리인 줄 알았는데, 들여다보니 금이 가 있었던 거야. 금이 가니까 오히려 «상대편과도 이야기해 볼까?» 하는 나라가 생겼어.</blockquote>
+<blockquote>🎙️ 7-1-1 지도에서 유럽은 파랑과 빨강, 두 색이었지? 그런데 빨강 안에서 가장 큰 두 나라, 소련과 중국이 1969년에는 국경 강가에서 총격전까지 벌였어. 파랑 안에서도 프랑스는 '미국이 시키는 대로만 하지 않겠다'며 나토 군사 조직에서 나갔어. 두 덩어리인 줄 알았는데, 들여다보니 금이 가 있었던 거야. 금이 가니까 오히려 '상대편과도 이야기해 볼까?' 하는 나라가 생겼어.</blockquote>
 <br>
 <h2>📖 2단계: 탁구공이 연 문</h2>
 <blockquote>📕 <strong>교과서 222쪽 본문 둘째 문단 + 「스포츠와 손잡고」</strong> 펴고 채우기 · 배정 시간 <strong>12분</strong></blockquote>
@@ -1039,18 +1039,18 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 222쪽 · 「스포츠와 손잡고」</div><div class="ws-tb-ask">1971년 미국 탁구 선수단이 중국에서 경기한 뒤, 이듬해 닉슨은 무엇을 하였나? 그리고 이 외교를 무엇이라고 부르나? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 222쪽에서 찾기 — 1971년 미국 탁구 선수단이 중국에서 경기한 뒤, 이듬해 닉슨은 무" style="width:400px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/7-1-3_닉슨마오.jpg" alt="1972년 2월 베이징 — 중국의 마오쩌둥(왼쪽)과 미국의 닉슨 대통령이 악수하고 있다. (미국 국립 기록 관리청 · 퍼블릭 도메인)" loading="lazy"><figcaption>1972년 2월 베이징 — 중국의 마오쩌둥(왼쪽)과 미국의 닉슨 대통령이 악수하고 있다. (미국 국립 기록 관리청 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-1-3_닉슨마오.jpg" alt="1972년 2월 베이징 — 중국의 마오쩌둥(왼쪽)과 미국의 닉슨 대통령이 악수하고 있다." loading="lazy"><figcaption>1972년 2월 베이징 — 중국의 마오쩌둥(왼쪽)과 미국의 닉슨 대통령이 악수하고 있다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 표지의 탁구 선수 이야기, 그냥 우연이었을까? 미국은 베트남 전쟁에서 빠져나올 길을 찾고 있었고, 중국은 국경에서 총을 쏜 소련이 무서웠어. 둘 다 «상대와 손잡을 핑계»가 필요했던 거야. 탁구공은 그 핑계가 되어 줬지. 교과서 222쪽 왼쪽 「한국사 나란히 보기」를 봐. 이 바람이 한반도에도 불어서 1972년 남북이 처음으로 통일 원칙에 합의했어.</blockquote>
+<blockquote>🎙️ 표지의 탁구 선수 이야기, 그냥 우연이었을까? 미국은 베트남 전쟁에서 빠져나올 길을 찾고 있었고, 중국은 국경에서 총을 쏜 소련이 무서웠어. 둘 다 '상대와 손잡을 핑계'가 필요했던 거야. 탁구공은 그 핑계가 되어 줬지. 교과서 222쪽 왼쪽 「한국사 나란히 보기」를 봐. 이 바람이 한반도에도 불어서 1972년 남북이 처음으로 통일 원칙에 합의했어.</blockquote>
 <br>
 <h2>📖 3단계: 스스로 바뀌려다 무너진 나라</h2>
 <blockquote>📕 <strong>교과서 223쪽 「소련의 해체」 + 날개</strong> 펴고 채우기 · 배정 시간 <strong>10분</strong></blockquote>
 <br>
 <p>1970년대 이후 소련에서는 사회가 굳어지고 경제가 침체되었다. 1980년대 중반 소련의 고르바초프는 개혁(③<input type="text" class="blank-input" data-answer="페레스트로이카" data-id="3" style="width:132px" placeholder="">)과 개방(글라스노스트) 정책을 펼쳐 시장 경제 체제를 받아들이고 정치 민주화를 추진하였다. 그는 동유럽 나라들에 간섭하지 않겠다고 하였고, 미국의 부시 대통령과 함께 냉전이 끝났다고 공식적으로 선언하였다(④<input type="text" class="blank-input" data-answer="몰타 회담" data-id="4" style="width:100px" placeholder="">, 1989). 고르바초프의 정책에 반대하여 소련 공산당 세력이 쿠데타를 일으켰다. 이를 막아 내고 권력을 잡은 옐친은 소련을 해체하고 러시아를 중심으로 ⑤<input type="text" class="blank-input" data-answer="독립 국가 연합" data-id="5" style="width:148px" placeholder="">을 만들었다(1991).</p>
 <br>
-<figure class="ws-fig"><img src="images/7-1-3_몰타.jpg" alt="1989년 12월 바다 위 소련 배 안 — 소련의 고르바초프(왼쪽 앞)와 미국의 부시 대통령(오른쪽 앞)이 점심을 함께하며 회담하고 있다. (데이비드 발데스 사진, 미국 백악관 · 퍼블릭 도메인)" loading="lazy"><figcaption>1989년 12월 바다 위 소련 배 안 — 소련의 고르바초프(왼쪽 앞)와 미국의 부시 대통령(오른쪽 앞)이 점심을 함께하며 회담하고 있다. (데이비드 발데스 사진, 미국 백악관 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-1-3_몰타.jpg" alt="1989년 12월 바다 위 소련 배 안 — 소련의 고르바초프(왼쪽 앞)와 미국의 부시 대통령(오른쪽 앞)이 점심을 함께하며 회담하고 있다. (데이비드 발데스 사진, 미국 백악관)" loading="lazy"><figcaption>1989년 12월 바다 위 소련 배 안 — 소련의 고르바초프(왼쪽 앞)와 미국의 부시 대통령(오른쪽 앞)이 점심을 함께하며 회담하고 있다. (데이비드 발데스 사진, 미국 백악관)</figcaption></figure>
 <br>
-<blockquote>🎙️ 고르바초프는 소련을 무너뜨리려던 게 아니라 살리려던 사람이야. 물건이 모자라 가게 앞에 늘 줄이 길었고, 사람들은 정부를 믿지 않았거든. 그래서 «말하고 싶은 것을 말해도 된다»고 문을 열었는데, 문이 열리자 사람들이 정말로 말하기 시작했어. «우리는 소련에서 나가고 싶다.» 1991년 12월 25일, 크렘린 궁 위의 소련 국기가 내려갔어.</blockquote>
+<blockquote>🎙️ 고르바초프는 소련을 무너뜨리려던 게 아니라 살리려던 사람이야. 물건이 모자라 가게 앞에 늘 줄이 길었고, 사람들은 정부를 믿지 않았거든. 그래서 '말하고 싶은 것을 말해도 된다'고 문을 열었는데, 문이 열리자 사람들이 정말로 말하기 시작했어. '우리는 소련에서 나가고 싶다.' 1991년 12월 25일, 크렘린 궁 위의 소련 국기가 내려갔어.</blockquote>
 <br>
 <h1>🕑 2교시 — 한쪽이 무너지고, 새 질서가 오다</h1>
 <br>
@@ -1059,35 +1059,35 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>1980년대 후반에 소련이 동유럽 나라들에 간섭하지 않겠다고 선언하자, 폴란드, 체코슬로바키아, 헝가리 등에서 민주화 운동이 일어나 사회주의 정권이 무너졌다. 이 나라들은 시장 경제 제도를 받아들였다. 이런 분위기 속에서 독일에서는 1989년에 <strong>베를린 장벽</strong>이 무너졌고, 이듬해에 서독이 동독을 흡수하는 방식으로 독일이 통일되었다(1990). 한편 유고슬라비아 연방에서는 1990년대에 여러 나라가 독립하면서 연방이 해체되었고, 이 과정에서 전쟁이 일어나 많은 사람이 희생되었다.</p>
 <br>
-<figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"제가 알기로는… 지금 바로, 지체 없이 효력이 있습니다."</blockquote><figcaption class="sr-c">— 동독 공산당 대변인 샤보프스키가 «새 여행 규정은 언제부터 효력이 있느냐»는 기자의 질문에 한 대답, 동베를린 기자 회견, 1989년 11월 9일</figcaption></figure>
+<figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"제가 알기로는… 지금 바로, 지체 없이 효력이 있습니다."</blockquote><figcaption class="sr-c">— 동독 공산당 대변인 샤보프스키가 '새 여행 규정은 언제부터 효력이 있느냐'는 기자의 질문에 한 대답, 동베를린 기자 회견, 1989년 11월 9일</figcaption></figure>
 <br>
-<figure class="ws-fig"><img src="images/7-1-3_장벽붕괴.jpg" alt="1989년 11월 베를린 브란덴부르크 문 앞 — 사람들이 장벽 위로 올라섰다. 아래 표지판에는 «주의! 당신은 서베를린을 떠나고 있습니다»라는 글자가 남아 있다. (SanFranMan59 사진 · CC BY 3.0)" loading="lazy"><figcaption>1989년 11월 베를린 브란덴부르크 문 앞 — 사람들이 장벽 위로 올라섰다. 아래 표지판에는 «주의! 당신은 서베를린을 떠나고 있습니다»라는 글자가 남아 있다. (SanFranMan59 사진 · CC BY 3.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-1-3_장벽붕괴.jpg" alt="1989년 11월 베를린 브란덴부르크 문 앞 — 사람들이 장벽 위로 올라섰다. 아래 표지판에는 '주의! 당신은 서베를린을 떠나고 있습니다'라는 글자가 남아 있다." loading="lazy"><figcaption>1989년 11월 베를린 브란덴부르크 문 앞 — 사람들이 장벽 위로 올라섰다. 아래 표지판에는 '주의! 당신은 서베를린을 떠나고 있습니다'라는 글자가 남아 있다.</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 223쪽 · 지도 「소련의 해체와 동유럽의 변화」</div><div class="ws-tb-ask">소련에서 떨어져 나온 나라 가운데 <strong>발트해</strong>에 닿아 있는 세 나라를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 223쪽에서 찾기 — 소련에서 떨어져 나온 나라 가운데 발트해에 닿아 있는 세 나라를 적자" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 위 사료의 대답은 사실 실수였어. 다음 날부터 차근차근 시행하려던 규정이었는데, 대변인이 쪽지를 제대로 읽지 못한 채 «지금 바로»라고 말해 버렸거든. 텔레비전으로 이 말을 본 동베를린 사람들이 그날 밤 국경 검문소로 몰려들었고, 명령을 받지 못한 경비병들은 결국 문을 열었어. 7-1-1에서 1961년 하룻밤 사이에 쳐진 철조망 기억나? 28년 뒤, 또 하룻밤 사이에 그 문이 열린 거야.</blockquote>
+<blockquote>🎙️ 위 사료의 대답은 사실 실수였어. 다음 날부터 차근차근 시행하려던 규정이었는데, 대변인이 쪽지를 제대로 읽지 못한 채 '지금 바로'라고 말해 버렸거든. 텔레비전으로 이 말을 본 동베를린 사람들이 그날 밤 국경 검문소로 몰려들었고, 명령을 받지 못한 경비병들은 결국 문을 열었어. 7-1-1에서 1961년 하룻밤 사이에 쳐진 철조망 기억나? 28년 뒤, 또 하룻밤 사이에 그 문이 열린 거야.</blockquote>
 <br>
 <h2>📖 5단계: 검은 고양이든 흰 고양이든</h2>
 <blockquote>📕 <strong>교과서 224쪽 「중국의 개혁과 개방」 + 덩샤오핑 날개</strong> 펴고 채우기 · 배정 시간 <strong>9분</strong></blockquote>
 <br>
 <p>1950년대 말부터 중국은 독자적인 공산주의 경제 정책을 추진하였으나 성과를 거두지 못하였다. 정치적 위기에 빠진 마오쩌둥은 ⑥<input type="text" class="blank-input" data-answer="문화 대혁명" data-id="6" style="width:116px" placeholder="">을 일으켜 자신의 권력을 더욱 강화하려고 하였다. 이후 권력을 잡은 덩샤오핑은 사회주의를 유지하면서 자본주의 요소를 받아들이는 개혁을 진행하였고, 중국 경제는 빠르게 성장하였다. 중국은 경제 성장을 바탕으로 국제 사회에서 영향력을 넓혀 나갔다.</p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 224쪽 · 날개 「시장 경제 체제를 도입한 덩샤오핑」</div><div class="ws-tb-ask">덩샤오핑은 «검은 고양이든 흰 고양이든 쥐만 잘 잡으면 된다»고 말했다. 여기서 «쥐를 잘 잡는다»는 무엇을 뜻하나? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 224쪽에서 찾기 — 덩샤오핑은 «검은 고양이든 흰 고양이든 쥐만 잘 잡으면 된다»고 말했" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 224쪽 · 날개 「시장 경제 체제를 도입한 덩샤오핑」</div><div class="ws-tb-ask">덩샤오핑은 '검은 고양이든 흰 고양이든 쥐만 잘 잡으면 된다'고 말했다. 여기서 '쥐를 잘 잡는다'는 무엇을 뜻하나? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 224쪽에서 찾기 — 덩샤오핑은 «검은 고양이든 흰 고양이든 쥐만 잘 잡으면 된다»고 말했" style="width:400px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/7-1-3_덩샤오핑.jpg" alt="1979년 1월 미국 워싱턴 — 미국을 방문한 중국의 덩샤오핑(가운데)과 카터 대통령(오른쪽). 두 나라가 정식으로 수교한 바로 그달이다. (미국 국립 기록 관리청 · 퍼블릭 도메인)" loading="lazy"><figcaption>1979년 1월 미국 워싱턴 — 미국을 방문한 중국의 덩샤오핑(가운데)과 카터 대통령(오른쪽). 두 나라가 정식으로 수교한 바로 그달이다. (미국 국립 기록 관리청 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-1-3_덩샤오핑.jpg" alt="1979년 1월 미국 워싱턴 — 미국을 방문한 중국의 덩샤오핑(가운데)과 카터 대통령(오른쪽). 두 나라가 정식으로 수교한 바로 그달이다." loading="lazy"><figcaption>1979년 1월 미국 워싱턴 — 미국을 방문한 중국의 덩샤오핑(가운데)과 카터 대통령(오른쪽). 두 나라가 정식으로 수교한 바로 그달이다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 그럼 «고양이 색깔»은 무엇을 가리킬까? 위 칸의 답과 나란히 놓으면 덩샤오핑이 무엇을 먼저 따졌는지 보여. 그 앞 시기에 무슨 일이 있었는지 교과서 224쪽 「우리 해 보자」 자료 1을 봐. 중고등학생 또래들이 «낡은 것을 부수자»며 문화유산을 부수고 선생님을 끌어냈어. 그 십 년을 겪고 난 뒤라 «색깔보다 쥐»라는 말이 힘을 얻었어.</blockquote>
+<blockquote>🎙️ 그럼 '고양이 색깔'은 무엇을 가리킬까? 위 칸의 답과 나란히 놓으면 덩샤오핑이 무엇을 먼저 따졌는지 보여. 그 앞 시기에 무슨 일이 있었는지 교과서 224쪽 「우리 해 보자」 자료 1을 봐. 중고등학생 또래들이 '낡은 것을 부수자'며 문화유산을 부수고 선생님을 끌어냈어. 그 십 년을 겪고 난 뒤라 '색깔보다 쥐'라는 말이 힘을 얻었어.</blockquote>
 <br>
 <h2>📖 6단계: 냉전 뒤의 세계</h2>
 <blockquote>📕 <strong>교과서 224쪽 아래 소제목 + 225쪽 「냉전 이후의 국제 질서」</strong> 펴고 채우기 · 배정 시간 <strong>10분</strong></blockquote>
 <br>
 <p>제2차 세계 대전으로 큰 피해를 입은 유럽 나라들은 1950년대부터 통합을 추진하였다. 냉전 체제가 누그러지면서 통합은 빨라졌고, 그 결과 유럽에서 정치적·경제적 통합을 추구하는 ⑦<input type="text" class="blank-input" data-answer="유럽 연합" data-id="7" style="width:100px" placeholder="">이 만들어졌다(1993). 이 나라들은 여러 문제를 함께 논의하고 유로화를 공동 화폐로 쓰고 있다. 사회주의 진영이 무너진 뒤에는 미국을 비롯한 선진국이 정치와 경제를 이끌었다. 주요 7개국(G7)은 정상 회의를 열어 세계 문제를 논의하고, 1999년에는 신흥 경제국까지 넣은 G20이 생겨 2008년부터 정상 회의를 열고 있다. 21세기에는 크게 성장한 중국이 영향력을 넓히려 하고 미국은 이를 견제하며, 러시아도 소련 시절의 영향력을 되찾으려 하고 있다.</p>
 <br>
-<figure class="ws-fig"><img src="images/7-1-3_유럽연합기.jpg" alt="빈칸 ⑦이 쓰는 깃발 — 파란 바탕에 금색 별 열두 개가 둥글게 놓여 있다. (퍼블릭 도메인)" loading="lazy"><figcaption>빈칸 ⑦이 쓰는 깃발 — 파란 바탕에 금색 별 열두 개가 둥글게 놓여 있다. (퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-1-3_유럽연합기.jpg" alt="빈칸 ⑦이 쓰는 깃발 — 파란 바탕에 금색 별 열두 개가 둥글게 놓여 있다." loading="lazy"><figcaption>빈칸 ⑦이 쓰는 깃발 — 파란 바탕에 금색 별 열두 개가 둥글게 놓여 있다.</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 225쪽 · 사진 「G7 정상 회의」</div><div class="ws-tb-ask">G7에 참여하는 일곱 나라를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 225쪽에서 찾기 — G7에 참여하는 일곱 나라를 적자." style="width:480px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 별이 왜 열두 개일까? 처음 깃발을 만들 때 나라가 열두 개여서가 아니야. 12는 «완전함»을 뜻해서 회원국 수가 바뀌어도 늘 열둘이야. 6-1-1에서 서로 참호를 파고 싸우던 프랑스와 독일이, 6-2-2에서 공동 역사 교과서를 만들었고, 여기서는 같은 돈을 쓰는 사이가 됐어. 세 번의 큰 전쟁을 치른 두 나라가 이렇게 되는 데 백 년 넘게 걸린 셈이야.</blockquote>
+<blockquote>🎙️ 별이 왜 열두 개일까? 처음 깃발을 만들 때 나라가 열두 개여서가 아니야. 12는 '완전함'을 뜻해서 회원국 수가 바뀌어도 늘 열둘이야. 6-1-1에서 서로 참호를 파고 싸우던 프랑스와 독일이, 6-2-2에서 공동 역사 교과서를 만들었고, 여기서는 같은 돈을 쓰는 사이가 됐어. 세 번의 큰 전쟁을 치른 두 나라가 이렇게 되는 데 백 년 넘게 걸린 셈이야.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 어느 흐름의 장면일까</h2>
 <div class="ws-pick" id="pk83"><div class="pk-head"><span>여섯 장면이다. 어느 흐름에 속할까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="얼음이 녹다"><div class="pk-name">베이징의 탁구</div><div class="pk-sit">1971년, 한 나라의 탁구 선수단이 오랫동안 왕래가 없던 나라에 초청받았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="얼음이 녹다">얼음이 녹다</button><button type="button" class="pk-b" data-v="한쪽이 무너지다">한쪽이 무너지다</button><button type="button" class="pk-b" data-v="새 질서">새 질서</button></div><div class="pk-why" hidden>핑퐁 외교 — 이듬해 닉슨이 중국을 방문하였다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="얼음이 녹다"><div class="pk-name">두 독일, 한 회의장</div><div class="pk-sit">1973년, 나뉜 두 나라가 같은 날 국제 연합 회원국이 되었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="얼음이 녹다">얼음이 녹다</button><button type="button" class="pk-b" data-v="한쪽이 무너지다">한쪽이 무너지다</button><button type="button" class="pk-b" data-v="새 질서">새 질서</button></div><div class="pk-why" hidden>동독과 서독이 서로의 체제를 인정하였다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="한쪽이 무너지다"><div class="pk-name">11월의 밤</div><div class="pk-sit">1989년, 사람들이 망치를 들고 콘크리트 벽 위로 올라갔다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="얼음이 녹다">얼음이 녹다</button><button type="button" class="pk-b" data-v="한쪽이 무너지다">한쪽이 무너지다</button><button type="button" class="pk-b" data-v="새 질서">새 질서</button></div><div class="pk-why" hidden>베를린 장벽 붕괴 — 이듬해 독일이 통일되었다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="한쪽이 무너지다"><div class="pk-name">내려간 깃발</div><div class="pk-sit">1991년 12월, 크렘린 궁 위의 붉은 깃발이 내려갔다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="얼음이 녹다">얼음이 녹다</button><button type="button" class="pk-b" data-v="한쪽이 무너지다">한쪽이 무너지다</button><button type="button" class="pk-b" data-v="새 질서">새 질서</button></div><div class="pk-why" hidden>소련 해체 — 독립 국가 연합이 만들어졌다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="새 질서"><div class="pk-name">같은 돈</div><div class="pk-sit">1990년대, 여러 나라가 국경을 넘어 같은 화폐를 쓰기로 했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="얼음이 녹다">얼음이 녹다</button><button type="button" class="pk-b" data-v="한쪽이 무너지다">한쪽이 무너지다</button><button type="button" class="pk-b" data-v="새 질서">새 질서</button></div><div class="pk-why" hidden>유럽 연합 — 유로화를 공동 화폐로 쓴다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="새 질서"><div class="pk-name">스무 나라의 식탁</div><div class="pk-sit">2008년부터 선진국과 신흥국 정상들이 한자리에 모였다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="얼음이 녹다">얼음이 녹다</button><button type="button" class="pk-b" data-v="한쪽이 무너지다">한쪽이 무너지다</button><button type="button" class="pk-b" data-v="새 질서">새 질서</button></div><div class="pk-why" hidden>G20 정상 회의 — 경제 문제를 함께 논의한다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk83");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["얼음이 녹다", "한쪽이 무너지다", "새 질서"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
@@ -1107,6 +1107,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>독일과 한반도는 무엇이 같았고 무엇이 달랐을까? 오늘 배운 내용(냉전의 완화, 소련의 변화, 장벽이 열린 과정)을 하나 이상 근거로 들어 두세 문장으로 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=7, TOX=5, GT=12;
@@ -1131,7 +1132,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

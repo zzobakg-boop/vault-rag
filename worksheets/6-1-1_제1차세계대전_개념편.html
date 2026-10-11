@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -320,7 +320,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -343,7 +343,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -378,15 +378,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -659,9 +659,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -804,9 +804,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -815,7 +815,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -893,7 +893,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -988,7 +988,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -1016,7 +1016,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 .pk-tap { cursor: pointer; }
@@ -1047,7 +1047,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   </div>
   <br>
 <br>
-<blockquote>📌 <strong>오늘은 두 시간짜리야.</strong> 1교시는 «어떻게 시작되었고 어떻게 흘러갔나», 2교시는 «무엇이 달랐고 어떻게 끝났나».</blockquote>
+<blockquote>📌 <strong>오늘은 두 시간짜리야.</strong> 1교시는 '어떻게 시작되었고 어떻게 흘러갔나', 2교시는 '무엇이 달랐고 어떻게 끝났나'.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 제1차 세계 대전의 <strong>배경과 전개 과정</strong>을 설명할 수 있다.</p>
@@ -1069,11 +1069,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>한편 <strong>발칸반도</strong>에서는 오스만 제국의 지배를 받던 여러 민족이 독립하는 과정에서 갈등이 심해졌다. 범게르만주의를 내세운 오스트리아·헝가리 제국이 슬라브족이 사는 보스니아 헤르체고비나를 병합하자, ③<input type="text" class="blank-input" data-answer="범슬라브주의" data-id="3" style="width:116px" placeholder="">를 내세운 세르비아 등과 맞섰다. 이런 가운데 보스니아의 사라예보를 방문한 오스트리아·헝가리 제국의 황태자 부부가 세르비아계 청년에게 암살되었다. 이 일을 <strong>사라예보 사건</strong>이라고 한다. 오스트리아·헝가리 제국이 세르비아에 전쟁을 선포하자, 러시아는 같은 슬라브족인 세르비아를, 독일은 오스트리아·헝가리 제국을 편들면서 <strong>제1차 세계 대전</strong>이 일어났다.</p>
 <br>
-<figure class="ws-fig"><img src="images/6-1-1_사라예보.jpg" alt="1914년 6월 28일 사라예보 시청 앞 — 가운데 밝은 옷을 입은 여성과 오른쪽 깃털 달린 모자를 쓴 남성이 차에 오르는 황태자 부부다. 이 사진을 찍고 얼마 지나지 않아 두 사람은 이 차 안에서 총에 맞았다. (W. 타우슈 사진, 1914 · 퍼블릭 도메인)" loading="lazy"><figcaption>1914년 6월 28일 사라예보 시청 앞 — 가운데 밝은 옷을 입은 여성과 오른쪽 깃털 달린 모자를 쓴 남성이 차에 오르는 황태자 부부다. 이 사진을 찍고 얼마 지나지 않아 두 사람은 이 차 안에서 총에 맞았다. (W. 타우슈 사진, 1914 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-1-1_사라예보.jpg" alt="1914년 6월 28일 사라예보 시청 앞 — 가운데 밝은 옷을 입은 여성과 오른쪽 깃털 달린 모자를 쓴 남성이 차에 오르는 황태자 부부다. 이 사진을 찍고 얼마 지나지 않아 두 사람은 이 차 안에서 총에 맞았다. (W. 타우슈 사진, 1914)" loading="lazy"><figcaption>1914년 6월 28일 사라예보 시청 앞 — 가운데 밝은 옷을 입은 여성과 오른쪽 깃털 달린 모자를 쓴 남성이 차에 오르는 황태자 부부다. 이 사진을 찍고 얼마 지나지 않아 두 사람은 이 차 안에서 총에 맞았다. (W. 타우슈 사진, 1914)</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 185쪽 · 「사라예보 사건」 신문 기사</div><div class="ws-tb-see">기사를 끝까지 읽는다.</div><div class="ws-tb-ask">황태자 부부를 쏜 청년의 <strong>이름</strong>과, 그가 어떤 사람으로 알려졌는지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 185쪽에서 찾기 — 황태자 부부를 쏜 청년의 이름과, 그가 어떤 사람으로 알려졌는지 적자" style="width:300px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 5-1-4에서 독일과 이탈리아가 «같은 민족은 한 나라로»를 외치며 통일했던 거, 기억나? 그 생각이 발칸반도에서는 거꾸로 터졌어. 한쪽은 «게르만족은 모두 한 덩어리로»를 외쳤어. 그럼 세르비아 쪽은 무엇을 외쳤을까? 두 외침이 한 땅에서 부딪친 거야. 그래서 사람들은 발칸반도를 «유럽의 화약고»라고 불렀어. 불꽃 하나면 터질 곳이라는 뜻이지.</blockquote>
+<blockquote>🎙️ 5-1-4에서 독일과 이탈리아가 '같은 민족은 한 나라로'를 외치며 통일했던 거, 기억나? 그 생각이 발칸반도에서는 거꾸로 터졌어. 한쪽은 '게르만족은 모두 한 덩어리로'를 외쳤어. 그럼 세르비아 쪽은 무엇을 외쳤을까? 두 외침이 한 땅에서 부딪친 거야. 그래서 사람들은 발칸반도를 '유럽의 화약고'라고 불렀어. 불꽃 하나면 터질 곳이라는 뜻이지.</blockquote>
 <br>
 <h2>📖 2단계: 움직이지 않는 전선</h2>
 <blockquote>📕 <strong>교과서 186쪽 「제1차 세계 대전의 전개와 결과」 + 지도</strong> 펴고 채우기 · 배정 시간 <strong>12분</strong></blockquote>
@@ -1086,14 +1086,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-pick" id="pk40"><div class="pk-head"><span>전쟁에 뛰어든 여섯 나라다. 어느 편이었을까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="연합국 측"><div class="pk-name">이탈리아</div><div class="pk-sit">전쟁 전에는 독일·오스트리아·헝가리 제국과 손잡고 있었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="연합국 측">연합국 측</button><button type="button" class="pk-b" data-v="동맹국 측">동맹국 측</button></div><div class="pk-why" hidden>전쟁이 시작되자 편을 바꿔 1915년 연합국 편으로 싸웠다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="동맹국 측"><div class="pk-name">오스만 제국</div><div class="pk-sit">발칸반도와 서아시아에 걸친 큰 나라</div><div class="pk-btns"><button type="button" class="pk-b" data-v="연합국 측">연합국 측</button><button type="button" class="pk-b" data-v="동맹국 측">동맹국 측</button></div><div class="pk-why" hidden>러시아와 맞서던 오스만 제국은 독일 편에 섰다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="동맹국 측"><div class="pk-name">불가리아</div><div class="pk-sit">발칸반도의 나라</div><div class="pk-btns"><button type="button" class="pk-b" data-v="연합국 측">연합국 측</button><button type="button" class="pk-b" data-v="동맹국 측">동맹국 측</button></div><div class="pk-why" hidden>발칸 전쟁에서 잃은 땅을 되찾으려고 동맹국 편에 섰다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="연합국 측"><div class="pk-name">일본</div><div class="pk-sit">바다 건너 동아시아의 나라</div><div class="pk-btns"><button type="button" class="pk-b" data-v="연합국 측">연합국 측</button><button type="button" class="pk-b" data-v="동맹국 측">동맹국 측</button></div><div class="pk-why" hidden>영국과 맺은 동맹을 내세워 연합국 편으로 독일에 선전 포고하였다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="연합국 측"><div class="pk-name">미국</div><div class="pk-sit">대서양 건너 중립을 지키던 나라</div><div class="pk-btns"><button type="button" class="pk-b" data-v="연합국 측">연합국 측</button><button type="button" class="pk-b" data-v="동맹국 측">동맹국 측</button></div><div class="pk-why" hidden>독일의 바다 위 공격으로 자국민이 희생되자 1917년 연합국 편으로 참전하였다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="연합국 측"><div class="pk-name">러시아</div><div class="pk-sit">세르비아와 같은 슬라브족의 큰 나라</div><div class="pk-btns"><button type="button" class="pk-b" data-v="연합국 측">연합국 측</button><button type="button" class="pk-b" data-v="동맹국 측">동맹국 측</button></div><div class="pk-why" hidden>세르비아를 지지하며 연합국 편에 섰으나, 혁명이 일어난 뒤 전쟁에서 빠졌다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk40");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["연합국 측", "동맹국 측"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
-<figure class="ws-fig"><img src="images/6-1-1_두편두전선.png" alt="1914~1918년 유럽 지도 — 연합국 측(파랑)과 동맹국 측(주황)이 서쪽과 동쪽 두 줄의 전선에서 맞섰다. ①은 전쟁의 불씨가 된 사라예보, ②는 미국인도 타고 있던 영국 여객선이 가라앉은 곳이다. (자체 제작 · 경계는 historical-basemaps, 해안선은 Natural Earth)" loading="lazy"><figcaption>1914~1918년 유럽 지도 — 연합국 측(파랑)과 동맹국 측(주황)이 서쪽과 동쪽 두 줄의 전선에서 맞섰다. ①은 전쟁의 불씨가 된 사라예보, ②는 미국인도 타고 있던 영국 여객선이 가라앉은 곳이다. (자체 제작 · 경계는 historical-basemaps, 해안선은 Natural Earth)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-1-1_두편두전선.png" alt="1914~1918년 유럽 지도 — 연합국 측(파랑)과 동맹국 측(주황)이 서쪽과 동쪽 두 줄의 전선에서 맞섰다. ①은 전쟁의 불씨가 된 사라예보, ②는 미국인도 타고 있던 영국 여객선이 가라앉은 곳이다." loading="lazy"><figcaption>1914~1918년 유럽 지도 — 연합국 측(파랑)과 동맹국 측(주황)이 서쪽과 동쪽 두 줄의 전선에서 맞섰다. ①은 전쟁의 불씨가 된 사라예보, ②는 미국인도 타고 있던 영국 여객선이 가라앉은 곳이다.</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 186쪽 · 지도 옆 「베르됭 전투(1916)」</div><div class="ws-tb-ask">베르됭 전투는 며칠 동안 이어졌고, 베르됭은 무엇이라고 불리게 되었나? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 186쪽에서 찾기 — 베르됭 전투는 며칠 동안 이어졌고, 베르됭은 무엇이라고 불리게 되었나" style="width:300px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 지도의 ②번, 루시타니아호가 가라앉은 건 <strong>1915년</strong>이야. 그런데 미국이 전쟁에 뛰어든 건 <strong>1917년 4월</strong>이야. 2년이나 걸렸지. 교과서 문장만 보면 배가 가라앉자마자 참전한 것처럼 읽히지만, 미국은 한동안 중립을 지켰어. 1917년 초에 독일이 잠시 멈췄던 그 공격을 다시 시작하고, 독일이 멕시코에 «미국을 함께 치자»는 비밀 전보를 보낸 사실이 들통나면서 미국이 마음을 굳힌 거야.</blockquote>
+<blockquote>🎙️ 지도의 ②번, 루시타니아호가 가라앉은 건 <strong>1915년</strong>이야. 그런데 미국이 전쟁에 뛰어든 건 <strong>1917년 4월</strong>이야. 2년이나 걸렸지. 교과서 문장만 보면 배가 가라앉자마자 참전한 것처럼 읽히지만, 미국은 한동안 중립을 지켰어. 1917년 초에 독일이 잠시 멈췄던 그 공격을 다시 시작하고, 독일이 멕시코에 '미국을 함께 치자'는 비밀 전보를 보낸 사실이 들통나면서 미국이 마음을 굳힌 거야.</blockquote>
 <br>
 <div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.25fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/6-1-1_크리스마스정전.jpg" alt="1914년 크리스마스, 서부 전선 — 독일 병사가 작은 크리스마스트리를 들고 철조망 너머 영국 병사들에게 다가온다. 그해 몇몇 곳에서는 양쪽 병사들이 총을 내려놓고 함께 크리스마스를 보냈다. (프레더릭 빌리어스 그림, 1915 · 퍼블릭 도메인)" loading="lazy"><figcaption>1914년 크리스마스, 서부 전선 — 독일 병사가 작은 크리스마스트리를 들고 철조망 너머 영국 병사들에게 다가온다. 그해 몇몇 곳에서는 양쪽 병사들이 총을 내려놓고 함께 크리스마스를 보냈다. (프레더릭 빌리어스 그림, 1915 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-1-1_크리스마스정전.jpg" alt="1914년 크리스마스, 서부 전선 — 독일 병사가 작은 크리스마스트리를 들고 철조망 너머 영국 병사들에게 다가온다. 그해 몇몇 곳에서는 양쪽 병사들이 총을 내려놓고 함께 크리스마스를 보냈다. (프레더릭 빌리어스 그림, 1915)" loading="lazy"><figcaption>1914년 크리스마스, 서부 전선 — 독일 병사가 작은 크리스마스트리를 들고 철조망 너머 영국 병사들에게 다가온다. 그해 몇몇 곳에서는 양쪽 병사들이 총을 내려놓고 함께 크리스마스를 보냈다. (프레더릭 빌리어스 그림, 1915)</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 표지에서 말한 그 크리스마스이브야. 벨기에 이프르 근처에서 양쪽 진지에 캐럴이 울려 퍼졌어. 말은 달라도 가락이 비슷해서 한쪽이 부르면 다른 쪽이 따라 불렀대. 다음 날 병사들은 구덩이 밖으로 나와 맥주와 먹을 것을 주고받고, 그 사이에 쓰러져 있던 동료들의 시신도 함께 거두었어. 그리고 며칠 뒤, 다시 서로에게 총을 겨눴지. 이만한 규모의 휴전은 그 뒤로 다시 일어나지 않았어.</blockquote>
 </div></div>
@@ -1105,13 +1105,13 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>제1차 세계 대전에서는 그전까지 보지 못하였던 새로운 전쟁의 모습이 나타났다. 군인들은 구덩이 속에서 오랜 시간 버티며 싸웠고, 그 안은 비위생적이어서 전염병이 쉽게 퍼졌다. 19세기에 발달한 과학 기술과 대량 생산 체제는 무기를 만드는 데에도 쓰여, 더욱 강력해진 <strong>기관총</strong>과 <strong>대포</strong>, 그리고 <strong>전투기·탱크·잠수함·독가스</strong> 같은 새로운 무기가 막대한 인명 피해를 남겼다. 또 각국은 나라 안의 사람과 물자를 모두 끌어모아 싸우는 ⑥<input type="text" class="blank-input" data-answer="총력전" data-id="6" style="width:68px" placeholder="">을 펼쳤다. 식민지 사람들도 전쟁에 동원되었고, 여성들은 간호병으로 참전하거나 공장에서 전쟁 물품을 만들었다.</p>
 <br>
-<figure class="ws-fig"><img src="images/6-1-1_참호.jpg" alt="1916년 7월 솜 전투 무렵 영국군의 구덩이 진지 — 한 병사는 총을 들고 밖을 살피고, 다른 병사들은 진흙 바닥에 쓰러지듯 잠들어 있다. 위쪽 흙더미에 철조망이 보인다. (영국군 사진, 1916 · 퍼블릭 도메인)" loading="lazy"><figcaption>1916년 7월 솜 전투 무렵 영국군의 구덩이 진지 — 한 병사는 총을 들고 밖을 살피고, 다른 병사들은 진흙 바닥에 쓰러지듯 잠들어 있다. 위쪽 흙더미에 철조망이 보인다. (영국군 사진, 1916 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-1-1_참호.jpg" alt="1916년 7월 솜 전투 무렵 영국군의 구덩이 진지 — 한 병사는 총을 들고 밖을 살피고, 다른 병사들은 진흙 바닥에 쓰러지듯 잠들어 있다. 위쪽 흙더미에 철조망이 보인다. (영국군 사진, 1916)" loading="lazy"><figcaption>1916년 7월 솜 전투 무렵 영국군의 구덩이 진지 — 한 병사는 총을 들고 밖을 살피고, 다른 병사들은 진흙 바닥에 쓰러지듯 잠들어 있다. 위쪽 흙더미에 철조망이 보인다. (영국군 사진, 1916)</figcaption></figure>
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"가스다! 가스! 빨리, 얘들아! — 허둥지둥 손을 더듬어 / 거추장스러운 방독면을 겨우 제때 뒤집어썼다. / 그런데 누군가는 아직 소리치며 비틀거렸다, / 불 속이나 석회 속에 빠진 사람처럼 허우적대며…"</blockquote><figcaption class="sr-c">— 영국군 장교이자 시인 윌프레드 오언, 「Dulce et Decorum Est」(1917년 씀, 1920년 시집 『Poems』에 실림) 일부, 학습지에서 옮김</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 187쪽 · 아래 세 포스터</div><div class="ws-tb-see">세 나라의 포스터를 나란히 본다.</div><div class="ws-tb-ask">세 포스터는 각각 <strong>누구에게</strong> 무엇을 하라고 부르고 있나? 나라 이름과 함께 한 줄씩 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 187쪽에서 찾기 — 세 포스터는 각각 누구에게 무엇을 하라고 부르고 있나? 나라 이름과" style="width:420px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 오언은 이 시를 쓰고 1년 뒤, 전쟁이 끝나기 딱 일주일 전에 전사했어. 시의 제목은 로마 시인의 말 «조국을 위해 죽는 것은 달콤하고 마땅하다»에서 따왔는데, 오언은 시 끝에서 이 말을 «오래된 거짓말»이라고 불렀어. 위의 포스터들이 젊은이들에게 하던 말과 견주어 봐.</blockquote>
+<blockquote>🎙️ 오언은 이 시를 쓰고 1년 뒤, 전쟁이 끝나기 딱 일주일 전에 전사했어. 시의 제목은 로마 시인의 말 '조국을 위해 죽는 것은 달콤하고 마땅하다'에서 따왔는데, 오언은 시 끝에서 이 말을 '오래된 거짓말'이라고 불렀어. 위의 포스터들이 젊은이들에게 하던 말과 견주어 봐.</blockquote>
 <br>
 <h2>📖 4단계: 전쟁은 끝났지만</h2>
 <blockquote>📕 <strong>교과서 188쪽 본문 + 「우리 해 보자」 + 날개 ③</strong> 펴고 채우기 · 배정 시간 <strong>13분</strong></blockquote>
@@ -1121,7 +1121,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>한편 여러 나라는 국제 평화를 지키려고 ⑧<input type="text" class="blank-input" data-answer="국제 연맹" data-id="8" style="width:100px" placeholder="">을 만들었다. 그러나 미국 등 강대국이 참여하지 않았고 분쟁을 막을 군사적 수단도 없어서, 국제 문제를 해결하는 데 큰 힘을 쓰지 못하였다.</p>
 <br>
 <div class="ws-2c c2-mid c2-card" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.2fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/6-1-1_거울의방.jpg" alt="1919년 6월 28일 베르사유 궁전 거울의 방 — 앞쪽에 등을 보이고 앉아 서명하는 두 사람이 독일 대표다. 맞은편에 앉은 사람들이 이긴 나라의 대표들이다. (윌리엄 오펀 그림, 1919 · 퍼블릭 도메인)" loading="lazy"><figcaption>1919년 6월 28일 베르사유 궁전 거울의 방 — 앞쪽에 등을 보이고 앉아 서명하는 두 사람이 독일 대표다. 맞은편에 앉은 사람들이 이긴 나라의 대표들이다. (윌리엄 오펀 그림, 1919 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-1-1_거울의방.jpg" alt="1919년 6월 28일 베르사유 궁전 거울의 방 — 앞쪽에 등을 보이고 앉아 서명하는 두 사람이 독일 대표다. 맞은편에 앉은 사람들이 이긴 나라의 대표들이다. (윌리엄 오펀 그림, 1919)" loading="lazy"><figcaption>1919년 6월 28일 베르사유 궁전 거울의 방 — 앞쪽에 등을 보이고 앉아 서명하는 두 사람이 독일 대표다. 맞은편에 앉은 사람들이 이긴 나라의 대표들이다. (윌리엄 오펀 그림, 1919)</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 이 방, 5-1-4에서 봤지? 1871년 프랑스를 이긴 독일이 <strong>황제 즉위식</strong>을 열었던 바로 그 거울의 방이야. 48년 뒤 이번에는 이긴 프랑스가 진 독일을 같은 방으로 불러 서명하게 했어. 날짜도 골랐지. 1919년 <strong>6월 28일</strong>, 사라예보에서 총성이 울린 지 꼭 5년째 되는 날이었어.</blockquote>
 </div></div>
@@ -1130,10 +1130,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 188쪽 · 날개 ③ 「윌슨의 14개조 평화 원칙」</div><div class="ws-tb-ask">민족 자결주의는 <strong>어디에만</strong> 적용되었다고 적혀 있나? <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 188쪽에서 찾기 — 민족 자결주의는 어디에만 적용되었다고 적혀 있나?" style="width:240px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 이 «어디에만»이 우리 역사와도 이어져. 1919년 3·1 운동 때 우리 조상들도 민족 자결주의에 희망을 걸었어. 하지만 일본은 이긴 연합국 편이었지. 그 원칙이 우리에게 닿지 않은 까닭이 바로 저 한 줄에 있어.</blockquote>
+<blockquote>🎙️ 이 '어디에만'이 우리 역사와도 이어져. 1919년 3·1 운동 때 우리 조상들도 민족 자결주의에 희망을 걸었어. 하지만 일본은 이긴 연합국 편이었지. 그 원칙이 우리에게 닿지 않은 까닭이 바로 저 한 줄에 있어.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 1914년 여름의 착각</h2>
-<blockquote>전쟁이 시작될 때 사람들은 이 전쟁을 어떻게 상상했을까? 오늘 배운 내용으로 «실제로 벌어진 일» 칸을 채워 보자.</blockquote>
+<blockquote>전쟁이 시작될 때 사람들은 이 전쟁을 어떻게 상상했을까? 오늘 배운 내용으로 '실제로 벌어진 일' 칸을 채워 보자.</blockquote>
 <br>
 <table class="act-table">
 <tr><td>사람들이 예상한 것</td><td>실제로 벌어진 일</td></tr>
@@ -1164,7 +1164,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>💭 더 생각해 보기</h2>
 <div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.5fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/6-1-1_다이슨만평.jpg" alt="1919년 5월 영국 신문에 실린 만평 「평화, 그리고 미래의 총알받이」 — 회의장을 나서는 승전국 지도자 가운데 «호랑이»라는 별명의 프랑스 총리가 «이상하군! 어디서 아이 우는 소리가 들리는 것 같은데!»라고 말한다. 기둥 뒤에서 우는 아이의 머리 위에는 «1940년 징집 대상», 발밑에는 «평화 조약»이라고 적혀 있다. (윌 다이슨 그림, 1919 · 퍼블릭 도메인)" loading="lazy"><figcaption>1919년 5월 영국 신문에 실린 만평 「평화, 그리고 미래의 총알받이」 — 회의장을 나서는 승전국 지도자 가운데 «호랑이»라는 별명의 프랑스 총리가 «이상하군! 어디서 아이 우는 소리가 들리는 것 같은데!»라고 말한다. 기둥 뒤에서 우는 아이의 머리 위에는 «1940년 징집 대상», 발밑에는 «평화 조약»이라고 적혀 있다. (윌 다이슨 그림, 1919 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/6-1-1_다이슨만평.jpg" alt="1919년 5월 영국 신문에 실린 만평 「평화, 그리고 미래의 총알받이」 — 회의장을 나서는 승전국 지도자 가운데 '호랑이'라는 별명의 프랑스 총리가 '이상하군! 어디서 아이 우는 소리가 들리는 것 같은데!'라고 말한다. 기둥 뒤에서 우는 아이의 머리 위에는 '1940년 징집 대상', 발밑에는 '평화 조약'이라고 적혀 있다. (윌 다이슨 그림, 1919)" loading="lazy"><figcaption>1919년 5월 영국 신문에 실린 만평 「평화, 그리고 미래의 총알받이」 — 회의장을 나서는 승전국 지도자 가운데 '호랑이'라는 별명의 프랑스 총리가 '이상하군! 어디서 아이 우는 소리가 들리는 것 같은데!'라고 말한다. 기둥 뒤에서 우는 아이의 머리 위에는 '1940년 징집 대상', 발밑에는 '평화 조약'이라고 적혀 있다. (윌 다이슨 그림, 1919)</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 이 만평이 나온 건 1919년 5월, 조약에 서명하기 한 달 전이야. 우는 아이는 1940년에 군대에 갈 나이가 되는 아이들이야. 실제로 다음 세계 대전은 <strong>1939년</strong>에 시작됐어. 이 만화가는 무엇을 보고 20년 뒤를 내다봤을까?</blockquote>
 </div></div>
@@ -1177,7 +1177,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>🌐 같은 시대, 다른 공간</h2>
 <p>동양사 시간에는 6-3-1·6-3-2에서 같은 1919년 아시아·아프리카의 민족 운동을 배운다.</p>
 <br>
-<div class="ws-pick" id="pk133"><div class="pk-head"><span>두 사건은 서로 영향을 주고받았을까, 그냥 같은 때였을까? 고르면 까닭이 열린다. 까닭 끝의 «건너간 것»을 꼭 보자 — 건너간 것이 있으면 실선, 없으면 점선이다.</span><b class="pk-count">0 / 1</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="영향을 주고받음"><span class="pk-win"><img src="images/6-1-1_거울의방.jpg" alt="파리에서 들려온 소식" loading="lazy"></span><div class="pk-name">파리에서 들려온 소식</div><div class="pk-sit">1919년 1월부터 파리에서 승전국들이 전쟁 뒤처리를 의논하며 «모든 민족은 스스로 운명을 정한다»고 말했다. 같은 해 3월 한국과 이집트, 4월 인도, 5월 중국에서 큰 시위가 일어났다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영향을 주고받음">영향을 주고받음</button><button type="button" class="pk-b" data-v="그냥 같은 때">그냥 같은 때</button></div><div class="pk-why" hidden>그 말이 신문과 전보를 타고 식민지 사람들에게 닿았고, 사람들은 희망을 걸었다. 그러나 회의는 이긴 나라의 식민지에는 그 원칙을 적용하지 않았고, 실망은 운동을 더 키웠다. 건너간 것: 소식과 생각 → 실선.</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk133");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["영향을 주고받음", "그냥 같은 때"],MOOD=false,OPEN=true;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk133"><div class="pk-head"><span>두 사건은 서로 영향을 주고받았을까, 그냥 같은 때였을까? 고르면 까닭이 열린다. 까닭 끝의 '건너간 것'을 꼭 보자 — 건너간 것이 있으면 실선, 없으면 점선이다.</span><b class="pk-count">0 / 1</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="영향을 주고받음"><span class="pk-win"><img src="images/6-1-1_거울의방.jpg" alt="파리에서 들려온 소식" loading="lazy"></span><div class="pk-name">파리에서 들려온 소식</div><div class="pk-sit">1919년 1월부터 파리에서 승전국들이 전쟁 뒤처리를 의논하며 '모든 민족은 스스로 운명을 정한다'고 말했다. 같은 해 3월 한국과 이집트, 4월 인도, 5월 중국에서 큰 시위가 일어났다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영향을 주고받음">영향을 주고받음</button><button type="button" class="pk-b" data-v="그냥 같은 때">그냥 같은 때</button></div><div class="pk-why" hidden>그 말이 신문과 전보를 타고 식민지 사람들에게 닿았고, 사람들은 희망을 걸었다. 그러나 회의는 이긴 나라의 식민지에는 그 원칙을 적용하지 않았고, 실망은 운동을 더 키웠다. 건너간 것: 소식과 생각 → 실선.</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk133");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["영향을 주고받음", "그냥 같은 때"],MOOD=false,OPEN=true;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=8, TOX=5, GT=13;
@@ -1202,7 +1203,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

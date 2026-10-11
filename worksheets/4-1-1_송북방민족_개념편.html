@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,14 +981,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅳ단원 4-1-1 — 칼 대신 붓을 든 나라 (송의 발전과 북방 민족의 성장)</h1><p class="hero-subtitle">칼 대신 붓을 든 나라</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">칼로 세운 나라를 왜 붓으로 다스렸을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">평화를 돈으로 사면 무슨 일이 생길까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">한 나라 안에서 법을 두 가지로 쓸 수 있을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">땅 위의 길이 막히면 상인은 어디로 갈까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>송의 건국과 문치주의</strong> — 조광윤(태조)의 송 건국 · 절도사 권한 약화·황제가 군사권 장악 · 문치주의 · 전시 제도 → 사대부가 새 지배층으로.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>송의 위기와 변화</strong> — 군사력 약화 → 북방 민족의 압박 → 비단·은 제공 → 재정 악화 → 왕안석의 개혁(보수파 반대로 실패) → 금의 공격 → 남송(1127).</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>북방 민족과 정복 왕조</strong> — 거란(요)·탕구트(서하)·여진(금) · 정복 왕조 · 이원적 통치(부족제 + 주현제) · 고유 문자(거란·서하·여진 문자).</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>송의 경제·문화와 바닷길</strong> — 농업·수공업·상업(지폐·동전) · 대도시 · 화약 무기·나침반·활판 인쇄술 · 서민 문화 · 주희의 성리학 · 바닷길 교역 → 동아시아·인도양 교역권 · 시박사.</p></div></div><img class="hero-image" src="images/4-1-1_송북방민족_표지.png" alt=""><div class="hero-hook">960년, 장군 출신 황제가 새 나라를 세웠어. 이듬해 어느 날 밤, 황제는 자기를 황제로 만들어 준 장군들을 불러 술상을 차렸지. 술잔이 몇 번 돌자 황제가 한숨을 쉬었어. «그대들은 믿네. 그런데 그대들의 부하가 어느 날 그대들에게 황제 옷을 입히면 어쩌겠나?» 황제 자신이 바로 그렇게, 부하들이 입혀 준 황제 옷을 입고 황제가 된 사람이었거든. 다음 날 장군들은 모두 몸이 아프다며 군대를 내놓았대. 칼로 세운 나라를 붓으로 다스리겠다는 결심, 오늘은 그 선택이 가져온 빛과 그림자를 따라가 보자.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅳ단원 4-1-1 — 칼 대신 붓을 든 나라 (송의 발전과 북방 민족의 성장)</h1><p class="hero-subtitle">칼 대신 붓을 든 나라</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">칼로 세운 나라를 왜 붓으로 다스렸을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">평화를 돈으로 사면 무슨 일이 생길까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">한 나라 안에서 법을 두 가지로 쓸 수 있을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">땅 위의 길이 막히면 상인은 어디로 갈까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>송의 건국과 문치주의</strong> — 조광윤(태조)의 송 건국 · 절도사 권한 약화·황제가 군사권 장악 · 문치주의 · 전시 제도 → 사대부가 새 지배층으로.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>송의 위기와 변화</strong> — 군사력 약화 → 북방 민족의 압박 → 비단·은 제공 → 재정 악화 → 왕안석의 개혁(보수파 반대로 실패) → 금의 공격 → 남송(1127).</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>북방 민족과 정복 왕조</strong> — 거란(요)·탕구트(서하)·여진(금) · 정복 왕조 · 이원적 통치(부족제 + 주현제) · 고유 문자(거란·서하·여진 문자).</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>송의 경제·문화와 바닷길</strong> — 농업·수공업·상업(지폐·동전) · 대도시 · 화약 무기·나침반·활판 인쇄술 · 서민 문화 · 주희의 성리학 · 바닷길 교역 → 동아시아·인도양 교역권 · 시박사.</p></div></div><img class="hero-image" src="images/4-1-1_송북방민족_표지.png" alt=""><div class="hero-hook">960년, 장군 출신 황제가 새 나라를 세웠어. 이듬해 어느 날 밤, 황제는 자기를 황제로 만들어 준 장군들을 불러 술상을 차렸지. 술잔이 몇 번 돌자 황제가 한숨을 쉬었어. '그대들은 믿네. 그런데 그대들의 부하가 어느 날 그대들에게 황제 옷을 입히면 어쩌겠나?' 황제 자신이 바로 그렇게, 부하들이 입혀 준 황제 옷을 입고 황제가 된 사람이었거든. 다음 날 장군들은 모두 몸이 아프다며 군대를 내놓았대. 칼로 세운 나라를 붓으로 다스리겠다는 결심, 오늘은 그 선택이 가져온 빛과 그림자를 따라가 보자.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/5
@@ -1010,7 +1010,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   </div>
   <br>
 <br>
-<blockquote>📌 <strong>3-1-2에서 배운 당이 무너진 뒤의 중국으로 간다.</strong> 오늘은 두 시간짜리야. 1교시는 «붓을 든 황제와 말 달리는 이웃», 2교시는 «두 가지 다스림과 넓어진 바다».</blockquote>
+<blockquote>📌 <strong>3-1-2에서 배운 당이 무너진 뒤의 중국으로 간다.</strong> 오늘은 두 시간짜리야. 1교시는 '붓을 든 황제와 말 달리는 이웃', 2교시는 '두 가지 다스림과 넓어진 바다'.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 북방 민족이 중국을 <strong>어떻게 다스렸는지</strong> 설명할 수 있다.</p>
@@ -1029,7 +1029,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>당이 멸망한 뒤 중국은 여러 나라로 나뉘었다(5대 10국). 이런 혼란 속에서 절도사 출신인 조광윤(태조)이 송을 세웠다(960). 태조는 중앙군을 황제 바로 아래에 두어 황제의 군사권을 강화하고, 지방 절도사의 권한을 약하게 하였다. 또 문인을 우대하는 ①<input type="text" class="blank-input" data-answer="문치주의" data-id="1" style="width:84px" placeholder="">를 내세우고, 황제가 직접 과거 시험을 주관하는 ②<input type="text" class="blank-input" data-answer="전시" data-id="2" style="width:60px" placeholder=""> 제도를 도입하였다. 그 결과 송대에는 유교 지식을 갖춘 ③<input type="text" class="blank-input" data-answer="사대부" data-id="3" style="width:68px" placeholder=""> 계층이 생겨났다. 이들은 과거에 합격해 문인 관료가 되면서 새로운 사회 지배층으로 성장하였다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.3fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/4-1-1_송태조.jpg" alt="송을 세운 태조의 초상 — 흰 옷에 양옆으로 길게 뻗은 검은 관을 쓰고 붉은 의자에 앉아 있다. (작자 미상 · 타이베이 국립고궁박물원 소장 · 퍼블릭 도메인)" loading="lazy"><figcaption>송을 세운 태조의 초상 — 흰 옷에 양옆으로 길게 뻗은 검은 관을 쓰고 붉은 의자에 앉아 있다. (작자 미상 · 타이베이 국립고궁박물원 소장 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-1_송태조.jpg" alt="송을 세운 태조의 초상 — 흰 옷에 양옆으로 길게 뻗은 검은 관을 쓰고 붉은 의자에 앉아 있다. (작자 미상)" loading="lazy"><figcaption>송을 세운 태조의 초상 — 흰 옷에 양옆으로 길게 뻗은 검은 관을 쓰고 붉은 의자에 앉아 있다. (작자 미상)</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 공무원 시험의 마지막 면접을 대통령이 직접 본다고 생각해 봐. 붙은 사람은 누구한테 고마워할까? 태조가 노린 게 바로 그거야. 송은 그 뒤 시험도 공정하게 하려고 답안지의 이름을 가리고, 글씨체로 누군지 알아보지 못하게 다른 사람이 답안을 옮겨 써서 채점했대. 황제의 눈에 든 실력 있는 신하, 그게 송이 원한 사람이었어.</blockquote>
 </div></div>
@@ -1041,7 +1041,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>글을 아는 관리를 우대하고 군대를 문관이 지휘하게 하면서 송의 군사력은 약해졌다. 그러자 송의 북쪽과 서북쪽에서 성장한 나라들이 송을 압박하였다. 송은 평화를 지키려고 이들에게 많은 양의 비단과 은을 주었고, 이 때문에 나라의 재정이 어려워졌다. 이에 ④<input type="text" class="blank-input" data-answer="왕안석" data-id="4" style="width:68px" placeholder="">이 백성의 생활을 안정시키고 나라를 부유하고 강하게 만들려고 개혁을 시도하였으나, 보수파 관료들의 반대로 실패하였다. 그 뒤 송은 북쪽에서 새로 일어난 나라의 공격을 받아 남쪽으로 수도를 옮겼는데, 이때부터의 송을 ⑤<input type="text" class="blank-input" data-answer="남송" data-id="5" style="width:60px" placeholder="">이라고 한다(1127).</p>
 <br>
-<figure class="ws-fig"><img src="images/4-1-1_은덩이.jpg" alt="송대의 은덩이 — 가운데가 잘록한 모양으로 부어 만든 은. 이런 은과 비단이 해마다 북쪽으로 실려 갔다. (중국 푸젠 박물관 소장 · Gary Todd 사진 · CC0)" loading="lazy"><figcaption>송대의 은덩이 — 가운데가 잘록한 모양으로 부어 만든 은. 이런 은과 비단이 해마다 북쪽으로 실려 갔다. (중국 푸젠 박물관 소장 · Gary Todd 사진 · CC0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-1_은덩이.jpg" alt="송대의 은덩이 — 가운데가 잘록한 모양으로 부어 만든 은. 이런 은과 비단이 해마다 북쪽으로 실려 갔다." loading="lazy"><figcaption>송대의 은덩이 — 가운데가 잘록한 모양으로 부어 만든 은. 이런 은과 비단이 해마다 북쪽으로 실려 갔다.</figcaption></figure>
 <br>
 <blockquote>🎙️ 1004년 송은 북쪽의 거란과 약속을 맺었어. 싸움을 멈추는 대신 해마다 비단 20만 필과 은 10만 냥을 보내기로. 전쟁보다는 싸다고 계산한 거지. 그런데 서북쪽의 다른 나라에도 보내야 했고, 숫자만 많고 약한 군대를 먹여 살리는 비용까지 겹쳤어. 나라 금고가 비어 가니 누군가는 칼을 대야 했지. 그 개혁안이 어떤 내용이었는지 날개 ➊에서 찾아보자.</blockquote>
 <br>
@@ -1052,11 +1052,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>당이 무너지고 중국이 나뉜 틈을 타 북방에서는 여러 민족이 성장하였다. 이들은 강한 군사력을 앞세워 한족 왕조를 압박하였다. 야율아보기는 부족을 통합하여 거란을 세웠다(916). 거란은 발해를 멸망시키고 나라 이름을 요로 고쳤으며, 고려를 공격하고 화북 지방에서 송과 맞섰다. 송의 서북쪽에 살던 탕구트는 ⑥<input type="text" class="blank-input" data-answer="서하" data-id="6" style="width:60px" placeholder="">를 세우고(1038), 동서 무역로를 차지하여 송을 압박하였다. 한편 만주 지역에서는 여진이 성장하여 ⑦<input type="text" class="blank-input" data-answer="금" data-id="7" style="width:60px" placeholder="">을 세웠다(1115). 이 나라는 송과 손잡고 요를 무너뜨린 뒤, 송을 공격하여 남쪽으로 몰아냈다. 이처럼 북방 민족이 중국 땅의 일부나 전부를 차지하여 세운 나라를 ⑧<input type="text" class="blank-input" data-answer="정복 왕조" data-id="8" style="width:100px" placeholder="">라고 한다.</p>
 <br>
-<figure class="ws-fig"><img src="images/4-1-1_거란기마.jpg" alt="사냥에서 돌아오는 북방 기마 민족 — 털 깃을 단 옷을 입은 사람들이 말 위에 앉아 있다. (「회렵도」 일부, 10세기 화가 호괴의 그림으로 전함 · 퍼블릭 도메인)" loading="lazy"><figcaption>사냥에서 돌아오는 북방 기마 민족 — 털 깃을 단 옷을 입은 사람들이 말 위에 앉아 있다. (「회렵도」 일부, 10세기 화가 호괴의 그림으로 전함 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-1_거란기마.jpg" alt="사냥에서 돌아오는 북방 기마 민족 — 털 깃을 단 옷을 입은 사람들이 말 위에 앉아 있다. (「회렵도」 일부, 10세기 화가 호괴의 그림으로 전함)" loading="lazy"><figcaption>사냥에서 돌아오는 북방 기마 민족 — 털 깃을 단 옷을 입은 사람들이 말 위에 앉아 있다. (「회렵도」 일부, 10세기 화가 호괴의 그림으로 전함)</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 110쪽 · 지도 「11세기 동아시아 정세」·「12세기 동아시아 정세」</div><div class="ws-tb-ask">두 지도를 비교해 보자. 송의 수도는 어느 도시에서 어느 도시로 옮겨졌나? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 110쪽에서 찾기 — 두 지도를 비교해 보자. 송의 수도는 어느 도시에서 어느 도시로 옮겨" style="width:300px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 러시아 사람들은 지금도 중국을 «키타이»라고 불러. 마르코 폴로 시절 유럽 사람들은 중국 북쪽을 «카타이»라고 불렀고. 두 이름 모두 «거란»에서 왔어. 거란이 얼마나 오래, 얼마나 크게 북쪽 땅을 차지했으면 이웃들이 그 나라 이름으로 중국을 불렀을까? 그리고 지도에서 송의 수도가 옮겨 간 방향을 봐. 북쪽의 말 탄 이웃들이 송을 어디로 밀어냈는지 한눈에 보이지?</blockquote>
+<blockquote>🎙️ 러시아 사람들은 지금도 중국을 '키타이'라고 불러. 마르코 폴로 시절 유럽 사람들은 중국 북쪽을 '카타이'라고 불렀고. 두 이름 모두 '거란'에서 왔어. 거란이 얼마나 오래, 얼마나 크게 북쪽 땅을 차지했으면 이웃들이 그 나라 이름으로 중국을 불렀을까? 그리고 지도에서 송의 수도가 옮겨 간 방향을 봐. 북쪽의 말 탄 이웃들이 송을 어디로 밀어냈는지 한눈에 보이지?</blockquote>
 <br>
 <h1>🕑 2교시 — 두 가지 다스림과 넓어진 바다</h1>
 <br>
@@ -1068,9 +1068,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>말타기와 활쏘기, 빠른 기동력을 앞세워 한족 땅을 차지한 북방 민족의 나라들은 수가 훨씬 많은 한족을 효율적으로 다스리려고 두 가지 방식을 함께 썼다(이원적 통치). 자기 사람들은 고유의 ⑨<input type="text" class="blank-input" data-answer="부족제" data-id="9" style="width:68px" placeholder="">로 다스리고, 한족은 중국식 통치 방식인 ⑩<input type="text" class="blank-input" data-answer="주현제" data-id="10" style="width:68px" placeholder="">로 다스렸다. 또 이 나라들은 저마다 자기들만의 문자를 만들었다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.2fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/4-1-1_거란문자.jpg" alt="서울 국립중앙박물관에 있는 청동 거울 — 둥근 거울 뒷면에 한자와 닮았지만 다른 북방 민족의 글자가 돋을새김되어 있다. (John S Y Lee 사진 · CC BY-SA 2.0)" loading="lazy"><figcaption>서울 국립중앙박물관에 있는 청동 거울 — 둥근 거울 뒷면에 한자와 닮았지만 다른 북방 민족의 글자가 돋을새김되어 있다. (John S Y Lee 사진 · CC BY-SA 2.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-1_거란문자.jpg" alt="서울 국립중앙박물관에 있는 청동 거울 — 둥근 거울 뒷면에 한자와 닮았지만 다른 북방 민족의 글자가 돋을새김되어 있다." loading="lazy"><figcaption>서울 국립중앙박물관에 있는 청동 거울 — 둥근 거울 뒷면에 한자와 닮았지만 다른 북방 민족의 글자가 돋을새김되어 있다.</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ 위 사료를 다시 읽어 봐. 거란 사람은 «나라의 제도», 한인은 «한의 제도». 말 타고 이동하며 사는 사람과 한곳에 머물러 농사짓는 사람에게 같은 규칙을 들이밀면 둘 다 불편하겠지? 게다가 자기 사람들을 원래 방식대로 묶어 두면 말 탄 군대도 그대로 지킬 수 있었어. 그런데 금은 자기 문화를 지키려 애썼는데도 점점 중국식으로 살게 되면서 군사력이 약해졌대.</blockquote>
+<blockquote>🎙️ 위 사료를 다시 읽어 봐. 거란 사람은 '나라의 제도', 한인은 '한의 제도'. 말 타고 이동하며 사는 사람과 한곳에 머물러 농사짓는 사람에게 같은 규칙을 들이밀면 둘 다 불편하겠지? 게다가 자기 사람들을 원래 방식대로 묶어 두면 말 탄 군대도 그대로 지킬 수 있었어. 그런데 금은 자기 문화를 지키려 애썼는데도 점점 중국식으로 살게 되면서 군사력이 약해졌대.</blockquote>
 </div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 110쪽 · 표 「한자와 북방 민족의 고유 문자」</div><div class="ws-tb-ask">표에 나온 북방 민족의 문자 세 가지를 적자. 그리고 이 나라들이 자기 문자를 따로 만든 까닭은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 110쪽에서 찾기 — 표에 나온 북방 민족의 문자 세 가지를 적자. 그리고 이 나라들이 자" style="width:400px" placeholder=""></div></div>
@@ -1080,11 +1080,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>송대에는 새로운 품종의 벼와 농사 방법이 들어오면서 농업 생산력이 높아졌다. 도자기, 비단 등을 만드는 수공업도 발달하였다. 상업이 활발해지자 지폐와 동전이 쓰였고, 곳곳에서 도시가 발달하였다. 특히 송의 수도는 인구 100만 명이 넘는 대도시로 번성하였다. 과학 기술도 발전하여 여러 발명품이 실생활에서 쓰였고, 이 기술은 뒤에 이슬람 제국을 거쳐 세계 여러 지역으로 전해졌다. 서민들의 생활 수준이 높아지면서 도시에는 오락 시설과 전문 공연장이 들어서 만담, 연극, 무용 같은 공연이 펼쳐졌다. 학문과 사상은 새 지배층인 학자 관료를 중심으로 발전하였다. 12세기 송의 학자 주희는 우주의 원리와 인간의 본성을 탐구하는 ⑪<input type="text" class="blank-input" data-answer="성리학" data-id="11" style="width:68px" placeholder="">을 완성하였고, 이 학문은 중국을 비롯한 동아시아 여러 나라의 통치 이념이 되었다.</p>
 <br>
-<figure class="ws-fig"><img src="images/4-1-1_청명상하도.jpg" alt="「청명상하도」의 다리 장면 — 둥근 나무다리 위아래로 사람과 수레, 배가 붐빈다. (장택단 그림, 12세기 · 베이징 고궁박물원 소장 · 퍼블릭 도메인)" loading="lazy"><figcaption>「청명상하도」의 다리 장면 — 둥근 나무다리 위아래로 사람과 수레, 배가 붐빈다. (장택단 그림, 12세기 · 베이징 고궁박물원 소장 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-1_청명상하도.jpg" alt="「청명상하도」의 다리 장면 — 둥근 나무다리 위아래로 사람과 수레, 배가 붐빈다. (장택단 그림, 12세기)" loading="lazy"><figcaption>「청명상하도」의 다리 장면 — 둥근 나무다리 위아래로 사람과 수레, 배가 붐빈다. (장택단 그림, 12세기)</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 111쪽 · 사진 ➋ 「송대에 발전한 과학 기술」</div><div class="ws-tb-ask">사진 ➋의 세 가지 기술 가운데 전쟁 무기에 쓰인 것과 책을 찍는 데 쓰인 것은 각각 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 111쪽에서 찾기 — 사진 ➋의 세 가지 기술 가운데 전쟁 무기에 쓰인 것과 책을 찍는 데" style="width:300px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 장사가 커지면 돈이 많이 필요하잖아. 그런데 쓰촨 지방은 무거운 쇠돈을 썼어. 물건 하나 사려면 돈 꾸러미를 지고 다녀야 할 정도였지. 그래서 상인들이 «이 종이를 가져오면 쇠돈으로 바꿔 준다»는 증서를 만들어 썼고, 11세기에는 나라가 직접 이 종이돈을 찍어 냈어. 이름은 «교자». 나라가 찍어 낸 지폐로는 세계에서 가장 이른 것으로 꼽혀. 3-2-4에서 본 이슬람 상인의 «약속 종이» 기억나? 같은 고민에서 나온 비슷한 답이야.</blockquote>
+<blockquote>🎙️ 장사가 커지면 돈이 많이 필요하잖아. 그런데 쓰촨 지방은 무거운 쇠돈을 썼어. 물건 하나 사려면 돈 꾸러미를 지고 다녀야 할 정도였지. 그래서 상인들이 '이 종이를 가져오면 쇠돈으로 바꿔 준다'는 증서를 만들어 썼고, 11세기에는 나라가 직접 이 종이돈을 찍어 냈어. 이름은 '교자'. 나라가 찍어 낸 지폐로는 세계에서 가장 이른 것으로 꼽혀. 3-2-4에서 본 이슬람 상인의 '약속 종이' 기억나? 같은 고민에서 나온 비슷한 답이야.</blockquote>
 <br>
 <h2>📖 6단계: 막힌 땅길, 열린 바닷길</h2>
 <blockquote>📕 <strong>교과서 111쪽 「동아시아·인도양 교역권의 성장」 + 지도 ➍</strong> 펴고 채우기 · 배정 시간 <strong>11분</strong></blockquote>
@@ -1093,7 +1093,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>북방 민족이 강해져 육지 길을 이용하기 어려워지자 송은 바닷길을 따라 여러 나라와 교역하였다. 나침반과 항해술의 발달은 이러한 변화를 앞당겼다. 이에 송과 한반도, 일본, 동남아시아, 인도, 아라비아를 잇는 동아시아·인도양 교역권이 성장하였다. 송은 주요 항구에 세금과 무역을 맡는 관청인 ⑫<input type="text" class="blank-input" data-answer="시박사" data-id="12" style="width:68px" placeholder="">를 두어 교역을 관리하였다.</p>
 <br>
-<figure class="ws-fig"><img src="images/4-1-1_취안저우배.jpg" alt="중국 취안저우 앞바다에서 발굴된 송대의 배 — 바닷속 진흙에 묻혀 있던 나무 배의 몸통이 여러 칸으로 나뉜 채 전시관에 놓여 있다. (취안저우 해외교통사박물관 분관 · meckleychina 사진 · CC BY 2.0)" loading="lazy"><figcaption>중국 취안저우 앞바다에서 발굴된 송대의 배 — 바닷속 진흙에 묻혀 있던 나무 배의 몸통이 여러 칸으로 나뉜 채 전시관에 놓여 있다. (취안저우 해외교통사박물관 분관 · meckleychina 사진 · CC BY 2.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-1_취안저우배.jpg" alt="중국 취안저우 앞바다에서 발굴된 송대의 배 — 바닷속 진흙에 묻혀 있던 나무 배의 몸통이 여러 칸으로 나뉜 채 전시관에 놓여 있다." loading="lazy"><figcaption>중국 취안저우 앞바다에서 발굴된 송대의 배 — 바닷속 진흙에 묻혀 있던 나무 배의 몸통이 여러 칸으로 나뉜 채 전시관에 놓여 있다.</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 111쪽 · 지도 ➍ 「송대의 동아시아·인도양 교역권」</div><div class="ws-tb-ask">송이 이슬람 제국에서 들여온 물건 세 가지를 지도에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 111쪽에서 찾기 — 송이 이슬람 제국에서 들여온 물건 세 가지를 지도에서 찾아 적자." style="width:300px" placeholder=""></div></div>
 <br>
@@ -1125,9 +1125,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>💭 더 생각해 보기</h2>
 <p>송은 군사력이 약했지만 300년 넘게 이어졌고, 경제와 문화는 크게 번성했다. 그런데 북방 민족에게 비단과 은을 바치다 결국 수도까지 잃었다.</p>
-<p>송 태조의 «칼 대신 붓» 선택은 성공이었을까, 실패였을까? 오늘 배운 사실을 <strong>두 가지 이상</strong> 근거로 들어 네 판단을 두세 문장으로 써 보자.</p>
+<p>송 태조의 '칼 대신 붓' 선택은 성공이었을까, 실패였을까? 오늘 배운 사실을 <strong>두 가지 이상</strong> 근거로 들어 네 판단을 두세 문장으로 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=12, TOX=5, GT=17;
@@ -1152,7 +1153,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

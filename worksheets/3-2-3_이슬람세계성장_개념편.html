@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -265,7 +265,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -288,7 +288,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -323,15 +323,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-read {
   background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
   border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
@@ -557,9 +557,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -702,9 +702,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -713,7 +713,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -883,7 +883,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -952,7 +952,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>6세기 후반 사산 왕조 페르시아와 비잔티움 제국이 대립하면서 기존 동서 교역로가 막혔다. 상인들이 새 교역로를 찾으면서 아라비아반도의 <strong>메카·메디나</strong>가 무역 중심지로 떠올랐지만, 소수 귀족이 이익을 독차지해 빈부 격차가 심해지고 부족 간 전쟁이 일어났다. 이러한 가운데 7세기 초 메카의 상인 ①<input type="text" class="blank-input" data-answer="무함마드" data-id="1" style="width:84px" placeholder="">가 이슬람교를 정립하였다. 그는 유일신 ②<input type="text" class="blank-input" data-answer="알라" data-id="2" style="width:60px" placeholder="">에게 절대복종해야 한다고 가르쳤고, <em>모든 인간은 신 앞에 ③<input type="text" class="blank-input" data-answer="평등" data-id="3" style="width:60px" placeholder="">하다</em>고 하여 귀족들의 탄압을 받았다. 이에 무함마드와 신도들은 ④<input type="text" class="blank-input" data-answer="메디나" data-id="4" style="width:68px" placeholder="">로 거처를 옮겼다(⑤<input type="text" class="blank-input" data-answer="헤지라" data-id="5" style="width:68px" placeholder="">, 622). 여기서 세력을 키워 이슬람 공동체를 만든 그는 메카를 정복하고 주변을 통일하였다.</p>
 <br>
 <figure class="ws-fig"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/The_Kaaba_during_Hajj_-_edited.jpg/1280px-The_Kaaba_during_Hajj_-_edited.jpg" alt="카바 — 메카의 이슬람교 중심 성소, 둘러싼 수많은 순례자" loading="lazy"><figcaption>카바 — 메카의 이슬람교 중심 성소, 둘러싼 수많은 순례자</figcaption></figure>
-<blockquote>🕋 <strong>카바</strong>(메카). 무함마드가 세운 이슬람교의 중심 성소다. 전 세계 무슬림이 이곳을 향해 기도하고, 해마다 수백만 명이 순례하러 모인다. <em>한 상인의 가르침</em>이 세 대륙으로 퍼진 출발점이 바로 여기다. <em>(© Adli Wahid · Wikimedia · CC BY-SA 4.0)</em></blockquote>
+<blockquote>🕋 <strong>카바</strong>(메카). 무함마드가 세운 이슬람교의 중심 성소다. 전 세계 무슬림이 이곳을 향해 기도하고, 해마다 수백만 명이 순례하러 모인다. <em>한 상인의 가르침</em>이 세 대륙으로 퍼진 출발점이 바로 여기다.</blockquote>
 <br>
 <blockquote>🎙️ 포인트는 <em>'평등'</em>이야. 빈부 격차로 신음하던 사람들에게 "신 앞에선 귀족이나 노예나 똑같다"는 말은 <em>혁명적</em>이었거든. 그래서 가난한 사람·소외된 사람이 모여들었고, 귀족들은 자기 기득권이 흔들리니 박해한 거야. 익숙하지? 과거제(수·당)도, 이슬람교도 — <em>"평등"이라는 한마디가 판을 흔든다.</em></blockquote>
 <br>
@@ -966,7 +966,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>영토가 넓어지며 칼리프 자리를 둘러싸고 분열이 일어났다. 제4대 칼리프 알리가 피살되자 ⑧<input type="text" class="blank-input" data-answer="우마이야" data-id="8" style="width:84px" placeholder=""> 가문이 권력을 잡고 칼리프를 <em>세습</em>하는 왕조를 세웠다(661). 이때 이슬람교도들은 정통성을 두고 ⑨<input type="text" class="blank-input" data-answer="시아파" data-id="9" style="width:68px" placeholder="">와 ⑩<input type="text" class="blank-input" data-answer="수니파" data-id="10" style="width:68px" placeholder="">로 갈라져 대립하였다(오늘날까지 이어짐). 우마이야 왕조는 이베리아반도까지 영토를 넓혔으나, <em>아랍인을 우대</em>해 비아랍 이슬람교도의 불만을 샀다. 결국 ⑪<input type="text" class="blank-input" data-answer="아바스" data-id="11" style="width:68px" placeholder=""> 가문이 이들을 모아 우마이야를 무너뜨리고 새 왕조를 세웠다(750). 아바스 왕조는 민족 차별을 없애고, ⑫<input type="text" class="blank-input" data-answer="탈라스 전투" data-id="12" style="width:116px" placeholder="">에서 당에 승리하여 동서 교역로를 차지하며 국제 무역으로 번영하였다.</p>
 <br>
 <figure class="ws-fig"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Damascus%2C_Syria%2C_The_Umayyad_Mosque%2C_The_Courtyard%2C_Islamic_Art.jpg/1280px-Damascus%2C_Syria%2C_The_Umayyad_Mosque%2C_The_Courtyard%2C_Islamic_Art.jpg" alt="우마이야 대모스크 안뜰 — 금빛 모자이크와 너른 마당" loading="lazy"><figcaption>우마이야 대모스크 안뜰 — 금빛 모자이크와 너른 마당</figcaption></figure>
-<blockquote>🕌 <strong>우마이야 대모스크</strong>(시리아 다마스쿠스). 우마이야 왕조 때 세운 초기 이슬람 건축의 걸작 — 금빛 모자이크와 너른 안뜰에, <em>정복지(비잔티움)의 기술·예술까지 끌어안은</em> 이슬람 세계의 자신감이 담겨 있다. <em>(Wikimedia · CC BY 4.0)</em></blockquote>
+<blockquote>🕌 <strong>우마이야 대모스크</strong>(시리아 다마스쿠스). 우마이야 왕조 때 세운 초기 이슬람 건축의 걸작 — 금빛 모자이크와 너른 안뜰에, <em>정복지(비잔티움)의 기술·예술까지 끌어안은</em> 이슬람 세계의 자신감이 담겨 있다.</blockquote>
 <br>
 <blockquote>🌍 <strong>1,300년을 잇는 분열</strong>: 이때 갈라진 <em>시아파·수니파</em>는 <em>오늘날까지</em> 이어져. 지금도 <strong>수니파가 약 83%로 다수</strong>, 시아파는 소수(이란이 중심)야. <em>이란(시아)–사우디(수니)</em>의 대립 같은 현대 중동 정세의 한 축이 바로 이 7세기 분열에 닿아 있어. (단, 종교만의 문제가 아니라 정치·자원도 얽혀 있다는 건 기억!)</blockquote>
 <br>
@@ -1008,6 +1008,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>다음 시간 예고</h2>
 <p>이슬람 세계가 세 대륙으로 뻗어 가던 바로 그 무렵, 유럽에서는 정반대 일이 벌어진다. 천 년을 버틴 로마의 서쪽이 무너지고 그 폐허에서 새로운 유럽이 자라난다 — 다음 시간 <strong>「유럽 세계의 형성」</strong>.</p>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=12, TOX=0, GT=12;

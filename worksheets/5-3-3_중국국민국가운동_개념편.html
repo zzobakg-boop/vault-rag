@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,14 +981,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-3-3 — 찻잔에서 공화국까지 (중국의 국민 국가 건설 운동)</h1><p class="hero-subtitle">찻잔에서 공화국까지</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">차 한 잔이 어떻게 전쟁이 되었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">땅을 모두 똑같이 나누는 나라는 가능했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">배만 최신식이면 나라가 강해질까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">2천 년 넘게 이어진 황제는 어떻게 사라졌을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>중국의 개항</strong> — 광저우 한 곳 무역 → 차 수입으로 은 유출 → 영국의 아편 밀수출(삼각 무역) → 제1차 아편 전쟁 → 난징 조약(1842, 홍콩·5개 항구·불평등 조약) → 애로호 사건·제2차 아편 전쟁 → 톈진·베이징 조약.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>태평천국 운동</strong> — 홍수전 · 만주족을 몰아내고 한족 국가 · 토지 균등 분배·남녀평등(천조 전무 제도) · 난징을 수도로 · 의용군과 외국 군대에 진압(1864).</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>양무운동과 변법자강 운동</strong> — 이홍장: 서양 기술만 받아들여 부국강병 → 청일 전쟁 패배로 한계 / 캉유웨이: 메이지 유신을 본받아 의회·입헌 군주제 → 보수 세력의 반대로 실패.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>의화단과 신해혁명</strong> — 의화단 «청을 도와 서양 세력을 쫓아내자» → 8개국 연합군·신축 조약 / 쑨원·중국 동맹회·삼민주의 → 철도 국유화 반대 → 우창 봉기 → 신해혁명(1911) → 중화민국(1912) → 위안스카이·군벌.</p></div></div><img class="hero-image" src="images/5-3-3_중국국민국가운동_표지.png" alt=""><div class="hero-hook">1839년, 청의 한 관리가 영국 여왕에게 편지를 썼어. «다른 나라 사람이 당신 나라에 몰래 마약을 가지고 와서 팔고 백성을 꾀어 피우게 한다면, 여왕께서도 몹시 노하시지 않겠습니까?» 여왕이 이 편지를 읽었는지는 알 수 없어. 다만 이듬해 영국 군함이 청의 바다에 나타났지. 그리고 70여 년 뒤, 진시황 이래 2천 년 넘게 이어진 중국의 황제가 사라져. 그 사이에 무슨 일이 있었을까? 중국에서는 언제부터, 왜 황제가 없어졌을까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-3-3 — 찻잔에서 공화국까지 (중국의 국민 국가 건설 운동)</h1><p class="hero-subtitle">찻잔에서 공화국까지</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">차 한 잔이 어떻게 전쟁이 되었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">땅을 모두 똑같이 나누는 나라는 가능했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">배만 최신식이면 나라가 강해질까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">2천 년 넘게 이어진 황제는 어떻게 사라졌을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>중국의 개항</strong> — 광저우 한 곳 무역 → 차 수입으로 은 유출 → 영국의 아편 밀수출(삼각 무역) → 제1차 아편 전쟁 → 난징 조약(1842, 홍콩·5개 항구·불평등 조약) → 애로호 사건·제2차 아편 전쟁 → 톈진·베이징 조약.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>태평천국 운동</strong> — 홍수전 · 만주족을 몰아내고 한족 국가 · 토지 균등 분배·남녀평등(천조 전무 제도) · 난징을 수도로 · 의용군과 외국 군대에 진압(1864).</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>양무운동과 변법자강 운동</strong> — 이홍장: 서양 기술만 받아들여 부국강병 → 청일 전쟁 패배로 한계 / 캉유웨이: 메이지 유신을 본받아 의회·입헌 군주제 → 보수 세력의 반대로 실패.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>의화단과 신해혁명</strong> — 의화단 '청을 도와 서양 세력을 쫓아내자' → 8개국 연합군·신축 조약 / 쑨원·중국 동맹회·삼민주의 → 철도 국유화 반대 → 우창 봉기 → 신해혁명(1911) → 중화민국(1912) → 위안스카이·군벌.</p></div></div><img class="hero-image" src="images/5-3-3_중국국민국가운동_표지.png" alt=""><div class="hero-hook">1839년, 청의 한 관리가 영국 여왕에게 편지를 썼어. '다른 나라 사람이 당신 나라에 몰래 마약을 가지고 와서 팔고 백성을 꾀어 피우게 한다면, 여왕께서도 몹시 노하시지 않겠습니까?' 여왕이 이 편지를 읽었는지는 알 수 없어. 다만 이듬해 영국 군함이 청의 바다에 나타났지. 그리고 70여 년 뒤, 진시황 이래 2천 년 넘게 이어진 중국의 황제가 사라져. 그 사이에 무슨 일이 있었을까? 중국에서는 언제부터, 왜 황제가 없어졌을까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/13 · OX: <span id="ox-score">0</span>/5
@@ -1010,7 +1010,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   </div>
   <br>
 <br>
-<blockquote>📌 <strong>지난 시간(5-3-2)과 이어진다.</strong> 인도 사람들이 영국의 지배에 맞섰지? 영국은 그 인도 땅에서 기른 물건 하나를 배에 싣고 중국으로 갔어. 오늘은 <strong>두 시간짜리</strong>야. 1교시는 «문이 강제로 열리다», 2교시는 «기술이냐, 제도냐, 새 나라냐».</blockquote>
+<blockquote>📌 <strong>지난 시간(5-3-2)과 이어진다.</strong> 인도 사람들이 영국의 지배에 맞섰지? 영국은 그 인도 땅에서 기른 물건 하나를 배에 싣고 중국으로 갔어. 오늘은 <strong>두 시간짜리</strong>야. 1교시는 '문이 강제로 열리다', 2교시는 '기술이냐, 제도냐, 새 나라냐'.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 중국의 <strong>개항 과정</strong>을 설명할 수 있다.</p>
@@ -1029,9 +1029,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>18세기 중반 이후 청은 남쪽 항구 ①<input type="text" class="blank-input" data-answer="광저우" data-id="1" style="width:68px" placeholder=""> 한 곳에서만 서양 나라와의 무역을 허락하였다. 당시 영국은 청의 물건을 사들이느라 많은 양의 은을 내고 있었다. 영국은 무역 적자를 줄이려고 교역을 넓혀 달라고 요구하였으나 청은 이를 거절하였다. 그러자 영국은 인도에서 기른 아편을 청에 몰래 팔기 시작하였다. 그 결과 청에서는 많은 은이 영국으로 빠져나갔고, 많은 사람이 아편에 중독되었다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/5-3-3_아편창고.jpg" alt="인도 파트나의 아편 공장 창고 — 둥글게 뭉친 아편 덩어리를 천장까지 쌓아 두었다. 여기서 만든 아편이 배에 실려 청으로 갔다. (W. S. 셔윌 그림, 1850년 무렵 석판화 · 웰컴 컬렉션 · 퍼블릭 도메인)" loading="lazy"><figcaption>인도 파트나의 아편 공장 창고 — 둥글게 뭉친 아편 덩어리를 천장까지 쌓아 두었다. 여기서 만든 아편이 배에 실려 청으로 갔다. (W. S. 셔윌 그림, 1850년 무렵 석판화 · 웰컴 컬렉션 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-3-3_아편창고.jpg" alt="인도 파트나의 아편 공장 창고 — 둥글게 뭉친 아편 덩어리를 천장까지 쌓아 두었다. 여기서 만든 아편이 배에 실려 청으로 갔다. (W. S. 셔윌 그림, 1850년 무렵 석판화 · 웰컴 컬렉션)" loading="lazy"><figcaption>인도 파트나의 아편 공장 창고 — 둥글게 뭉친 아편 덩어리를 천장까지 쌓아 두었다. 여기서 만든 아편이 배에 실려 청으로 갔다. (W. S. 셔윌 그림, 1850년 무렵 석판화 · 웰컴 컬렉션)</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ 왼쪽 그림의 공 하나하나가 아편 덩어리야. 교과서 172쪽 도식 ①을 봐. 화살표가 세 곳을 한 바퀴 돌지? 영국의 은이 청으로 갔다가, 인도에서 만든 이 덩어리를 타고 다시 영국으로 돌아와. 세 곳을 도는 이런 무역을 «삼각 무역»이라고 해. 장사로는 이득이었지만, 그 덩어리를 산 청 사람들은 몸과 살림을 잃었어.</blockquote>
+<blockquote>🎙️ 왼쪽 그림의 공 하나하나가 아편 덩어리야. 교과서 172쪽 도식 ①을 봐. 화살표가 세 곳을 한 바퀴 돌지? 영국의 은이 청으로 갔다가, 인도에서 만든 이 덩어리를 타고 다시 영국으로 돌아와. 세 곳을 도는 이런 무역을 '삼각 무역'이라고 해. 장사로는 이득이었지만, 그 덩어리를 산 청 사람들은 몸과 살림을 잃었어.</blockquote>
 </div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 172쪽 · 도식 ①</div><div class="ws-tb-ask">도식에서 청이 영국에 판 물건 <strong>세 가지</strong>를 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 172쪽에서 찾기 — 도식에서 청이 영국에 판 물건 세 가지를 찾아 적자." style="width:300px" placeholder=""></div></div>
@@ -1043,11 +1043,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>청이 아편을 몰수하는 등 단속에 나서자, 영국은 이를 구실로 제1차 아편 전쟁을 일으켰다(1840). 전쟁에서 진 청은 영국과 ②<input type="text" class="blank-input" data-answer="난징 조약" data-id="2" style="width:100px" placeholder="">을 맺어 ③<input type="text" class="blank-input" data-answer="홍콩" data-id="3" style="width:60px" placeholder="">을 영국에 넘기고, 상하이를 비롯한 다섯 항구를 열었다(1842). 이 조약에는 청에게 불리한 내용이 여럿 들어 있었고, 청은 이후 미국, 프랑스 등과도 비슷한 조약을 맺었다. 그러나 조약을 맺은 뒤에도 영국의 무역 형편은 나아지지 않았다. 결국 영국은 애로호 사건을 구실로 프랑스와 손잡고 제2차 아편 전쟁을 일으켰다. 여기서도 진 청은 톈진 조약과 베이징 조약을 맺어 항구를 더 열고, 크리스트교 포교와 외국 공사의 베이징 주재 등을 허용하였다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-3-3_네메시스호.jpg" alt="1841년 1월 — 오른쪽 뒤에서 연기를 뿜는 검은 배가 영국의 쇠로 만든 증기선 네메시스호다. 앞쪽에서는 청의 나무 범선이 폭발하고 있다. (에드워드 덩컨 그림, 1843 · 퍼블릭 도메인)" loading="lazy"><figcaption>1841년 1월 — 오른쪽 뒤에서 연기를 뿜는 검은 배가 영국의 쇠로 만든 증기선 네메시스호다. 앞쪽에서는 청의 나무 범선이 폭발하고 있다. (에드워드 덩컨 그림, 1843 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-3-3_네메시스호.jpg" alt="1841년 1월 — 오른쪽 뒤에서 연기를 뿜는 검은 배가 영국의 쇠로 만든 증기선 네메시스호다. 앞쪽에서는 청의 나무 범선이 폭발하고 있다. (에드워드 덩컨 그림, 1843)" loading="lazy"><figcaption>1841년 1월 — 오른쪽 뒤에서 연기를 뿜는 검은 배가 영국의 쇠로 만든 증기선 네메시스호다. 앞쪽에서는 청의 나무 범선이 폭발하고 있다. (에드워드 덩컨 그림, 1843)</figcaption></figure>
 <br>
 <blockquote>🎙️ 그림 오른쪽 뒤의 검은 배 보여? 돛이 아니라 증기 기관으로 움직이는 쇠배야. 길이가 55m쯤 됐고, 멀리 있는 성벽에 구멍을 낼 만한 대포를 달았어. 청의 배는 대부분 바람으로 가는 나무 범선이었고, 실린 대포는 200년쯤 전에 만든 것이라 영국 배까지 닿지도 않았대. 위 사료의 편지를 쓴 관리가 아무리 옳은 말을 해도, 싸움은 시작하기 전에 이미 기울어 있었던 거야.</blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 172쪽 · 가운데 점선 상자</div><div class="ws-tb-ask">점선 상자 네 줄 가운데 «중국 땅에서 죄를 지은 외국인»은 어느 나라 법으로 처벌하나? 이것이 청에게 왜 불리할까? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 172쪽에서 찾기 — 점선 상자 네 줄 가운데 «중국 땅에서 죄를 지은 외국인»은 어느 나" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 172쪽 · 가운데 점선 상자</div><div class="ws-tb-ask">점선 상자 네 줄 가운데 '중국 땅에서 죄를 지은 외국인'은 어느 나라 법으로 처벌하나? 이것이 청에게 왜 불리할까? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 172쪽에서 찾기 — 점선 상자 네 줄 가운데 «중국 땅에서 죄를 지은 외국인»은 어느 나" style="width:400px" placeholder=""></div></div>
 <br>
 <h2>📖 3단계: 모두가 똑같이 나누는 하늘나라</h2>
 <blockquote>📕 <strong>교과서 173쪽 첫 소제목 첫 문단 + 지도 ②</strong> 펴고 채우기 · 배정 시간 <strong>10분</strong></blockquote>
@@ -1056,9 +1056,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"남녀를 따지지 않고 가족의 수를 계산하여 사람이 많으면 많게, 적으면 적게 나누어 준다. …… 밭이 있으면 같이 갈고, 음식이 있으면 같이 먹고, 옷이 있으면 같이 입고, 돈이 있으면 같이 쓴다."</blockquote><figcaption class="sr-c">— 「천조 전무 제도」, 1854년 무렵 · 유인선 외 『사료로 보는 아시아사』 · 지도서 215쪽</figcaption></figure>
 <br>
-<figure class="ws-fig"><img src="images/5-3-3_용포.jpg" alt="이 운동을 이끈 사람이 입었다고 전하는 노란 비단 용포 — 용 무늬는 본래 황제만 쓰던 것이다. 난징의 옛 궁궐 터에 세운 전시관에 있다. (게리 토드 사진 · CC0)" loading="lazy"><figcaption>이 운동을 이끈 사람이 입었다고 전하는 노란 비단 용포 — 용 무늬는 본래 황제만 쓰던 것이다. 난징의 옛 궁궐 터에 세운 전시관에 있다. (게리 토드 사진 · CC0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-3-3_용포.jpg" alt="이 운동을 이끈 사람이 입었다고 전하는 노란 비단 용포 — 용 무늬는 본래 황제만 쓰던 것이다. 난징의 옛 궁궐 터에 세운 전시관에 있다." loading="lazy"><figcaption>이 운동을 이끈 사람이 입었다고 전하는 노란 비단 용포 — 용 무늬는 본래 황제만 쓰던 것이다. 난징의 옛 궁궐 터에 세운 전시관에 있다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 이 운동을 이끈 사람은 과거 시험에 여러 번 떨어진 시골 서당 선생님이었어. 크게 앓고 난 뒤 이상한 꿈을 꾸었는데, 나중에 크리스트교 책을 읽고는 «꿈속의 노인은 하느님, 나는 예수의 동생»이라고 믿게 됐지. 그가 세운 나라는 여자의 발을 작게 묶는 풍습(전족)도 금지했어. 위 사료처럼 땅까지 똑같이 나누겠다고 했으니, 땅 없는 농민들이 몰려들 만하지?</blockquote>
+<blockquote>🎙️ 이 운동을 이끈 사람은 과거 시험에 여러 번 떨어진 시골 서당 선생님이었어. 크게 앓고 난 뒤 이상한 꿈을 꾸었는데, 나중에 크리스트교 책을 읽고는 '꿈속의 노인은 하느님, 나는 예수의 동생'이라고 믿게 됐지. 그가 세운 나라는 여자의 발을 작게 묶는 풍습(전족)도 금지했어. 위 사료처럼 땅까지 똑같이 나누겠다고 했으니, 땅 없는 농민들이 몰려들 만하지?</blockquote>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 173쪽 · 지도 ②</div><div class="ws-tb-ask">지도에서 이 세력의 진로(화살표)가 <strong>가장 북쪽</strong>까지 닿은 곳 가까이의 도시를 적자. 그 도시는 청의 수도 베이징과 가까운가, 먼가? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 173쪽에서 찾기 — 지도에서 이 세력의 진로(화살표)가 가장 북쪽까지 닿은 곳 가까이의" style="width:300px" placeholder=""></div></div>
 <br>
@@ -1069,7 +1069,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>청은 아편 전쟁과 3단계의 반란을 겪으면서 서양 무기가 얼마나 뛰어난지 깨달았다. 이에 ⑥<input type="text" class="blank-input" data-answer="이홍장" data-id="6" style="width:68px" placeholder=""> 등 한족 출신 관료들이 ⑦<input type="text" class="blank-input" data-answer="양무운동" data-id="7" style="width:84px" placeholder="">을 이끌었다. 이들은 중국의 사상과 제도는 그대로 두고, 서양의 기술만 받아들여 나라를 부유하게 하고 군대를 강하게 만들려고 하였다(부국강병). 그래서 서양식 무기를 만드는 군수 공장을 세우고 해군을 길렀다. 그러나 청일 전쟁에서 지면서 그 한계가 드러났다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-3-3_정원호.jpg" alt="1880년대 청의 철갑선 정원호 — 독일에서 만들어 들여온 배로, 당시 아시아에서 가장 강한 군함으로 꼽혔다. (미국 해군 역사 유산 사령부 소장 사진 · 퍼블릭 도메인)" loading="lazy"><figcaption>1880년대 청의 철갑선 정원호 — 독일에서 만들어 들여온 배로, 당시 아시아에서 가장 강한 군함으로 꼽혔다. (미국 해군 역사 유산 사령부 소장 사진 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-3-3_정원호.jpg" alt="1880년대 청의 철갑선 정원호 — 독일에서 만들어 들여온 배로, 당시 아시아에서 가장 강한 군함으로 꼽혔다." loading="lazy"><figcaption>1880년대 청의 철갑선 정원호 — 독일에서 만들어 들여온 배로, 당시 아시아에서 가장 강한 군함으로 꼽혔다.</figcaption></figure>
 <br>
 <blockquote>🎙️ 1886년 여름, 이 배를 앞세운 청의 군함 네 척이 일본 나가사키 항에 들어갔어. 일본 사람들은 그 크기에 깜짝 놀랐지. 그런데 8년 뒤 청일 전쟁에서 이 함대는 일본 해군에 무너졌어. 배는 최신식이었는데, 무엇이 모자랐을까? 아래 칸에서 찾아보자.</blockquote>
 <br>
@@ -1082,11 +1082,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>열강이 중국의 이권을 빼앗는 일이 심해지자 중국 사람들의 반외세 감정이 더욱 커졌다. 비밀 결사인 ⑩<input type="text" class="blank-input" data-answer="의화단" data-id="10" style="width:68px" placeholder="">은 "청을 도와 서양 세력을 쫓아내자."라는 구호를 내걸고 선교사, 교회, 철도 등을 공격하였다(1899). 이들은 베이징까지 들어갔으나 영국, 일본을 비롯한 8개국 연합군에 진압되었다. 청 정부는 열강의 요구에 따라 신축 조약을 맺고 배상금을 물었다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-3-3_연합군.jpg" alt="1900년 11월 베이징 자금성 — 여러 나라에서 온 군대가 황제의 궁궐 안으로 줄지어 들어가고 있다. (퍼블릭 도메인)" loading="lazy"><figcaption>1900년 11월 베이징 자금성 — 여러 나라에서 온 군대가 황제의 궁궐 안으로 줄지어 들어가고 있다. (퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-3-3_연합군.jpg" alt="1900년 11월 베이징 자금성 — 여러 나라에서 온 군대가 황제의 궁궐 안으로 줄지어 들어가고 있다." loading="lazy"><figcaption>1900년 11월 베이징 자금성 — 여러 나라에서 온 군대가 황제의 궁궐 안으로 줄지어 들어가고 있다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 제도를 바꾸자는 개혁은 겨우 100일 남짓 만에 끝났어. 개혁을 밀어준 젊은 황제는 궁궐 연못 안 작은 섬에 갇혔고, 개혁을 이끈 사람들은 외국으로 달아났지. 그리고 이듬해부터 이번에는 아래에서 «서양을 몰아내자»는 사람들이 일어났어. 이들이 맨손 무술을 익힌다고 해서 서양 사람들은 이들을 «복서(권투 선수)»라고 불렀어. 위 사진의 군대가 황제의 궁궐까지 들어온 것이 그 끝이었지.</blockquote>
+<blockquote>🎙️ 제도를 바꾸자는 개혁은 겨우 100일 남짓 만에 끝났어. 개혁을 밀어준 젊은 황제는 궁궐 연못 안 작은 섬에 갇혔고, 개혁을 이끈 사람들은 외국으로 달아났지. 그리고 이듬해부터 이번에는 아래에서 '서양을 몰아내자'는 사람들이 일어났어. 이들이 맨손 무술을 익힌다고 해서 서양 사람들은 이들을 '복서(권투 선수)'라고 불렀어. 위 사진의 군대가 황제의 궁궐까지 들어온 것이 그 끝이었지.</blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 173쪽 · 「우리 해 보자」 세 사람의 말풍선</div><div class="ws-tb-ask">세 사람 가운데 «만주족을 몰아내자»고 말하는 사람은 누구인가? 나머지 두 사람과 청 정부를 대하는 생각이 어떻게 다른가? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 173쪽에서 찾기 — 세 사람 가운데 «만주족을 몰아내자»고 말하는 사람은 누구인가? 나머" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 173쪽 · 「우리 해 보자」 세 사람의 말풍선</div><div class="ws-tb-ask">세 사람 가운데 '만주족을 몰아내자'고 말하는 사람은 누구인가? 나머지 두 사람과 청 정부를 대하는 생각이 어떻게 다른가? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 173쪽에서 찾기 — 세 사람 가운데 «만주족을 몰아내자»고 말하는 사람은 누구인가? 나머" style="width:400px" placeholder=""></div></div>
 <br>
 <h2>📖 6단계: 2천 년 황제가 사라지다</h2>
 <blockquote>📕 <strong>교과서 174쪽 본문 둘째 문단부터 + 지도 ④ + 「궁금해 이 인물!」</strong> 펴고 채우기 · 배정 시간 <strong>12분</strong></blockquote>
@@ -1095,14 +1095,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>청 정부는 위안스카이를 보내 혁명 세력을 누르려 하였으나, 그는 오히려 혁명 세력과 타협하고 청 황제를 물러나게 하였다. 이후 중화민국의 대총통이 된 위안스카이는 혁명 세력을 탄압하고 스스로 황제라 칭하였으나 곧 병으로 죽었다. 그 뒤 중국 곳곳에 군대를 거느린 군벌 세력이 나타나 중화민국은 한동안 혼란을 겪었다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-3-3_우창군정부.jpg" alt="1911년 10월 우창 — 봉기에 성공한 군인들이 세운 군정부 건물 앞이다. 군인들 뒤로 노란 동그라미 18개가 그려진 깃발 두 장이 걸려 있다. (퍼블릭 도메인)" loading="lazy"><figcaption>1911년 10월 우창 — 봉기에 성공한 군인들이 세운 군정부 건물 앞이다. 군인들 뒤로 노란 동그라미 18개가 그려진 깃발 두 장이 걸려 있다. (퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-3-3_우창군정부.jpg" alt="1911년 10월 우창 — 봉기에 성공한 군인들이 세운 군정부 건물 앞이다. 군인들 뒤로 노란 동그라미 18개가 그려진 깃발 두 장이 걸려 있다." loading="lazy"><figcaption>1911년 10월 우창 — 봉기에 성공한 군인들이 세운 군정부 건물 앞이다. 군인들 뒤로 노란 동그라미 18개가 그려진 깃발 두 장이 걸려 있다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 사진 속 깃발의 별은 모두 18개야. 중국 본토의 18개 성(省)을 뜻해. «만주족의 청을 몰아내고 한족의 나라를 다시 세우자»는 뜻이었지. 그런데 이듬해 새 나라는 깃발을 다섯 색 줄무늬로 바꿨어. 한족·만주족·몽골족·후이족(이슬람교도)·티베트족, 다섯 민족이 함께 사는 나라라는 뜻이야. 깃발이 바뀌는 사이에 «이 나라는 누구의 나라인가»라는 질문의 답이 바뀐 거야.</blockquote>
+<blockquote>🎙️ 사진 속 깃발의 별은 모두 18개야. 중국 본토의 18개 성(省)을 뜻해. '만주족의 청을 몰아내고 한족의 나라를 다시 세우자'는 뜻이었지. 그런데 이듬해 새 나라는 깃발을 다섯 색 줄무늬로 바꿨어. 한족·만주족·몽골족·후이족(이슬람교도)·티베트족, 다섯 민족이 함께 사는 나라라는 뜻이야. 깃발이 바뀌는 사이에 '이 나라는 누구의 나라인가'라는 질문의 답이 바뀐 거야.</blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 174쪽 · 「궁금해 이 인물!」</div><div class="ws-tb-ask">세 가지 원칙 가운데 «공화제 국가를 세우는 것»은 무엇이고, «토지를 고르게 나누어 사람들의 생활을 안정시키는 것»은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 174쪽에서 찾기 — 세 가지 원칙 가운데 «공화제 국가를 세우는 것»은 무엇이고, «토지" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 174쪽 · 「궁금해 이 인물!」</div><div class="ws-tb-ask">세 가지 원칙 가운데 '공화제 국가를 세우는 것'은 무엇이고, '토지를 고르게 나누어 사람들의 생활을 안정시키는 것'은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 174쪽에서 찾기 — 세 가지 원칙 가운데 «공화제 국가를 세우는 것»은 무엇이고, «토지" style="width:400px" placeholder=""></div></div>
 <br>
 <h2>✏️ 활동 1 — 세 운동의 지향점 비교표</h2>
-<blockquote>교과서 173쪽 「우리 해 보자」의 세 사람 말풍선과 오늘 채운 본문을 보고 칸을 채우자. «서양의 무엇을 받아들이려 했나», «청 정부를 어떻게 하려 했나»를 중심으로 본다.</blockquote>
+<blockquote>교과서 173쪽 「우리 해 보자」의 세 사람 말풍선과 오늘 채운 본문을 보고 칸을 채우자. '서양의 무엇을 받아들이려 했나', '청 정부를 어떻게 하려 했나'를 중심으로 본다.</blockquote>
 <br>
 <table class="act-table">
 <tr><td>운동</td><td>서양의 무엇을 받아들이려 했나</td><td>청 정부를 어떻게 하려 했나</td></tr>
@@ -1125,10 +1125,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </table>
 <br>
 <h2>💭 더 생각해 보기</h2>
-<p>표지에서 «중국에서는 언제부터, 왜 황제가 없어졌을까?»라고 물었다. 오늘 본 운동은 <strong>기술만 바꾸자 → 제도까지 바꾸자 → 나라를 새로 세우자</strong>로 점점 깊어졌다.</p>
+<p>표지에서 '중국에서는 언제부터, 왜 황제가 없어졌을까?'라고 물었다. 오늘 본 운동은 <strong>기술만 바꾸자 → 제도까지 바꾸자 → 나라를 새로 세우자</strong>로 점점 깊어졌다.</p>
 <p>왜 이런 순서로 깊어졌을까? 앞의 방법이 무엇 때문에 실패했는지를 하나 이상 근거로 들어 두세 문장으로 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=13, TOX=5, GT=18;
@@ -1153,7 +1154,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

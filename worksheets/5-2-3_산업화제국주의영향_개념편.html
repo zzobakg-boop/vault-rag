@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,7 +981,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
@@ -1032,7 +1032,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 166쪽 · 베트남 호찌민의 두 건물 사진</div><div class="ws-tb-ask">베트남에 유럽풍 건물이 많이 남아 있는 까닭을 사진 설명에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 166쪽에서 찾기 — 베트남에 유럽풍 건물이 많이 남아 있는 까닭을 사진 설명에서 찾아 적" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 기차가 생기기 전에는 마을마다 시계가 달랐어. 해가 가장 높이 뜬 때가 그 마을의 정오였거든. 그런데 기차 시간표를 짜려면 그게 곤란하잖아. 그래서 1884년 여러 나라 대표가 모여 «경도 0도»를 어디로 할지 정했고, 당시 바다를 가장 많이 누비던 나라의 천문대가 뽑혔어.</blockquote>
+<blockquote>🎙️ 기차가 생기기 전에는 마을마다 시계가 달랐어. 해가 가장 높이 뜬 때가 그 마을의 정오였거든. 그런데 기차 시간표를 짜려면 그게 곤란하잖아. 그래서 1884년 여러 나라 대표가 모여 '경도 0도'를 어디로 할지 정했고, 당시 바다를 가장 많이 누비던 나라의 천문대가 뽑혔어.</blockquote>
 <blockquote>우리나라 시계는 어떨까? 1908년 대한 제국은 서울 근처를 지나는 <strong>동경 127.5도</strong>에 맞춘 기준 시간을 정했어. 그런데 1912년 일제가 일본 쪽 <strong>동경 135도</strong>로 바꿨지. 광복 뒤 1954년에 되돌렸다가 1961년에 다시 135도로 바뀌어 지금까지 쓰고 있어. 우리 휴대폰 시계에도 제국주의 시대의 흔적이 남아 있는 셈이야.</blockquote>
 <br>
 <h2>📖 2단계: 고향을 떠난 수많은 사람</h2>
@@ -1041,10 +1041,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>산업화가 진행되면서 ④<input type="text" class="blank-input" data-answer="도시" data-id="4" style="width:60px" placeholder="">의 인구가 폭발적으로 늘었다. 특히 수도를 비롯해 공장이 많이 들어선 곳의 인구가 크게 늘었다. 사람들은 점차 나라 안에서뿐 아니라 <strong>바다 건너</strong>로도 옮겨 가기 시작했다. 20세기 초까지 수많은 사람이 유럽을 떠나 <strong>아메리카</strong> 대륙의 여러 나라와 오스트레일리아, 뉴질랜드 등으로 이주하여 새로운 삶을 시작하였다.</p>
 <br>
 <div class="ws-2c c2-mid c2-card" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.3fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/5-2-3_엘리스섬.jpg" alt="1904년 미국 뉴욕 엘리스섬의 이민자 심사장 — 증기선에서 막 내린 사람들이 줄을 서서 입국 심사를 기다리고 있다. 많은 날에는 하루에 수천 명이 이 건물을 지나갔다. (언더우드 앤드 언더우드 사진 · 미국 의회 도서관 · 퍼블릭 도메인)" loading="lazy"><figcaption>1904년 미국 뉴욕 엘리스섬의 이민자 심사장 — 증기선에서 막 내린 사람들이 줄을 서서 입국 심사를 기다리고 있다. 많은 날에는 하루에 수천 명이 이 건물을 지나갔다. (언더우드 앤드 언더우드 사진 · 미국 의회 도서관 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-2-3_엘리스섬.jpg" alt="1904년 미국 뉴욕 엘리스섬의 이민자 심사장 — 증기선에서 막 내린 사람들이 줄을 서서 입국 심사를 기다리고 있다. 많은 날에는 하루에 수천 명이 이 건물을 지나갔다." loading="lazy"><figcaption>1904년 미국 뉴욕 엘리스섬의 이민자 심사장 — 증기선에서 막 내린 사람들이 줄을 서서 입국 심사를 기다리고 있다. 많은 날에는 하루에 수천 명이 이 건물을 지나갔다.</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 왜 고향을 떠났을까? 땅을 잃은 농민, 공장에서 일자리를 못 구한 사람, 감자 흉년으로 굶주린 아일랜드 사람들, 종교 때문에 쫓겨난 사람들…. 증기선 덕분에 대서양을 건너는 데 몇 달이 아니라 일주일에서 열흘이면 됐어. 그렇게 건너간 사람들이 지금의 미국·캐나다·오스트레일리아를 만들었지.</blockquote>
-<blockquote>그런데 그 땅에는 원래 사는 사람들이 있었어. 5-1-4에서 본 «눈물의 길», 기억나?</blockquote>
+<blockquote>그런데 그 땅에는 원래 사는 사람들이 있었어. 5-1-4에서 본 '눈물의 길', 기억나?</blockquote>
 </div></div>
 <br>
 <h2>📖 3단계: 토끼 몇 마리가 바꾼 대륙</h2>
@@ -1056,12 +1056,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 167쪽 · 만화 「오스트레일리아의 토끼」</div><div class="ws-tb-ask">오스트레일리아에서 토끼의 수가 계속 늘어나는 까닭은 무엇이라고 했나? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 167쪽에서 찾기 — 오스트레일리아에서 토끼의 수가 계속 늘어나는 까닭은 무엇이라고 했나?" style="width:340px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/5-2-3_토끼.jpg" alt="1938년 오스트레일리아 와르당섬의 웅덩이 — 물을 마시러 몰려든 토끼들이다. 원래 오스트레일리아에는 토끼가 살지 않았다. (작자 미상 · 퍼블릭 도메인)" loading="lazy"><figcaption>1938년 오스트레일리아 와르당섬의 웅덩이 — 물을 마시러 몰려든 토끼들이다. 원래 오스트레일리아에는 토끼가 살지 않았다. (작자 미상 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/5-2-3_토끼.jpg" alt="1938년 오스트레일리아 와르당섬의 웅덩이 — 물을 마시러 몰려든 토끼들이다. 원래 오스트레일리아에는 토끼가 살지 않았다. (작자 미상)" loading="lazy"><figcaption>1938년 오스트레일리아 와르당섬의 웅덩이 — 물을 마시러 몰려든 토끼들이다. 원래 오스트레일리아에는 토끼가 살지 않았다. (작자 미상)</figcaption></figure>
 <br>
 <blockquote>🎙️ 1859년 크리스마스 무렵, 사냥을 좋아하던 한 영국인 이주자가 고향에서 들여온 토끼 스물네 마리를 자기 농장에 풀었어. 사냥감을 늘리려던 거야. 그런데 오스트레일리아에는 토끼를 잡아먹을 동물이 거의 없었지. 몇십 년 만에 토끼는 셀 수 없이 불어나 풀을 다 먹어 치웠어. 사람들은 대륙을 가로지르는 수천 km의 울타리를 쳤고, 나중에는 토끼만 걸리는 병까지 퍼뜨렸지만, 살아남은 토끼들이 다시 늘어났어. 지금도 이 싸움은 끝나지 않았어.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 경도 0도가 정오일 때 서울은 몇 시?</h2>
-<blockquote>1단계에서 찾은 «경도 몇 도마다 1시간»과 입담을 함께 쓰자. (영국은 여름에 시계를 한 시간 당기므로, 여기서는 런던의 시계가 아니라 «경도 0도의 표준시»로 계산한다.)</blockquote>
+<blockquote>1단계에서 찾은 '경도 몇 도마다 1시간'과 입담을 함께 쓰자. (영국은 여름에 시계를 한 시간 당기므로, 여기서는 런던의 시계가 아니라 '경도 0도의 표준시'로 계산한다.)</blockquote>
 <br>
 <table class="act-table">
 <tr><td>따져 볼 것</td><td>내 답</td></tr>
@@ -1091,6 +1091,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>이런 일이 왜 일어나는지 오늘 배운 토끼 이야기와 엮어 설명하고, 이를 막으려면 무엇을 해야 할지 두세 문장으로 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=5, TOX=3, GT=8;
@@ -1115,7 +1116,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

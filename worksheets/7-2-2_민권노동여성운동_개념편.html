@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,14 +981,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅶ단원 7-2-2 — 버스 한 자리에서 시작된 평등 (민권 운동과 노동 운동, 여성 운동)</h1><p class="hero-subtitle">버스 한 자리에서 시작된 평등</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">버스 자리 하나가 왜 큰 사건이 되었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">피부색으로 사는 곳을 나눈 나라가 있었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">일하는 사람의 권리는 누가 지켜 줄까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">여성의 평등은 어떻게 넓어졌을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>미국의 민권 운동</strong> — 노예제 폐지 뒤에도 남부의 법적 분리 → 몽고메리 버스 승차 거부 운동(1955, 로자 파크스) → 마틴 루서 킹·워싱턴 행진(1963) → 민권법(1964)으로 법적 차별 철폐.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>남아프리카 공화국의 민권 운동</strong> — 백인 정권의 아파르트헤이트(인종 분리·거주 지역 분리) → 넬슨 만델라의 흑인 민권 운동·종신형 → 1990년 석방 → 1990년대 폐지 · 1994년 흑인 최초 대통령.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>노동 운동</strong> — 노동 환경·처우 개선 요구 · 노동자·기업가·정부의 회의체 → 국제 노동 기구(1919, 국제 연맹 → 국제 연합 전문 기관) → 노동 기본 원칙과 권리선언(1998, 2022 개정).</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>여성 운동</strong> — 민권 운동의 영향 · 베티 프리단 『여성의 신비』(1963) → 교육·임신과 출산·고용 차별 반대 → 영국 차별 금지법(1970년대) · 미국 평등권 개정안 → 여성의 권리 신장.</p></div></div><img class="hero-image" src="images/7-2-2_민권노동여성운동_표지.png" alt=""><div class="hero-hook">1955년 12월 1일 저녁, 미국 앨라배마주의 도시 몽고메리. 백화점에서 하루 종일 옷을 고치는 일을 마친 마흔두 살 흑인 여성이 퇴근 버스에 올라 자리에 앉았어. 정류장을 몇 개 지나 백인 승객이 늘어나자, 운전사는 그 줄에 앉은 흑인 네 사람에게 자리를 비우라고 했지. 세 사람은 일어섰어. 그런데 그녀는 일어나지 않았어. 이 «앉아 있기» 하나가 미국을, 그리고 세계를 어떻게 바꿨는지 오늘 따라가 보자.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅶ단원 7-2-2 — 버스 한 자리에서 시작된 평등 (민권 운동과 노동 운동, 여성 운동)</h1><p class="hero-subtitle">버스 한 자리에서 시작된 평등</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">버스 자리 하나가 왜 큰 사건이 되었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">피부색으로 사는 곳을 나눈 나라가 있었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">일하는 사람의 권리는 누가 지켜 줄까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">여성의 평등은 어떻게 넓어졌을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>미국의 민권 운동</strong> — 노예제 폐지 뒤에도 남부의 법적 분리 → 몽고메리 버스 승차 거부 운동(1955, 로자 파크스) → 마틴 루서 킹·워싱턴 행진(1963) → 민권법(1964)으로 법적 차별 철폐.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>남아프리카 공화국의 민권 운동</strong> — 백인 정권의 아파르트헤이트(인종 분리·거주 지역 분리) → 넬슨 만델라의 흑인 민권 운동·종신형 → 1990년 석방 → 1990년대 폐지 · 1994년 흑인 최초 대통령.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>노동 운동</strong> — 노동 환경·처우 개선 요구 · 노동자·기업가·정부의 회의체 → 국제 노동 기구(1919, 국제 연맹 → 국제 연합 전문 기관) → 노동 기본 원칙과 권리선언(1998, 2022 개정).</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>여성 운동</strong> — 민권 운동의 영향 · 베티 프리단 『여성의 신비』(1963) → 교육·임신과 출산·고용 차별 반대 → 영국 차별 금지법(1970년대) · 미국 평등권 개정안 → 여성의 권리 신장.</p></div></div><img class="hero-image" src="images/7-2-2_민권노동여성운동_표지.png" alt=""><div class="hero-hook">1955년 12월 1일 저녁, 미국 앨라배마주의 도시 몽고메리. 백화점에서 하루 종일 옷을 고치는 일을 마친 마흔두 살 흑인 여성이 퇴근 버스에 올라 자리에 앉았어. 정류장을 몇 개 지나 백인 승객이 늘어나자, 운전사는 그 줄에 앉은 흑인 네 사람에게 자리를 비우라고 했지. 세 사람은 일어섰어. 그런데 그녀는 일어나지 않았어. 이 '앉아 있기' 하나가 미국을, 그리고 세계를 어떻게 바꿨는지 오늘 따라가 보자.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/8 · OX: <span id="ox-score">0</span>/5
@@ -1027,9 +1027,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>두 차례 세계 대전 이후 종교, 인종, 성별에 따른 차별에 저항하고 시민으로서 자유와 평등한 권리를 보장받으려는 민권 운동이 일어났다. 흑인들은 세계 곳곳에서 인종 차별에 맞섰는데, 미국에서는 1950년대부터 흑인 민권 운동이 일어났다. 1955년 미국 몽고메리시에서 흑인 여성 ①<input type="text" class="blank-input" data-answer="로자 파크스" data-id="1" style="width:116px" placeholder="">가 버스에서 백인에게 자리를 내주라는 운전사의 명령을 따르지 않아 체포되었다. 그러자 몽고메리시의 흑인들은 버스에서 이루어진 인종 차별에 항의하여 ②<input type="text" class="blank-input" data-answer="버스 승차 거부 운동" data-id="2" style="width:196px" placeholder="">을 일으켰다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.2fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-2-2_버스.jpg" alt="그날 그녀가 탔던 몽고메리 시내버스 2857호 — 지금은 미국 미시간주 디어본의 헨리 포드 박물관에 전시되어 있다. (Rmhermen 사진 · CC BY-SA 3.0)" loading="lazy"><figcaption>그날 그녀가 탔던 몽고메리 시내버스 2857호 — 지금은 미국 미시간주 디어본의 헨리 포드 박물관에 전시되어 있다. (Rmhermen 사진 · CC BY-SA 3.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-2_버스.jpg" alt="그날 그녀가 탔던 몽고메리 시내버스 2857호 — 지금은 미국 미시간주 디어본의 헨리 포드 박물관에 전시되어 있다." loading="lazy"><figcaption>그날 그녀가 탔던 몽고메리 시내버스 2857호 — 지금은 미국 미시간주 디어본의 헨리 포드 박물관에 전시되어 있다.</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ 그날 그녀가 일어나지 않은 건 다리가 아파서였을까? 나중에 그녀는 자서전에 이렇게 썼어. «사람들은 내가 피곤해서 자리를 내주지 않았다고 하지만 사실이 아니다. 내가 지쳤던 건 늘 굽히고 사는 일이었다.» 그리고 그녀가 체포되자 흑인들을 모아 이 일을 이끈 사람은, 그 도시 교회에 온 지 얼마 안 된 스물여섯 살 목사였어. 2단계에서 다시 만나.</blockquote>
+<blockquote>🎙️ 그날 그녀가 일어나지 않은 건 다리가 아파서였을까? 나중에 그녀는 자서전에 이렇게 썼어. '사람들은 내가 피곤해서 자리를 내주지 않았다고 하지만 사실이 아니다. 내가 지쳤던 건 늘 굽히고 사는 일이었다.' 그리고 그녀가 체포되자 흑인들을 모아 이 일을 이끈 사람은, 그 도시 교회에 온 지 얼마 안 된 스물여섯 살 목사였어. 2단계에서 다시 만나.</blockquote>
 </div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 229쪽 · 「궁금해 이 사건!」</div><div class="ws-tb-ask">이 운동에는 몇 명쯤이 함께했나? 그리고 이듬해 11월 대법원은 버스 안의 인종 분리를 어떻게 판결했나? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 229쪽에서 찾기 — 이 운동에는 몇 명쯤이 함께했나? 그리고 이듬해 11월 대법원은 버스" style="width:400px" placeholder=""></div></div>
@@ -1041,11 +1041,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"나에게는 꿈이 있습니다. 나의 아이들이 피부색이 아니라 인격에 따라 평가받는 그런 나라에 살게 되리라는 꿈입니다."</blockquote><figcaption class="sr-c">— 마틴 루서 킹, 링컨 기념관 앞 연설, 1963년 8월 28일 · 교과서 230쪽</figcaption></figure>
 <br>
-<figure class="ws-fig"><img src="images/7-2-2_링컨기념관군중.jpg" alt="1963년 8월 28일 링컨 기념관 쪽에서 내려다본 모습 — 긴 연못 양쪽과 멀리 기념탑까지 사람들이 가득 메웠다. 흑인과 백인이 함께 모였다. (미국 국립 기록 관리청 · 퍼블릭 도메인)" loading="lazy"><figcaption>1963년 8월 28일 링컨 기념관 쪽에서 내려다본 모습 — 긴 연못 양쪽과 멀리 기념탑까지 사람들이 가득 메웠다. 흑인과 백인이 함께 모였다. (미국 국립 기록 관리청 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-2_링컨기념관군중.jpg" alt="1963년 8월 28일 링컨 기념관 쪽에서 내려다본 모습 — 긴 연못 양쪽과 멀리 기념탑까지 사람들이 가득 메웠다. 흑인과 백인이 함께 모였다." loading="lazy"><figcaption>1963년 8월 28일 링컨 기념관 쪽에서 내려다본 모습 — 긴 연못 양쪽과 멀리 기념탑까지 사람들이 가득 메웠다. 흑인과 백인이 함께 모였다.</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 230쪽 · 「우리 해 보자」 만화</div><div class="ws-tb-ask">첫째 칸에서 1863년에 무엇이 발표되었나? 그리고 둘째 칸 수돗가의 두 팻말에는 각각 무엇이라고 적혀 있나? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 230쪽에서 찾기 — 첫째 칸에서 1863년에 무엇이 발표되었나? 그리고 둘째 칸 수돗가의" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 위 사료 대목은 원래 준비한 원고에 없었어. 연설이 이어지던 중 뒤에 있던 가수가 «마틴, 꿈 이야기를 해요!»라고 외쳤고, 킹은 원고를 옆으로 밀어 두고 그 자리에서 말을 이어 갔다고 해. 그런데 이듬해 법이 바뀐 게 연설 하나 덕분이었을까? 1년 넘게 걸어서 출근한 사람들, 행진에 나선 사람들이 거의 십 년 동안 쌓아 온 힘이 함께 있었어. 위 칸에서 찾은 1863년과 연설이 있었던 1963년 사이의 시간도 떠올려 봐.</blockquote>
+<blockquote>🎙️ 위 사료 대목은 원래 준비한 원고에 없었어. 연설이 이어지던 중 뒤에 있던 가수가 '마틴, 꿈 이야기를 해요!'라고 외쳤고, 킹은 원고를 옆으로 밀어 두고 그 자리에서 말을 이어 갔다고 해. 그런데 이듬해 법이 바뀐 게 연설 하나 덕분이었을까? 1년 넘게 걸어서 출근한 사람들, 행진에 나선 사람들이 거의 십 년 동안 쌓아 온 힘이 함께 있었어. 위 칸에서 찾은 1863년과 연설이 있었던 1963년 사이의 시간도 떠올려 봐.</blockquote>
 <br>
 <h2>📖 3단계: 피부색으로 나눈 나라</h2>
 <blockquote>📕 <strong>교과서 229쪽 본문 둘째 문단 + 오른쪽 위 사진과 설명</strong> 펴고 채우기 · 배정 시간 <strong>10분</strong></blockquote>
@@ -1053,9 +1053,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>한편, 아프리카 남쪽 끝 남아프리카 공화국의 백인 정권은 인종 분리 정책인 ④<input type="text" class="blank-input" data-answer="아파르트헤이트" data-id="4" style="width:132px" placeholder="">를 시행하였다. 이 정책에 따라 인종별로 사는 곳이 나뉘는 등 흑인이 차별받았다. ⑤<input type="text" class="blank-input" data-answer="넬슨 만델라" data-id="5" style="width:116px" placeholder="">는 이에 맞서 흑인 민권 운동을 이끌다가 반역죄로 체포되어 종신형을 선고받았지만, 감옥 안에서도 운동을 이끌었다. 그 결과 1990년대에 이 정책이 폐지되었다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.3fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/7-2-2_더반해변.jpg" alt="1989년 남아프리카 공화국 더반의 바닷가 팻말 — 영어·아프리칸스어·줄루어 세 가지 말로 «이 해수욕 구역은 백인만 쓸 수 있다»고 적혀 있다. (Guinnog 사진 · CC BY-SA 3.0)" loading="lazy"><figcaption>1989년 남아프리카 공화국 더반의 바닷가 팻말 — 영어·아프리칸스어·줄루어 세 가지 말로 «이 해수욕 구역은 백인만 쓸 수 있다»고 적혀 있다. (Guinnog 사진 · CC BY-SA 3.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-2_더반해변.jpg" alt="1989년 남아프리카 공화국 더반의 바닷가 팻말 — 영어·아프리칸스어·줄루어 세 가지 말로 '이 해수욕 구역은 백인만 쓸 수 있다'고 적혀 있다." loading="lazy"><figcaption>1989년 남아프리카 공화국 더반의 바닷가 팻말 — 영어·아프리칸스어·줄루어 세 가지 말로 '이 해수욕 구역은 백인만 쓸 수 있다'고 적혀 있다.</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ 팻말의 맨 아래 글은 줄루어야. 바로 그 말을 쓰는 흑인들에게 «너희는 들어오지 마»라고 그들의 말로 적어 둔 거지. 이 정책에 맞선 사람은 1962년에 붙잡혀 1990년에 풀려날 때까지 27년을 갇혀 지냈어. 감옥에서 나올 때 일흔한 살이었지. 그리고 1994년, 이 나라에서 처음으로 모든 인종이 함께 투표한 선거에서 흑인 최초의 대통령이 되었어. 대통령이 된 그가 힘쓴 건 복수가 아니라 흑인과 백인이 함께 사는 나라였어.</blockquote>
+<blockquote>🎙️ 팻말의 맨 아래 글은 줄루어야. 바로 그 말을 쓰는 흑인들에게 '너희는 들어오지 마'라고 그들의 말로 적어 둔 거지. 이 정책에 맞선 사람은 1962년에 붙잡혀 1990년에 풀려날 때까지 27년을 갇혀 지냈어. 감옥에서 나올 때 일흔한 살이었지. 그리고 1994년, 이 나라에서 처음으로 모든 인종이 함께 투표한 선거에서 흑인 최초의 대통령이 되었어. 대통령이 된 그가 힘쓴 건 복수가 아니라 흑인과 백인이 함께 사는 나라였어.</blockquote>
 </div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 229쪽 · 오른쪽 위 사진과 설명</div><div class="ws-tb-ask">사진 속 사람은 감옥에서 풀려난 뒤 누구와 함께 무엇을 했나? 그리고 사진에서 들고 있는 상은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 229쪽에서 찾기 — 사진 속 사람은 감옥에서 풀려난 뒤 누구와 함께 무엇을 했나? 그리고" style="width:400px" placeholder=""></div></div>
@@ -1067,11 +1067,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>20세기 중반 이후에는 민권 운동의 영향으로 여성 운동이 활발해졌다. 1963년 미국의 작가 베티 프리단은 『여성의 신비』라는 책을 펴내, 여성도 사회 활동을 통해 진정한 남녀평등을 이루어야 한다고 주장하였다. 여성들은 교육, 임신과 출산, 고용 등 여러 부문에서 차별에 반대하며 자신의 권리를 보장받고자 운동을 벌였다. 그 결과 1970년대에 영국에서 ⑧<input type="text" class="blank-input" data-answer="차별 금지법" data-id="8" style="width:116px" placeholder="">이 통과되었고, 미국 의회에서는 여성의 평등권을 헌법에 적자는 개정안이 통과되는 등 여성의 권리와 이익이 점차 늘어났다.</p>
 <br>
-<figure class="ws-fig"><img src="images/7-2-2_여성행진.jpg" alt="1970년 8월 26일 미국 워싱턴 — «여성은 평등을 요구한다»라는 현수막을 든 여성들이 거리를 걷고 있다. (워런 K. 레플러 사진, 미국 의회 도서관 · 퍼블릭 도메인)" loading="lazy"><figcaption>1970년 8월 26일 미국 워싱턴 — «여성은 평등을 요구한다»라는 현수막을 든 여성들이 거리를 걷고 있다. (워런 K. 레플러 사진, 미국 의회 도서관 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-2-2_여성행진.jpg" alt="1970년 8월 26일 미국 워싱턴 — '여성은 평등을 요구한다'라는 현수막을 든 여성들이 거리를 걷고 있다." loading="lazy"><figcaption>1970년 8월 26일 미국 워싱턴 — '여성은 평등을 요구한다'라는 현수막을 든 여성들이 거리를 걷고 있다.</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 230쪽 · 왼쪽 위 상자 두 개</div><div class="ws-tb-ask">네 가지 노동 기본권 가운데 어린이와 관련된 것은 무엇인가? 그리고 2022년에 새로 더해진 권리는 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 230쪽에서 찾기 — 네 가지 노동 기본권 가운데 어린이와 관련된 것은 무엇인가? 그리고" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 교과서 231쪽을 넘겨 봐. 왼쪽 가운데 사진 속 여성 노동자들이 바지를 입고 있지? 그때까지 많은 곳에서 여자가 바지를 입는 건 «단정하지 않다»는 소리를 들었어. 여성 운동이 활발해지면서 바지가 여성의 일상복이 되었다고 교과서는 설명해. 지금 우리가 바지를 입든 치마를 입든 그게 이상하지 않은 것, 이 시대 사람들이 바꿔 놓은 것 가운데 하나야.</blockquote>
+<blockquote>🎙️ 교과서 231쪽을 넘겨 봐. 왼쪽 가운데 사진 속 여성 노동자들이 바지를 입고 있지? 그때까지 많은 곳에서 여자가 바지를 입는 건 '단정하지 않다'는 소리를 들었어. 여성 운동이 활발해지면서 바지가 여성의 일상복이 되었다고 교과서는 설명해. 지금 우리가 바지를 입든 치마를 입든 그게 이상하지 않은 것, 이 시대 사람들이 바꿔 놓은 것 가운데 하나야.</blockquote>
 <br>
 <h2>✏️ 활동 1 — 나도 연단에 선다</h2>
 <blockquote>1963년 링컨 기념관 앞의 연설처럼, 오늘 배운 세 운동 가운데 하나를 골라 그 시대 사람이 되어 짧은 연설을 준비해 보자.</blockquote>
@@ -1081,11 +1081,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>고른 운동(민권 / 노동 / 여성)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="고른 운동(민권 / 노동 / 여성)" style="width:240px" placeholder=""></td></tr>
 <tr><td>나는 누구이고, 어디에서 연설하나</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="나는 누구이고, 어디에서 연설하나" style="width:400px" placeholder=""></td></tr>
 <tr><td>내가 바꾸고 싶은 차별 한 가지(교과서 근거)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="내가 바꾸고 싶은 차별 한 가지(교과서 근거)" style="width:400px" placeholder=""></td></tr>
-<tr><td>연설의 첫 문장 («나에게는 꿈이 있습니다»처럼)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="연설의 첫 문장 («나에게는 꿈이 있습니다»처럼)" style="width:400px" placeholder=""></td></tr>
+<tr><td>연설의 첫 문장 ('나에게는 꿈이 있습니다'처럼)</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="연설의 첫 문장 («나에게는 꿈이 있습니다»처럼)" style="width:400px" placeholder=""></td></tr>
 </table>
 <br>
 <h2>✏️ 활동 2 — 어느 운동의 장면일까</h2>
-<div class="ws-pick" id="pk78"><div class="pk-head"><span>여섯 장면이다. 어느 운동에 속할까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="민권 운동"><div class="pk-name">걸어서 출근</div><div class="pk-sit">1955년, 흑인들이 1년 넘게 버스 대신 걷거나 승용차를 함께 타고 일터에 갔다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>버스의 인종 차별에 항의한 버스 승차 거부 운동이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="민권 운동"><div class="pk-name">둥근 곱슬머리</div><div class="pk-sit">1960년대, 타고난 곱슬머리를 공처럼 둥글게 살린 머리 모양이 유행했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>흑인의 타고난 특징이 아름답다는 문화 운동(아프로)이다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="노동 운동"><div class="pk-name">교실로 간 아이</div><div class="pk-sit">공장이나 광산에서 어린이를 일하게 하지 말자는 원칙</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>노동 기본 원칙과 권리선언의 «아동 노동의 금지»다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="노동 운동"><div class="pk-name">다섯 번째 권리</div><div class="pk-sit">2022년, 국제 기구가 «안전하고 건강한 근로 환경»을 기본권에 더했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>국제 노동 기구가 노동 기본권 선언을 고쳤다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="여성 운동"><div class="pk-name">한 권의 책</div><div class="pk-sit">1963년, «여성도 사회 활동으로 평등을 이루어야 한다»는 책이 나왔다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>베티 프리단의 『여성의 신비』다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="여성 운동"><div class="pk-name">같은 출발선</div><div class="pk-sit">1970년대 영국, 성별에 따라 차별하지 못하게 하는 법이 통과되었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>영국의 차별 금지법이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk78");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["민권 운동", "노동 운동", "여성 운동"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk78"><div class="pk-head"><span>여섯 장면이다. 어느 운동에 속할까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="민권 운동"><div class="pk-name">걸어서 출근</div><div class="pk-sit">1955년, 흑인들이 1년 넘게 버스 대신 걷거나 승용차를 함께 타고 일터에 갔다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>버스의 인종 차별에 항의한 버스 승차 거부 운동이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="민권 운동"><div class="pk-name">둥근 곱슬머리</div><div class="pk-sit">1960년대, 타고난 곱슬머리를 공처럼 둥글게 살린 머리 모양이 유행했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>흑인의 타고난 특징이 아름답다는 문화 운동(아프로)이다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="노동 운동"><div class="pk-name">교실로 간 아이</div><div class="pk-sit">공장이나 광산에서 어린이를 일하게 하지 말자는 원칙</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>노동 기본 원칙과 권리선언의 '아동 노동의 금지'다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="노동 운동"><div class="pk-name">다섯 번째 권리</div><div class="pk-sit">2022년, 국제 기구가 '안전하고 건강한 근로 환경'을 기본권에 더했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>국제 노동 기구가 노동 기본권 선언을 고쳤다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="여성 운동"><div class="pk-name">한 권의 책</div><div class="pk-sit">1963년, '여성도 사회 활동으로 평등을 이루어야 한다'는 책이 나왔다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>베티 프리단의 『여성의 신비』다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="여성 운동"><div class="pk-name">같은 출발선</div><div class="pk-sit">1970년대 영국, 성별에 따라 차별하지 못하게 하는 법이 통과되었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="민권 운동">민권 운동</button><button type="button" class="pk-b" data-v="노동 운동">노동 운동</button><button type="button" class="pk-b" data-v="여성 운동">여성 운동</button></div><div class="pk-why" hidden>영국의 차별 금지법이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk78");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["민권 운동", "노동 운동", "여성 운동"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <h2>✅ OX 퀴즈</h2>
 <table>
@@ -1102,6 +1102,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>오늘 배운 세 운동(민권·노동·여성) 가운데 하나를 골라, 그 운동이 얻어 낸 것 가운데 <strong>지금 너의 생활</strong>(학교, 가족, 앞으로 할 일)에서 당연하게 누리는 것 하나를 찾아 두세 문장으로 써 보자. 교과서 229~231쪽을 근거로 써도 좋다.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=8, TOX=5, GT=13;
@@ -1126,7 +1127,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

@@ -194,12 +194,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
 .pk-card.pk-noimg { padding-top: 14px; }
 .pk-card.pk-noimg .pk-name { font-size: 1.02em; }
-/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+/* 🔴 2026-09-15 — 금테 카드 묶음에 '사진 없는 카드'가 섞이면 크림 패널이 자기 높이만
    차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
-   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   그리드가 행 높이를 맞추므로 카드 '안'이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
    내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
-   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
-   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 '없는 채로' 둘 수 있어야
+   '한 장만 좋은 묶음은 안 넣는다'의 반대편 — '셋은 있고 하나는 없다'가 성립한다. */
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
@@ -249,7 +249,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 @media print { .ws-seesaw-range { display: none; } }
 
 /* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
-   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 '결'을 그대로 옮긴다 —
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
@@ -285,7 +285,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-top: 122px solid #c6bAaa; }
 .ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
   height: 8px; background: #b2a694; border-radius: 4px; }
-/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 '항상 빔 아래'에 있다.
    빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
 .ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
   transition: transform .28s ease-out; }
@@ -308,7 +308,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-tl-chip.up .box { opacity: .6; }
 .ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
   line-height: 1.7; text-align: center; font-weight: 600; }
-/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+/* 시간축 — 기존 도식처럼 '저울 아래'에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
 .ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
   gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
 .tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
@@ -343,15 +343,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
    표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
 /* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
-   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+   ① 이 블록의 CSS가 '죽어 있었다' — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
       파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
       computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
       — 디자인이 약한 게 아니라 **없었다.**
-   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+   ② '표 바로 아래 붙는다'는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
       16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
-   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+   태그는 :::교과서와 같은 알약형으로 올려 '일반 문단이 아님'이 한눈에 보이게 한다. */
 .ws-saryo {
   position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
   background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
@@ -624,9 +624,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
 .rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
 .rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
-/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+/* 칩은 도식 '가운데'를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
 .rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
-/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+/* 🔴 translateY 의 % 는 '컨테이너'가 아니라 '요소 자신의 높이' 기준이다 — 처음 -31% 로 썼더니
    칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
 .ws-rad.rad-onfig { --r: 150px; }
 .ws-rad.rad-onfig.on .rd-chip {
@@ -769,9 +769,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 /* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
    문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
    2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
-   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+   ⚠️ 처음에 '낱말카드 트랙의 부작용'으로 오진했다 — 트랙은 overflow-x:auto 로 정상
       흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
-   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+   max-width 는 '넘칠 때만' 작동하므로 데스크톱 회귀 0. */
 .blank-input.activity-input { max-width: 100%; }
 /* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
    3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
@@ -780,7 +780,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   table { font-size: 0.84em; table-layout: fixed; }
   td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
   tr:first-child td { font-size: 0.94em; }
-  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+  /* 활동 표(act-table)는 '내용 폭'이라 inline width 가 든 입력칸이 그대로 민다.
      폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
   table.act-table { width: 100%; }
   table.act-table .activity-input { width: 100% !important; }
@@ -858,7 +858,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
-  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+  /* 2026-10-02 천대현 '표지풍에 맞게 글꼴' — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
      (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
@@ -953,7 +953,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 /* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
 @media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
   .vid-poster { box-shadow: none; } }
-/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 '겹쳐' 보여 한눈에 오게 한다. 2열 고정. */
 .ws-mos { margin: 20px auto 24px; max-width: 100%; }
 .ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
 .ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -981,7 +981,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
-/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+/* 2026-10-02 천대현 '표지 아래 배경 설명 가독성이 떨어진다' — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
@@ -1010,7 +1010,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   </div>
   <br>
 <br>
-<blockquote>📌 <strong>지난 시간(4-1-1)과 이어진다.</strong> 송은 북쪽 초원 민족에게 밀려 바닷길로 나갔지? 오늘은 그 북쪽 초원에서 일어난 한 무리가 송까지 무너뜨리고 유라시아 전체를 길로 묶는다. <strong>두 시간짜리야.</strong> 1교시는 «초원에서 중국까지», 2교시는 «길이 이어지자».</blockquote>
+<blockquote>📌 <strong>지난 시간(4-1-1)과 이어진다.</strong> 송은 북쪽 초원 민족에게 밀려 바닷길로 나갔지? 오늘은 그 북쪽 초원에서 일어난 한 무리가 송까지 무너뜨리고 유라시아 전체를 길로 묶는다. <strong>두 시간짜리야.</strong> 1교시는 '초원에서 중국까지', 2교시는 '길이 이어지자'.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 몽골 제국이 <strong>성립한 과정</strong>을 파악할 수 있다.</p>
@@ -1031,9 +1031,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>요가 멸망하고 금과 송이 맞서고 있을 무렵, 북쪽 초원에서는 몽골 부족이 힘을 키웠다. 13세기 초 테무친은 흩어져 있던 몽골 부족을 하나로 묶은 뒤 ①<input type="text" class="blank-input" data-answer="칭기즈 칸" data-id="1" style="width:100px" placeholder="">으로 추대되어 몽골 제국을 세웠다(1206). 그는 강한 기마병을 앞세워 서하와 금을 공격하고 중앙아시아를 정복하였으며, 정복한 땅은 형제와 자손들에게 나누어 주었다. 그가 죽은 뒤에도 뒤를 이은 칸들은 금을 멸망시키고 동유럽 부근까지 나아가 유라시아를 아우르는 큰 제국을 이루었다. 그 뒤 몽골 제국은 여러 개의 ②<input type="text" class="blank-input" data-answer="울루스" data-id="2" style="width:68px" placeholder="">로 나뉘었다. 이들은 저마다 자기 영토를 인정받았고, 몽골 제국은 이들이 느슨하게 연합한 모습으로 유지되었다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.4fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/4-1-2_건국자초상.jpg" alt="몽골 부족을 하나로 묶고 제국을 세운 인물의 초상 — 그가 세상을 떠나고 수십 년 뒤, 원의 궁정 화가들이 역대 황제 초상 화첩에 그려 넣었다. (타이베이 국립 고궁 박물원 소장 · 퍼블릭 도메인)" loading="lazy"><figcaption>몽골 부족을 하나로 묶고 제국을 세운 인물의 초상 — 그가 세상을 떠나고 수십 년 뒤, 원의 궁정 화가들이 역대 황제 초상 화첩에 그려 넣었다. (타이베이 국립 고궁 박물원 소장 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-2_건국자초상.jpg" alt="몽골 부족을 하나로 묶고 제국을 세운 인물의 초상 — 그가 세상을 떠나고 수십 년 뒤, 원의 궁정 화가들이 역대 황제 초상 화첩에 그려 넣었다." loading="lazy"><figcaption>몽골 부족을 하나로 묶고 제국을 세운 인물의 초상 — 그가 세상을 떠나고 수십 년 뒤, 원의 궁정 화가들이 역대 황제 초상 화첩에 그려 넣었다.</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ «테무친»은 몽골어로 «최고의 쇠로 만든 사람»이라는 뜻이래. 이 사람의 군대는 활로도 유명했어. 짧고 단단한 활인데 화살이 200m 가까이 날아갔대. 학교 운동장 한 바퀴가 보통 200m니까, 트랙 한 바퀴 길이를 한 번에 쏘는 셈이야. 그런데 몽골군이 무서웠던 진짜 까닭은 활보다 «발»에 있었어. 아래 교과서 그림에서 찾아보자.</blockquote>
+<blockquote>🎙️ '테무친'은 몽골어로 '최고의 쇠로 만든 사람'이라는 뜻이래. 이 사람의 군대는 활로도 유명했어. 짧고 단단한 활인데 화살이 200m 가까이 날아갔대. 학교 운동장 한 바퀴가 보통 200m니까, 트랙 한 바퀴 길이를 한 번에 쏘는 셈이야. 그런데 몽골군이 무서웠던 진짜 까닭은 활보다 '발'에 있었어. 아래 교과서 그림에서 찾아보자.</blockquote>
 </div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 112쪽 · 그림 「몽골이 대제국을 세운 원동력」</div><div class="ws-tb-see">그림에 붙은 설명 네 개를 하나씩 읽어 보자.</div><div class="ws-tb-ask">병사 한 명이 말을 여러 마리 끌고 다닌 까닭은 무엇인가? 그리고 군량의 무게를 줄이려고 무엇을 가지고 다녔나? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 112쪽에서 찾기 — 병사 한 명이 말을 여러 마리 끌고 다닌 까닭은 무엇인가? 그리고 군" style="width:400px" placeholder=""></div></div>
@@ -1045,7 +1045,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>넓은 땅과 여러 민족을 다스리게 된 원은 사람들을 네 무리로 나누어 다스렸다. ④<input type="text" class="blank-input" data-answer="몽골 제일주의" data-id="4" style="width:132px" placeholder="">에 따라 몽골인이 주요 관직을 독차지하였고, 서아시아·중앙아시아·유럽 등지에서 온 ⑤<input type="text" class="blank-input" data-answer="색목인" data-id="5" style="width:68px" placeholder="">도 우대를 받으며 재정과 행정 일을 맡았다. 반면 화북 지방에 살던 한인과 남송 출신의 남인은 차별을 받았고, 관직에 오르는 데에도 한계가 있었다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.4fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/4-1-2_쿠빌라이.jpg" alt="원을 세운 쿠빌라이 칸의 초상 — 1294년 무렵 원의 궁정에서 그렸다. 흰 옷에 챙이 검은 모자를 쓰고, 땋은 머리를 귀 옆에 둥글게 말아 늘어뜨렸다. (네팔 출신 장인 아니가의 작품으로 전함 · 타이베이 국립 고궁 박물원 소장 · 퍼블릭 도메인)" loading="lazy"><figcaption>원을 세운 쿠빌라이 칸의 초상 — 1294년 무렵 원의 궁정에서 그렸다. 흰 옷에 챙이 검은 모자를 쓰고, 땋은 머리를 귀 옆에 둥글게 말아 늘어뜨렸다. (네팔 출신 장인 아니가의 작품으로 전함 · 타이베이 국립 고궁 박물원 소장 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-2_쿠빌라이.jpg" alt="원을 세운 쿠빌라이 칸의 초상 — 1294년 무렵 원의 궁정에서 그렸다. 흰 옷에 챙이 검은 모자를 쓰고, 땋은 머리를 귀 옆에 둥글게 말아 늘어뜨렸다. (네팔 출신 장인 아니가의 작품으로 전함)" loading="lazy"><figcaption>원을 세운 쿠빌라이 칸의 초상 — 1294년 무렵 원의 궁정에서 그렸다. 흰 옷에 챙이 검은 모자를 쓰고, 땋은 머리를 귀 옆에 둥글게 말아 늘어뜨렸다. (네팔 출신 장인 아니가의 작품으로 전함)</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 쿠빌라이는 초원의 칸이면서 동시에 중국의 황제가 되고 싶었어. 그래서 나라 이름도 중국식으로 짓고, 수도도 초원이 아니라 오늘날 베이징 자리에 새로 지었지. 그런데 몽골 사람은 수가 아주 적었어. 적은 수로 아주 많은 사람을 다스리려면 어떻게 해야 할까? 원이 고른 방법이 아래 도표에 숫자로 나와 있어.</blockquote>
 </div></div>
@@ -1060,9 +1060,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>송에 이어 원 때에도 농업이 발달하였다. 새로운 농업 기술이 퍼졌고, 목화 생산이 늘어 면직물 산업도 발달하였다. 교통로가 발달하면서 동서 교류가 활발해져 상업이 발전하였고, 지폐인 ⑥<input type="text" class="blank-input" data-answer="교초" data-id="6" style="width:60px" placeholder="">가 화폐로 널리 쓰였다. 상업이 성장하자 도시를 중심으로 서민 문화가 더욱 발달하였다. 일상에서 쓰는 말투로 쓴 소설과 희곡이 서민들의 사랑을 받았고, 특히 음악과 연극이 어우러진 ⑦<input type="text" class="blank-input" data-answer="잡극" data-id="7" style="width:60px" placeholder="">이 크게 유행하였다.</p>
 <p>그러나 14세기에 들어 왕위를 둘러싼 다툼이 이어지면서 원의 힘이 약해졌다. 게다가 화폐를 지나치게 많이 찍어 내어 물가가 크게 올랐다. 불만이 커진 한인들이 반란을 일으켰고, 결국 원은 북쪽 초원으로 쫓겨났다(1368).</p>
 <br>
-<figure class="ws-fig"><img src="images/4-1-2_원지폐.jpg" alt="1287년에 찍은 원의 지폐(오른쪽)와 지폐를 찍던 동판(왼쪽) — 가운데 칸에 동전 꾸러미 그림이 있어 이 종이가 얼마짜리 돈인지 보여 준다. (PHGCOM 사진 · CC BY-SA 3.0)" loading="lazy"><figcaption>1287년에 찍은 원의 지폐(오른쪽)와 지폐를 찍던 동판(왼쪽) — 가운데 칸에 동전 꾸러미 그림이 있어 이 종이가 얼마짜리 돈인지 보여 준다. (PHGCOM 사진 · CC BY-SA 3.0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-2_원지폐.jpg" alt="1287년에 찍은 원의 지폐(오른쪽)와 지폐를 찍던 동판(왼쪽) — 가운데 칸에 동전 꾸러미 그림이 있어 이 종이가 얼마짜리 돈인지 보여 준다." loading="lazy"><figcaption>1287년에 찍은 원의 지폐(오른쪽)와 지폐를 찍던 동판(왼쪽) — 가운데 칸에 동전 꾸러미 그림이 있어 이 종이가 얼마짜리 돈인지 보여 준다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 원의 큰 도시에는 «와자»라는 거리가 있었대. 사람들이 모였다가 흩어지는 모습을 딴 이름인데, 노래 공연·곡예·마술이 한데 모인 곳이었어. 요즘으로 치면 공연장이 줄지어 있는 대학로 같은 거리지. 그런데 이 무대의 대본을 쓴 사람들은 뜻밖에도 공부를 많이 한 지식인들이었어. 그 사람들이 왜 관리가 아니라 대본 작가가 되었을까? 아래 교과서 칸에서 찾아보자.</blockquote>
+<blockquote>🎙️ 원의 큰 도시에는 '와자'라는 거리가 있었대. 사람들이 모였다가 흩어지는 모습을 딴 이름인데, 노래 공연·곡예·마술이 한데 모인 곳이었어. 요즘으로 치면 공연장이 줄지어 있는 대학로 같은 거리지. 그런데 이 무대의 대본을 쓴 사람들은 뜻밖에도 공부를 많이 한 지식인들이었어. 그 사람들이 왜 관리가 아니라 대본 작가가 되었을까? 아래 교과서 칸에서 찾아보자.</blockquote>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 113쪽 · 「음악과 손잡고」</div><div class="ws-tb-ask">대본(원곡)을 쓴 사대부들이 관직에 나아가기 어려웠던 까닭 <strong>두 가지</strong>를 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 113쪽에서 찾기 — 대본(원곡)을 쓴 사대부들이 관직에 나아가기 어려웠던 까닭 두 가지를" style="width:400px" placeholder=""></div></div>
 <br>
@@ -1076,7 +1076,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>몽골 제국은 넓은 영토를 원활하게 다스리려고 도로망을 정비하였다. 육로에는 일정한 거리마다 ⑧<input type="text" class="blank-input" data-answer="역참" data-id="8" style="width:60px" placeholder="">을 두어 사신과 상인들이 안전하게 여행할 수 있게 하였다. 또 내륙의 ⑨<input type="text" class="blank-input" data-answer="대운하" data-id="9" style="width:68px" placeholder="">를 정비하고 넓혀 많은 물자를 빠르게 실어 날랐다. 남중국에서 인도양을 거쳐 아라비아해에 이르는 바닷길 무역도 활발하였다. 항저우, 취안저우 같은 항구 도시가 무역의 중심지로 번성하였고, 초원길·비단길·바닷길을 잇는 유라시아·인도양 교역권이 만들어졌다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.3fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/4-1-2_통행패.jpg" alt="13세기 후반 원에서 쓰던 쇠로 만든 통행패 — 몽골 제국의 글자가 은으로 박혀 있다. 이 패를 보여 주면 길 곳곳에서 말과 먹을 것, 잠자리를 얻을 수 있었다. (미국 메트로폴리탄 미술관 소장 · CC0)" loading="lazy"><figcaption>13세기 후반 원에서 쓰던 쇠로 만든 통행패 — 몽골 제국의 글자가 은으로 박혀 있다. 이 패를 보여 주면 길 곳곳에서 말과 먹을 것, 잠자리를 얻을 수 있었다. (미국 메트로폴리탄 미술관 소장 · CC0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-2_통행패.jpg" alt="13세기 후반 원에서 쓰던 쇠로 만든 통행패 — 몽골 제국의 글자가 은으로 박혀 있다. 이 패를 보여 주면 길 곳곳에서 말과 먹을 것, 잠자리를 얻을 수 있었다." loading="lazy"><figcaption>13세기 후반 원에서 쓰던 쇠로 만든 통행패 — 몽골 제국의 글자가 은으로 박혀 있다. 이 패를 보여 주면 길 곳곳에서 말과 먹을 것, 잠자리를 얻을 수 있었다.</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 위 사료를 남긴 베네치아 청년은 갈 때는 초원과 사막을 건너 육로로 왔지만, 고향으로 돌아갈 때는 남중국 항구에서 배를 타고 인도양을 건넜대. 한 사람이 갈 때와 올 때 서로 다른 길을 탄 거야. 이런 여행이 가능하려면 길만 있어서는 안 돼. 지친 말을 바꿔 타고, 밥을 먹고, 잠을 잘 곳이 일정한 거리마다 있어야 하지. 사진 속 쇠패가 그 문을 여는 열쇠였어.</blockquote>
 </div></div>
@@ -1088,14 +1088,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>원 때에는 길이 잘 닦이면서 동서의 문화 교류가 활발하게 이루어졌다. 교황과 유럽의 군주들이 원에 사절단을 보냈고, 이탈리아의 상인 마르코 폴로와 이슬람교도인 ⑩<input type="text" class="blank-input" data-answer="이븐 바투타" data-id="10" style="width:116px" placeholder=""> 등도 중국을 다녀갔다. 유라시아를 오가는 사신과 상인들은 여러 사상과 기술을 원에 전하였다. 원은 이슬람교, 크리스트교, 티베트 불교 등 여러 종교를 받아들였다. 이슬람 세계의 천문학과 역법도 원에 전해져 곽수경이 ⑪<input type="text" class="blank-input" data-answer="수시력" data-id="11" style="width:68px" placeholder="">이라는 달력을 만들었다. 한편 이 시기에는 화약 무기, 나침반, 활판 인쇄술 같은 중국의 과학 기술이 서양에 전해지기도 하였다.</p>
 <br>
-<figure class="ws-fig"><img src="images/4-1-2_카탈루냐지도.jpg" alt="1375년 지중해 마요르카섬에서 만든 세계 지도의 한 부분 — 낙타와 말을 탄 상인 무리가 동쪽 나라를 향해 가고 있다. 유럽 사람들이 동쪽으로 가는 길을 지도에 그려 넣을 만큼 알게 된 것이다. (아브라함 크레스케스 작 · 프랑스 국립 도서관 소장 · 퍼블릭 도메인)" loading="lazy"><figcaption>1375년 지중해 마요르카섬에서 만든 세계 지도의 한 부분 — 낙타와 말을 탄 상인 무리가 동쪽 나라를 향해 가고 있다. 유럽 사람들이 동쪽으로 가는 길을 지도에 그려 넣을 만큼 알게 된 것이다. (아브라함 크레스케스 작 · 프랑스 국립 도서관 소장 · 퍼블릭 도메인)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-2_카탈루냐지도.jpg" alt="1375년 지중해 마요르카섬에서 만든 세계 지도의 한 부분 — 낙타와 말을 탄 상인 무리가 동쪽 나라를 향해 가고 있다. 유럽 사람들이 동쪽으로 가는 길을 지도에 그려 넣을 만큼 알게 된 것이다. (아브라함 크레스케스 작)" loading="lazy"><figcaption>1375년 지중해 마요르카섬에서 만든 세계 지도의 한 부분 — 낙타와 말을 탄 상인 무리가 동쪽 나라를 향해 가고 있다. 유럽 사람들이 동쪽으로 가는 길을 지도에 그려 넣을 만큼 알게 된 것이다. (아브라함 크레스케스 작)</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 115쪽 · 「마르코 폴로가 경험한 원」</div><div class="ws-tb-ask">마르코 폴로는 원에서 어떤 신분으로 일하였나? 그리고 몇 년 동안 중국 각지를 여행하였나? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 115쪽에서 찾기 — 마르코 폴로는 원에서 어떤 신분으로 일하였나? 그리고 몇 년 동안 중" style="width:300px" placeholder=""></div></div>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.2fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/4-1-2_청화백자.jpg" alt="원 때 징더전에서 만든 흰 바탕 푸른 무늬 항아리 — 덩굴과 꽃무늬를 그린 푸른 물감은 서아시아에서 들여온 코발트 안료다. (박물관 전시 · Gary Todd 사진 · CC0)" loading="lazy"><figcaption>원 때 징더전에서 만든 흰 바탕 푸른 무늬 항아리 — 덩굴과 꽃무늬를 그린 푸른 물감은 서아시아에서 들여온 코발트 안료다. (박물관 전시 · Gary Todd 사진 · CC0)</figcaption></figure>
+<figure class="ws-fig"><img src="images/4-1-2_청화백자.jpg" alt="원 때 징더전에서 만든 흰 바탕 푸른 무늬 항아리 — 덩굴과 꽃무늬를 그린 푸른 물감은 서아시아에서 들여온 코발트 안료다. (박물관 전시)" loading="lazy"><figcaption>원 때 징더전에서 만든 흰 바탕 푸른 무늬 항아리 — 덩굴과 꽃무늬를 그린 푸른 물감은 서아시아에서 들여온 코발트 안료다. (박물관 전시)</figcaption></figure>
 </div><div class="c2-b">
-<blockquote>🎙️ 교과서 114쪽 교역 물품 넷 가운데 «징더전에서 만든 도자기»를 다시 봐. 흰 바탕에 푸른 무늬지? 그 푸른 물감은 서아시아에서 들어왔어. 중국의 흙과 가마, 서아시아의 물감이 만나 태어난 그릇이 다시 배를 타고 서아시아로 팔려 나갔지. 교류는 한쪽으로만 흐르지 않았던 거야. 아래 활동 2에서 무엇이 들어오고 무엇이 나갔는지 갈라 보자.</blockquote>
+<blockquote>🎙️ 교과서 114쪽 교역 물품 넷 가운데 '징더전에서 만든 도자기'를 다시 봐. 흰 바탕에 푸른 무늬지? 그 푸른 물감은 서아시아에서 들어왔어. 중국의 흙과 가마, 서아시아의 물감이 만나 태어난 그릇이 다시 배를 타고 서아시아로 팔려 나갔지. 교류는 한쪽으로만 흐르지 않았던 거야. 아래 활동 2에서 무엇이 들어오고 무엇이 나갔는지 갈라 보자.</blockquote>
 </div></div>
 <br>
 <h2>✏️ 활동 1 — 원의 국제 상인, 여행 계획서</h2>
@@ -1127,6 +1127,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>우리 주변에서 다른 나라에서 온 것 하나를 골라, 그것이 우리에게 오기까지 필요했던 <strong>길</strong>과 <strong>쉼터·통행증</strong>에 해당하는 것을 원 때의 장치(도로망·바닷길·역참·통행패)와 견주어 두세 문장으로 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
 const TB=11, TOX=5, GT=16;
@@ -1151,7 +1152,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }
