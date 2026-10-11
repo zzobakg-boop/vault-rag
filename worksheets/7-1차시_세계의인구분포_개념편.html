@@ -756,6 +756,23 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }
 .ws-vcd-nav button:disabled { opacity: .32; cursor: default; }
 .vcd-count { font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }
+/* 2026-10-08 하위 카드 — 메인 낱말카드 아래 접힘 안에 나란히(캐러셀 밖) */
+.vcd-subtag { position: absolute; top: 8px; right: 8px; font-size: .68em; font-weight: 700; color: #fff;
+  background: #7a6742; border-radius: 10px; padding: 2px 8px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.ws-vsub { margin: 12px 0 0; border: 1px solid #d9c48f; border-radius: 10px; background: #fffaf0; }
+.ws-vsub > summary { cursor: pointer; padding: 10px 14px; font-size: .9em; color: #6b4f14; list-style: none; }
+.ws-vsub > summary::-webkit-details-marker { display: none; }
+.ws-vsub > summary::after { content: " ▾"; color: #a08a5c; }
+.ws-vsub[open] > summary::after { content: " ▴"; }
+.ws-vsub > summary:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; border-radius: 10px; }
+.ws-vsub-head { font-size: .86em; color: #5a4a2a; margin: 0 14px 10px; line-height: 1.55; }
+.ws-vsub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 10px; padding: 0 12px 14px; max-width: 640px; }
+.ws-vsubcard { flex: none; width: auto; }
+.ws-vsubcard .vcd-f { background: #fbf7ec; border-color: #d9c48f; }
+.ws-vsubcard .vcd-b > * { order: 2; }
+.ws-vsubcard .vcd-b > .vcd-bko { order: 0; }
+.ws-vsubcard .vcd-b > .vcd-fam { order: 1; margin: 2px 0 4px; padding: 6px 8px; border: 0; border-radius: 6px;
+  background: #fff1cc; color: #5a3f0c; font-weight: 700; font-size: .78em; line-height: 1.45; }
 @media (prefers-reduced-motion: reduce) {
   .vcd-in { transition: none; }
   .ws-vcd-track { scroll-behavior: auto; }
@@ -1049,7 +1066,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 인구 변화와 인구 문제 7-1차시 — 중국과 인도는 왜 지도에서 저렇게 클까? (전 세계 사람들은 어디에 살고 있을까?)</h1><p class="hero-subtitle">중국과 인도는 왜 지도에서 저렇게 클까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">이 지도는 무엇을 기준으로 그렸을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">사람들은 지구 어디에 몰려 살까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">옛날과 지금, 사람이 모이는 이유는 같을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">살기 힘든 알래스카에 왜 젊은이들이 모일까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>땅 크기가 아니라 사람 수</strong>로 그렸다. 인구가 많은 나라는 크게, 적은 나라는 작게 그린 <strong>인구 왜상 지도</strong>다. 🔴 그래서 지도에서 큰 나라가 실제로 넓은 나라는 아니다 — 캐나다는 실제로는 아주 넓지만 이 지도에서는 작다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>북반구</strong>, 그중에서도 기후가 온화한 <strong>위도 20°~40°</strong>, 그리고 <strong>평야와 해안</strong>에 몰린다. 대표적인 인구 밀집 지역은 <strong>동아시아·남부 아시아·서부 유럽</strong>이다. 사막·밀림·극지방은 희박하다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>다르다.</strong> 옛날에는 기후·지형·토양 같은 <strong>자연적 요인</strong>이 사람을 불렀다. 오늘날에는 과학 기술이 자연의 제약을 넘게 해 주면서 산업·교통·교육 같은 <strong>인문·사회적 요인</strong>이 더 크게 작용한다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>금과 석유, 천연가스가 발견되면서 <strong>산업이 발달하고 일자리가 생겼기</strong> 때문이다. 🔑 추운 자연은 그대로다. 사람을 부른 것은 <strong>일자리</strong>다 — 오늘날 인문·사회적 요인이 더 크다는 것을 보여 주는 사례다.</p><div class="card-quote">그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</div></div></div><img class="hero-image" src="images/7-1_hero_citylights.jpg" alt=""><div class="hero-hook">지도를 펼쳤는데 캐나다와 러시아는 쪼그라들고, 중국과 인도가 세계의 3분의 1을 차지하고 있다. 지도가 잘못 그려진 걸까? 아니다 — 이 지도는 <strong>땅 크기가 아니라 사람 수</strong>로 그렸다. 그렇다면 사람들은 지구 위 어디에 몰려 살고, 왜 하필 거기일까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 인구 변화와 인구 문제 7-1차시 — 중국과 인도는 왜 지도에서 저렇게 클까? (전 세계 사람들은 어디에 살고 있을까?)</h1><p class="hero-subtitle">중국과 인도는 왜 지도에서 저렇게 클까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">이 지도는 무엇을 기준으로 그렸을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">사람들은 지구 어디에 몰려 살까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">옛날과 지금, 사람이 모이는 이유는 같을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">살기 힘든 알래스카에 왜 젊은이들이 모일까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>땅 크기가 아니라 사람 수</strong>로 그렸다. 인구가 많은 나라는 크게, 적은 나라는 작게 그린 <strong>인구 왜상 지도</strong>다. 🔴 그래서 지도에서 큰 나라가 실제로 넓은 나라는 아니다 — 캐나다는 실제로는 아주 넓지만 이 지도에서는 작다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>북반구</strong>, 그중에서도 기후가 온화한 <strong>위도 20°~40°</strong>, 그리고 <strong>평야와 해안</strong>에 몰린다. 대표적인 인구 밀집 지역은 <strong>동아시아·남부 아시아·서부 유럽</strong>이다. 사막·밀림·극지방은 희박하다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>다르다.</strong> 옛날에는 기후·지형·토양 같은 <strong>자연적 요인</strong>이 사람을 불렀다. 오늘날에는 과학 기술이 자연의 제약을 넘게 해 주면서 산업·교통·교육 같은 <strong>인문·사회적 요인</strong>이 더 크게 작용한다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>금과 석유, 천연가스가 발견되면서 <strong>산업이 발달하고 일자리가 생겼기</strong> 때문이다. 🔑 추운 자연은 그대로다. 사람을 부른 것은 <strong>일자리</strong>다 — 오늘날 인문·사회적 요인이 더 크다는 것을 보여 주는 사례다.</p></div></div><img class="hero-image" src="images/7-1_hero_citylights.jpg" alt=""><div class="hero-hook">지도를 펼쳤는데 캐나다와 러시아는 쪼그라들고, 중국과 인도가 세계의 3분의 1을 차지하고 있다. 지도가 잘못 그려진 걸까? 아니다 — 이 지도는 <strong>땅 크기가 아니라 사람 수</strong>로 그렸다. 그렇다면 사람들은 지구 위 어디에 몰려 살고, 왜 하필 거기일까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/9 · OX: <span id="ox-score">0</span>/5
@@ -1092,7 +1109,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ 이 지도는 <strong>땅 크기가 아니라 사람 수</strong>로 나라를 그렸어. 그래서 사람은 적고 땅만 넓은 캐나다·러시아·오스트레일리아는 쪼그라들고, 땅은 작아도 사람이 많은 일본은 부풀었지.</blockquote>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p><strong>교과서의 답은 「2015년 기준 중국」이다.</strong> 그런데 지금은 달라졌다 — <strong>2023년 4월 무렵 인도가 중국을 앞질러</strong> 인구가 가장 많은 나라가 되었다.</p><p>세계 인구도 교과서가 쓴 2015년 약 73억 명에서 <strong>2024년 약 82억 명</strong>으로 늘었다.</p><p>🔑 교과서 숫자에는 늘 <strong>「언제의 값인가」</strong>가 붙어 있다. 위 지도(2018년)에서는 아직 중국이 조금 더 크다.</p><p>지도 속 숫자는 영어로 적혀 있다. billion은 10억, million은 100만이다. 그래서 India 1.35 billion은 약 13억 5천만 명, China 1.42 billion은 약 14억 2천만 명이다(2018년).</p><p>그럼 지금은 어떨까? 2024년 인구가 가장 많은 열 나라와 우리나라다.</p><table class="ws-fold-table"><thead><tr><th>순위</th><th>나라</th><th>인구(명)</th></tr></thead><tbody><tr><td>1</td><td>인도</td><td>약 14억 5,100만</td></tr><tr><td>2</td><td>중국</td><td>약 14억 900만</td></tr><tr><td>3</td><td>미국</td><td>약 3억 4,000만</td></tr><tr><td>4</td><td>인도네시아</td><td>약 2억 8,300만</td></tr><tr><td>5</td><td>파키스탄</td><td>약 2억 5,100만</td></tr><tr><td>6</td><td>나이지리아</td><td>약 2억 3,300만</td></tr><tr><td>7</td><td>브라질</td><td>약 2억 1,200만</td></tr><tr><td>8</td><td>방글라데시</td><td>약 1억 7,400만</td></tr><tr><td>9</td><td>러시아</td><td>약 1억 4,400만</td></tr><tr><td>10</td><td>에티오피아</td><td>약 1억 3,200만</td></tr><tr><td>29</td><td>대한민국</td><td>약 5,175만</td></tr></tbody></table></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p><strong>교과서의 답은 「2015년 기준 중국」이다.</strong> 그런데 지금은 달라졌다 — <strong>2023년 4월 무렵 인도가 중국을 앞질러</strong> 인구가 가장 많은 나라가 되었다.</p><p>세계 인구도 교과서가 쓴 2015년 약 73억 명에서 <strong>2024년 약 82억 명</strong>으로 늘었다.</p><p>🔑 교과서 숫자에는 늘 「<strong>언제의 값인가</strong>」가 붙어 있다. 위 지도(2018년)에서는 아직 중국이 조금 더 크다.</p><p>지도 속 숫자는 영어로 적혀 있다. billion은 10억, million은 100만이다. 그래서 India 1.35 billion은 약 13억 5천만 명, China 1.42 billion은 약 14억 2천만 명이다(2018년).</p><p>그럼 지금은 어떨까? 2024년 인구가 가장 많은 열 나라와 우리나라다.</p><table class="ws-fold-table"><thead><tr><th>순위</th><th>나라</th><th>인구(명)</th></tr></thead><tbody><tr><td>1</td><td>인도</td><td>약 14억 5,100만</td></tr><tr><td>2</td><td>중국</td><td>약 14억 900만</td></tr><tr><td>3</td><td>미국</td><td>약 3억 4,000만</td></tr><tr><td>4</td><td>인도네시아</td><td>약 2억 8,300만</td></tr><tr><td>5</td><td>파키스탄</td><td>약 2억 5,100만</td></tr><tr><td>6</td><td>나이지리아</td><td>약 2억 3,300만</td></tr><tr><td>7</td><td>브라질</td><td>약 2억 1,200만</td></tr><tr><td>8</td><td>방글라데시</td><td>약 1억 7,400만</td></tr><tr><td>9</td><td>러시아</td><td>약 1억 4,400만</td></tr><tr><td>10</td><td>에티오피아</td><td>약 1억 3,200만</td></tr><tr><td>29</td><td>대한민국</td><td>약 5,175만</td></tr></tbody></table></div>
 <br>
 <h2>📖 2단계: 사람들은 지구 어디에 몰려 살까?</h2>
 <blockquote>📕 <strong>교과서 128쪽 펴고 · 배정 시간 8분</strong></blockquote>
@@ -1202,6 +1219,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <p>과학 기술이 계속 발달하면, 언젠가 사막이나 극지방에도 사람이 많이 모여 살게 될까? <strong>알래스카 이야기</strong>를 근거로 들어 네 생각을 두세 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<br>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 <br></section>
 </div>
 <script>

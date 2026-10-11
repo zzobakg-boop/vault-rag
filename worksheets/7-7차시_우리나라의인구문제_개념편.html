@@ -756,6 +756,23 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }
 .ws-vcd-nav button:disabled { opacity: .32; cursor: default; }
 .vcd-count { font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }
+/* 2026-10-08 하위 카드 — 메인 낱말카드 아래 접힘 안에 나란히(캐러셀 밖) */
+.vcd-subtag { position: absolute; top: 8px; right: 8px; font-size: .68em; font-weight: 700; color: #fff;
+  background: #7a6742; border-radius: 10px; padding: 2px 8px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.ws-vsub { margin: 12px 0 0; border: 1px solid #d9c48f; border-radius: 10px; background: #fffaf0; }
+.ws-vsub > summary { cursor: pointer; padding: 10px 14px; font-size: .9em; color: #6b4f14; list-style: none; }
+.ws-vsub > summary::-webkit-details-marker { display: none; }
+.ws-vsub > summary::after { content: " ▾"; color: #a08a5c; }
+.ws-vsub[open] > summary::after { content: " ▴"; }
+.ws-vsub > summary:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; border-radius: 10px; }
+.ws-vsub-head { font-size: .86em; color: #5a4a2a; margin: 0 14px 10px; line-height: 1.55; }
+.ws-vsub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 10px; padding: 0 12px 14px; max-width: 640px; }
+.ws-vsubcard { flex: none; width: auto; }
+.ws-vsubcard .vcd-f { background: #fbf7ec; border-color: #d9c48f; }
+.ws-vsubcard .vcd-b > * { order: 2; }
+.ws-vsubcard .vcd-b > .vcd-bko { order: 0; }
+.ws-vsubcard .vcd-b > .vcd-fam { order: 1; margin: 2px 0 4px; padding: 6px 8px; border: 0; border-radius: 6px;
+  background: #fff1cc; color: #5a3f0c; font-weight: 700; font-size: .78em; line-height: 1.45; }
 @media (prefers-reduced-motion: reduce) {
   .vcd-in { transition: none; }
   .ws-vcd-track { scroll-behavior: auto; }
@@ -1049,7 +1066,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 인구 변화와 인구 문제 7-7차시 — 몇 살까지 청년일까? (우리나라의 인구 문제와 대책은?)</h1><p class="hero-subtitle">몇 살까지 청년일까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">어떤 마을에서는 왜 어르신도 청년 소리를 들을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">우리나라 출산율은 지금 어디쯤 와 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">일하는 사람 몇 명이 노인 한 명을 돌보게 될까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">선진국·개발 도상국·우리나라는 무엇이 같고 무엇이 다를까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>농촌에서는 젊은 사람이 떠나 노인이 많아, 나이 든 어르신도 '청년' 소리를 듣는다. 2015년 면 지역의 65세 이상 비율은 28.0%, 2024년 전라남도는 27.18%로 전국에서 가장 높다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>우리나라 합계 출산율은 2015년 1.24명에서 2023년 0.72명까지 떨어졌다가 2025년 0.80명으로 올랐다. 저출산이 이어지면 <strong>노동력</strong>이 부족해진다. 출산과 <strong>양육</strong> 부담을 덜어 주는 대책이 필요하다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>우리나라는 세계에서 가장 빠르게 <strong>고령화</strong>되어 2024년 12월에 초고령 사회가 되었다. 노인을 부양하는 <strong>생산 가능 인구</strong>(15~64세)는 계속 줄어든다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>아버지 육아 휴직 같은 공동 양육 지원, 노인이 일하는 <strong>액티브 시니어</strong>, 노인 복지, 외국인 근로자가 대책으로 꼽힌다. 선진국과 같은 문제를 더 빠르게 겪는 것이 우리나라의 특징이다.</p><div class="card-quote">그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</div></div></div><div class="hero-hook">시골 마을에 새로 이사 온 어르신이 노인회에 들어가려 하자 마을 사람들이 손사래를 쳤다. '아직 한참 젊어 보이는데 청년회로 가시게나. 자네 나이 정도는 우리 마을에서는 청년이야.' 우스갯소리일까, 우리나라의 지금 모습일까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 인구 변화와 인구 문제 7-7차시 — 몇 살까지 청년일까? (우리나라의 인구 문제와 대책은?)</h1><p class="hero-subtitle">몇 살까지 청년일까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">어떤 마을에서는 왜 어르신도 청년 소리를 들을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">우리나라 출산율은 지금 어디쯤 와 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">일하는 사람 몇 명이 노인 한 명을 돌보게 될까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">선진국·개발 도상국·우리나라는 무엇이 같고 무엇이 다를까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>농촌에서는 젊은 사람이 떠나 노인이 많아, 나이 든 어르신도 '청년' 소리를 듣는다. 2015년 면 지역의 65세 이상 비율은 28.0%, 2024년 전라남도는 27.18%로 전국에서 가장 높다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>우리나라 합계 출산율은 2015년 1.24명에서 2023년 0.72명까지 떨어졌다가 2025년 0.80명으로 올랐다. 저출산이 이어지면 <strong>노동력</strong>이 부족해진다. 출산과 <strong>양육</strong> 부담을 덜어 주는 대책이 필요하다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>우리나라는 세계에서 가장 빠르게 <strong>고령화</strong>되어 2024년 12월에 초고령 사회가 되었다. 노인을 부양하는 <strong>생산 가능 인구</strong>(15~64세)는 계속 줄어든다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>아버지 육아 휴직 같은 공동 양육 지원, 노인이 일하는 <strong>액티브 시니어</strong>, 노인 복지, 외국인 근로자가 대책으로 꼽힌다. 선진국과 같은 문제를 더 빠르게 겪는 것이 우리나라의 특징이다.</p></div></div><div class="hero-hook">시골 마을에 새로 이사 온 어르신이 노인회에 들어가려 하자 마을 사람들이 손사래를 쳤다. '아직 한참 젊어 보이는데 청년회로 가시게나. 자네 나이 정도는 우리 마을에서는 청년이야.' 우스갯소리일까, 우리나라의 지금 모습일까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/4 · OX: <span id="ox-score">0</span>/5
@@ -1182,6 +1199,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>3. 우리나라에 가장 필요한 <strong>대책</strong> 하나를 제안하고, 오늘 본 <strong>값이나 사례</strong>(합계 출산율 그래프·65세 이상 20%·아빠 육아 휴직·노르웨이 등)를 근거로 든다.</p>
 <p>4. 마지막 문장에 그 대책에 대한 <strong>네 관점</strong>을 밝힌다.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<br>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 <br></section>
 </div>
 <script>

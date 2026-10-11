@@ -756,6 +756,23 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }
 .ws-vcd-nav button:disabled { opacity: .32; cursor: default; }
 .vcd-count { font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }
+/* 2026-10-08 하위 카드 — 메인 낱말카드 아래 접힘 안에 나란히(캐러셀 밖) */
+.vcd-subtag { position: absolute; top: 8px; right: 8px; font-size: .68em; font-weight: 700; color: #fff;
+  background: #7a6742; border-radius: 10px; padding: 2px 8px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.ws-vsub { margin: 12px 0 0; border: 1px solid #d9c48f; border-radius: 10px; background: #fffaf0; }
+.ws-vsub > summary { cursor: pointer; padding: 10px 14px; font-size: .9em; color: #6b4f14; list-style: none; }
+.ws-vsub > summary::-webkit-details-marker { display: none; }
+.ws-vsub > summary::after { content: " ▾"; color: #a08a5c; }
+.ws-vsub[open] > summary::after { content: " ▴"; }
+.ws-vsub > summary:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; border-radius: 10px; }
+.ws-vsub-head { font-size: .86em; color: #5a4a2a; margin: 0 14px 10px; line-height: 1.55; }
+.ws-vsub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 10px; padding: 0 12px 14px; max-width: 640px; }
+.ws-vsubcard { flex: none; width: auto; }
+.ws-vsubcard .vcd-f { background: #fbf7ec; border-color: #d9c48f; }
+.ws-vsubcard .vcd-b > * { order: 2; }
+.ws-vsubcard .vcd-b > .vcd-bko { order: 0; }
+.ws-vsubcard .vcd-b > .vcd-fam { order: 1; margin: 2px 0 4px; padding: 6px 8px; border: 0; border-radius: 6px;
+  background: #fff1cc; color: #5a3f0c; font-weight: 700; font-size: .78em; line-height: 1.45; }
 @media (prefers-reduced-motion: reduce) {
   .vcd-in { transition: none; }
   .ws-vcd-track { scroll-behavior: auto; }
@@ -1049,7 +1066,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 인구 변화와 인구 문제 7-3차시 — 짜장면은 어떻게 우리 동네까지 왔을까? (사람들은 왜 이동할까?)</h1><p class="hero-subtitle">짜장면은 어떻게 우리 동네까지 왔을까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">안산 원곡동은 왜 '국경 없는 마을'이 되었을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">사람을 떠나게 하는 힘과 불러들이는 힘은?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">옛날의 이동과 오늘날의 이동은 무엇이 다를까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">짜장면·피자·타코에는 누구의 길이 남아 있을까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>일자리</strong> 때문이다. 안산은 수도권의 공업 도시라 외국인 손이 필요한 공장이 많다. 일자리를 찾아온 사람들이 모여 살면서 '국경 없는 마을'이 되었다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>불러들이는 힘은 <strong>흡인 요인</strong>, 밀어내는 힘은 <strong>배출 요인</strong>이다. 두 힘은 <strong>경제·정치·종교·환경</strong> 여러 측면에서 찾을 수 있다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>옛날에는 노예 무역처럼 <strong>강제로</strong> 끌려간 이동, 식민지를 만들려는 이동도 많았다. 오늘날에는 일자리와 임금을 찾는 <strong>경제적 이동</strong>이 가장 많다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>짜장면에는 인천항의 <strong>중국 산둥 출신 노동자</strong>, 뉴욕식 피자에는 <strong>이탈리아 이민자</strong>, 타코스 알 파스토르에는 멕시코로 간 <strong>레바논 이민자</strong>의 길이 남아 있다. 음식은 사람이 옮겨 간 길을 따라간다.</p><div class="card-quote">그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</div></div></div><img class="hero-image" src="images/7-3_hero_ansan_market.jpg" alt=""><div class="hero-hook">경기도 안산의 한 시장. 중국어 간판 아래 월병과 만두가 쌓여 있다. 이 가게 주인은 왜 고향을 떠나 여기까지 왔을까? 그런데 사실 우리가 즐겨 먹는 짜장면도 바다를 건너온 사람들이 남긴 흔적이다.</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 인구 변화와 인구 문제 7-3차시 — 짜장면은 어떻게 우리 동네까지 왔을까? (사람들은 왜 이동할까?)</h1><p class="hero-subtitle">짜장면은 어떻게 우리 동네까지 왔을까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">안산 원곡동은 왜 '국경 없는 마을'이 되었을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">사람을 떠나게 하는 힘과 불러들이는 힘은?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">옛날의 이동과 오늘날의 이동은 무엇이 다를까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">짜장면·피자·타코에는 누구의 길이 남아 있을까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>일자리</strong> 때문이다. 안산은 수도권의 공업 도시라 외국인 손이 필요한 공장이 많다. 일자리를 찾아온 사람들이 모여 살면서 '국경 없는 마을'이 되었다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>불러들이는 힘은 <strong>흡인 요인</strong>, 밀어내는 힘은 <strong>배출 요인</strong>이다. 두 힘은 <strong>경제·정치·종교·환경</strong> 여러 측면에서 찾을 수 있다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>옛날에는 노예 무역처럼 <strong>강제로</strong> 끌려간 이동, 식민지를 만들려는 이동도 많았다. 오늘날에는 일자리와 임금을 찾는 <strong>경제적 이동</strong>이 가장 많다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>짜장면에는 인천항의 <strong>중국 산둥 출신 노동자</strong>, 뉴욕식 피자에는 <strong>이탈리아 이민자</strong>, 타코스 알 파스토르에는 멕시코로 간 <strong>레바논 이민자</strong>의 길이 남아 있다. 음식은 사람이 옮겨 간 길을 따라간다.</p></div></div><img class="hero-image" src="images/7-3_hero_ansan_market.jpg" alt=""><div class="hero-hook">경기도 안산의 한 시장. 중국어 간판 아래 월병과 만두가 쌓여 있다. 이 가게 주인은 왜 고향을 떠나 여기까지 왔을까? 그런데 사실 우리가 즐겨 먹는 짜장면도 바다를 건너온 사람들이 남긴 흔적이다.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/4 · OX: <span id="ox-score">0</span>/5
@@ -1175,6 +1192,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <p>10년 뒤 너는 어디에 살고 싶어? 그곳이 너를 <strong>끌어당기는 힘</strong> 하나와, 지금 사는 곳에서 너를 <strong>떠나게 할 수 있는 힘</strong> 하나를 들어 두세 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<br>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 <br></section>
 </div>
 <script>
