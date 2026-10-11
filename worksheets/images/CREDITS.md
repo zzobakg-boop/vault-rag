@@ -1271,3 +1271,34 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-2-1 대분기 그래프 | Maddison Project Database 2023(2011년 물가 기준 달러) · Our World in Data 자료를 다시 그림 |
 | 6-1-3 미국 실업률 그래프 | 미국 노동 통계국(BLS) 추계 · 『미국 역사 통계』를 다시 그림 |
 | 6-1-3 바이마르 의회 선거 그래프 | 바이마르 공화국 의회 선거 결과(독일 연방 통계청 정리)를 다시 그림 |
+
+### 2차 정리 — 캡션·그림 속 출처 (2026-10-12)
+| 파일 | 출처 · 라이선스 |
+|---|---|
+| 3-1-2 영상 셋(대운하·율령·당 문화) | 개념 일러스트 · AI 생성(시대 고증·특정 실재 장소 아님) |
+| 3-3-1_장원배치.png | 오른쪽 아래 사진: Simon Tomson, geograph.org.uk · CC BY-SA 2.0 |
+| 3-3-1_장원배치도_실물.png | William R. Shepherd, Historical Atlas (New York, 1923) · 퍼블릭 도메인 |
+| 3-3-4_흑사병매장_투르네.jpg | 질 리 뮈지스 『연대기』 필사본 삽화(14세기 중엽) · 벨기에 왕립도서관 · 퍼블릭 도메인 |
+| 3-3-4_죽음의춤.jpg | 미하엘 볼게무트, 『뉘른베르크 연대기』(1493) 목판화 · 퍼블릭 도메인 |
+| 3-3-4_중세교역로_v2.png | 길: Lampman «Late medieval trade routes»(퍼블릭 도메인)를 줄여 한국어로 다시 그림 · 해안선·강·지형 음영: Natural Earth(퍼블릭 도메인) |
+| 3-3-4_자크리의난.jpg · 3-3-4_와트타일러의난.jpg | 프루아사르 『연대기』 필사본(15세기) · 프랑스 국립도서관 · 퍼블릭 도메인 |
+| 3-3-4_해체전후.png | 사진 Nyh · CC BY-SA 2.0 |
+| 3-3-4_돈의역사.png | 근거: Grierson & Blackburn 1986 · Bolton 2012(은화 수는 두 추정치의 범위) · Lopez 1951 · Dumbarton Oaks 주화 목록 |
+| 3-3-4_농노지도_v2.png | 해안선·강·지형 음영: Natural Earth(퍼블릭 도메인) · 근거: Blum 1957 등 |
+| 3-3-4_플랑드르_v3.png · 3-3-3_방아쇠둘_v2.png · 3-3-3_누가갔나_v2.png | 당시 경계: historical-basemaps(GPL-3.0, 개념도 정밀도) · 해안선·강·지형 음영: Natural Earth(퍼블릭 도메인) |
+| 3-3-2_두번의이동_v2.png · 3-3-2_프랑크뿌리_v2.png · 3-3-3_열린길_v2.png · 5-1-3_나폴레옹의유럽_v2.png · 5-1-3_밖에서누르니_v2.png · 7-1-1_두동맹지도.png | 해안선·강·지형 음영: Natural Earth(퍼블릭 도메인) (7-1-1 회원국: NATO·바르샤바 조약 원문) |
+| 5-1-4_조각에서하나로.png · 5-2-2_아프리카분할.png · 6-1-1_두편두전선.png | 경계: historical-basemaps(GPL-3.0, 개념도 정밀도) · 해안선·지형 음영: Natural Earth(퍼블릭 도메인) |
+| 5-2-2_곧은국경.png | 나라 모양: Natural Earth 1:1천만(퍼블릭 도메인) |
+| 5-1-1_권리장전비준.jpg | Samuel Wale 원화 · 1783년 판화 · 퍼블릭 도메인 |
+| 7-2-1_큰길.jpg | L. 브라이언트 사진, 미국의 소리(VOA) · 퍼블릭 도메인 |
+| 7-2-3_아랄해위성.jpg | 미국 항공 우주국(NASA) 위성 사진을 나란히 놓은 것 · 퍼블릭 도메인 |
+| 7-3-3_남중국해지도.jpg | 미국의 소리(VOA) 지도, 2012년 무렵 · 퍼블릭 도메인 |
+| 입담 삽화(모든 차시 *_입담_*.png) | AI 생성 삽화 · 자체 제작(위 «입담 삽화» 절) |
+
+### 3-3-1 도식 속 인물 그림 (LPC)
+도식 속 인물 그림 — <b>Liberated Pixel Cup</b>(Universal LPC Spritesheet Character Generator) 레이어를 합성해 만든 것이다.
+
+원저작자 여러 명 · <a href="https://github.com/LiberatedPixelCup/Universal-LPC-Spritesheet-Character-Generator">출처 저장소</a> · 라이선스 <a href="https://static.opengameart.org/OGA-BY-3.0.txt">OGA-BY 3.0</a> 및 <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>
+(레이어별로 병기된 라이선스 중 <b>택일</b>해 OGA-BY 3.0 또는 CC0를 선택함 — 근거: <a href="https://opengameart.org/content/faq">OpenGameArt FAQ</a> "You must follow only one of the licenses").
+
+레이어별 원저작자 전체 목록은 <a href="LPC-CREDITS.md">LPC-CREDITS.md</a>. <b>개작 표기</b>: 위 레이어들을 합성해 캐릭터를 구성한 것은 천대현이며, 왕관·밀짚모자·낫·원형 방패는 자작이다.

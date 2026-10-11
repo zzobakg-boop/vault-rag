@@ -1413,7 +1413,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             html_parts.append(
                 '<div class="ws-ipdam"><figure class="ipd-fig">'
                 f'<img src="images/{_img}" alt="{_alt.replace(chr(34), "&quot;")}" loading="lazy">'
-                f'<figcaption>{inline(_cap) + " · " if _cap else ""}AI 생성 삽화 · 자체 제작</figcaption></figure>'
+                # 2026-10-12 천대현 «제출용 학습지엔 그림 아래 출처 빼자» — «AI 생성 삽화 · 자체 제작» 꼬리를 뗐다(출처는 images/CREDITS.md «입담 삽화»).
+                + (f'<figcaption>{inline(_cap)}</figcaption>' if _cap else '') + '</figure>'
                 '<div class="ipd-t">')
             in_ipd = True
             continue
