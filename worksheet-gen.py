@@ -211,7 +211,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_pick = False; pick_q = ''; pick_rows = []; pick_open = False   # 2026-09-03: 인물 선택 활동
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
     in_ipd = False   # 2026-10-02: 삽화 + 본문 2단 (:::입담 ... :::)
-    in_sw = False; sw_id = ''; sw_titles = []   # 2026-10-12: 옆으로 넘기는 장 (:::넘김 … :::넘김장 제목 … :::넘김끝)
+    in_sw = False; sw_id = ''; sw_titles = []; sw_news = False   # 2026-10-12: 옆으로 넘기는 장 (:::넘김 … :::넘김장 제목 … :::넘김끝)
     in_2c = False    # 2026-10-02: 자료 + 발문 2단 (:::2단 … :::다음칸 … :::)
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
@@ -682,6 +682,10 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         if stripped.startswith(':::교과서'):
             in_tb = True
             tb_label = stripped[len(':::교과서'):].strip()
+            # 2026-10-12 사회 7-4(천대현 «생각 열기에 영화 단면 이미지와 묶어서 2단») — 꼬리 «| 2단» = 상자 안 그림 왼쪽 · 글·질문 오른쪽
+            tb_2c = bool(re.search(r'\|\s*2단\s*$', tb_label))
+            if tb_2c:
+                tb_label = re.sub(r'\s*\|\s*2단\s*$', '', tb_label)
             tb_lines = []
             continue
         if in_tb:
@@ -713,9 +717,15 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         body.append(f'<div class="ws-tb-ask">{_relabel(inline(ln[1:].strip()))}</div>')
                     else:
                         body.append(f'<div class="ws-tb-see">{inline(ln)}</div>')
+                if tb_2c:
+                    _fg = [b for b in body if b.startswith('<figure')]; _tx = [b for b in body if not b.startswith('<figure')]
+                    _inner = ('<div class="ws-2c c2-mid ws-tb-2cin" style="grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)">'
+                              f'<div class="c2-a">{"".join(_fg)}</div><div class="c2-b">{"".join(_tx)}</div></div>')
+                else:
+                    _inner = "".join(body)
                 html_parts.append(
                     f'<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 {inline(tb_label)}</div>'
-                    f'{"".join(body)}</div>')
+                    f'{_inner}</div>')
                 in_tb = False
                 tb_lines = []
                 continue
@@ -1463,7 +1473,14 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   숨긴 장의 입력칸도 DOM에 그대로 있어 채점·제출에 빠지지 않는다. 인쇄는 전부 펼친다. 스크립트는 블록 안에 둔다(옛 발행본 국소 주입용).
         if stripped == ':::넘김' or stripped.startswith(':::넘김 '):
             in_sw = True; sw_id = 'sw%d' % len(html_parts); sw_titles = []
-            html_parts.append(f'<div class="ws-sw" id="{sw_id}" data-cur="0"><div class="ws-sw-tabs" role="tablist"><!--sw-tabs--></div><div class="ws-sw-stage">')
+            # 2026-10-12 사회 7-4(천대현 «다 채운 뒤에 읽는 내용도 카드 뉴스 형식으로») — ':::넘김 카드뉴스 | 머리말'
+            #   장마다 제목을 크게 보이고 그림을 위에 꽉 채운다. 탭은 번호 점으로.
+            _opt, _, _hd = stripped[len(':::넘김'):].partition('|')
+            _news = '카드뉴스' in _opt
+            sw_news = _news
+            html_parts.append(f'<div class="ws-sw{" sw-news" if _news else ""}" id="{sw_id}" data-cur="0">'
+                              + (f'<div class="ws-sw-head">{inline(_hd.strip())}</div>' if _news and _hd.strip() else '')
+                              + '<div class="ws-sw-tabs" role="tablist"><!--sw-tabs--></div><div class="ws-sw-stage">')
             continue
         if in_sw and stripped.startswith(':::넘김장'):
             _t = stripped[len(':::넘김장'):].strip()
@@ -1473,7 +1490,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             continue
         if in_sw and stripped == ':::넘김끝':
             _n = len(sw_titles)
-            _tabs = ''.join(f'<button type="button" role="tab" class="ws-sw-tab{" on" if k == 0 else ""}" onclick="swGo(\'{sw_id}\',{k})">{inline(t)}</button>'
+            _tabs = ''.join(f'<button type="button" role="tab" class="ws-sw-tab{" on" if k == 0 else ""}" onclick="swGo(\'{sw_id}\',{k})"{(" aria-label=" + chr(34) + re.sub(r"<[^>]+>", "", inline(t)) + chr(34)) if sw_news else ""}>{(str(k + 1) if sw_news else inline(t))}</button>'
                             for k, t in enumerate(sw_titles))
             for _k in range(len(html_parts) - 1, -1, -1):
                 if '<!--sw-tabs-->' in html_parts[_k]:
@@ -2698,6 +2715,19 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-nav button {{ border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }}
 .ws-sw-count {{ font-size: .8em; color: #8a7a5c; }}
 @media (max-width: 520px) {{ .ws-sw-stage {{ padding: 4px 10px 2px; }} .ws-sw-tab {{ font-size: .74em; padding: 7px 2px; }} }}
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news {{ border-color: #2f4a6b; background: #fff; }}
+.sw-news .ws-sw-head {{ padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }}
+.sw-news .ws-sw-tabs {{ justify-content: center; gap: 8px; padding: 8px 10px 6px; }}
+.sw-news .ws-sw-tab {{ flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }}
+.sw-news .ws-sw-tab.on {{ background: #2f4a6b; border-color: #2f4a6b; color: #fff; }}
+.sw-news .ws-sw-stage {{ border-top: 0; padding: 4px 16px 6px; }}
+.sw-news .ws-sw-h {{ display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }}
+.sw-news .ws-sw-pane img {{ display: block; width: 100%; max-height: 330px; object-fit: cover; border-radius: 10px; margin: 2px 0 6px; }}
+.sw-news .ws-sw-pane p {{ font-size: 1.02em; line-height: 1.85; }}
+.sw-news .ws-sw-nav button {{ border-color: #b9c6d6; color: #2f4a6b; }}
+.ws-tb-2cin {{ margin: 2px 0 4px; }}
+.ws-tb-2cin .ws-tb-fig {{ margin: 0; }}
 @media print {{ .ws-sw-pane[hidden] {{ display: block !important; }} .ws-sw-tabs, .ws-sw-nav {{ display: none; }} .ws-sw-h {{ display: block; }} }}
 .ws-ipdam {{
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
