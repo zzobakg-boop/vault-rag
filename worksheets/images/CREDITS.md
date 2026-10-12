@@ -1138,6 +1138,15 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-3_world_migration.png | 세계의 다양한 인구 이동(A·B·C·D1~D4) — 교과서 133쪽 스스로 탐구 지도의 내용을 다시 그림 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) · 내용 근거 천재교육 사회②(구정화) 133쪽 |
 | 7-3_korea_periods.png | 우리나라의 시기별 인구 이동 ①~⑤ — 교과서 133쪽 날개 내용을 화살표로 옮긴 개념도 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) · 내용 근거 천재교육 사회②(구정화) 133쪽 |
 | 7-3_입담_음식의길.png | 입담 삽화 — 인천항 산둥 노동자(1920년대 무렵) · 뉴욕 나폴리 이민자(1905년 무렵) · 멕시코 푸에블라 레바논 이민자(1930년대, 꼬치구이를 아랍식 빵에), 가상 인물·손글씨 대사 PIL | AI 생성(Grok Aurora) + 자체 합성 |
+| 7-3_photo_mexico_border.jpg | 멕시코-미국 국경 울타리, 티후아나 바닷가, 2017 (Mexico-US border at Tijuana.jpg, 4:3로 잘라 냄) | Tomascastelazo · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_photo_syria_lesvos.jpg | 그리스 레스보스섬 스칼라 시카미아스에 닿은 시리아 난민의 고무보트, 2015 (20151029 Inflatable boat with Syrian Refugees Skala Sykamias Lesvos Greece.jpg, 잘라 냄) | Ggia · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_photo_pilgrims_weir.jpg | 로버트 W. 위어, 「청교도들의 출항(Embarkation of the Pilgrims)」, 1857, 브루클린 미술관 (Google Art Project, 잘라 냄) | Robert Walter Weir · 퍼블릭 도메인 · Wikimedia Commons |
+| 7-3_photo_tuvalu_funafuti.jpg | 하늘에서 본 투발루 수도 푸나푸티, 2011 (Aerial view of Tuvalu's capital, Funafuti, 2011 … DFAT (12779656093).jpg, 잘라 냄) | Lily-Anne Homasi/DFAT · CC BY 2.0 · Wikimedia Commons |
+| 7-3_photo_ansan_wongok.jpg | 안산 원곡동 다문화 음식 거리 표지, 2014 (Ansan fall 2014 17.JPG, 잘라 냄) | Piotrus · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_voc_흡인.jpg | 쇳가루를 끌어당긴 말굽 자석 (A-1 horseshoe-magnet-red-silver-iron-filings-AHD.jpg, 좌우 여백 채움) | Oguraclutch · CC BY-SA 3.0 · Wikimedia Commons |
+| 7-3_voc_배출.jpg | 일본 도마코마이 오지 제지 공장 굴뚝의 흰 연기 (White smoke from Oji Paper Tomakomai Mill chimney.jpg, 테두리 빼고 잘라 냄) | ejstanz · CC BY 2.0 · Wikimedia Commons |
+| 7-3_fig_pushpull.png | 도식 — 같은 일자리, 두 가지 힘(살던 곳이 밀어내고 도착할 곳이 끌어당긴다) | 자체 제작 (fig_73_pushpull.py) |
+| 7-3_fig_wall.png | 도식 — 두 힘 사이의 벽(먼 거리·비행기 값·비자·낯선 말) | 자체 제작 (fig_73_pushpull.py) |
 | 7-4_hero_hamtramck.jpg · 7-4_hamtramck_polish_shop.jpg | 미국 미시간주 햄트램크 조지프 캠퍼 거리, 2012년 | Andrew Jameson · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-4_manila_airport.jpg | 마닐라 니노이 아키노 국제공항 출국 심사대, 2023년 | 마닐라 국제공항공사 · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-5_hero_mobile_shop.jpg | 니가타현 미나미우오누마시 편의점 이동 판매차, 2023년 | 古峰 · CC BY-SA 4.0 · Wikimedia Commons |
