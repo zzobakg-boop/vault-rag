@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: 100%; max-height: 330px; object-fit: cover; border-radius: 10px; margin: 2px 0 6px; }
+.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -1087,11 +1135,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ 지난 시간엔 사람이 '왜' 움직이는지 봤지. 오늘은 그다음이야. 사람이 들어온 곳과 사람이 빠져나간 곳은 각각 어떻게 달라질까? 하나만 기억해 둬 — 좋은 일만 생기는 쪽은 없어.</blockquote>
-<br>
 <h2>📌 학습 목표</h2>
-<p>- <strong>인구 유입 지역</strong>과 <strong>인구 유출 지역</strong>의 특징을 말할 수 있다.</p>
-<p>- 인구 이동이 두 지역에 주는 <strong>좋은 영향과 문제점</strong>을 함께 분석할 수 있다.</p>
+<div class="ws-ipdam"><figure class="ipd-fig"><img src="images/7-4_입담_들어온곳빠져나간곳.png" alt="사람이 몰려 북적이는 도시 거리의 젊은 여성과, 빈집 앞에 선 시골 할아버지" loading="lazy"><figcaption>지난 시간엔 사람이 '왜' 움직이는지 봤다. 오늘은 그다음 — 들어온 곳도 빠져나간 곳도, 좋은 일만 생기는 쪽은 없다</figcaption></figure><div class="ipd-t">
+<p>🎯 <strong>인구 유입 지역</strong>과 <strong>인구 유출 지역</strong>의 특징을 말할 수 있다.</p>
+<p>🎯 인구 이동이 두 지역에 주는 <strong>좋은 영향과 문제점</strong>을 함께 분석할 수 있다.</p>
+</div></div>
 <br>
 <h2>✨ 오늘의 고급 단어</h2>
 <blockquote>그림을 먼저 보고 무슨 말일지 짐작해 봐. <strong>카드를 누르면 뜻이 열려.</strong></blockquote>
@@ -1101,69 +1149,140 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 1단계: 가족이 된 네 나라 사람</h2>
 <blockquote>📕 <strong>교과서 134쪽 펴고 · 배정 시간 6분</strong></blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 134쪽 · 생각 열기 「컬러풀 웨딩즈」</div><div class="ws-tb-see">프랑스의 한 부부에게 딸이 넷 있다. 셋째 딸까지 아랍계·유대계·중국계 남편을 맞았는데, 막내딸이 데려온 예비 사위는 아프리카 출신이다.</div><div class="ws-tb-ask">이 가족이 함께 지내며 겪을 만한 일을 하나 상상해 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 134쪽에서 찾기 — 이 가족이 함께 지내며 겪을 만한 일을 하나 상상해 한 문장으로 적자" style="width:360px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 134쪽 · 생각 열기 「컬러풀 웨딩즈」</div><div class="ws-2c c2-mid ws-tb-2cin" style="grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)"><div class="c2-a"><figure class="ws-tb-fig"><img src="images/7-4_film_wedding.jpg" alt="영화 속 설정을 그린 삽화 — 네 딸의 결혼식(실제 영화 장면이 아니다)" loading="lazy"><figcaption>영화 속 설정을 그린 삽화 — 네 딸의 결혼식(실제 영화 장면이 아니다)</figcaption></figure></div><div class="c2-b"><div class="ws-tb-see">프랑스의 한 부부에게 딸이 넷 있다. 셋째 딸까지 아랍계·유대계·중국계 남편을 맞았는데, 막내딸이 데려온 예비 사위는 아프리카 출신이다.</div><div class="ws-tb-ask">이 가족이 함께 지내며 겪을 만한 일을 하나 상상해 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 134쪽에서 찾기 — 이 가족이 함께 지내며 겪을 만한 일을 하나 상상해 한 문장으로 적자" style="width:360px" placeholder=""></div></div></div></div>
 <br>
-<blockquote>🎙️ 영화 속 아버지는 사위들이 모일 때마다 식탁에서 진땀을 흘려. 누구는 돼지고기를 안 먹고, 누구는 명절이 다르고, 누구는 말투가 다르거든. 이 식탁이 오늘 배울 '사람이 들어온 곳'의 축소판이야.</blockquote>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1.0fr)"><div class="c2-a">
+<figure class="ws-fig"><img src="images/7-4_입담_진땀나는식탁.png" alt="삽화 — 영화 속 식탁. 장인어른과 두 사위(실제 영화 장면이 아니다)" loading="lazy"><figcaption>삽화 — 영화 속 식탁. 장인어른과 두 사위(실제 영화 장면이 아니다)</figcaption></figure>
+</div><div class="c2-b">
+<blockquote>🎙️ 영화 속 아버지는 사위들이 모일 때마다 식탁에서 진땀을 흘려. 왜 그럴까? 그림 속 사위들의 손을 잘 봐.</blockquote>
+</div></div>
+<br>
+<details class="ws-fold ws-fold-더보기"><summary>다 쓴 뒤에 — 아버지가 진땀을 흘린 까닭</summary><div class="ws-fold-body">
+<p>누구는 돼지고기를 안 먹고, 누구는 명절이 다르고, 누구는 말투가 다르다. 이 식탁이 오늘 배울 '사람이 들어온 곳'의 축소판이다.</p>
+</div></details>
 <br>
 <h2>📖 2단계: 사람이 몰려드는 곳 — 인구 유입 지역</h2>
 <blockquote>📕 <strong>교과서 134쪽 펴고 · 배정 시간 9분</strong></blockquote>
 <br>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.05fr)"><div class="c2-a">
 <p>세계에서 사람이 많이 들어오는 곳은 북아메리카, 유럽, 오세아니아 같은 선진국이다. 임금이 높고 일자리가 많으며, 교육 여건과 생활 환경이 좋아 사람들을 불러들인다.</p>
 <br>
 <p>사람이 들어오면 좋은 점이 생긴다. 새로운 ①<input type="text" class="blank-input" data-answer="노동력" data-id="1" style="width:68px" placeholder="">이 들어와 일손이 모자란 일을 맡으면서 경제가 활발해질 수 있다. 그러나 걱정거리도 생긴다. 이주민과 원주민은 종교·언어·생활 습관이 달라, 그 ②<input type="text" class="blank-input" data-answer="문화" data-id="2" style="width:60px" placeholder="">적 차이로 갈등이 생기기도 한다.</p>
+</div><div class="c2-b">
+<figure class="ws-fig"><img src="images/7-4_world_inflow.png" alt="사람이 들어오는 나라 — 해마다 인구 1,000명당 들어온 사람에서 나간 사람을 뺀 수(2019~2024년 평균)" loading="lazy"><figcaption>사람이 들어오는 나라 — 해마다 인구 1,000명당 들어온 사람에서 나간 사람을 뺀 수(2019~2024년 평균)</figcaption></figure>
+</div></div>
 <br>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
+<figure class="ws-fig"><img src="images/7-4_map_hamtramck.png" alt="햄트램크는 어디에? — 미국 디트로이트 안의 작은 도시" loading="lazy"><figcaption>햄트램크는 어디에? — 미국 디트로이트 안의 작은 도시</figcaption></figure>
+</div><div class="c2-b">
 <figure class="ws-fig"><img src="images/7-4_hamtramck_polish_shop.jpg" alt="미국 햄트램크 — 폴란드식 소시지·만두(피에로기) 가게" loading="lazy"><figcaption>미국 햄트램크 — 폴란드식 소시지·만두(피에로기) 가게</figcaption></figure>
+</div></div>
 <br>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>크리스트교 전통이 강한 유럽에는 북부 아프리카와 서남아시아의 이슬람 지역에서 온 사람들이 많다. 그래서 종교를 둘러싼 마찰이 자주 일어난다.</p><p>프랑스는 2004년에 <strong>공립 학교</strong>에서 머릿수건(히잡)처럼 종교가 드러나는 옷차림을 금지하는 법을 만들었고, 이슬람교도들이 크게 반발했다. 함께 사는 방법을 찾는 것이 유럽의 숙제가 되었다.</p></div>
+</div><div class="c2-b">
+<div class="ws-gal" id="gal48" data-n="2"><div class="ws-gal-head">지도와 사진으로 한 번 더 — 넘겨 보자</div><div class="ws-gal-tabs"><button class="ws-gal-dot on" onclick="galGo('gal48',0)">① 어디서 왔나</button><button class="ws-gal-dot" onclick="galGo('gal48',1)">② 파리 대모스크</button></div><div class="ws-gal-stage"><figure class="ws-gal-slide" data-i="0"><img src="images/7-4_map_europe_islam.png" alt="북부 아프리카와 서남아시아의 이슬람 지역에서 유럽으로" loading="lazy"><figcaption><b>① 어디서 왔나</b> 북부 아프리카와 서남아시아의 이슬람 지역에서 유럽으로</figcaption></figure><figure class="ws-gal-slide" data-i="1" hidden><img src="images/7-4_photo_paris_mosque.jpg" alt="프랑스 파리의 이슬람 사원 — 1926년에 문을 열었다" loading="lazy"><figcaption><b>② 파리 대모스크</b> 프랑스 파리의 이슬람 사원 — 1926년에 문을 열었다</figcaption></figure></div><div class="ws-gal-nav"><button onclick="galStep('gal48',-1)">‹ 이전</button><span class="ws-gal-count"><b>1</b> / 2</span><button onclick="galStep('gal48',1)">다음 ›</button></div></div>
+</div></div>
 <br>
-<details class="ws-fold ws-fold-더보기"><summary>다 채운 뒤에 — 같은 이주, 다른 결과: 니스와 햄트램크</summary><div class="ws-fold-body">
-<p>2016년 여름, 프랑스 니스를 비롯한 해변 도시 서른 곳 남짓이 온몸을 가리는 이슬람식 수영복(부르키니)을 해변에서 입지 못하게 했다. 8월 말 프랑스 최고 행정 법원이 이웃 도시의 같은 금지를 '기본적인 자유를 해친다'며 멈춰 세웠고, 9월 1일에는 니스의 금지도 법원 결정으로 효력을 잃었다.</p>
-<p>표지 사진의 햄트램크는 디트로이트 안에 있는 넓이 2제곱마일(약 5㎢)의 작은 도시다. 자동차 공장 일자리를 따라 폴란드 사람들이 몰려와 한때 주민 대부분이 폴란드계였다. 공장이 기울자 그 자리에 예멘·방글라데시에서 온 이슬람교도들이 들어왔고, 2015년에는 미국에서 처음으로 이슬람교도가 다수인 시의회가 생겼다.</p>
-<p>🎙️ 표지 사진 다시 봐 봐. '최고의 폴란드 음식' 가게 바로 옆이 이슬람 센터야. 두 번의 유입이 한 거리에 나란히 남아 있는 거지.</p>
-</div></details>
+<div class="ws-sw sw-news" id="sw51" data-cur="0"><div class="ws-sw-head">📰 다 채운 뒤에 넘겨 보자 — 같은 이주, 다른 결과: 니스와 햄트램크</div><div class="ws-sw-tabs" role="tablist"><button type="button" role="tab" class="ws-sw-tab on" onclick="swGo('sw51',0)" aria-label="2016년 여름, 프랑스 니스 해변">1</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw51',1)" aria-label="법원이 멈춰 세웠다">2</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw51',2)" aria-label="바다 건너 미국 햄트램크">3</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw51',3)" aria-label="공장이 기울자 새 이웃이">4</button></div><div class="ws-sw-stage">
+<section class="ws-sw-pane" data-i="0"><h3 class="ws-sw-h">2016년 여름, 프랑스 니스 해변</h3>
+<figure class="ws-fig"><img src="images/7-4_photo_nice_beach.jpg" alt="프랑스 니스의 해변 산책로" loading="lazy"><figcaption>프랑스 니스의 해변 산책로</figcaption></figure>
+<p>니스를 비롯한 프랑스 해변 도시 서른 곳 남짓이 온몸을 가리는 이슬람식 수영복(부르키니)을 해변에서 입지 못하게 했다.</p>
+</section><section class="ws-sw-pane" data-i="1" hidden><h3 class="ws-sw-h">법원이 멈춰 세웠다</h3>
+<figure class="ws-fig"><img src="images/7-4_photo_conseil_etat.jpg" alt="프랑스 최고 행정 법원(국사원)이 있는 파리 팔레 루아얄" loading="lazy"><figcaption>프랑스 최고 행정 법원(국사원)이 있는 파리 팔레 루아얄</figcaption></figure>
+<p>8월 말 프랑스 최고 행정 법원이 이웃 도시의 같은 금지를 '기본적인 자유를 해친다'며 멈춰 세웠다. 9월 1일에는 니스의 금지도 법원 결정으로 효력을 잃었다.</p>
+</section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">바다 건너 미국 햄트램크</h3>
+<figure class="ws-fig"><img src="images/7-4_hero_hamtramck.jpg" alt="표지 사진 — 햄트램크 거리의 폴란드 식료품점과 이슬람 센터" loading="lazy"><figcaption>표지 사진 — 햄트램크 거리의 폴란드 식료품점과 이슬람 센터</figcaption></figure>
+<p>디트로이트 안에 있는 넓이 약 5㎢의 작은 도시다. 자동차 공장 일자리를 따라 폴란드 사람들이 몰려와 한때 주민 대부분이 폴란드계였다.</p>
+<blockquote>🎙️ 표지 사진 다시 봐 봐. '최고의 폴란드 음식' 가게 바로 옆이 이슬람 센터야.</blockquote>
+</section><section class="ws-sw-pane" data-i="3" hidden><h3 class="ws-sw-h">공장이 기울자 새 이웃이</h3>
+<figure class="ws-fig"><img src="images/7-4_photo_hamtramck_yemen.jpg" alt="햄트램크 거리의 예멘 카페와 아랍어 간판 가게" loading="lazy"><figcaption>햄트램크 거리의 예멘 카페와 아랍어 간판 가게</figcaption></figure>
+<p>공장이 기울자 그 자리에 예멘·방글라데시에서 온 이슬람교도들이 들어왔다. 2015년에는 미국에서 처음으로 이슬람교도가 다수인 시의회가 생겼다. 두 번의 유입이 한 거리에 나란히 남아 있다.</p>
+</section></div><div class="ws-sw-nav"><button type="button" onclick="swStep('sw51',-1)">‹ 이전</button><span class="ws-sw-count"><b>1</b> / 4</span><button type="button" onclick="swStep('sw51',1)">다음 ›</button></div></div><script>(function(){if(!window.swGo){window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}var g=document.getElementById("sw51"),x0=null,y0=null;if(!g)return;g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;swStep("sw51",dx<0?1:-1);g.scrollIntoView({block:"start",behavior:"smooth"});}},{passive:true});})();</script>
 <br>
 <h2>📖 3단계: 사람이 빠져나가는 곳 — 인구 유출 지역</h2>
 <blockquote>📕 <strong>교과서 134쪽 펴고 · 배정 시간 9분</strong></blockquote>
 <br>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.05fr)"><div class="c2-a">
 <p>아시아, 아프리카, 남아메리카의 일부 나라에서는 사람이 빠져나간다. 가난, 낮은 임금, 일자리 부족, 전쟁과 분쟁이 사람들을 떠나게 한다.</p>
 <br>
 <p>사람이 빠져나가는 나라에도 좋은 점은 있다. 일자리를 찾는 사람이 줄어드니 Ⅴ단원에서 배운 ③<input type="text" class="blank-input" data-answer="실업률" data-id="3" style="width:68px" placeholder="">은 낮아진다. 그러나 젊고 유능한 고급 ④<input type="text" class="blank-input" data-answer="기술" data-id="4" style="width:60px" placeholder=""> 인력이 계속 빠져나가면 산업이 더디게 자라고 사회가 활력을 잃어, 길게 보면 나라의 발전이 멈출 수 있다.</p>
+</div><div class="c2-b">
+<figure class="ws-fig"><img src="images/7-4_world_outflow.png" alt="사람이 빠져나가는 나라 — 해마다 인구 1,000명당 나간 사람이 들어온 사람보다 많은 수(2019~2024년 평균)" loading="lazy"><figcaption>사람이 빠져나가는 나라 — 해마다 인구 1,000명당 나간 사람이 들어온 사람보다 많은 수(2019~2024년 평균)</figcaption></figure>
+</div></div>
 <br>
-<figure class="ws-fig"><img src="images/7-4_manila_airport.jpg" alt="필리핀 마닐라 공항 출국 심사대 — 지난 시간 지도의 D3 '필리핀 → 일본'을 떠올려 보자" loading="lazy"><figcaption>필리핀 마닐라 공항 출국 심사대 — 지난 시간 지도의 D3 '필리핀 → 일본'을 떠올려 보자</figcaption></figure>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
+<figure class="ws-fig"><img src="images/7-4_map_manila.png" alt="마닐라는 어디에? — 지난 시간 지도의 D3 '필리핀 → 일본'" loading="lazy"><figcaption>마닐라는 어디에? — 지난 시간 지도의 D3 '필리핀 → 일본'</figcaption></figure>
+</div><div class="c2-b">
+<figure class="ws-fig"><img src="images/7-4_manila_airport.jpg" alt="필리핀 마닐라 공항 출국 심사대" loading="lazy"><figcaption>필리핀 마닐라 공항 출국 심사대</figcaption></figure>
+</div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 134쪽 · 아래쪽 사진</div><div class="ws-tb-ask">134쪽 아래 사진 속 대학생들은 어느 나라 학생들이고, 무엇을 배우고 있나? <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 134쪽에서 찾기 — 134쪽 아래 사진 속 대학생들은 어느 나라 학생들이고, 무엇을 배우" style="width:360px" placeholder=""></div></div>
 <br>
-<details class="ws-fold ws-fold-더보기"><summary>다 채운 뒤에 — 떠난 사람이 보내오는 돈</summary><div class="ws-fold-body">
-<p>2023년에 필리핀 사람 약 216만 명이 외국에서 일했다. 이들이 고향 가족에게 보낸 돈은 그해 필리핀 경제 전체(국내 총생산)의 8%가 넘었다.</p>
-<p>🎙️ 필리핀 공항에는 해외에서 일하는 사람만 쓰는 출국 심사 창구까지 따로 있어. 떠난 사람이 보내오는 돈으로 동생이 학교에 가고 집이 지어지지. 그런데 간호사와 엔지니어가 줄줄이 떠나면 정작 고향 병원과 공장은 누가 지킬까? 이걸 '두뇌 유출'이라고 불러.</p>
-</div></details>
+<div class="ws-sw sw-news" id="sw86" data-cur="0"><div class="ws-sw-head">📰 다 채운 뒤에 넘겨 보자 — 떠난 사람이 보내오는 돈</div><div class="ws-sw-tabs" role="tablist"><button type="button" role="tab" class="ws-sw-tab on" onclick="swGo('sw86',0)" aria-label="216만 명이 외국에서 일한다">1</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw86',1)" aria-label="고향으로 보내오는 돈">2</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw86',2)" aria-label="그런데 고향은?">3</button></div><div class="ws-sw-stage">
+<section class="ws-sw-pane" data-i="0"><h3 class="ws-sw-h">216만 명이 외국에서 일한다</h3>
+<figure class="ws-fig"><img src="images/7-4_card_ofw216.png" alt="외국에서 일하는 필리핀 사람 216만 명(2023년)" loading="lazy"><figcaption>외국에서 일하는 필리핀 사람 216만 명(2023년)</figcaption></figure>
+<p>2023년에 필리핀 사람 약 216만 명이 외국에서 일했다. 필리핀 공항에는 해외에서 일하는 사람만 쓰는 출국 심사 창구까지 따로 있다.</p>
+</section><section class="ws-sw-pane" data-i="1" hidden><h3 class="ws-sw-h">고향으로 보내오는 돈</h3>
+<figure class="ws-fig"><img src="images/7-4_photo_ofw_remit.jpg" alt="필리핀의 송금 가게" loading="lazy"><figcaption>필리핀의 송금 가게</figcaption></figure>
+<p>이들이 고향 가족에게 보낸 돈은 그해 필리핀 경제 전체(국내 총생산)의 8%가 넘었다. 그 돈으로 동생이 학교에 가고 집이 지어진다.</p>
+</section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">그런데 고향은?</h3>
+<figure class="ws-fig"><img src="images/7-4_card_braindrain.png" alt="간호사·엔지니어가 줄줄이 떠나면 고향은?" loading="lazy"><figcaption>간호사·엔지니어가 줄줄이 떠나면 고향은?</figcaption></figure>
+<blockquote>🎙️ 간호사와 엔지니어가 줄줄이 떠나면 정작 고향 병원과 공장은 누가 지킬까? 이걸 '두뇌 유출'이라고 불러.</blockquote>
+</section></div><div class="ws-sw-nav"><button type="button" onclick="swStep('sw86',-1)">‹ 이전</button><span class="ws-sw-count"><b>1</b> / 3</span><button type="button" onclick="swStep('sw86',1)">다음 ›</button></div></div><script>(function(){if(!window.swGo){window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}var g=document.getElementById("sw86"),x0=null,y0=null;if(!g)return;g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;swStep("sw86",dx<0?1:-1);g.scrollIntoView({block:"start",behavior:"smooth"});}},{passive:true});})();</script>
 <br>
 <h2>📖 4단계: 우리 동네는 어느 쪽일까</h2>
 <blockquote>🧭 <strong>배정 시간 7분</strong> — 교과서 밖 이야기</blockquote>
 <br>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.05fr)"><div class="c2-a">
+<figure class="ws-fig"><img src="images/7-4_map_korea_change.png" alt="곡성은 어디에? — 10년 사이 시군구 인구 변화(2015→2025년)" loading="lazy"><figcaption>곡성은 어디에? — 10년 사이 시군구 인구 변화(2015→2025년)</figcaption></figure>
+</div><div class="c2-b">
 <figure class="ws-fig"><img src="images/7-2_gokseong.jpg" alt="곡성읍 — 작은 읍내 뒤로 논과 산줄기" loading="lazy"><figcaption>곡성읍 — 작은 읍내 뒤로 논과 산줄기</figcaption></figure>
 <br>
-<p>우리나라 안에서 보면 곡성 같은 농촌은 사람이 빠져나가는 쪽이다. 젊은 사람들이 일자리와 학교를 찾아 광주와 수도권으로 떠났고, 젊은 사람이 떠나면 남은 주민 가운데 노인의 비율이 높아진다. 정부는 2021년에 곡성군을 '인구 감소 지역'으로 정했다.</p>
+<p>우리나라 안에서 보면 곡성 같은 농촌은 사람이 빠져나가는 쪽이다. 젊은 사람들이 일자리와 학교를 찾아 광주와 수도권으로 떠났고, 젊은 사람이 떠나면 남은 주민 가운데 노인의 비율이 높아진다. 정부는 2021년에 곡성군을 '인구 감소 지역'으로 정했다. 지도에서 보듯 2015년부터 10년 사이 곡성 인구는 9% 가까이 줄었고, 전국 시군구 열 곳 가운데 일곱 곳꼴로 인구가 줄었다.</p>
 <br>
 <p>나라 밖과 견주면 우리나라는 사람이 들어오는 쪽이다. 2024년에 우리나라에 사는 외국인 주민은 258만 명으로, 전체 인구의 5.0%였다.</p>
+</div></div>
 <br>
-<blockquote>🎙️ 7-2에서 광주와 곡성을 견줘 봤지? 그때는 '어디에 사람이 많은가'를 봤고, 오늘은 '사람이 빠져나가면 그곳에 무슨 일이 생기는가'를 보는 거야. 한 나라 안에도 유입 지역과 유출 지역이 같이 있어. 하나만 더 — 한 동네 인구가 바뀌는 길은 딱 둘이야. 태어나고 세상을 떠나는 것, 들어오고 나가는 것. 지난 시간과 오늘은 둘째 길을 봤고, 다음 시간부터 세 차시는 첫째 길을 봐.</blockquote>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1.0fr)"><div class="c2-a">
+<figure class="ws-fig"><img src="images/7-4_fig_twoways.png" alt="한 동네 인구가 바뀌는 길은 딱 둘 — 태어나고 세상을 떠나는 것, 들어오고 나가는 것" loading="lazy"><figcaption>한 동네 인구가 바뀌는 길은 딱 둘 — 태어나고 세상을 떠나는 것, 들어오고 나가는 것</figcaption></figure>
+</div><div class="c2-b">
+<blockquote>🎙️ 7-2에서 광주와 곡성을 견줘 봤지? 그때는 '어디에 사람이 많은가'를 봤고, 오늘은 '사람이 빠져나가면 그곳에 무슨 일이 생기는가'를 보는 거야. 한 나라 안에도 유입 지역과 유출 지역이 같이 있어. 그림처럼 인구가 바뀌는 길은 딱 둘 — 지난 시간과 오늘은 둘째 길, 다음 시간부터는 첫째 길이야.</blockquote>
+</div></div>
 <br>
-<div class="ws-pick" id="pk64"><div class="pk-head"><span>이 숫자는 어떻게 만든 숫자일까? 사람·물건을 하나하나 센 숫자(몇 명·몇 개)이면 '센 수', 전체나 넓이·사람 수로 나눠 견준 숫자(몇 %·○○당)이면 '견준 값'을 고르자. 다 고르면 정답이 나오고, 틀린 카드는 까닭이 먼저 펼쳐진다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="센 수"><div class="pk-name">외국인 주민 258만 명</div><div class="pk-sit">2024년 우리나라에 사는 외국인 주민</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>사람 수를 그대로 센 값이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="견준 값"><div class="pk-name">외국인 주민 5.0%</div><div class="pk-sit">우리나라 전체 인구 가운데 외국인 주민</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>전체 인구를 100으로 놓고 견준 값이다 — 258만 명과 같은 사실을 다르게 나타냈다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="센 수"><div class="pk-name">부산 20대 4,500명</div><div class="pk-sit">2025년 부산을 떠난 20대에서 들어온 20대를 뺀 수</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>사람 수를 그대로 센 값이다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="견준 값"><div class="pk-name">부산 20대 1.3%</div><div class="pk-sit">2025년 부산 20대 인구에 견준, 빠져나간 20대</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>부산 20대 전체에 견준 값이다 — 4,500명과 같은 사실을 다르게 나타냈다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk64");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["센 수", "견준 값"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk117"><div class="pk-head"><span>이 숫자는 어떻게 만든 숫자일까? 사람·물건을 하나하나 센 숫자(몇 명·몇 개)이면 '센 수', 전체나 넓이·사람 수로 나눠 견준 숫자(몇 %·○○당)이면 '견준 값'을 고르자. 다 고르면 정답이 나오고, 틀린 카드는 까닭이 먼저 펼쳐진다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="센 수"><div class="pk-name">외국인 주민 258만 명</div><div class="pk-sit">2024년 우리나라에 사는 외국인 주민</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>사람 수를 그대로 센 값이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="견준 값"><div class="pk-name">외국인 주민 5.0%</div><div class="pk-sit">우리나라 전체 인구 가운데 외국인 주민</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>전체 인구를 100으로 놓고 견준 값이다 — 258만 명과 같은 사실을 다르게 나타냈다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="센 수"><div class="pk-name">부산 20대 4,500명</div><div class="pk-sit">2025년 부산을 떠난 20대에서 들어온 20대를 뺀 수</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>사람 수를 그대로 센 값이다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="견준 값"><div class="pk-name">부산 20대 1.3%</div><div class="pk-sit">2025년 부산 20대 인구에 견준, 빠져나간 20대</div><div class="pk-btns"><button type="button" class="pk-b" data-v="센 수">센 수</button><button type="button" class="pk-b" data-v="견준 값">견준 값</button></div><div class="pk-why" hidden>부산 20대 전체에 견준 값이다 — 4,500명과 같은 사실을 다르게 나타냈다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk117");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["센 수", "견준 값"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>🎙️ 위 카드는 두 장씩 짝이야. 같은 사실을 '몇 명'으로도, '몇 %'로도 말할 수 있어. 유입·유출을 견줄 때 어느 쪽 숫자인지부터 보자.</blockquote>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1 — 미국으로 간 히스패닉</h2>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 135쪽 · 함께하는 창의 교실 자료 1 「증가하는 미국 내 히스패닉의 힘」</div><div class="ws-tb-see">자료 1의 글과 지도를 읽고 세 칸을 채우자.</div><div class="ws-tb-ask">히스패닉이 미국으로 옮겨 간 까닭은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 135쪽에서 찾기 — 히스패닉이 미국으로 옮겨 간 까닭은 무엇인가?" style="width:360px" placeholder=""></div><div class="ws-tb-ask">히스패닉의 유입이 미국에 준 좋은 영향 하나를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 135쪽에서 찾기 — 히스패닉의 유입이 미국에 준 좋은 영향 하나를 적자." style="width:360px" placeholder=""></div><div class="ws-tb-ask">히스패닉의 유입으로 생긴 문제점 하나를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 135쪽에서 찾기 — 히스패닉의 유입으로 생긴 문제점 하나를 적자." style="width:360px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 135쪽 · 함께하는 창의 교실 자료 1 「증가하는 미국 내 히스패닉의 힘」</div><div class="ws-tb-see">자료 1의 글과 지도를 읽고 세 칸을 채우자.</div><div class="ws-tb-ask">히스패닉이 미국으로 옮겨 간 까닭은 무엇인가? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 135쪽에서 찾기 — 히스패닉이 미국으로 옮겨 간 까닭은 무엇인가?" style="width:360px" placeholder=""></div><div class="ws-tb-ask">히스패닉의 유입이 미국에 준 좋은 영향 하나를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 135쪽에서 찾기 — 히스패닉의 유입이 미국에 준 좋은 영향 하나를 적자." style="width:360px" placeholder=""></div><div class="ws-tb-ask">히스패닉의 유입으로 생긴 문제점 하나를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 135쪽에서 찾기 — 히스패닉의 유입으로 생긴 문제점 하나를 적자." style="width:360px" placeholder=""></div>
+<div class="ws-tb-join"><div class="ws-tb-tag ws-tb-tag2">📕 자료 1 지도를 미국 인구조사로 다시 그리면 — 2010년과 최신 2020년</div>
+<div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
+<figure class="ws-fig"><img src="images/7-4_hisp_2010.png" alt="주민 가운데 히스패닉 비율(2010년)" loading="lazy"><figcaption>주민 가운데 히스패닉 비율(2010년)</figcaption></figure>
+</div><div class="c2-b">
+<figure class="ws-fig"><img src="images/7-4_hisp_2020.png" alt="주민 가운데 히스패닉 비율(2020년)" loading="lazy"><figcaption>주민 가운데 히스패닉 비율(2020년)</figcaption></figure>
+</div></div></div>
+<!--tb-end--></div>
 <br>
 <blockquote>✅ <strong>스스로 점검</strong> — 좋은 영향과 문제점을 둘 다 적었나? 한쪽만 적었다면 자료 1을 한 번 더 읽어 보자.</blockquote>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 2 — 난민을 받아들일까?</h2>
 <br>
+<div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.15fr)"><div class="c2-a">
 <p>교과서 135쪽 자료 2는 2011년부터 내전이 이어진 시리아에서 유럽으로 건너오는 난민 이야기다. 유럽 사람들 사이에서 나온 말들을 찬성 쪽과 반대 쪽으로 나눠 보자.</p>
+<p>아래 두 사진은 같은 해(2015년) 같은 난민 행렬을 두고 두 나라가 보인 다른 모습이다. 사진마다 어느 쪽 근거가 먼저 떠오르는지 생각하며 카드를 골라 보자.</p>
+</div><div class="c2-b">
+<figure class="ws-fig"><img src="images/7-4_map_syria_route.png" alt="시리아 난민이 유럽으로 간 길(2015년 무렵)" loading="lazy"><figcaption>시리아 난민이 유럽으로 간 길(2015년 무렵)</figcaption></figure>
+</div></div>
 <br>
-<div class="ws-pick" id="pk78"><div class="pk-head"><span>말 여섯 개를 어느 쪽 근거인지 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="찬성 쪽 근거"><div class="pk-name">말 하나</div><div class="pk-sit">난민도 안전하고 행복하게 살 권리가 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>사람의 권리를 근거로 받아들이자는 말이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="찬성 쪽 근거"><div class="pk-name">말 둘</div><div class="pk-sit">일손이 모자란 일을 맡아 경제가 살아날 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>유입 지역의 좋은 점을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="찬성 쪽 근거"><div class="pk-name">말 셋</div><div class="pk-sit">인구가 줄어 모자라진 일할 사람을 채울 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>인구가 줄어드는 선진국의 사정을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="반대 쪽 근거"><div class="pk-name">말 넷</div><div class="pk-sit">난민을 받아들이고 돌보는 데 드는 비용이 크다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>받아들이는 나라가 지는 부담을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="반대 쪽 근거"><div class="pk-name">말 다섯</div><div class="pk-sit">이주민과 일자리를 두고 경쟁하게 된다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>원주민이 느끼는 걱정을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="반대 쪽 근거"><div class="pk-name">말 여섯</div><div class="pk-sit">생활 방식이 달라 갈등이 커질 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>유입 지역의 문제점을 근거로 들었다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk78");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["찬성 쪽 근거", "반대 쪽 근거"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
+<figure class="ws-fig"><img src="images/7-4_photo_refugee_help.jpg" alt="사진 ① — 2015년 10월 독일 쾰른·본 공항역, 열차에서 내리는 사람들을 돕는 자원봉사자들" loading="lazy"><figcaption>사진 ① — 2015년 10월 독일 쾰른·본 공항역, 열차에서 내리는 사람들을 돕는 자원봉사자들</figcaption></figure>
+</div><div class="c2-b">
+<figure class="ws-fig"><img src="images/7-4_photo_border_fence.jpg" alt="사진 ② — 2015년 9월 헝가리와 세르비아 국경에 세운 철조망" loading="lazy"><figcaption>사진 ② — 2015년 9월 헝가리와 세르비아 국경에 세운 철조망</figcaption></figure>
+</div></div>
+<br>
+<div class="ws-pick" id="pk149"><div class="pk-head"><span>말 여섯 개를 어느 쪽 근거인지 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="찬성 쪽 근거"><div class="pk-name">말 하나</div><div class="pk-sit">난민도 안전하고 행복하게 살 권리가 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>사람의 권리를 근거로 받아들이자는 말이다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="찬성 쪽 근거"><div class="pk-name">말 둘</div><div class="pk-sit">일손이 모자란 일을 맡아 경제가 살아날 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>유입 지역의 좋은 점을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="찬성 쪽 근거"><div class="pk-name">말 셋</div><div class="pk-sit">인구가 줄어 모자라진 일할 사람을 채울 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>인구가 줄어드는 선진국의 사정을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="반대 쪽 근거"><div class="pk-name">말 넷</div><div class="pk-sit">난민을 받아들이고 돌보는 데 드는 비용이 크다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>받아들이는 나라가 지는 부담을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="반대 쪽 근거"><div class="pk-name">말 다섯</div><div class="pk-sit">이주민과 일자리를 두고 경쟁하게 된다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>원주민이 느끼는 걱정을 근거로 들었다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="반대 쪽 근거"><div class="pk-name">말 여섯</div><div class="pk-sit">생활 방식이 달라 갈등이 커질 수 있다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="찬성 쪽 근거">찬성 쪽 근거</button><button type="button" class="pk-b" data-v="반대 쪽 근거">반대 쪽 근거</button></div><div class="pk-why" hidden>유입 지역의 문제점을 근거로 들었다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk149");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["찬성 쪽 근거", "반대 쪽 근거"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <p>✍️ 너는 어느 쪽이야? 근거 하나를 들고, 반대쪽이 걱정하는 점 하나에 어떻게 답할지도 함께 두세 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="✏️ 활동 2 — 난민을 받아들일까?" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>

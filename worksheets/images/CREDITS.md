@@ -1147,6 +1147,28 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-3_voc_배출.jpg | 일본 도마코마이 오지 제지 공장 굴뚝의 흰 연기 (White smoke from Oji Paper Tomakomai Mill chimney.jpg, 테두리 빼고 잘라 냄) | ejstanz · CC BY 2.0 · Wikimedia Commons |
 | 7-3_fig_pushpull.png | 도식 — 같은 일자리, 두 가지 힘(살던 곳이 밀어내고 도착할 곳이 끌어당긴다) | 자체 제작 (fig_73_pushpull.py) |
 | 7-3_fig_wall.png | 도식 — 두 힘 사이의 벽(먼 거리·비행기 값·비자·낯선 말) | 자체 제작 (fig_73_pushpull.py) |
+| 7-4_입담_들어온곳빠져나간곳.png | 입담 삽화 — 북적이는 도시 거리의 이주민과 빈집 앞 시골 할아버지(가상 인물·손글씨 대사 PIL) | AI 생성(Grok Aurora) + 자체 합성 |
+| 7-4_입담_진땀나는식탁.png | 입담 삽화 — 영화 「컬러풀 웨딩즈」 설정을 빌린 가족 식탁(장인어른과 두 사위, 가상 인물·실제 영화 장면 아님) | AI 생성(Grok Aurora) + 자체 합성 |
+| 7-4_film_wedding.jpg | 삽화 — 영화 「컬러풀 웨딩즈」 설정을 그린 네 딸의 결혼식(가상 인물·실제 영화 장면 아님) | AI 생성(Grok Aurora) |
+| 7-4_fig_twoways.png | 그림 — 한 동네 인구가 바뀌는 두 길(태어남·세상을 떠남 / 들어옴·나감) | 자체 제작 (fig_74_twoways.py) |
+| 7-4_card_ofw216.png | 카드 그림 — 외국에서 일하는 필리핀 사람 216만 명(2023, 필리핀 통계청) | 자체 제작 (fig_74_cards.py) |
+| 7-4_card_braindrain.png | 카드 그림 — 간호사·엔지니어가 떠나면 고향은? | 자체 제작 (fig_74_cards.py) |
+| 7-4_world_inflow.png | 지도 — 사람이 들어오는 나라(순이동률, 2019~2024 평균) | 자체 제작 · 자료 세계은행 WDI(SM.POP.NETM·SP.POP.TOTL) · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-4_world_outflow.png | 지도 — 사람이 빠져나가는 나라(순이동률, 2019~2024 평균) | 자체 제작 · 자료 세계은행 WDI · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-4_map_hamtramck.png | 위치 지도 — 미국 디트로이트 안 햄트램크 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-4_map_manila.png | 위치 지도 — 필리핀 마닐라와 일본 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-4_map_europe_islam.png | 지도 — 북부 아프리카·서남아시아에서 유럽으로 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-4_map_korea_change.png | 지도 — 시군구 인구 변화 2015→2025(곡성 표시) | 자체 제작 · 자료 인구주택총조사 2015·2025 · 경계 geoBoundaries(CC BY 3.0) |
+| 7-4_hisp_2010.png | 지도 — 미국 주별 히스패닉 비율 2010 | 자체 제작 · 자료 미국 인구조사 2010 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-4_hisp_2020.png | 지도 — 미국 주별 히스패닉 비율 2020 | 자체 제작 · 자료 미국 인구조사 2020 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-4_map_syria_route.png | 지도 — 시리아 난민이 유럽으로 간 길(2015년 무렵)·이웃 나라 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-4_photo_refugee_help.jpg | 독일 쾰른·본 공항역, 열차에서 내리는 난민을 돕는 자원봉사자들, 2015-10-05 (Drehscheibe Köln-Bonn Airport - Ankunft Flüchtlinge 5. Oktober 2015-0252.jpg, 잘라 냄) | Raimond Spekking · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-4_photo_border_fence.jpg | 헝가리–세르비아 국경 철조망, 2015-09-14 (Hungary-Serbia border barrier.jpg, 잘라 냄) | Bőr Benedek · CC BY 2.0 · Wikimedia Commons |
+| 7-4_photo_paris_mosque.jpg | 프랑스 파리 대모스크 외관, 2009 (Grande Mosquée de Paris.JPG, 잘라 냄) | LPLT · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-4_photo_nice_beach.jpg | 프랑스 니스 프롬나드 데 장글레와 해변, 2011 (Promenade des Anglais in September 2011.jpg, 잘라 냄) | JIP · CC BY-SA 3.0 · Wikimedia Commons |
+| 7-4_photo_hamtramck_yemen.jpg | 미국 햄트램크 거리의 예멘 카페와 아랍어 간판 송금 가게, 2025 (Yemen Cafe, Hamtramck, Michigan, 04-25-2025.jpg, 잘라 냄) | Cutlass · CC0 · Wikimedia Commons |
+| 7-4_photo_ofw_remit.jpg | 필리핀 만다우에의 송금·전당포 가게, 2023 (Cebuana Lhuillier at Mandaue City (2023-08-01).jpg, 잘라 냄) | PaulGorduiz106 · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-4_photo_conseil_etat.jpg | 프랑스 국사원(최고 행정 법원)이 있는 파리 팔레 루아얄, 2022 (Paris 1er Rue Saint-Honoré Conseil d'État 7476 05.jpg, 잘라 냄) | GFreihalter · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-4_hero_hamtramck.jpg · 7-4_hamtramck_polish_shop.jpg | 미국 미시간주 햄트램크 조지프 캠퍼 거리, 2012년 | Andrew Jameson · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-4_manila_airport.jpg | 마닐라 니노이 아키노 국제공항 출국 심사대, 2023년 | 마닐라 국제공항공사 · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-5_hero_mobile_shop.jpg | 니가타현 미나미우오누마시 편의점 이동 판매차, 2023년 | 古峰 · CC BY-SA 4.0 · Wikimedia Commons |
