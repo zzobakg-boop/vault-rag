@@ -1134,6 +1134,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-3_dualipa_2016.jpg | 가수 두아 리파, SWR3 New Pop Festival 2016 공연(British singer and songwriter Dua Lipa at the SWR3 New Pop Festival 2016.jpg, 잘라 냄) | Harald Krichel · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-3_world_migration.png | 세계의 다양한 인구 이동(A·B·C·D1~D4) — 교과서 133쪽 스스로 탐구 지도의 내용을 다시 그림 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) · 내용 근거 천재교육 사회②(구정화) 133쪽 |
 | 7-3_korea_periods.png | 우리나라의 시기별 인구 이동 ①~⑤ — 교과서 133쪽 날개 내용을 화살표로 옮긴 개념도 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) · 내용 근거 천재교육 사회②(구정화) 133쪽 |
+| 7-3_입담_음식의길.png | 입담 삽화 — 인천항 산둥 노동자(1920년대 무렵) · 뉴욕 나폴리 이민자(1905년 무렵) · 멕시코 푸에블라 레바논 이민자(1930년대, 꼬치구이를 아랍식 빵에), 가상 인물·손글씨 대사 PIL | AI 생성(Grok Aurora) + 자체 합성 |
 | 7-4_hero_hamtramck.jpg · 7-4_hamtramck_polish_shop.jpg | 미국 미시간주 햄트램크 조지프 캠퍼 거리, 2012년 | Andrew Jameson · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-4_manila_airport.jpg | 마닐라 니노이 아키노 국제공항 출국 심사대, 2023년 | 마닐라 국제공항공사 · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-5_hero_mobile_shop.jpg | 니가타현 미나미우오누마시 편의점 이동 판매차, 2023년 | 古峰 · CC BY-SA 4.0 · Wikimedia Commons |
