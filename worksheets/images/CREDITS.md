@@ -1172,6 +1172,15 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-4_hero_hamtramck.jpg · 7-4_hamtramck_polish_shop.jpg | 미국 미시간주 햄트램크 조지프 캠퍼 거리, 2012년 | Andrew Jameson · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-4_manila_airport.jpg | 마닐라 니노이 아키노 국제공항 출국 심사대, 2023년 | 마닐라 국제공항공사 · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-5_hero_mobile_shop.jpg | 니가타현 미나미우오누마시 편의점 이동 판매차, 2023년 | 古峰 · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-5_입담_줄어드는사람.png | 입담 삽화 — 이동 슈퍼마켓 트럭 앞 일본 산골 할머니와 유모차를 미는 스웨덴 아빠(가상 인물·손글씨 대사 PIL) | AI 생성(Grok Aurora) + 자체 합성 |
+| 7-5_graph_aged.png | 그래프 — 65세 이상 인구 비율 2025년(기준선 7·14·20%) | 자체 제작 · 자료 세계은행 WDI(UN 인구 추계) |
+| 7-5_graph_tfr.png | 그래프 — 프랑스·스웨덴 합계 출산율 1990~2024년 | 자체 제작 · 자료 세계은행 WDI |
+| 7-5_fig_support.png | 그림 — 노인 한 명을 받치는 일하는 나이 사람 수(일본·한국 1990·2025) | 자체 제작 · 자료 세계은행 WDI 노년 부양비 |
+| 7-5_map_niigata.png | 위치 지도 — 일본 니가타현 미나미우오누마 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-5_map_helsinki.png | 위치 지도 — 핀란드 헬싱키 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-5_card_296.png · 7-5_card_21.png · 7-5_card_policy.png · 7-5_card_70.png · 7-5_card_cover.png | 카드 뉴스 숫자·표지 카드 | 자체 제작 (hq_75_aging.py) |
+| 7-5_photo_forskola.jpg | 스웨덴 스톡홀름 근교의 어린이집(förskola), 2013 (Henriksdalsbergets förskola 2013.jpg, 잘라 냄) | Holger.Ellgaard · CC BY-SA 3.0 · Wikimedia Commons |
+| 7-5_photo_arabianranta.jpg | 핀란드 헬싱키 아라비안란타 동네, 2024 (Arabianranta in Helsinki, Finland, 2024 September – 01.jpg, 잘라 냄) | Safa Hovinen · CC BY 2.0 · Wikimedia Commons |
 | 7-6_hero_lagos.jpg | 라고스 오주엘레그바의 출근길, 2019년 | Baragew · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-6_makoko_aerial.jpg | 하늘에서 본 라고스 마코코 지역, 2019년 | Kateregga1 · CC BY-SA 4.0 · Wikimedia Commons |
 
