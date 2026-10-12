@@ -201,6 +201,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_pick = False; pick_q = ''; pick_rows = []; pick_open = False   # 2026-09-03: 인물 선택 활동
     in_read = False           # 2026-09-03: 표·도식을 '읽는' 자리 (:::해설 ... :::)
     in_ipd = False   # 2026-10-02: 삽화 + 본문 2단 (:::입담 ... :::)
+    in_sw = False; sw_id = ''; sw_titles = []   # 2026-10-12: 옆으로 넘기는 장 (:::넘김 … :::넘김장 제목 … :::넘김끝)
     in_2c = False    # 2026-10-02: 자료 + 발문 2단 (:::2단 … :::다음칸 … :::)
     read_lines = []           #   빈칸 본문(쓰는 곳)과 같은 모양이라 학생이 구분을 못 했다.
     in_cmp = False            # 2026-09-03: 좌우 비교 넘기기 (:::비교 A | B ... :::)
@@ -1402,6 +1403,46 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             mb_rows = []
             continue
 
+        # 📑 옆으로 넘기는 장 (:::넘김  :::넘김장 제목  …본문…  :::넘김장 제목  …본문…  :::넘김끝) — 2026-10-12 천대현
+        #   "백년 전쟁이랑 장미 전쟁을 위아래로가 아니라 옆으로 넘길 수 있게" — 3-3-4 5단계가 교과서보다 세로로 길었다.
+        #   :::비교(그림 두 장만)와 같은 탭·‹이전 다음› 모양에, 안쪽은 평소 처리(빈칸·입담·교과서 상자·그림 그대로, data-id 순서 불변).
+        #   닫는 말이 ':::'가 아니라 ':::넘김끝'인 까닭 — 안쪽 블록들이 자기 ':::'를 쓴다. 폰은 옆으로 쓸어 넘겨도 된다.
+        #   숨긴 장의 입력칸도 DOM에 그대로 있어 채점·제출에 빠지지 않는다. 인쇄는 전부 펼친다. 스크립트는 블록 안에 둔다(옛 발행본 국소 주입용).
+        if stripped == ':::넘김' or stripped.startswith(':::넘김 '):
+            in_sw = True; sw_id = 'sw%d' % len(html_parts); sw_titles = []
+            html_parts.append(f'<div class="ws-sw" id="{sw_id}" data-cur="0"><div class="ws-sw-tabs" role="tablist"><!--sw-tabs--></div><div class="ws-sw-stage">')
+            continue
+        if in_sw and stripped.startswith(':::넘김장'):
+            _t = stripped[len(':::넘김장'):].strip()
+            _i = len(sw_titles); sw_titles.append(_t)
+            html_parts.append(('</section>' if _i else '') +
+                              f'<section class="ws-sw-pane" data-i="{_i}"{"" if _i == 0 else " hidden"}><h3 class="ws-sw-h">{inline(_t)}</h3>')
+            continue
+        if in_sw and stripped == ':::넘김끝':
+            _n = len(sw_titles)
+            _tabs = ''.join(f'<button type="button" role="tab" class="ws-sw-tab{" on" if k == 0 else ""}" onclick="swGo(\'{sw_id}\',{k})">{inline(t)}</button>'
+                            for k, t in enumerate(sw_titles))
+            for _k in range(len(html_parts) - 1, -1, -1):
+                if '<!--sw-tabs-->' in html_parts[_k]:
+                    html_parts[_k] = html_parts[_k].replace('<!--sw-tabs-->', _tabs); break
+            html_parts.append(
+                ('</section>' if _n else '') + '</div>'
+                f'<div class="ws-sw-nav"><button type="button" onclick="swStep(\'{sw_id}\',-1)">‹ 이전</button>'
+                f'<span class="ws-sw-count"><b>1</b> / {_n}</span>'
+                f'<button type="button" onclick="swStep(\'{sw_id}\',1)">다음 ›</button></div></div>'
+                '<script>(function(){if(!window.swGo){'
+                'window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;'
+                'ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});'
+                'var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};'
+                'window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}'
+                f'var g=document.getElementById("{sw_id}"),x0=null,y0=null;if(!g)return;'
+                'g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});'
+                'g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;'
+                'if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal"))return;'
+                f'swStep("{sw_id}",dx<0?1:-1);g.scrollIntoView({{block:"start",behavior:"smooth"}});}}}},{{passive:true}});}})();</script>')
+            in_sw = False
+            continue
+
         # 🎙️ 삽화 + 본문 2단 (:::입담 <그림> | <대체텍스트> | <캡션>  …본문(빈칸 포함)…  :::) — 2026-10-02 천대현
         #   "입담 삽화와 글을 2단으로" → 정정: 옆 단은 입담 글이 아니라 **그 단계의 본문(빈칸 문단)**이다.
         #   그래서 안쪽 줄은 모으지 않고 평소 처리(빈칸→입력칸, data-id 순서 그대로)에 흘려보낸다.
@@ -2568,6 +2609,21 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b {{ background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }}
 .ws-2c.c2-card > .c2-b p {{ margin: 0 0 8px; }} .ws-2c.c2-card > .c2-b p:last-child {{ margin-bottom: 0; }}
 .ws-2c .ws-fig {{ margin: 0; }}
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw {{ border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }}
+.ws-sw-tabs {{ display: flex; gap: 4px; padding: 10px 10px 0; }}
+.ws-sw-tab {{ flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }}
+.ws-sw-tab.on {{ background: #6b5a3a; color: #fff; border-color: #6b5a3a; }}
+.ws-sw-tab:focus-visible {{ outline: 3px solid #23508c; outline-offset: 2px; }}
+.ws-sw-stage {{ border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }}
+.ws-sw-pane[hidden] {{ display: none; }}
+.ws-sw-h {{ display: none; }}
+.ws-sw-nav {{ display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }}
+.ws-sw-nav button {{ border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }}
+.ws-sw-count {{ font-size: .8em; color: #8a7a5c; }}
+@media (max-width: 520px) {{ .ws-sw-stage {{ padding: 4px 10px 2px; }} .ws-sw-tab {{ font-size: .74em; padding: 7px 2px; }} }}
+@media print {{ .ws-sw-pane[hidden] {{ display: block !important; }} .ws-sw-tabs, .ws-sw-nav {{ display: none; }} .ws-sw-h {{ display: block; }} }}
 .ws-ipdam {{
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
