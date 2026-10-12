@@ -1125,6 +1125,15 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-3_jajangmyeon.jpg | 짜장면 | 최광모 · CC0 · Wikimedia Commons |
 | 7-3_ny_pizza.jpg | 뉴욕식 피자 | Wikiuser100 · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-3_tacos_al_pastor.jpg | 타코스 알 파스토르 | Li.Cheu · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_card_mexico_usa.png | 이동 카드 지도 — 멕시코 → 미국 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-3_card_syria_europe.png | 이동 카드 지도 — 시리아 → 튀르키예·유럽(독일) | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-3_card_england_america.png | 이동 카드 지도 — 영국 → 북아메리카(17세기 청교도) | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-3_card_tuvalu_australia.png | 이동 카드 지도 — 투발루 → 오스트레일리아 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-3_card_vietnam_korea.png | 이동 카드 지도 — 베트남 → 한국(안산) | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-3_dualipa_map.png | 두아 리파 부모님의 길 — 1992년 코소보 프리슈티나 → 영국 런던 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-3_dualipa_2016.jpg | 가수 두아 리파, SWR3 New Pop Festival 2016 공연(British singer and songwriter Dua Lipa at the SWR3 New Pop Festival 2016.jpg, 잘라 냄) | Harald Krichel · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_world_migration.png | 세계의 다양한 인구 이동(A·B·C·D1~D4) — 교과서 133쪽 스스로 탐구 지도의 내용을 다시 그림 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) · 내용 근거 천재교육 사회②(구정화) 133쪽 |
+| 7-3_korea_periods.png | 우리나라의 시기별 인구 이동 ①~⑤ — 교과서 133쪽 날개 내용을 화살표로 옮긴 개념도 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) · 내용 근거 천재교육 사회②(구정화) 133쪽 |
 | 7-4_hero_hamtramck.jpg · 7-4_hamtramck_polish_shop.jpg | 미국 미시간주 햄트램크 조지프 캠퍼 거리, 2012년 | Andrew Jameson · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-4_manila_airport.jpg | 마닐라 니노이 아키노 국제공항 출국 심사대, 2023년 | 마닐라 국제공항공사 · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-5_hero_mobile_shop.jpg | 니가타현 미나미우오누마시 편의점 이동 판매차, 2023년 | 古峰 · CC BY-SA 4.0 · Wikimedia Commons |
