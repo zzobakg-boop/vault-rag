@@ -138,8 +138,18 @@ def extract_table_answers(answer_file):
 
     tables = []  # list of list of rows, each row is list of cells
     current_table = []
+    # 2026-10-12 사회 7-2: 개념편 파서는 아래 블록 안의 '|' 줄을 표로 세지 않는다(블록 처리기가 먹는다).
+    #   정답편 쪽만 세면 표 번호가 밀려 보기 버튼 표가 빈 칸이 된다 — 같은 블록 안은 여기서도 건너뛴다.
+    ROWBLOCKS = (':::낱말', ':::좌석표', ':::카드선택', ':::비교', ':::인물선택', ':::연표시소', ':::지도막대',
+                 ':::그래프', ':::모자이크', ':::gallery', ':::플립')
+    in_rb = False
     for line in lines:
         stripped = line.strip()
+        if not in_rb and stripped.startswith(ROWBLOCKS):
+            in_rb = True; continue
+        if in_rb:
+            if stripped == ':::': in_rb = False
+            continue
         if stripped.startswith('|'):
             if re.match(r'^\|[\s\-:|]+\|$', stripped):
                 continue  # separator
@@ -1849,8 +1859,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
 
                             blank_table_count += 1
                             btns = ''.join(
-                                f'<button class="choice-btn" onclick="selectChoice(this,\'{opt}\')" '
-                                f'data-answer="{correct_answer}">{opt}</button>'
+                                # 2026-10-12 보기 문장 속 작은따옴표가 onclick JS를 깨뜨리던 것(역사 2-2-2 «'모든 시민의 평등'» 12개 버튼) — \' 로 이스케이프
+                                f'<button class="choice-btn" onclick="selectChoice(this,\'{opt.replace(chr(92), chr(92)*2).replace(chr(39), chr(92)+chr(39)).replace(chr(34), "&quot;")}\')" '
+                                f'data-answer="{correct_answer.replace(chr(34), "&quot;")}">{opt}</button>'
                                 for opt in options
                             )
                             cells[ci] = f'<div class="choice-group" data-id="tbl-{blank_table_count}">{btns}</div>'
