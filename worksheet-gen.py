@@ -703,6 +703,12 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     return re.sub(r'data-label="([^"]*)"', s, h)
                 body = []
                 for ln in tb_lines:
+                    # 2026-10-12 사회 7-3(천대현 «사진이랑 생각 열기 질문을 같은 디자인으로 묶자») — 그림 줄은 상자 안 그림으로
+                    _mi = re.match(r'!\[(.*?)\]\(([^)]+)\)\s*$', ln)
+                    if _mi:
+                        body.append(f'<figure class="ws-tb-fig"><img src="{_mi.group(2)}" alt="{re.sub(r"<[^>]+>", "", inline(_mi.group(1)))}" loading="lazy">'
+                                    f'<figcaption>{inline(_mi.group(1))}</figcaption></figure>')
+                        continue
                     if ln.startswith('?'):
                         body.append(f'<div class="ws-tb-ask">{_relabel(inline(ln[1:].strip()))}</div>')
                     else:
@@ -914,9 +920,14 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 pick_opts = [x.strip() for x in _o.split('|') if x.strip()]
                 pick_mood = (pick_opts == ['웃음', '울음'])
             # 2026-10-06 메인·역사: «까닭펼침» — 다 고른 뒤 맞힌 카드까지 까닭을 모두 펼친다(«같은 시대» 카드처럼 까닭이 활동의 핵심일 때)
-            pick_open = _h.startswith('까닭펼침')
-            if pick_open:
-                _h = _h[len('까닭펼침'):].strip()
+            pick_open = pick_swipe = False
+            # 2026-10-12 사회 7-3: «넘김» — 카드를 옆으로 넘긴다(천대현 «다섯 가지도 옆으로 넘기게»). 순서 무관.
+            while True:
+                if _h.startswith('까닭펼침'):
+                    pick_open = True; _h = _h[len('까닭펼침'):].strip(); continue
+                if _h.startswith('넘김'):
+                    pick_swipe = True; _h = _h[len('넘김'):].strip(); continue
+                break
             pick_q = _h
             pick_rows = []
             continue
@@ -925,7 +936,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 pid = f'pk{len(html_parts)}'
                 cards = ''
                 _face = {'웃음': '😀 웃는다', '울음': '😢 운다'}
-                for i, (nm, sit, ans, why, img) in enumerate(pick_rows):
+                for i, (nm, sit, ans, why, img, photo) in enumerate(pick_rows):
                     assert ans in pick_opts, f'❌ 정답 "{ans}"가 옵션 {pick_opts}에 없다 — {nm}'
                     btns = ''.join(
                         f'<button type="button" class="pk-b" data-v="{o}">'
@@ -938,7 +949,18 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         im = ''
                     elif pick_gold:
                         _alt = re.sub(r'<[^>]+>', '', inline(nm))
-                        im = f'<span class="pk-win"><img src="{_src}" alt="{_alt}" loading="lazy"></span>'
+                        # 🔴 넘김 카드는 lazy 금지 — 화면 밖 카드는 넘겨도 빈 칸이 뜬다(:::낱말카드와 같은 함정)
+                        _ld = '' if pick_swipe else ' loading="lazy"'
+                        if photo:
+                            # 2026-10-12 사회 7-3(천대현 «뒤집으면 관련 사진이 뜨도록») — 다 고르면 지도가 뒤집혀 사진이 된다.
+                            #   고르기 전에는 지도만(어디서 어디로 — 판단의 단서), 사진은 답 확인 뒤의 보상. 창을 누르면 지도↔사진.
+                            _pcap, _, _pf = photo.rpartition('>') if '>' in photo else ('', '', photo)
+                            _pcap = _pcap.strip(); _pf = _pf.strip()
+                            im = (f'<span class="pk-win pk-has-photo"><img class="pk-map" src="{_src}" alt="{_alt} 지도"{_ld}>'
+                                  f'<img class="pk-photo" src="images/{_pf}" alt="{re.sub(r"<[^>]+>", "", inline(_pcap)) or _alt}" hidden{_ld}>'
+                                  f'<span class="pk-wtag" hidden>📷 {inline(_pcap) or "사진"}<i>누르면 지도</i></span></span>')
+                        else:
+                            im = f'<span class="pk-win"><img src="{_src}" alt="{_alt}"{_ld}></span>'
                     else:
                         im = f'<img src="{_src}" alt="" loading="lazy">' 
                     cards += (
@@ -947,11 +969,28 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                       f'<div class="pk-sit">{inline(sit)}</div>'
                       f'<div class="pk-btns{"" if len(pick_opts) < 3 else " pk-btns-col"}">{btns}</div>'
                       f'<div class="pk-why" hidden>{inline(why)}</div></div>')
+                _swjs = (
+                  'var g=w.querySelector(".pk-swipe");if(g){var pos=w.querySelector(".pk-pos");'
+                  'function at(){var k=0,d=1e9;cs.forEach(function(c,i){var v=Math.abs(c.offsetLeft-g.offsetLeft-g.scrollLeft);if(v<d){d=v;k=i}});return k}'
+                  'function go(k){k=Math.max(0,Math.min(N-1,k));g.scrollTo({left:cs[k].offsetLeft-g.offsetLeft,behavior:"smooth"})}'
+                  'g.addEventListener("scroll",function(){pos.textContent=(at()+1)+" / "+N},{passive:true});'
+                  'w.querySelector(".pk-prev").onclick=function(){go(at()-1)};w.querySelector(".pk-next").onclick=function(){go(at()+1)};}'
+                )
+                _has_photo = any(r[5] for r in pick_rows)
+                _flipjs = (
+                  'cs.forEach(function(c){var p=c.querySelector(".pk-photo");if(!p)return;var m=c.querySelector(".pk-map"),t=c.querySelector(".pk-wtag"),x=c.querySelector(".pk-win");'
+                  'x.classList.add("pk-flipping");setTimeout(function(){m.hidden=true;p.hidden=false;t.hidden=false;},230);setTimeout(function(){x.classList.remove("pk-flipping")},480);'
+                  'x.addEventListener("click",function(e){e.stopPropagation();x.classList.add("pk-flipping");setTimeout(function(){var ph=!p.hidden;p.hidden=ph;m.hidden=!ph;t.querySelector("i").textContent=ph?"누르면 사진":"누르면 지도";},230);setTimeout(function(){x.classList.remove("pk-flipping")},480);});});'
+                )
                 html_parts.append(
                   f'<div class="ws-pick" id="{pid}">'
                   f'<div class="pk-head"><span>{inline(pick_q)}</span>'
                   f'<b class="pk-count">0 / {len(pick_rows)}</b></div>'
-                  f'<div class="pk-grid{" pk-gold" if pick_gold else ""}">{cards}</div>'
+                  f'<div class="pk-grid{" pk-gold" if pick_gold else ""}{" pk-swipe" if pick_swipe else ""}">{cards}</div>'
+                  + ('<div class="pk-nav"><button type="button" class="pk-prev" aria-label="이전 카드">◀</button>'
+                     f'<span class="pk-pos">1 / {len(pick_rows)}</span>'
+                     '<button type="button" class="pk-next" aria-label="다음 카드">▶</button></div>' if pick_swipe else '')
+                  + 
                   f'<div class="pk-result" hidden></div></div>'
                   f'<script>(function(){{var w=document.getElementById("{pid}");'
                   f'var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;'
@@ -967,6 +1006,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                   # 2026-10-06 메인 판단(사회 7-1 서부 유럽): 맞힌 카드는 까닭을 볼 길이 없었다 — 다 고른 뒤 카드를 누르면 열린다(기본은 닫힘)
                   'if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){'
                   'if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});'
+                  + (_flipjs if _has_photo else '') +
                   'var r=w.querySelector(".pk-result");r.hidden=false;'
                   'r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"'
                   '<div class=\'pk-sum\'>"+OPTS.map(function(o,oi){'
@@ -985,14 +1025,17 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                   'c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}'
                   'c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});'
                   'w.querySelector(".pk-count").textContent=done()+" / "+N;'
-                  'if(done()===N){w.classList.add("pk-done");reveal();}});});});'
+                  'if(done()===N){w.classList.add("pk-done");reveal();}'
+                  + ('else{var nx=cs.filter(function(c){return !c.dataset.pick})[0];var g=w.querySelector(".pk-swipe");if(g&&nx)setTimeout(function(){g.scrollTo({left:nx.offsetLeft-g.offsetLeft,behavior:"smooth"})},350);}' if pick_swipe else '')
+                  + '});});});'
+                  + (_swjs if pick_swipe else '') +
                   '})();</script>')
                 in_pick = False
                 pick_rows = []
             elif stripped and '|' in stripped:
                 parts = [x.strip() for x in stripped.split('|')]
-                while len(parts) < 5: parts.append('')
-                pick_rows.append(tuple(parts[:5]))
+                while len(parts) < 6: parts.append('')
+                pick_rows.append(tuple(parts[:6]))
             continue
 
         # ⚖️ 움직이는 시소 (:::시소) — 2026-09-03 천대현 "표의 시소를 움직이게 할 수 있나?"
@@ -1448,7 +1491,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 f'var g=document.getElementById("{sw_id}"),x0=null,y0=null;if(!g)return;'
                 'g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});'
                 'g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;'
-                'if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal"))return;'
+                'if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;'
                 f'swStep("{sw_id}",dx<0?1:-1);g.scrollIntoView({{block:"start",behavior:"smooth"}});}}}},{{passive:true}});}})();</script>')
             in_sw = False
             continue
@@ -1536,7 +1579,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         if in_2c and stripped == ':::다음칸':
             html_parts.append('</div><div class="c2-b">')
             continue
-        if in_2c and stripped == ':::':
+        # 2026-10-12 사회 7-3: 2단 안의 :::해설·:::gallery 는 이 처리기보다 뒤에 있다 — 그 닫힘(':::')을 여기서 먹지 않는다
+        if in_2c and stripped == ':::' and not in_read and not in_gallery:
             html_parts.append('</div></div>' + ('</div>' if in_2c_tb == 'join' else ''))   # join = 이음 칸
             if in_2c_tb:
                 html_parts.append('<!--tb-end--></div>')   # 교과서 상자 닫힘 — :::이어서 가 다시 열 수 있게 표식
@@ -2364,6 +2408,26 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col {{ flex-direction: column; gap: 4px; }}
 .pk-btns-col .pk-b {{ width: 100%; text-align: center; }}
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig {{ margin: 4px 0 12px; text-align: center; }}
+.ws-tb-fig img {{ max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }}
+.ws-tb-fig figcaption {{ font-size: .84em; color: #6b5a33; margin-top: 5px; }}
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe {{ display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }}
+.pk-grid.pk-swipe .pk-card {{ flex: 0 0 min(270px, 78%); scroll-snap-align: start; }}
+.pk-nav {{ display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }}
+.pk-nav button {{ border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }}
+.pk-pos {{ font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }}
+.pk-win.pk-has-photo {{ position: relative; }}
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] {{ display: none; }}   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo {{ cursor: pointer; }}
+.pk-wtag {{ position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }}
+.pk-wtag i {{ float: right; font-style: normal; opacity: .8; margin-left: 6px; }}
+.pk-win.pk-flipping {{ animation: pkflip .46s ease-in-out; }}
+@keyframes pkflip {{ 0% {{ transform: rotateY(0); }} 50% {{ transform: rotateY(90deg); }} 100% {{ transform: rotateY(0); }} }}
+@media (prefers-reduced-motion: reduce) {{ .pk-win.pk-flipping {{ animation: none; }} }}
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card {{ padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
