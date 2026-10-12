@@ -150,6 +150,8 @@ blockquote {
 .pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
 .pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
 .pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-tap { cursor: pointer; }
+.pk-ok .pk-why { color: #1f6b3a; }
 .pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
 .pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
@@ -203,7 +205,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
-.pk-gold .pk-card.pk-noimg .pk-btns .pk-b { flex: 0 0 auto; }
+/* 2026-10-07 격자로 — 한 버튼만 두 줄로 꺾여도(폰 «인문·사회») 두 버튼 높이·폭이 같게. 줄은 아래에 붙인다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-content: end; }
+/* 2026-10-07 — 위 «flex: 0 0 auto»는 버튼 높이를 묶으려던 것인데 버튼 줄이 가로라 폭이 글자 크기로 묶였다
+   (사회 7-4 «양» 17px · «비율» 28px). 폭은 똑같이 나누고(1 1 0) 높이는 아래 정렬로 고정한다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b { flex: none; }
+.pk-gold .pk-card.pk-noimg .pk-btns-col .pk-b { flex: 0 0 auto; }   /* 세로(선택지 셋 이상)는 높이 고정 그대로 */
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
@@ -253,6 +260,41 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 🗺 :::지도막대 — 2026-10-06 (지도 + 연도 막대 · 핀·값은 HTML) */
+.ws-mapbar { border: 1px solid #dcd3bf; border-radius: 14px; background: #fbf8f1; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-mb-head { font-weight: 800; font-size: 1.02em; margin-bottom: 8px; color: #3a3226; }
+.ws-mb-map { position: relative; line-height: 0; border-radius: 10px; overflow: hidden; }
+.ws-mb-map img { display: block; width: 100%; height: auto; }
+.mb-pin { position: absolute; width: 0; height: 0; line-height: 1.2; }
+.mb-pin i { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #8a7f6c; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); opacity: .9;
+  transition: width .5s, height .5s, margin .5s, background .5s; }
+.mb-pin.mb-up i { background: #c2593a; }
+.mb-pin.mb-dn i { background: #3f6fa8; }
+.mb-lab { position: absolute; top: -9px; white-space: nowrap; font-size: 13px; font-weight: 700; color: #2b2419;
+  background: rgba(255,255,255,.86); border-radius: 6px; padding: 1px 5px; }
+.mb-r .mb-lab { left: 12px; }
+.mb-l .mb-lab { right: 12px; }
+.mb-u .mb-lab, .mb-d .mb-lab { left: 0; transform: translateX(-50%); }
+.mb-u .mb-lab { top: -30px; }
+.mb-d .mb-lab { top: 12px; }
+.mb-lab em { font-style: normal; color: #7a2e1a; font-variant-numeric: tabular-nums; }
+.mb-dn .mb-lab em { color: #244f86; }
+.ws-mb-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86em; color: #4a4234; margin: 8px 2px 4px; }
+.ws-mb-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; }
+.ws-mb-legend i.mb-hi { background: #c2593a; }
+.ws-mb-legend i.mb-lo { background: #3f6fa8; }
+.ws-mb-legend .mb-bt { color: #6b6252; }
+.ws-mb-ctl { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.ws-mb-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #cfc4ae; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-mb-play:focus-visible, .ws-mb-range:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; }
+.ws-mb-range { flex: 1; accent-color: #7a5a2a; min-width: 0; }
+.ws-mb-yr { flex: none; min-width: 4.2em; font-weight: 800; color: #3a3226; font-variant-numeric: tabular-nums; }
+.ws-mb-read { min-height: 3.2em; margin-top: 6px; font-size: .95em; line-height: 1.6; color: #2b2419; }
+.ws-mb-src { font-size: .8em; color: #6b6252; margin-top: 4px; }
+@media (max-width: 560px) { .mb-lab { font-size: 11px; padding: 0 3px; } .mb-r .mb-lab { left: 8px; } .mb-l .mb-lab { right: 8px; } .mb-u .mb-lab { top: -24px; } .mb-d .mb-lab { top: 9px; } }
+@media (prefers-reduced-motion: reduce) { .mb-pin i { transition: none; } }
+@media print { .ws-mb-ctl { display: none; } }
 /* 📈 :::그래프 — 2026-09-28 */
 .ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
 .ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
@@ -382,7 +424,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c > div { min-width: 0; }
 .ws-2c > div > :first-child { margin-top: 0; }
 .ws-2c > div > br { display: none; }
-@media (max-width: 640px) { .ws-2c { grid-template-columns: 1fr !important; } }
+@media (max-width: 640px) { .ws-2c:not(.c2-keep) { grid-template-columns: 1fr !important; } .ws-2c.c2-keep { gap: 10px; } .ws-2c.c2-keep figcaption { font-size: 12px; } }
 .ws-2c.c2-mid { align-items: center; }
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
@@ -410,8 +452,19 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read .ws-fold-table { background: #fff; font-variant-numeric: tabular-nums; }
+.ws-read .ws-fold-table td:last-child, .ws-read .ws-fold-table th:last-child { text-align: right; }
+.ws-read .ws-fold-table td:last-child { white-space: nowrap; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+/* ✍️ 해 보는 곳 — 2026-10-06. 계열 넷: 파랑=빈칸(본문) · 황토=교과서 · 슬레이트=읽는 곳 · 초록=직접 해 보는 곳 */
+.ws-do { background: #f2f8f3; border: 1px solid #cfe5d5; border-radius: 16px; padding: 14px 20px 18px; margin: 30px 0; }
+.ws-do > h2 { margin-top: 8px; border-left-color: #2f8f55; background: linear-gradient(90deg, #dff0e4, rgba(255,255,255,0)); }
+.ws-do-tag { display: inline-block; background: #2f8f55; color: #fff; font-size: 0.76em; font-weight: 700;
+  letter-spacing: 0.02em; padding: 3px 11px; border-radius: 999px; }
+.ws-do + .ws-do { margin-top: 18px; }
+@media (max-width: 560px) { .ws-do { padding: 10px 6px 14px; margin-left: -10px; margin-right: -10px; border-radius: 12px; } }
+@media print { .ws-do { background: #fff; border-color: #bbb; } }
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
 /* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */
@@ -703,6 +756,23 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }
 .ws-vcd-nav button:disabled { opacity: .32; cursor: default; }
 .vcd-count { font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }
+/* 2026-10-08 하위 카드 — 메인 낱말카드 아래 접힘 안에 나란히(캐러셀 밖) */
+.vcd-subtag { position: absolute; top: 8px; right: 8px; font-size: .68em; font-weight: 700; color: #fff;
+  background: #7a6742; border-radius: 10px; padding: 2px 8px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.ws-vsub { margin: 12px 0 0; border: 1px solid #d9c48f; border-radius: 10px; background: #fffaf0; }
+.ws-vsub > summary { cursor: pointer; padding: 10px 14px; font-size: .9em; color: #6b4f14; list-style: none; }
+.ws-vsub > summary::-webkit-details-marker { display: none; }
+.ws-vsub > summary::after { content: " ▾"; color: #a08a5c; }
+.ws-vsub[open] > summary::after { content: " ▴"; }
+.ws-vsub > summary:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; border-radius: 10px; }
+.ws-vsub-head { font-size: .86em; color: #5a4a2a; margin: 0 14px 10px; line-height: 1.55; }
+.ws-vsub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 10px; padding: 0 12px 14px; max-width: 640px; }
+.ws-vsubcard { flex: none; width: auto; }
+.ws-vsubcard .vcd-f { background: #fbf7ec; border-color: #d9c48f; }
+.ws-vsubcard .vcd-b > * { order: 2; }
+.ws-vsubcard .vcd-b > .vcd-bko { order: 0; }
+.ws-vsubcard .vcd-b > .vcd-fam { order: 1; margin: 2px 0 4px; padding: 6px 8px; border: 0; border-radius: 6px;
+  background: #fff1cc; color: #5a3f0c; font-weight: 700; font-size: .78em; line-height: 1.45; }
 @media (prefers-reduced-motion: reduce) {
   .vcd-in { transition: none; }
   .ws-vcd-track { scroll-behavior: auto; }
@@ -735,6 +805,14 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
 }
 .ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+/* 2026-10-07 :::2단 … 교과서 — 교과서 상자 바로 아래에 붙여 «생각 열기의 뒷이야기»로 읽히게(위 상자와 간격 줄임) */
+.ws-tb + .ws-tb-2c { margin-top: -6px; }
+.ws-tb-join { border-top: 1px dashed #d9c48f; margin-top: 12px; padding-top: 12px; }
+.ws-tb-join .ws-2c { margin: 4px 0 0; } .ws-tb-join table { background: #fff; } .ws-tb-join .c2-b { font-size: 0.95em; color: #3d3116; }
+.ws-tb-tag2 { background: #7a6742; }
+.ws-tb-2c .ws-2c { margin: 4px 0 0; }
+.ws-tb-2c table { background: #fff; }
+.ws-tb-2c .c2-b { font-size: 0.95em; color: #3d3116; }
 .ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
 .ws-tb-ask strong { color: #8a5f12; }
 .ws-tb input.activity-input {
@@ -896,7 +974,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
-.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -1032,7 +1110,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>생물 다양성은 지구 곳곳의 자연에 사는 생물과 그 생물들이 사는 환경이 얼마나 다양한지를 말한다. 생물 다양성은 기후 변화에 대응하고, 오래 쓸 수 있는 자원을 확보하고, 사람의 ①<input type="text" class="blank-input" data-answer="삶의 질" data-id="1" style="width:84px" placeholder="">을 높이는 데 매우 중요하다. 우리는 날마다 수많은 동물과 식물에 둘러싸여 살아가며, 자연을 이루는 모든 종은 서로 ②<input type="text" class="blank-input" data-answer="상호 의존" data-id="2" style="width:100px" placeholder="">적이다. 그래서 그 균형을 깨는 일은 누구에게도 이득이 될 수 없다.</p>
 <br>
-<div class="ws-pick" id="pk25"><div class="pk-head"><span>교과서 222쪽 «생태계의 가치» 그림을 떠올리며 여섯 장면을 갈라 보자. 생태계가 우리에게 주는 것 가운데 어느 쪽일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="먹고 쓰는 것을 준다"><div class="pk-name">숲의 나무</div><div class="pk-sit">숲에서 베어 온 나무로 집과 가구를 만든다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>생태계는 먹을거리와 재료 같은 자원을 준다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="먹고 쓰는 것을 준다"><div class="pk-name">열대 식물의 약</div><div class="pk-sit">열대 우림의 식물에서 병을 고치는 약의 원료를 얻는다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>다양한 생물은 새로운 자원의 창고다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="자연을 고르게 지켜 준다"><div class="pk-name">맹그로브 숲</div><div class="pk-sit">바닷가의 맹그로브 숲이 큰 파도와 해안 침식을 막아 준다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>생태계는 자연재해를 줄여 준다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="자연을 고르게 지켜 준다"><div class="pk-name">갯벌</div><div class="pk-sit">갯벌의 생물들이 강에서 흘러온 더러운 물을 걸러 준다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>생태계는 물과 공기를 깨끗하게 한다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="자연을 고르게 지켜 준다"><div class="pk-name">도시의 숲</div><div class="pk-sit">나무가 많은 공원은 한여름 기온을 낮춰 준다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>생태계는 기후를 조절한다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="쉬고 즐길 곳이 된다"><div class="pk-name">주말 숲길</div><div class="pk-sit">가족과 함께 숲길을 걷고 새소리를 듣는다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>생태계는 여가와 휴식의 장소다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk25");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["먹고 쓰는 것을 준다", "자연을 고르게 지켜 준다", "쉬고 즐길 곳이 된다"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk25"><div class="pk-head"><span>교과서 222쪽 «생태계의 가치» 그림을 떠올리며 여섯 장면을 갈라 보자. 생태계가 우리에게 주는 것 가운데 어느 쪽일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="먹고 쓰는 것을 준다"><div class="pk-name">숲의 나무</div><div class="pk-sit">숲에서 베어 온 나무로 집과 가구를 만든다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>생태계는 먹을거리와 재료 같은 자원을 준다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="먹고 쓰는 것을 준다"><div class="pk-name">열대 식물의 약</div><div class="pk-sit">열대 우림의 식물에서 병을 고치는 약의 원료를 얻는다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>다양한 생물은 새로운 자원의 창고다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="자연을 고르게 지켜 준다"><div class="pk-name">맹그로브 숲</div><div class="pk-sit">바닷가의 맹그로브 숲이 큰 파도와 해안 침식을 막아 준다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>생태계는 자연재해를 줄여 준다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="자연을 고르게 지켜 준다"><div class="pk-name">갯벌</div><div class="pk-sit">갯벌의 생물들이 강에서 흘러온 더러운 물을 걸러 준다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>생태계는 물과 공기를 깨끗하게 한다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="자연을 고르게 지켜 준다"><div class="pk-name">도시의 숲</div><div class="pk-sit">나무가 많은 공원은 한여름 기온을 낮춰 준다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>생태계는 기후를 조절한다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="쉬고 즐길 곳이 된다"><div class="pk-name">주말 숲길</div><div class="pk-sit">가족과 함께 숲길을 걷고 새소리를 듣는다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="먹고 쓰는 것을 준다">먹고 쓰는 것을 준다</button><button type="button" class="pk-b" data-v="자연을 고르게 지켜 준다">자연을 고르게 지켜 준다</button><button type="button" class="pk-b" data-v="쉬고 즐길 곳이 된다">쉬고 즐길 곳이 된다</button></div><div class="pk-why" hidden>생태계는 여가와 휴식의 장소다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk25");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["먹고 쓰는 것을 준다", "자연을 고르게 지켜 준다", "쉬고 즐길 곳이 된다"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>🎙️ 맹그로브 숲 카드, 낯익지? Ⅸ단원 9-2에서 새우 양식장을 만든다고 맹그로브를 베어 낸 태국 해안 마을을 봤어. 숲이 사라지자 바닷물이 마을을 파고들었지.</blockquote>
 <br>
@@ -1041,8 +1119,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>그런데 최근 인구가 늘고 경제가 발전하면서 숲과 ③<input type="text" class="blank-input" data-answer="습지" data-id="3" style="width:60px" placeholder="">가 줄어들고 바다의 생태계도 위협받고 있다. 다가올 미래에 지구의 ④<input type="text" class="blank-input" data-answer="지속 가능성" data-id="4" style="width:116px" placeholder="">을 지키려면 생물 다양성을 잃지 않도록 애써야 한다.</p>
 <br>
-<figure class="ws-fig"><img src="images/12-3_oilpalm_borneo.jpg" alt="말레이시아 보르네오섬을 하늘에서 본 모습. 줄지어 심은 기름야자 농장 한가운데에 짙은 열대 우림이 작은 조각처럼 남아 있다." loading="lazy"><figcaption>말레이시아 보르네오섬을 하늘에서 본 모습. 줄지어 심은 기름야자 농장 한가운데에 짙은 열대 우림이 작은 조각처럼 남아 있다.</figcaption></figure>
-<blockquote>📷 기름야자 농장 사이에 조각으로 남은 열대 우림, 말레이시아 보르네오, 2005년 (T. R. Shankar Raman · CC BY-SA 4.0 · Wikimedia Commons)</blockquote>
+<figure class="ws-fig"><img src="images/12-3_oilpalm_borneo.jpg" alt="기름야자 농장 사이에 조각으로 남은 열대 우림, 말레이시아 보르네오, 2005년" loading="lazy"><figcaption>기름야자 농장 사이에 조각으로 남은 열대 우림, 말레이시아 보르네오, 2005년</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 223쪽 · 스스로 탐구 「생물 다양성의 감소와 보존」</div><div class="ws-tb-see">자료 1의 지도에서 열대 우림이 파괴된 지역을 찾아보자.</div><div class="ws-tb-ask">자료 1의 기름야자 농장이 생물 다양성을 줄이는 까닭을 교과서 설명에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 223쪽에서 찾기 — 자료 1의 기름야자 농장이 생물 다양성을 줄이는 까닭을 교과서 설명에" style="width:400px" placeholder=""></div></div>
 <br>
@@ -1051,14 +1128,13 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 4단계: 벌이 있으면 사과도 있다</h2>
 <blockquote>📕 <strong>교과서 223쪽 펴고 · 배정 시간 8분</strong></blockquote>
 <br>
-<figure class="ws-fig"><img src="images/12-3_bee_apple.jpg" alt="사과꽃에 앉은 꿀벌. 연분홍 꽃잎 한가운데에서 꽃가루를 모으고 있다." loading="lazy"><figcaption>사과꽃에 앉은 꿀벌. 연분홍 꽃잎 한가운데에서 꽃가루를 모으고 있다.</figcaption></figure>
-<blockquote>📷 사과꽃에 앉은 꿀벌, 영국, 2012년 (Orangeaurochs · CC BY 2.0 · Wikimedia Commons). 교과서 사례의 장소(힌두쿠시산맥)와는 다른 곳이다.</blockquote>
+<figure class="ws-fig"><img src="images/12-3_bee_apple.jpg" alt="사과꽃에 앉은 꿀벌, 영국, 2012년 — 교과서 사례의 장소(힌두쿠시산맥)와는 다른 곳이다" loading="lazy"><figcaption>사과꽃에 앉은 꿀벌, 영국, 2012년 — 교과서 사례의 장소(힌두쿠시산맥)와는 다른 곳이다</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 223쪽 · 스스로 탐구 자료 2 「벌이 없으면 사과도 없다? 벌이 있으면 사과도 있다?」</div><div class="ws-tb-ask">힌두쿠시산맥의 사과 생산량이 줄어든 까닭을 교과서 글에서 찾아 적고, 밑줄 친 ㉠ «두 가지 방법»이 무엇이었을지 짐작해 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 223쪽에서 찾기 — 힌두쿠시산맥의 사과 생산량이 줄어든 까닭을 교과서 글에서 찾아 적고," style="width:400px" placeholder=""></div></div>
 <br>
 <blockquote>🎙️ 사과나무 한 가지만 잘 키우면 되는 줄 알았는데, 보이지도 않던 벌이 사라지자 사과도 사라졌어. 1단계의 감자와 어떤 점이 닮았니?</blockquote>
 <br>
-<h2>❓ OX 퀴즈</h2>
+<section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
@@ -1069,7 +1145,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>5</td><td>생물 다양성 협약은 1992년 브라질 리우에서 채택되었다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
-<h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
 <blockquote>오늘 배운 걸 <strong>안 보고</strong> 세 줄로 적어 보자. 틀려도 괜찮아 — 떠올리려고 애쓰는 그 순간에 머리에 박히는 거야.</blockquote>
 <blockquote>✍️ <strong>낱말 세 개가 아니라 문장 세 개로.</strong> 각 줄이 <code>~다.</code> 로 끝나게 쓰자.</blockquote>
 <blockquote>🔍 다 쓰면 셋 중 가장 자신 없는 줄 끝에 (?)를 붙이자. 그 줄만 교과서 222~223쪽을 다시 펴서 맞는지 확인하는 거야.</blockquote>
@@ -1078,13 +1154,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="2." style="width:240px" placeholder=""></p>
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="3." style="width:240px" placeholder=""></p>
 <br>
-<h2>💭 더 생각해 보기</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <p>아일랜드의 감자와 힌두쿠시의 벌, 두 이야기의 공통점은 무엇일까? 이 공통점을 우리 학교 급식이나 우리 동네 공원에 빗대어, 생물 다양성이 왜 중요한지 두세 문장으로 설명해 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
-<h2>📎 각주</h2>
-<p>- 교과서: 천재교육 사회②(구정화) 222~223쪽</p>
-<p>- 표지: 아일랜드 더블린의 대기근 기념 조각(로완 길레스피 작), 2006년 (퍼블릭 도메인 · Wikimedia Commons)</p>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
+<br></section>
 </div>
 <script>
 const TB=4, TOX=5, GT=9;
@@ -1109,7 +1184,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

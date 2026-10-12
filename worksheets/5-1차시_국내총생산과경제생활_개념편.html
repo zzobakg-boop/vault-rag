@@ -150,6 +150,8 @@ blockquote {
 .pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
 .pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
 .pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-tap { cursor: pointer; }
+.pk-ok .pk-why { color: #1f6b3a; }
 .pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
 .pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
@@ -203,7 +205,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
-.pk-gold .pk-card.pk-noimg .pk-btns .pk-b { flex: 0 0 auto; }
+/* 2026-10-07 격자로 — 한 버튼만 두 줄로 꺾여도(폰 «인문·사회») 두 버튼 높이·폭이 같게. 줄은 아래에 붙인다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-content: end; }
+/* 2026-10-07 — 위 «flex: 0 0 auto»는 버튼 높이를 묶으려던 것인데 버튼 줄이 가로라 폭이 글자 크기로 묶였다
+   (사회 7-4 «양» 17px · «비율» 28px). 폭은 똑같이 나누고(1 1 0) 높이는 아래 정렬로 고정한다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b { flex: none; }
+.pk-gold .pk-card.pk-noimg .pk-btns-col .pk-b { flex: 0 0 auto; }   /* 세로(선택지 셋 이상)는 높이 고정 그대로 */
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
@@ -253,6 +260,41 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 🗺 :::지도막대 — 2026-10-06 (지도 + 연도 막대 · 핀·값은 HTML) */
+.ws-mapbar { border: 1px solid #dcd3bf; border-radius: 14px; background: #fbf8f1; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-mb-head { font-weight: 800; font-size: 1.02em; margin-bottom: 8px; color: #3a3226; }
+.ws-mb-map { position: relative; line-height: 0; border-radius: 10px; overflow: hidden; }
+.ws-mb-map img { display: block; width: 100%; height: auto; }
+.mb-pin { position: absolute; width: 0; height: 0; line-height: 1.2; }
+.mb-pin i { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #8a7f6c; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); opacity: .9;
+  transition: width .5s, height .5s, margin .5s, background .5s; }
+.mb-pin.mb-up i { background: #c2593a; }
+.mb-pin.mb-dn i { background: #3f6fa8; }
+.mb-lab { position: absolute; top: -9px; white-space: nowrap; font-size: 13px; font-weight: 700; color: #2b2419;
+  background: rgba(255,255,255,.86); border-radius: 6px; padding: 1px 5px; }
+.mb-r .mb-lab { left: 12px; }
+.mb-l .mb-lab { right: 12px; }
+.mb-u .mb-lab, .mb-d .mb-lab { left: 0; transform: translateX(-50%); }
+.mb-u .mb-lab { top: -30px; }
+.mb-d .mb-lab { top: 12px; }
+.mb-lab em { font-style: normal; color: #7a2e1a; font-variant-numeric: tabular-nums; }
+.mb-dn .mb-lab em { color: #244f86; }
+.ws-mb-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86em; color: #4a4234; margin: 8px 2px 4px; }
+.ws-mb-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; }
+.ws-mb-legend i.mb-hi { background: #c2593a; }
+.ws-mb-legend i.mb-lo { background: #3f6fa8; }
+.ws-mb-legend .mb-bt { color: #6b6252; }
+.ws-mb-ctl { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.ws-mb-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #cfc4ae; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-mb-play:focus-visible, .ws-mb-range:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; }
+.ws-mb-range { flex: 1; accent-color: #7a5a2a; min-width: 0; }
+.ws-mb-yr { flex: none; min-width: 4.2em; font-weight: 800; color: #3a3226; font-variant-numeric: tabular-nums; }
+.ws-mb-read { min-height: 3.2em; margin-top: 6px; font-size: .95em; line-height: 1.6; color: #2b2419; }
+.ws-mb-src { font-size: .8em; color: #6b6252; margin-top: 4px; }
+@media (max-width: 560px) { .mb-lab { font-size: 11px; padding: 0 3px; } .mb-r .mb-lab { left: 8px; } .mb-l .mb-lab { right: 8px; } .mb-u .mb-lab { top: -24px; } .mb-d .mb-lab { top: 9px; } }
+@media (prefers-reduced-motion: reduce) { .mb-pin i { transition: none; } }
+@media print { .ws-mb-ctl { display: none; } }
 /* 📈 :::그래프 — 2026-09-28 */
 .ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
 .ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
@@ -382,7 +424,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c > div { min-width: 0; }
 .ws-2c > div > :first-child { margin-top: 0; }
 .ws-2c > div > br { display: none; }
-@media (max-width: 640px) { .ws-2c { grid-template-columns: 1fr !important; } }
+@media (max-width: 640px) { .ws-2c:not(.c2-keep) { grid-template-columns: 1fr !important; } .ws-2c.c2-keep { gap: 10px; } .ws-2c.c2-keep figcaption { font-size: 12px; } }
 .ws-2c.c2-mid { align-items: center; }
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
@@ -410,8 +452,19 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read .ws-fold-table { background: #fff; font-variant-numeric: tabular-nums; }
+.ws-read .ws-fold-table td:last-child, .ws-read .ws-fold-table th:last-child { text-align: right; }
+.ws-read .ws-fold-table td:last-child { white-space: nowrap; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+/* ✍️ 해 보는 곳 — 2026-10-06. 계열 넷: 파랑=빈칸(본문) · 황토=교과서 · 슬레이트=읽는 곳 · 초록=직접 해 보는 곳 */
+.ws-do { background: #f2f8f3; border: 1px solid #cfe5d5; border-radius: 16px; padding: 14px 20px 18px; margin: 30px 0; }
+.ws-do > h2 { margin-top: 8px; border-left-color: #2f8f55; background: linear-gradient(90deg, #dff0e4, rgba(255,255,255,0)); }
+.ws-do-tag { display: inline-block; background: #2f8f55; color: #fff; font-size: 0.76em; font-weight: 700;
+  letter-spacing: 0.02em; padding: 3px 11px; border-radius: 999px; }
+.ws-do + .ws-do { margin-top: 18px; }
+@media (max-width: 560px) { .ws-do { padding: 10px 6px 14px; margin-left: -10px; margin-right: -10px; border-radius: 12px; } }
+@media print { .ws-do { background: #fff; border-color: #bbb; } }
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
 /* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */
@@ -703,6 +756,23 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }
 .ws-vcd-nav button:disabled { opacity: .32; cursor: default; }
 .vcd-count { font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }
+/* 2026-10-08 하위 카드 — 메인 낱말카드 아래 접힘 안에 나란히(캐러셀 밖) */
+.vcd-subtag { position: absolute; top: 8px; right: 8px; font-size: .68em; font-weight: 700; color: #fff;
+  background: #7a6742; border-radius: 10px; padding: 2px 8px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.ws-vsub { margin: 12px 0 0; border: 1px solid #d9c48f; border-radius: 10px; background: #fffaf0; }
+.ws-vsub > summary { cursor: pointer; padding: 10px 14px; font-size: .9em; color: #6b4f14; list-style: none; }
+.ws-vsub > summary::-webkit-details-marker { display: none; }
+.ws-vsub > summary::after { content: " ▾"; color: #a08a5c; }
+.ws-vsub[open] > summary::after { content: " ▴"; }
+.ws-vsub > summary:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; border-radius: 10px; }
+.ws-vsub-head { font-size: .86em; color: #5a4a2a; margin: 0 14px 10px; line-height: 1.55; }
+.ws-vsub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 10px; padding: 0 12px 14px; max-width: 640px; }
+.ws-vsubcard { flex: none; width: auto; }
+.ws-vsubcard .vcd-f { background: #fbf7ec; border-color: #d9c48f; }
+.ws-vsubcard .vcd-b > * { order: 2; }
+.ws-vsubcard .vcd-b > .vcd-bko { order: 0; }
+.ws-vsubcard .vcd-b > .vcd-fam { order: 1; margin: 2px 0 4px; padding: 6px 8px; border: 0; border-radius: 6px;
+  background: #fff1cc; color: #5a3f0c; font-weight: 700; font-size: .78em; line-height: 1.45; }
 @media (prefers-reduced-motion: reduce) {
   .vcd-in { transition: none; }
   .ws-vcd-track { scroll-behavior: auto; }
@@ -735,6 +805,14 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
 }
 .ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+/* 2026-10-07 :::2단 … 교과서 — 교과서 상자 바로 아래에 붙여 «생각 열기의 뒷이야기»로 읽히게(위 상자와 간격 줄임) */
+.ws-tb + .ws-tb-2c { margin-top: -6px; }
+.ws-tb-join { border-top: 1px dashed #d9c48f; margin-top: 12px; padding-top: 12px; }
+.ws-tb-join .ws-2c { margin: 4px 0 0; } .ws-tb-join table { background: #fff; } .ws-tb-join .c2-b { font-size: 0.95em; color: #3d3116; }
+.ws-tb-tag2 { background: #7a6742; }
+.ws-tb-2c .ws-2c { margin: 4px 0 0; }
+.ws-tb-2c table { background: #fff; }
+.ws-tb-2c .c2-b { font-size: 0.95em; color: #3d3116; }
 .ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
 .ws-tb-ask strong { color: #8a5f12; }
 .ws-tb input.activity-input {
@@ -896,7 +974,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
-.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -1086,7 +1164,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ 다섯 개를 그냥 외우면 시험장에서 뒤섞여. <strong>세 갈래로 묶어</strong>. <em>안 세는 것 / 거꾸로 세는 것 / 못 보는 것.</em> 그리고 ②번 갈래가 제일 얄궂지 — 교통사고가 나면 GDP가 <strong>올라간다</strong>니. 수리비랑 병원비가 잡히거든.</blockquote>
 <br>
-<h2>✏️ 활동 1 — GDP 판정단</h2>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
+<br>
+<section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1 — GDP 판정단</h2>
 <blockquote>아래 각 사례가 올해 우리나라 GDP에 <strong>들어가는지(O) 안 들어가는지(X)</strong> 판정하고, <strong>몇 번 문에서 걸렸는지</strong> 써 보자. (통과했으면 "통과")</blockquote>
 <br>
 <table class="act-table">
@@ -1100,7 +1180,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td><strong>올해 개봉한</strong> 영화표를 사서 중고 거래로 되판 것</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-13" data-label="올해 개봉한 영화표를 사서 중고 거래로 되판 것" style="width:80px" placeholder=""></td><td><input type="text" class="blank-input activity-input no-score" data-id="act-14" data-label="올해 개봉한 영화표를 사서 중고 거래로 되판 것" style="width:120px" placeholder=""></td></tr>
 </table>
 <br>
-<h2>✅ OX 퀴즈</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✅ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
 <tr><td>1</td><td>외국 기업이 우리나라에서 생산한 것은 우리나라 국내 총생산에 포함한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
@@ -1110,7 +1190,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>5</td><td>경제 성장률은 물가 상승분을 걷어낸 실질 국내 총생산으로 계산한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
-<h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
 <blockquote>오늘 배운 걸 <strong>안 보고</strong> 세 줄로 적어 보자. 틀려도 괜찮아 — 떠올리려고 애쓰는 그 순간에 머리에 박히는 거야.</blockquote>
 <blockquote>✍️ <strong>낱말 세 개가 아니라 문장 세 개로.</strong> 각 줄이 <code>~다.</code> 로 끝나게 쓰자. (예: "GDP는 국경 안에서 1년 동안 새로 생산한 최종 생산물을 시장 가격으로 더한 것이다.")</blockquote>
 <br>
@@ -1118,13 +1198,13 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-16" data-label="2." style="width:240px" placeholder=""></p>
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-17" data-label="3." style="width:240px" placeholder=""></p>
 <br>
-<h2>💭 더 생각해 보기</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <p>GDP는 <strong>엄마의 미역국을 0원으로</strong> 센다. 하지만 그 미역국이 우리 삶을 좋게 만든 건 분명하지.</p>
 <p>만약 네가 <strong>삶의 질을 더 잘 재는 새로운 지표</strong>를 만든다면, GDP에 <strong>더하고 싶은 것</strong>과 <strong>빼고 싶은 것</strong>을 각각 하나씩 고르고, 왜 그런지 이유를 써 보자.</p>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
-<blockquote>🔗 <strong>단원 질문으로 돌아가기</strong> — 오늘 배운 <em>"GDP는 총량이라 나눠진 모양을 못 본다"</em>(6단계 ③갈래)가 바로 <strong>단원 질문 ④ "방안을 아는데 왜 안 될까?"</strong> 의 답 한 조각이야. 단원 마지막 날 다시 만나자.</blockquote>
+<blockquote>🔗 <strong>단원 질문으로 돌아가기</strong> — 오늘 배운 <em>"GDP는 총량이라 나눠진 모양을 못 본다"</em>(6단계 ③갈래)가 바로 <strong>단원 질문 ④ "방안을 아는데 왜 안 될까?"</strong> 의 답 한 조각이야. 단원 마지막 날 다시 만나자.</blockquote></section>
 </div>
 <script>
 const TB=18, TOX=5, GT=23;
@@ -1149,7 +1229,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }

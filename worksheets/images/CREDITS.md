@@ -519,6 +519,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-2_hero_peninsula_night.jpg | 국제 우주 정거장에서 본 한반도의 밤, 2024-01-24 (ISS070-E-80670) | NASA · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-2_voc_산업화.jpg | 울산 현대자동차 공장의 조립 라인 — 차체가 라인을 따라 움직인다 (Hyundai car assembly line.jpg, 900×608로 축소) | Anonyme · CC BY 2.5 |
 | 7-2_voc_중화학공업.jpg | 울산 현대중공업 조선소의 골리앗 크레인, 주전 봉수대에서 본 모습, 2023 (Hyundai Heavy Industries Ulsan Shipyard from Jujeon Beacon Mound - 2023-07-24.jpg, 잘라 냄) | Wvdp · CC0 |
+| 7-2_voc_산간.jpg | 정선읍 전경 — 산과 산 사이 골짜기에 들어앉은 읍내(Panoramic view of Jeongseon-eup.jpg) — 고급 단어 «산간» 카드 | 한국학중앙연구원 · 공공누리 제1유형(KOGL Type 1) · Wikimedia Commons |
 | 7-2_voc_1차산업.jpg | 일본 지바현 가토리시 논의 벼 수확 콤바인 — 하위 카드 1차 산업 (Rice-combine-harvester, Katori-city, Japan.jpg) | katorisi · CC BY 3.0 |
 | 7-2_voc_2차산업.jpg | 중국 광둥성 허위안시 식품 공장의 생산 라인, 2026 (…BaiJiaXian Food production line April 2026 N13P 07.jpg, 아래 촬영 표기 잘라 냄) — 하위 카드 2차 산업 | LANENWM Meso Amermbalin · CC0 |
 | 7-2_voc_3차산업.jpg | 이발소에서 빗과 가위로 머리를 자르는 이발사, 뒷모습 — 하위 카드 3차 산업 (Barber cutting hair with comb. Back view of man in barber shop.jpg) | Nenad Stojkovic · CC BY 2.0 |
@@ -1302,3 +1303,234 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 (레이어별로 병기된 라이선스 중 <b>택일</b>해 OGA-BY 3.0 또는 CC0를 선택함 — 근거: <a href="https://opengameart.org/content/faq">OpenGameArt FAQ</a> "You must follow only one of the licenses").
 
 레이어별 원저작자 전체 목록은 <a href="LPC-CREDITS.md">LPC-CREDITS.md</a>. <b>개작 표기</b>: 위 레이어들을 합성해 캐릭터를 구성한 것은 천대현이며, 왕관·밀짚모자·낫·원형 방패는 자작이다.
+
+## 사회② Ⅲ 경제생활과 선택 — 본문·표지·카드 그림 (2026-10-12 학생용 출처 줄을 이 표로 옮김)
+| 파일 | 무엇 | 저작자 · 라이선스 |
+|---|---|---|
+| finance-3principles_v2.jpeg | 자산 관리 3원칙(안전성·수익성·유동성) 삼각형 | AI 생성(xAI Aurora) · 자체 제작 (6fc2def) |
+| finance-comic.jpeg | 길동이 이야기 4컷 만화 | AI 생성(xAI Aurora) · 자체 제작 (e328097) |
+| finance-credit.jpeg | 연체가 신용 등급 하락으로 이어지는 3년 | AI 생성(xAI Aurora) · 자체 제작 (6fc2def) |
+| finance-hero.jpeg | 표지 — 생애 주기 소득·소비 곡선 | AI 생성(xAI Aurora) · 자체 제작 (vault-rag 6fc2def) |
+
+## 사회② Ⅳ 시장 경제와 가격 — 본문·표지·카드 그림 (2026-10-12 학생용 출처 줄을 이 표로 옮김)
+| 파일 | 무엇 | 저작자 · 라이선스 |
+|---|---|---|
+| market-cover.jpeg | 17-18 표지 — 재래시장·온라인·주식 세 장면 | AI 생성(xAI Aurora) · 자체 제작 (a842c49) |
+| social2-4-1-everyday.jpeg | 시장에 안 가도 하루 종일 거래 중 — 일상 속 보이지 않는 시장 삽화 | AI 생성 삽화 · 자체 제작 (307e86d, 생성 도구는 커밋에 안 적힘) |
+| social2-4-1-factors.jpeg | 생산 요소 — 토지·노동·자본 | AI 생성(xAI Aurora 3분할) + PIL 한글 · 자체 제작 (307e86d) |
+| social2-4-1-flow.png | 생산물 시장 ↔ 생산 요소 시장 순환도 | 자체 제작(PIL 도식) (46158b7) |
+| social2-4-1-market.png | 보이는 시장 ↔ 보이지 않는 시장 | AI 생성 배경(Google Gemini) + PIL 한글 · 자체 제작 (46158b7) |
+| price-curve.jpeg | 균형 가격 그래프 — 수요 곡선과 공급 곡선의 교차 | AI 생성 그래프 · 자체 제작 (c130bcc, 생성 도구는 커밋에 안 적힘) |
+| price-demand.jpeg | 수요 곡선(우하향) | 자체 제작(matplotlib) (a3d2afa) |
+| price-excess.jpg | 초과 공급·초과 수요와 균형점 | 자체 제작(matplotlib) (16d6279) |
+| price-hero.jpeg | 19-20 표지 — 정가 19만 원 표가 왜 800만 원? | AI 생성 · 자체 제작 (c130bcc, 생성 도구는 커밋에 안 적힘) |
+| price-supply.jpeg | 공급 곡선(우상향) | 자체 제작(matplotlib) (a3d2afa) |
+| 21-22-수요량vs수요-떡볶이-16s.mp4 | 보충 영상 16초 — 수요량의 변화와 수요의 변화(떡볶이) | AI 생성 영상(xAI Grok Imagine, 2026-06-18) · 자체 제작 (0169e4f · 정답편 캡션 «AI 생성» · 「Veo 3.1 영상 프롬프트 가이드」 노트) |
+| price-shift-hero.jpeg | 21-22 표지 — 사과 흉년과 콘서트 인기 | AI 생성(xAI Aurora) · 자체 제작 (af765e9 · _운영 «21-22 시장가격 변동 차시 기획 메타») |
+| price-shift.jpg | 수요·공급 곡선 이동과 균형 변화 | 자체 제작(matplotlib) (af765e9) |
+
+## 사회② Ⅴ 국민 경제와 국제 거래 — 본문·표지·카드 그림 (2026-10-12 학생용 출처 줄을 이 표로 옮김)
+| 파일 | 무엇 | 저작자 · 라이선스 |
+|---|---|---|
+| gdp-hero.jpeg | 5-1 표지 | AI 생성(xAI Aurora) + PIL 한글 · 자체 제작 (70e1172) |
+| v5-gdp-vs-gnp.png | 국내 총생산과 국민 총생산 비교표 | 자체 제작 도식 (7fc4bf1) |
+| inflation-wallpaper.jpg | 1923년 독일, 지폐를 벽지로 바르는 남자 | Bundesarchiv, Bild 102-00104 / Pahl, Georg · CC BY-SA 3.0 de · Wikimedia Commons |
+| pricejob-hero.png | 5-2 표지 — 기울어진 양팔 저울(장바구니 ↔ 안전모) | AI 생성(xAI Aurora, 무텍스트) · 자체 제작 (4a16ff4 · 정답편 시각자료 배치표) |
+| v5-blanket.png | 너무 짧은 담요 — 한쪽을 덮으면 다른 쪽이 나온다 | AI 생성(xAI Aurora, 2026-08-14 Ⅴ단원 도입용 제작분 재사용) · 자체 제작 (3ee8e5a) |
+| v5-rate-tradeoff.png | 금리 인상의 연쇄 도식 | 자체 제작 도식 (c31eacb) |
+| v5-unemployment-rate.png | 100명 마을로 그린 실업률 구조도 | 자체 제작 도식 (9b595a1 · c31eacb) |
+| v5-unemployment-types.png | 실업의 세 원인 도식 | 자체 제작 도식 (6e8a222) |
+| trade-hero.png | 5-4 표지 — 밤 항구의 컨테이너선 | AI 생성 배경 + PIL 한글 · 자체 제작 (012343b, 같은 시기 표지 표준 make-cover.sh = xAI Aurora) |
+| v5-comparative-advantage.png | 비교 우위 판정표 | 자체 제작 도식 (012343b · 184fe4b) |
+| v5-opportunity-why.png | 기회비용에서 나눗셈이 나오는 이유 | 자체 제작 도식 (184fe4b) |
+| v5-three-gates.png | 국제 거래의 세 관문(관세·통관·환율) | 자체 제작 도식 (1853cc1) |
+| v5-trade-dependency_v2.png | 무역 의존도 국제 비교(한국·일본·미국) | 자체 제작 도식 · 자료 World Bank «Trade (% of GDP)»(CC BY 4.0) 2025 · 2026-08 조회 (65b7c0d · 정답편) |
+| v5-who-makes-it.png | «덜 포기한다»의 뜻 — 누구에게 시킬까 | 자체 제작 도식 (3963603) |
+| exchange-hero.png | 5-5 표지 — 숫자 하나가 지갑을 흔든다(저울) | AI 생성 배경 + PIL 한글 · 자체 제작 (1cd54f1, 같은 시기 표지 표준 make-cover.sh = xAI Aurora) |
+| people/exporter.png | 인물 도트 — 수출 기업 | AI 생성(xAI Grok Imagine) + 격자 스냅 후처리 · 자체 제작 — 상세·약관 메모는 `images/people/CREDITS.md` (875b68a) |
+| people/family.png | 인물 도트 — 유학생 가족 | AI 생성(xAI Grok Imagine) + 격자 스냅 후처리 · 자체 제작 — 상세·약관 메모는 `images/people/CREDITS.md` (875b68a) |
+| people/importer.png | 인물 도트 — 수입 기업 | AI 생성(xAI Grok Imagine) + 격자 스냅 후처리 · 자체 제작 — 상세·약관 메모는 `images/people/CREDITS.md` (875b68a) |
+| people/remitter.png | 인물 도트 — 해외 송금인 | AI 생성(xAI Grok Imagine) + 격자 스냅 후처리 · 자체 제작 — 상세·약관 메모는 `images/people/CREDITS.md` (875b68a) |
+| people/tourist.png | 인물 도트 — 외국인 관광객 | AI 생성(xAI Grok Imagine) + 격자 스냅 후처리 · 자체 제작 — 상세·약관 메모는 `images/people/CREDITS.md` (875b68a) |
+| people/traveler.png | 인물 도트 — 해외 여행자 | AI 생성(xAI Grok Imagine) + 격자 스냅 후처리 · 자체 제작 — 상세·약관 메모는 `images/people/CREDITS.md` (875b68a) |
+| v5-dollar-pricetag_v2.png | 달러의 가격표 — 연도별 원-달러 환율 | 자체 제작 도식 · 환율 값 World Bank (7e4b689) |
+| v5-kakao-ad.png | 카카오톡 해외 직구 광고(실제 받은 광고를 다시 그림, 회사 이름 가상) | 자체 제작(재구성) (05cff6b · 그림 속 표기) |
+| v5-two-currencies.png | 달러와 엔이 반대로 움직인 그림 | 자체 제작 도식 (7b49799) |
+
+## 사회② Ⅵ 국제 사회와 국제 정치 — 본문·표지·카드 그림 (2026-10-12 학생용 출처 줄을 이 표로 옮김)
+| 파일 | 무엇 | 저작자 · 라이선스 |
+|---|---|---|
+| 6-1-hero.png | 6-1 표지 — 세계에는 경찰이 없다 | AI 생성(xAI Aurora) + PIL 한글 · 자체 제작 (e10c495) |
+| 6-1_act_brexit_b.jpg | 유럽 연합기와 영국 국기 (File:Union jack and eu brexit.jpg) | TeroVesalainen · CC0 · Wikimedia Commons |
+| 6-1_act_paris.jpg | 파리 기후 변화 회의, 2015 (File:COP21 Climate Negotiations.jpg) | Mark Dixon · CC BY 2.0 · Wikimedia Commons |
+| 6-1_card_goods.jpg | 부산항 컨테이너 터미널, 2006 (File:Busan Container Terminal 2006.jpg) | Niels Johannes · CC BY-SA 4.0 · Wikimedia Commons |
+| 6-1_card_news.jpg | 라이스팅 위성 지구국 (File:Erdfunkstelle Raisting 2.jpg) | Richard Bartz · CC BY-SA 2.5 · Wikimedia Commons |
+| 6-1_card_people.jpg | 인천 국제공항 제1터미널 출국장 (File:Incheon International Airport Terminal 1 Departure.jpg) | Arne Müseler · CC BY-SA 3.0 de · Wikimedia Commons |
+| 6-1_국제사회_4특성.png | 국제 사회의 네 가지 특성 도식 | 자체 제작 도식 (a2fd102) |
+| 6-1_안보리회의장.jpg | 국제 연합 안전 보장 이사회 회의장 | Patrick Gruban · CC BY 4.0 · Wikimedia Commons (사진 위 동그라미는 우리가 얹음) |
+| 6-2-hero.png | 6-2 표지 — 여러 손이 지구를 받친다 | AI 생성(xAI Aurora) + PIL 한글 · 자체 제작 (3606bb4) |
+| 6-2_act_gp.jpg | 그린피스 레인보우 워리어호 (File:Rainbow Warrior, Greenpeace Ship (7352292610).jpg) | Raymond L. Blazevic · CC BY 2.0 · Wikimedia Commons |
+| 6-2_act_mofa.jpg | 외교부가 있는 정부서울청사 별관 (File:Central Government Complex (Annex), Seoul (정부서울청사 별관).JPG) | Hoseoklee88 · CC BY-SA 3.0 · Wikimedia Commons · 밝기만 조정 · 변형본도 같은 조건 |
+| 6-2_act_msf.jpg | 국경 없는 의사회 제네바 사무소, 2024 (File:Médecins Sans Frontières MSF Geneva office 2024.jpg) | Marmolada48 · CC BY 4.0 · Wikimedia Commons |
+| 6-2_act_un.jpg | 국제 연합 사무국 건물 (File:The United Nations Secretariat Building.jpg) | Steve Cadman · CC BY-SA 2.0 · Wikimedia Commons |
+| 6-2_voc_기아.png | 세계 기아 지수 지도 일부(낱말카드용으로 잘라 씀) | Welthungerhilfe · CC BY-SA 4.0 · 범례 한국어로 옮김 · 변형본도 같은 조건 · Wikimedia Commons |
+| 6-2_voc_다국적.jpg | 서울 방배동 맥도날드, 2018 (File:McDonald's Bangbae branch 20181121 135828.jpg) | LERK · CC BY-SA 4.0 · Wikimedia Commons |
+| 6-2_voc_비정부.jpg | 그린피스 레인보우 워리어호 (File:Rainbow Warrior, Greenpeace Ship (7352292610).jpg) | Raymond L. Blazevic · CC BY 2.0 · Wikimedia Commons |
+| 6-2_voc_외교.jpg | 일본-캐나다 정상 회담, 2026-03-06 (File:Japan-Canada Summit Meeting (1).jpg) | 일본 정부(Government of Japan) · CC BY 4.0 · Wikimedia Commons |
+| 6-2_기아지도_v2.png | 2023년 세계 기아 지수 지도(범례 한국어판) | Welthungerhilfe · CC BY-SA 4.0 · 범례 한국어로 옮김 · 변형본도 같은 조건 · Wikimedia Commons |
+| 6-2_행위주체.png | 국제 사회의 행위 주체 도식 | 자체 제작 도식 (cdfbde6) |
+| 6-3-hero.png | 6-3 표지 — 두 손이 같은 것을 향해 뻗는다 | AI 생성(xAI Aurora) + PIL 한글 · 자체 제작 (3606bb4) |
+| 6-3_a1_국방비.jpg | 전투기 세 대 편대 비행 (File:35th Fighter Wing - 3 ship formation.jpg) | 미 공군 · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-3_a1_난민.jpg | 폴란드의 우크라이나 난민 접수소, 2022 (File:Reception points for Ukrainian refugees in Poland (P-055646-00-…).jpg) | 유럽 위원회 시청각 서비스 · Bartosz Siedlik · CC BY 4.0 · Wikimedia Commons |
+| 6-3_a1_우주.jpg | 국제 우주 정거장, 2009 (File:ISS March 2009.jpg) | NASA · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-3_a2_관세.jpg | 마인츠 항구의 컨테이너 크레인, 2007 (File:Container Crane Mainz Port I.jpg) | Ingolfson · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-3_a2_광물.jpg | 오스트레일리아 선라이즈 댐 금광의 노천 광산, 2009 (File:Sunrise Dam Gold Mine open pit 03.jpg) | Calistemon · CC BY-SA 4.0 · Wikimedia Commons |
+| 6-3_a2_백신.jpg | 코로나19 백신 병과 주사기 (File:COVID-19 Vaccine vial and syringe - US Census.jpg) | 미 인구조사국 · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-3_a2_수사.jpg | 리옹의 인터폴 본부, 2005 (File:ICPO-Interpol Lione.JPG) | Massimiliano Mariani · CC BY-SA 3.0 · Wikimedia Commons |
+| 6-3_step3_분쟁.jpg | 중국 해경선이 필리핀 해경 선박에 물대포를 쏘는 장면, 2023년 8월 남중국해 | 필리핀 해경 · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-3_voc_갈등.jpg | 얽힌 덩굴 (File:Bauhinia guianensis, mature liana (9340889588).jpg) | Dick Culbert · CC BY 2.0 · Wikimedia Commons |
+| 6-3_voc_군비.jpg | 1970년대 알바니아의 군사 퍼레이드 (File:Military parade in communist Albania, 1970s.jpg) | 작자 미상 · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-3_voc_분쟁.jpg | 남중국해 해양 주장 지도, 2011 (File:South China Sea Maritime Claims.jpg) | 미 국방대학교 출판부(National Defense University Press) · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-3_voc_이념.png | 냉전 진영 지도, 1975년 무렵 (File:Cold War alliances mid-1975.svg → PNG) | Vorziblix · CC0 · Wikimedia Commons |
+| 6-3_경쟁갈등분쟁.png | 경쟁 → 갈등 → 분쟁 도식 | 자체 제작 도식 (5d22ba0) |
+| 6-4-hero.png | 6-4 표지 — 빈 탁구대 위에 멈춘 공 | AI 생성(xAI Aurora) + PIL 한글 · 자체 제작 (3606bb4) |
+| 6-4_b1_평화유지군.jpg | 국제 연합 평화 유지군 헬멧 (File:Blue helmet.JPG) | Daniel Košinár · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-4_b1_핑퐁.jpg | 탁구 경기, 2000 시드니 (File:251000 - Table Tennis Bill Medley action - 3b - Sydney 2000 match photo.jpg) | Sport the library · CC BY-SA 3.0 · Wikimedia Commons |
+| 6-4_mos_ai.jpg | AI 안전 정상 회의 단체 사진, 2023 영국 | Marcel Grabowski / UK Government · CC BY 2.0 · Wikimedia Commons |
+| 6-4_mos_기후.jpg | 캐나다 산불 연기로 주황색이 된 미국 뉴저지 하늘, 2023 | Anthony Quintano · CC BY 2.0 · Wikimedia Commons |
+| 6-4_mos_전염병.jpg | 대구 대명초등학교, 2020-03-02 | Namoroka · CC BY-SA 4.0 · Wikimedia Commons |
+| 6-4_mos_전쟁.jpg | 폐허가 된 바르샤바, 1945 | 퍼블릭 도메인 · Wikimedia Commons |
+| 6-4_voc_구축.jpg | 뉴욕 국제 연합 본부, 2023-10-01 (File:Headquarters of the United Nations, New York City, 20231001 …) | Jakub Hałun · CC BY 4.0 · Wikimedia Commons |
+| 6-4_voc_동맹.jpg | 2022년 마드리드 NATO 정상 회의 단체 사진 (File:NATO leaders at the group photo taking of the 2022 Madrid Summit) | 미국 NATO 대표부(미 국무부) · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-4_voc_조약.jpg | 닉슨 대통령과 트뤼도 총리의 오대호 수질 협정 서명식, 1972 (NARA 194763) | Byron Schumaker · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-4_해결사다리.png | 갈등 해결의 순서 도식 | 자체 제작 도식 (0cb3494) |
+| 6-5-hero-v2.png | 6-5 표지 — 옛 문서·해도와 컴퍼스·체스가 놓인 테이블 | AI 생성(xAI Aurora, make-cover.sh) + PIL 한글(cover_overlay.py) · 자체 제작 (67fa447 · 7fa020e) |
+| 6-5_b1_자위대.jpg | 일본 자위대 관열식, 2010 | JGSDF · CC BY 2.0 · Wikimedia Commons |
+| 6-5_b1_중국어선.jpg | 중국 어선 | ---=XEON= · CC BY 3.0 · Wikimedia Commons |
+| 6-5_step1_소녀상.jpg | 주한 일본 대사관을 마주 보는 평화의 소녀상과 빈 의자 | Sakaori · CC BY-SA 3.0 · Wikimedia Commons |
+| 6-5_step2_군함도.jpg | 일본 나가사키 앞바다의 하시마 섬(군함도) | ノーマルエディタ · CC BY-SA 4.0 · Wikimedia Commons |
+| 6-5_step3_광개토대왕릉비.jpg | 중국 지린성 지안의 광개토대왕릉비 | Yumeto · CC BY-SA 4.0 · Wikimedia Commons |
+| 6-5_voc_간도.jpg | 간도 위치 모식도(압록강·두만강·백두산) | 자체 제작 모식도 (해안선·강줄기 단순화, 경계선 없음) |
+| 6-5_voc_등재.jpg | 수오멘린나의 유네스코 세계 유산 명판, 2022 (File:UNESCO World Heritage site plaque Suomenlinna.jpg) | Ypsilon from Finland · CC0 · Wikimedia Commons |
+| 6-5_voc_영유.jpg | 경계석 | H. Zell · CC BY-SA 3.0 · Wikimedia Commons |
+| 6-5_voc_왜곡.jpg | 물결에 일그러진 반사 | Simo Räsänen · CC BY-SA 4.0 · Wikimedia Commons |
+| 6-5_voc_청산.jpg | 중국 주판 (File:Chinese Suanpan Abacus.jpg) | Felix Winkelnkemper · CC BY-SA 4.0 · Wikimedia Commons |
+| 6-5_러시아_거부권.png | 러시아의 자리 도식 + 2022년 5월 안보리 대북 추가 제재 표결 | 자체 제작 도식 (figure-builder/fig_russia_veto.py) |
+| 6-5_북방한계선_v4.png | 북방 한계선 지도 — 소축척 위치도 + 대축척 상세 | 자체 제작 지도 (figure-builder/fig_nll_map.py) · 해안선·국경 Natural Earth 10m(퍼블릭 도메인) |
+| 6-5_주변국갈등_v2.png | 주변국과의 갈등을 성격별로 나눈 표(칸 배경에 대표 사진을 흐리게 깖) | 자체 제작 도식 · 배경 사진: 하시마 섬(ノーマルエディタ · CC BY-SA 4.0) · 중국 어선(---=XEON= · CC BY 3.0) · 자위대 관열식(JGSDF · CC BY 2.0) — Wikimedia Commons · 변형본도 같은 조건 (배경 사진 판독은 픽셀 대조, 개정 이력 «도식에 대표 사진») |
+| 6-6-hero-v2.png | 6-6 표지 — 끊어진 다리에 판자를 들고 오는 사람들 | AI 생성(xAI Aurora, make-cover.sh) + PIL 한글(cover_overlay.py) · 자체 제작 (67fa447 · 7fa020e) |
+| 6-6_b1_동북아역사재단.jpg | 동북아역사재단이 주최한 「동북아역사 아카데미」, 2014 | Republic of Korea · KOCIS · CC BY-SA 2.0 · Wikimedia Commons |
+| 6-6_b1_민관협력.png | 민관 협력 위원회 카드 그림 — 관청과 사람들이 한 문서로 | 자체 제작 도식 (fig_6_6_card_tiles.py · d34e5cf) |
+| 6-6_b1_반크.png | 반크 카드 그림 — 지구의 한국 위치에서 편지가 세계로 퍼진다 | 자체 제작 도식 (fig_6_6_card_tiles.py · d34e5cf) |
+| 6-6_b1_인천시의회.jpg | 인천광역시 의회 건물 | Narubaru7 · CC BY 4.0 · Wikimedia Commons |
+| 6-6_step1_구마모토.jpg | 구마모토성 성벽 | hyolee2 · CC BY-SA 3.0 · Wikimedia Commons |
+| 6-6_step2_g20.jpg | G20 오사카 정상 회의, 2019 | Garrett Marquis · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-6_voc_구호.jpg | 재해 구호 물품이 쌓인 창고 | FEMA · Jacinta Quesada · 퍼블릭 도메인 · Wikimedia Commons |
+| 6-6_voc_동반.jpg | 나란히 판자를 들고 가는 사람들(6-6 옛 표지에서 잘라 씀) | AI 생성(xAI Aurora) · 자체 제작 (d34e5cf) |
+| 6-6_voc_민의.jpg | 봉인된 투표함 | revi · CC BY-SA 2.0 KR · Wikimedia Commons |
+| 6-6_장기적접근.png | 빨리 끝내는 길과 교과서의 세 걸음 도식 | 자체 제작 도식 (figure-builder/fig_longterm_approach.py) |
+| 6-6_정부시민_벤.png | 정부와 시민 사회 벤다이어그램 | 자체 제작 도식 (figure-builder/fig_gov_civil_venn.py) |
+
+## 사회② Ⅷ 사람이 만든 삶터, 도시 — 본문·표지·카드 그림 (2026-10-12 학생용 출처 줄을 이 표로 옮김)
+| 파일 | 무엇 | 저작자 · 라이선스 |
+|---|---|---|
+| 8-1_card_brussels.jpg | 브뤼셀 베를레몽 빌딩(유럽 연합 본부) | almathias · CC0 · Wikimedia Commons |
+| 8-1_card_jerusalem.jpg | 예루살렘 | Radosław Botev · CC BY 3.0 PL · Wikimedia Commons |
+| 8-1_card_kyoto.jpg | 교토 청수사 | Martin Falbisoner · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-1_card_mumbai.jpg | 뭄바이 | Aj777x · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-1_card_nairobi.jpg | 나이로비 국립 공원의 기린과 브리탐 타워, 2020 | Alexmbogo · CC BY-SA 4.0 · Wikimedia Commons «확인 필요» — 같은 촬영자의 2020-06-13 연작(브리탐 타워 배경)으로 판독, 정확한 원본 파일 이름 미확정 |
+| 8-1_card_newyork.jpg | 뉴욕 증권 거래소 | Arild Vågen · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-1_card_paris.jpg | 파리 | Julie Anne Workman · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-1_card_zurich.jpg | 취리히 | Daniel Kraft · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-1_gwangju_acc.jpg | 국립아시아문화전당 일대, 광주광역시 동구, 2015 (8-7에서도 씀) | Lain4lest · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-1_hero_nairobi.jpg | 나이로비 국립 공원의 기린과 도심 스카이라인, 2020 | Alexmbogo · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-2_card_athens.jpg | 아테네 아크로폴리스 | A.Savin · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-2_card_bangkok.jpg | 담는사두악 수상 시장 | Mr.Niwat Tantayanusorn · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-2_card_florence.jpg | 피렌체 | PROPOLI87 · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-2_card_vancouver.jpg | 밴쿠버 스탠리 공원과 도심 | Jc1599 · CC BY 4.0 · Wikimedia Commons |
+| 8-2_card_vienna.jpg | 빈 국립 오페라 극장 | Granada · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-2_hero_sydney.jpg | 시드니 오페라 하우스와 하버 브리지, 2019 | Benh LIEU SONG · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-2_suncheon_reeds.jpg | 순천만 갈대밭, 2018년 12월 | Jjw · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-3_gwangju_apts.jpg | 광주 시내 아파트 단지와 광주월드컵경기장 일대, 2004 (File:Gwangju city - view apts.jpg) | Nesnad(Commons에 저작자 기계 판독 정보 없음, 업로더 기준 추정) · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-3_gwangju_cityhall.jpg | 광주광역시청, 서구 치평동, 2016 | Neoalpha · CC0 · Wikimedia Commons |
+| 8-3_hero_seoul_downtown.jpg | 인왕산에서 본 서울 도심, 2023 | 서울관광재단 · 공공누리 제1유형 · Wikimedia Commons |
+| 8-4_hero_myeongdong.jpg | 서울 명동 거리, 2026년 6월 | Izzatfikry99 · CC BY 4.0 · Wikimedia Commons |
+| 8-4_nowon_apts.jpg | 서울 노원구의 아파트 단지 | Ox1997cow · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-4_seoul_downtown.jpg | 인왕산에서 내려다본 서울 도심 | 서울관광재단 · 공공누리 제1유형 · Wikimedia Commons |
+| 8-5_hero_london_dore.jpg | 귀스타브 도레 「기차에서 본 런던(Over London – by Rail)」, 『런던 순례』 1872 | 퍼블릭 도메인 · Yale Center for British Art · Wikimedia Commons |
+| 8-5_kualalumpur.jpg | 말레이시아 쿠알라룸푸르의 고층 빌딩, 2014 | CEphoto, Uwe Aranas · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-5_ruhr_zollverein.jpg | 독일 에센 졸페라인 탄광 수직갱 탑, 2022 | Anil Öztas · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-6_hero_london_smog1952.jpg | 1952년 런던 스모그 속 넬슨 기념탑 | N T Stobbs · CC BY-SA 2.0 · Wikimedia Commons |
+| 8-6_la_rushhour.jpg | 로스앤젤레스 110번 고속도로의 퇴근 시간, 2015 | Prayitno · CC BY 2.0 · Wikimedia Commons |
+| 8-6_ulaanbaatar_ger.jpg | 울란바토르 외곽의 게르 촌, 2025 | Quintin Soloviev · CC BY 4.0 · Wikimedia Commons |
+| 8-7_bilbao_guggenheim.jpg | 에스파냐 빌바오 구겐하임 미술관, 2021 | José Ligero Loarte · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-7_curitiba_tube.jpg | 브라질 쿠리치바의 원통형 버스 정류장, 2006 | Mariordo · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-7_hero_hammarby.jpg | 스톡홀름 함마르뷔 셰스타드, 2025년 6월 | ArildV · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-8_freiburg_baechle.jpg | 프라이부르크 시내의 인공 수로, 2009 | Joergens.mi · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-8_hero_copenhagen.jpg | 코펜하겐 뉘하운, 2026년 7월 | Superbass · CC BY-SA 4.0 · Wikimedia Commons |
+
+## 사회② Ⅸ 글로벌 경제 활동과 지역 변화 — 본문·표지·카드 그림 (2026-10-12 학생용 출처 줄을 이 표로 옮김)
+| 파일 | 무엇 | 저작자 · 라이선스 |
+|---|---|---|
+| 9-1_hero_palouse_wheat.jpg | 아이다호 팰루스의 밀 수확 | 미국 농무부 농업연구청 · 퍼블릭 도메인 · Wikimedia Commons |
+| 9-1_ohio_combine.jpg | 오하이오주 리치먼드 타운십의 밀 수확, 2010 | Nyttend · 퍼블릭 도메인 · Wikimedia Commons |
+| 9-2_hero_ecuador_banana.jpg | 에콰도르의 바나나 농장, 2011 | Dave Lonsdale · CC BY 2.0 · Wikimedia Commons |
+| 9-3_hero_hmm_algeciras.jpg | 로테르담 항에 처음 들어온 컨테이너선 HMM 알헤시라스, 2020년 6월 | kees torn · CC BY-SA 2.0 · Wikimedia Commons |
+| 9-4_dongguan_factory.jpg | 광둥성 둥관시의 한 공장, 2015 | Jole222 · CC BY-SA 4.0 · Wikimedia Commons |
+| 9-4_hero_detroit_packard.jpg | 버려진 패커드 자동차 공장, 디트로이트, 2009 | Albert duce · CC BY-SA 3.0 · Wikimedia Commons |
+| 9-5_hero_makati.jpg | 마닐라 마카티의 빌딩 숲, 2017 | Lawrence Ruiz · CC BY-SA 4.0 · Wikimedia Commons |
+| 9-5_zipline_rwanda.jpg | 르완다에서 빗속에 회수되는 의료용 배송 드론, 2020 | Roksenhorn · CC BY-SA 4.0 · Wikimedia Commons |
+| 9-6_hero_direct_purchase.png | 9-6 표지 — 우리나라 해외 직접 구매 건수 그래프(2011~2024) | 자체 제작 그래프 · 자료 관세청(교과서 2016 · 세정일보 · 한국세정신문 보도) |
+
+## 사회② Ⅹ 환경 문제와 지속 가능한 환경 — 본문·표지·카드 그림 (2026-10-12 학생용 출처 줄을 이 표로 옮김)
+| 파일 | 무엇 | 저작자 · 라이선스 |
+|---|---|---|
+| 10-1_hero_kivalina.jpg | 하늘에서 본 알래스카 키발리나, 1999 | 미국 육군 공병대 · 퍼블릭 도메인 · Wikimedia Commons |
+| 10-2_hero_jeju_wind.jpg | 제주 월정리 바닷가의 풍력 발전기, 2014 | 문화체육관광부 해외문화홍보원 Korea.net · CC BY-SA 2.0 · Wikimedia Commons |
+| 10-3_bhopal_1985.jpg | 사고 이듬해의 보팔 농약 공장, 1985 | Bhopal Medical Appeal · CC BY-SA 2.0 · Wikimedia Commons |
+| 10-3_hero_bhopal_plant.jpg | 사고 26년 뒤의 인도 보팔 공장 터, 2010 | Julian Nyča · CC BY-SA 3.0 · Wikimedia Commons |
+| 10-4_ewaste.jpg | 아그보그블로시의 전자 쓰레기, 2018 | Muntaka Chasant · CC BY-SA 4.0 · Wikimedia Commons |
+| 10-4_hero_agbogbloshie.jpg | 가나 아그보그블로시에서 전선을 태우는 연기, 2019 | Muntaka Chasant · CC BY-SA 4.0 · Wikimedia Commons |
+| 10-5_hero_seoul_dust.jpg | 황사와 미세 먼지가 겹친 서울 송파, 2021-05-07 | Hyeonyoung Lee 21 · CC BY-SA 4.0 · Wikimedia Commons |
+| 10-5_modis_haze.jpg | 중국 북부와 한반도를 덮은 연무, 2021-11-26 위성 사진 | NASA MODIS · 퍼블릭 도메인 · Wikimedia Commons |
+| 10-6_hero_market.jpg | 부산 해운대 시장의 채소 좌판, 2014년 8월 | ProjectManhattan · CC BY-SA 3.0 · Wikimedia Commons |
+
+## 사회② Ⅺ 세계 속의 우리나라 — 본문·표지·카드 그림 (2026-10-12 학생용 출처 줄을 이 표로 옮김)
+| 파일 | 무엇 | 저작자 · 라이선스 |
+|---|---|---|
+| 11-1_hero_marado.jpg | 제주 마라도의 «대한민국 최남단» 비석, 2014 | 한국문화관광연구원 · 공공누리 제1유형 · Wikimedia Commons |
+| 11-1_영역단면.png | 나라의 영역 단면도(영토·영해·배타적 경제 수역·공해·영공) | 자체 제작 도식 (교과서 영역 개념도를 다시 그림) |
+| 11-1_영해기선_v2.png | 우리나라의 영해 기선 지도 | 자체 제작 지도 · 기점 좌표 「영해 및 접속수역법 시행령」 [별표 1] · 해안선 Natural Earth(퍼블릭 도메인) |
+| 11-2_hero_dokdo.jpg | 바다에서 본 독도, 2010년 7월 | Korea.net / 해외문화홍보원 · CC BY-SA 2.0 · Wikimedia Commons |
+| 11-2_독도위치_v2.png | 독도의 위치 지도(울릉도 87.4km · 오키섬 157.5km) | 자체 제작 지도 · 거리는 교과서 202쪽·지도서 312쪽(국토지리정보원) · 해안선 Natural Earth(퍼블릭 도메인) |
+| 11-2_팔도총도.jpg | 「팔도총도」 동해 부분 확대, 『신증동국여지승람』 수록, 1531 | 퍼블릭 도메인 · Wikimedia Commons |
+| 11-3_boseong_tea.jpg | 보성 녹차밭, 2006 | Fred Ojardias · CC BY 2.0 · Wikimedia Commons |
+| 11-3_busan_cinema.jpg | 부산 영화의전당 | 399scout · CC BY-SA 4.0 · Wikimedia Commons |
+| 11-3_gwangju_biennale.jpg | 광주비엔날레 전시관 | Kgw1226 · CC BY-SA 4.0 · Wikimedia Commons |
+| 11-3_hero_jeonju.jpg | 전주 한옥 마을의 기와지붕들 | lumoplank · CC0 · Wikimedia Commons |
+| 11-4_hampyeong_manhole.jpg | 함평 나비 축제장의 맨홀 뚜껑, 2013 | Piotrus · CC BY-SA 3.0 · Wikimedia Commons |
+| 11-4_hero_hampyeong.jpg | 함평 나비 축제장의 꽃밭과 유리 온실, 2013 | Piotrus · CC BY-SA 3.0 · Wikimedia Commons |
+| 11-4_iloveny_shop.jpg | 뉴욕주 휴게소의 I♥NY 기념품 가게, 2023 | Andre Carrotflower · CC BY-SA 4.0 · Wikimedia Commons |
+| 11-4_nyc_1977.jpg | 1977년 뉴욕 타임스 스퀘어 | Derzsi Elekes Andor · CC BY-SA 4.0 · Wikimedia Commons |
+| 11-5_hero_imjingak.jpg | 파주 임진각 자유의 다리 끝 철조망의 리본, 2018년 12월 | Lance Vanlewen · CC BY-SA 4.0 · Wikimedia Commons |
+| 11-5_incheon_airport.jpg | 하늘에서 본 인천국제공항, 2024 | MNXANL · CC BY-SA 4.0 · Wikimedia Commons |
+| 11-5_거꾸로지도_v2.png | 남쪽이 위로 오게 돌린 동아시아·태평양 지도 | 자체 제작 지도 · 해안선·지형 Natural Earth(퍼블릭 도메인) · 교과서 210쪽 생각 열기의 발상을 다시 그림 |
+| 11-6_hero_dorasan.jpg | 파주 도라산역, 2019 | Sanmosa · CC BY-SA 4.0 · Wikimedia Commons |
+| 11-6_imjingak_pillars.jpg | 임진강 옛 경의선 철교의 교각, 2018 | Lance Vanlewen · CC BY-SA 4.0 · Wikimedia Commons |
+
+## 사회② Ⅻ 더불어 사는 세계 — 본문·표지·카드 그림 (2026-10-12 학생용 출처 줄을 이 표로 옮김)
+| 파일 | 무엇 | 저작자 · 라이선스 |
+|---|---|---|
+| 12-1_hero_wfp_sack.jpg | 말리 바마코 구호 식량 배급소의 완두콩 자루, 2013 | 영국 국제개발부(DFID) · CC BY 2.0 · Wikimedia Commons |
+| 12-1_sorghum_ethiopia.jpg | 에티오피아 암하라 지역의 수수밭, 2012 | Radosław Botev · CC BY 3.0 PL · Wikimedia Commons |
+| 12-2_hans_bottles.jpg | 한스섬에 두고 간 술병과 통조림, 2003 | Per Starklint · CC BY-SA 4.0 · Wikimedia Commons |
+| 12-2_hero_okinotori.jpg | 하늘에서 본 오키노토리, 2007 | 일본 국토교통성 간토지방정비국 게이힌 하천사무소 · CC BY 4.0 · Wikimedia Commons |
+| 12-3_bee_apple.jpg | 사과꽃에 앉은 꿀벌, 영국, 2012 | Orangeaurochs · CC BY 2.0 · Wikimedia Commons |
+| 12-3_hero_famine.jpg | 아일랜드 더블린의 대기근 기념 조각(로완 길레스피 작), 2006 | 퍼블릭 도메인 · Wikimedia Commons |
+| 12-3_oilpalm_borneo.jpg | 기름야자 농장 사이에 남은 열대 우림, 말레이시아 보르네오, 2005 | T. R. Shankar Raman · CC BY-SA 4.0 · Wikimedia Commons |
+| 12-4_hero_punakha.jpg | 부탄 푸나카 종, 2018 | Bernard Gagnon · CC BY-SA 4.0 · Wikimedia Commons |
+| 12-4_지수상하위.png | 삶의 수준 지수 상위 3국·하위 3국 막대그래프(2023년 값) | 자체 제작 그래프 · 자료 국제 연합 개발 계획(UNDP) 2025년 보고서 |
+| 12-5_hero_kigali.jpg | 르완다 키갈리 시내, 2020 | GATETE Pacifique · CC BY-SA 4.0 · Wikimedia Commons |
+| 12-5_lifestraw.jpg | 휴대용 정수기 라이프스트로, 2007 | Vestergaard Frandsen · 퍼블릭 도메인 · Wikimedia Commons |
+| 12-6_hero_pump.jpg | 카메룬의 한 마을의 손 펌프 우물, 2018 | Temfack sonfack · CC BY-SA 4.0 · Wikimedia Commons |
+| 12-7_hero_coffee.jpg | 과테말라 공정 무역 유기농 커피 농장에서 열매를 고르는 사람들, 2007 | rohsstreetcafe · CC BY-SA 2.0 · Wikimedia Commons |

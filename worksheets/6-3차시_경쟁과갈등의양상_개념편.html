@@ -150,6 +150,8 @@ blockquote {
 .pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
 .pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
 .pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-tap { cursor: pointer; }
+.pk-ok .pk-why { color: #1f6b3a; }
 .pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
 .pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
@@ -203,7 +205,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
-.pk-gold .pk-card.pk-noimg .pk-btns .pk-b { flex: 0 0 auto; }
+/* 2026-10-07 격자로 — 한 버튼만 두 줄로 꺾여도(폰 «인문·사회») 두 버튼 높이·폭이 같게. 줄은 아래에 붙인다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-content: end; }
+/* 2026-10-07 — 위 «flex: 0 0 auto»는 버튼 높이를 묶으려던 것인데 버튼 줄이 가로라 폭이 글자 크기로 묶였다
+   (사회 7-4 «양» 17px · «비율» 28px). 폭은 똑같이 나누고(1 1 0) 높이는 아래 정렬로 고정한다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b { flex: none; }
+.pk-gold .pk-card.pk-noimg .pk-btns-col .pk-b { flex: 0 0 auto; }   /* 세로(선택지 셋 이상)는 높이 고정 그대로 */
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
@@ -242,9 +249,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }
 @media (max-width: 560px) {
   .ws-seesaw-beam { width: 300px; margin-left: -150px; }
-  .ws-seesaw-chip { width: 124px; font-size: 0.8em; }
-  .ws-seesaw-chip.ws-l { margin-left: -206px; }
-  .ws-seesaw-chip.ws-r { margin-left: 82px; }
+  .ws-seesaw-chip { width: 108px; font-size: 0.78em; }   /* 2026-10-04: 124px·±206은 폰 반폭(≈165)을 9px 넘었다 */
+  .ws-seesaw-chip.ws-l { margin-left: -161px; }
+  .ws-seesaw-chip.ws-r { margin-left: 53px; }
 }
 @media print { .ws-seesaw-range { display: none; } }
 
@@ -253,6 +260,41 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 🗺 :::지도막대 — 2026-10-06 (지도 + 연도 막대 · 핀·값은 HTML) */
+.ws-mapbar { border: 1px solid #dcd3bf; border-radius: 14px; background: #fbf8f1; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-mb-head { font-weight: 800; font-size: 1.02em; margin-bottom: 8px; color: #3a3226; }
+.ws-mb-map { position: relative; line-height: 0; border-radius: 10px; overflow: hidden; }
+.ws-mb-map img { display: block; width: 100%; height: auto; }
+.mb-pin { position: absolute; width: 0; height: 0; line-height: 1.2; }
+.mb-pin i { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #8a7f6c; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); opacity: .9;
+  transition: width .5s, height .5s, margin .5s, background .5s; }
+.mb-pin.mb-up i { background: #c2593a; }
+.mb-pin.mb-dn i { background: #3f6fa8; }
+.mb-lab { position: absolute; top: -9px; white-space: nowrap; font-size: 13px; font-weight: 700; color: #2b2419;
+  background: rgba(255,255,255,.86); border-radius: 6px; padding: 1px 5px; }
+.mb-r .mb-lab { left: 12px; }
+.mb-l .mb-lab { right: 12px; }
+.mb-u .mb-lab, .mb-d .mb-lab { left: 0; transform: translateX(-50%); }
+.mb-u .mb-lab { top: -30px; }
+.mb-d .mb-lab { top: 12px; }
+.mb-lab em { font-style: normal; color: #7a2e1a; font-variant-numeric: tabular-nums; }
+.mb-dn .mb-lab em { color: #244f86; }
+.ws-mb-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86em; color: #4a4234; margin: 8px 2px 4px; }
+.ws-mb-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; }
+.ws-mb-legend i.mb-hi { background: #c2593a; }
+.ws-mb-legend i.mb-lo { background: #3f6fa8; }
+.ws-mb-legend .mb-bt { color: #6b6252; }
+.ws-mb-ctl { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.ws-mb-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #cfc4ae; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-mb-play:focus-visible, .ws-mb-range:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; }
+.ws-mb-range { flex: 1; accent-color: #7a5a2a; min-width: 0; }
+.ws-mb-yr { flex: none; min-width: 4.2em; font-weight: 800; color: #3a3226; font-variant-numeric: tabular-nums; }
+.ws-mb-read { min-height: 3.2em; margin-top: 6px; font-size: .95em; line-height: 1.6; color: #2b2419; }
+.ws-mb-src { font-size: .8em; color: #6b6252; margin-top: 4px; }
+@media (max-width: 560px) { .mb-lab { font-size: 11px; padding: 0 3px; } .mb-r .mb-lab { left: 8px; } .mb-l .mb-lab { right: 8px; } .mb-u .mb-lab { top: -24px; } .mb-d .mb-lab { top: 9px; } }
+@media (prefers-reduced-motion: reduce) { .mb-pin i { transition: none; } }
+@media print { .ws-mb-ctl { display: none; } }
 /* 📈 :::그래프 — 2026-09-28 */
 .ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
 .ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
@@ -352,6 +394,53 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
    태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+.ws-saryo {
+  position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
+  background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
+  border-left: 1px solid #d6c08f; border-right: 1px solid #d6c08f;
+  box-shadow: inset 0 0 34px rgba(150, 110, 45, 0.22), 0 3px 10px rgba(60, 40, 10, 0.12);
+  color: #4a3720;
+}
+.ws-saryo::before, .ws-saryo::after {
+  content: ""; position: absolute; left: -10px; right: -10px; height: 16px; border-radius: 8px;
+  background: linear-gradient(180deg, #e2c992 0%, #b8925a 55%, #8f6a37 100%);
+  box-shadow: 0 2px 4px rgba(60, 40, 10, 0.25);
+}
+.ws-saryo::before { top: -8px; }
+.ws-saryo::after { bottom: -8px; }
+.ws-saryo .sr-tag {
+  display: inline-block; font-size: 0.78em; font-weight: 700; letter-spacing: 0.04em;
+  color: #7a5426; border: 1px solid #b8925a; border-radius: 999px; padding: 2px 11px; margin-bottom: 10px;
+  background: rgba(255, 250, 235, 0.6);
+}
+.ws-saryo .sr-q {
+  margin: 0; padding: 0; border: none; background: none;
+  font-family: "Nanum Myeongjo", "AppleMyungjo", "Noto Serif KR", "Batang", serif;
+  font-size: 1.04em; line-height: 1.85; color: #3d2c17;
+}
+.ws-saryo .sr-c { margin-top: 10px; text-align: right; font-size: 0.82em; color: #7a6040; }
+@media print { .ws-saryo { background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; } }
+.ws-2c { display: grid; gap: 22px; align-items: start; margin: 12px 0 18px; }
+.ws-2c > div { min-width: 0; }
+.ws-2c > div > :first-child { margin-top: 0; }
+.ws-2c > div > br { display: none; }
+@media (max-width: 640px) { .ws-2c:not(.c2-keep) { grid-template-columns: 1fr !important; } .ws-2c.c2-keep { gap: 10px; } .ws-2c.c2-keep figcaption { font-size: 12px; } }
+.ws-2c.c2-mid { align-items: center; }
+.ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
+.ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
+.ws-2c .ws-fig { margin: 0; }
+.ws-ipdam {
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 22px; align-items: start; margin: 16px 0 20px;
+}
+.ws-ipdam .ipd-fig { margin: 0; }
+.ws-ipdam .ipd-fig img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.ws-ipdam .ipd-fig figcaption { font-size: 0.78em; color: #7a7064; margin-top: 6px; line-height: 1.5; }
+.ws-ipdam .ipd-t { margin: 0; min-width: 0; }
+.ws-ipdam .ipd-t > :first-child { margin-top: 0; }
+.ws-ipdam .ipd-t > br { display: none; }
+@media (max-width: 640px) { .ws-ipdam { grid-template-columns: 1fr; gap: 8px; } }
+@media print { .ws-ipdam { break-inside: avoid; } }
 .ws-read {
   background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
   border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
@@ -363,8 +452,19 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read .ws-fold-table { background: #fff; font-variant-numeric: tabular-nums; }
+.ws-read .ws-fold-table td:last-child, .ws-read .ws-fold-table th:last-child { text-align: right; }
+.ws-read .ws-fold-table td:last-child { white-space: nowrap; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+/* ✍️ 해 보는 곳 — 2026-10-06. 계열 넷: 파랑=빈칸(본문) · 황토=교과서 · 슬레이트=읽는 곳 · 초록=직접 해 보는 곳 */
+.ws-do { background: #f2f8f3; border: 1px solid #cfe5d5; border-radius: 16px; padding: 14px 20px 18px; margin: 30px 0; }
+.ws-do > h2 { margin-top: 8px; border-left-color: #2f8f55; background: linear-gradient(90deg, #dff0e4, rgba(255,255,255,0)); }
+.ws-do-tag { display: inline-block; background: #2f8f55; color: #fff; font-size: 0.76em; font-weight: 700;
+  letter-spacing: 0.02em; padding: 3px 11px; border-radius: 999px; }
+.ws-do + .ws-do { margin-top: 18px; }
+@media (max-width: 560px) { .ws-do { padding: 10px 6px 14px; margin-left: -10px; margin-right: -10px; border-radius: 12px; } }
+@media print { .ws-do { background: #fff; border-color: #bbb; } }
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
 /* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */
@@ -656,6 +756,23 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }
 .ws-vcd-nav button:disabled { opacity: .32; cursor: default; }
 .vcd-count { font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }
+/* 2026-10-08 하위 카드 — 메인 낱말카드 아래 접힘 안에 나란히(캐러셀 밖) */
+.vcd-subtag { position: absolute; top: 8px; right: 8px; font-size: .68em; font-weight: 700; color: #fff;
+  background: #7a6742; border-radius: 10px; padding: 2px 8px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.ws-vsub { margin: 12px 0 0; border: 1px solid #d9c48f; border-radius: 10px; background: #fffaf0; }
+.ws-vsub > summary { cursor: pointer; padding: 10px 14px; font-size: .9em; color: #6b4f14; list-style: none; }
+.ws-vsub > summary::-webkit-details-marker { display: none; }
+.ws-vsub > summary::after { content: " ▾"; color: #a08a5c; }
+.ws-vsub[open] > summary::after { content: " ▴"; }
+.ws-vsub > summary:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; border-radius: 10px; }
+.ws-vsub-head { font-size: .86em; color: #5a4a2a; margin: 0 14px 10px; line-height: 1.55; }
+.ws-vsub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 10px; padding: 0 12px 14px; max-width: 640px; }
+.ws-vsubcard { flex: none; width: auto; }
+.ws-vsubcard .vcd-f { background: #fbf7ec; border-color: #d9c48f; }
+.ws-vsubcard .vcd-b > * { order: 2; }
+.ws-vsubcard .vcd-b > .vcd-bko { order: 0; }
+.ws-vsubcard .vcd-b > .vcd-fam { order: 1; margin: 2px 0 4px; padding: 6px 8px; border: 0; border-radius: 6px;
+  background: #fff1cc; color: #5a3f0c; font-weight: 700; font-size: .78em; line-height: 1.45; }
 @media (prefers-reduced-motion: reduce) {
   .vcd-in { transition: none; }
   .ws-vcd-track { scroll-behavior: auto; }
@@ -688,6 +805,14 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
 }
 .ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+/* 2026-10-07 :::2단 … 교과서 — 교과서 상자 바로 아래에 붙여 «생각 열기의 뒷이야기»로 읽히게(위 상자와 간격 줄임) */
+.ws-tb + .ws-tb-2c { margin-top: -6px; }
+.ws-tb-join { border-top: 1px dashed #d9c48f; margin-top: 12px; padding-top: 12px; }
+.ws-tb-join .ws-2c { margin: 4px 0 0; } .ws-tb-join table { background: #fff; } .ws-tb-join .c2-b { font-size: 0.95em; color: #3d3116; }
+.ws-tb-tag2 { background: #7a6742; }
+.ws-tb-2c .ws-2c { margin: 4px 0 0; }
+.ws-tb-2c table { background: #fff; }
+.ws-tb-2c .c2-b { font-size: 0.95em; color: #3d3116; }
 .ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
 .ws-tb-ask strong { color: #8a5f12; }
 .ws-tb input.activity-input {
@@ -811,6 +936,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+     (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
   position: relative; overflow: hidden;
@@ -847,7 +974,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
-.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -932,6 +1059,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
+/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
@@ -970,7 +1098,6 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-vcd" id="vd11"><div class="ws-vcd-head">▶로 넘겨 네 장 다 확인하자.</div><div class="ws-vcd-track"><button type="button" class="ws-vcard" aria-label="갈등 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/6-3_voc_갈등.jpg" alt=""><span class="vcd-hanja">葛藤</span><span class="vcd-ko">갈등</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">갈등</span><span class="vcd-split">갈(葛, <strong>칡</strong>) + 등(藤, 등나무)</span><span class="vcd-mean">칡과 등나무가 서로 얽히듯 뒤엉킨 상태</span><span class="vcd-sent">"이익이 어긋나면 <strong>갈등</strong>이 생긴다."</span><span class="vcd-fam">🔑 <strong>어원이 곧 뜻이다</strong> — 둘 다 덩굴이라 서로 감고 올라가면 <strong>혼자 힘으로는 못 푼다</strong></span></span></span></button><button type="button" class="ws-vcard" aria-label="분쟁 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/6-3_voc_분쟁.jpg" alt=""><span class="vcd-hanja">紛爭</span><span class="vcd-ko">분쟁</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">분쟁</span><span class="vcd-split">분(紛, <strong>어지러울</strong>) + 쟁(爭, 다툴)</span><span class="vcd-mean">어지럽게 뒤엉켜 다툼</span><span class="vcd-sent">"영유권을 둘러싼 <strong>분쟁</strong>이 일어났다."</span><span class="vcd-fam">爭 → <strong>경쟁</strong> · 전쟁 · 논쟁</span></span></span></button><button type="button" class="ws-vcard" aria-label="이념 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/6-3_voc_이념.png" alt=""><span class="vcd-hanja">理念</span><span class="vcd-ko">이념</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">이념</span><span class="vcd-split">이(理, <strong>이치</strong>) + 념(念, 생각)</span><span class="vcd-mean">옳다고 믿는 생각의 틀</span><span class="vcd-sent">"냉전은 <strong>이념</strong> 경쟁의 시대였다."</span><span class="vcd-fam">理 → 이유 · 이해 · 정리 &nbsp;/&nbsp; 念 → <strong>개념</strong> · 신념 · 기념</span></span></span></button><button type="button" class="ws-vcard" aria-label="군비 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/6-3_voc_군비.jpg" alt=""><span class="vcd-hanja">軍備</span><span class="vcd-ko">군비</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">군비</span><span class="vcd-split">군(軍, 군사) + 비(備, <strong>갖출</strong>)</span><span class="vcd-mean">전쟁을 위해 갖춘 군사 시설과 장비</span><span class="vcd-sent">"<strong>군비</strong> 경쟁이 치열해지고 있다."</span><span class="vcd-fam">軍 → 군대 · 군인 · 해군 &nbsp;/&nbsp; 備 → 준비 · 대비 · 설비</span></span></span></button></div><div class="ws-vcd-nav"><button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button><span class="vcd-count"><b>1</b> / 4</span><button type="button" class="vcd-next" aria-label="다음 낱말">▶</button></div></div><script>(function(){var r=document.getElementById("vd11");var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}function idx(){return Math.max(0,Math.min(cs.length-1,Math.round(t.scrollLeft/step())));}var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;c.textContent=e?cs.length:idx()+1;P.disabled=t.scrollLeft<=2;N.disabled=e;}function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}P.addEventListener("click",function(){go(-1);});N.addEventListener("click",function(){go(1);});t.addEventListener("scroll",function(){clearTimeout(t._z);t._z=setTimeout(sync,90);});function navfit(){var s=t.scrollWidth-t.clientWidth;r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}navfit();sync();addEventListener("resize",function(){navfit();sync();});})();</script>
 <br>
-<blockquote>📷 얽힌 덩굴 (Bauhinia guianensis · CC BY 2.0) · 남중국해 해양 주장 지도 (미 국무부 · PD) · 냉전 진영 지도 (Wikimedia · CC0) · 군사 퍼레이드 (PD) · 국제 우주 정거장 (NASA · PD) · 우크라이나 난민 접수소 (폴란드 총리실 · CC BY 4.0) · 전투기 편대 (미 공군 · PD) · 컨테이너 크레인 (PD) · 노천 광산 (CC BY-SA 4.0) · 코로나19 백신 (미 인구조사국 · PD) · 인터폴 본부 (CC BY-SA 3.0) — Wikimedia Commons</blockquote>
 <br>
 <blockquote>🔑 <strong>爭</strong> 하나만 붙잡아도 오늘 배울 말이 줄줄이 풀려. <strong>경쟁</strong>·<strong>분쟁</strong>이 같은 글자를 쓴다는 걸 눈으로 보자.</blockquote>
 <br>
@@ -1000,10 +1127,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 3단계: 경쟁은 어떻게 분쟁이 되나</h2>
 <br>
 <br>
-<div class="ws-rad rad-onfig" id="rd43" style="--n:8"><div class="rd-note">도식에서 <strong>분쟁</strong>을 눌러 보자 — 교과서 117쪽 표의 여덟 영역이 그 자리에서 펼쳐진다. 하나씩 눌러 어디서 만나는지 확인하자.</div><div class="rd-fig"><img src="images/6-3_경쟁갈등분쟁.png" alt="분쟁 단계가 든 도식"><button type="button" class="rd-hot" style="left:65%;top:10.3%;width:28.3%;height:45.3%" aria-label="분쟁 눌러 영역 펼치기"><span>분쟁</span></button><button type="button" class="rd-chip" style="--a:-90.00deg" data-i="0" aria-label="경제 보기">경제</button><button type="button" class="rd-chip" style="--a:-45.00deg" data-i="1" aria-label="환경 보기">환경</button><button type="button" class="rd-chip" style="--a:0.00deg" data-i="2" aria-label="보건 보기">보건</button><button type="button" class="rd-chip" style="--a:45.00deg" data-i="3" aria-label="범죄 보기">범죄</button><button type="button" class="rd-chip" style="--a:90.00deg" data-i="4" aria-label="물리적 폭력 보기">물리적 폭력</button><button type="button" class="rd-chip" style="--a:135.00deg" data-i="5" aria-label="식량과 자원 보기">식량과 자원</button><button type="button" class="rd-chip" style="--a:180.00deg" data-i="6" aria-label="문화적 차이 보기">문화적 차이</button><button type="button" class="rd-chip" style="--a:225.00deg" data-i="7" aria-label="사이버 공간 보기">사이버 공간</button></div><div class="rd-panels"><div class="rd-panel" data-i="0" hidden><b>경제</b><p></p><i>🔎 <strong>활동 2</strong>에서 직접 판정해 보자</i></div><div class="rd-panel" data-i="1" hidden><b>환경</b><p>오염은 국경을 지키지 않는다 — 한 나라가 버린 것이 옆 나라에 닿는다</p><i>4단계 본문 「환경 오염」</i></div><div class="rd-panel" data-i="2" hidden><b>보건</b><p></p><i>🔎 <strong>활동 2</strong>에서 직접 판정해 보자</i></div><div class="rd-panel" data-i="3" hidden><b>범죄</b><p></p><i>🔎 <strong>활동 2</strong>에서 직접 판정해 보자</i></div><div class="rd-panel" data-i="4" hidden><b>물리적 폭력</b><p>힘이 직접 오가는, 가장 무거운 자리다. 2023년 8월 남중국해에서 중국 해경선이 필리핀 해경 선박에 <strong>물대포를 쐈다</strong></p><i>아래 사진이 그 장면이다</i><span class="rd-go" data-sel=".rd-photo">눌러서 그 자리로</span></div><div class="rd-panel" data-i="5" hidden><b>식량과 자원</b><p></p><i>🔎 <strong>활동 2</strong>에서 직접 판정해 보자</i></div><div class="rd-panel" data-i="6" hidden><b>문화적 차이</b><p>옳고 그름의 기준이 서로 다를 때 생긴다</p><i>4단계 본문 「서로 다른 가치관」</i></div><div class="rd-panel" data-i="7" hidden><b>사이버 공간</b><p>서버가 어디 있나 · AI가 무엇을 배웠나</p><i>4단계에서 봤다</i></div></div></div>
+<div class="ws-rad rad-onfig" id="rd42" style="--n:8"><div class="rd-note">도식에서 <strong>분쟁</strong>을 눌러 보자 — 교과서 117쪽 표의 여덟 영역이 그 자리에서 펼쳐진다. 하나씩 눌러 어디서 만나는지 확인하자.</div><div class="rd-fig"><img src="images/6-3_경쟁갈등분쟁.png" alt="분쟁 단계가 든 도식"><button type="button" class="rd-hot" style="left:65%;top:10.3%;width:28.3%;height:45.3%" aria-label="분쟁 눌러 영역 펼치기"><span>분쟁</span></button><button type="button" class="rd-chip" style="--a:-90.00deg" data-i="0" aria-label="경제 보기">경제</button><button type="button" class="rd-chip" style="--a:-45.00deg" data-i="1" aria-label="환경 보기">환경</button><button type="button" class="rd-chip" style="--a:0.00deg" data-i="2" aria-label="보건 보기">보건</button><button type="button" class="rd-chip" style="--a:45.00deg" data-i="3" aria-label="범죄 보기">범죄</button><button type="button" class="rd-chip" style="--a:90.00deg" data-i="4" aria-label="물리적 폭력 보기">물리적 폭력</button><button type="button" class="rd-chip" style="--a:135.00deg" data-i="5" aria-label="식량과 자원 보기">식량과 자원</button><button type="button" class="rd-chip" style="--a:180.00deg" data-i="6" aria-label="문화적 차이 보기">문화적 차이</button><button type="button" class="rd-chip" style="--a:225.00deg" data-i="7" aria-label="사이버 공간 보기">사이버 공간</button></div><div class="rd-panels"><div class="rd-panel" data-i="0" hidden><b>경제</b><p></p><i>🔎 <strong>활동 2</strong>에서 직접 판정해 보자</i></div><div class="rd-panel" data-i="1" hidden><b>환경</b><p>오염은 국경을 지키지 않는다 — 한 나라가 버린 것이 옆 나라에 닿는다</p><i>4단계 본문 「환경 오염」</i></div><div class="rd-panel" data-i="2" hidden><b>보건</b><p></p><i>🔎 <strong>활동 2</strong>에서 직접 판정해 보자</i></div><div class="rd-panel" data-i="3" hidden><b>범죄</b><p></p><i>🔎 <strong>활동 2</strong>에서 직접 판정해 보자</i></div><div class="rd-panel" data-i="4" hidden><b>물리적 폭력</b><p>힘이 직접 오가는, 가장 무거운 자리다. 2023년 8월 남중국해에서 중국 해경선이 필리핀 해경 선박에 <strong>물대포를 쐈다</strong></p><i>아래 사진이 그 장면이다</i><span class="rd-go" data-sel=".rd-photo">눌러서 그 자리로</span></div><div class="rd-panel" data-i="5" hidden><b>식량과 자원</b><p></p><i>🔎 <strong>활동 2</strong>에서 직접 판정해 보자</i></div><div class="rd-panel" data-i="6" hidden><b>문화적 차이</b><p>옳고 그름의 기준이 서로 다를 때 생긴다</p><i>4단계 본문 「서로 다른 가치관」</i></div><div class="rd-panel" data-i="7" hidden><b>사이버 공간</b><p>서버가 어디 있나 · AI가 무엇을 배웠나</p><i>4단계에서 봤다</i></div></div></div>
 <br>
-<figure class="ws-fig"><img src="images/6-3_step3_분쟁.jpg" alt="중국 해경선이 필리핀 해경 선박을 향해 물대포를 발사하는 장면. 두 배가 바다에서 가까이 맞서 있고 물줄기가 상대 배로 뻗는다" loading="lazy"><figcaption>중국 해경선이 필리핀 해경 선박을 향해 물대포를 발사하는 장면. 두 배가 바다에서 가까이 맞서 있고 물줄기가 상대 배로 뻗는다</figcaption></figure>
-<blockquote>📷 <span class="rd-photo"></span>도식 <strong>맨 오른쪽 칸</strong>의 실제 모습 — 2023년 8월 남중국해. (필리핀 해경 · Public domain)</blockquote>
+<figure class="ws-fig"><img src="images/6-3_step3_분쟁.jpg" alt="도식 맨 오른쪽 칸의 실제 모습 — 2023년 8월 남중국해" loading="lazy"><figcaption>도식 맨 오른쪽 칸의 실제 모습 — 2023년 8월 남중국해</figcaption></figure>
 <br>
 <p>경쟁은 상대를 이기려고 다투는 과정에서 갈등으로 발전하고, 무역 분쟁·유전 분쟁·영유권 분쟁 같은 ④<input type="text" class="blank-input" data-answer="분쟁" data-id="4" style="width:60px" placeholder="">으로 표출되기도 한다.</p>
 <br>
@@ -1030,19 +1156,19 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>갈등의 종류는 <strong>세상이 넓어지는 만큼 같이 늘어난다.</strong> 새 기술이 생기면 거기서 다툴 거리도 같이 생긴다.</p><p>교과서 표의 여덟 영역도 <strong>처음부터 여덟이었던 것이 아니다.</strong> 사이버 공간은 최근에 들어온 칸이고, AI는 그보다 더 최근이다.</p></div>
 <br>
-<h2>✏️ 활동 1 — 지금 어느 단계일까?</h2>
+<section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1 — 지금 어느 단계일까?</h2>
 <br>
-<div class="ws-pick" id="pk75"><div class="pk-head"><span>넷은 각각 어느 단계일까? 다 고르면 답이 열린다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="경쟁"><span class="pk-win"><img src="images/6-3_a1_우주.jpg" alt="우주 개발 앞서기" loading="lazy"></span><div class="pk-name">우주 개발 앞서기</div><div class="pk-sit">미국은 2030년까지 화성 왕복을, 중국은 우주 정거장을 목표로 서로 앞서려 한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>서로 앞서려 할 뿐 아직 부딪히지는 않았다</div></div><div class="pk-card" data-i="1" data-ans="갈등"><span class="pk-win"><img src="images/6-3_a1_난민.jpg" alt="난민 배정" loading="lazy"></span><div class="pk-name">난민 배정</div><div class="pk-sit">EU 회원국들이 난민을 몇 명씩 받을지를 두고 합의하지 못하고 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>이익이 서로 어긋나 부딪히는 중이다</div></div><div class="pk-card" data-i="2" data-ans="분쟁"><span class="pk-win"><img src="images/6-3_voc_분쟁.jpg" alt="영유권 다툼" loading="lazy"></span><div class="pk-name">영유권 다툼</div><div class="pk-sit">두 나라가 같은 바다와 섬을 자기 관할이라 주장하며 맞선다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>어긋남이 밖으로 터져 실제 다툼이 됐다</div></div><div class="pk-card" data-i="3" data-ans="경쟁"><span class="pk-win"><img src="images/6-3_a1_국방비.jpg" alt="국방비 늘리기" loading="lazy"></span><div class="pk-name">국방비 늘리기</div><div class="pk-sit">서로를 의식하며 국방비와 신무기 개발에 더 많은 돈을 쓴다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>아직은 앞서려는 단계다 — 다만 여기서 갈등으로 넘어가기 쉽다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk75");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["경쟁", "갈등", "분쟁"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk73"><div class="pk-head"><span>넷은 각각 어느 단계일까? 다 고르면 답이 열린다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="경쟁"><span class="pk-win"><img src="images/6-3_a1_우주.jpg" alt="우주 개발 앞서기" loading="lazy"></span><div class="pk-name">우주 개발 앞서기</div><div class="pk-sit">미국은 2030년까지 화성 왕복을, 중국은 우주 정거장을 목표로 서로 앞서려 한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>서로 앞서려 할 뿐 아직 부딪히지는 않았다</div></div><div class="pk-card" data-i="1" data-ans="갈등"><span class="pk-win"><img src="images/6-3_a1_난민.jpg" alt="난민 배정" loading="lazy"></span><div class="pk-name">난민 배정</div><div class="pk-sit">EU 회원국들이 난민을 몇 명씩 받을지를 두고 합의하지 못하고 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>이익이 서로 어긋나 부딪히는 중이다</div></div><div class="pk-card" data-i="2" data-ans="분쟁"><span class="pk-win"><img src="images/6-3_voc_분쟁.jpg" alt="영유권 다툼" loading="lazy"></span><div class="pk-name">영유권 다툼</div><div class="pk-sit">두 나라가 같은 바다와 섬을 자기 관할이라 주장하며 맞선다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>어긋남이 밖으로 터져 실제 다툼이 됐다</div></div><div class="pk-card" data-i="3" data-ans="경쟁"><span class="pk-win"><img src="images/6-3_a1_국방비.jpg" alt="국방비 늘리기" loading="lazy"></span><div class="pk-name">국방비 늘리기</div><div class="pk-sit">서로를 의식하며 국방비와 신무기 개발에 더 많은 돈을 쓴다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경쟁">경쟁</button><button type="button" class="pk-b" data-v="갈등">갈등</button><button type="button" class="pk-b" data-v="분쟁">분쟁</button></div><div class="pk-why" hidden>아직은 앞서려는 단계다 — 다만 여기서 갈등으로 넘어가기 쉽다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk73");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["경쟁", "갈등", "분쟁"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>✅ <strong>스스로 점검</strong> — 셋은 칼로 자르듯 나뉘지 않아. 그래도 갈라 보는 기준은 하나야 — <strong>아직 앞서려는 중인가, 이미 부딪히는가, 밖으로 터졌는가.</strong> 나라 수나 사건의 크기로 고르면 어긋난다.</blockquote>
 <br>
-<h2>✏️ 활동 2 — 어느 영역의 갈등일까?</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 2 — 어느 영역의 갈등일까?</h2>
 <br>
-<div class="ws-pick" id="pk81"><div class="pk-head"><span>넷은 각각 어느 영역일까? <strong>교과서 117쪽 표</strong>의 여덟 칸에서 고르자. 다 고르면 답이 열린다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="경제"><span class="pk-win"><img src="images/6-3_a2_관세.jpg" alt="관세 맞대응" loading="lazy"></span><div class="pk-name">관세 맞대응</div><div class="pk-sit">한 나라가 상대국 물건에 세금을 더 매기자, 그 나라도 똑같이 되갚았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="식량과 자원">식량과 자원</button></div><div class="pk-why" hidden>서로의 시장을 두고 부딪히는 다툼이다</div></div><div class="pk-card" data-i="1" data-ans="식량과 자원"><span class="pk-win"><img src="images/6-3_a2_광물.jpg" alt="꼭 필요한 광물" loading="lazy"></span><div class="pk-name">꼭 필요한 광물</div><div class="pk-sit">산업에 없어서는 안 될 광물의 수출을 한 나라가 막자 다른 나라들이 대응에 나섰다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="식량과 자원">식량과 자원</button></div><div class="pk-why" hidden>수출을 막은 일이라 «경제»로 보이지만, 다투는 대상은 <strong>땅에서 나는 것</strong> 자체다</div></div><div class="pk-card" data-i="2" data-ans="보건"><span class="pk-win"><img src="images/6-3_a2_백신.jpg" alt="백신 먼저 확보" loading="lazy"></span><div class="pk-name">백신 먼저 확보</div><div class="pk-sit">전염병이 퍼지자 나라마다 자국민 몫을 먼저 챙기려 했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="식량과 자원">식량과 자원</button></div><div class="pk-why" hidden>건강 문제도 국경을 넘으면 갈등이 된다</div></div><div class="pk-card" data-i="3" data-ans="범죄"><span class="pk-win"><img src="images/6-3_a2_수사.jpg" alt="수사 자료 거부" loading="lazy"></span><div class="pk-name">수사 자료 거부</div><div class="pk-sit">국경을 넘나드는 조직을 쫓는데 상대국이 자료를 넘겨주지 않았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="식량과 자원">식량과 자원</button></div><div class="pk-why" hidden>한 나라 힘만으로는 못 잡는 종류의 문제다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk81");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["경제", "보건", "범죄", "식량과 자원"],MOOD=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right)c.querySelector(".pk-why").hidden=false;});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. 틀린 카드에만 이유가 펼쳐졌어 — 거기부터 보자.<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk79"><div class="pk-head"><span>넷은 각각 어느 영역일까? <strong>교과서 117쪽 표</strong>의 여덟 칸에서 고르자. 다 고르면 답이 열린다.</span><b class="pk-count">0 / 4</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="경제"><span class="pk-win"><img src="images/6-3_a2_관세.jpg" alt="관세 맞대응" loading="lazy"></span><div class="pk-name">관세 맞대응</div><div class="pk-sit">한 나라가 상대국 물건에 세금을 더 매기자, 그 나라도 똑같이 되갚았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="식량과 자원">식량과 자원</button></div><div class="pk-why" hidden>서로의 시장을 두고 부딪히는 다툼이다</div></div><div class="pk-card" data-i="1" data-ans="식량과 자원"><span class="pk-win"><img src="images/6-3_a2_광물.jpg" alt="꼭 필요한 광물" loading="lazy"></span><div class="pk-name">꼭 필요한 광물</div><div class="pk-sit">산업에 없어서는 안 될 광물의 수출을 한 나라가 막자 다른 나라들이 대응에 나섰다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="식량과 자원">식량과 자원</button></div><div class="pk-why" hidden>수출을 막은 일이라 «경제»로 보이지만, 다투는 대상은 <strong>땅에서 나는 것</strong> 자체다</div></div><div class="pk-card" data-i="2" data-ans="보건"><span class="pk-win"><img src="images/6-3_a2_백신.jpg" alt="백신 먼저 확보" loading="lazy"></span><div class="pk-name">백신 먼저 확보</div><div class="pk-sit">전염병이 퍼지자 나라마다 자국민 몫을 먼저 챙기려 했다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="식량과 자원">식량과 자원</button></div><div class="pk-why" hidden>건강 문제도 국경을 넘으면 갈등이 된다</div></div><div class="pk-card" data-i="3" data-ans="범죄"><span class="pk-win"><img src="images/6-3_a2_수사.jpg" alt="수사 자료 거부" loading="lazy"></span><div class="pk-name">수사 자료 거부</div><div class="pk-sit">국경을 넘나드는 조직을 쫓는데 상대국이 자료를 넘겨주지 않았다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="경제">경제</button><button type="button" class="pk-b" data-v="보건">보건</button><button type="button" class="pk-b" data-v="범죄">범죄</button><button type="button" class="pk-b" data-v="식량과 자원">식량과 자원</button></div><div class="pk-why" hidden>한 나라 힘만으로는 못 잡는 종류의 문제다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk79");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["경제", "보건", "범죄", "식량과 자원"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>✅ <strong>스스로 점검</strong> — <strong>겉으로 드러난 행동으로 고르면 어긋난다.</strong> 「꼭 필요한 광물」은 <em>수출을 막았다</em>는 점만 보면 경제처럼 보인다. 그런데 교과서 표는 <strong>무엇을 두고 다투는가</strong>로 갈라 놓았다 — 다투는 대상이 <strong>땅에서 나는 것</strong>이면 「식량과 자원」이다.</blockquote>
 <br>
-<h2>❓ OX 퀴즈</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
@@ -1053,7 +1179,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>5</td><td>난민 배정을 둘러싼 유럽 연합의 갈등은 회원국들의 목표가 정반대였기 때문에 생겼다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
-<h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
 <blockquote>오늘 배운 걸 <strong>안 보고</strong> 세 줄로 적어 보자. 틀려도 괜찮아 — 떠올리려고 애쓰는 그 순간에 머리에 박히는 거야.</blockquote>
 <blockquote>✍️ <strong>낱말 세 개가 아니라 문장 세 개로.</strong> 각 줄이 <code>~다.</code> 로 끝나게 쓰자.</blockquote>
 <br>
@@ -1061,16 +1187,15 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="2." style="width:240px" placeholder=""></p>
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="3." style="width:240px" placeholder=""></p>
 <br>
-<h2>💭 더 생각해 보기</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <p>미국과 중국의 우주 개발 경쟁은 아직 <strong>경쟁</strong> 단계다. 이것이 <strong>갈등</strong>으로 넘어가려면 무엇이 달라져야 할까? 3단계 도식의 기준을 근거로 한두 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <p>AI가 <strong>«독도는 분쟁지역»이라고 답했다면</strong>, 그것은 「경쟁·갈등·분쟁」 가운데 어느 단계의 문제일까? 그리고 <strong>누구와 누구 사이의</strong> 문제일까? 한두 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-2" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
-<h2>📎 각주</h2>
-<p>- 교과서: 천재교육 사회②(구정화) 116~117쪽</p>
-<p>- 앞 차시: [[6-5차시 우리나라와주변국의갈등 개념편]] — 우리 이웃과의 갈등</p>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
+<br></section>
 </div>
 <script>
 const TB=8, TOX=5, GT=13;
@@ -1095,7 +1220,7 @@ document.addEventListener('click', function(e){
   if (window.HERO_LOCK) {
     var n = document.getElementById('hero-lock-note');
     if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
-      n.textContent = '🔒 카드는 빈칸을 다 채우고 «채점하기»를 누르면 열려. 먼저 풀어 보자!';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
       b.parentElement.insertAdjacentElement('afterend', n); }
     n.hidden = false; return;
   }
