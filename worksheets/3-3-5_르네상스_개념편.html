@@ -387,6 +387,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: 100%; max-height: 330px; object-fit: cover; border-radius: 10px; margin: 2px 0 6px; }
+.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -988,7 +1016,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-5 — 천 년 만에 다시 사람을 그리다 (르네상스)</h1><p class="hero-subtitle">왜 하필 이탈리아에서, 왜 하필 그때였을까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">르네상스라는 이름에는 무엇이 들어 있을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">왜 하필 이탈리아였을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">신이 주인공이던 그림은 어떻게 바뀌었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">알프스 북쪽은 무엇을 비꼬았을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>르네상스</strong> — 프랑스어로 <strong>'재생'·'부활'</strong>. 14~16세기 유럽에서 고대 그리스·로마 문화를 되살려 <strong>인간 중심</strong>의 새 문화를 만들려 한 움직임.</p><div class="card-quote">💡 무엇을 <em>되살렸나</em> — 한동안 뒤로 밀려나 있던 <strong>고대</strong>. 무엇을 <em>새로 만들었나</em> — <strong>인간 중심</strong>. 이름 하나에 이 두 가지가 다 들어 있다.</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>왜 하필 이탈리아였나</strong> — 세 가지가 한곳에 모였다.</p><table><thead><tr><th>유산</th><th>사람</th><th>돈</th></tr></thead><tbody><tr><td>고대 로마의 중심지</td><td>비잔티움 제국 학자들의 이주</td><td>지중해 무역으로 부유해진 <strong>상인의 후원</strong></td></tr></tbody></table><div class="card-quote">⚠️ <strong>세 번째가 3-3-3의 회수 지점이다.</strong> 십자군 이후 지중해 무역으로 돈을 번 그 상인들이 예술가를 먹여 살렸다. 전쟁 → 무역 → 부 → 예술의 사슬.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>인문주의</strong> — 그리스·로마 문화를 본받아 인간의 <strong>개성과 능력</strong>을 중요하게 여긴 흐름. 신이 중심이던 중세 세계관에서 벗어나 <strong>인간의 삶</strong>에 관심을 가졌다.</p><table><thead><tr><th>분야</th><th>대표</th></tr></thead><tbody><tr><td>문학</td><td>보카치오 『데카메론』</td></tr><tr><td>미술</td><td>레오나르도 다 빈치 · 미켈란젤로 · 라파엘로 — <strong>인체의 아름다움</strong></td></tr><tr><td>건축</td><td><strong>대칭과 비례</strong> 중시 → 성 베드로 대성당</td></tr></tbody></table></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>남과 북, 결이 다르다</strong></p><table><thead><tr><th></th><th>이탈리아</th><th>알프스 이북(16세기~)</th></tr></thead><tbody><tr><td>한마디로</td><td><em>"인간은 아름답다"</em></td><td><em>"우리 사회 이거 이상하지 않아?"</em></td></tr><tr><td>성격</td><td>예술·인간 탐구</td><td><strong>현실 사회와 교회 비판</strong></td></tr><tr><td>대표</td><td>다 빈치·미켈란젤로·라파엘로</td><td><strong>에라스뮈스</strong> 『우신예찬』 · <strong>토머스 모어</strong> 『유토피아』 · <strong>세르반테스</strong> 『돈키호테』</td></tr></tbody></table><div class="card-quote">💡 그리고 <strong>하늘도 뒤집혔다</strong> — 코페르니쿠스·갈릴레이의 <strong>지동설</strong>이 교회의 천동설을 흔들었고, 구텐베르크의 <strong>활판 인쇄술</strong>이 이 모든 생각을 유럽 전역에 실어 날랐다.</div></div></div><img class="hero-image" src="images/3-3-5_르네상스_표지.png" alt=""><div class="hero-hook">지난 시간 기억나? 십자군 전쟁으로 동방 교역이 열리면서 베네치아 상인들이 어마어마한 돈을 벌었지. 그 돈, 어디에 썼을까? 놀랍게도 — 그림에 썼어. 화가를 먹여 살린 거야(헐?). 로마 유적이 널린 땅, 비잔티움에서 도망 온 학자들, 그리고 상인의 돈. 이 셋이 한곳에 모이자 신이 주인공이던 유럽이 갑자기 '사람'을 그리기 시작해. 오늘은 그 폭발의 이야기.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-5 — 천 년 만에 다시 사람을 그리다 (르네상스)</h1><p class="hero-subtitle">왜 하필 이탈리아에서, 왜 하필 그때였을까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">르네상스라는 이름에는 무엇이 들어 있을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">왜 하필 이탈리아였을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">신이 주인공이던 그림은 어떻게 바뀌었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">알프스 북쪽은 무엇을 비꼬았을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>르네상스</strong> — 프랑스어로 <strong>'재생'·'부활'</strong>. 14~16세기 유럽에서 고대 그리스·로마 문화를 되살려 <strong>인간 중심</strong>의 새 문화를 만들려 한 움직임.</p><div class="card-quote">💡 무엇을 <em>되살렸나</em> — 한동안 뒤로 밀려나 있던 <strong>고대</strong>. 무엇을 <em>새로 만들었나</em> — <strong>인간 중심</strong>. 이름 하나에 이 두 가지가 다 들어 있다.</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>왜 하필 이탈리아였나</strong> — 세 가지가 한곳에 모였다.</p><table><thead><tr><th>유산</th><th>사람</th><th>돈</th></tr></thead><tbody><tr><td>고대 로마의 중심지</td><td>비잔티움 제국 학자들의 이주</td><td>지중해 무역으로 부유해진 <strong>상인의 후원</strong></td></tr></tbody></table><div class="card-quote">⚠️ <strong>세 번째가 3-3-3의 회수 지점이다.</strong> 십자군 이후 지중해 무역으로 돈을 번 그 상인들이 예술가를 먹여 살렸다. 전쟁 → 무역 → 부 → 예술의 사슬.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>인문주의</strong> — 그리스·로마 문화를 본받아 인간의 <strong>개성과 능력</strong>을 중요하게 여긴 흐름. 신이 중심이던 중세 세계관에서 벗어나 <strong>인간의 삶</strong>에 관심을 가졌다.</p><table><thead><tr><th>분야</th><th>대표</th></tr></thead><tbody><tr><td>문학</td><td>보카치오 『데카메론』</td></tr><tr><td>미술</td><td>레오나르도 다 빈치 · 미켈란젤로 · 라파엘로 — <strong>인체의 아름다움</strong></td></tr><tr><td>건축</td><td><strong>대칭과 비례</strong> 중시 → 성 베드로 대성당</td></tr></tbody></table></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>남과 북, 결이 다르다</strong></p><table><thead><tr><th></th><th>이탈리아</th><th>알프스 이북(16세기~)</th></tr></thead><tbody><tr><td>한마디로</td><td><em>"인간은 아름답다"</em></td><td><em>"우리 사회 이거 이상하지 않아?"</em></td></tr><tr><td>성격</td><td>예술·인간 탐구</td><td><strong>현실 사회와 교회 비판</strong></td></tr><tr><td>대표</td><td>다 빈치·미켈란젤로·라파엘로</td><td><strong>에라스뮈스</strong> 『우신예찬』 · <strong>토머스 모어</strong> 『유토피아』 · <strong>세르반테스</strong> 『돈키호테』</td></tr></tbody></table><div class="card-quote">💡 그리고 <strong>하늘도 뒤집혔다</strong> — 코페르니쿠스·갈릴레이의 <strong>지동설</strong>이 교회의 천동설을 흔들었고, 구텐베르크의 <strong>활판 인쇄술</strong>이 이 모든 생각을 유럽 전역에 실어 날랐다.</div></div></div><img class="hero-image" src="images/3-3-5_르네상스_표지.png" alt=""><div class="hero-hook">지난 시간 기억나? 십자군 전쟁으로 동방 교역이 열리면서 이탈리아 상인들이 어마어마한 돈을 벌었지. 그 돈, 어디에 썼을까? 놀랍게도 — 그림에 썼어. 화가를 먹여 살린 거야(헐?). 로마 유적이 널린 땅, 비잔티움에서 도망 온 학자들, 그리고 상인의 돈. 이 셋이 한곳에 모이자 신이 주인공이던 유럽이 갑자기 '사람'을 그리기 시작해. 오늘은 그 폭발의 이야기.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/6 · OX: <span id="ox-score">0</span>/3
@@ -1020,7 +1048,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>💡 오늘 한 줄 — <strong>신 중심 → 사람 중심.</strong> 이 생각의 이름은 2단계에서 채운다.</blockquote>
 <br>
 <h2>📖 1단계: 왜 하필 이탈리아였을까</h2>
-<div class="ws-ipdam"><figure class="ipd-fig"><img src="images/3-3-5_입담_후원.png" alt="삽화 — 상인 (피렌체) · 화가" loading="lazy"><figcaption>십자군 이후 돈을 번 상인들이 화가와 조각가를 먹여 살렸다 — 요즘으로 치면 대기업이 소속사를 후원하는 셈.</figcaption></figure><div class="ipd-t">
+<blockquote>📕 <strong>교과서 102쪽</strong> 펴고 채우기</blockquote>
+<br>
+<div class="ws-ipdam"><figure class="ipd-fig"><img src="images/3-3-5_입담_후원.png" alt="삽화 — 상인 (피렌체) · 화가" loading="lazy"><figcaption>십자군 이후 돈을 번 상인들이 화가와 조각가를 먹여 살렸다 — 요즘으로 치면 기획사가 연습생을 먹이고 가르쳐 키우는 셈.</figcaption></figure><div class="ipd-t">
 <p>14~16세기 유럽에서 고대 ①<input type="text" class="blank-input" data-answer="그리스·로마" data-id="1" style="width:116px" placeholder=""> 문화를 되살려 <strong>인간 중심</strong>의 새 문화를 만들려는 움직임, 곧 <strong>르네상스</strong>가 일어났다.</p>
 </div></div>
 <br>
@@ -1030,6 +1060,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <br>
 <h2>📖 2단계: 신에서 사람으로</h2>
+<blockquote>📕 <strong>교과서 102쪽</strong> 펴고 채우기</blockquote>
+<br>
 <p>르네상스 시기에는 그리스·로마 문화를 본받아 인간의 <strong>개성과 능력</strong>을 중요하게 여기는 ②<input type="text" class="blank-input" data-answer="인문주의" data-id="2" style="width:84px" placeholder="">가 발달했다. 이들은 신이 중심이던 중세의 세계관에서 벗어나 <strong>인간의 삶</strong>에 관심을 가졌다.</p>
 <br>
 <blockquote>🎙️ <strong>「신에서 사람으로」가 무슨 말일까.</strong> 중세 천 년 동안 그림의 주인공은 대개 신이었어. 그런데 르네상스 화가들은 <strong>신을 그리면서도 사람 몸을 진짜처럼</strong> 그리기 시작해. 아래 그림을 봐 — 성경 이야기인데, 눈이 가는 건 <strong>팔의 근육과 손가락 사이의 그 틈</strong>이야. 신이 주제인데 <strong>사람이 화면을 차지한</strong> 거지.</blockquote>
@@ -1041,66 +1073,62 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>문학에서는 <strong>보카치오</strong>가 인간의 욕망을 사실적으로 그린 『③<input type="text" class="blank-input" data-answer="데카메론" data-id="3" style="width:84px" placeholder="">』을 남겼다.</p>
 <br>
 <h2>📖 3단계: 예술의 폭발</h2>
+<blockquote>📕 <strong>교과서 102쪽</strong> 펴고 채우기</blockquote>
+<br>
 <p>- <strong>미술</strong> — 레오나르도 다 빈치, 미켈란젤로, 라파엘로가 <strong>인체의 아름다움</strong>을 생생하게 표현</p>
 <p>- <strong>건축</strong> — 대칭과 비례를 중시하는 르네상스 양식 → 대표작 <strong>성 베드로 대성당</strong></p>
 <br>
-<div class="ws-gal" id="gal37" data-n="2"><div class="ws-gal-head">👉 탭이나 ‹ › 로 한 점씩 넘겨 보자. <strong>사람을 어떻게 그렸는지</strong>만 보면서.</div><div class="ws-gal-tabs"><button class="ws-gal-dot on" onclick="galGo('gal37',0)">레오나르도 다 빈치 「모나리자」(1503~1519, 루브르)</button><button class="ws-gal-dot" onclick="galGo('gal37',1)">라파엘로 「아테네 학당」(1509~1511, 바티칸)</button></div><div class="ws-gal-stage"><figure class="ws-gal-slide" data-i="0"><img src="images/3-3-5_모나리자.jpg" alt="웃는 듯 마는 듯한 입, 살아 있는 눈. 배경은 흐릿한데 **얼굴만 또렷하다** — 사람이 주인공이라는 뜻이다." loading="lazy"><figcaption><b>레오나르도 다 빈치 「모나리자」(1503~1519, 루브르)</b> 웃는 듯 마는 듯한 입, 살아 있는 눈. 배경은 흐릿한데 <strong>얼굴만 또렷하다</strong> — 사람이 주인공이라는 뜻이다.</figcaption></figure><figure class="ws-gal-slide" data-i="1" hidden><img src="images/3-3-5_아테네학당.jpg" alt="고대 그리스 철학자들을 **한자리에 모아** 그렸다. 가운데 둘이 플라톤과 아리스토텔레스다. 고대를 되살린다는 르네상스의 뜻이 한 장면에 들어 있다." loading="lazy"><figcaption><b>라파엘로 「아테네 학당」(1509~1511, 바티칸)</b> 고대 그리스 철학자들을 <strong>한자리에 모아</strong> 그렸다. 가운데 둘이 플라톤과 아리스토텔레스다. 고대를 되살린다는 르네상스의 뜻이 한 장면에 들어 있다.</figcaption></figure></div><div class="ws-gal-nav"><button onclick="galStep('gal37',-1)">‹ 이전</button><span class="ws-gal-count"><b>1</b> / 2</span><button onclick="galStep('gal37',1)">다음 ›</button></div></div>
+<div class="ws-gal" id="gal43" data-n="2"><div class="ws-gal-head">👉 탭이나 ‹ › 로 한 점씩 넘겨 보자. <strong>사람을 어떻게 그렸는지</strong>만 보면서.</div><div class="ws-gal-tabs"><button class="ws-gal-dot on" onclick="galGo('gal43',0)">레오나르도 다 빈치 「모나리자」(1503~1519, 루브르)</button><button class="ws-gal-dot" onclick="galGo('gal43',1)">라파엘로 「아테네 학당」(1509~1511, 바티칸)</button></div><div class="ws-gal-stage"><figure class="ws-gal-slide" data-i="0"><img src="images/3-3-5_모나리자.jpg" alt="웃는 듯 마는 듯한 입, 살아 있는 눈. 배경은 흐릿한데 **얼굴만 또렷하다** — 사람이 주인공이라는 뜻이다." loading="lazy"><figcaption><b>레오나르도 다 빈치 「모나리자」(1503~1519, 루브르)</b> 웃는 듯 마는 듯한 입, 살아 있는 눈. 배경은 흐릿한데 <strong>얼굴만 또렷하다</strong> — 사람이 주인공이라는 뜻이다.</figcaption></figure><figure class="ws-gal-slide" data-i="1" hidden><img src="images/3-3-5_아테네학당.jpg" alt="고대 그리스 철학자들을 **한자리에 모아** 그렸다. 가운데 둘이 플라톤과 아리스토텔레스다. 고대를 되살린다는 르네상스의 뜻이 한 장면에 들어 있다." loading="lazy"><figcaption><b>라파엘로 「아테네 학당」(1509~1511, 바티칸)</b> 고대 그리스 철학자들을 <strong>한자리에 모아</strong> 그렸다. 가운데 둘이 플라톤과 아리스토텔레스다. 고대를 되살린다는 르네상스의 뜻이 한 장면에 들어 있다.</figcaption></figure></div><div class="ws-gal-nav"><button onclick="galStep('gal43',-1)">‹ 이전</button><span class="ws-gal-count"><b>1</b> / 2</span><button onclick="galStep('gal43',1)">다음 ›</button></div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 102쪽 · 「미의 세 여신」 세 점</div><div class="ws-tb-see">고대(나폴리국립고고학박물관) · 중세(영국 대영도서관) · 르네상스(보티첼리 「봄」 일부, 우피치미술관)가 나란히 실려 있다.</div><div class="ws-tb-ask"><strong>중세</strong>의 세 여신은 앞뒤 두 점과 어떻게 다른가? 몸·옷·표정 중 하나를 골라 한 문장으로 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 102쪽에서 찾기 — 중세의 세 여신은 앞뒤 두 점과 어떻게 다른가? 몸·옷·표정 중 하나" style="width:380px" placeholder=""></div></div>
 <br>
 <blockquote>🎙️ 쓰고 나서 옆 친구 답이랑 비교해 봐. 같은 걸 봤어?</blockquote>
 <br>
 <h2>📖 4단계: 알프스를 넘은 르네상스</h2>
+<blockquote>📕 <strong>교과서 103쪽</strong> 펴고 채우기</blockquote>
+<br>
 <p>16세기 이후 르네상스는 알프스 이북으로 퍼졌다. 이북의 르네상스는 <strong>현실 사회와 교회의 문제점을 비판</strong>하는 경향이 강했다.</p>
 <br>
+<div class="ws-sw" id="sw54" data-cur="0"><div class="ws-sw-tabs" role="tablist"><button type="button" role="tab" class="ws-sw-tab on" onclick="swGo('sw54',0)">📜 교회를 비꼬다</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw54',1)">🐴 사회와 기사도를 비꼬다</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw54',2)">🧺 보통 사람의 일상</button></div><div class="ws-sw-stage">
+<section class="ws-sw-pane" data-i="0"><h3 class="ws-sw-h">📜 교회를 비꼬다</h3>
 <p>네덜란드의 인문주의자 <strong>에라스뮈스</strong>는 『④<input type="text" class="blank-input" data-answer="우신예찬" data-id="4" style="width:84px" placeholder="">』에서 교황과 성직자의 부패를 풍자했다.</p>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"요즘 교황은 힘들고 어려운 일은 베드로와 바울에게 떠넘기고 호화로운 의식과 즐거운 일만 찾는다. …… 교황은 화려한 옷을 입고 교회 의식을 주관하고, 축복이나 저주의 말을 하는 감독자 역할만 하면 충분히 그리스도에게 충성했다고 생각한다."</blockquote><figcaption class="sr-c">— 에라스뮈스, ④의 한 대목 · 교과서 103쪽</figcaption></figure>
 <br>
+<figure class="ws-fig"><img src="images/3-3-5_에라스뮈스.jpg" alt="한스 홀바인 「에라스뮈스 초상」(1523) — 위에서 교황을 비꼰 그 책을 쓴 사람이다. 화려한 성인(聖人)이 아니라 **검은 모자와 수수한 옷차림의 학자**로 그렸다." loading="lazy"><figcaption>한스 홀바인 「에라스뮈스 초상」(1523) — 위에서 교황을 비꼰 그 책을 쓴 사람이다. 화려한 성인(聖人)이 아니라 <strong>검은 모자와 수수한 옷차림의 학자</strong>로 그렸다.</figcaption></figure>
+<br>
 <p>✍️ 이 글을 쓴 에라스뮈스는 교회 밖 사람이 아니라 <strong>가톨릭 사제</strong>였어. 교회 안에 있는 사람이 교황을 이렇게 비꼬았다는 것은 무엇을 말해 줄까? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="✍️ 이 글을 쓴 에라스뮈스는 교회 밖 사람이 아니라 가톨릭 사제였어. " style="width:400px" placeholder=""></p>
 <br>
+</section><section class="ws-sw-pane" data-i="1" hidden><h3 class="ws-sw-h">🐴 사회와 기사도를 비꼬다</h3>
 <div class="ws-ipdam"><figure class="ipd-fig"><img src="images/3-3-5_입담_돈키호테.png" alt="삽화 — 돈키호테 · 산초" loading="lazy"><figcaption>한물간 기사도를 웃음거리로 만든 이야기.</figcaption></figure><div class="ipd-t">
 <p>비판의 칼끝은 교회에만 향한 게 아니었다. 영국의 <strong>토머스 모어</strong>는 『⑤<input type="text" class="blank-input" data-answer="유토피아" data-id="5" style="width:84px" placeholder="">』에서 자기 나라 영국 사회를 비판했고, 에스파냐의 <strong>세르반테스</strong>는 『돈키호테』에서 <strong>몰락해 가는 중세 기사</strong>를 풍자했다. 미술에서도 성인이나 귀족이 아니라 <strong>보통 사람들의 일상생활</strong>을 그린 작품이 많이 나왔다.</p>
 </div></div>
 <br>
+<br>
+<br>
+<figure class="ws-fig"><img src="images/3-3-5_돈키호테.jpg" alt="귀스타브 도레 「돈키호테」 삽화(1863) — 풍차에 돌진했다가 말과 함께 나동그라진 장면이다. 방패가 굴러가 있고 창은 부러졌다. **기사도가 웃음거리가 된 자리**다." loading="lazy"><figcaption>귀스타브 도레 「돈키호테」 삽화(1863) — 풍차에 돌진했다가 말과 함께 나동그라진 장면이다. 방패가 굴러가 있고 창은 부러졌다. <strong>기사도가 웃음거리가 된 자리</strong>다.</figcaption></figure>
+<br>
+</section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">🧺 보통 사람의 일상</h3>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 103쪽 · 아래쪽 큰 그림(브뤼헐 작품)</div><div class="ws-tb-see">본문은 "<em>사람들의 일상생활을 표현한 작품이 많이 나왔다</em>"고만 한다. 그림을 봐야 <strong>누구의</strong> 일상인지 알 수 있다.</div><div class="ws-tb-ask">그림 속 사람들은 무엇을 하고 있나? 그리고 옷차림으로 볼 때 어떤 사람들인가? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 103쪽에서 찾기 — 그림 속 사람들은 무엇을 하고 있나? 그리고 옷차림으로 볼 때 어떤" style="width:400px" placeholder=""></div></div>
+</section></div><div class="ws-sw-nav"><button type="button" onclick="swStep('sw54',-1)">‹ 이전</button><span class="ws-sw-count"><b>1</b> / 3</span><button type="button" onclick="swStep('sw54',1)">다음 ›</button></div></div><script>(function(){if(!window.swGo){window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}var g=document.getElementById("sw54"),x0=null,y0=null;if(!g)return;g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;swStep("sw54",dx<0?1:-1);g.scrollIntoView({block:"start",behavior:"smooth"});}},{passive:true});})();</script>
+<br>
 <blockquote>🎙️ 남쪽(이탈리아)은 "<em>인간은 아름답다</em>"였는데, 북쪽은 "<em>우리 사회 이거 이상하지 않아?</em>"였어. <strong>같은 르네상스인데 결이 달라.</strong></blockquote>
 <br>
-<div class="ws-gal" id="gal57" data-n="2"><div class="ws-gal-head">👉 두 점을 넘겨 보자. 남쪽과 <strong>무엇이 다른지</strong> 보면서.</div><div class="ws-gal-tabs"><button class="ws-gal-dot on" onclick="galGo('gal57',0)">한스 홀바인 「에라스뮈스 초상」(1523)</button><button class="ws-gal-dot" onclick="galGo('gal57',1)">귀스타브 도레 「돈키호테」 삽화(1863)</button></div><div class="ws-gal-stage"><figure class="ws-gal-slide" data-i="0"><img src="images/3-3-5_에라스뮈스.jpg" alt="위에서 교황을 비꼰 그 책을 쓴 사람이다. 화려한 성인(聖人)이 아니라 **검은 모자와 수수한 옷차림의 학자**로 그렸다." loading="lazy"><figcaption><b>한스 홀바인 「에라스뮈스 초상」(1523)</b> 위에서 교황을 비꼰 그 책을 쓴 사람이다. 화려한 성인(聖人)이 아니라 <strong>검은 모자와 수수한 옷차림의 학자</strong>로 그렸다.</figcaption></figure><figure class="ws-gal-slide" data-i="1" hidden><img src="images/3-3-5_돈키호테.jpg" alt="풍차에 돌진했다가 말과 함께 나동그라진 장면이다. 방패가 굴러가 있고 창은 부러졌다. **기사도가 웃음거리가 된 자리**다." loading="lazy"><figcaption><b>귀스타브 도레 「돈키호테」 삽화(1863)</b> 풍차에 돌진했다가 말과 함께 나동그라진 장면이다. 방패가 굴러가 있고 창은 부러졌다. <strong>기사도가 웃음거리가 된 자리</strong>다.</figcaption></figure></div><div class="ws-gal-nav"><button onclick="galStep('gal57',-1)">‹ 이전</button><span class="ws-gal-count"><b>1</b> / 2</span><button onclick="galStep('gal57',1)">다음 ›</button></div></div>
-<br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 103쪽 · 아래쪽 큰 그림(브뤼헐 작품)</div><div class="ws-tb-see">본문은 "<em>사람들의 일상생활을 표현한 작품이 많이 나왔다</em>"고만 한다. 그림을 봐야 <strong>누구의</strong> 일상인지 알 수 있다.</div><div class="ws-tb-ask">그림 속 사람들은 무엇을 하고 있나? 그리고 옷차림으로 볼 때 어떤 사람들인가? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 103쪽에서 찾기 — 그림 속 사람들은 무엇을 하고 있나? 그리고 옷차림으로 볼 때 어떤" style="width:400px" placeholder=""></div></div>
-<br>
 <h2>📖 5단계: 하늘이 뒤집히다 — 과학과 기술</h2>
+<blockquote>📕 <strong>교과서 103쪽</strong> 펴고 채우기</blockquote>
+<br>
 <p>르네상스 시기에는 인간과 자연에 대한 관심이 커지면서 <strong>과학과 기술</strong>도 함께 발달했다.</p>
 <p><strong>코페르니쿠스</strong>와 <strong>갈릴레이</strong>가 주장한 ⑥<input type="text" class="blank-input" data-answer="지동설" data-id="6" style="width:68px" placeholder="">은 지구가 우주의 중심이라 믿던 중세 교회의 <strong>천동설</strong>을 흔들며, 당시 사람들의 우주관에 큰 변화를 가져왔다.</p>
 <p>그리고 <strong>구텐베르크</strong>가 발명한 <strong>활판 인쇄술</strong>은 새로운 지식과 사상이 널리 퍼지는 데 크게 기여했다.</p>
 <br>
 <blockquote>🎙️ <strong>이게 왜 그렇게 큰일이었을까?</strong> 천동설은 "<em>지구가 한가운데 있고 해가 우리 주위를 돈다</em>"는 생각이야. 그냥 천문학 이야기 같지? 아니야 — "<strong>세상의 중심은 우리</strong>"라는 믿음이 걸려 있었어. 코페르니쿠스는 그 자리를 빼앗은 거야. 2단계가 "<em>신이 아니라 사람을 보자</em>"였다면, 이번엔 "<em>그 사람이 사는 곳도 우주의 중심은 아니다</em>"라고 한 셈이지.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/3-3-5_하늘이뒤집히다_v2.png" alt="하늘이 뒤집히다 — 왼쪽은 중세 교회가 믿던 천동설로 **가운데가 지구**다. 오른쪽은 코페르니쿠스·갈릴레이의 지동설로 **가운데가 해**다. 아래 띠는 그 뜻이다 — 인문주의가 '신이 아니라 사람을 보자'였다면, 지동설은 '그 사람이 사는 곳도 우주의 가운데는 아니다'였다." loading="lazy"><figcaption>하늘이 뒤집히다 — 왼쪽은 중세 교회가 믿던 천동설로 <strong>가운데가 지구</strong>다. 오른쪽은 코페르니쿠스·갈릴레이의 지동설로 <strong>가운데가 해</strong>다. 아래 띠는 그 뜻이다 — 인문주의가 '신이 아니라 사람을 보자'였다면, 지동설은 '그 사람이 사는 곳도 우주의 가운데는 아니다'였다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/3-3-5_하늘이뒤집히다_v2.png" alt="하늘이 뒤집히다 — 왼쪽은 중세 교회가 믿던 천동설로 **가운데가 지구**다. 오른쪽은 코페르니쿠스·갈릴레이의 지동설로 **가운데가 해**다." loading="lazy"><figcaption>하늘이 뒤집히다 — 왼쪽은 중세 교회가 믿던 천동설로 <strong>가운데가 지구</strong>다. 오른쪽은 코페르니쿠스·갈릴레이의 지동설로 <strong>가운데가 해</strong>다.</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 103쪽 · 구텐베르크 인쇄기(복원 모형)</div><div class="ws-tb-ask">사진 속 기계에서 <strong>글자를 찍는 판</strong>은 어느 부분일까? 그리고 이 기계로 찍으면 손으로 베끼는 것보다 무엇이 좋아지나? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 103쪽에서 찾기 — 사진 속 기계에서 글자를 찍는 판은 어느 부분일까? 그리고 이 기계로" style="width:400px" placeholder=""></div></div>
 <br>
 <blockquote>🎙️ 인쇄술 — 이게 없었으면 위의 모든 이야기가 <strong>몇몇 학자들 사이에서 끝났을 거야.</strong> 손으로 베끼던 책을 기계로 찍어 내니까, 생각이 사람보다 빨리 움직이기 시작했어.</blockquote>
 <br>
-<pre class="code-block">
-십자군 이후 동방 교류·상업 부활
-
-   ↓
-
-이탈리아 상인의 부 → 예술가 후원
-
-   ↓
-
-로마 유산 + 비잔티움 학자
-
-   ↓
-
-르네상스 (인간 중심) → 알프스 이북 (교회 비판)
-
-   ↓
-
-인쇄술로 확산
-
-</pre>
+<blockquote>🔗 <strong>오늘의 흐름</strong> — 십자군 이후 동방 교류·상업 부활 → 이탈리아 상인의 부·예술가 후원 → 로마 유산 + 비잔티움 학자 → <strong>르네상스</strong>(인간 중심) → 알프스 이북(교회 비판) → 인쇄술로 확산</blockquote>
 <br>
 <h2>✏️ 활동 1 — 남과 북, 무엇이 달랐나</h2>
 <table class="act-table">
