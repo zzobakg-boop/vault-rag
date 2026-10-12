@@ -520,6 +520,9 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-2_voc_산업화.jpg | 울산 현대자동차 공장의 조립 라인 — 차체가 라인을 따라 움직인다 (Hyundai car assembly line.jpg, 900×608로 축소) | Anonyme · CC BY 2.5 |
 | 7-2_voc_중화학공업.jpg | 울산 현대중공업 조선소의 골리앗 크레인, 주전 봉수대에서 본 모습, 2023 (Hyundai Heavy Industries Ulsan Shipyard from Jujeon Beacon Mound - 2023-07-24.jpg, 잘라 냄) | Wvdp · CC0 |
 | 7-2_voc_산간.jpg | 정선읍 전경 — 산과 산 사이 골짜기에 들어앉은 읍내(Panoramic view of Jeongseon-eup.jpg) — 고급 단어 «산간» 카드 | 한국학중앙연구원 · 공공누리 제1유형(KOGL Type 1) · Wikimedia Commons |
+| 7-2_card_gimje_plain.jpg | 김제 들판 — 추수 끝난 평평한 논이 지평선까지(Gimje - farming area when harvest over.jpg) — 카드 «넓은 평야» | Choisieon · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-2_card_ktx.jpg | KTX 고속 열차(KTX (Korea Train eXpress).jpg) — 카드 «고속 도로와 철도» | Subway06 · CC BY 3.0 · Wikimedia Commons |
+| 7-2_card_cnuh.jpg | 광주 동구 전남대학교병원(Chonnam National University Hospital.jpg) — 카드 «대학 병원과 백화점» | Neoalpha · CC0 · Wikimedia Commons |
 | 7-2_voc_1차산업.jpg | 일본 지바현 가토리시 논의 벼 수확 콤바인 — 하위 카드 1차 산업 (Rice-combine-harvester, Katori-city, Japan.jpg) | katorisi · CC BY 3.0 |
 | 7-2_voc_2차산업.jpg | 중국 광둥성 허위안시 식품 공장의 생산 라인, 2026 (…BaiJiaXian Food production line April 2026 N13P 07.jpg, 아래 촬영 표기 잘라 냄) — 하위 카드 2차 산업 | LANENWM Meso Amermbalin · CC0 |
 | 7-2_voc_3차산업.jpg | 이발소에서 빗과 가위로 머리를 자르는 이발사, 뒷모습 — 하위 카드 3차 산업 (Barber cutting hair with comb. Back view of man in barber shop.jpg) | Nenad Stojkovic · CC BY 2.0 |
