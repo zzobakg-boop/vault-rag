@@ -45,7 +45,7 @@ r3fold = len(re.findall(r'class="ws-fold ws-fold-원문"', body))   # 복습용�
 # 카드 잠금
 has_card = 'class="hero-card"' in body
 has_check = 'onclick="check()">채점하기' in body
-if has_card and has_check:
+if has_card and has_check and "복습용" not in path:   # 복습용은 «답 보기» 판이라 잠그지 않는다(9/30 합의)
     (ok if "window.HERO_LOCK = true" in s else red).append("키워드 카드 채점 전 잠금")
 
 # data-id
