@@ -150,6 +150,8 @@ blockquote {
 .pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
 .pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
 .pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-tap { cursor: pointer; }
+.pk-ok .pk-why { color: #1f6b3a; }
 .pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
   background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
 .pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
@@ -171,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -203,7 +225,12 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-gold .pk-card.pk-noimg { padding-top: 0; }
 .pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
 .pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
-.pk-gold .pk-card.pk-noimg .pk-btns .pk-b { flex: 0 0 auto; }
+/* 2026-10-07 격자로 — 한 버튼만 두 줄로 꺾여도(폰 «인문·사회») 두 버튼 높이·폭이 같게. 줄은 아래에 붙인다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-content: end; }
+/* 2026-10-07 — 위 «flex: 0 0 auto»는 버튼 높이를 묶으려던 것인데 버튼 줄이 가로라 폭이 글자 크기로 묶였다
+   (사회 7-4 «양» 17px · «비율» 28px). 폭은 똑같이 나누고(1 1 0) 높이는 아래 정렬로 고정한다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b { flex: none; }
+.pk-gold .pk-card.pk-noimg .pk-btns-col .pk-b { flex: 0 0 auto; }   /* 세로(선택지 셋 이상)는 높이 고정 그대로 */
 @media print { .pk-b { display: none; } .pk-card img { filter: none; } }
 
 /* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
@@ -242,9 +269,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 }
 @media (max-width: 560px) {
   .ws-seesaw-beam { width: 300px; margin-left: -150px; }
-  .ws-seesaw-chip { width: 124px; font-size: 0.8em; }
-  .ws-seesaw-chip.ws-l { margin-left: -206px; }
-  .ws-seesaw-chip.ws-r { margin-left: 82px; }
+  .ws-seesaw-chip { width: 108px; font-size: 0.78em; }   /* 2026-10-04: 124px·±206은 폰 반폭(≈165)을 9px 넘었다 */
+  .ws-seesaw-chip.ws-l { margin-left: -161px; }
+  .ws-seesaw-chip.ws-r { margin-left: 53px; }
 }
 @media print { .ws-seesaw-range { display: none; } }
 
@@ -253,6 +280,61 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
       줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
       새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 🗺 :::지도막대 — 2026-10-06 (지도 + 연도 막대 · 핀·값은 HTML) */
+.ws-mapbar { border: 1px solid #dcd3bf; border-radius: 14px; background: #fbf8f1; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-mb-head { font-weight: 800; font-size: 1.02em; margin-bottom: 8px; color: #3a3226; }
+.ws-mb-map { position: relative; line-height: 0; border-radius: 10px; overflow: hidden; }
+.ws-mb-map img { display: block; width: 100%; height: auto; }
+.mb-pin { position: absolute; width: 0; height: 0; line-height: 1.2; }
+.mb-pin i { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #8a7f6c; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); opacity: .9;
+  transition: width .5s, height .5s, margin .5s, background .5s; }
+.mb-pin.mb-up i { background: #c2593a; }
+.mb-pin.mb-dn i { background: #3f6fa8; }
+.mb-lab { position: absolute; top: -9px; white-space: nowrap; font-size: 13px; font-weight: 700; color: #2b2419;
+  background: rgba(255,255,255,.86); border-radius: 6px; padding: 1px 5px; }
+.mb-r .mb-lab { left: 12px; }
+.mb-l .mb-lab { right: 12px; }
+.mb-u .mb-lab, .mb-d .mb-lab { left: 0; transform: translateX(-50%); }
+.mb-u .mb-lab { top: -30px; }
+.mb-d .mb-lab { top: 12px; }
+.mb-lab em { font-style: normal; color: #7a2e1a; font-variant-numeric: tabular-nums; }
+.mb-dn .mb-lab em { color: #244f86; }
+.ws-mb-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86em; color: #4a4234; margin: 8px 2px 4px; }
+.ws-mb-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; }
+.ws-mb-legend i.mb-hi { background: #c2593a; }
+.ws-mb-legend i.mb-lo { background: #3f6fa8; }
+.ws-mb-legend .mb-bt { color: #6b6252; }
+.ws-mb-ctl { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.ws-mb-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #cfc4ae; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-mb-play:focus-visible, .ws-mb-range:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; }
+.ws-mb-range { flex: 1; accent-color: #7a5a2a; min-width: 0; }
+.ws-mb-yr { flex: none; min-width: 4.2em; font-weight: 800; color: #3a3226; font-variant-numeric: tabular-nums; }
+.ws-mb-read { min-height: 3.2em; margin-top: 6px; font-size: .95em; line-height: 1.6; color: #2b2419; }
+.ws-mb-src { font-size: .8em; color: #6b6252; margin-top: 4px; }
+@media (max-width: 560px) { .mb-lab { font-size: 11px; padding: 0 3px; } .mb-r .mb-lab { left: 8px; } .mb-l .mb-lab { right: 8px; } .mb-u .mb-lab { top: -24px; } .mb-d .mb-lab { top: 9px; } }
+@media (prefers-reduced-motion: reduce) { .mb-pin i { transition: none; } }
+@media print { .ws-mb-ctl { display: none; } }
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
 .ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
   padding: 16px 18px 14px; margin: 18px 0; }
 .ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
@@ -332,6 +414,81 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
       음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
    계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
    태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+.ws-saryo {
+  position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
+  background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
+  border-left: 1px solid #d6c08f; border-right: 1px solid #d6c08f;
+  box-shadow: inset 0 0 34px rgba(150, 110, 45, 0.22), 0 3px 10px rgba(60, 40, 10, 0.12);
+  color: #4a3720;
+}
+.ws-saryo::before, .ws-saryo::after {
+  content: ""; position: absolute; left: -10px; right: -10px; height: 16px; border-radius: 8px;
+  background: linear-gradient(180deg, #e2c992 0%, #b8925a 55%, #8f6a37 100%);
+  box-shadow: 0 2px 4px rgba(60, 40, 10, 0.25);
+}
+.ws-saryo::before { top: -8px; }
+.ws-saryo::after { bottom: -8px; }
+.ws-saryo .sr-tag {
+  display: inline-block; font-size: 0.78em; font-weight: 700; letter-spacing: 0.04em;
+  color: #7a5426; border: 1px solid #b8925a; border-radius: 999px; padding: 2px 11px; margin-bottom: 10px;
+  background: rgba(255, 250, 235, 0.6);
+}
+.ws-saryo .sr-q {
+  margin: 0; padding: 0; border: none; background: none;
+  font-family: "Nanum Myeongjo", "AppleMyungjo", "Noto Serif KR", "Batang", serif;
+  font-size: 1.04em; line-height: 1.85; color: #3d2c17;
+}
+.ws-saryo .sr-c { margin-top: 10px; text-align: right; font-size: 0.82em; color: #7a6040; }
+@media print { .ws-saryo { background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; } }
+.ws-2c { display: grid; gap: 22px; align-items: start; margin: 12px 0 18px; }
+.ws-2c > div { min-width: 0; }
+.ws-2c > div > :first-child { margin-top: 0; }
+.ws-2c > div > br { display: none; }
+@media (max-width: 640px) { .ws-2c:not(.c2-keep) { grid-template-columns: 1fr !important; } .ws-2c.c2-keep { gap: 10px; } .ws-2c.c2-keep figcaption { font-size: 12px; } }
+.ws-2c.c2-mid { align-items: center; }
+.ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
+.ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
+.ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
+.ws-ipdam {
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 22px; align-items: start; margin: 16px 0 20px;
+}
+.ws-ipdam .ipd-fig { margin: 0; }
+.ws-ipdam .ipd-fig img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.ws-ipdam .ipd-fig figcaption { font-size: 0.78em; color: #7a7064; margin-top: 6px; line-height: 1.5; }
+.ws-ipdam .ipd-t { margin: 0; min-width: 0; }
+.ws-ipdam .ipd-t > :first-child { margin-top: 0; }
+.ws-ipdam .ipd-t > br { display: none; }
+@media (max-width: 640px) { .ws-ipdam { grid-template-columns: 1fr; gap: 8px; } }
+@media print { .ws-ipdam { break-inside: avoid; } }
 .ws-read {
   background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
   border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
@@ -343,8 +500,19 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
 }
 .ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read .ws-fold-table { background: #fff; font-variant-numeric: tabular-nums; }
+.ws-read .ws-fold-table td:last-child, .ws-read .ws-fold-table th:last-child { text-align: right; }
+.ws-read .ws-fold-table td:last-child { white-space: nowrap; }
 .ws-read p:last-child { margin-bottom: 0; }
 @media print { .ws-read { background: #fff; border-left-color: #999; } }
+/* ✍️ 해 보는 곳 — 2026-10-06. 계열 넷: 파랑=빈칸(본문) · 황토=교과서 · 슬레이트=읽는 곳 · 초록=직접 해 보는 곳 */
+.ws-do { background: #f2f8f3; border: 1px solid #cfe5d5; border-radius: 16px; padding: 14px 20px 18px; margin: 30px 0; }
+.ws-do > h2 { margin-top: 8px; border-left-color: #2f8f55; background: linear-gradient(90deg, #dff0e4, rgba(255,255,255,0)); }
+.ws-do-tag { display: inline-block; background: #2f8f55; color: #fff; font-size: 0.76em; font-weight: 700;
+  letter-spacing: 0.02em; padding: 3px 11px; border-radius: 999px; }
+.ws-do + .ws-do { margin-top: 18px; }
+@media (max-width: 560px) { .ws-do { padding: 10px 6px 14px; margin-left: -10px; margin-right: -10px; border-radius: 12px; } }
+@media print { .ws-do { background: #fff; border-color: #bbb; } }
 
 /* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
 /* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */
@@ -636,6 +804,23 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }
 .ws-vcd-nav button:disabled { opacity: .32; cursor: default; }
 .vcd-count { font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }
+/* 2026-10-08 하위 카드 — 메인 낱말카드 아래 접힘 안에 나란히(캐러셀 밖) */
+.vcd-subtag { position: absolute; top: 8px; right: 8px; font-size: .68em; font-weight: 700; color: #fff;
+  background: #7a6742; border-radius: 10px; padding: 2px 8px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.ws-vsub { margin: 12px 0 0; border: 1px solid #d9c48f; border-radius: 10px; background: #fffaf0; }
+.ws-vsub > summary { cursor: pointer; padding: 10px 14px; font-size: .9em; color: #6b4f14; list-style: none; }
+.ws-vsub > summary::-webkit-details-marker { display: none; }
+.ws-vsub > summary::after { content: " ▾"; color: #a08a5c; }
+.ws-vsub[open] > summary::after { content: " ▴"; }
+.ws-vsub > summary:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; border-radius: 10px; }
+.ws-vsub-head { font-size: .86em; color: #5a4a2a; margin: 0 14px 10px; line-height: 1.55; }
+.ws-vsub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 10px; padding: 0 12px 14px; max-width: 640px; }
+.ws-vsubcard { flex: none; width: auto; }
+.ws-vsubcard .vcd-f { background: #fbf7ec; border-color: #d9c48f; }
+.ws-vsubcard .vcd-b > * { order: 2; }
+.ws-vsubcard .vcd-b > .vcd-bko { order: 0; }
+.ws-vsubcard .vcd-b > .vcd-fam { order: 1; margin: 2px 0 4px; padding: 6px 8px; border: 0; border-radius: 6px;
+  background: #fff1cc; color: #5a3f0c; font-weight: 700; font-size: .78em; line-height: 1.45; }
 @media (prefers-reduced-motion: reduce) {
   .vcd-in { transition: none; }
   .ws-vcd-track { scroll-behavior: auto; }
@@ -668,6 +853,14 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
 }
 .ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+/* 2026-10-07 :::2단 … 교과서 — 교과서 상자 바로 아래에 붙여 «생각 열기의 뒷이야기»로 읽히게(위 상자와 간격 줄임) */
+.ws-tb + .ws-tb-2c { margin-top: -6px; }
+.ws-tb-join { border-top: 1px dashed #d9c48f; margin-top: 12px; padding-top: 12px; }
+.ws-tb-join .ws-2c { margin: 4px 0 0; } .ws-tb-join table { background: #fff; } .ws-tb-join .c2-b { font-size: 0.95em; color: #3d3116; }
+.ws-tb-tag2 { background: #7a6742; }
+.ws-tb-2c .ws-2c { margin: 4px 0 0; }
+.ws-tb-2c table { background: #fff; }
+.ws-tb-2c .c2-b { font-size: 0.95em; color: #3d3116; }
 .ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
 .ws-tb-ask strong { color: #8a5f12; }
 .ws-tb input.activity-input {
@@ -791,6 +984,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+     (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   border-radius: 16px 16px 0 0;
   position: relative; overflow: hidden;
@@ -808,6 +1003,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
 .kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
 .hero-card { margin-top: 12px; }
+.hero-lock-note { margin-top: 10px; padding: 8px 12px; border-radius: 8px; background: rgba(255,255,255,0.92); color: #5a3e00; font-size: 13px; }
 .hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
 .hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
 .hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
@@ -826,7 +1022,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
-.ws-fig img[src*="comic"] { max-height: 820px; max-width: 600px; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -911,20 +1107,21 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 }
 /* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
 @media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
+/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-3 — 같은 깃발 아래, 서로 다른 꿍꿍이 (십자군 전쟁)</h1><p class="hero-subtitle">성지를 되찾자며 200년을 싸웠는데, 왜 교황이 약해졌을까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">셀주크 튀르크 — 칼리프에게서 술탄 칭호<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">교황 우르바누스 2세 클레르몽 호소(1096~)<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">참여자 4인 = 서로 다른 목적<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">결과의 역설: 교황권↓ 왕권↑ · 동방 교류↑<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>셀주크 튀르크</strong> — 11세기경 중앙아시아에서 일어난 <strong>유목 민족</strong>. 바그다드를 정복하고 아바스 왕조의 칼리프에게서 <strong>술탄</strong> 칭호를 얻어 이슬람 세계를 이끌었다.</p><div class="card-quote"><strong>술탄</strong> = 아랍어로 '권력'. 이슬람 세계의 <strong>정치적</strong> 지배자를 이르는 말이고, <strong>종교 지도자인 칼리프와는 자리가 다르다.</strong></div><div class="card-quote">💡 <strong>힘은 셀주크가, 「이슬람 세계의 지도자」라는 이름은 칼리프가</strong> — 둘이 자리를 나눠 가졌다. 지난 시간 교황과 황제는 같은 문제로 200년을 싸웠다(3-3-2).</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>클레르몽의 호소 (1096~)</strong> — 교황 <strong>우르바누스 2세</strong>가 클레르몽에서 종교 회의를 열어 <em>"성지 예루살렘을 되찾자"</em>고 호소했다.</p><div class="card-quote">⚠️ <strong>방아쇠는 두 가지다</strong> — <strong>셀주크의 예루살렘 점령</strong> + <strong>비잔티움 제국의 요청</strong>. 점령 하나만으로는 교황이 나설 명분이 없었다.</div><div class="card-quote">💡 여기에 <strong>제후·기사·상인·농민</strong>이 호응하면서 십자군 전쟁이 시작된다. 교황의 말 한마디에 유럽 전체가 움직였다는 것 자체가 <strong>교황권 절정기</strong>(3-3-2)의 증거다.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>이해관계</strong> — 각자 <strong>얻고 싶은 것</strong>. 사람마다 다르다.</p><div class="card-quote">같은 깃발 아래 모여도 <strong>원하는 것이 저마다 다르면</strong> 처음엔 힘이 세지만 시간이 지나며 방향이 흩어진다. 교과서가 십자군의 실패를 이 한 낱말로 적는다 — <em>"참여한 사람들의 <strong>이해관계</strong>에 따라 점차 본래의 목적을 잃었다."</em></div><div class="card-quote">💡 <strong>넷이 각각 무엇을 원했는지는 3단계 그림과 교과서 98쪽 삽화에 있다.</strong> 활동 1을 먼저 풀어 보고 확인하자.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>결과의 역설</strong> — 성지는 못 찾았는데 유럽이 바뀌었다. 그것도 <strong>전쟁을 시작한 쪽이 손해 보는</strong> 방향으로.</p><p><code>교황 권위 ↓</code> · <code>제후·기사 세력 ↓</code> → <strong>왕권 ↑</strong> → 중앙 집권 국가로</p><div class="card-quote">💡 그리고 <strong>적과의 교역이 늘었다</strong> — 지중해 무역권 성장, 베네치아·제노바·피사의 번영, 고전 문화·자연 과학·제지술의 유입. <strong>충돌과 교류가 같은 사건의 앞뒤</strong>다.</div></div></div><img class="hero-image" src="images/3-3-3_십자군_표지.webp" alt=""><div class="hero-hook">자, 네가 1096년 유럽 사람이라고 해보자. 교황이 외친다 — '성지 예루살렘을 되찾자!' 사람들이 우르르 모여든다. 그런데 반전이 있어. 모인 사람들 <strong>속마음이 다 달랐거든.</strong> 누가 무엇을 원했는지는 오늘 3단계 그림에서 직접 찾아보자. 200년 뒤 결과는? 예루살렘은 못 찾았고, 정작 전쟁을 이끈 교황의 힘이 떨어졌어(헐?). 목적과 결과가 이렇게 어긋난 전쟁, 오늘 그 이야기.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-3 — 같은 깃발 아래, 서로 다른 꿍꿍이 (십자군 전쟁)</h1><p class="hero-subtitle">성지를 되찾자며 200년을 싸웠는데, 왜 교황이 약해졌을까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">칼리프와 술탄은 무엇을 나눠 가졌을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">교황은 무엇을 내걸고 사람들을 불러 모았을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">같은 원정에 나선 네 사람은 무엇을 원했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">원정은 실패했는데 누가 이득을 봤을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>셀주크 튀르크</strong> — 11세기경 중앙아시아에서 일어난 <strong>유목 민족</strong>. 바그다드를 정복하고 아바스 왕조의 칼리프에게서 <strong>술탄</strong> 칭호를 얻어 이슬람 세계를 이끌었다.</p><div class="card-quote"><strong>술탄</strong> = 아랍어로 '권력'. 이슬람 세계의 <strong>정치적</strong> 지배자를 이르는 말이고, <strong>종교 지도자인 칼리프와는 자리가 다르다.</strong></div><div class="card-quote">💡 <strong>힘은 셀주크가, 「이슬람 세계의 지도자」라는 이름은 칼리프가</strong> — 둘이 자리를 나눠 가졌다. 지난 시간 교황과 황제는 같은 문제로 200년을 싸웠다(3-3-2).</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>클레르몽의 호소 (1095)</strong> — 교황 <strong>우르바누스 2세</strong>가 클레르몽에서 종교 회의를 열어 "<em>성지 예루살렘을 되찾자</em>"고 호소했다.</p><div class="card-quote">⚠️ <strong>방아쇠는 두 가지다</strong> — <strong>셀주크의 예루살렘 점령</strong> + <strong>비잔티움 제국의 요청</strong>. 점령 하나만으로는 교황이 나설 명분이 없었다.</div><div class="card-quote">💡 여기에 <strong>제후·기사·상인·농민</strong>이 호응하면서 십자군 전쟁이 시작된다. 교황의 말 한마디에 유럽 전체가 움직였다는 것 자체가 <strong>교황권 절정기</strong>(3-3-2)의 증거다.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>이해관계</strong> — 각자 <strong>얻고 싶은 것</strong>. 사람마다 다르다.</p><div class="card-quote">같은 깃발 아래 모여도 <strong>원하는 것이 저마다 다르면</strong> 처음엔 힘이 세지만 시간이 지나며 방향이 흩어진다. 교과서가 십자군의 실패를 이 한 낱말로 적는다 — <em>"참여한 사람들의 <strong>이해관계</strong>에 따라 점차 본래의 목적을 잃었다."</em></div><div class="card-quote">💡 <strong>넷이 각각 무엇을 원했는지는 3단계 그림과 교과서 98쪽 삽화에 있다.</strong> 활동 1을 먼저 풀어 보고 확인하자.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>결과의 역설</strong> — 성지는 못 찾았는데 유럽이 바뀌었다. 그것도 <strong>전쟁을 시작한 쪽이 손해 보는</strong> 방향으로.</p><p><code>교황 권위 ↓</code> · <code>제후·기사 세력 ↓</code> → <strong>왕권 ↑</strong> → 중앙 집권 국가로</p><div class="card-quote">💡 그리고 <strong>적과의 교역이 늘었다</strong> — 지중해 무역권 성장, 베네치아·제노바·피사의 번영, 고전 문화·자연 과학·제지술의 유입. <strong>충돌과 교류가 같은 사건의 앞뒤</strong>다.</div></div></div><img class="hero-image" src="images/3-3-3_십자군_표지.webp" alt=""><div class="hero-hook">자, 네가 1096년 유럽 사람이라고 해보자. 교황이 외친다 — '성지를 되찾자!' 사람들이 우르르 모여든다. 그런데 반전이 있어. 모인 사람들 <strong>속마음이 다 달랐거든.</strong> 누가 무엇을 원했는지는 오늘 3단계 그림에서 직접 찾아보자. 200년 뒤 결과는? 성지는 끝내 못 찾았고, 정작 전쟁을 이끈 쪽이 오히려 힘을 잃었어(헐?). 누가 잃고 누가 얻었는지는 5단계에서. 목적과 결과가 이렇게 어긋난 전쟁, 오늘 그 이야기.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/6 · OX: <span id="ox-score">0</span>/3
       · 총: <span id="total-score">0</span>/9 (<span id="pct">0</span>%)
     </div>
     <div>
-      <a href="https://zzobakg-boop.github.io/worksheets/hist3/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
+      <a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
       <button class="btn btn-primary" onclick="check()">채점하기</button>
       <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
       <button class="btn btn-danger" onclick="reset()">초기화</button>
@@ -944,13 +1141,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>- 십자군 전쟁 이후 이슬람 세계와 크리스트교 세계의 <strong>교류와 변화</strong>를 살펴볼 수 있다.</p>
 <br>
 <h2>✨ 오늘의 고급 단어</h2>
-<div class="ws-vcd" id="vd8"><div class="ws-vcd-head">그림을 보고 무슨 말일지 짐작해 본 뒤, 카드를 눌러 뒤집어 확인하자. ▶로 넘긴다.</div><div class="ws-vcd-track"><button type="button" class="ws-vcard" aria-label="성지 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-3_voc_성지.jpg" alt=""><span class="vcd-hanja">聖地</span><span class="vcd-ko">성지</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">성지</span><span class="vcd-split">성(聖, 거룩) + 지(地, 땅)</span><span class="vcd-mean">종교에서 거룩하게 여기는 땅</span><span class="vcd-sent">"예루살렘은 세 종교의 <strong>성지</strong>다."</span><span class="vcd-fam">聖 → <strong>성인 · 성경 · 신성</strong> / 地 → <strong>지도 · 지구 · 토지</strong></span></span></span></button><button type="button" class="ws-vcard" aria-label="술탄 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-3_voc_술탄.jpg" alt=""><span class="vcd-ko vcd-ko-solo">술탄</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">술탄</span><span class="vcd-split">아랍어 <strong>sultan</strong> = '권력·권위' — 힘 자체를 가리키던 말이 <em>그 힘을 쥔 사람</em>의 칭호가 되었다</span><span class="vcd-mean">이슬람 세계의 정치 지배자</span><span class="vcd-sent">"셀주크 튀르크는 칼리프에게 <strong>술탄</strong> 칭호를 받았다."</span><span class="vcd-fam">한자어가 아니라 <strong>아랍어</strong> — 힘을 뜻하던 말이 <em>그 힘을 쥔 사람</em>의 칭호가 되었다</span></span></span></button><button type="button" class="ws-vcard" aria-label="제후 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-3_voc_제후.jpg" alt=""><span class="vcd-hanja">諸侯</span><span class="vcd-ko">제후</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">제후</span><span class="vcd-split">제(諸, 여럿) + 후(侯, 제후)</span><span class="vcd-mean">왕 아래에서 땅을 나눠 받아 다스리는 사람</span><span class="vcd-sent">"<strong>제후</strong>와 기사들이 전쟁에 참여했다."</span><span class="vcd-fam">諸 → 여럿 · 侯 → 제후. ⚠️ 이 두 글자는 <strong>다른 낱말에 거의 안 쓰인다</strong> — 통째로 외우는 편이 빠른 드문 경우</span></span></span></button><button type="button" class="ws-vcard" aria-label="중앙 집권 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-3_voc_중앙집권.jpg" alt=""><span class="vcd-hanja">中央集權</span><span class="vcd-ko">중앙 집권</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">중앙 집권</span><span class="vcd-split">중앙 + 집(集, 모을) + 권(權, 권력)</span><span class="vcd-mean">힘이 왕(중앙) 한 곳에 모이는 것</span><span class="vcd-sent">"왕권이 세지며 <strong>중앙 집권</strong> 국가로 나아갔다."</span><span class="vcd-fam"><strong>集 = 모은다</strong> → 수집 · 집합 · 모집 · 그리고 <strong>집권</strong>(힘을 한곳에 모은다) / 權 → 인권 · 권리 (사회 시간의 그 권)</span></span></span></button></div><div class="ws-vcd-nav"><button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button><span class="vcd-count"><b>1</b> / 4</span><button type="button" class="vcd-next" aria-label="다음 낱말">▶</button></div></div><script>(function(){var r=document.getElementById("vd8");var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}function idx(){return Math.max(0,Math.min(cs.length-1,Math.round(t.scrollLeft/step())));}var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;c.textContent=e?cs.length:idx()+1;P.disabled=t.scrollLeft<=2;N.disabled=e;}function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}P.addEventListener("click",function(){go(-1);});N.addEventListener("click",function(){go(1);});t.addEventListener("scroll",function(){clearTimeout(t._z);t._z=setTimeout(sync,90);});function navfit(){var s=t.scrollWidth-t.clientWidth;r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}navfit();sync();addEventListener("resize",function(){navfit();sync();});})();</script>
+<div class="ws-vcd" id="vd8"><div class="ws-vcd-head">그림을 보고 무슨 말일지 짐작해 본 뒤, 카드를 눌러 뒤집어 확인하자. ▶로 넘긴다.</div><div class="ws-vcd-track"><button type="button" class="ws-vcard" aria-label="성지 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-3_voc_성지.jpg" alt=""><span class="vcd-hanja">聖地</span><span class="vcd-ko">성지</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">성지</span><span class="vcd-split">성(聖, 거룩) + 지(地, 땅)</span><span class="vcd-mean">종교에서 거룩하게 여기는 땅</span><span class="vcd-sent">"메카는 이슬람교의 <strong>성지</strong>다."</span><span class="vcd-fam">聖 → <strong>성인 · 성경 · 신성</strong> / 地 → <strong>지도 · 지구 · 토지</strong></span></span></span></button><button type="button" class="ws-vcard" aria-label="술탄 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-3_voc_술탄.jpg" alt=""><span class="vcd-ko vcd-ko-solo">술탄</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">술탄</span><span class="vcd-split">아랍어 <strong>sultan</strong> = '권력·권위' — 힘 자체를 가리키던 말이 <em>그 힘을 쥔 사람</em>의 칭호가 되었다</span><span class="vcd-mean">이슬람 세계의 정치 지배자</span><span class="vcd-sent">"이슬람 세계에서 실제 힘을 쥔 정치 지배자를 <strong>술탄</strong>이라 불렀다."</span><span class="vcd-fam">한자어가 아니라 <strong>아랍어</strong> — 힘을 뜻하던 말이 <em>그 힘을 쥔 사람</em>의 칭호가 되었다</span></span></span></button><button type="button" class="ws-vcard" aria-label="제후 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-3_voc_제후.jpg" alt=""><span class="vcd-hanja">諸侯</span><span class="vcd-ko">제후</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">제후</span><span class="vcd-split">제(諸, 여럿) + 후(侯, 제후)</span><span class="vcd-mean">왕 아래에서 땅을 나눠 받아 다스리는 사람</span><span class="vcd-sent">"<strong>제후</strong>와 기사들이 전쟁에 참여했다."</span><span class="vcd-fam">諸 → 여럿 · 侯 → 제후. ⚠️ 이 두 글자는 <strong>다른 낱말에 거의 안 쓰인다</strong> — 통째로 외우는 편이 빠른 드문 경우</span></span></span></button><button type="button" class="ws-vcard" aria-label="중앙 집권 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/3-3-3_voc_중앙집권.jpg" alt=""><span class="vcd-hanja">中央集權</span><span class="vcd-ko">중앙 집권</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">중앙 집권</span><span class="vcd-split">중앙 + 집(集, 모을) + 권(權, 권력)</span><span class="vcd-mean">힘이 왕(중앙) 한 곳에 모이는 것</span><span class="vcd-sent">"왕권이 세지며 <strong>중앙 집권</strong> 국가로 나아갔다."</span><span class="vcd-fam"><strong>集 = 모은다</strong> → 수집 · 집합 · 모집 · 그리고 <strong>집권</strong>(힘을 한곳에 모은다) / 權 → 인권 · 권리 (사회 시간의 그 권)</span></span></span></button></div><div class="ws-vcd-nav"><button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button><span class="vcd-count"><b>1</b> / 4</span><button type="button" class="vcd-next" aria-label="다음 낱말">▶</button></div></div><script>(function(){var r=document.getElementById("vd8");var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}function idx(){return Math.max(0,Math.min(cs.length-1,Math.round(t.scrollLeft/step())));}var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;c.textContent=e?cs.length:idx()+1;P.disabled=t.scrollLeft<=2;N.disabled=e;}function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}P.addEventListener("click",function(){go(-1);});N.addEventListener("click",function(){go(1);});t.addEventListener("scroll",function(){clearTimeout(t._z);t._z=setTimeout(sync,90);});function navfit(){var s=t.scrollWidth-t.clientWidth;r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}navfit();sync();addEventListener("resize",function(){navfit();sync();});})();</script>
 <br>
-<blockquote>🖼 카드 그림 — 성지: <strong>예루살렘 바위의 돔</strong>(사진: Wikimedia Commons · CC BY-SA 2.0) · 술탄: 13세기 모술 필사본의 튀르크 기병 · 제후: <strong>1097년 니케아 공성</strong>을 그린 필사본(제후와 기사들이 성을 공격하고, 성벽 위는 튀르크군) · 중앙 집권: <strong>필리프 2세의 대관식</strong>(주교들이 왕관을 씌우고 있다). 사진 외 셋은 퍼블릭 도메인.</blockquote>
 <br>
 <blockquote>💡 오늘 딱 두 개만 잡자 — <strong>성지</strong>(왜 싸웠나)와 <strong>중앙 집권</strong>(무엇이 바뀌었나).</blockquote>
 <h2>📖 1단계: 새 강자의 등장 — 셀주크 튀르크</h2>
-<blockquote>📕 <strong>교과서 97쪽 마지막 문단</strong> 펴고 채우기 · 배정 시간 <strong>3분</strong></blockquote>
+<blockquote>📕 <strong>교과서 98쪽 「셀주크 튀르크의 성장」</strong> 펴고 채우기 · 배정 시간 <strong>3분</strong></blockquote>
 <br>
 <p>11세기경 중앙아시아의 유목 민족인 <strong>셀주크 튀르크</strong>가 성장했다. 이들은 바그다드를 정복하고, 아바스 왕조의 칼리프에게서 ①<input type="text" class="blank-input" data-answer="술탄" data-id="1" style="width:60px" placeholder="">의 칭호를 얻으며 이슬람 세계를 이끌었다. 서아시아와 중앙아시아를 아우르는 대제국을 세운 이들은, 영토를 넓히는 과정에서 크리스트교 세계와 <strong>마찰</strong>을 빚었다.</p>
 <br>
@@ -963,31 +1159,32 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </div></details>
 <br>
 <h2>📖 2단계: 전쟁의 방아쇠 — 클레르몽의 호소</h2>
-<blockquote>📕 <strong>교과서 98쪽 첫 문단</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
+<blockquote>📕 <strong>교과서 98쪽 「십자군 전쟁」 첫 문단</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
 <br>
 <p>11세기 후반, 셀주크 튀르크가 성지 ②<input type="text" class="blank-input" data-answer="예루살렘" data-id="2" style="width:84px" placeholder="">을 점령하고 <strong>비잔티움 제국</strong>을 위협했다. 다급해진 비잔티움 황제는 교황에게 도움을 요청했다. 교황 <strong>우르바누스 2세</strong>는 클레르몽에서 종교 회의를 열어 외쳤다 — 이슬람 세력에게서 성지를 되찾자!</p>
 <br>
 <blockquote>⚠️ <strong>방아쇠는 두 가지다</strong> — 예루살렘 점령 <em>하나만</em>으로는 전쟁이 안 났어. <strong>비잔티움 황제의 요청</strong>이 있어야 교황이 나설 명분이 생겼지.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/3-3-3_방아쇠둘.png" alt="전쟁의 방아쇠는 둘 — 셀주크가 바그다드에서 예루살렘·콘스탄티노폴리스로 밀고 오자(①), 비잔티움 황제가 교황에게 도움을 청했다(②). 둘이 겹쳐야 클레르몽의 호소가 나온다." loading="lazy"><figcaption>전쟁의 방아쇠는 둘 — 셀주크가 바그다드에서 예루살렘·콘스탄티노폴리스로 밀고 오자(①), 비잔티움 황제가 교황에게 도움을 청했다(②). 둘이 겹쳐야 클레르몽의 호소가 나온다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/3-3-3_방아쇠둘_v2.png" alt="전쟁의 방아쇠는 둘 — 셀주크가 바그다드에서 예루살렘·콘스탄티노폴리스로 밀고 오자(①), 비잔티움 황제가 교황에게 도움을 청했다(②). 둘이 겹쳐야 클레르몽의 호소가 나온다." loading="lazy"><figcaption>전쟁의 방아쇠는 둘 — 셀주크가 바그다드에서 예루살렘·콘스탄티노폴리스로 밀고 오자(①), 비잔티움 황제가 교황에게 도움을 청했다(②). 둘이 겹쳐야 클레르몽의 호소가 나온다.</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 98쪽 · 첫 문단</div><div class="ws-tb-ask">교황의 호소에 호응한 사람들을 교과서는 <strong>네 부류</strong>로 적는다. 찾아 그대로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 98쪽에서 찾기 — 교황의 호소에 호응한 사람들을 교과서는 네 부류로 적는다. 찾아 그대" style="width:340px" placeholder=""></div></div>
 <br>
-<blockquote>💡 교황의 말 한마디에 유럽 전체가 움직였다는 것 자체가 <strong>교황권 절정기</strong>(3-3-2)의 증거야.</blockquote>
+<blockquote>💡 호소 한 번에 유럽 전체가 움직였다는 것 자체가 <strong>3-3-2에서 본 그 절정기</strong>의 증거야.</blockquote>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>🤔 교황은 왜 <strong>로마를 두고 프랑스 시골</strong>에서 외쳤을까?</summary><div class="ws-fold-body">
 <p>교황이 있어야 할 곳은 로마인데, 클레르몽은 프랑스 가운데쯤의 작은 도시야. 까닭이 셋 있어.</p>
 <p><strong>① 로마가 안전하지 않았다.</strong> 지난 시간 <strong>카노사(1077)</strong> 기억나? 그 다툼이 아직 안 끝나 있었어. 황제 쪽이 로마에서 힘을 뻗고 있어서, 교황은 로마에서 큰 회의를 마음 놓고 열 수가 없었지.</p>
 <p><strong>② 교황이 프랑스 사람이었다.</strong> 우르바누스 2세는 프랑스에서 태어났고, 지난 시간에 나온 바로 그 <strong>클뤼니 수도원</strong>에서 수사로 지냈어. 프랑스 성직자·귀족과 아는 사이가 두터웠던 거야.</p>
 <p><strong>③ 부르고 싶은 사람들이 거기 있었다.</strong> 싸울 기사가 가장 많은 곳이 프랑스였어. 클레르몽은 길이 모이는 자리라 사람이 오기도 좋았고.</p>
+<p><strong>하나 더 — 그날 클레르몽에서 정확히 무슨 말이 나왔는지는 아무도 몰라.</strong> 녹음도 받아 적은 사람도 없던 때라, 그 자리에 있던 사람들이 10년쯤 뒤에 쓴 기록 몇 개만 남았는데 내용이 서로 달라. 어떤 기록은 튀르크인이 얼마나 잔인한지를 아주 부풀려 적었지. 사람들이 '하느님께서 원하신다!'라고 외쳤다는 것도 그 기록 속 말이야 — 사람을 불러 모으는 연설은 누가, 언제 받아 적었는지부터 따져 봐야 해.</p>
 </div></details>
 <br>
 <blockquote>🎙️ 그런데 <strong>「유럽 전체」라는 말은 조금 헐거워.</strong> 그때 「유럽」이라는 나라는 없었거든. 누가 갔는지는 아래를 펼쳐 보자.</blockquote>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>🗺 <strong>십자군은 「유럽」이 간 것이 아니다</strong> — 누가 갔나</summary><div class="ws-fold-body">
 <p>지난번(3-2-5)에 <strong>프랑크 왕국이 셋으로 갈라졌다</strong>고 배운 것 기억나? 서프랑크·중프랑크·동프랑크 — 바로 그 조각들이 오늘 이야기의 주인공이야. 그런데 세 조각이 <strong>같은 일을 한 게 아니야.</strong></p>
-<figure class="ws-fig"><img src="images/3-3-3_누가갔나.png" alt="십자군은 «유럽»이 간 것이 아니다 — 프랑크 왕국이 갈라진 세 조각이 서로 다른 역할을 맡았다. **청한 쪽**은 성지를 빼앗긴 비잔티움 제국, **부른 쪽**은 중프랑크가 이탈리아가 된 그 로마에 있던 교황, **간 쪽**은 서프랑크에서 나온 프랑스와 동프랑크에서 나온 신성 로마 제국, 그리고 잉글랜드다. **실어 준 쪽**은 베네치아·제노바·피사로, 싸우러 간 것이 아니라 배를 대주고 삯을 받았다. 붉은 선은 육로, 초록 선은 바닷길, 파란 점선은 «도와 달라»는 요청이다. 국경과 경로는 개념도다." loading="lazy"><figcaption>십자군은 «유럽»이 간 것이 아니다 — 프랑크 왕국이 갈라진 세 조각이 서로 다른 역할을 맡았다. <strong>청한 쪽</strong>은 성지를 빼앗긴 비잔티움 제국, <strong>부른 쪽</strong>은 중프랑크가 이탈리아가 된 그 로마에 있던 교황, <strong>간 쪽</strong>은 서프랑크에서 나온 프랑스와 동프랑크에서 나온 신성 로마 제국, 그리고 잉글랜드다. <strong>실어 준 쪽</strong>은 베네치아·제노바·피사로, 싸우러 간 것이 아니라 배를 대주고 삯을 받았다. 붉은 선은 육로, 초록 선은 바닷길, 파란 점선은 «도와 달라»는 요청이다. 국경과 경로는 개념도다.</figcaption></figure>
-<table class="ws-fold-table"><thead><tr><th>역할</th><th>누가</th><th>한 일</th></tr></thead><tbody><tr><td><strong>청한 쪽</strong></td><td>비잔티움 제국</td><td>성지를 빼앗기고 교황에게 사람을 보냈다</td></tr><tr><td><strong>부른 쪽</strong></td><td>교황</td><td>클레르몽에서 «되찾으러 가자»고 외쳤다</td></tr><tr><td><strong>간 쪽</strong></td><td>프랑스 · 신성 로마 제국 · 잉글랜드</td><td>왕과 제후가 직접 군대를 이끌고 떠났다</td></tr><tr><td><strong>실어 준 쪽</strong></td><td>베네치아 · 제노바 · 피사</td><td>배를 대주고 삯을 받았다</td></tr></tbody></table>
+<figure class="ws-fig"><img src="images/3-3-3_누가갔나_v2.png" alt="십자군은 '유럽'이 간 것이 아니다 — 프랑크 왕국이 갈라진 세 조각이 서로 다른 역할을 맡았다. **청한 쪽**은 성지를 빼앗긴 비잔티움 제국, **부른 쪽**은 중프랑크가 이탈리아가 된 그 로마에 있던 교황, **간 쪽**은 서프랑크에서 나온 프랑스와 동프랑크에서 나온 신성 로마 제국, 그리고 잉글랜드다. **실어 준 쪽**은 베네치아·제노바·피사로, 싸우러 간 것이 아니라 배를 대주고 삯을 받았다. 붉은 선은 육로, 초록 선은 바닷길, 파란 점선은 '도와 달라'는 요청이다. 국경과 경로는 개념도다." loading="lazy"><figcaption>십자군은 '유럽'이 간 것이 아니다 — 프랑크 왕국이 갈라진 세 조각이 서로 다른 역할을 맡았다. <strong>청한 쪽</strong>은 성지를 빼앗긴 비잔티움 제국, <strong>부른 쪽</strong>은 중프랑크가 이탈리아가 된 그 로마에 있던 교황, <strong>간 쪽</strong>은 서프랑크에서 나온 프랑스와 동프랑크에서 나온 신성 로마 제국, 그리고 잉글랜드다. <strong>실어 준 쪽</strong>은 베네치아·제노바·피사로, 싸우러 간 것이 아니라 배를 대주고 삯을 받았다. 붉은 선은 육로, 초록 선은 바닷길, 파란 점선은 '도와 달라'는 요청이다. 국경과 경로는 개념도다.</figcaption></figure>
+<table class="ws-fold-table"><thead><tr><th>역할</th><th>누가</th><th>한 일</th></tr></thead><tbody><tr><td><strong>청한 쪽</strong></td><td>비잔티움 제국</td><td>성지를 빼앗기고 교황에게 사람을 보냈다</td></tr><tr><td><strong>부른 쪽</strong></td><td>교황</td><td>클레르몽에서 '되찾으러 가자'고 외쳤다</td></tr><tr><td><strong>간 쪽</strong></td><td>프랑스 · 신성 로마 제국 · 잉글랜드</td><td>왕과 제후가 직접 군대를 이끌고 떠났다</td></tr><tr><td><strong>실어 준 쪽</strong></td><td>베네치아 · 제노바 · 피사</td><td>배를 대주고 삯을 받았다</td></tr></tbody></table>
 <p>마지막 줄을 눈여겨봐 둬. <strong>실어 준 쪽은 싸우러 간 게 아니야.</strong> 배를 빌려주고 돈을 받았지. 그러니 전쟁을 이기든 지든 <strong>손해를 안 봐.</strong> 이 이름들, 6단계에서 다시 만난다.</p>
 </div></details>
 <br>
@@ -1000,12 +1197,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p><strong>→ 목적이 다른 사람들이 모이면?</strong> 처음엔 힘이 세지만, 시간이 지나면 방향이 흩어진다. 이게 십자군의 운명을 갈랐다.</p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 98쪽 · 삽화 말풍선</div><div class="ws-tb-ask">위 그림의 <strong>농노</strong>는 무엇을 바랐을까? 교과서 삽화에서 <strong>농민(농노)의 말풍선</strong>을 찾아 그 말을 그대로 옮겨 적고, 그림의 «울타리 밖으로 난 발자국»과 어떻게 이어지는지 한 줄로 덧붙이자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 98쪽에서 찾기 — 위 그림의 농노는 무엇을 바랐을까? 교과서 삽화에서 농민(농노)의 말" style="width:460px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 98쪽 · 삽화 말풍선</div><div class="ws-tb-ask">위 그림의 <strong>농노</strong>는 무엇을 바랐을까? 교과서 삽화에서 <strong>농민(농노)의 말풍선</strong>을 찾아 그 말을 그대로 옮겨 적고, 그림의 '울타리 밖으로 난 발자국'과 어떻게 이어지는지 한 줄로 덧붙이자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 98쪽에서 찾기 — 위 그림의 농노는 무엇을 바랐을까? 교과서 삽화에서 농민(농노)의 말" style="width:460px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ <strong>그런데 기사와 제후는 왜 하필 「땅」을 원했을까?</strong> 지난 시간(3-3-1)에 <strong>주군이 봉신에게 땅, 곧 봉토를 준다</strong>고 배웠지. 그런데 그 땅은 대개 <strong>맏아들이 물려받았어.</strong> 그럼 둘째·셋째는? 기사 훈련은 똑같이 받았는데 <strong>받을 땅이 없는</strong> 거야. 그런 사람이 유럽에 수두룩했고, 그들에게 <em>"동방에 가면 네 땅이 생긴다"</em>는 말은 신앙이기 전에 <strong>먹고사는 문제</strong>였어.</blockquote>
+<blockquote>🎙️ <strong>그런데 기사와 제후는 왜 하필 「땅」을 원했을까?</strong> 지난 시간(3-3-1)에 주군이 봉신에게 땅, 곧 봉토를 준다고 배웠지. 그런데 그 땅은 대개 맏아들이 물려받았어. 그래서 예전에는 '받을 땅이 없는 둘째·셋째 아들이 동방에서 제 땅을 얻으려고 떠났다'고 많이 설명했어. 그런데 원정엔 큰돈이 들었어. 말·갑옷·식량에 뱃삯까지 1년 수입의 네다섯 배가 들어서, 집안 땅을 팔거나 맡기고 돈을 빌려 떠난 기사가 많았대. 그래서 요즘 역사학자들은 '가진 게 있는 사람들이 죄를 용서받으려고 갔다'는 쪽에 더 무게를 둬. 땅 욕심과 신앙, 둘 다 섞여 있었던 거야.</blockquote>
 <br>
 <h2>📖 4단계: 200년의 전쟁, 그리고 실패</h2>
-<blockquote>📕 <strong>교과서 98쪽 가운데</strong> 펴고 채우기 · 배정 시간 <strong>3분</strong></blockquote>
+<blockquote>📕 <strong>교과서 98쪽 「십자군 전쟁」 둘째 문단</strong> 펴고 채우기 · 배정 시간 <strong>3분</strong></blockquote>
 <br>
 <p>십자군 전쟁은 <strong>200여 년</strong> 동안 여러 차례 일어났다. 제1차 원정 때는 예루살렘을 점령하기도 했다. 그러나 참여한 사람들의 ③<input type="text" class="blank-input" data-answer="이해관계" data-id="3" style="width:84px" placeholder="">에 따라 점차 <strong>본래 목적</strong>을 잃었다. 결국 성지를 회복하지 못한 채 전쟁은 끝났다.</p>
 <br>
@@ -1015,8 +1212,15 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-fig"><img src="images/3-3-3_되찾았다가잃었다.png" alt="200여 년 — 제1차 원정에서 예루살렘을 점령했지만 다시 잃었고, 결국 성지를 회복하지 못했다." loading="lazy"><figcaption>200여 년 — 제1차 원정에서 예루살렘을 점령했지만 다시 잃었고, 결국 성지를 회복하지 못했다.</figcaption></figure>
 <br>
+<details class="ws-fold ws-fold-더보기"><summary>⚔️ 200년 사이, 처음 목적은 어디까지 흐려졌을까</summary><div class="ws-fold-body">
+<p><strong>같은 예루살렘, 두 번의 입성</strong> — 1099년 1차 십자군은 예루살렘에 들어가며 주민을 마구 죽였어. 88년 뒤인 1187년, 이슬람 쪽 지도자 살라딘이 예루살렘을 되찾을 때는 몸값을 낸 사람은 짐을 챙겨 떠나게 해 줬지. 몸값을 못 낸 사람은 노예로 팔리기도 했지만, 같은 도시에 들어간 두 장면은 아주 다르게 기억돼.</p>
+<p><strong>같은 편 도시를 쳤다</strong> — 4차 십자군(1202)은 베네치아에 뱃삯을 갚지 못하자, 그 대신 크리스트교 도시 자다르를 공격했어. 주민들이 성벽에 십자가 깃발까지 내걸었는데도 소용없었지. 2년 뒤에는 2단계에서 도와 달라고 청한 바로 그 비잔티움 제국의 수도 콘스탄티노폴리스를 약탈했어.</p>
+<p><strong>우리 나이의 십자군?</strong> — 1212년에는 무기도 없이 '기적으로 성지를 되찾겠다'며 수천 명의 10대가 길을 나섰다고 해. 프랑스에서는 아이들을 집으로 돌려보냈고, 끝까지 간 무리는 배가 난파하거나 노예로 팔렸다고 옛 기록은 적어. 다만 기록이 부풀려졌고 아이가 아니라 가난한 사람들이었다는 해석도 있어.</p>
+<p>🎙️ 클레르몽에서 외친 목적과 이 세 장면을 나란히 놓아 봐. 같은 깃발이 200년 동안 어디까지 왔는지 보이지?</p>
+</div></details>
+<br>
 <h2>📖 5단계: 결과의 역설 — 진 사람과 이긴 사람</h2>
-<blockquote>📕 <strong>교과서 98쪽 마지막 문단</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
+<blockquote>📕 <strong>교과서 99쪽 「십자군 전쟁의 결과」</strong> 펴고 채우기 · 배정 시간 <strong>5분</strong></blockquote>
 <br>
 <blockquote>🎙️ 반전은 지금부터야. 전쟁은 실패했는데, 유럽은 완전히 바뀌었거든. 그것도 <strong>전쟁을 시작한 사람이 손해 보는</strong> 방향으로.</blockquote>
 <br>
@@ -1034,7 +1238,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p><strong>싸운 상대편도 돈을 벌었다.</strong> 셀주크 튀르크는 동서양을 잇는 중계 무역으로 이익을 얻었다. 항구 도시와 비단길의 주요 도시에 국제 시장을 열었고, 교역로 곳곳에 상인 숙소를 세워 안전을 보장하며 무역을 장려했다.</p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 99쪽 · 날개(옆쪽 작은 글씨)</div><div class="ws-tb-ask">셀주크 튀르크가 세운 상인 숙소의 <strong>이름</strong>은 무엇인가? 그리고 <strong>'카라반'</strong>은 어떤 사람들을 말하나? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 99쪽에서 찾기 — 셀주크 튀르크가 세운 상인 숙소의 이름은 무엇인가? 그리고 '카라반'" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 99쪽 · 날개(옆쪽 작은 글씨)</div><div class="ws-tb-ask">셀주크 튀르크가 세운 상인 숙소의 <strong>이름</strong>은 무엇인가? 그리고 '<strong>카라반</strong>'은 어떤 사람들을 말하나? <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 99쪽에서 찾기 — 셀주크 튀르크가 세운 상인 숙소의 이름은 무엇인가? 그리고 '카라반'" style="width:400px" placeholder=""></div></div>
 <br>
 <p>전쟁이 끝난 뒤 두 세계의 교역은 더 활발해졌고, ⑥<input type="text" class="blank-input" data-answer="지중해" data-id="6" style="width:68px" placeholder=""> 무역권이 크게 성장했다. <strong>베네치아·제노바·피사</strong> 같은 연안 도시가 번성했고, <strong>이베리아반도</strong>와 <strong>콘스탄티노폴리스</strong>는 학문과 기술이 오가는 창구가 되었다. 이 길을 타고 비잔티움의 <strong>고전 문화</strong>, 이슬람 세계의 <strong>자연 과학</strong>, 중국의 <strong>제지술</strong>이 유럽에 들어왔다.</p>
 <br>
@@ -1042,7 +1246,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ <strong>여기가 이 차시에서 제일 이상한 대목이야.</strong> 죽이겠다고 200년을 싸웠는데, 그 싸움이 만든 뱃길로 <strong>물건과 책이 오갔어.</strong> 심지어 적이었던 셀주크가 상인들 재워 주는 숙소까지 지었대. 미워하면서도 서로에게서 얻어 갔다는 것 — 이게 <strong>충돌과 교류가 같은 사건의 앞뒤</strong>라는 말의 뜻이야.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/3-3-3_열린길.png" alt="싸우면서 열린 길 — 동쪽에서 염료·비단·향신료가, 그리고 고전 문화·자연 과학·제지술이 들어왔다. 베네치아·제노바·피사가 번성했고 이베리아반도와 콘스탄티노폴리스가 창구가 되었다." loading="lazy"><figcaption>싸우면서 열린 길 — 동쪽에서 염료·비단·향신료가, 그리고 고전 문화·자연 과학·제지술이 들어왔다. 베네치아·제노바·피사가 번성했고 이베리아반도와 콘스탄티노폴리스가 창구가 되었다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/3-3-3_열린길_v2.png" alt="싸우면서 열린 길 — 동쪽에서 염료·비단·향신료가, 그리고 고전 문화·자연 과학·제지술이 들어왔다. 베네치아·제노바·피사가 번성했고 이베리아반도와 콘스탄티노폴리스가 창구가 되었다." loading="lazy"><figcaption>싸우면서 열린 길 — 동쪽에서 염료·비단·향신료가, 그리고 고전 문화·자연 과학·제지술이 들어왔다. 베네치아·제노바·피사가 번성했고 이베리아반도와 콘스탄티노폴리스가 창구가 되었다.</figcaption></figure>
 <blockquote>그리고 여기 심긴 씨앗이 두 차시 뒤에 열매를 맺어. 베네치아 상인들이 벌어들인 그 돈이 <strong>르네상스를 후원하는 돈</strong>이 되거든.</blockquote>
 <br>
 <h2>🧭 정리: 교황과 왕의 힘 — 저울이 뒤집히기까지</h2>
@@ -1054,9 +1258,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ <strong>이 그림은 세로가 「힘의 저울」이야.</strong> 위로 갈수록 교황이 세고, 아래로 갈수록 왕이 세. 굵은 선을 손가락으로 따라가 봐 — 카노사에서 올라가서 13세기에 가장 높았다가, <strong>아비뇽에서 균형선 아래로 떨어져.</strong> 그리고 하나 더 놓치기 쉬운 게 있어. <strong>십자군 전쟁은 「점」이 아니라 「띠」야.</strong> 1096년에 시작해 200여 년을 갔거든. 그러니까 교황권이 절정에 이른 것도, 그 뒤 무너지기 시작한 것도 <strong>전부 저 주황 띠 안에서</strong> 벌어진 일이야. 교황이 불러 모은 전쟁이 교황 자신의 힘을 깎아 내린 셈이지.</blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 96쪽 · 연표</div><div class="ws-tb-ask">연표에서 <strong>십자군 전쟁이 벌어지는 «동안»에 일어난 사건</strong>을 찾아 적자. 그리고 그 사건은 <strong>교황에게 유리했을까, 불리했을까?</strong> 위 그림의 굵은 선이 그때 어느 쪽으로 갔는지 보고 판단해 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 96쪽에서 찾기 — 연표에서 십자군 전쟁이 벌어지는 «동안»에 일어난 사건을 찾아 적자." style="width:460px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 96쪽 · 연표</div><div class="ws-tb-ask">연표에서 <strong>십자군 전쟁이 벌어지는 '동안'에 일어난 사건</strong>을 찾아 적자. 그리고 그 사건은 <strong>교황에게 유리했을까, 불리했을까?</strong> 위 그림의 굵은 선이 그때 어느 쪽으로 갔는지 보고 판단해 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 96쪽에서 찾기 — 연표에서 십자군 전쟁이 벌어지는 «동안»에 일어난 사건을 찾아 적자." style="width:460px" placeholder=""></div></div>
 <br>
-<h2>✏️ 활동 1 — 속마음 맞히기</h2>
+<section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1 — 속마음 맞히기</h2>
 <blockquote>아래 말이 누구의 속마음일지 연결해 보자. (교황 / 기사 / 상인 / 농노)</blockquote>
 <br>
 <table class="act-table">
@@ -1067,7 +1271,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>"더 넓은 땅을 손에 넣을 기회야."</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="더 넓은 땅을 손에 넣을 기회야." style="width:120px" placeholder=""></td></tr>
 </table>
 <br>
-<h2>✅ OX 퀴즈</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✅ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
 <tr><td>1</td><td>십자군 전쟁의 직접적 계기는 셀주크 튀르크의 예루살렘 점령과 비잔티움 제국의 요청이었다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
@@ -1075,13 +1279,15 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>3</td><td>십자군 전쟁 이후 교황의 권위는 떨어지고 왕권은 상대적으로 강해졌다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
-<h2>💭 더 생각해 보기</h2>
+</section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <p>십자군 전쟁은 <strong>목적(성지 회복)과 결과(교황권 하락·왕권 강화·동서 교류)가 어긋난</strong> 대표적인 사건이야.</p>
 <p>우리 주변에도 "<strong>하려던 것과 다른 결과</strong>"가 나온 일이 있을까? 하나를 떠올려 쓰고, <strong>왜 그렇게 됐는지</strong> 두세 문장으로 설명해 보자.</p>
 <br>
 <blockquote>💡 <strong>어긋나는 까닭은 대개 둘 중 하나야</strong> — ① <strong>모인 사람들이 원하는 게 서로 달랐거나</strong>(3단계 「네 속마음」) · ② <strong>하다 보니 상황이 바뀌었거나.</strong> 소재는 내 일·우리 반·뉴스 어디서 찾아도 좋아.</blockquote>
 <br>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
+<br>
+<blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote></section>
 </div>
 <script>
 const TB=6, TOX=3, GT=9;
@@ -1103,6 +1309,13 @@ document.addEventListener('click', function(e){
   if (!b) return;
   var card = document.getElementById('hero-card-' + b.dataset.card);
   if (!card) return;
+  if (window.HERO_LOCK) {
+    var n = document.getElementById('hero-lock-note');
+    if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
+      b.parentElement.insertAdjacentElement('afterend', n); }
+    n.hidden = false; return;
+  }
   var open = card.hasAttribute('hidden');
   if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -1154,7 +1367,9 @@ function cmpStep(id,d){
   cmpGo(id, (+(g.dataset.cur||0)) + d);
 }
 function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+window.HERO_LOCK = false;
 function check(){
+  window.HERO_LOCK = false; var _hn = document.getElementById('hero-lock-note'); if (_hn) _hn.hidden = true;
   let bc=0, oxc=0;
   document.querySelectorAll('.blank-input').forEach(el=>{
     const a=norm(el.dataset.answer), u=norm(el.value);
