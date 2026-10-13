@@ -1143,6 +1143,8 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-3_photo_pilgrims_weir.jpg | 로버트 W. 위어, 「청교도들의 출항(Embarkation of the Pilgrims)」, 1857, 브루클린 미술관 (Google Art Project, 잘라 냄) | Robert Walter Weir · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-3_photo_tuvalu_funafuti.jpg | 하늘에서 본 투발루 수도 푸나푸티, 2011 (Aerial view of Tuvalu's capital, Funafuti, 2011 … DFAT (12779656093).jpg, 잘라 냄) | Lily-Anne Homasi/DFAT · CC BY 2.0 · Wikimedia Commons |
 | 7-3_photo_ansan_wongok.jpg | 안산 원곡동 다문화 음식 거리 표지, 2014 (Ansan fall 2014 17.JPG, 잘라 냄) | Piotrus · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_map_koryoin.png | 고려인의 길 — 연해주 → 중앙아시아(1937년) → 광주 광산구(2000년대 뒤) | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-3_photo_koryoin_village.jpg | 광주 광산구 월곡동 고려인 마을 거리, 2025 (Gwangju Koryoin Village 13.jpg) | Seefooddiet · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-3_voc_흡인.jpg | 쇳가루를 끌어당긴 말굽 자석 (A-1 horseshoe-magnet-red-silver-iron-filings-AHD.jpg, 좌우 여백 채움) | Oguraclutch · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-3_voc_배출.jpg | 일본 도마코마이 오지 제지 공장 굴뚝의 흰 연기 (White smoke from Oji Paper Tomakomai Mill chimney.jpg, 테두리 빼고 잘라 냄) | ejstanz · CC BY 2.0 · Wikimedia Commons |
 | 7-3_fig_pushpull.png | 도식 — 같은 일자리, 두 가지 힘(살던 곳이 밀어내고 도착할 곳이 끌어당긴다) | 자체 제작 (fig_73_pushpull.py) |
