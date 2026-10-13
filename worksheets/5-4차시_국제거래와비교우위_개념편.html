@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -1104,9 +1152,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>📖 1단계: 국제 거래란 무엇일까?</h2>
 <p>국가 간에 상품·노동·자본·기술 등이 국경을 넘어 거래되는 것을 ①<input type="text" class="blank-input" data-answer="국제 거래" data-id="1" style="width:100px" placeholder="">라고 한다. 국제 거래가 활발해지면서 국가 사이의 ②<input type="text" class="blank-input" data-answer="상호 의존" data-id="2" style="width:100px" placeholder="">이 심화하고, 교통·통신의 발달로 거래가 더 쉬워지고 있다. 특히 우리나라는 ③<input type="text" class="blank-input" data-answer="무역 의존도" data-id="3" style="width:116px" placeholder="">가 높아 세계 경제 변화의 영향을 많이 받는다.</p>
-<details class="ws-fold ws-fold-원문"><summary>교과서 102쪽 원문 — <strong>채운 뒤에</strong> 펼쳐서 맞는지 확인하자</summary><div class="ws-fold-body">
-<p>"전 세계적으로 국제 거래가 활발해지면서 국가 사이의 상호 의존이 심화하고 있다. 교통과 통신의 발달로 국가 사이의 국제 거래가 더 쉬워지기도 한다. 특히 우리나라 경제는 무역 의존도가 높아서 세계 경제 변화의 영향을 많이 받는다." — 천재교육 사회②(구정화) 102쪽</p>
-</div></details>
+<blockquote>📕 다 채웠으면 <strong>교과서 102쪽</strong>을 펴서 빈칸이 맞는지 확인하자.</blockquote>
 <br>
 <blockquote>💡 <strong>무역 의존도 = (수출액 + 수입액) ÷ 국내 총생산.</strong> <strong>지난 시간에 배운 그 GDP</strong>가 여기 분모로 들어온다 — 나라 경제의 몸집과 견줘서 무역이 얼마나 큰지를 보는 값이야. 숫자로 한 번만 세워 보자.</blockquote>
 <br>
@@ -1129,18 +1175,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <h2>📖 2단계: 왜 나라끼리 거래할까? — 조건이 다르니까</h2>
 <p>국제 거래가 필요한 이유는 나라마다 처한 조건이 다르기 때문이다. 첫째, ④<input type="text" class="blank-input" data-answer="자연환경" data-id="4" style="width:84px" placeholder="">이 달라 생산할 수 있는 농작물과 천연자원이 다르다. 둘째, 노동·자본·기술 같은 ⑤<input type="text" class="blank-input" data-answer="생산 요소" data-id="5" style="width:100px" placeholder="">의 양과 질이 다르다. 그래서 각 나라는 상대적으로 더 잘 만드는 상품, 곧 ⑥<input type="text" class="blank-input" data-answer="비교 우위" data-id="6" style="width:100px" placeholder="">가 있는 상품에 특화하여 수출하고 그렇지 않은 상품은 수입한다.</p>
-<details class="ws-fold ws-fold-원문"><summary>교과서 102쪽 원문 — <strong>채운 뒤에</strong> 펼쳐서 맞는지 확인하자</summary><div class="ws-fold-body">
-<p>"국제 거래가 필요한 이유는 각 국가가 처한 조건이 다르기 때문이다. 첫째, 자연환경이 달라 … 둘째, 생산 요소의 양과 질이 다르다. … 각국은 비교 우위가 있는 상품을 특화 생산하여 수출하고 그렇지 않은 상품을 외국에서 수입한다." — 천재교육 사회②(구정화) 102쪽</p>
-</div></details>
+<blockquote>📕 다 채웠으면 <strong>교과서 102쪽</strong>을 펴서 빈칸이 맞는지 확인하자.</blockquote>
 <br>
 <blockquote>🎙️ 사막 나라가 쌀농사를 고집하고, 추운 나라가 바나나를 키우려 하면 엄청 비효율이겠지? <em>잘 맞는 것끼리 나눠서 바꾸는 게</em> 모두에게 이득. 그게 국제 거래의 출발이야.</blockquote>
 <br>
 <h2>📖 3단계: '절대 우위'와 '비교 우위'는 다르다</h2>
 <p>한 나라가 두 상품을 모두 더 잘 만들어도(절대 우위), 그중 상대적으로 더 잘 만드는 상품에 ⑦<input type="text" class="blank-input" data-answer="특화" data-id="7" style="width:60px" placeholder="">하면 서로 이득을 본다. 예를 들어 우리나라가 컴퓨터·옷을 모두 중국보다 잘 만들어도, 더 잘 만드는 ⑧<input type="text" class="blank-input" data-answer="컴퓨터" data-id="8" style="width:68px" placeholder="">를 특화해 수출하고 옷은 수입하는 것이 양국 모두에게 이익이다.</p>
-<details class="ws-fold ws-fold-원문"><summary>지도서 원문 — <strong>채운 뒤에</strong> 펼쳐서 맞는지 확인하자</summary><div class="ws-fold-body">
-<p>"어느 한 나라의 두 재화가 모두 절대 우위에 있을 때도 생산비가 상대적으로 적게 드는(비교 우위) 재화에 특화함으로써 무역 이익이 발생한다." — 천재교육 사회② 지도서 4단원</p>
-</div></details>
-<br>
 <blockquote>🎙️ <strong>말로만 들으면 절대 이해 안 돼. 숫자로 보자.</strong> 한 사람이 1시간에 만들 수 있는 양이 이렇다고 하자.</blockquote>
 <br>
 <table>
@@ -1173,10 +1213,6 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🖐 <strong>직접 통과시켜 보자</strong> — <a href="https://zzobakg-boop.github.io/vault-rag/worksheets/5-4%EC%B0%A8%EC%8B%9C_%EC%84%B8%EA%B4%80%EB%AC%B8_%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C.html" target="_blank" rel="noopener">세 관문 통과하기</a> <em>(태블릿·폰에서 열림)</em> 편의점 과자와 해외직구 운동화 중 하나를 골라 문을 하나씩 지나 보면, <strong>가격표에 없던 돈이 어디서 붙는지</strong> 눈에 보인다.</blockquote>
 <br>
 <p>국제 거래는 국내 거래와 달리 나라마다 법·제도가 달라 자유롭지 못하다. 수입품에는 ⑨<input type="text" class="blank-input" data-answer="관세" data-id="9" style="width:60px" placeholder="">를 매기고 통관 절차를 거쳐야 하며, 화폐가 달라 ⑩<input type="text" class="blank-input" data-answer="환율" data-id="10" style="width:60px" placeholder="">로 교환해야 한다.</p>
-<br>
-<details class="ws-fold ws-fold-원문"><summary>지도서 원문 — <strong>채운 뒤에</strong> 펼쳐서 맞는지 확인하자</summary><div class="ws-fold-body">
-<p>국제 거래는 "국가 간 법과 제도가 달라 … 관세를 내야 하고 통관 절차를 거쳐야 … 화폐 간 교환 비율인 환율이 바뀌면 … 상품의 가격이 달라짐." / 장점: 자원·기술 부족 해결·생산성 향상·선택 기회 확대 / 단점: 경쟁력 약한 국내 산업 기반 약화·경제 정책 자율성 훼손 가능 — 천재교육 사회② 지도서 4단원</p>
-</div></details>
 <br>
 <blockquote>🎙️ <strong>첫 번째 문, 관세는 그냥 세금이 아니야.</strong> 미국이 한국산 자동차에 관세를 매기면 미국 안에서 한국 차 값이 올라가. 그러면 미국 소비자는 자연스럽게 미국 차를 사게 되지. <strong>자기 나라 물건을 사게 만드는 장치</strong>인 셈이야. 그래서 다른 나라가 관세를 올린다는 뉴스는 <strong>우리 수출 기업에게 곧장 타격</strong>이 돼 — 무역 의존도 86%인 한국은 그 충격을 특히 크게 받고.</blockquote>
 <br>
