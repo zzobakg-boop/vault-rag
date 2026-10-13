@@ -39,7 +39,7 @@ r3_bad = [b for b in r3 if "blank-input" not in b]
 (red if r3_bad else ok).append(f"R3 인용 학생 화면 {len(r3_bad)}건" + (f" (빈칸 든 것 {len(r3)-len(r3_bad)}건 별도)" if len(r3) > len(r3_bad) else ""))
 # R3 접기 — '> [!원문]- 교과서 N쪽 원문' 은 <details class="ws-fold ws-fold-원문"> 로 나간다. 위 검사는 «(교과서 원문» 인용 줄만 봐서
 #   이 접기를 못 잡았다(2026-10-13 역사가 사회 7-1에서 발견). 접혀 있어도 학생 화면에 교과서 본문이 실린다 — 코어 룰 11.
-r3fold = len(re.findall(r'class="ws-fold ws-fold-원문"', body)) if "복습용" not in path else 0
+r3fold = len(re.findall(r'class="ws-fold ws-fold-원문"', body))   # 복습용도 공개 Pages — R3 제외는 학생용·복습용 공통(9/30)
 (red if r3fold else ok).append(f"교과서 원문 접기 학생 화면 {r3fold}건")
 
 # 카드 잠금
