@@ -1606,3 +1606,40 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 11-1_sat_saemangeum_2001.jpg | 전북 새만금 위성 영상, 2001-10-25 (Landsat 7) | NASA/USGS · 퍼블릭 도메인 |
 | 11-1_sat_saemangeum_2024.jpg | 전북 새만금 위성 영상, 2024-10-24 (Landsat 9) | NASA/USGS · 퍼블릭 도메인 |
 | 9-5_map_daynight.png | 지도 — 시애틀 오전 9시(2026-10-15 16:00 UTC)의 밤낮 경계, 태양 위치 계산 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
+
+
+## 역사① Ⅲ·Ⅳ 서가 반영 그림 (2026-10-15)
+| 파일 | 원본 | 저작자 · 라이선스 · 출처 |
+|---|---|---|
+| 3-1-1_sages-rubbing.jpg | Seven Sages of the Bomboo Grove.Rubbing1.Xishanqiao.jpg | Ismoon · CC BY-SA 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Seven_Sages_of_the_Bomboo_Grove.Rubbing1.Xishanqiao.jpg |
+| 3-1-2_dayanta.jpg | Giant Wild Goose Pagoda.jpg | Alex Kwok (User:Citycat) · CC BY-SA 3.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Giant_Wild_Goose_Pagoda.jpg |
+| 3-1-2_afrasiab-envoys.jpg | Korean ambassadors during a audience with king Varkhuman of Samarkand. 648-651 CE, Afrasiyab, Samarkand.jpg | Photograph: Republic of Korea · CC BY-SA 2.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Korean_ambassadors_during_a_audience_with_king_Varkhuman_of_Samarkand._648-651_CE,_Afrasiyab,_Samarkand.jpg |
+| 3-1-3_daisen-kofun.jpg | NintokuTomb Aerial photograph 2007.jpg | Geospatial Information Authority of Japan · Attribution · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:NintokuTomb_Aerial_photograph_2007.jpg |
+| 3-1-3_genji-emaki.jpg | Genji emaki Yadorigi.JPG | 헤이안 궁정 화가, 1130년 무렵 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Genji_emaki_Yadorigi.JPG |
+| 3-2-1_ardashir-relief.jpg | Ahura Mazda (right) Invests Ardashir I With the Ring of Kingship (4895917806).jpg | A.Davey · CC BY 2.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Ahura_Mazda_(right)_Invests_Ardashir_I_With_the_Ring_of_Kingship_(4895917806).jpg |
+| 3-2-2_deogarh-relief.jpg | Anantasayi Vishnu Deogarh.jpg | Bob King · CC BY 2.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Anantasayi_Vishnu_Deogarh.jpg |
+| 3-3-4_리처드3세무덤.jpg | Richard III's tomb - Leicester Cathedral - England - 6 June 2015.jpg | Jeremy Polanski · CC BY 2.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Richard_III%27s_tomb_-_Leicester_Cathedral_-_England_-_6_June_2015.jpg |
+| 3-3-4_잔다르크낙서.jpg | Joan parliament of paris.jpg | Clément de Fauquembergue · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Joan_parliament_of_paris.jpg |
+| 3-3-5_피에타서명.jpg | Pietà (Michelangelo), author signature, 2017.jpg | Maciej Nux · CC BY-SA 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Piet%C3%A0_(Michelangelo),_author_signature,_2017.jpg |
+| 4-1-1_서호.jpg | Leifeng Pagoda and West Lake, Hangzhou 120529 2.jpg | DXR · CC BY-SA 3.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Leifeng_Pagoda_and_West_Lake,_Hangzhou_120529_2.jpg |
+| 4-1-2_강리도.jpg | GeneralMapOfDistancesAndHistoricCapitals.jpg (혼코지 사본) | 김사형·이무·이회 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:GeneralMapOfDistancesAndHistoricCapitals.jpg |
+| 4-2-1_믈라카동상.jpg | Zheng He Malacca 1.jpg | O.Mustafin · CC0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Zheng_He_Malacca_1.jpg |
+| 4-2-1_리치묘비.jpg | 旋转 DSCN1806.JPG | snowyowls · CC BY-SA 2.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:%E6%97%8B%E8%BD%AC_DSCN1806.JPG |
+| 4-2-2_금각.jpg | Water reflection of Kinkaku-ji Temple a sunny day, Kyoto, Japan.jpg | Basile Morin · CC BY-SA 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Water_reflection_of_Kinkaku-ji_Temple_a_sunny_day,_Kyoto,_Japan.jpg |
+| 4-2-2_큰파도.jpg | Hokusai Great Wave MET DP141042 | Katsushika Hokusai · CC0 (Met) · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:%E3%80%8C%E5%AF%8C%E5%B6%BD%E4%B8%89%E5%8D%81%E5%85%AD%E6%99%AF_%E7%A5%9E%E5%A5%88%E5%B7%9D%E6%B2%96%E6%B5%AA%E8%A3%8F%E3%80%8D-Under_the_Wave_off_Kanagawa_(Kanagawa_oki_nami_ura),_or_The_Great_Wave,_from_the_series_Thirty-six_Views_of_Mount_Fuji_(Fugaku_sanj%C5%ABrokkei)_MET_DP141042.jpg |
+| 4-2-2_라메르표지.jpg | Debussy - La Mer - The great wave of Kanaga from Hokusai.jpg | Durand 1905 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Debussy_-_La_Mer_-_The_great_wave_of_Kanaga_from_Hokusai.jpg |
+| 4-2-3_붉은성.jpg | Lahori Gate (Red Fort), Delhi, India (2017).jpg | Lucky181993 · CC BY-SA 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Lahori_Gate_(Red_Fort),_Delhi,_India_(2017).jpg |
+| 4-3-1_루멜리히사르.jpg | Rumeli Hisarı - Otağtepeden Görünüşü.jpg | Hamdigumus · CC0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Rumeli_Hisar%C4%B1_-_Ota%C4%9Ftepeden_G%C3%B6r%C3%BCn%C3%BC%C5%9F%C3%BC.jpg |
+| 4-3-2_콜럼버스상륙.jpg | Landing of Columbus (2).jpg | John Vanderlyn · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Landing_of_Columbus_(2).jpg |
+| 4-3-3_골든하인드.jpg | Golden Hind Ship Replica - Brixham Harbour 15-9-2025.jpg | BWard 1997 · CC BY 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Golden_Hind_Ship_Replica_-_Brixham_Harbour_15-9-2025.jpg |
+| 4-3-3_VOC주식.jpg | VOC aandeel 9 september 1606.jpg | VOC (Westfries Archief) · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:VOC_aandeel_9_september_1606.jpg |
+| 4-3-3_갤리선.jpg | Galère et vaisseau de ligne français sous Louis XIV.jpg | Jan Karel Donatus Van Beecq, 1691 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Gal%C3%A8re_et_vaisseau_de_ligne_fran%C3%A7ais_sous_Louis_XIV.jpg |
+| 3-2-3_카르발라.jpg | Brooklyn Museum - Battle of Karbala - Abbas Al-Musavi - cropped.jpg (부분) | Abbas Al-Musavi · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Brooklyn_Museum_-_Battle_of_Karbala_-_Abbas_Al-Musavi_-_cropped.jpg |
+| 3-2-4_둥근도시.jpg | Round City in the Time of Mansur (Le Strange).png (부분) | Guy Le Strange (1900) · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Round_City_in_the_Time_of_Mansur_(Le_Strange).png |
+| 3-2-5_테오도라.jpg | Mosaic of Theodora - Basilica San Vitale (Ravenna, Italy).jpg | Petar Milošević · CC BY-SA 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Mosaic_of_Theodora_-_Basilica_San_Vitale_(Ravenna,_Italy).jpg |
+| 3-2-5_아헨예배당.jpg | Aachen-dom-oktogon-s1.jpg | Traveler100 · CC BY-SA 3.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Aachen-dom-oktogon-s1.jpg |
+| 3-3-1_린디스판.jpg | Lindisfarne Priory 2016-05-29.jpg | August Schwerdfeger · CC BY 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Lindisfarne_Priory_2016-05-29.jpg |
+| 3-3-1_곡스타배.jpg | Gokstad Ship, late 9th cent., Viking Ship Museum, Oslo (2) (36070486070).jpg | Richard Mortel · CC BY 2.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Gokstad_Ship,_late_9th_cent.,_Viking_Ship_Museum,_Oslo_(2)_(36070486070).jpg |
+| 3-3-1_생트샤펠.jpg | Santa Capilla, París, Francia, 2022-11-01, DD 80-82 HDR.jpg | Diego Delso · CC BY-SA 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Santa_Capilla,_Par%C3%ADs,_Francia,_2022-11-01,_DD_80-82_HDR.jpg |
+| 3-3-1_명동성당.jpg | Myeongdong Cathedral 20240217.jpg | Sean Young · CC BY 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Myeongdong_Cathedral_20240217.jpg |
+| 3-3-2_마틸다전기.jpg | Vita Mathildis c.1115 (Vat. lat. 4922) | 작자 미상 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:King_-Holy_Roman_Emperor_Henry_IV_-_prays_to_abbot_-Hugh_of_Cluny-,_and_pleads_with_Matilda_-of_Canossa-,_from_Vita_Mathildis,_c._1115_(34295963116).jpg |
