@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -1066,7 +1114,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-2~5-3차시 — 둘 다 좋은데, 왜 동시에 못 잡을까? (물가와 실업)</h1><p class="hero-subtitle">물가를 잡으면 일자리가 줄어든다고?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">물가 지수 = 기준 시점 100 · CPI는 평균<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">물가 상승 3원인(수요·통화량·생산비)<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">실업 3유형 · 실업률 분모 = 경제 활동 인구<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">물가 안정 ↔ 고용 안정 = 단기 상충<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>물가 지수</strong> = 기준이 되는 해를 <strong>100</strong>으로 놓고, 지금이 얼마인지 견준 수.</p><table><thead><tr><th>지수</th><th>뜻</th></tr></thead><tbody><tr><td>100</td><td>기준 시점과 <strong>같다</strong></td></tr><tr><td>105</td><td>기준보다 <strong>5% 올랐다</strong></td></tr><tr><td>98</td><td>기준보다 <strong>2% 내렸다</strong></td></tr></tbody></table><p>🔴 <strong>CPI는 '평균'이다.</strong> 소비자 물가 지수는 <strong>도시 가구의 평균 소비 패턴</strong>으로 만든다. 그래서 <em>"물가가 안정됐다"</em> 는 뉴스와 <strong>내 체감이 다를 수 있다</strong> — 내가 자주 사는 물건이 평균과 다르면 그렇다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>물가가 오르는 길은 <strong>세 갈래</strong>다. 셋 다 결국 <em>"돈은 많은데 물건은 그대로"</em> 로 모인다.</p><table><thead><tr><th>원인</th><th>무슨 일이</th><th>쉽게 말하면</th></tr></thead><tbody><tr><td><strong>수요 증가</strong></td><td>사려는 사람이 늘어남</td><td>물건은 그대로인데 <strong>사겠다는 손</strong>이 늘었다</td></tr><tr><td><strong>통화량 증가</strong></td><td>시중에 돈이 많이 풀림</td><td><strong>돈이 흔해지면</strong> 돈의 값이 떨어진다</td></tr><tr><td><strong>생산비 상승</strong></td><td>임금·원자재값이 오름</td><td>만드는 값이 오르니 <strong>파는 값</strong>도 오른다</td></tr></tbody></table><p><strong>9단계와 이어진다</strong> — 금리를 올리면 ①수요와 ②통화량을 <strong>거꾸로</strong> 돌리게 된다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><img src="images/v5-unemployment-rate.png" alt="만 15세 이상 100명인 마을로 그린 실업률 구조도. 경제 활동 인구 60명 가운데 실업자 3명이므로 실업률은 5%다."><p><strong>실업 3유형</strong> — <strong>경기적</strong>(경기가 나빠서) · <strong>구조적</strong>(기술·산업이 바뀌어서) · <strong>마찰적</strong>(더 나은 곳으로 옮기는 중).</p><p>🔴 <strong>분모는 '경제 활동 인구'다.</strong> 전체 인구도, 노동 가능 인구도 아니다. 학생·전업주부는 <strong>일할 의사가 없어 분모에서 아예 빠진다.</strong></p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><img src="images/v5-blanket.png" alt="너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다."><p><strong>둘 다 좋은 목표인데 동시에 잡기 어렵다.</strong></p><table><thead><tr><th>금리를</th><th>물가는</th><th>일자리는</th></tr></thead><tbody><tr><td><strong>올리면</strong></td><td>진정된다 ✅</td><td>줄어든다 ❌</td></tr><tr><td><strong>내리면</strong></td><td>오른다 ❌</td><td>늘어난다 ✅</td></tr></tbody></table><p><strong>핵심</strong> — 이건 정책이 서툴러서가 아니다. <strong>아픔이 부작용이 아니라, 그게 약이 듣는 방식</strong>이다. 그래서 한국은행의 고민은 <em>"할까 말까"</em> 가 아니라 <strong>"얼마나"</strong> 다.</p></div></div><img class="hero-image" src="images/pricejob-hero.png" alt=""><div class="hero-hook">물가가 오르면 힘들지. 용돈은 그대로인데 떡볶이값만 오르니까. 그럼 물가를 확 잡아버리면 되잖아? 그런데 여기 반전이 있어 — 물가를 잡으려고 하면 이번엔 일자리가 줄어들거든(헐!). 둘 다 좋은 건데 왜 동시에 못 잡을까? 이 단원 첫날 던졌던 그 질문, 오늘 답의 절반을 찾는다.</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-2~5-3차시 — 둘 다 좋은데, 왜 동시에 못 잡을까? (물가와 실업)</h1><p class="hero-subtitle">물가를 잡으면 일자리가 줄어든다고?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">물가 지수 = 기준 시점 100 · CPI는 평균<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">물가 상승 3원인(수요·통화량·생산비)<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">실업 3유형 · 실업률 분모 = 경제 활동 인구<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">물가 안정 ↔ 고용 안정 = 단기 상충<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>물가 지수</strong> = 기준이 되는 해를 <strong>100</strong>으로 놓고, 지금이 얼마인지 견준 수.</p><table><thead><tr><th>지수</th><th>뜻</th></tr></thead><tbody><tr><td>100</td><td>기준 시점과 <strong>같다</strong></td></tr><tr><td>105</td><td>기준보다 <strong>5% 올랐다</strong></td></tr><tr><td>98</td><td>기준보다 <strong>2% 내렸다</strong></td></tr></tbody></table><p>🔴 <strong>CPI는 '평균'이다.</strong> 소비자 물가 지수는 <strong>도시 가구의 평균 소비 패턴</strong>으로 만든다. 그래서 <em>"물가가 안정됐다"</em> 는 뉴스와 <strong>내 체감이 다를 수 있다</strong> — 내가 자주 사는 물건이 평균과 다르면 그렇다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>물가가 오르는 길은 <strong>세 갈래</strong>다. 셋 다 결국 <em>"돈은 많은데 물건은 그대로"</em> 로 모인다.</p><table><thead><tr><th>원인</th><th>무슨 일이</th><th>쉽게 말하면</th></tr></thead><tbody><tr><td><strong>수요 증가</strong></td><td>사려는 사람이 늘어남</td><td>물건은 그대로인데 <strong>사겠다는 손</strong>이 늘었다</td></tr><tr><td><strong>통화량 증가</strong></td><td>시중에 돈이 많이 풀림</td><td><strong>돈이 흔해지면</strong> 돈의 값이 떨어진다</td></tr><tr><td><strong>생산비 상승</strong></td><td>임금·원자재값이 오름</td><td>만드는 값이 오르니 <strong>파는 값</strong>도 오른다</td></tr></tbody></table><p><strong>9단계와 이어진다</strong> — 금리를 올리면 ①수요와 ②통화량이 늘어나는 것을 <strong>누르는</strong> 쪽으로 작용한다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><img src="images/v5-unemployment-rate.png" alt="만 15세 이상 100명인 마을로 그린 실업률 구조도. 경제 활동 인구 60명 가운데 실업자 3명이므로 실업률은 5%다."><p><strong>실업 3유형</strong> — <strong>경기적</strong>(경기가 나빠서) · <strong>구조적</strong>(기술·산업이 바뀌어서) · <strong>마찰적</strong>(더 나은 곳으로 옮기는 중).</p><p>🔴 <strong>분모는 '경제 활동 인구'다.</strong> 전체 인구도, 노동 가능 인구도 아니다. 학생·전업주부는 <strong>일할 의사가 없어 분모에서 아예 빠진다.</strong></p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><img src="images/v5-blanket.png" alt="너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다."><p><strong>둘 다 좋은 목표인데 동시에 잡기 어렵다.</strong></p><table><thead><tr><th>금리를</th><th>물가는 (짧은 기간에 흔히)</th><th>일자리는 (짧은 기간에 흔히)</th></tr></thead><tbody><tr><td><strong>올리면</strong></td><td>진정된다 ✅</td><td>줄어든다 ❌</td></tr><tr><td><strong>내리면</strong></td><td>오른다 ❌</td><td>늘어난다 ✅</td></tr></tbody></table><p><strong>핵심</strong> — 이건 정책이 서툴러서가 아니다. <strong>아픔이 부작용이 아니라, 그게 약이 듣는 방식</strong>이다. 그래서 한국은행의 고민은 <em>"할까 말까"</em> 가 아니라 <strong>"얼마나"</strong> 다.</p></div></div><img class="hero-image" src="images/pricejob-hero.png" alt=""><div class="hero-hook">물가가 오르면 힘들지. 용돈은 그대로인데 떡볶이값만 오르니까. 그럼 물가를 확 잡아버리면 되잖아? 그런데 여기 반전이 있어 — 물가를 잡으려고 하면 이번엔 일자리가 줄어들거든(헐!). 둘 다 좋은 건데 왜 동시에 못 잡을까? 이 단원 첫날 던졌던 그 질문, 오늘 답의 절반을 찾는다.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/20 · OX: <span id="ox-score">0</span>/8
@@ -1227,11 +1275,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h1>3부. 그런데 둘을 같이 놓으면</h1>
 <br>
 </section><h2>📖 9단계: 둘 다 좋은데, 왜 동시에 못 잡을까?</h2>
-<p>물가를 잡는 손잡이가 있다. 우리나라의 중앙은행인 한국은행이 돈을 빌리는 값인 ⑳<input type="text" class="blank-input" data-answer="기준금리" data-id="20" style="width:84px" placeholder="">를 올리는 것이다. <strong>2단계에서 배운 물가 상승 원인 ①수요·②통화량을 거꾸로 돌린 것</strong>이다.</p>
+<p>물가를 잡는 손잡이가 있다. 우리나라의 중앙은행인 한국은행이 정하는 ⑳<input type="text" class="blank-input" data-answer="기준금리" data-id="20" style="width:84px" placeholder="">를 올리는 것이다. 이 금리는 은행에서 돈을 빌리거나 맡길 때 붙는 이자율(금리)의 기준이 된다. 이것을 올리면 <strong>2단계에서 배운 물가 상승 원인 가운데 ①수요·②통화량이 늘어나는 것을 누르는 쪽</strong>으로 작용한다.</p>
 <br>
 <figure class="ws-fig"><img src="images/v5-rate-tradeoff.png" alt="금리를 올리면 소비가 줄고 생산이 줄어 일자리가 줄어드는 연쇄. 물가 하락은 우리가 원한 것이고 실업 증가는 따라오는 것으로, 둘은 같은 한 줄에서 갈라져 나온다." loading="lazy"><figcaption>금리를 올리면 소비가 줄고 생산이 줄어 일자리가 줄어드는 연쇄. 물가 하락은 우리가 원한 것이고 실업 증가는 따라오는 것으로, 둘은 같은 한 줄에서 갈라져 나온다.</figcaption></figure>
 <br>
-<p><strong>물가 안정과 고용 안정.</strong> 둘 다 좋은 목표인데, <strong>하나를 잡으면 다른 게 나빠진다.</strong> 반대로 일자리를 늘리려고 금리를 내리면? 돈이 많이 돌아 이번에는 물가가 오른다. 이것이 단원 첫날 던진 질문 <em>"둘 다 좋은 건데, 왜 동시에 못 하지?"</em> 의 답이다.</p>
+<p><strong>물가 안정과 고용 안정.</strong> 둘 다 좋은 목표인데, <strong>짧은 기간에는 하나를 잡으면 다른 게 나빠지는 일이 흔하다.</strong> 반대로 일자리를 늘리려고 금리를 내리면? 돈이 많이 돌아 이번에는 물가가 오른다. 이것이 단원 첫날 던진 질문 <em>"둘 다 좋은 건데, 왜 동시에 못 하지?"</em> 의 답이다.</p>
 <br>
 <figure class="ws-fig"><img src="images/v5-blanket.png" alt="너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다. 물가 안정과 고용 안정의 관계가 꼭 이렇다." loading="lazy"><figcaption>너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다. 물가 안정과 고용 안정의 관계가 꼭 이렇다.</figcaption></figure>
 <br>
@@ -1272,7 +1320,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="2." style="width:240px" placeholder=""></p>
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="3." style="width:240px" placeholder=""></p>
 <br>
-<blockquote>🔗 <strong>단원 질문으로 돌아가기</strong> — 오늘 9단계에서 찾은 "<em>하나를 잡으면 다른 게 나빠진다</em>"가 바로 <strong>단원 질문 ④ "방안을 아는데 왜 안 될까?"</strong> 의 첫 번째 답이야. 단원 마지막 날 다시 만나자.</blockquote></section>
+<blockquote>🔗 <strong>단원 질문으로 돌아가기</strong> — 오늘 9단계에서 찾은 "<em>하나를 잡으면 다른 게 나빠지기 쉽다</em>"가 바로 <strong>단원 질문 ④ "방안을 아는데 왜 안 될까?"</strong> 의 첫 번째 답이야. 단원 마지막 날 다시 만나자.</blockquote></section>
 </div>
 <script>
 const TB=20, TOX=8, GT=28;
