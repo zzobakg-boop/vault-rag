@@ -1173,6 +1173,15 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-4_photo_conseil_etat.jpg | 프랑스 국사원(최고 행정 법원)이 있는 파리 팔레 루아얄, 2022 (Paris 1er Rue Saint-Honoré Conseil d'État 7476 05.jpg, 잘라 냄) | GFreihalter · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-4_hero_hamtramck.jpg · 7-4_hamtramck_polish_shop.jpg | 미국 미시간주 햄트램크 조지프 캠퍼 거리, 2012년 | Andrew Jameson · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-4_manila_airport.jpg | 마닐라 니노이 아키노 국제공항 출국 심사대, 2023년 | 마닐라 국제공항공사 · 퍼블릭 도메인 · Wikimedia Commons |
+| 7-4_map_gastarbeiter_countries.png | 지도 — 서독이 노동자 모집 협정을 맺은 나라 1955~1968 (Anwerbeabkommen der Bundesrepublik Deutschland 1955–1968.svg, 한글 이름·연도 덧붙임) | NordNordWest · 퍼블릭 도메인 · Wikimedia Commons |
+| 7-4_photo_gastarbeiter_miners.jpg | 서독 발줌 탄광의 이탈리아 광부들, 1962-05-28 (Bundesarchiv B 145 Bild-F013069-0013, Walsum, Kohlebergbau, Gastarbeiter.jpg) | Ludwig Wegmann / 독일 연방기록원 · CC BY-SA 3.0 de · Wikimedia Commons |
+| 7-4_photo_gastarbeiter_train.jpg | 프라이부르크역, 크리스마스에 고향으로 가는 이탈리아 노동자들, 1966-12-16 (… LABW - Staatsarchiv Freiburg W 134 Nr. 072191a.jpeg) | Willy Pragher / 바덴뷔르템베르크 주립기록원 · CC BY 4.0 · Wikimedia Commons |
+| 7-4_photo_gastarbeiter_school.jpg | 발줌 학교의 이탈리아 노동자 자녀들, 1962-05-29 (Bundesarchiv B 145 Bild-F013076-0005, Walsum, Gastarbeiterkinder in der Schule.jpg) | Ludwig Wegmann / 독일 연방기록원 · CC BY-SA 3.0 de · Wikimedia Commons |
+| 7-4_photo_hijab_student.jpg | 머릿수건(히잡)을 쓴 학생, 가자 지구, 2009 (Student in hijab.jpg) | Al Jazeera English · CC BY-SA 2.0 · Wikimedia Commons |
+| 7-4_photo_detroit_station.jpg | 비어 있던 디트로이트 미시간 중앙역, 2009-04-11 (Michigan Central Train Station Exterior 2009.jpg) | Albert duce · CC BY-SA 3.0 · Wikimedia Commons |
+| 7-4_photo_zaatari_camp.jpg | 요르단 자타리 난민촌 항공 사진, 2013-07-18 (An Aerial View of the Za'atri Refugee Camp.jpg) | 미국 국무부 · 퍼블릭 도메인 · Wikimedia Commons |
+| 7-4_chart_hamtramck_pop.png | 그래프 — 햄트램크 인구 1910~2020 | 자체 제작 · 자료 미국 인구 조사 |
+| 7-4_card_refugee_guess.png · 7-4_card_refugee_neighbour.png · 7-4_card_afghan390.png | 카드 그림 — 난민은 어디에 머물까 / 열 명 가운데 예닐곱은 이웃 나라(UNHCR 2025년 말) / 아프가니스탄 390명(2021, 법무부) | 자체 제작 |
 | 7-5_hero_mobile_shop.jpg | 니가타현 미나미우오누마시 편의점 이동 판매차, 2023년 | 古峰 · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-5_입담_줄어드는사람.png | 입담 삽화 — 이동 슈퍼마켓 트럭 앞 일본 산골 할머니와 유모차를 미는 스웨덴 아빠(가상 인물·손글씨 대사 PIL) | AI 생성(Grok Aurora) + 자체 합성 |
 | 7-5_graph_aged.png | 그래프 — 65세 이상 인구 비율 2025년(기준선 7·14·20%) | 자체 제작 · 자료 세계은행 WDI(UN 인구 추계) |
