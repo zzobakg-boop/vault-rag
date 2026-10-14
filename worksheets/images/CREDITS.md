@@ -1181,6 +1181,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-4_photo_detroit_station.jpg | 비어 있던 디트로이트 미시간 중앙역, 2009-04-11 (Michigan Central Train Station Exterior 2009.jpg) | Albert duce · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-4_photo_zaatari_camp.jpg | 요르단 자타리 난민촌 항공 사진, 2013-07-18 (An Aerial View of the Za'atri Refugee Camp.jpg) | 미국 국무부 · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-4_chart_hamtramck_pop.png | 그래프 — 햄트램크 인구 1910~2020 | 자체 제작 · 자료 미국 인구 조사 |
+| 7-4_card_foreign258.png | 카드 그림 — 2024년 외국인 주민 258만 명(총인구의 5.0%, 행정안전부) | 자체 제작 |
 | 7-4_card_refugee_guess.png · 7-4_card_refugee_neighbour.png · 7-4_card_afghan390.png | 카드 그림 — 난민은 어디에 머물까 / 열 명 가운데 예닐곱은 이웃 나라(UNHCR 2025년 말) / 아프가니스탄 390명(2021, 법무부) | 자체 제작 |
 | 7-5_hero_mobile_shop.jpg | 니가타현 미나미우오누마시 편의점 이동 판매차, 2023년 | 古峰 · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-5_입담_줄어드는사람.png | 입담 삽화 — 이동 슈퍼마켓 트럭 앞 일본 산골 할머니와 유모차를 미는 스웨덴 아빠(가상 인물·손글씨 대사 PIL) | AI 생성(Grok Aurora) + 자체 합성 |
