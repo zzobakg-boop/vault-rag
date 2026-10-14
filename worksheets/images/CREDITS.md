@@ -1599,3 +1599,10 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 12-5_lifestraw.jpg | 휴대용 정수기 라이프스트로, 2007 | Vestergaard Frandsen · 퍼블릭 도메인 · Wikimedia Commons |
 | 12-6_hero_pump.jpg | 카메룬의 한 마을의 손 펌프 우물, 2018 | Temfack sonfack · CC BY-SA 4.0 · Wikimedia Commons |
 | 12-7_hero_coffee.jpg | 과테말라 공정 무역 유기농 커피 농장에서 열매를 고르는 사람들, 2007 | rohsstreetcafe · CC BY-SA 2.0 · Wikimedia Commons |
+
+## 9-5·11-1 지리 시각화 (2026-10-14)
+| 파일 | 내용 | 저작자 · 라이선스 |
+|---|---|---|
+| 11-1_sat_saemangeum_2001.jpg | 전북 새만금 위성 영상, 2001-10-25 (Landsat 7) | NASA/USGS · 퍼블릭 도메인 |
+| 11-1_sat_saemangeum_2024.jpg | 전북 새만금 위성 영상, 2024-10-24 (Landsat 9) | NASA/USGS · 퍼블릭 도메인 |
+| 9-5_map_daynight.png | 지도 — 시애틀 오전 9시(2026-10-15 16:00 UTC)의 밤낮 경계, 태양 위치 계산 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
