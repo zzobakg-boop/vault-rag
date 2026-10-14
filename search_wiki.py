@@ -1,4 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+# 🔴 2026-09-17 — env python3(PATH 의존)에서 /usr/bin/python3 고정으로.
+#   chromadb가 /usr/bin/python3 에만 설치돼 있는데 morning_briefing.sh가
+#   PATH 앞에 /opt/homebrew/bin 을 두어, 브리핑 안에서만 «chromadb 없음»이 떠
+#   「되새김질 — vault 연결」이 매일 qmd 대체검색으로 열등하게 돌았다.
+#   인덱스는 멀쩡했다(17,658청크·rc=0). 도구가 아니라 호출자 PATH 문제.
 """위성볼트 (Geo-Teacher-Wiki) 검색 — qmd 셤 (2026-06-27 전환).
 
 ⚠️ 2026-06-27: chromadb geo_teacher_wiki 컬렉션이 brew 업그레이드(chromadb 1.5.7)로

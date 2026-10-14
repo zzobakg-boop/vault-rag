@@ -1,4 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+# 🔴 2026-09-17 — env python3(PATH 의존)에서 /usr/bin/python3 고정으로.
+#   chromadb가 /usr/bin/python3 에만 설치돼 있는데 morning_briefing.sh가
+#   PATH 앞에 /opt/homebrew/bin 을 두어, 브리핑 안에서만 «chromadb 없음»이 떠
+#   「되새김질 — vault 연결」이 매일 qmd 대체검색으로 열등하게 돌았다.
+#   인덱스는 멀쩡했다(17,658청크·rc=0). 도구가 아니라 호출자 PATH 문제.
 """vault-search — Obsidian 볼트 시맨틱 검색 CLI
 
 2026-05-01 #3: bge-reranker-v2-m3 옵션 추가 (Pinecone 가이드 차용).
