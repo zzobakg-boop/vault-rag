@@ -631,6 +631,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             #   도식↔실물 사진 쌍은 그 크기에 안 들어가므로 한 장짜리 와이드로 받는다.
             #   규약: 첫 이미지 = 앞면(도식) · 둘째 = 뒷면(실물). 캡션이 곧 뒷면 설명.
             flip_wide = _fh.startswith('와이드')
+            # 2026-10-15 사회 7-3(천대현 «관련 사진을 넣고 카드를 뒤집으면 보충 내용으로 이동의 배경·원인») —
+            #   «사진» 변종: 앞면 = 사진 + 제목 + 부제 · 뒷면 = 제목 + 설명 글(사진 없음). 기본 플립의 앞뒤를 바꾼 꼴.
+            flip_photo = _fh.startswith('사진')
             flip_items = []
             continue
         if in_flip:
@@ -649,6 +652,22 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         '<span class="ws-flip-b"><img src="%s" alt="%s"><i>%s</i></span>'
                         '</span></button></div>'
                         % (_f_src, _alt, _b_src, _bal, inline(_b_back or _b_t)))
+                    in_flip = False
+                    flip_items = []
+                    continue
+                if flip_items and flip_photo:
+                    _c = []
+                    for _t, _sub, _back, _src in flip_items:
+                        _c.append(
+                            '<button class="ws-flip flip-photo" type="button" aria-label="%s 카드 뒤집기" '
+                            'onclick="this.classList.toggle(\'on\')">'
+                            '<span class="ws-flip-in">'
+                            '<span class="ws-flip-f"><img src="%s" alt="%s"><b>%s</b><i>%s</i><u>눌러서 뒤집기</u></span>'
+                            '<span class="ws-flip-b"><b>%s</b><i>%s</i></span>'
+                            '</span></button>'
+                            % (re.sub(r'<[^>]+>', '', inline(_t)), _src, re.sub(r'<[^>]+>', '', inline(_sub or _t)),
+                               inline(_t), inline(_sub), inline(_t), inline(_back)))
+                    html_parts.append('<div class="ws-flip-row fp-row">%s</div>' % ''.join(_c))
                     in_flip = False
                     flip_items = []
                     continue
@@ -706,7 +725,15 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         return 'data-label="%s"' % (_pre + cur)[:70]
                     return re.sub(r'data-label="([^"]*)"', s, h)
                 body = []
-                for ln in tb_lines:
+                _rows = []
+                for ln in tb_lines + ['']:
+                    # 2026-10-15 사회 7-3(천대현 «D 빈칸 표와 공통점 칸이 교과서엔 한 표에 있다 — 합치자») — 상자 안 '|…|' 줄은 표로
+                    if ln.startswith('|'):
+                        _rows.append(ln); continue
+                    if _rows:
+                        body.append('<div class="ws-tb-tbl">' + _fold_table(_rows, inline) + '</div>'); _rows = []
+                    if not ln:
+                        continue
                     # 2026-10-12 사회 7-3(천대현 «사진이랑 생각 열기 질문을 같은 디자인으로 묶자») — 그림 줄은 상자 안 그림으로
                     _mi = re.match(r'!\[(.*?)\]\(([^)]+)\)\s*$', ln)
                     if _mi:
@@ -1216,7 +1243,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if stripped:
                     gr_rows.append([x.strip() for x in stripped.strip().strip('|').split('|')])
                 continue
-            _xs = []; _ser = []; _band = None; _src = ''; _dec = None
+            _xs = []; _ser = []; _band = None; _src = ''; _dec = None; _yr = False
             for _r in gr_rows:
                 if _r[0] == 'x':
                     _xs = _r[1:]
@@ -1233,6 +1260,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     _band = {'name': _r[1], 'a': _r[2], 'b': _r[3]}
                 elif _r[0] == '출처' and len(_r) >= 2:
                     _src = '|'.join(_r[1:])
+                elif _r[0] == '조사 연도':
+                    _yr = True   # 2026-10-15 사회 7-3: 10년마다 한 조사(총조사)를 «1990년대»로 읽던 것 — 이 줄이 있으면 늘 «1990년»
                 elif _r[0] == '소수' and len(_r) >= 2 and _r[1].strip().isdigit():
                     _dec = int(_r[1])   # 2026-10-04 사회 7-7: 0.72명이 0.7로 보이던 것 — 표시 소수 자릿수를 정한다(없으면 종전대로 0 또는 1)
             if _dec is not None:
@@ -1244,7 +1273,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if _band:
                     _leg += f'<span class="gr-key"><i class="gr-band-key"></i>{inline(_band["name"])}</span>'
                 _alt = ' · '.join(f'{x["name"]}({x["unit"]})' for x in _ser)
-                _D = {'x': _xs, 's': _ser, 'band': _band}
+                _D = {'x': _xs, 's': _ser, 'band': _band, 'yr': _yr}
                 html_parts.append(
                     f'<div class="ws-gr" id="{gid}">'
                     f'<div class="ws-gr-head">{inline(gr_head)}</div>'
@@ -1282,7 +1311,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     'lines[k].setAttribute("points",p.join(" "));dots[k].setAttribute("cx",X(i));dots[k].setAttribute("cy",Y(s,s.v[i]));});'
                     'cur.setAttribute("x1",X(i));cur.setAttribute("x2",X(i));'
                     # 2026-10-06 «년대»는 10년 간격·끝자리 0일 때만 — 종전 «간격 ≤10»이라 5년·1년 간격에 «2024년대»·«1929년대»가 찍혔다(사회 7-6에서 발견) · x가 «YYYY.M»(연·월)이면 «YYYY년 M월»(역사 6-1-3 선거 그래프 제안)
-                    'rd.innerHTML="<b>"+(/^[0-9]{4}[.][0-9]{1,2}$/.test(D.x[i])?String(D.x[i]).replace(/^([0-9]{4})[.]([0-9]{1,2})$/,"$1년 $2월"):D.x[i]+((+D.x[1]-+D.x[0])==10&&D.x.every(function(v){return +v%10==0;})?"년대":"년"))+"</b> — "+D.s.map(function(s){return s.name+" <b style=\\"color:"+s.col+"\\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");'
+                    'rd.innerHTML="<b>"+(/^[0-9]{4}[.][0-9]{1,2}$/.test(D.x[i])?String(D.x[i]).replace(/^([0-9]{4})[.]([0-9]{1,2})$/,"$1년 $2월"):D.x[i]+(!D.yr&&(+D.x[1]-+D.x[0])==10&&D.x.every(function(v){return +v%10==0;})?"년대":"년"))+"</b> — "+D.s.map(function(s){return s.name+" <b style=\\"color:"+s.col+"\\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");'
                     'rg.value=i;}'
                     'rg.addEventListener("input",function(){draw(rg.value);});'
                     'var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}'
@@ -2923,6 +2952,20 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row {{ justify-content: center; }}
+.ws-flip.flip-photo {{ flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }}
+.flip-photo .ws-flip-f {{ justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }}
+.flip-photo .ws-flip-f img {{ width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }}
+.flip-photo .ws-flip-f b {{ font-size: 1.02em; text-align: center; line-height: 1.35; }}
+.flip-photo .ws-flip-f i {{ font-size: .78em; }}
+.flip-photo .ws-flip-f u {{ margin-top: auto; }}
+.flip-photo .ws-flip-b {{ justify-content: flex-start; padding: 12px 13px; gap: 7px; }}
+.flip-photo .ws-flip-b b {{ font-size: .98em; color: #3d3116; text-align: center; }}
+.flip-photo .ws-flip-b i {{ font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }}
+/* 교과서 상자 안 표 */
+.ws-tb-tbl {{ overflow-x: auto; margin: 6px 0 10px; }}
+.ws-tb-tbl table {{ width: auto; margin: 0; }}
 .ws-flip-row.fw-row {{ display: block; margin: 16px 0 20px; }}
 .ws-flip.flip-wide {{ display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }}

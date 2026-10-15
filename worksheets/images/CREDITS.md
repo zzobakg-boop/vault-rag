@@ -1125,9 +1125,9 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-1_act_amazon.jpg | 브라질 아마존 열대 우림 | lubasi · CC BY-SA 2.0 · Wikimedia Commons |
 | 7-3_hero_ansan_market.jpg | 안산시 시장, 2014년 | Piotrus · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-3_wongok_signs.jpg | 안산시 원곡동 거리의 여러 나라 간판, 2010년 | 대한민국 정부 Korea.net · CC BY-SA 2.0 · Wikimedia Commons |
-| 7-3_jajangmyeon.jpg | 짜장면 | 최광모 · CC0 · Wikimedia Commons |
-| 7-3_ny_pizza.jpg | 뉴욕식 피자 | Wikiuser100 · CC BY-SA 4.0 · Wikimedia Commons |
-| 7-3_tacos_al_pastor.jpg | 타코스 알 파스토르 | Li.Cheu · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_jajangmyeon_v2.jpg | 짜장면 (2026-10-15 세 음식 사진 크기를 맞추려 4:3으로 잘라 _v2) | 최광모 · CC0 · Wikimedia Commons |
+| 7-3_ny_pizza_v2.jpg | 뉴욕식 피자 | Wikiuser100 · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_tacos_al_pastor_v2.jpg | 타코스 알 파스토르 | Li.Cheu · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-3_card_mexico_usa.png | 이동 카드 지도 — 멕시코 → 미국 | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
 | 7-3_card_syria_europe.png | 이동 카드 지도 — 시리아 → 튀르키예·유럽(독일) | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
 | 7-3_card_england_america.png | 이동 카드 지도 — 영국 → 북아메리카(17세기 청교도) | 자체 제작 · 바탕 Natural Earth(퍼블릭 도메인) |
@@ -1679,3 +1679,10 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 3-3-1_생트샤펠.jpg | Santa Capilla, París, Francia, 2022-11-01, DD 80-82 HDR.jpg | Diego Delso · CC BY-SA 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Santa_Capilla,_Par%C3%ADs,_Francia,_2022-11-01,_DD_80-82_HDR.jpg |
 | 3-3-1_명동성당.jpg | Myeongdong Cathedral 20240217.jpg | Sean Young · CC BY 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Myeongdong_Cathedral_20240217.jpg |
 | 3-3-2_마틸다전기.jpg | Vita Mathildis c.1115 (Vat. lat. 4922) | 작자 미상 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:King_-Holy_Roman_Emperor_Henry_IV_-_prays_to_abbot_-Hugh_of_Cluny-,_and_pleads_with_Matilda_-of_Canossa-,_from_Vita_Mathildis,_c._1115_(34295963116).jpg |
+| 7-3_flip_potosi.jpg | Capitulo-CIX.jpg — 포토시 은산, 시에사 데 레온 『페루 연대기』(1553) 목판화 (4:3 자름) | 작자 미상 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Capitulo-CIX.jpg |
+| 7-3_flip_brookes.jpg | Drawing of the slave ship 'Brookes' (IA dr drawing-of-the-slave-ship-brookes-10927014).jpg — 갑판 도면 일부 자름 | Thomas Clarkson · Public domain · David Rumsey Map Collection / Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Drawing_of_the_slave_ship_%27Brookes%27._(IA_dr_drawing-of-the-slave-ship-brookes-10927014).jpg |
+| 7-3_flip_shantou.jpg | COLLECTIE TROPENMUSEUM Chinese koelies uit Shantou … Belawan Sumatra … TMnr 10001445.jpg (1900~1915) | 작자 미상 · Tropenmuseum · CC BY-SA 3.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:COLLECTIE_TROPENMUSEUM_Chinese_koelies_uit_Shantou_verlaten_het_schip_%27s_Jacob_in_de_haven_van_Belawan_Sumatra_om_in_de_tabakcultuur_te_gaan_werken_TMnr_10001445.jpg |
+| 7-3_hawaii_gaelic.jpg | SS Gaelic(1885).jpg | 작자 미상 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:SS_Gaelic(1885).jpg |
+| 7-3_hawaii_sugarcane.jpg | Chinese contract laborers on a sugar plantation in 19th century Hawaii.jpg | Hawaii State Archives · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Chinese_contract_laborers_on_a_sugar_plantation_in_19th_century_Hawaii.jpg |
+| 7-3_hawaii_olaa_1902.jpg | The Olaa Sugar Company, Hawaii's Largest Sugar Plantation (c. 1902).jpg — The Pacific Commercial Advertiser 1902-01-01 | Library of Congress Chronicling America · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:The_Olaa_Sugar_Company,_Hawaii%27s_Largest_Sugar_Plantation_(c._1902).jpg |
+| 7-3_koryoin_1937.jpg | KPH Reeds Fall 1937--Mid Resolution.jpg — 1937년 가을 우즈베키스탄, 김병화 박물관 소장 소련 선전 사진 | 작자 미상 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:KPH_Reeds_Fall_1937--Mid_Resolution.jpg |
