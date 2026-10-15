@@ -1149,6 +1149,11 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-3_voc_배출.jpg | 일본 도마코마이 오지 제지 공장 굴뚝의 흰 연기 (White smoke from Oji Paper Tomakomai Mill chimney.jpg, 테두리 빼고 잘라 냄) | ejstanz · CC BY 2.0 · Wikimedia Commons |
 | 7-3_fig_pushpull.png | 도식 — 같은 일자리, 두 가지 힘(살던 곳이 밀어내고 도착할 곳이 끌어당긴다) | 자체 제작 (fig_73_pushpull.py) |
 | 7-3_fig_wall.png | 도식 — 두 힘 사이의 벽(먼 거리·비행기 값·비자·낯선 말) | 자체 제작 (fig_73_pushpull.py) |
+| 7-3_card_move_cover.png | 카드 — 짐을 쌀까, 말까?(3단계 카드뉴스 표지) | 자체 제작 (PIL) |
+| 7-3_card_romania_germany.png | 지도 — 루마니아에서 독일로 | 자체 제작 (hq_73_cardnews.py · Natural Earth 퍼블릭 도메인) |
+| 7-3_card_wage_price.png | 카드 — 루마니아를 1로 놓은 독일의 순소득 2.6배(2025)·물가 수준 1.9배(2024) | 자체 제작 (PIL) · 수치 Eurostat |
+| 7-3_map_europe_mass.png | 지도 — 19세기~20세기 초 유럽에서 아메리카·오스트레일리아로 | 자체 제작 (hq_73_cardnews.py · Natural Earth 퍼블릭 도메인) |
+| 7-3_photo_steamship_1906.jpg | 대서양 여객선 갑판의 이민자들, 1906 (Immigrants on an Atlantic Liner LCCN97501073.jpg, 바탕 종이·캡션 잘라 냄) | Edwin Levick · 퍼블릭 도메인 · 미국 의회도서관 / Wikimedia Commons |
 | 7-4_입담_들어온곳빠져나간곳.png | 입담 삽화 — 북적이는 도시 거리의 이주민과 빈집 앞 시골 할아버지(가상 인물·손글씨 대사 PIL) | AI 생성(Grok Aurora) + 자체 합성 |
 | 7-4_입담_진땀나는식탁.png | 입담 삽화 — 영화 「컬러풀 웨딩즈」 설정을 빌린 가족 식탁(장인어른과 두 사위, 가상 인물·실제 영화 장면 아님) | AI 생성(Grok Aurora) + 자체 합성 |
 | 7-4_film_wedding.jpg | 삽화 — 영화 「컬러풀 웨딩즈」 설정을 그린 네 딸의 결혼식(가상 인물·실제 영화 장면 아님) | AI 생성(Grok Aurora) |
