@@ -1169,6 +1169,22 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-5_card_21_v2.png | 카드 — 인구 대체 수준 2.1명 (사진 위·글자 띠 아래 합성, PIL) · 사진 Human-Male-White-Newborn-Baby-Crying.jpg | Evan-Amos · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-5_card_policy_v2.png | 카드 — 정책을 편 두 나라도 다시 ↓ (사진 위·글자 띠 아래 합성, PIL) · 사진 20200526 Pappa med barnvagn 08A5072 (49940117813).jpg | Jenny Andersson / News Oresund · CC BY 2.0 · Wikimedia Commons |
 | 7-5_card_70_v2.png | 카드 — 로푸키리 평균 나이 70세 (사진 위·글자 띠 아래 합성, PIL) · 사진 Arabianrannan yhteisöllisen Senioritalo Loppukirin … iltahuuto -yhteislaulutapahtuma 2020 (HK8208-71) | Hannu Häkkinen / 헬싱키시립박물관 · CC BY 4.0 · Wikimedia Commons |
+| 7-3_card_mexico_usa_v2.png | 지도 카드 — 멕시코 → 미국 — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_73_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-3_card_syria_europe_v2.png | 지도 카드 — 시리아 → 튀르키예·유럽(독일) — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_73_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-3_card_england_america_v2.png | 지도 카드 — 영국 → 북아메리카 — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_73_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-3_card_tuvalu_australia_v2.png | 지도 카드 — 투발루 → 오스트레일리아 — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_73_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-3_card_vietnam_korea_v2.png | 지도 카드 — 베트남 → 한국(안산) — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_73_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-3_dualipa_map_v2.png | 지도 — 코소보 프리슈티나 → 영국 런던(1992년) — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_73_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-3_korea_periods_v2.png | 지도 — 우리나라의 시기별 인구 이동(가~마, 오늘날 경계선 없음) — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_73_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-3_world_migration_v2.png | 지도 — 세계의 다양한 인구 이동(교과서 133쪽 스스로 탐구 지도를 같은 뜻으로 다시 그림) — 지형 음영·나라 경계·위경선(세계지도라 축척 없음, 2026-10-15 «지도답게») | 자체 제작 (hq_73_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-3_map_koryoin_v2.png | 지도 — 고려인의 길(연해주 → 중앙아시아 1937 → 광주) — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_73_koryoin.py) · Natural Earth 퍼블릭 도메인 |
+| 7-4_map_hamtramck_v2.png | 지도 — 햄트램크 위치(미국 미시간주) — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_74_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-4_map_manila_v2.png | 지도 — 필리핀 마닐라 위치 — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_74_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-4_map_europe_islam_v2.png | 지도 — 북부 아프리카·서남아시아에서 유럽으로 — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_74_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-4_map_syria_route_v2.png | 지도 — 2015년 무렵 시리아 난민이 유럽으로 간 길 — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_74_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-4_map_gastarbeiter_countries_v2.png | 지도 — 서독이 노동자를 불러오기로 약속한 나라(1955~1968, 동서독 경계는 개략) — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_74_migration.py) · Natural Earth 퍼블릭 도메인 |
+| 7-5_map_niigata_v2.png | 지도 — 니가타현 미나미우오누마 위치 — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_75_aging.py) · Natural Earth 퍼블릭 도메인 |
+| 7-5_map_helsinki_v2.png | 지도 — 핀란드 헬싱키 위치 — 지형 음영·나라 경계·위경선·축척·방위(2026-10-15 «지도답게») | 자체 제작 (hq_75_aging.py) · Natural Earth 퍼블릭 도메인 |
 | 7-4_입담_들어온곳빠져나간곳.png | 입담 삽화 — 북적이는 도시 거리의 이주민과 빈집 앞 시골 할아버지(가상 인물·손글씨 대사 PIL) | AI 생성(Grok Aurora) + 자체 합성 |
 | 7-4_입담_진땀나는식탁.png | 입담 삽화 — 영화 「컬러풀 웨딩즈」 설정을 빌린 가족 식탁(장인어른과 두 사위, 가상 인물·실제 영화 장면 아님) | AI 생성(Grok Aurora) + 자체 합성 |
 | 7-4_film_wedding.jpg | 삽화 — 영화 「컬러풀 웨딩즈」 설정을 그린 네 딸의 결혼식(가상 인물·실제 영화 장면 아님) | AI 생성(Grok Aurora) |
