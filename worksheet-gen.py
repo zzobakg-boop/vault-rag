@@ -2716,15 +2716,15 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count {{ font-size: .8em; color: #8a7a5c; }}
 @media (max-width: 520px) {{ .ws-sw-stage {{ padding: 4px 10px 2px; }} .ws-sw-tab {{ font-size: .74em; padding: 7px 2px; }} }}
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news {{ border-color: #2f4a6b; background: #fff; }}
+.ws-sw.sw-news {{ border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }}   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head {{ padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }}
 .sw-news .ws-sw-tabs {{ justify-content: center; gap: 8px; padding: 8px 10px 6px; }}
 .sw-news .ws-sw-tab {{ flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }}
 .sw-news .ws-sw-tab.on {{ background: #2f4a6b; border-color: #2f4a6b; color: #fff; }}
 .sw-news .ws-sw-stage {{ border-top: 0; padding: 4px 16px 6px; }}
-.sw-news .ws-sw-h {{ display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }}
-.sw-news .ws-sw-pane img {{ display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }}   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p {{ font-size: 1.02em; line-height: 1.85; }}
+.sw-news .ws-sw-h {{ display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }}
+.sw-news .ws-sw-pane img {{ display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }}   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p {{ font-size: .97em; line-height: 1.7; margin: 6px 0; }}
 .sw-news .ws-sw-nav button {{ border-color: #b9c6d6; color: #2f4a6b; }}
 .ws-tb-2cin {{ margin: 2px 0 4px; }}
 .ws-tb-2cin .ws-tb-fig {{ margin: 0; }}
