@@ -464,7 +464,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
@@ -1153,9 +1153,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-sw sw-news" id="sw18" data-cur="0"><div class="ws-sw-head">📰 답을 쓴 뒤에 넘겨 보자 — 일본은 지금 몇 명 중 한 명이 노인일까</div><div class="ws-sw-tabs" role="tablist"><button type="button" role="tab" class="ws-sw-tab on" onclick="swGo('sw18',0)" aria-label="먼저 위 칸부터">1</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw18',1)" aria-label="열 명 가운데 셋 가까이">2</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw18',2)" aria-label="트럭은 어디를 돌까">3</button></div><div class="ws-sw-stage">
 <section class="ws-sw-pane" data-i="0"><h3 class="ws-sw-h">먼저 위 칸부터</h3>
-<figure class="ws-fig"><img src="images/7-5_card_cover.png" alt="먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자" loading="lazy"><figcaption>먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-5_card_cover_v2.png" alt="먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자" loading="lazy"><figcaption>먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자</figcaption></figure>
 </section><section class="ws-sw-pane" data-i="1" hidden><h3 class="ws-sw-h">열 명 가운데 셋 가까이</h3>
-<figure class="ws-fig"><img src="images/7-5_card_296.png" alt="일본 사람 가운데 65세 이상 29.6%(2026년 9월)" loading="lazy"><figcaption>일본 사람 가운데 65세 이상 29.6%(2026년 9월)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-5_card_296_v2.png" alt="일본 홋카이도 삿포로의 거리 — 지팡이를 짚은 노인(2026년 9월, 일본 65세 이상 29.6%)" loading="lazy"><figcaption>일본 홋카이도 삿포로의 거리 — 지팡이를 짚은 노인(2026년 9월, 일본 65세 이상 29.6%)</figcaption></figure>
 <p>교과서는 2015년 일본의 65세 이상 인구가 '네 명 가운데 한 명'이라고 적었다. 2026년 9월에는 그 비율이 29.6%까지 올랐다. 가게 진열대도 바뀌었다 — 일본에서는 2012년 무렵 어른용 기저귀가 아기용 기저귀보다 더 많이 팔리기 시작했다.</p>
 </section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">트럭은 어디를 돌까</h3>
 <figure class="ws-fig"><img src="images/7-5_map_niigata.png" alt="니가타현 미나미우오누마의 산골 마을" loading="lazy"><figcaption>니가타현 미나미우오누마의 산골 마을</figcaption></figure>
@@ -1205,10 +1205,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <figure class="ws-fig"><img src="images/7-5_graph_tfr.png" alt="프랑스·스웨덴 합계 출산율 1990~2024년" loading="lazy"><figcaption>프랑스·스웨덴 합계 출산율 1990~2024년</figcaption></figure>
 <p>합계 출산율은 여성 한 명이 평생 낳을 것으로 예상되는 아이 수다. 교과서 그래프에서 두 나라는 2015년 무렵 2명 가까이 올랐지만, 지금은 프랑스 1.56명(2025년), 스웨덴 1.43명(2024년)이다.</p>
 </section><section class="ws-sw-pane" data-i="1" hidden><h3 class="ws-sw-h">왜 2명이 아니라 2.1명일까</h3>
-<figure class="ws-fig"><img src="images/7-5_card_21.png" alt="인구가 늘지도 줄지도 않으려면 2.1명" loading="lazy"><figcaption>인구가 늘지도 줄지도 않으려면 2.1명</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-5_card_21_v2.png" alt="갓 태어난 아기 — 인구가 늘지도 줄지도 않으려면 2.1명" loading="lazy"><figcaption>갓 태어난 아기 — 인구가 늘지도 줄지도 않으려면 2.1명</figcaption></figure>
 <p>부모 두 사람을 대신하려면 2명이면 될 것 같지만, 남자아이가 조금 더 많이 태어나고 어른이 되기 전에 세상을 떠나는 아이도 있어서 2.1명쯤은 낳아야 인구가 늘지도 줄지도 않는다. 두 나라는 2010년대 중반 이 선 가까이 갔다가 다시 멀어졌다.</p>
 </section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">정책은 소용없었을까?</h3>
-<figure class="ws-fig"><img src="images/7-5_card_policy.png" alt="출산을 돕는 정책을 편 두 나라도 다시 내려갔다" loading="lazy"><figcaption>출산을 돕는 정책을 편 두 나라도 다시 내려갔다</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-5_card_policy_v2.png" alt="스웨덴 말뫼 — 유모차를 미는 아빠" loading="lazy"><figcaption>스웨덴 말뫼 — 유모차를 미는 아빠</figcaption></figure>
 <blockquote>🎙️ 교과서가 '정책 덕분에 올랐다'고 소개한 두 나라도 다시 내려갔어. 스웨덴은 2025년에 1.42명으로 더 내려가, 기록이 시작된 뒤 가장 낮아. 그럼 정책은 소용이 없었던 걸까, 아니면 정책만으로는 모자란 걸까? 마지막 칸에서 네 생각을 들어 볼게.</blockquote>
 <p>스웨덴은 이번이 처음도 아니다. 1980년대 출산과 육아를 돕는 정책을 넓힌 뒤 1990년에는 합계 출산율이 2.13명까지 올라 아기가 12만 4천 명 태어났다. 그런데 1990년대 경기가 나빠지자 1999년에는 1.50명, 8만 8천 명으로 내려갔다.</p>
 </section></div><div class="ws-sw-nav"><button type="button" onclick="swStep('sw67',-1)">‹ 이전</button><span class="ws-sw-count"><b>1</b> / 3</span><button type="button" onclick="swStep('sw67',1)">다음 ›</button></div></div><script>(function(){if(!window.swGo){window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}var g=document.getElementById("sw67"),x0=null,y0=null;if(!g)return;g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;swStep("sw67",dx<0?1:-1);g.scrollIntoView({block:"start",behavior:"smooth"});}},{passive:true});})();</script>
@@ -1226,12 +1226,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-sw sw-news" id="sw91" data-cur="0"><div class="ws-sw-head">📰 다 쓴 뒤에 넘겨 보자 — 노인이 노인을 돕는 집</div><div class="ws-sw-tabs" role="tablist"><button type="button" role="tab" class="ws-sw-tab on" onclick="swGo('sw91',0)" aria-label="먼저 위 칸부터">1</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw91',1)" aria-label="기다리지 않고 직접 지었다">2</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw91',2)" aria-label="평균 나이 70세의 '마지막 질주'">3</button></div><div class="ws-sw-stage">
 <section class="ws-sw-pane" data-i="0"><h3 class="ws-sw-h">먼저 위 칸부터</h3>
-<figure class="ws-fig"><img src="images/7-5_card_cover.png" alt="먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자" loading="lazy"><figcaption>먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-5_card_cover_v2.png" alt="먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자" loading="lazy"><figcaption>먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자</figcaption></figure>
 </section><section class="ws-sw-pane" data-i="1" hidden><h3 class="ws-sw-h">기다리지 않고 직접 지었다</h3>
 <figure class="ws-fig"><img src="images/7-5_photo_arabianranta.jpg" alt="로푸키리가 있는 헬싱키 아라비안란타 동네(로푸키리 건물 자체는 아니다)" loading="lazy"><figcaption>로푸키리가 있는 헬싱키 아라비안란타 동네(로푸키리 건물 자체는 아니다)</figcaption></figure>
 <p>할머니 할아버지들은 직접 주택 조합을 만들어 2006년 헬싱키에 아파트를 지었다. 이름은 '로푸키리' — 핀란드어로 '마지막 질주'라는 뜻이다.</p>
 </section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">평균 나이 70세의 '마지막 질주'</h3>
-<figure class="ws-fig"><img src="images/7-5_card_70.png" alt="로푸키리에 사는 사람들의 평균 나이 70세" loading="lazy"><figcaption>로푸키리에 사는 사람들의 평균 나이 70세</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-5_card_70_v2.png" alt="헬싱키 로푸키리 — 발코니에 나와 함께 노래하는 주민들(2020년)" loading="lazy"><figcaption>헬싱키 로푸키리 — 발코니에 나와 함께 노래하는 주민들(2020년)</figcaption></figure>
 <p>청소와 빨래, 밥 짓기를 돌아가며 맡는다. 돌봄을 기다리는 대신 서로 돕고 의지하며 산다.</p>
 </section></div><div class="ws-sw-nav"><button type="button" onclick="swStep('sw91',-1)">‹ 이전</button><span class="ws-sw-count"><b>1</b> / 3</span><button type="button" onclick="swStep('sw91',1)">다음 ›</button></div></div><script>(function(){if(!window.swGo){window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}var g=document.getElementById("sw91"),x0=null,y0=null;if(!g)return;g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;swStep("sw91",dx<0?1:-1);g.scrollIntoView({block:"start",behavior:"smooth"});}},{passive:true});})();</script>
 <br>

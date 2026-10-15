@@ -1154,6 +1154,21 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-3_card_wage_price.png | 카드 — 루마니아를 1로 놓은 독일의 순소득 2.6배(2025)·물가 수준 1.9배(2024) | 자체 제작 (PIL) · 수치 Eurostat |
 | 7-3_map_europe_mass.png | 지도 — 19세기~20세기 초 유럽에서 아메리카·오스트레일리아로 | 자체 제작 (hq_73_cardnews.py · Natural Earth 퍼블릭 도메인) |
 | 7-3_photo_steamship_1906.jpg | 대서양 여객선 갑판의 이민자들, 1906 (Immigrants on an Atlantic Liner LCCN97501073.jpg, 바탕 종이·캡션 잘라 냄) | Edwin Levick · 퍼블릭 도메인 · 미국 의회도서관 / Wikimedia Commons |
+| 7-3_card_move_cover_v2.png | 카드 — 짐을 쌀까, 말까? (사진 위·글자 띠 아래 합성, PIL) · 사진 Home-returning passengers at Beijing West Railway Station subway platform (20230110155035).jpg | N509FZ · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-3_card_wage_price_v2.png | 카드 — 버는 돈 2.6배·물건값 1.9배 (사진 위·글자 띠 아래 합성, PIL) · 사진 Electrician Working.jpg · 수치 Eurostat | editor B (Flickr) · CC BY 2.0 · Wikimedia Commons |
+| 7-3_card_romania_germany_v2.png | 지도 — 루마니아에서 독일로(지형 음영·나라 경계·유럽 연합 회원국·위경선·축척·방위) | 자체 제작 (hq_73_cardnews.py · Natural Earth 퍼블릭 도메인) |
+| 7-3_map_europe_mass_v2.png | 지도 — 19세기~20세기 초 유럽에서 아메리카·오스트레일리아로(지형 음영·나라 경계·위경선) | 자체 제작 (hq_73_cardnews.py · Natural Earth 퍼블릭 도메인) |
+| 7-4_card_ofw216_v2.png | 카드 — 외국에서 일하는 필리핀 사람 216만 명 (사진 위·글자 띠 아래 합성, PIL) · 사진 In the factory of I-Mei Foods 2022-12-22.jpg | Wang Yu Ching / Office of the President (ROC) · CC BY 2.0 · Wikimedia Commons |
+| 7-4_card_braindrain_v2.png | 카드 — 간호사·엔지니어가 떠나면 고향은? (사진 위·글자 띠 아래 합성, PIL) · 사진 Pacific Partnership … Leyte Provincial Hospital in Tacloban City, Philippines (9964462).jpg(왼쪽 부분) | U.S. Navy / Joseph Vazquez · 퍼블릭 도메인 · Wikimedia Commons |
+| 7-4_card_foreign258_v2.png | 카드 — 외국인 주민 258만 명 (사진 위·글자 띠 아래 합성, PIL) · 사진 7-3_photo_ansan_wongok.jpg와 같음 · 수치 행정안전부 | 7-3_photo_ansan_wongok.jpg 행 참조 |
+| 7-4_card_refugee_guess_v2.png | 카드 — 난민은 대부분 어디에 머물까(짐작) (사진 위·글자 띠 아래 합성, PIL) · 사진 Border region between Poland and Ukraine (Medyka) (P-055062-00-09).jpg | European Commission – Audiovisual Service, Bartosz Siedlik · CC BY 4.0 · Wikimedia Commons |
+| 7-4_card_refugee_neighbour_v2.png | 카드 — 열 명 가운데 예닐곱은 이웃 나라에 (사진 위·글자 띠 아래 합성, PIL) · 사진 Kutupalong Refugee Camp (John Owens-VOA).jpg · 수치 UNHCR | John Owens (VOA) · 퍼블릭 도메인 · Wikimedia Commons |
+| 7-4_card_afghan390_v2.png | 카드 — 2021년 아프가니스탄 390명 (사진 위·글자 띠 아래 합성, PIL) · 사진 13.11.17 필리핀 재난구호 Republic Of korea Air Force (10955843615).jpg(2013년 필리핀 구호 때 사진임을 그림에 밝힘) | 대한민국 국군 · CC BY-SA 2.0 · Wikimedia Commons |
+| 7-5_card_cover_v2.png | 카드 — 먼저 쓰고, 그다음 넘기기 (사진 위·글자 띠 아래 합성, PIL) · 사진 Boy doing homework (4596604619).jpg | Randen Pederson · CC BY 2.0 · Wikimedia Commons |
+| 7-5_card_296_v2.png | 카드 — 일본 65세 이상 29.6% (사진 위·글자 띠 아래 합성, PIL) · 사진 Elderly Woman in Street - Sapporo - Hokkaido - Japan (47971119516).jpg | Adam Jones · CC BY-SA 2.0 · Wikimedia Commons |
+| 7-5_card_21_v2.png | 카드 — 인구 대체 수준 2.1명 (사진 위·글자 띠 아래 합성, PIL) · 사진 Human-Male-White-Newborn-Baby-Crying.jpg | Evan-Amos · 퍼블릭 도메인 · Wikimedia Commons |
+| 7-5_card_policy_v2.png | 카드 — 정책을 편 두 나라도 다시 ↓ (사진 위·글자 띠 아래 합성, PIL) · 사진 20200526 Pappa med barnvagn 08A5072 (49940117813).jpg | Jenny Andersson / News Oresund · CC BY 2.0 · Wikimedia Commons |
+| 7-5_card_70_v2.png | 카드 — 로푸키리 평균 나이 70세 (사진 위·글자 띠 아래 합성, PIL) · 사진 Arabianrannan yhteisöllisen Senioritalo Loppukirin … iltahuuto -yhteislaulutapahtuma 2020 (HK8208-71) | Hannu Häkkinen / 헬싱키시립박물관 · CC BY 4.0 · Wikimedia Commons |
 | 7-4_입담_들어온곳빠져나간곳.png | 입담 삽화 — 북적이는 도시 거리의 이주민과 빈집 앞 시골 할아버지(가상 인물·손글씨 대사 PIL) | AI 생성(Grok Aurora) + 자체 합성 |
 | 7-4_입담_진땀나는식탁.png | 입담 삽화 — 영화 「컬러풀 웨딩즈」 설정을 빌린 가족 식탁(장인어른과 두 사위, 가상 인물·실제 영화 장면 아님) | AI 생성(Grok Aurora) + 자체 합성 |
 | 7-4_film_wedding.jpg | 삽화 — 영화 「컬러풀 웨딩즈」 설정을 그린 네 딸의 결혼식(가상 인물·실제 영화 장면 아님) | AI 생성(Grok Aurora) |

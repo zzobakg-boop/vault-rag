@@ -464,7 +464,7 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
@@ -1230,13 +1230,13 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-sw sw-news" id="sw95" data-cur="0"><div class="ws-sw-head">📰 다 채운 뒤에 넘겨 보자 — 떠난 사람이 보내오는 돈</div><div class="ws-sw-tabs" role="tablist"><button type="button" role="tab" class="ws-sw-tab on" onclick="swGo('sw95',0)" aria-label="216만 명이 외국에서 일한다">1</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw95',1)" aria-label="고향으로 보내오는 돈">2</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw95',2)" aria-label="그런데 고향은?">3</button></div><div class="ws-sw-stage">
 <section class="ws-sw-pane" data-i="0"><h3 class="ws-sw-h">216만 명이 외국에서 일한다</h3>
-<figure class="ws-fig"><img src="images/7-4_card_ofw216.png" alt="외국에서 일하는 필리핀 사람 216만 명(2023년)" loading="lazy"><figcaption>외국에서 일하는 필리핀 사람 216만 명(2023년)</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-4_card_ofw216_v2.png" alt="타이완의 식품 공장에서 일하는 필리핀 노동자 — 소매에 필리핀 국기" loading="lazy"><figcaption>타이완의 식품 공장에서 일하는 필리핀 노동자 — 소매에 필리핀 국기</figcaption></figure>
 <p>2023년에 필리핀 사람 약 216만 명이 외국에서 일했다. 필리핀 공항에는 해외에서 일하는 사람만 쓰는 출국 심사 창구까지 따로 있다.</p>
 </section><section class="ws-sw-pane" data-i="1" hidden><h3 class="ws-sw-h">고향으로 보내오는 돈</h3>
 <figure class="ws-fig"><img src="images/7-4_photo_ofw_remit.jpg" alt="필리핀의 송금 가게" loading="lazy"><figcaption>필리핀의 송금 가게</figcaption></figure>
 <p>이들이 고향 가족에게 보낸 돈은 그해 필리핀 경제 전체(국내 총생산)의 8%가 넘었다. 그 돈으로 동생이 학교에 가고 집이 지어진다.</p>
 </section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">그런데 고향은?</h3>
-<figure class="ws-fig"><img src="images/7-4_card_braindrain.png" alt="간호사·엔지니어가 줄줄이 떠나면 고향은?" loading="lazy"><figcaption>간호사·엔지니어가 줄줄이 떠나면 고향은?</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-4_card_braindrain_v2.png" alt="필리핀 타클로반의 병원 — 환자를 돌보는 간호사" loading="lazy"><figcaption>필리핀 타클로반의 병원 — 환자를 돌보는 간호사</figcaption></figure>
 <blockquote>🎙️ 간호사와 엔지니어가 줄줄이 떠나면 정작 고향 병원과 공장은 누가 지킬까? 이걸 '두뇌 유출'이라고 불러. 카리브해의 가이아나와 자메이카는 대학을 나온 사람 열 명 가운데 여덟 명 넘게 나라 밖에서 살았어(2000년).</blockquote>
 </section></div><div class="ws-sw-nav"><button type="button" onclick="swStep('sw95',-1)">‹ 이전</button><span class="ws-sw-count"><b>1</b> / 3</span><button type="button" onclick="swStep('sw95',1)">다음 ›</button></div></div><script>(function(){if(!window.swGo){window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}var g=document.getElementById("sw95"),x0=null,y0=null;if(!g)return;g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;swStep("sw95",dx<0?1:-1);g.scrollIntoView({block:"start",behavior:"smooth"});}},{passive:true});})();</script>
 <br>
@@ -1270,7 +1270,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <figure class="ws-fig"><img src="images/7-2_gokseong.jpg" alt="곡성읍 — 작은 읍내 뒤로 논과 산줄기" loading="lazy"><figcaption>곡성읍 — 작은 읍내 뒤로 논과 산줄기</figcaption></figure>
 <p>정부는 2021년에 곡성군을 '인구 감소 지역'으로 정했다. 2015년부터 10년 사이 곡성 인구는 9% 가까이 줄었고, 전국 시군구 열 곳 가운데 일곱 곳꼴로 인구가 줄었다.</p>
 </section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">나라 밖과 견주면?</h3>
-<figure class="ws-fig"><img src="images/7-4_card_foreign258.png" alt="행정안전부 「2024 지방자치단체 외국인주민 현황」" loading="lazy"><figcaption>행정안전부 「2024 지방자치단체 외국인주민 현황」</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-4_card_foreign258_v2.png" alt="경기 안산 원곡동 — 여러 나라 말 간판(수치: 행정안전부 「2024 지방자치단체 외국인주민 현황」)" loading="lazy"><figcaption>경기 안산 원곡동 — 여러 나라 말 간판(수치: 행정안전부 「2024 지방자치단체 외국인주민 현황」)</figcaption></figure>
 <p>나라 밖과 견주면 우리나라는 사람이 들어오는 쪽이다. 2024년에 우리나라에 사는 외국인 주민은 258만 명으로, 전체 인구의 5.0%였다.</p>
 </section><section class="ws-sw-pane" data-i="3" hidden><h3 class="ws-sw-h">인구가 바뀌는 길은 딱 둘</h3>
 <figure class="ws-fig"><img src="images/7-4_fig_twoways.png" alt="태어나고 세상을 떠나는 것, 들어오고 나가는 것" loading="lazy"><figcaption>태어나고 세상을 떠나는 것, 들어오고 나가는 것</figcaption></figure>
@@ -1315,16 +1315,16 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-sw sw-news" id="sw180" data-cur="0"><div class="ws-sw-head">📰 쓰기 전에 짐작부터 — 난민은 대부분 어느 나라로 갈까? 그리고 우리나라는?</div><div class="ws-sw-tabs" role="tablist"><button type="button" role="tab" class="ws-sw-tab on" onclick="swGo('sw180',0)" aria-label="먼저 짐작해 보자">1</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw180',1)" aria-label="고향 바로 옆 나라">2</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw180',2)" aria-label="시리아 난민은 어디로?">3</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw180',3)" aria-label="그리고 우리나라는?">4</button></div><div class="ws-sw-stage">
 <section class="ws-sw-pane" data-i="0"><h3 class="ws-sw-h">먼저 짐작해 보자</h3>
-<figure class="ws-fig"><img src="images/7-4_card_refugee_guess.png" alt="먼저 고르고 넘기기" loading="lazy"><figcaption>먼저 고르고 넘기기</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-4_card_refugee_guess_v2.png" alt="짐을 들고 길을 떠나는 난민 가족" loading="lazy"><figcaption>짐을 들고 길을 떠나는 난민 가족</figcaption></figure>
 <p>둘 가운데 하나를 마음속으로 고른 뒤에 넘기자.</p>
 </section><section class="ws-sw-pane" data-i="1" hidden><h3 class="ws-sw-h">고향 바로 옆 나라</h3>
-<figure class="ws-fig"><img src="images/7-4_card_refugee_neighbour.png" alt="유엔 난민 기구 집계, 2025년 말" loading="lazy"><figcaption>유엔 난민 기구 집계, 2025년 말</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-4_card_refugee_neighbour_v2.png" alt="방글라데시 쿠투팔롱 난민촌 — 이웃 나라 미얀마에서 온 로힝야 난민이 산다(수치: 유엔 난민 기구, 2025년 말)" loading="lazy"><figcaption>방글라데시 쿠투팔롱 난민촌 — 이웃 나라 미얀마에서 온 로힝야 난민이 산다(수치: 유엔 난민 기구, 2025년 말)</figcaption></figure>
 <p>부자 나라로 간다고 짐작했다면 반대다. 고향을 떠난 난민 열 명 가운데 예닐곱 명은 고향 바로 이웃 나라에 머문다. 그리고 열 명 가운데 일곱 가까이는 넉넉하지 않은 나라에 머문다.</p>
 </section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">시리아 난민은 어디로?</h3>
 <figure class="ws-fig"><img src="images/7-4_photo_zaatari_camp.jpg" alt="요르단의 자타리 난민촌 — 시리아 난민이 사는 천막과 임시 집이 끝없이 이어진다(2013년)" loading="lazy"><figcaption>요르단의 자타리 난민촌 — 시리아 난민이 사는 천막과 임시 집이 끝없이 이어진다(2013년)</figcaption></figure>
 <p>시리아 난민도 가장 많이 머문 곳은 이웃 나라 튀르키예·레바논·요르단이었다. 사진 속 요르단의 난민촌 한 곳이 작은 도시만 하다.</p>
 </section><section class="ws-sw-pane" data-i="3" hidden><h3 class="ws-sw-h">그리고 우리나라는?</h3>
-<figure class="ws-fig"><img src="images/7-4_card_afghan390.png" alt="2021년 8월 26~27일 — '미라클 작전'" loading="lazy"><figcaption>2021년 8월 26~27일 — '미라클 작전'</figcaption></figure>
+<figure class="ws-fig"><img src="images/7-4_card_afghan390_v2.png" alt="한국 공군 수송기 — 사진은 2013년 필리핀 재난 구호 때다. 2021년 8월 26~27일 '미라클 작전'에도 공군 수송기가 갔다" loading="lazy"><figcaption>한국 공군 수송기 — 사진은 2013년 필리핀 재난 구호 때다. 2021년 8월 26~27일 '미라클 작전'에도 공군 수송기가 갔다</figcaption></figure>
 <p>우리나라도 남의 일만은 아니다. 2021년 8월, 우리 정부는 아프가니스탄에서 한국 기관을 도운 현지인과 그 가족 390명을 데려왔다.</p>
 <blockquote>🔑 말 넷(받아들이는 비용)의 무게는 누가 가장 많이 지고 있을까?</blockquote>
 </section></div><div class="ws-sw-nav"><button type="button" onclick="swStep('sw180',-1)">‹ 이전</button><span class="ws-sw-count"><b>1</b> / 4</span><button type="button" onclick="swStep('sw180',1)">다음 ›</button></div></div><script>(function(){if(!window.swGo){window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}var g=document.getElementById("sw180"),x0=null,y0=null;if(!g)return;g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;swStep("sw180",dx<0?1:-1);g.scrollIntoView({block:"start",behavior:"smooth"});}},{passive:true});})();</script>
