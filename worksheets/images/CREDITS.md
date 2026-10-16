@@ -1341,6 +1341,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 3-3-5_에라스뮈스.jpg | Wikimedia · 퍼블릭 도메인 |
 | 3-3-5_돈키호테.jpg | Wikimedia · 퍼블릭 도메인 |
 | 3-3-5_하늘이뒤집히다_v3.png | 자체 제작 도식 — v2에서 지동설 자리를 ⑥으로 가린 학생판(정답편은 v2) |
+| 3-3-5_왜이탈리아_모션.mp4 | 자체 제작 모션(지도+사진). 지도: 해안선·지형 음영 Natural Earth · 퍼블릭 도메인 / 사진: [Pantheon in Rome (1).jpg](https://commons.wikimedia.org/wiki/File:Pantheon_in_Rome_(1).jpg) Krzysztof Golik · CC BY-SA 4.0 · [Manuel-chrysoloras-paolo-uccello-louvre-15th.jpg](https://commons.wikimedia.org/wiki/File:Manuel-chrysoloras-paolo-uccello-louvre-15th.jpg) 파올로 우첼로 · 퍼블릭 도메인 · [Medieval coin, florin of the Republic of Florence. (FindID 979201).jpg](https://commons.wikimedia.org/wiki/File:Medieval_coin,_florin_of_the_Republic_of_Florence._(FindID_979201).jpg) Suffolk County Council, Riccardo Caravello · CC BY 2.0 · [Florence, Italy, Brunelleschi's Dome of Florence Cathedral.jpg](https://commons.wikimedia.org/wiki/File:Florence,_Italy,_Brunelleschi%27s_Dome_of_Florence_Cathedral.jpg) Vyacheslav Argenberg · CC BY 4.0. 영상 전체를 CC BY-SA 4.0으로 둔다(판테온 사진 개작). |
 
 ### 4-3-2 신항로개척
 | 파일 | 출처 · 라이선스 |
