@@ -63,6 +63,7 @@ for src in SRCS:  # 🔴 앞의 것이 정본 — 같은 이름이면 뒤(~/work
             t = open(p, encoding="utf-8").read()
             files.append((p, N(f), title_of(t, N(f))))
             for m in re.findall(r'src="(images/[^"]+)"', t):
+                m = m.split("?")[0].split("#")[0]  # 영상은 «x.mp4?v=2#t=0.1»처럼 꼬리가 붙는다 — 떼야 파일을 찾는다(10/16 역사 3-3-5)
                 q = os.path.join(src, m)
                 if os.path.exists(q):
                     imgs.add((q, m))
