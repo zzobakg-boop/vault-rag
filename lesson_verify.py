@@ -108,29 +108,31 @@ def plain(t):
     return html.unescape(re.sub(r"<[^>]+>", " ", t))
 nos = lambda t: re.sub(r"\s+", "", t)
 cut = [m.start() for m in re.finditer(r"<h2[ >]", body)] + [len(body)]
-side = []
+side, side_after = [], []
 for m in re.finditer(r'<input[^>]*data-answer="([^"]+)"[^>]*data-id="(\d+)"', body):
     a = html.unescape(m.group(1)).strip()
     if len(a) < 2:
         continue
     lo = max([c for c in cut if c <= m.start()] or [0]); hi = min(c for c in cut if c > m.start())
     sec = body[lo:hi]
-    texts = [("캡션", plain(x)) for x in re.findall(r"<figcaption[^>]*>(.*?)</figcaption>", sec, re.S)]
-    texts += [("접기 제목", plain(x)) for x in re.findall(r"<summary[^>]*>(.*?)</summary>", sec, re.S)]
-    texts += [("그림 설명", html.unescape(x)) for x in re.findall(r'<img[^>]*\balt="([^"]+)"', sec)]
-    for src in re.findall(r'<img[^>]*\bsrc="([^"]+)"', sec):
-        if not re.match(r"(https?:|data:|//)", src):
-            texts.append((f"그림 속 글자({os.path.basename(src)[:30]})", ocr(os.path.join(base, html.unescape(src).split("?")[0]))))
-    for kind, t in texts:
+    texts = [("캡션", plain(x.group(1)), lo + x.start()) for x in re.finditer(r"<figcaption[^>]*>(.*?)</figcaption>", sec, re.S)]
+    texts += [("접기 제목", plain(x.group(1)), lo + x.start()) for x in re.finditer(r"<summary[^>]*>(.*?)</summary>", sec, re.S)]
+    texts += [("그림 설명", html.unescape(x.group(1)), lo + x.start()) for x in re.finditer(r'<img[^>]*\balt="([^"]+)"', sec)]
+    for x in re.finditer(r'<img[^>]*\bsrc="([^"]+)"', sec):
+        if not re.match(r"(https?:|data:|//)", x.group(1)):
+            texts.append((f"그림 속 글자({os.path.basename(x.group(1))[:30]})", ocr(os.path.join(base, html.unescape(x.group(1)).split("?")[0])), lo + x.start()))
+    for kind, t, pos in texts:
         if nos(a) in nos(t):
             k = nos(t).find(nos(a))
-            side.append(f"빈칸 {m.group(2)}={a} ← {kind} «…{nos(t)[max(0, k-12):k+len(nos(a))+8]}…»")
+            (side if pos < m.start() else side_after).append(f"빈칸 {m.group(2)}={a} ← {kind} «…{nos(t)[max(0, k-12):k+len(nos(a))+8]}…»")
             break
 try:
     os.makedirs(os.path.dirname(OCR_CACHE), exist_ok=True); json.dump(ocache, open(OCR_CACHE, "w"), ensure_ascii=False)
 except Exception:
     pass
-(warn if side else ok).append(f"같은 단계 캡션·접기 제목·그림 글자 겹침 {len(side)}건")
+# 빈칸보다 «위»면 ⚠️(답을 먼저 보여 준다). «아래»는 ℹ️ — 정리 자료(규칙 -0.97 «도식은 표 뒤»)면 통과지만,
+#   바로 아래 그림이 답을 말하는 경우(3-3-5 ⑥ 지동설)도 있어 지우지 않고 낮은 등급으로 보여 준다(10/16 사회 제안).
+(warn if side else ok).append(f"빈칸 위 캡션·접기 제목·그림 글자 겹침 {len(side)}건" + (f" · 아래 {len(side_after)}건(ℹ️ 정리 자료면 통과)" if side_after else ""))
 
 # 폰 390
 try:
@@ -237,6 +239,7 @@ for x in warn: print("  ⚠️", x)
 for x in ok: print("  ✓", x)
 for l in leaks[:8]: print("     ·", l)
 for l in side[:8]: print("     ·", l)
+for l in side_after[:8]: print("     ℹ️", l)
 for l in pairs: print("     ·", l)
 if md:
     print("■ lesson_lint (대조표)")
