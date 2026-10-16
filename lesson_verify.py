@@ -12,6 +12,7 @@
   🔴 폰 390px에서 가로 밀림                                         — 게이트 -0.93
   🔴 허브 주소(정답편 카드로 가는 문)가 학생 파일에 있음            — 게이트 -1.0
   ⚠️ 빈칸 답이 그 빈칸보다 앞의 «보이는» 글에 그대로 있음(카드·접기 밖) — 누출 후보
+  ⚠️ 빈칸 답이 같은 단계의 그림 캡션·접기 제목·그림 alt·그림 속 글자(OCR)에 있음 — 앞뒤 무관 (10/16 추가)
   ⚠️ 정답편이 교사 iCloud 사본에 아직 없음                          — 30초 자동 동기화 대기일 수 있음
   ⚠️ 교과서 슬롯 답의 낱말이 슬롯 뒤 학생 글(입담·카드·OX)에 처음 나옴 — --md 때만 · 판정은 사람
 
@@ -83,6 +84,53 @@ for m in re.finditer(r'<input[^>]*data-answer="([^"]+)"[^>]*data-id="(\d+)"', vi
         k = before.rfind(a)
         leaks.append(f"빈칸 {m.group(2)}={a} ← «…{before[max(0,k-18):k+len(a)].strip()}»")
 (warn if leaks else ok).append(f"누출 후보 {len(leaks)}건")
+
+# 빈칸 답 ↔ 같은 단계의 그림 캡션·접기 제목·그림 속 글자 (10/16 역사 제안 — 3-3-5에서 빈칸 ⑥ 바로 아래 그림 속 «지동설»,
+#   빈칸 ② 아래 접기 제목 «'인문주의'라는 이름은…»이 🔴0으로 통과했다. 위 누출 검사는 빈칸 «앞»만 보고 접기를 통째로 뺀다.)
+#   같은 h2 단계 안이면 앞뒤를 가리지 않는다. 그림 글자는 macOS Vision OCR(~/scripts/bin/vision_ocr) — 파일 mtime으로 캐시.
+OCR_BIN = os.path.expanduser("~/scripts/bin/vision_ocr")
+OCR_CACHE = os.path.expanduser("~/.cache/lesson_verify_ocr.json")
+try:
+    import json; ocache = json.load(open(OCR_CACHE))
+except Exception:
+    ocache = {}
+def ocr(fp):
+    if not os.path.exists(OCR_BIN) or not os.path.exists(fp):
+        return ""
+    k = f"{fp}|{os.path.getmtime(fp)}"
+    if k not in ocache:
+        try:
+            ocache[k] = subprocess.run([OCR_BIN, fp], capture_output=True, text=True, timeout=60).stdout
+        except Exception:
+            ocache[k] = ""
+    return ocache[k]
+def plain(t):
+    return html.unescape(re.sub(r"<[^>]+>", " ", t))
+nos = lambda t: re.sub(r"\s+", "", t)
+cut = [m.start() for m in re.finditer(r"<h2[ >]", body)] + [len(body)]
+side = []
+for m in re.finditer(r'<input[^>]*data-answer="([^"]+)"[^>]*data-id="(\d+)"', body):
+    a = html.unescape(m.group(1)).strip()
+    if len(a) < 2:
+        continue
+    lo = max([c for c in cut if c <= m.start()] or [0]); hi = min(c for c in cut if c > m.start())
+    sec = body[lo:hi]
+    texts = [("캡션", plain(x)) for x in re.findall(r"<figcaption[^>]*>(.*?)</figcaption>", sec, re.S)]
+    texts += [("접기 제목", plain(x)) for x in re.findall(r"<summary[^>]*>(.*?)</summary>", sec, re.S)]
+    texts += [("그림 설명", html.unescape(x)) for x in re.findall(r'<img[^>]*\balt="([^"]+)"', sec)]
+    for src in re.findall(r'<img[^>]*\bsrc="([^"]+)"', sec):
+        if not re.match(r"(https?:|data:|//)", src):
+            texts.append((f"그림 속 글자({os.path.basename(src)[:30]})", ocr(os.path.join(base, html.unescape(src).split("?")[0]))))
+    for kind, t in texts:
+        if nos(a) in nos(t):
+            k = nos(t).find(nos(a))
+            side.append(f"빈칸 {m.group(2)}={a} ← {kind} «…{nos(t)[max(0, k-12):k+len(nos(a))+8]}…»")
+            break
+try:
+    os.makedirs(os.path.dirname(OCR_CACHE), exist_ok=True); json.dump(ocache, open(OCR_CACHE, "w"), ensure_ascii=False)
+except Exception:
+    pass
+(warn if side else ok).append(f"같은 단계 캡션·접기 제목·그림 글자 겹침 {len(side)}건")
 
 # 폰 390
 try:
@@ -188,6 +236,7 @@ for x in red: print("  🔴", x)
 for x in warn: print("  ⚠️", x)
 for x in ok: print("  ✓", x)
 for l in leaks[:8]: print("     ·", l)
+for l in side[:8]: print("     ·", l)
 for l in pairs: print("     ·", l)
 if md:
     print("■ lesson_lint (대조표)")
