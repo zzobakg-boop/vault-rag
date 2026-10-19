@@ -1340,7 +1340,22 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 3-3-5_아테네학당.jpg | Wikimedia · 퍼블릭 도메인 |
 | 3-3-5_에라스뮈스.jpg | Wikimedia · 퍼블릭 도메인 |
 | 3-3-5_돈키호테.jpg | Wikimedia · 퍼블릭 도메인 |
-| 3-3-5_하늘이뒤집히다_v3.png | 자체 제작 도식 — v2에서 지동설 자리를 ⑥으로 가린 학생판(정답편은 v2) |
+| ~~3-3-5_하늘이뒤집히다_v3.png~~ | 2026-10-19 v4로 교체·삭제 |
+| 3-3-5_voc_인문.jpg | [Antonello da Messina - St Jerome in his Study - WGA0759.jpg](https://commons.wikimedia.org/wiki/File:Antonello_da_Messina_-_St_Jerome_in_his_Study_-_WGA0759.jpg) · Antonello da Messina · Public domain |
+| 3-3-5_데카메론.jpg | [John William Waterhouse - The Decameron.jpg](https://commons.wikimedia.org/wiki/File:John_William_Waterhouse_-_The_Decameron.jpg) · John William Waterhouse · Public domain |
+| 3-3-5_로마제사.jpg | [Suovetaurile Louvre.jpg](https://commons.wikimedia.org/wiki/File:Suovetaurile_Louvre.jpg) · 작가 미상 · Public domain |
+| 3-3-5_비트루비우스.jpg | [Da Vinci Vitruve Luc Viatour.jpg](https://commons.wikimedia.org/wiki/File:Da_Vinci_Vitruve_Luc_Viatour.jpg) · Leonardo da Vinci · Public domain |
+| 3-3-5_세여신셋.png 재료(고대) | [The Three Graces, from Pompeii (fresco).jpg](https://commons.wikimedia.org/wiki/File:The_Three_Graces,_from_Pompeii_(fresco).jpg) · 작가 미상 · Public domain |
+| 3-3-5_세여신셋.png 재료(르네상스) | [Sandro Botticelli - Three Graces in Primavera.jpg](https://commons.wikimedia.org/wiki/File:Sandro_Botticelli_-_Three_Graces_in_Primavera.jpg) · Sandro Botticelli · Public domain |
+| 3-3-5_세여신셋.png 재료(중세) | [Three Graces. Convenevole da Prato.jpg](https://commons.wikimedia.org/wiki/File:Three_Graces._Convenevole_da_Prato.jpg) · Attribution - Pacino di Buonaguida / Italy, Central (Tuscany) · Public domain |
+| 3-3-5_원근법.jpg | [Perugino, consegna delle chiavi 01.jpg](https://commons.wikimedia.org/wiki/File:Perugino,_consegna_delle_chiavi_01.jpg) · Pietro Perugino · Public domain |
+| 3-3-5_초상화.jpg | [Ghirlandaio-Giovanna Tornabuoni.jpg](https://commons.wikimedia.org/wiki/File:Ghirlandaio-Giovanna_Tornabuoni.jpg) · Domenico Ghirlandaio · Public domain |
+| 3-3-5_페트라르카.jpg | [Petrarch-bnf-lat-6069F-detail.jpg](https://commons.wikimedia.org/wiki/File:Petrarch-bnf-lat-6069F-detail.jpg) · Attributed to Altichiero · Public domain |
+| 3-3-5_해부.jpg | [Leonardo da Vinci - Anatomical studies of the shoulder - WGA12824.jpg](https://commons.wikimedia.org/wiki/File:Leonardo_da_Vinci_-_Anatomical_studies_of_the_shoulder_-_WGA12824.jpg) · Leonardo da Vinci · Public domain |
+| 3-3-5_하늘이뒤집히다_v4.png | 자체 제작 도식 — 빈칸 번호가 ⑧로 바뀌어 v3을 대신함(정답편은 v2) |
+| 3-3-5_세여신셋.png | 자체 배치 — 위 고대·중세·르네상스 세 그림(모두 퍼블릭 도메인)을 순서대로 나란히 |
+| 3-3-5_알프스남북.png | 자체 제작 지도 — 해안선·지형 음영 Natural Earth(퍼블릭 도메인) |
+| 3-3-5_오늘의흐름.png | 자체 제작 도식 |
 | 3-3-5_왜이탈리아_모션.mp4 | 자체 제작 모션(지도+사진). 지도: 해안선·지형 음영 Natural Earth · 퍼블릭 도메인 / 사진: [Pantheon in Rome (1).jpg](https://commons.wikimedia.org/wiki/File:Pantheon_in_Rome_(1).jpg) Krzysztof Golik · CC BY-SA 4.0 · [Manuel-chrysoloras-paolo-uccello-louvre-15th.jpg](https://commons.wikimedia.org/wiki/File:Manuel-chrysoloras-paolo-uccello-louvre-15th.jpg) 파올로 우첼로 · 퍼블릭 도메인 · [Medieval coin, florin of the Republic of Florence. (FindID 979201).jpg](https://commons.wikimedia.org/wiki/File:Medieval_coin,_florin_of_the_Republic_of_Florence._(FindID_979201).jpg) Suffolk County Council, Riccardo Caravello · CC BY 2.0 · [Florence, Italy, Brunelleschi's Dome of Florence Cathedral.jpg](https://commons.wikimedia.org/wiki/File:Florence,_Italy,_Brunelleschi%27s_Dome_of_Florence_Cathedral.jpg) Vyacheslav Argenberg · CC BY 4.0. 영상 전체를 CC BY-SA 4.0으로 둔다(판테온 사진 개작). |
 
 ### 4-3-2 신항로개척
