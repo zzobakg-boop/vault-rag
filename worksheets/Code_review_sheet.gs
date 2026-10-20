@@ -9,6 +9,7 @@
  *   - 점수 색칠(조건부서식)
  *   - 2026-10-20 3열: 문항 | 학생 답 | 모범답안 — 학습지가 답(JSON)에 __key(정답)를 실어 보내면 나란히 둔다.
  *     그 전 제출(__key 없음)은 셋째 칸이 빈다. 서술형 모범답안은 학생 페이지에 없으니 정답편을 본다.
+ *     확인 문제(fbquiz_gen)는 __types·__attempt·__conf(확신도)·__first(첫 제출)도 싣는다 → 답 옆에 «(확실해요)·첫 제출: ②»로 붙인다.
  *     틀린 선택·빈칸 답은 연한 빨강으로 칠한다(공백·대소문자 무시 정확 일치만 맞음 — 유사답은 사람이 본다).
  *
  * 설치: 제출 수합 스프레드시트 → 확장 프로그램 → Apps Script → 이 코드 추가(별도 파일 가능) → 저장.
@@ -89,13 +90,16 @@ function buildReviewSheet() {
     }
     var labels = ans['__labels'] || {};   // 제작 시점 문항 라벨(있으면 act-N 대신 표시)
     var answerKey = ans['__key'] || {};    // 2026-10-20 제작 시점 정답(있으면 셋째 칸)
-    var ansKeys = Object.keys(ans).filter(function (k) { return k !== '__labels' && k !== '__key'; });
+    var conf = ans['__conf'] || {}, first = ans['__first'] || {};   // 확인 문제(fbquiz): 확신도·첫 제출
+    var ansKeys = Object.keys(ans).filter(function (k) { return k.indexOf('__') !== 0; });
+    if (ans['__types'] || ans['__attempt']) block.push(['유형 · 제출', (ans['__types'] || '') + (ans['__attempt'] ? ' · ' + ans['__attempt'] + '번째 제출' : ''), '']);
     if (ansKeys.length) {
       ansKeys.forEach(function (k) {
         var v = ans[k];
         if (v === '' || v == null) return;
         var right = answerKey[k] != null ? String(answerKey[k]) : '';
-        block.push([labels[k] || k, String(v), right]);
+        var shown = String(v) + (conf[k] ? '  (' + conf[k] + ')' : '') + (first[k] != null && String(first[k]) !== String(v) ? '  · 첫 제출: ' + (first[k] || '빈칸') : '');
+        block.push([labels[k] || k, shown, right]);
         if (right && norm_(v) !== norm_(right)) wrongRows.push(block.length);
       });
     } else {
