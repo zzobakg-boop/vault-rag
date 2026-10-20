@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>사회② 7-3 유형별 확인 문제</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1d2433;--sub:#5d6778;--line:#d9dee7;--acc:#2f6fdb;--ok:#1a7f37;--no:#c2410c;--okbg:#e6f4ea;--nobg:#fdecea}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;padding:20px 16px 60px}
+main{max-width:760px;margin:0 auto}
+h1{font-size:1.35rem;margin:0 0 4px}
+.lead{color:var(--sub);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:16px}
+.who{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.who label{display:flex;flex-direction:column;font-size:.85rem;color:var(--sub);gap:4px}
+select,input,textarea{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+textarea{width:100%}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:9px 18px}
+.btn:disabled{opacity:.55;cursor:default}
+.msg{margin-top:10px;color:var(--no);min-height:1.2em}
+.q h3{font-size:1.02rem;font-weight:600;margin:0 0 10px}
+.q .no{display:inline-block;min-width:1.8em;color:var(--acc);font-weight:700}
+.box{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:10px 0;background:#fafbfc}
+figure{margin:10px 0;text-align:center}
+figure img{max-width:100%;border-radius:6px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;margin:10px 0;min-width:100%}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;font-size:.95rem}
+th{background:#f0f3f8}
+.choices{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.choices.wide{flex-direction:column}
+.ch{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;text-align:left;color:var(--ink)}
+.ch.on{border-color:var(--acc);background:#eaf1fd;font-weight:600}
+.ch.right{border-color:var(--ok);background:var(--okbg)}
+.ch.wrong{border-color:var(--no);background:var(--nobg)}
+.fill input{width:min(100%,420px);margin:4px 6px}
+.fb{margin-top:10px;padding:8px 12px;border-radius:8px;font-size:.95rem}
+.fb.ok{background:var(--okbg);color:var(--ok)}.fb.no{background:var(--nobg);color:var(--no)}.fb.wait{background:#f0f3f8;color:var(--sub)}
+.submit{display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+</style></head>
+<body><main>
+<h1>사회② 7-3 유형별 확인 문제</h1>
+<p class="lead">반·번호와 반 암호를 넣으면 나에게 맞춘 문제만 나와요.</p>
+
+<div class="card" id="gate">
+  <div class="who">
+    <label>학년<select id="g" disabled><option>3학년</option></select></label>
+    <label>반<select id="cls"><option value="">선택</option><option value="1">1반</option><option value="2">2반</option><option value="3">3반</option><option value="4">4반</option><option value="5">5반</option><option value="6">6반</option></select></label>
+    <label>번호<select id="num"><option value="">선택</option></select></label>
+    <label>반 암호<input id="pw" type="text" autocomplete="off" size="10"></label>
+    <button class="btn" id="go" type="button">내 문제 열기</button>
+  </div>
+  <div class="msg" id="msg"></div>
+</div>
+
+<div id="quiz" hidden>
+  <p class="lead" id="hello"></p>
+<section class="q" data-type="A" data-qid="q1" data-answer="①" data-label="다음 자료에서 (가), (나)에 해당하는 요인을 바르게 짝지은 것은?" hidden><h3><span class="no"></span>다음 자료에서 (가), (나)에 해당하는 요인을 바르게 짝지은 것은?</h3><div class="box">필리핀의 간호사 ○○ 씨는 이렇게 말하였다. "(가) 고향에서는 일자리를 구하기 어렵고 월급도 적어요. (나) 일본 병원은 간호사를 많이 뽑고 월급도 훨씬 많아요."</div>
+<div class="tbl"><table><tr><th></th><th>(가)</th><th>(나)</th></tr><tr><td>①</td><td>배출 요인</td><td>흡인 요인</td></tr><tr><td>②</td><td>흡인 요인</td><td>배출 요인</td></tr><tr><td>③</td><td>흡인 요인</td><td>흡인 요인</td></tr><tr><td>④</td><td>배출 요인</td><td>배출 요인</td></tr><tr><td>⑤</td><td>정치적 요인</td><td>경제적 요인</td></tr></table></div>
+<div class="choices" data-id="q1"><button type="button" class="ch" data-v="①">①</button><button type="button" class="ch" data-v="②">②</button><button type="button" class="ch" data-v="③">③</button><button type="button" class="ch" data-v="④">④</button><button type="button" class="ch" data-v="⑤">⑤</button></div><div class="fb" hidden></div></section>
+<section class="q" data-type="B" data-qid="q2" data-answer="④" data-label="지도의 A~C 이동에 대한 설명으로 옳은 것만을 &lt;보기&gt;에서 있는 대로 고른 것은?" hidden><h3><span class="no"></span>지도의 A~C 이동에 대한 설명으로 옳은 것만을 &lt;보기&gt;에서 있는 대로 고른 것은?</h3><figure><img src="images/7-3_world_migration_v2.png" alt="세계의 주요 인구 이동"></figure>
+<div class="box">&lt;보기&gt;<br>ㄱ. A는 유럽 사람들이 식민지를 개척하려고 신대륙으로 이동한 것이다.<br>ㄴ. B는 중국 사람들이 19세기 이후 일자리를 찾아 동남아시아로 이동한 것이다.<br>ㄷ. C는 아프리카 사람들이 일자리를 찾아 스스로 아메리카로 건너간 자발적 이동이다.<br>ㄹ. C는 노예 무역에 의해 강제로 이루어진 이동이다.</div>
+<div class="choices wide" data-id="q2"><button type="button" class="ch" data-v="①">① ㄱ, ㄴ</button><button type="button" class="ch" data-v="②">② ㄱ, ㄷ</button><button type="button" class="ch" data-v="③">③ ㄷ, ㄹ</button><button type="button" class="ch" data-v="④">④ ㄱ, ㄴ, ㄹ</button><button type="button" class="ch" data-v="⑤">⑤ ㄴ, ㄷ, ㄹ</button></div><div class="fb" hidden></div></section>
+<section class="q" data-type="C" data-qid="q3" data-answer="④" data-label="세계 인구 이동 지도의 D1~D4 이동에 공통으로 나타나는 요인으로 가장 적절한 것은?" hidden><h3><span class="no"></span>세계 인구 이동 지도의 D1~D4 이동에 공통으로 나타나는 요인으로 가장 적절한 것은?</h3><figure><img src="images/7-3_world_migration_v2.png" alt="세계의 주요 인구 이동"></figure><div class="choices wide" data-id="q3"><button type="button" class="ch" data-v="①">① 전쟁과 분쟁을 피하려는 정치적 요인</button><button type="button" class="ch" data-v="②">② 종교의 자유를 찾으려는 종교적 요인</button><button type="button" class="ch" data-v="③">③ 바닷물이 차오르는 것을 피하려는 환경적 요인</button><button type="button" class="ch" data-v="④">④ 일자리와 더 높은 임금을 찾으려는 경제적 요인</button><button type="button" class="ch" data-v="⑤">⑤ 노예 무역에 따른 강제적 요인</button></div><div class="fb" hidden></div></section>
+<section class="q" data-type="D" data-qid="q4" data-answer="③" data-label="다음은 학생이 인구 이동 사례의 요인을 정리한 표이다. 배출 요인과 흡인 요인을 바르게 정리하지 않은 것은?" hidden><h3><span class="no"></span>다음은 학생이 인구 이동 사례의 요인을 정리한 표이다. 배출 요인과 흡인 요인을 바르게 정리하지 <u>않은</u> 것은?</h3><div class="tbl"><table><tr><th></th><th>이동 사례</th><th>배출 요인</th><th>흡인 요인</th></tr><tr><td>①</td><td>베트남 → 광주의 공장</td><td>베트남의 낮은 임금</td><td>광주 공장의 일자리</td></tr><tr><td>②</td><td>곡성 → 광주(할머니)</td><td>가까운 곳에 큰 병원이 없음</td><td>큰 병원이 가까움</td></tr><tr><td>③</td><td>광주 → 서울의 대학(언니)</td><td>서울에 좋은 대학이 많음</td><td>광주에 원하는 학과가 없음</td></tr><tr><td>④</td><td>시리아 → 유럽</td><td>계속되는 내전</td><td>안전한 생활</td></tr><tr><td>⑤</td><td>투발루 → 오스트레일리아</td><td>바닷물이 차올라 살 땅이 줄어듦</td><td>안전하게 살 수 있는 땅</td></tr></table></div>
+<div class="choices" data-id="q4"><button type="button" class="ch" data-v="①">①</button><button type="button" class="ch" data-v="②">②</button><button type="button" class="ch" data-v="③">③</button><button type="button" class="ch" data-v="④">④</button><button type="button" class="ch" data-v="⑤">⑤</button></div><div class="fb" hidden></div></section>
+<section class="q" data-type="E" data-qid="q5" data-answer="" data-label="세계 인구 이동 지도의 D4처럼 멕시코에서 미국으로 이동하는 사람이 많다. 이 이동의 배출 요인과 흡인 요인" hidden><h3><span class="no"></span>세계 인구 이동 지도의 D4처럼 멕시코에서 미국으로 이동하는 사람이 많다. 이 이동의 배출 요인과 흡인 요인을 한 가지씩 서술하시오.</h3><figure><img src="images/7-3_world_migration_v2.png" alt="세계의 주요 인구 이동"></figure><div class="box">&lt;조건&gt;<br>- 배출 요인은 «멕시코의 무엇», 흡인 요인은 «미국의 무엇»인지 드러나게 쓸 것.<br>- «경제적 요인»처럼 요인의 이름만 쓰지 말 것.</div>
+<p class="fill">배출 요인: <input class="ans" data-id="q5-1" data-label="배출 요인" autocomplete="off"></p>
+<p class="fill">흡인 요인: <input class="ans" data-id="q5-2" data-label="흡인 요인" autocomplete="off"></p><div class="fb" hidden></div></section>
+<section class="q" data-type="F" data-qid="q6" data-answer="" data-label="다음 (가)~(라) 중 틀린 문장을 두 개 찾아 기호를 쓰고, 각각 바르게 고쳐 쓰시오." hidden><h3><span class="no"></span>다음 (가)~(라) 중 <u>틀린</u> 문장을 <u>두 개</u> 찾아 기호를 쓰고, 각각 바르게 고쳐 쓰시오.</h3><div class="box">(가) 흡인 요인은 사람을 다른 지역으로 밀어내는 요인이다.<br>(나) 전쟁이나 분쟁을 피해 나라를 떠나는 것은 정치적 요인에 의한 이동이다.<br>(다) 오늘날 세계의 인구 이동은 대부분 일자리를 찾는 경제적 이동이다.<br>(라) 아프리카 사람들은 일자리를 찾아 스스로 아메리카로 건너갔다.</div>
+<textarea class="ans" data-id="q6" data-label="서술" rows="4"></textarea><div class="fb" hidden></div></section>
+<section class="q" data-type="G" data-qid="q7" data-answer="" data-label="&lt;조건&gt;에 맞게 한 문장으로 서술하시오." hidden><h3><span class="no"></span>&lt;조건&gt;에 맞게 한 문장으로 서술하시오.</h3><div class="box">&lt;조건&gt;<br>- «흡인 요인»과 «배출 요인»이라는 말을 모두 넣을 것.<br>- 광주에서 서울로 대학을 가는 사례를 쓸 것.<br>- «~다.»로 끝나는 완성된 문장으로 쓸 것.</div>
+<textarea class="ans" data-id="q7" data-label="서술" rows="4"></textarea><div class="fb" hidden></div></section>
+<section class="q" data-type="H" data-qid="q8" data-answer="" data-label="다음 표의 ㉠~㉢에 들어갈 말을 &lt;낱말 상자&gt;에서 골라 쓰시오." hidden><h3><span class="no"></span>다음 표의 ㉠~㉢에 들어갈 말을 &lt;낱말 상자&gt;에서 골라 쓰시오.</h3><div class="tbl"><table><tr><th>음식</th><th>누가 어디에서 어디로</th><th>밀어낸 힘(배출 요인)</th><th>끌어당긴 힘(흡인 요인)</th></tr><tr><td>짜장면</td><td>중국 산둥 사람들이 ( ㉠ ) 항구로</td><td>( ㉡ )</td><td>( ㉢ )</td></tr></table></div>
+<div class="box">&lt;낱말 상자&gt; 인천 · 부산 · 항구의 짐 나르는 일자리 · 고향의 가난과 일자리 부족 · 전쟁을 피함 · 따뜻한 날씨</div>
+<p class="fill">㉠ <input class="ans" data-id="q8-1" data-label="㉠" autocomplete="off">　㉡ <input class="ans" data-id="q8-2" data-label="㉡" autocomplete="off">　㉢ <input class="ans" data-id="q8-3" data-label="㉢" autocomplete="off"></p><div class="fb" hidden></div></section>
+  <div class="card submit">
+    <label style="display:flex;flex-direction:column;font-size:.85rem;color:var(--sub);gap:4px">이름<input id="name" autocomplete="off" size="8"></label>
+    <button class="btn" id="send" type="button">📤 제출</button>
+    <span class="msg" id="sendmsg"></span>
+  </div>
+</div>
+</main>
+<script>
+const LOCKED={"1": {"s": "o//HH+Ddpig0pulnex+JmQ==", "i": "m7eGO10wJPnHQFKM", "c": "QNjEKdxMlSCJwtVaZhJUtNX20BSMx00PmFBiiS2NwLOaJyOmhBz1uz632f4FWDSK27K1j7SJSCFX6fC6Hp+rbepenETKEJgWxbFeOmlgLG+xlPTjDInZXiRi6LQjPNVxKC6bEvzu4YJl7lLcW90TEqvNFoVfZKb/3Dv/Y7QUM4Ur6aOPKuyyvsge3tF3/03ameY+Rq6qjBOldJUVvxOc9qwzka+FGHOvY+ozh1emiPCo+1sWQQeLcCyzCLgBdZTd9fieGvJ+sASh2V73sDzQx1c2kCiYcEk0popfxM+9NcIttah7DCOHIlMWlnDS"}, "2": {"s": "We0N6oArcTYTjiwpZ3Xu2Q==", "i": "BEdxkZKEG/QvXHI8", "c": "tGYH5fAwfDEs2t0wrPrWCCikddIn3tLAFe54h0SLf8VAI/3XaIWJ9EJbxsrCSBqyKYOxbJstRdv9Hq9+IRdxiq3Y8O793VGBow9LEcW5u/XYLDolr59iTmzguaHe+kOLyoelZ9Qr85GaQzKSu66uGRHo4conmdYeCXuYFYY1+/5l/7f8QNchEyv+9zvDR4jttdt/AmQxX9OXsoIDxa+SaLIJFxXnlGOpeQR5n/Qnk8e9GEkMSoxUe9w6e57SGi31cV9zvOffF9SwHpUQvGQVf5pdNwsupWN0a5EUAdk1meb6x+VP2Au2dv+JBrtRqRUtAksRg7WTdT3eha8ocCNlfMUoVoCBzCKy6LHYywnWddXgTJk="}, "3": {"s": "D0hhfx+Ve30YPg2+AdI0pw==", "i": "vPek2rDSCD2kX36h", "c": "XZ189lNopvicVtakcGe+S6SM2iuVwgyZA0DCrrEU2le+MGNtXvwjbtqwWH/lNZ4ia1CP6YzE/5ByJoe/ZibyANFTkxOpTl5zObgrSdQLpyDLI2bwg3r6d+sWOxbD3bgJ+XB9MtC0pp3AnD7bQkjCriusnCYXG0tSiTuHRGAwl+95XGwkHg8VANkH/6Jj2sB+kMDyjQbJ9qSyOIzaV4ly1L6Nxl3zTWU0hZCpjJgwwQbUbx+3IqqOpKn+bjJT6DqCbq52kFg37+jM1lRhw1Jt65OK4Ebga9D43Xwpq0L8BDu/3r3MHmhUPG5BB6Q="}, "4": {"s": "t7rkyJo6qKgPo6dLb7FSFg==", "i": "VXITou0mAuY5X3yH", "c": "nzEtPGu4OjnCWmXP7mPLEgjTbVPO1amw2rhP/2ydCrRjmlAbBJgCfIDnUVvDAlKY6J7DAMc76DC5H6fVrkn95JlmokLHkF+fVD8kGfKvMFPgJ/3d5xxVMLRZMUvdSs3OVrjaQ6PJfLoRy0XI2VuIgdAk7+gO+Z0HNgnuF/XQca8oKv10KVNlpJe8HUKCHH+jfh+RkB10VNF3Ot2lfY/39WilJN55IXuVy/IY7F1WVdnEg+mnXOOHm3boMyu64yMxoMWo86kko65EHRhQ4+J3K5zqU994DSS6Q38RL0bcY7RlpptGul2dHKmCWrSTup/wKvOUADyeJiSkAnRP39qawbo="}, "5": {"s": "uibaiilA6Mjc7C6FqHlu5Q==", "i": "xxrUMc0G58wz29sC", "c": "EQSU8KQaoX8cJqh1mwYUTULZNcHHiak33EymyzFozJSNk/Qj09PD7iFBSGxGxYaCF3HTksYVNie4wa7qK9V85aFQUn1ij3Yh8Pvun7IFynVw1xvq+B8brtwhYmmEmXqe9LBn0KIuJzqfU2wa2rObXqC5BejqPynhxweuJhbXr6nnAJLrXGXRLh/KdVF8jX5T9eFpARBlRd5Skr1XK3u93miDZjLIJz2Vz/HVIRtAgoeDfiNHJ6B5NwLS8Ism/defrwMFoEJavkoy5Q=="}, "6": {"s": "STgNaRqYRE/PtNLnN6ltzw==", "i": "ksWrJUfY70R6PvzZ", "c": "5xBvsCe+m70PPg93a4B6Dzx47cwnnOWqZ0Up8F9s7cwTNQhtvLEYBu0uCbqZu2gkc+FxHQp7AsZfd/02u0BmNITWMYBwt/15r2zwrkr4Wt/dawXGUIuWt6BDpz49COKqtTo34t4vTDtoWMgtmSwIuK/wfHsIzlAz6K7gV+pUjdOcO9k0Ap4M5toEdlUsTjJZhvsfvv0MTcTA8KV4yoDKqnCqzUiuL0xSyXElZ79XNR+YunBRxJoeT7rx1iYD6o3WRq/XmXULwJw9p9l0Hq+9M6QXIhqmGh+HFMUbRBvQzKWBJ2wiLpU93WW9cYKbFhO90DvX+prZnQ78IQ=="}}, ITER=150000, DEFAULT=["A", "B"], SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+const $=id=>document.getElementById(id);
+const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+$('cls').addEventListener('change',()=>{
+  const n=$('num'); n.innerHTML='<option value="">선택</option>';
+  for(let i=1;i<=35;i++) n.insertAdjacentHTML('beforeend',`<option value="${i}">${i}번</option>`);
+});
+async function unlock(cls,pw){
+  const L=LOCKED[cls]; if(!L) throw new Error('반');
+  const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:unb64(L.s),iterations:ITER,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+  const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(L.i)},key,unb64(L.c));
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+let me=null;
+$('go').addEventListener('click',async()=>{
+  const cls=$('cls').value, num=$('num').value, pw=$('pw').value.trim();
+  if(!cls||!num||!pw){$('msg').textContent='반·번호·반 암호를 모두 넣어 주세요.';return;}
+  $('go').disabled=true; $('msg').textContent='';
+  let table;
+  try{ table=await unlock(cls,pw); }
+  catch(e){ $('msg').textContent='반 암호가 맞지 않아요. 화면의 암호를 다시 확인해 주세요.'; $('go').disabled=false; return; }
+  const types=(table[num]||'').split(',').filter(Boolean);
+  const show=types.length?types:DEFAULT;
+  me={cls,num,types:types.join(',')||'-'};
+  let k=0;
+  document.querySelectorAll('.q').forEach(q=>{
+    const on=show.includes(q.dataset.type); q.hidden=!on;
+    if(on){ k++; q.querySelector('.no').textContent=k+'.'; q.classList.add('card'); }
+  });
+  $('hello').textContent=`${cls}반 ${num}번 — 문제 ${k}개. 다 풀고 맨 아래에서 제출해요.`;
+  $('gate').hidden=true; $('quiz').hidden=false; window.scrollTo(0,0);
+});
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.ch'); if(!b||b.disabled) return;
+  const g=b.parentElement; g.querySelectorAll('.ch').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); g.dataset.selected=b.dataset.v;
+});
+function collect(){
+  const ans={}, lbl={}, key={}; let right=0, total=0;
+  document.querySelectorAll('.q:not([hidden])').forEach(q=>{
+    const no=q.querySelector('.no').textContent;
+    const g=q.querySelector('.choices');
+    if(g){
+      const id=g.dataset.id; ans[id]=g.dataset.selected||''; lbl[id]=no+' '+q.dataset.label; key[id]=q.dataset.answer;
+      total++; if(ans[id]===q.dataset.answer) right++;
+    }
+    q.querySelectorAll('.ans').forEach(el=>{ const id=el.dataset.id; ans[id]=el.value.trim(); lbl[id]=no+' '+q.dataset.label+(el.dataset.label!=='서술'?' — '+el.dataset.label:''); });
+  });
+  ans.__labels=lbl; ans.__key=key; ans.__types=me.types;
+  return {ans,right,total};
+}
+let sending=false;
+$('send').addEventListener('click',()=>{
+  if(sending||!me) return;
+  const name=$('name').value.trim();
+  if(!name){$('sendmsg').textContent='이름을 넣어 주세요.';return;}
+  const {ans,right,total}=collect();
+  const data={type:'final',worksheet:document.title,studentClass:me.cls,studentNumber:me.num,studentName:name,
+    blankScore:'',oxScore:total?`${right}/${total}`:'',totalScore:total?`${right}/${total}`:'',answers:ans};
+  sending=true; $('send').disabled=true; $('send').textContent='전송 중…'; $('sendmsg').textContent='';
+  fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(()=>{ $('send').textContent='✅ 제출 완료'; showResult(); setTimeout(()=>{$('send').textContent='📤 재제출';},2000); })
+  .catch(e=>{ $('sendmsg').textContent='제출이 안 됐어요. 다시 눌러 주세요.'; })
+  .finally(()=>{ sending=false; $('send').disabled=false; });
+});
+function showResult(){
+  document.querySelectorAll('.q:not([hidden])').forEach(q=>{
+    const fb=q.querySelector('.fb'), g=q.querySelector('.choices'); fb.hidden=false;
+    if(g){
+      const pick=g.dataset.selected||'', ans=q.dataset.answer;
+      g.querySelectorAll('.ch').forEach(b=>{ b.classList.toggle('right',b.dataset.v===ans); b.classList.toggle('wrong',b.dataset.v===pick&&pick!==ans); });
+      fb.className='fb '+(pick===ans?'ok':'no');
+      fb.textContent=pick===ans?'맞았어요.':`정답은 ${ans}이에요. 선생님 피드백과 같이 다시 보세요.`;
+    }else{ fb.className='fb wait'; fb.textContent='서술 답은 선생님이 확인해요.'; }
+  });
+}
+</script>
+</body></html>
