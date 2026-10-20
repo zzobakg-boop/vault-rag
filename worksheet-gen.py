@@ -1911,8 +1911,11 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         ox_answer = ox_answers[ox_idx]['answer']
                         ox_idx += 1
                         total_ox += 1
+                    # 2026-10-20 문항 문장을 data-label로 — 정리 시트에 group_N 대신 문장이 뜬다(7-3 피드백 시험 판정 지적)
+                    ox_lbl = re.sub(r'<[^>]+>|[*_`]', '', cells[1])
+                    ox_lbl = re.sub(r'\s+', ' ', ox_lbl).strip()[:60].replace('"', '&quot;')
                     cells[-1] = (
-                        f'<div class="ox-group" data-answer="{ox_answer}">'
+                        f'<div class="ox-group" data-answer="{ox_answer}" data-label="{ox_lbl}">'
                         f'<button class="ox-btn" onclick="selectOX(this,\'O\')">O</button>'
                         f'<button class="ox-btn" onclick="selectOX(this,\'X\')">X</button>'
                         f'</div>'
@@ -3691,16 +3694,24 @@ function collectAnswers(){{
     const k=el.dataset.id||el.dataset.answer||('input_'+i);
     ans[k]=(el.value||'').trim();
   }});
+  // 2026-10-20 정답(__key)·OX 문장도 함께 — 정리 시트가 학생 답 옆에 모범답안을 나란히 둔다. 정답은 이미 페이지 속성에 있던 값이라 새로 드러나는 것은 없다
+  const lbl={{}}, key={{}};
+  document.querySelectorAll('.blank-input:not(.no-score),.ox-input').forEach(el=>{{
+    const k=el.dataset.id||el.dataset.answer; if(k && el.dataset.answer) key[k]=el.dataset.answer;
+  }});
   document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{{
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
+    const a=g.dataset.answer||(g.querySelector('[data-answer]')||{{dataset:{{}}}}).dataset.answer;
+    if(a) key[k]=a;
+    if(g.dataset.label) lbl[k]=g.dataset.label;
   }});
   // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
-  const lbl={{}};
   document.querySelectorAll('[data-label]').forEach(el=>{{
     const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
   }});
   if(Object.keys(lbl).length) ans['__labels']=lbl;
+  if(Object.keys(key).length) ans['__key']=key;
   return ans;
 }}
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)

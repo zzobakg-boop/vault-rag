@@ -7,6 +7,9 @@
  *   - 긴 서술답은 셀 안 줄바꿈(WRAP) + 행 높이 자동
  *   - 같은 학생 여러 번 제출 시 *마지막 제출*만
  *   - 점수 색칠(조건부서식)
+ *   - 2026-10-20 3열: 문항 | 학생 답 | 모범답안 — 학습지가 답(JSON)에 __key(정답)를 실어 보내면 나란히 둔다.
+ *     그 전 제출(__key 없음)은 셋째 칸이 빈다. 서술형 모범답안은 학생 페이지에 없으니 정답편을 본다.
+ *     틀린 선택·빈칸 답은 연한 빨강으로 칠한다(공백·대소문자 무시 정확 일치만 맞음 — 유사답은 사람이 본다).
  *
  * 설치: 제출 수합 스프레드시트 → 확장 프로그램 → Apps Script → 이 코드 추가(별도 파일 가능) → 저장.
  *       스프레드시트 새로고침하면 상단에 "📋 정리 도구" 메뉴가 생김.
@@ -67,7 +70,8 @@ function buildReviewSheet() {
   var out = ss.getSheetByName(outName);
   if (out) out.clear(); else out = ss.insertSheet(outName);
 
-  var block = [];                 // [문항, 답] 2열
+  var block = [];                 // [문항, 답, 모범답안] 3열
+  var wrongRows = [];             // 모범답안과 다른 답 행
   var scoreRows = [];             // 점수 강조용 행 번호
   keys.forEach(function (key) {
     var row = byStudent[key];
@@ -75,7 +79,7 @@ function buildReviewSheet() {
     var score = idx['총점'] != null ? row[idx['총점']] : '';
     var blank = idx['빈칸'] != null ? row[idx['빈칸']] : '';
     var ox = idx['OX'] != null ? row[idx['OX']] : '';
-    block.push(['▎' + key + '  ' + name, '총점 ' + score + '  (빈칸 ' + blank + ' · OX ' + ox + ')']);
+    block.push(['▎' + key + '  ' + name, '총점 ' + score + '  (빈칸 ' + blank + ' · OX ' + ox + ')', '모범답안']);
     scoreRows.push(block.length);     // 1-indexed (헤더 없음)
 
     // 답(JSON) 우선 파싱(키 풍부) → 없으면 answerCols
@@ -84,36 +88,42 @@ function buildReviewSheet() {
       try { ans = JSON.parse(row[idx['답(JSON)']]); } catch (e) { ans = {}; }
     }
     var labels = ans['__labels'] || {};   // 제작 시점 문항 라벨(있으면 act-N 대신 표시)
-    var ansKeys = Object.keys(ans).filter(function (k) { return k !== '__labels'; });
+    var answerKey = ans['__key'] || {};    // 2026-10-20 제작 시점 정답(있으면 셋째 칸)
+    var ansKeys = Object.keys(ans).filter(function (k) { return k !== '__labels' && k !== '__key'; });
     if (ansKeys.length) {
       ansKeys.forEach(function (k) {
         var v = ans[k];
         if (v === '' || v == null) return;
-        block.push([labels[k] || k, String(v)]);
+        var right = answerKey[k] != null ? String(answerKey[k]) : '';
+        block.push([labels[k] || k, String(v), right]);
+        if (right && norm_(v) !== norm_(right)) wrongRows.push(block.length);
       });
     } else {
       answerCols.forEach(function (c) {
         var v = row[c.i];
         if (v === '' || v == null) return;
-        block.push([c.name, String(v)]);
+        block.push([c.name, String(v), '']);
       });
     }
-    block.push(['', '']);             // 학생 사이 빈 줄
+    block.push(['', '', '']);         // 학생 사이 빈 줄
   });
 
   if (!block.length) { SpreadsheetApp.getUi().alert('정리할 답이 없습니다.'); return; }
 
-  var rng = out.getRange(1, 1, block.length, 2);
+  var rng = out.getRange(1, 1, block.length, 3);
   rng.setValues(block);
   out.setColumnWidth(1, 230);
-  out.setColumnWidth(2, 560);
-  out.getRange(1, 2, block.length, 1).setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP); // 서술답 줄바꿈
+  out.setColumnWidth(2, 460);
+  out.setColumnWidth(3, 300);
+  out.getRange(1, 2, block.length, 2).setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP); // 서술답 줄바꿈
   out.getRange(1, 1, block.length, 1).setVerticalAlignment('top');
-  out.getRange(1, 2, block.length, 1).setVerticalAlignment('top');
+  out.getRange(1, 2, block.length, 2).setVerticalAlignment('top');
+  out.getRange(1, 3, block.length, 1).setFontColor('#1a7f37');
+  wrongRows.forEach(function (rn) { out.getRange(rn, 2).setBackground('#fde2e1'); });
 
   // 학생 헤더 행 굵게·배경
   scoreRows.forEach(function (rn) {
-    out.getRange(rn, 1, 1, 2).setFontWeight('bold').setBackground('#e8f0fe');
+    out.getRange(rn, 1, 1, 3).setFontWeight('bold').setBackground('#e8f0fe');
   });
 
   // 긴 답 행 높이 자동 조정
@@ -122,3 +132,5 @@ function buildReviewSheet() {
   out.activate();
   SpreadsheetApp.getUi().alert('완료: "' + outName + '" 시트 생성 (' + keys.length + '명, 최신 제출 기준).');
 }
+
+function norm_(v) { return String(v).replace(/\s+/g, '').toLowerCase(); }
