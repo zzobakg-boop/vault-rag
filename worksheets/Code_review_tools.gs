@@ -19,6 +19,9 @@
  *   → 이 파일 추가 → **Code_review_sheet.gs · Code_essay_extract.gs 는 삭제**
  *   → 저장 → 스프레드시트 새로고침 → 상단 [📋 제출 보기] 메뉴
  *
+ * 2026-10-21 Code_review_sheet.gs의 10/20 개선(3열: 문항|학생 답|모범답안, 확신도·첫 제출, 틀린 답 연한 빨강)을
+ *   이 파일로 옮겼다. 시트에는 이 파일 하나만 둔다.
+ *
  * 메뉴 2종:
  *   ① 이 탭 → 정리 시트   — 학생 1명 = 세로 블록. 한 학생을 통째로 읽을 때
  *   ② 서술형만 모아 보기  — essay-N 만 반·번호 순. 한 문항을 학생끼리 비교할 때
@@ -74,6 +77,9 @@ function headerRow_(values) {
  */
 var TEXTBOOK_RE_ = /^\s*(교과서\s*\d+\s*쪽에서\s*찾기\s*—|원문에서\s*확인\s*—)/;
 function isTextbook_(label) { return TEXTBOOK_RE_.test(String(label || '')); }
+
+/** 모범답안 대조용 — 공백 지우고 소문자 */
+function norm_(v) { return String(v).replace(/\s+/g, '').toLowerCase(); }
 
 /** 반·번호 숫자 정렬용 */
 function n_(v) { var x = parseInt(String(v).replace(/\D/g, ''), 10); return isNaN(x) ? 9999 : x; }
@@ -142,14 +148,14 @@ function buildReviewSheet() {
   var out = ss.getSheetByName(outName);
   if (out) { out.clear(); } else { out = ss.insertSheet(outName); }
 
-  var block = [], hdrRows = [], tbRows = [], blankRows = [];
+  var block = [], hdrRows = [], tbRows = [], blankRows = [], wrongRows = [];
   keys.forEach(function (key) {
     var row = byStudent[key];
     var name  = ix['이름'] >= 0 ? row[ix['이름']] : '';
     var score = ix['총점'] >= 0 ? row[ix['총점']] : '';
     var blank = ix['빈칸'] >= 0 ? row[ix['빈칸']] : '';
     var ox    = ix['OX']   >= 0 ? row[ix['OX']]   : '';
-    block.push(['▎' + key + '  ' + name, '총점 ' + score + '  (빈칸 ' + blank + ' · OX ' + ox + ')']);
+    block.push(['▎' + key + '  ' + name, '총점 ' + score + '  (빈칸 ' + blank + ' · OX ' + ox + ')', '모범답안']);
     hdrRows.push(block.length);
 
     var ans = {};
@@ -157,7 +163,14 @@ function buildReviewSheet() {
       try { ans = JSON.parse(row[ix['답(JSON)']]); } catch (e) { ans = {}; }
     }
     var labels = ans['__labels'] || {};
-    var ansKeys = Object.keys(ans).filter(function (k) { return k !== '__labels'; });
+    // 2026-10-20 학습지가 제작 시점 정답(__key)을 실어 보내면 셋째 칸에 둔다(그 전 제출은 빈다).
+    // 확인 문제(fbquiz)는 __types·__attempt·__conf(확신도)·__first(첫 제출)도 싣는다.
+    var answerKey = ans['__key'] || {};
+    var conf = ans['__conf'] || {}, first = ans['__first'] || {};
+    var ansKeys = Object.keys(ans).filter(function (k) { return k.indexOf('__') !== 0; });
+    if (ans['__types'] || ans['__attempt']) {
+      block.push(['유형 · 제출', (ans['__types'] || '') + (ans['__attempt'] ? ' · ' + ans['__attempt'] + '번째 제출' : ''), '']);
+    }
 
     // 📕 교과서 칸은 뒤로 몰아 별도 소구획 (일반 활동칸과 섞지 않는다)
     var normal = [], textbook = [];
@@ -165,37 +178,47 @@ function buildReviewSheet() {
       ansKeys.forEach(function (k) {
         var v = ans[k];
         var label = labels[k] || k;
-        var pair = [label, (v === '' || v == null) ? '(비어 있음)' : String(v)];
-        if (isTextbook_(label)) { textbook.push(pair); } else if (v !== '' && v != null) { normal.push(pair); }
+        var right = answerKey[k] != null ? String(answerKey[k]) : '';
+        var empty = (v === '' || v == null);
+        var shown = empty ? '(비어 있음)' : String(v) + (conf[k] ? '  (' + conf[k] + ')' : '')
+          + (first[k] != null && String(first[k]) !== String(v) ? '  · 첫 제출: ' + (first[k] || '빈칸') : '');
+        var item = [label, shown, right];
+        item._wrong = !empty && right !== '' && norm_(v) !== norm_(right);
+        if (isTextbook_(label)) { textbook.push(item); } else if (!empty) { normal.push(item); }
       });
     } else {
       answerCols.forEach(function (c) {
         var v = row[c.i];
         if (v === '' || v == null) { return; }
-        normal.push([c.name, String(v)]);
+        normal.push([c.name, String(v), '']);
       });
     }
-    normal.forEach(function (p) { block.push(p); });
+    var put = function (p) { block.push([p[0], p[1], p[2]]); if (p._wrong) { wrongRows.push(block.length); } };
+    normal.forEach(put);
     if (textbook.length) {
-      block.push(['📕 교과서에서 찾은 칸', '(비어 있으면 교과서를 안 편 것)']);
+      block.push(['📕 교과서에서 찾은 칸', '(비어 있으면 교과서를 안 편 것)', '']);
       tbRows.push(block.length);
-      textbook.forEach(function (p) { block.push(p); });
+      textbook.forEach(put);
     }
-    block.push(['', '']);
+    block.push(['', '', '']);
     blankRows.push(block.length);
   });
 
-  var rng = out.getRange(1, 1, block.length, 2);
+  // 2026-10-20 3열: 문항 | 학생 답 | 모범답안(초록). 모범답안과 다른 답은 연한 빨강 — 공백·대소문자만 무시한 정확 일치라 유사답은 사람이 본다.
+  var rng = out.getRange(1, 1, block.length, 3);
   rng.setValues(block);
   out.setColumnWidth(1, 230);
-  out.setColumnWidth(2, 560);
-  out.getRange(1, 1, block.length, 2).setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP)
+  out.setColumnWidth(2, 460);
+  out.setColumnWidth(3, 300);
+  out.getRange(1, 1, block.length, 3).setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP)
      .setVerticalAlignment('top');
+  out.getRange(1, 3, block.length, 1).setFontColor('#1a7f37');
+  wrongRows.forEach(function (rn) { out.getRange(rn, 2).setBackground('#fde2e1'); });
   hdrRows.forEach(function (rn) {
-    out.getRange(rn, 1, 1, 2).setFontWeight('bold').setBackground('#e8f0fe');
+    out.getRange(rn, 1, 1, 3).setFontWeight('bold').setBackground('#e8f0fe');
   });
   tbRows.forEach(function (rn) {
-    out.getRange(rn, 1, 1, 2).setFontWeight('bold').setBackground('#fdf3e3');
+    out.getRange(rn, 1, 1, 3).setFontWeight('bold').setBackground('#fdf3e3');
   });
   out.autoResizeRows(1, block.length);
   out.activate();
