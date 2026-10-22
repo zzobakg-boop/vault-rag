@@ -464,15 +464,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
 .sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
 .sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
-.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
-.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
 .sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
 .ws-tb-2cin { margin: 2px 0 4px; }
 .ws-tb-2cin .ws-tb-fig { margin: 0; }
@@ -671,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1114,7 +1128,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-3 — 같은 깃발 아래, 서로 다른 꿍꿍이 (십자군 전쟁)</h1><p class="hero-subtitle">성지를 되찾자며 200년을 싸웠는데, 왜 교황이 약해졌을까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">칼리프와 술탄은 무엇을 나눠 가졌을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">교황은 무엇을 내걸고 사람들을 불러 모았을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">같은 원정에 나선 네 사람은 무엇을 원했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">원정은 실패했는데 누가 이득을 봤을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>셀주크 튀르크</strong> — 11세기경 중앙아시아에서 일어난 <strong>유목 민족</strong>. 바그다드를 정복하고 아바스 왕조의 칼리프에게서 <strong>술탄</strong> 칭호를 얻어 이슬람 세계를 이끌었다.</p><div class="card-quote"><strong>술탄</strong> = 아랍어로 '권력'. 이슬람 세계의 <strong>정치적</strong> 지배자를 이르는 말이고, <strong>종교 지도자인 칼리프와는 자리가 다르다.</strong></div><div class="card-quote">💡 <strong>힘은 셀주크가, 「이슬람 세계의 지도자」라는 이름은 칼리프가</strong> — 둘이 자리를 나눠 가졌다. 지난 시간 교황과 황제는 같은 문제로 200년을 싸웠다(3-3-2).</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>클레르몽의 호소 (1095)</strong> — 교황 <strong>우르바누스 2세</strong>가 클레르몽에서 종교 회의를 열어 "<em>성지 예루살렘을 되찾자</em>"고 호소했다.</p><div class="card-quote">⚠️ <strong>방아쇠는 두 가지다</strong> — <strong>셀주크의 예루살렘 점령</strong> + <strong>비잔티움 제국의 요청</strong>. 점령 하나만으로는 교황이 나설 명분이 없었다.</div><div class="card-quote">💡 여기에 <strong>제후·기사·상인·농민</strong>이 호응하면서 십자군 전쟁이 시작된다. 교황의 말 한마디에 유럽 전체가 움직였다는 것 자체가 <strong>교황권 절정기</strong>(3-3-2)의 증거다.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>이해관계</strong> — 각자 <strong>얻고 싶은 것</strong>. 사람마다 다르다.</p><div class="card-quote">같은 깃발 아래 모여도 <strong>원하는 것이 저마다 다르면</strong> 처음엔 힘이 세지만 시간이 지나며 방향이 흩어진다. 교과서가 십자군의 실패를 이 한 낱말로 적는다 — <em>"참여한 사람들의 <strong>이해관계</strong>에 따라 점차 본래의 목적을 잃었다."</em></div><div class="card-quote">💡 <strong>넷이 각각 무엇을 원했는지는 3단계 그림과 교과서 98쪽 삽화에 있다.</strong> 활동 1을 먼저 풀어 보고 확인하자.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>결과의 역설</strong> — 성지는 못 찾았는데 유럽이 바뀌었다. 그것도 <strong>전쟁을 시작한 쪽이 손해 보는</strong> 방향으로.</p><p><code>교황 권위 ↓</code> · <code>제후·기사 세력 ↓</code> → <strong>왕권 ↑</strong> → 중앙 집권 국가로</p><div class="card-quote">💡 그리고 <strong>적과의 교역이 늘었다</strong> — 지중해 무역권 성장, 베네치아·제노바·피사의 번영, 고전 문화·자연 과학·제지술의 유입. <strong>충돌과 교류가 같은 사건의 앞뒤</strong>다.</div></div></div><img class="hero-image" src="images/3-3-3_십자군_표지.webp" alt=""><div class="hero-hook">자, 네가 1096년 유럽 사람이라고 해보자. 교황이 외친다 — '성지를 되찾자!' 사람들이 우르르 모여든다. 그런데 반전이 있어. 모인 사람들 <strong>속마음이 다 달랐거든.</strong> 누가 무엇을 원했는지는 오늘 3단계 그림에서 직접 찾아보자. 200년 뒤 결과는? 성지는 끝내 못 찾았고, 정작 전쟁을 이끈 쪽이 오히려 힘을 잃었어(헐?). 누가 잃고 누가 얻었는지는 5단계에서. 목적과 결과가 이렇게 어긋난 전쟁, 오늘 그 이야기.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅲ단원 3-3-3 — 같은 깃발 아래, 서로 다른 꿍꿍이 (십자군 전쟁)</h1><p class="hero-subtitle">성지를 되찾자며 200년을 싸웠는데, 누가 힘을 잃었을까?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">칼리프와 셀주크는 무엇을 나눠 가졌을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">교황은 무엇을 내걸고 사람들을 불러 모았을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">같은 원정에 나선 네 사람은 무엇을 원했을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">원정은 실패했는데 누가 이득을 봤을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>셀주크 튀르크</strong> — 11세기경 중앙아시아에서 일어난 <strong>유목 민족</strong>. 바그다드를 정복하고 아바스 왕조의 칼리프에게서 <strong>술탄</strong> 칭호를 얻어 이슬람 세계를 이끌었다.</p><div class="card-quote"><strong>술탄</strong> = 아랍어로 '권력'. 이슬람 세계의 <strong>정치적</strong> 지배자를 이르는 말이고, <strong>종교 지도자인 칼리프와는 자리가 다르다.</strong></div><div class="card-quote">💡 <strong>힘은 셀주크가, 「이슬람 세계의 지도자」라는 이름은 칼리프가</strong> — 둘이 자리를 나눠 가졌다. 지난 시간 교황과 황제는 같은 문제로 50년 가까이 싸웠다(3-3-2).</div></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>클레르몽의 호소 (1095)</strong> — 교황 <strong>우르바누스 2세</strong>가 클레르몽에서 종교 회의를 열어 "<em>성지 예루살렘을 되찾자</em>"고 호소했다.</p><div class="card-quote">⚠️ <strong>방아쇠는 두 가지다</strong> — <strong>셀주크의 예루살렘 점령</strong> + <strong>비잔티움 제국의 요청</strong>. 점령 하나만으로는 교황이 나설 명분이 없었다.</div><div class="card-quote">💡 여기에 <strong>제후·기사·상인·농민</strong>이 호응하면서 십자군 전쟁이 시작된다. 교황의 말 한마디에 유럽 전체가 움직였다는 것 자체가 <strong>교황권 절정기</strong>(3-3-2)의 증거다.</div></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>이해관계</strong> — 각자 <strong>얻고 싶은 것</strong>. 사람마다 다르다.</p><div class="card-quote">같은 깃발 아래 모여도 <strong>원하는 것이 저마다 다르면</strong> 처음엔 힘이 세지만 시간이 지나며 방향이 흩어진다. 교과서가 십자군의 실패를 이 한 낱말로 적는다 — <em>"참여한 사람들의 <strong>이해관계</strong>에 따라 점차 본래의 목적을 잃었다."</em></div><div class="card-quote">💡 <strong>넷이 각각 무엇을 원했는지는 3단계 그림과 교과서 98쪽 삽화에 있다.</strong> 활동 1을 먼저 풀어 보고 확인하자.</div></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>결과의 역설</strong> — 성지는 못 찾았는데 유럽이 바뀌었다. 그것도 <strong>전쟁을 시작한 쪽이 손해 보는</strong> 방향으로.</p><p><code>교황 권위 ↓</code> · <code>제후·기사 세력 ↓</code> → <strong>왕권 ↑</strong> → 중앙 집권 국가로</p><div class="card-quote">💡 그리고 <strong>적과의 교역이 늘었다</strong> — 지중해 무역권 성장, 베네치아·제노바·피사의 번영, 고전 문화·자연 과학·제지술의 유입. <strong>충돌과 교류가 같은 사건의 앞뒤</strong>다.</div></div></div><img class="hero-image" src="images/3-3-3_십자군_표지.webp" alt=""><div class="hero-hook">자, 네가 1096년 유럽 사람이라고 해보자. 교황이 외친다 — '성지를 되찾자!' 사람들이 우르르 모여든다. 그런데 반전이 있어. 모인 사람들 <strong>속마음이 다 달랐거든.</strong> 누가 무엇을 원했는지는 오늘 3단계 그림에서 직접 찾아보자. 200년 뒤 결과는? 성지는 끝내 못 찾았고, 정작 전쟁을 이끈 쪽이 오히려 힘을 잃었어(헐?). 누가 잃고 누가 얻었는지는 5단계에서. 목적과 결과가 이렇게 어긋난 전쟁, 오늘 그 이야기.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/6 · OX: <span id="ox-score">0</span>/3
@@ -1152,10 +1166,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <blockquote>🎙️ 여기 이상한 게 하나 있어. 셀주크는 바그다드를 <strong>정복한</strong> 쪽이야. 힘으로 이겼다는 뜻이지. 그런데 「술탄」이라는 칭호를 <strong>칼리프한테서 받았대.</strong> 이긴 쪽이 왜 굳이 남한테 이름을 받아 올까? 아래 그림에서 <strong>둘이 무엇을 나눠 가졌는지</strong> 찾아보자.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/3-3-3_칼리프와술탄.png" alt="종교의 권위와 실제 힘 — 이슬람 세계에서는 칼리프가 술탄에게 칭호를 주어 자리를 나눠 가졌고, 크리스트교 세계에서는 교황과 황제가 임명권을 두고 200년을 싸웠다." loading="lazy"><figcaption>종교의 권위와 실제 힘 — 이슬람 세계에서는 칼리프가 술탄에게 칭호를 주어 자리를 나눠 가졌고, 크리스트교 세계에서는 교황과 황제가 임명권을 두고 200년을 싸웠다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/3-3-3_칼리프와술탄.png" alt="종교의 권위와 실제 힘 — 이슬람 세계에서는 칼리프가 술탄에게 칭호를 주어 자리를 나눠 가졌고, 크리스트교 세계에서는 교황과 황제가 임명권을 두고 50년 가까이 싸웠다." loading="lazy"><figcaption>종교의 권위와 실제 힘 — 이슬람 세계에서는 칼리프가 술탄에게 칭호를 주어 자리를 나눠 가졌고, 크리스트교 세계에서는 교황과 황제가 임명권을 두고 50년 가까이 싸웠다.</figcaption></figure>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>🔍 <strong>지난 시간 교황·황제는 같은 문제를 어떻게 했을까</strong></summary><div class="ws-fold-body">
-<p>크리스트교 세계에서는 교황과 황제가 성직자 임명권을 두고 <strong>200년을 싸웠어</strong>(3-3-2). 이슬람 세계는 <strong>나눠 가졌고</strong>, 크리스트교 세계는 <strong>싸웠어.</strong> 같은 문제에 답이 둘이었던 거지.</p>
+<p>크리스트교 세계에서는 교황과 황제가 성직자 임명권을 두고 <strong>50년 가까이 싸웠어</strong>(3-3-2). 이슬람 세계는 <strong>나눠 가졌고</strong>, 크리스트교 세계는 <strong>싸웠어.</strong> 같은 문제에 답이 둘이었던 거지.</p>
 </div></details>
 <br>
 <h2>📖 2단계: 전쟁의 방아쇠 — 클레르몽의 호소</h2>
@@ -1254,9 +1268,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>지난 시간(3-3-2)에 배운 <strong>카노사의 굴욕</strong>과 <strong>아비뇽 유수</strong>, 그리고 오늘 배운 <strong>십자군 전쟁</strong>은 따로 떨어진 사건이 아니다. 세 사건을 한 줄에 놓으면 <strong>교황과 왕 사이의 저울이 어느 쪽으로 기울어 갔는지</strong>가 보인다.</p>
 <br>
-<figure class="ws-fig"><img src="images/3-3-3_세사건연표_v2.png" alt="교황과 왕의 힘, 저울이 뒤집히기까지 — **세로가 힘의 저울이다.** 위로 갈수록 교황이 강하고, 아래로 갈수록 왕이 강하다. 가로는 시간. 굵은 선을 눈으로 따라가면 1077 카노사에서 올라가 13세기에 가장 높고, 그 뒤 1309 아비뇽·1378 대분열로 **균형선 아래까지 떨어진다.** 주황 띠는 십자군 전쟁(1096~1270)이고, 올라간 것도 무너진 것도 전부 그 띠 안이다." loading="lazy"><figcaption>교황과 왕의 힘, 저울이 뒤집히기까지 — <strong>세로가 힘의 저울이다.</strong> 위로 갈수록 교황이 강하고, 아래로 갈수록 왕이 강하다. 가로는 시간. 굵은 선을 눈으로 따라가면 1077 카노사에서 올라가 13세기에 가장 높고, 그 뒤 1309 아비뇽·1378 대분열로 <strong>균형선 아래까지 떨어진다.</strong> 주황 띠는 십자군 전쟁(1096~1270)이고, 올라간 것도 무너진 것도 전부 그 띠 안이다.</figcaption></figure>
+<figure class="ws-fig"><img src="images/3-3-3_세사건연표_v2.png" alt="교황과 왕의 힘, 저울이 뒤집히기까지 — **세로가 힘의 저울이다.** 위로 갈수록 교황이 강하고, 아래로 갈수록 왕이 강하다. 가로는 시간. 굵은 선을 눈으로 따라가면 1077 카노사에서 올라가 13세기에 가장 높고, 그 뒤 1309 아비뇽·1378 대분열로 **균형선 아래까지 떨어진다.** 주황 띠는 십자군 전쟁(1096~1270)이다. 교황권이 절정에 이른 것은 그 띠 안이고, 아비뇽과 대분열은 띠가 끝난 뒤다." loading="lazy"><figcaption>교황과 왕의 힘, 저울이 뒤집히기까지 — <strong>세로가 힘의 저울이다.</strong> 위로 갈수록 교황이 강하고, 아래로 갈수록 왕이 강하다. 가로는 시간. 굵은 선을 눈으로 따라가면 1077 카노사에서 올라가 13세기에 가장 높고, 그 뒤 1309 아비뇽·1378 대분열로 <strong>균형선 아래까지 떨어진다.</strong> 주황 띠는 십자군 전쟁(1096~1270)이다. 교황권이 절정에 이른 것은 그 띠 안이고, 아비뇽과 대분열은 띠가 끝난 뒤다.</figcaption></figure>
 <br>
-<blockquote>🎙️ <strong>이 그림은 세로가 「힘의 저울」이야.</strong> 위로 갈수록 교황이 세고, 아래로 갈수록 왕이 세. 굵은 선을 손가락으로 따라가 봐 — 카노사에서 올라가서 13세기에 가장 높았다가, <strong>아비뇽에서 균형선 아래로 떨어져.</strong> 그리고 하나 더 놓치기 쉬운 게 있어. <strong>십자군 전쟁은 「점」이 아니라 「띠」야.</strong> 1096년에 시작해 200여 년을 갔거든. 그러니까 교황권이 절정에 이른 것도, 그 뒤 무너지기 시작한 것도 <strong>전부 저 주황 띠 안에서</strong> 벌어진 일이야. 교황이 불러 모은 전쟁이 교황 자신의 힘을 깎아 내린 셈이지.</blockquote>
+<blockquote>🎙️ <strong>이 그림은 세로가 「힘의 저울」이야.</strong> 위로 갈수록 교황이 세고, 아래로 갈수록 왕이 세. 굵은 선을 손가락으로 따라가 봐 — 카노사에서 올라가서 13세기에 가장 높았다가, <strong>아비뇽에서 균형선 아래로 떨어져.</strong> 그리고 하나 더 놓치기 쉬운 게 있어. <strong>십자군 전쟁은 「점」이 아니라 「띠」야.</strong> 1096년에 시작해 200여 년을 갔거든. 교황권이 절정에 이른 건 <strong>저 주황 띠 안</strong>이고, 아비뇽으로 떨어진 건 <strong>띠가 끝나고 40년쯤 뒤</strong>야. 띠 안에서 쌓인 실패가 그 뒤에 값으로 돌아온 셈이지. 교황이 불러 모은 전쟁이 교황 자신의 힘을 깎아 내린 거야.</blockquote>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 96쪽 · 연표</div><div class="ws-tb-ask">연표에서 <strong>십자군 전쟁이 벌어지는 '동안'에 일어난 사건</strong>을 찾아 적자. 그리고 그 사건은 <strong>교황에게 유리했을까, 불리했을까?</strong> 위 그림의 굵은 선이 그때 어느 쪽으로 갔는지 보고 판단해 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 96쪽에서 찾기 — 연표에서 십자군 전쟁이 벌어지는 «동안»에 일어난 사건을 찾아 적자." style="width:460px" placeholder=""></div></div>
 <br>
@@ -1274,9 +1288,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✅ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>십자군 전쟁의 직접적 계기는 셀주크 튀르크의 예루살렘 점령과 비잔티움 제국의 요청이었다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>십자군 전쟁은 제1차 원정에서 예루살렘을 되찾은 뒤 목적을 이루고 끝났다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>십자군 전쟁 이후 교황의 권위는 떨어지고 왕권은 상대적으로 강해졌다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>십자군 전쟁의 직접적 계기는 셀주크 튀르크의 예루살렘 점령과 비잔티움 제국의 요청이었다.</td><td><div class="ox-group" data-answer="O" data-label="십자군 전쟁의 직접적 계기는 셀주크 튀르크의 예루살렘 점령과 비잔티움 제국의 요청이었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>십자군 전쟁은 제1차 원정에서 예루살렘을 되찾은 뒤 목적을 이루고 끝났다.</td><td><div class="ox-group" data-answer="X" data-label="십자군 전쟁은 제1차 원정에서 예루살렘을 되찾은 뒤 목적을 이루고 끝났다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>십자군 전쟁 이후 교황의 권위는 떨어지고 왕권은 상대적으로 강해졌다.</td><td><div class="ox-group" data-answer="O" data-label="십자군 전쟁 이후 교황의 권위는 떨어지고 왕권은 상대적으로 강해졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>

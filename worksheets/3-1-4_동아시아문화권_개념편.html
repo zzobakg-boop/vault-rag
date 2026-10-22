@@ -464,15 +464,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
 .sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
 .sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
-.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
-.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
 .sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
 .ws-tb-2cin { margin: 2px 0 4px; }
 .ws-tb-2cin .ws-tb-fig { margin: 0; }
@@ -671,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1185,16 +1199,16 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 5단계: 공유 ④ 불교 — 함께 믿은 신앙</h2>
 <p>당에 건너간 승려들을 통해 불교가 동아시아 여러 나라로 퍼졌다. 일본은 8세기 초 당의 장안성을 본떠 ⑪<input type="text" class="blank-input" data-answer="헤이조쿄" data-id="11" style="width:84px" placeholder="">(나라)를 세우고, 당과 신라에서 들어온 불교문화로 ⑫<input type="text" class="blank-input" data-answer="도다이지" data-id="12" style="width:84px" placeholder="">를 비롯한 대규모 사찰을 많이 지었다.</p>
 <br>
-<blockquote>🎙️ 불교는 <em>국경을 넘는 신앙</em>이었어. 승려들이 당으로 유학 가서 배워 오면, 그 나라에 절이 서고 불상이 만들어졌지. 일본 나라의 <strong>도다이지</strong>(세계 최대 목조 건축)가 그 증거야. 공유하되 <em>각 나라 색깔</em>로 꽃피운 거지.</blockquote>
+<blockquote>🎙️ 불교는 <em>국경을 넘는 신앙</em>이었어. 승려들이 당으로 유학 가서 배워 오면, 그 나라에 절이 서고 불상이 만들어졌지. 일본 나라의 <strong>도다이지</strong>(나라 시대에 세운 큰 절)가 그 증거야. 공유하되 <em>각 나라 색깔</em>로 꽃피운 거지.</blockquote>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>동아시아 문화권의 공유 요소는 한자·유교·율령·불교이다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>한자는 신라의 이두, 일본의 가나가 만들어지는 데 영향을 주었다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>유교는 왕의 권한을 약화시키는 이념으로 받아들여졌다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>신라·발해·일본은 당의 3성 6부제를 본떠 통치 체제를 만들었다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>동아시아 국가들은 문화를 공유하기만 하고 독자적으로 발전시키지는 못했다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>동아시아 문화권의 공유 요소는 한자·유교·율령·불교이다.</td><td><div class="ox-group" data-answer="O" data-label="동아시아 문화권의 공유 요소는 한자·유교·율령·불교이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>한자는 신라의 이두, 일본의 가나가 만들어지는 데 영향을 주었다.</td><td><div class="ox-group" data-answer="O" data-label="한자는 신라의 이두, 일본의 가나가 만들어지는 데 영향을 주었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>유교는 왕의 권한을 약화시키는 이념으로 받아들여졌다.</td><td><div class="ox-group" data-answer="X" data-label="유교는 왕의 권한을 약화시키는 이념으로 받아들여졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>신라·발해·일본은 당의 3성 6부제를 본떠 통치 체제를 만들었다.</td><td><div class="ox-group" data-answer="O" data-label="신라·발해·일본은 당의 3성 6부제를 본떠 통치 체제를 만들었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>동아시아 국가들은 문화를 공유하기만 하고 독자적으로 발전시키지는 못했다.</td><td><div class="ox-group" data-answer="X" data-label="동아시아 국가들은 문화를 공유하기만 하고 독자적으로 발전시키지는 못했다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>

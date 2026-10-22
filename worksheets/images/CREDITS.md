@@ -1686,7 +1686,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 4-2-2_라메르표지.jpg | Debussy - La Mer - The great wave of Kanaga from Hokusai.jpg | Durand 1905 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Debussy_-_La_Mer_-_The_great_wave_of_Kanaga_from_Hokusai.jpg |
 | 4-2-3_붉은성.jpg | Lahori Gate (Red Fort), Delhi, India (2017).jpg | Lucky181993 · CC BY-SA 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Lahori_Gate_(Red_Fort),_Delhi,_India_(2017).jpg |
 | 4-3-1_루멜리히사르.jpg | Rumeli Hisarı - Otağtepeden Görünüşü.jpg | Hamdigumus · CC0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Rumeli_Hisar%C4%B1_-_Ota%C4%9Ftepeden_G%C3%B6r%C3%BCn%C3%BC%C5%9F%C3%BC.jpg |
-| 4-3-2_콜럼버스상륙.jpg | Landing of Columbus (2).jpg | John Vanderlyn · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Landing_of_Columbus_(2).jpg |
+| 4-3-2_서인도상륙1847.jpg | 존 밴더린 「서인도 상륙」(1847, 미국 국회 의사당) | John Vanderlyn · Public domain · Wikimedia Commons · https://commons.wikimedia.org/?curid=1380997 |
 | 4-3-3_골든하인드.jpg | Golden Hind Ship Replica - Brixham Harbour 15-9-2025.jpg | BWard 1997 · CC BY 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Golden_Hind_Ship_Replica_-_Brixham_Harbour_15-9-2025.jpg |
 | 4-3-3_VOC주식.jpg | VOC aandeel 9 september 1606.jpg | VOC (Westfries Archief) · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:VOC_aandeel_9_september_1606.jpg |
 | 4-3-3_갤리선.jpg | Galère et vaisseau de ligne français sous Louis XIV.jpg | Jan Karel Donatus Van Beecq, 1691 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Gal%C3%A8re_et_vaisseau_de_ligne_fran%C3%A7ais_sous_Louis_XIV.jpg |

@@ -464,15 +464,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
 .sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
 .sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
-.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
-.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
 .sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
 .ws-tb-2cin { margin: 2px 0 4px; }
 .ws-tb-2cin .ws-tb-fig { margin: 0; }
@@ -671,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1202,7 +1216,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 4단계: 적은 수로 많은 수를 다스리는 법</h2>
 <blockquote>📕 <strong>교과서 118쪽 둘째 문단 + 지도 ② + 「우리 해 보자」</strong> 펴고 채우기 · 배정 시간 <strong>14분</strong></blockquote>
 <br>
-<p>청을 세운 만주족은 수가 적었고, 다스려야 할 한족은 훨씬 많았다. 그래서 청은 한족의 마음을 달래는 ⑦<input type="text" class="blank-input" data-answer="회유책" data-id="7" style="width:68px" placeholder="">과 힘으로 누르는 ⑧<input type="text" class="blank-input" data-answer="강압책" data-id="8" style="width:68px" placeholder="">을 함께 펼쳤다. 청은 강희제, 옹정제, ⑨<input type="text" class="blank-input" data-answer="건륭제" data-id="9" style="width:68px" placeholder="">에 이르는 130여 년 동안 통치 제도를 고치고 영토를 넓히며 전성기를 누렸다. 특히 세 번째 황제 때에는 정복 활동을 활발하게 벌여 가장 넓은 영토를 차지하였는데, 이것은 오늘날 중국의 영토와 비슷하다.</p>
+<p>청을 세운 만주족은 수가 적었고, 다스려야 할 한족은 훨씬 많았다. 그래서 청은 한족의 마음을 달래는 ⑦<input type="text" class="blank-input" data-answer="회유책" data-id="7" style="width:68px" placeholder="">과 힘으로 누르는 ⑧<input type="text" class="blank-input" data-answer="강압책" data-id="8" style="width:68px" placeholder="">을 함께 펼쳤다. 청은 강희제, 옹정제, ⑨<input type="text" class="blank-input" data-answer="건륭제" data-id="9" style="width:68px" placeholder="">에 이르는 130여 년 동안 통치 제도를 고치고 영토를 넓히며 전성기를 누렸다. 특히 이 세 황제 가운데 마지막 황제 때에는 정복 활동을 활발하게 벌여 가장 넓은 영토를 차지하였는데, 이것은 오늘날 중국의 영토와 비슷하다.</p>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 118쪽 · 「우리 해 보자」 카드 뉴스 (가)~(라)</div><div class="ws-tb-see">네 장의 카드 뉴스를 차례로 읽어 보자.</div><div class="ws-tb-ask">(가)~(라)를 '한족을 달래는 정책'과 '힘으로 누르는 정책'으로 나누어 기호를 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 118쪽에서 찾기 — (가)~(라)를 «한족을 달래는 정책»과 «힘으로 누르는 정책»으로" style="width:300px" placeholder=""></div></div>
 <br>
@@ -1246,7 +1260,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 119쪽 · 사진 「곤여만국전도」와 마테오 리치</div><div class="ws-tb-ask">사진 설명을 읽고, 이 지도가 동아시아 여러 나라 사람들의 <strong>어떤 생각</strong>을 바꾸었는지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 119쪽에서 찾기 — 사진 설명을 읽고, 이 지도가 동아시아 여러 나라 사람들의 어떤 생각" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 위 사료는 영국이 '항구를 더 열어 달라'고 사절단을 보냈을 때 받은 답장이야. 청은 아쉬울 게 없다고 여겼지. 그런데 정작 영국은 차를 사느라 빈칸 ⑬을 계속 실어 와야 했어. 그 금속 가운데 많은 양이 남아메리카 볼리비아의 포토시 광산에서 나왔어(교과서 124쪽). 지도에서 포토시와 광저우를 찾아 지구본에 대 보면, 거의 정반대편이야. 지구 반대편 광산과 중국의 세금 장부가 한 줄로 이어진 거지. 경제사 학자의 추정으로는 1700년 무렵 중국이 만들어 낸 물건이 세계 전체의 약 5분의 1이었고, 영국은 그 7분의 1쯤이었어. 세계의 그 금속이 왜 이쪽으로 몰려들었는지 짐작이 가지?</blockquote>
+<blockquote>🎙️ 위 사료는 영국이 '항구를 더 열어 달라'고 사절단을 보냈을 때 받은 답장이야. 청은 아쉬울 게 없다고 여겼지. 그런데 정작 영국은 차를 사느라 빈칸 ⑬을 계속 실어 와야 했어. 그 금속 가운데 많은 양이 남아메리카 볼리비아의 포토시 광산에서 나왔어(교과서 124쪽). 지도에서 포토시와 광저우를 찾아 지구본에 대 보면, 거의 정반대편이야. 지구 반대편 광산과 중국의 세금 장부가 한 줄로 이어진 거지. 경제사 학자의 추정으로는 1700년 무렵 중국이 만들어 낸 물건이 세계 전체의 약 5분의 1이었고, 영국은 중국의 7분의 1쯤이었어. 세계의 그 금속이 왜 이쪽으로 몰려들었는지 짐작이 가지?</blockquote>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>🧭 세계 지도를 만든 선교사는 왜 옷을 갈아입었을까</summary><div class="ws-fold-body">
 <p>곤여만국전도를 만든 마테오 리치는 이탈리아에서 온 선교사야. 1583년 중국에 처음 들어왔을 때는 불교 스님 옷을 입었어. 그런데 지내다 보니 중국에서 존경받는 사람은 스님이 아니라 유교 경전을 공부한 선비였지. 그래서 1595년 무렵부터는 <strong>비단 옷에 높은 모자를 쓴 선비 차림</strong>으로 다녔어.</p>
@@ -1274,11 +1288,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✅ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>명은 원 말기에 농민 반란군을 이끈 주원장이 세웠다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>홍무제는 몽골 풍습을 장려하여 원의 전통을 이어 갔다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>청은 중요한 관직에 만주족과 한족을 함께 등용하기도 하였다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>청은 18세기 중반 이후 서양 상인에게 여러 항구를 자유롭게 열어 주었다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>명·청 때 유럽과 일본 상인들이 중국 물건을 사면서 많은 은이 중국에 들어왔다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>명은 원 말기에 농민 반란군을 이끈 주원장이 세웠다.</td><td><div class="ox-group" data-answer="O" data-label="명은 원 말기에 농민 반란군을 이끈 주원장이 세웠다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>홍무제는 몽골 풍습을 장려하여 원의 전통을 이어 갔다.</td><td><div class="ox-group" data-answer="X" data-label="홍무제는 몽골 풍습을 장려하여 원의 전통을 이어 갔다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>청은 중요한 관직에 만주족과 한족을 함께 등용하기도 하였다.</td><td><div class="ox-group" data-answer="O" data-label="청은 중요한 관직에 만주족과 한족을 함께 등용하기도 하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>청은 18세기 중반 이후 서양 상인에게 여러 항구를 자유롭게 열어 주었다.</td><td><div class="ox-group" data-answer="X" data-label="청은 18세기 중반 이후 서양 상인에게 여러 항구를 자유롭게 열어 주었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>명·청 때 유럽과 일본 상인들이 중국 물건을 사면서 많은 은이 중국에 들어왔다.</td><td><div class="ox-group" data-answer="O" data-label="명·청 때 유럽과 일본 상인들이 중국 물건을 사면서 많은 은이 중국에 들어왔다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>

@@ -464,15 +464,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
 .sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
 .sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
-.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
-.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
 .sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
 .ws-tb-2cin { margin: 2px 0 4px; }
 .ws-tb-2cin .ws-tb-fig { margin: 0; }
@@ -671,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1117,8 +1131,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   <section class="hero-section"><div class="hero-eyebrow">역사① · Ⅲ단원 · 지역 문화의 발전 · 3-2-2</div><h1 class="hero-title">역사① Ⅲ단원 3-2-2 — 왜 인도에서는 불교가 아니라 '힌두교'가 대세가 됐을까? (굽타 왕조)</h1><p class="hero-subtitle">왜 인도에서는 불교가 아니라 '힌두교'가 대세가 됐을까?</p><div class="hero-keywords"><span class="hero-keyword">찬드라굽타가 통일·해상 무역으로 번영</span><span class="hero-keyword">힌두교 = 브라만교+불교+민간신앙 → 카스트 인정</span><span class="hero-keyword">산스크리트 서사시·굽타 양식 미술</span><span class="hero-keyword">0(영)'과 10진법 → 이슬람 거쳐 세계로</span></div><div class="hero-hook">지난 시간 마우리아·쿠샨에서 <em>불교</em>가 꽃폈잖아? 근데 반전 — 정작 인도에 끝까지 뿌리내린 건 불교가 아니라 <strong>힌두교</strong>야. 게다가 우리가 매일 쓰는 숫자 '0'도 이때 인도에서 태어났어(헐!). 까다로운 불교·브라만교를 제치고 힌두교가 어떻게 '국민 종교'가 됐는지, 오늘 그 이야기.</div></section>
   <div class="control-bar">
     <div class="score">
-      빈칸: <span id="score">0</span>/14 · OX: <span id="ox-score">0</span>/0
-      · 총: <span id="total-score">0</span>/14 (<span id="pct">0</span>%)
+      빈칸: <span id="score">0</span>/14 · OX: <span id="ox-score">0</span>/4
+      · 총: <span id="total-score">0</span>/18 (<span id="pct">0</span>%)
     </div>
     <div>
       
@@ -1162,7 +1176,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <details class="ws-fold ws-fold-더보기"><summary>🏹 "네 본분을 다하라" — 싸우기 싫은 왕자에게 신이 한 말</summary><div class="ws-fold-body">
 <p>『마하바라타』에는 사촌들과 전쟁을 해야 하는 왕자 아르주나가 나와. 활을 내려놓고 '가족을 죽일 수 없다'며 망설이지.</p>
 <p>그때 마차를 몰던 크리슈나(신이 사람 모습으로 온 존재)가 말해. '너는 전사로 태어났다. 맡겨진 본분을 다하는 것이 신에게 가는 길이다.' 결국 아르주나는 다시 활을 들어.</p>
-<p>위에서 본 '자기 카스트의 의무를 성실히 하면 더 나은 카스트로 태어난다'는 가르침이 이 장면에 그대로 들어 있어. 너라면 이 말에 설득됐을까?</p>
+<p>위에서 본 '자기 카스트의 의무를 성실히 하라'는 가르침이 이 장면과 이어져 있어. 너라면 이 말에 설득됐을까?</p>
 <figure class="ws-fig"><img src="images/3-2-2_deogarh-relief.jpg" alt="인도 데오가르의 옛 힌두교 사원 벽에 새긴 부조 — 큰 뱀을 침대 삼아 누운 신을 위에서 여러 신이 내려다보고, 아래에는 무기를 든 인물들이 서 있다" loading="lazy"><figcaption>인도 데오가르의 옛 힌두교 사원 벽에 새긴 부조 — 큰 뱀을 침대 삼아 누운 신을 위에서 여러 신이 내려다보고, 아래에는 무기를 든 인물들이 서 있다</figcaption></figure>
 </div></details>
 <br>
@@ -1185,10 +1199,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>굽타 왕조는 쿠샨 왕조가 쇠퇴한 뒤 분열된 인도를 다시 통일하였다.</td><td><div class="ox-group" data-answer=""><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>힌두교는 카스트제에 따른 신분 차별을 부정하고 모든 사람의 평등을 강조하였다.</td><td><div class="ox-group" data-answer=""><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>굽타 왕조 시대에 인도에서 최초로 숫자 '0(영)'과 10진법이 만들어졌다.</td><td><div class="ox-group" data-answer=""><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>『마하바라타』·『라마야나』는 산스크리트어로 쓰인 인도의 서사시이다.</td><td><div class="ox-group" data-answer=""><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>굽타 왕조는 쿠샨 왕조가 쇠퇴한 뒤 분열된 인도를 다시 통일하였다.</td><td><div class="ox-group" data-answer="O" data-label="굽타 왕조는 쿠샨 왕조가 쇠퇴한 뒤 분열된 인도를 다시 통일하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>힌두교는 카스트제에 따른 신분 차별을 부정하고 모든 사람의 평등을 강조하였다.</td><td><div class="ox-group" data-answer="X" data-label="힌두교는 카스트제에 따른 신분 차별을 부정하고 모든 사람의 평등을 강조하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>굽타 왕조 시대에 인도에서 최초로 숫자 '0(영)'과 10진법이 만들어졌다.</td><td><div class="ox-group" data-answer="O" data-label="굽타 왕조 시대에 인도에서 최초로 숫자 '0(영)'과 10진법이 만들어졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>『마하바라타』·『라마야나』는 산스크리트어로 쓰인 인도의 서사시이다.</td><td><div class="ox-group" data-answer="O" data-label="『마하바라타』·『라마야나』는 산스크리트어로 쓰인 인도의 서사시이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1. 힌두교가 인도 사회에 미친 영향</h2>
@@ -1221,7 +1235,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
-const TB=14, TOX=0, GT=14;
+const TB=14, TOX=4, GT=18;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;

@@ -464,15 +464,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
 .sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
 .sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
-.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
-.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
 .sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
 .ws-tb-2cin { margin: 2px 0 4px; }
 .ws-tb-2cin .ws-tb-fig { margin: 0; }
@@ -671,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1191,7 +1205,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 5단계: 천 년의 빛 — 비잔티움 문화</h2>
 <p>비잔티움 제국은 그리스 정교를 바탕으로 그리스·로마 문화와 헬레니즘 문화를 융합하여 독자적인 문화를 발전시켰다. ⑮<input type="text" class="blank-input" data-answer="그리스어" data-id="15" style="width:84px" placeholder="">를 공용어로 사용하고 로마의 법률을 집대성하였으며, 그리스의 고전을 연구·보존하여 이후 이탈리아에서 ⑯<input type="text" class="blank-input" data-answer="르네상스" data-id="16" style="width:84px" placeholder="">가 일어나는 데 크게 기여하였다. 건축에서는 거대한 돔과 모자이크 벽화로 꾸민 비잔티움 양식(성 소피아 대성당)이 발달하였고, 이 문화는 슬라브인에게도 큰 영향을 주었다.</p>
 <br>
-<blockquote>💡 <strong>비잔티움이 인류에게 남긴 선물</strong>: 서유럽이 혼란할 때, 비잔티움은 그리스·로마의 고전을 도서관처럼 지키고 베껴 두었어. 수백 년 뒤 이 책들이 이탈리아로 흘러가 <strong>르네상스</strong>(고전 부활)에 불을 댕겨. 즉 14세기 르네상스의 불씨를 천 년 전 비잔티움이 보관해 둔 셈이지.</blockquote>
+<blockquote>💡 <strong>비잔티움이 인류에게 남긴 선물</strong>: 서유럽이 혼란할 때, 비잔티움은 그리스·로마의 고전을 도서관처럼 지키고 베껴 두었어. 수백 년 뒤 이 책들이 이탈리아로 흘러가 <strong>르네상스</strong>(고전 부활)에 불을 댕겨. 즉 14세기 르네상스의 불씨를 비잔티움이 천 년 동안 지켜 온 셈이지.</blockquote>
 <br>
 <figure class="ws-fig"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Hagia_Sophia_Mars_2013.jpg/960px-Hagia_Sophia_Mars_2013.jpg" alt="성 소피아 대성당(아야 소피아) — 비잔티움 양식의 대표 건축물, 거대한 돔과 모자이크 (튀르키예 이스탄불)" loading="lazy"><figcaption>성 소피아 대성당(아야 소피아) — 비잔티움 양식의 대표 건축물, 거대한 돔과 모자이크 (튀르키예 이스탄불)</figcaption></figure>
 <br>
@@ -1224,11 +1238,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>서로마 제국은 게르만족 출신 용병 대장에게 멸망하였다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>카롤루스 대제는 로마 교황에게서 '서로마 황제'의 관을 받았다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>성상 숭배 논쟁 끝에 교회는 로마 가톨릭과 그리스 정교로 나뉘었다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>비잔티움 제국은 서로마가 멸망하자 곧바로 함께 멸망하였다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>비잔티움 제국은 라틴어를 공용어로 사용하였다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>서로마 제국은 게르만족 출신 용병 대장에게 멸망하였다.</td><td><div class="ox-group" data-answer="O" data-label="서로마 제국은 게르만족 출신 용병 대장에게 멸망하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>카롤루스 대제는 로마 교황에게서 '서로마 황제'의 관을 받았다.</td><td><div class="ox-group" data-answer="O" data-label="카롤루스 대제는 로마 교황에게서 '서로마 황제'의 관을 받았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>성상 숭배 논쟁 끝에 교회는 로마 가톨릭과 그리스 정교로 나뉘었다.</td><td><div class="ox-group" data-answer="O" data-label="성상 숭배 논쟁 끝에 교회는 로마 가톨릭과 그리스 정교로 나뉘었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>비잔티움 제국은 서로마가 멸망하자 곧바로 함께 멸망하였다.</td><td><div class="ox-group" data-answer="X" data-label="비잔티움 제국은 서로마가 멸망하자 곧바로 함께 멸망하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>비잔티움 제국은 라틴어를 공용어로 사용하였다.</td><td><div class="ox-group" data-answer="X" data-label="비잔티움 제국은 라틴어를 공용어로 사용하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>

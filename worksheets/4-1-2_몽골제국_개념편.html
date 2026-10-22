@@ -464,15 +464,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
 .sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
 .sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
-.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
-.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
 .sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
 .ws-tb-2cin { margin: 2px 0 4px; }
 .ws-tb-2cin .ws-tb-fig { margin: 0; }
@@ -671,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1114,7 +1128,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅳ단원 4-1-2 — 말발굽이 이은 세계 (몽골 제국과 동서 문화 교류)</h1><p class="hero-subtitle">말발굽이 이은 세계</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">초원의 한 부족이 어떻게 가장 큰 나라를 세웠을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">한 나라 사람을 네 층으로 나누면 무슨 일이 생길까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">종이 한 장이 어떻게 돈이 되고, 나라를 흔들었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">베네치아에서 중국까지, 그 먼 길을 누가 지켜 주었을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>몽골 제국의 성립</strong> — 테무친이 몽골 부족 통일 → 칭기즈 칸으로 추대·몽골 제국 건국(1206) → 서하·금 공격, 중앙아시아 정복 → 뒤이은 칸들이 금 멸망·동유럽까지 → 여러 울루스로 나뉜 느슨한 연합.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>원의 중국 지배</strong> — 쿠빌라이 칸, 대도(베이징)·국호 원(1271) → 남송 멸망 · 관료제·주현제 수용 · 파스파 문자 · 몽골 제일주의(몽골인·색목인 우대, 한인·남인 차별) → 왕위 다툼·화폐 남발·물가 상승·한인 반란 → 북쪽으로 쫓겨남(1368).</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>원의 경제와 사회</strong> — 농업 기술·면직물 산업 · 상업 발달과 지폐 교초 · 서민 문화(구어체 소설·희곡·잡극).</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>교역권과 동서 교류</strong> — 도로망·역참·대운하 · 항저우·취안저우 번성 → 초원길·비단길·바닷길을 잇는 유라시아·인도양 교역권 · 마르코 폴로·이븐 바투타 방문 · 여러 종교 수용 · 이슬람 천문학 → 수시력(곽수경) · 화약 무기·나침반·활판 인쇄술 → 서양.</p></div></div><img class="hero-image" src="images/4-1-2_몽골제국_표지.png" alt=""><div class="hero-hook">1271년, 이탈리아 베네치아에서 열일곱 살 청년이 아버지와 삼촌을 따라 동쪽으로 길을 떠났어. 사막과 높은 고원을 넘어 3년 넘게 걸은 끝에, 초원 위에 세운 황제의 여름 궁전에 닿았지. 황제는 이 낯선 서양 청년을 반겼고, 청년은 그 뒤 17년 동안 이 나라 곳곳을 다니며 보고 들은 것을 기록으로 남겼어. 유럽 끝에서 중국까지 한 사람이 오갈 수 있었던 시대. 그 길은 누가, 어떻게 이었을까? 오늘은 초원에서 일어나 유라시아를 하나로 묶은 몽골 제국으로 가 보자.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅳ단원 4-1-2 — 말발굽이 이은 세계 (몽골 제국과 동서 문화 교류)</h1><p class="hero-subtitle">말발굽이 이은 세계</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">초원의 한 부족이 어떻게 가장 큰 나라를 세웠을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">한 나라 사람을 네 층으로 나누면 무슨 일이 생길까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">종이 한 장이 어떻게 돈이 되고, 나라를 흔들었을까<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">베네치아에서 중국까지, 그 먼 길을 누가 지켜 주었을까<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>몽골 제국의 성립</strong> — 테무친이 몽골 부족 통일 → 칭기즈 칸으로 추대·몽골 제국 건국(1206) → 서하·금 공격, 중앙아시아 정복 → 뒤이은 칸들이 금 멸망·동유럽까지 → 여러 울루스로 나뉜 느슨한 연합.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p><strong>원의 중국 지배</strong> — 쿠빌라이 칸, 대도(베이징)·국호 원(1271) → 남송 멸망 · 관료제·주현제 수용 · 파스파 문자 · 몽골 제일주의(몽골인·색목인 우대, 한인·남인 차별) → 왕위 다툼·화폐 남발·물가 상승·한인 반란 → 북쪽으로 쫓겨남(1368).</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p><strong>원의 경제와 사회</strong> — 농업 기술·면직물 산업 · 상업 발달과 지폐 교초 · 서민 문화(구어체 소설·희곡·잡극).</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p><strong>교역권과 동서 교류</strong> — 도로망·역참·대운하 · 항저우·취안저우 번성 → 초원길·비단길·바닷길을 잇는 유라시아·인도양 교역권 · 마르코 폴로·이븐 바투타 방문 · 여러 종교 수용 · 이슬람 천문학 → 수시력(곽수경) · 화약 무기·나침반·활판 인쇄술 → 서양.</p></div></div><img class="hero-image" src="images/4-1-2_몽골제국_표지.png" alt=""><div class="hero-hook">1271년, 이탈리아 베네치아에서 열일곱 살 청년이 아버지와 삼촌을 따라 동쪽으로 길을 떠났어. 사막과 높은 고원을 넘어 3년 넘게 걸은 끝에, 초원 위에 세운 황제의 여름 궁전에 닿았지. 황제는 이 낯선 서양 청년을 반겼고, 청년은 그 뒤 오랫동안 이 나라 곳곳을 다니며 보고 들은 것을 기록으로 남겼어. 유럽 끝에서 중국까지 한 사람이 오갈 수 있었던 시대. 그 길은 누가, 어떻게 이었을까? 오늘은 초원에서 일어나 유라시아를 하나로 묶은 몽골 제국으로 가 보자.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/11 · OX: <span id="ox-score">0</span>/5
@@ -1186,7 +1200,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🎙️ 위 칸에서 찾은 두 숫자를 나란히 놓아 봐. 원은 무엇을 기준으로 사람을 나눴을까? 원에 언제 항복했는지, 원의 정복에 얼마나 협조했는지가 기준이었대. 끝까지 가장 거세게 맞선 남송 사람들이 가장 낮은 자리에 놓였지. 가장 적은 사람이 가장 많은 사람을 누른 구조, 이 구조가 3단계에서 어떻게 흔들리는지 보자.</blockquote>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>✍️ 칭기즈 칸 때 몽골에는 글자가 없었다</summary><div class="ws-fold-body">
-<p>몽골 사람들은 처음엔 자기 말을 적을 글자가 없었어. 서쪽의 위구르 왕이 '칭기즈 칸의 다섯째 아들이 되겠다'며 스스로 몽골 편에 들어오자, 칭기즈 칸은 그에게 딸을 주었지. 그때 위구르의 글자와 글 잘 쓰는 관리들이 몽골 궁정으로 한꺼번에 들어왔어. 위구르 사람 타타퉁아는 칭기즈 칸 아들들의 선생님이 되어 위구르 글자로 몽골 말을 적게 했대.</p>
+<p>몽골 사람들은 처음엔 자기 말을 적을 글자가 없었어. 서쪽의 위구르 왕이 '칭기즈 칸의 다섯째 아들이 되겠다'며 스스로 몽골 편에 들어오자, 칭기즈 칸은 그에게 딸을 주었지. 위구르의 글자와 글 잘 쓰는 관리들이 몽골 궁정에서 일하게 된 거야. 그보다 몇 해 앞서, 나이만 부족에서 옥새를 맡다가 나이만이 무너질 때 붙잡혀 온 위구르 사람 타타퉁아가 있었어. 그는 칭기즈 칸 아들들의 선생님이 되어 위구르 글자로 몽골 말을 적게 했대.</p>
 <p>그러니까 몽골은 처음엔 이웃의 글자를 빌려 썼고, 쿠빌라이 때 여러 민족의 말을 적을 새 글자를 따로 만든 거야. 4-1-1에서 본 북방 민족의 고유 문자랑 같은 고민이지. 4단계 사진 속 통행패에 박힌 글자도 눈여겨봐.</p>
 </div></details>
 <br>
@@ -1235,7 +1249,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </div></div>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>⛪ 유럽 왕이 몽골 칸에게 보낸 수도사</summary><div class="ws-fold-body">
-<p>페르시아에 있던 몽골 사령관이 프랑스 왕 루이 9세에게 '너희는 이집트를, 우리는 바그다드를 치자'고 손을 내밀었어. 루이 9세는 몽골을 크리스트교로 바꿔 같은 편으로 삼을 생각에 수도사 루브룩을 몽골로 보냈지. 루브룩은 1254년 몽골의 대칸 뭉케를 직접 만났고, 돌아와 몽골 사정을 자세히 적은 여행기를 썼어. 원이라는 나라 이름이 생기기(1271) 전의 일이야. 3-3-3에서 본 십자군의 왕이 몽골과 손잡으려 한 셈이지. '같이 크리스트교 믿자'는 말에 칸은 뭐라고 했을까?</p>
+<p>페르시아에 있던 몽골 사령관이 프랑스 왕 루이 9세에게 '너희는 이집트를, 우리는 바그다드를 치자'고 손을 내밀었어. 루이 9세는 몽골을 크리스트교로 바꿔 같은 편으로 삼을 생각에 사절을 보냈고, 몇 해 뒤 루이 9세의 편지를 지닌 수도사 루브룩도 몽골로 떠났지. 루브룩은 1254년 몽골의 대칸 뭉케를 직접 만났고, 돌아와 몽골 사정을 자세히 적은 여행기를 썼어. 원이라는 나라 이름이 생기기(1271) 전의 일이야. 3-3-3에서 본 십자군의 왕이 몽골과 손잡으려 한 셈이지. '같이 크리스트교 믿자'는 말에 칸은 뭐라고 했을까?</p>
 <p>오간 건 사신만이 아니야. 원 궁궐에서는 고려식 옷이 유행해서 '궁중 옷은 요즘 고려 모양을 높인다'는 시가 나왔고, '고려 사람은 생채로 밥을 싸 먹는다'는 원나라 시도 있어. 거꾸로 고려에서는 몽골식 옷과 모자가 유행했지. 쌈밥은 어느 쪽으로 갔을까?</p>
 <p>지식도 오갔어. 1402년 조선에서 만든 세계 지도는 왼쪽 끝에 아프리카와 유럽까지 그렸어 — 유럽 배가 그 아프리카 끝을 돌아 바닷길을 여는 이야기는 4-3-2에서 이어져.</p>
 <figure class="ws-fig"><img src="images/4-1-2_강리도.jpg" alt="「혼일강리역대국도지도」(1402년 조선, 일본에 남은 사본) — 한가운데 중국, 오른쪽에 크게 그린 조선, 왼쪽 끝에 아프리카가 보인다." loading="lazy"><figcaption>「혼일강리역대국도지도」(1402년 조선, 일본에 남은 사본) — 한가운데 중국, 오른쪽에 크게 그린 조선, 왼쪽 끝에 아프리카가 보인다.</figcaption></figure>
@@ -1258,11 +1272,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✅ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>몽골 제국은 제국을 세운 칸이 죽자 곧바로 무너졌다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>원은 몽골인과 색목인을 우대하고 한인과 남인을 차별하였다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>원은 동전만 쓰고 지폐는 쓰지 않았다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>몽골 제국은 육로에 일정한 거리마다 역참을 두었다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>원 때에는 중국의 문물이 서양으로 나가기만 했을 뿐, 다른 지역의 문물은 들어오지 않았다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>몽골 제국은 제국을 세운 칸이 죽자 곧바로 무너졌다.</td><td><div class="ox-group" data-answer="X" data-label="몽골 제국은 제국을 세운 칸이 죽자 곧바로 무너졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>원은 몽골인과 색목인을 우대하고 한인과 남인을 차별하였다.</td><td><div class="ox-group" data-answer="O" data-label="원은 몽골인과 색목인을 우대하고 한인과 남인을 차별하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>원은 동전만 쓰고 지폐는 쓰지 않았다.</td><td><div class="ox-group" data-answer="X" data-label="원은 동전만 쓰고 지폐는 쓰지 않았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>몽골 제국은 육로에 일정한 거리마다 역참을 두었다.</td><td><div class="ox-group" data-answer="O" data-label="몽골 제국은 육로에 일정한 거리마다 역참을 두었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>원 때에는 중국의 문물이 서양으로 나가기만 했을 뿐, 다른 지역의 문물은 들어오지 않았다.</td><td><div class="ox-group" data-answer="X" data-label="원 때에는 중국의 문물이 서양으로 나가기만 했을 뿐, 다른 지역의 문물은 들어오지 않았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>

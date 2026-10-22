@@ -464,15 +464,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
 .sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
 .sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
-.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
-.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
 .sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
 .ws-tb-2cin { margin: 2px 0 4px; }
 .ws-tb-2cin .ws-tb-fig { margin: 0; }
@@ -671,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1117,8 +1131,8 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
   <section class="hero-section"><div class="hero-eyebrow">역사① · Ⅲ단원 · 지역 문화의 발전 · 3-2-3</div><h1 class="hero-title">역사① Ⅲ단원 3-2-3 — 한 상인이 세운 종교가 어떻게 100년 만에 세 대륙으로 퍼졌을까? (이슬람 세계의 성장)</h1><p class="hero-subtitle">한 상인이 세운 종교가 어떻게 100년 만에 세 대륙으로 퍼졌을까?</p><div class="hero-keywords"><span class="hero-keyword">무함마드 이슬람교 성립·헤지라(메디나 이주)</span><span class="hero-keyword">정통 칼리프 — 지즈야 면제·평등으로 빠른 확산</span><span class="hero-keyword">우마이야(시아·수니 분열)→아바스(민족 차별 철폐)</span><span class="hero-keyword">탈라스 전투 — 고구려 유민 고선지와 얽힌 우리 역사</span></div><div class="hero-hook">사산조와 비잔티움이 치고받느라 동서 교역로가 막히자, 아라비아의 메카·메디나가 새 무역 중심지로 떴어. 근데 소수 귀족이 돈을 독차지하면서 빈부 격차가 폭발. 바로 그때 메카의 한 상인 <em>무함마드</em>가 '신 앞에 모두 평등하다'며 이슬람교를 세워. 박해받아 쫓겨났던 이 종교가 어떻게 100년 만에 세 대륙을 호령하게 됐을까?</div></section>
   <div class="control-bar">
     <div class="score">
-      빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/0
-      · 총: <span id="total-score">0</span>/12 (<span id="pct">0</span>%)
+      빈칸: <span id="score">0</span>/12 · OX: <span id="ox-score">0</span>/4
+      · 총: <span id="total-score">0</span>/16 (<span id="pct">0</span>%)
     </div>
     <div>
       
@@ -1149,7 +1163,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>6세기 후반 사산 왕조 페르시아와 비잔티움 제국이 대립하면서 기존 동서 교역로가 막혔다. 상인들이 새 교역로를 찾으면서 아라비아반도의 <strong>메카·메디나</strong>가 무역 중심지로 떠올랐지만, 소수 귀족이 이익을 독차지해 빈부 격차가 심해지고 부족 간 전쟁이 일어났다. 이러한 가운데 7세기 초 메카의 상인 ①<input type="text" class="blank-input" data-answer="무함마드" data-id="1" style="width:84px" placeholder="">가 이슬람교를 정립하였다. 그는 유일신 ②<input type="text" class="blank-input" data-answer="알라" data-id="2" style="width:60px" placeholder="">에게 절대복종해야 한다고 가르쳤고, <em>모든 인간은 신 앞에 ③<input type="text" class="blank-input" data-answer="평등" data-id="3" style="width:60px" placeholder="">하다</em>고 하여 귀족들의 탄압을 받았다. 이에 무함마드와 신도들은 ④<input type="text" class="blank-input" data-answer="메디나" data-id="4" style="width:68px" placeholder="">로 거처를 옮겼다(⑤<input type="text" class="blank-input" data-answer="헤지라" data-id="5" style="width:68px" placeholder="">, 622). 여기서 세력을 키워 이슬람 공동체를 만든 그는 메카를 정복하고 주변을 통일하였다.</p>
 <br>
 <figure class="ws-fig"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/The_Kaaba_during_Hajj_-_edited.jpg/1280px-The_Kaaba_during_Hajj_-_edited.jpg" alt="카바 — 메카의 이슬람교 중심 성소, 둘러싼 수많은 순례자" loading="lazy"><figcaption>카바 — 메카의 이슬람교 중심 성소, 둘러싼 수많은 순례자</figcaption></figure>
-<blockquote>🕋 <strong>카바</strong>(메카). 무함마드가 세운 이슬람교의 중심 성소다. 전 세계 무슬림이 이곳을 향해 기도하고, 2025년에는 약 167만 명이 순례하러 모였다. <em>한 상인의 가르침</em>이 세 대륙으로 퍼진 출발점이 바로 여기다.</blockquote>
+<blockquote>🕋 <strong>카바</strong>(메카). 이슬람 이전부터 있던 성소를 무함마드가 이슬람교의 중심 성소로 삼았다. 전 세계 무슬림이 이곳을 향해 기도하고, 2025년에는 약 167만 명이 순례하러 모였다. <em>한 상인의 가르침</em>이 세 대륙으로 퍼진 출발점이 바로 여기다.</blockquote>
 <br>
 <blockquote>🎙️ 포인트는 '<em>평등</em>'이야. 빈부 격차로 신음하던 사람들에게 "신 앞에선 귀족이나 노예나 똑같다"는 말은 <em>혁명적</em>이었거든. 그래서 가난한 사람·소외된 사람이 모여들었고, 귀족들은 자기 기득권이 흔들리니 박해한 거야. 익숙하지? 과거제(수·당)도, 이슬람교도 — <em>"평등"이라는 한마디가 판을 흔든다.</em></blockquote>
 <br>
@@ -1191,10 +1205,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>무함마드는 유일신 알라를 믿고 신 앞의 평등을 가르쳐 귀족의 탄압을 받았다.</td><td><div class="ox-group" data-answer=""><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>이슬람 세력은 정복지 주민에게 이슬람교를 강요하고 개종을 막았다.</td><td><div class="ox-group" data-answer=""><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>우마이야 왕조 시기에 이슬람교도가 시아파와 수니파로 갈라졌다.</td><td><div class="ox-group" data-answer=""><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>아바스 왕조는 탈라스 전투에서 당에 승리하여 동서 교역로를 차지하였다.</td><td><div class="ox-group" data-answer=""><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>무함마드는 유일신 알라를 믿고 신 앞의 평등을 가르쳐 귀족의 탄압을 받았다.</td><td><div class="ox-group" data-answer="O" data-label="무함마드는 유일신 알라를 믿고 신 앞의 평등을 가르쳐 귀족의 탄압을 받았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>이슬람 세력은 정복지 주민에게 이슬람교를 강요하고 개종을 막았다.</td><td><div class="ox-group" data-answer="X" data-label="이슬람 세력은 정복지 주민에게 이슬람교를 강요하고 개종을 막았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>우마이야 왕조 시기에 이슬람교도가 시아파와 수니파로 갈라졌다.</td><td><div class="ox-group" data-answer="O" data-label="우마이야 왕조 시기에 이슬람교도가 시아파와 수니파로 갈라졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>아바스 왕조는 탈라스 전투에서 당에 승리하여 동서 교역로를 차지하였다.</td><td><div class="ox-group" data-answer="O" data-label="아바스 왕조는 탈라스 전투에서 당에 승리하여 동서 교역로를 차지하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1. 이슬람교는 왜 빠르게 퍼졌을까?</h2>
@@ -1202,7 +1216,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p><input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="✏️ 활동 1. 이슬람교는 왜 빠르게 퍼졌을까?" style="width:240px" placeholder=""></p>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
-<p>정복지 주민에게 <em>개종을 강요하지 않고 세금을 깎아 준</em> 이슬람의 정책은, 페르시아의 <em>관용 정책</em>과 닮았어. '강요'가 아니라 '관용'이 더 강한 힘을 낸 까닭은 무엇일까? 내 생각을 써 보자.</p>
+<p>정복지 주민에게 <em>개종을 강요하지 않고 세금을 깎아 준</em> 이슬람의 정책은, 옛 아케메네스 왕조 페르시아의 <em>관용 정책</em>과 닮았어. '강요'가 아니라 '관용'이 더 강한 힘을 낸 까닭은 무엇일까? 내 생각을 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 </section><h2>🔗 핵심 정리 — 인과 사슬</h2>
@@ -1227,7 +1241,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
 </div>
 <script>
-const TB=12, TOX=0, GT=12;
+const TB=12, TOX=4, GT=16;
 let usedReveal=false;
 function selectOX(btn, val){
   const grp=btn.parentElement;
