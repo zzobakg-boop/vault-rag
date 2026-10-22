@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -623,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1110,7 +1172,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>나라의 영토는 국민이 살아가는 ①<input type="text" class="blank-input" data-answer="생존" data-id="1" style="width:60px" placeholder=""> 기반이자 생활 무대라서, 영토를 지키는 일은 나라를 지키는 기본이 된다. 영해는 나라를 지키는 일뿐 아니라 ②<input type="text" class="blank-input" data-answer="수산" data-id="2" style="width:60px" placeholder=""> 자원과 바다 밑 지하자원을 개발하는 권리와 관련된 바다다. 그래서 예부터 이웃 나라 사이에서는 영토를 지키거나 넓히는 일을 두고 다툼이 끊이지 않았다. 오늘날 세계 곳곳의 영토·영해 분쟁은 민족적 ③<input type="text" class="blank-input" data-answer="자존심" data-id="3" style="width:68px" placeholder="">뿐 아니라 자원에 대한 ④<input type="text" class="blank-input" data-answer="경제적" data-id="4" style="width:68px" placeholder=""> 이익까지 걸려 있어 쉽게 합의점을 찾지 못한다.</p>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>분쟁이 길어지는 까닭은 두 겹이야.</p><p>마음 — «우리 땅을 한 뼘도 줄 수 없다»는 민족의 마음. 돈 — 그 땅과 바다 밑에 묻힌 자원과 바닷길.</p><p>둘 가운데 하나만 걸려도 어려운데, 둘이 한꺼번에 걸리면 더 풀기 어렵다.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>분쟁이 길어지는 까닭은 두 겹이야.</p><p>마음 — '우리 땅을 한 뼘도 줄 수 없다'는 민족의 마음. 돈 — 그 땅과 바다 밑에 묻힌 자원과 바닷길.</p><p>둘 가운데 하나만 걸려도 어려운데, 둘이 한꺼번에 걸리면 더 풀기 어렵다.</p></div>
 <br>
 <h2>📖 3단계: 세계의 영토·영해 분쟁</h2>
 <blockquote>📕 <strong>교과서 220~221쪽 펴고 · 배정 시간 12분</strong></blockquote>
@@ -1123,19 +1185,19 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-fig"><img src="images/12-2_hans_bottles.jpg" alt="한스섬에 두고 간 술병과 통조림, 2003년" loading="lazy"><figcaption>한스섬에 두고 간 술병과 통조림, 2003년</figcaption></figure>
 <br>
-<blockquote>🎙️ 한스섬 다툼은 좀 특이했어. 덴마크 사람들이 섬에 와서 깃발을 꽂고 술을 한 병 두고 가면, 다음엔 캐나다 사람들이 와서 자기 깃발과 자기 나라 술을 두고 갔대. 그래서 «위스키 전쟁»이라는 별명이 붙었어. 그런데 이 다툼은 결국 어떻게 끝났을까?</blockquote>
+<blockquote>🎙️ 한스섬 다툼은 좀 특이했어. 덴마크 사람들이 섬에 와서 깃발을 꽂고 술을 한 병 두고 가면, 다음엔 캐나다 사람들이 와서 자기 깃발과 자기 나라 술을 두고 갔대. 그래서 '위스키 전쟁'이라는 별명이 붙었어. 그런데 이 다툼은 결국 어떻게 끝났을까?</blockquote>
 <br>
-<blockquote>✅ <strong>스스로 점검</strong> — 카드 여섯 장 가운데 «자원과 바닷길»이 몇 장이었니? 자원이 걸린 분쟁이 왜 이렇게 많은지 2단계의 ④를 떠올려 보자.</blockquote>
+<blockquote>✅ <strong>스스로 점검</strong> — 카드 여섯 장 가운데 '자원과 바닷길'이 몇 장이었니? 자원이 걸린 분쟁이 왜 이렇게 많은지 2단계의 ④를 떠올려 보자.</blockquote>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>오키노토리는 파도가 높으면 거의 물에 잠기는 암초다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>영해는 물고기나 바다 밑 자원과는 관계가 없다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>영토·영해 분쟁은 대부분 몇 달 안에 쉽게 해결된다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>남중국해 분쟁에는 여러 나라가 얽혀 있다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>세계의 영토 분쟁 가운데에는 대화로 끝난 경우도 있다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>오키노토리는 파도가 높으면 거의 물에 잠기는 암초다.</td><td><div class="ox-group" data-answer="O" data-label="오키노토리는 파도가 높으면 거의 물에 잠기는 암초다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>영해는 물고기나 바다 밑 자원과는 관계가 없다.</td><td><div class="ox-group" data-answer="X" data-label="영해는 물고기나 바다 밑 자원과는 관계가 없다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>영토·영해 분쟁은 대부분 몇 달 안에 쉽게 해결된다.</td><td><div class="ox-group" data-answer="X" data-label="영토·영해 분쟁은 대부분 몇 달 안에 쉽게 해결된다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>남중국해 분쟁에는 여러 나라가 얽혀 있다.</td><td><div class="ox-group" data-answer="O" data-label="남중국해 분쟁에는 여러 나라가 얽혀 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>세계의 영토 분쟁 가운데에는 대화로 끝난 경우도 있다.</td><td><div class="ox-group" data-answer="O" data-label="세계의 영토 분쟁 가운데에는 대화로 끝난 경우도 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>

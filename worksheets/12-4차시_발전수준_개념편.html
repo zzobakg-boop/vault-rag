@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -623,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1066,7 +1128,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 더불어 사는 세계 12-4차시 — 돈만으로는 다 못 재는 발전 (지역별 발전 수준의 차이를 아는 방법은?)</h1><p class="hero-subtitle">돈만으로는 다 못 재는 발전</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">어느 대륙이 가장 많이 벌고, 어느 대륙이 적게 벌까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">잘사는 나라와 못사는 나라의 차이는 커지고 있을까, 줄고 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">나라의 발전을 무엇으로 잴 수 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">가난하다는 나라의 국민이 왜 행복하다고 답할까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>국내 총생산은 동아시아 및 오세아니아·북아메리카·유럽이 높고, 사하라 이남 아프리카·남부 아시아 등이 낮다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>세계화로 나라 사이의 <strong>경쟁</strong>이 치열해지면서 선진국과 저개발국의 발전 <strong>격차</strong>가 더 커지고 있다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>발전 수준은 국내 총생산·국민 총소득 같은 경제 지표와 기대 수명·교육 기간 같은 <strong>비경제</strong> 지표로 견준다. 둘을 함께 고려한 것이 <strong>인간 개발</strong> 지수다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>인간 개발 지수 상위 나라는 대부분 유럽, 하위 나라는 대부분 아프리카에 있다. 2023년 값 1위는 아이슬란드(0.972), 맨 아래는 남수단(0.388)이다.</p></div></div><img class="hero-image" src="images/12-4_hero_punakha.jpg" alt=""><div class="hero-hook">히말라야 산자락의 작은 나라 부탄. 강가에 선 옛 성채 둘레로 보랏빛 꽃나무가 피어 있다. 이 나라는 국민 대부분이 «나는 행복하다»고 답한 것으로 알려졌다. 그런데 소득으로 줄을 세우면 부탄은 한참 아래에 있다. 어느 쪽이 부탄의 진짜 모습일까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 더불어 사는 세계 12-4차시 — 돈만으로는 다 못 재는 발전 (지역별 발전 수준의 차이를 아는 방법은?)</h1><p class="hero-subtitle">돈만으로는 다 못 재는 발전</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">어느 대륙이 가장 많이 벌고, 어느 대륙이 적게 벌까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">잘사는 나라와 못사는 나라의 차이는 커지고 있을까, 줄고 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">나라의 발전을 무엇으로 잴 수 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">가난하다는 나라의 국민이 왜 행복하다고 답할까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>국내 총생산은 동아시아 및 오세아니아·북아메리카·유럽이 높고, 사하라 이남 아프리카·남부 아시아 등이 낮다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>세계화로 나라 사이의 <strong>경쟁</strong>이 치열해지면서 선진국과 저개발국의 발전 <strong>격차</strong>가 더 커지고 있다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>발전 수준은 국내 총생산·국민 총소득 같은 경제 지표와 기대 수명·교육 기간 같은 <strong>비경제</strong> 지표로 견준다. 둘을 함께 고려한 것이 <strong>인간 개발</strong> 지수다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>인간 개발 지수 상위 나라는 대부분 유럽, 하위 나라는 대부분 아프리카에 있다. 2023년 값 1위는 아이슬란드(0.972), 맨 아래는 남수단(0.388)이다.</p></div></div><img class="hero-image" src="images/12-4_hero_punakha.jpg" alt=""><div class="hero-hook">히말라야 산자락의 작은 나라 부탄. 강가에 선 옛 성채 둘레로 보랏빛 꽃나무가 피어 있다. 이 나라는 국민 대부분이 '나는 행복하다'고 답한 것으로 알려졌다. 그런데 소득으로 줄을 세우면 부탄은 한참 아래에 있다. 어느 쪽이 부탄의 진짜 모습일까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/4 · OX: <span id="ox-score">0</span>/5
@@ -1087,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ 지난 세 시간은 지구가 함께 겪는 문제를 봤지. 오늘부터는 «나라마다 사정이 왜 이렇게 다를까»로 넘어간다. 먼저 잘살고 못사는 차이를 무엇으로 잴 수 있는지부터 따져 보자.</blockquote>
+<blockquote>🎙️ 지난 세 시간은 지구가 함께 겪는 문제를 봤지. 오늘부터는 '나라마다 사정이 왜 이렇게 다를까'로 넘어간다. 먼저 잘살고 못사는 차이를 무엇으로 잴 수 있는지부터 따져 보자.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 여러 <strong>지표</strong>를 이용해 지역별 발전 수준을 견줄 수 있다.</p>
@@ -1126,7 +1188,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 4단계: 위아래 다섯 나라, 그리고 부탄</h2>
 <blockquote>📕 <strong>교과서 225쪽 펴고 · 배정 시간 10분</strong></blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 225쪽 · 스스로 탐구 「발전 수준의 지역 차」</div><div class="ws-tb-see">표의 위쪽 다섯 나라와 아래쪽 다섯 나라를 견주어 괄호 안에서 맞는 말에 ◯를 해 보자.</div><div class="ws-tb-ask">아래쪽 다섯 나라의 공통점을 «대륙»과 «기대 수명», «중·고등학교 진학률»으로 한 문장에 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 225쪽에서 찾기 — 아래쪽 다섯 나라의 공통점을 «대륙»과 «기대 수명», «중·고등학교" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 225쪽 · 스스로 탐구 「발전 수준의 지역 차」</div><div class="ws-tb-see">표의 위쪽 다섯 나라와 아래쪽 다섯 나라를 견주어 괄호 안에서 맞는 말에 ◯를 해 보자.</div><div class="ws-tb-ask">아래쪽 다섯 나라의 공통점을 '대륙'과 '기대 수명', '중·고등학교 진학률'으로 한 문장에 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 225쪽에서 찾기 — 아래쪽 다섯 나라의 공통점을 '대륙'과 '기대 수명', '중·고등학교" style="width:400px" placeholder=""></div></div>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 225쪽 · 사회 톡톡톡 「부탄에서 생각해 보는 발전 수준」</div><div class="ws-tb-ask">부탄 헌법은 모든 개발의 궁극적 목표를 무엇이라고 적었는지 교과서에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 225쪽에서 찾기 — 부탄 헌법은 모든 개발의 궁극적 목표를 무엇이라고 적었는지 교과서에서" style="width:300px" placeholder=""></div></div>
 <br>
@@ -1136,11 +1198,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>세계화 이후 선진국과 저개발국의 차이는 점점 줄어들고 있다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>기대 수명과 교육 기간은 돈으로 재는 지표다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>국내 총생산이 낮은 지역에는 사하라 이남 아프리카가 있다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>성 불평등 지수는 숫자가 클수록 불평등이 심하다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>국민 대부분이 행복하다고 답한 것으로 알려진 부탄은 1인당 국내 총생산도 세계 최고 수준이다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>세계화 이후 선진국과 저개발국의 차이는 점점 줄어들고 있다.</td><td><div class="ox-group" data-answer="X" data-label="세계화 이후 선진국과 저개발국의 차이는 점점 줄어들고 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>기대 수명과 교육 기간은 돈으로 재는 지표다.</td><td><div class="ox-group" data-answer="X" data-label="기대 수명과 교육 기간은 돈으로 재는 지표다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>국내 총생산이 낮은 지역에는 사하라 이남 아프리카가 있다.</td><td><div class="ox-group" data-answer="O" data-label="국내 총생산이 낮은 지역에는 사하라 이남 아프리카가 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>성 불평등 지수는 숫자가 클수록 불평등이 심하다.</td><td><div class="ox-group" data-answer="O" data-label="성 불평등 지수는 숫자가 클수록 불평등이 심하다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>국민 대부분이 행복하다고 답한 것으로 알려진 부탄은 1인당 국내 총생산도 세계 최고 수준이다.</td><td><div class="ox-group" data-answer="X" data-label="국민 대부분이 행복하다고 답한 것으로 알려진 부탄은 1인당 국내 총생산도 세계 최고 수준이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
@@ -1153,7 +1215,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
-<p>여러분이 «행복한 나라 지수»를 새로 만든다면, 카드 여섯 장 말고 어떤 지표를 하나 더 넣고 싶니? 그 지표가 무엇을 재는지, 왜 돈으로 재는 지표만으로는 부족한지 두세 문장으로 써 보자.</p>
+<p>여러분이 '행복한 나라 지수'를 새로 만든다면, 카드 여섯 장 말고 어떤 지표를 하나 더 넣고 싶니? 그 지표가 무엇을 재는지, 왜 돈으로 재는 지표만으로는 부족한지 두세 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>

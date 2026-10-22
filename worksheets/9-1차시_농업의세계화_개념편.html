@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -623,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1087,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ 새 단원이야. Ⅸ단원은 «물건 하나가 우리 손에 오기까지 세계 어디를 거쳤나»를 묻는다. 첫 번째 물건은 매일 먹는 급식이야.</blockquote>
+<blockquote>🎙️ 새 단원이야. Ⅸ단원은 '물건 하나가 우리 손에 오기까지 세계 어디를 거쳤나'를 묻는다. 첫 번째 물건은 매일 먹는 급식이야.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 농업의 <strong>기업화</strong>와 <strong>세계화</strong>가 무엇인지 설명할 수 있다.</p>
@@ -1123,24 +1185,24 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>교과서 그래프는 2015년까지다. 그 뒤로도 수입은 계속 늘었다.</p><p>2024년 우리나라의 신선 과일 12종 수입액은 약 2조 원으로 역대 가장 많았다. 바나나만 해도 그해 1월부터 11월까지 37만 톤이 들어왔다.</p></div>
 <br>
-<div class="ws-pick" id="pk38"><div class="pk-head"><span>다섯 장면이다. 판정 기준 — 한 나라 안에서 «큰 땅과 큰 장비로 대량으로» 짓는 이야기면 기업화, «나라 밖으로 나가거나 나라를 넘나드는» 이야기면 세계화다. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="기업화"><div class="pk-name">끝없는 밀밭의 콤바인</div><div class="pk-sit">콤바인 여러 대가 하루에 넓은 밀밭을 다 거둔다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="기업화">기업화</button><button type="button" class="pk-b" data-v="세계화">세계화</button></div><div class="pk-why" hidden>큰 장비로 한꺼번에 대량 생산한다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="기업화"><div class="pk-name">회사가 짓는 농장</div><div class="pk-sit">한 가족이 아니라 한 회사가 수천 헥타르 농장을 운영한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="기업화">기업화</button><button type="button" class="pk-b" data-v="세계화">세계화</button></div><div class="pk-why" hidden>개인이 아니라 기업 차원에서 농사를 짓는다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="세계화"><div class="pk-name">코스타리카의 파인애플</div><div class="pk-sit">코스타리카에서 기른 파인애플이 한국 마트에 놓인다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="기업화">기업화</button><button type="button" class="pk-b" data-v="세계화">세계화</button></div><div class="pk-why" hidden>다른 나라에서 기른 농산물이 세계로 팔린다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="세계화"><div class="pk-name">일손이 싼 나라로</div><div class="pk-sit">날씨가 알맞고 일손이 싼 나라에 가서 농장을 연다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="기업화">기업화</button><button type="button" class="pk-b" data-v="세계화">세계화</button></div><div class="pk-why" hidden>기업이 나라 밖으로 나가 농사를 짓는다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="세계화"><div class="pk-name">곡물 회사의 배</div><div class="pk-sit">곡물 회사가 다른 나라의 항구와 화물선까지 운영한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="기업화">기업화</button><button type="button" class="pk-b" data-v="세계화">세계화</button></div><div class="pk-why" hidden>곡물 메이저는 세계를 무대로 유통까지 쥔다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk38");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["기업화", "세계화"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk38"><div class="pk-head"><span>다섯 장면이다. 판정 기준 — 한 나라 안에서 '큰 땅과 큰 장비로 대량으로' 짓는 이야기면 기업화, '나라 밖으로 나가거나 나라를 넘나드는' 이야기면 세계화다. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="기업화"><div class="pk-name">끝없는 밀밭의 콤바인</div><div class="pk-sit">콤바인 여러 대가 하루에 넓은 밀밭을 다 거둔다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="기업화">기업화</button><button type="button" class="pk-b" data-v="세계화">세계화</button></div><div class="pk-why" hidden>큰 장비로 한꺼번에 대량 생산한다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="기업화"><div class="pk-name">회사가 짓는 농장</div><div class="pk-sit">한 가족이 아니라 한 회사가 수천 헥타르 농장을 운영한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="기업화">기업화</button><button type="button" class="pk-b" data-v="세계화">세계화</button></div><div class="pk-why" hidden>개인이 아니라 기업 차원에서 농사를 짓는다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="세계화"><div class="pk-name">코스타리카의 파인애플</div><div class="pk-sit">코스타리카에서 기른 파인애플이 한국 마트에 놓인다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="기업화">기업화</button><button type="button" class="pk-b" data-v="세계화">세계화</button></div><div class="pk-why" hidden>다른 나라에서 기른 농산물이 세계로 팔린다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="세계화"><div class="pk-name">일손이 싼 나라로</div><div class="pk-sit">날씨가 알맞고 일손이 싼 나라에 가서 농장을 연다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="기업화">기업화</button><button type="button" class="pk-b" data-v="세계화">세계화</button></div><div class="pk-why" hidden>기업이 나라 밖으로 나가 농사를 짓는다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="세계화"><div class="pk-name">곡물 회사의 배</div><div class="pk-sit">곡물 회사가 다른 나라의 항구와 화물선까지 운영한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="기업화">기업화</button><button type="button" class="pk-b" data-v="세계화">세계화</button></div><div class="pk-why" hidden>곡물 메이저는 세계를 무대로 유통까지 쥔다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk38");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["기업화", "세계화"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <h2>📖 4단계: 청양고추의 국적은?</h2>
 <blockquote>📕 <strong>교과서 169쪽 펴고 · 배정 시간 7분</strong></blockquote>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 169쪽 · 사회 톡톡톡 「청양고추의 국적은 어디일까요?」</div><div class="ws-tb-ask">우리나라에서 개발한 청양고추 종자를 지금 우리 농민이 돈을 내고 사서 심는 까닭을 글에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 169쪽에서 찾기 — 우리나라에서 개발한 청양고추 종자를 지금 우리 농민이 돈을 내고 사서" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 떡볶이에 넣는 그 매운 청양고추 말이야. 씨앗을 만든 건 우리나라인데, 씨앗의 주인은 외국 회사야. 농업의 세계화는 밀과 바나나만이 아니라 «씨앗»까지 세계를 오가는 상품으로 만들었어.</blockquote>
+<blockquote>🎙️ 떡볶이에 넣는 그 매운 청양고추 말이야. 씨앗을 만든 건 우리나라인데, 왜 우리 농민이 돈을 내고 사야 할까? 교과서 글에서 찾아봐.</blockquote>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>농업의 기업화는 주로 산지가 많고 땅이 좁은 나라에서 이루어진다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>농업의 기업화 대상에는 곡물뿐 아니라 과일과 육류도 있다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>곡물 메이저는 세계 곡물 거래에서 큰 영향력을 가진 기업이다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>우리나라가 수입하는 과일의 양은 1995년 이후 줄어들었다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>청양고추는 우리나라에서 개발했지만 종자는 외국 기업의 소유로 등록되어 있다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>농업의 기업화는 주로 산지가 많고 땅이 좁은 나라에서 이루어진다.</td><td><div class="ox-group" data-answer="X" data-label="농업의 기업화는 주로 산지가 많고 땅이 좁은 나라에서 이루어진다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>농업의 기업화 대상에는 곡물뿐 아니라 과일과 육류도 있다.</td><td><div class="ox-group" data-answer="O" data-label="농업의 기업화 대상에는 곡물뿐 아니라 과일과 육류도 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>곡물 메이저는 세계 곡물 거래에서 큰 영향력을 가진 기업이다.</td><td><div class="ox-group" data-answer="O" data-label="곡물 메이저는 세계 곡물 거래에서 큰 영향력을 가진 기업이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>우리나라가 수입하는 과일의 양은 1995년 이후 줄어들었다.</td><td><div class="ox-group" data-answer="X" data-label="우리나라가 수입하는 과일의 양은 1995년 이후 줄어들었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>청양고추는 우리나라에서 개발했지만 종자는 외국 기업의 소유로 등록되어 있다.</td><td><div class="ox-group" data-answer="O" data-label="청양고추는 우리나라에서 개발했지만 종자는 외국 기업의 소유로 등록되어 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>

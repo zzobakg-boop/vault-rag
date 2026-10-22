@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -623,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1066,7 +1128,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 환경 문제와 지속 가능한 환경 10-2차시 — 계획표와 실제 사이 (기후 변화 문제, 어떻게 해결해야 할까?)</h1><p class="hero-subtitle">계획표와 실제 사이</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">지구의 날은 누가 처음 만들었을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">고기를 덜 먹는 것이 왜 기후를 지키는 일일까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">«탄소 없는 섬» 제주는 계획대로 가고 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">파리 협정을 어기면 어떤 벌을 받을까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>지구의 날(4월 22일)은 시민 운동으로 시작했고, 세계 환경의 날(6월 5일)은 국제 연합이 정했다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>기후 변화는 인류 <strong>공동</strong>의 목표 — 국제적으로는 온실가스 <strong>감축</strong>, 지역적으로는 위험에 대처할 <strong>역량</strong>을 키운다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>제주는 2030년 «탄소 없는 섬»을 목표로 신·재생 에너지, 전기 자동차, 스마트 그리드를 추진하지만 계획과 실제 사이에 거리가 있다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>파리 협정(2015)은 교토 의정서와 달리 모든 나라에 감축 <strong>의무</strong>를 주었지만, 지키지 않아도 처벌할 수 없다는 한계가 있다.</p></div></div><img class="hero-image" src="images/10-2_hero_jeju_wind.jpg" alt=""><div class="hero-hook">제주 북동쪽 바닷가에 하얀 풍력 발전기가 줄지어 서 있다. 제주는 2012년, 2030년까지 섬의 전기를 모두 신·재생 에너지로 만들겠다고 약속했다. 그 약속은 지금 어디쯤 와 있을까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 환경 문제와 지속 가능한 환경 10-2차시 — 계획표와 실제 사이 (기후 변화 문제, 어떻게 해결해야 할까?)</h1><p class="hero-subtitle">계획표와 실제 사이</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">지구의 날은 누가 처음 만들었을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">고기를 덜 먹는 것이 왜 기후를 지키는 일일까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">탄소 없는 섬' 제주는 계획대로 가고 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">파리 협정을 어기면 어떤 벌을 받을까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>지구의 날(4월 22일)은 시민 운동으로 시작했고, 세계 환경의 날(6월 5일)은 국제 연합이 정했다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>기후 변화는 인류 <strong>공동</strong>의 목표 — 국제적으로는 온실가스 <strong>감축</strong>, 지역적으로는 위험에 대처할 <strong>역량</strong>을 키운다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>제주는 2030년 '탄소 없는 섬'을 목표로 신·재생 에너지, 전기 자동차, 스마트 그리드를 추진하지만 계획과 실제 사이에 거리가 있다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>파리 협정(2015)은 교토 의정서와 달리 모든 나라에 감축 <strong>의무</strong>를 주었지만, 지키지 않아도 처벌할 수 없다는 한계가 있다.</p></div></div><img class="hero-image" src="images/10-2_hero_jeju_wind.jpg" alt=""><div class="hero-hook">제주 북동쪽 바닷가에 하얀 풍력 발전기가 줄지어 서 있다. 제주는 2012년, 2030년까지 섬의 전기를 모두 신·재생 에너지로 만들겠다고 약속했다. 그 약속은 지금 어디쯤 와 있을까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/4 · OX: <span id="ox-score">0</span>/5
@@ -1087,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ 지난 시간에 «영화 속 미래는 가까울까, 멀까?»를 물었지. 많은 사람이 «우리가 어떻게 하느냐에 달렸다»고 썼어. 오늘은 그 «어떻게»를 본다. 그리고 그 약속들이 실제로 잘 지켜지고 있는지도.</blockquote>
+<blockquote>🎙️ 지난 시간에 '영화 속 미래는 가까울까, 멀까?'를 물었지. 많은 사람이 '우리가 어떻게 하느냐에 달렸다'고 썼어. 오늘은 그 '어떻게'를 본다. 그리고 그 약속들이 실제로 잘 지켜지고 있는지도.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 기후 변화를 해결하기 위한 <strong>지역적·국제적 노력</strong>을 설명할 수 있다.</p>
@@ -1101,7 +1163,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 1단계: 지구를 위한 기념일</h2>
 <blockquote>📕 <strong>교과서 186쪽 펴고 · 배정 시간 6분</strong></blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 186쪽 · 생각 열기 「매년 4월 22일은 '지구의 날'」</div><div class="ws-tb-ask">환경 관련 기념일을 정한 까닭을 적고, 친구들과 실천할 수 있는 «우리 반 환경 기념일»을 하나 만들어 이름을 붙이자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 186쪽에서 찾기 — 환경 관련 기념일을 정한 까닭을 적고, 친구들과 실천할 수 있는 «우" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 186쪽 · 생각 열기 「매년 4월 22일은 '지구의 날'」</div><div class="ws-tb-ask">환경 관련 기념일을 정한 까닭을 적고, 친구들과 실천할 수 있는 '우리 반 환경 기념일'을 하나 만들어 이름을 붙이자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 186쪽에서 찾기 — 환경 관련 기념일을 정한 까닭을 적고, 친구들과 실천할 수 있는 '우" style="width:400px" placeholder=""></div></div>
 <br>
 <blockquote>🎙️ 지구의 날은 국제 연합이 아니라 시민들이 먼저 시작했대. 기념일을 만드는 건 쉽지만, 그날 무엇을 실제로 하느냐가 더 중요하겠지?</blockquote>
 <br>
@@ -1115,11 +1177,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 3단계: 탄소 없는 섬, 제주</h2>
 <blockquote>📕 <strong>교과서 187쪽 펴고 · 배정 시간 10분</strong></blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 187쪽 · 함께하는 창의 교실 「자료 1 탄소 없는 섬, 제주도」</div><div class="ws-tb-ask">제주도가 «탄소 없는 섬»이 되려고 추진하는 정책 세 가지를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 187쪽에서 찾기 — 제주도가 «탄소 없는 섬»이 되려고 추진하는 정책 세 가지를 적자." style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 187쪽 · 함께하는 창의 교실 「자료 1 탄소 없는 섬, 제주도」</div><div class="ws-tb-ask">제주도가 '탄소 없는 섬'이 되려고 추진하는 정책 세 가지를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 187쪽에서 찾기 — 제주도가 '탄소 없는 섬'이 되려고 추진하는 정책 세 가지를 적자." style="width:400px" placeholder=""></div></div>
 <br>
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>교과서 계획표에는 2020년까지 제주 전력의 68%를 신·재생 에너지로 채운다고 되어 있다.</p><p>실제 2020년 제주의 재생 에너지 발전 비율은 약 16%였다(기후 문제를 다루는 시민 단체 보고서 기준). 그래도 전국 평균보다는 두 배 넘게 높은 값이다.</p><p>게다가 바람이 세고 해가 쨍한 날에는 전기가 너무 많이 만들어져, 오히려 풍력 발전기를 멈춰 세우는 일까지 생긴다. 만든 전기를 저장하고 보낼 전력망이 함께 커지지 않았기 때문이다.</p></div>
 <br>
-<blockquote>🎙️ 약속이 틀렸다는 뜻은 아니야. 다만 «계획표»와 «실제» 사이에는 늘 거리가 있고, 그 거리를 좁히는 것이 진짜 숙제라는 거지.</blockquote>
+<blockquote>🎙️ 약속이 틀렸다는 뜻은 아니야. 다만 '계획표'와 '실제' 사이에는 늘 거리가 있고, 그 거리를 좁히는 것이 진짜 숙제라는 거지.</blockquote>
 <br>
 <h2>📖 4단계: 파리 협정, 강한 약속일까?</h2>
 <blockquote>📕 <strong>교과서 187쪽 펴고 · 배정 시간 11분</strong></blockquote>
@@ -1134,11 +1196,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>지구의 날은 국제 연합이 처음 정한 기념일이다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>기후 변화는 인류 모두가 함께 풀어야 할 문제다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>파리 협정은 선진국에만 온실가스를 줄이라고 했다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>파리 협정은 목표를 지키지 않는 나라에 벌금을 물린다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>제주도는 2020년에 계획대로 전력의 68%를 신·재생 에너지로 만들었다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>지구의 날은 국제 연합이 처음 정한 기념일이다.</td><td><div class="ox-group" data-answer="X" data-label="지구의 날은 국제 연합이 처음 정한 기념일이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>기후 변화는 인류 모두가 함께 풀어야 할 문제다.</td><td><div class="ox-group" data-answer="O" data-label="기후 변화는 인류 모두가 함께 풀어야 할 문제다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>파리 협정은 선진국에만 온실가스를 줄이라고 했다.</td><td><div class="ox-group" data-answer="X" data-label="파리 협정은 선진국에만 온실가스를 줄이라고 했다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>파리 협정은 목표를 지키지 않는 나라에 벌금을 물린다.</td><td><div class="ox-group" data-answer="X" data-label="파리 협정은 목표를 지키지 않는 나라에 벌금을 물린다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>제주도는 2020년에 계획대로 전력의 68%를 신·재생 에너지로 만들었다.</td><td><div class="ox-group" data-answer="X" data-label="제주도는 2020년에 계획대로 전력의 68%를 신·재생 에너지로 만들었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
@@ -1151,7 +1213,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
-<p>«지역이 앞장서야 한다»와 «국제기구가 앞장서야 한다» 가운데 하나를 골라 보자. 고른 주장의 근거 하나와, 그 주장이 가진 한계 하나를 오늘 배운 제주와 파리 협정을 예로 들어 세 문장 안팎으로 써 보자.</p>
+<p>'지역이 앞장서야 한다'와 '국제기구가 앞장서야 한다' 가운데 하나를 골라 보자. 고른 주장의 근거 하나와, 그 주장이 가진 한계 하나를 오늘 배운 제주와 파리 협정을 예로 들어 세 문장 안팎으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>

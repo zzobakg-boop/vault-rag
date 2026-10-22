@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -623,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1066,7 +1128,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 사람이 만든 삶터, 도시 8-2차시 — 다시 가고 싶은 도시의 비밀 (다양한 도시의 색다른 매력을 찾아볼까?)</h1><p class="hero-subtitle">다시 가고 싶은 도시의 비밀</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">사람들은 왜 이 도시에 가 보고 싶어 할까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">도시의 매력은 어디에서 나올까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">내가 가 보고 싶은 도시는 어떤 곳일까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">우리 지역의 매력은 무엇일까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>시드니는 바다 풍경뿐 아니라 온화한 기후, 문화와 교육의 중심이라는 점으로 사람들을 머물게 한다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>도시의 매력은 정치·경제적 <strong>영향력</strong>, 수려한 자연 <strong>경관</strong>·쾌적한 기후, 훌륭한 문화적 <strong>전통</strong>, 주민의 친절과 도시에 대한 <strong>애정</strong>에서 나온다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>가 보고 싶은 도시를 조사할 때는 위치·매력·인구·경제 활동·삶의 질을 함께 본다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>순천은 순천만의 갯벌·갈대밭·철새로 사람들을 불러 모은다. 내가 사는 지역의 매력을 찾으면 그곳을 더 매력 있게 만들 수 있다.</p></div></div><img class="hero-image" src="images/8-2_hero_sydney.jpg" alt=""><div class="hero-hook">해 질 녘 바다 위에 조개껍데기를 겹친 듯한 하얀 지붕과 커다란 다리가 보인다. 오스트레일리아 시드니다. 해마다 수많은 사람이 이 장면을 보러 온다. 그런데 사람들이 시드니에 «살고 싶다»고 말하는 까닭은 이 풍경 하나뿐일까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 사람이 만든 삶터, 도시 8-2차시 — 다시 가고 싶은 도시의 비밀 (다양한 도시의 색다른 매력을 찾아볼까?)</h1><p class="hero-subtitle">다시 가고 싶은 도시의 비밀</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">사람들은 왜 이 도시에 가 보고 싶어 할까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">도시의 매력은 어디에서 나올까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">내가 가 보고 싶은 도시는 어떤 곳일까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">우리 지역의 매력은 무엇일까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>시드니는 바다 풍경뿐 아니라 온화한 기후, 문화와 교육의 중심이라는 점으로 사람들을 머물게 한다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>도시의 매력은 정치·경제적 <strong>영향력</strong>, 수려한 자연 <strong>경관</strong>·쾌적한 기후, 훌륭한 문화적 <strong>전통</strong>, 주민의 친절과 도시에 대한 <strong>애정</strong>에서 나온다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>가 보고 싶은 도시를 조사할 때는 위치·매력·인구·경제 활동·삶의 질을 함께 본다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>순천은 순천만의 갯벌·갈대밭·철새로 사람들을 불러 모은다. 내가 사는 지역의 매력을 찾으면 그곳을 더 매력 있게 만들 수 있다.</p></div></div><img class="hero-image" src="images/8-2_hero_sydney.jpg" alt=""><div class="hero-hook">해 질 녘 바다 위에 조개껍데기를 겹친 듯한 하얀 지붕과 커다란 다리가 보인다. 오스트레일리아 시드니다. 해마다 수많은 사람이 이 장면을 보러 온다. 그런데 사람들이 시드니에 '살고 싶다'고 말하는 까닭은 이 풍경 하나뿐일까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/4 · OX: <span id="ox-score">0</span>/5
@@ -1087,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ 지난 시간에 광주에 별명을 붙여 봤지? 오늘은 그 별명 뒤에 숨은 것, 곧 «도시의 매력»을 본다. 사람들이 어떤 도시에 «가 보고 싶다», 더 나아가 «살아 보고 싶다»고 말하게 만드는 건 무엇일까?</blockquote>
+<blockquote>🎙️ 지난 시간에 광주에 별명을 붙여 봤지? 오늘은 그 별명 뒤에 숨은 것, 곧 '도시의 매력'을 본다. 사람들이 어떤 도시에 '가 보고 싶다', 더 나아가 '살아 보고 싶다'고 말하게 만드는 건 무엇일까?</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 도시의 <strong>매력 요소</strong>를 말할 수 있다.</p>
@@ -1101,23 +1163,23 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 1단계: 이 도시의 매력은 무엇일까?</h2>
 <blockquote>📕 <strong>교과서 148~149쪽 펴고 · 배정 시간 9분</strong></blockquote>
 <br>
-<div class="ws-pick" id="pk16"><div class="pk-head"><span>교과서에 나온 도시 다섯 곳이다. 사진과 설명을 보고 이 도시의 가장 큰 매력을 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="유적과 역사"><span class="pk-win"><img src="images/8-2_card_athens.jpg" alt="그리스 아테네" loading="lazy"></span><div class="pk-name">그리스 아테네</div><div class="pk-sit">언덕 위에 2,400년도 더 된 신전이 서 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="유적과 역사">유적과 역사</button><button type="button" class="pk-b" data-v="음악과 예술">음악과 예술</button><button type="button" class="pk-b" data-v="자연과 공원">자연과 공원</button><button type="button" class="pk-b" data-v="음식과 시장">음식과 시장</button></div><div class="pk-why" hidden>고대 그리스의 정치·문화 중심지였고, 그때의 유적이 지금도 남아 있다</div></div><div class="pk-card" data-i="1" data-ans="음악과 예술"><span class="pk-win"><img src="images/8-2_card_vienna.jpg" alt="오스트리아 빈" loading="lazy"></span><div class="pk-name">오스트리아 빈</div><div class="pk-sit">모차르트와 베토벤이 활동했고, 일 년 내내 콘서트가 열린다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="유적과 역사">유적과 역사</button><button type="button" class="pk-b" data-v="음악과 예술">음악과 예술</button><button type="button" class="pk-b" data-v="자연과 공원">자연과 공원</button><button type="button" class="pk-b" data-v="음식과 시장">음식과 시장</button></div><div class="pk-why" hidden>유명한 음악가들의 자취와 길거리 연주가 도시를 운치 있게 만든다</div></div><div class="pk-card" data-i="2" data-ans="자연과 공원"><span class="pk-win"><img src="images/8-2_card_vancouver.jpg" alt="캐나다 밴쿠버" loading="lazy"></span><div class="pk-name">캐나다 밴쿠버</div><div class="pk-sit">태평양에 맞닿아 있고, 커다란 숲 공원이 도심 바로 옆에 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="유적과 역사">유적과 역사</button><button type="button" class="pk-b" data-v="음악과 예술">음악과 예술</button><button type="button" class="pk-b" data-v="자연과 공원">자연과 공원</button><button type="button" class="pk-b" data-v="음식과 시장">음식과 시장</button></div><div class="pk-why" hidden>공원이 많아 주민의 만족도가 높다</div></div><div class="pk-card" data-i="3" data-ans="음식과 시장"><span class="pk-win"><img src="images/8-2_card_bangkok.jpg" alt="타이 방콕" loading="lazy"></span><div class="pk-name">타이 방콕</div><div class="pk-sit">방콕에서 당일로 다녀오는 수상 시장에서 배 위의 과일과 음식을 사 먹는다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="유적과 역사">유적과 역사</button><button type="button" class="pk-b" data-v="음악과 예술">음악과 예술</button><button type="button" class="pk-b" data-v="자연과 공원">자연과 공원</button><button type="button" class="pk-b" data-v="음식과 시장">음식과 시장</button></div><div class="pk-why" hidden>재래시장부터 고급 쇼핑센터까지, 그리고 «맛의 천국»이라 불리는 타이 음식</div></div><div class="pk-card" data-i="4" data-ans="음악과 예술"><span class="pk-win"><img src="images/8-2_card_florence.jpg" alt="이탈리아 피렌체" loading="lazy"></span><div class="pk-name">이탈리아 피렌체</div><div class="pk-sit">르네상스 시대의 건축물과 미술 작품이 도시 곳곳에 남아 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="유적과 역사">유적과 역사</button><button type="button" class="pk-b" data-v="음악과 예술">음악과 예술</button><button type="button" class="pk-b" data-v="자연과 공원">자연과 공원</button><button type="button" class="pk-b" data-v="음식과 시장">음식과 시장</button></div><div class="pk-why" hidden>르네상스 문화의 본고장이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk16");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["유적과 역사", "음악과 예술", "자연과 공원", "음식과 시장"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk16"><div class="pk-head"><span>교과서에 나온 도시 다섯 곳이다. 사진과 설명을 보고 이 도시의 가장 큰 매력을 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold"><div class="pk-card" data-i="0" data-ans="유적과 역사"><span class="pk-win"><img src="images/8-2_card_athens.jpg" alt="그리스 아테네" loading="lazy"></span><div class="pk-name">그리스 아테네</div><div class="pk-sit">언덕 위에 2,400년도 더 된 신전이 서 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="유적과 역사">유적과 역사</button><button type="button" class="pk-b" data-v="음악과 예술">음악과 예술</button><button type="button" class="pk-b" data-v="자연과 공원">자연과 공원</button><button type="button" class="pk-b" data-v="음식과 시장">음식과 시장</button></div><div class="pk-why" hidden>고대 그리스의 정치·문화 중심지였고, 그때의 유적이 지금도 남아 있다</div></div><div class="pk-card" data-i="1" data-ans="음악과 예술"><span class="pk-win"><img src="images/8-2_card_vienna.jpg" alt="오스트리아 빈" loading="lazy"></span><div class="pk-name">오스트리아 빈</div><div class="pk-sit">모차르트와 베토벤이 활동했고, 일 년 내내 콘서트가 열린다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="유적과 역사">유적과 역사</button><button type="button" class="pk-b" data-v="음악과 예술">음악과 예술</button><button type="button" class="pk-b" data-v="자연과 공원">자연과 공원</button><button type="button" class="pk-b" data-v="음식과 시장">음식과 시장</button></div><div class="pk-why" hidden>유명한 음악가들의 자취와 길거리 연주가 도시를 운치 있게 만든다</div></div><div class="pk-card" data-i="2" data-ans="자연과 공원"><span class="pk-win"><img src="images/8-2_card_vancouver.jpg" alt="캐나다 밴쿠버" loading="lazy"></span><div class="pk-name">캐나다 밴쿠버</div><div class="pk-sit">태평양에 맞닿아 있고, 커다란 숲 공원이 도심 바로 옆에 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="유적과 역사">유적과 역사</button><button type="button" class="pk-b" data-v="음악과 예술">음악과 예술</button><button type="button" class="pk-b" data-v="자연과 공원">자연과 공원</button><button type="button" class="pk-b" data-v="음식과 시장">음식과 시장</button></div><div class="pk-why" hidden>공원이 많아 주민의 만족도가 높다</div></div><div class="pk-card" data-i="3" data-ans="음식과 시장"><span class="pk-win"><img src="images/8-2_card_bangkok.jpg" alt="타이 방콕" loading="lazy"></span><div class="pk-name">타이 방콕</div><div class="pk-sit">방콕에서 당일로 다녀오는 수상 시장에서 배 위의 과일과 음식을 사 먹는다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="유적과 역사">유적과 역사</button><button type="button" class="pk-b" data-v="음악과 예술">음악과 예술</button><button type="button" class="pk-b" data-v="자연과 공원">자연과 공원</button><button type="button" class="pk-b" data-v="음식과 시장">음식과 시장</button></div><div class="pk-why" hidden>재래시장부터 고급 쇼핑센터까지, 그리고 '맛의 천국'이라 불리는 타이 음식</div></div><div class="pk-card" data-i="4" data-ans="음악과 예술"><span class="pk-win"><img src="images/8-2_card_florence.jpg" alt="이탈리아 피렌체" loading="lazy"></span><div class="pk-name">이탈리아 피렌체</div><div class="pk-sit">르네상스 시대의 건축물과 미술 작품이 도시 곳곳에 남아 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="유적과 역사">유적과 역사</button><button type="button" class="pk-b" data-v="음악과 예술">음악과 예술</button><button type="button" class="pk-b" data-v="자연과 공원">자연과 공원</button><button type="button" class="pk-b" data-v="음식과 시장">음식과 시장</button></div><div class="pk-why" hidden>르네상스 문화의 본고장이다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk16");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["유적과 역사", "음악과 예술", "자연과 공원", "음식과 시장"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
-<blockquote>🎙️ 방콕에는 «방콕을 한 번도 안 가 본 사람은 많지만, 한 번만 가 본 사람은 없다»는 말이 있대. 한 번 가면 또 가게 된다는 뜻이야. 너에게도 «또 가고 싶은 곳»이 있니?</blockquote>
+<blockquote>🎙️ 방콕에는 '방콕을 한 번도 안 가 본 사람은 많지만, 한 번만 가 본 사람은 없다'는 말이 있대. 한 번 가면 또 가게 된다는 뜻이야. 너에게도 '또 가고 싶은 곳'이 있니?</blockquote>
 <br>
 <h2>📖 2단계: 도시의 매력은 어디에서 나올까</h2>
 <blockquote>📕 <strong>교과서 148쪽 펴고 · 배정 시간 9분</strong></blockquote>
 <br>
 <p>세계에는 많은 사람이 가 보고 싶거나 살아 보고 싶은 도시들이 있다. 그 매력은 여러 가지다. 정치·경제적 ①<input type="text" class="blank-input" data-answer="영향력" data-id="1" style="width:68px" placeholder="">이 뛰어난 도시가 있고, 자연 ②<input type="text" class="blank-input" data-answer="경관" data-id="2" style="width:60px" placeholder="">이 수려하거나 기후가 쾌적한 도시가 있다. 훌륭한 문화적 ③<input type="text" class="blank-input" data-answer="전통" data-id="3" style="width:60px" placeholder="">이나, 지역 주민의 친절과 도시에 대한 ④<input type="text" class="blank-input" data-answer="애정" data-id="4" style="width:60px" placeholder="">도 도시의 매력이 된다.</p>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>«가 보고 싶은 도시»와 «살아 보고 싶은 도시»는 조금 다르다. 여행은 며칠이라 볼거리와 먹거리가 중요하지만, 사는 곳은 날마다 지내는 곳이라 일자리·공원·안전·이웃이 더 중요해진다.</p><p>표지의 시드니는 둘 다 갖춘 도시로 꼽힌다. 바다 풍경만이 아니라 온화한 기후, 문화와 교육의 중심이라는 점이 사람들을 머물게 한다.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>'가 보고 싶은 도시'와 '살아 보고 싶은 도시'는 조금 다르다. 여행은 며칠이라 볼거리와 먹거리가 중요하지만, 사는 곳은 날마다 지내는 곳이라 일자리·공원·안전·이웃이 더 중요해진다.</p><p>표지의 시드니는 둘 다 갖춘 도시로 꼽힌다. 바다 풍경만이 아니라 온화한 기후, 문화와 교육의 중심이라는 점이 사람들을 머물게 한다.</p></div>
 <br>
 <h2>📖 3단계: 내가 가 보고 싶은 도시</h2>
 <blockquote>📕 <strong>교과서 149쪽 펴고 · 배정 시간 12분</strong></blockquote>
 <br>
 <p>교과서 149쪽은 피렌체를 예시로 도시를 조사하는 표를 보여 준다. 나도 가 보고 싶은 도시 하나를 골라 조사해 보자. 노트북으로 검색하고, 사회과 부도에서 위치를 찾는다.</p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 149쪽 · 스스로 탐구 「내가 가 보고 싶은 도시는?」</div><div class="ws-tb-ask">예시의 피렌체에서 «도시의 매력» 칸에는 무엇이 적혀 있나? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 149쪽에서 찾기 — 예시의 피렌체에서 «도시의 매력» 칸에는 무엇이 적혀 있나?" style="width:360px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 149쪽 · 스스로 탐구 「내가 가 보고 싶은 도시는?」</div><div class="ws-tb-ask">예시의 피렌체에서 '도시의 매력' 칸에는 무엇이 적혀 있나? <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 149쪽에서 찾기 — 예시의 피렌체에서 '도시의 매력' 칸에는 무엇이 적혀 있나?" style="width:360px" placeholder=""></div></div>
 <br>
 <blockquote>💡 조사할 때는 숫자(인구)를 적은 사이트와 그 날짜도 함께 본다. 같은 도시라도 사이트마다 숫자가 다를 수 있다.</blockquote>
 <br>
@@ -1130,7 +1192,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 148쪽 · 생각 열기 Q2</div><div class="ws-tb-ask">내가 사는 지역은 어떤 매력이 있는지 하나를 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 148쪽에서 찾기 — 내가 사는 지역은 어떤 매력이 있는지 하나를 적자." style="width:360px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 세계의 유명한 도시만 매력이 있는 게 아니야. 교과서는 «내가 사는 지역의 매력을 찾아보면, 우리가 사는 곳을 더욱 매력 있게 만드는 데 도움이 된다»고 해. 매일 지나다니는 길에도 다른 사람에겐 «가 보고 싶은» 무언가가 있을지 몰라.</blockquote>
+<blockquote>🎙️ 세계의 유명한 도시만 매력이 있는 게 아니야. 교과서는 '내가 사는 지역의 매력을 찾아보면, 우리가 사는 곳을 더욱 매력 있게 만드는 데 도움이 된다'고 해. 매일 지나다니는 길에도 다른 사람에겐 '가 보고 싶은' 무언가가 있을지 몰라.</blockquote>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✏️ 활동 1 — 가 보고 싶은 도시 조사표</h2>
 <br>
@@ -1146,17 +1208,17 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>삶의 질</td><td><input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="삶의 질" style="width:260px" placeholder=""></td></tr>
 </table>
 <br>
-<blockquote>✅ <strong>스스로 점검</strong> — «도시의 매력» 칸이 1단계 카드의 네 갈래(유적과 역사·음악과 예술·자연과 공원·음식과 시장) 가운데 어디와 닮았는지 말할 수 있나? 딱 맞는 갈래가 없으면 새 갈래 이름을 붙여도 된다.</blockquote>
+<blockquote>✅ <strong>스스로 점검</strong> — '도시의 매력' 칸이 1단계 카드의 네 갈래(유적과 역사·음악과 예술·자연과 공원·음식과 시장) 가운데 어디와 닮았는지 말할 수 있나? 딱 맞는 갈래가 없으면 새 갈래 이름을 붙여도 된다.</blockquote>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>도시의 매력은 자연 경치 한 가지뿐이다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>지역 주민의 친절도 도시의 매력이 될 수 있다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>빈은 유명한 음악가들이 활동한 도시로 이름이 높다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>내가 사는 지역의 매력을 찾아보면 그곳을 더 매력 있게 만드는 데 도움이 된다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>밴쿠버의 가장 큰 매력은 오래된 신전 유적이다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>도시의 매력은 자연 경치 한 가지뿐이다.</td><td><div class="ox-group" data-answer="X" data-label="도시의 매력은 자연 경치 한 가지뿐이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>지역 주민의 친절도 도시의 매력이 될 수 있다.</td><td><div class="ox-group" data-answer="O" data-label="지역 주민의 친절도 도시의 매력이 될 수 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>빈은 유명한 음악가들이 활동한 도시로 이름이 높다.</td><td><div class="ox-group" data-answer="O" data-label="빈은 유명한 음악가들이 활동한 도시로 이름이 높다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>내가 사는 지역의 매력을 찾아보면 그곳을 더 매력 있게 만드는 데 도움이 된다.</td><td><div class="ox-group" data-answer="O" data-label="내가 사는 지역의 매력을 찾아보면 그곳을 더 매력 있게 만드는 데 도움이 된다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>밴쿠버의 가장 큰 매력은 오래된 신전 유적이다.</td><td><div class="ox-group" data-answer="X" data-label="밴쿠버의 가장 큰 매력은 오래된 신전 유적이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>

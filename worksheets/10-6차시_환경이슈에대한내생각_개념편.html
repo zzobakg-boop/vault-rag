@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -623,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1087,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ Ⅹ단원 마지막 시간이야. 지난 시간에 같은 문제를 두고 의견이 갈리는 걸 봤지. 오늘은 그중에서 «내 생각»을 정하고, 정했으면 무엇을 할지까지 가 본다.</blockquote>
+<blockquote>🎙️ Ⅹ단원 마지막 시간이야. 지난 시간에 같은 문제를 두고 의견이 갈리는 걸 봤지. 오늘은 그중에서 '내 생각'을 정하고, 정했으면 무엇을 할지까지 가 본다.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 환경 이슈에 대한 <strong>자신의 견해</strong>를 세울 수 있다.</p>
@@ -1096,12 +1158,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>✨ 오늘의 고급 단어</h2>
 <blockquote>그림을 먼저 보고 무슨 말일지 짐작해 봐. <strong>카드를 누르면 뜻이 열려.</strong></blockquote>
 <br>
-<div class="ws-vcd" id="vd11"><div class="ws-vcd-head">▶로 넘겨 세 장 다 확인하자.</div><div class="ws-vcd-track"><button type="button" class="ws-vcard" aria-label="반사 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/10-6_voc_반사.jpg" alt=""><span class="vcd-hanja">反射</span><span class="vcd-ko">반사</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">반사</span><span class="vcd-split">반(反, <strong>되돌릴</strong>) + 사(射, 쏠)</span><span class="vcd-mean">빛이나 열이 물체에 부딪혀 되돌아 나감</span><span class="vcd-sent">"흰 옷은 햇빛을 <strong>반사</strong>한다."</span><span class="vcd-fam">射 → 발사 · 사격</span></span></span></button><button type="button" class="ws-vcard" aria-label="제철 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/10-6_voc_제철.jpg" alt=""><span class="vcd-ko vcd-ko-solo">제철</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">제철</span><span class="vcd-split">제(알맞은) + 철(때) — 순우리말</span><span class="vcd-mean">그 물건이 가장 많이 나고 맛있는 때</span><span class="vcd-sent">"<strong>제철</strong> 과일이 가장 맛있다."</span><span class="vcd-fam">철 → 봄철 · 여름철</span></span></span></button><button type="button" class="ws-vcard" aria-label="후원 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/10-6_voc_후원.jpg" alt=""><span class="vcd-hanja">後援</span><span class="vcd-ko">후원</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">후원</span><span class="vcd-split">후(後, <strong>뒤</strong>) + 원(援, 도울)</span><span class="vcd-mean">뒤에서 도와줌</span><span class="vcd-sent">"환경 단체를 <strong>후원</strong>했다."</span><span class="vcd-fam">援 → 지원 · 응원</span></span></span></button></div><div class="ws-vcd-nav"><button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button><span class="vcd-count"><b>1</b> / 3</span><button type="button" class="vcd-next" aria-label="다음 낱말">▶</button></div></div><script>(function(){var r=document.getElementById("vd11");var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}function idx(){return Math.max(0,Math.min(cs.length-1,Math.round(t.scrollLeft/step())));}var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;c.textContent=e?cs.length:idx()+1;P.disabled=t.scrollLeft<=2;N.disabled=e;}function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}P.addEventListener("click",function(){go(-1);});N.addEventListener("click",function(){go(1);});t.addEventListener("scroll",function(){clearTimeout(t._z);t._z=setTimeout(sync,90);});function navfit(){var s=t.scrollWidth-t.clientWidth;r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}navfit();sync();addEventListener("resize",function(){navfit();sync();});})();</script>
+<div class="ws-vcd" id="vd11"><div class="ws-vcd-head">▶로 넘겨 세 장 다 확인하자.</div><div class="ws-vcd-track"><button type="button" class="ws-vcard" aria-label="반사 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/10-6_voc_반사.jpg" alt=""><span class="vcd-hanja">反射</span><span class="vcd-ko">반사</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">반사</span><span class="vcd-split">반(反, <strong>되돌릴</strong>) + 사(射, 쏠)</span><span class="vcd-mean">빛이나 열이 물체에 부딪혀 되돌아 나감</span><span class="vcd-sent">"흰 옷은 햇빛을 <strong>반사</strong>한다."</span><span class="vcd-fam">射 → 발사 · 사격</span></span></span></button><button type="button" class="ws-vcard" aria-label="제철 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/10-6_voc_제철.jpg" alt=""><span class="vcd-ko vcd-ko-solo">제철</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">제철</span><span class="vcd-split">제(제 것인, 바로 그) + 철(때) — 순우리말</span><span class="vcd-mean">그 물건이 가장 많이 나고 맛있는 때</span><span class="vcd-sent">"<strong>제철</strong> 과일이 가장 맛있다."</span><span class="vcd-fam">철 → 봄철 · 여름철</span></span></span></button><button type="button" class="ws-vcard" aria-label="후원 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/10-6_voc_후원.jpg" alt=""><span class="vcd-hanja">後援</span><span class="vcd-ko">후원</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">후원</span><span class="vcd-split">후(後, <strong>뒤</strong>) + 원(援, 도울)</span><span class="vcd-mean">뒤에서 도와줌</span><span class="vcd-sent">"환경 단체를 <strong>후원</strong>했다."</span><span class="vcd-fam">援 → 지원 · 응원</span></span></span></button></div><div class="ws-vcd-nav"><button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button><span class="vcd-count"><b>1</b> / 3</span><button type="button" class="vcd-next" aria-label="다음 낱말">▶</button></div></div><script>(function(){var r=document.getElementById("vd11");var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}function idx(){return Math.max(0,Math.min(cs.length-1,Math.round(t.scrollLeft/step())));}var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;c.textContent=e?cs.length:idx()+1;P.disabled=t.scrollLeft<=2;N.disabled=e;}function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}P.addEventListener("click",function(){go(-1);});N.addEventListener("click",function(){go(1);});t.addEventListener("scroll",function(){clearTimeout(t._z);t._z=setTimeout(sync,90);});function navfit(){var s=t.scrollWidth-t.clientWidth;r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}navfit();sync();addEventListener("resize",function(){navfit();sync();});})();</script>
 <br>
 <h2>📖 1단계: 하얀 지붕의 여름</h2>
 <blockquote>📕 <strong>교과서 194쪽 펴고 · 배정 시간 6분</strong></blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 194쪽 · 생각 열기 「한여름 불볕더위를 극복하는 방법」</div><div class="ws-tb-ask">지붕을 하얀 특수 페인트로 칠하는 «쿨 루프»가 «1석 3조»라고 불리는 까닭을 세 가지로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 194쪽에서 찾기 — 지붕을 하얀 특수 페인트로 칠하는 «쿨 루프»가 «1석 3조»라고 불" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 194쪽 · 생각 열기 「한여름 불볕더위를 극복하는 방법」</div><div class="ws-tb-ask">지붕을 하얀 특수 페인트로 칠하는 '쿨 루프'가 '1석 3조'라고 불리는 까닭을 세 가지로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 194쪽에서 찾기 — 지붕을 하얀 특수 페인트로 칠하는 '쿨 루프'가 '1석 3조'라고 불" style="width:400px" placeholder=""></div></div>
 <br>
 <blockquote>🎙️ 검은 옷보다 흰 옷이 덜 뜨겁지? 지붕도 똑같아. 그럼 하얀 지붕 하나로 좋아지는 게 왜 셋이나 될까?</blockquote>
 <br>
@@ -1110,7 +1172,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>일상생활에서 환경 이슈를 마주하면 먼저 그것을 둘러싼 다양한 의견을 ①<input type="text" class="blank-input" data-answer="비교" data-id="1" style="width:60px" placeholder="">한 뒤, 자신의 견해를 ②<input type="text" class="blank-input" data-answer="정립" data-id="2" style="width:60px" placeholder="">해야 한다. 견해가 정해지면 환경 문제를 해결하려고 적극적으로 ③<input type="text" class="blank-input" data-answer="행동" data-id="3" style="width:60px" placeholder="">해야 한다. 환경 관련 기관을 찾아가 환경 정책을 지켜보는 일부터 환경 단체에 가입해 감시·캠페인·후원에 함께하는 일까지 방법은 다양하다. 노력의 결과가 당장 눈에 보이지 않는다고 외면하면 환경은 되돌릴 수 없을 만큼 망가질 수 있다. 스스로 노력하고 ④<input type="text" class="blank-input" data-answer="참여" data-id="4" style="width:60px" placeholder="">하지 않으면 지속 가능한 환경을 만들 수 없다.</p>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>네 단계로 정리해 보자. 여러 의견을 나란히 놓고 본다 → 내 생각을 정한다 → 몸을 움직인다 → 혼자가 아니라 함께한다.</p><p>이때 «내게 지금 이익인가, 편한가»만 따지지 말고 «미래 세대의 삶은 어떨까»까지 생각해 보자.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>네 단계로 정리해 보자. 여러 의견을 나란히 놓고 본다 → 내 생각을 정한다 → 몸을 움직인다 → 혼자가 아니라 함께한다.</p><p>이때 '내게 지금 이익인가, 편한가'만 따지지 말고 '미래 세대의 삶은 어떨까'까지 생각해 보자.</p></div>
 <br>
 <h2>📖 3단계: 가까운 먹거리, 먼 먹거리</h2>
 <blockquote>📕 <strong>교과서 195쪽 펴고 · 배정 시간 12분</strong></blockquote>
@@ -1119,7 +1181,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 195쪽 · 스스로 탐구 「로컬 푸드와 글로벌 푸드, 당신의 선택은?」</div><div class="ws-tb-ask">로컬 푸드와 글로벌 푸드 가운데 어느 쪽을 더 소비할지 정하고, 그 까닭을 두 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 195쪽에서 찾기 — 로컬 푸드와 글로벌 푸드 가운데 어느 쪽을 더 소비할지 정하고, 그" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ Ⅸ단원 9-1의 급식 원산지, 9-2의 «웃는 쪽·우는 쪽»이 여기서 다시 만나. 정답은 없어. 다만 이제는 «왜 그걸 골랐는지»를 말할 수 있어야 해.</blockquote>
+<blockquote>🎙️ Ⅸ단원 9-1의 급식 원산지, 9-2의 '웃는 쪽·우는 쪽'이 여기서 다시 만나. 정답은 없어. 다만 이제는 '왜 그걸 골랐는지'를 말할 수 있어야 해.</blockquote>
 <br>
 <h2>📖 4단계: 유전자 변형 식품, 내 생각은?</h2>
 <blockquote>📕 <strong>교과서 195쪽 펴고 · 배정 시간 8분</strong></blockquote>
@@ -1132,11 +1194,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>환경 문제는 국가와 지방 자치 단체만 해결하면 된다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>환경 이슈를 만나면 여러 의견을 살펴본 뒤 자기 생각을 정하는 것이 좋다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>로컬 푸드는 수송 거리가 짧다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>글로벌 푸드는 제철에만 생산된다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>쿨 루프는 지붕을 검게 칠해 햇볕의 열을 빨아들이게 하는 방법이다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>환경 문제는 국가와 지방 자치 단체만 해결하면 된다.</td><td><div class="ox-group" data-answer="X" data-label="환경 문제는 국가와 지방 자치 단체만 해결하면 된다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>환경 이슈를 만나면 여러 의견을 살펴본 뒤 자기 생각을 정하는 것이 좋다.</td><td><div class="ox-group" data-answer="O" data-label="환경 이슈를 만나면 여러 의견을 살펴본 뒤 자기 생각을 정하는 것이 좋다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>로컬 푸드는 수송 거리가 짧다.</td><td><div class="ox-group" data-answer="O" data-label="로컬 푸드는 수송 거리가 짧다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>글로벌 푸드는 제철에만 생산된다.</td><td><div class="ox-group" data-answer="X" data-label="글로벌 푸드는 제철에만 생산된다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>쿨 루프는 지붕을 검게 칠해 햇볕의 열을 빨아들이게 하는 방법이다.</td><td><div class="ox-group" data-answer="X" data-label="쿨 루프는 지붕을 검게 칠해 햇볕의 열을 빨아들이게 하는 방법이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
@@ -1149,7 +1211,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
-<p>Ⅹ단원 첫 질문에 답할 차례다. «환경 문제의 피해는 누구에게 가고, 나는 무엇을 할 수 있을까?» 이 단원에서 본 사례 하나를 골라 피해를 입은 사람을 적고, 내가 이번 달 안에 실제로 해 볼 수 있는 일 하나를 정해 세 문장 안팎으로 써 보자.</p>
+<p>Ⅹ단원 첫 질문에 답할 차례다. '환경 문제의 피해는 누구에게 가고, 나는 무엇을 할 수 있을까?' 이 단원에서 본 사례 하나를 골라 피해를 입은 사람을 적고, 내가 이번 달 안에 실제로 해 볼 수 있는 일 하나를 정해 세 문장 안팎으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>

@@ -464,15 +464,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
 .sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
 .sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
-.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
-.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
 .sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
 .ws-tb-2cin { margin: 2px 0 4px; }
 .ws-tb-2cin .ws-tb-fig { margin: 0; }
@@ -671,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1135,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ 농업, 공장 다음은 서비스야. 손에 잡히는 물건이 아니라 «해 주는 일»이지. 그런데 이 «해 주는 일»도 이제 국경을 넘어 다녀.</blockquote>
+<blockquote>🎙️ 농업, 공장 다음은 서비스야. 손에 잡히는 물건이 아니라 '해 주는 일'이지. 그런데 이 '해 주는 일'도 이제 국경을 넘어 다녀.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 세계화에 따른 <strong>서비스업의 변화 사례</strong>를 찾을 수 있다.</p>
@@ -1151,7 +1165,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 176쪽 · 생각 열기 「서비스업의 범위가 세계로 확대되다!」</div><div class="ws-tb-ask">과거와 현재 그림을 비교해, 여행 숙소를 구하는 방법이 어떻게 달라졌는지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 176쪽에서 찾기 — 과거와 현재 그림을 비교해, 여행 숙소를 구하는 방법이 어떻게 달라졌" style="width:400px" placeholder=""></div><div class="ws-tb-ask">지금처럼 할 수 있게 된 배경을 두 가지 적자 — 기술의 변화 하나, 숙박·관광 같은 서비스업의 변화 하나. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 176쪽에서 찾기 — 지금처럼 할 수 있게 된 배경을 두 가지 적자 — 기술의 변화 하나," style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 옛날 여행자는 낯선 도시에 도착해서 «빈방 있어요?»를 묻고 다녔대. 지금은 출발 석 달 전에 지구 반대편 숙소를 고르고 돈까지 내지. 남의 집 빈방을 빌려주는 서비스도 생겼고.</blockquote>
+<blockquote>🎙️ 옛날 여행자는 낯선 도시에 도착해서 잘 곳을 어떻게 구했을까? 지금 우리는? 교과서 그림 두 장을 다시 봐.</blockquote>
 <br>
 <h2>📖 2단계: 서비스, 국경을 넘다</h2>
 <blockquote>📕 <strong>교과서 176쪽 펴고 · 배정 시간 9분</strong></blockquote>
@@ -1162,7 +1176,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-fig"><img src="images/9-5_zipline_rwanda.jpg" alt="르완다에서 빗속에 회수되는 의료용 배송 드론, 2020년" loading="lazy"><figcaption>르완다에서 빗속에 회수되는 의료용 배송 드론, 2020년</figcaption></figure>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>교과서 기사는 2014년 독일 회사가 섬마을에 소포를 드론으로 보내기 시작했다는 이야기다.</p><p>그 뒤 아프리카 르완다에서는 2016년부터 길이 험한 산골 병원에 수혈용 피를 드론으로 보내고 있다. 차로 몇 시간 걸리던 길을 하늘로 가로질러 간다.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>교과서 기사 속 회사는 2014년에 어떤 곳부터 드론을 보냈을까? 바로 위 드론 택배 칸을 채운 뒤 교과서 기사와 견주어 보자.</p><p>그 뒤 아프리카 르완다에서는 2016년부터 길이 험한 산골 병원에 수혈용 피를 드론으로 보내고 있다. 차로 몇 시간 걸리던 길을 하늘로 가로질러 간다.</p></div>
 <br>
 <h2>📖 3단계: 서비스를 단계로 나누다</h2>
 <blockquote>📕 <strong>교과서 176~177쪽 펴고 · 배정 시간 10분</strong></blockquote>
@@ -1180,7 +1194,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 4단계: 물건 팔고 끝이 아니다</h2>
 <blockquote>📕 <strong>교과서 177쪽 펴고 · 배정 시간 9분</strong></blockquote>
 <br>
-<p>소비자의 요구가 다양해지면서, 제품을 만들어 파는 데 그치지 않고 그 제품과 관련된 서비스까지 함께 제공하는 «제조업의 ④<input type="text" class="blank-input" data-answer="서비스화" data-id="4" style="width:84px" placeholder="">»가 빠르게 일어나고 있다.</p>
+<p>소비자의 요구가 다양해지면서, 제품을 만들어 파는 데 그치지 않고 그 제품과 관련된 서비스까지 함께 제공하는 '제조업의 ④<input type="text" class="blank-input" data-answer="서비스화" data-id="4" style="width:84px" placeholder="">'가 빠르게 일어나고 있다.</p>
 <br>
 <div class="ws-pick" id="pk49"><div class="pk-head"><span>여섯 장면이다. 회사가 물건만 팔고 끝낼까, 그 뒤까지 챙길까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="서비스까지 판다"><div class="pk-name">정수기 회사</div><div class="pk-sit">정수기를 빌려주고 정기적으로 찾아와 필터를 갈아 준다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="제품만 판다">제품만 판다</button><button type="button" class="pk-b" data-v="서비스까지 판다">서비스까지 판다</button></div><div class="pk-why" hidden>제품에 관리 서비스를 묶어 판다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="서비스까지 판다"><div class="pk-name">굴착기 회사</div><div class="pk-sit">판 굴착기를 멀리서 실시간으로 살피고 작업 효율을 분석해 준다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="제품만 판다">제품만 판다</button><button type="button" class="pk-b" data-v="서비스까지 판다">서비스까지 판다</button></div><div class="pk-why" hidden>원격 관리와 분석을 함께 준다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="서비스까지 판다"><div class="pk-name">의료 기기 회사</div><div class="pk-sit">초음파 기기를 판 뒤 병원 자료를 원격으로 분석해 준다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="제품만 판다">제품만 판다</button><button type="button" class="pk-b" data-v="서비스까지 판다">서비스까지 판다</button></div><div class="pk-why" hidden>기기를 통해 의료 정보 서비스를 제공한다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="제품만 판다"><div class="pk-name">볼펜 공장</div><div class="pk-sit">볼펜을 만들어 문구 도매상에 넘기면 거래가 끝난다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="제품만 판다">제품만 판다</button><button type="button" class="pk-b" data-v="서비스까지 판다">서비스까지 판다</button></div><div class="pk-why" hidden>만든 물건을 넘기고 끝, 그 뒤 서비스가 없다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="제품만 판다"><div class="pk-name">의자 공장</div><div class="pk-sit">의자를 만들어 가구점에 팔면 끝난다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="제품만 판다">제품만 판다</button><button type="button" class="pk-b" data-v="서비스까지 판다">서비스까지 판다</button></div><div class="pk-why" hidden>만들어 파는 데서 멈춘다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="서비스까지 판다"><div class="pk-name">자동차 회사</div><div class="pk-sit">판 자동차의 프로그램을 인터넷으로 새로 고쳐 준다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="제품만 판다">제품만 판다</button><button type="button" class="pk-b" data-v="서비스까지 판다">서비스까지 판다</button></div><div class="pk-why" hidden>판 뒤에도 통신으로 제품을 계속 관리한다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk49");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["제품만 판다", "서비스까지 판다"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
@@ -1188,11 +1202,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>사회가 발달할수록 서비스업이 성장한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>서비스업은 국경을 넘어 다른 나라 소비자에게 제공될 수 없다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>한 회사의 서비스를 여러 단계로 나누어 여러 나라에서 맡기도 한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>교과서의 독일 드론 택배는 복잡한 대도시부터 시작했다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>정수기를 빌려주고 관리까지 해 주는 것은 제조업이 서비스와 손잡은 예다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>사회가 발달할수록 서비스업이 성장한다.</td><td><div class="ox-group" data-answer="O" data-label="사회가 발달할수록 서비스업이 성장한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>서비스업은 국경을 넘어 다른 나라 소비자에게 제공될 수 없다.</td><td><div class="ox-group" data-answer="X" data-label="서비스업은 국경을 넘어 다른 나라 소비자에게 제공될 수 없다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>한 회사의 서비스를 여러 단계로 나누어 여러 나라에서 맡기도 한다.</td><td><div class="ox-group" data-answer="O" data-label="한 회사의 서비스를 여러 단계로 나누어 여러 나라에서 맡기도 한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>교과서의 독일 드론 택배는 복잡한 대도시부터 시작했다.</td><td><div class="ox-group" data-answer="X" data-label="교과서의 독일 드론 택배는 복잡한 대도시부터 시작했다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>정수기를 빌려주고 관리까지 해 주는 것은 제조업이 서비스와 손잡은 예다.</td><td><div class="ox-group" data-answer="O" data-label="정수기를 빌려주고 관리까지 해 주는 것은 제조업이 서비스와 손잡은 예다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>

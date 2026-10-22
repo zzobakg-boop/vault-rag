@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -623,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1087,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ Ⅸ단원에서 세계화를 봤지? 같은 브랜드의 커피, 같은 휴대 전화가 세계 어디서나 팔려. 그런데 이상하지. 모든 게 비슷해질수록 «여기서만 볼 수 있는 것»이 오히려 귀해져. 오늘은 그 이야기야.</blockquote>
+<blockquote>🎙️ Ⅸ단원에서 세계화를 봤지? 같은 브랜드의 커피, 같은 휴대 전화가 세계 어디서나 팔려. 그런데 이상하지. 모든 게 비슷해질수록 '여기서만 볼 수 있는 것'이 오히려 귀해져. 오늘은 그 이야기야.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 세계화 시대에 <strong>지역화</strong>가 왜 필요한지 설명할 수 있다.</p>
@@ -1110,7 +1172,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>세계화가 진행되어 지역 사이의 교류가 늘어나면서, 특정 지역이 세계의 정치·경제·사회·문화의 ①<input type="text" class="blank-input" data-answer="주체" data-id="1" style="width:60px" placeholder="">로 나서는 경우가 많아지고 있다. 이러한 현상을 지역화라고 한다. 각 지역은 고유한 특성을 살리면서도 보편적인 세계 문화와 어울려 지역 경쟁력을 높일 전략을 세우려고 애쓴다. 지역을 널리 알리는 효과적인 지역화 전략으로는 지역 브랜드, 장소 마케팅, 지리적 표시제 등이 있다.</p>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>세계화와 지역화는 반대말이 아니라 짝이야.</p><p>세계가 하나로 이어지니까 지역은 «세계 속의 한 지역»으로 직접 나설 수 있게 됐어. 다만 그러려면 남과 다른 무언가가 있어야 해.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>세계화와 지역화는 반대말이 아니라 짝이야.</p><p>세계가 하나로 이어지니까 지역은 '세계 속의 한 지역'으로 직접 나설 수 있게 됐어. 다만 그러려면 남과 다른 무언가가 있어야 해.</p></div>
 <br>
 <h2>📖 3단계: 지역에 이름을 붙이고, 장소를 판다</h2>
 <blockquote>📕 <strong>교과서 206~207쪽 펴고 · 배정 시간 12분</strong></blockquote>
@@ -1123,7 +1185,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 207쪽 · 스스로 탐구 「국제적으로 성공한 장소 마케팅의 사례」</div><div class="ws-tb-see">부산국제영화제·보령 머드 축제·안동 하회 마을 글을 읽어 보자.</div><div class="ws-tb-ask">세 곳 가운데 하나를 골라, 그 지역의 어떤 특성을 이용했는지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 207쪽에서 찾기 — 세 곳 가운데 하나를 골라, 그 지역의 어떤 특성을 이용했는지 적자." style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 우리 광주에도 있어. 1995년부터 2년마다 열리는 광주비엔날레야. 세계의 미술가들이 광주로 와서 작품을 내걸지. «비엔날레»가 이탈리아어로 «2년마다»라는 뜻이야.</blockquote>
+<blockquote>🎙️ 우리 광주에도 있어. 1995년부터 2년마다 열리는 광주비엔날레야. 세계의 미술가들이 광주로 와서 작품을 내걸지. '비엔날레'가 이탈리아어로 '2년마다'라는 뜻이야.</blockquote>
 <br>
 <h2>📖 4단계: 그 땅에서 나야 그 이름을 쓴다</h2>
 <blockquote>📕 <strong>교과서 207쪽 펴고 · 배정 시간 10분</strong></blockquote>
@@ -1132,21 +1194,21 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-fig"><img src="images/11-3_boseong_tea.jpg" alt="보성 녹차밭, 2006년" loading="lazy"><figcaption>보성 녹차밭, 2006년</figcaption></figure>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 207쪽 · 사회 톡톡톡 「아무 곳에서나 재배된 녹차가 ‘보성 녹차’가 될 수 있을까?」</div><div class="ws-tb-ask">보성 녹차가 품질을 인정받은 까닭을 «자연환경»과 «기르고 만드는 방법»으로 나누어 하나씩 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 207쪽에서 찾기 — 보성 녹차가 품질을 인정받은 까닭을 «자연환경»과 «기르고 만드는 방" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 207쪽 · 사회 톡톡톡 「아무 곳에서나 재배된 녹차가 ‘보성 녹차’가 될 수 있을까?」</div><div class="ws-tb-ask">보성 녹차가 품질을 인정받은 까닭을 '자연환경'과 '기르고 만드는 방법'으로 나누어 하나씩 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 207쪽에서 찾기 — 보성 녹차가 품질을 인정받은 까닭을 '자연환경'과 '기르고 만드는 방" style="width:400px" placeholder=""></div></div>
 <br>
-<div class="ws-pick" id="pk49"><div class="pk-head"><span>교과서와 우리 둘레에서 모은 여섯 가지 사례다. 어느 지역화 전략일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="지역 브랜드"><div class="pk-name">평창 «HAPPY 700»</div><div class="pk-sit">해발 700m가 사람에게 가장 행복한 높이라고 내세우며 평창을 나타낸다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>지역 자체에 붙인 이름과 표시다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="지역 브랜드"><div class="pk-name">인천의 상징 표시</div><div class="pk-sit">인천국제공항을 소재로 국제도시로 뻗어 가는 인천을 그렸다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>지역의 랜드마크로 지역 자체를 나타냈다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="장소 마케팅"><div class="pk-name">부산국제영화제</div><div class="pk-sit">아시아 영화를 위한 영화제를 열어 부산을 문화 예술의 도시로 만들었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>영화제로 부산이라는 장소 자체를 찾아오고 싶은 곳으로 만들었다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="장소 마케팅"><div class="pk-name">보령 머드 축제</div><div class="pk-sit">갯벌 진흙으로 축제를 열어 해마다 외국인 관광객을 부른다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>서해안 갯벌이라는 자연을 장소의 매력으로 바꾸었다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="장소 마케팅"><div class="pk-name">광주비엔날레</div><div class="pk-sit">2년마다 세계의 미술 작품을 광주에 모아 전시한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>미술 전시로 광주를 예술의 도시로 알린다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="지리적 표시제"><div class="pk-name">보성 녹차</div><div class="pk-sit">다른 지역에서 기른 녹차에는 이 이름을 붙일 수 없다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>보성의 자연환경에서 나온 품질이라 나라가 이름을 지켜 준다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk49");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["지역 브랜드", "장소 마케팅", "지리적 표시제"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk49"><div class="pk-head"><span>교과서와 우리 둘레에서 모은 여섯 가지 사례다. 어느 지역화 전략일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="지역 브랜드"><div class="pk-name">평창 'HAPPY 700'</div><div class="pk-sit">해발 700m가 사람에게 가장 행복한 높이라고 내세우며 평창을 나타낸다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>지역 자체에 붙인 이름과 표시다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="지역 브랜드"><div class="pk-name">인천의 상징 표시</div><div class="pk-sit">인천국제공항을 소재로 국제도시로 뻗어 가는 인천을 그렸다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>지역의 랜드마크로 지역 자체를 나타냈다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="장소 마케팅"><div class="pk-name">부산국제영화제</div><div class="pk-sit">아시아 영화를 위한 영화제를 열어 부산을 문화 예술의 도시로 만들었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>영화제로 부산이라는 장소 자체를 찾아오고 싶은 곳으로 만들었다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="장소 마케팅"><div class="pk-name">보령 머드 축제</div><div class="pk-sit">갯벌 진흙으로 축제를 열어 해마다 외국인 관광객을 부른다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>서해안 갯벌이라는 자연을 장소의 매력으로 바꾸었다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="장소 마케팅"><div class="pk-name">광주비엔날레</div><div class="pk-sit">2년마다 세계의 미술 작품을 광주에 모아 전시한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>미술 전시로 광주를 예술의 도시로 알린다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="지리적 표시제"><div class="pk-name">보성 녹차</div><div class="pk-sit">다른 지역에서 기른 녹차에는 이 이름을 붙일 수 없다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="지역 브랜드">지역 브랜드</button><button type="button" class="pk-b" data-v="장소 마케팅">장소 마케팅</button><button type="button" class="pk-b" data-v="지리적 표시제">지리적 표시제</button></div><div class="pk-why" hidden>보성의 자연환경에서 나온 품질이라 나라가 이름을 지켜 준다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk49");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["지역 브랜드", "장소 마케팅", "지리적 표시제"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
-<blockquote>🎙️ Ⅸ단원 9-1에서 급식표의 원산지를 살펴봤지? 먼 나라에서 온 먹거리가 식탁에 흔하게 오르니까, 반대로 «보성에서 난 것»이라는 이름이 값어치를 가지는 거야.</blockquote>
+<blockquote>🎙️ Ⅸ단원 9-1에서 급식표의 원산지를 살펴봤지? 먼 나라에서 온 먹거리가 식탁에 흔하게 오르니까, 반대로 '보성에서 난 것'이라는 이름이 값어치를 가지는 거야.</blockquote>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>세계화가 진행되면 지역의 고유한 특성은 쓸모가 없어진다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>지역 브랜드는 지역의 고유한 특성과 가치를 잘 나타내야 한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>장소 마케팅은 다른 장소와 똑같은 매력을 내세울수록 성공한다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>보성 녹차는 우리나라 지리적 표시 제1호이다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>지리적 표시 인증을 받은 이름은 다른 지역에서도 자유롭게 쓸 수 있다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>세계화가 진행되면 지역의 고유한 특성은 쓸모가 없어진다.</td><td><div class="ox-group" data-answer="X" data-label="세계화가 진행되면 지역의 고유한 특성은 쓸모가 없어진다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>지역 브랜드는 지역의 고유한 특성과 가치를 잘 나타내야 한다.</td><td><div class="ox-group" data-answer="O" data-label="지역 브랜드는 지역의 고유한 특성과 가치를 잘 나타내야 한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>장소 마케팅은 다른 장소와 똑같은 매력을 내세울수록 성공한다.</td><td><div class="ox-group" data-answer="X" data-label="장소 마케팅은 다른 장소와 똑같은 매력을 내세울수록 성공한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>보성 녹차는 우리나라 지리적 표시 제1호이다.</td><td><div class="ox-group" data-answer="O" data-label="보성 녹차는 우리나라 지리적 표시 제1호이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>지리적 표시 인증을 받은 이름은 다른 지역에서도 자유롭게 쓸 수 있다.</td><td><div class="ox-group" data-answer="X" data-label="지리적 표시 인증을 받은 이름은 다른 지역에서도 자유롭게 쓸 수 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>

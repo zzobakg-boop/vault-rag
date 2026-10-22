@@ -464,15 +464,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
 .sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
 .sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
-.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
-.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
 .sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
 .ws-tb-2cin { margin: 2px 0 4px; }
 .ws-tb-2cin .ws-tb-fig { margin: 0; }
@@ -671,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1114,7 +1128,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 세계 속의 우리나라 11-1차시 — 땅이 있어야 바다와 하늘이 생긴다 (우리나라의 영역은 어디까지일까?)</h1><p class="hero-subtitle">땅이 있어야 바다와 하늘이 생긴다</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">나라의 땅·바다·하늘은 어디까지일까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">바다의 경계는 어디서부터 잴까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">서해와 동해는 왜 재는 기준이 다를까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">다른 나라 배와 비행기는 마음대로 지나가도 될까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>영역은 한 국가의 <strong>주권</strong>이 미치는 공간적 범위로, 영토·영해·영공으로 이루어진다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>영해는 보통 기선에서 12해리까지의 바다다. 배타적 경제 수역은 200해리까지의 바다에서 영해를 뺀 곳으로, 자원은 우리가 쓰지만 다른 나라 배도 지나간다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>동해안·울릉도·독도·제주도는 통상 기선, 서해안·남해안은 가장 바깥 섬을 이은 <strong>직선</strong> 기선을 쓴다. 대한 해협은 3해리까지다. 영토는 <strong>간척</strong>으로 조금씩 넓어진다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>영공은 영토와 영해 위의 하늘로 보통 <strong>대기권</strong> 안이다. 다른 나라 비행기는 허가를 받아야 지나간다.</p></div></div><img class="hero-image" src="images/11-1_hero_marado.jpg" alt=""><div class="hero-hook">제주 마라도 끝자락에 «대한민국 최남단»이라고 새긴 비석이 서 있다. 우리 땅은 여기서 끝난다. 그런데 비석 너머의 바다와 그 위의 하늘은 누구의 것일까? 어디까지가 우리나라일까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 세계 속의 우리나라 11-1차시 — 땅이 있어야 바다와 하늘이 생긴다 (우리나라의 영역은 어디까지일까?)</h1><p class="hero-subtitle">땅이 있어야 바다와 하늘이 생긴다</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">나라의 땅·바다·하늘은 어디까지일까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">바다의 경계는 어디서부터 잴까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">서해와 동해는 왜 재는 기준이 다를까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">다른 나라 배와 비행기는 마음대로 지나가도 될까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>영역은 한 국가의 <strong>주권</strong>이 미치는 공간적 범위로, 영토·영해·영공으로 이루어진다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>영해는 보통 기선에서 12해리까지의 바다다. 배타적 경제 수역은 200해리까지의 바다에서 영해를 뺀 곳으로, 자원은 우리가 쓰지만 다른 나라 배도 지나간다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>동해안·울릉도·독도·제주도는 통상 기선, 서해안·남해안은 가장 바깥 섬을 이은 <strong>직선</strong> 기선을 쓴다. 대한 해협은 3해리까지다. 영토는 <strong>간척</strong>으로 조금씩 넓어진다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>영공은 영토와 영해 위의 하늘로 보통 <strong>대기권</strong> 안이다. 다른 나라 비행기는 허가를 받아야 지나간다.</p></div></div><img class="hero-image" src="images/11-1_hero_marado.jpg" alt=""><div class="hero-hook">제주 마라도 끝자락에 '대한민국 최남단'이라고 새긴 비석이 서 있다. 우리 땅은 여기서 끝난다. 그런데 비석 너머의 바다와 그 위의 하늘은 누구의 것일까? 어디까지가 우리나라일까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/4 · OX: <span id="ox-score">0</span>/5
@@ -1135,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ Ⅺ단원 첫 시간이야. Ⅹ단원까지는 세계 곳곳을 돌아봤지. 이제 «우리나라»를 세계 지도 위에 올려놓고 본다. 첫 질문은 아주 기본적인 거야. 우리나라는 어디부터 어디까지일까?</blockquote>
+<blockquote>🎙️ Ⅺ단원 첫 시간이야. Ⅹ단원까지는 세계 곳곳을 돌아봤지. 이제 '우리나라'를 세계 지도 위에 올려놓고 본다. 첫 질문은 아주 기본적인 거야. 우리나라는 어디부터 어디까지일까?</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 나라의 <strong>영역</strong>이 무엇으로 이루어지는지 설명할 수 있다.</p>
@@ -1149,9 +1163,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 1단계: 땅과 바다와 하늘의 경계</h2>
 <blockquote>📕 <strong>교과서 200쪽 펴고 · 배정 시간 6분</strong></blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 200쪽 · 생각 열기 「땅과 바다와 하늘의 경계」</div><div class="ws-tb-see">교과서의 세 질문을 차례로 읽어 보자.</div><div class="ws-tb-ask">첫 번째 질문 «국토가 있어야 바다와 하늘도 존재한다»는 말은 무슨 뜻일지 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 200쪽에서 찾기 — 첫 번째 질문 «국토가 있어야 바다와 하늘도 존재한다»는 말은 무슨" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 200쪽 · 생각 열기 「땅과 바다와 하늘의 경계」</div><div class="ws-tb-see">교과서의 세 질문을 차례로 읽어 보자.</div><div class="ws-tb-ask">첫 번째 질문 '국토가 있어야 바다와 하늘도 존재한다'는 말은 무슨 뜻일지 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 200쪽에서 찾기 — 첫 번째 질문 '국토가 있어야 바다와 하늘도 존재한다'는 말은 무슨" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 바다 한가운데에 금을 그어 놓은 것도 아니고, 하늘에 울타리가 있는 것도 아니잖아. 그런데도 나라마다 «여기까지는 우리 바다»라고 정해 둬. 그 선은 어디서부터 잰 걸까?</blockquote>
+<blockquote>🎙️ 바다 한가운데에 금을 그어 놓은 것도 아니고, 하늘에 울타리가 있는 것도 아니잖아. 그런데도 나라마다 '여기까지는 우리 바다'라고 정해 둬. 그 선은 어디서부터 잰 걸까?</blockquote>
 <br>
 <h2>📖 2단계: 영역은 무엇으로 이루어질까?</h2>
 <blockquote>📕 <strong>교과서 200쪽 펴고 · 배정 시간 10분</strong></blockquote>
@@ -1160,11 +1174,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-fig"><img src="images/11-1_영역단면.png" alt="나라의 영역을 옆에서 잘라 본 그림. 왼쪽 땅이 영토이고, 기선에서 12해리까지가 영해, 200해리까지가 배타적 경제 수역, 그 바깥이 공해다. 땅과 영해 위의 하늘은 영공이다." loading="lazy"><figcaption>나라의 영역을 옆에서 잘라 본 그림. 왼쪽 땅이 영토이고, 기선에서 12해리까지가 영해, 200해리까지가 배타적 경제 수역, 그 바깥이 공해다. 땅과 영해 위의 하늘은 영공이다.</figcaption></figure>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>기선은 바다의 경계를 잴 때 «여기서부터»가 되는 기준선이야.</p><p>영해는 우리 땅처럼 우리나라가 다스리는 바다이고, 배타적 경제 수역은 물고기와 바닷속 자원을 우리나라만 쓸 수 있는 바다야. 둘은 다르다는 걸 기억해 두자.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>기선은 바다의 경계를 잴 때 '여기서부터'가 되는 기준선이야.</p><p>영해는 우리 땅처럼 우리나라가 다스리는 바다이고, 배타적 경제 수역은 물고기와 바닷속 자원을 우리나라만 쓸 수 있는 바다야. 둘은 다르다는 걸 기억해 두자.</p></div>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 200쪽 · 사회 톡톡톡 「국가가 없어 차별받고, 국토가 없어 떠도는 로힝야족」</div><div class="ws-tb-ask">로힝야족을 «국가 없는 민족»이라고 부르는 까닭을 교과서 글에서 찾아 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 200쪽에서 찾기 — 로힝야족을 «국가 없는 민족»이라고 부르는 까닭을 교과서 글에서 찾아" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 200쪽 · 사회 톡톡톡 「국가가 없어 차별받고, 국토가 없어 떠도는 로힝야족」</div><div class="ws-tb-ask">로힝야족을 '국가 없는 민족'이라고 부르는 까닭을 교과서 글에서 찾아 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 200쪽에서 찾기 — 로힝야족을 '국가 없는 민족'이라고 부르는 까닭을 교과서 글에서 찾아" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ Ⅶ단원 7-4에서 내전을 피해 유럽으로 건너온 시리아 난민을 봤지? 그 사람들에게는 그래도 돌아갈 나라가 있었어. 로힝야족은 살던 나라에서조차 국민으로 인정받지 못해. 영역이 사람에게 무엇을 주는지, 없을 때 더 잘 보여.</blockquote>
+<blockquote>🎙️ Ⅶ단원 7-4에서 내전을 피해 유럽으로 건너온 시리아 난민을 봤지? 그 사람들에게는 그래도 돌아갈 나라가 있었어. 그럼 로힝야족에게는 무엇이 없었을까? 영역이 사람에게 무엇을 주는지, 없을 때 더 잘 보여.</blockquote>
 <br>
 <h2>📖 3단계: 우리나라의 영토와 영해</h2>
 <blockquote>📕 <strong>교과서 201쪽 펴고 · 배정 시간 12분</strong></blockquote>
@@ -1183,7 +1197,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 201쪽 · 스스로 탐구 「우리나라의 영해와 영공」</div><div class="ws-tb-see">먼저 교과서 지도에서 기점들을 차례로 이어 선을 그어 보자. 위 지도와 견주어 보면 맞게 그었는지 알 수 있다.</div><div class="ws-tb-ask">교과서 지도의 A 지점에서 중국에서 온 어부가 고기를 잡고 있다. 이 어부에게 무엇이라고 말할지 그 까닭과 함께 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 201쪽에서 찾기 — 교과서 지도의 A 지점에서 중국에서 온 어부가 고기를 잡고 있다. 이" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ Ⅵ단원 6-5에서 본 갈등 카드 기억나? «중국 어선이 허가 없이 우리 바다에 들어와 꽃게를 잡아 간다.» 그게 왜 문제인지, 오늘은 선을 그어서 답할 수 있어.</blockquote>
+<blockquote>🎙️ Ⅵ단원 6-5에서 본 갈등 카드 기억나? '중국 어선이 허가 없이 우리 바다에 들어와 꽃게를 잡아 간다.' 그게 왜 문제인지, 오늘은 선을 그어서 답할 수 있어.</blockquote>
 <br>
 <h2>📖 4단계: 하늘의 경계, 그리고 지나가는 일</h2>
 <blockquote>📕 <strong>교과서 200~201쪽 펴고 · 배정 시간 9분</strong></blockquote>
@@ -1192,17 +1206,17 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-pick" id="pk57"><div class="pk-head"><span>바다와 하늘에서 벌어지는 다섯 장면이다. 이 일을 하려면 우리나라의 허락이 필요할까? 위의 영역 그림을 보며 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="허락 필요"><div class="pk-name">외국 어선</div><div class="pk-sit">우리 영해 안에서 그물을 내려 고기를 잡는다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="그냥 된다">그냥 된다</button><button type="button" class="pk-b" data-v="허락 필요">허락 필요</button></div><div class="pk-why" hidden>허락 없이는 할 수 없고, 영해에서는 아예 금지된다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="그냥 된다"><div class="pk-name">지나가는 유조선</div><div class="pk-sit">우리 영해를 멈추지 않고 조용히 지나가기만 한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="그냥 된다">그냥 된다</button><button type="button" class="pk-b" data-v="허락 필요">허락 필요</button></div><div class="pk-why" hidden>해를 끼치지 않고 지나가기만 하는 일은 영해에서도 받아 준다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="그냥 된다"><div class="pk-name">먼 바다의 화물선</div><div class="pk-sit">우리 배타적 경제 수역을 지나간다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="그냥 된다">그냥 된다</button><button type="button" class="pk-b" data-v="허락 필요">허락 필요</button></div><div class="pk-why" hidden>배타적 경제 수역은 다른 나라 배와 비행기도 자유롭게 지난다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="허락 필요"><div class="pk-name">외국 탐사 회사</div><div class="pk-sit">우리 배타적 경제 수역의 바닷속에서 천연가스를 캔다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="그냥 된다">그냥 된다</button><button type="button" class="pk-b" data-v="허락 필요">허락 필요</button></div><div class="pk-why" hidden>배타적 경제 수역의 자원은 우리나라만 쓸 권리가 있다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="허락 필요"><div class="pk-name">외국 여객기</div><div class="pk-sit">우리 땅 위의 하늘을 가로질러 날아간다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="그냥 된다">그냥 된다</button><button type="button" class="pk-b" data-v="허락 필요">허락 필요</button></div><div class="pk-why" hidden>영공은 허가를 받아야 지나가고, 지나가는 값도 낸다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk57");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["그냥 된다", "허락 필요"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
-<blockquote>✅ <strong>스스로 점검</strong> — 바다에서는 «지나가기»와 «가져가기»가 다르게 다뤄졌다. 하늘은 어땠지? 셋을 한 줄로 견주어 말해 보자.</blockquote>
+<blockquote>✅ <strong>스스로 점검</strong> — 바다에서는 '지나가기'와 '가져가기'가 다르게 다뤄졌다. 하늘은 어땠지? 셋을 한 줄로 견주어 말해 보자.</blockquote>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>나라의 영역은 영토·영해·영공으로 이루어진다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>영해는 보통 기선에서 200해리까지의 바다다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>배타적 경제 수역에서는 다른 나라 배가 지나갈 수 없다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>우리나라 동해안은 썰물 때의 해안선을 기준으로 영해를 정한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>우리나라 영토의 면적은 조금씩 넓어지기도 한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>나라의 영역은 영토·영해·영공으로 이루어진다.</td><td><div class="ox-group" data-answer="O" data-label="나라의 영역은 영토·영해·영공으로 이루어진다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>영해는 보통 기선에서 200해리까지의 바다다.</td><td><div class="ox-group" data-answer="X" data-label="영해는 보통 기선에서 200해리까지의 바다다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>배타적 경제 수역에서는 다른 나라 배가 지나갈 수 없다.</td><td><div class="ox-group" data-answer="X" data-label="배타적 경제 수역에서는 다른 나라 배가 지나갈 수 없다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>우리나라 동해안은 썰물 때의 해안선을 기준으로 영해를 정한다.</td><td><div class="ox-group" data-answer="O" data-label="우리나라 동해안은 썰물 때의 해안선을 기준으로 영해를 정한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>우리나라 영토의 면적은 조금씩 넓어지기도 한다.</td><td><div class="ox-group" data-answer="O" data-label="우리나라 영토의 면적은 조금씩 넓어지기도 한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>

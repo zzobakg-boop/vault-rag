@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -623,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1087,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ Ⅺ단원 마지막 이야기, 통일이야. 오늘은 «통일해야 한다»를 외우는 시간이 아니야. 지도와 숫자를 놓고, 우리 땅이 지금 무엇을 못 하고 있는지부터 따져 본다.</blockquote>
+<blockquote>🎙️ Ⅺ단원 마지막 이야기, 통일이야. 오늘은 '통일해야 한다'를 외우는 시간이 아니야. 지도와 숫자를 놓고, 우리 땅이 지금 무엇을 못 하고 있는지부터 따져 본다.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 세계 속에서 우리 국토가 갖는 <strong>위치적 중요성</strong>을 설명할 수 있다.</p>
@@ -1130,23 +1192,23 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 4단계: 통일에 드는 것, 통일로 얻는 것</h2>
 <blockquote>📕 <strong>교과서 211쪽 펴고 · 배정 시간 9분</strong></blockquote>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>통일 비용은 통일 뒤 사회 각 분야가 제대로 돌아가기까지 드는 돈과 노력이야. 정해진 기간 동안 드는 한때의 비용이지.</p><p>통일 편익은 통일로 얻는 경제적·비경제적 이익이야. 통일 이후에 오래도록 계속된다는 점이 비용과 다르다.</p><p>다만 «한때»가 짧은 것은 아니야. 독일은 1990년 통일 뒤 거의 30년 동안 동쪽 지역을 다시 세우는 데 큰돈을 썼어.</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>통일 비용은 통일 뒤 사회 각 분야가 제대로 돌아가기까지 드는 돈과 노력이야. 정해진 기간 동안 드는 한때의 비용이지.</p><p>통일 편익은 통일로 얻는 경제적·비경제적 이익이야. 통일 이후에 오래도록 계속된다는 점이 비용과 다르다.</p><p>다만 '한때'가 짧은 것은 아니야. 독일은 1990년 통일 뒤 거의 30년 동안 동쪽 지역을 다시 세우는 데 큰돈을 썼어.</p></div>
 <br>
 <div class="ws-pick" id="pk47"><div class="pk-head"><span>교과서 211쪽 그림에 나오는 여섯 가지다. 통일에 드는 것일까, 통일로 얻는 것일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="통일 비용"><div class="pk-name">제도 하나로 맞추기</div><div class="pk-sit">남북이 서로 다른 법과 제도를 하나로 맞춘다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="통일 비용">통일 비용</button><button type="button" class="pk-b" data-v="통일 편익">통일 편익</button></div><div class="pk-why" hidden>다른 제도를 합치는 데 돈과 시간이 든다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="통일 비용"><div class="pk-name">화폐 하나로 맞추기</div><div class="pk-sit">남북이 서로 다른 돈을 하나로 바꾼다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="통일 비용">통일 비용</button><button type="button" class="pk-b" data-v="통일 편익">통일 편익</button></div><div class="pk-why" hidden>화폐를 통합하는 데 큰돈이 든다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="통일 비용"><div class="pk-name">길과 철도 새로 놓기</div><div class="pk-sit">북쪽 지역에 도로·철도·전기 시설을 새로 깐다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="통일 비용">통일 비용</button><button type="button" class="pk-b" data-v="통일 편익">통일 편익</button></div><div class="pk-why" hidden>기반 시설을 짓는 인프라 구축 비용이다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="통일 편익"><div class="pk-name">이산가족 만남</div><div class="pk-sit">헤어진 가족이 자유롭게 오가며 만난다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="통일 비용">통일 비용</button><button type="button" class="pk-b" data-v="통일 편익">통일 편익</button></div><div class="pk-why" hidden>돈으로 셀 수 없는 비경제적 이익이다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="통일 편익"><div class="pk-name">새 일자리</div><div class="pk-sit">새로운 산업과 직업이 생겨 일할 곳이 늘어난다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="통일 비용">통일 비용</button><button type="button" class="pk-b" data-v="통일 편익">통일 편익</button></div><div class="pk-why" hidden>경제 성장과 함께 오는 경제적 이익이다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="통일 편익"><div class="pk-name">더 넓어진 여행</div><div class="pk-sit">금강산·백두산으로 수학여행과 휴가를 간다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="통일 비용">통일 비용</button><button type="button" class="pk-b" data-v="통일 편익">통일 편익</button></div><div class="pk-why" hidden>관광과 여가의 기회가 넓어진다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk47");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["통일 비용", "통일 편익"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
-<blockquote>🎙️ 교과서 그림 속 남한 아이에게 북한 아이가 «동무, 같이 숨을내기 할까?» 하고 말을 걸어. «숨을내기»는 숨바꼭질의 평안도·함경도 사투리래. 70년 넘게 떨어져 살면 놀이 이름도 달라져.</blockquote>
+<blockquote>🎙️ 교과서 그림 속 남한 아이에게 북한 아이가 '동무, 같이 숨을내기 할까?' 하고 말을 걸어. '숨을내기'는 숨바꼭질의 평안도·함경도 사투리래. 70년 넘게 떨어져 살면 놀이 이름도 달라져.</blockquote>
 <br>
-<blockquote>✅ <strong>스스로 점검</strong> — 비용 카드 셋과 편익 카드 셋을 견주어 보자. 비용은 «언젠가 끝나는 것», 편익은 «계속되는 것»이라는 차이가 카드에서도 보이니?</blockquote>
+<blockquote>✅ <strong>스스로 점검</strong> — 비용 카드 셋과 편익 카드 셋을 견주어 보자. 비용은 '언젠가 끝나는 것', 편익은 '계속되는 것'이라는 차이가 카드에서도 보이니?</blockquote>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>우리나라는 대륙과 바다로 나아가기에 유리한 위치에 있다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>중국의 경제 성장으로 동아시아의 중요성은 줄어들었다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>분단으로 이산가족과 실향민이 생겼다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>통일 비용은 통일 이후 영원히 계속해서 드는 돈이다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>헤어진 가족이 다시 만나는 것은 통일 편익에 속한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>우리나라는 대륙과 바다로 나아가기에 유리한 위치에 있다.</td><td><div class="ox-group" data-answer="O" data-label="우리나라는 대륙과 바다로 나아가기에 유리한 위치에 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>중국의 경제 성장으로 동아시아의 중요성은 줄어들었다.</td><td><div class="ox-group" data-answer="X" data-label="중국의 경제 성장으로 동아시아의 중요성은 줄어들었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>분단으로 이산가족과 실향민이 생겼다.</td><td><div class="ox-group" data-answer="O" data-label="분단으로 이산가족과 실향민이 생겼다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>통일 비용은 통일 이후 영원히 계속해서 드는 돈이다.</td><td><div class="ox-group" data-answer="X" data-label="통일 비용은 통일 이후 영원히 계속해서 드는 돈이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>헤어진 가족이 다시 만나는 것은 통일 편익에 속한다.</td><td><div class="ox-group" data-answer="O" data-label="헤어진 가족이 다시 만나는 것은 통일 편익에 속한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
@@ -1159,7 +1221,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
-<p>친구가 «통일하려면 돈이 너무 많이 드니까 지금처럼 사는 게 낫지 않아?»라고 말했다. 오늘 배운 통일 비용과 통일 편익을 견주어, 친구에게 할 내 대답을 두세 문장으로 써 보자. 친구의 걱정 가운데 맞는 부분이 있다면 그것도 인정하면서 써 보자.</p>
+<p>친구가 '통일하려면 돈이 너무 많이 드니까 지금처럼 사는 게 낫지 않아?'라고 말했다. 오늘 배운 통일 비용과 통일 편익을 견주어, 친구에게 할 내 대답을 두세 문장으로 써 보자. 친구의 걱정 가운데 맞는 부분이 있다면 그것도 인정하면서 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>

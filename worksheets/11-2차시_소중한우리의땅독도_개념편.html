@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -623,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1066,7 +1128,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 세계 속의 우리나라 11-2차시 — 옛 기록이 증언하는 동쪽 끝 (소중한 우리의 땅, 독도)</h1><p class="hero-subtitle">옛 기록이 증언하는 동쪽 끝</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">옛 지도에서 독도를 찾을 수 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">독도는 어떻게 생겨난 섬일까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">작은 바위섬이 왜 그렇게 소중할까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">옛 기록들은 독도를 누구 땅이라고 말할까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>「팔도총도」(1531년)는 독도를 «우산도»라는 이름으로 그렸다. 독도가 그려진 우리 지도 가운데 지금 남아 있는 가장 오래된 것이다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>독도는 울릉도에서 87.4km 떨어진 우리 영토의 동쪽 끝으로, <strong>화산</strong> 활동으로 생긴 동도·서도와 89개 바위섬이다. 경상북도 울릉군에 속한다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>독도는 우리 영역의 동쪽 끝을 정하고, 동해 한가운데의 <strong>군사</strong> 요충지이며, <strong>조경</strong> 수역의 어장·<strong>메탄 하이드레이트</strong>·해양 심층수와 290여 종의 생물이 있는 곳이다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>『세종실록』 「지리지」·칙령 제41호 같은 우리 기록이 독도를 적었고, 일본의 「태정관 지령」은 일본과 관계없다고 했으며, 연합국 각서 제677호는 독도를 일본이 다스리는 지역에서 떼어 냈다.</p></div></div><img class="hero-image" src="images/11-2_hero_dokdo.jpg" alt=""><div class="hero-hook">배를 타고 다가가면 바다 위로 두 바위섬이 솟아 있다. 더 높이 솟은 쪽이 서도, 낮은 쪽이 동도다. 사람이 사는 곳이라고는 믿기지 않을 만큼 작은 섬인데, 옛 지도와 기록은 수백 년 전부터 이 섬을 적어 두었다. 무엇이라고 적었을까?</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 세계 속의 우리나라 11-2차시 — 옛 기록이 증언하는 동쪽 끝 (소중한 우리의 땅, 독도)</h1><p class="hero-subtitle">옛 기록이 증언하는 동쪽 끝</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">옛 지도에서 독도를 찾을 수 있을까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">독도는 어떻게 생겨난 섬일까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">작은 바위섬이 왜 그렇게 소중할까?<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">옛 기록들은 독도를 누구 땅이라고 말할까?<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p>「팔도총도」(1531년)는 독도를 '우산도'라는 이름으로 그렸다. 독도가 그려진 우리 지도 가운데 지금 남아 있는 가장 오래된 것이다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>독도는 울릉도에서 87.4km 떨어진 우리 영토의 동쪽 끝으로, <strong>화산</strong> 활동으로 생긴 동도·서도와 89개 바위섬이다. 경상북도 울릉군에 속한다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><p>독도는 우리 영역의 동쪽 끝을 정하고, 동해 한가운데의 <strong>군사</strong> 요충지이며, <strong>조경</strong> 수역의 어장·<strong>메탄 하이드레이트</strong>·해양 심층수와 290여 종의 생물이 있는 곳이다.</p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><p>『세종실록』 「지리지」·칙령 제41호 같은 우리 기록이 독도를 적었고, 일본의 「태정관 지령」은 일본과 관계없다고 했으며, 연합국 각서 제677호는 독도를 일본이 다스리는 지역에서 떼어 냈다.</p></div></div><img class="hero-image" src="images/11-2_hero_dokdo.jpg" alt=""><div class="hero-hook">배를 타고 다가가면 바다 위로 두 바위섬이 솟아 있다. 더 높이 솟은 쪽이 서도, 낮은 쪽이 동도다. 사람이 사는 곳이라고는 믿기지 않을 만큼 작은 섬인데, 옛 지도와 기록은 수백 년 전부터 이 섬을 적어 두었다. 무엇이라고 적었을까?</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/4 · OX: <span id="ox-score">0</span>/5
@@ -1087,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ 지난 시간에 우리 바다를 잴 때 «동해안과 울릉도, 독도, 제주도는 썰물 때 해안선에서 잰다»고 했지? 오늘은 그 가운데 가장 동쪽, 독도로 간다. Ⅵ단원 6-5에서는 독도를 «갈등»으로 봤어. 오늘은 «근거»로 본다.</blockquote>
+<blockquote>🎙️ 지난 시간에 우리 바다를 잴 때 '동해안과 울릉도, 독도, 제주도는 썰물 때 해안선에서 잰다'고 했지? 오늘은 그 가운데 가장 동쪽, 독도로 간다. Ⅵ단원 6-5에서는 독도를 '갈등'으로 봤어. 오늘은 '근거'로 본다.</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 독도의 <strong>위치와 특징</strong>을 설명할 수 있다.</p>
@@ -1105,7 +1167,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 202쪽 · 생각 열기 「고지도 속의 독도 찾기」</div><div class="ws-tb-see">교과서의 두 지도에서 독도를 찾아 ◯로 표시해 보자.</div><div class="ws-tb-ask">「팔도총도」에서 우산도(독도)는 울릉도의 어느 쪽에 그려져 있나? 실제 위치와 견주어 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 202쪽에서 찾기 — 「팔도총도」에서 우산도(독도)는 울릉도의 어느 쪽에 그려져 있나? 실" style="width:360px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 옛 지도라서 위치가 실제와 다르게 그려지기도 했어. 그래도 「우산도」라는 이름이 또렷하게 적혀 있지. 지도를 그린 사람은 동해에 섬이 둘 있다는 걸 알고 있었다는 뜻이야.</blockquote>
+<blockquote>🎙️ 지도 속 우산도의 위치가 실제 독도와 같니? 위치가 다르다면, 그래도 이 지도가 독도의 근거가 되는 까닭은 무엇일까? 지도에 적힌 글자를 잘 봐.</blockquote>
 <br>
 <h2>📖 2단계: 우리 영토의 동쪽 끝</h2>
 <blockquote>📕 <strong>교과서 202쪽 펴고 · 배정 시간 8분</strong></blockquote>
@@ -1114,7 +1176,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-fig"><img src="images/11-2_독도위치_v2.png" alt="독도의 위치 지도. 울릉도에서 독도까지 87.4km, 독도에서 일본 오키섬까지 157.5km이다. 맑은 날 울릉도에서는 독도가 맨눈으로 보이지만 오키섬에서는 보이지 않는다." loading="lazy"><figcaption>독도의 위치 지도. 울릉도에서 독도까지 87.4km, 독도에서 일본 오키섬까지 157.5km이다. 맑은 날 울릉도에서는 독도가 맨눈으로 보이지만 오키섬에서는 보이지 않는다.</figcaption></figure>
 <br>
-<blockquote>🎙️ 맑은 날 울릉도 높은 곳에 오르면 수평선에 독도가 보여. 그런데 오키섬은 거리가 두 배 가까이 멀어서, 지구가 둥근 탓에 수평선 아래로 숨어 버려. 옛사람들이 «보이는 섬»을 자기 땅으로 여긴 것은 자연스러운 일이었어.</blockquote>
+<blockquote>🎙️ 맑은 날 울릉도 높은 곳에 오르면 수평선에 독도가 보여. 그런데 오키섬은 거리가 두 배 가까이 멀어서, 지구가 둥근 탓에 수평선 아래로 숨어 버려. 옛사람들이 '보이는 섬'을 자기 땅으로 여긴 것은 자연스러운 일이었어.</blockquote>
 <br>
 <h2>📖 3단계: 작은 섬의 큰 가치</h2>
 <blockquote>📕 <strong>교과서 203쪽 펴고 · 배정 시간 10분</strong></blockquote>
@@ -1125,14 +1187,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 203쪽 · 사회 톡톡톡 「‘대한민국 독도’를 전 세계에 알리다!」</div><div class="ws-tb-ask">독도를 지키기 위해 내가 할 수 있는 일을 하나 정하고, 그 일을 왜 골랐는지 한 문장 덧붙이자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 203쪽에서 찾기 — 독도를 지키기 위해 내가 할 수 있는 일을 하나 정하고, 그 일을 왜" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 10월은 «독도의 달»이야. 지금이 바로 그 달이지. 경상북도가 2005년에 조례로 정했어. 그 가운데 10월 25일은 «독도의 날»인데, 1900년 대한 제국이 칙령 제41호를 내린 날이야. 4단계 카드에서 이 칙령을 다시 만난다.</blockquote>
+<blockquote>🎙️ 10월은 '독도의 달'이야. 지금이 바로 그 달이지. 경상북도가 2005년에 조례로 정했어. 그 가운데 10월 25일은 '독도의 날'인데, 1900년 대한 제국이 칙령 제41호를 내린 날이야. 4단계 카드에서 이 칙령을 다시 만난다.</blockquote>
 <br>
 <h2>📖 4단계: 기록은 무엇이라고 말할까?</h2>
 <blockquote>📕 <strong>교과서 204~205쪽 펴고 · 배정 시간 12분</strong></blockquote>
 <br>
 <p>교과서 204~205쪽은 독도 체험관을 지면으로 옮겨 놓았다. 역사·미래관의 연표에는 독도를 적은 옛 기록이 시간 순서로 놓여 있다. 그런데 이 기록들은 한 나라에서만 나온 것이 아니다.</p>
 <br>
-<div class="ws-pick" id="pk47"><div class="pk-head"><span>교과서 204~205쪽 연표에 나오는 기록 여섯 가지다. 누가 남긴 기록일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="우리 기록"><div class="pk-name">『세종실록』 「지리지」(1454년)</div><div class="pk-sit">우산과 무릉 두 섬은 울진현의 정동쪽 바다에 있고, 날씨가 맑으면 서로 바라볼 수 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>조선이 나라의 땅을 정리한 책에 두 섬을 함께 올렸다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="일본 기록"><div class="pk-name">『은주시청합기』(1667년)</div><div class="pk-sit">오키섬의 서북쪽에 두 섬이 있으며, 일본의 서북쪽 한계는 오키섬으로 한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>오키섬을 둘러본 일본 관리가 쓴 보고서다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="일본 기록"><div class="pk-name">「삼국접양지도」(1785년)</div><div class="pk-sit">독도를 한반도와 같은 색으로 칠하고 «조선의 것»이라고 적었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>일본의 학자 하야시 시헤이가 그린 지도다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="일본 기록"><div class="pk-name">「태정관 지령」(1877년)</div><div class="pk-sit">죽도와 그 밖의 섬 하나는 일본과 관계없음을 명심할 것</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>일본 메이지 정부의 최고 행정 기관이 내린 결정이다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="우리 기록"><div class="pk-name">「대한 제국 칙령 제41호」(1900년)</div><div class="pk-sit">울릉도를 울도군으로 높이고, 울도 군수가 석도를 함께 맡아 다스리게 한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>대한 제국이 법으로 석도를 울도군에 넣었다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="연합국 기록"><div class="pk-name">「연합국 최고 사령관 각서 제677호」(1946년)</div><div class="pk-sit">울릉도와 독도를 일본이 다스리는 지역에서 떼어 낸다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>제2차 세계 대전 뒤 일본을 점령한 연합국 사령부의 문서다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk47");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["우리 기록", "일본 기록", "연합국 기록"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk47"><div class="pk-head"><span>교과서 204~205쪽 연표에 나오는 기록 여섯 가지다. 누가 남긴 기록일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="우리 기록"><div class="pk-name">『세종실록』 「지리지」(1454년)</div><div class="pk-sit">우산과 무릉 두 섬은 울진현의 정동쪽 바다에 있고, 날씨가 맑으면 서로 바라볼 수 있다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>조선이 나라의 땅을 정리한 책에 두 섬을 함께 올렸다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="일본 기록"><div class="pk-name">『은주시청합기』(1667년)</div><div class="pk-sit">오키섬의 서북쪽에 두 섬이 있으며, 일본의 서북쪽 한계는 오키섬으로 한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>오키섬을 둘러본 일본 관리가 쓴 보고서다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="일본 기록"><div class="pk-name">「삼국접양지도」(1785년)</div><div class="pk-sit">독도를 한반도와 같은 색으로 칠하고 '조선의 것'이라고 적었다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>일본의 학자 하야시 시헤이가 그린 지도다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="일본 기록"><div class="pk-name">「태정관 지령」(1877년)</div><div class="pk-sit">죽도와 그 밖의 섬 하나는 일본과 관계없음을 명심할 것</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>일본 메이지 정부의 최고 행정 기관이 내린 결정이다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="우리 기록"><div class="pk-name">「대한 제국 칙령 제41호」(1900년)</div><div class="pk-sit">울릉도를 울도군으로 높이고, 울도 군수가 석도를 함께 맡아 다스리게 한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>대한 제국이 법으로 석도를 울도군에 넣었다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="연합국 기록"><div class="pk-name">「연합국 최고 사령관 각서 제677호」(1946년)</div><div class="pk-sit">울릉도와 독도를 일본이 다스리는 지역에서 떼어 낸다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="우리 기록">우리 기록</button><button type="button" class="pk-b" data-v="일본 기록">일본 기록</button><button type="button" class="pk-b" data-v="연합국 기록">연합국 기록</button></div><div class="pk-why" hidden>제2차 세계 대전 뒤 일본을 점령한 연합국 사령부의 문서다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk47");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["우리 기록", "일본 기록", "연합국 기록"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 205쪽 · 자연관 「기후」</div><div class="ws-tb-ask">독도의 연평균 기온이 비슷한 위도의 내륙보다 따뜻한 까닭을 교과서에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 205쪽에서 찾기 — 독도의 연평균 기온이 비슷한 위도의 내륙보다 따뜻한 까닭을 교과서에서" style="width:360px" placeholder=""></div></div>
 <br>
@@ -1142,11 +1204,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>독도는 우리나라 영토의 가장 동쪽에 있는 섬이다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>독도는 제주도보다 늦게 생긴 섬이다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>독도는 행정 구역으로 강원특별자치도에 속한다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>독도 둘레 바다는 한류와 난류가 만나 좋은 어장이 된다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>1999년 독도 섬 전체가 천연 보호 구역으로 지정되었다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>독도는 우리나라 영토의 가장 동쪽에 있는 섬이다.</td><td><div class="ox-group" data-answer="O" data-label="독도는 우리나라 영토의 가장 동쪽에 있는 섬이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>독도는 제주도보다 늦게 생긴 섬이다.</td><td><div class="ox-group" data-answer="X" data-label="독도는 제주도보다 늦게 생긴 섬이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>독도는 행정 구역으로 강원특별자치도에 속한다.</td><td><div class="ox-group" data-answer="X" data-label="독도는 행정 구역으로 강원특별자치도에 속한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>독도 둘레 바다는 한류와 난류가 만나 좋은 어장이 된다.</td><td><div class="ox-group" data-answer="O" data-label="독도 둘레 바다는 한류와 난류가 만나 좋은 어장이 된다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>1999년 독도 섬 전체가 천연 보호 구역으로 지정되었다.</td><td><div class="ox-group" data-answer="O" data-label="1999년 독도 섬 전체가 천연 보호 구역으로 지정되었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
@@ -1159,7 +1221,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
-<p>외국 친구가 «독도는 왜 한국 땅이야?»라고 물었다. 오늘 본 지도·거리·기록 가운데 근거 두 가지를 골라, 친구가 고개를 끄덕일 수 있게 세 문장 안팎으로 설명해 보자.</p>
+<p>외국 친구가 '독도는 왜 한국 땅이야?'라고 물었다. 오늘 본 지도·거리·기록 가운데 근거 두 가지를 골라, 친구가 고개를 끄덕일 수 있게 세 문장 안팎으로 설명해 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>

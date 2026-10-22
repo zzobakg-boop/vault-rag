@@ -173,6 +173,26 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .pk-btns-col { flex-direction: column; gap: 4px; }
 .pk-btns-col .pk-b { width: 100%; text-align: center; }
 /* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
 /* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
 .pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
@@ -429,6 +449,34 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
 .ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
 .ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
 .ws-ipdam {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 22px; align-items: start; margin: 16px 0 20px;
@@ -623,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1087,7 +1149,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
     <input type="text" id="si-name" placeholder="이름">
   </div>
   <br>
-<blockquote>🎙️ 사회② 마지막 차시야. 지난 시간엔 나라와 큰 단체가 돕는 이야기를 했지. 오늘은 질문이 바뀌어. «그럼 나는?» 열다섯 살이 세계의 불평등 앞에서 할 수 있는 일이 정말 있을까?</blockquote>
+<blockquote>🎙️ 사회② 마지막 차시야. 지난 시간엔 나라와 큰 단체가 돕는 이야기를 했지. 오늘은 질문이 바뀌어. '그럼 나는?' 열다섯 살이 세계의 불평등 앞에서 할 수 있는 일이 정말 있을까?</blockquote>
 <br>
 <h2>📌 학습 목표</h2>
 <p>- 국제적인 <strong>연대와 협력</strong>이 왜 필요한지 설명할 수 있다.</p>
@@ -1103,7 +1165,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 230쪽 · 생각 열기 「기부의 틀을 바꾼 착한 재테크, 키바(KIVA)」</div><div class="ws-tb-ask">멜린다가 약속한 날에 돈을 갚으면, 처음 돈을 보탠 사람들은 그 돈으로 무엇을 할 수 있나? 대부분은 어떻게 하는지도 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 230쪽에서 찾기 — 멜린다가 약속한 날에 돈을 갚으면, 처음 돈을 보탠 사람들은 그 돈으" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>🎙️ 125달러를 혼자 내라면 부담스럽지. 그런데 다섯 사람이 25달러씩 내면? 키바는 돈을 «주는» 곳일까, «빌려주는» 곳일까? 그 차이가 왜 중요할까?</blockquote>
+<blockquote>🎙️ 125달러를 혼자 내라면 부담스럽지. 그런데 다섯 사람이 25달러씩 내면? 키바는 돈을 '주는' 곳일까, '빌려주는' 곳일까? 그 차이가 왜 중요할까?</blockquote>
 <br>
 <h2>📖 2단계: 왜 함께해야 할까?</h2>
 <blockquote>📕 <strong>교과서 230쪽 펴고 · 배정 시간 10분</strong></blockquote>
@@ -1112,14 +1174,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 230쪽 · 날개</div><div class="ws-tb-ask">④에 들어갈 낱말의 뜻을 날개(옆쪽 작은 글씨)에서 찾아, 누가 모여 무엇을 하려고 만든 조직인지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 230쪽에서 찾기 — ④에 들어갈 낱말의 뜻을 날개(옆쪽 작은 글씨)에서 찾아, 누가 모여" style="width:400px" placeholder=""></div></div>
 <br>
-<div class="ws-pick" id="pk27"><div class="pk-head"><span>불평등을 줄이려고 함께하는 여섯 가지 방법이다. 어느 쪽일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="살 때"><div class="pk-name">인증 초콜릿</div><div class="pk-sit">마트에서 공정 무역 인증 마크가 붙은 초콜릿을 고른다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>카카오 농민이 더 나은 값을 받도록 돕는다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="살 때"><div class="pk-name">착한 바나나</div><div class="pk-sit">9-2에서 본 «착한» 바나나를 장바구니에 담는다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>생산자를 생각한 물건을 골라 산다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="빌려줄 때"><div class="pk-name">키바</div><div class="pk-sit">누리집에서 필리핀 농부 멜린다에게 25달러를 보탠다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>갚을 날을 정해 두고 빌려준다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="빌려줄 때"><div class="pk-name">그라민 은행</div><div class="pk-sit">12-5에서 본 방글라데시 은행이 가난한 사람에게 담보 없이 적은 돈을 꾸어 준다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>작은 장사를 시작할 밑천이 된다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="함께 일할 때"><div class="pk-name">자오족 농민 조합</div><div class="pk-sit">베트남 자오족 농민들이 함께 계피를 기르고 함께 판다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>혼자서는 못 뚫는 판로를 함께 연다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="함께 일할 때"><div class="pk-name">학교 매점</div><div class="pk-sit">학생·교사·학부모가 돈을 모아 함께 주인이 되어 운영한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>번 돈을 학교를 위해 다시 쓴다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk27");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["살 때", "빌려줄 때", "함께 일할 때"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk27"><div class="pk-head"><span>불평등을 줄이려고 함께하는 여섯 가지 방법이다. 어느 쪽일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold"><div class="pk-card pk-noimg" data-i="0" data-ans="살 때"><div class="pk-name">인증 초콜릿</div><div class="pk-sit">마트에서 공정 무역 인증 마크가 붙은 초콜릿을 고른다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>카카오 농민이 더 나은 값을 받도록 돕는다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="살 때"><div class="pk-name">착한 바나나</div><div class="pk-sit">9-2에서 본 '착한' 바나나를 장바구니에 담는다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>생산자를 생각한 물건을 골라 산다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="빌려줄 때"><div class="pk-name">키바</div><div class="pk-sit">누리집에서 필리핀 농부 멜린다에게 25달러를 보탠다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>갚을 날을 정해 두고 빌려준다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="빌려줄 때"><div class="pk-name">그라민 은행</div><div class="pk-sit">12-5에서 본 방글라데시 은행이 가난한 사람에게 담보 없이 적은 돈을 꾸어 준다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>작은 장사를 시작할 밑천이 된다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="함께 일할 때"><div class="pk-name">자오족 농민 조합</div><div class="pk-sit">베트남 자오족 농민들이 함께 계피를 기르고 함께 판다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>혼자서는 못 뚫는 판로를 함께 연다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="함께 일할 때"><div class="pk-name">학교 매점</div><div class="pk-sit">학생·교사·학부모가 돈을 모아 함께 주인이 되어 운영한다</div><div class="pk-btns pk-btns-col"><button type="button" class="pk-b" data-v="살 때">살 때</button><button type="button" class="pk-b" data-v="빌려줄 때">빌려줄 때</button><button type="button" class="pk-b" data-v="함께 일할 때">함께 일할 때</button></div><div class="pk-why" hidden>번 돈을 학교를 위해 다시 쓴다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk27");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["살 때", "빌려줄 때", "함께 일할 때"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>🎙️ 세 갈래 가운데 너희가 오늘 당장 할 수 있는 것은 어느 쪽일까? 마트에서 물건 하나 고르는 것도 세계와 이어지는 일이라면, 고르는 기준은 무엇이어야 할까?</blockquote>
 <br>
 <h2>📖 3단계: 계피를 판 돈이 마을에 남긴 것</h2>
 <blockquote>📕 <strong>교과서 231쪽 펴고 · 배정 시간 12분</strong></blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 231쪽 · 함께하는 창의 교실 「더불어 사는 세계를 위한 공정 무역」</div><div class="ws-tb-see">자료 1의 자오족 이야기를 읽고, 자료 2의 사진들을 함께 보자.</div><div class="ws-tb-ask">공정 무역으로 번 돈으로 마을에 지어진 시설을 사진에서 두 가지 이상 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 231쪽에서 찾기 — 공정 무역으로 번 돈으로 마을에 지어진 시설을 사진에서 두 가지 이상" style="width:400px" placeholder=""></div><div class="ws-tb-ask">자오족 마을이 공정 무역으로 얻은 «성과»를 자료 1에서 근거를 찾아 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 231쪽에서 찾기 — 자오족 마을이 공정 무역으로 얻은 «성과»를 자료 1에서 근거를 찾아" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 231쪽 · 함께하는 창의 교실 「더불어 사는 세계를 위한 공정 무역」</div><div class="ws-tb-see">자료 1의 자오족 이야기를 읽고, 자료 2의 사진들을 함께 보자.</div><div class="ws-tb-ask">공정 무역으로 번 돈으로 마을에 지어진 시설을 사진에서 두 가지 이상 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 231쪽에서 찾기 — 공정 무역으로 번 돈으로 마을에 지어진 시설을 사진에서 두 가지 이상" style="width:400px" placeholder=""></div><div class="ws-tb-ask">자오족 마을이 공정 무역으로 얻은 '성과'를 자료 1에서 근거를 찾아 한 문장으로 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 231쪽에서 찾기 — 자오족 마을이 공정 무역으로 얻은 '성과'를 자료 1에서 근거를 찾아" style="width:400px" placeholder=""></div></div>
 <br>
 <blockquote>🎙️ 9-2에서 만난 호세 기억나? 코스타리카 바나나 농장에서 일은 힘든데 임금은 적다고 했지. 자오족 농민과 호세는 무엇이 달랐을까?</blockquote>
 <br>
@@ -1128,17 +1190,17 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 231쪽 · 함께하는 창의 교실 활동 2</div><div class="ws-tb-see">교과서는 모둠별로 포스터를 만들자고 해. 오늘은 그 포스터에 들어갈 문구 한 줄만 먼저 써 보자.</div><div class="ws-tb-ask">친구들이 공정 무역 상품을 한 번 더 들여다보게 만들 포스터 문구를 한 줄로 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 231쪽에서 찾기 — 친구들이 공정 무역 상품을 한 번 더 들여다보게 만들 포스터 문구를" style="width:400px" placeholder=""></div></div>
 <br>
-<blockquote>✅ <strong>스스로 점검</strong> — 내 문구는 «사 주세요»로 끝났을까, «왜 이 물건인지»까지 말했을까? 3단계의 자오족 마을에서 근거를 하나 가져와 문구를 다듬어 보자.</blockquote>
+<blockquote>✅ <strong>스스로 점검</strong> — 내 문구는 '사 주세요'로 끝났을까, '왜 이 물건인지'까지 말했을까? 3단계의 자오족 마을에서 근거를 하나 가져와 문구를 다듬어 보자.</blockquote>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>지역 간 불평등은 한 나라의 노력만으로도 충분히 해결할 수 있다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>공정 무역은 생산자에게 공정한 대가를 주려는 무역이다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>키바에는 적은 돈으로도 누구나 참여할 수 있다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>공정 무역 상품은 언제나 일반 상품보다 값이 싸다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>가난한 사람들이 스스로 일어서도록 돕는 것도 국제적 연대와 협력이다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>지역 간 불평등은 한 나라의 노력만으로도 충분히 해결할 수 있다.</td><td><div class="ox-group" data-answer="X" data-label="지역 간 불평등은 한 나라의 노력만으로도 충분히 해결할 수 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>공정 무역은 생산자에게 공정한 대가를 주려는 무역이다.</td><td><div class="ox-group" data-answer="O" data-label="공정 무역은 생산자에게 공정한 대가를 주려는 무역이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>키바에는 적은 돈으로도 누구나 참여할 수 있다.</td><td><div class="ox-group" data-answer="O" data-label="키바에는 적은 돈으로도 누구나 참여할 수 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>공정 무역 상품은 언제나 일반 상품보다 값이 싸다.</td><td><div class="ox-group" data-answer="X" data-label="공정 무역 상품은 언제나 일반 상품보다 값이 싸다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>가난한 사람들이 스스로 일어서도록 돕는 것도 국제적 연대와 협력이다.</td><td><div class="ox-group" data-answer="O" data-label="가난한 사람들이 스스로 일어서도록 돕는 것도 국제적 연대와 협력이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
@@ -1151,7 +1213,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
-<p>Ⅻ단원 첫 시간에 «세계의 문제가 왜 나의 문제일까?»를 물었지. 이제 답해 볼 차례야. 마트에 일반 초콜릿과 공정 무역 인증 초콜릿이 나란히 있고, 인증 초콜릿이 조금 더 비싸다. 너는 어느 쪽을 고를까? 고르는 까닭과, 그 선택이 카카오를 기른 사람에게 어떤 차이를 만들지 두세 문장으로 써 보자.</p>
+<p>Ⅻ단원 첫 시간에 '세계의 문제가 왜 나의 문제일까?'를 물었지. 이제 답해 볼 차례야. 마트에 일반 초콜릿과 공정 무역 인증 초콜릿이 나란히 있고, 인증 초콜릿이 조금 더 비싸다. 너는 어느 쪽을 고를까? 고르는 까닭과, 그 선택이 카카오를 기른 사람에게 어떤 차이를 만들지 두세 문장으로 써 보자.</p>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
