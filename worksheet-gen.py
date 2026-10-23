@@ -2170,6 +2170,10 @@ def extract_hero_meta(blank_file):
     hero['subtitle'] = get('hero_subtitle') or get('교과서')
     hero['eyebrow'] = get('hero_eyebrow') or get('subject')
     hero['hook'] = get('hero_hook')
+    # 2026-10-23 천대현 «넥스트 비전 석학 카드처럼 표지를 입체적으로» — opt-in.
+    #   hero_plate_title 이 있으면 표지 그림(글자 없는 배경)을 기울어지는 판에 올리고
+    #   배지·제목·부제를 HTML 층으로 그 위에 띄운다. 키가 없는 차시는 출력이 이전과 같다.
+    hero['plate'] = {k: get('hero_plate_' + k) for k in ('badge', 'title', 'sub')}
     mm = re.search(r'^hero_keywords:\s*\[([^\]]+)\]', fm, re.M)
     if mm:
         hero['keywords'] = [k.strip().strip('"\'') for k in mm.group(1).split(',')]
@@ -2187,6 +2191,50 @@ def extract_hero_meta(blank_file):
                 hero['cards'][bm.group(1)] = md_to_html(md)
 
     return hero
+
+
+HERO_PLATE_CSS_JS = """<style>
+/* 표지 입체판 (2026-10-23) — 넥스트 비전 석학 카드의 사진판을 옮김: 판이 포인터를 따라 기울고, 배지·제목·부제가 서로 다른 깊이에 떠서 시차가 생긴다 */
+.hero-plate{position:relative;perspective:1000px;margin:24px auto 0}
+.hero-plate .hp-in{position:relative;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .55s cubic-bezier(.2,.7,.2,1);border-radius:14px}
+.hero-plate.live .hp-in{transition:transform .08s linear}
+.hero-plate .hero-image{display:block;width:100%;height:auto;max-height:none;margin:0;border-radius:14px;
+  box-shadow:0 2px 4px rgb(20 12 4/.18),0 14px 28px rgb(20 12 4/.22),0 40px 70px -20px rgb(20 12 4/.45)}
+.hero-plate .hp-scrim{position:absolute;inset:0;border-radius:14px;pointer-events:none;background:linear-gradient(180deg,rgb(8 5 2/.72) 0%,rgb(8 5 2/.5) 40%,transparent 75%)}
+.hero-plate .hp-text{position:absolute;left:6%;right:6%;top:8%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5em;pointer-events:none;transform-style:preserve-3d}
+.hero-plate .hp-badge{transform:translateZ(70px);font-size:clamp(10px,1.7vw,15px);font-weight:700;color:#2a1c05;background:linear-gradient(180deg,#f3d27a,#d4af37);padding:.25em .9em;border-radius:999px;box-shadow:0 6px 14px rgb(0 0 0/.4)}
+.hero-plate .hp-title{transform:translateZ(50px);font-size:clamp(21px,4.4vw,42px);font-weight:300;letter-spacing:-.02em;line-height:1.2;color:#fbf7ee;text-shadow:0 2px 3px rgb(0 0 0/.55),0 10px 28px rgb(0 0 0/.55)}
+.hero-plate .hp-sub{transform:translateZ(34px);font-size:clamp(13.5px,2.3vw,19px);font-weight:600;color:#f0c75e;text-shadow:0 1px 2px rgb(0 0 0/.7),0 6px 18px rgb(0 0 0/.6)}
+.hero-plate .hp-rim{position:absolute;inset:10px;border:1.5px solid rgb(255 214 140/.45);border-radius:9px;transform:translateZ(22px);pointer-events:none}
+.hero-plate .hp-sheen{position:absolute;inset:0;border-radius:14px;pointer-events:none;transform:translateZ(1px);background:radial-gradient(circle at var(--mx,30%) var(--my,20%),rgb(255 236 200/.32),transparent 55%);opacity:var(--so,0);transition:opacity .3s}
+@media (hover:none){.hero-plate:not(.live) .hp-in{animation:hpSway 9s ease-in-out infinite}}
+@keyframes hpSway{0%,100%{transform:rotateX(2deg) rotateY(-4deg)}50%{transform:rotateX(-1.5deg) rotateY(4deg)}}
+@media (prefers-reduced-motion:reduce){.hero-plate .hp-in{transition:none;animation:none!important;transform:none!important}.hero-plate .hp-sheen{display:none}}
+</style><script>
+(function(){
+  var plate=document.currentScript&&document.currentScript.previousElementSibling&&document.currentScript.previousElementSibling.previousElementSibling;
+  if(!plate||!plate.classList||!plate.classList.contains('hero-plate'))return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var M=7;
+  function move(x,y){var r=plate.getBoundingClientRect(),px=Math.min(1,Math.max(0,(x-r.left)/r.width)),py=Math.min(1,Math.max(0,(y-r.top)/r.height));
+    plate.style.setProperty('--ry',((px-.5)*2*M).toFixed(2)+'deg');plate.style.setProperty('--rx',((.5-py)*1.4*M).toFixed(2)+'deg');
+    plate.style.setProperty('--mx',(px*100).toFixed(1)+'%');plate.style.setProperty('--my',(py*100).toFixed(1)+'%');plate.style.setProperty('--so','1');}
+  function reset(){plate.classList.remove('live');plate.style.setProperty('--rx','0deg');plate.style.setProperty('--ry','0deg');plate.style.setProperty('--so','0');}
+  plate.addEventListener('pointermove',function(e){plate.classList.add('live');move(e.clientX,e.clientY);});
+  plate.addEventListener('pointerleave',reset);plate.addEventListener('pointercancel',reset);
+  plate.addEventListener('pointerup',function(e){if(e.pointerType!=='mouse')reset();});
+})();
+</script>"""
+
+
+def build_hero_plate(img, plate):
+    """표지 그림을 입체판으로 감싼다. 글자는 aria-hidden — 같은 제목이 h1 에 이미 있다."""
+    badge = f'<span class="hp-badge">{inline(plate["badge"])}</span>' if plate.get('badge') else ''
+    sub = f'<span class="hp-sub">{inline(plate["sub"])}</span>' if plate.get('sub') else ''
+    return (f'<div class="hero-plate"><div class="hp-in">{img}<span class="hp-scrim" aria-hidden="true"></span>'
+            f'<span class="hp-text" aria-hidden="true">{badge}<span class="hp-title">{inline(plate["title"])}</span>{sub}</span>'
+            f'<span class="hp-rim" aria-hidden="true"></span><span class="hp-sheen" aria-hidden="true"></span></div></div>'
+            + HERO_PLATE_CSS_JS)
 
 
 def build_hero_html(title, hero):
@@ -2214,6 +2262,9 @@ def build_hero_html(title, hero):
         for i, h in sorted(cards.items(), key=lambda kv: int(kv[0])))
     kws_html = f'<div class="hero-keywords">{kws}</div>{card_html}' if kws else ''
     img = f'<img class="hero-image" src="{hero["image"]}" alt="">' if hero.get('image') else ''
+    plate = hero.get('plate') or {}
+    if img and plate.get('title'):
+        img = build_hero_plate(img, plate)
     hook = f'<div class="hero-hook">{inline(hero["hook"])}</div>' if hero.get('hook') else ''
     return f'<section class="hero-section">{eyebrow}<h1 class="hero-title">{title}</h1>{sub}{kws_html}{img}{hook}</section>'
 
