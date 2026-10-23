@@ -1862,7 +1862,10 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                         f'<div class="ws-anim-ctl"><button type="button" onclick="replayAnim(\'{aid}\')">'
                         f'▶ 다시 보기</button><span>한 번 재생됩니다</span></div>{fc}</figure>')
                 else:
-                    html_parts.append(f'<figure class="ws-fig"><img src="{src}" alt="{cap}" loading="lazy">{fc}</figure>')
+                    # 2026-10-23 사회 검토(4-3-2 후추의 길 지도) — 폰 폭에서 1200px 지도 글자가 6px 안팎이라 못 읽는다.
+                    #   그림을 원본 링크로 감싸 누르면 새 탭에서 크게 열린다(새 탭이라 입력한 답은 그대로).
+                    html_parts.append(f'<figure class="ws-fig"><a class="ws-fig-zoom" href="{src}" target="_blank" rel="noopener" title="눌러서 크게 보기">'
+                                      f'<img src="{src}" alt="{cap}" loading="lazy"></a>{fc}</figure>')
             continue
 
         # 헤딩
@@ -2004,7 +2007,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if _mi:
                     _cap, _src = _mi.group(1), _mi.group(2)
                     html_parts.append(
-                        f'<figure class="ws-fig"><img src="{_src}" alt="{_cap}" loading="lazy">'
+                        f'<figure class="ws-fig"><a class="ws-fig-zoom" href="{_src}" target="_blank" rel="noopener" title="눌러서 크게 보기">'
+                        f'<img src="{_src}" alt="{_cap}" loading="lazy"></a>'
                         + (f'<figcaption>{inline(_cap)}</figcaption>' if _cap else '')
                         + '</figure>')
                     continue
@@ -3372,6 +3376,7 @@ table:has(.ox-group) td:first-child {{ width: 46px; text-align: center; color: #
 .ws-fig img {{ max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }}
 .ws-fig-video {{ max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }}
 .ws-fig img[src*="comic"] {{ max-height: 820px; max-width: min(600px, 100%); }}
+.ws-fig-zoom {{ cursor: zoom-in; display: inline-block; max-width: 100%; }}
 .ws-fig figcaption {{ margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }}
 .ws-fold-table {{ width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }}
 .ws-fold-table th, .ws-fold-table td {{ border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }}
