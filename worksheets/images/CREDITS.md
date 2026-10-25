@@ -1714,3 +1714,10 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-3_koryoin_1937.jpg | KPH Reeds Fall 1937--Mid Resolution.jpg — 1937년 가을 우즈베키스탄, 김병화 박물관 소장 소련 선전 사진 | 작자 미상 · Public domain · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:KPH_Reeds_Fall_1937--Mid_Resolution.jpg |
 | 7-3_sv_applepark.jpg | San Jose and Silicon Valley Skyline Oct 2017.jpg — 애플 본사 둘레만 잘라 냄 | Tom Pavel · CC BY 2.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:San_Jose_and_Silicon_Valley_Skyline_Oct_2017.jpg |
 | 7-3_venn_india_sv.png | 자발적·영구적·경제적 이동 벤 다이어그램 — 인도 정보 통신 기술자 → 미국 실리콘 밸리 (PIL로 직접 그림) | 자체 제작 |
+
+## 4-3-2 시기 띠·삼각 무역 지도 (2026-10-26)
+
+| 파일 | 내용 | 출처 |
+|---|---|---|
+| 4-3-2_시간띠.png | 3-3-4 봉건 사회 해체·중앙 집권 / 3-3-5 르네상스 / 4-3-2 신항로 개척 시기 띠 (PIL, `figure-builder/fig_432_timeline.py`) | 자체 제작 |
+| 4-3-2_삼각무역.png | 유럽·아프리카·아메리카 삼각 무역 개념도 (`map-render/hq/hq_432_triangle.py`) | 자체 제작 · 해안선·지형 음영 Natural Earth(퍼블릭 도메인) |
