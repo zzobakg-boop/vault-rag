@@ -464,15 +464,15 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-sw-count { font-size: .8em; color: #8a7a5c; }
 @media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
 /* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
-.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; }
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
 .sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
 .sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
 .sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
 .sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
 .sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
-.sw-news .ws-sw-h { display: block; font-size: 1.22em; font-weight: 800; color: #1d2b3c; margin: 14px 0 8px; line-height: 1.4; }
-.sw-news .ws-sw-pane img { display: block; width: 100%; height: auto; border-radius: 10px; margin: 2px 0 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
-.sw-news .ws-sw-pane p { font-size: 1.02em; line-height: 1.85; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
 .sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
 .ws-tb-2cin { margin: 2px 0 4px; }
 .ws-tb-2cin .ws-tb-fig { margin: 0; }
@@ -671,6 +671,20 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
    🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
       그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
       도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
 .ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
 .ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
   aspect-ratio: 1200 / 720; perspective: 1400px; }
@@ -1023,6 +1037,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
+.ws-fig-zoom { cursor: zoom-in; display: inline-block; max-width: 100%; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -1114,14 +1129,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-2~5-3차시 — 둘 다 좋은데, 왜 동시에 못 잡을까? (물가와 실업)</h1><p class="hero-subtitle">물가를 잡으면 일자리가 줄어든다고?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">물가 지수 = 기준 시점 100 · CPI는 평균<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">물가 상승 3원인(수요·통화량·생산비)<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">실업 3유형 · 실업률 분모 = 경제 활동 인구<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">물가 안정 ↔ 고용 안정 = 단기 상충<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>물가 지수</strong> = 기준이 되는 해를 <strong>100</strong>으로 놓고, 지금이 얼마인지 견준 수.</p><table><thead><tr><th>지수</th><th>뜻</th></tr></thead><tbody><tr><td>100</td><td>기준 시점과 <strong>같다</strong></td></tr><tr><td>105</td><td>기준보다 <strong>5% 올랐다</strong></td></tr><tr><td>98</td><td>기준보다 <strong>2% 내렸다</strong></td></tr></tbody></table><p>🔴 <strong>CPI는 '평균'이다.</strong> 소비자 물가 지수는 <strong>도시 가구의 평균 소비 패턴</strong>으로 만든다. 그래서 <em>"물가가 안정됐다"</em> 는 뉴스와 <strong>내 체감이 다를 수 있다</strong> — 내가 자주 사는 물건이 평균과 다르면 그렇다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>물가가 오르는 길은 <strong>세 갈래</strong>다. 셋 다 결국 <em>"돈은 많은데 물건은 그대로"</em> 로 모인다.</p><table><thead><tr><th>원인</th><th>무슨 일이</th><th>쉽게 말하면</th></tr></thead><tbody><tr><td><strong>수요 증가</strong></td><td>사려는 사람이 늘어남</td><td>물건은 그대로인데 <strong>사겠다는 손</strong>이 늘었다</td></tr><tr><td><strong>통화량 증가</strong></td><td>시중에 돈이 많이 풀림</td><td><strong>돈이 흔해지면</strong> 돈의 값이 떨어진다</td></tr><tr><td><strong>생산비 상승</strong></td><td>임금·원자재값이 오름</td><td>만드는 값이 오르니 <strong>파는 값</strong>도 오른다</td></tr></tbody></table><p><strong>9단계와 이어진다</strong> — 금리를 올리면 ①수요와 ②통화량이 늘어나는 것을 <strong>누르는</strong> 쪽으로 작용한다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><img src="images/v5-unemployment-rate.png" alt="만 15세 이상 100명인 마을로 그린 실업률 구조도. 경제 활동 인구 60명 가운데 실업자 3명이므로 실업률은 5%다."><p><strong>실업 3유형</strong> — <strong>경기적</strong>(경기가 나빠서) · <strong>구조적</strong>(기술·산업이 바뀌어서) · <strong>마찰적</strong>(더 나은 곳으로 옮기는 중).</p><p>🔴 <strong>분모는 '경제 활동 인구'다.</strong> 전체 인구도, 노동 가능 인구도 아니다. 학생·전업주부는 <strong>일할 의사가 없어 분모에서 아예 빠진다.</strong></p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><img src="images/v5-blanket.png" alt="너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다."><p><strong>둘 다 좋은 목표인데 동시에 잡기 어렵다.</strong></p><table><thead><tr><th>금리를</th><th>물가는 (짧은 기간에 흔히)</th><th>일자리는 (짧은 기간에 흔히)</th></tr></thead><tbody><tr><td><strong>올리면</strong></td><td>진정된다 ✅</td><td>줄어든다 ❌</td></tr><tr><td><strong>내리면</strong></td><td>오른다 ❌</td><td>늘어난다 ✅</td></tr></tbody></table><p><strong>핵심</strong> — 이건 정책이 서툴러서가 아니다. <strong>아픔이 부작용이 아니라, 그게 약이 듣는 방식</strong>이다. 그래서 한국은행의 고민은 <em>"할까 말까"</em> 가 아니라 <strong>"얼마나"</strong> 다.</p></div></div><img class="hero-image" src="images/pricejob-hero.png" alt=""><div class="hero-hook">물가가 오르면 힘들지. 용돈은 그대로인데 떡볶이값만 오르니까. 그럼 물가를 확 잡아버리면 되잖아? 그런데 여기 반전이 있어 — 물가를 잡으려고 하면 이번엔 일자리가 줄어들거든(헐!). 둘 다 좋은 건데 왜 동시에 못 잡을까? 이 단원 첫날 던졌던 그 질문, 오늘 답의 절반을 찾는다.</div></section>
+  <section class="hero-section"><h1 class="hero-title">사회② 국민경제와 국제거래 5-2~5-3차시 — 둘 다 좋은데, 왜 동시에 못 잡을까? (물가와 실업)</h1><p class="hero-subtitle">물가를 잡으면 일자리가 줄어든다고?</p><div class="hero-keywords"><button type="button" class="hero-keyword has-card" data-card="1" aria-expanded="false">물가 지수 = 기준 시점 100 · CPI는 평균<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="2" aria-expanded="false">물가 상승 3원인(수요·통화량·생산비)<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="3" aria-expanded="false">실업 3유형 · 실업률 분모 = 경제 활동 인구<span class="kw-caret">＋</span></button><button type="button" class="hero-keyword has-card" data-card="4" aria-expanded="false">물가 안정 ↔ 고용 안정 = 단기 상충<span class="kw-caret">＋</span></button></div><div class="hero-card" id="hero-card-1" hidden><div class="hero-card-inner"><p><strong>물가 지수</strong> = 기준이 되는 해를 <strong>100</strong>으로 놓고, 지금이 얼마인지 견준 수.</p><table><thead><tr><th>지수</th><th>뜻</th></tr></thead><tbody><tr><td>100</td><td>기준 시점과 <strong>같다</strong></td></tr><tr><td>105</td><td>기준보다 <strong>5% 올랐다</strong></td></tr><tr><td>98</td><td>기준보다 <strong>2% 내렸다</strong></td></tr></tbody></table><p>🔴 <strong>CPI는 '평균'이다.</strong> 소비자 물가 지수는 <strong>도시 가구의 평균 소비 패턴</strong>으로 만든다. 그래서 <em>"물가가 안정됐다"</em> 는 뉴스와 <strong>내 체감이 다를 수 있다</strong> — 내가 자주 사는 물건이 평균과 다르면 그렇다.</p></div></div><div class="hero-card" id="hero-card-2" hidden><div class="hero-card-inner"><p>물가가 오르는 길은 <strong>세 갈래</strong>다. 앞의 둘은 <em>"사려는 손·돈은 늘었는데 물건은 그대로"</em> 이고, 셋째는 <em>"만드는 값이 올라서"</em> 다 — 출발점이 다르다.</p><table><thead><tr><th>원인</th><th>무슨 일이</th><th>쉽게 말하면</th></tr></thead><tbody><tr><td><strong>수요 증가</strong></td><td>사려는 사람이 늘어남</td><td>물건은 그대로인데 <strong>사겠다는 손</strong>이 늘었다</td></tr><tr><td><strong>통화량 증가</strong></td><td>시중에 돈이 많이 풀림</td><td><strong>돈이 흔해지면</strong> 돈의 값이 떨어진다</td></tr><tr><td><strong>생산비 상승</strong></td><td>임금·원자재값이 오름</td><td>만드는 값이 오르니 <strong>파는 값</strong>도 오른다</td></tr></tbody></table><p><strong>9단계와 이어진다</strong> — 금리를 올리면 ①수요와 ②통화량이 늘어나는 것을 <strong>누르는</strong> 쪽으로 작용한다.</p></div></div><div class="hero-card" id="hero-card-3" hidden><div class="hero-card-inner"><img src="images/v5-unemployment-rate.png" alt="만 15세 이상 100명인 마을로 그린 실업률 구조도. 경제 활동 인구 60명 가운데 실업자 3명이므로 실업률은 5%다."><p><strong>실업 3유형</strong> — <strong>경기적</strong>(경기가 나빠서) · <strong>구조적</strong>(기술·산업이 바뀌어서) · <strong>마찰적</strong>(더 나은 곳으로 옮기는 중).</p><p>🔴 <strong>분모는 '경제 활동 인구'다.</strong> 전체 인구도, 노동 가능 인구도 아니다. 학생·전업주부는 <strong>일할 의사가 없어 분모에서 아예 빠진다.</strong></p></div></div><div class="hero-card" id="hero-card-4" hidden><div class="hero-card-inner"><img src="images/v5-blanket.png" alt="너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다."><p><strong>둘 다 좋은 목표인데 동시에 잡기 어렵다.</strong></p><table><thead><tr><th>금리를</th><th>물가는 (짧은 기간에 흔히)</th><th>일자리는 (짧은 기간에 흔히)</th></tr></thead><tbody><tr><td><strong>올리면</strong></td><td>진정된다 ✅</td><td>줄어든다 ❌</td></tr><tr><td><strong>내리면</strong></td><td>오른다 ❌</td><td>늘어난다 ✅</td></tr></tbody></table><p><strong>핵심</strong> — 이건 정책이 서툴러서가 아니다. <strong>아픔이 부작용이 아니라, 그게 약이 듣는 방식</strong>이다. 그래서 한국은행의 고민은 <em>"할까 말까"</em> 가 아니라 <strong>"얼마나"</strong> 다.</p></div></div><img class="hero-image" src="images/pricejob-hero.png" alt=""><div class="hero-hook">물가가 오르면 힘들지. 용돈은 그대로인데 떡볶이값만 오르니까. 그럼 물가를 확 잡아버리면 되잖아? 그런데 여기 반전이 있어 — 물가를 잡으려고 하면 이번엔 일자리가 줄어들거든(헐!). 둘 다 좋은 건데 왜 동시에 못 잡을까? 이 단원 첫날 던졌던 그 질문, 오늘 답의 절반을 찾는다.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/20 · OX: <span id="ox-score">0</span>/8
       · 총: <span id="total-score">0</span>/28 (<span id="pct">0</span>%)
     </div>
     <div>
-      <a href="https://zzobakg-boop.github.io/worksheets/5-6/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
+      <a href="https://zzobakg-boop.github.io/worksheets/" class="btn btn-secondary" style="text-decoration:none;">📋 목록</a>
       <button class="btn btn-primary" onclick="check()">채점하기</button>
       <button class="btn btn-secondary" onclick="reveal()">정답 보기</button>
       <button class="btn btn-danger" onclick="reset()">초기화</button>
@@ -1172,14 +1187,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <blockquote>🎙️ 정리하면 <em>물가가 오르는 세 가지 길</em>이야 — ① 다들 사려고 몰릴 때(수요↑), ② 돈이 너무 많이 풀릴 때(통화량↑), ③ 만드는 비용이 오를 때(생산비↑). <strong>이 셋은 9단계에서 다시 나오니 꼭 기억해 둬.</strong></blockquote>
 <br>
 <blockquote>🎬 <strong>셋째 길이 실제로 어떻게 번지는지 3분만 보자</strong> — <a href="https://www.youtube.com/watch?v=YOUFiX_wwZQ" target="_blank" rel="noopener">에너지 가격 오르면 밥값 오른다 — 물가로 번지는 충격의 경로 (교양이를 부탁해 · 2분 51초)</a></blockquote>
-<blockquote>영상이 사슬 하나를 끝까지 따라간다 — <strong>에너지값↑ → 비료값↑ → 식량값↑ → 생필품 물가↑ → 인건비↑ → 전 분야로 파급.</strong> 러시아·우크라이나 전쟁 때 가스 요금이 뛰자 <strong>우리나라 전기 요금까지 올랐던 것</strong>이 실제 사례야. "<em>우리처럼 에너지를 전량 수입하는 나라</em>"라는 말이 나오는데, 그게 <strong>5-4차시에서 배울 무역 의존도 86</strong>%의 다른 얼굴이란다.</blockquote>
+<blockquote>영상이 사슬 하나를 끝까지 따라간다 — <strong>에너지값↑ → 비료값↑ → 식량값↑ → 생필품 물가↑ → 인건비↑ → 전 분야로 파급.</strong> 러시아·우크라이나 전쟁 때 가스 요금이 뛰자 <strong>우리나라 전기 요금까지 올랐던 것</strong>이 실제 사례야. "<em>우리처럼 에너지를 전량 수입하는 나라</em>"라는 말이 나오는데(정확히는 «거의 다» — 국내에서 나는 것도 조금 있다), 그게 <strong>5-4차시에서 배울 무역 의존도 86</strong>%의 다른 얼굴이란다.</blockquote>
 <br>
 <h2>📖 3단계: 인플레이션 — 돈의 '힘'이 빠진다</h2>
 <p>물가가 지속해서 오르는 현상을 ⑧<input type="text" class="blank-input" data-answer="인플레이션" data-id="8" style="width:100px" placeholder="">이라고 한다. 인플레이션이 일어나면 같은 돈으로 살 수 있는 양, 곧 ⑨<input type="text" class="blank-input" data-answer="구매력" data-id="9" style="width:68px" placeholder="">이 떨어진다. 그래서 1963년에 1,000원으로 라면 100개를 사던 것이, 2015년엔 라면 1.25개밖에 못 사게 된 것이다.</p>
 <br>
 <blockquote>⚠️ <strong>핵심 — 물가 ↑ = 화폐 가치 ↓</strong>: 물가가 오른다는 건 <em>물건이 비싸진다</em>는 말이자, 동시에 <em>내 돈의 힘이 약해진다</em>는 말이야. 라면이 귀해진 게 아니라 <strong>돈이 약해진</strong> 거지.</blockquote>
 <br>
-<figure class="ws-fig"><img src="images/inflation-wallpaper.jpg" alt="1923년 독일, 한 남자가 지폐를 벽지 삼아 벽에 붙이고 있다. 물가가 너무 빨리 올라 지폐로 벽을 바르는 편이 벽지를 사는 것보다 쌌다" loading="lazy"><figcaption>1923년 독일, 한 남자가 지폐를 벽지 삼아 벽에 붙이고 있다. 물가가 너무 빨리 올라 지폐로 벽을 바르는 편이 벽지를 사는 것보다 쌌다</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/inflation-wallpaper.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/inflation-wallpaper.jpg" alt="1923년 독일, 한 남자가 지폐를 벽지 삼아 벽에 붙이고 있다. 물가가 너무 빨리 올라 지폐로 벽을 바르는 편이 벽지를 사는 것보다 쌌다" loading="lazy"></a><figcaption>1923년 독일, 한 남자가 지폐를 벽지 삼아 벽에 붙이고 있다. 물가가 너무 빨리 올라 지폐로 벽을 바르는 편이 벽지를 사는 것보다 쌌다</figcaption></figure>
 <br>
 <blockquote>🎙️ <strong>돈으로 벽지를 바른다고?</strong> 위 사진은 <strong>1923년 독일</strong>에서 진짜로 찍힌 거야. 물가가 하루에도 몇 번씩 뛰어서, 지폐를 들고 빵집에 가는 사이에 빵값이 올라 있었대. 결국 <strong>지폐로 벽을 바르는 게 벽지를 사는 것보다 싸졌지.</strong> 돈이 종잇조각이 된다는 게 무슨 말인지, 이 한 장이 다 보여 줘.</blockquote>
 <blockquote>🎬 더 보기 — <a href="https://www.youtube.com/watch?v=6c-K-iDM77Y" target="_blank" rel="noopener">히틀러를 불러온 독일 하이퍼인플레이션 (3분경제 · 3분 28초)</a> <em>(중2 역사에서 배울 내용과 이어진다)</em></blockquote>
@@ -1201,15 +1216,15 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <h2>📖 6단계: 실업은 왜 생길까? — 세 가지 원인</h2>
 <p>첫째, 경기가 나빠지면 기업이 생산과 고용을 줄여 실업자가 늘어난다(⑮<input type="text" class="blank-input" data-answer="경기적" data-id="15" style="width:68px" placeholder=""> 실업). 그래서 경제 성장과 실업자 수는 반대 방향으로 움직이고, 지속적인 경제 성장이 가장 좋은 실업 대책이다. 둘째, ⑯<input type="text" class="blank-input" data-answer="사양 산업" data-id="16" style="width:100px" placeholder="">에 종사하던 근로자가 새로운 기술을 미처 익히지 못해 실업이 생긴다(구조적 실업). 셋째, 더 나은 직장으로 옮기는 과정에서 일시적으로 실업 상태가 되기도 한다(⑰<input type="text" class="blank-input" data-answer="마찰적" data-id="17" style="width:68px" placeholder=""> 실업).</p>
 <br>
-<figure class="ws-fig"><img src="images/v5-unemployment-types.png" alt="실업의 세 가지 원인 도식. 경기적 실업은 일자리가 사라진 것, 구조적 실업은 일자리는 있는데 내 기술이 안 맞는 것, 마찰적 실업은 일자리는 있는데 더 좋은 곳으로 옮기려 잠깐 쉬는 것. ①만 일자리가 사라졌고 ②③은 일자리가 남아 있다." loading="lazy"><figcaption>실업의 세 가지 원인 도식. 경기적 실업은 일자리가 사라진 것, 구조적 실업은 일자리는 있는데 내 기술이 안 맞는 것, 마찰적 실업은 일자리는 있는데 더 좋은 곳으로 옮기려 잠깐 쉬는 것. ①만 일자리가 사라졌고 ②③은 일자리가 남아 있다.</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/v5-unemployment-types.png" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/v5-unemployment-types.png" alt="실업의 세 가지 원인 도식. 경기적 실업은 일자리가 사라진 것, 구조적 실업은 산업이 바뀌어 일자리 종류가 달라지고 내 기술이 안 맞는 것, 마찰적 실업은 일자리는 있는데 더 좋은 곳으로 옮기려 잠깐 쉬는 것." loading="lazy"></a><figcaption>실업의 세 가지 원인 도식. 경기적 실업은 일자리가 사라진 것, 구조적 실업은 산업이 바뀌어 일자리 종류가 달라지고 내 기술이 안 맞는 것, 마찰적 실업은 일자리는 있는데 더 좋은 곳으로 옮기려 잠깐 쉬는 것.</figcaption></figure>
 <br>
-<blockquote>🎙️ <strong>셋을 가르는 질문은 하나야</strong> — <em>"일자리가 아예 없나, 있는데 나랑 안 맞나, 있는데 내가 안 가나?"</em> ①만 일자리가 <strong>사라진</strong> 거고, ②③은 일자리가 <strong>남아 있어.</strong> 그래서 대책도 갈려 — ①은 없어진 일자리라 <strong>경제가 자라야</strong> 다시 생기고, ②는 새 기술을 배우는 <strong>직업 훈련</strong>, ③은 맞는 자리를 빨리 찾게 돕는 <strong>취업 정보</strong>가 답이야. 뒤쪽 둘은 교과서 100쪽에 나와.</blockquote>
+<blockquote>🎙️ <strong>셋을 가르는 질문은 하나야</strong> — <em>"일자리가 줄었나, 일자리 종류가 바뀌어 나랑 안 맞나, 있는데 내가 안 가나?"</em> ①은 경제가 얼어붙어 일자리가 <strong>줄어든</strong> 거고, ②는 산업이 바뀌어 옛 일자리가 <strong>사라지고 새 일자리엔 기술이 안 맞는</strong> 거야. ③만 맞는 일자리가 있는데 옮기는 중이지. 그래서 대책도 갈려 — ①은 없어진 일자리라 <strong>경제가 자라야</strong> 다시 생기고, ②는 새 기술을 배우는 <strong>직업 훈련</strong>, ③은 맞는 자리를 빨리 찾게 돕는 <strong>취업 정보</strong>가 답이야. 뒤쪽 둘은 교과서 100쪽에 나와.</blockquote>
 <blockquote>🔗 그리고 이 ⑮<strong>경기적 실업</strong>은 <strong>9단계에서 다시 만난다.</strong> 물가를 잡으려고 금리를 올리면 마지막에 줄어드는 게 바로 이거야.</blockquote>
 <br>
 <h2>📖 7단계: 실업률은 어떻게 잴까?</h2>
 <p>우리나라에서는 만 15세 이상을 일할 능력이 있는 노동 가능 인구로 본다. 단, 공부하는 학생이나 전업주부처럼 일할 의사가 없는 사람은 <strong>비경제 활동 인구</strong>에 포함하고 실업자로 보지 않는다. 실업률은 ⑱<input type="text" class="blank-input" data-answer="경제 활동 인구" data-id="18" style="width:148px" placeholder=""> 가운데 실업자가 차지하는 비율이다.</p>
 <br>
-<figure class="ws-fig"><img src="images/v5-unemployment-rate.png" alt="만 15세 이상 100명인 마을로 그린 실업률 구조도. 100명이 경제 활동 인구 60명과 비경제 활동 인구 40명(학생·전업주부·은퇴)으로 갈리고, 경제 활동 인구 60명은 다시 취업자 57명과 실업자 3명으로 갈린다. 실업률 = 3 ÷ 60 × 100 = 5%. 3 ÷ 100(전체) × 100 = 3%는 흔한 실수." loading="lazy"><figcaption>만 15세 이상 100명인 마을로 그린 실업률 구조도. 100명이 경제 활동 인구 60명과 비경제 활동 인구 40명(학생·전업주부·은퇴)으로 갈리고, 경제 활동 인구 60명은 다시 취업자 57명과 실업자 3명으로 갈린다. 실업률 = 3 ÷ 60 × 100 = 5%. 3 ÷ 100(전체) × 100 = 3%는 흔한 실수.</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/v5-unemployment-rate.png" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/v5-unemployment-rate.png" alt="만 15세 이상 100명인 마을로 그린 실업률 구조도. 100명이 경제 활동 인구 60명과 비경제 활동 인구 40명(학생·전업주부·은퇴)으로 갈리고, 경제 활동 인구 60명은 다시 취업자 57명과 실업자 3명으로 갈린다. 실업률 = 3 ÷ 60 × 100 = 5%. 3 ÷ 100(전체) × 100 = 3%는 흔한 실수." loading="lazy"></a><figcaption>만 15세 이상 100명인 마을로 그린 실업률 구조도. 100명이 경제 활동 인구 60명과 비경제 활동 인구 40명(학생·전업주부·은퇴)으로 갈리고, 경제 활동 인구 60명은 다시 취업자 57명과 실업자 3명으로 갈린다. 실업률 = 3 ÷ 60 × 100 = 5%. 3 ÷ 100(전체) × 100 = 3%는 흔한 실수.</figcaption></figure>
 <br>
 <blockquote>🎙️ <strong>그림 한 장으로 끝내자.</strong> 100명 마을에서 실업자는 3명이야. 그럼 3%일까? <em>아니야.</em> 학생·전업주부 40명은 <strong>일할 의사가 없어서 애초에 세지 않는다.</strong> 남은 60명 중의 3명이니까 <strong>5</strong>%야. 분모가 100이 아니라 60이라는 것 — 이게 전부야.</blockquote>
 <br>
@@ -1241,7 +1256,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <tr><td>┗ <strong>비경제 활동 인구</strong></td><td><strong>40명</strong> (학생 · 전업주부 · 은퇴)</td></tr>
 </table>
 <br>
-<figure class="ws-fig"><img src="images/v5-unemployment-rate.png" alt="만 15세 이상 100명인 마을로 그린 실업률 구조도. 경제 활동 인구 60명 가운데 실업자 3명이므로 실업률은 5%다." loading="lazy"><figcaption>만 15세 이상 100명인 마을로 그린 실업률 구조도. 경제 활동 인구 60명 가운데 실업자 3명이므로 실업률은 5%다.</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/v5-unemployment-rate.png" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/v5-unemployment-rate.png" alt="만 15세 이상 100명인 마을로 그린 실업률 구조도. 경제 활동 인구 60명 가운데 실업자 3명이므로 실업률은 5%다." loading="lazy"></a><figcaption>만 15세 이상 100명인 마을로 그린 실업률 구조도. 경제 활동 인구 60명 가운데 실업자 3명이므로 실업률은 5%다.</figcaption></figure>
 <br>
 <p><strong>1.</strong> 지금 <strong>너는 이 마을의 어디에 들어갈까?</strong> 셋 중 하나를 고르고, 그렇게 생각한 까닭을 써 보자.</p>
 <blockquote>ⓐ 취업자   ⓑ 실업자   ⓒ 비경제 활동 인구</blockquote>
@@ -1277,11 +1292,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><h2>📖 9단계: 둘 다 좋은데, 왜 동시에 못 잡을까?</h2>
 <p>물가를 잡는 손잡이가 있다. 우리나라의 중앙은행인 한국은행이 정하는 ⑳<input type="text" class="blank-input" data-answer="기준금리" data-id="20" style="width:84px" placeholder="">를 올리는 것이다. 이 금리는 은행에서 돈을 빌리거나 맡길 때 붙는 이자율(금리)의 기준이 된다. 이것을 올리면 <strong>2단계에서 배운 물가 상승 원인 가운데 ①수요·②통화량이 늘어나는 것을 누르는 쪽</strong>으로 작용한다.</p>
 <br>
-<figure class="ws-fig"><img src="images/v5-rate-tradeoff.png" alt="금리를 올리면 소비가 줄고 생산이 줄어 일자리가 줄어드는 연쇄. 물가 하락은 우리가 원한 것이고 실업 증가는 따라오는 것으로, 둘은 같은 한 줄에서 갈라져 나온다." loading="lazy"><figcaption>금리를 올리면 소비가 줄고 생산이 줄어 일자리가 줄어드는 연쇄. 물가 하락은 우리가 원한 것이고 실업 증가는 따라오는 것으로, 둘은 같은 한 줄에서 갈라져 나온다.</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/v5-rate-tradeoff.png" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/v5-rate-tradeoff.png" alt="금리를 올리면 소비가 줄고 생산이 줄어 일자리가 줄어드는 연쇄. 물가 하락은 우리가 원한 것이고 실업 증가는 따라오는 것으로, 둘은 같은 한 줄에서 갈라져 나온다." loading="lazy"></a><figcaption>금리를 올리면 소비가 줄고 생산이 줄어 일자리가 줄어드는 연쇄. 물가 하락은 우리가 원한 것이고 실업 증가는 따라오는 것으로, 둘은 같은 한 줄에서 갈라져 나온다.</figcaption></figure>
 <br>
 <p><strong>물가 안정과 고용 안정.</strong> 둘 다 좋은 목표인데, <strong>짧은 기간에는 하나를 잡으면 다른 게 나빠지는 일이 흔하다.</strong> 반대로 일자리를 늘리려고 금리를 내리면? 돈이 많이 돌아 이번에는 물가가 오른다. 이것이 단원 첫날 던진 질문 <em>"둘 다 좋은 건데, 왜 동시에 못 하지?"</em> 의 답이다.</p>
 <br>
-<figure class="ws-fig"><img src="images/v5-blanket.png" alt="너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다. 물가 안정과 고용 안정의 관계가 꼭 이렇다." loading="lazy"><figcaption>너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다. 물가 안정과 고용 안정의 관계가 꼭 이렇다.</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/v5-blanket.png" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/v5-blanket.png" alt="너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다. 물가 안정과 고용 안정의 관계가 꼭 이렇다." loading="lazy"></a><figcaption>너무 짧은 담요를 덮은 사람. 어깨를 덮으면 발이 나오고, 발을 덮으면 어깨가 나온다. 물가 안정과 고용 안정의 관계가 꼭 이렇다.</figcaption></figure>
 <br>
 <blockquote>🎙️ <strong>딱 짧은 이불이야.</strong> 이불이 나빠서가 아니라 <strong>애초에 둘을 다 덮을 만큼 길지 않아서</strong>지.</blockquote>
 <br>
@@ -1297,14 +1312,14 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>물가 지수는 기준 시점의 물가를 100으로 놓고 비교한 수치이다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>소비자 물가 지수는 소비자가 직접 물가를 확인하려고 만든 지수이다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>인플레이션이 일어나면 화폐의 구매력이 올라간다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>인플레이션 때 돈을 빌린 사람은 갚을 돈의 실제 가치가 줄어 유리하다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>전업주부와 학생은 일자리가 없으면 모두 실업자로 분류된다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>6</td><td>실업률은 실업자 수를 경제 활동 인구로 나누어 구한다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>7</td><td>실업이 늘면 소비가 줄어 경기가 더 나빠지는 악순환이 생길 수 있다.</td><td><div class="ox-group" data-answer="O"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>8</td><td>금리를 올려 물가를 잡으면 일자리도 함께 늘어난다.</td><td><div class="ox-group" data-answer="X"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>물가 지수는 기준 시점의 물가를 100으로 놓고 비교한 수치이다.</td><td><div class="ox-group" data-answer="O" data-label="물가 지수는 기준 시점의 물가를 100으로 놓고 비교한 수치이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>소비자 물가 지수는 소비자가 직접 물가를 확인하려고 만든 지수이다.</td><td><div class="ox-group" data-answer="X" data-label="소비자 물가 지수는 소비자가 직접 물가를 확인하려고 만든 지수이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>인플레이션이 일어나면 화폐의 구매력이 올라간다.</td><td><div class="ox-group" data-answer="X" data-label="인플레이션이 일어나면 화폐의 구매력이 올라간다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>인플레이션 때 돈을 빌린 사람은 갚을 돈의 실제 가치가 줄어 유리하다.</td><td><div class="ox-group" data-answer="O" data-label="인플레이션 때 돈을 빌린 사람은 갚을 돈의 실제 가치가 줄어 유리하다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>전업주부와 학생은 일자리가 없으면 모두 실업자로 분류된다.</td><td><div class="ox-group" data-answer="X" data-label="전업주부와 학생은 일자리가 없으면 모두 실업자로 분류된다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>6</td><td>실업률은 실업자 수를 경제 활동 인구로 나누어 구한다.</td><td><div class="ox-group" data-answer="O" data-label="실업률은 실업자 수를 경제 활동 인구로 나누어 구한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>7</td><td>실업이 늘면 소비가 줄어 경기가 더 나빠지는 악순환이 생길 수 있다.</td><td><div class="ox-group" data-answer="O" data-label="실업이 늘면 소비가 줄어 경기가 더 나빠지는 악순환이 생길 수 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>8</td><td>금리를 올려 물가를 잡으면 일자리도 함께 늘어난다.</td><td><div class="ox-group" data-answer="X" data-label="금리를 올려 물가를 잡으면 일자리도 함께 늘어난다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
@@ -1600,16 +1615,24 @@ function collectAnswers(){
     const k=el.dataset.id||el.dataset.answer||('input_'+i);
     ans[k]=(el.value||'').trim();
   });
+  // 2026-10-20 정답(__key)·OX 문장도 함께 — 정리 시트가 학생 답 옆에 모범답안을 나란히 둔다. 정답은 이미 페이지 속성에 있던 값이라 새로 드러나는 것은 없다
+  const lbl={}, key={};
+  document.querySelectorAll('.blank-input:not(.no-score),.ox-input').forEach(el=>{
+    const k=el.dataset.id||el.dataset.answer; if(k && el.dataset.answer) key[k]=el.dataset.answer;
+  });
   document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
     const k=g.dataset.id||('group_'+i);
     ans[k]=g.dataset.selected||'';
+    const a=g.dataset.answer||(g.querySelector('[data-answer]')||{dataset:{}}).dataset.answer;
+    if(a) key[k]=a;
+    if(g.dataset.label) lbl[k]=g.dataset.label;
   });
   // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
-  const lbl={};
   document.querySelectorAll('[data-label]').forEach(el=>{
     const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
   });
   if(Object.keys(lbl).length) ans['__labels']=lbl;
+  if(Object.keys(key).length) ans['__key']=key;
   return ans;
 }
 // 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
