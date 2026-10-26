@@ -1230,7 +1230,10 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-4_card_refugee_guess.png · 7-4_card_refugee_neighbour.png · 7-4_card_afghan390.png | 카드 그림 — 난민은 어디에 머물까 / 열 명 가운데 예닐곱은 이웃 나라(UNHCR 2025년 말) / 아프가니스탄 390명(2021, 법무부) | 자체 제작 |
 | 7-5_hero_mobile_shop.jpg | 니가타현 미나미우오누마시 편의점 이동 판매차, 2023년 | 古峰 · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-5_입담_줄어드는사람.png | 입담 삽화 — 이동 슈퍼마켓 트럭 앞 일본 산골 할머니와 유모차를 미는 스웨덴 아빠(가상 인물·손글씨 대사 PIL) | AI 생성(Grok Aurora) + 자체 합성 |
-| 7-5_graph_aged.png | 그래프 — 65세 이상 인구 비율 2025년(기준선 7·14·20%) | 자체 제작 · 자료 세계은행 WDI(UN 인구 추계) |
+| 7-5_graph_aged.png | 그래프 — 65세 이상 인구 비율 2025년(세 단계 색 띠 7·14·20%, 10/26 세 단계 그림과 색 맞춤) | 자체 제작 · 자료 세계은행 WDI(UN 인구 추계) |
+| 7-5_fig_agemix.png | 막대 — 일본·한국 연령 구성(0~14·15~64·65+), 15~64세 비율이 가장 컸던 해(일본 1992·한국 2016)와 2025년 | 자체 제작 · 자료 세계은행 WDI(2025년은 UN 추계) |
+| 7-5_입담_두단계.png | 입담 삽화 — 우리 동네 할머니·중3 학생(가상 인물, 대사·이름표 PIL) | AI 생성(Grok Aurora, `ipdam_social.py s75_korea`) + 자체 합성 |
+| 7-5_photo_paris2023.jpg | 2023-03-28 파리 레퓌블리크 광장, 연금 개혁 반대 행진 | Jules* · CC BY-SA 4.0 · Wikimedia Commons «Manifestation contre la réforme des retraites, Paris, le 28 mars 2023 — 01.jpg» |
 | 7-5_graph_stages.png | 눈금 막대 — 고령화의 세 단계(65세 이상 7·14·20% 이상) | 자체 제작 · 기준 교과서 136쪽 날개 (2026-10-26 천대현 아티팩트 댓글) |
 | 7-5_graph_tfr.png | 그래프 — 프랑스·스웨덴 합계 출산율 1990~2024년 | 자체 제작 · 자료 세계은행 WDI |
 | 7-5_fig_support.png | 그림 — 노인 한 명을 받치는 일하는 나이 사람 수(일본·한국 1990·2025) | 자체 제작 · 자료 세계은행 WDI 노년 부양비 |

@@ -3,6 +3,7 @@
 정답 파일에서 답을 순서대로 추출하고, 개념편의 빈칸에 순서대로 매칭한다."""
 
 import re
+PICK_TIGHT_CSS = """/* 2026-10-26 사회 7-5 «좁게» — 그림 없는 짧은 카드. 데스크톱은 한 줄에 다 놓고, 폰은 «이름·값 | 버튼» 한 줄씩 */ .pk-grid.pk-tight { grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; } .pk-tight .pk-card { padding: 8px 6px; } .pk-tight .pk-sit { min-height: 0; margin: 2px 0 7px; } .pk-tight .pk-b { padding: 5px 1px; word-break: keep-all; line-height: 1.25; font-size: .74em; } .pk-tight .pk-btns { gap: 3px; } @media (max-width: 640px) {   .pk-grid.pk-tight { grid-template-columns: 1fr; gap: 6px; }   .pk-tight .pk-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 10px; align-items: center; text-align: left; padding: 7px 10px; }   .pk-tight .pk-name, .pk-tight .pk-sit { grid-column: 1; margin: 0; }   .pk-tight .pk-btns { grid-column: 2; grid-row: 1 / span 2; }   .pk-tight .pk-why { grid-column: 1 / -1; } }"""
 import math
 import sys
 import os
@@ -958,9 +959,13 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 pick_opts = [x.strip() for x in _o.split('|') if x.strip()]
                 pick_mood = (pick_opts == ['웃음', '울음'])
             # 2026-10-06 메인·역사: «까닭펼침» — 다 고른 뒤 맞힌 카드까지 까닭을 모두 펼친다(«같은 시대» 카드처럼 까닭이 활동의 핵심일 때)
-            pick_open = pick_swipe = False
+            pick_open = pick_swipe = pick_tight = False
             # 2026-10-12 사회 7-3: «넘김» — 카드를 옆으로 넘긴다(천대현 «다섯 가지도 옆으로 넘기게»). 순서 무관.
+            # 2026-10-26 사회 7-5: «좁게» — 그림 없는 짧은 카드를 데스크톱 한 줄·폰은 한 나라 한 줄로(천대현 «학습지 내 비율을 너무 차지»).
+            #   opt-in이라 «좁게»를 안 쓴 차시 출력은 글자 하나까지 같다.
             while True:
+                if _h.startswith('좁게'):
+                    pick_tight = True; _h = _h[len('좁게'):].strip(); continue
                 if _h.startswith('까닭펼침'):
                     pick_open = True; _h = _h[len('까닭펼침'):].strip(); continue
                 if _h.startswith('넘김'):
@@ -1005,7 +1010,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                       f'<div class="pk-card{"" if img else " pk-noimg"}" data-i="{i}" data-ans="{ans}">'
                       f'{im}<div class="pk-name">{inline(nm)}</div>'
                       f'<div class="pk-sit">{inline(sit)}</div>'
-                      f'<div class="pk-btns{"" if len(pick_opts) < 3 else " pk-btns-col"}">{btns}</div>'
+                      f'<div class="pk-btns{"" if len(pick_opts) < 3 or pick_tight else " pk-btns-col"}">{btns}</div>'
                       f'<div class="pk-why" hidden>{inline(why)}</div></div>')
                 _swjs = (
                   'var g=w.querySelector(".pk-swipe");if(g){var pos=w.querySelector(".pk-pos");'
@@ -1020,11 +1025,13 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                   'x.classList.add("pk-flipping");setTimeout(function(){m.hidden=true;p.hidden=false;t.hidden=false;},230);setTimeout(function(){x.classList.remove("pk-flipping")},480);'
                   'x.addEventListener("click",function(e){e.stopPropagation();x.classList.add("pk-flipping");setTimeout(function(){var ph=!p.hidden;p.hidden=ph;m.hidden=!ph;t.querySelector("i").textContent=ph?"누르면 사진":"누르면 지도";},230);setTimeout(function(){x.classList.remove("pk-flipping")},480);});});'
                 )
+                if pick_tight:   # «좁게» CSS는 이 블록을 쓴 차시에만 싣는다 — 다른 차시 출력은 글자 하나까지 그대로
+                    html_parts.append('<style>' + PICK_TIGHT_CSS + '</style>')
                 html_parts.append(
                   f'<div class="ws-pick" id="{pid}">'
                   f'<div class="pk-head"><span>{inline(pick_q)}</span>'
                   f'<b class="pk-count">0 / {len(pick_rows)}</b></div>'
-                  f'<div class="pk-grid{" pk-gold" if pick_gold else ""}{" pk-swipe" if pick_swipe else ""}">{cards}</div>'
+                  f'<div class="pk-grid{" pk-gold" if pick_gold else ""}{" pk-swipe" if pick_swipe else ""}{" pk-tight" if pick_tight else ""}">{cards}</div>'
                   + ('<div class="pk-nav"><button type="button" class="pk-prev" aria-label="이전 카드">◀</button>'
                      f'<span class="pk-pos">1 / {len(pick_rows)}</span>'
                      '<button type="button" class="pk-next" aria-label="다음 카드">▶</button></div>' if pick_swipe else '')
