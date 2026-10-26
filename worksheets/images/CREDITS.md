@@ -1736,3 +1736,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 4-3-2_입담_이틀품삯.png | 1440년 무렵 런던 장인과 향신료 상인 — 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 429 대체) · `map-render/ipdam_gen.py r432_days` · 가상 인물 |
 | 4-3-2_입담_왕실후원.png | 1492년 카스티야 왕실 관리와 항해사(사분의·지도) — 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora) · `ipdam_gen.py r432_sponsor` · 가상 인물(실존 인물 아님, 왕관 없음) |
 
+## 4-3-2 나라·인물별 항로 지도 (2026-10-26 · 아티팩트 댓글)
+| 파일 | 내용 | 출처·라이선스 |
+|---|---|---|
+| 4-3-2_항로바탕.png | 15세기 말~16세기 초 세계 바탕 지도(로빈슨 도법, 대륙·인도양·태평양 이름만) — 항로 선·이름표는 `:::항로지도` 블록이 HTML/SVG로 그린다 (`map-render/hq/hq_432_routes.py`) | 자체 제작 · 해안선 Natural Earth(퍼블릭 도메인) |

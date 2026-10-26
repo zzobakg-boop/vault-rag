@@ -141,7 +141,7 @@ def extract_table_answers(answer_file):
     # 2026-10-12 사회 7-2: 개념편 파서는 아래 블록 안의 '|' 줄을 표로 세지 않는다(블록 처리기가 먹는다).
     #   정답편 쪽만 세면 표 번호가 밀려 보기 버튼 표가 빈 칸이 된다 — 같은 블록 안은 여기서도 건너뛴다.
     ROWBLOCKS = (':::낱말', ':::좌석표', ':::카드선택', ':::비교', ':::인물선택', ':::연표시소', ':::지도막대',
-                 ':::그래프', ':::모자이크', ':::gallery', ':::플립')
+                 ':::그래프', ':::모자이크', ':::gallery', ':::플립', ':::항로지도')
     in_rb = False
     for line in lines:
         stripped = line.strip()
@@ -219,6 +219,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_tl = False; tl_head = ''; tl_rows = []; tl_spr = ('', '')   # 2026-09-09: 연표 시소 (:::연표시소 ... :::)
     in_gr = False; gr_head = ''; gr_rows = []   # 2026-09-28: 움직이는 선그래프 (:::그래프 ... :::)
     in_mb = False; mb_head = ''; mb_rows = []   # 2026-10-06: 지도 + 연도 막대 (:::지도막대 ... :::)
+    in_rt = False; rt_head = ''; rt_rows = []   # 2026-10-26: 나라·인물별 항로 지도 (:::항로지도 ... :::)
     in_pk = False             # 2026-09-07: 카드 골라 쓰기 (:::카드선택 ... :::)
     pk_title, pk_rows, pk_ask, pk_cred = '', [], '', ''
     seat_title, seat_rows, seat_note = '', [], ''
@@ -1323,6 +1324,123 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             gr_rows = []
             continue
 
+        # 🧭 나라·인물별 항로 지도 (:::항로지도 머리말 ... :::) — 2026-10-26 천대현(역사 4-3-2 아티팩트 댓글)
+        #   «교과서 지도는 경로가 여러 개라 어느 나라 누가 어느 항로를 열었는지 보기 힘들다 — 국가·인물별로 확인하게».
+        #   바탕은 글자 적은 지도 그림(map-render/hq), 항로는 SVG 선, 들른 곳 이름표·카드는 HTML(폰에서 글자가 줄지 않는다).
+        #   문법:  지도 | 파일 | 가로px | 세로px | 대체텍스트
+        #          나라 | 이름 | 한 줄 설명 | #색
+        #          항로 | 인물 | 나라 | 연도 | x,y x,y … [/ 다음 토막 …] | 카드 한 줄   (좌표 = 그림 픽셀 · « / »는 지도 끝에서 끊긴 곳)
+        #          들른 곳 | 인물 | 이름 | x% | y% | 왼/오/위/아래
+        #          출처 | 글
+        #   누르면 그 나라(두 항로)나 그 인물 항로만 진하게·이름표가 뜨고 나머지는 흐려진다. 다시 누르면 전체.
+        #   ⚠️ 입력칸 0(act 불변) · 인물 이름이 빈칸 답이면 «③»처럼 번호로 쓴다 · CSS는 이 블록 안 <style>로만(전역 CSS 불변).
+        if stripped.startswith(':::항로지도'):
+            in_rt = True; rt_head = stripped[len(':::항로지도'):].strip(); rt_rows = []
+            continue
+        if in_rt:
+            if stripped != ':::':
+                if stripped:
+                    rt_rows.append([x.strip() for x in stripped.strip().strip('|').split('|')])
+                continue
+            _img = ''; _w = 0; _h = 0; _alt = ''; _nat = []; _rts = []; _stp = []; _src = ''
+            for _r in rt_rows:
+                if _r[0] == '지도' and len(_r) >= 4:
+                    _img, _w, _h = _r[1], int(_r[2]), int(_r[3]); _alt = _r[4] if len(_r) > 4 else ''
+                elif _r[0] == '나라' and len(_r) >= 4:
+                    _nat.append({'n': _r[1], 't': _r[2], 'c': _r[3]})
+                elif _r[0] == '항로' and len(_r) >= 6:
+                    _rts.append({'n': _r[1], 'k': _r[2], 'y': _r[3], 'p': [sg.strip() for sg in _r[4].split('/') if sg.strip()], 't': '|'.join(_r[5:])})
+                elif _r[0] == '들른 곳' and len(_r) >= 6:
+                    _stp.append({'r': _r[1], 'n': _r[2], 'x': float(_r[3].rstrip('%')), 'y': float(_r[4].rstrip('%')),
+                                 's': {'왼': 'l', '위': 'u', '아래': 'd'}.get(_r[5][:2] if _r[5].startswith('아래') else _r[5][:1], 'r')})
+                elif _r[0] == '출처' and len(_r) >= 2:
+                    _src = '|'.join(_r[1:])
+            _nn = [n['n'] for n in _nat]; _rn = [r['n'] for r in _rts]
+            assert _img and _w and _h and _rts, '🔴 :::항로지도 — 지도(가로·세로)와 항로 줄이 필요하다'
+            for r in _rts:
+                assert r['k'] in _nn, f'🔴 :::항로지도 — 항로 «{r["n"]}»의 나라 «{r["k"]}»가 나라 줄에 없다'
+            for p in _stp:
+                assert p['r'] in _rn, f'🔴 :::항로지도 — 들른 곳 «{p["n"]}»의 항로 «{p["r"]}»가 없다'
+            rid = f'rt{len(html_parts)}'
+            _col = {n['n']: n['c'] for n in _nat}
+            # 같은 나라 두 번째 항로는 점선 — 색만으로 가르지 않는다(색각 이상·흑백 인쇄)
+            _dash = {}; _cnt = {}
+            for r in _rts:
+                _cnt[r['k']] = _cnt.get(r['k'], 0) + 1; _dash[r['n']] = _cnt[r['k']] % 2 == 0
+            _svg = ''
+            for k, r in enumerate(_rts):
+                c = _col[r['k']]
+                for j, sg in enumerate(r['p']):
+                    last = j == len(r['p']) - 1
+                    _svg += (f'<polyline data-r="{k}" points="{sg}" fill="none" stroke="{c}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"'
+                             + (' stroke-dasharray="10 7"' if _dash[r['n']] else '') + (f' marker-end="url(#{rid}a{k})"' if last else '') + '/>')
+            _mk = ''.join(f'<marker id="{rid}a{k}" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">'
+                          f'<path d="M0,0 L10,5 L0,10 z" fill="{_col[r["k"]]}"/></marker>' for k, r in enumerate(_rts))
+            _labs = ''.join(f'<span class="rt-lab rt-{p["s"]}" data-r="{_rn.index(p["r"])}" style="left:{p["x"]}%;top:{p["y"]}%" hidden><i></i>'
+                            f'<b>{inline(p["n"])}</b></span>' for p in _stp)
+            _btn_n = ''.join(f'<button type="button" class="rt-b rt-nat" data-n="{i}" style="--c:{n["c"]}" aria-pressed="false">'
+                             f'{inline(n["n"])}<small>{inline(n["t"])}</small></button>' for i, n in enumerate(_nat))
+            _btn_r = ''.join(f'<button type="button" class="rt-b rt-who" data-k="{k}" style="--c:{_col[r["k"]]}" aria-pressed="false">'
+                             f'<i class="{"rt-dash" if _dash[r["n"]] else ""}"></i>{inline(r["n"])} <em>{inline(r["y"])}</em></button>' for k, r in enumerate(_rts))
+            _D = {'r': [{'n': inline(r['n']), 'k': _nn.index(r['k']), 'y': r['y'], 't': inline(r['t'])} for r in _rts],
+                  'n': [{'n': inline(n['n']), 't': inline(n['t'])} for n in _nat]}
+            html_parts.append(
+                '<style>.ws-route{margin:18px 0;padding:14px;border:1px solid #e3dccd;border-radius:14px;background:#fffdf8}'
+                '.ws-route .rt-head{font-weight:700;margin-bottom:10px;line-height:1.5}'
+                '.ws-route .rt-scroll{border-radius:10px;overflow:hidden}'
+                '.ws-route .rt-map{position:relative;line-height:0}'
+                '.ws-route .rt-map img{width:100%;height:auto;display:block}'
+                '.ws-route .rt-map svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}'
+                '.ws-route .rt-map polyline{transition:opacity .25s,stroke-width .25s}'
+                '.ws-route.rt-on polyline{opacity:.13}.ws-route.rt-on polyline.rt-hi{opacity:1;stroke-width:6}'
+                '.ws-route .rt-lab{position:absolute;line-height:1.25;font-size:13px;white-space:nowrap;pointer-events:none}'
+                '.ws-route .rt-lab i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:#262018;border:2px solid #fff}'
+                '.ws-route .rt-lab b{position:absolute;background:rgba(255,255,255,.92);padding:1px 6px;border-radius:6px;color:#262018;box-shadow:0 1px 3px rgba(0,0,0,.2)}'
+                '.ws-route .rt-r b{left:9px;top:-10px}.ws-route .rt-l b{right:9px;top:-10px}.ws-route .rt-u b{left:-30px;bottom:9px}.ws-route .rt-d b{left:-30px;top:9px}'
+                '.ws-route .rt-ctl{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}'
+                '.ws-route .rt-b{font:inherit;font-size:15px;border:2px solid var(--c);background:#fff;color:#262018;border-radius:999px;padding:6px 14px;cursor:pointer;line-height:1.35}'
+                '.ws-route .rt-b small{display:block;font-size:12px;color:#6d5d48}.ws-route .rt-nat{border-radius:12px;text-align:left}'
+                '.ws-route .rt-b em{font-style:normal;color:#6d5d48;font-size:13px}'
+                '.ws-route .rt-b i{display:inline-block;width:22px;height:0;border-top:4px solid var(--c);vertical-align:middle;margin-right:6px}'
+                '.ws-route .rt-b i.rt-dash{border-top-style:dashed}'
+                '.ws-route .rt-b[aria-pressed="true"]{background:var(--c);color:#fff}.ws-route .rt-b[aria-pressed="true"] small,.ws-route .rt-b[aria-pressed="true"] em{color:#f3ece0}'
+                '.ws-route .rt-b[aria-pressed="true"] i{border-top-color:#fff}'
+                '.ws-route .rt-b:focus-visible{outline:3px solid #23508c;outline-offset:2px}'
+                '.ws-route .rt-read{margin-top:10px;padding:10px 12px;background:#f6f1e6;border-radius:10px;line-height:1.65;min-height:3.2em}'
+                '.ws-route .rt-src{margin-top:8px;font-size:12px;color:#8a7d6b}'
+                '@media (max-width:520px){.ws-route{padding:10px}.ws-route .rt-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}.ws-route .rt-map{width:620px}'
+                '.ws-route .rt-lab{font-size:12px}.ws-route .rt-b{font-size:14px;padding:5px 11px}.ws-route .rt-swipe{display:block}}'
+                '.ws-route .rt-swipe{display:none;font-size:12px;color:#8a7d6b;margin-top:4px}'
+                '@media print{.ws-route .rt-ctl{display:none}}'
+                '</style>'
+                f'<div class="ws-route" id="{rid}">'
+                f'<div class="rt-head">{inline(rt_head)}</div>'
+                f'<div class="rt-scroll"><div class="rt-map"><img src="images/{_img}" alt="{_alt.replace(chr(34), "&quot;")}" loading="lazy">'
+                f'<svg viewBox="0 0 {_w} {_h}" preserveAspectRatio="none" aria-hidden="true"><defs>{_mk}</defs>{_svg}</svg>{_labs}</div></div>'
+                '<div class="rt-swipe">← 지도를 옆으로 밀어 볼 수 있다 →</div>'
+                f'<div class="rt-ctl" role="group" aria-label="나라로 보기">{_btn_n}</div>'
+                f'<div class="rt-ctl" role="group" aria-label="인물로 보기">{_btn_r}</div>'
+                f'<div class="rt-read" aria-live="polite"></div>'
+                + (f'<div class="rt-src">{inline(_src)}</div>' if _src else '') +
+                '</div>'
+                f'<script>(function(){{var D={json.dumps(_D, ensure_ascii=False)};'
+                f'var w=document.getElementById("{rid}"),rd=w.querySelector(".rt-read"),ln=w.querySelectorAll("polyline"),'
+                'lb=w.querySelectorAll(".rt-lab"),bn=w.querySelectorAll(".rt-nat"),bw=w.querySelectorAll(".rt-who"),cur=null;'
+                'function show(ks,txt){w.classList.toggle("rt-on",!!ks);'
+                'ln.forEach(function(l){l.classList.toggle("rt-hi",!!ks&&ks.indexOf(+l.dataset.r)>=0);});'
+                'lb.forEach(function(l){l.hidden=!ks||ks.indexOf(+l.dataset.r)<0;});rd.innerHTML=txt;'
+                # 폰에서 지도가 옆으로 밀리면 고른 항로의 이름표 가운데로 옮긴다(사회 검토 · 폰 지도 308px는 작다)
+                'var sc=w.querySelector(".rt-scroll");if(sc.scrollWidth>sc.clientWidth+4){var xs=[];lb.forEach(function(l){if(!l.hidden)xs.push(parseFloat(l.style.left));});'
+                'var m=xs.length?(Math.min.apply(null,xs)+Math.max.apply(null,xs))/2:50;sc.scrollTo({left:m/100*sc.scrollWidth-sc.clientWidth/2,behavior:"smooth"});}}'
+                'function all(){show(null,"<b>전체</b> — 포르투갈은 "+D.r.filter(function(r){return D.n[r.k].n==="포르투갈";}).length+"번, 에스파냐는 "+D.r.filter(function(r){return D.n[r.k].n==="에스파냐";}).length+"번 그려져 있다. 위의 나라나 아래의 인물을 눌러 하나씩 떼어 보자.");}'
+                'function press(b){bn.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});bw.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});}'
+                'bn.forEach(function(b){b.addEventListener("click",function(){var i=+b.dataset.n;if(cur==="n"+i){cur=null;press(null);all();return;}cur="n"+i;press(b);'
+                'var ks=[],h="<b>"+D.n[i].n+"</b> — "+D.n[i].t;D.r.forEach(function(r,k){if(r.k===i){ks.push(k);h+="<br>· "+r.n+" ("+r.y+")";}});show(ks,h);});});'
+                'bw.forEach(function(b){b.addEventListener("click",function(){var k=+b.dataset.k;if(cur==="r"+k){cur=null;press(null);all();return;}cur="r"+k;press(b);'
+                'var r=D.r[k];show([k],"<b>"+r.n+" · "+D.n[r.k].n+" · "+r.y+"</b><br>"+r.t);});});'
+                'window.addEventListener("beforeprint",function(){cur=null;press(null);all();});all();})();</script>')
+            in_rt = False; rt_rows = []
+            continue
         # 🗺 지도 + 연도 막대 (:::지도막대 머리말 ... :::) — 2026-10-06 메인 결정(천대현 «같은 시대, 다른 공간» 시안 숙의)
         #   지리는 «같은 문제, 다른 지역» — 같은 지표가 나라마다 언제 바뀌었나를 지도 핀으로 나란히 본다.
         #   바탕 지도는 글자 없는 그림(map-render/hq), 핀 이름·값은 HTML(-0.83 · 폰에서도 글자가 줄지 않는다).
