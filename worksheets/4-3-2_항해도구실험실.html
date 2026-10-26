@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>항해 도구 실험실 — 역사① 4-3-2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 야간 항해실: 짙은 바다색 바탕 · 놋쇠(황동) 강조 · 양피지 글자. 3D 창이 주인공, 오른쪽(폰은 아래) 해설 판 */
+:root{
+  --sea:#0d1b26; --deck:#132634; --panel:#182f40; --line:#2b4a5f;
+  --parchment:#efe4cc; --muted:#a9b6bf; --brass:#d1a95a; --red:#e0735a; --green:#6cc28a;
+  --display:"Gowun Batang", "AppleMyungjo", serif;
+  --body:"IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--sea);color:var(--parchment);font:15px/1.65 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 24px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;max-width:1280px;margin:0 auto 10px}
+h1{font:700 26px/1.2 var(--display);margin:0;letter-spacing:.01em}
+header p{margin:0;color:var(--muted);font-size:14px}
+nav{display:flex;gap:8px;flex-wrap:wrap;max-width:1280px;margin:0 auto 12px}
+nav button{font:500 15px var(--body);color:var(--parchment);background:var(--deck);border:1px solid var(--line);
+  padding:8px 16px;border-radius:999px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--brass);color:#1b1408;border-color:var(--brass);font-weight:700}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px;max-width:1280px;margin:0 auto}
+@media (max-width:860px){main{grid-template-columns:1fr}}
+.stage{position:relative;min-width:0;background:radial-gradient(120% 90% at 50% 20%,#1b3a4f 0%,#0d1b26 70%);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;aspect-ratio:4/3;max-width:100%}
+.stage canvas.gl{display:block;width:100%;height:100%;touch-action:none}
+.hint{position:absolute;left:12px;bottom:10px;font-size:12.5px;color:var(--muted);background:rgb(13 27 38/.75);padding:3px 9px;border-radius:6px;pointer-events:none}
+.spin{position:absolute;right:10px;top:10px;font:500 13px var(--body);background:rgb(13 27 38/.8);color:var(--parchment);
+  border:1px solid var(--line);border-radius:6px;padding:5px 10px;cursor:pointer}
+.scope{position:absolute;right:10px;top:76px;width:min(150px,30%);aspect-ratio:1;border-radius:50%;border:3px solid var(--brass);background:#000;overflow:hidden}
+.scope canvas{width:100%;height:100%;display:block}
+.tag{position:absolute;font-size:12px;color:var(--brass);background:rgb(13 27 38/.85);padding:2px 8px;border-radius:5px;pointer-events:none}
+.chart{position:absolute;right:10px;bottom:10px;width:min(230px,46%);border:2px solid var(--brass);border-radius:6px;background:#efe4cc;overflow:hidden}
+.chart canvas{display:block;width:100%;height:auto}
+.helm{position:absolute;left:10px;top:10px;display:flex;flex-direction:column;gap:6px;max-width:58%}
+.helm .brief{font-size:13.5px;background:rgb(13 27 38/.85);border:1px solid var(--line);border-radius:6px;padding:6px 10px;line-height:1.5}
+.helm .brief b{color:var(--brass)}
+aside{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+aside h2{font:700 21px/1.3 var(--display);margin:0;color:var(--brass);text-wrap:balance}
+.tb{font-size:13.5px;color:var(--muted);margin:0}
+.why{font:700 17px/1.4 var(--display);color:var(--parchment);background:var(--deck);border-left:4px solid var(--red);border-radius:4px;padding:9px 12px;margin:0}
+.nudge{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nudge button{font:700 16px var(--body);background:var(--deck);color:var(--parchment);border:1px solid var(--line);border-radius:8px;padding:14px 6px;cursor:pointer;touch-action:none;user-select:none}
+.presets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.presets button{font:500 14px var(--body);background:var(--deck);color:var(--parchment);border:1px solid var(--line);border-radius:8px;padding:10px 4px;cursor:pointer}
+.presets button[aria-pressed="true"]{background:var(--brass);color:#1b1408;font-weight:700;border-color:var(--brass)}
+details.fine{font-size:13.5px;color:var(--muted)}
+details.fine summary{cursor:pointer;color:var(--brass)}
+.modes{display:flex;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.modes button{flex:1;font:500 14px var(--body);background:var(--deck);color:var(--muted);border:0;padding:8px 6px;cursor:pointer}
+.modes button[aria-pressed="true"]{background:var(--brass);color:#1b1408;font-weight:700}
+.ctl{display:flex;flex-direction:column;gap:6px}
+.ctl label{font-weight:500;font-size:14px;display:flex;justify-content:space-between;gap:8px}
+.ctl output{font-variant-numeric:tabular-nums;color:var(--brass);font-weight:700}
+input[type=range]{width:100%;accent-color:var(--brass)}
+select{font:15px var(--body);background:var(--deck);color:var(--parchment);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+.toggles{display:flex;flex-wrap:wrap;gap:8px}
+.toggles button,.steer button{font:500 14px var(--body);background:var(--deck);color:var(--parchment);border:1px solid var(--line);border-radius:6px;padding:7px 12px;cursor:pointer;touch-action:none;user-select:none}
+.toggles button[aria-pressed="true"]{border-color:var(--brass);color:var(--brass)}
+.steer{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.steer button{padding:12px 6px;font-size:15px}
+.steer .go{background:var(--brass);color:#1b1408;font-weight:700;border-color:var(--brass)}
+.readout{background:var(--deck);border-left:4px solid var(--brass);border-radius:4px;padding:10px 12px;font-size:15px;min-height:3.4em}
+.readout b{color:var(--brass)}
+.ok{border-left-color:var(--green)} .ok b{color:var(--green)}
+.meter{height:12px;background:var(--deck);border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.meter i{display:block;height:100%;width:0;background:var(--green);transition:width .25s}
+.how h3,.memo h3{font:700 16px var(--display);margin:0 0 4px;color:var(--parchment)}
+.how ol{margin:0;padding-left:1.2em}
+.how li{margin:2px 0}
+.how li.done{color:var(--green)}
+.how li.done::marker{content:"✔ "}
+.memo{border-top:1px dashed var(--line);padding-top:10px;font-size:14px;color:var(--muted)}
+.memo p{margin:0 0 6px}
+.memo b{color:var(--parchment)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:12px;height:4px;margin-right:6px;vertical-align:middle;background:var(--c)}
+.latmap{width:100%;height:auto;border-radius:6px;background:#efe4cc;display:block}
+footer{max-width:1280px;margin:14px auto 0;font-size:12.5px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>항해 도구 실험실</h1>
+  <p>역사① 4-3-2 신항로 개척 · 교과서 131쪽의 세 도구를 뱃사람이 되어 직접 써 보자</p>
+</header>
+<nav role="tablist" aria-label="도구 고르기">
+  <button role="tab" id="t-compass" aria-selected="true">나침반</button>
+  <button role="tab" id="t-latitude" aria-selected="false">별로 위치 알기</button>
+  <button role="tab" id="t-caravel" aria-selected="false">캐러벨선</button>
+</nav>
+<main>
+  <div class="stage" id="stage">
+    <button class="spin" id="spin" aria-pressed="false">360° 저절로 돌리기</button>
+    <span class="hint" id="hint">마우스나 손가락으로 끌면 돌아간다</span>
+    <div class="helm" id="helm" hidden><div class="brief" id="brief"></div></div>
+    <span class="tag" id="scopeTag" style="right:10px;top:48px" hidden>망원경 속</span>
+    <div class="scope" id="scope" hidden><canvas id="scopeCv" width="300" height="300"></canvas></div>
+    <div class="chart" id="chart" hidden><canvas id="chartCv" width="460" height="420"></canvas></div>
+  </div>
+
+  <!-- 나침반 -->
+  <aside id="p-compass">
+    <h2>나침반</h2>
+    <p class="why">밤바다, 구름 때문에 별도 안 보여. 어느 쪽이 남쪽이지?</p>
+    <div class="modes" role="group" aria-label="보기 방식">
+      <button id="cm-use" aria-pressed="true">① 배를 몰아 보자</button>
+      <button id="cm-inside" aria-pressed="false">② 바늘은 왜 북쪽만 볼까</button>
+    </div>
+    <div id="cu">
+      <div class="readout" id="helmRead"></div>
+      <div class="steer">
+        <button id="left" aria-label="키를 왼쪽으로">◀ 왼쪽</button>
+        <button id="go" class="go">출발</button>
+        <button id="right" aria-label="키를 오른쪽으로">오른쪽 ▶</button>
+      </div>
+      <div class="how"><h3>이렇게 하면 돼</h3><ol id="cuSteps">
+        <li>«출발»을 누른다. 파도 때문에 배가 저절로 조금씩 틀어진다.</li>
+        <li>나침반 맨 위 <b>빨간 표시</b> 아래 글자를 본다. 그게 지금 배가 가는 쪽이다.</li>
+        <li>글자가 <b>남남서</b>에서 벗어나면 ◀ ▶로 되돌린다.</li>
+        <li>오른쪽 아래 지도에서 배가 <b>카나리아 제도</b>(빨간 점)에 닿으면 성공!</li>
+      </ol></div>
+    </div>
+    <div id="ci" hidden>
+      <div class="ctl"><label for="heading">배가 향하는 쪽 <output id="headingOut">0°</output></label>
+        <input type="range" id="heading" min="0" max="359" value="40"></div>
+      <div class="toggles">
+        <button id="iron" aria-pressed="false">쇳덩이 가까이 대기</button>
+        <button id="field" aria-pressed="true">지구 자기장 보기</button>
+      </div>
+      <div class="readout" id="compassRead"></div>
+      <div class="how"><h3>왜 그럴까</h3><ol>
+        <li>지구 자체가 커다란 자석이다. 파란 화살표가 지구 자석이 끄는 방향(북쪽)이다.</li>
+        <li>바늘도 자석이라 그 방향으로 줄을 선다. 빨간 쪽이 늘 북쪽을 본다.</li>
+        <li>글자판은 바늘에 붙어 있다. 그래서 배가 돌아도 글자판은 가만히 있고, 빨간 표시만 돈다. 막대를 움직여 확인해 보자.</li>
+      </ol></div>
+    </div>
+    <div class="memo"><h3>역사 메모</h3>
+      <p>자석 바늘이 남북을 가리킨다는 기록은 11세기 중국 송나라 심괄의 『몽계필담』에 나온다. 12세기 말에는 유럽 기록에도 등장한다.</p>
+      <p>해와 별이 보이면 그것으로도 방향을 알 수 있다. 나침반은 <b>구름 낀 날과 밤</b>에도 방향을 지켜 주었기에 먼 바다로 나가는 데 쓸모가 컸다.</p>
+      <p>배에 실린 대포 같은 쇠는 바늘을 끌어당겨 틀어지게 한다. «② 바늘은 왜 북쪽만 볼까»에서 쇳덩이를 가까이 대 보자.</p>
+    </div>
+  </aside>
+
+  <!-- 위도 재기 -->
+  <aside id="p-latitude" hidden>
+    <h2>별로 위치 알기</h2>
+    <p class="why">며칠째 바다뿐이야. 우리 배가 지금 얼마나 남쪽까지 내려왔지?</p>
+    <div class="modes" role="group" aria-label="기구 고르기">
+      <button id="lm-quad" aria-pressed="true">① 사분의 — 그때 쓰던 것</button>
+      <button id="lm-sext" aria-pressed="false">② 육분의 — 300년 뒤 개량형</button>
+    </div>
+    <div class="ctl"><label for="place">오늘 밤 우리 배는 여기 (고르고 나서 재 보자)</label>
+      <select id="place">
+        <option value="38.7">리스본 앞바다</option>
+        <option value="28.1">카나리아 제도 앞바다</option>
+        <option value="14.7">베르데곶 앞바다</option>
+        <option value="5">기니만</option>
+        <option value="-34.4">희망봉 앞바다</option>
+      </select></div>
+    <div id="lq">
+      <div class="nudge"><button id="tiltUp">▲ 더 세우기</button><button id="tiltDown">▼ 더 눕히기</button></div>
+      <details class="fine"><summary>세밀하게 맞추기</summary><div class="ctl"><label for="tilt">기울기 <output id="tiltOut">0°</output></label>
+        <input type="range" id="tilt" min="0" max="90" step="0.1" value="15"></div></details>
+      <div class="readout" id="quadRead"></div>
+      <div class="how"><h3>이렇게 하면 돼</h3><ol id="lqSteps">
+        <li>노란 별이 <b>북극성</b>이다. 북쪽 하늘에서 움직이지 않는 별.</li>
+        <li>▲▼로 기구를 기울여 <b>구멍 너머로 별을 겨눈다</b>. 오른쪽 위 동그라미 한가운데에 별이 오면 된다.</li>
+        <li><b>추 달린 실</b>은 늘 아래로 처진다. 그래서 기구를 기울인 만큼 실이 눈금을 가리킨다. 그 눈금이 별의 높이.</li>
+        <li>별이 높이 떠 있을수록 우리는 북쪽에, 낮을수록 남쪽에 있다. 아래 지도에 그 줄이 그어진다.</li>
+      </ol></div>
+    </div>
+    <div id="ls" hidden>
+      <div class="ctl"><label for="arm">팔 돌리기 <output id="armOut">0°</output></label>
+        <input type="range" id="arm" min="0" max="60" step="0.1" value="8"></div>
+      <div class="readout" id="sextantRead"></div>
+      <div class="legend"><span style="--c:#ffd36b">별빛</span><span style="--c:#7fc4ff">거울에 꺾인 빛</span></div>
+      <div class="how"><h3>이렇게 하면 돼</h3><ol>
+        <li>오른쪽 위 동그라미가 들여다보는 통 속이다. 왼쪽 반은 바다 끝(수평선), 오른쪽 반은 거울에 비친 하늘.</li>
+        <li>팔을 돌려 거울 속 북극성을 <b>수평선에 딱 내려앉힌다</b>.</li>
+        <li>거울을 조금 돌리면 빛은 그 두 배로 꺾인다. 그래서 눈금이 기구 크기보다 두 배 넓다.</li>
+        <li>흔들리는 실 대신 <b>수평선</b>에 맞추니까, 흔들리는 배 위에서도 더 정확했다.</li>
+      </ol></div>
+    </div>
+    <canvas class="latmap" id="latmap" width="560" height="300" aria-label="위도선 지도"></canvas>
+    <div class="memo"><h3>역사 메모</h3>
+      <p>교과서는 «육분의»라고 쓰지만, 육분의는 1757년 무렵에야 만들어졌다. 다가마·콜럼버스 때 뱃사람들은 <b>사분의</b>와 아스트롤라베로 북극성의 높이를 쟀다. 방법은 같다 — 별이 바다 끝에서 얼마나 높이 떠 있나.</p>
+      <p>이렇게 알 수 있는 건 <b>남북 위치(위도)</b>뿐이다. 동서 위치(경도)는 이때 바다에서 잴 방법이 없었다. 그래서 먼저 원하는 위도까지 간 다음, 그 줄을 따라 동쪽이나 서쪽으로 쭉 갔다.</p>
+      <p>남쪽으로 많이 내려가면 북극성이 바다 밑으로 숨는다. 그땐 한낮의 해 높이로 쟀다.</p>
+    </div>
+  </aside>
+
+  <!-- 캐러벨선 -->
+  <aside id="p-caravel" hidden>
+    <h2>캐러벨선</h2>
+    <p class="why">아프리카에서 돌아오는 길, 바람이 앞에서 불어와. 집에 갈 수 있을까?</p>
+    <div class="presets" role="group" aria-label="바람 방향"><button id="w-head" aria-pressed="true">맞바람 (앞에서)</button><button id="w-side" aria-pressed="false">옆바람</button><button id="w-tail" aria-pressed="false">뒷바람</button></div>
+    <details class="fine"><summary>바람 방향 세밀하게</summary><div class="ctl"><label for="wind">바람이 오는 쪽 (뱃머리 기준) <output id="windOut">0°</output></label>
+      <input type="range" id="wind" min="0" max="180" value="45"></div></details>
+    <div class="toggles">
+      <button id="lateen" aria-pressed="true">삼각돛 — 캐러벨선</button>
+      <button id="square" aria-pressed="false">네모 돛 — 옛날 짐배</button>
+    </div>
+    <div class="ctl"><label>앞으로 가는 힘</label><div class="meter"><i id="meter"></i></div></div>
+    <div class="readout" id="caravelRead"></div>
+    <div class="legend"><span style="--c:#e9c46a">돛이 받는 힘</span><span style="--c:#6cc28a">앞으로 가는 힘</span><span style="--c:#e0735a">옆으로 미는 힘</span><span style="--c:#9fd3ff">바람</span></div>
+    <div class="how"><h3>해 보자</h3><ol>
+      <li>«맞바람»을 누르고 삼각돛과 네모 돛을 바꿔 보자. 초록 막대(앞으로 가는 힘)가 어느 쪽이 더 긴가?</li>
+      <li>바람은 돛을 민다(노란 화살표). 그 힘이 <b>앞으로</b>(초록)와 <b>옆으로</b>(빨강)로 나뉜다. 옆으로 밀리는 건 배 밑 <b>용골</b>이 물을 붙잡아 버틴다.</li>
+      <li>삼각돛은 배 길이 쪽으로 바짝 돌릴 수 있어서 바람이 비스듬히 앞에서 와도 앞으로 간다. 네모 돛은 뒷바람에서만 세다.</li>
+      <li>바람이 완전히 정면이면 어떤 돛도 못 간다. 그땐 비스듬히 지그재그로 갔다.</li>
+    </ol></div>
+    <div class="memo"><h3>역사 메모</h3>
+      <p>삼각돛은 지중해와 인도양의 배들이 오래 써 온 돛이다. 포르투갈은 아프리카 서해안을 따라 내려갔다 돌아오는 길에 맞바람이 잦아 이 돛을 단 캐러벨을 즐겨 썼다.</p>
+      <p>먼 바다를 건널 땐 뒷바람을 크게 받는 네모 돛을 섞어 단 캐러벨도 쓰였다. 콜럼버스 배 셋 가운데 한 척은 카나리아 제도에 들렀을 때 네모 돛으로 바꿔 달았다.</p>
+      <p>이 화면의 힘 크기는 원리를 보여 주는 개념 모형이다. 실제 배의 속도 계산이 아니다.</p>
+    </div>
+  </aside>
+</main>
+<footer>자체 제작 · 3D 모형은 원리를 보이려고 단순하게 만들었다(실물 비율·장식은 다르다) · 나침반 지도는 해안선을 어림으로 그린 그림 · three.js(MIT)</footer>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+try { await Promise.race([document.fonts.load('700 40px "IBM Plex Sans KR"'), new Promise(r => setTimeout(r, 2500))]); } catch (e) {}
+const $ = id => document.getElementById(id);
+const stage = $("stage");
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.domElement.className = "gl";
+stage.prepend(renderer.domElement);
+const camera = new THREE.PerspectiveCamera(42, 4 / 3, 0.1, 400);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.maxDistance = 40; controls.minDistance = 3; controls.autoRotateSpeed = 1.6;
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const D = Math.PI / 180;
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize).observe(stage);
+
+function lights(scene, k = 1) {
+  scene.add(new THREE.HemisphereLight(0xdfe9f2, 0x1a2a33, 0.9 * k));
+  const sun = new THREE.DirectionalLight(0xfff1d6, 1.4 * k); sun.position.set(6, 10, 7); scene.add(sun);
+}
+function label(text, { size = 64, color = "#efe4cc", bg = null, w = 512, h = 128 } = {}) {
+  const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d");
+  if (bg) { g.fillStyle = bg; g.beginPath(); g.roundRect(4, 4, w - 8, h - 8, 20); g.fill(); }
+  g.font = `700 ${size}px "IBM Plex Sans KR","Apple SD Gothic Neo",sans-serif`; g.fillStyle = color;
+  g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(text, w / 2, h / 2 + 4);
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(c), depthTest: false, transparent: true }));
+  s.scale.set(w / h, 1, 1); s.renderOrder = 10; return s;
+}
+const mat = (c, o = {}) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.6, metalness: 0.1, ...o });
+const P16 = ["북", "북북동", "북동", "동북동", "동", "동남동", "남동", "남남동", "남", "남남서", "남서", "서남서", "서", "서북서", "북서", "북북서"];
+const dirName = h => P16[Math.round(((h % 360) + 360) % 360 / 22.5) % 16];
+function nightSky(scene) {
+  const g = new THREE.BufferGeometry(), n = 500, p = [];
+  for (let i = 0; i < n; i++) { const a = Math.random() * Math.PI * 2, e = Math.random() * 80 * D + 3 * D, r = 90; p.push(r * Math.cos(e) * Math.cos(a), r * Math.sin(e) - 2, r * Math.cos(e) * Math.sin(a)); }
+  g.setAttribute("position", new THREE.Float32BufferAttribute(p, 3));
+  scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0xcfd8e3, size: 0.35, sizeAttenuation: true })));
+  const sea = new THREE.Mesh(new THREE.CircleGeometry(150, 64), mat(0x0e2a3c, { roughness: 1 })); sea.rotation.x = -Math.PI / 2; sea.position.y = -2; scene.add(sea);
+}
+
+/* ───────── 나침반 ───────── */
+function buildCompass() {
+  const scene = new THREE.Scene(); lights(scene);
+  const deck = new THREE.Mesh(new THREE.CircleGeometry(9, 64), mat(0x1d3b4f, { roughness: 0.9 }));
+  deck.rotation.x = -Math.PI / 2; deck.position.y = -0.9; scene.add(deck);
+  const ship = new THREE.Group(); scene.add(ship);
+  const hullShape = new THREE.Shape();
+  hullShape.moveTo(0, 4.2); hullShape.quadraticCurveTo(2.2, 1.5, 1.9, -3.2); hullShape.lineTo(-1.9, -3.2); hullShape.quadraticCurveTo(-2.2, 1.5, 0, 4.2);
+  const hull = new THREE.Mesh(new THREE.ExtrudeGeometry(hullShape, { depth: 0.35, bevelEnabled: false }), mat(0x7a5232));
+  hull.rotation.x = -Math.PI / 2; hull.position.y = -0.8; ship.add(hull);
+  const bowTag = label("뱃머리", { size: 56, color: "#1b1408", bg: "#d1a95a", w: 320, h: 110 });
+  bowTag.position.set(0, 0.2, -4.6); bowTag.scale.multiplyScalar(0.9); ship.add(bowTag);
+  const bowl = new THREE.Mesh(new THREE.CylinderGeometry(2.1, 1.9, 0.7, 64, 1, true), mat(0x8b5e34, { side: THREE.DoubleSide }));
+  bowl.position.y = -0.1; ship.add(bowl);
+  const base = new THREE.Mesh(new THREE.CircleGeometry(1.9, 64), mat(0x5e3d22)); base.rotation.x = -Math.PI / 2; base.position.y = -0.44; ship.add(base);
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(2.1, 0.06, 12, 96), mat(0xd1a95a, { metalness: 0.7, roughness: 0.3 }));
+  rim.rotation.x = Math.PI / 2; rim.position.y = 0.25; ship.add(rim);
+  const lubber = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.55, 0.22), mat(0xe0735a, { emissive: 0x401008 })); lubber.position.set(0, 0.05, -2.05); ship.add(lubber);
+  const lubLine = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.01, 0.5), new THREE.MeshBasicMaterial({ color: 0xe0735a })); lubLine.position.set(0, 0.3, -1.85); ship.add(lubLine);
+  // 방위 카드 + 바늘 (카드가 바늘에 붙어 함께 돈다)
+  const card = new THREE.Group(); scene.add(card);
+  const cv = document.createElement("canvas"); cv.width = cv.height = 1024; const g = cv.getContext("2d");
+  g.fillStyle = "#efe4cc"; g.beginPath(); g.arc(512, 512, 500, 0, 7); g.fill();
+  g.strokeStyle = "#5b4a3a"; g.lineWidth = 6; g.beginPath(); g.arc(512, 512, 480, 0, 7); g.stroke();
+  for (let i = 0; i < 32; i++) {
+    const a = i * Math.PI / 16, l = i % 4 === 0 ? 70 : 30; g.lineWidth = i % 4 === 0 ? 6 : 3;
+    g.beginPath(); g.moveTo(512 + Math.sin(a) * 480, 512 - Math.cos(a) * 480); g.lineTo(512 + Math.sin(a) * (480 - l), 512 - Math.cos(a) * (480 - l)); g.stroke();
+  }
+  P16.forEach((t, i) => {
+    const a = i * Math.PI / 8, main4 = i % 4 === 0, main8 = i % 2 === 0;
+    if (main8) {
+      g.fillStyle = main4 ? (i === 0 ? "#b0402a" : "#2b2620") : "#7d6c58";
+      const tipR = main4 ? 330 : 230, wd = main4 ? 0.16 : 0.12;
+      g.beginPath(); g.moveTo(512 + Math.sin(a) * tipR, 512 - Math.cos(a) * tipR);
+      g.lineTo(512 + Math.sin(a + wd) * 70, 512 - Math.cos(a + wd) * 70);
+      g.lineTo(512 + Math.sin(a - wd) * 70, 512 - Math.cos(a - wd) * 70); g.closePath(); g.fill();
+    }
+    g.save(); g.translate(512 + Math.sin(a) * (main4 ? 400 : 395), 512 - Math.cos(a) * (main4 ? 400 : 395)); g.rotate(a);
+    g.font = `700 ${main4 ? 64 : main8 ? 40 : 30}px "IBM Plex Sans KR",sans-serif`; g.fillStyle = i === 0 ? "#b0402a" : main8 ? "#2b2620" : "#6d5d48";
+    g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(t, 0, 0); g.restore();
+  });
+  const disc = new THREE.Mesh(new THREE.CircleGeometry(1.85, 96), new THREE.MeshStandardMaterial({ map: new THREE.CanvasTexture(cv), roughness: 0.8 }));
+  disc.rotation.x = -Math.PI / 2; card.add(disc);
+  const nN = new THREE.Mesh(new THREE.ConeGeometry(0.1, 1.5, 4), mat(0xc0392b, { metalness: 0.5 }));
+  nN.rotation.x = -Math.PI / 2; nN.position.set(0, 0.12, -0.75); card.add(nN);
+  const nS = new THREE.Mesh(new THREE.ConeGeometry(0.1, 1.5, 4), mat(0xb8c2c8, { metalness: 0.6 }));
+  nS.rotation.x = Math.PI / 2; nS.position.set(0, 0.12, 0.75); card.add(nS);
+  const pivot = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), mat(0xd1a95a, { metalness: 0.8 })); pivot.position.y = 0.15; card.add(pivot);
+  const fieldG = new THREE.Group(); scene.add(fieldG);
+  for (let x = -6; x <= 6; x += 3) for (let z = -6; z <= 6; z += 4) {
+    if (Math.abs(x) < 3 && Math.abs(z) < 3) continue;
+    fieldG.add(new THREE.ArrowHelper(new THREE.Vector3(0, 0, -1), new THREE.Vector3(x, -0.6, z + 1), 1.6, 0x6fa8c9, 0.4, 0.25));
+  }
+  const north = label("북쪽 (자기장 방향)", { size: 50, color: "#9fd3ff", w: 640, h: 110 }); north.position.set(0, 0.6, -7.6); north.scale.multiplyScalar(1.1); fieldG.add(north);
+  const iron = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.9, 0.9), mat(0x6b6f73, { metalness: 0.8, roughness: 0.4 }));
+  iron.position.set(3.0, 0.1, 0); scene.add(iron);
+  const ironTag = label("쇳덩이", { size: 54, w: 300, h: 110 }); ironTag.position.set(3.0, 1.1, 0); scene.add(ironTag);
+
+  // 항해 시뮬레이션 — 리스본 → 그란카나리아 (어림 지도)
+  const LIS = [-9.14, 38.72], GC = [-15.6, 28.0];
+  const bearing = (() => { const dy = GC[1] - LIS[1], dx = (GC[0] - LIS[0]) * Math.cos(33.4 * D); return (Math.atan2(dx, dy) / D + 360) % 360; })();
+  const COAST = [[[-8.9, 43.5], [-9.3, 42.5], [-8.8, 41.2], [-8.9, 40.2], [-9.5, 38.8], [-8.8, 38.4], [-8.9, 37.0], [-7.4, 37.2], [-6.3, 36.8], [-5.6, 36.0], [-2, 36.6], [-2, 43.5]],
+                 [[-5.9, 35.8], [-6.9, 34.0], [-8.5, 33.2], [-9.8, 31.4], [-9.6, 30.4], [-11.1, 28.5], [-13.2, 27.6], [-14.5, 26.2], [-15.0, 25.0], [-2, 25.0], [-2, 35.8]]];
+  const ISLES = [["마데이라", -16.9, 32.7], ["테네리페", -16.6, 28.3], ["그란카나리아", -15.6, 28.0], ["란사로테", -13.6, 29.0], ["푸에르테벤투라", -14.0, 28.4]];
+  const sim = { lon: LIS[0], lat: LIS[1], track: [[...LIS]], on: false, done: false, lost: false, steer: 0, drift: 0 };
+  const st = { mode: "use", heading: 270, iron: false, field: true };
+  const cc = $("chartCv").getContext("2d");
+  const LX = [-21, -4.5], LY = [24.5, 42];
+  const mx = lon => (lon - LX[0]) / (LX[1] - LX[0]) * 460, my = lat => 420 - (lat - LY[0]) / (LY[1] - LY[0]) * 420;
+  function drawChart() {
+    cc.fillStyle = "#cfe0e6"; cc.fillRect(0, 0, 460, 420);
+    cc.fillStyle = "#d9c9a3"; cc.strokeStyle = "#8a7a5c"; cc.lineWidth = 2;
+    COAST.forEach(poly => { cc.beginPath(); poly.forEach(([x, y], i) => i ? cc.lineTo(mx(x), my(y)) : cc.moveTo(mx(x), my(y))); cc.closePath(); cc.fill(); cc.stroke(); });
+    cc.font = '700 26px "IBM Plex Sans KR",sans-serif'; cc.fillStyle = "#5b4a3a"; cc.textAlign = "right";
+    cc.fillText("이베리아", mx(-4.8), my(41.0)); cc.fillText("아프리카", mx(-4.8), my(31.5)); cc.textAlign = "left";
+    ISLES.forEach(([n, x, y]) => { cc.fillStyle = n === "그란카나리아" ? "#b0402a" : "#8a7a5c"; cc.beginPath(); cc.arc(mx(x), my(y), n === "그란카나리아" ? 9 : 6, 0, 7); cc.fill(); });
+    cc.fillStyle = "#b0402a"; cc.font = '700 20px "IBM Plex Sans KR",sans-serif'; cc.fillText("목표", mx(-15.6) - 22, my(28.0) + 30);
+    cc.fillStyle = "#2b2620"; cc.beginPath(); cc.arc(mx(LIS[0]), my(LIS[1]), 7, 0, 7); cc.fill(); cc.fillText("리스본", mx(LIS[0]) - 76, my(LIS[1]) + 6);
+    cc.strokeStyle = "#1f6f6a"; cc.lineWidth = 3; cc.setLineDash([]);
+    cc.beginPath(); sim.track.forEach(([x, y], i) => i ? cc.lineTo(mx(x), my(y)) : cc.moveTo(mx(x), my(y))); cc.stroke();
+    const h = st.heading * D; cc.save(); cc.translate(mx(sim.lon), my(sim.lat)); cc.rotate(h);
+    cc.fillStyle = "#1f6f6a"; cc.beginPath(); cc.moveTo(0, -14); cc.lineTo(8, 10); cc.lineTo(-8, 10); cc.closePath(); cc.fill(); cc.restore();
+    cc.fillStyle = "#2b2620"; cc.font = '500 18px "IBM Plex Sans KR",sans-serif'; cc.fillText("↑ 북", 12, 26); cc.fillText("어림 지도", 12, 408);
+  }
+  function update() {
+    const use = st.mode === "use";
+    ship.rotation.y = -st.heading * D;
+    const dev = (!use && st.iron) ? -22 : 0; card.rotation.y = dev * D;
+    iron.visible = ironTag.visible = !use && st.iron;
+    fieldG.visible = !use && st.field;
+    bowTag.visible = !use;
+    $("headingOut").textContent = Math.round(st.heading) + "°";
+    if (!use) {
+      const reading = ((st.heading - (st.iron ? 22 : 0)) % 360 + 360) % 360;
+      $("compassRead").innerHTML = st.iron
+        ? `쇳덩이가 바늘을 끌어당겨서 글자판이 돌아갔다. 빨간 표시 아래는 <b>${dirName(reading)}</b>이라고 나오지만, 배는 사실 <b>${dirName(st.heading)}</b>으로 가고 있다. 이대로 믿고 가면 엉뚱한 데 닿는다.`
+        : `막대를 움직여 배를 돌려 보자. 바늘과 글자판은 가만히 있고 배만 돈다. 지금 빨간 표시 아래는 <b>${dirName(st.heading)}</b>.`;
+    } else {
+      const off = ((st.heading - bearing + 540) % 360) - 180;
+      const R = $("helmRead"); R.classList.toggle("ok", sim.done);
+      if (sim.done) R.innerHTML = `<b>카나리아 제도 도착!</b> 별 하나 안 보이는 밤에 글자판 하나로 길을 찾았다. 이게 나침반이다. «다시»로 한 번 더.`;
+      else if (sim.lost) R.innerHTML = `<b>길을 잃었다</b> — ${sim.lostWhy}. «다시»를 눌러 리스본에서 다시 출발하자.`;
+      else R.innerHTML = `지금 가는 쪽: <b>${dirName(st.heading)}</b> · 가야 할 쪽: <b>남남서</b><br>${Math.abs(off) < 6 ? "좋아, 이대로!" : off > 0 ? "오른쪽으로 치우쳤다 — ◀ 왼쪽" : "왼쪽으로 치우쳤다 — 오른쪽 ▶"}`;
+      $("brief").innerHTML = `리스본을 떠난 밤. 구름이 껴서 별이 없다.<br><b>남남서</b>로 가면 카나리아 제도.`;
+      $("go").textContent = sim.done || sim.lost ? "다시" : sim.on ? "멈춤" : "출발";
+      drawChart();
+    }
+  }
+  function placeCamera() {
+    if (st.mode !== "use") return;
+    const eye = new THREE.Vector3(0, 5.8, 3.0).applyAxisAngle(new THREE.Vector3(0, 1, 0), ship.rotation.y);
+    const look = new THREE.Vector3(0, 0, -0.7).applyAxisAngle(new THREE.Vector3(0, 1, 0), ship.rotation.y);
+    camera.position.copy(eye); camera.lookAt(look);
+  }
+  function reset() { Object.assign(sim, { lon: LIS[0], lat: LIS[1], track: [[...LIS]], on: false, done: false, lost: false, drift: 0 }); st.heading = 219; }
+  return {
+    scene, cam: [6, 7, 9], target: [0, 0, 0], st, update,
+    get orbit() { return st.mode !== "use"; },
+    overlays: () => ({ chart: st.mode === "use", helm: st.mode === "use" }),
+    bind(onMode) {
+      const h = $("heading");
+      h.oninput = () => { st.heading = +h.value; update(); };
+      $("iron").onclick = () => { st.iron = !st.iron; $("iron").setAttribute("aria-pressed", st.iron); update(); };
+      $("field").onclick = () => { st.field = !st.field; $("field").setAttribute("aria-pressed", st.field); update(); };
+      const setMode = m => {
+        st.mode = m; $("cm-use").setAttribute("aria-pressed", m === "use"); $("cm-inside").setAttribute("aria-pressed", m === "inside");
+        $("cu").hidden = m !== "use"; $("ci").hidden = m === "use";
+        if (m === "inside") { st.heading = +h.value; sim.on = false; }
+        update(); onMode();
+      };
+      $("cm-use").onclick = () => setMode("use"); $("cm-inside").onclick = () => setMode("inside");
+      const hold = (id, v) => { const b = $(id);
+        b.onpointerdown = e => { e.preventDefault(); sim.steer = v; b.setPointerCapture(e.pointerId); };
+        b.onpointerup = b.onpointercancel = () => { sim.steer = 0; };
+        b.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { st.heading = (st.heading + v * 5 + 360) % 360; update(); } }; };
+      hold("left", -1); hold("right", 1);
+      addEventListener("keydown", e => { if (st.mode !== "use" || cur !== tools.compass) return;
+        if (e.key === "ArrowLeft") { st.heading = (st.heading - 4 + 360) % 360; update(); e.preventDefault(); }
+        if (e.key === "ArrowRight") { st.heading = (st.heading + 4) % 360; update(); e.preventDefault(); } });
+      $("go").onclick = () => { if (sim.done || sim.lost) reset(); else sim.on = !sim.on; update(); };
+      reset(); update();
+    },
+    tick(dt) {
+      if (st.mode !== "use") return;
+      if (sim.steer) { st.heading = (st.heading + sim.steer * 45 * dt + 360) % 360; }
+      if (sim.on && !sim.done && !sim.lost) {
+        // 파도·바람에 뱃머리가 조금씩 틀어진다
+        sim.drift += (Math.random() - 0.5) * 40 * dt; sim.drift = Math.max(-7, Math.min(7, sim.drift)) * 0.995;
+        st.heading = (st.heading + sim.drift * dt + 360) % 360;
+        const v = 0.45 * dt, h = st.heading * D;
+        sim.lat += Math.cos(h) * v; sim.lon += Math.sin(h) * v / Math.cos(sim.lat * D);
+        const last = sim.track[sim.track.length - 1];
+        if (Math.hypot(last[0] - sim.lon, last[1] - sim.lat) > 0.12) sim.track.push([sim.lon, sim.lat]);
+        if (Math.hypot((sim.lon - GC[0]) * Math.cos(28 * D), sim.lat - GC[1]) < 0.55) { sim.done = true; sim.on = false; }
+        const inLand = COAST.some(poly => { let c = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const [xi, yi] = poly[i], [xj, yj] = poly[j]; if ((yi > sim.lat) !== (yj > sim.lat) && sim.lon < (xj - xi) * (sim.lat - yi) / (yj - yi) + xi) c = !c; } return c; });
+        if (inLand) { sim.lost = true; sim.on = false; sim.lostWhy = "해안에 너무 붙어 뭍에 닿았다"; }
+        else if (sim.lon < LX[0] + 0.3 || sim.lat < LY[0] + 0.3 || sim.lat > LY[1] - 0.3) { sim.lost = true; sim.on = false; sim.lostWhy = "카나리아 제도를 지나쳐 망망대해로 나갔다"; }
+      }
+      update(); placeCamera();
+    }
+  };
+}
+
+/* ───────── 사분의 ───────── */
+function buildQuadrant(shared) {
+  const scene = new THREE.Scene(); lights(scene, 0.8); nightSky(scene);
+  const A = new THREE.Vector3(0, 2.4, 0), R = 3.0;
+  const Q = new THREE.Group(); Q.position.copy(A); scene.add(Q);
+  const plate = new THREE.Mesh(new THREE.CircleGeometry(R, 48, 270 * D, 90 * D), mat(0xd8bd8a, { side: THREE.DoubleSide, roughness: 0.75 }));
+  Q.add(plate);
+  const edge = new THREE.Mesh(new THREE.TorusGeometry(R, 0.05, 8, 48, 90 * D), mat(0xd1a95a, { metalness: 0.7, roughness: 0.3 })); edge.rotation.z = 270 * D; Q.add(edge);
+  for (let k = 0; k <= 90; k += 5) {
+    const a = (270 + k) * D, big = k % 10 === 0;
+    const t = new THREE.Mesh(new THREE.BoxGeometry(0.03, big ? 0.32 : 0.18, 0.02), mat(0x1b1408));
+    t.position.set(Math.cos(a) * (R - (big ? 0.16 : 0.09)), Math.sin(a) * (R - (big ? 0.16 : 0.09)), 0.02); t.rotation.z = a - Math.PI / 2; Q.add(t);
+    if (k % 30 === 0) { const l = label(k + "°", { size: 64, color: "#1b1408", w: 200, h: 100 }); l.scale.multiplyScalar(0.42); l.position.set(Math.cos(a) * (R - 0.55), Math.sin(a) * (R - 0.55), 0.05); Q.add(l); }
+  }
+  // 겨누는 가장자리(+x 반지름)에 구멍 난 판 두 장
+  [0.35, 0.9].forEach(f => {
+    const v = new THREE.Mesh(new THREE.RingGeometry(0.05, 0.22, 20), mat(0xd1a95a, { metalness: 0.6, side: THREE.DoubleSide }));
+    v.rotation.y = Math.PI / 2; v.position.set(R * f, 0.24, 0); Q.add(v);
+  });
+  const sightBar = new THREE.Mesh(new THREE.BoxGeometry(R, 0.06, 0.06), mat(0xd1a95a, { metalness: 0.6 })); sightBar.position.set(R / 2, 0, 0); Q.add(sightBar);
+  // 추 달린 실 — 늘 아래로
+  const plumb = new THREE.Line(new THREE.BufferGeometry().setFromPoints([A, A.clone().add(new THREE.Vector3(0, -R * 1.02, 0.08))]), new THREE.LineBasicMaterial({ color: 0xffffff }));
+  plumb.position.z = 0.06; scene.add(plumb);
+  const bob = new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.3, 16), mat(0x6b6f73, { metalness: 0.8 })); bob.rotation.z = Math.PI; bob.position.copy(A).add(new THREE.Vector3(0, -R * 1.02 - 0.15, 0.08)); scene.add(bob);
+  const plumbTag = label("추 달린 실", { size: 54, w: 340, h: 100 }); plumbTag.scale.multiplyScalar(0.7); plumbTag.position.copy(A).add(new THREE.Vector3(0.75, -R * 1.1, 0.2)); scene.add(plumbTag);
+  const eye = label("눈", { size: 60, w: 160, h: 110 }); eye.scale.multiplyScalar(0.7); scene.add(eye);
+  const aim = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineDashedMaterial({ color: 0x9fd3ff, dashSize: 0.4, gapSize: 0.25 })); scene.add(aim);
+  const star = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), new THREE.MeshBasicMaterial({ color: 0xffd36b })); scene.add(star);
+  const starTag = label("북극성", { size: 56, color: "#ffd36b", w: 300, h: 110 }); starTag.scale.multiplyScalar(0.8); scene.add(starTag);
+  const horizonTag = label("수평선", { size: 50, color: "#9fb3c0", w: 260, h: 100 }); horizonTag.scale.multiplyScalar(1.2); horizonTag.position.set(-30, 0, -6); scene.add(horizonTag);
+  const st = { tilt: 15 };
+  const sc = $("scopeCv").getContext("2d");
+  function scope(diff, visible) {
+    sc.fillStyle = "#060b12"; sc.fillRect(0, 0, 300, 300);
+    sc.strokeStyle = "#d1a95a"; sc.lineWidth = 3; sc.beginPath(); sc.arc(150, 150, 40, 0, 7); sc.stroke();
+    sc.lineWidth = 1; sc.beginPath(); sc.moveTo(150, 0); sc.lineTo(150, 300); sc.moveTo(0, 150); sc.lineTo(300, 150); sc.stroke();
+    if (visible) { const y = 150 - Math.max(-170, Math.min(170, diff * 7)); sc.fillStyle = "#ffd36b"; sc.beginPath(); sc.arc(150, y, 10, 0, 7); sc.fill(); }
+  }
+  function update() {
+    const h = shared.lat, t = st.tilt, visible = h > 0.5;
+    Q.rotation.z = -t * D;
+    const eyeP = A.clone().add(new THREE.Vector3(Math.cos(-t * D), Math.sin(-t * D), 0).multiplyScalar(R * 1.18));
+    eye.position.copy(eyeP).add(new THREE.Vector3(0, 0.4, 0));
+    const dirAim = new THREE.Vector3(-Math.cos(t * D), Math.sin(t * D), 0);
+    aim.geometry.setFromPoints([eyeP, A.clone().addScaledVector(dirAim, 10)]); aim.computeLineDistances();
+    star.visible = starTag.visible = visible;
+    star.position.copy(A).addScaledVector(new THREE.Vector3(-Math.cos(h * D), Math.sin(h * D), 0), 8);
+    starTag.position.copy(star.position).add(new THREE.Vector3(0, 1.1, 0));
+    const diff = h - t, hit = visible && Math.abs(diff) < 0.8;
+    scope(diff, visible);
+    $("tiltOut").textContent = t.toFixed(1) + "°";
+    const steps = $("lqSteps").children;
+    steps[1].classList.toggle("done", hit); steps[2].classList.toggle("done", hit); steps[3].classList.toggle("done", hit);
+    const Rd = $("quadRead"); Rd.classList.toggle("ok", hit);
+    if (!visible) Rd.innerHTML = `여기선 북극성이 <b>바다 밑으로 숨어서</b> 안 보인다. 적도를 넘으면 이렇게 된다 — 뱃사람들은 한낮의 해 높이로 쟀다.`;
+    else if (hit) Rd.innerHTML = `별이 딱 들어왔다! 실이 눈금 <b>${t.toFixed(0)}</b>을 가리킨다. 그러니 우리 배는 <b>북위 ${t.toFixed(0)}° 줄</b> 위에 있다. 아래 지도를 보자.`;
+    else Rd.innerHTML = `동그라미 속 별이 가운데보다 ${diff > 0 ? "<b>위</b>에 있다 → ▲ 더 세우기" : "<b>아래</b>에 있다 → ▼ 더 눕히기"}`;
+    shared.drawLat(hit ? t : null);
+  }
+  return {
+    scene, cam: [-1.2, 4.4, 15], target: [-2.8, 3.9, 0], st, update, orbit: true,
+    overlays: () => ({ scope: true, scopeTag: "구멍 속" }),
+    bind() { const s = $("tilt"); s.oninput = () => { st.tilt = +s.value; update(); }; st.tilt = +s.value;
+      const hold = (id, v) => { const b = $(id); let t = null; const step = () => { st.tilt = Math.max(0, Math.min(90, st.tilt + v)); s.value = st.tilt; update(); };
+        b.onpointerdown = e => { e.preventDefault(); b.setPointerCapture(e.pointerId); step(); t = setInterval(step, 90); };
+        b.onpointerup = b.onpointercancel = b.onpointerleave = () => { clearInterval(t); t = null; };
+        b.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); step(); } }; };
+      hold("tiltUp", 1); hold("tiltDown", -1); },
+    tick() {}
+  };
+}
+
+/* ───────── 육분의 ───────── */
+function buildSextant(shared) {
+  const scene = new THREE.Scene(); lights(scene); nightSky(scene);
+  const brass = mat(0xc9a052, { metalness: 0.75, roughness: 0.35 });
+  const R = 3.2, P = new THREE.Vector3(0, 2.2, 0);
+  const inst = new THREE.Group(); scene.add(inst);
+  const arcLine = new THREE.Mesh(new THREE.TorusGeometry(R, 0.07, 10, 80, 60 * D), brass);
+  arcLine.position.copy(P); arcLine.rotation.z = -Math.PI / 2 - 30 * D; inst.add(arcLine);
+  const spokeGeo = new THREE.CylinderGeometry(0.05, 0.05, R, 8);
+  [-30, 30].forEach(a => { const s = new THREE.Mesh(spokeGeo, brass); s.position.set(P.x + Math.sin(a * D) * R / 2, P.y - Math.cos(a * D) * R / 2, 0); s.rotation.z = a * D; inst.add(s); });
+  for (let k = 0; k <= 120; k += 10) {
+    const a = (-30 + k / 2) * D;
+    const t = new THREE.Mesh(new THREE.BoxGeometry(0.03, k % 30 === 0 ? 0.35 : 0.2, 0.03), mat(0x1b1408));
+    t.position.set(P.x + Math.sin(a) * (R - 0.05), P.y - Math.cos(a) * (R - 0.05), 0.08); t.rotation.z = a; inst.add(t);
+    if (k % 30 === 0) { const l = label(k + "°", { size: 64, color: "#d1a95a", w: 220, h: 110 }); l.scale.multiplyScalar(0.42); l.position.set(P.x + Math.sin(a) * (R + 0.45), P.y - Math.cos(a) * (R + 0.45), 0); inst.add(l); }
+  }
+  const arm = new THREE.Group(); arm.position.copy(P); inst.add(arm);
+  const armBar = new THREE.Mesh(new THREE.BoxGeometry(0.16, R + 0.2, 0.06), brass); armBar.position.y = -(R + 0.2) / 2; arm.add(armBar);
+  const imirror = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.05, 0.5), new THREE.MeshStandardMaterial({ color: 0xbfe3ff, metalness: 0.95, roughness: 0.05 }));
+  imirror.position.y = 0.05; arm.add(imirror);
+  const vernier = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.18, 0.08), mat(0xe0735a)); vernier.position.y = -R; arm.add(vernier);
+  const H = new THREE.Vector3(-1.1, 0.6, 0);
+  const hm = new THREE.Group(); hm.position.copy(H); inst.add(hm);
+  const half1 = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.5, 0.45), new THREE.MeshStandardMaterial({ color: 0xbfe3ff, metalness: 0.95, roughness: 0.05 })); half1.position.z = -0.12; hm.add(half1);
+  const half2 = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.5, 0.22), new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: 0.18 })); half2.position.z = 0.22; hm.add(half2);
+  const scopeM = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 1.8, 20), brass); scopeM.rotation.z = Math.PI / 2; scopeM.position.set(1.0, 0.6, 0); inst.add(scopeM);
+  const eye = label("눈", { size: 60, w: 160, h: 110 }); eye.scale.multiplyScalar(0.5); eye.position.set(2.2, 0.95, 0); inst.add(eye);
+  [["지표 거울", P.x + 0.2, P.y + 0.6], ["수평 거울", H.x - 0.2, H.y + 0.6], ["망원경", 1.0, 0.15]].forEach(([t, x, y]) => {
+    const l = label(t, { size: 54, w: 340, h: 100 }); l.scale.multiplyScalar(0.5); l.position.set(x, y, 0.3); inst.add(l);
+  });
+  const star = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), new THREE.MeshBasicMaterial({ color: 0xffd36b })); scene.add(star);
+  const starTag = label("북극성", { size: 56, color: "#ffd36b", w: 300, h: 110 }); starTag.scale.multiplyScalar(0.6); scene.add(starTag);
+  const lineMat1 = new THREE.LineBasicMaterial({ color: 0xffd36b }), lineMat2 = new THREE.LineBasicMaterial({ color: 0x7fc4ff });
+  const ray1 = new THREE.Line(new THREE.BufferGeometry(), lineMat1), ray2 = new THREE.Line(new THREE.BufferGeometry(), lineMat2), ray3 = new THREE.Line(new THREE.BufferGeometry(), lineMat2), rayH = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineDashedMaterial({ color: 0x9fb3c0, dashSize: 0.3, gapSize: 0.2 }));
+  scene.add(ray1, ray2, ray3, rayH);
+  const setLine = (l, a, b) => { l.geometry.setFromPoints([a, b]); if (l.material.isLineDashedMaterial) l.computeLineDistances(); };
+  const st = { arm: 8 };
+  const sc = $("scopeCv").getContext("2d");
+  function drawScope(diff, visible) {
+    const W = 300; sc.fillStyle = "#0b1726"; sc.fillRect(0, 0, W, W);
+    sc.fillStyle = "#11314a"; sc.fillRect(0, 150, 150, 150); sc.fillStyle = "#1c2f45"; sc.fillRect(0, 0, 150, 150);
+    const off = Math.max(-115, Math.min(115, diff * 5));
+    sc.fillStyle = "#0e2236"; sc.fillRect(150, 0, 150, W); sc.fillStyle = "#123a55"; sc.fillRect(150, 150 - off, 150, W);
+    if (visible) { sc.fillStyle = "#ffd36b"; sc.beginPath(); sc.arc(225, 150 - off, 9, 0, 7); sc.fill(); }
+    sc.strokeStyle = "#d1a95a"; sc.lineWidth = 2; sc.beginPath(); sc.moveTo(150, 0); sc.lineTo(150, W); sc.stroke();
+    sc.strokeStyle = "rgba(239,228,204,.5)"; sc.beginPath(); sc.moveTo(0, 150); sc.lineTo(150, 150); sc.stroke();
+  }
+  function update() {
+    const h = shared.lat, visible = h > 0.5;
+    arm.rotation.z = (-30 + st.arm) * D;
+    const sd = new THREE.Vector3(-Math.cos(h * D), Math.sin(h * D), 0);
+    star.visible = starTag.visible = visible;
+    star.position.copy(P).addScaledVector(sd, 14); starTag.position.copy(star.position).add(new THREE.Vector3(0, 0.7, 0));
+    const reading = 2 * st.arm, diff = h - reading, hit = visible && Math.abs(diff) < 0.6;
+    ray1.visible = ray2.visible = visible; ray3.visible = hit;
+    if (visible) {
+      setLine(ray1, star.position, P);
+      const rot = H.clone().sub(P).normalize().applyAxisAngle(new THREE.Vector3(0, 0, 1), -diff * D);
+      setLine(ray2, P, P.clone().addScaledVector(rot, P.distanceTo(H)));
+      setLine(ray3, H, new THREE.Vector3(2.0, 0.6, 0));
+    }
+    setLine(rayH, new THREE.Vector3(-40, 0.6, 0), new THREE.Vector3(2.0, 0.6, 0));
+    drawScope(diff, visible);
+    $("armOut").textContent = st.arm.toFixed(1) + "°";
+    const Rd = $("sextantRead"); Rd.classList.toggle("ok", hit);
+    if (!visible) Rd.innerHTML = `여기선 북극성이 <b>바다 밑으로 숨어서</b> 안 보인다. 한낮의 해 높이로 쟀다.`;
+    else if (hit) Rd.innerHTML = `별이 수평선에 딱 앉았다! 팔은 ${st.arm.toFixed(0)} 돌렸는데 눈금은 두 배인 <b>${reading.toFixed(0)}</b>. 우리 배는 <b>북위 ${reading.toFixed(0)}° 줄</b> 위에 있다.`;
+    else Rd.innerHTML = `거울 속 별이 수평선보다 ${diff > 0 ? "<b>위</b>에 있다 → 팔을 더 돌리자" : "<b>아래</b>에 있다 → 팔을 덜 돌리자"}`;
+    shared.drawLat(hit ? reading : null);
+  }
+  return {
+    scene, cam: [1.5, 3.0, 9.5], target: [-0.5, 1.4, 0], st, update, orbit: true,
+    overlays: () => ({ scope: true, scopeTag: "망원경 속" }),
+    bind() { const a = $("arm"); a.oninput = () => { st.arm = +a.value; update(); }; st.arm = +a.value; },
+    tick() {}
+  };
+}
+
+/* 위도선 지도 (사분의·육분의 공용) */
+const latShared = { lat: 38.7 };
+{
+  const g = $("latmap").getContext("2d");
+  const PL = [["리스본", 38.7, -9.1], ["카나리아 제도", 28.1, -15.5], ["베르데곶", 14.7, -17.4], ["기니만", 5, 0], ["희망봉", -34.4, 18.5]];
+  const X = lon => 40 + (lon + 25) / 55 * 480, Y = lat => 20 + (45 - lat) / 85 * 260;
+  latShared.drawLat = measured => {
+    g.fillStyle = "#efe4cc"; g.fillRect(0, 0, 560, 300);
+    g.font = '500 15px "IBM Plex Sans KR",sans-serif'; g.textBaseline = "middle";
+    for (let l = -30; l <= 40; l += 10) { g.strokeStyle = l === 0 ? "#8a7a5c" : "#d8cbb0"; g.lineWidth = l === 0 ? 2 : 1; g.beginPath(); g.moveTo(40, Y(l)); g.lineTo(520, Y(l)); g.stroke(); g.fillStyle = "#6d5d48"; g.fillText(l === 0 ? "적도" : (l > 0 ? "북" : "남") + Math.abs(l) + "°", 2, Y(l)); }
+    PL.forEach(([n, la, lo]) => { g.fillStyle = "#2b2620"; g.beginPath(); g.arc(X(lo), Y(la), 5, 0, 7); g.fill(); g.fillText(n, X(lo) + 9, Y(la)); });
+    if (measured != null) {
+      g.strokeStyle = "#b0402a"; g.lineWidth = 4; g.setLineDash([12, 6]); g.beginPath(); g.moveTo(40, Y(measured)); g.lineTo(520, Y(measured)); g.stroke(); g.setLineDash([]);
+      g.fillStyle = "#b0402a"; g.font = '700 16px "IBM Plex Sans KR",sans-serif';
+      g.fillText(`우리 배는 북위 ${measured.toFixed(0)}° 줄 위 어딘가 — 동서 어디쯤인지는 모른다`, 46, Y(measured) - 14);
+    } else { g.fillStyle = "#6d5d48"; g.font = '500 15px "IBM Plex Sans KR",sans-serif'; g.fillText("별을 맞추면 여기에 우리 배가 있는 줄이 그어진다", 46, 288); }
+  };
+}
+
+/* ───────── 캐러벨선 ───────── */
+function buildCaravel() {
+  const scene = new THREE.Scene(); lights(scene);
+  const water = new THREE.Mesh(new THREE.PlaneGeometry(60, 60, 40, 40), mat(0x1f5a78, { roughness: 0.35, metalness: 0.1 }));
+  water.rotation.x = -Math.PI / 2; scene.add(water);
+  const grid = new THREE.GridHelper(60, 30, 0x3f7e9c, 0x2c6684); grid.position.y = 0.01; scene.add(grid);
+  const boat = new THREE.Group(); scene.add(boat);
+  const L = 7, B = 2.2;
+  const hullGeo = new THREE.BoxGeometry(B, 1.4, L, 8, 4, 16);
+  const pos = hullGeo.attributes.position;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+    const u = (z + L / 2) / L;
+    const bow = Math.pow(Math.min(1, u / 0.35), 0.6), stern = 0.75 + 0.25 * Math.min(1, (1 - u) / 0.2);
+    let w = bow * stern; w *= 0.35 + 0.65 * ((y + 0.7) / 1.4);
+    pos.setX(i, x * w); pos.setY(i, y + (u < 0.15 ? (0.15 - u) * 2.2 : 0) + (u > 0.85 ? (u - 0.85) * 2.5 : 0));
+  }
+  hullGeo.computeVertexNormals();
+  const hull = new THREE.Mesh(hullGeo, mat(0x7a5232)); hull.position.y = 0.35; boat.add(hull);
+  const keel = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.8, L * 0.8), mat(0x4a311d)); keel.position.y = -0.6; boat.add(keel);
+  const keelTag = label("용골", { size: 60, color: "#ffd36b", w: 220, h: 100 }); keelTag.scale.multiplyScalar(0.9); keelTag.position.set(0, -1.2, 2.6); boat.add(keelTag);
+  const sails = [];
+  [[-1.2, 5.2], [1.6, 4.2]].forEach(([z, hgt]) => {
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, hgt, 10), mat(0x5e3d22)); m.position.set(0, 1 + hgt / 2, z); boat.add(m);
+    const pivot = new THREE.Group(); pivot.position.set(0, 1, z); boat.add(pivot);
+    const lat = new THREE.Group(); pivot.add(lat);
+    const tri = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0.3, -1.3), new THREE.Vector3(0, hgt + 0.9, 1.9), new THREE.Vector3(0, 0.3, 2.3)]);
+    tri.setIndex([0, 1, 2]); tri.computeVertexNormals();
+    lat.add(new THREE.Mesh(tri, new THREE.MeshStandardMaterial({ color: 0xf1e8d2, side: THREE.DoubleSide, roughness: 0.9 })));
+    const yard = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 1, 6), mat(0x5e3d22));
+    const a = new THREE.Vector3(0, 0.3, -1.3), b = new THREE.Vector3(0, hgt + 0.9, 1.9);
+    yard.position.copy(a).add(b).multiplyScalar(0.5); yard.scale.y = a.distanceTo(b); yard.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize()); lat.add(yard);
+    const sq = new THREE.Group(); pivot.add(sq);
+    const rect = new THREE.Mesh(new THREE.PlaneGeometry(2.8, hgt * 0.62), new THREE.MeshStandardMaterial({ color: 0xf1e8d2, side: THREE.DoubleSide, roughness: 0.9 }));
+    rect.position.y = hgt * 0.55; sq.add(rect);
+    const yard2 = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 3.1, 6), mat(0x5e3d22)); yard2.rotation.z = Math.PI / 2; yard2.position.y = hgt * 0.87; sq.add(yard2);
+    sails.push({ pivot, lat, sq });
+  });
+  const bowTag = label("뱃머리", { size: 56, color: "#1b1408", bg: "#d1a95a", w: 320, h: 110 }); bowTag.scale.multiplyScalar(0.8); bowTag.position.set(0, 2.2, -4.4); boat.add(bowTag);
+  const origin = new THREE.Vector3(0, 2.0, -0.2);
+  const aF = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), origin, 1, 0xe9c46a, 0.5, 0.3);
+  const aFw = new THREE.ArrowHelper(new THREE.Vector3(0, 0, -1), origin, 1, 0x6cc28a, 0.5, 0.3);
+  const aSd = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), origin, 1, 0xe0735a, 0.5, 0.3);
+  [aF, aFw, aSd].forEach(a => { a.traverse(o => { if (o.material) { o.material.depthTest = false; o.material.transparent = true; } }); a.renderOrder = 20; });
+  boat.add(aF, aFw, aSd);
+  const windG = new THREE.Group(); scene.add(windG);
+  const winds = [];
+  for (let i = 0; i < 26; i++) { const w = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(), 1.6, 0x9fd3ff, 0.45, 0.25); w.userData.p = new THREE.Vector3((Math.random() - .5) * 26, 2 + Math.random() * 4, (Math.random() - .5) * 26); windG.add(w); winds.push(w); }
+  const RIG = { lateen: { smin: 8, smax: 85, luff: 14, k: 0.35 }, square: { smin: 35, smax: 90, luff: 20, k: 0.5 } };
+  const st = { wind: 70, rig: "lateen", fwd: 0, flow: new THREE.Vector3() };
+  function solve(w, r) {
+    let best = { s: r.smin, fwd: -1, F: 0, side: 0 };
+    for (let s = r.smin; s <= r.smax; s += 0.5) {
+      const alpha = w - s; const F = alpha > r.luff ? Math.sin(Math.min(alpha, 90) * D) : 0;
+      const fwd = F * Math.sin(s * D) - r.k * F * Math.cos(s * D);
+      if (fwd > best.fwd) best = { s, fwd, F, side: F * Math.cos(s * D) };
+    }
+    return best;
+  }
+  function update() {
+    const r = RIG[st.rig], w = st.wind, b = solve(w, r), ok = b.fwd > 0.02;
+    sails.forEach(o => { o.lat.visible = st.rig === "lateen"; o.sq.visible = st.rig === "square"; });
+    const sAng = ok ? b.s : Math.max(r.smin, Math.min(r.smax, w));
+    sails.forEach(o => { o.pivot.rotation.y = st.rig === "lateen" ? sAng * D : (sAng - 90) * D; });
+    const n = new THREE.Vector3(Math.cos(sAng * D), 0, -Math.sin(sAng * D));
+    const F = ok ? b.F : 0, fwd = ok ? b.fwd : 0, side = ok ? b.side : 0;
+    const vis = (arrow, dir, len) => { arrow.visible = len > 0.05; if (arrow.visible) { arrow.setDirection(dir.normalize()); arrow.setLength(len * 9, 0.8, 0.5); } };
+    vis(aF, n.clone(), F); vis(aFw, new THREE.Vector3(0, 0, -1), Math.max(0, fwd) * 1.8); vis(aSd, new THREE.Vector3(1, 0, 0), side);
+    st.flow.set(Math.sin(w * D), 0, Math.cos(w * D));
+    winds.forEach(a => a.setDirection(st.flow.clone().normalize()));
+    st.fwd = Math.max(0, fwd);
+    $("windOut").textContent = w + "°";
+    $("meter").style.width = Math.min(100, Math.max(0, fwd) * 110) + "%";
+    const where = w < 15 ? "정면" : w < 80 ? "비스듬히 앞" : w < 100 ? "옆" : w < 165 ? "비스듬히 뒤" : "뒤";
+    const rig = st.rig === "lateen" ? "삼각돛" : "네모 돛";
+    const Rd = $("caravelRead"); Rd.classList.toggle("ok", ok && fwd >= 0.15);
+    if (!ok) Rd.innerHTML = `바람이 <b>${where}</b>에서 온다. ${rig}이 바람을 못 받고 <b>펄럭인다</b>. 이 방향으론 못 간다 — 비스듬히 지그재그로 가야 한다.`;
+    else Rd.innerHTML = `바람이 <b>${where}</b>에서 온다. ${rig}은 ${fwd < 0.15 ? "<b>겨우</b> 앞으로 간다. 옆으로 밀리는 힘이 더 크다." : "<b>잘</b> 앞으로 간다."} 다른 돛으로 바꿔서 비교해 보자.`;
+  }
+  return {
+    scene, cam: [-9, 8, 9], target: [0, 1.8, 0], st, update, orbit: true, overlays: () => ({}),
+    bind() {
+      const wr = $("wind"), lb = $("lateen"), sb = $("square");
+      const PRE = { "w-head": 45, "w-side": 90, "w-tail": 165 };
+      const mark = () => Object.keys(PRE).forEach(k => $(k).setAttribute("aria-pressed", st.wind === PRE[k]));
+      Object.keys(PRE).forEach(k => $(k).onclick = () => { st.wind = PRE[k]; wr.value = st.wind; mark(); update(); });
+      wr.oninput = () => { st.wind = +wr.value; mark(); update(); };
+      const set = r => { st.rig = r; lb.setAttribute("aria-pressed", r === "lateen"); sb.setAttribute("aria-pressed", r === "square"); update(); };
+      lb.onclick = () => set("lateen"); sb.onclick = () => set("square");
+      st.wind = +wr.value;
+    },
+    tick(dt) {
+      if (reduce) return;
+      winds.forEach(a => {
+        const p = a.userData.p; p.addScaledVector(st.flow, dt * 4);
+        if (p.length() > 15) p.set(-st.flow.x * 13 + (Math.random() - .5) * 18, 2 + Math.random() * 4, -st.flow.z * 13 + (Math.random() - .5) * 18);
+        a.position.copy(p);
+      });
+      grid.position.z = (grid.position.z + dt * st.fwd * 6) % 2;
+      boat.rotation.z = Math.sin(performance.now() / 900) * 0.02;
+    }
+  };
+}
+
+/* ───────── 탭·모드 전환 · 루프 ───────── */
+const tools = { compass: buildCompass(), quadrant: buildQuadrant(latShared), sextant: buildSextant(latShared), caravel: buildCaravel() };
+let cur = tools.compass, latMode = "quadrant";
+function applyView(resetCam) {
+  const ov = cur.overlays();
+  $("scope").hidden = !ov.scope; $("scopeTag").hidden = !ov.scope; if (ov.scopeTag) $("scopeTag").textContent = ov.scopeTag;
+  $("chart").hidden = !ov.chart; $("helm").hidden = !ov.helm;
+  const orbit = cur.orbit; controls.enabled = orbit; $("spin").hidden = !orbit; $("hint").hidden = !orbit;
+  if (!orbit) { controls.autoRotate = false; $("spin").setAttribute("aria-pressed", false); }
+  if (resetCam && orbit) { camera.position.set(...cur.cam); controls.target.set(...cur.target); controls.update(); }
+  cur.update();
+}
+tools.compass.bind(() => applyView(true));
+tools.quadrant.bind(); tools.sextant.bind(); tools.caravel.bind();
+$("place").onchange = () => { latShared.lat = +$("place").value; cur.update(); };
+const setLat = m => {
+  latMode = m; $("lm-quad").setAttribute("aria-pressed", m === "quadrant"); $("lm-sext").setAttribute("aria-pressed", m === "sextant");
+  $("lq").hidden = m !== "quadrant"; $("ls").hidden = m !== "sextant";
+  if ($("p-latitude").hidden === false) { cur = tools[m]; applyView(true); }
+};
+$("lm-quad").onclick = () => setLat("quadrant"); $("lm-sext").onclick = () => setLat("sextant");
+const TABS = ["compass", "latitude", "caravel"];
+function show(tab) {
+  TABS.forEach(k => { $("t-" + k).setAttribute("aria-selected", k === tab); $("p-" + k).hidden = k !== tab; });
+  cur = tab === "latitude" ? tools[latMode] : tools[tab];
+  applyView(true);
+  try { localStorage.setItem("navlab-tab", tab); } catch (e) {}
+}
+TABS.forEach(k => $("t-" + k).onclick = () => { show(k); history.replaceState(null, "", "#" + k); });
+$("spin").onclick = () => { controls.autoRotate = !controls.autoRotate; $("spin").setAttribute("aria-pressed", controls.autoRotate); };
+let start = location.hash.slice(1);
+if (!TABS.includes(start)) { try { start = localStorage.getItem("navlab-tab"); } catch (e) {} }
+resize();
+show(TABS.includes(start) ? start : "compass");
+const clock = new THREE.Clock();
+renderer.setAnimationLoop(() => {
+  const dt = Math.min(clock.getDelta(), 0.05);
+  cur.tick(dt);
+  if (cur.orbit) controls.update();
+  renderer.render(cur.scene, camera);
+});
+</script>
+</body>
+</html>

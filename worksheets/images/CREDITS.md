@@ -1722,3 +1722,10 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 4-3-2_시간띠.png | 3-3-4 봉건 사회 해체·중앙 집권 / 3-3-5 르네상스 / 4-3-2 신항로 개척 시기 띠 (PIL, `figure-builder/fig_432_timeline.py`) | 자체 제작 |
 | 4-3-2_삼각무역.png | 유럽·아프리카·아메리카 삼각 무역 개념도 (`map-render/hq/hq_432_triangle.py`) | 자체 제작 · 해안선·지형 음영 Natural Earth(퍼블릭 도메인) |
 | 4-3-2_후추며칠.png | 1439년 런던 향신료 1파운드 = 장인 며칠 품삯 막대 (PIL, `figure-builder/fig_432_pepperdays.py`) | 자체 제작 · 값: J. Munro «Spices and Their Costs in Medieval Europe»(토론토대) |
+
+## 4-3-2 항해 도구 실험실 (2026-10-26)
+
+| 파일 | 내용 | 출처 |
+|---|---|---|
+| ../4-3-2_항해도구실험실.html | 나침반·사분의/육분의·캐러벨선 3D 모형과 조작 (three.js r160, MIT · 글꼴 Google Fonts Gowun Batang·IBM Plex Sans KR, OFL) | 자체 제작 · 3D 모형은 원리용 단순화(실물 비율 아님) · 나침반 어림 지도는 해안선을 손으로 어림한 그림 |
+
