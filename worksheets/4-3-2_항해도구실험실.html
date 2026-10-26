@@ -127,7 +127,7 @@ footer{max-width:1280px;margin:14px auto 0;font-size:12.5px;color:var(--muted)}
       <div class="how"><h3>이렇게 하면 돼</h3><ol id="cuSteps">
         <li>«출발»을 누른다. 파도 때문에 배가 저절로 조금씩 틀어진다.</li>
         <li>나침반 맨 위 <b>빨간 표시</b> 아래 글자를 본다. 그게 지금 배가 가는 쪽이다.</li>
-        <li>글자가 <b>남남서</b>에서 벗어나면 ◀ ▶로 되돌린다.</li>
+        <li>파도에 뱃머리가 흔들리고, 북동에서 부는 바람이 배를 남서쪽으로 민다. 글자가 <b>남남서</b>에서 벗어나면 ◀ ▶로 되돌린다.</li>
         <li>오른쪽 아래 지도에서 배가 <b>카나리아 제도</b>(빨간 점)에 닿으면 성공!</li>
       </ol></div>
     </div>
@@ -337,12 +337,17 @@ function buildCompass() {
   const ironTag = label("쇳덩이", { size: 54, w: 300, h: 110 }); ironTag.position.set(3.0, 1.1, 0); scene.add(ironTag);
 
   // 항해 시뮬레이션 — 리스본 → 그란카나리아 (어림 지도)
-  const LIS = [-9.14, 38.72], GC = [-15.6, 28.0];
+  const LIS = [-9.14, 38.72], START = [-9.9, 38.5], GC = [-15.6, 28.0];
+  const WIND = { from: 45, to: 225, push: 0.07 };   // 북동 무역풍 — 배를 남서쪽으로 민다
   const bearing = (() => { const dy = GC[1] - LIS[1], dx = (GC[0] - LIS[0]) * Math.cos(33.4 * D); return (Math.atan2(dx, dy) / D + 360) % 360; })();
   const COAST = [[[-8.9, 43.5], [-9.3, 42.5], [-8.8, 41.2], [-8.9, 40.2], [-9.5, 38.8], [-8.8, 38.4], [-8.9, 37.0], [-7.4, 37.2], [-6.3, 36.8], [-5.6, 36.0], [-2, 36.6], [-2, 43.5]],
                  [[-5.9, 35.8], [-6.9, 34.0], [-8.5, 33.2], [-9.8, 31.4], [-9.6, 30.4], [-11.1, 28.5], [-13.2, 27.6], [-14.5, 26.2], [-15.0, 25.0], [-2, 25.0], [-2, 35.8]]];
   const ISLES = [["마데이라", -16.9, 32.7], ["테네리페", -16.6, 28.3], ["그란카나리아", -15.6, 28.0], ["란사로테", -13.6, 29.0], ["푸에르테벤투라", -14.0, 28.4]];
-  const sim = { lon: LIS[0], lat: LIS[1], track: [[...LIS]], on: false, done: false, lost: false, steer: 0, drift: 0 };
+  const sim = { lon: START[0], lat: START[1], track: [[...START]], on: false, done: false, lost: false, steer: 0, drift: 0, t: 0, dist: 0, speed: 0 };
+  const windG = new THREE.Group(); scene.add(windG);
+  const wdir = new THREE.Vector3(Math.sin(225 * D), 0, -Math.cos(225 * D));
+  const winds = [];
+  for (let i = 0; i < 14; i++) { const a = new THREE.ArrowHelper(wdir, new THREE.Vector3(), 1.4, 0x9fd3ff, 0.4, 0.22); a.userData.p = new THREE.Vector3((Math.random() - .5) * 16, 1.2 + Math.random() * 2.5, (Math.random() - .5) * 16); windG.add(a); winds.push(a); }
   const st = { mode: "use", heading: 270, iron: false, field: true };
   const cc = $("chartCv").getContext("2d");
   const LX = [-21, -4.5], LY = [24.5, 42];
@@ -353,13 +358,28 @@ function buildCompass() {
     COAST.forEach(poly => { cc.beginPath(); poly.forEach(([x, y], i) => i ? cc.lineTo(mx(x), my(y)) : cc.moveTo(mx(x), my(y))); cc.closePath(); cc.fill(); cc.stroke(); });
     cc.font = '700 26px "IBM Plex Sans KR",sans-serif'; cc.fillStyle = "#5b4a3a"; cc.textAlign = "right";
     cc.fillText("이베리아", mx(-4.8), my(41.0)); cc.fillText("아프리카", mx(-4.8), my(31.5)); cc.textAlign = "left";
-    ISLES.forEach(([n, x, y]) => { cc.fillStyle = n === "그란카나리아" ? "#b0402a" : "#8a7a5c"; cc.beginPath(); cc.arc(mx(x), my(y), n === "그란카나리아" ? 9 : 6, 0, 7); cc.fill(); });
-    cc.fillStyle = "#b0402a"; cc.font = '700 20px "IBM Plex Sans KR",sans-serif'; cc.fillText("목표", mx(-15.6) - 22, my(28.0) + 30);
+    ISLES.forEach(([n, x, y]) => { cc.fillStyle = n === "마데이라" ? "#8a7a5c" : "#b0402a"; cc.beginPath(); cc.arc(mx(x), my(y), n === "마데이라" ? 6 : 8, 0, 7); cc.fill(); });
+    cc.fillStyle = "#b0402a"; cc.font = '700 20px "IBM Plex Sans KR",sans-serif'; cc.fillText("목표 · 카나리아 제도", mx(-16.0) - 10, my(28.0) + 34);
     cc.fillStyle = "#2b2620"; cc.beginPath(); cc.arc(mx(LIS[0]), my(LIS[1]), 7, 0, 7); cc.fill(); cc.fillText("리스본", mx(LIS[0]) - 76, my(LIS[1]) + 6);
-    cc.strokeStyle = "#1f6f6a"; cc.lineWidth = 3; cc.setLineDash([]);
-    cc.beginPath(); sim.track.forEach(([x, y], i) => i ? cc.lineTo(mx(x), my(y)) : cc.moveTo(mx(x), my(y))); cc.stroke();
-    const h = st.heading * D; cc.save(); cc.translate(mx(sim.lon), my(sim.lat)); cc.rotate(h);
-    cc.fillStyle = "#1f6f6a"; cc.beginPath(); cc.moveTo(0, -14); cc.lineTo(8, 10); cc.lineTo(-8, 10); cc.closePath(); cc.fill(); cc.restore();
+    cc.strokeStyle = "rgba(31,111,106,.45)"; cc.fillStyle = "rgba(31,111,106,.45)"; cc.lineWidth = 2;
+    const wa = WIND.to * D, ph = (sim.t * 22) % 60;
+    for (let k = 0; k < 7; k++) for (let m = 0; m < 5; m++) {
+      const bx = 60 + k * 62 + ph * Math.sin(wa), by = 40 + m * 80 - ph * Math.cos(wa);
+      const ex = bx + Math.sin(wa) * 22, ey = by - Math.cos(wa) * 22;
+      if (bx < 0 || bx > 460 || by < 0 || by > 420) continue;
+      cc.beginPath(); cc.moveTo(bx, by); cc.lineTo(ex, ey); cc.stroke();
+      cc.save(); cc.translate(ex, ey); cc.rotate(wa); cc.beginPath(); cc.moveTo(0, 0); cc.lineTo(-4, 6); cc.lineTo(4, 6); cc.closePath(); cc.fill(); cc.restore();
+    }
+    cc.fillStyle = "#1f6f6a"; cc.font = '700 18px "IBM Plex Sans KR",sans-serif'; cc.fillText("바람: 북동에서 ↙", 12, 54);
+    cc.strokeStyle = "#1f6f6a"; cc.lineWidth = 3; cc.setLineDash([6, 5]);
+    cc.beginPath(); sim.track.forEach(([x, y], i) => i ? cc.lineTo(mx(x), my(y)) : cc.moveTo(mx(x), my(y))); cc.stroke(); cc.setLineDash([]);
+    const h = st.heading * D, bob = sim.on ? Math.sin(sim.t * 4) * 1.5 : 0;
+    cc.save(); cc.translate(mx(sim.lon), my(sim.lat) + bob); cc.rotate(h);
+    cc.fillStyle = "#7a5232"; cc.strokeStyle = "#2b2620"; cc.lineWidth = 1.5;
+    cc.beginPath(); cc.moveTo(0, -18); cc.quadraticCurveTo(10, -4, 9, 12); cc.lineTo(-9, 12); cc.quadraticCurveTo(-10, -4, 0, -18); cc.closePath(); cc.fill(); cc.stroke();
+    cc.fillStyle = "#f1e8d2"; cc.beginPath(); cc.moveTo(0, -10); cc.lineTo(7, 6); cc.lineTo(0, 4); cc.closePath(); cc.fill();
+    cc.strokeStyle = "#5e3d22"; cc.lineWidth = 2; cc.beginPath(); cc.moveTo(0, -12); cc.lineTo(0, 8); cc.stroke();
+    cc.restore();
     cc.fillStyle = "#2b2620"; cc.font = '500 18px "IBM Plex Sans KR",sans-serif'; cc.fillText("↑ 북", 12, 26); cc.fillText("어림 지도", 12, 408);
   }
   function update() {
@@ -378,10 +398,10 @@ function buildCompass() {
     } else {
       const off = ((st.heading - bearing + 540) % 360) - 180;
       const R = $("helmRead"); R.classList.toggle("ok", sim.done);
-      if (sim.done) R.innerHTML = `<b>카나리아 제도 도착!</b> 별 하나 안 보이는 밤에 글자판 하나로 길을 찾았다. 이게 나침반이다. «다시»로 한 번 더.`;
+      if (sim.done) R.innerHTML = `<b>카나리아 제도 도착 — ${sim.isle || ""}!</b> 별 하나 안 보이는 밤에 글자판 하나로 길을 찾았다. 이게 나침반이다. «다시»로 한 번 더.`;
       else if (sim.lost) R.innerHTML = `<b>길을 잃었다</b> — ${sim.lostWhy}. «다시»를 눌러 리스본에서 다시 출발하자.`;
       else R.innerHTML = `지금 가는 쪽: <b>${dirName(st.heading)}</b> · 가야 할 쪽: <b>남남서</b><br>${Math.abs(off) < 6 ? "좋아, 이대로!" : off > 0 ? "오른쪽으로 치우쳤다 — ◀ 왼쪽" : "왼쪽으로 치우쳤다 — 오른쪽 ▶"}`;
-      $("brief").innerHTML = `리스본을 떠난 밤. 구름이 껴서 별이 없다.<br><b>남남서</b>로 가면 카나리아 제도.`;
+      $("brief").innerHTML = `리스본 앞바다, 밤. 구름 때문에 별이 없다.<br><b>남남서</b>로 가면 카나리아 제도.<br><span style="color:var(--muted)">바람 북동에서 · 파도 보통${sim.on ? (sim.speed > 0.45 ? " · 순풍" : " · 역풍") : ""}</span>`;
       $("go").textContent = sim.done || sim.lost ? "다시" : sim.on ? "멈춤" : "출발";
       drawChart();
     }
@@ -392,7 +412,7 @@ function buildCompass() {
     const look = new THREE.Vector3(0, 0, -0.7).applyAxisAngle(new THREE.Vector3(0, 1, 0), ship.rotation.y);
     camera.position.copy(eye); camera.lookAt(look);
   }
-  function reset() { Object.assign(sim, { lon: LIS[0], lat: LIS[1], track: [[...LIS]], on: false, done: false, lost: false, drift: 0 }); st.heading = 219; }
+  function reset() { Object.assign(sim, { lon: START[0], lat: START[1], track: [[...START]], on: false, done: false, lost: false, drift: 0, t: 0, dist: 0, speed: 0 }); st.heading = 219; ship.rotation.z = 0; ship.rotation.x = 0; }
   return {
     scene, cam: [6, 7, 9], target: [0, 0, 0], st, update,
     get orbit() { return st.mode !== "use"; },
@@ -424,18 +444,30 @@ function buildCompass() {
       if (st.mode !== "use") return;
       if (sim.steer) { st.heading = (st.heading + sim.steer * 45 * dt + 360) % 360; }
       if (sim.on && !sim.done && !sim.lost) {
-        // 파도·바람에 뱃머리가 조금씩 틀어진다
-        sim.drift += (Math.random() - 0.5) * 40 * dt; sim.drift = Math.max(-7, Math.min(7, sim.drift)) * 0.995;
-        st.heading = (st.heading + sim.drift * dt + 360) % 360;
-        const v = 0.45 * dt, h = st.heading * D;
-        sim.lat += Math.cos(h) * v; sim.lon += Math.sin(h) * v / Math.cos(sim.lat * D);
+        sim.t += dt;
+        // 파도: 뱃머리가 좌우로 흔들리고(주기), 돌풍은 한쪽으로 조금씩 민다(무작위)
+        const wave = Math.sin(sim.t * 1.4) * 3.2 + Math.sin(sim.t * 0.37) * 1.5;
+        sim.drift += (Math.random() - 0.5) * 30 * dt; sim.drift = Math.max(-5, Math.min(5, sim.drift)) * 0.995;
+        st.heading = (st.heading + (wave + sim.drift) * dt + 360) % 360;
+        // 바람: 뒤에서 받으면 빠르고 앞에서 받으면 느리다 · 그리고 배를 바람 아래쪽(남서)으로 민다
+        const h = st.heading * D, rel = Math.cos((st.heading - WIND.to) * D);
+        sim.speed = 0.5 * (0.55 + 0.45 * rel);
+        const v = sim.speed * dt, w = WIND.push * dt, wa = WIND.to * D;
+        sim.lat += Math.cos(h) * v + Math.cos(wa) * w;
+        sim.lon += (Math.sin(h) * v + Math.sin(wa) * w) / Math.cos(sim.lat * D);
+        sim.dist += v;
         const last = sim.track[sim.track.length - 1];
         if (Math.hypot(last[0] - sim.lon, last[1] - sim.lat) > 0.12) sim.track.push([sim.lon, sim.lat]);
-        if (Math.hypot((sim.lon - GC[0]) * Math.cos(28 * D), sim.lat - GC[1]) < 0.55) { sim.done = true; sim.on = false; }
-        const inLand = COAST.some(poly => { let c = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const [xi, yi] = poly[i], [xj, yj] = poly[j]; if ((yi > sim.lat) !== (yj > sim.lat) && sim.lon < (xj - xi) * (sim.lat - yi) / (yj - yi) + xi) c = !c; } return c; });
+        // 제도의 섬 어느 하나에 닿으면 도착
+        const isle = ISLES.find(([n, x, y]) => n !== "마데이라" && Math.hypot((sim.lon - x) * Math.cos(28 * D), sim.lat - y) < 0.6);
+        if (isle) { sim.done = true; sim.on = false; sim.isle = isle[0]; }
+        ship.rotation.z = Math.sin(sim.t * 1.4) * 0.07; ship.rotation.x = Math.sin(sim.t * 0.9) * 0.04;
+        const inLand = sim.dist > 0.8 && COAST.some(poly => { let c = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const [xi, yi] = poly[i], [xj, yj] = poly[j]; if ((yi > sim.lat) !== (yj > sim.lat) && sim.lon < (xj - xi) * (sim.lat - yi) / (yj - yi) + xi) c = !c; } return c; });
         if (inLand) { sim.lost = true; sim.on = false; sim.lostWhy = "해안에 너무 붙어 뭍에 닿았다"; }
-        else if (sim.lon < LX[0] + 0.3 || sim.lat < LY[0] + 0.3 || sim.lat > LY[1] - 0.3) { sim.lost = true; sim.on = false; sim.lostWhy = "카나리아 제도를 지나쳐 망망대해로 나갔다"; }
+        else if (sim.lon < -19.5 || sim.lat < 26.6 || sim.lat > LY[1] - 0.3) { sim.lost = true; sim.on = false; sim.lostWhy = sim.lat < 26.6 ? "카나리아 제도를 지나쳐 남쪽 바다로 나갔다" : "너무 서쪽으로 나가 망망대해다"; }
       }
+      windG.visible = st.mode === "use";
+      winds.forEach(a => { const p = a.userData.p; p.addScaledVector(wdir, dt * 2.5); if (p.length() > 11) p.set(-wdir.x * 9 + (Math.random() - .5) * 12, 1.2 + Math.random() * 2.5, -wdir.z * 9 + (Math.random() - .5) * 12); a.position.copy(p); });
       update(); placeCamera();
     }
   };
@@ -658,12 +690,12 @@ function buildCaravel() {
   const windG = new THREE.Group(); scene.add(windG);
   const winds = [];
   for (let i = 0; i < 26; i++) { const w = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(), 1.6, 0x9fd3ff, 0.45, 0.25); w.userData.p = new THREE.Vector3((Math.random() - .5) * 26, 2 + Math.random() * 4, (Math.random() - .5) * 26); windG.add(w); winds.push(w); }
-  const RIG = { lateen: { smin: 8, smax: 85, luff: 14, k: 0.35 }, square: { smin: 35, smax: 90, luff: 20, k: 0.5 } };
+  const RIG = { lateen: { smin: 8, smax: 85, luff: 14, k: 0.35, area: 1.0 }, square: { smin: 35, smax: 90, luff: 20, k: 0.5, area: 1.25 } };   // 네모 돛이 더 크다 — 뒷바람에선 그 넓이가 그대로 힘
   const st = { wind: 70, rig: "lateen", fwd: 0, flow: new THREE.Vector3() };
   function solve(w, r) {
     let best = { s: r.smin, fwd: -1, F: 0, side: 0 };
     for (let s = r.smin; s <= r.smax; s += 0.5) {
-      const alpha = w - s; const F = alpha > r.luff ? Math.sin(Math.min(alpha, 90) * D) : 0;
+      const alpha = w - s; const F = alpha > r.luff ? Math.sin(Math.min(alpha, 90) * D) * r.area : 0;
       const fwd = F * Math.sin(s * D) - r.k * F * Math.cos(s * D);
       if (fwd > best.fwd) best = { s, fwd, F, side: F * Math.cos(s * D) };
     }
@@ -682,7 +714,7 @@ function buildCaravel() {
     winds.forEach(a => a.setDirection(st.flow.clone().normalize()));
     st.fwd = Math.max(0, fwd);
     $("windOut").textContent = w + "°";
-    $("meter").style.width = Math.min(100, Math.max(0, fwd) * 110) + "%";
+    $("meter").style.width = Math.min(100, Math.max(0, fwd) * 80) + "%";
     const where = w < 15 ? "정면" : w < 80 ? "비스듬히 앞" : w < 100 ? "옆" : w < 165 ? "비스듬히 뒤" : "뒤";
     const rig = st.rig === "lateen" ? "삼각돛" : "네모 돛";
     const Rd = $("caravelRead"); Rd.classList.toggle("ok", ok && fwd >= 0.15);
