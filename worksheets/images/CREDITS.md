@@ -1172,7 +1172,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-4_card_foreign258_v2.png | 카드 — 외국인 주민 258만 명 (사진 위·글자 띠 아래 합성, PIL) · 사진 7-3_photo_ansan_wongok.jpg와 같음 · 수치 행정안전부 | 7-3_photo_ansan_wongok.jpg 행 참조 |
 | 7-4_card_refugee_guess_v2.png | 카드 — 난민은 대부분 어디에 머물까(짐작) (사진 위·글자 띠 아래 합성, PIL) · 사진 Border region between Poland and Ukraine (Medyka) (P-055062-00-09).jpg | European Commission – Audiovisual Service, Bartosz Siedlik · CC BY 4.0 · Wikimedia Commons |
 | 7-4_card_refugee_neighbour_v2.png | 카드 — 열 명 가운데 예닐곱은 이웃 나라에 (사진 위·글자 띠 아래 합성, PIL) · 사진 Kutupalong Refugee Camp (John Owens-VOA).jpg · 수치 UNHCR | John Owens (VOA) · 퍼블릭 도메인 · Wikimedia Commons |
-| 7-4_card_afghan390_v2.png | 카드 — 2021년 아프가니스탄 390명 (사진 위·글자 띠 아래 합성, PIL) · 사진 13.11.17 필리핀 재난구호 Republic Of korea Air Force (10955843615).jpg(2013년 필리핀 구호 때 사진임을 그림에 밝힘) | 대한민국 국군 · CC BY-SA 2.0 · Wikimedia Commons |
+| 7-4_card_afghan390_v2.png | 카드 — 2021년 아프가니스탄 390명 (사진 위·글자 띠 아래 합성, PIL) · 사진 Afghanistan Evacuation 210821-M-GQ845-1035.jpg(2021-08-21 카불 공항, 수송기에 오르는 피란민; 2026-10-27 2013년 필리핀 구호 사진에서 교체) | U.S. Marine Corps photo by Sgt. Samuel Ruiz · 퍼블릭 도메인 · Wikimedia Commons |
 | 7-5_card_cover_v2.png | 카드 — 먼저 쓰고, 그다음 넘기기 (사진 위·글자 띠 아래 합성, PIL) · 사진 Boy doing homework (4596604619).jpg | Randen Pederson · CC BY 2.0 · Wikimedia Commons |
 | 7-5_card_296_v2.png | 카드 — 일본 65세 이상 29.6% (사진 위·글자 띠 아래 합성, PIL) · 사진 Elderly Woman in Street - Sapporo - Hokkaido - Japan (47971119516).jpg | Adam Jones · CC BY-SA 2.0 · Wikimedia Commons |
 | 7-5_card_21_v2.png | 카드 — 인구 대체 수준 2.1명 (사진 위·글자 띠 아래 합성, PIL) · 사진 Human-Male-White-Newborn-Baby-Crying.jpg | Evan-Amos · 퍼블릭 도메인 · Wikimedia Commons |
