@@ -1729,3 +1729,10 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 |---|---|---|
 | ../4-3-2_항해도구실험실.html | 나침반·사분의/육분의·캐러벨선 3D 모형과 조작 (three.js r160, MIT · 글꼴 Google Fonts Gowun Batang·IBM Plex Sans KR, OFL) | 자체 제작 · 3D 모형은 원리용 단순화(실물 비율 아님) · 나침반 어림 지도는 해안선을 손으로 어림한 그림 |
 
+## 4-3-2 입담 삽화 둘 (2026-10-26 · 아티팩트 댓글)
+
+| 파일 | 내용 | 출처 |
+|---|---|---|
+| 4-3-2_입담_이틀품삯.png | 1440년 무렵 런던 장인과 향신료 상인 — 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 429 대체) · `map-render/ipdam_gen.py r432_days` · 가상 인물 |
+| 4-3-2_입담_왕실후원.png | 1492년 카스티야 왕실 관리와 항해사(사분의·지도) — 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora) · `ipdam_gen.py r432_sponsor` · 가상 인물(실존 인물 아님, 왕관 없음) |
+
