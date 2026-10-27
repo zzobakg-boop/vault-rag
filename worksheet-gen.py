@@ -3,7 +3,7 @@
 정답 파일에서 답을 순서대로 추출하고, 개념편의 빈칸에 순서대로 매칭한다."""
 
 import re
-PICK_TIGHT_CSS = """/* 2026-10-26 사회 7-5 «좁게» — 그림 없는 짧은 카드. 데스크톱은 한 줄에 다 놓고, 폰은 «이름·값 | 버튼» 한 줄씩 */ .pk-grid.pk-tight { grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; } .pk-tight .pk-card { padding: 8px 6px; } .pk-tight .pk-sit { min-height: 0; margin: 2px 0 7px; } .pk-tight .pk-b { padding: 5px 1px; word-break: keep-all; line-height: 1.25; font-size: .74em; } .pk-tight .pk-btns { gap: 3px; } @media (max-width: 640px) {   .pk-grid.pk-tight { grid-template-columns: 1fr; gap: 6px; }   .pk-tight .pk-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 10px; align-items: center; text-align: left; padding: 7px 10px; }   .pk-tight .pk-name, .pk-tight .pk-sit { grid-column: 1; margin: 0; }   .pk-tight .pk-btns { grid-column: 2; grid-row: 1 / span 2; }   .pk-tight .pk-why { grid-column: 1 / -1; } }"""
+PICK_TIGHT_CSS = """/* 2026-10-26 사회 7-5 «좁게» — 그림 없는 짧은 카드. 데스크톱은 한 줄에 다 놓고, 폰은 «이름·값 | 버튼» 한 줄씩 */ .pk-grid.pk-tight { grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; } .pk-tight .pk-card { padding: 8px 6px; } .pk-tight .pk-sit { min-height: 0; margin: 2px 0 7px; } .pk-tight .pk-b { padding: 5px 1px; word-break: keep-all; line-height: 1.25; font-size: .74em; } .pk-tight .pk-btns { gap: 3px; } @media (max-width: 640px) {   .pk-grid.pk-tight { grid-template-columns: 1fr; gap: 6px; }   .pk-tight .pk-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 10px; align-items: center; text-align: left; padding: 7px 10px; }   .pk-tight .pk-name, .pk-tight .pk-sit { grid-column: 1; margin: 0; }   .pk-tight .pk-btns { grid-column: 2; grid-row: 1 / span 2; }   .pk-tight .pk-why { grid-column: 1 / -1; } } /* 2026-10-27 사회 7-5 «센 수/견준 값»: 금테 카드도 «좁게» — 칸마다 깔던 크림 판 대신 카드 하나를 크림 판+금테(배경 두 겹)로. 폰 두 칸 배치에서 판이 조각나던 것 */ .pk-gold.pk-tight .pk-card, .pk-gold.pk-tight .pk-card.pk-noimg { padding: 9px 8px; border: 5px solid transparent; border-radius: 13px; background: linear-gradient(#fdf7e6, #fdf7e6) padding-box, linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%) border-box; } .pk-gold.pk-tight .pk-name, .pk-gold.pk-tight .pk-sit, .pk-gold.pk-tight .pk-btns, .pk-gold.pk-tight .pk-why, .pk-gold.pk-tight .pk-card.pk-noimg .pk-name { background: none; padding: 0; border-radius: 0; } .pk-gold.pk-tight .pk-name { font-size: .95em; line-height: 1.35; word-break: keep-all; } .pk-gold.pk-tight .pk-sit { word-break: keep-all; } .pk-gold.pk-tight .pk-sit { font-size: .8em; line-height: 1.4; margin: 3px 0 7px; } .pk-gold.pk-tight .pk-why { margin-top: 6px; } .pk-gold.pk-tight:has(> .pk-card:nth-child(6)), .pk-gold.pk-tight:has(.pk-b:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } @media (max-width: 640px) { .pk-grid.pk-gold.pk-tight, .pk-gold.pk-tight:has(> .pk-card:nth-child(6)), .pk-gold.pk-tight:has(.pk-b:nth-child(3)) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; } .pk-gold.pk-tight .pk-card, .pk-gold.pk-tight .pk-card.pk-noimg { display: flex; flex-direction: column; text-align: left; padding: 8px 10px; } .pk-gold.pk-tight .pk-sit { margin: 2px 0 6px; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:has(> .pk-b:nth-child(3)) { grid-auto-flow: row; grid-template-columns: 1fr; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:has(> .pk-b:nth-child(4)) { grid-template-columns: 1fr 1fr; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { align-content: center; } }"""
 import math
 import sys
 import os
@@ -2109,8 +2109,12 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if in_fold:
                     html_parts.append('</div></details>')
                 ftype, fmark, ftitle = m_fold.group(1), m_fold.group(2), m_fold.group(3)
+                # 2026-10-27 역사 4-3-2(천대현 «관련 자료와 함께 2단으로») — 제목 끝 «| 2단» = 접힘 안 그림 왼쪽 · 글 오른쪽(폰은 위아래)
+                _f2c = bool(re.search(r'\|\s*2단\s*$', ftitle))
+                if _f2c:
+                    ftitle = re.sub(r'\s*\|\s*2단\s*$', '', ftitle)
                 html_parts.append(
-                    f'<details class="ws-fold ws-fold-{ftype}"{" open" if fmark == "+" else ""}>'
+                    f'<details class="ws-fold ws-fold-{ftype}{" ws-fold-2c" if _f2c else ""}"{" open" if fmark == "+" else ""}>'
                     f'<summary>{inline(ftitle) or "펼쳐 보기"}</summary>'
                     f'<div class="ws-fold-body">')
                 in_fold = True
@@ -2522,6 +2526,10 @@ table {{ border-radius: 10px; overflow: hidden; }}
 .ws-fold[open] > summary {{ border-bottom: 1px solid #e2ddd0; }}
 .ws-fold-body {{ padding: 10px 16px 14px; }}
 .ws-fold-body p {{ margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }}
+.ws-fold-2c .ws-fold-body {{ display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }}
+.ws-fold-2c .ws-fold-body > figure {{ grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }}
+.ws-fold-2c .ws-fold-body > :not(figure) {{ grid-column: 2; }}
+@media (max-width: 640px) {{ .ws-fold-2c .ws-fold-body {{ display: block; }} }}
 blockquote {{
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
