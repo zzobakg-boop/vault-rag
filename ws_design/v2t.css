@@ -1,0 +1,40 @@
+/* ===== v2 사회 교재형 층(design_layer: 사회교재) — 『The Human Mosaic』의 장치(다섯 주제 렌즈·장 끝 상자·표지 사진으로 돌아오기)를 사회②에. 2026-10-28 7-4 시험판 3판(블라인드 2회·역사 학생 눈) ===== */
+:root{--t-region:#2f6fd6;--t-move:#d9612b;--t-glob:#6a4fc4;--t-nat:#2f8f55;--t-land:#b07a12;--serif:"Noto Serif KR","Nanum Myeongjo",serif}
+/* 제목은 명조, 본문은 고딕 */
+.hero-title,.v2-sec h2{font-family:var(--serif)!important;font-weight:800!important;letter-spacing:-.03em!important}
+.hero-title .v2s-eyebrow,.hero-title .v2s-q{font-family:inherit}
+.hero-title .v2s-eyebrow{font-family:"Pretendard",system-ui,sans-serif}
+/* 단계 머리: 번호를 교재식으로 */
+.v2-sec.step .v2-kicker b{background:var(--ink);font-family:"Pretendard",system-ui,sans-serif}
+/* 주제 렌즈 칩 */
+.v2t-lens{display:flex;flex-wrap:wrap;gap:6px;margin:-6px 0 16px}
+.v2t-chip{display:inline-flex;align-items:center;gap:5px;font-size:.76rem;font-weight:800;padding:3px 10px 3px 6px;border-radius:999px;background:color-mix(in srgb,var(--c) 10%,#fff);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 30%,#fff)}
+.v2t-chip svg{width:16px;height:16px;flex:none}
+.v2t-legend{margin:18px 0 4px;padding:14px 16px;border-radius:14px;background:#f7f8fb;border:1px solid var(--line)}
+.v2t-legend h4{margin:0 0 8px;font-size:.78rem;letter-spacing:.06em;color:var(--mute)}
+.v2t-legend ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.v2t-legend li{display:flex;gap:8px;align-items:flex-start;font-size:.9rem;line-height:1.5;color:var(--ink2)}
+.v2t-legend li .v2t-chip{flex:none}
+/* 장 끝 상자: 사진으로 읽기 · 직접 해 보기 · 논쟁 속으로 · 마치며 */
+.v2t-tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--ink);border-radius:4px;padding:2px 8px;margin-bottom:6px}
+.v2-sec .ws-sw.v2t-seeing{border:0;border-top:4px solid var(--t-land);border-radius:0 0 16px 16px;background:#fffaf0}
+.v2-sec .ws-sw.v2t-seeing .ws-sw-head{color:var(--t-land)}
+.v2t-debate{border-top:5px solid var(--t-glob)!important}
+.v2t-hero-go{display:block;margin-top:10px;font-size:.84rem;color:#f0c75e;font-weight:600}
+
+/* 2판(검토 반영): 단계 렌즈는 STEP 줄 안의 작은 회색 글자로 — 머리 메타를 두 층 이하로 */
+.v2t-klens{display:inline-flex;gap:6px;align-items:center;margin-left:4px;font-size:.74rem;font-weight:700;letter-spacing:0;color:var(--mute)}
+.v2t-klens svg{width:13px;height:13px;color:var(--mute)}
+.v2t-klens span{display:inline-flex;align-items:center;gap:3px}
+.hero-keyword{text-wrap:pretty}
+
+/* 3판: 렌즈 글자 진하게 · 범례는 한 줄 접기 · 제목 앞 이모지는 작고 옅게(명조와 부딪치지 않게) */
+.v2t-klens{font-size:.8rem!important;color:var(--ink2)!important}
+.v2t-klens svg{color:var(--ink2)!important}
+details.v2t-legend{padding:10px 14px}
+details.v2t-legend summary{cursor:pointer;font-size:.86rem;font-weight:700;color:var(--ink2);list-style:none}
+details.v2t-legend summary::-webkit-details-marker{display:none}
+details.v2t-legend summary b{color:var(--ink)}
+details.v2t-legend summary i{font-style:normal;color:var(--mute);font-weight:600;margin-left:6px;font-size:.78rem}
+details.v2t-legend ul{margin-top:10px}
+.v2t-ico{font-size:.72em;opacity:.75;margin-right:.25em;vertical-align:.08em;font-family:system-ui,sans-serif}

@@ -4083,6 +4083,29 @@ def main():
     with open(blank_file, 'r', encoding='utf-8') as _f:
         _dm = re.search(r'^design:[ \t]*["\']?(v2)["\']?[ \t]*$', _f.read()[:3000], re.M)
     _design = _dm.group(1) if _dm else None
+    # 2026-10-28 천대현(사회 7-4 시험판 → «사회는 샘플대로 7-5차시부터») — v2 위의 사회 층, opt-in.
+    #   frontmatter `design_layer: 사회교재` 이면 ws_design/v2s(표지 세 층·넘김 카드뉴스·교과서 상자 결 맞춤)와
+    #   v2t(『Human Mosaic』식 다섯 렌즈·장 끝 상자)를 덧씌운다. 렌즈는 `lens: "1단계=지역,이동; 활동 1=경관"`,
+    #   표지 사진으로 돌아오는 넘김이 있으면 `seeing: <넘김 머리 글 일부>`·`seeing_go: <표지 안내 한 줄>`.
+    #   입력칸·data-id·정답 불변. design: v2 가 없거나 키가 없으면 출력은 이전과 같다.
+    with open(blank_file, 'r', encoding='utf-8') as _f:
+        _fm_head = _f.read()[:3000]
+    _layer = bool(_design) and bool(re.search(r'^design_layer:[ \t]*["\']?사회교재["\']?[ \t]*$', _fm_head, re.M))
+    def _fm_val(k):
+        m = re.search(r'^' + k + r':[ \t]*["\']?(.*?)["\']?[ \t]*$', _fm_head, re.M)
+        return m.group(1).strip() if m else ''
+    _layer_cfg = None
+    if _layer:
+        _lens = []
+        for part in [x.strip() for x in _fm_val('lens').split(';') if x.strip()]:
+            if '=' in part:
+                k, v = part.split('=', 1)
+                _lens.append([k.strip(), [t.strip() for t in v.split(',') if t.strip()]])
+        _layer_cfg = {'lens': _lens,
+                      'boxes': [['OX 퀴즈', '확인하기'], ['핵심 3줄', '이 차시를 마치며']]}
+        if _fm_val('seeing'):
+            _layer_cfg['seeing'] = _fm_val('seeing')
+            _layer_cfg['seeingGo'] = _fm_val('seeing_go')
     def _apply_design(h):
         if not _design:
             return h
@@ -4091,9 +4114,18 @@ def main():
         _js = open(os.path.join(_dd, _design + '.js'), encoding='utf-8').read()
         h = h.replace('</head>', '<style id="ws-design-' + _design + '">' + _css + '</style>\n</head>', 1)
         i = h.rfind('</body>')
-        return h[:i] + '<script id="ws-design-' + _design + '-js">' + _js + '</script>\n' + h[i:]
+        h = h[:i] + '<script id="ws-design-' + _design + '-js">' + _js + '</script>\n' + h[i:]
+        if _layer_cfg is not None:
+            _rd = lambda n: open(os.path.join(_dd, n), encoding='utf-8').read()
+            h = h.replace('</head>', '<link id="v2t-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap">\n'
+                          '<style id="v2s">' + _rd('v2s.css') + '</style>\n<style id="v2t">' + _rd('v2t.css') + '</style>\n</head>', 1)
+            i = h.rfind('</body>')
+            h = (h[:i] + '<script id="v2s-js">' + _rd('v2s.js') + '</script>\n'
+                 '<script type="application/json" id="v2t-cfg">' + json.dumps(_layer_cfg, ensure_ascii=False).replace('</', '<\\/') + '</script>\n'
+                 '<script id="v2t-js">' + _rd('v2t.js') + '</script>\n' + h[i:])
+        return h
     if _design:
-        print(f'🎨 디자인 {_design} 덧씌움')
+        print(f'🎨 디자인 {_design} 덧씌움' + (' + 사회 교재형 층' if _layer_cfg is not None else ''))
     if any([hero.get('keywords'), hero.get('image'), hero.get('hook')]):
         print(f"🎨 hero 섹션: image={'O' if hero.get('image') else 'X'}, keywords={len(hero.get('keywords') or [])}, hook={'O' if hero.get('hook') else 'X'}")
 
