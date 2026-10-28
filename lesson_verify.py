@@ -134,6 +134,13 @@ except Exception:
 #   바로 아래 그림이 답을 말하는 경우(3-3-5 ⑥ 지동설)도 있어 지우지 않고 낮은 등급으로 보여 준다(10/16 사회 제안).
 (warn if side else ok).append(f"빈칸 위 캡션·접기 제목·그림 글자 겹침 {len(side)}건" + (f" · 아래 {len(side_after)}건(ℹ️ 정리 자료면 통과)" if side_after else ""))
 
+# 디자인 v2 키 ↔ 발행본 (2026-10-28 천대현 «앞으로 학습지 제작은 현재 디자인대로» — 원고에 키가 있는데 재생성을 안 하면 옛 모양으로 나간다)
+if md and os.path.exists(md):
+    _v2key = bool(re.search(r'^design:[ \t]*["\']?v2["\']?[ \t]*$', open(md, encoding="utf-8").read()[:3000], re.M))
+    _v2html = 'id="ws-design-v2-js"' in s
+    if _v2key or _v2html:
+        (ok if _v2key == _v2html else red).append(f"디자인 v2 원고 {'켬' if _v2key else '없음'} · 발행본 {'입힘' if _v2html else '안 입힘'}")
+
 # 폰 390
 try:
     from playwright.sync_api import sync_playwright
@@ -142,9 +149,13 @@ try:
         errs = []; pg.on("pageerror", lambda e: errs.append(str(e)[:80]))
         pg.goto("file://" + path); pg.wait_for_timeout(300)
         sw = pg.evaluate("document.documentElement.scrollWidth")
+        # 디자인 v2(10/28 기본) — v2.js가 h2마다 section으로 다시 묶는다. 입력칸이 묶음 밖에 남으면 «오늘의 길» 채운 칸이 틀린다.
+        v2out = pg.evaluate("document.getElementById('ws-design-v2-js') ? [...document.querySelectorAll('.container [data-id]')].filter(e=>!e.closest('.v2-sec')).length : -1")
         b.close()
     (red if sw > 392 else ok).append(f"폰 390 문서폭 {sw}px")
     (red if errs else ok).append(f"JS 오류 {len(errs)}건" + (f" {errs[:1]}" if errs else ""))
+    if v2out >= 0:
+        (red if v2out else ok).append(f"디자인 v2 단계 묶음 밖 입력칸 {v2out}개")
 except Exception as e:
     warn.append(f"폰 폭 측정 못 함({str(e)[:40]})")
 
