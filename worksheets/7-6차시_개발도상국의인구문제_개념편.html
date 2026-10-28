@@ -58,6 +58,10 @@ table { border-radius: 10px; overflow: hidden; }
 .ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
 .ws-fold-body { padding: 10px 16px 14px; }
 .ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+.ws-fold-2c .ws-fold-body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }
+.ws-fold-2c .ws-fold-body > figure { grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }
+.ws-fold-2c .ws-fold-body > :not(figure) { grid-column: 2; }
+@media (max-width: 640px) { .ws-fold-2c .ws-fold-body { display: block; } }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -1126,6 +1130,129 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
+<style id="ws-design-v2">/* ===== 4-3-2 디자인 시험판 v2 — 덧씌움(원본 HTML·data-id 불변) ===== */
+:root{
+  --ink:#1f2329; --ink2:#4a5160; --mute:#7a8191; --line:#e6e8ee; --paper:#ffffff; --bg:#f3f4f7;
+  --step:#2f6fd6; --step-soft:#eaf1fd;
+  --voice:#fff6e6; --voice-line:#f0b94a;
+  --task:#fff3d6; --task-ink:#8a5a00;
+  --ask:#eef7ef; --ask-line:#3f9a5a;
+  --mark:rgba(255,214,77,.55);
+}
+html{font-size:17px}
+@media (max-width:640px){html{font-size:16.5px}}
+body{background:var(--bg)!important;color:var(--ink)!important;letter-spacing:-.005em;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.container{max-width:1120px!important;padding:0!important;background:transparent!important;box-shadow:none!important;display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:28px}
+.container>br{display:none}
+.v2-rail{grid-column:1;grid-row:1/span 999;position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;padding:14px 10px;background:var(--paper);border-radius:14px;box-shadow:0 1px 3px rgba(20,30,50,.06)}
+.v2-rail h4{font-size:.72rem;letter-spacing:.08em;color:var(--mute);margin:2px 8px 8px;font-weight:700}
+.v2-rail a{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:9px;color:var(--ink2);text-decoration:none;font-size:.82rem;line-height:1.35}
+.v2-rail a:hover{background:var(--bg)}
+.v2-rail a.on{background:var(--step-soft);color:var(--step);font-weight:700}
+.v2-rail .n{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:800;background:var(--bg);color:var(--mute)}
+.v2-rail a.on .n{background:var(--step);color:#fff}
+.v2-rail a.done .n{background:#3f9a5a;color:#fff}
+.v2-rail .c{margin-left:auto;font-size:.7rem;color:var(--mute);font-variant-numeric:tabular-nums}
+.v2-meter{height:6px;border-radius:3px;background:var(--line);margin:10px 8px 4px;overflow:hidden}
+.v2-meter i{display:block;height:100%;width:0;background:#3f9a5a;transition:width .3s}
+.v2-mtx{font-size:.72rem;color:var(--mute);margin:0 8px}
+.container>*:not(.v2-rail){grid-column:2;min-width:0}
+.hero-section{border-radius:18px!important;overflow:hidden}
+.v2-sec{background:var(--paper);border-radius:18px;padding:30px 36px 28px;margin:0 0 18px;box-shadow:0 1px 3px rgba(20,30,50,.06);scroll-margin-top:16px}
+.v2-sec.step{border-top:5px solid var(--step)}
+.v2-sec>*:first-child{margin-top:0}
+.v2-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;letter-spacing:.06em;color:var(--step);margin-bottom:6px}
+.v2-kicker b{background:var(--step);color:#fff;border-radius:6px;padding:2px 8px;letter-spacing:0}
+.v2-sec h2{font-size:1.55rem!important;line-height:1.35!important;font-weight:800!important;letter-spacing:-.02em;margin:0 0 16px!important;padding:0!important;border:0!important;color:var(--ink)!important;text-wrap:balance}
+.v2-sec h2 .v2-sub{display:block;font-size:1.02rem;font-weight:600;color:var(--ink2);margin-top:4px}
+.v2-sec p{font-size:1rem!important;line-height:1.85!important;margin:0 0 14px!important;max-width:40em;color:var(--ink)}
+.v2-sec .ws-tb-ask,.v2-sec .ws-tb p{line-height:1.6!important}
+.v2-sec strong{background:linear-gradient(transparent 62%,var(--mark) 62%);font-weight:700}
+.v2-sec figure.ws-fig{margin:20px 0!important}
+.v2-sec figcaption{font-size:.84rem!important;line-height:1.6!important;color:var(--ink2)!important}
+.v2-sec blockquote{margin:16px 0!important;font-size:.97rem!important;line-height:1.8!important}
+/* 목소리 구분: 입담 / 교과서 펴기 / 찾아보기·쓰기 / 열쇳말 */
+blockquote.v2-voice{position:relative;background:var(--voice)!important;border:0!important;border-radius:16px!important;padding:14px 18px 14px 58px!important;color:#3d3220!important}
+blockquote.v2-voice::before{content:"🎙️";position:absolute;left:14px;top:12px;width:32px;height:32px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:17px;box-shadow:0 0 0 2px var(--voice-line)}
+blockquote.v2-voice .v2-who{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;color:#b07a12;margin-bottom:2px}
+blockquote.v2-task{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;background:var(--task)!important;border:0!important;border-radius:12px!important;padding:10px 14px!important;color:var(--task-ink)!important;font-size:.9rem!important;font-weight:600}
+blockquote.v2-key{background:#f1f0ff!important;border:0!important;border-radius:12px!important;padding:12px 16px!important;color:#3b2f8f!important;font-weight:600}
+blockquote.v2-ask{background:var(--ask)!important;border:0!important;border-left:4px solid var(--ask-line)!important;border-radius:4px 12px 12px 4px!important;padding:12px 16px!important}
+p.v2-q{background:#f7f8fb;border-radius:12px;padding:12px 16px 12px 16px!important;border:1px dashed #c9cfdb;font-weight:600}
+p.v2-q::before{content:"생각해 보기";display:block;font-size:.7rem;font-weight:800;letter-spacing:.08em;color:var(--mute);margin-bottom:2px}
+.ws-tb{border-radius:14px!important}
+/* 빈칸 */
+input.blank-input:not(.activity-input){min-height:34px;font-size:1rem!important;font-weight:700;border:0!important;border-bottom:2.5px solid var(--step)!important;background:#f3f7ff!important;border-radius:6px 6px 0 0!important;padding:2px 8px!important;color:var(--step)!important;vertical-align:baseline}
+input.blank-input:focus{outline:3px solid rgba(47,111,214,.25)!important;outline-offset:1px}
+.activity-input,textarea{font-size:1rem!important;line-height:1.7!important}
+.ws-fold{border-radius:14px!important}
+.ws-fold>summary{font-size:.95rem!important}
+.v2-sec .ws-2c{gap:24px!important}
+@media (max-width:980px){
+  .container{display:block}
+  .v2-rail{position:sticky;top:0;z-index:50;display:flex;gap:6px;overflow-x:auto;max-height:none;border-radius:0 0 12px 12px;padding:8px 10px;margin:0 -16px 12px;scrollbar-width:none}
+  .v2-rail h4,.v2-mtx{display:none}
+  .v2-rail a{flex:none;padding:6px 10px;border:1px solid var(--line);font-size:.78rem}
+  .v2-rail a .t{display:none}
+  .v2-rail a.on .t{display:inline}
+  .v2-meter{position:absolute;left:0;right:0;bottom:0;margin:0;height:3px;border-radius:0}
+}
+@media (max-width:640px){
+  .v2-sec{padding:22px 18px 20px;border-radius:14px;margin:0 0 12px}
+  .v2-sec h2{font-size:1.32rem!important}
+  blockquote.v2-voice{padding:12px 14px 12px 50px!important}
+  blockquote.v2-voice::before{left:10px;width:28px;height:28px;font-size:15px}
+}
+@media print{.v2-rail{display:none}.container{display:block}.v2-sec{box-shadow:none;break-inside:auto}}
+.v2-sec h2{background:none!important;box-shadow:none!important}
+blockquote.v2-task strong,blockquote.v2-key strong,.ws-tb strong{background:none}
+.v2-sec figure.ws-fig{max-width:760px;margin-left:auto!important;margin-right:auto!important}
+@media (max-width:980px){.v2-rail{margin:0 0 12px}}
+.container>.hero-section{margin:0 0 18px!important}
+/* 점수 막대: 카드처럼, 폰은 한 줄로 얇게 */
+.container>.control-bar{margin:0 0 14px!important;padding:10px 16px!important;border-radius:14px;border:0!important;box-shadow:0 1px 3px rgba(20,30,50,.08);top:8px!important;align-items:center}
+.control-bar .score{font-size:.9rem!important;font-variant-numeric:tabular-nums}
+@media (max-width:640px){
+  .container>.control-bar{top:0!important;border-radius:0 0 12px 12px;padding:6px 10px!important;flex-wrap:nowrap!important;gap:6px}
+  .control-bar .score{font-size:.74rem!important;white-space:nowrap;margin:0!important}
+  .control-bar .btn,.control-bar button{font-size:.72rem!important;padding:6px 8px!important;min-height:32px;white-space:nowrap}
+  .control-bar>div:last-child{display:flex;gap:4px;flex-wrap:nowrap}
+}
+@media (max-width:980px){.v2-rail{top:var(--cbh,52px)!important;z-index:90}}
+@media (max-width:640px){.container>.control-bar{flex-direction:row!important;justify-content:space-between!important;text-align:left!important}.control-bar .score{text-align:left!important}.control-bar .btn{margin:0!important}}
+@media (max-width:640px){.control-bar .score{white-space:normal!important;flex:1 1 auto;min-width:0;line-height:1.35}.control-bar>div:last-child{flex:none}.control-bar .btn{padding:6px 7px!important}}
+.v2-sec{scroll-margin-top:84px}@media (max-width:980px){.v2-sec{scroll-margin-top:120px}}
+
+/* 10/28 천대현: 오늘의 길 접기·펴기 + 왼쪽/위 고르기 */
+.v2-rh{display:flex;align-items:center;gap:6px;margin:0 4px 8px}
+.v2-rh h4{margin:0 auto 0 4px!important}
+.v2-b{font:inherit;font-size:.72rem;font-weight:700;color:var(--ink2);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 8px;cursor:pointer;white-space:nowrap}
+.v2-b:hover{background:var(--step-soft);color:var(--step)}
+/* 왼쪽 + 접힘: 번호만 남는 좁은 기둥 */
+html.v2-folded:not(.v2-top) .container{grid-template-columns:58px minmax(0,1fr)}
+html.v2-folded:not(.v2-top) .v2-rail{padding:10px 6px}
+html.v2-folded:not(.v2-top) .v2-rail .t,html.v2-folded:not(.v2-top) .v2-rail .c,html.v2-folded:not(.v2-top) .v2-rh h4,html.v2-folded:not(.v2-top) .v2-mtx,html.v2-folded:not(.v2-top) .v2-pos{display:none}
+html.v2-folded:not(.v2-top) .v2-rh{flex-direction:column;margin:0 0 6px}
+html.v2-folded:not(.v2-top) .v2-fold{padding:4px 5px;font-size:.66rem}
+html.v2-folded:not(.v2-top) .v2-rail a{justify-content:center;padding:6px 0}
+/* 위로: 한 단, 점수 막대 아래 가로 띠 */
+html.v2-top .container{display:block;max-width:920px!important}
+html.v2-top .v2-rail{position:sticky;top:var(--cbh,60px);z-index:90;display:flex;align-items:center;gap:6px;overflow-x:auto;max-height:none;padding:8px 10px;margin:0 0 14px;scrollbar-width:none}
+html.v2-top .v2-rh{flex:none;margin:0 6px 0 0}
+html.v2-top .v2-rh h4{display:none}
+html.v2-top .v2-mtx{display:none}
+html.v2-top .v2-rail a{flex:none;padding:6px 10px;border:1px solid var(--line);font-size:.8rem}
+html.v2-top .v2-meter{position:absolute;left:0;right:0;bottom:0;margin:0;height:3px;border-radius:0}
+html.v2-top.v2-folded .v2-rail a{display:none}
+html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;color:var(--mute);font-weight:700}
+@media (max-width:980px){
+  .v2-pos{display:none}
+  .v2-rh{flex:none;margin:0 6px 0 0}.v2-rh h4{display:none}
+  html.v2-folded .v2-rail a{display:none}
+  html.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;color:var(--mute);font-weight:700}
+}
+@media (min-width:981px){html.v2-top .v2-rail a .t{display:inline}}
+</style>
 </head>
 <body>
 <div class="container">
@@ -1180,7 +1307,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>농사짓는 집에서는 아이가 곧 일손이라 아이를 많이 낳는 편이 유리했다. 그런데 병원과 백신이 생기면서 태어난 아이들이 예전보다 훨씬 덜 죽게 되었다.</p><p>태어나는 수는 그대로인데 죽는 수가 줄었으니, 사람이 한꺼번에 불어난 것이다.</p></div>
 <br>
-<div class="ws-gr" id="gr32"><div class="ws-gr-head">1960~2024년 나이지리아 — 인구 1,000명당 한 해에 태어나는 사람과 세상을 떠나는 사람</div><svg class="ws-gr-svg" viewBox="0 0 480 300" role="img" aria-label="1960~2024년 나이지리아 — 인구 1,000명당 한 해에 태어나는 사람과 세상을 떠나는 사람 — 태어나는 사람(명) · 세상을 떠나는 사람(명)"></svg><div class="ws-gr-legend"><span class="gr-key"><i style="background:#c0392b"></i>태어나는 사람</span><span class="gr-key"><i style="background:#2e86c1"></i>세상을 떠나는 사람</span></div><div class="ws-gr-ctl"><button type="button" class="ws-gr-play" aria-label="처음부터 그려 보기">▶</button><input type="range" class="ws-gr-range" min="0" max="13" value="0" step="1" aria-label="연대 고르기"></div><div class="ws-gr-read" aria-live="polite"></div></div><script>(function(){var D={"x": ["1960", "1965", "1970", "1975", "1980", "1985", "1990", "1995", "2000", "2005", "2010", "2015", "2020", "2024"], "s": [{"name": "태어나는 사람", "unit": "명", "lo": 0.0, "hi": 50.0, "col": "#c0392b", "v": [46.5, 46.9, 47.4, 49.0, 48.3, 45.9, 44.5, 44.1, 43.9, 43.4, 42.1, 39.0, 33.7, 32.5], "d": 1}, {"name": "세상을 떠나는 사람", "unit": "명", "lo": 0.0, "hi": 50.0, "col": "#2e86c1", "v": [26.5, 25.7, 24.2, 21.9, 19.5, 18.9, 18.9, 18.5, 17.4, 15.7, 14.4, 13.7, 12.6, 11.6], "d": 1}], "band": null, "yr": false};var w=document.getElementById("gr32"),svg=w.querySelector("svg"),rg=w.querySelector(".ws-gr-range"),rd=w.querySelector(".ws-gr-read"),pl=w.querySelector(".ws-gr-play");var NS="http://www.w3.org/2000/svg",L=52,R=428,T=40,B=256,n=D.x.length;function el(t,a,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;svg.appendChild(e);return e;}function X(i){return L+(R-L)*i/(n-1);}function Y(s,v){return B-(B-T)*(v-s.lo)/(s.hi-s.lo);}function fmt(v,d){if(d==null)return (Math.round(v*10)/10).toString();var m=Math.pow(10,d);return (Math.round(v*m+1e-9)/m).toFixed(d);}if(D.band){var a=D.x.indexOf(D.band.a),b=D.x.indexOf(D.band.b);if(a>=0&&b>=0)el("rect",{x:X(a),y:T,width:X(b)-X(a),height:B-T,"class":"gr-band"});}for(var g=0;g<=5;g++){var yy=B-(B-T)*g/5;el("line",{x1:L,x2:R,y1:yy,y2:yy,"class":"gr-grid"});D.s.forEach(function(s,k){var v=s.lo+(s.hi-s.lo)*g/5;if(g===0&&k===0&&s.lo>0)return;el("text",{x:k===0?L-8:R+8,y:yy+5,"text-anchor":k===0?"end":"start","class":"gr-tick",fill:s.col},fmt(v));});}D.s.forEach(function(s,k){el("text",{x:k===0?L-8:R+8,y:T-18,"text-anchor":k===0?"end":"start","class":"gr-unit",fill:s.col},"("+s.unit+")");});var step=Math.max(1,Math.round((n-1)/4));for(var i=0;i<n;i+=step){el("text",{x:X(i),y:B+26,"text-anchor":"middle","class":"gr-tick"},D.x[i]);}el("line",{x1:L,x2:R,y1:B,y2:B,"class":"gr-axis"});var cur=el("line",{x1:L,x2:L,y1:T,y2:B,"class":"gr-cur"});var lines=D.s.map(function(s){return el("polyline",{fill:"none",stroke:s.col,"stroke-width":4,"stroke-linejoin":"round","stroke-linecap":"round",points:""});});var dots=D.s.map(function(s){return el("circle",{r:6,fill:s.col,stroke:"#fff","stroke-width":2});});function draw(i){i=+i;D.s.forEach(function(s,k){var p=[];for(var j=0;j<=i;j++)p.push(X(j)+","+Y(s,s.v[j]));lines[k].setAttribute("points",p.join(" "));dots[k].setAttribute("cx",X(i));dots[k].setAttribute("cy",Y(s,s.v[i]));});cur.setAttribute("x1",X(i));cur.setAttribute("x2",X(i));rd.innerHTML="<b>"+(/^[0-9]{4}[.][0-9]{1,2}$/.test(D.x[i])?String(D.x[i]).replace(/^([0-9]{4})[.]([0-9]{1,2})$/,"$1년 $2월"):D.x[i]+(!D.yr&&(+D.x[1]-+D.x[0])==10&&D.x.every(function(v){return +v%10==0;})?"년대":"년"))+"</b> — "+D.s.map(function(s){return s.name+" <b style=\"color:"+s.col+"\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");rg.value=i;}rg.addEventListener("input",function(){draw(rg.value);});var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){draw(n-1);return;}var i=0;draw(0);pl.textContent="■";tm=setInterval(function(){i++;draw(i);if(i>=n-1){clearInterval(tm);tm=null;pl.textContent="▶";}},260);});window.addEventListener("beforeprint",function(){draw(n-1);});draw(0);})();</script>
+<div class="ws-gr" id="gr32"><div class="ws-gr-head">1960~2024년 나이지리아 — 인구 1,000명당 한 해에 태어나는 사람과 세상을 떠나는 사람</div><svg class="ws-gr-svg" viewBox="0 0 480 300" role="img" aria-label="1960~2024년 나이지리아 — 인구 1,000명당 한 해에 태어나는 사람과 세상을 떠나는 사람 — 태어나는 사람(명) · 세상을 떠나는 사람(명)"></svg><div class="ws-gr-legend"><span class="gr-key"><i style="background:#c0392b"></i>태어나는 사람</span><span class="gr-key"><i style="background:#2e86c1"></i>세상을 떠나는 사람</span></div><div class="ws-gr-ctl"><button type="button" class="ws-gr-play" aria-label="처음부터 그려 보기">▶</button><input type="range" class="ws-gr-range" min="0" max="13" value="0" step="1" aria-label="연대 고르기"></div><div class="ws-gr-read" aria-live="polite"></div></div><script>(function(){var D={"x": ["1960", "1965", "1970", "1975", "1980", "1985", "1990", "1995", "2000", "2005", "2010", "2015", "2020", "2024"], "s": [{"name": "태어나는 사람", "unit": "명", "lo": 0.0, "hi": 50.0, "col": "#c0392b", "v": [46.5, 46.9, 47.4, 49.0, 48.3, 45.9, 44.5, 44.1, 43.9, 43.4, 42.1, 39.0, 33.7, 32.5], "d": 1}, {"name": "세상을 떠나는 사람", "unit": "명", "lo": 0.0, "hi": 50.0, "col": "#2e86c1", "v": [26.5, 25.7, 24.2, 21.9, 19.5, 18.9, 18.9, 18.5, 17.4, 15.7, 14.4, 13.7, 12.6, 11.6], "d": 1}], "band": null, "yr": false, "prop": false};var w=document.getElementById("gr32"),svg=w.querySelector("svg"),rg=w.querySelector(".ws-gr-range"),rd=w.querySelector(".ws-gr-read"),pl=w.querySelector(".ws-gr-play");var NS="http://www.w3.org/2000/svg",L=52,R=428,T=40,B=256,n=D.x.length;function el(t,a,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;svg.appendChild(e);return e;}function X(i){if(D.prop)return L+(R-L)*(+D.x[i]-+D.x[0])/(+D.x[n-1]-+D.x[0]);return L+(R-L)*i/(n-1);}function Y(s,v){return B-(B-T)*(v-s.lo)/(s.hi-s.lo);}function fmt(v,d){if(d==null)return (Math.round(v*10)/10).toString();var m=Math.pow(10,d);return (Math.round(v*m+1e-9)/m).toFixed(d);}if(D.band){var a=D.x.indexOf(D.band.a),b=D.x.indexOf(D.band.b);if(a>=0&&b>=0)el("rect",{x:X(a),y:T,width:X(b)-X(a),height:B-T,"class":"gr-band"});}for(var g=0;g<=5;g++){var yy=B-(B-T)*g/5;el("line",{x1:L,x2:R,y1:yy,y2:yy,"class":"gr-grid"});D.s.forEach(function(s,k){var v=s.lo+(s.hi-s.lo)*g/5;if(g===0&&k===0&&s.lo>0)return;el("text",{x:k===0?L-8:R+8,y:yy+5,"text-anchor":k===0?"end":"start","class":"gr-tick",fill:s.col},fmt(v));});}D.s.forEach(function(s,k){if(s.unit)el("text",{x:k===0?L-8:R+8,y:T-18,"text-anchor":k===0?"end":"start","class":"gr-unit",fill:s.col},"("+s.unit+")");});var step=Math.max(1,Math.round((n-1)/4));for(var i=0;i<n;i+=step){el("text",{x:X(i),y:B+26,"text-anchor":"middle","class":"gr-tick"},D.x[i]);}el("line",{x1:L,x2:R,y1:B,y2:B,"class":"gr-axis"});var cur=el("line",{x1:L,x2:L,y1:T,y2:B,"class":"gr-cur"});var lines=D.s.map(function(s){return el("polyline",{fill:"none",stroke:s.col,"stroke-width":4,"stroke-linejoin":"round","stroke-linecap":"round",points:""});});var dots=D.s.map(function(s){return el("circle",{r:6,fill:s.col,stroke:"#fff","stroke-width":2});});function draw(i){i=+i;D.s.forEach(function(s,k){var p=[];for(var j=0;j<=i;j++)p.push(X(j)+","+Y(s,s.v[j]));lines[k].setAttribute("points",p.join(" "));dots[k].setAttribute("cx",X(i));dots[k].setAttribute("cy",Y(s,s.v[i]));});cur.setAttribute("x1",X(i));cur.setAttribute("x2",X(i));rd.innerHTML="<b>"+(/^[0-9]{4}[.][0-9]{1,2}$/.test(D.x[i])?String(D.x[i]).replace(/^([0-9]{4})[.]([0-9]{1,2})$/,"$1년 $2월"):D.x[i]+(!D.yr&&(+D.x[1]-+D.x[0])==10&&D.x.every(function(v){return +v%10==0;})?"년대":"년"))+"</b> — "+D.s.map(function(s){return s.name+" <b style=\"color:"+s.col+"\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");rg.value=i;}rg.addEventListener("input",function(){draw(rg.value);});var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){draw(n-1);return;}var i=0;draw(0);pl.textContent="■";tm=setInterval(function(){i++;draw(i);if(i>=n-1){clearInterval(tm);tm=null;pl.textContent="▶";}},260);});window.addEventListener("beforeprint",function(){draw(n-1);});draw(0);})();</script>
 <br>
 <blockquote>🎙️ 두 선 사이 간격을 봐. 파란 선(세상을 떠나는 사람)은 1960년부터 꾸준히 내려왔는데, 빨간 선(태어나는 사람)은 2010년 무렵까지 40명대에 머물렀어. 두 선이 벌어진 만큼 해마다 사람이 불어난 거야. 3단계에서 볼 라고스가 바로 이 나라에 있어. 요즘은 빨간 선도 내려오기 시작했지만 간격은 아직 넓어.</blockquote>
 <br>
@@ -1682,6 +1809,61 @@ document.querySelectorAll('.ws-rad').forEach(function(rad){
     });
   });
 });
+</script>
+<script id="ws-design-v2-js">(function(){
+var C=document.querySelector('.container'); if(!C) return;
+// 글머리 이모지는 첫 글자 마디에서만 지운다 — innerHTML을 다시 쓰면 안에 든 입력칸·단추의 리스너가 끊긴다(메인 10/28 지적)
+function strip(el,ch){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(n.nodeValue.trim()){n.nodeValue=n.nodeValue.replace(ch,'').replace(/^\s+/,'');return;}}}
+// 1) 블록 목소리 분류
+[].forEach.call(C.querySelectorAll('blockquote'),function(b){
+  var t=b.textContent.trim();
+  if(t.indexOf('🎙️')===0){b.classList.add('v2-voice');strip(b,'🎙️');var w=document.createElement('span');w.className='v2-who';w.textContent='선생님 입담';b.insertBefore(w,b.firstChild);}
+  else if(t.indexOf('📕')===0)b.classList.add('v2-task');
+  else if(t.indexOf('💡')===0)b.classList.add('v2-key');
+  else if(/^(🔍|🧭|✍️)/.test(t))b.classList.add('v2-ask');
+});
+[].forEach.call(C.querySelectorAll('p'),function(p){var t=p.textContent.trim();if(/^💬/.test(t)){p.classList.add('v2-q');strip(p,'💬');}});
+// 2) h2마다 묶어 카드로 (활동 section.ws-do는 그대로 카드)
+var kids=[].slice.call(C.children), secs=[], cur=null;
+kids.forEach(function(el){
+  if(el.tagName==='H2'){cur=document.createElement('section');cur.className='v2-sec';C.insertBefore(cur,el);secs.push(cur);}
+  else if(el.matches&&el.matches('section.ws-do')){el.classList.add('v2-sec');secs.push(el);cur=null;return;}
+  if(cur&&el.tagName!=='BR')cur.appendChild(el);
+});
+// 3) 단계 머리: «📖 1단계: 제목 — 부제» → 킥커 + 제목 + 부제
+secs.forEach(function(s,k){
+  s.id='v2s'+k; var h=s.querySelector('h2'); if(!h)return;
+  var m=h.textContent.match(/^📖\s*(\d)단계:\s*(⭐\s*)?(.+?)(\s+—\s+(.+))?$/);
+  if(m){s.classList.add('step');var kk=document.createElement('div');kk.className='v2-kicker';kk.innerHTML='<b>STEP '+m[1]+'</b>'+(m[2]?'⭐ 핵심':'');s.insertBefore(kk,h);
+    h.innerHTML=m[3]+(m[5]?'<span class="v2-sub">'+m[5]+'</span>':'');s.dataset.lab=m[1]+'단계';s.dataset.n=m[1];}
+  else{s.dataset.lab=h.textContent.replace(/^[^\w가-힣]+/,'').split('—')[0].trim();s.dataset.n=h.textContent.trim().slice(0,2);}
+});
+// 4) 진도 레일
+var R=document.createElement('nav');R.className='v2-rail';R.setAttribute('aria-label','학습지 차례');
+R.innerHTML='<div class="v2-rh"><h4>오늘의 길</h4><button type="button" class="v2-b v2-pos" aria-label="오늘의 길 위치 바꾸기"></button><button type="button" class="v2-b v2-fold" aria-expanded="true"></button></div>';
+var H=document.documentElement;function sg(k){try{return localStorage.getItem(k)}catch(e){return null}}function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function paint(){var top=H.classList.contains('v2-top'),fd=H.classList.contains('v2-folded');
+  R.querySelector('.v2-pos').textContent=top?'⇤ 왼쪽에':'⇡ 위로';R.querySelector('.v2-pos').title=top?'오늘의 길을 왼쪽에 두기':'오늘의 길을 위로 올리기';
+  var f=R.querySelector('.v2-fold');f.textContent=fd?'펴기 ▸':'◂ 접기';f.setAttribute('aria-expanded',fd?'false':'true');}
+if(sg('v2-top')==='1')H.classList.add('v2-top');if(sg('v2-fold')==='1')H.classList.add('v2-folded');
+R.addEventListener('click',function(e){var b=e.target.closest('.v2-b');if(!b)return;
+  if(b.classList.contains('v2-pos')){H.classList.toggle('v2-top');ss('v2-top',H.classList.contains('v2-top')?'1':'0');}
+  else{H.classList.toggle('v2-folded');ss('v2-fold',H.classList.contains('v2-folded')?'1':'0');}
+  paint();});
+setTimeout(paint,0);
+secs.forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.dataset.s=s.id;
+  var n=s.dataset.n;a.innerHTML='<span class="n">'+(/^\d$/.test(n)?n:n)+'</span><span class="t">'+s.dataset.lab+'</span><span class="c"></span>';R.appendChild(a);});
+var meter=document.createElement('div');meter.className='v2-meter';meter.innerHTML='<i></i>';R.appendChild(meter);
+var mtx=document.createElement('div');mtx.className='v2-mtx';R.appendChild(mtx);
+C.insertBefore(R,C.firstChild);
+function tally(){var all=0,fill=0;
+  secs.forEach(function(s){var ins=s.querySelectorAll('input.blank-input,textarea.activity-input');var f=0;[].forEach.call(ins,function(i){if(i.value.trim())f++;});
+    all+=ins.length;fill+=f;var a=R.querySelector('a[data-s="'+s.id+'"]');if(!a)return;a.querySelector('.c').textContent=ins.length?f+'/'+ins.length:'';a.classList.toggle('done',ins.length>0&&f===ins.length);});
+  meter.firstChild.style.width=(all?fill/all*100:0)+'%';mtx.textContent='채운 칸 '+fill+' / '+all;}
+document.addEventListener('input',tally);tally();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){[].forEach.call(R.querySelectorAll('a'),function(a){a.classList.toggle('on',a.dataset.s===e.target.id);if(a.dataset.s===e.target.id&&R.scrollWidth>R.clientWidth)R.scrollLeft=a.offsetLeft-20;});}});},{rootMargin:'-30% 0px -65% 0px'});secs.forEach(function(s){io.observe(s);});}
+})();
+(function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,800);})();
 </script>
 </body>
 </html>

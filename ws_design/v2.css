@@ -34,6 +34,7 @@ body{background:var(--bg)!important;color:var(--ink)!important;letter-spacing:-.
 .v2-sec h2{font-size:1.55rem!important;line-height:1.35!important;font-weight:800!important;letter-spacing:-.02em;margin:0 0 16px!important;padding:0!important;border:0!important;color:var(--ink)!important;text-wrap:balance}
 .v2-sec h2 .v2-sub{display:block;font-size:1.02rem;font-weight:600;color:var(--ink2);margin-top:4px}
 .v2-sec p{font-size:1rem!important;line-height:1.85!important;margin:0 0 14px!important;max-width:40em;color:var(--ink)}
+.v2-sec .ws-tb-ask,.v2-sec .ws-tb p{line-height:1.6!important}
 .v2-sec strong{background:linear-gradient(transparent 62%,var(--mark) 62%);font-weight:700}
 .v2-sec figure.ws-fig{margin:20px 0!important}
 .v2-sec figcaption{font-size:.84rem!important;line-height:1.6!important;color:var(--ink2)!important}
