@@ -1222,6 +1222,43 @@ blockquote.v2-task strong,blockquote.v2-key strong,.ws-tb strong{background:none
 @media (max-width:640px){.container>.control-bar{flex-direction:row!important;justify-content:space-between!important;text-align:left!important}.control-bar .score{text-align:left!important}.control-bar .btn{margin:0!important}}
 @media (max-width:640px){.control-bar .score{white-space:normal!important;flex:1 1 auto;min-width:0;line-height:1.35}.control-bar>div:last-child{flex:none}.control-bar .btn{padding:6px 7px!important}}
 .v2-sec{scroll-margin-top:84px}@media (max-width:980px){.v2-sec{scroll-margin-top:120px}}
+
+/* 10/28 천대현: 오늘의 길 접기·펴기 + 왼쪽/위 고르기 */
+.v2-rh{display:flex;align-items:center;gap:6px;margin:0 4px 8px}
+.v2-rh h4{margin:0 auto 0 4px!important}
+.v2-b{font:inherit;font-size:.72rem;font-weight:700;color:var(--ink2);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 8px;cursor:pointer;white-space:nowrap}
+.v2-b:hover{background:var(--step-soft);color:var(--step)}
+/* 왼쪽 + 접힘: 번호만 남는 좁은 기둥 */
+html.v2-folded:not(.v2-top) .container{grid-template-columns:58px minmax(0,1fr)}
+html.v2-folded:not(.v2-top) .v2-rail{padding:10px 6px}
+html.v2-folded:not(.v2-top) .v2-rail .t,html.v2-folded:not(.v2-top) .v2-rail .c,html.v2-folded:not(.v2-top) .v2-rh h4,html.v2-folded:not(.v2-top) .v2-mtx,html.v2-folded:not(.v2-top) .v2-pos{display:none}
+html.v2-folded:not(.v2-top) .v2-rh{flex-direction:column;margin:0 0 6px}
+html.v2-folded:not(.v2-top) .v2-fold{padding:4px 5px;font-size:.66rem}
+html.v2-folded:not(.v2-top) .v2-rail a{justify-content:center;padding:6px 0}
+/* 위로: 한 단, 점수 막대 아래 가로 띠 */
+html.v2-top .container{display:block;max-width:920px!important}
+html.v2-top .v2-rail{position:sticky;top:var(--cbh,60px);z-index:90;display:flex;align-items:center;gap:6px;overflow-x:auto;max-height:none;padding:8px 10px;margin:0 0 14px;scrollbar-width:none}
+html.v2-top .v2-rh{flex:none;margin:0 6px 0 0}
+html.v2-top .v2-rh h4{display:none}
+html.v2-top .v2-mtx{display:none}
+html.v2-top .v2-rail a{flex:none;padding:6px 10px;border:1px solid var(--line);font-size:.8rem}
+html.v2-top .v2-meter{position:absolute;left:0;right:0;bottom:0;margin:0;height:3px;border-radius:0}
+html.v2-top.v2-folded .v2-rail a{display:none}
+html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;color:var(--mute);font-weight:700}
+@media (max-width:980px){
+  .v2-pos{display:none}
+  .v2-rh{flex:none;margin:0 6px 0 0}.v2-rh h4{display:none}
+  html.v2-folded .v2-rail a{display:none}
+  html.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;color:var(--mute);font-weight:700}
+}
+@media (min-width:981px){html.v2-top .v2-rail a .t{display:inline}}
+
+/* 입담 목소리 단추(시험판 한 곳) */
+.v2-say{margin-left:10px;font:inherit;font-size:.74rem;font-weight:800;letter-spacing:0;color:#fff;background:#d9931a;border:0;border-radius:999px;padding:4px 12px;cursor:pointer;vertical-align:middle}
+.v2-say:hover{background:#b97a10}
+blockquote.v2-voice.v2-playing::before{box-shadow:0 0 0 3px #d9931a;animation:v2pulse 1.2s ease-in-out infinite}
+@keyframes v2pulse{50%{box-shadow:0 0 0 6px rgba(217,147,26,.35)}}
+@media (prefers-reduced-motion:reduce){blockquote.v2-voice.v2-playing::before{animation:none}}
 </style>
 </head>
 <body>
@@ -1913,7 +1950,17 @@ secs.forEach(function(s,k){
 });
 // 4) 진도 레일
 var R=document.createElement('nav');R.className='v2-rail';R.setAttribute('aria-label','학습지 차례');
-R.innerHTML='<h4>오늘의 길</h4>';
+R.innerHTML='<div class="v2-rh"><h4>오늘의 길</h4><button type="button" class="v2-b v2-pos" aria-label="오늘의 길 위치 바꾸기"></button><button type="button" class="v2-b v2-fold" aria-expanded="true"></button></div>';
+var H=document.documentElement;function sg(k){try{return localStorage.getItem(k)}catch(e){return null}}function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function paint(){var top=H.classList.contains('v2-top'),fd=H.classList.contains('v2-folded');
+  R.querySelector('.v2-pos').textContent=top?'⇤ 왼쪽에':'⇡ 위로';R.querySelector('.v2-pos').title=top?'오늘의 길을 왼쪽에 두기':'오늘의 길을 위로 올리기';
+  var f=R.querySelector('.v2-fold');f.textContent=fd?'펴기 ▸':'◂ 접기';f.setAttribute('aria-expanded',fd?'false':'true');}
+if(sg('v2-top')==='1')H.classList.add('v2-top');if(sg('v2-fold')==='1')H.classList.add('v2-folded');
+R.addEventListener('click',function(e){var b=e.target.closest('.v2-b');if(!b)return;
+  if(b.classList.contains('v2-pos')){H.classList.toggle('v2-top');ss('v2-top',H.classList.contains('v2-top')?'1':'0');}
+  else{H.classList.toggle('v2-folded');ss('v2-fold',H.classList.contains('v2-folded')?'1':'0');}
+  paint();});
+setTimeout(paint,0);
 secs.forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.dataset.s=s.id;
   var n=s.dataset.n;a.innerHTML='<span class="n">'+(/^\d$/.test(n)?n:n)+'</span><span class="t">'+s.dataset.lab+'</span><span class="c"></span>';R.appendChild(a);});
 var meter=document.createElement('div');meter.className='v2-meter';meter.innerHTML='<i></i>';R.appendChild(meter);
@@ -1926,8 +1973,8 @@ function tally(){var all=0,fill=0;
 document.addEventListener('input',tally);tally();
 if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){[].forEach.call(R.querySelectorAll('a'),function(a){a.classList.toggle('on',a.dataset.s===e.target.id);if(a.dataset.s===e.target.id&&R.scrollWidth>R.clientWidth)R.scrollLeft=a.offsetLeft-20;});}});},{rootMargin:'-30% 0px -65% 0px'});secs.forEach(function(s){io.observe(s);});}
 })();
-(function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);})();
+(function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,800);})();
 
-(function(){window.submitResult=function(){var t=document.getElementById('v2toast');if(!t){t=document.createElement('div');t.id='v2toast';t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1f2329;color:#fff;padding:12px 18px;border-radius:12px;font-size:15px;z-index:999;box-shadow:0 4px 16px rgba(0,0,0,.2)';document.body.appendChild(t);}t.textContent='디자인 시험판이라 제출되지 않아요. 수업에서는 원래 학습지로 제출하세요.';t.style.display='block';clearTimeout(t._h);t._h=setTimeout(function(){t.style.display='none'},3500);};var b=document.getElementById('submitBtn');if(b)b.textContent='📤 제출(시험판 꺼짐)';})();</script>
+(function(){window.submitResult=function(){var t=document.getElementById('v2toast');if(!t){t=document.createElement('div');t.id='v2toast';t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1f2329;color:#fff;padding:12px 18px;border-radius:12px;font-size:15px;z-index:999;box-shadow:0 4px 16px rgba(0,0,0,.2)';document.body.appendChild(t);}t.textContent='디자인 시험판이라 제출되지 않아요. 수업에서는 원래 학습지로 제출하세요.';t.style.display='block';clearTimeout(t._h);t._h=setTimeout(function(){t.style.display='none'},3500);};var b=document.getElementById('submitBtn');if(b)b.textContent='📤 제출(꺼짐)';})();(function(){var q=[].filter.call(document.querySelectorAll('blockquote.v2-voice'),function(b){return b.textContent.indexOf('서양사 지난 두 시간')>=0})[0];if(!q)return;var a=new Audio('audio/4-3-2_입담_지난시간_시험.m4a');a.preload='none';var w=q.querySelector('.v2-who');var bt=document.createElement('button');bt.type='button';bt.className='v2-say';bt.innerHTML='▶ 선생님 목소리로 듣기';w.appendChild(bt);bt.addEventListener('click',function(){if(a.paused){a.play();}else{a.pause();}});a.addEventListener('play',function(){bt.innerHTML='❚❚ 멈추기';q.classList.add('v2-playing')});a.addEventListener('pause',function(){bt.innerHTML='▶ 선생님 목소리로 듣기';q.classList.remove('v2-playing')});a.addEventListener('ended',function(){a.currentTime=0;});})();</script>
 </body>
 </html>
