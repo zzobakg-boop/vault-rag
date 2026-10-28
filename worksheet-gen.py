@@ -4076,20 +4076,38 @@ def main():
         exam_mode = bool(re.search(r'^exam_mode:\s*true', _f.read()[:3000], re.M | re.I))
     if exam_mode:
         print('🔒 평가지 모드(exam_mode): 저장/복원 키를 반-번호에 묶음')
+    # 2026-10-28 천대현(역사 4-3-2) «디자인 업그레이드 — 시험판 반영해 푸시» — opt-in.
+    #   frontmatter `design: v2` 이면 ws_design/v2.css·v2.js 를 덧씌운다:
+    #   본문 17px·줄간격 1.85·단계 카드·입담/교과서/질문 목소리 구분·오늘의 길(접기·왼쪽/위 고르기·채운 칸).
+    #   입력칸·data-id·정답은 건드리지 않는다(배치·모양만). 키가 없는 차시는 출력이 이전과 같다.
+    with open(blank_file, 'r', encoding='utf-8') as _f:
+        _dm = re.search(r'^design:[ \t]*["\']?(v2)["\']?[ \t]*$', _f.read()[:3000], re.M)
+    _design = _dm.group(1) if _dm else None
+    def _apply_design(h):
+        if not _design:
+            return h
+        _dd = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ws_design')
+        _css = open(os.path.join(_dd, _design + '.css'), encoding='utf-8').read()
+        _js = open(os.path.join(_dd, _design + '.js'), encoding='utf-8').read()
+        h = h.replace('</head>', '<style id="ws-design-' + _design + '">' + _css + '</style>\n</head>', 1)
+        i = h.rfind('</body>')
+        return h[:i] + '<script id="ws-design-' + _design + '-js">' + _js + '</script>\n' + h[i:]
+    if _design:
+        print(f'🎨 디자인 {_design} 덧씌움')
     if any([hero.get('keywords'), hero.get('image'), hero.get('hook')]):
         print(f"🎨 hero 섹션: image={'O' if hero.get('image') else 'X'}, keywords={len(hero.get('keywords') or [])}, hook={'O' if hero.get('hook') else 'X'}")
 
     # 수업용 (제출O, 정답보기X)
     html_class = generate_html(title, content, total, total_ox, submit_url, mode='class', hero=hero, exam=exam_mode)
     with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(html_class)
+        f.write(_apply_design(html_class))
     print(f"✅ 수업용 생성: {output_file}")
 
     # 복습용 (제출X, 정답보기O)
     review_file = output_file.replace('.html', '_복습용.html')
     html_review = generate_html(title, content, total, total_ox, submit_url, mode='review', hero=hero, exam=exam_mode)
     with open(review_file, 'w', encoding='utf-8') as f:
-        f.write(html_review)
+        f.write(_apply_design(html_review))
     print(f"✅ 복습용 생성: {review_file}")
 
     # 정답편 (교사용·제출X·채점X) — 정답.md를 *본문*으로 렌더(교사섹션 유지) → 빈칸 볼드 정답+OX 해설+모범답안+교사 메타 전부 노출.
@@ -4098,7 +4116,7 @@ def main():
     t_title, t_content, t_total, t_total_ox = build_html_from_blank(answer_file, [], [], answer_file, teacher=True, out_path=output_file)
     html_teacher = generate_html(t_title, t_content, t_total, t_total_ox, submit_url, mode='teacher', hero=hero, exam=exam_mode)
     with open(teacher_file, 'w', encoding='utf-8') as f:
-        f.write(html_teacher)
+        f.write(_apply_design(html_teacher))
     print(f"✅ 정답편(교사용) 생성: {teacher_file}")
 
 
