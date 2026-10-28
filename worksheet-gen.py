@@ -1251,7 +1251,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if stripped:
                     gr_rows.append([x.strip() for x in stripped.strip().strip('|').split('|')])
                 continue
-            _xs = []; _ser = []; _band = None; _src = ''; _dec = None; _yr = False
+            _xs = []; _ser = []; _band = None; _src = ''; _dec = None; _yr = False; _prop = False
             for _r in gr_rows:
                 if _r[0] == 'x':
                     _xs = _r[1:]
@@ -1268,6 +1268,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     _band = {'name': _r[1], 'a': _r[2], 'b': _r[3]}
                 elif _r[0] == '출처' and len(_r) >= 2:
                     _src = '|'.join(_r[1:])
+                elif _r[0] == '간격' and len(_r) >= 2 and _r[1] == '실제':
+                    _prop = True   # 2026-10-28 역사 4-3-2: 조사 연도가 고르지 않은 인구 추정(1518·1532·1548…) — 칸을 같은 간격으로 두면 감소 속도가 틀려 보인다. 이 줄이 있으면 x를 연도 비례로 놓는다
                 elif _r[0] == '조사 연도':
                     _yr = True   # 2026-10-15 사회 7-3: 10년마다 한 조사(총조사)를 «1990년대»로 읽던 것 — 이 줄이 있으면 늘 «1990년»
                 elif _r[0] == '소수' and len(_r) >= 2 and _r[1].strip().isdigit():
@@ -1281,7 +1283,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if _band:
                     _leg += f'<span class="gr-key"><i class="gr-band-key"></i>{inline(_band["name"])}</span>'
                 _alt = ' · '.join(f'{x["name"]}({x["unit"]})' for x in _ser)
-                _D = {'x': _xs, 's': _ser, 'band': _band, 'yr': _yr}
+                _D = {'x': _xs, 's': _ser, 'band': _band, 'yr': _yr, 'prop': _prop}
                 html_parts.append(
                     f'<div class="ws-gr" id="{gid}">'
                     f'<div class="ws-gr-head">{inline(gr_head)}</div>'
@@ -1299,7 +1301,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     'rg=w.querySelector(".ws-gr-range"),rd=w.querySelector(".ws-gr-read"),pl=w.querySelector(".ws-gr-play");'
                     'var NS="http://www.w3.org/2000/svg",L=52,R=428,T=40,B=256,n=D.x.length;'
                     'function el(t,a,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;svg.appendChild(e);return e;}'
-                    'function X(i){return L+(R-L)*i/(n-1);}'
+                    'function X(i){if(D.prop)return L+(R-L)*(+D.x[i]-+D.x[0])/(+D.x[n-1]-+D.x[0]);return L+(R-L)*i/(n-1);}'
                     'function Y(s,v){return B-(B-T)*(v-s.lo)/(s.hi-s.lo);}'
                     'function fmt(v,d){if(d==null)return (Math.round(v*10)/10).toString();var m=Math.pow(10,d);return (Math.round(v*m+1e-9)/m).toFixed(d);}'
                     'if(D.band){var a=D.x.indexOf(D.band.a),b=D.x.indexOf(D.band.b);'
@@ -1308,7 +1310,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     'D.s.forEach(function(s,k){var v=s.lo+(s.hi-s.lo)*g/5;'
                     'if(g===0&&k===0&&s.lo>0)return;'
                     'el("text",{x:k===0?L-8:R+8,y:yy+5,"text-anchor":k===0?"end":"start","class":"gr-tick",fill:s.col},fmt(v));});}'
-                    'D.s.forEach(function(s,k){el("text",{x:k===0?L-8:R+8,y:T-18,"text-anchor":k===0?"end":"start","class":"gr-unit",fill:s.col},"("+s.unit+")");});'
+                    'D.s.forEach(function(s,k){if(s.unit)el("text",{x:k===0?L-8:R+8,y:T-18,"text-anchor":k===0?"end":"start","class":"gr-unit",fill:s.col},"("+s.unit+")");});'
                     'var step=Math.max(1,Math.round((n-1)/4));'
                     'for(var i=0;i<n;i+=step){el("text",{x:X(i),y:B+26,"text-anchor":"middle","class":"gr-tick"},D.x[i]);}'
                     'el("line",{x1:L,x2:R,y1:B,y2:B,"class":"gr-axis"});'
