@@ -1916,15 +1916,17 @@ document.querySelectorAll('.ws-rad').forEach(function(rad){
 </script>
 <script id="ws-design-v2-js">(function(){
 var C=document.querySelector('.container'); if(!C) return;
+// 글머리 이모지는 첫 글자 마디에서만 지운다 — innerHTML을 다시 쓰면 안에 든 입력칸·단추의 리스너가 끊긴다(메인 10/28 지적)
+function strip(el,ch){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(n.nodeValue.trim()){n.nodeValue=n.nodeValue.replace(ch,'').replace(/^\s+/,'');return;}}}
 // 1) 블록 목소리 분류
 [].forEach.call(C.querySelectorAll('blockquote'),function(b){
   var t=b.textContent.trim();
-  if(t.indexOf('🎙️')===0){b.classList.add('v2-voice');b.innerHTML=b.innerHTML.replace('🎙️','').replace(/^\s+/,'');var w=document.createElement('span');w.className='v2-who';w.textContent='선생님 입담';b.insertBefore(w,b.firstChild);}
+  if(t.indexOf('🎙️')===0){b.classList.add('v2-voice');strip(b,'🎙️');var w=document.createElement('span');w.className='v2-who';w.textContent='선생님 입담';b.insertBefore(w,b.firstChild);}
   else if(t.indexOf('📕')===0)b.classList.add('v2-task');
   else if(t.indexOf('💡')===0)b.classList.add('v2-key');
   else if(/^(🔍|🧭|✍️)/.test(t))b.classList.add('v2-ask');
 });
-[].forEach.call(C.querySelectorAll('p'),function(p){var t=p.textContent.trim();if(/^💬/.test(t)){p.classList.add('v2-q');p.innerHTML=p.innerHTML.replace('💬','').replace(/^\s+/,'');}});
+[].forEach.call(C.querySelectorAll('p'),function(p){var t=p.textContent.trim();if(/^💬/.test(t)){p.classList.add('v2-q');strip(p,'💬');}});
 // 2) h2마다 묶어 카드로 (활동 section.ws-do는 그대로 카드)
 var kids=[].slice.call(C.children), secs=[], cur=null;
 kids.forEach(function(el){
