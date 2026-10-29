@@ -58,6 +58,10 @@ table { border-radius: 10px; overflow: hidden; }
 .ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
 .ws-fold-body { padding: 10px 16px 14px; }
 .ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+.ws-fold-2c .ws-fold-body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }
+.ws-fold-2c .ws-fold-body > figure { grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }
+.ws-fold-2c .ws-fold-body > :not(figure) { grid-column: 2; }
+@media (max-width: 640px) { .ws-fold-2c .ws-fold-body { display: block; } }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -1259,7 +1263,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/4-2-1_말굽화폐.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/4-2-1_말굽화폐.jpg" alt="명 때(1552년) 만든 덩어리 화폐 — 동전처럼 개수를 세지 않고 무게를 달아 값을 매겼다." loading="lazy"></a><figcaption>명 때(1552년) 만든 덩어리 화폐 — 동전처럼 개수를 세지 않고 무게를 달아 값을 매겼다.</figcaption></figure>
 </div></div>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 119쪽 · 사진 「곤여만국전도」와 마테오 리치</div><div class="ws-tb-ask">사진 설명을 읽고, 이 지도가 동아시아 여러 나라 사람들의 <strong>어떤 생각</strong>을 바꾸었는지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 119쪽에서 찾기 — 사진 설명을 읽고, 이 지도가 동아시아 여러 나라 사람들의 어떤 생각" style="width:400px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 119쪽 · 사진 「곤여만국전도」와 마테오 리치</div><div class="ws-tb-ask">사진 설명을 읽고, 이 지도가 동아시아 여러 나라 사람들의 <strong>어떤 생각</strong>을 바꾸었는지 적자. 그 생각은 1단계 빈칸 ④에 쓴 관계와 어떻게 이어져 있었을지 한 문장 더 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 119쪽에서 찾기 — 사진 설명을 읽고, 이 지도가 동아시아 여러 나라 사람들의 어떤 생각" style="width:400px" placeholder=""></div></div>
 <br>
 <blockquote>🎙️ 위 사료는 영국이 '항구를 더 열어 달라'고 사절단을 보냈을 때 받은 답장이야. 청은 아쉬울 게 없다고 여겼지. 그런데 정작 영국은 차를 사느라 빈칸 ⑬을 계속 실어 와야 했어. 그 금속 가운데 많은 양이 남아메리카 볼리비아의 포토시 광산에서 나왔어(교과서 124쪽). 지도에서 포토시와 광저우를 찾아 지구본에 대 보면, 거의 정반대편이야. 지구 반대편 광산과 중국의 세금 장부가 한 줄로 이어진 거지. 경제사 학자의 추정으로는 1700년 무렵 중국이 만들어 낸 물건이 세계 전체의 약 5분의 1이었고, 영국은 중국의 7분의 1쯤이었어. 세계의 그 금속이 왜 이쪽으로 몰려들었는지 짐작이 가지?</blockquote>
 <br>
@@ -1289,10 +1293,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✅ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>명은 원 말기에 농민 반란군을 이끈 주원장이 세웠다.</td><td><div class="ox-group" data-answer="O" data-label="명은 원 말기에 농민 반란군을 이끈 주원장이 세웠다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>홍무제는 몽골 풍습을 장려하여 원의 전통을 이어 갔다.</td><td><div class="ox-group" data-answer="X" data-label="홍무제는 몽골 풍습을 장려하여 원의 전통을 이어 갔다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>청은 중요한 관직에 만주족과 한족을 함께 등용하기도 하였다.</td><td><div class="ox-group" data-answer="O" data-label="청은 중요한 관직에 만주족과 한족을 함께 등용하기도 하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>청은 18세기 중반 이후 서양 상인에게 여러 항구를 자유롭게 열어 주었다.</td><td><div class="ox-group" data-answer="X" data-label="청은 18세기 중반 이후 서양 상인에게 여러 항구를 자유롭게 열어 주었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>원 말기에 일어난 농민 반란이 결국 원을 몰아내고 새 왕조를 세우는 데까지 이어졌다.</td><td><div class="ox-group" data-answer="O" data-label="원 말기에 일어난 농민 반란이 결국 원을 몰아내고 새 왕조를 세우는 데까지 이어졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>홍무제가 몽골 풍습을 장려한 것은 한족 백성의 마음을 얻기 위해서였다.</td><td><div class="ox-group" data-answer="X" data-label="홍무제가 몽골 풍습을 장려한 것은 한족 백성의 마음을 얻기 위해서였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>청이 중요한 관직에 만주족과 한족을 함께 앉힌 것은 수가 훨씬 많은 한족을 다스리기 위해서였다.</td><td><div class="ox-group" data-answer="O" data-label="청이 중요한 관직에 만주족과 한족을 함께 앉힌 것은 수가 훨씬 많은 한족을 다스리기 위해서였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>청이 18세기 중반 이후 서양 상인에게 여러 항구를 열어 주어, 명 때보다 바다 무역이 자유로워졌다.</td><td><div class="ox-group" data-answer="X" data-label="청이 18세기 중반 이후 서양 상인에게 여러 항구를 열어 주어, 명 때보다 바다 무역이 자유로워졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 <tr><td>5</td><td>명·청 때 유럽과 일본 상인들이 중국 물건을 사면서 많은 은이 중국에 들어왔다.</td><td><div class="ox-group" data-answer="O" data-label="명·청 때 유럽과 일본 상인들이 중국 물건을 사면서 많은 은이 중국에 들어왔다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>

@@ -58,6 +58,10 @@ table { border-radius: 10px; overflow: hidden; }
 .ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
 .ws-fold-body { padding: 10px 16px 14px; }
 .ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+.ws-fold-2c .ws-fold-body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }
+.ws-fold-2c .ws-fold-body > figure { grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }
+.ws-fold-2c .ws-fold-body > :not(figure) { grid-column: 2; }
+@media (max-width: 640px) { .ws-fold-2c .ws-fold-body { display: block; } }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -1265,11 +1269,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✅ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>카이로 회담에서 연합국 대표들은 한국의 독립 문제를 의논하였다.</td><td><div class="ox-group" data-answer="O" data-label="카이로 회담에서 연합국 대표들은 한국의 독립 문제를 의논하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>국제 연합에는 미국이 참여하지 않았다.</td><td><div class="ox-group" data-answer="X" data-label="국제 연합에는 미국이 참여하지 않았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>뉘른베르크 재판에서는 일본의 전쟁 범죄자들을 재판하였다.</td><td><div class="ox-group" data-answer="X" data-label="뉘른베르크 재판에서는 일본의 전쟁 범죄자들을 재판하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>극동 국제 군사 재판에서 일본 천황은 재판을 받지 않았다.</td><td><div class="ox-group" data-answer="O" data-label="극동 국제 군사 재판에서 일본 천황은 재판을 받지 않았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>켈로그·브리앙 조약은 제2차 세계 대전이 끝난 뒤에 맺어졌다.</td><td><div class="ox-group" data-answer="X" data-label="켈로그·브리앙 조약은 제2차 세계 대전이 끝난 뒤에 맺어졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>연합국은 전쟁이 끝나기 전부터 회담을 열어, 전쟁 뒤 한국을 독립시키는 문제까지 의논하였다.</td><td><div class="ox-group" data-answer="O" data-label="연합국은 전쟁이 끝나기 전부터 회담을 열어, 전쟁 뒤 한국을 독립시키는 문제까지 의논하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>제2차 세계 대전 뒤 만든 새 국제기구도 앞선 국제 연맹처럼 미국이 빠진 채 출발하였다.</td><td><div class="ox-group" data-answer="X" data-label="제2차 세계 대전 뒤 만든 새 국제기구도 앞선 국제 연맹처럼 미국이 빠진 채 출발하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>독일의 전쟁 범죄자와 일본의 전쟁 범죄자는 같은 재판정에서 함께 재판을 받았다.</td><td><div class="ox-group" data-answer="X" data-label="독일의 전쟁 범죄자와 일본의 전쟁 범죄자는 같은 재판정에서 함께 재판을 받았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>일본의 전쟁 범죄를 따진 재판에서 일본 천황은 재판을 받지 않았다.</td><td><div class="ox-group" data-answer="O" data-label="일본의 전쟁 범죄를 따진 재판에서 일본 천황은 재판을 받지 않았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>전쟁을 나라의 정책 수단으로 쓰지 않겠다는 국제 약속은 제2차 세계 대전을 겪은 뒤에야 처음 나왔다.</td><td><div class="ox-group" data-answer="X" data-label="전쟁을 나라의 정책 수단으로 쓰지 않겠다는 국제 약속은 제2차 세계 대전을 겪은 뒤에야 처음 나왔다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>

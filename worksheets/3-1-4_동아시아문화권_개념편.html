@@ -58,6 +58,10 @@ table { border-radius: 10px; overflow: hidden; }
 .ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
 .ws-fold-body { padding: 10px 16px 14px; }
 .ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+.ws-fold-2c .ws-fold-body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }
+.ws-fold-2c .ws-fold-body > figure { grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }
+.ws-fold-2c .ws-fold-body > :not(figure) { grid-column: 2; }
+@media (max-width: 640px) { .ws-fold-2c .ws-fold-body { display: block; } }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -1207,10 +1211,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>동아시아 문화권의 공유 요소는 한자·유교·율령·불교이다.</td><td><div class="ox-group" data-answer="O" data-label="동아시아 문화권의 공유 요소는 한자·유교·율령·불교이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>한자는 신라의 이두, 일본의 가나가 만들어지는 데 영향을 주었다.</td><td><div class="ox-group" data-answer="O" data-label="한자는 신라의 이두, 일본의 가나가 만들어지는 데 영향을 주었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>유교는 왕의 권한을 약화시키는 이념으로 받아들여졌다.</td><td><div class="ox-group" data-answer="X" data-label="유교는 왕의 권한을 약화시키는 이념으로 받아들여졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>신라·발해·일본은 당의 3성 6부제를 본떠 통치 체제를 만들었다.</td><td><div class="ox-group" data-answer="O" data-label="신라·발해·일본은 당의 3성 6부제를 본떠 통치 체제를 만들었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>당을 오간 사람들이 옮긴 문화 덕분에 여러 나라가 한자·유교·율령·불교를 함께 쓰게 되었다.</td><td><div class="ox-group" data-answer="O" data-label="당을 오간 사람들이 옮긴 문화 덕분에 여러 나라가 한자·유교·율령·불교를 함께 쓰게 되었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>신라와 일본은 한자를 함께 쓰면서도, 자기 말을 적으려고 신라는 한자를 빌려 쓰는 방법을, 일본은 한자를 고친 글자를 만들어 썼다.</td><td><div class="ox-group" data-answer="O" data-label="신라와 일본은 한자를 함께 쓰면서도, 자기 말을 적으려고 신라는 한자를 빌려 쓰는 방법을, 일본은 한자를 고"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>유교가 왕의 권한을 약화시키는 이념이어서, 신라와 일본은 유교 대신 불교만 받아들였다.</td><td><div class="ox-group" data-answer="X" data-label="유교가 왕의 권한을 약화시키는 이념이어서, 신라와 일본은 유교 대신 불교만 받아들였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>신라·발해·일본이 당의 통치 조직을 본떠 나라를 다스린 것은 함께 쓴 네 요소 가운데 율령과 이어진다.</td><td><div class="ox-group" data-answer="O" data-label="신라·발해·일본이 당의 통치 조직을 본떠 나라를 다스린 것은 함께 쓴 네 요소 가운데 율령과 이어진다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 <tr><td>5</td><td>동아시아 국가들은 문화를 공유하기만 하고 독자적으로 발전시키지는 못했다.</td><td><div class="ox-group" data-answer="X" data-label="동아시아 국가들은 문화를 공유하기만 하고 독자적으로 발전시키지는 못했다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>

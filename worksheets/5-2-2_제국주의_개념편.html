@@ -58,6 +58,10 @@ table { border-radius: 10px; overflow: hidden; }
 .ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
 .ws-fold-body { padding: 10px 16px 14px; }
 .ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+.ws-fold-2c .ws-fold-body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }
+.ws-fold-2c .ws-fold-body > figure { grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }
+.ws-fold-2c .ws-fold-body > :not(figure) { grid-column: 2; }
+@media (max-width: 640px) { .ws-fold-2c .ws-fold-body { display: block; } }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -1037,6 +1041,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
+.ws-fig-zoom { cursor: zoom-in; display: inline-block; max-width: 100%; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -1180,12 +1185,12 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"우리 큰 산업에 무엇보다 모자라는 것은 판로(물건을 팔 곳)입니다. … 우월한 인종에게는 열등한 인종에 대한 권리가 있습니다. 그들에게 의무가 있기 때문입니다. 열등한 인종을 문명화할 의무 말입니다."</blockquote><figcaption class="sr-c">— 쥘 페리(프랑스 총리를 지낸 정치인)의 하원 연설, 1885</figcaption></figure>
 <br>
-<p>페리가 식민지를 가져야 한다며 든 까닭 두 가지를 각각 짧게 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="페리가 식민지를 가져야 한다며 든 까닭 두 가지를 각각 짧게 적자." style="width:420px" placeholder=""></p>
+<p>페리가 식민지를 가져야 한다며 든 까닭 두 가지를 각각 짧게 적고, 하나는 1단계에서 본 무엇과, 다른 하나는 바로 위 문단의 무엇과 같은 말인지 짝지어 보자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="페리가 식민지를 가져야 한다며 든 까닭 두 가지를 각각 짧게 적고, 하나" style="width:420px" placeholder=""></p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 163쪽 · 「우리 해 보자」 키플링 「백인의 짐」</div><div class="ws-tb-ask">시는 식민지 사람들을 <strong>'절반은 무엇, 절반은 무엇'</strong> 같은 자들이라고 불렀나? <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 163쪽에서 찾기 — 시는 식민지 사람들을 «절반은 무엇, 절반은 무엇» 같은 자들이라고" style="width:300px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 163쪽 · 「우리 해 보자」 키플링 「백인의 짐」</div><div class="ws-tb-ask">시는 식민지 사람들을 <strong>'절반은 무엇, 절반은 무엇'</strong> 같은 자들이라고 불렀나? 그렇게 부르면 2단계 문단의 «문명화할 의무» 주장을 어떻게 거들게 되는지 한 문장 더 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 163쪽에서 찾기 — 시는 식민지 사람들을 «절반은 무엇, 절반은 무엇» 같은 자들이라고" style="width:300px" placeholder=""></div></div>
 <br>
 <div class="ws-2c c2-mid c2-card" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.6fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/5-2-2_스펜서.jpg" alt="허버트 스펜서(1889) — 영국의 사회학자. '적자생존'이라는 말을 처음 만들었다. 자연에서 강한 것이 살아남듯 사회에서도 강한 쪽이 이기는 것이 자연스럽다고 보았다. (웰컴 컬렉션)" loading="lazy"><figcaption>허버트 스펜서(1889) — 영국의 사회학자. '적자생존'이라는 말을 처음 만들었다. 자연에서 강한 것이 살아남듯 사회에서도 강한 쪽이 이기는 것이 자연스럽다고 보았다. (웰컴 컬렉션)</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_스펜서.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_스펜서.jpg" alt="허버트 스펜서(1889) — 영국의 사회학자. '적자생존'이라는 말을 처음 만들었다. 자연에서 강한 것이 살아남듯 사회에서도 강한 쪽이 이기는 것이 자연스럽다고 보았다. (웰컴 컬렉션)" loading="lazy"></a><figcaption>허버트 스펜서(1889) — 영국의 사회학자. '적자생존'이라는 말을 처음 만들었다. 자연에서 강한 것이 살아남듯 사회에서도 강한 쪽이 이기는 것이 자연스럽다고 보았다. (웰컴 컬렉션)</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ '적자생존'이라는 말, 다윈이 만든 줄 아는 사람이 많은데 사실은 스펜서가 먼저 썼어. 다윈은 생물이 어떻게 변해 왔는지를 설명했을 뿐인데, 사람들은 그걸 <strong>사람 사이, 나라 사이</strong>로 끌고 왔지. '강한 나라가 약한 나라를 먹는 건 자연의 법칙'이라고. 생물학에서 빌린 말이 침략의 핑계가 된 거야.</blockquote>
 </div></div>
@@ -1201,7 +1206,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 164쪽 · 지도 「열강의 아프리카와 아시아 침략」</div><div class="ws-tb-ask">지도에서 열강의 식민지가 되지 않고 <strong>독립을 지킨 아프리카 나라 두 곳</strong>을 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 164쪽에서 찾기 — 지도에서 열강의 식민지가 되지 않고 독립을 지킨 아프리카 나라 두 곳" style="width:300px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><img src="images/5-2-2_아프리카분할.png" alt="1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있어, 영국의 꿈은 끝내 이어지지 못했다. (경계는 개념도 정밀도)" loading="lazy"><figcaption>1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있어, 영국의 꿈은 끝내 이어지지 못했다. (경계는 개념도 정밀도)</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_아프리카분할.png" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_아프리카분할.png" alt="1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있어, 영국의 꿈은 끝내 이어지지 못했다. (경계는 개념도 정밀도)" loading="lazy"></a><figcaption>1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있어, 영국의 꿈은 끝내 이어지지 못했다. (경계는 개념도 정밀도)</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 164쪽 · 사진 「벨기에의 콩고 침략 풍자화」</div><div class="ws-tb-ask">풍자화에서 벨기에의 왕은 <strong>어떤 동물</strong>로 그려졌고, 무엇을 하고 있나? <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 164쪽에서 찾기 — 풍자화에서 벨기에의 왕은 어떤 동물로 그려졌고, 무엇을 하고 있나?" style="width:340px" placeholder=""></div></div>
 <br>
@@ -1216,7 +1221,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>열강은 <strong>태평양</strong>에도 손을 뻗었다. 영국은 오스트레일리아와 뉴질랜드를, 독일은 마셜 제도와 캐롤라인 제도 등을 차지하였다. <strong>미국</strong>은 하와이를 병합하고 필리핀과 괌을 차지하였다. 그 결과 20세기 초에는 아시아와 태평양의 대부분이 열강의 지배를 받게 되었다.</p>
 <br>
 <div class="ws-2c c2-mid" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/5-2-2_하와이.jpg" alt="1898년 8월 12일 하와이 호놀룰루의 이올라니 궁전 — 하와이 왕국의 깃발이 내려가고 있다. 이 날 하와이는 미국에 병합되었다. 5년 전 미국인 사업가들이 군대를 끌어들여 하와이 여왕을 끌어내린 뒤의 일이다. (하와이 주립 문서 보관소)" loading="lazy"><figcaption>1898년 8월 12일 하와이 호놀룰루의 이올라니 궁전 — 하와이 왕국의 깃발이 내려가고 있다. 이 날 하와이는 미국에 병합되었다. 5년 전 미국인 사업가들이 군대를 끌어들여 하와이 여왕을 끌어내린 뒤의 일이다. (하와이 주립 문서 보관소)</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_하와이.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_하와이.jpg" alt="1898년 8월 12일 하와이 호놀룰루의 이올라니 궁전 — 하와이 왕국의 깃발이 내려가고 있다. 이 날 하와이는 미국에 병합되었다. 5년 전 미국인 사업가들이 군대를 끌어들여 하와이 여왕을 끌어내린 뒤의 일이다. (하와이 주립 문서 보관소)" loading="lazy"></a><figcaption>1898년 8월 12일 하와이 호놀룰루의 이올라니 궁전 — 하와이 왕국의 깃발이 내려가고 있다. 이 날 하와이는 미국에 병합되었다. 5년 전 미국인 사업가들이 군대를 끌어들여 하와이 여왕을 끌어내린 뒤의 일이다. (하와이 주립 문서 보관소)</figcaption></figure>
 </div><div class="c2-b">
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 165쪽 · 「한국사 나란히 보기」</div><div class="ws-tb-ask">1866년과 1871년에 통상을 요구하며 조선을 침략한 나라는 <strong>각각</strong> 어디인가? <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="교과서 165쪽에서 찾기 — 1866년과 1871년에 통상을 요구하며 조선을 침략한 나라는 각각" style="width:260px" placeholder=""></div></div>
 <blockquote>🎙️ 하와이 깃발이 내려가기 30년쯤 전, 조선 바닷가에도 서양 군함이 나타났어. 조선은 이 물결을 어떻게 맞았을까? 그 이야기는 '역사②'에서 이어져.</blockquote>
@@ -1243,10 +1248,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✅ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>열강은 공장에 쓸 재료와 물건을 팔 곳을 얻으려고 식민지를 넓혔다.</td><td><div class="ox-group" data-answer="O" data-label="열강은 공장에 쓸 재료와 물건을 팔 곳을 얻으려고 식민지를 넓혔다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>영국은 아프리카를 동서로 점령하는 정책을, 프랑스는 남북으로 점령하는 정책을 펼쳤다.</td><td><div class="ox-group" data-answer="X" data-label="영국은 아프리카를 동서로 점령하는 정책을, 프랑스는 남북으로 점령하는 정책을 펼쳤다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>열강이 공장에 쓸 재료와 물건을 팔 곳을 찾아 식민지를 넓힌 것은 산업 혁명으로 공장에서 만드는 물건이 크게 늘었기 때문이다.</td><td><div class="ox-group" data-answer="O" data-label="열강이 공장에 쓸 재료와 물건을 팔 곳을 찾아 식민지를 넓힌 것은 산업 혁명으로 공장에서 만드는 물건이 크게"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>영국과 프랑스가 아프리카에서 부딪친 것은 두 나라가 모두 아프리카를 남북으로 가로지르려 했기 때문이다.</td><td><div class="ox-group" data-answer="X" data-label="영국과 프랑스가 아프리카에서 부딪친 것은 두 나라가 모두 아프리카를 남북으로 가로지르려 했기 때문이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 <tr><td>3</td><td>아프리카는 한 나라도 빠짐없이 모두 열강의 식민지가 되었다.</td><td><div class="ox-group" data-answer="X" data-label="아프리카는 한 나라도 빠짐없이 모두 열강의 식민지가 되었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>네덜란드는 인도네시아의 대부분을 식민지로 삼았다.</td><td><div class="ox-group" data-answer="O" data-label="네덜란드는 인도네시아의 대부분을 식민지로 삼았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>아프리카처럼 아시아·태평양에서도 열강이 땅을 나눠 가졌고, 인도네시아는 그 가운데 네덜란드 차지였다.</td><td><div class="ox-group" data-answer="O" data-label="아프리카처럼 아시아·태평양에서도 열강이 땅을 나눠 가졌고, 인도네시아는 그 가운데 네덜란드 차지였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
@@ -1255,7 +1260,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 </section><h2>🔗 다른 과목에서 본 같은 장면</h2>
-<figure class="ws-fig"><img src="images/5-2-2_곧은국경.png" alt="오늘의 북아프리카 — 이집트와 리비아, 이집트와 수단 사이 국경이 경도·위도 선을 그대로 따라간다." loading="lazy"><figcaption>오늘의 북아프리카 — 이집트와 리비아, 이집트와 수단 사이 국경이 경도·위도 선을 그대로 따라간다.</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_곧은국경.png" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_곧은국경.png" alt="오늘의 북아프리카 — 이집트와 리비아, 이집트와 수단 사이 국경이 경도·위도 선을 그대로 따라간다." loading="lazy"></a><figcaption>오늘의 북아프리카 — 이집트와 리비아, 이집트와 수단 사이 국경이 경도·위도 선을 그대로 따라간다.</figcaption></figure>
 <br>
 <p>오늘 아프리카 지도에는 자로 그은 듯한 국경이 많다. 사막 한가운데라 강이나 산 같은 경계가 없는 곳에 유럽 나라들이 위도·경도를 따라 선을 그었기 때문이다. 이집트와 수단 사이 북위 22도선 근처의 비르 타윌은 두 나라 모두 '우리 땅이 아니다'라고 하는 땅이다. 사회 과목에서도 국경을 두고 다투는 곳들을 이어서 다룬다.</p>
 <br>

@@ -58,6 +58,10 @@ table { border-radius: 10px; overflow: hidden; }
 .ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
 .ws-fold-body { padding: 10px 16px 14px; }
 .ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+.ws-fold-2c .ws-fold-body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }
+.ws-fold-2c .ws-fold-body > figure { grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }
+.ws-fold-2c .ws-fold-body > :not(figure) { grid-column: 2; }
+@media (max-width: 640px) { .ws-fold-2c .ws-fold-body { display: block; } }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -1268,11 +1272,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><h2>⭕ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O / X</td></tr>
-<tr><td>1</td><td>봉건제가 확대되면서 왕과 제후가 성직자 임명권을 차지하는 일이 많아졌다.</td><td><div class="ox-group" data-answer="O" data-label="봉건제가 확대되면서 왕과 제후가 성직자 임명권을 차지하는 일이 많아졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>수도원 운동에 앞장선 곳은 클뤼니 수도원이다.</td><td><div class="ox-group" data-answer="O" data-label="수도원 운동에 앞장선 곳은 클뤼니 수도원이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>왕과 제후가 성직자 임명권을 차지하는 일이 많아지자, 교회 안에서 이를 바로잡으려는 개혁 운동이 일어났다.</td><td><div class="ox-group" data-answer="O" data-label="왕과 제후가 성직자 임명권을 차지하는 일이 많아지자, 교회 안에서 이를 바로잡으려는 개혁 운동이 일어났다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>클뤼니 수도원이 앞장선 개혁은 뒤에 교황이 황제와 성직자 임명권을 두고 다투는 데까지 이어졌다.</td><td><div class="ox-group" data-answer="O" data-label="클뤼니 수도원이 앞장선 개혁은 뒤에 교황이 황제와 성직자 임명권을 두고 다투는 데까지 이어졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 <tr><td>3</td><td>카노사의 굴욕으로 교황과 황제의 대립은 완전히 끝났다.</td><td><div class="ox-group" data-answer="X" data-label="카노사의 굴욕으로 교황과 황제의 대립은 완전히 끝났다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>보름스 협약으로 황제가 성직자 임명권을 갖게 되었다.</td><td><div class="ox-group" data-answer="X" data-label="보름스 협약으로 황제가 성직자 임명권을 갖게 되었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>아비뇽 유수 이후 한때 교황이 두 명 이상 존재하기도 하였다.</td><td><div class="ox-group" data-answer="O" data-label="아비뇽 유수 이후 한때 교황이 두 명 이상 존재하기도 하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>카노사의 굴욕 뒤에도 이어진 다툼은 보름스 협약에서 황제가 성직자 임명권을 갖는 것으로 정리되었다.</td><td><div class="ox-group" data-answer="X" data-label="카노사의 굴욕 뒤에도 이어진 다툼은 보름스 협약에서 황제가 성직자 임명권을 갖는 것으로 정리되었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>교황청이 아비뇽에서 로마로 돌아온 뒤에도 교회는 하나로 모이지 못하고, 한때 교황이 두 명 이상 있었다.</td><td><div class="ox-group" data-answer="O" data-label="교황청이 아비뇽에서 로마로 돌아온 뒤에도 교회는 하나로 모이지 못하고, 한때 교황이 두 명 이상 있었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
