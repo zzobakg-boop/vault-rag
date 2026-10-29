@@ -1166,6 +1166,7 @@ body{background:var(--bg)!important;color:var(--ink)!important;letter-spacing:-.
 .v2-sec h2{font-size:1.55rem!important;line-height:1.35!important;font-weight:800!important;letter-spacing:-.02em;margin:0 0 16px!important;padding:0!important;border:0!important;color:var(--ink)!important;text-wrap:balance}
 .v2-sec h2 .v2-sub{display:block;font-size:1.02rem;font-weight:600;color:var(--ink2);margin-top:4px}
 .v2-sec p{font-size:1rem!important;line-height:1.85!important;margin:0 0 14px!important;max-width:40em;color:var(--ink)}
+.v2-sec .ws-tb-ask,.v2-sec .ws-tb p{line-height:1.6!important}
 .v2-sec strong{background:linear-gradient(transparent 62%,var(--mark) 62%);font-weight:700}
 .v2-sec figure.ws-fig{margin:20px 0!important}
 .v2-sec figcaption{font-size:.84rem!important;line-height:1.6!important;color:var(--ink2)!important}
@@ -1286,7 +1287,7 @@ html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;c
   plate.addEventListener('pointerleave',reset);plate.addEventListener('pointercancel',reset);
   plate.addEventListener('pointerup',function(e){if(e.pointerType!=='mouse')reset();});
 })();
-</script><div class="hero-hook">자, 네가 15세기 유럽 사람이라고 해보자. 고기 요리에 후추를 뿌리고 싶은데, 값이 어마어마해. 왜? 후추는 인도에서 오는데 중간에 이슬람 상인, 이탈리아 상인을 거치며 값이 계속 붙거든. 그때 누군가 말한다 — '그럼 우리가 직접 인도로 가면 되잖아?' 가 본 사람도, 그 바다의 지도도 없고 죽을 수도 있는 길인데 사람들이 배를 탄다. 그 결과 세계는 하나로 이어졌지만, 그 대가는 누군가에게 너무 잔인했어. 오늘은 그 양면의 이야기.</div></section>
+</script><div class="hero-hook">자, 네가 15세기 유럽 사람이라고 해보자. 고기 요리에 후추를 뿌리고 싶은데, 값이 어마어마해. 왜? 후추는 인도에서 오는데 중간에 이슬람 상인, 이탈리아 상인을 거치며 값이 계속 붙거든. 그때 누군가 말한다 — '그럼 우리가 직접 인도로 가면 되잖아?' 그 바닷길은 끝까지 가 본 사람도 없고, 제대로 된 지도도 없어. 죽을 수도 있어. 그런데도 사람들이 배를 탄다. 그 결과 세계는 하나로 이어졌지만, 그 대가는 누군가에게 너무 잔인했어. 오늘은 그 양면의 이야기.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/5 · OX: <span id="ox-score">0</span>/5
@@ -1348,7 +1349,7 @@ html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;c
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/4-3-2_후추의길.png" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/4-3-2_후추의길.png" alt="15세기 무렵 후추가 인도에서 유럽까지 간 길 — ① 이슬람 상인의 배가 인도양을 건너 홍해·페르시아만으로, ② 낙타 대상이 사막을 건너 알렉산드리아·베이루트로, ③ 베네치아 상인의 배가 지중해를 건너 베네치아로, ④ 알프스를 넘어 유럽 곳곳으로 (개념도)" loading="lazy"></a><figcaption>15세기 무렵 후추가 인도에서 유럽까지 간 길 — ① 이슬람 상인의 배가 인도양을 건너 홍해·페르시아만으로, ② 낙타 대상이 사막을 건너 알렉산드리아·베이루트로, ③ 베네치아 상인의 배가 지중해를 건너 베네치아로, ④ 알프스를 넘어 유럽 곳곳으로 (개념도)</figcaption></figure>
 <p>지도에서 ①부터 ④까지 길을 따라가 봐.</p>
 <p>인도에서 딴 후추는 먼저 이슬람 상인(아랍·페르시아 상인)의 배에 실려 인도양을 건너 홍해나 페르시아만으로 들어왔어. 거기서 낙타 등에 실려 이집트의 알렉산드리아나 지중해 동쪽 해안의 베이루트까지 갔지. 그 항구에서 이탈리아 베네치아 상인이 사서 지중해를 건너 유럽 곳곳에 팔았어.</p>
-<p>인도 → 이슬람 상인 → 낙타 대상 → 알렉산드리아·베이루트 → 베네치아 상인 → 유럽 식탁. 손이 하나 바뀔 때마다 <strong>값이 붙었어</strong>. 어느 길로 와도 이 상인들 손을 거쳐야 했으니 그들이 값을 마음대로 정할 수 있었어. 15세기 말 베네치아는 해마다 큰 배들을 무리 지어 알렉산드리아와 베이루트로 보내 향신료를 사 왔어. 이 길은 끊긴 게 아니라 잘 돌아가고 있었어. 그래서 중간을 건너뛰고 싶은 사람들이 생긴 거야.</p>
+<p>인도 → 이슬람 상인 → 낙타 대상 → 알렉산드리아·베이루트 → 베네치아 상인 → 유럽 식탁. 손이 하나 바뀔 때마다 <strong>값이 붙었어</strong>. 어느 길로 와도 이 상인들 손을 거쳐야 했으니 그들이 값을 크게 올려 받을 수 있었어. 15세기 말 베네치아는 해마다 큰 배들을 무리 지어 알렉산드리아와 베이루트로 보내 향신료를 사 왔어. 이 길은 끊긴 게 아니라 잘 돌아가고 있었어. 그래서 중간을 건너뛰고 싶은 사람들이 생긴 거야.</p>
 </div></details>
 <br>
 <h2>📖 2단계: 갈 수 있게 된 이유 — 기술</h2>
@@ -1412,7 +1413,7 @@ html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;c
 <details class="ws-fold ws-fold-더보기 ws-fold-2c"><summary>🏝️ 사탕수수가 바꾼 섬 사람들 — 서인도 제도 사람들은 어디서 왔을까</summary><div class="ws-fold-body">
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/4-3-2_서인도이동.png" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/4-3-2_서인도이동.png" alt="서인도 제도로 온 사람들 — ① 섬에 살던 원주민이 크게 줄고, ② 아프리카 사람들이 사탕수수 농장으로 끌려오고, ③ 노예제가 폐지된 뒤 인도의 계약 노동자가 희망봉을 돌아 왔다 (개념도)" loading="lazy"></a><figcaption>서인도 제도로 온 사람들 — ① 섬에 살던 원주민이 크게 줄고, ② 아프리카 사람들이 사탕수수 농장으로 끌려오고, ③ 노예제가 폐지된 뒤 인도의 계약 노동자가 희망봉을 돌아 왔다 (개념도)</figcaption></figure>
 <p>서인도 제도 섬들에 사는 사람들은 세 번에 걸쳐 크게 바뀌었어. 누가, 왜 이 섬으로 오게 됐는지 따라가 보자.</p>
-<p><strong>① 원주민이 사라졌다.</strong> 유럽인이 들어온 뒤 강제 노동과 천연두 같은 새 병으로, 섬에 살던 원주민이 짧은 기간에 크게 줄었어.</p>
+<p><strong>① 원주민이 크게 줄었다.</strong> 유럽인이 들어온 뒤 강제 노동과 천연두 같은 새 병으로 섬에 살던 원주민 가운데 많은 사람이 짧은 기간에 목숨을 잃었어.</p>
 <p><strong>② 아프리카에서 사람을 끌고 왔다.</strong> 사탕수수 농장을 돌릴 일손이 모자라자 유럽 상인들은 아프리카 사람들을 배에 실어 왔어. 아메리카에 살아서 도착한 사람 100명 가운데 95명이 카리브해 섬들과 남아메리카로 갔어. 18세기 말 프랑스가 다스리던 생도맹그(오늘날 아이티)에는 노예가 약 46만 명, 백인은 약 3만 명이었어. 섬 주민 대부분이 끌려온 사람과 그 자손이 된 거야.</p>
 <p><strong>③ 노예제가 끝나자 아시아에서 데려왔다.</strong> 19세기에 노예제가 폐지되자 농장주들은 인도 등에서 계약을 맺은 노동자를 데려왔어. 1845년부터 1917년까지 트리니다드에만 약 14만 명이 건너왔지. 그래서 오늘날 트리니다드 토바고 사람의 약 35%(2011년)가 인도계야.</p>
 <p>②는 끌려간 강제적 이동, ③은 일자리를 찾아간 경제적 이동이야. 두 이동이 한 섬 안에 겹겹이 쌓인 거지. 중3 사회에서 인구 이동을 배울 때 이 섬을 다시 떠올려 봐.</p>
