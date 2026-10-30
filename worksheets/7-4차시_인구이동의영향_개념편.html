@@ -1130,6 +1130,205 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
+<style id="ws-design-v2">/* ===== 4-3-2 디자인 시험판 v2 — 덧씌움(원본 HTML·data-id 불변) ===== */
+:root{
+  --ink:#1f2329; --ink2:#4a5160; --mute:#7a8191; --line:#e6e8ee; --paper:#ffffff; --bg:#f3f4f7;
+  --step:#2f6fd6; --step-soft:#eaf1fd;
+  --voice:#fff6e6; --voice-line:#f0b94a;
+  --task:#fff3d6; --task-ink:#8a5a00;
+  --ask:#eef7ef; --ask-line:#3f9a5a;
+  --mark:rgba(255,214,77,.55);
+}
+html{font-size:17px}
+@media (max-width:640px){html{font-size:16.5px}}
+body{background:var(--bg)!important;color:var(--ink)!important;letter-spacing:-.005em;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.container{max-width:1120px!important;padding:0!important;background:transparent!important;box-shadow:none!important;display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:28px}
+.container>br{display:none}
+.v2-rail{grid-column:1;grid-row:1/span 999;position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;padding:14px 10px;background:var(--paper);border-radius:14px;box-shadow:0 1px 3px rgba(20,30,50,.06)}
+.v2-rail h4{font-size:.72rem;letter-spacing:.08em;color:var(--mute);margin:2px 8px 8px;font-weight:700}
+.v2-rail a{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:9px;color:var(--ink2);text-decoration:none;font-size:.82rem;line-height:1.35}
+.v2-rail a:hover{background:var(--bg)}
+.v2-rail a.on{background:var(--step-soft);color:var(--step);font-weight:700}
+.v2-rail .n{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:800;background:var(--bg);color:var(--mute)}
+.v2-rail a.on .n{background:var(--step);color:#fff}
+.v2-rail a.done .n{background:#3f9a5a;color:#fff}
+.v2-rail .c{margin-left:auto;font-size:.7rem;color:var(--mute);font-variant-numeric:tabular-nums}
+.v2-meter{height:6px;border-radius:3px;background:var(--line);margin:10px 8px 4px;overflow:hidden}
+.v2-meter i{display:block;height:100%;width:0;background:#3f9a5a;transition:width .3s}
+.v2-mtx{font-size:.72rem;color:var(--mute);margin:0 8px}
+.container>*:not(.v2-rail){grid-column:2;min-width:0}
+.hero-section{border-radius:18px!important;overflow:hidden}
+.v2-sec{background:var(--paper);border-radius:18px;padding:30px 36px 28px;margin:0 0 18px;box-shadow:0 1px 3px rgba(20,30,50,.06);scroll-margin-top:16px}
+.v2-sec.step{border-top:5px solid var(--step)}
+.v2-sec>*:first-child{margin-top:0}
+.v2-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;letter-spacing:.06em;color:var(--step);margin-bottom:6px}
+.v2-kicker b{background:var(--step);color:#fff;border-radius:6px;padding:2px 8px;letter-spacing:0}
+.v2-sec h2{font-size:1.55rem!important;line-height:1.35!important;font-weight:800!important;letter-spacing:-.02em;margin:0 0 16px!important;padding:0!important;border:0!important;color:var(--ink)!important;text-wrap:balance}
+.v2-sec h2 .v2-sub{display:block;font-size:1.02rem;font-weight:600;color:var(--ink2);margin-top:4px}
+.v2-sec p{font-size:1rem!important;line-height:1.85!important;margin:0 0 14px!important;max-width:40em;color:var(--ink)}
+.v2-sec .ws-tb-ask,.v2-sec .ws-tb p{line-height:1.6!important}
+.v2-sec strong{background:linear-gradient(transparent 62%,var(--mark) 62%);font-weight:700}
+.v2-sec figure.ws-fig{margin:20px 0!important}
+.v2-sec figcaption{font-size:.84rem!important;line-height:1.6!important;color:var(--ink2)!important}
+.v2-sec blockquote{margin:16px 0!important;font-size:.97rem!important;line-height:1.8!important}
+/* 목소리 구분: 입담 / 교과서 펴기 / 찾아보기·쓰기 / 열쇳말 */
+blockquote.v2-voice{position:relative;background:var(--voice)!important;border:0!important;border-radius:16px!important;padding:14px 18px 14px 58px!important;color:#3d3220!important}
+blockquote.v2-voice::before{content:"🎙️";position:absolute;left:14px;top:12px;width:32px;height:32px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:17px;box-shadow:0 0 0 2px var(--voice-line)}
+blockquote.v2-voice .v2-who{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;color:#b07a12;margin-bottom:2px}
+blockquote.v2-task{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;background:var(--task)!important;border:0!important;border-radius:12px!important;padding:10px 14px!important;color:var(--task-ink)!important;font-size:.9rem!important;font-weight:600}
+blockquote.v2-key{background:#f1f0ff!important;border:0!important;border-radius:12px!important;padding:12px 16px!important;color:#3b2f8f!important;font-weight:600}
+blockquote.v2-ask{background:var(--ask)!important;border:0!important;border-left:4px solid var(--ask-line)!important;border-radius:4px 12px 12px 4px!important;padding:12px 16px!important}
+p.v2-q{background:#f7f8fb;border-radius:12px;padding:12px 16px 12px 16px!important;border:1px dashed #c9cfdb;font-weight:600}
+p.v2-q::before{content:"생각해 보기";display:block;font-size:.7rem;font-weight:800;letter-spacing:.08em;color:var(--mute);margin-bottom:2px}
+.ws-tb{border-radius:14px!important}
+/* 빈칸 */
+input.blank-input:not(.activity-input){min-height:34px;font-size:1rem!important;font-weight:700;border:0!important;border-bottom:2.5px solid var(--step)!important;background:#f3f7ff!important;border-radius:6px 6px 0 0!important;padding:2px 8px!important;color:var(--step)!important;vertical-align:baseline}
+input.blank-input:focus{outline:3px solid rgba(47,111,214,.25)!important;outline-offset:1px}
+.activity-input,textarea{font-size:1rem!important;line-height:1.7!important}
+.ws-fold{border-radius:14px!important}
+.ws-fold>summary{font-size:.95rem!important}
+.v2-sec .ws-2c{gap:24px!important}
+@media (max-width:980px){
+  .container{display:block}
+  .v2-rail{position:sticky;top:0;z-index:50;display:flex;gap:6px;overflow-x:auto;max-height:none;border-radius:0 0 12px 12px;padding:8px 10px;margin:0 -16px 12px;scrollbar-width:none}
+  .v2-rail h4,.v2-mtx{display:none}
+  .v2-rail a{flex:none;padding:6px 10px;border:1px solid var(--line);font-size:.78rem}
+  .v2-rail a .t{display:none}
+  .v2-rail a.on .t{display:inline}
+  .v2-meter{position:absolute;left:0;right:0;bottom:0;margin:0;height:3px;border-radius:0}
+}
+@media (max-width:640px){
+  .v2-sec{padding:22px 18px 20px;border-radius:14px;margin:0 0 12px}
+  .v2-sec h2{font-size:1.32rem!important}
+  blockquote.v2-voice{padding:12px 14px 12px 50px!important}
+  blockquote.v2-voice::before{left:10px;width:28px;height:28px;font-size:15px}
+}
+@media print{.v2-rail{display:none}.container{display:block}.v2-sec{box-shadow:none;break-inside:auto}}
+.v2-sec h2{background:none!important;box-shadow:none!important}
+blockquote.v2-task strong,blockquote.v2-key strong,.ws-tb strong{background:none}
+.v2-sec figure.ws-fig{max-width:760px;margin-left:auto!important;margin-right:auto!important}
+@media (max-width:980px){.v2-rail{margin:0 0 12px}}
+.container>.hero-section{margin:0 0 18px!important}
+/* 점수 막대: 카드처럼, 폰은 한 줄로 얇게 */
+.container>.control-bar{margin:0 0 14px!important;padding:10px 16px!important;border-radius:14px;border:0!important;box-shadow:0 1px 3px rgba(20,30,50,.08);top:8px!important;align-items:center}
+.control-bar .score{font-size:.9rem!important;font-variant-numeric:tabular-nums}
+@media (max-width:640px){
+  .container>.control-bar{top:0!important;border-radius:0 0 12px 12px;padding:6px 10px!important;flex-wrap:nowrap!important;gap:6px}
+  .control-bar .score{font-size:.74rem!important;white-space:nowrap;margin:0!important}
+  .control-bar .btn,.control-bar button{font-size:.72rem!important;padding:6px 8px!important;min-height:32px;white-space:nowrap}
+  .control-bar>div:last-child{display:flex;gap:4px;flex-wrap:nowrap}
+}
+@media (max-width:980px){.v2-rail{top:var(--cbh,52px)!important;z-index:90}}
+@media (max-width:640px){.container>.control-bar{flex-direction:row!important;justify-content:space-between!important;text-align:left!important}.control-bar .score{text-align:left!important}.control-bar .btn{margin:0!important}}
+@media (max-width:640px){.control-bar .score{white-space:normal!important;flex:1 1 auto;min-width:0;line-height:1.35}.control-bar>div:last-child{flex:none}.control-bar .btn{padding:6px 7px!important}}
+.v2-sec{scroll-margin-top:84px}@media (max-width:980px){.v2-sec{scroll-margin-top:120px}}
+
+/* 10/28 천대현: 오늘의 길 접기·펴기 + 왼쪽/위 고르기 */
+.v2-rh{display:flex;align-items:center;gap:6px;margin:0 4px 8px}
+.v2-rh h4{margin:0 auto 0 4px!important}
+.v2-b{font:inherit;font-size:.72rem;font-weight:700;color:var(--ink2);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 8px;cursor:pointer;white-space:nowrap}
+.v2-b:hover{background:var(--step-soft);color:var(--step)}
+/* 왼쪽 + 접힘: 번호만 남는 좁은 기둥 */
+html.v2-folded:not(.v2-top) .container{grid-template-columns:58px minmax(0,1fr)}
+html.v2-folded:not(.v2-top) .v2-rail{padding:10px 6px}
+html.v2-folded:not(.v2-top) .v2-rail .t,html.v2-folded:not(.v2-top) .v2-rail .c,html.v2-folded:not(.v2-top) .v2-rh h4,html.v2-folded:not(.v2-top) .v2-mtx,html.v2-folded:not(.v2-top) .v2-pos{display:none}
+html.v2-folded:not(.v2-top) .v2-rh{flex-direction:column;margin:0 0 6px}
+html.v2-folded:not(.v2-top) .v2-fold{padding:4px 5px;font-size:.66rem}
+html.v2-folded:not(.v2-top) .v2-rail a{justify-content:center;padding:6px 0}
+/* 위로: 한 단, 점수 막대 아래 가로 띠 */
+html.v2-top .container{display:block;max-width:920px!important}
+html.v2-top .v2-rail{position:sticky;top:var(--cbh,60px);z-index:90;display:flex;align-items:center;gap:6px;overflow-x:auto;max-height:none;padding:8px 10px;margin:0 0 14px;scrollbar-width:none}
+html.v2-top .v2-rh{flex:none;margin:0 6px 0 0}
+html.v2-top .v2-rh h4{display:none}
+html.v2-top .v2-mtx{display:none}
+html.v2-top .v2-rail a{flex:none;padding:6px 10px;border:1px solid var(--line);font-size:.8rem}
+html.v2-top .v2-meter{position:absolute;left:0;right:0;bottom:0;margin:0;height:3px;border-radius:0}
+html.v2-top.v2-folded .v2-rail a{display:none}
+html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;color:var(--mute);font-weight:700}
+@media (max-width:980px){
+  .v2-pos{display:none}
+  .v2-rh{flex:none;margin:0 6px 0 0}.v2-rh h4{display:none}
+  html.v2-folded .v2-rail a{display:none}
+  html.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;color:var(--mute);font-weight:700}
+}
+@media (min-width:981px){html.v2-top .v2-rail a .t{display:inline}}
+</style>
+<link id="v2t-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap">
+<style id="v2s">/* ===== v2 사회 층 — 사회② 블록(넘김 카드뉴스·교과서 상자·2단·낱말카드·표지)을 v2 결에 맞춘다 ===== */
+/* 표지: 얇은 300 → 굵은 제목, 단원·차시는 작은 머리말, 교과서 질문은 아래 줄 */
+.hero-title{font-size:1.9rem!important;font-weight:800!important;letter-spacing:-.025em!important;line-height:1.3!important;text-wrap:balance}
+.hero-title .v2s-eyebrow{display:block;font-size:.8rem;font-weight:700;letter-spacing:.06em;color:#f0c75e;margin-bottom:10px}
+.hero-title .v2s-q{display:block;font-size:1.02rem;font-weight:500;color:rgba(245,245,240,.72);margin-top:10px;letter-spacing:-.01em}
+.hero-subtitle{display:none}
+/* 블록 사이 줄 바꿈이 만든 틈 */
+.v2-sec>br,.ws-do>br,.ws-tb>br{display:none}
+/* 넘김 카드뉴스: 600px 짙은 테두리 → 본문 폭 카드 */
+.v2-sec .ws-sw.sw-news{max-width:none;margin:22px 0;border:1px solid var(--line);border-radius:16px;background:#fafbfd;box-shadow:0 1px 3px rgba(20,30,50,.06);overflow:hidden}
+.v2-sec .sw-news .ws-sw-head{padding:14px 20px 4px;font-size:.84rem;font-weight:800;letter-spacing:.02em;color:var(--step)}
+.v2-sec .sw-news .ws-sw-tabs{justify-content:flex-start;padding:6px 20px 4px;gap:6px}
+.v2-sec .sw-news .ws-sw-tab{width:28px;height:28px;border-color:var(--line);color:var(--ink2);background:#fff}
+.v2-sec .sw-news .ws-sw-tab.on{background:var(--step);border-color:var(--step);color:#fff}
+.v2-sec .sw-news .ws-sw-stage{padding:4px 20px 8px}
+.v2-sec .sw-news .ws-sw-h{font-size:1.15rem;color:var(--ink);margin:8px 0 10px;border:0!important;padding:0!important}
+.v2-sec .sw-news .ws-sw-pane img{max-height:340px;border-radius:12px}
+.v2-sec .sw-news .ws-sw-pane p{font-size:1rem!important;line-height:1.8!important;max-width:none}
+.v2-sec .sw-news .ws-sw-nav{justify-content:flex-end;padding:4px 20px 14px}
+.v2-sec .sw-news .ws-sw-nav button{border-radius:999px;border-color:var(--line);color:var(--ink2);padding:6px 16px}
+/* 교과서 상자: 흐린 갈색 안내 글 → 읽히는 진하기 */
+.v2-sec .ws-tb-see{font-size:.95rem!important;color:var(--ink2)!important}
+.v2-sec .ws-tb-ask{font-weight:700;color:var(--ink)}
+/* 2단에 그림만 둘이면 위를 맞춘다(가운데 맞춤이면 키 작은 사진이 떠 보인다) */
+.v2-sec .ws-2c:has(>.c2-a>figure:only-child):has(>.c2-b>figure:only-child){align-items:start!important}
+/* 낱말카드: 세 장이면 왼쪽에 몰리지 않게 가운데 */
+.v2-sec .ws-vcd-track{justify-content:safe center}
+/* 금테 고르기 카드 머리 질문 */
+.v2-sec .ws-pick .pk-head{font-size:.98rem!important;line-height:1.6!important}
+@media (max-width:640px){
+  .hero-title{font-size:1.5rem!important}
+  .v2-sec .sw-news .ws-sw-stage,.v2-sec .sw-news .ws-sw-head,.v2-sec .sw-news .ws-sw-tabs{padding-left:14px;padding-right:14px}
+}
+</style>
+<style id="v2t">/* ===== v2 사회 교재형 층(design_layer: 사회교재) — 『The Human Mosaic』의 장치(다섯 주제 렌즈·장 끝 상자·표지 사진으로 돌아오기)를 사회②에. 2026-10-28 7-4 시험판 3판(블라인드 2회·역사 학생 눈) ===== */
+:root{--t-region:#2f6fd6;--t-move:#d9612b;--t-glob:#6a4fc4;--t-nat:#2f8f55;--t-land:#b07a12;--serif:"Noto Serif KR","Nanum Myeongjo",serif}
+/* 제목은 명조, 본문은 고딕 */
+.hero-title,.v2-sec h2{font-family:var(--serif)!important;font-weight:800!important;letter-spacing:-.03em!important}
+.hero-title .v2s-eyebrow,.hero-title .v2s-q{font-family:inherit}
+.hero-title .v2s-eyebrow{font-family:"Pretendard",system-ui,sans-serif}
+/* 단계 머리: 번호를 교재식으로 */
+.v2-sec.step .v2-kicker b{background:var(--ink);font-family:"Pretendard",system-ui,sans-serif}
+/* 주제 렌즈 칩 */
+.v2t-lens{display:flex;flex-wrap:wrap;gap:6px;margin:-6px 0 16px}
+.v2t-chip{display:inline-flex;align-items:center;gap:5px;font-size:.76rem;font-weight:800;padding:3px 10px 3px 6px;border-radius:999px;background:color-mix(in srgb,var(--c) 10%,#fff);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 30%,#fff)}
+.v2t-chip svg{width:16px;height:16px;flex:none}
+.v2t-legend{margin:18px 0 4px;padding:14px 16px;border-radius:14px;background:#f7f8fb;border:1px solid var(--line)}
+.v2t-legend h4{margin:0 0 8px;font-size:.78rem;letter-spacing:.06em;color:var(--mute)}
+.v2t-legend ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.v2t-legend li{display:flex;gap:8px;align-items:flex-start;font-size:.9rem;line-height:1.5;color:var(--ink2)}
+.v2t-legend li .v2t-chip{flex:none}
+/* 장 끝 상자: 사진으로 읽기 · 직접 해 보기 · 논쟁 속으로 · 마치며 */
+.v2t-tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--ink);border-radius:4px;padding:2px 8px;margin-bottom:6px}
+.v2-sec .ws-sw.v2t-seeing{border:0;border-top:4px solid var(--t-land);border-radius:0 0 16px 16px;background:#fffaf0}
+.v2-sec .ws-sw.v2t-seeing .ws-sw-head{color:var(--t-land)}
+.v2t-debate{border-top:5px solid var(--t-glob)!important}
+.v2t-hero-go{display:block;margin-top:10px;font-size:.84rem;color:#f0c75e;font-weight:600}
+
+/* 2판(검토 반영): 단계 렌즈는 STEP 줄 안의 작은 회색 글자로 — 머리 메타를 두 층 이하로 */
+.v2t-klens{display:inline-flex;gap:6px;align-items:center;margin-left:4px;font-size:.74rem;font-weight:700;letter-spacing:0;color:var(--mute)}
+.v2t-klens svg{width:13px;height:13px;color:var(--mute)}
+.v2t-klens span{display:inline-flex;align-items:center;gap:3px}
+.hero-keyword{text-wrap:pretty}
+
+/* 3판: 렌즈 글자 진하게 · 범례는 한 줄 접기 · 제목 앞 이모지는 작고 옅게(명조와 부딪치지 않게) */
+.v2t-klens{font-size:.8rem!important;color:var(--ink2)!important}
+.v2t-klens svg{color:var(--ink2)!important}
+details.v2t-legend{padding:10px 14px}
+details.v2t-legend summary{cursor:pointer;font-size:.86rem;font-weight:700;color:var(--ink2);list-style:none}
+details.v2t-legend summary::-webkit-details-marker{display:none}
+details.v2t-legend summary b{color:var(--ink)}
+details.v2t-legend summary i{font-style:normal;color:var(--mute);font-weight:600;margin-left:6px;font-size:.78rem}
+details.v2t-legend ul{margin-top:10px}
+.v2t-ico{font-size:.72em;opacity:.75;margin-right:.25em;vertical-align:.08em;font-family:system-ui,sans-serif}
+</style>
 </head>
 <body>
 <div class="container">
@@ -1371,11 +1570,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>세계에서 인구 유입이 많은 지역은 주로 선진국이다.</td><td><div class="ox-group" data-answer="O" data-label="세계에서 인구 유입이 많은 지역은 주로 선진국이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>미국과 독일처럼 소득이 높은 나라에 다른 나라 사람이 많이 들어오는 것은, 일자리와 높은 임금이 흡인 요인이 되기 때문이다.</td><td><div class="ox-group" data-answer="O" data-label="미국과 독일처럼 소득이 높은 나라에 다른 나라 사람이 많이 들어오는 것은, 일자리와 높은 임금이 흡인 요인이"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 <tr><td>2</td><td>사람이 들어오는 지역에는 좋은 점만 생긴다.</td><td><div class="ox-group" data-answer="X" data-label="사람이 들어오는 지역에는 좋은 점만 생긴다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 <tr><td>3</td><td>사람이 빠져나간 나라에서는 일자리를 구하기가 더 어려워진다.</td><td><div class="ox-group" data-answer="X" data-label="사람이 빠져나간 나라에서는 일자리를 구하기가 더 어려워진다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>젊고 유능한 사람이 계속 빠져나가면 그 나라의 산업 성장이 느려질 수 있다.</td><td><div class="ox-group" data-answer="O" data-label="젊고 유능한 사람이 계속 빠져나가면 그 나라의 산업 성장이 느려질 수 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>곡성처럼 젊은 사람이 빠져나간 곳에서는 노인의 비율이 높아진다.</td><td><div class="ox-group" data-answer="O" data-label="곡성처럼 젊은 사람이 빠져나간 곳에서는 노인의 비율이 높아진다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>필리핀 간호사가 많이 외국으로 떠나면, 가족이 받는 돈은 늘어도 필리핀 병원은 일손이 모자랄 수 있다.</td><td><div class="ox-group" data-answer="O" data-label="필리핀 간호사가 많이 외국으로 떠나면, 가족이 받는 돈은 늘어도 필리핀 병원은 일손이 모자랄 수 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>곡성에서 20대가 많이 빠져나가면, 노인 수가 그대로여도 주민 가운데 노인이 차지하는 비율은 높아진다.</td><td><div class="ox-group" data-answer="O" data-label="곡성에서 20대가 많이 빠져나가면, 노인 수가 그대로여도 주민 가운데 노인이 차지하는 비율은 높아진다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
@@ -1806,6 +2005,98 @@ document.querySelectorAll('.ws-rad').forEach(function(rad){
     });
   });
 });
+</script>
+<script id="ws-design-v2-js">(function(){
+var C=document.querySelector('.container'); if(!C) return;
+// 글머리 이모지는 첫 글자 마디에서만 지운다 — innerHTML을 다시 쓰면 안에 든 입력칸·단추의 리스너가 끊긴다(메인 10/28 지적)
+function strip(el,ch){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(n.nodeValue.trim()){n.nodeValue=n.nodeValue.replace(ch,'').replace(/^\s+/,'');return;}}}
+// 1) 블록 목소리 분류
+[].forEach.call(C.querySelectorAll('blockquote'),function(b){
+  var t=b.textContent.trim();
+  if(t.indexOf('🎙️')===0){b.classList.add('v2-voice');strip(b,'🎙️');var w=document.createElement('span');w.className='v2-who';w.textContent='선생님 입담';b.insertBefore(w,b.firstChild);}
+  else if(t.indexOf('📕')===0)b.classList.add('v2-task');
+  else if(t.indexOf('💡')===0)b.classList.add('v2-key');
+  else if(/^(🔍|🧭|✍️)/.test(t))b.classList.add('v2-ask');
+});
+[].forEach.call(C.querySelectorAll('p'),function(p){var t=p.textContent.trim();if(/^💬/.test(t)){p.classList.add('v2-q');strip(p,'💬');}});
+// 2) h2마다 묶어 카드로 (활동 section.ws-do는 그대로 카드)
+var kids=[].slice.call(C.children), secs=[], cur=null;
+kids.forEach(function(el){
+  if(el.tagName==='H2'){cur=document.createElement('section');cur.className='v2-sec';C.insertBefore(cur,el);secs.push(cur);}
+  else if(el.matches&&el.matches('section.ws-do')){el.classList.add('v2-sec');secs.push(el);cur=null;return;}
+  if(cur&&el.tagName!=='BR')cur.appendChild(el);
+});
+// 3) 단계 머리: «📖 1단계: 제목 — 부제» → 킥커 + 제목 + 부제
+secs.forEach(function(s,k){
+  s.id='v2s'+k; var h=s.querySelector('h2'); if(!h)return;
+  var m=h.textContent.match(/^📖\s*(\d)단계:\s*(⭐\s*)?(.+?)(\s+—\s+(.+))?$/);
+  if(m){s.classList.add('step');var kk=document.createElement('div');kk.className='v2-kicker';kk.innerHTML='<b>STEP '+m[1]+'</b>'+(m[2]?'⭐ 핵심':'');s.insertBefore(kk,h);
+    h.innerHTML=m[3]+(m[5]?'<span class="v2-sub">'+m[5]+'</span>':'');s.dataset.lab=m[1]+'단계';s.dataset.n=m[1];}
+  else{s.dataset.lab=h.textContent.replace(/^[^\w가-힣]+/,'').split('—')[0].trim();s.dataset.n=h.textContent.trim().slice(0,2);}
+});
+// 4) 진도 레일
+var R=document.createElement('nav');R.className='v2-rail';R.setAttribute('aria-label','학습지 차례');
+R.innerHTML='<div class="v2-rh"><h4>오늘의 길</h4><button type="button" class="v2-b v2-pos" aria-label="오늘의 길 위치 바꾸기"></button><button type="button" class="v2-b v2-fold" aria-expanded="true"></button></div>';
+var H=document.documentElement;function sg(k){try{return localStorage.getItem(k)}catch(e){return null}}function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function paint(){var top=H.classList.contains('v2-top'),fd=H.classList.contains('v2-folded');
+  R.querySelector('.v2-pos').textContent=top?'⇤ 왼쪽에':'⇡ 위로';R.querySelector('.v2-pos').title=top?'오늘의 길을 왼쪽에 두기':'오늘의 길을 위로 올리기';
+  var f=R.querySelector('.v2-fold');f.textContent=fd?'펴기 ▸':'◂ 접기';f.setAttribute('aria-expanded',fd?'false':'true');}
+if(sg('v2-top')==='1')H.classList.add('v2-top');if(sg('v2-fold')==='1')H.classList.add('v2-folded');
+R.addEventListener('click',function(e){var b=e.target.closest('.v2-b');if(!b)return;
+  if(b.classList.contains('v2-pos')){H.classList.toggle('v2-top');ss('v2-top',H.classList.contains('v2-top')?'1':'0');}
+  else{H.classList.toggle('v2-folded');ss('v2-fold',H.classList.contains('v2-folded')?'1':'0');}
+  paint();});
+setTimeout(paint,0);
+secs.forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.dataset.s=s.id;
+  var n=s.dataset.n;a.innerHTML='<span class="n">'+(/^\d$/.test(n)?n:n)+'</span><span class="t">'+s.dataset.lab+'</span><span class="c"></span>';R.appendChild(a);});
+var meter=document.createElement('div');meter.className='v2-meter';meter.innerHTML='<i></i>';R.appendChild(meter);
+var mtx=document.createElement('div');mtx.className='v2-mtx';R.appendChild(mtx);
+C.insertBefore(R,C.firstChild);
+function tally(){var all=0,fill=0;
+  secs.forEach(function(s){var ins=s.querySelectorAll('input.blank-input,textarea.activity-input');var f=0;[].forEach.call(ins,function(i){if(i.value.trim())f++;});
+    all+=ins.length;fill+=f;var a=R.querySelector('a[data-s="'+s.id+'"]');if(!a)return;a.querySelector('.c').textContent=ins.length?f+'/'+ins.length:'';a.classList.toggle('done',ins.length>0&&f===ins.length);});
+  meter.firstChild.style.width=(all?fill/all*100:0)+'%';mtx.textContent='채운 칸 '+fill+' / '+all;}
+document.addEventListener('input',tally);tally();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){[].forEach.call(R.querySelectorAll('a'),function(a){a.classList.toggle('on',a.dataset.s===e.target.id);if(a.dataset.s===e.target.id&&R.scrollWidth>R.clientWidth)R.scrollLeft=a.offsetLeft-20;});}});},{rootMargin:'-30% 0px -65% 0px'});secs.forEach(function(s){io.observe(s);});}
+})();
+(function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,800);})();
+</script>
+<script id="v2s-js">/* v2 사회 층 — 표지 제목 «사회② 단원 n차시 — 제목 (교과서 질문)»을 세 층으로 나눈다(글자는 그대로) */
+(function(){var t=document.querySelector('.hero-title');if(!t||t.children.length)return;
+var s=t.textContent.trim(),m=s.match(/^(.*?\d+-\d+차시)\s*—\s*(.*?)\s*(\(([^()]*)\))?$/);if(!m)return;
+t.textContent='';var a=document.createElement('span');a.className='v2s-eyebrow';a.textContent=m[1];t.appendChild(a);
+t.appendChild(document.createTextNode(m[2]));
+if(m[4]){var q=document.createElement('span');q.className='v2s-q';q.textContent='교과서 질문 · '+m[4];t.appendChild(q);}})();
+</script>
+<script type="application/json" id="v2t-cfg">{"lens": [["1단계", ["이동", "세계화"]], ["2단계", ["지역", "이동"]], ["3단계", ["지역", "이동"]], ["4단계", ["경관", "지역"]], ["활동 1", ["이동", "경관"]], ["활동 2", ["세계화"]]], "boxes": [["OX 퀴즈", "확인하기"], ["핵심 3줄", "이 차시를 마치며"]], "seeing": "표지의 거리로 돌아가자", "seeingGo": "→ 4단계 «사진으로 읽기»에서 이 거리로 다시 온다"}</script>
+<script id="v2t-js">/* v2 사회 교재형 층(design_layer: 사회교재) — 원고의 글자·입력칸은 건드리지 않고 장치만 덧붙인다(글자 마디 단위로만 감싼다). 설정은 worksheet-gen이 frontmatter lens·seeing에서 만든 #v2t-cfg */
+(function(){
+var cfg={};try{cfg=JSON.parse(document.getElementById('v2t-cfg').textContent)}catch(e){}
+var TH={'지역':['--t-region','어디에 무엇이 모여 있고, 어디가 왜 다를까?','M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z'],
+'이동':['--t-move','사람·물건·생각이 어디서 어디로 옮겨 갈까?','M2 8h9.2L8.6 5.4 9.8 4.2 14.6 9l-4.8 4.8-1.2-1.2 2.6-2.6H2z'],
+'세계화':['--t-glob','먼 곳의 일이 우리와 어떻게 이어질까?','M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zm4.9 6h-2.4a10 10 0 0 0-.9-4 5 5 0 0 1 3.3 4zM8 3c.7.9 1.3 2.5 1.4 4.5H6.6C6.7 5.5 7.3 3.9 8 3zM6.4 3.5a10 10 0 0 0-.9 4H3.1a5 5 0 0 1 3.3-4zM3.1 8.5h2.4a10 10 0 0 0 .9 4 5 5 0 0 1-3.3-4zM8 13c-.7-.9-1.3-2.5-1.4-4.5h2.8C9.3 10.5 8.7 12.1 8 13zm1.6-.5a10 10 0 0 0 .9-4h2.4a5 5 0 0 1-3.3 4z'],
+'자연과 사람':['--t-nat','자연환경과 사람의 삶은 서로 어떻게 영향을 줄까?','M13.5 2.5S6 2 3.6 6.6c-1.5 2.9-.4 5.6.5 6.4L2.5 14.6l.9.9 1.6-1.6c.9.7 3.5 1.7 6.3.2C15.7 11.8 13.5 2.5 13.5 2.5zM5.6 11.6l4.6-4.6-.7-.7-4.6 4.6z'],
+'경관':['--t-land','눈에 보이는 풍경에 무엇이 새겨져 있을까?','M1.5 13.5 6 6.5l3 4 2-2.5 3.5 5.5zM11.5 5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z']};
+function chip(n){var t=TH[n];if(!t)return null;var s=document.createElement('span');s.className='v2t-chip';s.style.setProperty('--c','var('+t[0]+')');
+s.innerHTML='<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="'+t[2]+'"/></svg>';s.appendChild(document.createTextNode(n));return s}
+var secs=[].slice.call(document.querySelectorAll('.v2-sec'));
+function secBy(re){return secs.filter(function(x){var h=x.querySelector('h2');return h&&re.test((x.dataset.lab||'')+' '+h.textContent)})[0]}
+/* 1) 단계·활동마다 렌즈 — STEP 줄 안 작은 글자 */
+function esc(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+var used=[];(cfg.lens||[]).forEach(function(r){var x=secBy(new RegExp(esc(r[0])));if(!x)return;var h=x.querySelector('h2');
+var kk=x.querySelector('.v2-kicker')||x.querySelector('.ws-do-tag');var w=document.createElement('span');w.className='v2t-klens';r[1].forEach(function(n){var t=TH[n];if(!t)return;if(used.indexOf(n)<0)used.push(n);var s=document.createElement('span');s.innerHTML='<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="'+t[2]+'"/></svg>';s.appendChild(document.createTextNode(n));w.appendChild(s)});if(kk){if(kk.classList.contains('v2-kicker'))kk.appendChild(w);else{kk.parentNode.insertBefore(w,kk.nextSibling);w.style.marginLeft='8px'}}});
+/* 2) 학습 목표 아래 «이 차시를 읽는 렌즈» 한 줄 접기 */
+var goal=secBy(/학습 목표/);if(goal){if(used.length){var lg=document.createElement('details');lg.className='v2t-legend';lg.innerHTML='<summary>이 차시를 읽는 렌즈 <b>'+used.join(' · ')+'</b><i>눌러서 렌즈별 질문 보기</i></summary><ul></ul>';used.forEach(function(n){var li=document.createElement('li');li.appendChild(chip(n));li.appendChild(document.createTextNode(TH[n][1]));lg.querySelector('ul').appendChild(li)});goal.appendChild(lg)}}
+/* 5) 장 끝 상자 이름 */
+function tag(el,t){if(!el)return;el.dataset.v2tTag='1';var dt=el.querySelector('.ws-do-tag');if(dt){dt.textContent=t;return}var s=document.createElement('div');s.className='v2t-tag';s.textContent=t;el.insertBefore(s,el.firstChild)}
+(cfg.boxes||[]).forEach(function(r){var x=secBy(new RegExp(esc(r[0])));if(x){tag(x,r[1]);if(r[2])x.classList.add(r[2])}});
+/* 활동 상자: 찬반 카드가 있으면 «논쟁 속으로», 나머지는 «직접 해 보기» */
+[].slice.call(document.querySelectorAll('.ws-do')).forEach(function(x){var hh=x.querySelector('h2');if(x.dataset.v2tTag||!hh||!/활동/.test(hh.textContent))return;var deb=[].slice.call(x.querySelectorAll('.pk-b,button')).some(function(b){return /찬성/.test(b.textContent)});tag(x,deb?'논쟁 속으로':'직접 해 보기');if(deb)x.classList.add('v2t-debate')});
+if(cfg.seeing){var sw=[].slice.call(document.querySelectorAll('.ws-sw')).filter(function(e){var h=e.querySelector('.ws-sw-head');return h&&h.textContent.indexOf(cfg.seeing)>=0})[0];
+if(sw){sw.classList.add('v2t-seeing');tag(sw,'사진으로 읽기');var hk=document.querySelector('.hero-hook');if(hk&&cfg.seeingGo){var g=document.createElement('span');g.className='v2t-hero-go';g.textContent=cfg.seeingGo;hk.appendChild(g)}}}
+/* 제목 앞 이모지: 첫 글자 마디만 잘라 작은 span에(글자·입력칸 불변) */
+[].slice.call(document.querySelectorAll('.v2-sec h2')).forEach(function(h){var n=h.firstChild;if(!n||n.nodeType!==3)return;var m=n.data.match(/^\s*([\u2600-\u27BF\uD83C-\uDBFF\uDC00-\uDFFF\uFE0F]+)\s*/);if(!m)return;var r=n.splitText(m[0].length);var s=document.createElement('span');s.className='v2t-ico';s.textContent=m[1];h.insertBefore(s,r);h.removeChild(n)});
+})();
 </script>
 </body>
 </html>

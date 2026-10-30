@@ -58,6 +58,10 @@ table { border-radius: 10px; overflow: hidden; }
 .ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
 .ws-fold-body { padding: 10px 16px 14px; }
 .ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+.ws-fold-2c .ws-fold-body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }
+.ws-fold-2c .ws-fold-body > figure { grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }
+.ws-fold-2c .ws-fold-body > :not(figure) { grid-column: 2; }
+@media (max-width: 640px) { .ws-fold-2c .ws-fold-body { display: block; } }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -1312,13 +1316,13 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>물가 지수는 기준 시점의 물가를 100으로 놓고 비교한 수치이다.</td><td><div class="ox-group" data-answer="O" data-label="물가 지수는 기준 시점의 물가를 100으로 놓고 비교한 수치이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>올해 소비자 물가 지수가 108이라면, 기준 시점에 1만 원이던 물건 묶음을 지금 사려면 1만 원보다 많이 든다.</td><td><div class="ox-group" data-answer="O" data-label="올해 소비자 물가 지수가 108이라면, 기준 시점에 1만 원이던 물건 묶음을 지금 사려면 1만 원보다 많이 "><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 <tr><td>2</td><td>소비자 물가 지수는 소비자가 직접 물가를 확인하려고 만든 지수이다.</td><td><div class="ox-group" data-answer="X" data-label="소비자 물가 지수는 소비자가 직접 물가를 확인하려고 만든 지수이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>인플레이션이 일어나면 화폐의 구매력이 올라간다.</td><td><div class="ox-group" data-answer="X" data-label="인플레이션이 일어나면 화폐의 구매력이 올라간다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>인플레이션 때 돈을 빌린 사람은 갚을 돈의 실제 가치가 줄어 유리하다.</td><td><div class="ox-group" data-answer="O" data-label="인플레이션 때 돈을 빌린 사람은 갚을 돈의 실제 가치가 줄어 유리하다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>전업주부와 학생은 일자리가 없으면 모두 실업자로 분류된다.</td><td><div class="ox-group" data-answer="X" data-label="전업주부와 학생은 일자리가 없으면 모두 실업자로 분류된다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>6</td><td>실업률은 실업자 수를 경제 활동 인구로 나누어 구한다.</td><td><div class="ox-group" data-answer="O" data-label="실업률은 실업자 수를 경제 활동 인구로 나누어 구한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>7</td><td>실업이 늘면 소비가 줄어 경기가 더 나빠지는 악순환이 생길 수 있다.</td><td><div class="ox-group" data-answer="O" data-label="실업이 늘면 소비가 줄어 경기가 더 나빠지는 악순환이 생길 수 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>월급이 3% 오르는 동안 물가가 5% 올랐다면, 그 월급으로 살 수 있는 물건의 양은 늘었다.</td><td><div class="ox-group" data-answer="X" data-label="월급이 3% 오르는 동안 물가가 5% 올랐다면, 그 월급으로 살 수 있는 물건의 양은 늘었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>1년 전에 100만 원을 빌린 사람이 그동안 물가가 10% 오른 뒤 100만 원을 갚는다면, 빌릴 때보다 실제 가치가 적은 돈을 갚는 셈이다.</td><td><div class="ox-group" data-answer="O" data-label="1년 전에 100만 원을 빌린 사람이 그동안 물가가 10% 오른 뒤 100만 원을 갚는다면, 빌릴 때보다 실"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>대학생 민지는 수업만 듣고 일자리를 찾지 않는다. 일자리가 없으니 민지는 실업자이고, 실업률 계산의 분모에도 들어간다.</td><td><div class="ox-group" data-answer="X" data-label="대학생 민지는 수업만 듣고 일자리를 찾지 않는다. 일자리가 없으니 민지는 실업자이고, 실업률 계산의 분모에도"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>6</td><td>경제 활동 인구가 100명이고 실업자가 4명인 마을에서 실업자 2명이 일자리를 구하면, 실업률은 4%에서 2%로 내려간다.</td><td><div class="ox-group" data-answer="O" data-label="경제 활동 인구가 100명이고 실업자가 4명인 마을에서 실업자 2명이 일자리를 구하면, 실업률은 4%에서 2"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>7</td><td>큰 공장이 문을 닫아 실업자가 늘어난 도시에서는 식당과 가게의 손님도 줄어 일자리가 더 줄어들 수 있다.</td><td><div class="ox-group" data-answer="O" data-label="큰 공장이 문을 닫아 실업자가 늘어난 도시에서는 식당과 가게의 손님도 줄어 일자리가 더 줄어들 수 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 <tr><td>8</td><td>금리를 올려 물가를 잡으면 일자리도 함께 늘어난다.</td><td><div class="ox-group" data-answer="X" data-label="금리를 올려 물가를 잡으면 일자리도 함께 늘어난다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>

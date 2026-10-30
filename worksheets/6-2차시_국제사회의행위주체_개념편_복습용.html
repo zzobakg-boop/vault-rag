@@ -58,6 +58,10 @@ table { border-radius: 10px; overflow: hidden; }
 .ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
 .ws-fold-body { padding: 10px 16px 14px; }
 .ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+.ws-fold-2c .ws-fold-body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }
+.ws-fold-2c .ws-fold-body > figure { grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }
+.ws-fold-2c .ws-fold-body > :not(figure) { grid-column: 2; }
+@media (max-width: 640px) { .ws-fold-2c .ws-fold-body { display: block; } }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -1220,11 +1224,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>국가는 크기와 상관없이 국제법 앞에서 평등한 주체로 인정받는다.</td><td><div class="ox-group" data-answer="O" data-label="국가는 크기와 상관없이 국제법 앞에서 평등한 주체로 인정받는다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>인구가 10만 명쯤인 작은 섬나라도 국제 연합 총회에서는 인구가 10억 명이 넘는 나라와 똑같이 한 표를 가진다.</td><td><div class="ox-group" data-answer="O" data-label="인구가 10만 명쯤인 작은 섬나라도 국제 연합 총회에서는 인구가 10억 명이 넘는 나라와 똑같이 한 표를 가"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 <tr><td>2</td><td>소수 민족이나 개인은 국제 사회의 행위 주체가 아니다.</td><td><div class="ox-group" data-answer="X" data-label="소수 민족이나 개인은 국제 사회의 행위 주체가 아니다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>국제 연합과 세계 무역 기구는 정부 간 국제기구다.</td><td><div class="ox-group" data-answer="O" data-label="국제 연합과 세계 무역 기구는 정부 간 국제기구다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>세계 무역 기구는 여러 나라 정부가 모여 만든 기구라서, 개인과 민간단체가 모여 만든 국경 없는 의사회와 다른 종류의 행위 주체다.</td><td><div class="ox-group" data-answer="O" data-label="세계 무역 기구는 여러 나라 정부가 모여 만든 기구라서, 개인과 민간단체가 모여 만든 국경 없는 의사회와 다"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 <tr><td>4</td><td>이름이 외국어로 된 기구는 정부 간 국제기구로 볼 수 있다.</td><td><div class="ox-group" data-answer="X" data-label="이름이 외국어로 된 기구는 정부 간 국제기구로 볼 수 있다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>정부 간 국제기구가 회원국 이익을 살피느라 나서기 어려울 때 국제 비정부 기구가 활동하기도 한다.</td><td><div class="ox-group" data-answer="O" data-label="정부 간 국제기구가 회원국 이익을 살피느라 나서기 어려울 때 국제 비정부 기구가 활동하기도 한다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>회원국들의 이익이 엇갈려 정부 간 국제기구가 결정을 미루는 사이, 국경 없는 의사회 같은 국제 비정부 기구가 먼저 현장에 들어가 활동하기도 한다.</td><td><div class="ox-group" data-answer="O" data-label="회원국들의 이익이 엇갈려 정부 간 국제기구가 결정을 미루는 사이, 국경 없는 의사회 같은 국제 비정부 기구가"><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>🧠 핵심 3줄 (교과서 덮고!)</h2>
