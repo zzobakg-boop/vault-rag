@@ -58,6 +58,10 @@ table { border-radius: 10px; overflow: hidden; }
 .ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
 .ws-fold-body { padding: 10px 16px 14px; }
 .ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+.ws-fold-2c .ws-fold-body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }
+.ws-fold-2c .ws-fold-body > figure { grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }
+.ws-fold-2c .ws-fold-body > :not(figure) { grid-column: 2; }
+@media (max-width: 640px) { .ws-fold-2c .ws-fold-body { display: block; } }
 blockquote {
   border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
   background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
@@ -1037,6 +1041,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
 .ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
+.ws-fig-zoom { cursor: zoom-in; display: inline-block; max-width: 100%; }
 .ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
 .ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
 .ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
@@ -1125,6 +1130,129 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
+<style id="ws-design-v2">/* ===== 4-3-2 디자인 시험판 v2 — 덧씌움(원본 HTML·data-id 불변) ===== */
+:root{
+  --ink:#1f2329; --ink2:#4a5160; --mute:#7a8191; --line:#e6e8ee; --paper:#ffffff; --bg:#f3f4f7;
+  --step:#2f6fd6; --step-soft:#eaf1fd;
+  --voice:#fff6e6; --voice-line:#f0b94a;
+  --task:#fff3d6; --task-ink:#8a5a00;
+  --ask:#eef7ef; --ask-line:#3f9a5a;
+  --mark:rgba(255,214,77,.55);
+}
+html{font-size:17px}
+@media (max-width:640px){html{font-size:16.5px}}
+body{background:var(--bg)!important;color:var(--ink)!important;letter-spacing:-.005em;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.container{max-width:1120px!important;padding:0!important;background:transparent!important;box-shadow:none!important;display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:28px}
+.container>br{display:none}
+.v2-rail{grid-column:1;grid-row:1/span 999;position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;padding:14px 10px;background:var(--paper);border-radius:14px;box-shadow:0 1px 3px rgba(20,30,50,.06)}
+.v2-rail h4{font-size:.72rem;letter-spacing:.08em;color:var(--mute);margin:2px 8px 8px;font-weight:700}
+.v2-rail a{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:9px;color:var(--ink2);text-decoration:none;font-size:.82rem;line-height:1.35}
+.v2-rail a:hover{background:var(--bg)}
+.v2-rail a.on{background:var(--step-soft);color:var(--step);font-weight:700}
+.v2-rail .n{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:800;background:var(--bg);color:var(--mute)}
+.v2-rail a.on .n{background:var(--step);color:#fff}
+.v2-rail a.done .n{background:#3f9a5a;color:#fff}
+.v2-rail .c{margin-left:auto;font-size:.7rem;color:var(--mute);font-variant-numeric:tabular-nums}
+.v2-meter{height:6px;border-radius:3px;background:var(--line);margin:10px 8px 4px;overflow:hidden}
+.v2-meter i{display:block;height:100%;width:0;background:#3f9a5a;transition:width .3s}
+.v2-mtx{font-size:.72rem;color:var(--mute);margin:0 8px}
+.container>*:not(.v2-rail){grid-column:2;min-width:0}
+.hero-section{border-radius:18px!important;overflow:hidden}
+.v2-sec{background:var(--paper);border-radius:18px;padding:30px 36px 28px;margin:0 0 18px;box-shadow:0 1px 3px rgba(20,30,50,.06);scroll-margin-top:16px}
+.v2-sec.step{border-top:5px solid var(--step)}
+.v2-sec>*:first-child{margin-top:0}
+.v2-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;letter-spacing:.06em;color:var(--step);margin-bottom:6px}
+.v2-kicker b{background:var(--step);color:#fff;border-radius:6px;padding:2px 8px;letter-spacing:0}
+.v2-sec h2{font-size:1.55rem!important;line-height:1.35!important;font-weight:800!important;letter-spacing:-.02em;margin:0 0 16px!important;padding:0!important;border:0!important;color:var(--ink)!important;text-wrap:balance}
+.v2-sec h2 .v2-sub{display:block;font-size:1.02rem;font-weight:600;color:var(--ink2);margin-top:4px}
+.v2-sec p{font-size:1rem!important;line-height:1.85!important;margin:0 0 14px!important;max-width:40em;color:var(--ink)}
+.v2-sec .ws-tb-ask,.v2-sec .ws-tb p{line-height:1.6!important}
+.v2-sec strong{background:linear-gradient(transparent 62%,var(--mark) 62%);font-weight:700}
+.v2-sec figure.ws-fig{margin:20px 0!important}
+.v2-sec figcaption{font-size:.84rem!important;line-height:1.6!important;color:var(--ink2)!important}
+.v2-sec blockquote{margin:16px 0!important;font-size:.97rem!important;line-height:1.8!important}
+/* 목소리 구분: 입담 / 교과서 펴기 / 찾아보기·쓰기 / 열쇳말 */
+blockquote.v2-voice{position:relative;background:var(--voice)!important;border:0!important;border-radius:16px!important;padding:14px 18px 14px 58px!important;color:#3d3220!important}
+blockquote.v2-voice::before{content:"🎙️";position:absolute;left:14px;top:12px;width:32px;height:32px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:17px;box-shadow:0 0 0 2px var(--voice-line)}
+blockquote.v2-voice .v2-who{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;color:#b07a12;margin-bottom:2px}
+blockquote.v2-task{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;background:var(--task)!important;border:0!important;border-radius:12px!important;padding:10px 14px!important;color:var(--task-ink)!important;font-size:.9rem!important;font-weight:600}
+blockquote.v2-key{background:#f1f0ff!important;border:0!important;border-radius:12px!important;padding:12px 16px!important;color:#3b2f8f!important;font-weight:600}
+blockquote.v2-ask{background:var(--ask)!important;border:0!important;border-left:4px solid var(--ask-line)!important;border-radius:4px 12px 12px 4px!important;padding:12px 16px!important}
+p.v2-q{background:#f7f8fb;border-radius:12px;padding:12px 16px 12px 16px!important;border:1px dashed #c9cfdb;font-weight:600}
+p.v2-q::before{content:"생각해 보기";display:block;font-size:.7rem;font-weight:800;letter-spacing:.08em;color:var(--mute);margin-bottom:2px}
+.ws-tb{border-radius:14px!important}
+/* 빈칸 */
+input.blank-input:not(.activity-input){min-height:34px;font-size:1rem!important;font-weight:700;border:0!important;border-bottom:2.5px solid var(--step)!important;background:#f3f7ff!important;border-radius:6px 6px 0 0!important;padding:2px 8px!important;color:var(--step)!important;vertical-align:baseline}
+input.blank-input:focus{outline:3px solid rgba(47,111,214,.25)!important;outline-offset:1px}
+.activity-input,textarea{font-size:1rem!important;line-height:1.7!important}
+.ws-fold{border-radius:14px!important}
+.ws-fold>summary{font-size:.95rem!important}
+.v2-sec .ws-2c{gap:24px!important}
+@media (max-width:980px){
+  .container{display:block}
+  .v2-rail{position:sticky;top:0;z-index:50;display:flex;gap:6px;overflow-x:auto;max-height:none;border-radius:0 0 12px 12px;padding:8px 10px;margin:0 -16px 12px;scrollbar-width:none}
+  .v2-rail h4,.v2-mtx{display:none}
+  .v2-rail a{flex:none;padding:6px 10px;border:1px solid var(--line);font-size:.78rem}
+  .v2-rail a .t{display:none}
+  .v2-rail a.on .t{display:inline}
+  .v2-meter{position:absolute;left:0;right:0;bottom:0;margin:0;height:3px;border-radius:0}
+}
+@media (max-width:640px){
+  .v2-sec{padding:22px 18px 20px;border-radius:14px;margin:0 0 12px}
+  .v2-sec h2{font-size:1.32rem!important}
+  blockquote.v2-voice{padding:12px 14px 12px 50px!important}
+  blockquote.v2-voice::before{left:10px;width:28px;height:28px;font-size:15px}
+}
+@media print{.v2-rail{display:none}.container{display:block}.v2-sec{box-shadow:none;break-inside:auto}}
+.v2-sec h2{background:none!important;box-shadow:none!important}
+blockquote.v2-task strong,blockquote.v2-key strong,.ws-tb strong{background:none}
+.v2-sec figure.ws-fig{max-width:760px;margin-left:auto!important;margin-right:auto!important}
+@media (max-width:980px){.v2-rail{margin:0 0 12px}}
+.container>.hero-section{margin:0 0 18px!important}
+/* 점수 막대: 카드처럼, 폰은 한 줄로 얇게 */
+.container>.control-bar{margin:0 0 14px!important;padding:10px 16px!important;border-radius:14px;border:0!important;box-shadow:0 1px 3px rgba(20,30,50,.08);top:8px!important;align-items:center}
+.control-bar .score{font-size:.9rem!important;font-variant-numeric:tabular-nums}
+@media (max-width:640px){
+  .container>.control-bar{top:0!important;border-radius:0 0 12px 12px;padding:6px 10px!important;flex-wrap:nowrap!important;gap:6px}
+  .control-bar .score{font-size:.74rem!important;white-space:nowrap;margin:0!important}
+  .control-bar .btn,.control-bar button{font-size:.72rem!important;padding:6px 8px!important;min-height:32px;white-space:nowrap}
+  .control-bar>div:last-child{display:flex;gap:4px;flex-wrap:nowrap}
+}
+@media (max-width:980px){.v2-rail{top:var(--cbh,52px)!important;z-index:90}}
+@media (max-width:640px){.container>.control-bar{flex-direction:row!important;justify-content:space-between!important;text-align:left!important}.control-bar .score{text-align:left!important}.control-bar .btn{margin:0!important}}
+@media (max-width:640px){.control-bar .score{white-space:normal!important;flex:1 1 auto;min-width:0;line-height:1.35}.control-bar>div:last-child{flex:none}.control-bar .btn{padding:6px 7px!important}}
+.v2-sec{scroll-margin-top:84px}@media (max-width:980px){.v2-sec{scroll-margin-top:120px}}
+
+/* 10/28 천대현: 오늘의 길 접기·펴기 + 왼쪽/위 고르기 */
+.v2-rh{display:flex;align-items:center;gap:6px;margin:0 4px 8px}
+.v2-rh h4{margin:0 auto 0 4px!important}
+.v2-b{font:inherit;font-size:.72rem;font-weight:700;color:var(--ink2);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 8px;cursor:pointer;white-space:nowrap}
+.v2-b:hover{background:var(--step-soft);color:var(--step)}
+/* 왼쪽 + 접힘: 번호만 남는 좁은 기둥 */
+html.v2-folded:not(.v2-top) .container{grid-template-columns:58px minmax(0,1fr)}
+html.v2-folded:not(.v2-top) .v2-rail{padding:10px 6px}
+html.v2-folded:not(.v2-top) .v2-rail .t,html.v2-folded:not(.v2-top) .v2-rail .c,html.v2-folded:not(.v2-top) .v2-rh h4,html.v2-folded:not(.v2-top) .v2-mtx,html.v2-folded:not(.v2-top) .v2-pos{display:none}
+html.v2-folded:not(.v2-top) .v2-rh{flex-direction:column;margin:0 0 6px}
+html.v2-folded:not(.v2-top) .v2-fold{padding:4px 5px;font-size:.66rem}
+html.v2-folded:not(.v2-top) .v2-rail a{justify-content:center;padding:6px 0}
+/* 위로: 한 단, 점수 막대 아래 가로 띠 */
+html.v2-top .container{display:block;max-width:920px!important}
+html.v2-top .v2-rail{position:sticky;top:var(--cbh,60px);z-index:90;display:flex;align-items:center;gap:6px;overflow-x:auto;max-height:none;padding:8px 10px;margin:0 0 14px;scrollbar-width:none}
+html.v2-top .v2-rh{flex:none;margin:0 6px 0 0}
+html.v2-top .v2-rh h4{display:none}
+html.v2-top .v2-mtx{display:none}
+html.v2-top .v2-rail a{flex:none;padding:6px 10px;border:1px solid var(--line);font-size:.8rem}
+html.v2-top .v2-meter{position:absolute;left:0;right:0;bottom:0;margin:0;height:3px;border-radius:0}
+html.v2-top.v2-folded .v2-rail a{display:none}
+html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;color:var(--mute);font-weight:700}
+@media (max-width:980px){
+  .v2-pos{display:none}
+  .v2-rh{flex:none;margin:0 6px 0 0}.v2-rh h4{display:none}
+  html.v2-folded .v2-rail a{display:none}
+  html.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;color:var(--mute);font-weight:700}
+}
+@media (min-width:981px){html.v2-top .v2-rail a .t{display:inline}}
+</style>
 </head>
 <body>
 <div class="container">
@@ -1169,7 +1297,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>조선은 19세기 후반까지 서양 열강이 나라의 문을 열고 교역하자고 요구해도 거절하였다. 그러던 1875년, 일본은 조선에 통상을 강요하려고 군함 ①<input type="text" class="blank-input" data-answer="운요호" data-id="1" style="width:68px" placeholder="">를 조선의 서해안으로 보냈다. 조선의 포대가 이 배에 경고 사격을 하자, 일본은 이 사건을 빌미로 문을 열라고 다그쳤다. 결국 조선은 일본과 ②<input type="text" class="blank-input" data-answer="강화도" data-id="2" style="width:68px" placeholder=""> 조약을 맺고(1876), 부산을 포함한 항구 세 곳을 열었다. 이 조약은 조선이 외국과 맺은 최초의 근대적 조약이었지만, 일본에게만 유리한 ③<input type="text" class="blank-input" data-answer="불평등" data-id="3" style="width:68px" placeholder=""> 조약이었다. 이후 조선은 미국을 비롯한 서양 열강과도 조약을 맺고 문을 열었다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/5-3-5_연무당조약.jpg" alt="1876년 2월, 두 나라 대표가 조약을 맺는 장면 — 건물 이름판에 '練武堂(연무당)'이라고 쓰여 있다. 일본에서 펴낸 판화라 일본 쪽 행렬이 크게 그려져 있다. (작자 미상, 1880년 무렵)" loading="lazy"><figcaption>1876년 2월, 두 나라 대표가 조약을 맺는 장면 — 건물 이름판에 '練武堂(연무당)'이라고 쓰여 있다. 일본에서 펴낸 판화라 일본 쪽 행렬이 크게 그려져 있다. (작자 미상, 1880년 무렵)</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-3-5_연무당조약.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-3-5_연무당조약.jpg" alt="1876년 2월, 두 나라 대표가 조약을 맺는 장면 — 건물 이름판에 '練武堂(연무당)'이라고 쓰여 있다. 일본에서 펴낸 판화라 일본 쪽 행렬이 크게 그려져 있다. (작자 미상, 1880년 무렵)" loading="lazy"></a><figcaption>1876년 2월, 두 나라 대표가 조약을 맺는 장면 — 건물 이름판에 '練武堂(연무당)'이라고 쓰여 있다. 일본에서 펴낸 판화라 일본 쪽 행렬이 크게 그려져 있다. (작자 미상, 1880년 무렵)</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 5-3-4 기억나? 1853년 미국 군함이 일본 앞바다에 나타나 '항구를 열라'고 했고, 일본은 거절하지 못했지. 그로부터 20여 년 뒤, 이번에는 일본이 군함을 앞세워 조선의 문을 두드렸어. 자기가 당한 방식을 이웃 나라에 그대로 쓴 거야. 그럼 이 조약은 무엇이 공평하지 않았을까? 조선 항구에 머물던 일본 사람이 죄를 지으면 누가 재판했을지 짐작해 봐.</blockquote>
 </div></div>
@@ -1182,7 +1310,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>문을 연 뒤 조선 정부는 서양 문물을 받아들여 나라를 새롭게 하는 개화 정책을 추진하였다. 그러나 조선의 전통 질서를 지키려는 사람들의 반발에 부딪혔다. 개화를 주장한 사람들도 외교 방향과 개화를 밀고 나가는 방법을 두고 온건 개화파와 급진 개화파로 나뉘었다. 개화의 방향을 두고 여러 입장의 대립이 이어지자, 김옥균 등 급진 개화파는 ④<input type="text" class="blank-input" data-answer="갑신정변" data-id="4" style="width:84px" placeholder="">을 일으켜 조선을 근대 국가로 만들고자 하였다(1884). 그러나 청이 군대를 보내 끼어들면서 사흘 만에 실패하였다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,2.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/5-3-5_김옥균.jpg" alt="1882~1884년 무렵의 김옥균 — 서양식 양복을 입고 찍은 사진이다. (작자 미상)" loading="lazy"><figcaption>1882~1884년 무렵의 김옥균 — 서양식 양복을 입고 찍은 사진이다. (작자 미상)</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-3-5_김옥균.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-3-5_김옥균.jpg" alt="1882~1884년 무렵의 김옥균 — 서양식 양복을 입고 찍은 사진이다. (작자 미상)" loading="lazy"></a><figcaption>1882~1884년 무렵의 김옥균 — 서양식 양복을 입고 찍은 사진이다. (작자 미상)</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 5-3-3에서 청의 변법자강 운동, 기억나? 일본의 메이지 유신을 본받아 제도까지 바꾸자고 했다가 보수 세력에 막혀 실패했지. 조선의 이 정변도 비슷한 꿈을 꿨어. 몇몇 젊은 관료가 위에서 단번에 나라를 바꾸려 한 거야. 그런데 사흘이라니, 너무 짧지? 반대하는 세력도 컸고, 청의 군대도 막지 못했어. 무엇보다 이들의 계획을 함께하려는 백성이 거의 없었다는 점도 자주 실패 이유로 꼽혀.</blockquote>
 </div></div>
@@ -1194,7 +1322,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>1894년에는 전봉준 등이 농민들을 모아, 백성을 괴롭히는 탐관오리의 횡포와 외국 세력의 침입에 맞서 봉기를 일으켰다. 이 봉기를 ⑤<input type="text" class="blank-input" data-answer="동학 농민 운동" data-id="5" style="width:148px" placeholder="">이라고 한다. 한편 일본은 이 봉기를 진압한다는 명분으로 조선에 군대를 보내고, 조선의 정치에 간섭하며 개혁을 강요하였다. 이후 김홍집을 중심으로 이루어진 새 정부는 신분제와 과거제를 없애는 등의 내용을 담은 ⑥<input type="text" class="blank-input" data-answer="갑오개혁" data-id="6" style="width:84px" placeholder="">을 추진하였다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-3-5_전봉준.jpg" alt="1895년 2월, 서울에서 재판을 받으러 옮겨지는 농민군 지도자 전봉준 — 가운데 가마에 앉은 사람이다. 양옆에 일본식 제복을 입은 사람들이 서 있다." loading="lazy"><figcaption>1895년 2월, 서울에서 재판을 받으러 옮겨지는 농민군 지도자 전봉준 — 가운데 가마에 앉은 사람이다. 양옆에 일본식 제복을 입은 사람들이 서 있다.</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-3-5_전봉준.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-3-5_전봉준.jpg" alt="1895년 2월, 서울에서 재판을 받으러 옮겨지는 농민군 지도자 전봉준 — 가운데 가마에 앉은 사람이다. 양옆에 일본식 제복을 입은 사람들이 서 있다." loading="lazy"></a><figcaption>1895년 2월, 서울에서 재판을 받으러 옮겨지는 농민군 지도자 전봉준 — 가운데 가마에 앉은 사람이다. 양옆에 일본식 제복을 입은 사람들이 서 있다.</figcaption></figure>
 <br>
 <blockquote>🎙️ 5-3-3에서 의화단이 베이징까지 갔다가 8개국 연합군에 진압됐지? 조선에서도 아래에서 일어난 봉기가 결국 외국 군대를 불러들이는 핑계가 되었어. 사진 속 전봉준은 이 일로 붙잡혀 이듬해 세상을 떠났어. 그리고 위 빈칸 ⑥의 개혁, 신분제를 없앤 건 분명 큰 변화야. 그런데 누가 등 뒤에서 그 개혁을 밀어붙였는지도 함께 기억해 둬.</blockquote>
 <br>
@@ -1210,9 +1338,9 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>일본이 경복궁을 습격하여 명성 황후를 시해한 을미사변이 일어나자, 고종은 일본의 감시를 피해 궁궐을 떠나 처소를 옮겼다(아관 파천, 1896). 이후 조선은 러시아를 포함한 열강의 간섭과 이권 침탈에 시달렸다. 이 무렵 서재필은 한글로만 쓴 독립신문을 펴내고, 개화파 관료들과 함께 ⑦<input type="text" class="blank-input" data-answer="독립 협회" data-id="7" style="width:100px" placeholder="">를 만들었다. 이 단체는 독립문을 세우고, 신분이나 계층에 상관없이 많은 사람이 모여 열강의 침략을 규탄하고 정부 정책을 비판하는 ⑧<input type="text" class="blank-input" data-answer="만민 공동회" data-id="8" style="width:116px" placeholder="">를 열어 자주 국권 운동을 펼쳤으며, 의회를 세우자고 주장하였다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/5-3-5_독립신문.jpg" alt="1899년에 나온 독립신문 한 호 — 한자 없이 한글로만, 낱말 사이를 띄어 썼다. (공공누리 제1유형)" loading="lazy"><figcaption>1899년에 나온 독립신문 한 호 — 한자 없이 한글로만, 낱말 사이를 띄어 썼다. (공공누리 제1유형)</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-3-5_독립신문.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-3-5_독립신문.jpg" alt="1899년에 나온 독립신문 한 호 — 한자 없이 한글로만, 낱말 사이를 띄어 썼다. (공공누리 제1유형)" loading="lazy"></a><figcaption>1899년에 나온 독립신문 한 호 — 한자 없이 한글로만, 낱말 사이를 띄어 썼다. (공공누리 제1유형)</figcaption></figure>
 </div><div class="c2-b">
-<figure class="ws-fig"><img src="images/5-3-5_독립문.jpg" alt="1900년대의 독립문 — 앞에 선 돌기둥 두 개는 청의 사신을 맞던 영은문을 헐고 남은 주춧돌이다. (작자 미상)" loading="lazy"><figcaption>1900년대의 독립문 — 앞에 선 돌기둥 두 개는 청의 사신을 맞던 영은문을 헐고 남은 주춧돌이다. (작자 미상)</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-3-5_독립문.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-3-5_독립문.jpg" alt="1900년대의 독립문 — 앞에 선 돌기둥 두 개는 청의 사신을 맞던 영은문을 헐고 남은 주춧돌이다. (작자 미상)" loading="lazy"></a><figcaption>1900년대의 독립문 — 앞에 선 돌기둥 두 개는 청의 사신을 맞던 영은문을 헐고 남은 주춧돌이다. (작자 미상)</figcaption></figure>
 </div></div>
 <br>
 <blockquote>🎙️ 위 사료를 다시 읽어 봐. '상하 귀천이 다 보게', 곧 높은 사람이든 낮은 사람이든 누구나 읽게 하려고 한글로만 썼다는 거야. 왕의 신하나 양반이 아니라 '읽고 생각하는 백성'을 만들려 한 거지. 오른쪽 사진의 문도 마찬가지야. 청의 사신을 맞이하던 문을 헐어 낸 자리 바로 뒤에, 누구에게도 머리 숙이지 않겠다는 뜻으로 새 문을 세웠어. 이 단체가 연 집회에서는 천대받던 백정 출신 박성춘까지 연단에 올라 연설했어.</blockquote>
@@ -1225,7 +1353,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <p>고종이 궁궐로 돌아와야 한다는 목소리가 높아지자, 고종은 1년 만에 경운궁(지금의 덕수궁)으로 돌아왔다. 이어 황제의 자리에 오른 다음 ⑨<input type="text" class="blank-input" data-answer="대한 제국" data-id="9" style="width:100px" placeholder=""> 수립을 선포하였다(1897). 이 나라는 '옛것을 근본으로 삼고, 새것을 참고한다'는 원칙에 따라 여러 개혁을 펼쳤다. 그러나 일본은 1905년에 강제로 맺은 ⑩<input type="text" class="blank-input" data-answer="을사늑약" data-id="10" style="width:84px" placeholder="">으로 이 나라의 외교권을 빼앗고, 1910년에는 강제로 병합하여 식민지로 삼았다.</p>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.2fr)"><div class="c2-a">
-<figure class="ws-fig"><img src="images/5-3-5_황궁우.jpg" alt="황궁우 — 고종이 하늘에 제사를 지내고 황제 자리에 오른 환구단 곁에 1899년 세운 건물이다. 사진은 일제 강점기에 찍은 엽서다. (작자 미상)" loading="lazy"><figcaption>황궁우 — 고종이 하늘에 제사를 지내고 황제 자리에 오른 환구단 곁에 1899년 세운 건물이다. 사진은 일제 강점기에 찍은 엽서다. (작자 미상)</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-3-5_황궁우.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-3-5_황궁우.jpg" alt="황궁우 — 고종이 하늘에 제사를 지내고 황제 자리에 오른 환구단 곁에 1899년 세운 건물이다. 사진은 일제 강점기에 찍은 엽서다. (작자 미상)" loading="lazy"></a><figcaption>황궁우 — 고종이 하늘에 제사를 지내고 황제 자리에 오른 환구단 곁에 1899년 세운 건물이다. 사진은 일제 강점기에 찍은 엽서다. (작자 미상)</figcaption></figure>
 </div><div class="c2-b">
 <blockquote>🎙️ 왕이 '황제'가 된 게 그냥 이름만 바꾼 걸까? 청일 전쟁 뒤 맺은 시모노세키 조약 첫머리에는 '청은 조선이 완전한 자주국임을 확인한다'는 조항이 있었어. 이제 청 황제 아래의 왕이 아니라, 청이나 일본과 나란히 선 '황제의 나라'라는 뜻이야. 그리고 5-3-3의 양무운동 기억나? '중국의 제도는 그대로, 서양의 기술만'. 위 원칙과 무엇이 닮았는지 비교해 봐.</blockquote>
 </div></div>
@@ -1237,7 +1365,7 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 <br>
 <p>조선에서는 일본의 침략에 맞서 국권을 되찾으려는 ⑪<input type="text" class="blank-input" data-answer="의병" data-id="11" style="width:60px" placeholder=""> 운동이 활발하게 일어났다. 특히 1905년의 강제 조약 이후에는 전국에서 일어났다. 일본이 이를 철저하게 탄압하자, 많은 이들이 만주와 연해주 등지로 옮겨 가 독립군으로 활약하였다. 한편 그 무렵 지식인과 관료층은 개화사상과 4단계에서 본 단체의 활동을 이어받아 ⑫<input type="text" class="blank-input" data-answer="애국 계몽" data-id="12" style="width:100px" placeholder=""> 운동을 펼쳤다. 이들은 민족의 실력을 길러 국권을 되찾자고 주장하며 학교를 세우고 신문과 잡지를 펴냈다.</p>
 <br>
-<figure class="ws-fig"><img src="images/5-3-5_의병.jpg" alt="1907년 가을, 영국 기자 매켄지가 경기도에서 만나 찍은 사람들 — 들고 있는 총은 낡았고 옷차림도 제각각이다. 가운데에는 군복을 입은 사람도 서 있다." loading="lazy"><figcaption>1907년 가을, 영국 기자 매켄지가 경기도에서 만나 찍은 사람들 — 들고 있는 총은 낡았고 옷차림도 제각각이다. 가운데에는 군복을 입은 사람도 서 있다.</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-3-5_의병.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-3-5_의병.jpg" alt="1907년 가을, 영국 기자 매켄지가 경기도에서 만나 찍은 사람들 — 들고 있는 총은 낡았고 옷차림도 제각각이다. 가운데에는 군복을 입은 사람도 서 있다." loading="lazy"></a><figcaption>1907년 가을, 영국 기자 매켄지가 경기도에서 만나 찍은 사람들 — 들고 있는 총은 낡았고 옷차림도 제각각이다. 가운데에는 군복을 입은 사람도 서 있다.</figcaption></figure>
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"우리는 어차피 죽게 될 것입니다. 그러나 좋습니다. 일본의 노예로 사느니 자유인으로 죽는 것이 훨씬 낫습니다."</blockquote><figcaption class="sr-c">— F. A. 매켄지, 『The Tragedy of Korea』(1908), 위 사진을 찍을 무렵 만난 한 지휘관의 말</figcaption></figure>
 <br>
@@ -1264,11 +1392,11 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>✅ OX 퀴즈</h2>
 <table>
 <tr><td>번호</td><td>문장</td><td>O/X</td></tr>
-<tr><td>1</td><td>강화도 조약은 조선과 일본이 대등한 조건으로 맺은 조약이다.</td><td><div class="ox-group" data-answer="X" data-label="강화도 조약은 조선과 일본이 대등한 조건으로 맺은 조약이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>2</td><td>갑신정변은 청이 군대를 보내 끼어들면서 실패하였다.</td><td><div class="ox-group" data-answer="O" data-label="갑신정변은 청이 군대를 보내 끼어들면서 실패하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>3</td><td>갑오개혁으로 신분제와 과거제가 폐지되었다.</td><td><div class="ox-group" data-answer="O" data-label="갑오개혁으로 신분제와 과거제가 폐지되었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>4</td><td>만민 공동회를 연 단체는 의회를 세우자고 주장하였다.</td><td><div class="ox-group" data-answer="O" data-label="만민 공동회를 연 단체는 의회를 세우자고 주장하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
-<tr><td>5</td><td>을사늑약 이후 의병들은 끝까지 국내에서만 싸웠다.</td><td><div class="ox-group" data-answer="X" data-label="을사늑약 이후 의병들은 끝까지 국내에서만 싸웠다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>1</td><td>1876년 조선이 일본과 처음 맺은 근대 조약은 대등한 조건으로 맺은 조약이다.</td><td><div class="ox-group" data-answer="X" data-label="1876년 조선이 일본과 처음 맺은 근대 조약은 대등한 조건으로 맺은 조약이다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>1884년 급진 개화파가 일으킨 정변은 청이 군대를 보내 끼어들면서 실패하였다.</td><td><div class="ox-group" data-answer="O" data-label="1884년 급진 개화파가 일으킨 정변은 청이 군대를 보내 끼어들면서 실패하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>1894년부터 추진된 개혁으로 신분제와 과거제가 폐지되었다.</td><td><div class="ox-group" data-answer="O" data-label="1894년부터 추진된 개혁으로 신분제와 과거제가 폐지되었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>서울 종로에서 누구나 참여하는 대중 집회를 연 단체는 의회를 세우자고 주장하였다.</td><td><div class="ox-group" data-answer="O" data-label="서울 종로에서 누구나 참여하는 대중 집회를 연 단체는 의회를 세우자고 주장하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>1905년 일본이 외교권을 빼앗은 뒤 무장 투쟁에 나선 사람들은 끝까지 국내에서만 싸웠다.</td><td><div class="ox-group" data-answer="X" data-label="1905년 일본이 외교권을 빼앗은 뒤 무장 투쟁에 나선 사람들은 끝까지 국내에서만 싸웠다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
@@ -1692,6 +1820,61 @@ document.querySelectorAll('.ws-rad').forEach(function(rad){
     });
   });
 });
+</script>
+<script id="ws-design-v2-js">(function(){
+var C=document.querySelector('.container'); if(!C) return;
+// 글머리 이모지는 첫 글자 마디에서만 지운다 — innerHTML을 다시 쓰면 안에 든 입력칸·단추의 리스너가 끊긴다(메인 10/28 지적)
+function strip(el,ch){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(n.nodeValue.trim()){n.nodeValue=n.nodeValue.replace(ch,'').replace(/^\s+/,'');return;}}}
+// 1) 블록 목소리 분류
+[].forEach.call(C.querySelectorAll('blockquote'),function(b){
+  var t=b.textContent.trim();
+  if(t.indexOf('🎙️')===0){b.classList.add('v2-voice');strip(b,'🎙️');var w=document.createElement('span');w.className='v2-who';w.textContent='선생님 입담';b.insertBefore(w,b.firstChild);}
+  else if(t.indexOf('📕')===0)b.classList.add('v2-task');
+  else if(t.indexOf('💡')===0)b.classList.add('v2-key');
+  else if(/^(🔍|🧭|✍️)/.test(t))b.classList.add('v2-ask');
+});
+[].forEach.call(C.querySelectorAll('p'),function(p){var t=p.textContent.trim();if(/^💬/.test(t)){p.classList.add('v2-q');strip(p,'💬');}});
+// 2) h2마다 묶어 카드로 (활동 section.ws-do는 그대로 카드)
+var kids=[].slice.call(C.children), secs=[], cur=null;
+kids.forEach(function(el){
+  if(el.tagName==='H2'){cur=document.createElement('section');cur.className='v2-sec';C.insertBefore(cur,el);secs.push(cur);}
+  else if(el.matches&&el.matches('section.ws-do')){el.classList.add('v2-sec');secs.push(el);cur=null;return;}
+  if(cur&&el.tagName!=='BR')cur.appendChild(el);
+});
+// 3) 단계 머리: «📖 1단계: 제목 — 부제» → 킥커 + 제목 + 부제
+secs.forEach(function(s,k){
+  s.id='v2s'+k; var h=s.querySelector('h2'); if(!h)return;
+  var m=h.textContent.match(/^📖\s*(\d)단계:\s*(⭐\s*)?(.+?)(\s+—\s+(.+))?$/);
+  if(m){s.classList.add('step');var kk=document.createElement('div');kk.className='v2-kicker';kk.innerHTML='<b>STEP '+m[1]+'</b>'+(m[2]?'⭐ 핵심':'');s.insertBefore(kk,h);
+    h.innerHTML=m[3]+(m[5]?'<span class="v2-sub">'+m[5]+'</span>':'');s.dataset.lab=m[1]+'단계';s.dataset.n=m[1];}
+  else{s.dataset.lab=h.textContent.replace(/^[^\w가-힣]+/,'').split('—')[0].trim();s.dataset.n=h.textContent.trim().slice(0,2);}
+});
+// 4) 진도 레일
+var R=document.createElement('nav');R.className='v2-rail';R.setAttribute('aria-label','학습지 차례');
+R.innerHTML='<div class="v2-rh"><h4>오늘의 길</h4><button type="button" class="v2-b v2-pos" aria-label="오늘의 길 위치 바꾸기"></button><button type="button" class="v2-b v2-fold" aria-expanded="true"></button></div>';
+var H=document.documentElement;function sg(k){try{return localStorage.getItem(k)}catch(e){return null}}function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function paint(){var top=H.classList.contains('v2-top'),fd=H.classList.contains('v2-folded');
+  R.querySelector('.v2-pos').textContent=top?'⇤ 왼쪽에':'⇡ 위로';R.querySelector('.v2-pos').title=top?'오늘의 길을 왼쪽에 두기':'오늘의 길을 위로 올리기';
+  var f=R.querySelector('.v2-fold');f.textContent=fd?'펴기 ▸':'◂ 접기';f.setAttribute('aria-expanded',fd?'false':'true');}
+if(sg('v2-top')==='1')H.classList.add('v2-top');if(sg('v2-fold')==='1')H.classList.add('v2-folded');
+R.addEventListener('click',function(e){var b=e.target.closest('.v2-b');if(!b)return;
+  if(b.classList.contains('v2-pos')){H.classList.toggle('v2-top');ss('v2-top',H.classList.contains('v2-top')?'1':'0');}
+  else{H.classList.toggle('v2-folded');ss('v2-fold',H.classList.contains('v2-folded')?'1':'0');}
+  paint();});
+setTimeout(paint,0);
+secs.forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.dataset.s=s.id;
+  var n=s.dataset.n;a.innerHTML='<span class="n">'+(/^\d$/.test(n)?n:n)+'</span><span class="t">'+s.dataset.lab+'</span><span class="c"></span>';R.appendChild(a);});
+var meter=document.createElement('div');meter.className='v2-meter';meter.innerHTML='<i></i>';R.appendChild(meter);
+var mtx=document.createElement('div');mtx.className='v2-mtx';R.appendChild(mtx);
+C.insertBefore(R,C.firstChild);
+function tally(){var all=0,fill=0;
+  secs.forEach(function(s){var ins=s.querySelectorAll('input.blank-input,textarea.activity-input');var f=0;[].forEach.call(ins,function(i){if(i.value.trim())f++;});
+    all+=ins.length;fill+=f;var a=R.querySelector('a[data-s="'+s.id+'"]');if(!a)return;a.querySelector('.c').textContent=ins.length?f+'/'+ins.length:'';a.classList.toggle('done',ins.length>0&&f===ins.length);});
+  meter.firstChild.style.width=(all?fill/all*100:0)+'%';mtx.textContent='채운 칸 '+fill+' / '+all;}
+document.addEventListener('input',tally);tally();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){[].forEach.call(R.querySelectorAll('a'),function(a){a.classList.toggle('on',a.dataset.s===e.target.id);if(a.dataset.s===e.target.id&&R.scrollWidth>R.clientWidth)R.scrollLeft=a.offsetLeft-20;});}});},{rootMargin:'-30% 0px -65% 0px'});secs.forEach(function(s){io.observe(s);});}
+})();
+(function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,800);})();
 </script>
 </body>
 </html>
