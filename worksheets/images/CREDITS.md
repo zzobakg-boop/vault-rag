@@ -1753,3 +1753,8 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 4-3-2_입담_서인도.png | 에스파냐 배의 선장·섬사람(타이노족) 입담 삽화 (`map-render/ipdam_gen.py r432_westindies`) | 자체 제작 · 배경 Grok Aurora 생성(입담 전용) · 대사·이름표 PIL |
 | 7-4_photo_hisp_folklorico.jpg | 미국 오리건주립대에서 공연하는 Ballet Folklórico South Texas College, 2023-06-04 (Ballet Folklórico South Texas College IMG 4044.jpg, 4:3으로 잘라 냄) | Oregon State University · CC BY-SA 2.0 · Wikimedia Commons |
 | 7-4_photo_hisp_littlehavana.jpg | 미국 마이애미 리틀아바나 «Barbería El Fígaro», 2023-11-01 (Barber Shop El Figaro, Little Havana, Miami, Florida.jpg, 4:3으로 잘라 냄) | Phillip Pessar · CC BY 2.0 · Wikimedia Commons |
+| 7-5_graph_twofirsts.png | 그래프 — 1등이 둘: 2025년 65세 이상 인구 비율과 수 | 자체 제작 (hq_75_two_firsts.py) · 자료 세계은행 WDI(UN 추계) |
+| 7-5_graph_agebars.png | 그래프 — 중앙아프리카공화국·세계·일본 나이대별 몫(2025년) | 자체 제작 (hq_75_two_firsts.py) · 자료 세계은행 WDI(UN 추계) |
+| 7-5_map_monaco.png | 지도 — 모나코와 프랑스·이탈리아 출퇴근 | 자체 제작 (hq_75_two_firsts.py) · 바탕 Natural Earth(퍼블릭 도메인) |
+| 7-5_voc_장려.jpg | 스웨덴 말뫼 — 유모차를 미는 아빠, 2020 (20200526 Pappa med barnvagn 08A5072 (49940117813).jpg, 잘라 냄) | Jenny Andersson / News Oresund · CC BY 2.0 · Wikimedia Commons |
+| 7-5_voc_복지.jpg | 혼자 사는 노인에게 명절 식사를 배달하는 모습, 미국 몬태나 그레이트폴스, 2011 (Meals on Wheels delivery.jpg, 잘라 냄) | U.S. Air Force photo / Airman 1st Class Katrina Heikkinen · 퍼블릭 도메인 · Wikimedia Commons |
