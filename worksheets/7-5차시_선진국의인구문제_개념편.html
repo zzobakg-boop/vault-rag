@@ -1880,7 +1880,8 @@ function submitResult(){
   //   no-cors는 그 멈춤·실패를 «성공»으로 받아 왔다 → 헤더 없이 POST하면 CORS로 응답을 읽을 수 있다(서버 allow-origin:*).
   //   Content-Type: application/json을 붙이면 preflight에 서버가 답을 못 해 바로 실패하므로 헤더는 넣지 않는다.
   //   판정: 본문 ok:true만 성공 · 네트워크 오류/ok:false는 2초·5초 뒤 재시도 · 30초 멈춤은 재시도 없이 «다시 제출».
-  //   제출 번호(__sid)는 성공할 때까지 같은 번호를 쓴다 — 멈춘 요청이 뒤늦게 적혀도 시트에서 같은 번호로 가린다.
+  //   제출 번호(__sid)는 성공할 때까지 같은 번호를 쓴다 — 멈춘 요청이 뒤늦게 적혀 행이 겹쳐도 집계(Code_review_*·Code_essay_extract)는
+  //   반·번호별 최신 제출 하나만 쓰므로 채점엔 영향이 없다. __sid를 직접 읽는 코드는 아직 없다(역사 검토 11/3 🟡).
   window._wsSid = window._wsSid || (Date.now().toString(36)+Math.random().toString(36).slice(2,7));
   answers['__sid']=window._wsSid;
   const _once=()=>{
