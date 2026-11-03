@@ -3961,23 +3961,31 @@ function submitResult(){{
   const _btn=document.getElementById('submitBtn');
   _btn.disabled = true; _btn.textContent = '전송 중…';
   try{{ _persist(); }}catch(e){{}}            // 실패해도 답은 이 기기에 남게 먼저 저장
-  // 2026-11-03 천대현 «제출 중으로 뜨다가 제출 실패» — 학교 와이파이에서 연결이 잠깐 끊기면 fetch가 실패한다.
-  //   네트워크 오류일 때만 세 번까지(바로·2초·5초 뒤) 다시 보낸다. 시간 제한으로 끊지는 않는다 — Apps Script는 콜드 스타트로
-  //   20초를 넘기기도 해서, 끊어도 서버는 이미 적고 있을 수 있다(역사 검토 11/3). 클릭 한 번에 제출 번호(__sid) 하나를
-  //   답(JSON)에 실어 보내 재시도가 겹치면 시트에서 같은 번호로 가려낸다(__labels처럼 답에 라이드 — doPost 변경 불요).
-  answers['__sid']=Date.now().toString(36)+Math.random().toString(36).slice(2,7);
-  const _send=(n)=>{{
-    return fetch(SUBMIT_URL,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'application/json'}},body:JSON.stringify(data)}})
-      .catch(e=>{{
-        if(n>=3) throw e;
-        _btn.textContent='다시 보내는 중… ('+(n+1)+'/3)';
-        return new Promise(r=>setTimeout(r,n===1?2000:5000)).then(()=>_send(n+1));
-      }});
+  // 2026-11-03 오후 시스템 진단: 학교망 차단이 아니라 Apps Script가 간헐적으로 40초 넘게 멈춘다(맥미니 실측 12회 중 7회).
+  //   no-cors는 그 멈춤·실패를 «성공»으로 받아 왔다 → 헤더 없이 POST하면 CORS로 응답을 읽을 수 있다(서버 allow-origin:*).
+  //   Content-Type: application/json을 붙이면 preflight에 서버가 답을 못 해 바로 실패하므로 헤더는 넣지 않는다.
+  //   판정: 본문 ok:true만 성공 · 네트워크 오류/ok:false는 2초·5초 뒤 재시도 · 30초 멈춤은 재시도 없이 «다시 제출».
+  //   제출 번호(__sid)는 성공할 때까지 같은 번호를 쓴다 — 멈춘 요청이 뒤늦게 적혀도 시트에서 같은 번호로 가린다.
+  window._wsSid = window._wsSid || (Date.now().toString(36)+Math.random().toString(36).slice(2,7));
+  answers['__sid']=window._wsSid;
+  const _once=()=>{{
+    const ac=(typeof AbortController!=='undefined')?new AbortController():null;
+    const tm=ac?setTimeout(()=>ac.abort(),30000):null;
+    return fetch(SUBMIT_URL,{{method:'POST',body:JSON.stringify(data),signal:ac?ac.signal:undefined}})
+      .then(r=>r.json())
+      .then(j=>{{ if(!j||j.ok!==true){{ const e=new Error('busy'); e.kind='busy'; throw e; }} return j; }})
+      .catch(e=>{{ if(e&&e.name==='AbortError') e.kind='stall'; else if(!e.kind) e.kind='net'; throw e; }})
+      .finally(()=>{{ if(tm) clearTimeout(tm); }});
   }};
+  const _send=(n)=>_once().catch(e=>{{
+    if(e.kind==='stall'||n>=3) throw e;
+    _btn.textContent='다시 보내는 중… ('+(n+1)+'/3)';
+    return new Promise(r=>setTimeout(r,n===1?2000:5000)).then(()=>_send(n+1));
+  }});
   _send(1)
   .then(()=>{{
+    window._wsSid=null;                           // 다음 제출은 새 번호
     // 2026-11-03 천대현 «제출하면 내용이 삭제되는 기능을 빼자» — 9/4에 넣은 «제출 후 이 기기 저장본 지우기»를 뺐다.
-    //   no-cors라 시트 쪽에서 실패해도 여기가 «성공»으로 와서, 기록 없이 답까지 지우는 통로였다.
     //   빌려준 노트북 걱정은 loadProgress의 신원 대조(같은 반·번호일 때만 복원)가 막는다.
     //   단 평가지(EXAM_MODE)는 공용 노트북에서 다음 학생이 앞 학생 반·번호만 고르면 답이 뜨므로 예전처럼 지운다(역사 검토 11/3 🟡).
     if(EXAM_MODE){{ try{{ const k=_wsKey(); if(k) localStorage.removeItem(k); }}catch(e){{}} }}
@@ -3990,8 +3998,17 @@ function submitResult(){{
     }}, 2000);
   }})
   .catch(e=>{{
+    if(e&&e.kind==='net'){{
+      // 응답을 끝내 못 읽었다 — 이 브라우저가 응답 읽기 자체를 막는 경우까지 생각해 예전 방식으로 한 번 더 보낸다(확인은 못 한다).
+      fetch(SUBMIT_URL,{{method:'POST',mode:'no-cors',body:JSON.stringify(data)}}).catch(()=>{{}});
+      _btn.textContent='📤 다시 제출';
+      alert('제출을 보냈지만 들어갔는지 확인하지 못했어요(인터넷이 불안정해요).\\n답은 이 기기에 저장돼 있어요. 잠시 뒤 «다시 제출»을 한 번 더 눌러 주세요.');
+      return;
+    }}
     _btn.textContent='📤 다시 제출';         // «전송 중…»에 멈춰 있지 않게
-    alert('제출이 안 됐어요(인터넷 연결이 불안정해요).\\n답은 이 기기에 저장돼 있으니 잠시 뒤 «다시 제출»을 눌러 주세요.');
+    alert((e&&e.kind==='stall')
+      ? '학교 시트 쪽이 지금 응답이 늦어요.\\n답은 이 기기에 저장돼 있으니 1~2분 뒤 «다시 제출»을 눌러 주세요.'
+      : '제출이 안 됐어요(시트가 바빠요).\\n답은 이 기기에 저장돼 있으니 잠시 뒤 «다시 제출»을 눌러 주세요.');
   }})
   .finally(()=>{{                              // 성공·실패 모두 반드시 푼다 — 안 그러면 재제출이 영영 막힌다
     _submitting = false;
