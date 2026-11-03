@@ -1658,8 +1658,16 @@ function _migrateOldKey(newKey){
   }catch(e){}
   try{ localStorage.removeItem(oldKey); }catch(e){}  // 구키는 어느 쪽이든 정리
 }
+// 2026-11-03 오후 천대현 «반·번호 입력해도 안 살아난다» — 복원을 보류한 사이 이름을 치거나 반만 고르면 'input' 자동저장이
+//   빈 화면을 저장본 위에 덮어썼다(재현: 이름 먼저·반 고르고 2초 뒤 번호 → 빈칸). 보류 중이고 화면에 쓴 답이 하나도 없으면 덮지 않는다.
+let _restoreHeld=false;
+function _anyAnswer(){
+  if([...document.querySelectorAll('.blank-input,.ox-input,.essay-input')].some(el=>el.value&&el.value.trim())) return true;
+  return [...document.querySelectorAll('.ox-group,.choice-group')].some(g=>g.dataset.selected);
+}
 function _persist(){
   const key=_wsKey(); if(!key) return;
+  if(_restoreHeld && !_anyAnswer()) return;
   const data={};
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
     data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
@@ -1669,7 +1677,7 @@ function _persist(){
   const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
-function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\n※ 제출을 마치면 이 기기에 남긴 답은 지워집니다.'); }
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\n'+(EXAM_MODE?'※ 제출을 마치면 이 기기에 남긴 답은 지워집니다.':'※ 제출한 뒤에도 이 기기에 남아 있어요(같은 반·번호를 골라야 보여요).')); }
 let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 // 2026-11-03 천대현 «저장을 눌러도 새로고침하면 날아간다» — 실제로는 반·번호를 고를 때까지 복원을 보류한 것(9/4 신원 대조)인데
@@ -1697,10 +1705,10 @@ function loadProgress(){
   //   이제 저장된 주인과 지금 앉은 사람이 같을 때만 복원한다.
   if(info && (info.class||info.number)){
     const c=_siv('si-cls'), n=_siv('si-num');
-    if(!c || !n){ _restoreHint(true); return; }          // 아직 신원을 안 넣었다 → 보류(넣으면 리스너가 다시 부른다)
-    if(String(info.class)!==String(c) || String(info.number)!==String(n)){ _restoreHint(false); return; }  // 주인이 다르다 → 복원 안 함(안내도 지운다 — 남의 답이 있다는 신호가 되지 않게, 역사 검토 11/3)
+    if(!c || !n){ _restoreHeld=true; _restoreHint(true); return; }          // 아직 신원을 안 넣었다 → 보류(넣으면 리스너가 다시 부른다)
+    if(String(info.class)!==String(c) || String(info.number)!==String(n)){ _restoreHeld=true; _restoreHint(false); return; }  // 주인이 다르다 → 복원 안 함(안내도 지운다 — 남의 답이 있다는 신호가 되지 않게, 역사 검토 11/3)
   }
-  _restoreHint(false);
+  _restoreHeld=false; _restoreHint(false);
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
     const k=el.dataset.id||el.dataset.answer||('input_'+i);
@@ -1801,9 +1809,12 @@ function submitResult(){
   };
   _send(1)
   .then(()=>{
-    // 🔒 제출이 끝나면 **이 기기에 남긴 답을 지운다**(2026-09-04 천대현 요청).
-    //   화면의 답은 그대로라 재제출은 되지만, 새로 열면 남지 않는다 → 빌려준 노트북에 답이 안 남는다.
-    try{ const k=_wsKey(); if(k) localStorage.removeItem(k); }catch(e){}
+    // 2026-11-03 천대현 «제출하면 내용이 삭제되는 기능을 빼자» — 9/4에 넣은 «제출 후 이 기기 저장본 지우기»를 뺐다.
+    //   no-cors라 시트 쪽에서 실패해도 여기가 «성공»으로 와서, 기록 없이 답까지 지우는 통로였다.
+    //   빌려준 노트북 걱정은 loadProgress의 신원 대조(같은 반·번호일 때만 복원)가 막는다.
+    //   단 평가지(EXAM_MODE)는 공용 노트북에서 다음 학생이 앞 학생 반·번호만 고르면 답이 뜨므로 예전처럼 지운다(역사 검토 11/3 🟡).
+    if(EXAM_MODE){ try{ const k=_wsKey(); if(k) localStorage.removeItem(k); }catch(e){} }
+    else _persist();
     _btn.textContent='✅ 제출 완료';
     _btn.classList.add('btn-submitted');
     setTimeout(()=>{
