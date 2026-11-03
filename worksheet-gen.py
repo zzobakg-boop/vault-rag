@@ -3825,8 +3825,16 @@ function _migrateOldKey(newKey){{
   }}catch(e){{}}
   try{{ localStorage.removeItem(oldKey); }}catch(e){{}}  // 구키는 어느 쪽이든 정리
 }}
+// 2026-11-03 오후 천대현 «반·번호 입력해도 안 살아난다» — 복원을 보류한 사이 이름을 치거나 반만 고르면 'input' 자동저장이
+//   빈 화면을 저장본 위에 덮어썼다(재현: 이름 먼저·반 고르고 2초 뒤 번호 → 빈칸). 보류 중이고 화면에 쓴 답이 하나도 없으면 덮지 않는다.
+let _restoreHeld=false;
+function _anyAnswer(){{
+  if([...document.querySelectorAll('.blank-input,.ox-input,.essay-input')].some(el=>el.value&&el.value.trim())) return true;
+  return [...document.querySelectorAll('.ox-group,.choice-group')].some(g=>g.dataset.selected);
+}}
 function _persist(){{
   const key=_wsKey(); if(!key) return;
+  if(_restoreHeld && !_anyAnswer()) return;
   const data={{}};
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{{
     data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
@@ -3864,10 +3872,10 @@ function loadProgress(){{
   //   이제 저장된 주인과 지금 앉은 사람이 같을 때만 복원한다.
   if(info && (info.class||info.number)){{
     const c=_siv('si-cls'), n=_siv('si-num');
-    if(!c || !n){{ _restoreHint(true); return; }}          // 아직 신원을 안 넣었다 → 보류(넣으면 리스너가 다시 부른다)
-    if(String(info.class)!==String(c) || String(info.number)!==String(n)){{ _restoreHint(false); return; }}  // 주인이 다르다 → 복원 안 함(안내도 지운다 — 남의 답이 있다는 신호가 되지 않게, 역사 검토 11/3)
+    if(!c || !n){{ _restoreHeld=true; _restoreHint(true); return; }}          // 아직 신원을 안 넣었다 → 보류(넣으면 리스너가 다시 부른다)
+    if(String(info.class)!==String(c) || String(info.number)!==String(n)){{ _restoreHeld=true; _restoreHint(false); return; }}  // 주인이 다르다 → 복원 안 함(안내도 지운다 — 남의 답이 있다는 신호가 되지 않게, 역사 검토 11/3)
   }}
-  _restoreHint(false);
+  _restoreHeld=false; _restoreHint(false);
   if(!data) return;
   document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{{
     const k=el.dataset.id||el.dataset.answer||('input_'+i);
