@@ -1759,7 +1759,7 @@ function _persist(){
   const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
-function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\n※ 제출을 마치면 이 기기에 남긴 답은 지워집니다.'); }
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\n※ 제출한 뒤에도 이 기기에 남아 있어요(같은 반·번호를 골라야 보여요).'); }
 let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 // 2026-11-03 천대현 «저장을 눌러도 새로고침하면 날아간다» — 실제로는 반·번호를 고를 때까지 복원을 보류한 것(9/4 신원 대조)인데
@@ -1891,9 +1891,10 @@ function submitResult(){
   };
   _send(1)
   .then(()=>{
-    // 🔒 제출이 끝나면 **이 기기에 남긴 답을 지운다**(2026-09-04 천대현 요청).
-    //   화면의 답은 그대로라 재제출은 되지만, 새로 열면 남지 않는다 → 빌려준 노트북에 답이 안 남는다.
-    try{ const k=_wsKey(); if(k) localStorage.removeItem(k); }catch(e){}
+    // 2026-11-03 천대현 «제출하면 내용이 삭제되는 기능을 빼자» — 9/4에 넣은 «제출 후 이 기기 저장본 지우기»를 뺐다.
+    //   no-cors라 시트 쪽에서 실패해도 여기가 «성공»으로 와서, 기록 없이 답까지 지우는 통로였다.
+    //   빌려준 노트북 걱정은 loadProgress의 신원 대조(같은 반·번호일 때만 복원)가 막는다.
+    _persist();
     _btn.textContent='✅ 제출 완료';
     _btn.classList.add('btn-submitted');
     setTimeout(()=>{
