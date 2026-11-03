@@ -1778,6 +1778,11 @@ function submitResult(){
   const _btn=document.getElementById('submitBtn');
   _btn.disabled = true; _btn.textContent = '전송 중…';
   try{ _persist(); }catch(e){}            // 실패해도 답은 이 기기에 남게 먼저 저장
+  // 2026-11-03 밤 시스템(학교 AI 지적) 🟡 — 성공 뒤 지울 키를 그때 다시 계산하면, «전송 중…» 사이에 반·번호를 바꾼 평가지는
+  //   엉뚱한 키를 지우고 제출한 학생 저장본이 남았다. 보낸 순간의 키를 잡아 두고, 전송 중에는 반·번호·이름 칸을 잠근다(finally에서 푼다).
+  let _subKey=null; try{ _subKey=_wsKey(); }catch(e){}
+  const _siLock=on=>['si-cls','si-num','si-name'].forEach(id=>{ const el=_siEl(id); if(el) el.disabled=on; });
+  _siLock(true);
   // 2026-11-03 오후 시스템 진단: 학교망 차단이 아니라 Apps Script가 간헐적으로 40초 넘게 멈춘다(맥미니 실측 12회 중 7회).
   //   no-cors는 그 멈춤·실패를 «성공»으로 받아 왔다 → 헤더 없이 POST하면 CORS로 응답을 읽을 수 있다(서버 allow-origin:*).
   //   Content-Type: application/json을 붙이면 preflight에 서버가 답을 못 해 바로 실패하므로 헤더는 넣지 않는다.
@@ -1788,12 +1793,15 @@ function submitResult(){
   answers['__sid']=window._wsSid;
   const _once=()=>{
     const ac=(typeof AbortController!=='undefined')?new AbortController():null;
-    const tm=ac?setTimeout(()=>ac.abort(),30000):null;
-    return fetch(SUBMIT_URL,{method:'POST',body:JSON.stringify(data),signal:ac?ac.signal:undefined})
+    // 30초 멈춤 판정은 타이머가 직접 거부한다 — AbortController가 없는 옛 브라우저에서도 «전송 중…»에 영영 남지 않게(시스템 ℹ️ 11/3 밤).
+    let tm=null;
+    const to=new Promise((_,rej)=>{ tm=setTimeout(()=>{ if(ac) ac.abort(); const e=new Error('stall'); e.kind='stall'; rej(e); },30000); });
+    const req=fetch(SUBMIT_URL,{method:'POST',body:JSON.stringify(data),signal:ac?ac.signal:undefined})
       .then(r=>r.json())
       .then(j=>{ if(!j||j.ok!==true){ const e=new Error('busy'); e.kind='busy'; throw e; } return j; })
-      .catch(e=>{ if(e&&e.name==='AbortError') e.kind='stall'; else if(!e.kind) e.kind='net'; throw e; })
-      .finally(()=>{ if(tm) clearTimeout(tm); });
+      .catch(e=>{ if(e&&e.name==='AbortError') e.kind='stall'; else if(!e.kind) e.kind='net'; throw e; });
+    req.catch(()=>{});                         // 경주에서 진 쪽의 거부가 처리 안 된 오류로 남지 않게
+    return Promise.race([req,to]).finally(()=>{ clearTimeout(tm); });
   };
   const _send=(n)=>_once().catch(e=>{
     if(e.kind==='stall'||n>=3) throw e;
@@ -1809,7 +1817,7 @@ function submitResult(){
     //   실패·멈춤·확인 못 함 가지(아래 catch)에서는 절대 지우지 않는다.
     clearTimeout(_autosaveT);                     // 지운 뒤 밀린 자동저장이 다시 쓰지 않게
     try{                                         // 여기서 예외가 나도 아래 catch(«시트가 바빠요»)로 새지 않게(역사 검토 11/3 ℹ️)
-      try{ const k=_wsKey(); if(k) localStorage.removeItem(k); }catch(e){}   // 키가 반·번호에 묶인 평가지 때문에 칸을 비우기 전에 지운다
+      try{ if(_subKey) localStorage.removeItem(_subKey); }catch(e){}   // 보낸 순간의 키(평가지는 반·번호에 묶인다)
       _clearScreenAnswers();
       ['si-cls','si-num','si-name'].forEach(id=>{ const el=_siEl(id); if(el) el.value=''; });
       _restoredOwner=null; _restoreHeld=false; _restoreHint(false);
@@ -1838,6 +1846,7 @@ function submitResult(){
   .finally(()=>{                              // 성공·실패 모두 반드시 푼다 — 안 그러면 재제출이 영영 막힌다
     _submitting = false;
     _btn.disabled = false;
+    _siLock(false);
   });
 }
 // 페이지 로드 시 저장된 진행 불러오기
