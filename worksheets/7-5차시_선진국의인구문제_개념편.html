@@ -1759,7 +1759,7 @@ function _persist(){
   const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
   try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
 }
-function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\n※ 제출한 뒤에도 이 기기에 남아 있어요(같은 반·번호를 골라야 보여요).'); }
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\n'+(EXAM_MODE?'※ 제출을 마치면 이 기기에 남긴 답은 지워집니다.':'※ 제출한 뒤에도 이 기기에 남아 있어요(같은 반·번호를 골라야 보여요).')); }
 let _autosaveT;
 function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
 // 2026-11-03 천대현 «저장을 눌러도 새로고침하면 날아간다» — 실제로는 반·번호를 고를 때까지 복원을 보류한 것(9/4 신원 대조)인데
