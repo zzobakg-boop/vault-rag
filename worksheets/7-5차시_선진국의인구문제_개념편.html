@@ -1894,7 +1894,9 @@ function submitResult(){
     // 2026-11-03 천대현 «제출하면 내용이 삭제되는 기능을 빼자» — 9/4에 넣은 «제출 후 이 기기 저장본 지우기»를 뺐다.
     //   no-cors라 시트 쪽에서 실패해도 여기가 «성공»으로 와서, 기록 없이 답까지 지우는 통로였다.
     //   빌려준 노트북 걱정은 loadProgress의 신원 대조(같은 반·번호일 때만 복원)가 막는다.
-    _persist();
+    //   단 평가지(EXAM_MODE)는 공용 노트북에서 다음 학생이 앞 학생 반·번호만 고르면 답이 뜨므로 예전처럼 지운다(역사 검토 11/3 🟡).
+    if(EXAM_MODE){ try{ const k=_wsKey(); if(k) localStorage.removeItem(k); }catch(e){} }
+    else _persist();
     _btn.textContent='✅ 제출 완료';
     _btn.classList.add('btn-submitted');
     setTimeout(()=>{
