@@ -3866,6 +3866,14 @@ function _restoreHint(on){{
   const box=anchor.closest('div')||anchor.parentNode; box.parentNode.insertBefore(h, box.nextSibling);
 }}
 function loadProgress(){{
+  // 2026-11-03 저녁 천대현 «제출 전 베끼기도 막자» — 앞 주인 답을 되살려 둔 화면에서 반·번호만 바꾸면 그 답이 그대로 남아
+  //   다른 학생 이름으로 제출될 수 있었다. 화면 답이 앞 주인 저장본에서 온 경우에만 화면을 비운다(저장본은 둔다 — 주인이 다시 고르면 돌아온다).
+  //   스스로 쓰던 답(복원한 적 없음)은 건드리지 않는다. 평가지는 키가 반·번호마다 달라 새 키엔 저장본이 없으므로
+  //   이 검사를 키 조회보다 앞에 둔다(역사 검토 11/3 🟡). 밀린 자동저장이 앞 주인 답을 새 반·번호로 쓰지 않게 타이머도 끊는다.
+  const c0=_siv('si-cls'), n0=_siv('si-num');
+  if(_restoredOwner && c0 && n0 && (String(_restoredOwner.class)!==String(c0) || String(_restoredOwner.number)!==String(n0))){{
+    clearTimeout(_autosaveT); _clearScreenAnswers(); _restoredOwner=null;
+  }}
   const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
   _migrateOldKey(key);
   let saved; try{{ saved=localStorage.getItem(key); }}catch(e){{}}
@@ -3879,13 +3887,7 @@ function loadProgress(){{
   if(info && (info.class||info.number)){{
     const c=_siv('si-cls'), n=_siv('si-num');
     if(!c || !n){{ _restoreHeld=true; _restoreHint(true); return; }}          // 아직 신원을 안 넣었다 → 보류(넣으면 리스너가 다시 부른다)
-    if(String(info.class)!==String(c) || String(info.number)!==String(n)){{  // 주인이 다르다 → 복원 안 함(안내도 지운다 — 남의 답이 있다는 신호가 되지 않게, 역사 검토 11/3)
-      // 2026-11-03 저녁 천대현 «제출 전 베끼기도 막자» — 앞 주인 답을 되살려 둔 화면에서 반·번호만 바꾸면 그 답이 그대로 남아
-      //   다른 학생 이름으로 제출될 수 있었다. 화면 답이 앞 주인 저장본에서 온 경우에만 화면을 비운다(저장본은 둔다 — 주인이 다시 고르면 돌아온다).
-      //   스스로 쓰던 답(복원한 적 없음)은 건드리지 않는다 — 반을 먼저 고르고 쓰다가 번호를 고르는 학생의 답을 지우면 안 된다.
-      if(_restoredOwner && (String(_restoredOwner.class)!==String(c) || String(_restoredOwner.number)!==String(n))){{ _clearScreenAnswers(); _restoredOwner=null; }}
-      _restoreHeld=true; _restoreHint(false); return;
-    }}
+    if(String(info.class)!==String(c) || String(info.number)!==String(n)){{ _restoreHeld=true; _restoreHint(false); return; }}  // 주인이 다르다 → 복원 안 함(안내도 지운다 — 남의 답이 있다는 신호가 되지 않게, 역사 검토 11/3)
   }}
   _restoreHeld=false; _restoreHint(false);
   if(!data) return;
@@ -4004,10 +4006,12 @@ function submitResult(){{
     //   오전(91068cb)에 뺀 까닭은 no-cors 거짓 성공 뒤 답까지 지우는 통로였기 때문 — bb175c1로 성공 판정이 응답 본문이 되어 그 통로가 없다.
     //   실패·멈춤·확인 못 함 가지(아래 catch)에서는 절대 지우지 않는다.
     clearTimeout(_autosaveT);                     // 지운 뒤 밀린 자동저장이 다시 쓰지 않게
-    try{{ const k=_wsKey(); if(k) localStorage.removeItem(k); }}catch(e){{}}   // 키가 반·번호에 묶인 평가지 때문에 칸을 비우기 전에 지운다
-    _clearScreenAnswers();
-    ['si-cls','si-num','si-name'].forEach(id=>{{ const el=_siEl(id); if(el) el.value=''; }});
-    _restoredOwner=null; _restoreHeld=false; _restoreHint(false);
+    try{{                                         // 여기서 예외가 나도 아래 catch(«시트가 바빠요»)로 새지 않게(역사 검토 11/3 ℹ️)
+      try{{ const k=_wsKey(); if(k) localStorage.removeItem(k); }}catch(e){{}}   // 키가 반·번호에 묶인 평가지 때문에 칸을 비우기 전에 지운다
+      _clearScreenAnswers();
+      ['si-cls','si-num','si-name'].forEach(id=>{{ const el=_siEl(id); if(el) el.value=''; }});
+      _restoredOwner=null; _restoreHeld=false; _restoreHint(false);
+    }}catch(e){{}}
     _btn.textContent='✅ 제출 완료';
     _btn.classList.add('btn-submitted');
     setTimeout(()=>{{
