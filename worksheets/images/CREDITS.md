@@ -1781,3 +1781,30 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-5_map_monaco.png | 지도 — 모나코와 프랑스·이탈리아 출퇴근 | 자체 제작 (hq_75_two_firsts.py) · 바탕 Natural Earth(퍼블릭 도메인) |
 | 7-5_voc_장려.jpg | 스웨덴 말뫼 — 유모차를 미는 아빠, 2020 (20200526 Pappa med barnvagn 08A5072 (49940117813).jpg, 잘라 냄) | Jenny Andersson / News Oresund · CC BY 2.0 · Wikimedia Commons |
 | 7-5_voc_복지.jpg | 혼자 사는 노인에게 명절 식사를 배달하는 모습, 미국 몬태나 그레이트폴스, 2011 (Meals on Wheels delivery.jpg, 잘라 냄) | U.S. Air Force photo / Airman 1st Class Katrina Heikkinen · 퍼블릭 도메인 · Wikimedia Commons |
+| 8-1_map_places.png | 지도 — 8-1 오늘 나오는 곳(교과서 147쪽 여덟 도시 + 광주, 적도, 나이로비 둘레 확대 상자 · 세계 Equal Earth) | 자체 제작 (`hq_81_maps.py`) · Natural Earth 퍼블릭 도메인 |
+| 8-2_map_places.png | 지도 — 8-2 오늘 나오는 곳(아테네·빈·피렌체·브뤼셀·밴쿠버·방콕·시드니·순천 · 세계 Equal Earth) | 자체 제작 (`hq_82_maps.py`) · Natural Earth 퍼블릭 도메인 |
+| 8-3_map_gwangju.png | 지도 — 광주광역시 다섯 구, 동구(옛 중심 금남로·충장로)와 서구(지금 시청·상무지구) | 자체 제작 (`hq_83_maps.py`) · 구 경계 geoBoundaries KOR ADM2 2020 · CC BY 3.0 · 바탕 Natural Earth 퍼블릭 도메인 |
+| 8-3_hero_euljiro.jpg | 표지 — 서울 중구 을지로 롯데호텔 앞에서 본 도심 고층 빌딩, 2025-12-06 (Seoul CBD along Euljiro near Lotte Hotel Seoul.jpg) | DtSeoul · CC0 · Wikimedia Commons |
+| 8-4_map_seoul.png | 지도 — 서울특별시 25개 구, 도심(종로구·중구)·명동·노원구·한강 | 자체 제작 (`hq_84_maps.py`) · 구 경계 geoBoundaries KOR ADM2 2020 · CC BY 3.0 · 강 Natural Earth 퍼블릭 도메인 |
+| 8-1_card_nairobi_buffalo.jpg | 나이로비 국립 공원 초원의 아프리카물소와 도심 스카이라인, 2019-05-04 (Buffalo Nairobi Skyline Savannah Kenya May19 R1600769.jpg · 4:3로 자름) | Timothy A. Gonsalves · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-1_voc_도시.jpg | 서울 남대문 시장 거리 — 시장(市) 위로 사무실 빌딩이 선 도시 풍경, 2024-08-22 (Namdaemun shopping street.jpg · 900×608로 자름) | Sgroey · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-2_voc_매력.jpg | 로마 트레비 분수 앞에 몰려든 사람들, 2024-09-10 (Crowds at Fontana di Trevi.jpg · 900×608로 자름) | Ypsilon from Finland · CC0 · Wikimedia Commons |
+| 8-3_voc_부도심.jpg | 여객기 조종실의 기장과 부기장(副 — 버금), 2012-04-19 (Our pilots on today's biofuel flights (6946693528).jpg · 900×608로 자름) | Jetstar Airways · CC BY-SA 2.0 · Wikimedia Commons |
+| 8-5_map_places.png | 지도 — 8-5에 나오는 나라·도시(영국 런던·독일 루르·벨기에·말레이시아 쿠알라룸푸르·인도네시아·대한민국 서울·광주, 세계 Equal Earth) | 자체 제작 (`hq_85_figs.py`) · Natural Earth 퍼블릭 도메인 |
+| 8-5_scurve.png | 도식 — 도시화율 S자 곡선 개념도(A·B·C 세 단계, 값 없음) | 자체 제작 (`hq_85_figs.py`, matplotlib) |
+| 8-6_map_places.png | 지도 — 8-6에 나오는 나라·도시(런던·로스앤젤레스·도쿄·뭄바이·울란바토르·호찌민·베이징·광주, 세계 Equal Earth) | 자체 제작 (`hq_86_maps.py`) · Natural Earth 퍼블릭 도메인 |
+| 8-6_ulaanbaatar_ger_v2.jpg | 울란바토르 외곽의 게르 촌 — 앞쪽 게르 두 채와 언덕의 집들, 2007-02 (Banlieue d'Oulan-Bator, quartier de yourte.jpg) — 8-6_ulaanbaatar_ger.jpg(게르가 안 보이던 2025년 사진)를 바꿈 | Martin Vorel · CC0 · Wikimedia Commons |
+| 8-6_hcmc_canal.jpg | 베트남 호찌민 운하 위 판잣집(수상 가옥), 2008-10 (Sunset on the black trench.jpg) — 아래 가장자리 서명 부분을 잘라 씀 | Nguyen Thanh Long · CC BY-SA 2.0 · Wikimedia Commons |
+| 8-7_map_places.png | 지도 — 8-7에 나오는 나라·도시(스톡홀름 함마르뷔·빌바오·네덜란드·쿠리치바·광주, 세계 Equal Earth) | 자체 제작 (`hq_87_maps.py`) · Natural Earth 퍼블릭 도메인 |
+| 8-7_curitiba_bus.jpg | 쿠리치바 중앙 원통형 정류장(Estação Central)에 들어오는 굴절 버스, 2018-03 (Expresso-biarticulado-santa-candida-capao-raso.jpg) — 8-7_curitiba_tube.jpg(정류장 안, 버스 안 보임)를 바꿈 | KelvinRiveraChagas · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-8_map_places.png | 지도 — 8-8에 나오는 도시(코펜하겐·빈·멜버른·다마스쿠스·프라이부르크·싱가포르·케이프타운·순천·광주, 세계 Equal Earth) | 자체 제작 (`hq_88_maps.py`) · Natural Earth 퍼블릭 도메인 |
+| 9-1_map_places.png | 사회② 9-1 «오늘 나오는 곳» 세계 지도(미국·캐나다·아르헨티나·오스트레일리아·페루·코스타리카·뉴질랜드·한국, 팰루스) | 자체 제작 `hq_91_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
+| 9-1_voc_기업화.jpg | 하늘에서 본 원형 관개 농장들, 미국, 2009 (Aerial photo of center pivot irrigations systems (9364).jpg) | John A. Kelley(미국 농무부 자연자원보전청) · 퍼블릭 도메인 · Wikimedia Commons |
+| 9-2_map_places.png | 사회② 9-2 «오늘 나오는 곳» 세계 지도(미국·코스타리카·에콰도르·한국·일본·필리핀·태국·베트남) | 자체 제작 `hq_92_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
+| 9-3_map_division.png | 사회② 9-3 운동화 공간적 분업 지도(미국·베트남·브라질·튀르키예·인도·말레이시아, 태평양 가운데 Equal Earth) | 자체 제작 `hq_93_division.py` · 바탕 Natural Earth(퍼블릭 도메인) |
+| 9-4_map_places.png | 사회② 9-4 «오늘 나오는 곳» 세계 지도(중국 둥관·미국 디트로이트·오스트레일리아·베트남·한국·캄보디아·방글라데시) | 자체 제작 `hq_94_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
+| 9-4_map_dongguan.png | 사회② 9-4 둥관 위치 지도(광둥성·쓰촨성, 일자리를 찾아 옮긴 길은 개념선) | 자체 제작 `hq_94_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
+| 9-2_coffee_dalat.jpg | 베트남 달랏 근처의 커피 농장, 2015 (Vietnam - coffee plantation.jpg) | P. Hughes · CC BY 4.0 · Wikimedia Commons |
+| 9-2_voc_기호.jpg | 커피잔과 원두, 2013 (Coffee cup and coffee bean.jpg) | mcfoodie · CC0 · Wikimedia Commons |
+| 9-3_voc_다국적.jpg | 여러 나라 국기가 걸린 깃대, 미국 시애틀 항공 박물관, 2024 (Row of flags at the Museum of Flight in Seattle (2024) - 1.jpg) | Roc0ast3r · CC0 · Wikimedia Commons |
+| 9-4_voc_입지.jpg | 하늘에서 본 영국 스토크온트렌트 펜턴 산업 단지, 2024 (Aerial view of Fenton Industrial complex as September 2024.jpg) | Gkbediako · CC BY-SA 4.0 · Wikimedia Commons |
