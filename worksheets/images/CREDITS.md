@@ -1618,9 +1618,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 8-5_ruhr_zollverein.jpg | 독일 에센 졸페라인 탄광 수직갱 탑, 2022 | Anil Öztas · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-6_hero_london_smog1952.jpg | 1952년 런던 스모그 속 넬슨 기념탑 | N T Stobbs · CC BY-SA 2.0 · Wikimedia Commons |
 | 8-6_la_rushhour.jpg | 로스앤젤레스 110번 고속도로의 퇴근 시간, 2015 | Prayitno · CC BY 2.0 · Wikimedia Commons |
-| 8-6_ulaanbaatar_ger.jpg | 울란바토르 외곽의 게르 촌, 2025 | Quintin Soloviev · CC BY 4.0 · Wikimedia Commons |
 | 8-7_bilbao_guggenheim.jpg | 에스파냐 빌바오 구겐하임 미술관, 2021 | José Ligero Loarte · CC BY-SA 4.0 · Wikimedia Commons |
-| 8-7_curitiba_tube.jpg | 브라질 쿠리치바의 원통형 버스 정류장, 2006 | Mariordo · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-7_hero_hammarby.jpg | 스톡홀름 함마르뷔 셰스타드, 2025년 6월 | ArildV · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-8_freiburg_baechle.jpg | 프라이부르크 시내의 인공 수로, 2009 | Joergens.mi · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-8_hero_copenhagen.jpg | 코펜하겐 뉘하운, 2026년 7월 | Superbass · CC BY-SA 4.0 · Wikimedia Commons |
