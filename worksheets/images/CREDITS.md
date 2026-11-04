@@ -1264,6 +1264,8 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-7_fig_dongeupmyeon.png | 막대 — 65세 이상 인구 비율 동·읍·면(2015) | 자체 제작 (`hq_77_cards.py`) · 자료 교사용 교과서 140쪽 자료 해설 |
 | 7-7_fig_slogans.png | 그림 — 가족계획 표어 셋(글자로 다시 씀) | 자체 제작 (`hq_77_cards.py`) · 표어 국가기록원 '인구정책' 기록물 해설 |
 | 7-7_fig_speed.png | 막대 — 65세 이상 14%→20% 걸린 해, 일본 1994→2005·한국 2017→2024 | 자체 제작 (`hq_77_cards.py`) · 자료 일본 총무성 통계국·행정안전부 |
+| 7-7_map_jeonnam.png | 지도 — 전라남도·곡성군 위치(광주·서울 표시) | 자체 제작 (`hq_77_maps.py`) · Natural Earth 퍼블릭 도메인 · 곡성군 geoBoundaries KOR ADM2(CC BY 3.0) |
+| 7-7_map_norway.png | 지도 — 노르웨이 위치(스웨덴·핀란드와 함께) | 자체 제작 (`hq_77_maps.py`) · Natural Earth 퍼블릭 도메인 |
 
 ## 역사① — 학생 화면(제출용)에서 뺀 출처 (2026-10-12)
 그림 아래·카드 아래·그래프 아래에 있던 표기를 그대로 옮겼다. 위 표에 이미 있는 파일은 뺐다.
