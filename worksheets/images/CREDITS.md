@@ -1254,6 +1254,8 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-6_card_china_v2.png | 카드 — 중국이 한 가정에 허용한 아이 수 1→2→3(PIL 합성 `hq_76_cards.py`) · 사진 같은 그림판의 가족 부분 | Jan Kranendonk · CC0 · Wikimedia Commons |
 | 7-6_graph_bangladesh.png | 점 그림 — 방글라데시 결혼한 여성 100명 가운데 피임하는 사람 1975·2017~2018 | 자체 제작 (`hq_76_cards.py`) · 자료 BDHS 2017-18·1975 출산력 조사 |
 | 7-6_voc_억제.jpg | 과속 방지 턱 (Ležeći policajac 016.jpg, 잘라 냄) | 퍼블릭 도메인 · Wikimedia Commons |
+| 7-6_map_places.png | 지도 — 7-6에 나오는 나라·도시(세계, Equal Earth) | 자체 제작 (`hq_76_maps.py`) · Natural Earth 퍼블릭 도메인 |
+| 7-6_map_lagos.png | 지도 — 나이지리아 라고스 위치(지형 음영·나라 경계·위경선·축척·방위) | 자체 제작 (`hq_76_maps.py`) · Natural Earth 퍼블릭 도메인 |
 | 7-7_hero_village.jpg | 경북 경주의 시골 마을, 2007 (Korea-Gyeongju-Overview of a rural village-Hanok-02.jpg, 잘라 냄) | Alain Seguin at Flickr · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-7_photo_village.jpg | 경북 경주의 시골 마을과 들, 2007 (Korea-Gyeongju-Overview of a rural village-Hanok-01.jpg, 잘라 냄) | Alain Seguin at Flickr · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-7_photo_dad.jpg | 아기 띠를 멘 아빠, 2018 (Baby-carrier-040118.jpg, 잘라 냄) | Jeldar Mehmet · CC0 · Wikimedia Commons |
