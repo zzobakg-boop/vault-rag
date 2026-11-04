@@ -1253,6 +1253,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-6_photo_chengdu.jpg | 중국 청두 거리의 가족계획 그림판, 1987 (Family Planning in Chengdu, China.jpg) | Jan Kranendonk · CC0 · Wikimedia Commons |
 | 7-6_card_china_v2.png | 카드 — 중국이 한 가정에 허용한 아이 수 1→2→3(PIL 합성 `hq_76_cards.py`) · 사진 같은 그림판의 가족 부분 | Jan Kranendonk · CC0 · Wikimedia Commons |
 | 7-6_card_egypt_v2.png | 카드 — 이집트 인구 1억 명(2020년 2월) · 사진 2010-10-28 밤 국제우주정거장에서 본 나일강과 삼각주(PIL 합성 `hq_76_egypt.py`) | ISS Expedition 25 crew · NASA · 퍼블릭 도메인 · Wikimedia Commons «Nile River Delta at Night.JPG» |
+| 7-6_graph_cbr.png | 그래프 — 인구 1,000명당 한 해에 태어난 아이 수 많은 나라 5·적은 나라 5, 2023년(교과서 139쪽 자료 ①·② 최신판, matplotlib `hq_76_cbr.py`) | 값: 세계은행 세계개발지표 SP.DYN.CBRT.IN(CC BY 4.0) · 자체 제작 |
 | 7-6_graph_bangladesh.png | 점 그림 — 방글라데시 결혼한 여성 100명 가운데 피임하는 사람 1975·2017~2018 | 자체 제작 (`hq_76_cards.py`) · 자료 BDHS 2017-18·1975 출산력 조사 |
 | 7-6_voc_억제.jpg | 과속 방지 턱 (Ležeći policajac 016.jpg, 잘라 냄) | 퍼블릭 도메인 · Wikimedia Commons |
 | 7-6_voc_과잉.jpg | 일회용 컵이 넘쳐 나는 길거리 쓰레기통, 2018 (Garbage Can 1 2018-09-20.jpg, 잘라 냄) | FASTILY · CC BY-SA 4.0 · Wikimedia Commons |
