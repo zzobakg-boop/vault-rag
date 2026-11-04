@@ -1254,6 +1254,14 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-6_card_china_v2.png | 카드 — 중국이 한 가정에 허용한 아이 수 1→2→3(PIL 합성 `hq_76_cards.py`) · 사진 같은 그림판의 가족 부분 | Jan Kranendonk · CC0 · Wikimedia Commons |
 | 7-6_graph_bangladesh.png | 점 그림 — 방글라데시 결혼한 여성 100명 가운데 피임하는 사람 1975·2017~2018 | 자체 제작 (`hq_76_cards.py`) · 자료 BDHS 2017-18·1975 출산력 조사 |
 | 7-6_voc_억제.jpg | 과속 방지 턱 (Ležeći policajac 016.jpg, 잘라 냄) | 퍼블릭 도메인 · Wikimedia Commons |
+| 7-7_hero_village.jpg | 경북 경주의 시골 마을, 2007 (Korea-Gyeongju-Overview of a rural village-Hanok-02.jpg, 잘라 냄) | Alain Seguin at Flickr · CC BY-SA 3.0 · Wikimedia Commons |
+| 7-7_photo_village.jpg | 경북 경주의 시골 마을과 들, 2007 (Korea-Gyeongju-Overview of a rural village-Hanok-01.jpg, 잘라 냄) | Alain Seguin at Flickr · CC BY-SA 3.0 · Wikimedia Commons |
+| 7-7_photo_dad.jpg | 아기 띠를 멘 아빠, 2018 (Baby-carrier-040118.jpg, 잘라 냄) | Jeldar Mehmet · CC0 · Wikimedia Commons |
+| 7-7_card_dad_v2.png | 카드 — 육아 휴직자 가운데 아빠 열 명 가운데 셋(PIL 합성 `hq_77_cards.py`) · 사진 Baby carrier front.jpg, 2019 | Mack Male · CC BY-SA 2.0 · Wikimedia Commons |
+| 7-7_voc_양육.jpg | 아기에게 우유를 먹이는 아빠 (Vader geeft baby de fles - Father feeding the baby (5679579457).jpg, 잘라 냄) | Nationaal Archief · 저작권 제한 없음 · Wikimedia Commons |
+| 7-7_fig_dongeupmyeon.png | 막대 — 65세 이상 인구 비율 동·읍·면(2015) | 자체 제작 (`hq_77_cards.py`) · 자료 교사용 교과서 140쪽 자료 해설 |
+| 7-7_fig_slogans.png | 그림 — 가족계획 표어 셋(글자로 다시 씀) | 자체 제작 (`hq_77_cards.py`) · 표어 국가기록원 '인구정책' 기록물 해설 |
+| 7-7_fig_speed.png | 막대 — 65세 이상 14%→20% 걸린 해, 일본 1994→2005·한국 2017→2024 | 자체 제작 (`hq_77_cards.py`) · 자료 일본 총무성 통계국·행정안전부 |
 
 ## 역사① — 학생 화면(제출용)에서 뺀 출처 (2026-10-12)
 그림 아래·카드 아래·그래프 아래에 있던 표기를 그대로 옮겼다. 위 표에 이미 있는 파일은 뺐다.
