@@ -1246,6 +1246,14 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-5_photo_arabianranta.jpg | 핀란드 헬싱키 아라비안란타 동네, 2024 (Arabianranta in Helsinki, Finland, 2024 September – 01.jpg, 잘라 냄) | Safa Hovinen · CC BY 2.0 · Wikimedia Commons |
 | 7-6_hero_lagos.jpg | 라고스 오주엘레그바의 출근길, 2019년 | Baragew · CC BY-SA 4.0 · Wikimedia Commons |
 | 7-6_makoko_aerial.jpg | 하늘에서 본 라고스 마코코 지역, 2019년 | Kateregga1 · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-6_photo_borivali.jpg | 인도 뭄바이 보리발리역의 아침 출근길, 2006 (Borivali Station (243223359).jpg, 잘라 냄) | Rakesh from Bangalore · CC BY-SA 2.0 · Wikimedia Commons |
+| 7-6_card_india1_v2.png | 카드 — 인도 인구 세계 1위(사진 위·글자 띠 아래 합성, PIL `hq_76_cards.py`) · 사진 A crowd of passengers wait for the next Esplanade train in Howrah metro station.jpg, 2024 | Projjalm · CC0 · Wikimedia Commons |
+| 7-6_photo_rocinha.jpg | 브라질 리우데자네이루 호시냐(비탈 마을)와 상콘하두(고층 아파트), 2008 (Rocinha - São Conrado.jpg, 잘라 냄) | Alicia Nijdam · CC BY 2.0 · Wikimedia Commons |
+| 7-6_card_favela_v2.png | 카드 — 브라질 비탈 마을 인구 1,639만 명(PIL 합성 `hq_76_cards.py`) · 사진 같은 Rocinha - São Conrado.jpg | Alicia Nijdam · CC BY 2.0 · Wikimedia Commons |
+| 7-6_photo_chengdu.jpg | 중국 청두 거리의 가족계획 그림판, 1987 (Family Planning in Chengdu, China.jpg) | Jan Kranendonk · CC0 · Wikimedia Commons |
+| 7-6_card_china_v2.png | 카드 — 중국이 한 가정에 허용한 아이 수 1→2→3(PIL 합성 `hq_76_cards.py`) · 사진 같은 그림판의 가족 부분 | Jan Kranendonk · CC0 · Wikimedia Commons |
+| 7-6_graph_bangladesh.png | 점 그림 — 방글라데시 결혼한 여성 100명 가운데 피임하는 사람 1975·2017~2018 | 자체 제작 (`hq_76_cards.py`) · 자료 BDHS 2017-18·1975 출산력 조사 |
+| 7-6_voc_억제.jpg | 과속 방지 턱 (Ležeći policajac 016.jpg, 잘라 냄) | 퍼블릭 도메인 · Wikimedia Commons |
 
 ## 역사① — 학생 화면(제출용)에서 뺀 출처 (2026-10-12)
 그림 아래·카드 아래·그래프 아래에 있던 표기를 그대로 옮겼다. 위 표에 이미 있는 파일은 뺐다.
