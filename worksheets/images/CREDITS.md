@@ -1249,6 +1249,12 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-6_photo_borivali.jpg | 인도 뭄바이 보리발리역의 아침 출근길, 2006 (Borivali Station (243223359).jpg, 잘라 냄) | Rakesh from Bangalore · CC BY-SA 2.0 · Wikimedia Commons |
 | 7-6_card_india1_v2.png | 카드 — 인도 인구 세계 1위(사진 위·글자 띠 아래 합성, PIL `hq_76_cards.py`) · 사진 A crowd of passengers wait for the next Esplanade train in Howrah metro station.jpg, 2024 | Projjalm · CC0 · Wikimedia Commons |
 | 7-6_photo_rocinha.jpg | 브라질 리우데자네이루 호시냐(비탈 마을)와 상콘하두(고층 아파트), 2008 (Rocinha - São Conrado.jpg, 잘라 냄) | Alicia Nijdam · CC BY 2.0 · Wikimedia Commons |
+| 7-6_photo_saoconrado.jpg | 브라질 리우데자네이루 상콘하두 고층 아파트와 뒤쪽 호시냐·예수상, 2022 (São Conrado e Rocinha.jpg, 아래 귀퉁이 잘라 냄) | FG fotos · CC0 · Wikimedia Commons https://commons.wikimedia.org/wiki/File:S%C3%A3o_Conrado_e_Rocinha.jpg |
+| 7-6_pol_familyplanning.jpg | 마다가스카르 안타나나리보 이동 진료소의 가족계획 설명을 듣는 여성들, 2016 (USAID in Madagascar - Family Planning Law Passes Another Step (31396118411).jpg) | USAID / A.G. Klei · 퍼블릭 도메인 · Wikimedia Commons |
+| 7-6_pol_tractor.jpg | 인도 농촌의 트랙터와 고추 말리는 마당, 2008 (7 Agriculture, Tractor and Rural life in India Red Chili Peppers.jpg) | David Berkowitz · CC BY 2.0 · Wikimedia Commons |
+| 7-6_pol_factory.jpg | 방글라데시 옷 공장의 작업 줄, 2011 (Garment factory in Bangladesh Women working.jpg) | Tareq Salahuddin · CC BY 2.0 · Wikimedia Commons |
+| 7-6_pol_abuja.jpg | 나이지리아 수도 아부자, 2018 (Abuja skyline.jpg) | Timmylegend · CC BY-SA 4.0 · Wikimedia Commons |
+| 7-6_pol_onechild.jpg | 중국 거리의 한 자녀 가족 선전 그림판, 1982 (China 1982 happy family with one child.jpg) | Robert Schediwy · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-6_card_favela_v2.png | 카드 — 브라질 비탈 마을 인구 1,639만 명(PIL 합성 `hq_76_cards.py`) · 사진 같은 Rocinha - São Conrado.jpg | Alicia Nijdam · CC BY 2.0 · Wikimedia Commons |
 | 7-6_photo_chengdu.jpg | 중국 청두 거리의 가족계획 그림판, 1987 (Family Planning in Chengdu, China.jpg) | Jan Kranendonk · CC0 · Wikimedia Commons |
 | 7-6_card_china_v2.png | 카드 — 중국이 한 가정에 허용한 아이 수 1→2→3(PIL 합성 `hq_76_cards.py`) · 사진 같은 그림판의 가족 부분 | Jan Kranendonk · CC0 · Wikimedia Commons |
