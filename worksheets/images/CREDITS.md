@@ -1272,9 +1272,9 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-7_voc_양육.jpg | 아기에게 우유를 먹이는 아빠 (Vader geeft baby de fles - Father feeding the baby (5679579457).jpg, 잘라 냄) | Nationaal Archief · 저작권 제한 없음 · Wikimedia Commons |
 | 7-7_fig_dongeupmyeon.png | 막대 — 65세 이상 인구 비율 동·읍·면(2015) | 자체 제작 (`hq_77_cards.py`) · 자료 교사용 교과서 140쪽 자료 해설 |
 | 7-7_card_job_it.png | 숫자 카드 — 에버영코리아 시니어 직원 300명 남짓(2024) | 자체 제작 (`hq_77_stage3.py`) · 자료 아시아경제 2024-09-19 |
-| 7-7_card_job_silver.png | 숫자 카드 — 실버 택배 일자리 누적 1,400여 개·2024년 391건 | 자체 제작 (`hq_77_stage3.py`) · 자료 CJ대한통운 지속가능경영 |
+| 7-7_card_job_silver_v2.png | 숫자 카드 — 실버 택배 2024년 노인 일자리 391개(누적 1,400여 개는 작게) | 자체 제작 (`hq_77_stage3.py`) · 자료 CJ대한통운 지속가능경영 |
 | 7-7_card_job_host.png | 숫자 카드 — 국내 호스트 10명 중 1명이 60세 이상(2021) | 자체 제작 (`hq_77_stage3.py`) · 자료 에어비앤비 뉴스룸 2021-10-05 |
-| 7-7_card_job_gov.png | 막대 — 노인 일자리 2024년 103.0만·2025년 109.8만 | 자체 제작 (`hq_77_stage3.py`) · 자료 보건복지부 2024-12-01 |
+| 7-7_card_job_gov_v2.png | 막대 — 노인 일자리 2024년 103.0만·2025년 109.8만·2026년 115.2만 | 자체 제작 (`hq_77_stage3.py`) · 자료 보건복지부 2024-12-01·2026-02-01 |
 | 7-7_fig_density_tfr.png | 산점도 — 17개 시·도 인구 밀도와 합계 출산율(2024) | 자체 제작 (`hq_77_density.py`) · 자료 국가데이터처 출생통계·장래인구추계, 국토교통부 지적통계 |
 | 7-7_fig_steps.png | 계단 그림 — 고령화·고령·초고령 사회(7%·14%·20%) | 자체 제작 (`hq_77_stage3.py`) · 기준 교과서 140쪽, UN 1956 |
 | 7-7_fig_support.png | 그림 — 노인 한 명을 떠받치는 생산 연령 인구 | 자체 제작 (`hq_77_stage3.py`) · 자료 통계청 장래인구추계 |
