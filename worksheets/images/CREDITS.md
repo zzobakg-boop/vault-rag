@@ -1269,6 +1269,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-7_photo_village.jpg | 경북 경주의 시골 마을과 들, 2007 (Korea-Gyeongju-Overview of a rural village-Hanok-01.jpg, 잘라 냄) | Alain Seguin at Flickr · CC BY-SA 3.0 · Wikimedia Commons |
 | 7-7_photo_dad.jpg | 아기 띠를 멘 아빠, 2018 (Baby-carrier-040118.jpg, 잘라 냄) | Jeldar Mehmet · CC0 · Wikimedia Commons |
 | 7-7_card_dad_v2.png | 카드 — 육아 휴직자 가운데 아빠 열 명 가운데 셋(PIL 합성 `hq_77_cards.py`) · 사진 Baby carrier front.jpg, 2019 | Mack Male · CC BY-SA 2.0 · Wikimedia Commons |
+| 7-7_card_dad_v3.png | 카드 — 아기가 태어난 아빠 열 명 가운데 한 명 휴직(사용률 10.2%)·휴직자 전체로 세면 셋 구분(v2 사진 부분 그대로, 띠 글자만 새로) · 사진 Baby carrier front.jpg, 2019 | Mack Male · CC BY-SA 2.0 · Wikimedia Commons |
 | 7-7_voc_양육.jpg | 아기에게 우유를 먹이는 아빠 (Vader geeft baby de fles - Father feeding the baby (5679579457).jpg, 잘라 냄) | Nationaal Archief · 저작권 제한 없음 · Wikimedia Commons |
 | 7-7_fig_dongeupmyeon.png | 막대 — 65세 이상 인구 비율 동·읍·면(2015) | 자체 제작 (`hq_77_cards.py`) · 자료 교사용 교과서 140쪽 자료 해설 |
 | 7-7_card_job_it.png | 숫자 카드 — 에버영코리아 시니어 직원 300명 남짓(2024) | 자체 제작 (`hq_77_stage3.py`) · 자료 아시아경제 2024-09-19 |
@@ -1280,6 +1281,12 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-7_fig_support.png | 그림 — 노인 한 명을 떠받치는 생산 연령 인구 | 자체 제작 (`hq_77_stage3.py`) · 자료 통계청 장래인구추계 |
 | 7-7_fig_forecast.png | 그림 — 초고령 사회 진입 예측(2027)과 실제(2024-12) | 자체 제작 (`hq_77_stage3.py`) · 자료 미국 인구 조사국 2016, 행정안전부 주민등록 인구 |
 | 7-7_fig_slogans.png | 그림 — 가족계획 표어 셋(글자로 다시 씀) | 자체 제작 (`hq_77_cards.py`) · 표어 국가기록원 '인구정책' 기록물 해설 |
+| 7-7_slogan_1~6.png | 그림 — 표어 카드 여섯 장의 장면(실제 포스터 아님·글자 없음) | 자체 제작 (`hq_77_slogans.py`) |
+| 7-7_pol_dad.jpg | 활동 1 대책 카드 — 유모차를 미는 아빠, 스웨덴 말뫼, 2020 (7-5_voc_장려.jpg를 4:3으로 다시 자름) | Jenny Andersson / News Oresund · CC BY 2.0 · Wikimedia Commons |
+| 7-7_pol_senior.jpg | 활동 1 대책 카드 — 책상에서 노트북으로 일하는 노인, 2021 (Elderly woman sitting at her office table and holding a cup of coffee while working on her laptop. Croissant and a donut on the trays next to her.jpg, 잘라 냄) | Shixart1985 · CC BY 2.0 · Wikimedia Commons |
+| 7-7_pol_daycare.jpg | 활동 1 대책 카드 — 스웨덴 스톡홀름 근교 어린이집, 2013 (7-5_photo_forskola.jpg 다시 자름) | Holger.Ellgaard · CC BY-SA 3.0 · Wikimedia Commons |
+| 7-7_pol_cohousing.jpg | 활동 1 대책 카드 — 핀란드 헬싱키 아라비안란타, 2024 (7-5_photo_arabianranta.jpg 다시 자름) | Safa Hovinen · CC BY 2.0 · Wikimedia Commons |
+| 7-7_pol_newborn.jpg | 활동 1 대책 카드 — 부모 손에 놓인 갓난아기 발, 2025 (Newborn feet nestled gently in a parent's hand highlighting the bond of love and care at home.jpg, 잘라 냄) | Shixart1985 · CC BY 2.0 · Wikimedia Commons |
 | 7-7_fig_speed.png | 막대 — 65세 이상 14%→20% 걸린 해, 일본 1994→2005·한국 2017→2024 | 자체 제작 (`hq_77_cards.py`) · 자료 일본 총무성 통계국·행정안전부 |
 | 7-7_map_jeonnam.png | 지도 — 전라남도·곡성군 위치(광주·서울 표시) | 자체 제작 (`hq_77_maps.py`) · Natural Earth 퍼블릭 도메인 · 곡성군 geoBoundaries KOR ADM2(CC BY 3.0) |
 | 7-7_map_norway.png | 지도 — 노르웨이 위치(스웨덴·핀란드와 함께) | 자체 제작 (`hq_77_maps.py`) · Natural Earth 퍼블릭 도메인 |
