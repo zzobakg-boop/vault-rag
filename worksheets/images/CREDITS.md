@@ -1282,6 +1282,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 7-7_fig_forecast.png | 그림 — 초고령 사회 진입 예측(2027)과 실제(2024-12) | 자체 제작 (`hq_77_stage3.py`) · 자료 미국 인구 조사국 2016, 행정안전부 주민등록 인구 |
 | 7-7_fig_slogans.png | 그림 — 가족계획 표어 셋(글자로 다시 씀) | 자체 제작 (`hq_77_cards.py`) · 표어 국가기록원 '인구정책' 기록물 해설 |
 | 7-7_slogan_1~6.png | 그림 — 표어 카드 여섯 장의 장면(실제 포스터 아님·글자 없음) | 자체 제작 (`hq_77_slogans.py`) |
+| 7-7_slogan_1~6_v2.jpg | 삽화 — 표어 카드 여섯 장의 가상 가족 장면(1960~80년대·2000년대 한국, 실제 포스터·인물 아님·글자 없음) | 생성 이미지(Gemini 3 Pro Image, `hq_77_slogan_art.py`) · 자체 제작 |
 | 7-7_pol_dad.jpg | 활동 1 대책 카드 — 유모차를 미는 아빠, 스웨덴 말뫼, 2020 (7-5_voc_장려.jpg를 4:3으로 다시 자름) | Jenny Andersson / News Oresund · CC BY 2.0 · Wikimedia Commons |
 | 7-7_pol_senior.jpg | 활동 1 대책 카드 — 책상에서 노트북으로 일하는 노인, 2021 (Elderly woman sitting at her office table and holding a cup of coffee while working on her laptop. Croissant and a donut on the trays next to her.jpg, 잘라 냄) | Shixart1985 · CC BY 2.0 · Wikimedia Commons |
 | 7-7_pol_daycare.jpg | 활동 1 대책 카드 — 스웨덴 스톡홀름 근교 어린이집, 2013 (7-5_photo_forskola.jpg 다시 자름) | Holger.Ellgaard · CC BY-SA 3.0 · Wikimedia Commons |
