@@ -4197,9 +4197,15 @@ def main():
             _layer_cfg['seeing'] = _fm_val('seeing')
             _layer_cfg['seeingGo'] = _fm_val('seeing_go')
     def _apply_design(h):
+        _dd = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ws_design')
+        # 2026-11-06 천대현(사회② 8-1~2 검토판 «확대 축소는 안되나?») — 그림이 있는 모든 차시에
+        #   학습지 안 확대 창(ws_design/zoom.*)을 붙인다. 링크 href는 그대로라 스크립트가 안 돌면 예전처럼 새 탭.
+        if any(k in h for k in ('class="ws-fig-zoom"', 'class="ws-tb-fig"', 'class="ipd-fig"', 'class="ws-figrow-item"')):
+            h = h.replace('</head>', '<style id="ws-zoom-css">' + open(os.path.join(_dd, 'zoom.css'), encoding='utf-8').read() + '</style>\n</head>', 1)
+            i = h.rfind('</body>')
+            h = h[:i] + '<script id="ws-zoom-js">' + open(os.path.join(_dd, 'zoom.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
         if not _design:
             return h
-        _dd = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ws_design')
         _css = open(os.path.join(_dd, _design + '.css'), encoding='utf-8').read()
         _js = open(os.path.join(_dd, _design + '.js'), encoding='utf-8').read()
         h = h.replace('</head>', '<style id="ws-design-' + _design + '">' + _css + '</style>\n</head>', 1)
