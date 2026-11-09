@@ -142,7 +142,7 @@ def extract_table_answers(answer_file):
     # 2026-10-12 사회 7-2: 개념편 파서는 아래 블록 안의 '|' 줄을 표로 세지 않는다(블록 처리기가 먹는다).
     #   정답편 쪽만 세면 표 번호가 밀려 보기 버튼 표가 빈 칸이 된다 — 같은 블록 안은 여기서도 건너뛴다.
     ROWBLOCKS = (':::낱말', ':::좌석표', ':::카드선택', ':::비교', ':::인물선택', ':::연표시소', ':::지도막대',
-                 ':::그래프', ':::모자이크', ':::gallery', ':::플립', ':::항로지도')
+                 ':::그래프', ':::모자이크', ':::gallery', ':::플립', ':::항로지도', ':::개념 잇기')
     in_rb = False
     for line in lines:
         stripped = line.strip()
@@ -165,6 +165,101 @@ def extract_table_answers(answer_file):
     return tables
 
 
+# 2026-11-10 천대현(사회② Ⅷ «샘플판에 적용했던 사항들을 8단원 묶음판 전체에 적용하자») — opt-in.
+#   원고 md 아무 곳에 둔 `:::개념 잇기` 블록을 읽어, 수업용·복습용에 개념 관계 선(ws_design/linkmap.*)과
+#   보충 말풍선(ws_design/gloss.*)을 덧붙인다. 정답편에는 붙이지 않는다. 블록이 없는 차시는 출력이 이전과 같다.
+#   화면 글자를 찾아 단추로 감쌀 뿐 입력칸·data-id·정답은 건드리지 않는다. 줄(| 로 나눔):
+#     낱말 | id | 이름 | 단계 | 찾을 글(앞뒤 문맥, 비우면 첫 자리) | 감쌀 글     ← 같은 id를 여러 줄 쓰면 앞 줄부터 찾아본다
+#     상자 | id | 이름 | 단계 | 찾을 글 | 감쌀 글                               ← 교과서 칸(.ws-tb) 안에서만
+#     입담 | id | 이름 | 찾을 글 | 감쌀 글                                       ← 제목 바로 아래 첫 입담
+#     카드 | id | 이름 | 단계 | 카드 이름                                         ← 고르기 카드 — 닿는 선은 다 고른 뒤에만 열림
+#     접기 | id | 이름 | 단계 | 접기 제목 일부 | 감쌀 글
+#     그림 | id | 이름 | 단계 | 캡션 일부 [| 첫 그림]                             ← 첫 그림 = 그 단계 첫 그림일 때만
+#     칩   | id | 이름 | 칩 글                                                   ← 이 학습지 밖(다른 차시) 상자
+#     선   | 한 갈래·예·견줘 보기·다른 차시 | a id | b id | 연결어                  ← a → b (예: 사례 → 개념)
+#     보충 | 빈칸 | 빈칸 번호 | 머리 낱말 | 글                                   ← 채점해서 맞힌 칸 뒤에만 + 단추
+#     보충 | 낱말 | 감쌀 글 | 찾을 글 | 글     ·   보충 | 접기 | 접기 제목 일부 | 감쌀 글 | 글
+#     이어 보기 | (보충과 같은 꼴)                                               ← 초록 «🔗 이어 보기» 말풍선
+#   ⚠️ 연결어·보충 글에 그 차시 뒤쪽 빈칸·카드의 답 낱말을 넣지 않는다(선은 누를 때만 보이지만 학생이 먼저 누를 수 있다).
+LINKMAP_BLOCK = re.compile(r'^:::개념 잇기[^\n]*\n.*?^:::[ \t]*$\n?', re.M | re.S)
+_LM_KIND = {'한 갈래': 'sub', '예': 'ex', '견줘 보기': 'cmp', '다른 차시': 'xref'}
+
+
+def parse_linkmap(raw):
+    """:::개념 잇기 블록 → (선 자료 dict | None, 말풍선 list | None, 경고 list)."""
+    nodes, lines, gloss, warn = {}, [], [], []
+    for m in LINKMAP_BLOCK.finditer(raw):
+        for ln in m.group(0).splitlines()[1:-1]:
+            ln = ln.strip()
+            if not ln or ln.startswith('%%'):
+                continue
+            r = [x.strip() for x in ln.strip('|').split('|')]
+            k = r[0]
+            try:
+                if k in ('낱말', '상자'):
+                    _id, name, sec, near, word = r[1], r[2], r[3], r[4], r[5]
+                    alt = {'near': near, 'word': word}
+                    if k == '상자':
+                        alt['sel'] = '.ws-tb'
+                    if _id in nodes:   # 같은 id 둘째 줄부터 = 다른 자리 후보. 첫 줄도 후보 목록 맨 앞으로 옮긴다
+                        d0 = nodes[_id]
+                        if 'alts' not in d0:
+                            a0 = {'word': d0.pop('word')}
+                            if 'near' in d0: a0['near'] = d0.pop('near')
+                            d0['alts'] = [a0]
+                        d0['alts'].append(alt)
+                    else:
+                        d = {'name': name}
+                        if sec: d['sec'] = sec
+                        if k == '상자': d['alts'] = [alt]
+                        else:
+                            d['word'] = word
+                            if near: d['near'] = near
+                        nodes[_id] = d
+                elif k == '입담':
+                    nodes[r[1]] = {'name': r[2], 'intro': 1, 'near': r[3], 'word': r[4]}
+                elif k == '카드':
+                    nodes[r[1]] = {'name': r[2], 'sec': r[3], 'pick': r[4]}
+                elif k == '접기':
+                    nodes[r[1]] = {'name': r[2], 'sec': r[3], 'fold': r[4], 'word': r[5]}
+                elif k == '그림':
+                    d = {'name': r[2], 'sec': r[3], 'fig': r[4]}
+                    if len(r) > 5 and r[5] == '첫 그림': d['first'] = 1
+                    nodes[r[1]] = d
+                elif k == '칩':
+                    nodes[r[1]] = {'name': r[2], 'chip': r[3]}
+                elif k == '선':
+                    t = _LM_KIND.get(r[1])
+                    if not t:
+                        warn.append(f'선 종류 «{r[1]}» 모름 — 한 갈래·예·견줘 보기·다른 차시'); continue
+                    lines.append({'t': t, 'a': r[2], 'b': r[3], 'w': '|'.join(r[4:]).strip()})
+                elif k in ('보충', '이어 보기'):
+                    g = {'id': f'gl-{len(gloss) + 1}', 'kind': 'blank' if r[1] == '빈칸' else 'word'}
+                    if r[1] == '빈칸':
+                        g.update(blank=r[2], word=r[3], text='|'.join(r[4:]).strip())
+                    elif r[1] == '접기':
+                        g.update(fold=r[2], word=r[3], text='|'.join(r[4:]).strip())
+                    else:
+                        g.update(word=r[2], text='|'.join(r[4:]).strip())
+                        if r[3]: g['near'] = r[3]
+                    if k == '이어 보기':
+                        g['label'] = '🔗 이어 보기'
+                    gloss.append(g)
+                else:
+                    warn.append(f'모르는 줄 «{k}»: {ln[:40]}')
+            except IndexError:
+                warn.append(f'칸이 모자란 줄: {ln[:60]}')
+    for L in lines:
+        for e in (L['a'], L['b']):
+            if e not in nodes:
+                warn.append(f'선 {L["a"]}→{L["b"]}: «{e}» 노드가 없음')
+        _lk = [e for e in (L['a'], L['b']) if e in nodes and 'pick' in nodes[e]]   # 고르기 카드에 닿는 선은 그 카드(들)를 다 고른 뒤에만
+        if _lk:
+            L['lock'] = _lk[0] if len(_lk) == 1 else _lk
+    lm = {'nodes': nodes, 'lines': lines} if lines else None
+    return lm, (gloss or None), warn
+
+
 def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=False, out_path='worksheet.html'):
     """개념편 파일을 읽고, 빈칸을 input으로 교체하여 HTML 생성.
     teacher=True — blank_file로 *정답.md*를 넘긴다. 빈칸이 ( **답** )로 차 있어 input이 안 생기고
@@ -172,6 +267,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     with open(blank_file, 'r', encoding='utf-8') as f:
         raw = f.read()
     raw = strip_obsidian_artifacts(raw, teacher=teacher)  # 학생용은 교사섹션 strip·정답편은 유지
+    raw = LINKMAP_BLOCK.sub('', raw)   # 2026-11-10 :::개념 잇기 — 제자리엔 아무것도 그리지 않는다(parse_linkmap 참고)
     if teacher:
         # 정답본: ①( **답** ) → 채워진 빈칸(초록 박스) 스팬 — 이전 정답본 reveal 느낌 그대로.
         # 학생 제출용과 같은 레이아웃에 답만 기입된 모습. 모범답안·OX해설·사료이미지는 정답.md 본문에서 그대로 노출.
@@ -1239,6 +1335,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #          선 | 이름 | 단위 | 최소~최대 | 색 | 값 | 값 | …      (2개까지 · 첫째=왼쪽 축 · 둘째=오른쪽 축)
         #          띠 | 이름 | 시작 x | 끝 x                             (선택 · 음영 구간)
         #          출처 | 글                                             (선택)
+        #          기준 | 값 | 이름                                      (선택 · 가로 점선 · 첫째 선의 축 기준)
+        #   선이 셋 이상이어도 된다 — 모든 선의 단위·범위가 같으면 눈금을 왼쪽에 한 번만 그린다(2026-11-09 사회 8-5~6 나라 넷 도시화율).
         #   ⚠️ 입력칸을 만들지 않는다 — range 는 .blank-input 이 아니라 수합·저장에 안 잡힌다(act 불변).
         #   ⚠️ 자동 재생하지 않는다(WCAG 2.2.2) · 인쇄 직전 전체를 그린다(beforeprint).
         if stripped.startswith(':::그래프'):
@@ -1251,7 +1349,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if stripped:
                     gr_rows.append([x.strip() for x in stripped.strip().strip('|').split('|')])
                 continue
-            _xs = []; _ser = []; _band = None; _src = ''; _dec = None; _yr = False; _prop = False
+            _xs = []; _ser = []; _band = None; _src = ''; _dec = None; _yr = False; _prop = False; _refs = []
             for _r in gr_rows:
                 if _r[0] == 'x':
                     _xs = _r[1:]
@@ -1268,6 +1366,11 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     _band = {'name': _r[1], 'a': _r[2], 'b': _r[3]}
                 elif _r[0] == '출처' and len(_r) >= 2:
                     _src = '|'.join(_r[1:])
+                elif _r[0] == '기준' and len(_r) >= 2:
+                    try:
+                        _refs.append({'v': float(_r[1]), 'name': '|'.join(_r[2:]).strip()})   # 2026-11-09 사회 8-5~6: 종착 단계 약 80% 가로선
+                    except ValueError:
+                        pass
                 elif _r[0] == '간격' and len(_r) >= 2 and _r[1] == '실제':
                     _prop = True   # 2026-10-28 역사 4-3-2: 조사 연도가 고르지 않은 인구 추정(1518·1532·1548…) — 칸을 같은 간격으로 두면 감소 속도가 틀려 보인다. 이 줄이 있으면 x를 연도 비례로 놓는다
                 elif _r[0] == '조사 연도':
@@ -1283,7 +1386,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if _band:
                     _leg += f'<span class="gr-key"><i class="gr-band-key"></i>{inline(_band["name"])}</span>'
                 _alt = ' · '.join(f'{x["name"]}({x["unit"]})' for x in _ser)
-                _D = {'x': _xs, 's': _ser, 'band': _band, 'yr': _yr, 'prop': _prop}
+                _one = len(_ser) > 1 and all((x['lo'], x['hi'], x['unit']) == (_ser[0]['lo'], _ser[0]['hi'], _ser[0]['unit']) for x in _ser)
+                _D = {'x': _xs, 's': _ser, 'band': _band, 'yr': _yr, 'prop': _prop, 'one': _one, 'ref': _refs}
                 html_parts.append(
                     f'<div class="ws-gr" id="{gid}">'
                     f'<div class="ws-gr-head">{inline(gr_head)}</div>'
@@ -1307,10 +1411,12 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     'if(D.band){var a=D.x.indexOf(D.band.a),b=D.x.indexOf(D.band.b);'
                     'if(a>=0&&b>=0)el("rect",{x:X(a),y:T,width:X(b)-X(a),height:B-T,"class":"gr-band"});}'
                     'for(var g=0;g<=5;g++){var yy=B-(B-T)*g/5;el("line",{x1:L,x2:R,y1:yy,y2:yy,"class":"gr-grid"});'
-                    'D.s.forEach(function(s,k){var v=s.lo+(s.hi-s.lo)*g/5;'
+                    'D.s.forEach(function(s,k){if(D.one&&k>0)return;var v=s.lo+(s.hi-s.lo)*g/5;'
                     'if(g===0&&k===0&&s.lo>0)return;'
-                    'el("text",{x:k===0?L-8:R+8,y:yy+5,"text-anchor":k===0?"end":"start","class":"gr-tick",fill:s.col},fmt(v));});}'
-                    'D.s.forEach(function(s,k){if(s.unit)el("text",{x:k===0?L-8:R+8,y:T-18,"text-anchor":k===0?"end":"start","class":"gr-unit",fill:s.col},"("+s.unit+")");});'
+                    'el("text",{x:k===0?L-8:R+8,y:yy+5,"text-anchor":k===0?"end":"start","class":"gr-tick",fill:D.one?"#4b5563":s.col},fmt(v));});}'
+                    'D.s.forEach(function(s,k){if(D.one&&k>0)return;if(s.unit)el("text",{x:k===0?L-8:R+8,y:T-18,"text-anchor":k===0?"end":"start","class":"gr-unit",fill:D.one?"#4b5563":s.col},"("+s.unit+")");});'
+                    '(D.ref||[]).forEach(function(r){var y=Y(D.s[0],r.v);el("line",{x1:L,x2:R,y1:y,y2:y,"class":"gr-ref"});'
+                    'if(r.name)el("text",{x:L+6,y:y-8,"text-anchor":"start","class":"gr-ref-t"},r.name);});'
                     'var step=Math.max(1,Math.round((n-1)/4));'
                     'for(var i=0;i<n;i+=step){el("text",{x:X(i),y:B+26,"text-anchor":"middle","class":"gr-tick"},D.x[i]);}'
                     'el("line",{x1:L,x2:R,y1:B,y2:B,"class":"gr-axis"});'
@@ -2279,7 +2385,7 @@ def extract_hero_meta(blank_file):
     hero = {'image': None, 'keywords': [], 'subtitle': None, 'eyebrow': None, 'hook': None, 'cards': {}}
     try:
         with open(blank_file, 'r', encoding='utf-8') as f:
-            text = f.read()
+            text = LINKMAP_BLOCK.sub('', f.read())   # 2026-11-10: 원고 끝 :::개념 잇기가 키워드 카드 넷째 장에 섞여 들어갔다
     except Exception:
         return hero
     m = re.match(r'^---\n(.*?)\n---', text, re.S)
@@ -2799,6 +2905,8 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-gr-svg .gr-unit {{ font-size: 15px; }}
 .ws-gr-svg .gr-band {{ fill: #f8c98a; opacity: .45; }}
 .ws-gr-svg .gr-cur {{ stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }}
+.ws-gr-svg .gr-ref {{ stroke: #b45309; stroke-width: 1.5; stroke-dasharray: 8 5; }}
+.ws-gr-svg .gr-ref-t {{ font-size: 15px; font-weight: 700; fill: #b45309; paint-order: stroke; stroke: #fbfcfd; stroke-width: 4px; }}
 .ws-gr-legend {{ display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }}
 .ws-gr-legend .gr-key i {{ display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }}
 .ws-gr-legend .gr-key i.gr-band-key {{ height: 12px; background: #f8c98a; opacity: .8; }}
@@ -4138,6 +4246,11 @@ def main():
     _bp = re.compile(r'\(\s*[　\s]+\)')   # build_html_from_blank의 blank_pattern과 동일 (그쪽은 지역 변수라 여기서 안 보임)
     _skip = re.compile(r'\*\*반:\*\*.*\*\*번:\*\*.*\*\*이름:\*\*')
     _raw = open(blank_file, encoding='utf-8').read()
+    _lm, _gl, _lm_warn = parse_linkmap(_raw)
+    for _w in _lm_warn:
+        print(f'⚠️  :::개념 잇기 — {_w}')
+    if _lm or _gl:
+        print(f"🔗 개념 잇기: 노드 {len((_lm or {}).get('nodes', {}))}·선 {len((_lm or {}).get('lines', []))}·말풍선 {len(_gl or [])}")
     src_blanks = sum(len(_bp.findall(l)) for l in _raw.split('\n') if not _skip.search(l))
 
     if src_blanks != len(answers):
@@ -4196,8 +4309,25 @@ def main():
         if _fm_val('seeing'):
             _layer_cfg['seeing'] = _fm_val('seeing')
             _layer_cfg['seeingGo'] = _fm_val('seeing_go')
-    def _apply_design(h):
+    def _apply_design(h, linkmap=True):
         _dd = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ws_design')
+        h = _apply_look(h, _dd)
+        # :::개념 잇기 — 디자인 층(v2·사회교재)이 단계 카드를 다 만든 뒤에 돌도록 맨 끝에 붙인다. 정답편은 빼고.
+        if linkmap and (_lm or _gl):
+            _rd = lambda n: open(os.path.join(_dd, n), encoding='utf-8').read()
+            _j = lambda o: json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
+            css, js = '', ''
+            if _gl:
+                css += '<style id="gl-css">' + _rd('gloss.css') + '</style>\n'
+                js += '<script type="application/json" id="gl-data">' + _j(_gl) + '</script>\n<script id="gl-js">' + _rd('gloss.js') + '</script>\n'
+            if _lm:
+                css += '<style id="lm-css">' + _rd('linkmap.css') + '</style>\n'
+                js += '<script type="application/json" id="lm-data">' + _j(_lm) + '</script>\n<script id="lm-js">' + _rd('linkmap.js') + '</script>\n'
+            h = h.replace('</head>', css + '</head>', 1)
+            i = h.rfind('</body>')
+            h = h[:i] + js + h[i:]
+        return h
+    def _apply_look(h, _dd):
         # 2026-11-06 천대현(사회② 8-1~2 검토판 «확대 축소는 안되나?») — 그림이 있는 모든 차시에
         #   학습지 안 확대 창(ws_design/zoom.*)을 붙인다. 링크 href는 그대로라 스크립트가 안 돌면 예전처럼 새 탭.
         if any(k in h for k in ('class="ws-fig-zoom"', 'class="ws-tb-fig"', 'class="ipd-fig"', 'class="ws-figrow-item"')):
@@ -4244,7 +4374,7 @@ def main():
     t_title, t_content, t_total, t_total_ox = build_html_from_blank(answer_file, [], [], answer_file, teacher=True, out_path=output_file)
     html_teacher = generate_html(t_title, t_content, t_total, t_total_ox, submit_url, mode='teacher', hero=hero, exam=exam_mode)
     with open(teacher_file, 'w', encoding='utf-8') as f:
-        f.write(_apply_design(html_teacher))
+        f.write(_apply_design(html_teacher, linkmap=False))
     print(f"✅ 정답편(교사용) 생성: {teacher_file}")
 
 

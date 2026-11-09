@@ -1,0 +1,40 @@
+/* 보충 말풍선(gloss.js 짝) — :::개념 잇기 블록에 보충 줄이 있는 차시만 */
+:root{--gl:#007aff;--gl-soft:#eef5ff;--gl-ink:#1b3557;--gl-gut:280px}
+/* 방식 1: 낱말 — 파란 점선 밑줄 + 작은 표시 */
+.gl-t{font:inherit;color:inherit;background:none;border:0;margin:0;padding:0 1px;cursor:pointer;line-height:1.35;letter-spacing:inherit;white-space:nowrap;border-radius:4px;
+  text-decoration:underline dotted var(--gl);text-decoration-thickness:2px;text-underline-offset:5px;-webkit-tap-highlight-color:transparent}
+.gl-t:hover,.gl-t[aria-expanded="true"]{background:rgba(0,122,255,.08)}
+.gl-t:focus-visible,.gl-badge:focus-visible,.gl-x:focus-visible{outline:2px solid rgba(0,122,255,.45);outline-offset:2px}
+.gl-mk{display:inline-grid;place-items:center;width:15px;height:15px;margin-left:2px;border-radius:50%;background:var(--gl);color:#fff;font-size:11px;font-weight:800;line-height:1;vertical-align:super;text-decoration:none}
+/* 방식 2: 빈칸 뒤 표시 — 채점해서 맞힌 뒤에만 보인다 */
+.gl-badge{display:inline-grid;place-items:center;width:22px;height:22px;margin:0 2px 0 4px;padding:0;border:0;border-radius:50%;background:var(--gl);color:#fff;font-weight:800;font-size:14px;line-height:1;font-family:inherit;cursor:pointer;vertical-align:middle;box-shadow:0 0 0 3px rgba(0,122,255,.15)}
+.gl-badge[hidden]{display:none}
+/* 말풍선 */
+.gl-pop{position:relative;background:var(--gl-soft);border-left:3px solid var(--gl);border-radius:4px 10px 10px 4px;padding:8px 32px 10px 13px;color:var(--gl-ink);font-size:.84rem;line-height:1.65;text-align:left;word-break:keep-all;overflow-wrap:break-word}
+.gl-pop[hidden]{display:none}
+.gl-head{font-size:.72rem;font-weight:800;letter-spacing:.06em;color:var(--gl);margin:0 0 2px}
+.gl-pop.gl-link{--gl:#0f7b6c;--gl-soft:#ecf7f4;--gl-ink:#12403a}
+.gl-head .gl-word{margin-left:6px;letter-spacing:0;font-weight:700;color:var(--gl-ink)}
+.gl-body{margin:0}
+.gl-x{position:absolute;top:4px;right:5px;width:26px;height:26px;padding:0;border:0;border-radius:6px;background:none;color:#4f6f99;font-weight:400;font-size:18px;line-height:1;font-family:inherit;cursor:pointer}
+.gl-x:hover{background:rgba(0,122,255,.1)}
+.gl-pop.gl-inline{margin:-6px 0 16px;max-width:40em}
+.gl-layer{position:absolute;left:0;top:0;width:0;height:0;z-index:40}
+.gl-layer .gl-pop{position:absolute;box-shadow:0 2px 10px rgba(0,60,140,.12)}
+.gl-svg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.gl-path{fill:none;stroke:var(--gl);stroke-width:1.2;opacity:.8}
+.gl-dot{fill:var(--gl)}
+@keyframes gl-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@keyframes gl-fade{from{opacity:0}to{opacity:.8}}
+@keyframes gl-pop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.18)}100%{transform:scale(1);opacity:1}}
+.gl-pop.gl-anim{animation:gl-in .18s ease-out}
+.gl-path.gl-anim{animation:gl-fade .25s ease-out}
+.gl-badge.gl-anim{animation:gl-pop .32s ease-out}
+@media (prefers-reduced-motion:reduce){.gl-pop.gl-anim,.gl-path.gl-anim,.gl-badge.gl-anim{animation:none!important}}
+/* 넓은 화면: 본문 상자 오른쪽에 주석 칸을 비워 둔다(사회교재 v2 판은 상자가 1120px이라 그냥 두면 여백이 140px 남짓) */
+@media screen and (min-width:1280px){
+  html.gl-wide .container{--gl-w:min(1120px, calc(100% - var(--gl-gut)));max-width:var(--gl-w)!important;
+    margin-left:max(0px, min(calc((100% - var(--gl-w)) / 2), calc(100% - var(--gl-w) - var(--gl-gut))))!important;margin-right:auto!important}
+  html.gl-wide.v2-top .container{--gl-w:min(920px, calc(100% - var(--gl-gut)))}
+}
+@media print{.gl-svg,.gl-layer,.gl-x,.gl-badge,.gl-mk{display:none!important}.gl-pop{break-inside:avoid;background:#fff;border-left-color:#999}.gl-t{text-decoration:none}}

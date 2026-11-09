@@ -329,6 +329,8 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-gr-svg .gr-unit { font-size: 15px; }
 .ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
 .ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-svg .gr-ref { stroke: #b45309; stroke-width: 1.5; stroke-dasharray: 8 5; }
+.ws-gr-svg .gr-ref-t { font-size: 15px; font-weight: 700; fill: #b45309; paint-order: stroke; stroke: #fbfcfd; stroke-width: 4px; }
 .ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
 .ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
 .ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
@@ -1345,6 +1347,115 @@ details.v2t-legend summary i{font-style:normal;color:var(--mute);font-weight:600
 details.v2t-legend ul{margin-top:10px}
 .v2t-ico{font-size:.72em;opacity:.75;margin-right:.25em;vertical-align:.08em;font-family:system-ui,sans-serif}
 </style>
+<style id="gl-css">/* 보충 말풍선(gloss.js 짝) — :::개념 잇기 블록에 보충 줄이 있는 차시만 */
+:root{--gl:#007aff;--gl-soft:#eef5ff;--gl-ink:#1b3557;--gl-gut:280px}
+/* 방식 1: 낱말 — 파란 점선 밑줄 + 작은 표시 */
+.gl-t{font:inherit;color:inherit;background:none;border:0;margin:0;padding:0 1px;cursor:pointer;line-height:1.35;letter-spacing:inherit;white-space:nowrap;border-radius:4px;
+  text-decoration:underline dotted var(--gl);text-decoration-thickness:2px;text-underline-offset:5px;-webkit-tap-highlight-color:transparent}
+.gl-t:hover,.gl-t[aria-expanded="true"]{background:rgba(0,122,255,.08)}
+.gl-t:focus-visible,.gl-badge:focus-visible,.gl-x:focus-visible{outline:2px solid rgba(0,122,255,.45);outline-offset:2px}
+.gl-mk{display:inline-grid;place-items:center;width:15px;height:15px;margin-left:2px;border-radius:50%;background:var(--gl);color:#fff;font-size:11px;font-weight:800;line-height:1;vertical-align:super;text-decoration:none}
+/* 방식 2: 빈칸 뒤 표시 — 채점해서 맞힌 뒤에만 보인다 */
+.gl-badge{display:inline-grid;place-items:center;width:22px;height:22px;margin:0 2px 0 4px;padding:0;border:0;border-radius:50%;background:var(--gl);color:#fff;font-weight:800;font-size:14px;line-height:1;font-family:inherit;cursor:pointer;vertical-align:middle;box-shadow:0 0 0 3px rgba(0,122,255,.15)}
+.gl-badge[hidden]{display:none}
+/* 말풍선 */
+.gl-pop{position:relative;background:var(--gl-soft);border-left:3px solid var(--gl);border-radius:4px 10px 10px 4px;padding:8px 32px 10px 13px;color:var(--gl-ink);font-size:.84rem;line-height:1.65;text-align:left;word-break:keep-all;overflow-wrap:break-word}
+.gl-pop[hidden]{display:none}
+.gl-head{font-size:.72rem;font-weight:800;letter-spacing:.06em;color:var(--gl);margin:0 0 2px}
+.gl-pop.gl-link{--gl:#0f7b6c;--gl-soft:#ecf7f4;--gl-ink:#12403a}
+.gl-head .gl-word{margin-left:6px;letter-spacing:0;font-weight:700;color:var(--gl-ink)}
+.gl-body{margin:0}
+.gl-x{position:absolute;top:4px;right:5px;width:26px;height:26px;padding:0;border:0;border-radius:6px;background:none;color:#4f6f99;font-weight:400;font-size:18px;line-height:1;font-family:inherit;cursor:pointer}
+.gl-x:hover{background:rgba(0,122,255,.1)}
+.gl-pop.gl-inline{margin:-6px 0 16px;max-width:40em}
+.gl-layer{position:absolute;left:0;top:0;width:0;height:0;z-index:40}
+.gl-layer .gl-pop{position:absolute;box-shadow:0 2px 10px rgba(0,60,140,.12)}
+.gl-svg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.gl-path{fill:none;stroke:var(--gl);stroke-width:1.2;opacity:.8}
+.gl-dot{fill:var(--gl)}
+@keyframes gl-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@keyframes gl-fade{from{opacity:0}to{opacity:.8}}
+@keyframes gl-pop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.18)}100%{transform:scale(1);opacity:1}}
+.gl-pop.gl-anim{animation:gl-in .18s ease-out}
+.gl-path.gl-anim{animation:gl-fade .25s ease-out}
+.gl-badge.gl-anim{animation:gl-pop .32s ease-out}
+@media (prefers-reduced-motion:reduce){.gl-pop.gl-anim,.gl-path.gl-anim,.gl-badge.gl-anim{animation:none!important}}
+/* 넓은 화면: 본문 상자 오른쪽에 주석 칸을 비워 둔다(사회교재 v2 판은 상자가 1120px이라 그냥 두면 여백이 140px 남짓) */
+@media screen and (min-width:1280px){
+  html.gl-wide .container{--gl-w:min(1120px, calc(100% - var(--gl-gut)));max-width:var(--gl-w)!important;
+    margin-left:max(0px, min(calc((100% - var(--gl-w)) / 2), calc(100% - var(--gl-w) - var(--gl-gut))))!important;margin-right:auto!important}
+  html.gl-wide.v2-top .container{--gl-w:min(920px, calc(100% - var(--gl-gut)))}
+}
+@media print{.gl-svg,.gl-layer,.gl-x,.gl-badge,.gl-mk{display:none!important}.gl-pop{break-inside:avoid;background:#fff;border-left-color:#999}.gl-t{text-decoration:none}}
+</style>
+<style id="lm-css">/* 개념 관계 선(linkmap.js 짝) — :::개념 잇기 블록이 있는 차시만 */
+:root{--lm-sub:#4f46e5;--lm-ex:#0f7b6c;--lm-cmp:#b45309;--lm-xref:#64748b;--lm-ink:#1f2937}
+/* 노드 낱말: 글자는 그대로, 뒤에 작은 고리 */
+.lm-n{font:inherit;color:inherit;background:none;border:0;margin:0;padding:0 2px;cursor:pointer;line-height:inherit;letter-spacing:inherit;white-space:nowrap;border-radius:5px;text-align:inherit;-webkit-tap-highlight-color:transparent;transition:background-color .15s,box-shadow .15s}
+.lm-n:hover{background:rgba(79,70,229,.07)}
+.lm-n:focus-visible,.lm-tag:focus-visible,.lm-go:focus-visible,.lm-off:focus-visible,.lm-sh-x:focus-visible{outline:2px solid var(--lm-sub);outline-offset:2px}
+.lm-mk{display:inline-block;width:9px;height:9px;margin-left:3px;border:1.5px solid var(--lm-sub);border-radius:50%;vertical-align:middle;position:relative;top:-1px;opacity:.8}
+.lm-n[disabled]{cursor:inherit;padding:0}
+.lm-n[disabled] .lm-mk{display:none}
+.lm-n[disabled]:hover{background:none}
+.lm-n.lm-on{background:rgba(79,70,229,.14);box-shadow:0 0 0 2px rgba(79,70,229,.38)}
+.lm-n.lm-on .lm-mk{background:var(--lm-sub);opacity:1}
+.lm-n.lm-peer{background:rgba(15,123,108,.10);box-shadow:0 0 0 1.5px rgba(15,123,108,.38)}
+figure.lm-fig-on img{outline:3px solid rgba(79,70,229,.6);outline-offset:3px}
+figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
+.lm-flash{animation:lm-flash 2s ease-out}
+.lm-flash-still{box-shadow:0 0 0 4px rgba(245,158,11,.6)!important}
+@keyframes lm-flash{0%,55%{box-shadow:0 0 0 5px rgba(245,158,11,.6)}100%{box-shadow:0 0 0 0 rgba(245,158,11,0)}}
+/* 선 레이어(문서 좌표) — 보충 말풍선(z 40)보다 아래 */
+.lm-layer{position:absolute;left:0;top:0;width:0;height:0;z-index:35;pointer-events:none}
+.lm-svg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.lm-case{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.lm-line{fill:none;stroke-linejoin:round}
+.t-sub{stroke:var(--lm-sub);stroke-width:2.5}
+.t-ex{stroke:var(--lm-ex);stroke-width:3;stroke-dasharray:1 7;stroke-linecap:round}
+.t-cmp{stroke:var(--lm-cmp);stroke-width:2.5;stroke-dasharray:10 4 2 4}
+.t-xref{stroke:var(--lm-xref);stroke-width:1.5}
+.lm-lead{fill:none;stroke-width:1.2;stroke-dasharray:2 3;opacity:.6}
+/* 연결어 꼬리표: 흰 바탕 알약, 테두리 = 선 색 */
+.lm-tag{position:absolute;pointer-events:auto;width:max-content;font-family:inherit;font-size:13.5px;line-height:1.4;font-weight:600;color:var(--lm-ink);background:#fff;border:1.5px solid var(--c);border-radius:15px;padding:3px 11px 4px;max-width:250px;text-align:left;word-break:keep-all;overflow-wrap:break-word;cursor:pointer;box-shadow:0 1px 5px rgba(15,23,42,.12);margin:0}
+.lm-tag .lm-where{color:var(--c);font-weight:800;margin-right:5px;white-space:nowrap}
+/* 다른 차시 칩 + 그 위 꼬리표 */
+.lm-cg{position:absolute;pointer-events:auto;display:flex;flex-direction:column;align-items:flex-start;gap:5px;max-width:250px}
+.lm-cg .lm-tag{position:static;width:auto;max-width:100%}
+.lm-chip{background:#f8fafc;border:1.5px solid var(--lm-xref);border-radius:8px;padding:5px 10px 6px;font-size:13px;line-height:1.45;color:#334155;box-shadow:0 1px 4px rgba(15,23,42,.08);word-break:keep-all;overflow-wrap:break-word}
+.lm-chip b{display:block;font-size:13.5px;color:#1e293b}
+.lm-cg.lm-inline{position:relative;margin:2px 0 12px auto;width:fit-content;max-width:min(360px,100%)}
+/* 선 끄기 */
+.lm-off{position:fixed;right:16px;bottom:16px;z-index:60;font-family:inherit;font-size:14px;font-weight:700;background:#fff;color:var(--lm-sub);border:1.5px solid var(--lm-sub);border-radius:999px;padding:7px 15px;box-shadow:0 2px 10px rgba(15,23,42,.16);cursor:pointer}
+.lm-off[hidden],.lm-sheet[hidden]{display:none}
+/* 좁은 화면: 아래에서 올라오는 판 */
+.lm-sheet{position:fixed;left:0;right:0;bottom:0;z-index:70;max-height:45vh;overflow:auto;background:#fff;border-radius:16px 16px 0 0;box-shadow:0 -4px 22px rgba(15,23,42,.2);padding:0 16px 14px;font-size:14px;line-height:1.5;color:var(--lm-ink);overscroll-behavior:contain}
+.lm-sh-h{display:flex;align-items:center;gap:8px;position:sticky;top:0;background:#fff;padding:10px 0 6px;z-index:1}
+.lm-sh-h b{flex:1;font-size:14.5px}
+.lm-sh-x{width:36px;height:36px;border:0;border-radius:8px;background:#f1f5f9;font-size:20px;line-height:1;cursor:pointer;font-family:inherit;color:#334155}
+.lm-row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:8px 0;border-top:1px solid #eef0f4}
+.lm-row .lm-to{display:block;font-size:12.5px;color:#64748b}
+.lm-row .lm-w{display:block;font-weight:600}
+.lm-row .lm-cd{display:block;font-size:12.5px;color:#475569}
+.lm-go{font-family:inherit;font-size:13px;font-weight:700;border:1.5px solid var(--c);color:var(--c);background:#fff;border-radius:999px;padding:5px 11px;cursor:pointer;white-space:nowrap}
+.lm-sw{display:block;width:44px;height:14px;overflow:visible}
+/* 범례 «선 읽는 법» */
+.lm-legend{margin:14px 0 2px;padding:12px 16px;border:1px solid #e3e5ef;border-radius:12px;background:#fbfbfe;font-size:.86rem;line-height:1.55;color:var(--lm-ink)}
+.lm-lg-h{font-weight:800;color:#312e81;margin:0 0 3px}
+.lm-lg-p{margin:0 0 8px}
+.lm-lg-p .lm-mk{margin:0 1px 0 3px}
+.lm-lg-ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 18px}
+.lm-lg-ul li{display:flex;align-items:center;gap:8px;margin:0}
+.lm-lg-ul b{white-space:nowrap}
+.lm-lg-ul span{color:#4b5563}
+.lm-lg-narrow{display:none;margin:6px 0 0;font-size:.8rem;color:#6b7280}
+@media (max-width:1099.98px){.lm-lg-narrow{display:block}}
+.lm-live{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@keyframes lm-in{from{opacity:0}to{opacity:1}}
+.lm-anim{animation:lm-in .25s ease-out}
+@media (prefers-reduced-motion:reduce){.lm-anim,.lm-flash{animation:none!important}.lm-n{transition:none}}
+@media print{.lm-layer,.lm-off,.lm-sheet,.lm-legend,.lm-mk,.lm-cg,.lm-live{display:none!important}.lm-n{background:none!important;box-shadow:none!important;padding:0}figure.lm-fig-on img,figure.lm-fig-peer img{outline:none!important}}
+</style>
 </head>
 <body>
 <div class="container">
@@ -1429,6 +1540,13 @@ details.v2t-legend ul{margin-top:10px}
 <br>
 <div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p>교과서 160쪽 '삶의 질이 높은 도시의 조건' 그림은 머서라는 회사의 조사에서 가져왔다. 열 가지 항목이 둥글게 놓여 있다 — 정치·사회적 환경, 경제적 환경, 사회·문화적 환경, 의료와 건강, 학교와 교육, 공공 서비스와 교통, 레크리에이션, 소비재, 주거, 자연환경.</p><p>어느 항목에 가장 큰 점수를 줄지는 사람마다 다르다. 그래서 같은 도시를 두고도 '살기 좋다'와 '아니다'가 갈린다.</p></div>
 <br>
+<details class="ws-fold ws-fold-더보기"><summary>광장이 도서관이 되었다 — 집도 일터도 아닌 '세 번째 장소'</summary><div class="ws-fold-body">
+<p>서울시는 2022년부터 서울광장 잔디밭에 책을 내놓고, 누구나 꺼내 읽고 쉬다 가는 야외 도서관을 연다. 2023년에는 광화문 광장, 2024년에는 청계천에도 같은 도서관이 생겼다.</p>
+<p>2026년에는 봄과 가을에 금·토·일요일마다 열렸고, 세 곳을 합쳐 약 187만 명이 찾았다. 방문객 5,155명에게 물어보니 10명 가운데 9명(90.3%)이 그 자리에서 실제로 책을 읽었다고 답했다.</p>
+<p>미국 사회학자 레이 올든버그는 집(첫 번째 장소)도 일터(두 번째 장소)도 아니면서, 사람들이 부담 없이 들러 머물며 이야기를 나누는 동네 카페나 가게 같은 곳을 '세 번째 장소'라고 불렀다.</p>
+<p>3단계 ⑦·⑧에 쓴 조건을 떠올려 보면, 도시가 왜 광장에 책을 내놓는지 보인다.</p>
+</div></details>
+<br>
 <h2>📖 4단계: 1위 도시도, 너의 1순위도 다르다</h2>
 <blockquote>📕 <strong>교과서 160~161쪽 펴고 · 배정 시간 8분</strong></blockquote>
 <br>
@@ -1454,7 +1572,7 @@ details.v2t-legend ul{margin-top:10px}
 <blockquote>📕 교과서 162~163쪽 '세계의 생태 도시 찾아가기' 지도와 사진을 함께 펴 놓자. 사진으로 먼저 보고 아래 카드를 풀자.</blockquote>
 <br>
 <style>/* 2026-10-26 사회 7-5 «좁게» — 그림 없는 짧은 카드. 데스크톱은 한 줄에 다 놓고, 폰은 «이름·값 | 버튼» 한 줄씩 */ .pk-grid.pk-tight { grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; } .pk-tight .pk-card { padding: 8px 6px; } .pk-tight .pk-sit { min-height: 0; margin: 2px 0 7px; } .pk-tight .pk-b { padding: 5px 1px; word-break: keep-all; line-height: 1.25; font-size: .74em; } .pk-tight .pk-btns { gap: 3px; } @media (max-width: 640px) {   .pk-grid.pk-tight { grid-template-columns: 1fr; gap: 6px; }   .pk-tight .pk-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 10px; align-items: center; text-align: left; padding: 7px 10px; }   .pk-tight .pk-name, .pk-tight .pk-sit { grid-column: 1; margin: 0; }   .pk-tight .pk-btns { grid-column: 2; grid-row: 1 / span 2; }   .pk-tight .pk-why { grid-column: 1 / -1; } } /* 2026-10-27 사회 7-5 «센 수/견준 값»: 금테 카드도 «좁게» — 칸마다 깔던 크림 판 대신 카드 하나를 크림 판+금테(배경 두 겹)로. 폰 두 칸 배치에서 판이 조각나던 것 */ .pk-gold.pk-tight .pk-card, .pk-gold.pk-tight .pk-card.pk-noimg { padding: 9px 8px; border: 5px solid transparent; border-radius: 13px; background: linear-gradient(#fdf7e6, #fdf7e6) padding-box, linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%) border-box; } .pk-gold.pk-tight .pk-name, .pk-gold.pk-tight .pk-sit, .pk-gold.pk-tight .pk-btns, .pk-gold.pk-tight .pk-why, .pk-gold.pk-tight .pk-card.pk-noimg .pk-name { background: none; padding: 0; border-radius: 0; } .pk-gold.pk-tight .pk-name { font-size: .95em; line-height: 1.35; word-break: keep-all; } .pk-gold.pk-tight .pk-sit { word-break: keep-all; } .pk-gold.pk-tight .pk-sit { font-size: .8em; line-height: 1.4; margin: 3px 0 7px; } .pk-gold.pk-tight .pk-why { margin-top: 6px; } .pk-gold.pk-tight:has(> .pk-card:nth-child(6)), .pk-gold.pk-tight:has(.pk-b:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } @media (max-width: 640px) { .pk-grid.pk-gold.pk-tight, .pk-gold.pk-tight:has(> .pk-card:nth-child(6)), .pk-gold.pk-tight:has(.pk-b:nth-child(3)) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; } .pk-gold.pk-tight .pk-card, .pk-gold.pk-tight .pk-card.pk-noimg { display: flex; flex-direction: column; text-align: left; padding: 8px 10px; } .pk-gold.pk-tight .pk-sit { margin: 2px 0 6px; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:has(> .pk-b:nth-child(3)) { grid-auto-flow: row; grid-template-columns: 1fr; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:has(> .pk-b:nth-child(4)) { grid-template-columns: 1fr 1fr; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { align-content: center; } }</style>
-<div class="ws-pick" id="pk86"><div class="pk-head"><span>교과서 162~163쪽에 나온 네 생태 도시다. 어느 도시 이야기일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold pk-tight"><div class="pk-card pk-noimg" data-i="0" data-ans="프라이부르크"><div class="pk-name">길가의 좁은 물길</div><div class="pk-sit">시내 길가를 따라 흐르는 얕은 수로가 도시의 기온과 습도를 조절한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>중세에 불을 끄고 가축에게 물을 주려고 만든 수로를 지금도 쓴다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="프라이부르크"><div class="pk-name">바람이 지나는 길</div><div class="pk-sit">도시를 설계할 때 바람이 잘 통하는 길을 남겨 두었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>순환 수로와 바람 통로 등 친환경 설계가 잘 이루어졌다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="싱가포르"><div class="pk-name">좁은 땅, 넓은 숲</div><div class="pk-sit">작은 땅에 약 621만 명(2026년)이 살지만 녹지를 계속 넓혔다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>나라 차원에서 지속 가능성을 강조해 녹색 도시로 인정받았다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="싱가포르"><div class="pk-name">바다를 메운 공원</div><div class="pk-sit">바다를 메운 땅에 큰 공원을 만들었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>간척지에 대규모 공원을 조성했다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="케이프타운"><div class="pk-name">첫 번째 세계 환경 도시</div><div class="pk-sit">2014년 개발 도상국 가운데 처음으로 세계 환경 도시로 뽑혔다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>경제 발전과 탄소 줄이기를 함께 해낸 길을 보여 주었다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="순천"><div class="pk-name">갯벌 옆 정원</div><div class="pk-sit">바닷가 습지가 망가지지 않게 도시와 습지 사이에 큰 정원을 만들었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>8-1~2차시에서 본 순천만 갈대밭 옆이다. 2013년 국제 정원 박람회를 연 뒤 2015년 우리나라 첫 국가 정원이 되었다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk86");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["프라이부르크", "싱가포르", "케이프타운", "순천"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk93"><div class="pk-head"><span>교과서 162~163쪽에 나온 네 생태 도시다. 어느 도시 이야기일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 6</b></div><div class="pk-grid pk-gold pk-tight"><div class="pk-card pk-noimg" data-i="0" data-ans="프라이부르크"><div class="pk-name">길가의 좁은 물길</div><div class="pk-sit">시내 길가를 따라 흐르는 얕은 수로가 도시의 기온과 습도를 조절한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>중세에 불을 끄고 가축에게 물을 주려고 만든 수로를 지금도 쓴다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="프라이부르크"><div class="pk-name">바람이 지나는 길</div><div class="pk-sit">도시를 설계할 때 바람이 잘 통하는 길을 남겨 두었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>순환 수로와 바람 통로 등 친환경 설계가 잘 이루어졌다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="싱가포르"><div class="pk-name">좁은 땅, 넓은 숲</div><div class="pk-sit">작은 땅에 약 621만 명(2026년)이 살지만 녹지를 계속 넓혔다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>나라 차원에서 지속 가능성을 강조해 녹색 도시로 인정받았다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="싱가포르"><div class="pk-name">바다를 메운 공원</div><div class="pk-sit">바다를 메운 땅에 큰 공원을 만들었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>간척지에 대규모 공원을 조성했다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="케이프타운"><div class="pk-name">첫 번째 세계 환경 도시</div><div class="pk-sit">2014년 개발 도상국 가운데 처음으로 세계 환경 도시로 뽑혔다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>경제 발전과 탄소 줄이기를 함께 해낸 길을 보여 주었다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="순천"><div class="pk-name">갯벌 옆 정원</div><div class="pk-sit">바닷가 습지가 망가지지 않게 도시와 습지 사이에 큰 정원을 만들었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="프라이부르크">프라이부르크</button><button type="button" class="pk-b" data-v="싱가포르">싱가포르</button><button type="button" class="pk-b" data-v="케이프타운">케이프타운</button><button type="button" class="pk-b" data-v="순천">순천</button></div><div class="pk-why" hidden>8-1~2차시에서 본 순천만 갈대밭 옆이다. 2013년 국제 정원 박람회를 연 뒤 2015년 우리나라 첫 국가 정원이 되었다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk93");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["프라이부르크", "싱가포르", "케이프타운", "순천"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <blockquote>✅ <strong>스스로 점검</strong> — 여섯 장면 가운데 3단계 조건의 '쾌적한 자연환경'과 이어지는 것은 몇 개일까? 생태 도시는 그 조건 하나를 특히 깊게 채운 도시다.</blockquote>
 <br>
@@ -2219,6 +2337,606 @@ if(cfg.seeing){var sw=[].slice.call(document.querySelectorAll('.ws-sw')).filter(
 if(sw){sw.classList.add('v2t-seeing');tag(sw,'사진으로 읽기');var hk=document.querySelector('.hero-hook');if(hk&&cfg.seeingGo){var g=document.createElement('span');g.className='v2t-hero-go';g.textContent=cfg.seeingGo;hk.appendChild(g)}}}
 /* 제목 앞 이모지: 첫 글자 마디만 잘라 작은 span에(글자·입력칸 불변) */
 [].slice.call(document.querySelectorAll('.v2-sec h2')).forEach(function(h){var n=h.firstChild;if(!n||n.nodeType!==3)return;var m=n.data.match(/^\s*([\u2600-\u27BF\uD83C-\uDBFF\uDC00-\uDFFF\uFE0F]+)\s*/);if(!m)return;var r=n.splitText(m[0].length);var s=document.createElement('span');s.className='v2t-ico';s.textContent=m[1];h.insertBefore(s,r);h.removeChild(n)});
+})();
+</script>
+<script type="application/json" id="gl-data">[{"id": "gl-1", "kind": "blank", "blank": "3", "word": "도시 재생", "text": "낡은 곳을 모두 헐고 새로 짓는 것만이 아니라, 남은 건물과 그 동네의 역사를 살려 다시 쓰는 방법도 많이 쓴다. 사람이 다시 찾아오고 머물게 만드는 것이 목표다."}]</script>
+<script id="gl-js">/* 2026-11-10 사회② Ⅷ: 보충 말풍선 — 교사용 교과서의 파란 주석처럼. 방식 1 낱말 누르기 · 방식 2 채점해서 맞힌 빈칸만.
+   넓은 화면(1280px~)은 본문 상자 오른쪽 여백, 좁으면 그 문단 아래. 인쇄는 열린 것만 문단 아래 글로. 시험판 = 8-5~6 검토판 v3(11/9) */
+(function(){
+/* 자료는 원고 md의 :::개념 잇기 블록 «보충»·«이어 보기» 줄 → JSON 자료 칸(id gl-data).
+   [{id, kind: blank(맞힌 빈칸만 열림)·word(낱말 누르기), blank(빈칸 번호), word, near, fold, label, text}]
+   보충 문장은 교과서·교사용 주석을 옮기지 않고 우리 말로 쓰며, 뒤 빈칸 답 낱말은 넣지 않는다 */
+var GL=null; try{ GL=JSON.parse((document.getElementById('gl-data')||{}).textContent||'null'); }catch(e){ GL=null; }
+if(!GL||!GL.length) return;
+var H=document.documentElement, C=document.querySelector('.container'); if(!C) return;
+var WIDE=window.matchMedia('(min-width:1280px)'), RM=window.matchMedia('(prefers-reduced-motion:reduce)');
+var printing=false, items=[];
+var NS='http://www.w3.org/2000/svg';
+var layer=document.createElement('div'); layer.className='gl-layer';
+var svg=document.createElementNS(NS,'svg'); svg.setAttribute('class','gl-svg'); svg.setAttribute('aria-hidden','true');
+layer.appendChild(svg); document.body.appendChild(layer);
+
+function mkPop(g){
+  var p=document.createElement('aside'); p.className='gl-pop'; p.id=g.id; p.hidden=true;
+  p.setAttribute('role','note'); p.setAttribute('aria-label',(g.label||'보충')+': '+g.word); if(g.label) p.classList.add('gl-link');
+  p.innerHTML='<div class="gl-head">'+(g.label||'보충')+'<span class="gl-word"></span></div><div class="gl-body"></div><button type="button" class="gl-x" aria-label="보충 닫기">×</button>';
+  p.querySelector('.gl-word').textContent=g.word; p.querySelector('.gl-body').textContent=g.text;
+  return p;
+}
+function animate(el){ if(RM.matches) return; el.classList.remove('gl-anim'); void el.offsetWidth; el.classList.add('gl-anim'); }
+
+GL.forEach(function(g){
+  var it={g:g,open:false,locked:false,trig:null,block:null,pop:mkPop(g),path:null,dot:null,fresh:false};
+  if(g.kind==='blank'){
+    var inp=[].slice.call(document.querySelectorAll('.blank-input')).filter(function(e){ return e.dataset.id===String(g.blank); })[0]; if(!inp) return;   /* 선택자 문자열로 쓰지 않는다 — 정규식으로 입력칸을 세는 도구가 하나로 친다 */
+    var b=document.createElement('button'); b.type='button'; b.className='gl-badge'; b.hidden=true; b.textContent='+';
+    b.setAttribute('aria-controls',g.id); b.setAttribute('aria-expanded','false'); b.setAttribute('aria-label',g.word+' 보충 보기');
+    inp.insertAdjacentElement('afterend',b);
+    it.trig=b; it.input=inp; it.locked=true;
+    inp.addEventListener('input',function(){ if(!it.locked){ lock(it); } });
+  }else{
+    var root=C;
+    if(g.fold){ var fold=[].slice.call(document.querySelectorAll('details.ws-fold')).filter(function(d){var s=d.querySelector('summary');return s&&s.textContent.indexOf(g.fold)>=0;})[0];
+      if(!fold) return; root=fold.querySelector('.ws-fold-body')||fold; }
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n,hit=null;
+    while((n=w.nextNode())){ var s0=g.near?n.data.indexOf(g.near):0; if(s0<0) continue; var k=n.data.indexOf(g.word,s0); if(k>=0){hit=n.splitText(k); hit.splitText(g.word.length); break;} }
+    if(!hit) return;
+    var t=document.createElement('button'); t.type='button'; t.className='gl-t';
+    t.setAttribute('aria-controls',g.id); t.setAttribute('aria-expanded','false');
+    t.appendChild(document.createTextNode(g.word));
+    var mk=document.createElement('span'); mk.className='gl-mk'; mk.setAttribute('aria-hidden','true'); mk.textContent='+'; t.appendChild(mk);
+    hit.parentNode.replaceChild(t,hit);
+    it.trig=t; it.mk=mk;
+  }
+  it.block=it.trig.closest('p,li')||it.trig.parentNode;
+  it.trig.addEventListener('click',function(){ setOpen(it,!it.open); });
+  it.pop.querySelector('.gl-x').addEventListener('click',function(){ setOpen(it,false); it.trig.focus(); });
+  items.push(it);
+});
+if(!items.length) return;
+
+function setOpen(it,on){
+  if(on&&it.locked) return;
+  it.open=on; it.pop.hidden=!on; it.fresh=on;
+  it.trig.setAttribute('aria-expanded',on?'true':'false');
+  if(it.mk) it.mk.textContent=on?'−':'+';
+  if(on) animate(it.pop);
+  layout();
+}
+function lock(it){ it.locked=true; it.trig.hidden=true; setOpen(it,false); }
+function unlock(it){ var was=it.locked; it.locked=false; it.trig.hidden=false; if(was) animate(it.trig); }
+
+/* 방식 2: 채점하기 뒤에 맞힌 칸만 연다. 초기화·답 고치기면 다시 잠근다 */
+var _check=window.check, _reset=window.reset;
+if(typeof _check==='function') window.check=function(){ var r=_check.apply(this,arguments);
+  items.forEach(function(it){ if(!it.input) return;
+    if(it.input.classList.contains('correct')){ unlock(it); setOpen(it,true); } else { lock(it); } });
+  return r; };
+if(typeof _reset==='function') window.reset=function(){ var r=_reset.apply(this,arguments); items.forEach(function(it){ if(it.input) lock(it); }); return r; };
+
+function wideOK(){ return !printing && WIDE.matches; }
+function layout(){
+  H.classList.toggle('gl-wide',wideOK());
+  var vw=H.clientWidth, sx=window.scrollX||0, sy=window.scrollY||0, placed=[], use=[];
+  items.forEach(function(it){
+    var card=it.trig.closest('.v2-sec')||C, cr=card.getBoundingClientRect();
+    var space=vw-cr.right;
+    it.mode=(wideOK()&&space>=250)?'side':'inline';
+    if(it.mode==='inline'){
+      if(!it.pop.classList.contains('gl-inline')||it.pop.previousElementSibling!==it.block){ it.block.insertAdjacentElement('afterend',it.pop); }
+      it.pop.classList.add('gl-inline'); it.pop.style.cssText='';
+    }else{
+      if(it.pop.parentNode!==layer) layer.appendChild(it.pop);
+      it.pop.classList.remove('gl-inline');
+      var r=it.trig.getBoundingClientRect(), visible=it.open&&(r.width||r.height);
+      it.pop.style.display=visible?'':'none';
+      if(visible){
+        var lineY=r.bottom+3;
+        if(it.input){ var ir=it.input.getBoundingClientRect(); lineY=Math.max(ir.bottom,r.bottom)+3; }
+        var left=cr.right+18, width=Math.min(270,vw-left-14);
+        use.push({it:it,x0:r.right+1,y0:lineY,xk:cr.right-12,left:left,width:width,want:lineY-17});
+      }
+    }
+  });
+  /* 겹치지 않게 위에서부터 */
+  use.sort(function(a,b){return a.want-b.want;});
+  var floor=-1e9;
+  use.forEach(function(u){
+    var top=Math.max(u.want,floor);
+    u.it.pop.style.left=(u.left+sx)+'px'; u.it.pop.style.top=(top+sy)+'px'; u.it.pop.style.width=u.width+'px';
+    floor=top+u.it.pop.offsetHeight+12; u.top=top;
+  });
+  /* 선: 낱말 끝 → 그 줄 아래 틈 → 상자 가장자리 → 말풍선 머리 */
+  /* v3: 먼저 0으로 — 인쇄 화면에서 잰 폭을 붙잡고 있으면 화면으로 돌아와 가로 스크롤이 생긴다(v2 결함) */
+  svg.setAttribute('width',0); svg.setAttribute('height',0);
+  var dw=vw, dh=document.documentElement.scrollHeight;
+  svg.setAttribute('width',dw); svg.setAttribute('height',dh);
+  items.forEach(function(it){ if(it.path){ it.path.remove(); it.dot.remove(); it.path=it.dot=null; } });
+  use.forEach(function(u){
+    var x0=u.x0+sx, y0=u.y0+sy, xk=u.xk+sx, xb=u.left+sx, yb=u.top+sy+17, d;
+    if(Math.abs(yb-y0)<1) d='M'+x0+' '+y0+'H'+xb;
+    else d='M'+x0+' '+y0+'H'+xk+'C'+(xk+16)+' '+y0+' '+(xb-16)+' '+yb+' '+xb+' '+yb;
+    var p=document.createElementNS(NS,'path'); p.setAttribute('class','gl-path'); p.setAttribute('d',d);
+    var c=document.createElementNS(NS,'circle'); c.setAttribute('class','gl-dot'); c.setAttribute('cx',x0); c.setAttribute('cy',y0); c.setAttribute('r','2.4');
+    svg.appendChild(p); svg.appendChild(c); u.it.path=p; u.it.dot=c;
+    if(u.it.fresh) animate(p);
+  });
+  items.forEach(function(it){ it.fresh=false; });
+}
+var raf=0; function schedule(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; layout(); }); }
+window.addEventListener('resize',schedule);
+document.addEventListener('toggle',schedule,true);
+if(window.ResizeObserver) new ResizeObserver(schedule).observe(document.body);
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(schedule);
+window.addEventListener('load',schedule);
+/* 인쇄: 열린 말풍선만 그 문단 아래 글로 */
+window.addEventListener('beforeprint',function(){ printing=true; layout(); });
+window.addEventListener('afterprint',function(){ printing=false; layout(); });
+layout();
+})();
+</script>
+<script type="application/json" id="lm-data">{"nodes": {"도시 기반 시설": {"name": "도시 기반 시설", "sec": "1단계", "word": "도시 기반 시설", "near": "도로·철도 같은 도시 기반 시설"}, "8-5~6 도시 문제": {"name": "8-5~6 · 도시 문제", "chip": "선진국은 낡은 집·교통 체증·비싼 땅값, 개발 도상국은 집과 시설이 모자라서 생기는 병"}, "도시 계획": {"name": "도시 계획", "sec": "1단계", "word": "도시 계획", "near": "체계적인 도시 계획"}, "대도시 주변": {"name": "대도시 주변", "sec": "1단계", "word": "대도시 주변", "near": "대도시 주변에"}, "지방 도시": {"name": "지방 도시", "sec": "1단계", "word": "지방 도시", "near": "지방 도시를 더 살기 좋게"}, "산업이 쇠퇴": {"name": "산업이 쇠퇴하거나", "sec": "1단계", "word": "산업이 쇠퇴하거나", "near": "산업이 쇠퇴하거나"}, "기능을 잃어": {"name": "기능을 잃어 낙후된 도심", "sec": "1단계", "word": "기능을 잃어 낙후된 도심", "near": "기능을 잃어 낙후된 도심"}, "주민": {"name": "주민들의 적극적인 …", "sec": "1단계", "word": "주민들의 적극적인", "near": "도시에 사는 주민들의 적극적인"}, "문화전당 사진": {"name": "국립아시아문화전당 사진", "sec": "1단계", "fig": "국립아시아문화전당 일대"}, "8-1~2 문화전당": {"name": "8-1~2 · 국립아시아문화전당", "chip": "5·18의 현장인 옛 전남도청 자리 — 광주의 매력으로 봤던 곳"}, "펭귄마을 글": {"name": "양림동 펭귄마을 이야기", "sec": "1단계", "word": "양림동", "near": "남구 양림동"}, "빌바오 사진": {"name": "빌바오 미술관 사진", "sec": "2단계", "fig": "빌바오 — 조선소가 있던"}, "8-5~6 공업": {"name": "8-5~6 · 공업", "chip": "산업 혁명 이후 공업이 발달하며 도시가 커졌다"}, "쿠리치바 사진": {"name": "쿠리치바 굴절 버스 사진", "sec": "2단계", "fig": "쿠리치바 — 원통형 정류장"}, "마구 넓어지는": {"name": "마구 넓어지는 것", "sec": "2단계", "word": "마구 넓어지는 것", "near": "도시가 마구 넓어지는"}, "8-3~4 개발 제한 구역": {"name": "8-3~4 · 개발 제한 구역", "chip": "도시가 무질서하게 넓어지는 것을 막으려고 개발을 제한한 곳"}, "분당·일산": {"name": "분당·일산", "sec": "2단계", "pick": "분당·일산"}, "세종": {"name": "세종", "sec": "2단계", "pick": "세종"}, "빌바오 카드": {"name": "빌바오(카드)", "sec": "2단계", "pick": "빌바오"}, "옛 전남도청": {"name": "옛 전남도청 자리", "sec": "2단계", "pick": "옛 전남도청 자리"}, "펭귄마을 카드": {"name": "양림동 펭귄마을(카드)", "sec": "2단계", "pick": "양림동 펭귄마을"}, "청계천": {"name": "청계천과 서울로 7017", "sec": "2단계", "fold": "찻길을 걷는 길로", "word": "청계천"}, "삶의 질": {"name": "삶의 질", "sec": "3단계", "word": "삶의 질", "near": "삶의 질이 높은 도시의 조건"}, "8-1~2 삶의 질": {"name": "8-1~2 · 삶의 질", "chip": "환경이 쾌적해 삶의 질이 높은 도시도 이름을 얻는다(취리히)"}, "빈": {"name": "오스트리아 빈", "sec": "4단계", "word": "오스트리아 빈", "near": "오스트리아 빈이 2위"}, "8-1~2 빈": {"name": "8-1~2 · 빈", "chip": "모차르트와 베토벤이 활동한 음악의 도시"}, "스트뢰에": {"name": "코펜하겐 스트뢰에 거리", "sec": "4단계", "fold": "1962년 차를 뺀 큰길", "word": "스트뢰에"}, "순천 정원": {"name": "갯벌 옆 정원", "sec": "활동 1", "pick": "갯벌 옆 정원"}, "8-1~2 순천만": {"name": "8-1~2 · 순천만 갈대밭", "chip": "넓은 갯벌과 갈대밭, 철새가 사람들을 불러 모으는 곳"}}, "lines": [{"t": "xref", "a": "도시 기반 시설", "b": "8-5~6 도시 문제", "w": "개발 도상국 도시에 모자랐던 바로 그것"}, {"t": "ex", "a": "쿠리치바 사진", "b": "도시 계획", "w": "버스를 중심에 두고 도시가 커 가는 것을 관리한 예"}, {"t": "xref", "a": "마구 넓어지는", "b": "8-3~4 개발 제한 구역", "w": "도시가 마구 넓어지는 것을 막는 목적이 같다(교과서 159쪽)"}, {"t": "xref", "a": "빌바오 사진", "b": "8-5~6 공업", "w": "공업이 키운 도시가 공업이 줄며 기울었다"}, {"t": "xref", "a": "문화전당 사진", "b": "8-1~2 문화전당", "w": "8-1~2에서 본 그곳 — 그때는 도시의 매력으로"}, {"t": "ex", "a": "분당·일산", "b": "대도시 주변", "w": "대도시 둘레에 새 도시를 지은 예", "lock": "분당·일산"}, {"t": "ex", "a": "세종", "b": "지방 도시", "w": "수도권에 몰린 기능을 지방으로 옮긴 예", "lock": "세종"}, {"t": "ex", "a": "빌바오 카드", "b": "산업이 쇠퇴", "w": "산업이 쇠퇴한 도시를 다시 살린 예", "lock": "빌바오 카드"}, {"t": "ex", "a": "옛 전남도청", "b": "기능을 잃어", "w": "기능을 잃은 도심을 다시 살린 예", "lock": "옛 전남도청"}, {"t": "ex", "a": "펭귄마을 카드", "b": "주민", "w": "주민이 먼저 나선 예", "lock": "펭귄마을 카드"}, {"t": "cmp", "a": "빌바오 카드", "b": "빌바오 사진", "w": "같은 빌바오 — 조선소 자리에 선 미술관", "lock": "빌바오 카드"}, {"t": "cmp", "a": "옛 전남도청", "b": "문화전당 사진", "w": "같은 곳 — 1단계 카드뉴스 첫 장", "lock": "옛 전남도청"}, {"t": "cmp", "a": "펭귄마을 카드", "b": "펭귄마을 글", "w": "같은 골목 — 1단계 카드뉴스 둘째 장", "lock": "펭귄마을 카드"}, {"t": "xref", "a": "삶의 질", "b": "8-1~2 삶의 질", "w": "8-1~2에서 도시가 이름을 얻던 까닭 하나"}, {"t": "xref", "a": "빈", "b": "8-1~2 빈", "w": "같은 빈 — 8-1~2에서는 음악의 도시"}, {"t": "cmp", "a": "스트뢰에", "b": "청계천", "w": "찻길을 사람에게 돌려준 두 도시"}, {"t": "xref", "a": "순천 정원", "b": "8-1~2 순천만", "w": "같은 순천만 — 8-1~2에서는 도시의 매력으로", "lock": "순천 정원"}]}</script>
+<script id="lm-js">/* 2026-11-10 천대현(사회② Ⅷ «샘플판에 적용했던 사항들을 8단원 묶음판 전체에»): 개념 관계 선.
+   낱말을 누르면 이 학습지 안에서 이어지는 개념·사례가 선으로 나타난다. 원고·입력칸·data-id는 건드리지 않고 화면 글자만 단추로 감싼다.
+   선 규칙(색만이 아니라 모양으로도): 한 갈래 실선+빈 삼각형 · 예 둥근 점선+속 찬 원 · 견줘 보기 쇄선+양끝 막대 · 다른 차시 가는 실선+여백 칩.
+   고르기 카드에 닿는 선은 카드를 다 고른 뒤에만 열린다. 1100px 아래(폰)는 선 대신 아래에서 올라오는 목록. 시험판 = 8-5~6 검토판 v7(11/9). */
+(function(){
+'use strict';
+var C=document.querySelector('.container'); if(!C) return;
+var H=document.documentElement, NS='http://www.w3.org/2000/svg';
+var WIDE=window.matchMedia('(min-width:1100px)'), RM=window.matchMedia('(prefers-reduced-motion:reduce)');
+var COL={sub:'#4f46e5',ex:'#0f7b6c',cmp:'#b45309',xref:'#64748b'};
+var KIND={sub:'한 갈래',ex:'예',cmp:'견줘 보기',xref:'다른 차시'};
+
+/* 자료는 원고 md의 :::개념 잇기 블록 → worksheet-gen이 JSON 자료 칸(id lm-data)으로 넣는다.
+   nodes{id:{name, sec(단계 이름), near(앞뒤 문맥), word(단추로 감쌀 글자) | pick(고르기 카드 이름) | fold(접기 제목 일부)+word |
+   fig(그림 캡션 글자)+first | chip(이 학습지 밖 칩 글) | intro(제목 아래 첫 입담) | alts[{sel,near,word}]}}
+   lines[{t: sub 한 갈래·ex 예·cmp 견줘 보기·xref 다른 차시, a, b, w(연결어), lock(이 고르기 카드가 끝나야 보임)}] */
+var DATA=null; try{ DATA=JSON.parse((document.getElementById('lm-data')||{}).textContent||'null'); }catch(e){ DATA=null; }
+if(!DATA||!DATA.nodes||!DATA.lines) return;
+var NODES=DATA.nodes, LINES=DATA.lines;
+
+/* ---------- 1) 화면 글자 찾기 ---------- */
+var SKIP='script,style,button,select,option,textarea,.hero-section,.gl-pop,.gl-layer,.lm-legend,.lm-layer,.lm-sheet,.lm-cg';
+function secOf(lab){
+  var s=[].slice.call(document.querySelectorAll('.v2-sec')).filter(function(x){return x.dataset.lab===lab;})[0];
+  if(s) return {root:s};
+  var hs=[].slice.call(C.querySelectorAll('h2')),i=-1;   /* v2 층이 없을 때: h2 사이 */
+  hs.some(function(h,k){ if(h.textContent.indexOf(lab)>=0){i=k;return true;} return false; });
+  return i<0?null:{root:C,b:[hs[i],hs[i+1]||null]};
+}
+function inB(n,b){
+  if(!b) return true;
+  if(b[0]&&!(b[0].compareDocumentPosition(n)&Node.DOCUMENT_POSITION_FOLLOWING)) return false;
+  if(b[1]&&!(b[1].compareDocumentPosition(n)&Node.DOCUMENT_POSITION_PRECEDING)) return false;
+  return true;
+}
+function findText(sc,word,near){
+  var w=document.createTreeWalker(sc.root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+    var p=n.parentElement; if(!p||p.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+    return inB(n,sc.b)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP; }}),n;
+  while((n=w.nextNode())){
+    var d=n.data,s0=0;
+    if(near){ s0=d.indexOf(near); if(s0<0) continue; }
+    var k=d.indexOf(word,s0); if(k<0||(near&&k>s0+near.length)) continue;
+    return {n:n,k:k};
+  }
+  return null;
+}
+function wrap(hit,word,name){
+  var t=hit.n.splitText(hit.k); t.splitText(word.length);
+  var b=document.createElement('button'); b.type='button'; b.className='lm-n'; b.disabled=true;
+  b.setAttribute('aria-pressed','false'); b.dataset.lmName=name;
+  b.appendChild(document.createTextNode(word));
+  var mk=document.createElement('span'); mk.className='lm-mk'; mk.setAttribute('aria-hidden','true'); b.appendChild(mk);
+  t.parentNode.replaceChild(b,t); return b;
+}
+var N={}, missing=[];
+Object.keys(NODES).forEach(function(id){
+  var d=NODES[id], o={id:id,d:d,name:d.name,ok:false};
+  N[id]=o;
+  if(d.chip){ o.ok=true; o.chip=true; return; }
+  var sc=d.sec?secOf(d.sec):{root:C}, hit=null;
+  if(!sc){ missing.push(id); return; }
+  if(d.intro){   /* 제목 바로 아래 첫 입담 */
+    var q=[].slice.call(C.querySelectorAll('blockquote')).filter(function(x){return !x.closest('.v2-sec')&&(x.classList.contains('v2-voice')||x.textContent.trim().indexOf('🎙️')===0);})[0];
+    if(q) hit=findText({root:q},d.word,d.near);
+  }else if(d.pick){
+    var card=[].slice.call(sc.root.querySelectorAll('.ws-pick .pk-card')).filter(function(c){ if(!inB(c,sc.b)) return false; var nm=c.querySelector('.pk-name'); return nm&&nm.textContent.trim()===d.pick; })[0];
+    if(card){ o.card=card; hit=findText({root:card.querySelector('.pk-name')},d.pick); }
+  }else if(d.fold){
+    var f=[].slice.call(sc.root.querySelectorAll('details.ws-fold')).filter(function(x){ var s=x.querySelector('summary'); return inB(x,sc.b)&&s&&s.textContent.indexOf(d.fold)>=0; })[0];
+    if(f){ o.foldEl=f; hit=findText({root:f.querySelector('.ws-fold-body')||f},d.word); }
+  }else if(d.fig){
+    var fg=[].slice.call(sc.root.querySelectorAll('figure')).filter(function(x){ var c=x.querySelector('figcaption'); return inB(x,sc.b)&&c&&c.textContent.indexOf(d.fig)>=0; })[0];
+    if(fg&&d.first){ var f0=[].slice.call(sc.root.querySelectorAll('figure')).filter(function(x){return inB(x,sc.b);})[0]; if(f0!==fg) fg=null; }
+    if(fg){ o.fig=fg; o.img=fg.querySelector('img'); hit=findText({root:fg.querySelector('figcaption')},d.fig); }
+  }else if(d.alts){
+    d.alts.some(function(a){
+      if(a.sel){ [].slice.call(sc.root.querySelectorAll(a.sel)).some(function(r){ if(!inB(r,sc.b)) return false; hit=findText({root:r},a.word,a.near); return !!hit; }); }
+      else hit=findText(sc,a.word,a.near);
+      if(hit){ o.word=a.word; return true; } return false; });
+  }else hit=findText(sc,d.word,d.near);
+  if(!hit||(d.fig&&!o.img)){ missing.push(id); return; }
+  o.btn=wrap(hit,o.word||d.word||d.pick||d.fig,d.name);
+  o.anchor=o.img||o.btn;
+  o.ok=true;
+});
+LINES.forEach(function(L,i){ L.i=i; L.ok=N[L.a].ok&&N[L.b].ok; });
+var skipped=LINES.filter(function(L){return !L.ok;});
+if(missing.length) console.warn('[개념선] 화면에서 못 찾아 건너뜀 — 노드:',missing.join(', '),'/ 선:',skipped.map(function(L){return L.a+'→'+L.b;}).join(', ')||'없음');
+var live=LINES.filter(function(L){return L.ok;});
+if(!live.length) return;
+window.__lm={nodes:N,lines:LINES,missing:missing};
+
+/* ---------- 2) 범례 «선 읽는 법» — 학습 목표 절 끝 ---------- */
+function swatch(t,w){
+  w=w||44; var y=7,x2=w-6,s='<svg class="lm-sw" viewBox="0 0 '+w+' 14" width="'+w+'" height="14" aria-hidden="true">';
+  var cls={sub:'t-sub',ex:'t-ex',cmp:'t-cmp',xref:'t-xref'}[t];
+  s+='<line class="lm-line '+cls+'" x1="'+(t==='cmp'?4:3)+'" y1="'+y+'" x2="'+(t==='sub'?x2-8:x2)+'" y2="'+y+'"/>';
+  if(t==='sub') s+='<path d="M'+(x2-9)+' 2.5L'+(x2+1)+' 7L'+(x2-9)+' 11.5Z" fill="#fff" stroke="'+COL.sub+'" stroke-width="1.6" stroke-linejoin="round"/>';
+  if(t==='ex') s+='<circle cx="'+x2+'" cy="7" r="4" fill="'+COL.ex+'"/>';
+  if(t==='cmp') s+='<rect x="2" y="1" width="2.5" height="12" rx="1" fill="'+COL.cmp+'"/><rect x="'+(x2-1)+'" y="1" width="2.5" height="12" rx="1" fill="'+COL.cmp+'"/>';
+  if(t==='xref') s+='<rect x="'+(x2-4)+'" y="3" width="9" height="8" rx="2" fill="#f8fafc" stroke="'+COL.xref+'" stroke-width="1.3"/>';
+  return s+'</svg>';
+}
+var goal=secOf('학습 목표');
+if(goal&&goal.root!==C){
+  var lg=document.createElement('aside'); lg.className='lm-legend'; lg.setAttribute('aria-label','선 읽는 법');
+  lg.innerHTML='<div class="lm-lg-h">선 읽는 법</div><p class="lm-lg-p">작은 고리 표시<span class="lm-mk" aria-hidden="true"></span>가 붙은 낱말을 누르면, 이 학습지 안에서 이어지는 개념과 사례가 선으로 나타난다.</p>'+
+   '<ul class="lm-lg-ul">'+
+   '<li>'+swatch('sub')+'<b>한 갈래</b><span>~는 …의 한 갈래</span></li>'+
+   '<li>'+swatch('ex')+'<b>예</b><span>~는 …의 예</span></li>'+
+   '<li>'+swatch('cmp')+'<b>견줘 보기</b><span>둘을 견주면 보인다</span></li>'+
+   '<li>'+swatch('xref')+'<b>다른 차시</b><span>앞에서 배운 것</span></li></ul>'+
+   '<p class="lm-lg-narrow">폰처럼 좁은 화면에서는 선 대신 아래에서 목록이 올라온다.</p>';
+  goal.root.appendChild(lg);
+}
+
+/* ---------- 3) 선 레이어·선 끄기·아래 판 ---------- */
+var layer=document.createElement('div'); layer.className='lm-layer';
+var svg=document.createElementNS(NS,'svg'); svg.setAttribute('class','lm-svg'); svg.setAttribute('aria-hidden','true');
+svg.innerHTML='<defs>'+
+ '<marker id="lm-m-tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="13" markerHeight="13" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M1.2 1.5L11 6L1.2 10.5Z" fill="#fff" stroke="'+COL.sub+'" stroke-width="1.7" stroke-linejoin="round"/></marker>'+
+ '<marker id="lm-m-dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse"><circle cx="5" cy="5" r="4.2" fill="'+COL.ex+'" stroke="#fff" stroke-width="1"/></marker>'+
+ '<marker id="lm-m-bar" viewBox="0 0 4 14" refX="2" refY="7" markerWidth="4" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><rect x=".75" y="0" width="2.5" height="14" rx="1" fill="'+COL.cmp+'"/></marker>'+
+ '</defs><g class="lm-g"></g>';
+layer.appendChild(svg); document.body.appendChild(layer);
+var G=svg.querySelector('.lm-g');
+var off=document.createElement('button'); off.type='button'; off.className='lm-off'; off.hidden=true; off.textContent='선 끄기';
+document.body.appendChild(off);
+var sheet=document.createElement('div'); sheet.className='lm-sheet'; sheet.hidden=true; sheet.setAttribute('role','dialog'); sheet.setAttribute('aria-label','이어지는 개념과 사례');
+document.body.appendChild(sheet);
+var liveR=document.createElement('div'); liveR.className='lm-live'; liveR.setAttribute('aria-live','polite'); document.body.appendChild(liveR);
+
+var active=null, fresh=false, printing=false, tags={}, groups={};
+/* 보이는가 — 닫힌 접기 안은 Chrome이 content-visibility로 숨겨 사각형이 남으니 따로 본다 */
+function rendered(el){
+  if(!el||!el.getClientRects().length) return false;
+  for(var d=el.closest('details');d;d=d.parentElement&&d.parentElement.closest('details')){
+    if(!d.open){ var sm=d.querySelector(':scope>summary'); if(!(sm&&sm.contains(el))) return false; } }
+  if(el.checkVisibility&&!el.checkVisibility()) return false;
+  return true;
+}
+function unlocked(o){ return !o.card||o.card.classList.contains('pk-ok')||o.card.classList.contains('pk-no'); }
+function lineOK(L){
+  if(!L.ok) return false;
+  if(L.lock&&[].concat(L.lock).some(function(k){ return !unlocked(N[k]); })) return false;
+  var A=N[L.a],B=N[L.b];
+  if(!A.chip&&!rendered(A.anchor)) return false;
+  if(!B.chip&&!rendered(B.anchor)) return false;
+  return true;
+}
+function linesOf(id){ return live.filter(function(L){ return (L.a===id||L.b===id)&&lineOK(L); }); }
+function refresh(){   /* 노드마다 지금 이어진 선이 있을 때만 단추를 연다 */
+  Object.keys(N).forEach(function(id){ var o=N[id]; if(!o.btn) return;
+    var n=linesOf(id).length; o.btn.disabled=!n;
+    if(n) o.btn.setAttribute('aria-label',o.name+' — 이어지는 것 '+n+'개 보기'); else o.btn.removeAttribute('aria-label'); });
+  if(active&&!linesOf(active).length) setActive(null);
+}
+function secLab(o){ var el=o.anchor; var s=el&&el.closest('.v2-sec'); return s?(s.dataset.lab||''):'맨 위'; }
+function other(L){ return L.a===active?L.b:L.a; }
+
+function setActive(id,focusBack){
+  if(active&&N[active].btn){ N[active].btn.setAttribute('aria-pressed','false'); }
+  active=id; fresh=!!id;
+  if(!id){ clearAll(); off.hidden=true; sheet.hidden=true; liveR.textContent='';
+    if(focusBack&&focusBack.focus) focusBack.focus(); return; }
+  N[id].btn.setAttribute('aria-pressed','true');
+  var ls=linesOf(id);
+  liveR.textContent=N[id].name+'에서 이어지는 것 '+ls.length+'개: '+ls.map(function(L){return KIND[L.t]+' — '+L.w+' ('+N[other(L)].name+')';}).join(' · ');
+  layout();
+  if(!WIDE.matches) keepVisibleAboveSheet(N[id].anchor);
+}
+/* 강조 — toggle(이름, 참거짓)은 이미 그 상태면 아무것도 안 바꾼다(고르기 카드 감시자에 되먹임이 안 생긴다) */
+function marks(on,peers){
+  Object.keys(N).forEach(function(id){ var o=N[id], a=id===on, p=!a&&!!peers[id];
+    if(o.btn){ o.btn.classList.toggle('lm-on',a); o.btn.classList.toggle('lm-peer',p); }
+    if(o.fig){ o.fig.classList.toggle('lm-fig-on',a); o.fig.classList.toggle('lm-fig-peer',p); } });
+}
+function clearAll(){
+  G.innerHTML=''; Object.keys(tags).forEach(function(k){ tags[k].remove(); }); tags={};
+  Object.keys(groups).forEach(function(k){ groups[k].remove(); }); groups={};
+  marks(null,{}); sheet._k='';
+  svg.setAttribute('height','0');
+}
+
+/* ---------- 4) 그리기 ---------- */
+function R(el){ var r=el.getBoundingClientRect(),sx=window.scrollX||0,sy=window.scrollY||0;
+  return {l:r.left+sx,r:r.right+sx,t:r.top+sy,b:r.bottom+sy,w:r.width,h:r.height,cx:(r.left+r.right)/2+sx,cy:(r.top+r.bottom)/2+sy}; }
+/* 줄 재기 — 낱말이 놓인 줄의 글자 위·아래 끝과, 앞뒤 줄 사이 틈의 한가운데(Range 글자 사각형으로) */
+function blockOf(el){ for(var b=el.parentElement;b&&b!==document.body;b=b.parentElement){ var d=getComputedStyle(b).display; if(d!=='inline'&&d!=='inline-block'&&d!=='contents') return b; } return el.parentElement; }
+function boxes(blk){
+  var out=[], w=document.createTreeWalker(blk,NodeFilter.SHOW_TEXT,null), n, rg=document.createRange();
+  while((n=w.nextNode())){ if(!n.data.trim()) continue; var pe=n.parentElement; if(pe&&pe.closest('script,style,.lm-layer,.lm-cg')) continue;
+    rg.selectNodeContents(n); [].forEach.call(rg.getClientRects(),function(r){ if(r.width>0&&r.height>0) out.push(r); }); }
+  [].forEach.call(blk.querySelectorAll('input,textarea,select,.gl-badge'),function(e){ var r=e.getBoundingClientRect(); if(r.width&&r.height&&r.height<70) out.push(r); });
+  return out;
+}
+function metrics(o){
+  var sx=window.scrollX||0, sy=window.scrollY||0, rg=document.createRange(); rg.selectNodeContents(o.btn.firstChild);
+  var g=rg.getBoundingClientRect(), cy=(g.top+g.bottom)/2, bs=boxes(blockOf(o.btn));
+  var same=bs.filter(function(r){return r.top<=cy&&r.bottom>=cy;});
+  var lb=g.bottom, lt=g.top, lr=g.right;
+  same.forEach(function(r){ lb=Math.max(lb,r.bottom); lt=Math.min(lt,r.top); lr=Math.max(lr,r.right); });
+  var nx=bs.filter(function(r){return r.top>=lb-1;}).map(function(r){return r.top;});
+  var pv=bs.filter(function(r){return r.bottom<=lt+1;}).map(function(r){return r.bottom;});
+  var gb=nx.length?(lb+Math.min.apply(null,nx))/2:lb+6, ga=pv.length?(lt+Math.max.apply(null,pv))/2:lt-6;
+  return {x:(g.left+g.right)/2+sx, top:g.top+sy, bot:g.bottom+sy, gb:gb+sy, ga:ga+sy, lr:lr+sx, cy:cy+sy};
+}
+/* 끝점: 글자는 줄 아래 틈으로(위에서 들어올 땐 위 틈), 그림·고르기 카드 이름은 위쪽으로 드나든다 */
+/* 넘김(.pk-swipe) 카드 줄에서 옆으로 밀려나 안 보이는 카드면 그 줄을 돌려준다(-1 왼쪽 / 1 오른쪽) */
+function swipeOff(o){
+  var sw=o.card&&o.card.closest('.pk-swipe'); if(!sw) return null;
+  var a=o.anchor.getBoundingClientRect(), b=sw.getBoundingClientRect(), cx=(a.left+a.right)/2;
+  return cx<b.left+4?{sw:sw,side:-1}:(cx>b.right-4?{sw:sw,side:1}:null);
+}
+function port(o){ var r=R(o.anchor);
+  if(o.img) return {x:r.cx,p:r.t-1,g:r.t-10,r:r,fig:1};
+  var so=swipeOff(o);
+  if(so){ var q=R(so.sw); return {x:so.side>0?q.r-14:q.l+14,p:q.t-1,g:q.t-6,r:q,top:1,off:so.side}; }
+  var m=metrics(o);
+  if(o.card) return {x:m.x,p:m.top-1,g:m.top-5,r:r,m:m,top:1};
+  return {x:m.x,p:Math.min(m.bot+1,m.gb-2),g:m.gb,r:r,m:m};
+}
+function poly(pts,rad){   /* 꺾은선의 모서리를 둥글게 */
+  var d='M'+pts[0][0]+' '+pts[0][1];
+  for(var i=1;i<pts.length;i++){
+    var p=pts[i];
+    if(i<pts.length-1){ var a=pts[i-1],c=pts[i+1];
+      var l1=Math.hypot(p[0]-a[0],p[1]-a[1]),l2=Math.hypot(c[0]-p[0],c[1]-p[1]),r=Math.min(rad,l1/2,l2/2);
+      if(r<0.5){ d+='L'+p[0]+' '+p[1]; continue; }
+      var x1=p[0]+(a[0]-p[0])*r/l1,y1=p[1]+(a[1]-p[1])*r/l1,x2=p[0]+(c[0]-p[0])*r/l2,y2=p[1]+(c[1]-p[1])*r/l2;
+      d+='L'+x1+' '+y1+'Q'+p[0]+' '+p[1]+' '+x2+' '+y2;
+    }else d+='L'+p[0]+' '+p[1];
+  }
+  return d;
+}
+function bez(p0,p1,p2,p3,t){ var u=1-t; return [u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0], u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1]]; }
+function addPath(L,d){
+  var cls={sub:'t-sub',ex:'t-ex',cmp:'t-cmp',xref:'t-xref'}[L.t];
+  var cw={sub:6.5,ex:7,cmp:6.5,xref:5}[L.t];
+  var c=document.createElementNS(NS,'path'); c.setAttribute('class','lm-case'); c.setAttribute('d',d); c.setAttribute('stroke-width',cw);
+  var p=document.createElementNS(NS,'path'); p.setAttribute('class','lm-line '+cls); p.setAttribute('d',d);
+  if(L.t==='sub') p.setAttribute('marker-end','url(#lm-m-tri)');
+  if(L.t==='ex') p.setAttribute('marker-end','url(#lm-m-dot)');
+  if(L.t==='cmp'){ p.setAttribute('marker-start','url(#lm-m-bar)'); p.setAttribute('marker-end','url(#lm-m-bar)'); }
+  p.dataset.lmLine=L.i; c.dataset.lmLine=L.i;
+  G.insertBefore(c,G.firstChild); G.appendChild(p);
+  if(fresh&&!RM.matches){ p.classList.add('lm-anim'); c.classList.add('lm-anim'); }
+}
+function tag(L,hint,maxW){   /* 연결어 꼬리표 — 대상이 화면 밖이면 «↓ 4단계» 같은 위치를 앞에 */
+  var b=tags[L.i];
+  if(!b){ b=document.createElement('button'); b.type='button'; b.className='lm-tag'; b.style.setProperty('--c',COL[L.t]);
+    b.addEventListener('click',function(){ goTo(N[other(L)]); });
+    tags[L.i]=b; layer.appendChild(b); }
+  var o=N[other(L)];
+  /* 같은 연결어가 둘 이상 켜지면(선진국 ← 영국·독일) 끝에 상대 이름을 붙여 가른다 */
+  var dup=linesOf(active).filter(function(x){return x.w===L.w;}).length>1, txt=L.w+(dup?' — '+o.name:'');
+  if(b._k!==hint+'|'+txt){ b._k=hint+'|'+txt; b.textContent='';
+    if(hint){ var s=document.createElement('span'); s.className='lm-where'; s.textContent=hint; b.appendChild(s); }
+    b.appendChild(document.createTextNode(txt));
+    b.setAttribute('aria-label',KIND[L.t]+': '+L.w+' — '+o.name+' 보러 가기'); }
+  b.style.maxWidth=maxW+'px'; b.style.left='0px'; b.style.top='0px';
+  return b;
+}
+function hintFor(o,y,sy,vh){ var v=y<sy+70?'↑ '+secLab(o):(y>sy+vh-80?'↓ '+secLab(o):''); if(v) return v; var so=swipeOff(o); return so?(so.side>0?'▶ 넘겨서':'◀ 넘겨서'):''; }
+function mkGroup(L,inline){
+  var o=N[L.b], g=groups[L.i];
+  if(!g){ g=document.createElement('div'); g.className='lm-cg';
+    var t=document.createElement('span'); t.className='lm-tag'; t.style.setProperty('--c',COL[L.t]); t.textContent=L.w;
+    var ch=document.createElement('div'); ch.className='lm-chip'; ch.innerHTML='<b></b><span></span>';
+    ch.querySelector('b').textContent=o.name; ch.querySelector('span').textContent=o.d.chip;
+    g.appendChild(t); g.appendChild(ch); groups[L.i]=g; }
+  if(inline){ var blk=N[L.a].anchor.closest('p,li,blockquote,figure,.ws-tb')||N[L.a].anchor.parentNode;
+    if(!g.classList.contains('lm-inline')||g.previousElementSibling!==blk){ g.classList.add('lm-inline'); g.style.cssText=''; blk.insertAdjacentElement('afterend',g); } }
+  else if(g.parentNode!==layer){ g.classList.remove('lm-inline'); layer.appendChild(g); }
+  return g;
+}
+/* 화면 아래 끝에 걸린 꼬리표는 아래에서부터 위로 쌓는다(아래로 밀면 화면 밖으로 잘린다) */
+function stackBottom(items,floor){
+  var low=items.filter(function(it){return !it.inline&&it.want+it.h>=floor-1;}).sort(function(a,b){return b.want-a.want;});
+  var cols={};
+  low.forEach(function(it){ var k=Math.round(it.x/40), f=cols[k]===undefined?floor:cols[k]; it.want=Math.min(it.want,f-it.h); cols[k]=it.want-6; });
+}
+/* 자리 잡기: 원하는 높이에 두되 앞서 놓인 것·말풍선과 겹치면 아래로 */
+function settle(items,obst){
+  items.sort(function(a,b){return a.want-b.want;});
+  var placed=obst.slice();
+  items.forEach(function(it){
+    var top=it.want, moved=true, n=0;
+    while(moved&&n++<40){ moved=false;
+      for(var i=0;i<placed.length;i++){ var q=placed[i];
+        if(it.x<q.r&&it.x+it.w>q.l&&top<q.b+6&&top+it.h>q.t-6){ top=q.b+6; moved=true; } } }
+    it.top=top; placed.push({l:it.x,r:it.x+it.w,t:top,b:top+it.h});
+  });
+}
+function layout(){
+  refresh();
+  if(!active) return;
+  var ls=linesOf(active);
+  if(!ls.length){ setActive(null); return; }
+  var peers={}; ls.forEach(function(L){ peers[other(L)]=1; });
+  marks(active,peers);
+  if(printing||!WIDE.matches){ G.innerHTML=''; Object.keys(tags).forEach(function(k){tags[k].remove();}); tags={};
+    Object.keys(groups).forEach(function(k){groups[k].remove();}); groups={};
+    off.hidden=true;
+    var key=active+':'+ls.map(function(L){return L.i;}).join(',');
+    if(!printing&&(sheet.hidden||sheet._k!==key)){ buildSheet(ls); sheet._k=key; }
+    if(printing) sheet.hidden=true;
+    fresh=false; return; }
+  sheet.hidden=true; sheet._k=''; off.hidden=false;
+  drawWide(ls); fresh=false;
+}
+function drawWide(ls){
+  var vw=H.clientWidth, vh=window.innerHeight, sx=window.scrollX||0, sy=window.scrollY||0;
+  var cards=[].slice.call(document.querySelectorAll('.v2-sec')), boxR=0, boxL=1e9;
+  cards.forEach(function(c){ var r=c.getBoundingClientRect(); if(r.width){ boxR=Math.max(boxR,r.right); boxL=Math.min(boxL,r.left); } });
+  if(!boxR){ var cr=C.getBoundingClientRect(); boxR=cr.right; boxL=cr.left; }
+  var gutter=(vw-boxR)>=230;
+  boxR+=sx; boxL+=sx;
+  /* 높이를 먼저 0으로 — 안 그러면 접기를 닫아 문서가 줄어도 선 판이 옛 길이를 붙잡는다 */
+  svg.setAttribute('height','0'); svg.setAttribute('width',vw);
+  svg.setAttribute('height',Math.max(H.scrollHeight,document.body.scrollHeight));
+  G.innerHTML='';
+  var used={}, mp=port(N[active]);
+  /* 나눔: 칩 / 가까움(한 화면 안) / 멂(여백 길) */
+  var chip=[], near=[], far=[];
+  ls.forEach(function(L){ var o=N[other(L)];
+    if(o.chip){ chip.push(L); return; }
+    var op=port(o), top=Math.min(mp.r.t,op.r.t), bot=Math.max(mp.r.b,op.r.b);
+    L._op=op; L._dy=Math.abs(op.r.cy-mp.r.cy);
+    ((bot-top)<=vh*0.8?near:far).push(L); });
+  far.sort(function(a,b){return a._dy-b._dy;});   /* 가까운 대상이 안쪽 길 — 선끼리 덜 엇갈린다 */
+  var lanes=far.length+chip.length, step=11;
+  var lane0=gutter?boxR+9:boxR-27;
+  var itemX=lane0+Math.max(0,lanes-1)*step+12;
+  var itemW=Math.max(140,Math.min(250,vw+sx-itemX-12));
+  var gItems=[], bItems=[];
+  /* 칩(다른 차시 상자): 넓으면 여백에, 좁으면 그 문단 아래에 */
+  chip.forEach(function(L,k){
+    var g=mkGroup(L,!gutter); used['g'+L.i]=1;
+    if(gutter){ g.style.width=itemW+'px'; g.style.left=itemX+'px'; g.style.top='0px';
+      gItems.push({L:L,el:g,x:itemX,w:itemW,h:g.offsetHeight,want:mp.g-(g.firstChild.offsetHeight+5)-14,chip:1,lane:lane0+(far.length+k)*step}); }
+    else bItems.push({L:L,el:g,inline:1});
+  });
+  /* 먼 선: 아래 틈 → 본문 상자 오른쪽 여백 → 세로 → 대상 */
+  far.forEach(function(L,k){
+    var lx=lane0+k*step, op=L._op, A=L.a===active?mp:op, B=L.a===active?op:mp, o=N[other(L)];
+    addPath(L,poly([[A.x,A.p],[A.x,A.g],[lx,A.g],[lx,B.g],[B.x,B.g],[B.x,B.p]],9));
+    var hint=hintFor(o,op.g,sy,vh); used['t'+L.i]=1;
+    if(gutter){ var el=tag(L,hint,itemW), h=el.offsetHeight, w=el.offsetWidth;
+      var c=Math.max(sy+70,Math.min(op.g,sy+vh-80));
+      gItems.push({L:L,el:el,x:itemX,w:w,h:h,want:c-h/2}); }
+    else { var e2=tag(L,hint,300), h2=e2.offsetHeight, w2=e2.offsetWidth;
+      var y=op.fig?op.g-h2-4:op.g+5; y=Math.max(sy+60,Math.min(y,sy+vh-80-h2));
+      bItems.push({L:L,el:e2,x:Math.max(boxL+8,lx-10-w2),w:w2,h:h2,want:y}); }
+  });
+  /* 가까운 선 — 같은 문단 안 글자끼리는 줄 사이 틈으로 가는 둥근 괄호선(위로 넘는 호는 윗줄·접기 제목을 가로지른다),
+     그림이 끼거나 줄이 멀면 부드러운 곡선. 꼬리표는 줄 끝 빈자리에 두고 옅은 끌줄로 잇는다 */
+  near.forEach(function(L){
+    var op=L._op, A=L.a===active?mp:op, B=L.a===active?op:mp, d, ly, lx0, o=N[other(L)];
+    var txt=A.m&&B.m&&!A.top&&!B.top, dyl=txt?Math.abs(A.m.cy-B.m.cy):1e9;
+    if(txt&&dyl<4){ ly=Math.max(A.g,B.g);
+      d=poly([[A.x,A.p],[A.x,ly],[B.x,ly],[B.x,B.p]],6); lx0=Math.max(A.x,B.x); }
+    else if(txt&&dyl<110){ var up=A.m.cy<B.m.cy, U=up?A:B, D=up?B:A; ly=U.g;
+      var pu=[U.x,U.p], pd=[D.x,D.m.top-1];
+      var pts=[pu,[U.x,ly],[D.x,ly],pd]; if(!up) pts.reverse();
+      d=poly(pts,6); lx0=Math.max(A.x,B.x); }
+    else{ var down=A.r.cy<B.r.cy;
+      var y0=down?(A.fig?A.r.b+1:A.p):(A.fig||A.top?A.p:A.m.top-1), y3=down?(B.fig||B.top?B.p:B.m.top-1):(B.fig?B.r.b+1:B.p);
+      var k=Math.max(24,Math.min(160,Math.abs(y3-y0)*0.45))*(down?1:-1);
+      var q0=[A.x,y0],q1=[A.x,y0+k],q2=[B.x,y3-k],q3=[B.x,y3], lp=bez(q0,q1,q2,q3,L.a===active?0.75:0.25);
+      d='M'+q0+'C'+q1+' '+q2+' '+q3; ly=lp[1]; lx0=lp[0]; }
+    addPath(L,d); used['t'+L.i]=1;
+    var el=tag(L,hintFor(o,ly,sy,vh),250), w=el.offsetWidth, h=el.offsetHeight;
+    var freeX=Math.max(A.m?A.m.lr:A.r.r,B.m?B.m.lr:B.r.r)+14, lim=boxR-(gutter?16:10), x, lead=true;   /* 카드 안 줄 끝 빈자리에 다 들어갈 때만, 아니면 여백 칸 */
+    if(freeX+w<=lim&&!A.top&&!B.top) x=freeX;   /* 고르기 카드에 닿는 선의 꼬리표는 카드 사진을 가리지 않게 여백 칸으로 */
+    else if(gutter){ x=itemX; }
+    else { x=Math.max(boxL+8,lim-w); lead=false; }
+    var y=Math.max(sy+60,Math.min(ly-h/2,sy+vh-80-h));
+    if(lead&&x>lx0+8){ var ld=document.createElementNS(NS,'path'); ld.setAttribute('class','lm-lead'); ld.setAttribute('stroke',COL[L.t]);
+      ld.setAttribute('d','M'+(lx0+6)+' '+ly+'H'+x); G.appendChild(ld); }
+    (x===itemX&&gutter?gItems:bItems).push({L:L,el:el,x:x,w:w,h:h,want:y,fixed:x!==itemX});
+  });
+  /* 보충 말풍선(gl-pop)은 피한다 */
+  var obst=[].slice.call(document.querySelectorAll('.gl-layer .gl-pop')).filter(function(p){return !p.hidden&&rendered(p);}).map(function(p){var r=R(p);return {l:r.l,r:r.r,t:r.t,b:r.b};});
+  stackBottom(gItems,sy+vh-80); stackBottom(bItems,sy+vh-80);
+  settle(gItems,obst);
+  gItems.forEach(function(it){ it.el.style.left=it.x+'px'; it.el.style.top=it.top+'px';
+    if(it.chip){   /* 칩으로 들어가는 선 */
+      var cy=it.top+it.el.lastChild.offsetTop+14;
+      var pts=Math.abs(cy-mp.g)<2?[[mp.x,mp.p],[mp.x,mp.g],[it.x,mp.g]]:[[mp.x,mp.p],[mp.x,mp.g],[it.lane,mp.g],[it.lane,cy],[it.x,cy]];
+      addPath(it.L,poly(pts,9)); } });
+  settle(bItems.filter(function(it){return !it.inline;}),[]);
+  bItems.forEach(function(it){
+    if(it.inline){ var cr=R(it.el.lastChild), lx=lane0+(far.length+chip.indexOf(it.L))*step, cy=cr.t+14;
+      addPath(it.L,poly([[mp.x,mp.p],[mp.x,mp.g],[lx,mp.g],[lx,cy],[cr.r,cy]],9)); return; }
+    it.el.style.left=it.x+'px'; it.el.style.top=it.top+'px'; });
+  Object.keys(tags).forEach(function(k){ if(!used['t'+k]){ tags[k].remove(); delete tags[k]; } });
+  Object.keys(groups).forEach(function(k){ if(!used['g'+k]){ groups[k].remove(); delete groups[k]; } });
+  if(fresh&&!RM.matches) Object.keys(tags).map(function(k){return tags[k];}).concat(Object.keys(groups).map(function(k){return groups[k];})).forEach(function(e){ e.classList.remove('lm-anim'); void e.offsetWidth; e.classList.add('lm-anim'); });
+}
+
+/* ---------- 5) 좁은 화면: 아래 판 ---------- */
+function buildSheet(ls){
+  var me=N[active];
+  sheet.innerHTML='<div class="lm-sh-h"><b></b><button type="button" class="lm-sh-x" aria-label="닫기">×</button></div>';
+  sheet.querySelector('b').textContent='이어지는 것 · '+me.name;
+  sheet.querySelector('.lm-sh-x').addEventListener('click',function(){ setActive(null,me.btn); });
+  ls.forEach(function(L){
+    var o=N[other(L)], row=document.createElement('div'); row.className='lm-row';
+    var dir=L.t==='cmp'?'↔ ':(L.a===active?'→ ':'← ');
+    row.innerHTML=swatch(L.t)+'<div><span class="lm-to"></span><span class="lm-w"></span></div>';
+    row.querySelector('.lm-to').textContent=KIND[L.t]+' '+dir+o.name;
+    row.querySelector('.lm-w').textContent=L.w;
+    if(o.chip){ var cd=document.createElement('span'); cd.className='lm-cd'; cd.textContent=o.d.chip; row.children[1].appendChild(cd); row.appendChild(document.createElement('span')); }
+    else{ var g=document.createElement('button'); g.type='button'; g.className='lm-go'; g.style.setProperty('--c',COL[L.t]); g.textContent='보러 가기';
+      g.setAttribute('aria-label',o.name+' 보러 가기'); g.addEventListener('click',function(){ goTo(o); }); row.appendChild(g); }
+    sheet.appendChild(row);
+  });
+  sheet.hidden=false;
+}
+function sheetH(){ return sheet.hidden?0:sheet.getBoundingClientRect().height; }
+function keepVisibleAboveSheet(el){
+  var r=el.getBoundingClientRect(), room=window.innerHeight-sheetH()-12;
+  if(r.bottom>room||r.top<8) window.scrollBy({top:r.top-Math.max(16,(room-r.height)/2),behavior:RM.matches?'auto':'smooth'});
+}
+function goTo(o){
+  if(o.chip||!o.anchor) return;
+  var sw=o.card&&o.card.closest('.pk-swipe');
+  if(sw&&swipeOff(o)){ sw.scrollTo({left:o.card.offsetLeft-sw.offsetLeft,behavior:RM.matches?'auto':'smooth'}); setTimeout(function(){ goTo(o); },RM.matches?60:420); return; }
+  var el=o.anchor, r=el.getBoundingClientRect(), room=window.innerHeight-sheetH();
+  window.scrollBy({top:r.top-Math.max(16,(room-r.height)/2),behavior:RM.matches?'auto':'smooth'});
+  var cls=RM.matches?'lm-flash-still':'lm-flash';
+  el.classList.remove('lm-flash','lm-flash-still'); void el.offsetWidth; el.classList.add(cls);
+  setTimeout(function(){ el.classList.remove(cls); },2000);
+}
+
+/* ---------- 6) 누르기·다시 그리기 ---------- */
+Object.keys(N).forEach(function(id){ var o=N[id]; if(!o.btn) return;
+  o.btn.addEventListener('click',function(e){ e.stopPropagation(); if(o.btn.disabled) return; setActive(active===id?null:id); }); });
+off.addEventListener('click',function(){ var b=active&&N[active].btn; setActive(null,b); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&active){ var b=N[active].btn; setActive(null,b); } });
+var raf=0; function schedule(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; layout(); }); }
+window.addEventListener('resize',schedule);
+window.addEventListener('scroll',function(){ if(active&&WIDE.matches) schedule(); },{passive:true});
+document.addEventListener('scroll',function(e){ if(e.target!==document&&e.target.closest&&e.target.closest('.pk-swipe')) schedule(); },{capture:true,passive:true});
+document.addEventListener('toggle',schedule,true);
+document.addEventListener('load',schedule,true);
+window.addEventListener('load',schedule);
+if(window.ResizeObserver) new ResizeObserver(schedule).observe(document.body);
+if(window.MutationObserver){
+  new MutationObserver(schedule).observe(H,{attributes:true,attributeFilter:['class']});
+  [].slice.call(document.querySelectorAll('.ws-pick')).forEach(function(w){ new MutationObserver(function(rs){
+    if(rs.some(function(r){ return !(r.target.classList&&r.target.classList.contains('lm-n')); })) schedule(); })
+    .observe(w,{attributes:true,subtree:true,attributeFilter:['class']}); });
+}
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(schedule);
+if(WIDE.addEventListener) WIDE.addEventListener('change',schedule);
+window.addEventListener('beforeprint',function(){ printing=true; layout(); });
+window.addEventListener('afterprint',function(){ printing=false; layout(); });
+refresh();
 })();
 </script>
 </body>
