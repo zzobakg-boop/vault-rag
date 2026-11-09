@@ -1,0 +1,40 @@
+name: 학습지 사이트 배포
+# 옛 «브랜치에서 바로 배포»(pages-build-deployment)와 같은 단계·판본이다.
+# 다른 점은 deploy 제한 시간 하나 — 옛 방식은 10분 고정이라, 11/8~9 파일 동기화가
+# 10분에 잘려 배포가 4번 연속 실패했다(4번째는 «finished_file_sync»가 뜬 순간 취소).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
+        with:
+          timeout: 1800000  # 30분
