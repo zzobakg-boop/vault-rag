@@ -1627,10 +1627,22 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 8-2_card_florence.jpg | 피렌체 | PROPOLI87 · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-2_card_vancouver.jpg | 밴쿠버 스탠리 공원과 도심 | Jc1599 · CC BY 4.0 · Wikimedia Commons |
 | 8-2_card_vienna.jpg | 빈 국립 오페라 극장 | Granada · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-2_card_brussels_ep.jpg | 브뤼셀 유럽 의회 본회의장, 2024-11-11 (European Parliament Hemicycle - Brussels 2024.jpg · 900px로 줄임) | Profpcde · CC0 · Wikimedia Commons |
+| 8-2_card_hoodedcrane.jpg | 날아가는 흑두루미, 일본 이즈미 월동지, 2017-02 (Grus monacha from iNaturalist photo 102489249.jpg · 900px로 줄임) | Christoph Moning · CC BY 4.0 · Wikimedia Commons |
 | 8-2_hero_sydney.jpg | 시드니 오페라 하우스와 하버 브리지, 2019 | Benh LIEU SONG · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-2_suncheon_reeds.jpg | 순천만 갈대밭, 2018년 12월 | Jjw · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-3_gwangju_apts.jpg | 광주 시내 아파트 단지와 광주월드컵경기장 일대, 2004 (File:Gwangju city - view apts.jpg) | Nesnad(Commons에 저작자 기계 판독 정보 없음, 업로더 기준 추정) · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-3_gwangju_cityhall.jpg | 광주광역시청, 서구 치평동, 2016 | Neoalpha · CC0 · Wikimedia Commons |
+| 8-3_card_takeout.jpg | 포장 판매 전용 커피점, 일본 신오사카역 (Starbucks Eki Marche Shin-Osaka(Takeout Only).jpg · 900px로 줄임) | Mr.ちゅらさん · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-3_card_factory_ulsan.jpg | 현대자동차 울산 공장 조립 라인, 2006 (Hyundai car assembly line.jpg · 900px로 줄임) | Anonyme · CC BY 2.5 · Wikimedia Commons |
+| 8-3_card_bank_hq.jpg | 우리은행 본점, 서울 중구, 2017 (Woori Bank-HQ.jpg · 900px로 줄임) | IRTC1015 · 퍼블릭 도메인 · Wikimedia Commons |
+| 8-3_card_warehouse.jpg | 벨기에 안트베르펜의 물류 센터, 2023 (Amazon.com Distribution center in Antwerp, Belgium.jpg · 900px로 줄임) | Lodevermeiren · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-3_card_coex.jpg | 코엑스몰 별마당 도서관, 서울 강남구 (Seoul, Gangnam District, COEX Mall, Starfield Library.jpg · 900px로 줄임) | Dr. Thomas Liptak · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-3_card_seoul_cityhall.jpg | 서울광장에서 본 서울특별시청, 중구, 2019 (Seoul City Hall from Plaza.jpg · 900px로 줄임) | Tristan Surtel · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-3_card_dept_branch.jpg | 롯데백화점 청량리점, 서울 동대문구, 2013 (Lotte Department in Cheongnyangni.jpg · 900px로 줄임) | Jaehwan Kim · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-3_card_conveyor.jpg | 공장의 컨베이어 설비, 2015 (Conveyor system in a factory.jpg · 900px로 줄임) | falco · CC0 · Wikimedia Commons |
+| 8-3_card_jongno_offices.jpg | 광화문역 근처 종로의 업무 빌딩, 2025 (Seoul CBD along Jongro near Gwanghwamun station.jpg · 900px로 줄임) | DtSeoul · CC0 · Wikimedia Commons |
+| 8-3_card_nowon_apts.jpg | 도봉구에서 본 노원구 아파트 단지, 2024 (Nowon-gu apartment buildings seen from Dobong-gu.jpg · 900px로 줄임) | Ox1997cow · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-3_hero_seoul_downtown.jpg | 인왕산에서 본 서울 도심, 2023 | 서울관광재단 · 공공누리 제1유형 · Wikimedia Commons |
 | 8-4_hero_myeongdong.jpg | 서울 명동 거리, 2026년 6월 | Izzatfikry99 · CC BY 4.0 · Wikimedia Commons |
 | 8-4_nowon_apts.jpg | 서울 노원구의 아파트 단지 | Ox1997cow · CC BY-SA 3.0 · Wikimedia Commons |
@@ -1640,10 +1652,19 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 8-5_ruhr_zollverein.jpg | 독일 에센 졸페라인 탄광 수직갱 탑, 2022 | Anil Öztas · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-6_hero_london_smog1952.jpg | 1952년 런던 스모그 속 넬슨 기념탑 | N T Stobbs · CC BY-SA 2.0 · Wikimedia Commons |
 | 8-6_la_rushhour.jpg | 로스앤젤레스 110번 고속도로의 퇴근 시간, 2015 | Prayitno · CC BY 2.0 · Wikimedia Commons |
+| 8-6_card_london_boats.jpg | 런던 리젠트 운하에 줄지어 선 좁은 배(내로보트), 2011-11 (Narrowboats, Regent's Canal - geograph.org.uk - 2686543.jpg · 배가 보이게 가운데를 잘라 900px) — 8-5~6 묶음판 활동 1 카드 | Peter Barr · CC BY-SA 2.0 · Wikimedia Commons |
+| 8-6_card_mumbai_beach.jpg | 뭄바이 베르소바 해변에서 공을 차는 아이들, 2024-07 (Versova beach in Mumbai 3.jpg · 900px로 줄임) — 8-5~6 묶음판 활동 1 카드 | Shishirdasika · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-6_card_ulaanbaatar.jpg | 울란바토르 — 앞쪽 새 아파트 뒤로 언덕을 덮은 게르 지구, 2013-08 (UBandGerDistrict.jpg · 900px로 줄임) — 8-5~6 묶음판 활동 1 카드 | Ulaanbaatour · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-6_card_tokyo_kyojima.jpg | 도쿄 스미다구 교지마의 다닥다닥 붙은 목조 연립 주택, 2009 (Wooden tenement houses kyojima 3chome 2009.JPG · 900px로 줄임) — 8-5~6 묶음판 활동 1 카드 | Kamemaru2000 · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-7_bilbao_guggenheim.jpg | 에스파냐 빌바오 구겐하임 미술관, 2021 | José Ligero Loarte · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-7_hero_hammarby.jpg | 스톡홀름 함마르뷔 셰스타드, 2025년 6월 | ArildV · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-8_freiburg_baechle.jpg | 프라이부르크 시내의 인공 수로, 2009 | Joergens.mi · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-8_hero_copenhagen.jpg | 코펜하겐 뉘하운, 2026년 7월 | Superbass · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-7_card_bundang.jpg | 성남 분당 정자동과 탄천, 2006-12 (Bundang Jeongja.jpg · 900px 4:3) | HunkinElvis · 퍼블릭 도메인 · Wikimedia Commons |
+| 8-7_card_sejong.jpg | 정부세종청사, 2014-11-10 (Government Complex Sejong.jpg · 가운데 4:3로 자름) | Minseong Kim · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-7_card_bilbao_1983.jpg | 빌바오 에우스칼두나 조선소 항공 사진, 1983 (Ortoargazkia-euskalduna ontziola-1983.png · 4:3로 자름) | Eusko Jaurlaritza / Gobierno Vasco · geoEuskadi · CC BY 3.0 · Wikimedia Commons |
+| 8-7_card_bilbao_euskalduna.jpg | 빌바오 에우스칼두나 회의·음악당, 2009-04 (Euskalduna Palace (April 2009).jpg · 4:3로 자름) | Jean-Pierre Dalbera · CC BY 2.0 · Wikimedia Commons |
+| 8-7_card_dochung_2009.jpg | 광주 옛 전남도청, 2009-01-11 (Korea-Gwangju-The former South Jeolla provincial office building-01A.jpg · 오른쪽 현수막 빼고 4:3로 자름) | kayakorea (Brandon Butler), 파생 Caspian blue · CC BY-SA 3.0 · Wikimedia Commons |
 
 ## 사회② Ⅸ 글로벌 경제 활동과 지역 변화 — 본문·표지·카드 그림 (2026-10-12 학생용 출처 줄을 이 표로 옮김)
 | 파일 | 무엇 | 저작자 · 라이선스 |
