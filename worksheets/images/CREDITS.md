@@ -1849,3 +1849,13 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 9-2_voc_기호.jpg | 커피잔과 원두, 2013 (Coffee cup and coffee bean.jpg) | mcfoodie · CC0 · Wikimedia Commons |
 | 9-3_voc_다국적.jpg | 여러 나라 국기가 걸린 깃대, 미국 시애틀 항공 박물관, 2024 (Row of flags at the Museum of Flight in Seattle (2024) - 1.jpg) | Roc0ast3r · CC0 · Wikimedia Commons |
 | 9-4_voc_입지.jpg | 하늘에서 본 영국 스토크온트렌트 펜턴 산업 단지, 2024 (Aerial view of Fenton Industrial complex as September 2024.jpg) | Gkbediako · CC BY-SA 4.0 · Wikimedia Commons |
+
+## 4-3-3 입담 삽화 다섯 (2026-11-09 · 천대현 «삽화를 2단으로, 교과서가 건너뛴 맥락 보충»)
+
+| 파일 | 내용 | 출처 |
+|---|---|---|
+| 4-3-3_입담_면벌부.png | 1517년 작센 장터 — 면벌부를 파는 도미니코회 설교자와 농민(가상 인물) · 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_*` |
+| 4-3-3_입담_인쇄.png | 1518년 독일 도시 — 인쇄업자와 도시 사람, 나사식 인쇄기(가상 인물) · 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_*` |
+| 4-3-3_입담_소명.png | 1550년 무렵 제네바 — 상인과 칼뱅파 목사(가상 인물, 칼뱅 본인 아님·흰 깃 띠 없음) · 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_*` |
+| 4-3-3_입담_빌려서.png | 1694년 런던 — 정부 관리와 상인, 1690년대 긴 가발(가상 인물) · 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_*` |
+| 4-3-3_입담_타유.png | 1680년 무렵 프랑스 시골 — 왕의 세금 징수원과 농민(가상 인물) · 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_*` |
