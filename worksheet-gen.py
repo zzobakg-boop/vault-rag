@@ -4531,6 +4531,7 @@ def main():
         if _fm_val('seeing'):
             _layer_cfg['seeing'] = _fm_val('seeing')
             _layer_cfg['seeingGo'] = _fm_val('seeing_go')
+    _rd_design = lambda n: open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ws_design', n), encoding='utf-8').read()
     def _apply_design(h, linkmap=True):
         _dd = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ws_design')
         h = _apply_look(h, _dd)
@@ -4576,6 +4577,12 @@ def main():
         h = h.replace('</head>', '<style id="ws-design-' + _design + '">' + _css + '</style>\n</head>', 1)
         i = h.rfind('</body>')
         h = h[:i] + '<script id="ws-design-' + _design + '-js">' + _js + '</script>\n' + h[i:]
+        # 2026-11-11 천대현(4-3-3 검토판 «선생님 입담에 비율을 그대로 두되 어울리는 선생님 캐릭터를 넣고 그 선생님이 말하는 것처럼») — opt-in.
+        #   frontmatter `voice_avatar: <images 안 파일 이름>` 이면 입담 상자 왼쪽 🎙️ 자리에 그 얼굴을 두고, 상자를 그 사람이 말하는
+        #   말풍선(꼬리 달린 상자)으로 바꾼다. 상자 폭·글자 크기는 그대로. 키가 없는 차시는 출력이 이전과 같다.
+        _av = _fm_val('voice_avatar')
+        if _av:
+            h = h.replace('</head>', '<style id="ws-voice-avatar">' + _rd_design('voice_avatar.css').replace('__AV__', _av) + '</style>\n</head>', 1)
         if _layer_cfg is not None:
             _rd = lambda n: open(os.path.join(_dd, n), encoding='utf-8').read()
             h = h.replace('</head>', '<link id="v2t-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap">\n'
