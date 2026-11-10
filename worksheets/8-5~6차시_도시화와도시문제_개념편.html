@@ -1294,6 +1294,21 @@ html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;c
 }
 @media (min-width:981px){html.v2-top .v2-rail a .t{display:inline}}
 </style>
+<style id="ws-voice-avatar">/* 선생님 입담 = 선생님이 말하는 말풍선 (2026-11-11 천대현 4-3-3 검토판) — frontmatter voice_avatar 가 있을 때만 붙는다.
+   v2.css 의 입담 상자(노란 바탕·🎙️ 동그라미)를 덮어 쓴다: 왼쪽에 선생님 얼굴, 오른쪽에 꼬리 달린 말풍선.
+   상자 폭·글자 크기는 그대로 두고, 글 시작만 얼굴 몫만큼 오른쪽으로 민다. */
+blockquote.v2-voice{background:transparent!important;border-radius:0!important;padding:14px 18px 14px 68px!important;z-index:0}
+blockquote.v2-voice::after{content:"";position:absolute;left:52px;right:0;top:0;bottom:0;background:var(--voice);border-radius:16px;z-index:-1}
+blockquote.v2-voice::before{content:"";left:2px;top:4px;width:40px;height:40px;font-size:0;background:#fff url("images/선생님_입담.webp") center/cover no-repeat;box-shadow:0 0 0 2px var(--voice-line)}
+blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:18px;border-style:solid;border-width:8px 8px 8px 0;border-color:transparent var(--voice) transparent transparent}
+@media (max-width:640px){
+  blockquote.v2-voice{padding:12px 14px 12px 56px!important}
+  blockquote.v2-voice::after{left:42px}
+  blockquote.v2-voice::before{left:0;top:4px;width:34px;height:34px}
+  blockquote.v2-voice .v2-who::before{left:35px;top:14px;border-width:7px 7px 7px 0}
+}
+@media print{blockquote.v2-voice::before{box-shadow:none}}
+</style>
 <link id="v2t-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap">
 <style id="v2s">/* ===== v2 사회 층 — 사회② 블록(넘김 카드뉴스·교과서 상자·2단·낱말카드·표지)을 v2 결에 맞춘다 ===== */
 /* 표지: 얇은 300 → 굵은 제목, 단원·차시는 작은 머리말, 교과서 질문은 아래 줄 */
