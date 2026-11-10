@@ -142,6 +142,19 @@ if md and os.path.exists(md):
         (ok if _v2key == _v2html else red).append(f"디자인 v2 원고 {'켬' if _v2key else '없음'} · 발행본 {'입힘' if _v2html else '안 입힘'}")
 
 # 폰 390
+CHIP_JS = """(()=>{
+function find(t){ var C=document.querySelector('.container')||document.body, all=C.getElementsByTagName('*');
+  for(var i=0;i<all.length;i++){ var e=all[i];
+    if(e.closest('script,style,.ws-think,.lm-layer,.lm-sheet,.gl-layer,.lm-legend')) continue;
+    if((e.textContent||'').indexOf(t)<0) continue;
+    var deeper=false; for(var k=0;k<e.children.length;k++){ if((e.children[k].textContent||'').indexOf(t)>=0){ deeper=true; break; } }
+    if(!deeper) return e; }
+  return null; }
+var cs=document.querySelectorAll('button.wt-chip[data-go]'), bad=[];
+cs.forEach(function(c){ var el=find(c.dataset.go); if(!el){ bad.push('못 찾음:'+c.dataset.go); return; }
+  var t=el.closest('figure,.pk-card,.ws-pick,.ws-read,li,p,blockquote')||el, r=t.getBoundingClientRect();
+  if(t.offsetParent===null || r.width*r.height===0 || t.closest('[hidden]')) bad.push('숨은 곳:'+c.dataset.go); });
+return [cs.length, bad]; })()"""
 try:
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
@@ -151,11 +164,17 @@ try:
         sw = pg.evaluate("document.documentElement.scrollWidth")
         # 디자인 v2(10/28 기본) — v2.js가 h2마다 section으로 다시 묶는다. 입력칸이 묶음 밖에 남으면 «오늘의 길» 채운 칸이 틀린다.
         v2out = pg.evaluate("document.getElementById('ws-design-v2-js') ? [...document.querySelectorAll('.container [data-id]')].filter(e=>!e.closest('.v2-sec')).length : -1")
+        # :::더 생각 근거 칩(11/10 사회) — 칩은 그 글이 문서에서 처음 나온 자리로 간다(worksheet-gen _THINK_JS find()와 같은 규칙).
+        #   채점 전 잠긴 표지 카드·넘김 숨은 장에 같은 글이 먼저 있으면 숨은 곳으로 가서 눌러도 아무것도 안 보인다(8-5~6·8-7~8·9-4 실측).
+        chips = pg.evaluate(CHIP_JS) if 'class="ws-think' in s else None
         b.close()
     (red if sw > 392 else ok).append(f"폰 390 문서폭 {sw}px")
     (red if errs else ok).append(f"JS 오류 {len(errs)}건" + (f" {errs[:1]}" if errs else ""))
     if v2out >= 0:
         (red if v2out else ok).append(f"디자인 v2 단계 묶음 밖 입력칸 {v2out}개")
+    if chips:
+        n_chip, bad_chip = chips
+        (red if bad_chip else ok).append(f"더 생각 근거 칩 {n_chip}개 · 숨은 곳·못 찾음 {len(bad_chip)}" + (f" {bad_chip[:2]} — «=> 찾을 글»을 보이는 자리에만 있는 글로" if bad_chip else ""))
 except Exception as e:
     warn.append(f"폰 폭 측정 못 함({str(e)[:40]})")
 
