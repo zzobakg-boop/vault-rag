@@ -53,7 +53,7 @@ jobs:
             const FINAL = ['deployment_failed', 'deployment_content_failed', 'deployment_cancelled', 'deployment_lost']
             const TRIES = 4            // 한 번에 최대 ~12분 → 넉 번이면 50분 안
             const PER_TRY = 12 * 60 * 1000
-            const BLANK_GIVEUP = 90 * 1000   // 상태가 빈칸으로 바뀐 뒤 이만큼 지나면 버려진 것으로 본다
+            const BLANK_GIVEUP = 45 * 1000   // 상태가 빈칸으로 바뀐 뒤 이만큼 지나면 버려진 것으로 본다(11/10 실측: 빈칸 뒤 되살아난 적 없음)
             const sleep = ms => new Promise(r => setTimeout(r, ms))
             let lastFail = ''
             for (let t = 1; t <= TRIES; t++) {
@@ -83,7 +83,9 @@ jobs:
                 else blankSince = 0
               }
               if (outcome === 'ok') return core.info(`[${t}] 성공 · ${Math.round((Date.now() - start) / 1000)}초`)
-              if (outcome === 'timeout') await github.request('POST /repos/{owner}/{repo}/pages/deployments/{id}/cancel', { owner, repo, id }).catch(() => {})
+              // 상태가 빈칸이면 서버가 이미 버린 것이라 취소하지 않는다 — 배포 id가 sha라 취소하면
+              // 다음 시도가 곧바로 deployment_cancelled로 읽힌다(11/10 run 42740950738 3번째 시도).
+              if (outcome === 'timeout' && last !== '') await github.request('POST /repos/{owner}/{repo}/pages/deployments/{id}/cancel', { owner, repo, id }).catch(() => {})
               lastFail = outcome
               core.warning(`[${t}/${TRIES}] 실패: ${outcome}${t < TRIES ? ' → 같은 아티팩트로 다시 배포' : ''}`)
             }
