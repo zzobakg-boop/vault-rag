@@ -2778,9 +2778,9 @@ def generate_html(title, content, total, total_ox, submit_url='', mode='class', 
     {score_block}
     <div>
       {list_btn}
+      <button class="btn btn-reset" onclick="askReset()">초기화</button>
       {check_btn}
       {reveal_btn}
-      <button class="btn btn-danger" onclick="reset()">초기화</button>
       <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
       {submit_btn}
     </div>
@@ -4554,6 +4554,12 @@ def main():
             h = h.replace('</head>', '<style id="ws-zoom-css">' + open(os.path.join(_dd, 'zoom.css'), encoding='utf-8').read() + '</style>\n</head>', 1)
             i = h.rfind('</body>')
             h = h[:i] + '<script id="ws-zoom-js">' + open(os.path.join(_dd, 'zoom.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
+        # 2026-11-10 천대현 «저장 누르려다 초기화 누르는 학생들이 있음» — 초기화를 저장 옆에서 떼고(단추 줄 위),
+        #   답이 있으면 한 번 묻는다(ws_design/reset.*). 저장·제출 단추 자리는 그대로. 정답편엔 초기화 단추가 없어 안 붙는다.
+        if 'onclick="askReset()"' in h:
+            h = h.replace('</head>', '<style id="ws-reset-css">' + open(os.path.join(_dd, 'reset.css'), encoding='utf-8').read() + '</style>\n</head>', 1)
+            i = h.rfind('</body>')
+            h = h[:i] + '<script id="ws-reset-js">' + open(os.path.join(_dd, 'reset.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
         if not _design:
             return h
         _css = open(os.path.join(_dd, _design + '.css'), encoding='utf-8').read()

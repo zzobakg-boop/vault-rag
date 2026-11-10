@@ -1130,6 +1130,10 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
+<style id="ws-reset-css">/* 초기화 잘못 누름 막기 (천대현 11/10 «저장 누르려다 초기화 누르는 학생들이 있음») — 저장·제출 자리는 그대로 두고, 초기화만 왼쪽으로 떼어 흰 바탕 테두리 단추로 */
+.control-bar .btn.btn-reset{background:#fff;color:#d93025;border:1px solid #f3b6b0;margin-right:14px!important}
+.control-bar .btn.btn-reset:hover{background:#fff4f3}
+</style>
 <style id="ws-design-v2">/* ===== 4-3-2 디자인 시험판 v2 — 덧씌움(원본 HTML·data-id 불변) ===== */
 :root{
   --ink:#1f2329; --ink2:#4a5160; --mute:#7a8191; --line:#e6e8ee; --paper:#ffffff; --bg:#f3f4f7;
@@ -1268,9 +1272,9 @@ html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;c
     </div>
     <div>
       
+      <button class="btn btn-reset" onclick="askReset()">초기화</button>
       <button class="btn btn-primary" onclick="check()">채점하기</button>
       
-      <button class="btn btn-danger" onclick="reset()">초기화</button>
       <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
       <button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>
     </div>
@@ -1868,6 +1872,14 @@ document.querySelectorAll('.ws-rad').forEach(function(rad){
     });
   });
 });
+</script>
+<script id="ws-reset-js">// 답이 하나라도 있을 때 초기화를 누르면 한 번 묻는다. 채점·저장·제출 동작은 그대로다.
+function askReset(){
+  var has = (typeof _anyAnswer === 'function') ? _anyAnswer()
+    : Array.prototype.some.call(document.querySelectorAll('.blank-input,.ox-input,.essay-input'), function(el){ return el.value && el.value.trim(); });
+  if (has && !confirm("적은 답이 모두 지워져요. 정말 초기화할까요?\n\n저장하려던 거라면 '취소'를 누르고 💾 저장을 누르세요.")) return;
+  reset();
+}
 </script>
 <script id="ws-design-v2-js">(function(){
 var C=document.querySelector('.container'); if(!C) return;
