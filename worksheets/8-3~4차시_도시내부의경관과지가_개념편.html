@@ -1152,6 +1152,21 @@ figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img { cursor: zoom-in;
 .control-bar .btn.btn-reset{background:#fff;color:#d93025;border:1px solid #f3b6b0;margin-right:14px!important}
 .control-bar .btn.btn-reset:hover{background:#fff4f3}
 </style>
+<style id="ws-refocus-css">/* 다른 창에 갔다 오면 «하던 곳» 안내 (2026-11-10 천대현) — 화면 아래 가운데 한 줄. 확대 창(9999)보다 아래, 인쇄 땐 숨김 */
+.ws-rf{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9500;display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100vw - 24px);background:#1e3a5f;color:#fff;border-radius:14px;padding:10px 10px 10px 14px;box-shadow:0 10px 30px rgba(0,0,0,.28);font-size:15px;line-height:1.45;font-family:inherit}
+.ws-rf[hidden]{display:none!important}
+.ws-rf-t b{color:#ffd56a;font-weight:700}
+.ws-rf button{font:inherit;cursor:pointer;border:0;border-radius:9px;margin:0}
+.ws-rf-go{background:#ffd56a;color:#1e3a5f;font-weight:700;padding:6px 12px;white-space:nowrap}
+.ws-rf-go[hidden]{display:none}
+.ws-rf-x{background:transparent;color:#cfe0f5;padding:6px 8px}
+.ws-rf button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.ws-rf-flash{outline:3px solid #ffb300!important;outline-offset:3px}
+@media (prefers-reduced-motion:no-preference){.ws-rf:not([hidden]){animation:wsrf .22s ease-out}}
+@keyframes wsrf{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+@media (max-width:480px){.ws-rf{font-size:14px;flex-wrap:wrap;justify-content:flex-end}.ws-rf-i{display:none}.ws-rf-t{flex:1 1 100%}}
+@media print{.ws-rf{display:none!important}}
+</style>
 <style id="ws-design-v2">/* ===== 4-3-2 디자인 시험판 v2 — 덧씌움(원본 HTML·data-id 불변) ===== */
 :root{
   --ink:#1f2329; --ink2:#4a5160; --mute:#7a8191; --line:#e6e8ee; --paper:#ffffff; --bg:#f3f4f7;
@@ -1467,21 +1482,6 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <script type="importmap">{"imports":{"three":"./ws3d/three/three.module.min.js"}}</script>
 <link rel="stylesheet" href="ws3d/holo.css">
 <style id="ws-holo-css">.ws-holo{margin:14px 0 18px}.ws-holo .hg-lead{margin:0 0 10px;line-height:1.75}</style>
-<style id="ws-refocus-css">/* 다른 창에 갔다 오면 «하던 곳» 안내 (2026-11-10 천대현) — 화면 아래 가운데 한 줄. 확대 창(9999)보다 아래, 인쇄 땐 숨김 */
-.ws-rf{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9500;display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100vw - 24px);background:#1e3a5f;color:#fff;border-radius:14px;padding:10px 10px 10px 14px;box-shadow:0 10px 30px rgba(0,0,0,.28);font-size:15px;line-height:1.45;font-family:inherit}
-.ws-rf[hidden]{display:none!important}
-.ws-rf-t b{color:#ffd56a;font-weight:700}
-.ws-rf button{font:inherit;cursor:pointer;border:0;border-radius:9px;margin:0}
-.ws-rf-go{background:#ffd56a;color:#1e3a5f;font-weight:700;padding:6px 12px;white-space:nowrap}
-.ws-rf-go[hidden]{display:none}
-.ws-rf-x{background:transparent;color:#cfe0f5;padding:6px 8px}
-.ws-rf button:focus-visible{outline:2px solid #fff;outline-offset:2px}
-.ws-rf-flash{outline:3px solid #ffb300!important;outline-offset:3px}
-@media (prefers-reduced-motion:no-preference){.ws-rf:not([hidden]){animation:wsrf .22s ease-out}}
-@keyframes wsrf{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
-@media (max-width:480px){.ws-rf{font-size:14px;flex-wrap:wrap;justify-content:flex-end}.ws-rf-i{display:none}.ws-rf-t{flex:1 1 100%}}
-@media print{.ws-rf{display:none!important}}
-</style>
 </head>
 <body>
 <div class="container">
@@ -1615,25 +1615,72 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
-<blockquote>🎙️ 네가 광주에서 가게나 공장을 차리려는 사장이라고 해 보자. 자리를 고르려면 땅값부터 짐작해야겠지? 아래 문 두 개 가운데 하나를 골라 들어가 봐. 어느 문이든 비쌀 것 같은 곳과 쌀 것 같은 곳을 하나씩 견줘야 해. 집 주소는 쓰지 않아도 돼.</blockquote>
-<br>
-<div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
-<p><strong>🚪 문 A — 작은 커피점 사장</strong></p>
-<p>가게는 좁아도 되지만 손님이 많이 지나다녀야 한다.</p>
-</div><div class="c2-b">
-<p><strong>🚪 문 B — 큰 물류 창고 사장</strong></p>
-<p>손님은 안 와도 되지만 넓은 땅이 필요하다.</p>
-</div></div>
-<br>
-<p><strong>네 덩어리로 쓰면 막히지 않는다.</strong> 시작 말은 그대로 써도, 바꿔 써도, 안 써도 된다.</p>
-<p>1. 땅값이 <strong>비쌀 것 같은 곳</strong>과 그 까닭(오가기 쉬운 정도) — <em>"…은 지하철역과 큰 길이 가까워 땅값이 비쌀 것 같다."</em></p>
-<p>2. 그곳의 <strong>건물 모습</strong> — <em>"그래서 그곳에는 …한 건물이 많다."</em></p>
-<p>3. 땅값이 <strong>쌀 것 같은 곳</strong>과 그 까닭(오가기 쉬운 정도·건물 모습) — <em>"반대로 …은 …라서 땅값이 쌀 것 같다."</em></p>
-<p>4. 내가 고른 <strong>문의 사장이라면 어디에 차릴지</strong> 쓰며 끝내자. — <em>"나는 …에 차리겠다. …하기 때문이다."</em></p>
-<br>
-<blockquote>📎 끌어올 수 있는 숫자와 사례</blockquote>
-<blockquote>- 문 A — 명동 1㎡ 1억 8천만 원 넘음(4단계 사진) · 식당 임대료 도심 200만·부도심 100만·주거 지역 50만 원(3단계) · A구 지하철 노선 3개(4단계 카드) · 광주 지도의 상무지구·옛 중심(1단계)</blockquote>
-<blockquote>- 문 B — B구 지하철 노선 1개(4단계 카드) · 공장·물류 창고 카드(4단계) · 4단계 🔗 순서 줄 · 광주 아파트 단지 사진(2단계)</blockquote>
+<style id="ws-think-css">.ws-think{margin:4px 0 6px}
+.wt-role{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #cfe5d5;border-radius:14px;padding:14px 16px}
+.wt-role-badge{flex:none;background:#2f8f55;color:#fff;font-weight:800;border-radius:999px;padding:3px 12px;font-size:.8em;line-height:1.6;white-space:nowrap}
+.wt-role-t{font-weight:800;font-size:1.04em;line-height:1.5}
+.wt-role-d{margin:3px 0 0;line-height:1.7;color:#374151}
+.wt-step{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:20px 0 9px;font-weight:800;color:#1f5f3a}
+.wt-step .n{flex:none;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#2f8f55;color:#fff;font-size:.88em}
+.wt-step small{font-weight:500;color:#4b6455;font-size:.86em}
+.wt-doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.wt-door{background:#fff;border:1.5px solid #cfe5d5;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s,box-shadow .15s}
+.wt-door img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#e9efe9}
+.wt-cap{display:block;font-size:.76em;line-height:1.45;color:#64748b;padding:5px 14px 0}
+.wt-door-b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.wt-door-h{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.wt-door-tag{font-size:.78em;font-weight:800;color:#2f8f55;letter-spacing:.04em}
+.wt-pick{font:inherit;font-size:.8em;font-weight:700;border:1.5px solid #2f8f55;color:#2f8f55;background:#fff;border-radius:999px;padding:3px 11px;cursor:pointer;white-space:nowrap}
+.wt-door.on{border-color:#2f8f55;box-shadow:0 0 0 3px rgba(47,143,85,.18)}
+.wt-door.on .wt-pick{background:#2f8f55;color:#fff}
+.wt-door-t{margin:0;font-size:1.04em;font-weight:800;line-height:1.45}
+.wt-door-d{margin:0;font-size:.93em;line-height:1.65;color:#374151}
+.wt-ev{margin-top:auto;padding-top:8px;border-top:1px dashed #d6e6da}
+.wt-ev-h{font-size:.76em;font-weight:700;color:#64748b;margin:0 0 6px}
+.wt-chips{display:flex;flex-wrap:wrap;gap:6px}
+.wt-ex-h{margin-top:9px}
+.wt-ex .wt-chip{background:#fff;border-style:dashed}
+.wt-chip{font:inherit;font-size:.82em;line-height:1.45;background:#f1f5f9;border:1px solid #d5dde6;border-radius:999px;padding:3px 10px;color:#334155;text-align:left}
+button.wt-chip{cursor:pointer}
+button.wt-chip::after{content:' ↗';color:#2f8f55;font-weight:700}
+button.wt-chip:hover{background:#e7f2ea;border-color:#9fcdb0}
+.wt-write{display:grid;grid-template-columns:repeat(var(--wt-n,4),minmax(0,1fr));gap:10px}
+.wt-w{background:#fff;border:1px solid #cfe5d5;border-radius:12px;padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px}
+.wt-w .k{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#e3f1e7;color:#2f8f55;font-weight:800;font-size:.8em}
+.wt-w b{font-size:1em}
+.wt-w .q{font-size:.86em;line-height:1.55;color:#4b5563}
+.wt-w .s{margin-top:auto;font-size:.86em;line-height:1.55;font-style:italic;background:#f6faf7;border-radius:8px;padding:6px 8px;color:#1f3d2b}
+.wt-pick:focus-visible,.wt-chip:focus-visible{outline:2px solid #2f8f55;outline-offset:2px}
+.wt-flash{animation:wtf 2s ease-out}
+@keyframes wtf{0%,55%{box-shadow:0 0 0 5px rgba(245,158,11,.6)}100%{box-shadow:0 0 0 0 rgba(245,158,11,0)}}
+@media (max-width:860px){.wt-write{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.wt-doors{grid-template-columns:1fr}.wt-step small{flex-basis:100%;padding-left:34px}}
+@media (max-width:430px){.wt-write{grid-template-columns:1fr}.wt-role{flex-direction:column;gap:6px}}
+@media (prefers-reduced-motion:reduce){.wt-flash{animation:none;outline:3px solid #f59e0b}.wt-door{transition:none}}
+@media print{.wt-door,.wt-w{break-inside:avoid}.wt-pick,button.wt-chip::after{display:none}}</style><div class="ws-think"><div class="wt-role"><span class="wt-role-badge">🎙️ 오늘 너는</span><div><div class="wt-role-t">광주에서 가게나 공장을 차리려는 사장</div><div class="wt-role-d">자리를 고르려면 땅값부터 짐작해야겠지? 아래 문 두 개 가운데 하나를 골라 들어가 봐. 어느 문이든 비쌀 것 같은 곳과 쌀 것 같은 곳을 하나씩 견줘야 해. 집 주소는 쓰지 않아도 돼.</div></div></div><div class="wt-step"><span class="n">1</span>문을 하나 고르자 <small>정답은 없다 · 근거를 누르면 학습지의 그 자리로 간다</small></div><div class="wt-doors"><div class="wt-door"><img src="images/8-3_card_takeout.jpg" alt="포장 판매 전용 커피점 — 가게는 좁아도 손님이 오가야 한다(4단계 카드 사진)" loading="lazy"><span class="wt-cap">포장 판매 전용 커피점 — 가게는 좁아도 손님이 오가야 한다(4단계 카드 사진)</span><div class="wt-door-b"><div class="wt-door-h"><span class="wt-door-tag">🚪 문 A</span><button type="button" class="wt-pick" aria-pressed="false">이 문으로</button></div><div class="wt-door-t">작은 커피점 사장</div><div class="wt-door-d">가게는 좁아도 되지만 손님이 많이 지나다녀야 한다.</div><div class="wt-ev"><div class="wt-ev-h">📎 끌어올 수 있는 근거</div><div class="wt-chips"><button type="button" class="wt-chip" data-go="도심 200만 원">식당 임대료 도심 200만·부도심 100만·주거 지역 50만 원(3단계)</button><button type="button" class="wt-chip" data-go="A구(지하철 노선 3개)">A구 지하철 노선 3개(4단계 카드)</button><button type="button" class="wt-chip" data-go="광주 — 옛 중심(동구)">광주 지도의 상무지구·옛 중심(1단계)</button></div><div class="wt-ev-h wt-ex-h">🔎 같은 종류, 다른 곳의 예</div><div class="wt-chips wt-ex"><button type="button" class="wt-chip" data-go="서울 명동 거리">서울 명동 1㎡ 1억 8천만 원 넘음(4단계 사진)</button></div></div></div></div><div class="wt-door"><img src="images/8-3_card_warehouse.jpg" alt="물류 센터 — 넓은 창고가 필요하다(4단계 카드 사진)" loading="lazy"><span class="wt-cap">물류 센터 — 넓은 창고가 필요하다(4단계 카드 사진)</span><div class="wt-door-b"><div class="wt-door-h"><span class="wt-door-tag">🚪 문 B</span><button type="button" class="wt-pick" aria-pressed="false">이 문으로</button></div><div class="wt-door-t">큰 물류 창고 사장</div><div class="wt-door-d">손님은 안 와도 되지만 넓은 땅이 필요하다.</div><div class="wt-ev"><div class="wt-ev-h">📎 끌어올 수 있는 근거</div><div class="wt-chips"><button type="button" class="wt-chip" data-go="B구(지하철 노선 1개)">B구 지하철 노선 1개(4단계 카드)</button><button type="button" class="wt-chip" data-go="공장을 지으려는 기업가">공장·물류 창고 카드(4단계)</button><button type="button" class="wt-chip" data-go="순서를 거꾸로 읽지 말자">4단계 🔗 순서 줄</button><button type="button" class="wt-chip" data-go="광주 시내 아파트 단지">광주 아파트 단지 사진(2단계)</button></div></div></div></div></div><div class="wt-step"><span class="n">2</span>네 덩어리로 쓰자 <small>시작 말은 그대로 써도, 바꿔 써도, 안 써도 된다</small></div><div class="wt-write" style="--wt-n:4"><div class="wt-w"><span class="k">1</span><b>비싼 곳</b><span class="q">땅값이 <strong>비쌀 것 같은 곳</strong>과 그 까닭(오가기 쉬운 정도)</span><span class="s">…은 지하철역과 큰 길이 가까워 땅값이 비쌀 것 같다.</span></div><div class="wt-w"><span class="k">2</span><b>건물 모습</b><span class="q">그곳의 <strong>건물 모습</strong>은?</span><span class="s">그래서 그곳에는 …한 건물이 많다.</span></div><div class="wt-w"><span class="k">3</span><b>싼 곳</b><span class="q">땅값이 <strong>쌀 것 같은 곳</strong>과 그 까닭(오가기 쉬운 정도·건물 모습)</span><span class="s">반대로 …은 …라서 땅값이 쌀 것 같다.</span></div><div class="wt-w"><span class="k">4</span><b>차릴 곳</b><span class="q">내가 고른 <strong>문의 사장이라면 어디에 차릴지</strong> 쓰며 끝내자.</span><span class="s">나는 …에 차리겠다. …하기 때문이다.</span></div></div><div class="wt-step"><span class="n">3</span>아래 칸에 네 덩어리를 이어서 쓰자</div></div><script id="ws-think-js">(function(){
+var RM=window.matchMedia('(prefers-reduced-motion:reduce)');
+/* 글을 품은 가장 안쪽 요소 — 글자 조각으로 찾으면 다른 장치(개념 선 단추 등)가 글을 쪼갠 자리를 못 찾는다 */
+function find(t){ var C=document.querySelector('.container')||document.body, all=C.getElementsByTagName('*');
+  for(var i=0;i<all.length;i++){ var e=all[i];
+    if(e.closest('script,style,.ws-think,.lm-layer,.lm-sheet,.gl-layer,.lm-legend')) continue;
+    if((e.textContent||'').indexOf(t)<0) continue;
+    var deeper=false; for(var k=0;k<e.children.length;k++){ if((e.children[k].textContent||'').indexOf(t)>=0){ deeper=true; break; } }
+    if(!deeper) return e; }
+  return null; }
+[].forEach.call(document.querySelectorAll('.ws-think'),function(box){
+  var doors=[].slice.call(box.querySelectorAll('.wt-door'));
+  doors.forEach(function(d){ var b=d.querySelector('.wt-pick'); if(!b) return;
+    b.addEventListener('click',function(){ var on=!d.classList.contains('on');
+      doors.forEach(function(x){ x.classList.remove('on'); var y=x.querySelector('.wt-pick'); if(y){ y.setAttribute('aria-pressed','false'); y.textContent='이 문으로'; } });
+      if(on){ d.classList.add('on'); b.setAttribute('aria-pressed','true'); b.textContent='이 문 ✓'; } }); });
+  [].forEach.call(box.querySelectorAll('button.wt-chip[data-go]'),function(c){
+    c.addEventListener('click',function(){ var el=find(c.dataset.go); if(!el) return;
+      var t=el.closest('figure,.pk-card,.ws-pick,.ws-read,li,p,blockquote')||el;
+      t.scrollIntoView({block:'center',inline:'nearest',behavior:RM.matches?'auto':'smooth'});
+      t.classList.remove('wt-flash'); void t.offsetWidth; t.classList.add('wt-flash');
+      setTimeout(function(){ t.classList.remove('wt-flash'); },2100); }); });
+});
+})();</script>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
@@ -2273,6 +2320,143 @@ function askReset(){
   if (has && !confirm("적은 답이 모두 지워져요. 정말 초기화할까요?\n\n저장하려던 거라면 '취소'를 누르고 💾 저장을 누르세요.")) return;
   reset();
 }
+</script>
+<script id="ws-refocus-js">/* 다른 창에 갔다 오면 «하던 곳» 안내 (2026-11-10 천대현 «다른 창, 게임, 영상» · «(가)가 가장 현실적»)
+   - 아무것도 저장·전송하지 않는다. 다녀온 횟수·시각을 세어 남기지도 않는다.
+     위성 딥리서치(2026-11-10 seatwork-engagement): 이탈을 이름과 묶어 저장·전송하면 개인정보 보호법 최소 수집에 걸리고,
+     감지·경고가 학습을 올린 실험도 없다. 그래서 학생 본인 화면에 «어디로 돌아오면 되는지»만 알려 준다.
+   - 15초 넘게 비웠다가 돌아올 때만 화면 아래에 한 줄을 띄운다. 막지도 꾸짖지도 않는다.
+   - 다른 창으로 간 것은 막을 수 없고, 창을 일부만 가린 경우는 못 알아챌 수 있다(visibilitychange 한계). */
+(function(){
+  var MIN = (window.WS_REFOCUS_MIN_MS != null) ? window.WS_REFOCUS_MIN_MS : 15000;
+  var FIELDS = '.blank-input,.essay-input,textarea';
+  var CIRC = '①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖㉗㉘㉙㉚';
+  var last = null, leftAt = 0, box = null, txt = null, go = null, timer = 0;
+  function root(){ return document.querySelector('.container') || document.body; }
+
+  document.addEventListener('focusin', function(e){ var t = e.target; if (t && t.matches && t.matches(FIELDS)) last = t; }, true);
+  document.addEventListener('click', function(e){
+    var t = e.target && e.target.closest && e.target.closest('.ox-btn,.choice-btn,.pk-b');
+    if (t) last = t;
+  }, true);
+
+  /* 학습지가 새 창으로 보낸 것(거리뷰·출처 모음 등 target=_blank 링크)은 딴 데 간 것이 아니다 — 누른 직후의 이탈은 세지 않는다(사회 확인 ℹ️2) */
+  var linkAt = 0, viaLink = false;
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest && e.target.closest('a[target="_blank"],a[href^="http"]');
+    if (a) linkAt = Date.now();
+  }, true);
+  function away(){ if (!leftAt){ leftAt = Date.now(); viaLink = (leftAt - linkAt) < 2000; } }
+  function back(){ if (!leftAt) return; var d = Date.now() - leftAt, v = viaLink; leftAt = 0; viaLink = false; if (d >= MIN && !v) show(); }
+  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') away(); else back(); });
+  /* 같은 화면에서 다른 프로그램(게임 창 등)으로 옮겨 가면 창이 가려지지 않아도 blur가 온다. 학습지 안 iframe(영상·3D)으로 간 것은 뺀다. */
+  window.addEventListener('blur', function(){ setTimeout(function(){
+    var a = document.activeElement; if (a && a.tagName === 'IFRAME') return;
+    if (!document.hasFocus()) away();
+  }, 0); });
+  window.addEventListener('focus', back);
+
+  function stageOf(node){
+    var hs = root().querySelectorAll('h2'), s = null;
+    for (var i = 0; i < hs.length; i++){
+      if (hs[i].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING) s = hs[i]; else break;
+    }
+    return s;
+  }
+  function stageName(h){
+    if (!h) return '';
+    /* 디자인 v2는 «N단계»를 h2 앞 띠(.v2-kicker)로 옮긴다 — 띠부터 본다 */
+    var k = h.previousElementSibling, kt = (k && /v2-kicker/.test(k.className)) ? k.textContent : '';
+    var t = h.textContent.replace(/\s+/g, ' ').trim(), m = (kt + ' ' + t).match(/(\d+)\s*단계|STEP\s*0*(\d+)/i);
+    if (m) return (m[1] || m[2]) + '단계';
+    t = t.replace(/^[^0-9A-Za-z가-힣]+/, '');
+    return t.length > 14 ? t.slice(0, 14) + '…' : t;
+  }
+  function fieldName(el){
+    if (!el) return '';
+    if (el.classList.contains('blank-input') && !el.classList.contains('activity-input')){
+      /* 학생 눈에 보이는 번호는 칸 바로 앞 동그라미 글자다 — 옛 1학기 몇 편은 data-id와 어긋난다(메인 확인 ℹ️1) */
+      var p = el.previousSibling, pc = (p && p.nodeType === 3) ? p.nodeValue.replace(/\s+$/, '').slice(-1) : '';
+      if (pc && CIRC.indexOf(pc) >= 0) return pc + ' 칸';
+      var n = parseInt(el.dataset.id, 10); return (n >= 1 && n <= 30) ? CIRC.charAt(n - 1) + ' 칸' : '빈칸';
+    }
+    if (el.classList.contains('essay-input') || el.tagName === 'TEXTAREA') return '서술 칸';
+    if (el.classList.contains('activity-input')) return '활동 칸';
+    if (el.closest('.ox-group')) return 'OX';
+    if (el.closest('.ws-pick,.pk-card')) return '카드 고르기';
+    return '';
+  }
+  function isEmpty(el){ return el.matches && el.matches(FIELDS) && !(el.value && el.value.trim()); }
+  function fieldsIn(stage){
+    /* 접힌 칸·넘김 카드 안 칸도 센다 — 안 보인다고 빼면 «다 채웠어»가 일찍 뜬다 */
+    return [].slice.call(root().querySelectorAll(FIELDS)).filter(function(f){ return stageOf(f) === stage; });
+  }
+
+  /* 어디로 돌아오면 되나: 하던 칸이 비었으면 그 칸 → 그 단계의 다음 빈칸 → 단계를 다 채웠으면 «설명 같이 듣자» */
+  function where(){
+    var t = (last && document.contains(last)) ? last : null;
+    if (!t){
+      var first = [].slice.call(root().querySelectorAll(FIELDS)).filter(isEmpty)[0];
+      if (!first) return { done: true, stage: null, target: null };
+      return { el: first, stage: stageOf(first), first: true };
+    }
+    if (isEmpty(t)) return { el: t, stage: stageOf(t) };
+    /* 쓰던 칸 뒤의 빈칸 먼저, 없으면 그 단계 앞쪽 빈칸(사회 확인 ℹ️1 — «하던 곳»은 쓰던 자리 다음이어야 말이 맞다) */
+    var st = stageOf(t), inSt = fieldsIn(st);
+    var after = inSt.filter(function(f){ return (t.compareDocumentPosition(f) & Node.DOCUMENT_POSITION_FOLLOWING) && isEmpty(f); });
+    var rest = after.length ? after : inSt.filter(isEmpty);
+    /* 앞쪽으로 되돌아가는 칸은 «하던 곳»이 아니라 «아직 빈 곳»이다(메인 확인 ℹ️2) */
+    if (rest.length) return { el: rest[0], stage: st, gap: !after.length };
+    return { done: true, stage: st, target: st };
+  }
+
+  function mk(){
+    if (box) return;
+    box = document.createElement('div'); box.className = 'ws-rf'; box.hidden = true;
+    box.setAttribute('role', 'status'); box.setAttribute('aria-live', 'polite');
+    var ic = document.createElement('span'); ic.className = 'ws-rf-i'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = '📍';
+    txt = document.createElement('span'); txt.className = 'ws-rf-t';
+    go = document.createElement('button'); go.type = 'button'; go.className = 'ws-rf-go';
+    var x = document.createElement('button'); x.type = 'button'; x.className = 'ws-rf-x'; x.setAttribute('aria-label', '닫기'); x.textContent = '✕';
+    x.addEventListener('click', hide);
+    box.appendChild(ic); box.appendChild(txt); box.appendChild(go); box.appendChild(x);
+    document.body.appendChild(box);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !box.hidden) hide(); });
+  }
+  function put(parts){
+    txt.textContent = '';
+    parts.forEach(function(p){ var e = document.createElement(p[1] ? 'b' : 'span'); e.textContent = p[0]; txt.appendChild(e); });
+  }
+  function hide(){ if (box) box.hidden = true; clearTimeout(timer); }
+  function flash(el){
+    el.classList.add('ws-rf-flash');
+    setTimeout(function(){ el.classList.remove('ws-rf-flash'); }, 2000);
+  }
+  function show(){
+    if (!root().querySelector(FIELDS)) return;  /* 쓸 칸이 하나도 없는 판(옛 10·11차시 등)엔 «다 채웠어»가 거짓말이 된다 */
+    var r = where(); mk();
+    var sn = stageName(r.stage), place = sn ? sn + (r.el ? ' · ' : '') : '';
+    var target = r.el || r.target;
+    if (r.done){
+      put(sn ? [['다시 왔네. '], [sn, 1], [' 칸은 다 채웠어 — 지금은 선생님 설명을 같이 듣자.']]
+             : [['다시 왔네. 빈칸은 다 채웠어 — 지금은 선생님 설명을 같이 듣자.']]);
+      go.textContent = sn ? sn + ' 보기' : '';
+    } else {
+      put([['다시 왔네. ' + (r.first ? '첫 칸은 ' : r.gap ? '아직 빈 곳은 ' : '하던 곳은 ')], [place + fieldName(r.el), 1], ['이야.']]);
+      go.textContent = '그 칸으로';
+    }
+    go.hidden = !target;
+    go.onclick = function(){
+      hide(); if (!target) return;
+      target.scrollIntoView({ block: 'center', behavior: (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth' });
+      if (target.matches && target.matches(FIELDS)) { try { target.focus({ preventScroll: true }); } catch (e) { target.focus(); } }
+      flash(target);
+    };
+    box.hidden = false;
+    clearTimeout(timer); timer = setTimeout(hide, 20000);
+  }
+  window.__wsRefocusShow = show;  /* 시험용 — 수업 동작에는 쓰지 않는다 */
+})();
 </script>
 <script id="ws-design-v2-js">(function(){
 var C=document.querySelector('.container'); if(!C) return;
@@ -2973,142 +3157,5 @@ refresh();
 })();
 </script>
 <script type="module" src="ws3d/holo-ui.js"></script>
-<script id="ws-refocus-js">/* 다른 창에 갔다 오면 «하던 곳» 안내 (2026-11-10 천대현 «다른 창, 게임, 영상» · «(가)가 가장 현실적»)
-   - 아무것도 저장·전송하지 않는다. 다녀온 횟수·시각을 세어 남기지도 않는다.
-     위성 딥리서치(2026-11-10 seatwork-engagement): 이탈을 이름과 묶어 저장·전송하면 개인정보 보호법 최소 수집에 걸리고,
-     감지·경고가 학습을 올린 실험도 없다. 그래서 학생 본인 화면에 «어디로 돌아오면 되는지»만 알려 준다.
-   - 15초 넘게 비웠다가 돌아올 때만 화면 아래에 한 줄을 띄운다. 막지도 꾸짖지도 않는다.
-   - 다른 창으로 간 것은 막을 수 없고, 창을 일부만 가린 경우는 못 알아챌 수 있다(visibilitychange 한계). */
-(function(){
-  var MIN = (window.WS_REFOCUS_MIN_MS != null) ? window.WS_REFOCUS_MIN_MS : 15000;
-  var FIELDS = '.blank-input,.essay-input,textarea';
-  var CIRC = '①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖㉗㉘㉙㉚';
-  var last = null, leftAt = 0, box = null, txt = null, go = null, timer = 0;
-  function root(){ return document.querySelector('.container') || document.body; }
-
-  document.addEventListener('focusin', function(e){ var t = e.target; if (t && t.matches && t.matches(FIELDS)) last = t; }, true);
-  document.addEventListener('click', function(e){
-    var t = e.target && e.target.closest && e.target.closest('.ox-btn,.choice-btn,.pk-b');
-    if (t) last = t;
-  }, true);
-
-  /* 학습지가 새 창으로 보낸 것(거리뷰·출처 모음 등 target=_blank 링크)은 딴 데 간 것이 아니다 — 누른 직후의 이탈은 세지 않는다(사회 확인 ℹ️2) */
-  var linkAt = 0, viaLink = false;
-  document.addEventListener('click', function(e){
-    var a = e.target && e.target.closest && e.target.closest('a[target="_blank"],a[href^="http"]');
-    if (a) linkAt = Date.now();
-  }, true);
-  function away(){ if (!leftAt){ leftAt = Date.now(); viaLink = (leftAt - linkAt) < 2000; } }
-  function back(){ if (!leftAt) return; var d = Date.now() - leftAt, v = viaLink; leftAt = 0; viaLink = false; if (d >= MIN && !v) show(); }
-  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') away(); else back(); });
-  /* 같은 화면에서 다른 프로그램(게임 창 등)으로 옮겨 가면 창이 가려지지 않아도 blur가 온다. 학습지 안 iframe(영상·3D)으로 간 것은 뺀다. */
-  window.addEventListener('blur', function(){ setTimeout(function(){
-    var a = document.activeElement; if (a && a.tagName === 'IFRAME') return;
-    if (!document.hasFocus()) away();
-  }, 0); });
-  window.addEventListener('focus', back);
-
-  function stageOf(node){
-    var hs = root().querySelectorAll('h2'), s = null;
-    for (var i = 0; i < hs.length; i++){
-      if (hs[i].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING) s = hs[i]; else break;
-    }
-    return s;
-  }
-  function stageName(h){
-    if (!h) return '';
-    /* 디자인 v2는 «N단계»를 h2 앞 띠(.v2-kicker)로 옮긴다 — 띠부터 본다 */
-    var k = h.previousElementSibling, kt = (k && /v2-kicker/.test(k.className)) ? k.textContent : '';
-    var t = h.textContent.replace(/\s+/g, ' ').trim(), m = (kt + ' ' + t).match(/(\d+)\s*단계|STEP\s*0*(\d+)/i);
-    if (m) return (m[1] || m[2]) + '단계';
-    t = t.replace(/^[^0-9A-Za-z가-힣]+/, '');
-    return t.length > 14 ? t.slice(0, 14) + '…' : t;
-  }
-  function fieldName(el){
-    if (!el) return '';
-    if (el.classList.contains('blank-input') && !el.classList.contains('activity-input')){
-      /* 학생 눈에 보이는 번호는 칸 바로 앞 동그라미 글자다 — 옛 1학기 몇 편은 data-id와 어긋난다(메인 확인 ℹ️1) */
-      var p = el.previousSibling, pc = (p && p.nodeType === 3) ? p.nodeValue.replace(/\s+$/, '').slice(-1) : '';
-      if (pc && CIRC.indexOf(pc) >= 0) return pc + ' 칸';
-      var n = parseInt(el.dataset.id, 10); return (n >= 1 && n <= 30) ? CIRC.charAt(n - 1) + ' 칸' : '빈칸';
-    }
-    if (el.classList.contains('essay-input') || el.tagName === 'TEXTAREA') return '서술 칸';
-    if (el.classList.contains('activity-input')) return '활동 칸';
-    if (el.closest('.ox-group')) return 'OX';
-    if (el.closest('.ws-pick,.pk-card')) return '카드 고르기';
-    return '';
-  }
-  function isEmpty(el){ return el.matches && el.matches(FIELDS) && !(el.value && el.value.trim()); }
-  function fieldsIn(stage){
-    /* 접힌 칸·넘김 카드 안 칸도 센다 — 안 보인다고 빼면 «다 채웠어»가 일찍 뜬다 */
-    return [].slice.call(root().querySelectorAll(FIELDS)).filter(function(f){ return stageOf(f) === stage; });
-  }
-
-  /* 어디로 돌아오면 되나: 하던 칸이 비었으면 그 칸 → 그 단계의 다음 빈칸 → 단계를 다 채웠으면 «설명 같이 듣자» */
-  function where(){
-    var t = (last && document.contains(last)) ? last : null;
-    if (!t){
-      var first = [].slice.call(root().querySelectorAll(FIELDS)).filter(isEmpty)[0];
-      if (!first) return { done: true, stage: null, target: null };
-      return { el: first, stage: stageOf(first), first: true };
-    }
-    if (isEmpty(t)) return { el: t, stage: stageOf(t) };
-    /* 쓰던 칸 뒤의 빈칸 먼저, 없으면 그 단계 앞쪽 빈칸(사회 확인 ℹ️1 — «하던 곳»은 쓰던 자리 다음이어야 말이 맞다) */
-    var st = stageOf(t), inSt = fieldsIn(st);
-    var after = inSt.filter(function(f){ return (t.compareDocumentPosition(f) & Node.DOCUMENT_POSITION_FOLLOWING) && isEmpty(f); });
-    var rest = after.length ? after : inSt.filter(isEmpty);
-    /* 앞쪽으로 되돌아가는 칸은 «하던 곳»이 아니라 «아직 빈 곳»이다(메인 확인 ℹ️2) */
-    if (rest.length) return { el: rest[0], stage: st, gap: !after.length };
-    return { done: true, stage: st, target: st };
-  }
-
-  function mk(){
-    if (box) return;
-    box = document.createElement('div'); box.className = 'ws-rf'; box.hidden = true;
-    box.setAttribute('role', 'status'); box.setAttribute('aria-live', 'polite');
-    var ic = document.createElement('span'); ic.className = 'ws-rf-i'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = '📍';
-    txt = document.createElement('span'); txt.className = 'ws-rf-t';
-    go = document.createElement('button'); go.type = 'button'; go.className = 'ws-rf-go';
-    var x = document.createElement('button'); x.type = 'button'; x.className = 'ws-rf-x'; x.setAttribute('aria-label', '닫기'); x.textContent = '✕';
-    x.addEventListener('click', hide);
-    box.appendChild(ic); box.appendChild(txt); box.appendChild(go); box.appendChild(x);
-    document.body.appendChild(box);
-    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !box.hidden) hide(); });
-  }
-  function put(parts){
-    txt.textContent = '';
-    parts.forEach(function(p){ var e = document.createElement(p[1] ? 'b' : 'span'); e.textContent = p[0]; txt.appendChild(e); });
-  }
-  function hide(){ if (box) box.hidden = true; clearTimeout(timer); }
-  function flash(el){
-    el.classList.add('ws-rf-flash');
-    setTimeout(function(){ el.classList.remove('ws-rf-flash'); }, 2000);
-  }
-  function show(){
-    if (!root().querySelector(FIELDS)) return;  /* 쓸 칸이 하나도 없는 판(옛 10·11차시 등)엔 «다 채웠어»가 거짓말이 된다 */
-    var r = where(); mk();
-    var sn = stageName(r.stage), place = sn ? sn + (r.el ? ' · ' : '') : '';
-    var target = r.el || r.target;
-    if (r.done){
-      put(sn ? [['다시 왔네. '], [sn, 1], [' 칸은 다 채웠어 — 지금은 선생님 설명을 같이 듣자.']]
-             : [['다시 왔네. 빈칸은 다 채웠어 — 지금은 선생님 설명을 같이 듣자.']]);
-      go.textContent = sn ? sn + ' 보기' : '';
-    } else {
-      put([['다시 왔네. ' + (r.first ? '첫 칸은 ' : r.gap ? '아직 빈 곳은 ' : '하던 곳은 ')], [place + fieldName(r.el), 1], ['이야.']]);
-      go.textContent = '그 칸으로';
-    }
-    go.hidden = !target;
-    go.onclick = function(){
-      hide(); if (!target) return;
-      target.scrollIntoView({ block: 'center', behavior: (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth' });
-      if (target.matches && target.matches(FIELDS)) { try { target.focus({ preventScroll: true }); } catch (e) { target.focus(); } }
-      flash(target);
-    };
-    box.hidden = false;
-    clearTimeout(timer); timer = setTimeout(hide, 20000);
-  }
-  window.__wsRefocusShow = show;  /* 시험용 — 수업 동작에는 쓰지 않는다 */
-})();
-</script>
 </body>
 </html>
