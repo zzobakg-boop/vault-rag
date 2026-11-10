@@ -1202,6 +1202,10 @@ p.v2-q::before{content:"생각해 보기";display:block;font-size:.7rem;font-wei
 /* 빈칸 */
 input.blank-input:not(.activity-input){min-height:34px;font-size:1rem!important;font-weight:700;border:0!important;border-bottom:2.5px solid var(--step)!important;background:#f3f7ff!important;border-radius:6px 6px 0 0!important;padding:2px 8px!important;color:var(--step)!important;vertical-align:baseline}
 input.blank-input:focus{outline:3px solid rgba(47,111,214,.25)!important;outline-offset:1px}
+/* 2026-11-10 채점 색 — 위 v2 빈칸 줄이 !important라 .correct/.wrong 색을 덮었다(천대현 «틀린 부분이 빨간색으로 안 바뀜») */
+input.blank-input.correct:not(.activity-input){border-bottom-color:#34c759!important;background:#e8f8e8!important;color:#1a7a2e!important}
+input.blank-input.wrong:not(.activity-input){border-bottom-color:#ff3b30!important;background:#fff0f0!important;color:#c62828!important}
+input.blank-input.no-score.wrong:not(.activity-input){border-bottom-color:#ff9500!important;color:#a35200!important}
 .activity-input,textarea{font-size:1rem!important;line-height:1.7!important}
 .ws-fold{border-radius:14px!important}
 .ws-fold>summary{font-size:.95rem!important}
@@ -1449,7 +1453,7 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 .lm-lg-ul b{white-space:nowrap}
 .lm-lg-ul span{color:#4b5563}
 .lm-lg-narrow{display:none;margin:6px 0 0;font-size:.8rem;color:#6b7280}
-@media (max-width:1099.98px){.lm-lg-narrow{display:block}}
+@media (max-width:1279.98px){.lm-lg-narrow{display:block}}
 .lm-live{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @keyframes lm-in{from{opacity:0}to{opacity:1}}
 .lm-anim{animation:lm-in .25s ease-out}
@@ -1575,25 +1579,72 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-9" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
-<blockquote>🎙️ 네가 광주역 관광 안내소에서 외국 친구를 맞는 안내원이라고 해 보자. 광주를 한마디로 기억하게 할 <strong>별명</strong>을 지어 줄 거야. 아래 문 두 개 가운데 하나를 골라 들어가 봐. 정답은 없어.</blockquote>
-<br>
-<div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.0fr)"><div class="c2-a">
-<p><strong>🚪 문 A — 눈에 보이는 매력으로</strong></p>
-<p>장소·건물·경치처럼 사진으로 찍을 수 있는 광주의 매력으로 별명을 짓는다.</p>
-</div><div class="c2-b">
-<p><strong>🚪 문 B — 눈에 보이지 않는 매력으로</strong></p>
-<p>축제·이웃·사람들이 고장을 아끼는 마음처럼 겪어 봐야 아는 광주의 매력으로 별명을 짓는다.</p>
-</div></div>
-<br>
-<p><strong>네 덩어리로 쓰면 막히지 않는다.</strong> 시작 말은 그대로 써도, 바꿔 써도, 안 써도 된다.</p>
-<p>1. <strong>별명</strong>을 지어 보자. — <em>"나는 광주를 '…'라고 소개하고 싶다."</em></p>
-<p>2. 교과서 <strong>네 매력 요소</strong> 가운데 어디에 들어갈까? — <em>"이 별명은 … 요소에 들어간다."</em></p>
-<p>3. 그렇게 본 <strong>까닭</strong>을 광주의 사실(장소·사건·특징)로 들자. — <em>"왜냐하면 광주에는 …이 있기 때문이다."</em></p>
-<p>4. <strong>어떻게 알릴지</strong> 덧붙이며 끝내자. — <em>"나는 …을 만들어 …에게 알리겠다."</em></p>
-<br>
-<blockquote>📎 끌어올 수 있는 사실과 사례</blockquote>
-<blockquote>- 문 A — 국립아시아문화전당(1단계 사진·4단계) · 2단계 여덟 도시 카드 · 순천만 갈대밭(4단계)</blockquote>
-<blockquote>- 문 B — 5·18 민주화 운동 기록물 유네스코 세계기록유산(2011년) · 순천만 둘레 농민들이 철새 먹이로 남긴 곡식(3단계 카드) · 내가 가 본 광주의 장소나 먹어 본 음식</blockquote>
+<style id="ws-think-css">.ws-think{margin:4px 0 6px}
+.wt-role{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #cfe5d5;border-radius:14px;padding:14px 16px}
+.wt-role-badge{flex:none;background:#2f8f55;color:#fff;font-weight:800;border-radius:999px;padding:3px 12px;font-size:.8em;line-height:1.6;white-space:nowrap}
+.wt-role-t{font-weight:800;font-size:1.04em;line-height:1.5}
+.wt-role-d{margin:3px 0 0;line-height:1.7;color:#374151}
+.wt-step{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:20px 0 9px;font-weight:800;color:#1f5f3a}
+.wt-step .n{flex:none;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#2f8f55;color:#fff;font-size:.88em}
+.wt-step small{font-weight:500;color:#4b6455;font-size:.86em}
+.wt-doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.wt-door{background:#fff;border:1.5px solid #cfe5d5;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s,box-shadow .15s}
+.wt-door img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#e9efe9}
+.wt-cap{display:block;font-size:.76em;line-height:1.45;color:#64748b;padding:5px 14px 0}
+.wt-door-b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.wt-door-h{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.wt-door-tag{font-size:.78em;font-weight:800;color:#2f8f55;letter-spacing:.04em}
+.wt-pick{font:inherit;font-size:.8em;font-weight:700;border:1.5px solid #2f8f55;color:#2f8f55;background:#fff;border-radius:999px;padding:3px 11px;cursor:pointer;white-space:nowrap}
+.wt-door.on{border-color:#2f8f55;box-shadow:0 0 0 3px rgba(47,143,85,.18)}
+.wt-door.on .wt-pick{background:#2f8f55;color:#fff}
+.wt-door-t{margin:0;font-size:1.04em;font-weight:800;line-height:1.45}
+.wt-door-d{margin:0;font-size:.93em;line-height:1.65;color:#374151}
+.wt-ev{margin-top:auto;padding-top:8px;border-top:1px dashed #d6e6da}
+.wt-ev-h{font-size:.76em;font-weight:700;color:#64748b;margin:0 0 6px}
+.wt-chips{display:flex;flex-wrap:wrap;gap:6px}
+.wt-ex-h{margin-top:9px}
+.wt-ex .wt-chip{background:#fff;border-style:dashed}
+.wt-chip{font:inherit;font-size:.82em;line-height:1.45;background:#f1f5f9;border:1px solid #d5dde6;border-radius:999px;padding:3px 10px;color:#334155;text-align:left}
+button.wt-chip{cursor:pointer}
+button.wt-chip::after{content:' ↗';color:#2f8f55;font-weight:700}
+button.wt-chip:hover{background:#e7f2ea;border-color:#9fcdb0}
+.wt-write{display:grid;grid-template-columns:repeat(var(--wt-n,4),minmax(0,1fr));gap:10px}
+.wt-w{background:#fff;border:1px solid #cfe5d5;border-radius:12px;padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px}
+.wt-w .k{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#e3f1e7;color:#2f8f55;font-weight:800;font-size:.8em}
+.wt-w b{font-size:1em}
+.wt-w .q{font-size:.86em;line-height:1.55;color:#4b5563}
+.wt-w .s{margin-top:auto;font-size:.86em;line-height:1.55;font-style:italic;background:#f6faf7;border-radius:8px;padding:6px 8px;color:#1f3d2b}
+.wt-pick:focus-visible,.wt-chip:focus-visible{outline:2px solid #2f8f55;outline-offset:2px}
+.wt-flash{animation:wtf 2s ease-out}
+@keyframes wtf{0%,55%{box-shadow:0 0 0 5px rgba(245,158,11,.6)}100%{box-shadow:0 0 0 0 rgba(245,158,11,0)}}
+@media (max-width:860px){.wt-write{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.wt-doors{grid-template-columns:1fr}.wt-step small{flex-basis:100%;padding-left:34px}}
+@media (max-width:430px){.wt-write{grid-template-columns:1fr}.wt-role{flex-direction:column;gap:6px}}
+@media (prefers-reduced-motion:reduce){.wt-flash{animation:none;outline:3px solid #f59e0b}.wt-door{transition:none}}
+@media print{.wt-door,.wt-w{break-inside:avoid}.wt-pick,button.wt-chip::after{display:none}}</style><div class="ws-think"><div class="wt-role"><span class="wt-role-badge">🎙️ 오늘 너는</span><div><div class="wt-role-t">광주역 관광 안내소에서 외국 친구를 맞는 안내원</div><div class="wt-role-d">친구가 광주를 한마디로 기억하게 할 <strong>별명</strong>을 지어 주자. 아래 문 두 개 가운데 하나를 골라 들어간다.</div></div></div><div class="wt-step"><span class="n">1</span>문을 하나 고르자 <small>정답은 없다 · 근거를 누르면 학습지의 그 자리로 간다</small></div><div class="wt-doors"><div class="wt-door"><img src="images/8-1_gwangju_acc.jpg" alt="국립아시아문화전당 일대(2015) — 1단계에서 본 사진" loading="lazy"><span class="wt-cap">국립아시아문화전당 일대(2015) — 1단계에서 본 사진</span><div class="wt-door-b"><div class="wt-door-h"><span class="wt-door-tag">🚪 문 A</span><button type="button" class="wt-pick" aria-pressed="false">이 문으로</button></div><div class="wt-door-t">눈에 보이는 매력으로</div><div class="wt-door-d">장소·건물·경치처럼 사진으로 찍을 수 있는 광주의 매력으로 별명을 짓는다.</div><div class="wt-ev"><div class="wt-ev-h">📎 끌어올 수 있는 근거</div><div class="wt-chips"><button type="button" class="wt-chip" data-go="국립아시아문화전당 일대">국립아시아문화전당(1단계 사진)</button><span class="wt-chip">내가 아는 광주의 장소·건물·경치</span></div><div class="wt-ev-h wt-ex-h">🔎 같은 종류, 다른 곳의 예</div><div class="wt-chips wt-ex"><button type="button" class="wt-chip" data-go="교과서 지도에 나온 도시 여덟 곳">2단계 여덟 도시 카드</button><button type="button" class="wt-chip" data-go="순천만 갈대밭">순천만 갈대밭(4단계)</button></div></div></div></div><div class="wt-door"><img src="images/8-1_think_square_festival.jpg" alt="5·18 민주광장의 음식·예술 축제(2014년 10월) — 1980년 5·18의 광장에 지금은 사람들이 모인다" loading="lazy"><span class="wt-cap">5·18 민주광장의 음식·예술 축제(2014년 10월) — 1980년 5·18의 광장에 지금은 사람들이 모인다</span><div class="wt-door-b"><div class="wt-door-h"><span class="wt-door-tag">🚪 문 B</span><button type="button" class="wt-pick" aria-pressed="false">이 문으로</button></div><div class="wt-door-t">눈에 보이지 않는 매력으로</div><div class="wt-door-d">축제·이웃·사람들이 고장을 아끼는 마음처럼 겪어 봐야 아는 광주의 매력으로 별명을 짓는다.</div><div class="wt-ev"><div class="wt-ev-h">📎 끌어올 수 있는 근거</div><div class="wt-chips"><button type="button" class="wt-chip" data-go="5·18 민주화 운동의 기록물">5·18 기록물 세계기록유산(4단계)</button><span class="wt-chip">내가 가 본 광주의 축제나 먹어 본 음식</span></div><div class="wt-ev-h wt-ex-h">🔎 같은 종류, 다른 곳의 예</div><div class="wt-chips wt-ex"><button type="button" class="wt-chip" data-go="순천만 둘레 농민들">철새에게 곡식을 남긴 순천만 농민(3단계 카드)</button></div></div></div></div></div><div class="wt-step"><span class="n">2</span>네 덩어리로 쓰자 <small>시작 말은 그대로 써도, 바꿔 써도, 안 써도 된다</small></div><div class="wt-write" style="--wt-n:4"><div class="wt-w"><span class="k">1</span><b>별명</b><span class="q">별명을 지어 보자.</span><span class="s">나는 광주를 '…'라고 소개하고 싶다.</span></div><div class="wt-w"><span class="k">2</span><b>네 매력 요소</b><span class="q">교과서 네 매력 요소 가운데 어디에 들어갈까?</span><span class="s">이 별명은 … 요소에 들어간다.</span></div><div class="wt-w"><span class="k">3</span><b>까닭</b><span class="q">그렇게 본 까닭을 광주의 사실(장소·사건·특징)로 들자.</span><span class="s">왜냐하면 광주에는 …이 있기 때문이다.</span></div><div class="wt-w"><span class="k">4</span><b>알리기</b><span class="q">어떻게 알릴지 덧붙이며 끝내자.</span><span class="s">나는 …을 만들어 …에게 알리겠다.</span></div></div><div class="wt-step"><span class="n">3</span>아래 칸에 네 덩어리를 이어서 쓰자</div></div><script id="ws-think-js">(function(){
+var RM=window.matchMedia('(prefers-reduced-motion:reduce)');
+/* 글을 품은 가장 안쪽 요소 — 글자 조각으로 찾으면 다른 장치(개념 선 단추 등)가 글을 쪼갠 자리를 못 찾는다 */
+function find(t){ var C=document.querySelector('.container')||document.body, all=C.getElementsByTagName('*');
+  for(var i=0;i<all.length;i++){ var e=all[i];
+    if(e.closest('script,style,.ws-think,.lm-layer,.lm-sheet,.gl-layer,.lm-legend')) continue;
+    if((e.textContent||'').indexOf(t)<0) continue;
+    var deeper=false; for(var k=0;k<e.children.length;k++){ if((e.children[k].textContent||'').indexOf(t)>=0){ deeper=true; break; } }
+    if(!deeper) return e; }
+  return null; }
+[].forEach.call(document.querySelectorAll('.ws-think'),function(box){
+  var doors=[].slice.call(box.querySelectorAll('.wt-door'));
+  doors.forEach(function(d){ var b=d.querySelector('.wt-pick'); if(!b) return;
+    b.addEventListener('click',function(){ var on=!d.classList.contains('on');
+      doors.forEach(function(x){ x.classList.remove('on'); var y=x.querySelector('.wt-pick'); if(y){ y.setAttribute('aria-pressed','false'); y.textContent='이 문으로'; } });
+      if(on){ d.classList.add('on'); b.setAttribute('aria-pressed','true'); b.textContent='이 문 ✓'; } }); });
+  [].forEach.call(box.querySelectorAll('button.wt-chip[data-go]'),function(c){
+    c.addEventListener('click',function(){ var el=find(c.dataset.go); if(!el) return;
+      var t=el.closest('figure,.pk-card,.ws-pick,.ws-read,li,p,blockquote')||el;
+      t.scrollIntoView({block:'center',inline:'nearest',behavior:RM.matches?'auto':'smooth'});
+      t.classList.remove('wt-flash'); void t.offsetWidth; t.classList.add('wt-flash');
+      setTimeout(function(){ t.classList.remove('wt-flash'); },2100); }); });
+});
+})();</script>
 <textarea class="essay-input" data-id="essay-1" data-label="💭 더 생각해 보기" placeholder="자기 생각을 자유롭게 써 보세요"></textarea>
 <br>
 <blockquote>그림·지도 출처는 <a href="https://github.com/zzobakg-boop/vault-rag/blob/main/worksheets/images/CREDITS.md" target="_blank" rel="noopener">출처 모음</a>에 있다.</blockquote>
@@ -2458,12 +2509,12 @@ layout();
 <script id="lm-js">/* 2026-11-10 천대현(사회② Ⅷ «샘플판에 적용했던 사항들을 8단원 묶음판 전체에»): 개념 관계 선.
    낱말을 누르면 이 학습지 안에서 이어지는 개념·사례가 선으로 나타난다. 원고·입력칸·data-id는 건드리지 않고 화면 글자만 단추로 감싼다.
    선 규칙(색만이 아니라 모양으로도): 한 갈래 실선+빈 삼각형 · 예 둥근 점선+속 찬 원 · 견줘 보기 쇄선+양끝 막대 · 다른 차시 가는 실선+여백 칩.
-   고르기 카드에 닿는 선은 카드를 다 고른 뒤에만 열린다. 1100px 아래(폰)는 선 대신 아래에서 올라오는 목록. 시험판 = 8-5~6 검토판 v7(11/9). */
+   고르기 카드에 닿는 선은 카드를 다 고른 뒤에만 열린다. 1280px 아래이거나 본문 오른쪽에 이름표 칸이 없으면 선 대신 아래에서 올라오는 목록(11/10 역사 학생 눈). 시험판 = 8-5~6 검토판 v7(11/9). */
 (function(){
 'use strict';
 var C=document.querySelector('.container'); if(!C) return;
 var H=document.documentElement, NS='http://www.w3.org/2000/svg';
-var WIDE=window.matchMedia('(min-width:1100px)'), RM=window.matchMedia('(prefers-reduced-motion:reduce)');
+var WIDE=window.matchMedia('(min-width:1280px)'), RM=window.matchMedia('(prefers-reduced-motion:reduce)');
 var COL={sub:'#4f46e5',ex:'#0f7b6c',cmp:'#b45309',xref:'#64748b'};
 var KIND={sub:'한 갈래',ex:'예',cmp:'견줘 보기',xref:'다른 차시'};
 
@@ -2625,7 +2676,7 @@ function setActive(id,focusBack){
   var ls=linesOf(id);
   liveR.textContent=N[id].name+'에서 이어지는 것 '+ls.length+'개: '+ls.map(function(L){return KIND[L.t]+' — '+L.w+' ('+N[other(L)].name+')';}).join(' · ');
   layout();
-  if(!WIDE.matches) keepVisibleAboveSheet(N[id].anchor);
+  if(!lineMode()) keepVisibleAboveSheet(N[id].anchor);
 }
 /* 강조 — toggle(이름, 참거짓)은 이미 그 상태면 아무것도 안 바꾼다(고르기 카드 감시자에 되먹임이 안 생긴다) */
 function marks(on,peers){
@@ -2750,6 +2801,12 @@ function settle(items,obst){
     it.top=top; placed.push({l:it.x,r:it.x+it.w,t:top,b:top+it.h});
   });
 }
+function gutterOK(){   /* 본문 상자 오른쪽에 이름표 칸(230px)이 있어야 선을 그린다 — 없으면 이름표가 본문 글을 덮는다 */
+  var r=0; [].forEach.call(document.querySelectorAll('.v2-sec'),function(c){ var b=c.getBoundingClientRect(); if(b.width) r=Math.max(r,b.right); });
+  if(!r) r=C.getBoundingClientRect().right;
+  return (H.clientWidth-r)>=230;
+}
+function lineMode(){ return WIDE.matches&&gutterOK(); }
 function layout(){
   refresh();
   if(!active) return;
@@ -2757,7 +2814,7 @@ function layout(){
   if(!ls.length){ setActive(null); return; }
   var peers={}; ls.forEach(function(L){ peers[other(L)]=1; });
   marks(active,peers);
-  if(printing||!WIDE.matches){ G.innerHTML=''; Object.keys(tags).forEach(function(k){tags[k].remove();}); tags={};
+  if(printing||!lineMode()){ G.innerHTML=''; Object.keys(tags).forEach(function(k){tags[k].remove();}); tags={};
     Object.keys(groups).forEach(function(k){groups[k].remove();}); groups={};
     off.hidden=true;
     var key=active+':'+ls.map(function(L){return L.i;}).join(',');
@@ -2899,7 +2956,7 @@ off.addEventListener('click',function(){ var b=active&&N[active].btn; setActive(
 document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&active){ var b=N[active].btn; setActive(null,b); } });
 var raf=0; function schedule(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; layout(); }); }
 window.addEventListener('resize',schedule);
-window.addEventListener('scroll',function(){ if(active&&WIDE.matches) schedule(); },{passive:true});
+window.addEventListener('scroll',function(){ if(active&&lineMode()) schedule(); },{passive:true});
 document.addEventListener('scroll',function(e){ if(e.target!==document&&e.target.closest&&e.target.closest('.pk-swipe')) schedule(); },{capture:true,passive:true});
 document.addEventListener('toggle',schedule,true);
 document.addEventListener('load',schedule,true);

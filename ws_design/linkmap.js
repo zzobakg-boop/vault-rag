@@ -1,12 +1,12 @@
 /* 2026-11-10 천대현(사회② Ⅷ «샘플판에 적용했던 사항들을 8단원 묶음판 전체에»): 개념 관계 선.
    낱말을 누르면 이 학습지 안에서 이어지는 개념·사례가 선으로 나타난다. 원고·입력칸·data-id는 건드리지 않고 화면 글자만 단추로 감싼다.
    선 규칙(색만이 아니라 모양으로도): 한 갈래 실선+빈 삼각형 · 예 둥근 점선+속 찬 원 · 견줘 보기 쇄선+양끝 막대 · 다른 차시 가는 실선+여백 칩.
-   고르기 카드에 닿는 선은 카드를 다 고른 뒤에만 열린다. 1100px 아래(폰)는 선 대신 아래에서 올라오는 목록. 시험판 = 8-5~6 검토판 v7(11/9). */
+   고르기 카드에 닿는 선은 카드를 다 고른 뒤에만 열린다. 1280px 아래이거나 본문 오른쪽에 이름표 칸이 없으면 선 대신 아래에서 올라오는 목록(11/10 역사 학생 눈). 시험판 = 8-5~6 검토판 v7(11/9). */
 (function(){
 'use strict';
 var C=document.querySelector('.container'); if(!C) return;
 var H=document.documentElement, NS='http://www.w3.org/2000/svg';
-var WIDE=window.matchMedia('(min-width:1100px)'), RM=window.matchMedia('(prefers-reduced-motion:reduce)');
+var WIDE=window.matchMedia('(min-width:1280px)'), RM=window.matchMedia('(prefers-reduced-motion:reduce)');
 var COL={sub:'#4f46e5',ex:'#0f7b6c',cmp:'#b45309',xref:'#64748b'};
 var KIND={sub:'한 갈래',ex:'예',cmp:'견줘 보기',xref:'다른 차시'};
 
@@ -168,7 +168,7 @@ function setActive(id,focusBack){
   var ls=linesOf(id);
   liveR.textContent=N[id].name+'에서 이어지는 것 '+ls.length+'개: '+ls.map(function(L){return KIND[L.t]+' — '+L.w+' ('+N[other(L)].name+')';}).join(' · ');
   layout();
-  if(!WIDE.matches) keepVisibleAboveSheet(N[id].anchor);
+  if(!lineMode()) keepVisibleAboveSheet(N[id].anchor);
 }
 /* 강조 — toggle(이름, 참거짓)은 이미 그 상태면 아무것도 안 바꾼다(고르기 카드 감시자에 되먹임이 안 생긴다) */
 function marks(on,peers){
@@ -293,6 +293,12 @@ function settle(items,obst){
     it.top=top; placed.push({l:it.x,r:it.x+it.w,t:top,b:top+it.h});
   });
 }
+function gutterOK(){   /* 본문 상자 오른쪽에 이름표 칸(230px)이 있어야 선을 그린다 — 없으면 이름표가 본문 글을 덮는다 */
+  var r=0; [].forEach.call(document.querySelectorAll('.v2-sec'),function(c){ var b=c.getBoundingClientRect(); if(b.width) r=Math.max(r,b.right); });
+  if(!r) r=C.getBoundingClientRect().right;
+  return (H.clientWidth-r)>=230;
+}
+function lineMode(){ return WIDE.matches&&gutterOK(); }
 function layout(){
   refresh();
   if(!active) return;
@@ -300,7 +306,7 @@ function layout(){
   if(!ls.length){ setActive(null); return; }
   var peers={}; ls.forEach(function(L){ peers[other(L)]=1; });
   marks(active,peers);
-  if(printing||!WIDE.matches){ G.innerHTML=''; Object.keys(tags).forEach(function(k){tags[k].remove();}); tags={};
+  if(printing||!lineMode()){ G.innerHTML=''; Object.keys(tags).forEach(function(k){tags[k].remove();}); tags={};
     Object.keys(groups).forEach(function(k){groups[k].remove();}); groups={};
     off.hidden=true;
     var key=active+':'+ls.map(function(L){return L.i;}).join(',');
@@ -442,7 +448,7 @@ off.addEventListener('click',function(){ var b=active&&N[active].btn; setActive(
 document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&active){ var b=N[active].btn; setActive(null,b); } });
 var raf=0; function schedule(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; layout(); }); }
 window.addEventListener('resize',schedule);
-window.addEventListener('scroll',function(){ if(active&&WIDE.matches) schedule(); },{passive:true});
+window.addEventListener('scroll',function(){ if(active&&lineMode()) schedule(); },{passive:true});
 document.addEventListener('scroll',function(e){ if(e.target!==document&&e.target.closest&&e.target.closest('.pk-swipe')) schedule(); },{capture:true,passive:true});
 document.addEventListener('toggle',schedule,true);
 document.addEventListener('load',schedule,true);

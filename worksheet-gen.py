@@ -142,7 +142,7 @@ def extract_table_answers(answer_file):
     # 2026-10-12 사회 7-2: 개념편 파서는 아래 블록 안의 '|' 줄을 표로 세지 않는다(블록 처리기가 먹는다).
     #   정답편 쪽만 세면 표 번호가 밀려 보기 버튼 표가 빈 칸이 된다 — 같은 블록 안은 여기서도 건너뛴다.
     ROWBLOCKS = (':::낱말', ':::좌석표', ':::카드선택', ':::비교', ':::인물선택', ':::연표시소', ':::지도막대',
-                 ':::그래프', ':::모자이크', ':::gallery', ':::플립', ':::항로지도', ':::개념 잇기')
+                 ':::그래프', ':::모자이크', ':::gallery', ':::플립', ':::항로지도', ':::개념 잇기', ':::더 생각')
     in_rb = False
     for line in lines:
         stripped = line.strip()
@@ -315,6 +315,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_seat = False           # 2026-09-07: 좌석 구성 눌러 보기 (:::좌석표 ... :::)
     in_tl = False; tl_head = ''; tl_rows = []; tl_spr = ('', '')   # 2026-09-09: 연표 시소 (:::연표시소 ... :::)
     in_gr = False; gr_head = ''; gr_rows = []   # 2026-09-28: 움직이는 선그래프 (:::그래프 ... :::)
+    in_think = False; think_head = ''; think_rows = []; think_n = 0   # 2026-11-10: 💭 더 생각해 보기 구조판 (:::더 생각 ... :::)
     in_mb = False; mb_head = ''; mb_rows = []   # 2026-10-06: 지도 + 연도 막대 (:::지도막대 ... :::)
     in_rt = False; rt_head = ''; rt_rows = []   # 2026-10-26: 나라·인물별 항로 지도 (:::항로지도 ... :::)
     in_pk = False             # 2026-09-07: 카드 골라 쓰기 (:::카드선택 ... :::)
@@ -356,6 +357,18 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             if stripped.startswith('> ') and not stripped.startswith('> [!'):
                 sr_buf.append(stripped[2:].strip()); continue
             html_parts.append(_sr_flush(sr_buf)); sr_buf = None
+
+        # 💭 더 생각해 보기 구조판 (:::더 생각 | 역할 | 할 일 ... :::) — render_think 주석 참고
+        if stripped.startswith(':::더 생각'):
+            in_think = True; think_head = stripped[len(':::더 생각'):].strip(); think_rows = []
+            continue
+        if in_think:
+            if stripped == ':::':
+                html_parts.append(render_think(think_head, think_rows, first=(think_n == 0)))
+                think_n += 1; in_think = False
+            elif stripped:
+                think_rows.append([x.strip() for x in stripped.strip('|').split('|')])
+            continue
 
         # STEP 0 구간 감지 (채점 제외 영역)
         if re.match(r'^##\s+STEP\s*0', stripped):
@@ -2313,6 +2326,140 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     content = re.sub(r'<table>.*?</table>', _mark_act_table, content, flags=re.S)
 
     return title, content, total_blanks, total_ox
+
+
+# 2026-11-10 천대현(사회② 8-1~2 검토판 댓글) «더 생각해보기 내용이 텍스트만 덕지덕지 붙어 있는 느낌 — 하나의 학습지처럼
+#   통일성 있게 구조화» → 7-6 견본 틀(🎙️ 자리 주기 → 문 A·B → 네 덩어리 시작 말 → 📎 근거 꾸러미)을 세 걸음 카드로 그린다.
+#   opt-in 블록이라 이 블록을 쓴 원고만 바뀐다. 입력칸은 만들지 않는다 — 쓰기 칸은 블록 뒤 <div style="height:…">가 그대로 만든다.
+#     :::더 생각 | 역할 한 줄 | 할 일 한두 문장                      ← 머리(역할 카드)
+#     문 | A | 문 이름 | 설명 | 사진 파일 > 캡션(둘 다 비워도 됨) | 근거1 => 찾을 글 ; 근거2 ; … | 다른 곳 예 칩(선택)
+#        ← «=> 찾을 글»이 있으면 누르면 학습지의 그 자리로. 여섯째 칸은 과제 대상(예: 광주) 근거, 일곱째 칸은 «같은 종류, 다른 곳의 예»
+#          (11/10 역사 학생 눈: 순천 사례가 «광주» 근거처럼 섞여 있었다)
+#     쓰기 | 낱말 | 묻는 말 | 시작 말                                 ← 네 덩어리(셋~다섯)
+#     끝 | 마지막 안내 한 줄                                          ← (선택) ③ 머리 글, 없으면 기본 문구
+_THINK_CSS = """.ws-think{margin:4px 0 6px}
+.wt-role{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #cfe5d5;border-radius:14px;padding:14px 16px}
+.wt-role-badge{flex:none;background:#2f8f55;color:#fff;font-weight:800;border-radius:999px;padding:3px 12px;font-size:.8em;line-height:1.6;white-space:nowrap}
+.wt-role-t{font-weight:800;font-size:1.04em;line-height:1.5}
+.wt-role-d{margin:3px 0 0;line-height:1.7;color:#374151}
+.wt-step{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:20px 0 9px;font-weight:800;color:#1f5f3a}
+.wt-step .n{flex:none;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#2f8f55;color:#fff;font-size:.88em}
+.wt-step small{font-weight:500;color:#4b6455;font-size:.86em}
+.wt-doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.wt-door{background:#fff;border:1.5px solid #cfe5d5;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s,box-shadow .15s}
+.wt-door img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#e9efe9}
+.wt-cap{display:block;font-size:.76em;line-height:1.45;color:#64748b;padding:5px 14px 0}
+.wt-door-b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.wt-door-h{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.wt-door-tag{font-size:.78em;font-weight:800;color:#2f8f55;letter-spacing:.04em}
+.wt-pick{font:inherit;font-size:.8em;font-weight:700;border:1.5px solid #2f8f55;color:#2f8f55;background:#fff;border-radius:999px;padding:3px 11px;cursor:pointer;white-space:nowrap}
+.wt-door.on{border-color:#2f8f55;box-shadow:0 0 0 3px rgba(47,143,85,.18)}
+.wt-door.on .wt-pick{background:#2f8f55;color:#fff}
+.wt-door-t{margin:0;font-size:1.04em;font-weight:800;line-height:1.45}
+.wt-door-d{margin:0;font-size:.93em;line-height:1.65;color:#374151}
+.wt-ev{margin-top:auto;padding-top:8px;border-top:1px dashed #d6e6da}
+.wt-ev-h{font-size:.76em;font-weight:700;color:#64748b;margin:0 0 6px}
+.wt-chips{display:flex;flex-wrap:wrap;gap:6px}
+.wt-ex-h{margin-top:9px}
+.wt-ex .wt-chip{background:#fff;border-style:dashed}
+.wt-chip{font:inherit;font-size:.82em;line-height:1.45;background:#f1f5f9;border:1px solid #d5dde6;border-radius:999px;padding:3px 10px;color:#334155;text-align:left}
+button.wt-chip{cursor:pointer}
+button.wt-chip::after{content:' ↗';color:#2f8f55;font-weight:700}
+button.wt-chip:hover{background:#e7f2ea;border-color:#9fcdb0}
+.wt-write{display:grid;grid-template-columns:repeat(var(--wt-n,4),minmax(0,1fr));gap:10px}
+.wt-w{background:#fff;border:1px solid #cfe5d5;border-radius:12px;padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px}
+.wt-w .k{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#e3f1e7;color:#2f8f55;font-weight:800;font-size:.8em}
+.wt-w b{font-size:1em}
+.wt-w .q{font-size:.86em;line-height:1.55;color:#4b5563}
+.wt-w .s{margin-top:auto;font-size:.86em;line-height:1.55;font-style:italic;background:#f6faf7;border-radius:8px;padding:6px 8px;color:#1f3d2b}
+.wt-pick:focus-visible,.wt-chip:focus-visible{outline:2px solid #2f8f55;outline-offset:2px}
+.wt-flash{animation:wtf 2s ease-out}
+@keyframes wtf{0%,55%{box-shadow:0 0 0 5px rgba(245,158,11,.6)}100%{box-shadow:0 0 0 0 rgba(245,158,11,0)}}
+@media (max-width:860px){.wt-write{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.wt-doors{grid-template-columns:1fr}.wt-step small{flex-basis:100%;padding-left:34px}}
+@media (max-width:430px){.wt-write{grid-template-columns:1fr}.wt-role{flex-direction:column;gap:6px}}
+@media (prefers-reduced-motion:reduce){.wt-flash{animation:none;outline:3px solid #f59e0b}.wt-door{transition:none}}
+@media print{.wt-door,.wt-w{break-inside:avoid}.wt-pick,button.wt-chip::after{display:none}}"""
+_THINK_JS = """(function(){
+var RM=window.matchMedia('(prefers-reduced-motion:reduce)');
+/* 글을 품은 가장 안쪽 요소 — 글자 조각으로 찾으면 다른 장치(개념 선 단추 등)가 글을 쪼갠 자리를 못 찾는다 */
+function find(t){ var C=document.querySelector('.container')||document.body, all=C.getElementsByTagName('*');
+  for(var i=0;i<all.length;i++){ var e=all[i];
+    if(e.closest('script,style,.ws-think,.lm-layer,.lm-sheet,.gl-layer,.lm-legend')) continue;
+    if((e.textContent||'').indexOf(t)<0) continue;
+    var deeper=false; for(var k=0;k<e.children.length;k++){ if((e.children[k].textContent||'').indexOf(t)>=0){ deeper=true; break; } }
+    if(!deeper) return e; }
+  return null; }
+[].forEach.call(document.querySelectorAll('.ws-think'),function(box){
+  var doors=[].slice.call(box.querySelectorAll('.wt-door'));
+  doors.forEach(function(d){ var b=d.querySelector('.wt-pick'); if(!b) return;
+    b.addEventListener('click',function(){ var on=!d.classList.contains('on');
+      doors.forEach(function(x){ x.classList.remove('on'); var y=x.querySelector('.wt-pick'); if(y){ y.setAttribute('aria-pressed','false'); y.textContent='이 문으로'; } });
+      if(on){ d.classList.add('on'); b.setAttribute('aria-pressed','true'); b.textContent='이 문 ✓'; } }); });
+  [].forEach.call(box.querySelectorAll('button.wt-chip[data-go]'),function(c){
+    c.addEventListener('click',function(){ var el=find(c.dataset.go); if(!el) return;
+      var t=el.closest('figure,.pk-card,.ws-pick,.ws-read,li,p,blockquote')||el;
+      t.scrollIntoView({block:'center',inline:'nearest',behavior:RM.matches?'auto':'smooth'});
+      t.classList.remove('wt-flash'); void t.offsetWidth; t.classList.add('wt-flash');
+      setTimeout(function(){ t.classList.remove('wt-flash'); },2100); }); });
+});
+})();"""
+
+
+def render_think(head, rows, first=True):
+    """:::더 생각 블록 → 세 걸음 카드(역할 · ① 문 고르기 · ② 네 덩어리 · ③ 쓰기 안내). first=True면 CSS·JS를 한 번 싣는다."""
+    from html import escape as _e
+    role, _, task = head.lstrip('|').partition('|')
+    doors = [r for r in rows if r and r[0] == '문']
+    writes = [r for r in rows if r and r[0] == '쓰기']
+    end = next((r[1] for r in rows if r and r[0] == '끝' and len(r) > 1), '')
+    o = []
+    if first:
+        o.append('<style id="ws-think-css">' + _THINK_CSS + '</style>')
+    o.append('<div class="ws-think">')
+    o.append(f'<div class="wt-role"><span class="wt-role-badge">🎙️ 오늘 너는</span><div><div class="wt-role-t">{inline(role.strip())}</div>'
+             + (f'<div class="wt-role-d">{inline(task.strip())}</div>' if task.strip() else '') + '</div></div>')
+    if doors:
+        o.append('<div class="wt-step"><span class="n">1</span>문을 하나 고르자 <small>정답은 없다 · 근거를 누르면 학습지의 그 자리로 간다</small></div><div class="wt-doors">')
+        for r in doors:
+            r = r + [''] * (7 - len(r))
+            _, key, name, desc, img, ev, ex = r[:7]
+            img, _, cap = img.partition('>')
+            img = img.strip(); cap = cap.strip()
+            src = img if ('/' in img or not img) else 'images/' + img
+            def _chips(cell):
+                out = []
+                for c in [x.strip() for x in cell.split(';') if x.strip()]:
+                    lab, _, go = c.partition('=>')
+                    if go.strip():
+                        out.append(f'<button type="button" class="wt-chip" data-go="{_e(go.strip())}">{inline(lab.strip())}</button>')
+                    else:
+                        out.append(f'<span class="wt-chip">{inline(lab.strip())}</span>')
+                return ''.join(out)
+            chips = _chips(ev); exs = _chips(ex)
+            o.append('<div class="wt-door">' + (f'<img src="{_e(src)}" alt="{_e(cap or name)}" loading="lazy">' if img else '')
+                     + (f'<span class="wt-cap">{inline(cap)}</span>' if img and cap else '')
+                     + f'<div class="wt-door-b"><div class="wt-door-h"><span class="wt-door-tag">🚪 문 {_e(key)}</span>'
+                     f'<button type="button" class="wt-pick" aria-pressed="false">이 문으로</button></div>'
+                     f'<div class="wt-door-t">{inline(name)}</div><div class="wt-door-d">{inline(desc)}</div>'
+                     + ((f'<div class="wt-ev">' + (f'<div class="wt-ev-h">📎 끌어올 수 있는 근거</div><div class="wt-chips">{chips}</div>' if chips else '')
+                         + (f'<div class="wt-ev-h wt-ex-h">🔎 같은 종류, 다른 곳의 예</div><div class="wt-chips wt-ex">{exs}</div>' if exs else '') + '</div>') if (chips or exs) else '')
+                     + '</div></div>')
+        o.append('</div>')
+    if writes:
+        o.append(f'<div class="wt-step"><span class="n">{2 if doors else 1}</span>네 덩어리로 쓰자 <small>시작 말은 그대로 써도, 바꿔 써도, 안 써도 된다</small></div>')
+        o.append(f'<div class="wt-write" style="--wt-n:{min(len(writes), 4)}">')
+        for i, r in enumerate(writes, 1):
+            r = r + [''] * (4 - len(r))
+            o.append(f'<div class="wt-w"><span class="k">{i}</span><b>{inline(r[1])}</b><span class="q">{inline(r[2])}</span>'
+                     + (f'<span class="s">{inline(r[3])}</span>' if r[3] else '') + '</div>')
+        o.append('</div>')
+    n3 = (2 if doors else 1) + (1 if writes else 0)
+    o.append(f'<div class="wt-step"><span class="n">{n3}</span>{inline(end) if end else "아래 칸에 네 덩어리를 이어서 쓰자"}</div>')
+    o.append('</div>')
+    if first:
+        o.append('<script id="ws-think-js">' + _THINK_JS + '</script>')
+    return ''.join(o)
 
 
 def inline(text):

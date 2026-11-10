@@ -1621,6 +1621,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 8-1_card_paris.jpg | 파리 | Julie Anne Workman · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-1_card_zurich.jpg | 취리히 | Daniel Kraft · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-1_gwangju_acc.jpg | 국립아시아문화전당 일대, 광주광역시 동구, 2015 (8-7에서도 씀) | Lain4lest · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-1_think_square_festival.jpg | 5·18 민주광장의 음식·예술 축제(광주 문화의 달), 광주광역시 동구, 2014-10-17 — 8-1~2 더 생각해 보기 문 B (Month of Culture Gwangju 01 (15368448828).jpg · 960px) | Republic of Korea(Korea.net, Flickr) · CC BY-SA 2.0 · Wikimedia Commons |
 | 8-1_hero_nairobi.jpg | 나이로비 국립 공원의 기린과 도심 스카이라인, 2020 | Alexmbogo · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-2_card_athens.jpg | 아테네 아크로폴리스 | A.Savin · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-2_card_bangkok.jpg | 담는사두악 수상 시장 | Mr.Niwat Tantayanusorn · CC BY-SA 4.0 · Wikimedia Commons |

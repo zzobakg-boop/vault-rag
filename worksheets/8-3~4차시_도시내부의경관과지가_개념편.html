@@ -1202,6 +1202,10 @@ p.v2-q::before{content:"생각해 보기";display:block;font-size:.7rem;font-wei
 /* 빈칸 */
 input.blank-input:not(.activity-input){min-height:34px;font-size:1rem!important;font-weight:700;border:0!important;border-bottom:2.5px solid var(--step)!important;background:#f3f7ff!important;border-radius:6px 6px 0 0!important;padding:2px 8px!important;color:var(--step)!important;vertical-align:baseline}
 input.blank-input:focus{outline:3px solid rgba(47,111,214,.25)!important;outline-offset:1px}
+/* 2026-11-10 채점 색 — 위 v2 빈칸 줄이 !important라 .correct/.wrong 색을 덮었다(천대현 «틀린 부분이 빨간색으로 안 바뀜») */
+input.blank-input.correct:not(.activity-input){border-bottom-color:#34c759!important;background:#e8f8e8!important;color:#1a7a2e!important}
+input.blank-input.wrong:not(.activity-input){border-bottom-color:#ff3b30!important;background:#fff0f0!important;color:#c62828!important}
+input.blank-input.no-score.wrong:not(.activity-input){border-bottom-color:#ff9500!important;color:#a35200!important}
 .activity-input,textarea{font-size:1rem!important;line-height:1.7!important}
 .ws-fold{border-radius:14px!important}
 .ws-fold>summary{font-size:.95rem!important}
@@ -1449,7 +1453,7 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 .lm-lg-ul b{white-space:nowrap}
 .lm-lg-ul span{color:#4b5563}
 .lm-lg-narrow{display:none;margin:6px 0 0;font-size:.8rem;color:#6b7280}
-@media (max-width:1099.98px){.lm-lg-narrow{display:block}}
+@media (max-width:1279.98px){.lm-lg-narrow{display:block}}
 .lm-live{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @keyframes lm-in{from{opacity:0}to{opacity:1}}
 .lm-anim{animation:lm-in .25s ease-out}
@@ -2467,16 +2471,16 @@ window.addEventListener('afterprint',function(){ printing=false; layout(); });
 layout();
 })();
 </script>
-<script type="application/json" id="lm-data">{"nodes": {"도심": {"name": "도심", "sec": "1단계", "word": "도심", "near": "중심을 도심이라고"}, "8-1~2 도시": {"name": "8-1~2 · 도시", "chip": "정치·경제·문화의 중심 역할을 하고, 많은 사람이 모여 사는 곳"}, "관공서": {"name": "주요 관공서·대기업 본사", "sec": "1단계", "word": "주요 관공서, 대기업 본사", "near": "주요 관공서, 대기업 본사"}, "부도심": {"name": "부도심", "sec": "1단계", "word": "부도심", "near": "이곳을 부도심이라고"}, "주거 및 공업": {"name": "주거 및 공업 지역", "sec": "2단계", "word": "주거 및 공업 지역", "near": "주변부에는 주거 및 공업 지역"}, "광주 아파트 사진": {"name": "광주 아파트 단지 사진", "sec": "2단계", "fig": "광주 시내 아파트 단지"}, "지가": {"name": "지가가 높고", "sec": "3단계", "word": "지가가 높고", "near": "쉽게 갈 수 있어 지가가 높고"}, "임대료": {"name": "한 달 임대료", "sec": "3단계", "word": "한 달 임대료", "near": "가게의 한 달 임대료"}, "시장 가격": {"name": "시장 가격", "sec": "3단계", "word": "시장 가격"}, "21-22 가격": {"name": "1학기 21-22 · 시장 가격의 변동", "chip": "찾는 사람이 늘면(수요 증가) 가격이 오른다"}, "서울 도심 사진": {"name": "서울 도심 사진", "sec": "3단계", "fig": "서울 도심. 인왕산에서"}, "노원구 사진": {"name": "서울 노원구 사진", "sec": "3단계", "fig": "서울 노원구의 아파트 단지"}, "명동 사진": {"name": "명동 거리 사진", "sec": "4단계", "fig": "서울 명동 거리"}, "대기업·금융": {"name": "대기업이나 금융 기관", "sec": "4단계", "word": "대기업이나 금융 기관", "near": "높은 지가를 낼 수 있는 대기업이나 금융 기관"}, "넓은 땅": {"name": "넓은 땅이 필요한", "sec": "4단계", "word": "넓은 땅이 필요한", "near": "내기 어렵거나 넓은 땅이 필요한"}, "커피점": {"name": "포장 판매 커피점 사장", "sec": "4단계", "pick": "포장 판매 커피점 사장"}, "공장 기업가": {"name": "공장을 지으려는 기업가", "sec": "4단계", "pick": "공장을 지으려는 기업가"}, "은행 본점": {"name": "은행 본점", "sec": "4단계", "pick": "은행 본점"}, "물류 창고": {"name": "물류 창고", "sec": "4단계", "pick": "물류 창고"}, "쇼핑몰": {"name": "대형 쇼핑몰", "sec": "4단계", "pick": "대형 쇼핑몰"}, "시청 직원": {"name": "시청 직원", "sec": "활동 1", "pick": "시청 직원"}, "백화점 판매원": {"name": "백화점 지점 판매원", "sec": "활동 1", "pick": "백화점 지점 판매원"}, "공장 노동자": {"name": "가전제품 공장 노동자", "sec": "활동 1", "pick": "가전제품 공장 노동자"}, "은행 본점 직원": {"name": "은행 본점 직원", "sec": "활동 1", "pick": "은행 본점 직원"}, "초등학생": {"name": "아파트 단지 초등학생", "sec": "활동 1", "pick": "아파트 단지 초등학생"}}, "lines": [{"t": "xref", "a": "도심", "b": "8-1~2 도시", "w": "도시가 둘레 지역의 중심이면, 도심은 그 도시 안의 중심"}, {"t": "ex", "a": "관공서", "b": "도심", "w": "도심에 모이는 곳들의 예"}, {"t": "cmp", "a": "부도심", "b": "도심", "w": "도시가 커지자 생긴 또 하나의 중심"}, {"t": "ex", "a": "광주 아파트 사진", "b": "주거 및 공업", "w": "아파트 단지가 넓게 들어선 예"}, {"t": "ex", "a": "서울 도심 사진", "b": "도심", "w": "빌딩이 빽빽한 도심의 예"}, {"t": "ex", "a": "노원구 사진", "b": "주거 및 공업", "w": "비슷한 높이의 아파트가 늘어선 예"}, {"t": "cmp", "a": "서울 도심 사진", "b": "노원구 사진", "w": "같은 서울 — 한가운데와 바깥쪽"}, {"t": "cmp", "a": "임대료", "b": "지가", "w": "땅값이 비싼 자리는 임대료도 비싸다 — 200만·100만·50만 원"}, {"t": "xref", "a": "시장 가격", "b": "21-22 가격", "w": "모두가 원하는 자리는 한정 — 1학기에 배운 가격의 원리"}, {"t": "ex", "a": "명동 사진", "b": "지가", "w": "우리나라에서 땅값이 가장 비싼 곳의 예"}, {"t": "ex", "a": "대기업·금융", "b": "도심", "w": "비싼 땅값을 낼 수 있어 도심에 자리 잡는다"}, {"t": "ex", "a": "넓은 땅", "b": "주거 및 공업", "w": "넓은 땅이 필요한 것은 바깥쪽으로 — 2단계의 그 자리"}, {"t": "ex", "a": "커피점", "b": "지가", "w": "비싼 땅값을 감당하는 쪽의 예", "lock": "커피점"}, {"t": "ex", "a": "은행 본점", "b": "대기업·금융", "w": "비싼 땅값을 낼 수 있는 쪽의 예", "lock": "은행 본점"}, {"t": "ex", "a": "쇼핑몰", "b": "지가", "w": "사람이 몰려야 땅값을 감당하는 예", "lock": "쇼핑몰"}, {"t": "ex", "a": "공장 기업가", "b": "넓은 땅", "w": "넓은 땅이 필요한 쪽의 예", "lock": "공장 기업가"}, {"t": "ex", "a": "물류 창고", "b": "넓은 땅", "w": "넓은 땅이 필요한 쪽의 예", "lock": "물류 창고"}, {"t": "ex", "a": "시청 직원", "b": "관공서", "w": "관공서가 모이는 곳의 예", "lock": "시청 직원"}, {"t": "ex", "a": "은행 본점 직원", "b": "도심", "w": "본사·본점이 모이는 곳의 예", "lock": "은행 본점 직원"}, {"t": "ex", "a": "백화점 판매원", "b": "부도심", "w": "큰 상가가 들어서는 또 하나의 중심", "lock": "백화점 판매원"}, {"t": "ex", "a": "공장 노동자", "b": "주거 및 공업", "w": "공장이 모이는 바깥쪽의 예", "lock": "공장 노동자"}, {"t": "ex", "a": "초등학생", "b": "주거 및 공업", "w": "아파트와 학교가 있는 바깥쪽의 예", "lock": "초등학생"}, {"t": "cmp", "a": "은행 본점", "b": "은행 본점 직원", "w": "같은 은행 본점 — 땅값으로 고른 자리, 도시 안의 자리", "lock": ["은행 본점", "은행 본점 직원"]}, {"t": "cmp", "a": "공장 기업가", "b": "공장 노동자", "w": "같은 공장 — 땅값으로 고른 자리, 도시 안의 자리", "lock": ["공장 기업가", "공장 노동자"]}]}</script>
+<script type="application/json" id="lm-data">{"nodes": {"도심": {"name": "도심", "sec": "1단계", "word": "도심", "near": "중심을 도심이라고"}, "8-1~2 도시": {"name": "8-1~2 · 도시", "chip": "정치·경제·문화의 중심 역할을 하고, 많은 사람이 모여 사는 곳"}, "관공서": {"name": "주요 관공서·대기업 본사", "sec": "1단계", "word": "주요 관공서, 대기업 본사", "near": "주요 관공서, 대기업 본사"}, "부도심": {"name": "부도심", "sec": "1단계", "word": "부도심", "near": "이곳을 부도심이라고"}, "주거 및 공업": {"name": "주거 및 공업 지역", "sec": "2단계", "word": "주거 및 공업 지역", "near": "주변부에는 주거 및 공업 지역"}, "광주 아파트 사진": {"name": "광주 아파트 단지 사진", "sec": "2단계", "fig": "광주 시내 아파트 단지"}, "지가": {"name": "지가가 높고", "sec": "3단계", "word": "지가가 높고", "near": "쉽게 갈 수 있어 지가가 높고"}, "임대료": {"name": "한 달 임대료", "sec": "3단계", "word": "한 달 임대료", "near": "가게의 한 달 임대료"}, "시장 가격": {"name": "시장 가격", "sec": "3단계", "word": "시장 가격"}, "21-22 가격": {"name": "1학기 21-22 · 시장 가격의 변동", "chip": "찾는 사람이 늘면(수요 증가) 가격이 오른다"}, "서울 도심 사진": {"name": "서울 도심 사진", "sec": "3단계", "fig": "서울 도심. 인왕산에서"}, "노원구 사진": {"name": "서울 노원구 사진", "sec": "3단계", "fig": "서울 노원구의 아파트 단지"}, "명동 사진": {"name": "명동 거리 사진", "sec": "4단계", "fig": "서울 명동 거리"}, "대기업·금융": {"name": "대기업이나 금융 기관", "sec": "4단계", "word": "대기업이나 금융 기관", "near": "높은 지가를 낼 수 있는 대기업이나 금융 기관"}, "넓은 땅": {"name": "넓은 땅이 필요한", "sec": "4단계", "word": "넓은 땅이 필요한", "near": "내기 어렵거나 넓은 땅이 필요한"}, "커피점": {"name": "포장 판매 커피점 사장", "sec": "4단계", "pick": "포장 판매 커피점 사장"}, "공장 기업가": {"name": "공장을 지으려는 기업가", "sec": "4단계", "pick": "공장을 지으려는 기업가"}, "은행 본점": {"name": "은행 본점", "sec": "4단계", "pick": "은행 본점"}, "물류 창고": {"name": "물류 창고", "sec": "4단계", "pick": "물류 창고"}, "쇼핑몰": {"name": "대형 쇼핑몰", "sec": "4단계", "pick": "대형 쇼핑몰"}, "시청 직원": {"name": "시청 직원", "sec": "활동 1", "pick": "시청 직원"}, "백화점 판매원": {"name": "백화점 지점 판매원", "sec": "활동 1", "pick": "백화점 지점 판매원"}, "공장 노동자": {"name": "가전제품 공장 노동자", "sec": "활동 1", "pick": "가전제품 공장 노동자"}, "은행 본점 직원": {"name": "은행 본점 직원", "sec": "활동 1", "pick": "은행 본점 직원"}, "초등학생": {"name": "아파트 단지 초등학생", "sec": "활동 1", "pick": "아파트 단지 초등학생"}}, "lines": [{"t": "xref", "a": "도심", "b": "8-1~2 도시", "w": "도시가 둘레 지역의 중심이면, 도심은 그 도시 안의 중심"}, {"t": "ex", "a": "관공서", "b": "도심", "w": "도심에 모이는 곳들의 예"}, {"t": "cmp", "a": "부도심", "b": "도심", "w": "도시가 커지자 생긴 또 하나의 중심"}, {"t": "ex", "a": "광주 아파트 사진", "b": "주거 및 공업", "w": "아파트 단지가 넓게 들어선 예"}, {"t": "ex", "a": "서울 도심 사진", "b": "도심", "w": "서울 한가운데를 내려다본 예"}, {"t": "ex", "a": "노원구 사진", "b": "주거 및 공업", "w": "비슷한 높이의 아파트가 늘어선 예"}, {"t": "cmp", "a": "서울 도심 사진", "b": "노원구 사진", "w": "같은 서울 — 한가운데와 바깥쪽"}, {"t": "cmp", "a": "임대료", "b": "지가", "w": "땅값이 비싼 자리는 임대료도 비싸다 — 200만·100만·50만 원"}, {"t": "xref", "a": "시장 가격", "b": "21-22 가격", "w": "모두가 원하는 자리는 한정 — 1학기에 배운 가격의 원리"}, {"t": "ex", "a": "명동 사진", "b": "지가", "w": "우리나라에서 땅값이 가장 비싼 곳의 예"}, {"t": "ex", "a": "대기업·금융", "b": "도심", "w": "비싼 땅값을 낼 수 있어 도심에 자리 잡는다"}, {"t": "ex", "a": "넓은 땅", "b": "주거 및 공업", "w": "넓은 땅이 필요한 것은 바깥쪽으로 — 2단계의 그 자리"}, {"t": "ex", "a": "커피점", "b": "지가", "w": "비싼 땅값을 감당하는 쪽의 예", "lock": "커피점"}, {"t": "ex", "a": "은행 본점", "b": "대기업·금융", "w": "비싼 땅값을 낼 수 있는 쪽의 예", "lock": "은행 본점"}, {"t": "ex", "a": "쇼핑몰", "b": "지가", "w": "사람이 몰려야 땅값을 감당하는 예", "lock": "쇼핑몰"}, {"t": "ex", "a": "공장 기업가", "b": "넓은 땅", "w": "넓은 땅이 필요한 쪽의 예", "lock": "공장 기업가"}, {"t": "ex", "a": "물류 창고", "b": "넓은 땅", "w": "넓은 땅이 필요한 쪽의 예", "lock": "물류 창고"}, {"t": "ex", "a": "시청 직원", "b": "관공서", "w": "관공서가 모이는 곳의 예", "lock": "시청 직원"}, {"t": "ex", "a": "은행 본점 직원", "b": "도심", "w": "본사·본점이 모이는 곳의 예", "lock": "은행 본점 직원"}, {"t": "ex", "a": "백화점 판매원", "b": "부도심", "w": "큰 상가가 들어서는 또 하나의 중심", "lock": "백화점 판매원"}, {"t": "ex", "a": "공장 노동자", "b": "주거 및 공업", "w": "공장이 모이는 바깥쪽의 예", "lock": "공장 노동자"}, {"t": "ex", "a": "초등학생", "b": "주거 및 공업", "w": "아파트와 학교가 있는 바깥쪽의 예", "lock": "초등학생"}, {"t": "cmp", "a": "은행 본점", "b": "은행 본점 직원", "w": "같은 은행 본점 — 땅값으로 고른 자리, 도시 안의 자리", "lock": ["은행 본점", "은행 본점 직원"]}, {"t": "cmp", "a": "공장 기업가", "b": "공장 노동자", "w": "같은 공장 — 땅값으로 고른 자리, 도시 안의 자리", "lock": ["공장 기업가", "공장 노동자"]}]}</script>
 <script id="lm-js">/* 2026-11-10 천대현(사회② Ⅷ «샘플판에 적용했던 사항들을 8단원 묶음판 전체에»): 개념 관계 선.
    낱말을 누르면 이 학습지 안에서 이어지는 개념·사례가 선으로 나타난다. 원고·입력칸·data-id는 건드리지 않고 화면 글자만 단추로 감싼다.
    선 규칙(색만이 아니라 모양으로도): 한 갈래 실선+빈 삼각형 · 예 둥근 점선+속 찬 원 · 견줘 보기 쇄선+양끝 막대 · 다른 차시 가는 실선+여백 칩.
-   고르기 카드에 닿는 선은 카드를 다 고른 뒤에만 열린다. 1100px 아래(폰)는 선 대신 아래에서 올라오는 목록. 시험판 = 8-5~6 검토판 v7(11/9). */
+   고르기 카드에 닿는 선은 카드를 다 고른 뒤에만 열린다. 1280px 아래이거나 본문 오른쪽에 이름표 칸이 없으면 선 대신 아래에서 올라오는 목록(11/10 역사 학생 눈). 시험판 = 8-5~6 검토판 v7(11/9). */
 (function(){
 'use strict';
 var C=document.querySelector('.container'); if(!C) return;
 var H=document.documentElement, NS='http://www.w3.org/2000/svg';
-var WIDE=window.matchMedia('(min-width:1100px)'), RM=window.matchMedia('(prefers-reduced-motion:reduce)');
+var WIDE=window.matchMedia('(min-width:1280px)'), RM=window.matchMedia('(prefers-reduced-motion:reduce)');
 var COL={sub:'#4f46e5',ex:'#0f7b6c',cmp:'#b45309',xref:'#64748b'};
 var KIND={sub:'한 갈래',ex:'예',cmp:'견줘 보기',xref:'다른 차시'};
 
@@ -2638,7 +2642,7 @@ function setActive(id,focusBack){
   var ls=linesOf(id);
   liveR.textContent=N[id].name+'에서 이어지는 것 '+ls.length+'개: '+ls.map(function(L){return KIND[L.t]+' — '+L.w+' ('+N[other(L)].name+')';}).join(' · ');
   layout();
-  if(!WIDE.matches) keepVisibleAboveSheet(N[id].anchor);
+  if(!lineMode()) keepVisibleAboveSheet(N[id].anchor);
 }
 /* 강조 — toggle(이름, 참거짓)은 이미 그 상태면 아무것도 안 바꾼다(고르기 카드 감시자에 되먹임이 안 생긴다) */
 function marks(on,peers){
@@ -2763,6 +2767,12 @@ function settle(items,obst){
     it.top=top; placed.push({l:it.x,r:it.x+it.w,t:top,b:top+it.h});
   });
 }
+function gutterOK(){   /* 본문 상자 오른쪽에 이름표 칸(230px)이 있어야 선을 그린다 — 없으면 이름표가 본문 글을 덮는다 */
+  var r=0; [].forEach.call(document.querySelectorAll('.v2-sec'),function(c){ var b=c.getBoundingClientRect(); if(b.width) r=Math.max(r,b.right); });
+  if(!r) r=C.getBoundingClientRect().right;
+  return (H.clientWidth-r)>=230;
+}
+function lineMode(){ return WIDE.matches&&gutterOK(); }
 function layout(){
   refresh();
   if(!active) return;
@@ -2770,7 +2780,7 @@ function layout(){
   if(!ls.length){ setActive(null); return; }
   var peers={}; ls.forEach(function(L){ peers[other(L)]=1; });
   marks(active,peers);
-  if(printing||!WIDE.matches){ G.innerHTML=''; Object.keys(tags).forEach(function(k){tags[k].remove();}); tags={};
+  if(printing||!lineMode()){ G.innerHTML=''; Object.keys(tags).forEach(function(k){tags[k].remove();}); tags={};
     Object.keys(groups).forEach(function(k){groups[k].remove();}); groups={};
     off.hidden=true;
     var key=active+':'+ls.map(function(L){return L.i;}).join(',');
@@ -2912,7 +2922,7 @@ off.addEventListener('click',function(){ var b=active&&N[active].btn; setActive(
 document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&active){ var b=N[active].btn; setActive(null,b); } });
 var raf=0; function schedule(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; layout(); }); }
 window.addEventListener('resize',schedule);
-window.addEventListener('scroll',function(){ if(active&&WIDE.matches) schedule(); },{passive:true});
+window.addEventListener('scroll',function(){ if(active&&lineMode()) schedule(); },{passive:true});
 document.addEventListener('scroll',function(e){ if(e.target!==document&&e.target.closest&&e.target.closest('.pk-swipe')) schedule(); },{capture:true,passive:true});
 document.addEventListener('toggle',schedule,true);
 document.addEventListener('load',schedule,true);
