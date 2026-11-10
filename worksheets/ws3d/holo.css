@@ -1,0 +1,83 @@
+/* 홀로그램 도시 — 교과서 150~153쪽 도시 내부 구조를 3D로 (2026-11-10 시험판) */
+.hg{--hg-bg:#051722;--hg-bg2:#0a2433;--hg-ink:#dff7ff;--hg-mute:#86b3c4;--hg-line:rgba(120,230,255,.28);
+  --hg-cbd:#6fe7ff;--hg-sub:#b5a3ff;--hg-res:#ffd27a;--hg-ind:#ff9b54;--hg-gb:#6fe39c;--hg-glass:rgba(8,32,46,.82);
+  position:relative;margin:18px 0;border-radius:16px;overflow:hidden;background:radial-gradient(120% 90% at 50% 35%,var(--hg-bg2),var(--hg-bg) 70%);
+  color:var(--hg-ink);font-variant-numeric:tabular-nums;box-shadow:0 0 0 1px rgba(111,231,255,.25),0 10px 30px rgba(5,23,34,.25)}
+.hg *{box-sizing:border-box}
+.hg-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:12px 14px 0;position:relative;z-index:3}
+.hg-title{font-weight:800;letter-spacing:.02em;font-size:1rem;color:#bff3ff}
+.hg-title small{display:block;font-weight:500;font-size:.78rem;color:var(--hg-mute);letter-spacing:0}
+.hg-modes{display:flex;gap:4px;padding:3px;border-radius:999px;background:rgba(111,231,255,.08);box-shadow:inset 0 0 0 1px var(--hg-line)}
+.hg-modes button{all:unset;cursor:pointer;padding:7px 13px;border-radius:999px;font-size:.88rem;font-weight:700;color:var(--hg-mute)}
+.hg-modes button[aria-pressed="true"]{background:rgba(111,231,255,.2);color:#eaffff;box-shadow:inset 0 0 0 1px rgba(111,231,255,.55)}
+.hg-modes button:focus-visible,.hg button:focus-visible{outline:2px solid #ffe27a;outline-offset:2px}
+.hg-stage{position:relative;height:clamp(340px,56vw,560px)}
+.hg-stage canvas{display:block;width:100%;height:100%;touch-action:pan-y}
+.hg-stage.hg-live canvas{touch-action:none}
+.hg-poster{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;background:center/cover no-repeat;}
+.hg-poster::before{content:"";position:absolute;inset:0;background:rgba(5,23,34,.45)}
+.hg-start{all:unset;position:relative;cursor:pointer;padding:13px 22px;border-radius:999px;font-weight:800;font-size:1.02rem;color:#03202b;background:#7ff0ff;box-shadow:0 0 24px rgba(111,231,255,.65)}
+.hg-start small{display:block;font-weight:600;font-size:.76rem;opacity:.75}
+.hg-pins{position:absolute;inset:0;pointer-events:none;z-index:2}
+.hg-pin{all:unset;pointer-events:auto;cursor:pointer;position:absolute;left:0;top:0;transform:translate(-50%,-100%);white-space:nowrap;
+  padding:5px 10px 5px 8px;border-radius:999px;font-size:.84rem;font-weight:800;color:#04202b;background:var(--pc,#6fe7ff);
+  box-shadow:0 0 0 3px rgba(5,23,34,.55),0 0 16px var(--pc,#6fe7ff);transition:opacity .2s}
+.hg-pin::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:12px;background:var(--pc);transform:translateX(-50%)}
+.hg-pin[aria-expanded="true"]{outline:2px solid #fff;outline-offset:2px}
+.hg-pin .hg-q{display:inline-block;width:18px;height:18px;margin-right:5px;border-radius:50%;background:rgba(4,32,43,.18);text-align:center;line-height:18px;font-size:.75rem}
+.hg-hint{position:absolute;left:12px;bottom:12px;z-index:2;font-size:.78rem;color:var(--hg-mute);background:rgba(5,23,34,.6);padding:5px 9px;border-radius:8px}
+.hg-zoom{position:absolute;right:12px;bottom:12px;z-index:2;display:flex;flex-direction:column;gap:6px}
+.hg-zoom button{all:unset;cursor:pointer;width:34px;height:34px;border-radius:10px;text-align:center;line-height:34px;font-weight:800;font-size:1.1rem;background:rgba(111,231,255,.14);box-shadow:inset 0 0 0 1px var(--hg-line);color:#dff7ff}
+.hg-legend{position:absolute;left:12px;top:10px;z-index:2;display:flex;flex-direction:column;gap:4px;font-size:.78rem}
+.hg-legend span{display:flex;align-items:center;gap:6px;color:#cbeefb}
+.hg-legend i{width:10px;height:10px;border-radius:3px;background:var(--c);box-shadow:0 0 8px var(--c)}
+.hg-scale{position:absolute;left:12px;top:10px;z-index:2;font-size:.76rem;color:#cbeefb;display:none}
+.hg-scale b{display:block;width:120px;height:9px;border-radius:5px;margin:4px 0 2px;background:linear-gradient(90deg,#123a7a,#1fa6d6,#7ff0ff,#fff7c2)}
+.hg-scale em{font-style:normal;display:flex;justify-content:space-between;width:120px;color:var(--hg-mute)}
+.hg[data-mode="price"] .hg-legend,.hg[data-mode="change"] .hg-legend{display:none}
+.hg[data-mode="price"] .hg-scale,.hg[data-mode="change"] .hg-scale{display:block}
+.hg-ctl{display:none;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--hg-line);font-size:.86rem}
+.hg[data-mode="change"] .hg-ctl{display:flex}
+.hg-ctl input[type=range]{flex:1;accent-color:#b5a3ff}
+.hg-ctl output{min-width:9.5em;text-align:right;color:#e6ddff;font-weight:700}
+/* 정보 창 — 넓은 화면은 무대 오른쪽, 좁은 화면은 무대 아래 */
+.hg-panel{position:absolute;top:62px;right:12px;max-height:calc(clamp(340px,56vw,560px) - 20px);width:min(360px,44%);z-index:4;overflow:auto;border-radius:14px;
+  background:var(--hg-glass);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px rgba(111,231,255,.35),0 8px 24px rgba(0,0,0,.35);padding:14px 15px 16px;
+  transform:translateX(110%);transition:transform .28s ease;scrollbar-width:thin}
+.hg-panel.open{transform:none}
+.hg-panel h4{margin:0 0 2px;font-size:1.06rem;color:var(--pc,#bff3ff)}
+.hg-panel .hg-kick{font-size:.76rem;color:var(--hg-mute);margin:0 0 8px}
+.hg-panel .hg-ask{margin:8px 0;padding:8px 10px;border-radius:10px;background:rgba(255,226,122,.1);box-shadow:inset 0 0 0 1px rgba(255,226,122,.35);font-size:.9rem;color:#fff1c4}
+.hg-panel p{margin:6px 0;font-size:.9rem;line-height:1.6;color:#dbeff7}
+.hg-panel figure{margin:10px 0}
+.hg-panel figure img{width:100%;border-radius:10px;display:block;cursor:zoom-in}
+.hg-panel figcaption{font-size:.74rem;color:var(--hg-mute);margin-top:4px;line-height:1.45}
+.hg-pair{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.hg-pair figure{margin:6px 0}
+.hg-close{all:unset;cursor:pointer;position:sticky;top:0;float:right;width:28px;height:28px;border-radius:8px;text-align:center;line-height:28px;background:rgba(111,231,255,.14);color:#dff7ff;font-weight:800}
+.hg-chart{margin:10px 0 4px}
+.hg-chart svg{width:100%;height:auto;display:block}
+.hg-chart .hg-ct{font-size:.8rem;font-weight:700;color:#cbeefb;margin-bottom:4px}
+.hg-chart .hg-src{font-size:.7rem;color:var(--hg-mute);margin-top:3px;line-height:1.4}
+.hg-fallback .hg-pins,.hg-fallback .hg-zoom,.hg-fallback .hg-scale,.hg-fallback .hg-legend{display:none}   /* 정지 그림(images/holo_poster.webp)을 3D 칸 크기 그대로 보여 준다 */
+.hg-note{padding:0 14px 12px;font-size:.74rem;color:var(--hg-mute)}
+@media (max-width:760px){
+  .hg-stage{height:68vw;min-height:300px}
+  .hg-panel{position:relative;top:auto;right:auto;bottom:auto;width:auto;margin:10px 10px 12px;transform:none;display:none;max-height:none;backdrop-filter:none}
+  .hg-panel.open{display:block}
+  .hg-legend{display:none}
+  .hg[data-mode="change"] .hg-ctl{flex-wrap:wrap}
+  .hg-ctl output{flex-basis:100%;text-align:left;min-width:0}
+  .hg-zoom{top:8px;bottom:auto;flex-direction:row}
+  .hg-scale{top:8px}
+  .hg-modes button{padding:6px 10px;font-size:.82rem}
+}
+@media (prefers-reduced-motion:reduce){.hg-panel,.hg-pin{transition:none}}
+.hg-nogl{position:relative;margin:0;align-self:end;color:#dff7ff;font-weight:700;background:rgba(5,23,34,.7);padding:8px 12px;border-radius:10px}
+/* 학습지(v2) 안에서: .v2-sec p{font-size:1rem!important;line-height:1.85!important;margin:0 0 14px!important;max-width:40em;color:var(--ink)}가 홀로그램 글자를 덮어 어두운 바탕에 진한 글씨가 됐다 → 홀로그램 안 문단만 되돌린다 */
+.hg p{max-width:none}
+.hg p.hg-note{font-size:.74rem!important;line-height:1.5!important;margin:0!important;padding:0 14px 12px;color:var(--hg-mute)}
+.hg .hg-panel p{font-size:.9rem!important;line-height:1.6!important;margin:6px 0!important;color:#dbeff7}
+.hg .hg-panel p.hg-kick{font-size:.76rem!important;margin:0 0 8px!important;color:var(--hg-mute)}
+.hg p.hg-nogl{font-size:.9rem!important;line-height:1.5!important;margin:0!important;color:#dff7ff}
+.hg-fallback .hg-top .hg-pin::after,.hg-fallback .hg-top .hg-pin::before{display:none}.hg-fallback .hg-stage+.hg-top{padding-bottom:10px}

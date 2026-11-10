@@ -358,6 +358,12 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 sr_buf.append(stripped[2:].strip()); continue
             html_parts.append(_sr_flush(sr_buf)); sr_buf = None
 
+        # 🛰️ 홀로그램 도시 (:::홀로그램 <ws3d/data 자료 파일>) — 그 자리에 3D 모식도. 3D 파일은 _apply_3d가 붙인다
+        if stripped.startswith(':::홀로그램 '):
+            html_parts.append(render_holo(stripped[len(':::홀로그램 '):].strip(), out_path)); continue
+        # 🌐 도시 둘러보기 (:::둘러보기 <자료 파일>) — 카드·그림 옆 단추라 이 자리에는 아무것도 그리지 않는다(_apply_3d)
+        if stripped.startswith(':::둘러보기 '):
+            continue
         # 💭 더 생각해 보기 구조판 (:::더 생각 | 역할 | 할 일 ... :::) — render_think 주석 참고
         if stripped.startswith(':::더 생각'):
             in_think = True; think_head = stripped[len(':::더 생각'):].strip(); think_rows = []
@@ -2326,6 +2332,73 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     content = re.sub(r'<table>.*?</table>', _mark_act_table, content, flags=re.S)
 
     return title, content, total_blanks, total_ox
+
+
+# 2026-11-10 천대현(사회② 8-3~4 «도시 내부 경관을 3D나 홀로그램 같은 스타일로 띄워서 경관·지가 변화·경관 변화를 사진이나
+#   그래프로 그 안에서 확인», 8-1~2 «로드뷰나 3D뷰로 간접 체험») → 검토판 B3oQu3oY·FyfZNDqR 시험판을 opt-in 블록으로.
+#     :::홀로그램 holo_8-3~4.json   ← 그 자리에 3D 도시 모식도(경관·지가·경관 변화, 핀 → 사진·그래프 창)
+#     :::둘러보기 tour_8-1~2.json   ← 고르기 카드·그림 옆 «🌐 둘러보기»(360° 사진은 images/pano/, 거리뷰는 새 창 바로가기)
+#   자료는 worksheets/ws3d/data/, 실행 파일은 worksheets/ws3d/(three.js r160 MIT, three/LICENSE). 3D는 누를 때만 불러온다.
+#   입력칸·data-id·정답은 건드리지 않는다. 블록이 없는 차시는 출력이 이전과 같다.
+def _ws3d_dir(out_path):
+    return os.path.join(os.path.dirname(os.path.abspath(out_path)), 'ws3d')
+
+
+def render_holo(fname, out_path):
+    with open(os.path.join(_ws3d_dir(out_path), 'data', fname), encoding='utf-8') as f:
+        data = json.load(f)
+    _j = json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
+    poster = os.path.join(os.path.dirname(os.path.abspath(out_path)), 'images', 'holo_poster.webp')
+    _ps = ' style="background-image:url(images/holo_poster.webp)"' if os.path.exists(poster) else ''
+    legend = ''.join(f'<span style="--c:{c}"><i></i>{n}</span>' for c, n in (
+        ('#6fe7ff', '도심'), ('#b5a3ff', '부도심'), ('#ffd27a', '주거'), ('#ff9b54', '공업'), ('#6fe39c', '개발 제한 구역'), ('#ffe27a', '지하철')))
+    return ('<div class="ws-holo"><p class="hg-lead"><b>🛰️ 홀로그램 도시로 한눈에 보기</b> — 교과서 150~153쪽 그림 속 도시를 3D로 띄웠다. '
+            '돌려 보고, 핀을 눌러 진짜 사진과 그래프를 열어 보자. 위 단추로 보기를 바꾸면 땅값이 솟아오르고, 지하철이 놓이면 도시가 바뀌는 모습도 볼 수 있다.</p>'
+            '<div class="hg" data-mode="scape">'
+            '<div class="hg-top"><div class="hg-title">홀로그램 도시<small>교과서 그림을 옮긴 모식도 · 실제 도시가 아니다</small></div>'
+            '<div class="hg-modes" role="group" aria-label="보기 바꾸기"><button type="button" data-mode="scape" aria-pressed="true">🏙 경관</button>'
+            '<button type="button" data-mode="price" aria-pressed="false">💰 지가</button><button type="button" data-mode="change" aria-pressed="false">⏳ 경관 변화</button></div></div>'
+            f'<div class="hg-stage"><div class="hg-legend" aria-hidden="true">{legend}</div>'
+            '<div class="hg-scale" aria-hidden="true">지가(땅값)<b></b><em><span>낮다</span><span>높다</span></em></div>'
+            '<div class="hg-pins"></div>'
+            '<div class="hg-zoom"><button type="button" class="hg-zin" aria-label="가까이">＋</button><button type="button" class="hg-zout" aria-label="멀리">－</button></div>'
+            f'<div class="hg-poster"{_ps}><button type="button" class="hg-start">홀로그램 켜기<small>끌어서 돌려 보기 · 핀을 눌러 자료 열기</small></button></div></div>'
+            '<div class="hg-ctl"><span>⏳</span><label for="hg-t" style="white-space:nowrap">지하철 놓기</label><input id="hg-t" type="range" min="0" max="100" value="0">'
+            '<output for="hg-t">지하철이 놓이기 전</output></div>'
+            '<aside class="hg-panel" aria-live="polite"></aside>'
+            '<p class="hg-note">모식도의 높이와 땅값은 교과서 설명을 옮긴 것이다. 실제 수치는 정보 창의 그래프와 사진에서 확인한다.</p>'
+            f'<script type="application/json" class="hg-data">{_j}</script></div></div>')
+
+
+def _apply_3d(h, raw_md, out_path):
+    """:::홀로그램이 그린 자리(.hg)·:::둘러보기 자료가 있으면 3D 파일(ws3d/)을 붙인다. 없으면 h 그대로."""
+    tour = re.search(r'^:::둘러보기 (\S+)[ \t]*$', raw_md, re.M)
+    holo = 'class="hg"' in h
+    if not (tour or holo):
+        return h
+    head = '<script type="importmap">{"imports":{"three":"./ws3d/three/three.module.min.js"}}</script>\n'
+    body = ''
+    if holo:
+        head += '<link rel="stylesheet" href="ws3d/holo.css">\n<style id="ws-holo-css">.ws-holo{margin:14px 0 18px}.ws-holo .hg-lead{margin:0 0 10px;line-height:1.75}</style>\n'
+        body += '<script type="module" src="ws3d/holo-ui.js"></script>\n'
+    if tour:
+        with open(os.path.join(_ws3d_dir(out_path), 'data', tour.group(1)), encoding='utf-8') as f:
+            _tj = json.dumps(json.load(f), ensure_ascii=False).replace('</', '<\\/')
+        head += '<link rel="stylesheet" href="ws3d/tour.css">\n'
+        body += f'<script type="application/json" id="tv-data">{_tj}</script>\n<script type="module" src="ws3d/tour.js"></script>\n'
+    h = h.replace('</head>', head + '</head>', 1)
+    i = h.rfind('</body>')
+    return h[:i] + body + h[i:]
+
+
+# 2026-11-10 천대현 «용량 줄이기 진행»(학습지 사이트 배포가 10분 넘게 걸려 서버가 버림 → 그림 PNG를 WebP로) —
+#   원고 md는 .png 이름 그대로 두고, 같은 이름 .webp가 images/에 있으면 발행본 주소만 .webp로 쓴다.
+def _webp(h, out_path):
+    _img = os.path.join(os.path.dirname(os.path.abspath(out_path)), 'images')
+    def _sub(m):
+        p = m.group(1)
+        return f'images/{p}.webp' if os.path.exists(os.path.join(_img, p + '.webp')) else m.group(0)
+    return re.sub(r'images/([^"\'()<>\s]+?)\.png', _sub, h)
 
 
 # 2026-11-10 천대현(사회② 8-1~2 검토판 댓글) «더 생각해보기 내용이 텍스트만 덕지덕지 붙어 있는 느낌 — 하나의 학습지처럼
@@ -4504,15 +4577,18 @@ def main():
 
     # 수업용 (제출O, 정답보기X)
     html_class = generate_html(title, content, total, total_ox, submit_url, mode='class', hero=hero, exam=exam_mode)
+    with open(blank_file, 'r', encoding='utf-8') as _f:
+        _raw_md = _f.read()
+    _finish = lambda h: _webp(_apply_3d(h, _raw_md, output_file), output_file)   # 3D 블록(opt-in) → .webp 주소
     with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(_apply_design(html_class))
+        f.write(_finish(_apply_design(html_class)))
     print(f"✅ 수업용 생성: {output_file}")
 
     # 복습용 (제출X, 정답보기O)
     review_file = output_file.replace('.html', '_복습용.html')
     html_review = generate_html(title, content, total, total_ox, submit_url, mode='review', hero=hero, exam=exam_mode)
     with open(review_file, 'w', encoding='utf-8') as f:
-        f.write(_apply_design(html_review))
+        f.write(_finish(_apply_design(html_review)))
     print(f"✅ 복습용 생성: {review_file}")
 
     # 정답편 (교사용·제출X·채점X) — 정답.md를 *본문*으로 렌더(교사섹션 유지) → 빈칸 볼드 정답+OX 해설+모범답안+교사 메타 전부 노출.
@@ -4521,7 +4597,7 @@ def main():
     t_title, t_content, t_total, t_total_ox = build_html_from_blank(answer_file, [], [], answer_file, teacher=True, out_path=output_file)
     html_teacher = generate_html(t_title, t_content, t_total, t_total_ox, submit_url, mode='teacher', hero=hero, exam=exam_mode)
     with open(teacher_file, 'w', encoding='utf-8') as f:
-        f.write(_apply_design(html_teacher, linkmap=False))
+        f.write(_webp(_apply_design(html_teacher, linkmap=False), output_file))
     print(f"✅ 정답편(교사용) 생성: {teacher_file}")
 
 

@@ -1860,3 +1860,33 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 4-3-3_입담_소명.png | 1550년 무렵 제네바 — 상인과 칼뱅파 목사(가상 인물, 칼뱅 본인 아님·흰 깃 띠 없음) · 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_*` |
 | 4-3-3_입담_빌려서.png | 1694년 런던 — 정부 관리와 상인, 1690년대 긴 가발(가상 인물) · 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_*` |
 | 4-3-3_입담_타유.png | 1680년 무렵 프랑스 시골 — 왕의 세금 징수원과 농민(가상 인물) · 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_*` |
+
+## 8-1~2 도시 둘러보기 360° 사진 (2026-11-10 · 천대현 «로드뷰나 3D뷰로 간접 체험»)
+
+`pano/` — 위키미디어 공용 등장방형 360° 사진을 4096×2048로 줄여 WebP(q82)로 저장. 학습지 안 창(ws3d/pano.js)에서 돌려 본다.
+
+| 파일 | 내용 (원본 파일) | 저작자 · 라이선스 |
+|---|---|---|
+| pano/paris_eiffel.webp | 샹드마르스 잔디밭과 에펠 탑, 2008-04-26 ([Eiffel Tower and Champ-de-Mars panorama, April 2008.jpg](https://commons.wikimedia.org/wiki/File:Eiffel_Tower_and_Champ-de-Mars_panorama,_April_2008.jpg)) | Alexandre Duret-Lutz · CC BY-SA 2.0 · Wikimedia Commons |
+| pano/kyoto_kenninji_garden.webp | 교토 겐닌지 정원과 나무 회랑, 2021-09-05 ([Kenninji Niwa 360-degree.jpg](https://commons.wikimedia.org/wiki/File:Kenninji_Niwa_360-degree.jpg)) | AsPJT · CC0 · Wikimedia Commons |
+| pano/zurich_limmat.webp | 취리히 리마트강변(Schipfe), 2022-06-14 ([Zürich Limmat panosphere 20220614.jpg](https://commons.wikimedia.org/wiki/File:Z%C3%BCrich_Limmat_panosphere_20220614.jpg)) | Daniel Kraft · CC BY-SA 3.0 · Wikimedia Commons |
+| pano/jerusalem_oldcity_rooftop.webp | 예루살렘 구시가지 지붕 위(에케 호모 성당 돔 옆), 2016-11-20 ([Izrael, imgp6716-imgp6732 (2016-11).jpg](https://commons.wikimedia.org/wiki/File:Izrael,_imgp6716-imgp6732_(2016-11).jpg)) | Jiří Bubeníček · CC BY-SA 4.0 · Wikimedia Commons |
+| pano/vienna_konzerthaus_grosser_saal.webp | 빈 콘체르트하우스 대연주홀, 2023-07 ([Konzerthaus Wien großer Saal Parterre Kugelpanorama 360° (2023).jpg](https://commons.wikimedia.org/wiki/File:Konzerthaus_Wien_gro%C3%9Fer_Saal_Parterre_Kugelpanorama_360%C2%B0_(2023).jpg)) — 카드 사진의 오페라 극장과 다른 연주홀 | DrTrumpet · CC BY-SA 4.0 · Wikimedia Commons |
+| pano/vancouver_panoramio.webp | 밴쿠버 폴스크리크 위, 촬영 연도 불명(2016년 이전 Panoramio 게시) ([Vancouver, BC, Canada - panoramio.jpg](https://commons.wikimedia.org/wiki/File:Vancouver,_BC,_Canada_-_panoramio.jpg)) | Ryan Adams · CC BY-SA 3.0 · Wikimedia Commons |
+| pano/brussels_ep_hemicycle.webp | 브뤼셀 유럽 의회 본회의장(방청석에서), 2023-04-03 ([Europa Parlamentet 360.jpg](https://commons.wikimedia.org/wiki/File:Europa_Parlamentet_360.jpg)) | Peterleth · CC BY-SA 4.0 · Wikimedia Commons |
+
+## 8-3~4 홀로그램 도시 사진 (2026-11-10 · 천대현 «도시 내부 경관을 3D나 홀로그램 같은 스타일로»)
+
+정보 창(ws3d/holo-ui.js)에 뜨는 사진. 폭 1100px 안으로 줄임. 3D 모형은 교과서 150~153쪽 그림을 옮긴 모식도로 사진을 텍스처로 쓰지 않는다. 실행 파일 three.js r160은 MIT(`ws3d/three/LICENSE`).
+
+| 파일 | 내용 (원본) | 저작자 · 라이선스 |
+|---|---|---|
+| holo_poster.webp | 홀로그램 도시 첫 화면(3D를 못 그리는 기기의 대체 그림) | 자체 제작(ws3d/holo.js 화면 캡처) |
+| holo_pair_cbd_then_inwangsan_1982.jpg | 인왕산에서 본 서울 도심과 남산, 1982-08-01 ([서울역사아카이브](https://museum.seoul.go.kr/archive/archiveNew/NR_archiveView.do?type=B&ctgryId=CTGRY766&upperNodeId=CTGRY767&fileSn=300&fileId=H-TRNS-95975-767)) | 서울특별시(서울역사박물관 소장) · 공공누리 제1유형 |
+| holo_pair_gangnam_then_nonhyeon_1975.jpg | 지금의 강남대로 자리(강남구 논현동), 1975-01-19 ([서울역사아카이브](https://museum.seoul.go.kr/archive/archiveNew/NR_archiveView.do?type=B&ctgryId=CTGRY754&upperNodeId=CTGRY755&fileSn=300&fileId=H-TRNS-77472-755)) | 서울특별시(서울역사박물관 소장) · 공공누리 제1유형 |
+| holo_pair_gangnam_now_gangnamdaero_2009.jpg | 서울 강남대로, 2009-08-31 ([강남대로-2009-4494111695_ee300ede58_c.jpg](https://commons.wikimedia.org/wiki/File:%EA%B0%95%EB%82%A8%EB%8C%80%EB%A1%9C-2009-4494111695_ee300ede58_c.jpg)) | lamoix(Flickr) · CC BY 2.0 · Wikimedia Commons |
+| holo_subcenter_gangnam_samseong_dusk_2022.jpg | 강남구 삼성동 테헤란로–영동대로 교차로, 2022-12-06 ([Teheran-ro Yeongdong-daero crossing 5.jpg](https://commons.wikimedia.org/wiki/File:Teheran-ro_Yeongdong-daero_crossing_5.jpg)) | kallerna · CC BY-SA 4.0 · Wikimedia Commons |
+| holo_subcenter_yeouido_skyline_2024.jpg | 여의도 고층 건물과 국회의사당 돔, 2024-05-28 ([Yeouido view 20240528.jpg](https://commons.wikimedia.org/wiki/File:Yeouido_view_20240528.jpg)) | Ox1997cow · CC BY-SA 4.0 · Wikimedia Commons |
+| holo_industry_seoul_mullae_2018.jpg | 영등포구 문래동 — 철공소 지붕 옆 아파트, 2018-10-03 ([Mullae-dong cityscape.jpg](https://commons.wikimedia.org/wiki/File:Mullae-dong_cityscape.jpg)) | Minseong Kim · CC BY-SA 4.0 · Wikimedia Commons |
+| holo_industry_gwangju_kia_plant_2009.jpg | 광주 서구의 자동차 공장, 2009-01-24 ([Kia motors gwangju factory.jpg](https://commons.wikimedia.org/wiki/File:Kia_motors_gwangju_factory.jpg)) | Sim1992 · CC BY-SA 3.0 · Wikimedia Commons |
+| holo_greenbelt_seocho_umyeon_2022.jpg | 서초구 남쪽 끝 항공사진 — 비닐하우스 밭과 숲 사이 아파트 단지, 2022-08-24 ([Seoul Aerial Shot 15.jpg](https://commons.wikimedia.org/wiki/File:Seoul_Aerial_Shot_15.jpg)) | Korea.net / KOCIS(사진 Jeon Han) · CC BY-SA 2.0 · Wikimedia Commons |
