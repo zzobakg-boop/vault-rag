@@ -1261,6 +1261,21 @@ html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;c
 }
 @media (min-width:981px){html.v2-top .v2-rail a .t{display:inline}}
 </style>
+<style id="ws-refocus-css">/* 다른 창에 갔다 오면 «하던 곳» 안내 (2026-11-10 천대현) — 화면 아래 가운데 한 줄. 확대 창(9999)보다 아래, 인쇄 땐 숨김 */
+.ws-rf{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9500;display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100vw - 24px);background:#1e3a5f;color:#fff;border-radius:14px;padding:10px 10px 10px 14px;box-shadow:0 10px 30px rgba(0,0,0,.28);font-size:15px;line-height:1.45;font-family:inherit}
+.ws-rf[hidden]{display:none!important}
+.ws-rf-t b{color:#ffd56a;font-weight:700}
+.ws-rf button{font:inherit;cursor:pointer;border:0;border-radius:9px;margin:0}
+.ws-rf-go{background:#ffd56a;color:#1e3a5f;font-weight:700;padding:6px 12px;white-space:nowrap}
+.ws-rf-go[hidden]{display:none}
+.ws-rf-x{background:transparent;color:#cfe0f5;padding:6px 8px}
+.ws-rf button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.ws-rf-flash{outline:3px solid #ffb300!important;outline-offset:3px}
+@media (prefers-reduced-motion:no-preference){.ws-rf:not([hidden]){animation:wsrf .22s ease-out}}
+@keyframes wsrf{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+@media (max-width:480px){.ws-rf{font-size:14px;flex-wrap:wrap;justify-content:flex-end}.ws-rf-i{display:none}.ws-rf-t{flex:1 1 100%}}
+@media print{.ws-rf{display:none!important}}
+</style>
 </head>
 <body>
 <div class="container">
@@ -1925,6 +1940,143 @@ document.addEventListener('input',tally);tally();
 if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){[].forEach.call(R.querySelectorAll('a'),function(a){a.classList.toggle('on',a.dataset.s===e.target.id);if(a.dataset.s===e.target.id&&R.scrollWidth>R.clientWidth)R.scrollLeft=a.offsetLeft-20;});}});},{rootMargin:'-30% 0px -65% 0px'});secs.forEach(function(s){io.observe(s);});}
 })();
 (function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,800);})();
+</script>
+<script id="ws-refocus-js">/* 다른 창에 갔다 오면 «하던 곳» 안내 (2026-11-10 천대현 «다른 창, 게임, 영상» · «(가)가 가장 현실적»)
+   - 아무것도 저장·전송하지 않는다. 다녀온 횟수·시각을 세어 남기지도 않는다.
+     위성 딥리서치(2026-11-10 seatwork-engagement): 이탈을 이름과 묶어 저장·전송하면 개인정보 보호법 최소 수집에 걸리고,
+     감지·경고가 학습을 올린 실험도 없다. 그래서 학생 본인 화면에 «어디로 돌아오면 되는지»만 알려 준다.
+   - 15초 넘게 비웠다가 돌아올 때만 화면 아래에 한 줄을 띄운다. 막지도 꾸짖지도 않는다.
+   - 다른 창으로 간 것은 막을 수 없고, 창을 일부만 가린 경우는 못 알아챌 수 있다(visibilitychange 한계). */
+(function(){
+  var MIN = (window.WS_REFOCUS_MIN_MS != null) ? window.WS_REFOCUS_MIN_MS : 15000;
+  var FIELDS = '.blank-input,.essay-input,textarea';
+  var CIRC = '①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖㉗㉘㉙㉚';
+  var last = null, leftAt = 0, box = null, txt = null, go = null, timer = 0;
+  function root(){ return document.querySelector('.container') || document.body; }
+
+  document.addEventListener('focusin', function(e){ var t = e.target; if (t && t.matches && t.matches(FIELDS)) last = t; }, true);
+  document.addEventListener('click', function(e){
+    var t = e.target && e.target.closest && e.target.closest('.ox-btn,.choice-btn,.pk-b');
+    if (t) last = t;
+  }, true);
+
+  /* 학습지가 새 창으로 보낸 것(거리뷰·출처 모음 등 target=_blank 링크)은 딴 데 간 것이 아니다 — 누른 직후의 이탈은 세지 않는다(사회 확인 ℹ️2) */
+  var linkAt = 0, viaLink = false;
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest && e.target.closest('a[target="_blank"],a[href^="http"]');
+    if (a) linkAt = Date.now();
+  }, true);
+  function away(){ if (!leftAt){ leftAt = Date.now(); viaLink = (leftAt - linkAt) < 2000; } }
+  function back(){ if (!leftAt) return; var d = Date.now() - leftAt, v = viaLink; leftAt = 0; viaLink = false; if (d >= MIN && !v) show(); }
+  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') away(); else back(); });
+  /* 같은 화면에서 다른 프로그램(게임 창 등)으로 옮겨 가면 창이 가려지지 않아도 blur가 온다. 학습지 안 iframe(영상·3D)으로 간 것은 뺀다. */
+  window.addEventListener('blur', function(){ setTimeout(function(){
+    var a = document.activeElement; if (a && a.tagName === 'IFRAME') return;
+    if (!document.hasFocus()) away();
+  }, 0); });
+  window.addEventListener('focus', back);
+
+  function stageOf(node){
+    var hs = root().querySelectorAll('h2'), s = null;
+    for (var i = 0; i < hs.length; i++){
+      if (hs[i].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING) s = hs[i]; else break;
+    }
+    return s;
+  }
+  function stageName(h){
+    if (!h) return '';
+    /* 디자인 v2는 «N단계»를 h2 앞 띠(.v2-kicker)로 옮긴다 — 띠부터 본다 */
+    var k = h.previousElementSibling, kt = (k && /v2-kicker/.test(k.className)) ? k.textContent : '';
+    var t = h.textContent.replace(/\s+/g, ' ').trim(), m = (kt + ' ' + t).match(/(\d+)\s*단계|STEP\s*0*(\d+)/i);
+    if (m) return (m[1] || m[2]) + '단계';
+    t = t.replace(/^[^0-9A-Za-z가-힣]+/, '');
+    return t.length > 14 ? t.slice(0, 14) + '…' : t;
+  }
+  function fieldName(el){
+    if (!el) return '';
+    if (el.classList.contains('blank-input') && !el.classList.contains('activity-input')){
+      /* 학생 눈에 보이는 번호는 칸 바로 앞 동그라미 글자다 — 옛 1학기 몇 편은 data-id와 어긋난다(메인 확인 ℹ️1) */
+      var p = el.previousSibling, pc = (p && p.nodeType === 3) ? p.nodeValue.replace(/\s+$/, '').slice(-1) : '';
+      if (pc && CIRC.indexOf(pc) >= 0) return pc + ' 칸';
+      var n = parseInt(el.dataset.id, 10); return (n >= 1 && n <= 30) ? CIRC.charAt(n - 1) + ' 칸' : '빈칸';
+    }
+    if (el.classList.contains('essay-input') || el.tagName === 'TEXTAREA') return '서술 칸';
+    if (el.classList.contains('activity-input')) return '활동 칸';
+    if (el.closest('.ox-group')) return 'OX';
+    if (el.closest('.ws-pick,.pk-card')) return '카드 고르기';
+    return '';
+  }
+  function isEmpty(el){ return el.matches && el.matches(FIELDS) && !(el.value && el.value.trim()); }
+  function fieldsIn(stage){
+    /* 접힌 칸·넘김 카드 안 칸도 센다 — 안 보인다고 빼면 «다 채웠어»가 일찍 뜬다 */
+    return [].slice.call(root().querySelectorAll(FIELDS)).filter(function(f){ return stageOf(f) === stage; });
+  }
+
+  /* 어디로 돌아오면 되나: 하던 칸이 비었으면 그 칸 → 그 단계의 다음 빈칸 → 단계를 다 채웠으면 «설명 같이 듣자» */
+  function where(){
+    var t = (last && document.contains(last)) ? last : null;
+    if (!t){
+      var first = [].slice.call(root().querySelectorAll(FIELDS)).filter(isEmpty)[0];
+      if (!first) return { done: true, stage: null, target: null };
+      return { el: first, stage: stageOf(first), first: true };
+    }
+    if (isEmpty(t)) return { el: t, stage: stageOf(t) };
+    /* 쓰던 칸 뒤의 빈칸 먼저, 없으면 그 단계 앞쪽 빈칸(사회 확인 ℹ️1 — «하던 곳»은 쓰던 자리 다음이어야 말이 맞다) */
+    var st = stageOf(t), inSt = fieldsIn(st);
+    var after = inSt.filter(function(f){ return (t.compareDocumentPosition(f) & Node.DOCUMENT_POSITION_FOLLOWING) && isEmpty(f); });
+    var rest = after.length ? after : inSt.filter(isEmpty);
+    /* 앞쪽으로 되돌아가는 칸은 «하던 곳»이 아니라 «아직 빈 곳»이다(메인 확인 ℹ️2) */
+    if (rest.length) return { el: rest[0], stage: st, gap: !after.length };
+    return { done: true, stage: st, target: st };
+  }
+
+  function mk(){
+    if (box) return;
+    box = document.createElement('div'); box.className = 'ws-rf'; box.hidden = true;
+    box.setAttribute('role', 'status'); box.setAttribute('aria-live', 'polite');
+    var ic = document.createElement('span'); ic.className = 'ws-rf-i'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = '📍';
+    txt = document.createElement('span'); txt.className = 'ws-rf-t';
+    go = document.createElement('button'); go.type = 'button'; go.className = 'ws-rf-go';
+    var x = document.createElement('button'); x.type = 'button'; x.className = 'ws-rf-x'; x.setAttribute('aria-label', '닫기'); x.textContent = '✕';
+    x.addEventListener('click', hide);
+    box.appendChild(ic); box.appendChild(txt); box.appendChild(go); box.appendChild(x);
+    document.body.appendChild(box);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !box.hidden) hide(); });
+  }
+  function put(parts){
+    txt.textContent = '';
+    parts.forEach(function(p){ var e = document.createElement(p[1] ? 'b' : 'span'); e.textContent = p[0]; txt.appendChild(e); });
+  }
+  function hide(){ if (box) box.hidden = true; clearTimeout(timer); }
+  function flash(el){
+    el.classList.add('ws-rf-flash');
+    setTimeout(function(){ el.classList.remove('ws-rf-flash'); }, 2000);
+  }
+  function show(){
+    if (!root().querySelector(FIELDS)) return;  /* 쓸 칸이 하나도 없는 판(옛 10·11차시 등)엔 «다 채웠어»가 거짓말이 된다 */
+    var r = where(); mk();
+    var sn = stageName(r.stage), place = sn ? sn + (r.el ? ' · ' : '') : '';
+    var target = r.el || r.target;
+    if (r.done){
+      put(sn ? [['다시 왔네. '], [sn, 1], [' 칸은 다 채웠어 — 지금은 선생님 설명을 같이 듣자.']]
+             : [['다시 왔네. 빈칸은 다 채웠어 — 지금은 선생님 설명을 같이 듣자.']]);
+      go.textContent = sn ? sn + ' 보기' : '';
+    } else {
+      put([['다시 왔네. ' + (r.first ? '첫 칸은 ' : r.gap ? '아직 빈 곳은 ' : '하던 곳은 ')], [place + fieldName(r.el), 1], ['이야.']]);
+      go.textContent = '그 칸으로';
+    }
+    go.hidden = !target;
+    go.onclick = function(){
+      hide(); if (!target) return;
+      target.scrollIntoView({ block: 'center', behavior: (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth' });
+      if (target.matches && target.matches(FIELDS)) { try { target.focus({ preventScroll: true }); } catch (e) { target.focus(); } }
+      flash(target);
+    };
+    box.hidden = false;
+    clearTimeout(timer); timer = setTimeout(hide, 20000);
+  }
+  window.__wsRefocusShow = show;  /* 시험용 — 수업 동작에는 쓰지 않는다 */
+})();
 </script>
 </body>
 </html>

@@ -110,6 +110,7 @@
     setTimeout(function(){ el.classList.remove('ws-rf-flash'); }, 2000);
   }
   function show(){
+    if (!root().querySelector(FIELDS)) return;  /* 쓸 칸이 하나도 없는 판(옛 10·11차시 등)엔 «다 채웠어»가 거짓말이 된다 */
     var r = where(); mk();
     var sn = stageName(r.stage), place = sn ? sn + (r.el ? ' · ' : '') : '';
     var target = r.el || r.target;
