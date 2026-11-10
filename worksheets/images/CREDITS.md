@@ -1861,7 +1861,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 4-3-3_입담_빌려서.png | 1694년 런던 — 정부 관리와 상인, 1690년대 긴 가발(가상 인물) · 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_*` |
 | 4-3-3_입담_타유.png | 1680년 무렵 프랑스 시골 — 왕의 세금 징수원과 농민(가상 인물) · 대사·이름표는 PIL | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_*` |
 | 4-3-3_입담_관리_v2.webp | 1670년 무렵 프랑스 — 지방마다 보낸 왕의 관리 셋이 장부를 수도의 재무 관리에게 건넴, 뒤에 왕관 깃발(가상 인물·실존 인물 아님) · 대사·이름표는 PIL · 2026-11-11 | AI 생성 삽화(Grok Aurora grok-imagine-image-2.0, Google 이미지 402 대체) · `map-render/ipdam_gen.py r433_official` |
-| 선생님_입담.webp | 입담 말풍선 옆 선생님 얼굴(voice_avatar) — 가상의 선생님, 실제 인물 사진을 바탕으로 하지 않음 · 2026-11-11 | AI 생성 그림(Grok Aurora grok-imagine-image-2.0, 글로만 지시·사진 입력 없음) · 192px로 자름 |
+| 선생님_입담.webp | 입담 말풍선 옆 선생님 얼굴(voice_avatar) — 천대현 선생님 캐리커처(윙크하는 얼굴) · 2026-11-11 | 천대현 제공 그림(11/11 사회 세션에 직접 보냄) · 얼굴만 잘라 192px·검은 배경을 크림색(#FAF1DE)으로 바꿈 · (2026-11-11 교체: 처음 넣은 AI 생성 가상 얼굴은 천대현 «이 그림을 조정해서 선생님 사진을» 요청으로 내림) |
 
 ## 8-1~2 도시 둘러보기 360° 사진 (2026-11-10 · 천대현 «로드뷰나 3D뷰로 간접 체험»)
 

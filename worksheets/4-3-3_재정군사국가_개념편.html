@@ -1152,6 +1152,21 @@ figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img { cursor: zoom-in;
 .control-bar .btn.btn-reset{background:#fff;color:#d93025;border:1px solid #f3b6b0;margin-right:14px!important}
 .control-bar .btn.btn-reset:hover{background:#fff4f3}
 </style>
+<style id="ws-refocus-css">/* 다른 창에 갔다 오면 «하던 곳» 안내 (2026-11-10 천대현) — 화면 아래 가운데 한 줄. 확대 창(9999)보다 아래, 인쇄 땐 숨김 */
+.ws-rf{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9500;display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100vw - 24px);background:#1e3a5f;color:#fff;border-radius:14px;padding:10px 10px 10px 14px;box-shadow:0 10px 30px rgba(0,0,0,.28);font-size:15px;line-height:1.45;font-family:inherit}
+.ws-rf[hidden]{display:none!important}
+.ws-rf-t b{color:#ffd56a;font-weight:700}
+.ws-rf button{font:inherit;cursor:pointer;border:0;border-radius:9px;margin:0}
+.ws-rf-go{background:#ffd56a;color:#1e3a5f;font-weight:700;padding:6px 12px;white-space:nowrap}
+.ws-rf-go[hidden]{display:none}
+.ws-rf-x{background:transparent;color:#cfe0f5;padding:6px 8px}
+.ws-rf button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.ws-rf-flash{outline:3px solid #ffb300!important;outline-offset:3px}
+@media (prefers-reduced-motion:no-preference){.ws-rf:not([hidden]){animation:wsrf .22s ease-out}}
+@keyframes wsrf{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+@media (max-width:480px){.ws-rf{font-size:14px;flex-wrap:wrap;justify-content:flex-end}.ws-rf-i{display:none}.ws-rf-t{flex:1 1 100%}}
+@media print{.ws-rf{display:none!important}}
+</style>
 <style id="ws-design-v2">/* ===== 4-3-2 디자인 시험판 v2 — 덧씌움(원본 HTML·data-id 불변) ===== */
 :root{
   --ink:#1f2329; --ink2:#4a5160; --mute:#7a8191; --line:#e6e8ee; --paper:#ffffff; --bg:#f3f4f7;
@@ -1279,20 +1294,20 @@ html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;c
 }
 @media (min-width:981px){html.v2-top .v2-rail a .t{display:inline}}
 </style>
-<style id="ws-refocus-css">/* 다른 창에 갔다 오면 «하던 곳» 안내 (2026-11-10 천대현) — 화면 아래 가운데 한 줄. 확대 창(9999)보다 아래, 인쇄 땐 숨김 */
-.ws-rf{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9500;display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100vw - 24px);background:#1e3a5f;color:#fff;border-radius:14px;padding:10px 10px 10px 14px;box-shadow:0 10px 30px rgba(0,0,0,.28);font-size:15px;line-height:1.45;font-family:inherit}
-.ws-rf[hidden]{display:none!important}
-.ws-rf-t b{color:#ffd56a;font-weight:700}
-.ws-rf button{font:inherit;cursor:pointer;border:0;border-radius:9px;margin:0}
-.ws-rf-go{background:#ffd56a;color:#1e3a5f;font-weight:700;padding:6px 12px;white-space:nowrap}
-.ws-rf-go[hidden]{display:none}
-.ws-rf-x{background:transparent;color:#cfe0f5;padding:6px 8px}
-.ws-rf button:focus-visible{outline:2px solid #fff;outline-offset:2px}
-.ws-rf-flash{outline:3px solid #ffb300!important;outline-offset:3px}
-@media (prefers-reduced-motion:no-preference){.ws-rf:not([hidden]){animation:wsrf .22s ease-out}}
-@keyframes wsrf{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
-@media (max-width:480px){.ws-rf{font-size:14px;flex-wrap:wrap;justify-content:flex-end}.ws-rf-i{display:none}.ws-rf-t{flex:1 1 100%}}
-@media print{.ws-rf{display:none!important}}
+<style id="ws-voice-avatar">/* 선생님 입담 = 선생님이 말하는 말풍선 (2026-11-11 천대현 4-3-3 검토판) — frontmatter voice_avatar 가 있을 때만 붙는다.
+   v2.css 의 입담 상자(노란 바탕·🎙️ 동그라미)를 덮어 쓴다: 왼쪽에 선생님 얼굴, 오른쪽에 꼬리 달린 말풍선.
+   상자 폭·글자 크기는 그대로 두고, 글 시작만 얼굴 몫만큼 오른쪽으로 민다. */
+blockquote.v2-voice{background:transparent!important;border-radius:0!important;padding:14px 18px 14px 68px!important;z-index:0}
+blockquote.v2-voice::after{content:"";position:absolute;left:52px;right:0;top:0;bottom:0;background:var(--voice);border-radius:16px;z-index:-1}
+blockquote.v2-voice::before{content:"";left:2px;top:4px;width:40px;height:40px;font-size:0;background:#fff url("images/선생님_입담.webp") center/cover no-repeat;box-shadow:0 0 0 2px var(--voice-line)}
+blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:18px;border-style:solid;border-width:8px 8px 8px 0;border-color:transparent var(--voice) transparent transparent}
+@media (max-width:640px){
+  blockquote.v2-voice{padding:12px 14px 12px 56px!important}
+  blockquote.v2-voice::after{left:42px}
+  blockquote.v2-voice::before{left:0;top:4px;width:34px;height:34px}
+  blockquote.v2-voice .v2-who::before{left:35px;top:14px;border-width:7px 7px 7px 0}
+}
+@media print{blockquote.v2-voice::before{box-shadow:none}}
 </style>
 </head>
 <body>
@@ -1372,7 +1387,9 @@ html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;c
 <h2>📖 3단계: 칼보다 대포, 대포보다 돈</h2>
 <blockquote>📕 <strong>교과서 136쪽 「재정·군사 국가」 첫 문단 + 날개</strong> 펴고 채우기 · 배정 시간 <strong>7분</strong></blockquote>
 <br>
+<div class="ws-ipdam"><figure class="ipd-fig"><img src="images/4-3-3_입담_관리_v2.webp" alt="삽화 — 지방마다 보낸 왕의 관리들: 지방마다 걷은 세금, 장부에 다 적어 왔습니다! · 수도의 재무 관리: 장부가 모이니 한눈에 보이는군. 관리를 더 보내 빠짐없이 걷세." loading="lazy"><figcaption>왕이 지방마다 보낸 관리들이 세금 걷는 일을 살피고 장부를 수도로 올려 보냈다 — 일을 나눠 맡은 관리들이 위아래로 이어져 나라 살림을 꾸린 셈이다 (AI로 그린 상상 그림)</figcaption></figure><div class="ipd-t">
 <p>16~17세기 많은 전쟁을 겪으면서 유럽에서는 강한 군사력, 효율적으로 세금을 거두는 제도, 중앙 집권적 행정 기구를 갖춘 <strong>재정·군사 국가</strong>가 나타났다. 군대는 중무장한 기사 중심에서 <strong>화약 무기로 무장한 상비군</strong> 중심으로 바뀌었고, 대포의 공격을 견디는 <strong>별 모양 요새</strong>가 만들어졌다. 전쟁에는 돈이 많이 들었기 때문에 재정을 관리하는 능력이 곧 승패를 갈랐다. 그래서 나라들은 백성에게서 세금을 더 많이, 더 효율적으로 거두려고 행정 기구와 ④<input type="text" class="blank-input" data-answer="관료제" data-id="4" style="width:68px" placeholder="">를 넓혔다.</p>
+</div></div>
 <br>
 <blockquote>🎙️ 3-3-4에서 <strong>화약 무기</strong> 때문에 기사가 몰락했다고 했지? 그 이야기가 여기서 이어져. 그럼 기사가 떠난 자리는 누가 채웠을까?</blockquote>
 <br>
@@ -1443,7 +1460,7 @@ html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;c
 <p>루이 14세는 재무 장관 <strong>콜베르</strong>를 등용해 적극적으로 <strong>중상주의</strong> 정책을 펼쳤다. 또 <strong>신분제 의회를 소집하지 않고</strong> 농민에게서 막대한 세금을 걷어 상비군을 키웠다. 그러나 무리한 대외 전쟁으로 프랑스는 재정난에 시달렸고, 더 많은 세금을 내야 했던 농민들의 불만은 훗날 <strong>프랑스 혁명</strong>이 일어나는 계기가 되었다.</p>
 </div></div>
 <br>
-<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p><strong>프랑스 왕은 어떻게 허락 없이 걷게 됐을까</strong></p><p>프랑스에도 세금을 허락하는 신분제 의회, 곧 <strong>삼부회</strong>가 있었어. 성직자(제1신분)·귀족(제2신분)·평민(제3신분)의 대표가 모이는 회의야.</p><p>그런데 백년 전쟁 중이던 1439년, 삼부회는 군대를 기를 세금(타유)을 왕에게 허락했어. 그러자 왕은 그 뒤로 다시 묻지 않고 해마다 이 세금을 걷었고, 아무도 막지 못했지. 돈이 해마다 들어오니 회의를 부를 일이 줄었고, 삼부회는 1614년을 끝으로 열리지 않았어. 루이 14세도 평생 한 번도 부르지 않았지.</p><p>성직자와 귀족은 이 세금을 면제받았고, 왕은 귀족을 베르사유 궁정으로 불러 곁에 묶어 두었어. 그러니 왕에게 맞설 힘이 모이지 않았고, 세금 짐은 농민에게 몰렸지. 삼부회가 다시 열리는 건 나라 살림이 바닥난 1789년, 175년 만이야(5-1-3 프랑스 혁명에서 만나자).</p></div>
+<div class="ws-read"><div class="ws-read-tag">읽고 넘어가는 곳</div><p><strong>프랑스 왕은 어떻게 허락 없이 걷게 됐을까</strong></p><p>프랑스에도 세금을 허락하는 신분제 의회, 곧 <strong>삼부회</strong>가 있었어. 성직자(제1신분)·귀족(제2신분)·평민(제3신분)의 대표가 모이는 회의야.</p><p>그런데 백년 전쟁 중이던 1439년, 삼부회는 늘 있는 군대(상비군)를 기를 세금(타유)을 걷을 권리를 왕에게 허락했어. 군대가 늘 있으니 세금도 해마다 걷는 것이 됐지. 왕은 그 뒤로 다시 묻지 않았고, 아무도 막지 못했어. 돈이 해마다 들어오니 왕은 회의를 부를 까닭이 없어졌고, 삼부회는 1614년을 끝으로 열리지 않았어. 루이 14세도 평생 한 번도 부르지 않았지.</p><p>성직자와 귀족은 이 세금을 면제받았고, 왕은 귀족을 베르사유 궁정으로 불러 곁에 묶어 두었어. 그러니 왕에게 맞설 힘이 모이지 않았고, 세금 짐은 농민에게 몰렸지. 삼부회가 다시 열리는 건 나라 살림이 바닥난 1789년, 175년 만이야(5-1-3 프랑스 혁명에서 만나자).</p></div>
 <br>
 <div class="ws-2c" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.3fr)"><div class="c2-a">
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/4-3-3_루이14세.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/4-3-3_루이14세.jpg" alt="루이 14세(1701, 이아생트 리고 그림) — 대관식 예복에 붉은 굽 구두를 신고 왕의 홀을 짚었다. 그림은 이 자세 그대로 다른 궁전들에 사본으로 보내졌다." loading="lazy"></a><figcaption>루이 14세(1701, 이아생트 리고 그림) — 대관식 예복에 붉은 굽 구두를 신고 왕의 홀을 짚었다. 그림은 이 자세 그대로 다른 궁전들에 사본으로 보내졌다.</figcaption></figure>
@@ -1484,7 +1501,7 @@ html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;c
 <blockquote>두 나라 모두 '전쟁 비용을 어떻게 마련할까'를 고민했어. 그런데 답이 갈렸지. 세 걸음으로 그 까닭을 찾아보자.</blockquote>
 <br>
 <style>/* 2026-10-26 사회 7-5 «좁게» — 그림 없는 짧은 카드. 데스크톱은 한 줄에 다 놓고, 폰은 «이름·값 | 버튼» 한 줄씩 */ .pk-grid.pk-tight { grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; } .pk-tight .pk-card { padding: 8px 6px; } .pk-tight .pk-sit { min-height: 0; margin: 2px 0 7px; } .pk-tight .pk-b { padding: 5px 1px; word-break: keep-all; line-height: 1.25; font-size: .74em; } .pk-tight .pk-btns { gap: 3px; } @media (max-width: 640px) {   .pk-grid.pk-tight { grid-template-columns: 1fr; gap: 6px; }   .pk-tight .pk-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 10px; align-items: center; text-align: left; padding: 7px 10px; }   .pk-tight .pk-name, .pk-tight .pk-sit { grid-column: 1; margin: 0; }   .pk-tight .pk-btns { grid-column: 2; grid-row: 1 / span 2; }   .pk-tight .pk-why { grid-column: 1 / -1; } } /* 2026-10-27 사회 7-5 «센 수/견준 값»: 금테 카드도 «좁게» — 칸마다 깔던 크림 판 대신 카드 하나를 크림 판+금테(배경 두 겹)로. 폰 두 칸 배치에서 판이 조각나던 것 */ .pk-gold.pk-tight .pk-card, .pk-gold.pk-tight .pk-card.pk-noimg { padding: 9px 8px; border: 5px solid transparent; border-radius: 13px; background: linear-gradient(#fdf7e6, #fdf7e6) padding-box, linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%) border-box; } .pk-gold.pk-tight .pk-name, .pk-gold.pk-tight .pk-sit, .pk-gold.pk-tight .pk-btns, .pk-gold.pk-tight .pk-why, .pk-gold.pk-tight .pk-card.pk-noimg .pk-name { background: none; padding: 0; border-radius: 0; } .pk-gold.pk-tight .pk-name { font-size: .95em; line-height: 1.35; word-break: keep-all; } .pk-gold.pk-tight .pk-sit { word-break: keep-all; } .pk-gold.pk-tight .pk-sit { font-size: .8em; line-height: 1.4; margin: 3px 0 7px; } .pk-gold.pk-tight .pk-why { margin-top: 6px; } .pk-gold.pk-tight:has(> .pk-card:nth-child(6)), .pk-gold.pk-tight:has(.pk-b:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } @media (max-width: 640px) { .pk-grid.pk-gold.pk-tight, .pk-gold.pk-tight:has(> .pk-card:nth-child(6)), .pk-gold.pk-tight:has(.pk-b:nth-child(3)) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; } .pk-gold.pk-tight .pk-card, .pk-gold.pk-tight .pk-card.pk-noimg { display: flex; flex-direction: column; text-align: left; padding: 8px 10px; } .pk-gold.pk-tight .pk-sit { margin: 2px 0 6px; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:has(> .pk-b:nth-child(3)) { grid-auto-flow: row; grid-template-columns: 1fr; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:has(> .pk-b:nth-child(4)) { grid-template-columns: 1fr 1fr; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { align-content: center; } }</style>
-<div class="ws-pick" id="pk167"><div class="pk-head"><span><strong>① 카드 가르기</strong> — 여덟 장면이다. 영국 이야기일까, 프랑스 이야기일까, 둘 다일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 8</b></div><div class="pk-grid pk-gold pk-tight"><div class="pk-card pk-noimg" data-i="0" data-ans="두 나라 모두"><div class="pk-name">끝없는 전쟁</div><div class="pk-sit">전쟁이 길어지고 군대가 커져 돈이 끝없이 들었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>16~17세기 유럽 나라들은 모두 긴 전쟁을 치렀다 — 3단계</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="두 나라 모두"><div class="pk-name">늘 대기하는 군대</div><div class="pk-sit">16~17세기 유럽의 큰 나라들은 전쟁이 없을 때도 군대를 두고 먹였다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>상비군 — 3단계 날개. 프랑스만이 아니라 영국도 키웠다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="영국"><div class="pk-name">대헌장</div><div class="pk-sit">1215년 귀족들이 왕에게서 '동의 없이 마음대로 세금을 걷지 않는다'는 약속을 받아 냈다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>대헌장(마그나 카르타) — 5단계 상자</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="프랑스"><div class="pk-name">오를레앙의 허락</div><div class="pk-sit">1439년 신분제 의회가 군대 세금을 허락하자, 왕은 그 뒤로 다시 묻지 않고 해마다 걷었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>샤를 7세와 타유 — 6단계 상자</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="영국"><div class="pk-name">왕과 의회의 싸움</div><div class="pk-sit">17세기 왕이 의회 없이 세금을 걷으려다 내전이 일어났고, 의회가 이겼다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>'여러 차례의 정치적 혼란' — 5단계 상자, 5-1-1에서 자세히</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="프랑스"><div class="pk-name">아침 옷 입는 자리</div><div class="pk-sit">귀족들이 자기 땅을 비워 두고 궁전에 살며, 왕이 아침에 옷 입는 자리에 들어가려고 애썼다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>루이 14세의 베르사유 — 6단계 입담</div></div><div class="pk-card pk-noimg" data-i="6" data-ans="영국"><div class="pk-name">120만 파운드</div><div class="pk-sit">1694년 런던 상인들이 돈을 모아 세운 은행이 나라에 120만 파운드를 빌려주었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>5단계 '더보기' 접기</div></div><div class="pk-card pk-noimg" data-i="7" data-ans="프랑스"><div class="pk-name">사슬에 묶인 농민</div><div class="pk-sit">소금세가 무거운 곳의 가난한 농민들이 싼 소금을 사 오다 걸려 사슬에 묶였다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>1708년 갤리선 기록 — 6단계 입담</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk167");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["영국", "프랑스", "두 나라 모두"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk169"><div class="pk-head"><span><strong>① 카드 가르기</strong> — 여덟 장면이다. 영국 이야기일까, 프랑스 이야기일까, 둘 다일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 8</b></div><div class="pk-grid pk-gold pk-tight"><div class="pk-card pk-noimg" data-i="0" data-ans="두 나라 모두"><div class="pk-name">끝없는 전쟁</div><div class="pk-sit">전쟁이 길어지고 군대가 커져 돈이 끝없이 들었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>16~17세기 유럽 나라들은 모두 긴 전쟁을 치렀다 — 3단계</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="두 나라 모두"><div class="pk-name">늘 대기하는 군대</div><div class="pk-sit">16~17세기 유럽의 큰 나라들은 전쟁이 없을 때도 군대를 두고 먹였다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>상비군 — 3단계 날개. 프랑스만이 아니라 영국도 키웠다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="영국"><div class="pk-name">대헌장</div><div class="pk-sit">1215년 귀족들이 왕에게서 '동의 없이 마음대로 세금을 걷지 않는다'는 약속을 받아 냈다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>대헌장(마그나 카르타) — 5단계 상자</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="프랑스"><div class="pk-name">오를레앙의 허락</div><div class="pk-sit">1439년 신분제 의회가 군대 세금을 허락하자, 왕은 그 뒤로 다시 묻지 않고 해마다 걷었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>샤를 7세와 타유 — 6단계 상자</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="영국"><div class="pk-name">왕과 의회의 싸움</div><div class="pk-sit">17세기 왕이 의회 없이 세금을 걷으려다 내전이 일어났고, 의회가 이겼다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>'여러 차례의 정치적 혼란' — 5단계 상자, 5-1-1에서 자세히</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="프랑스"><div class="pk-name">아침 옷 입는 자리</div><div class="pk-sit">귀족들이 자기 땅을 비워 두고 궁전에 살며, 왕이 아침에 옷 입는 자리에 들어가려고 애썼다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>루이 14세의 베르사유 — 6단계 입담</div></div><div class="pk-card pk-noimg" data-i="6" data-ans="영국"><div class="pk-name">120만 파운드</div><div class="pk-sit">1694년 런던 상인들이 돈을 모아 세운 은행이 나라에 120만 파운드를 빌려주었다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>5단계 '더보기' 접기</div></div><div class="pk-card pk-noimg" data-i="7" data-ans="프랑스"><div class="pk-name">사슬에 묶인 농민</div><div class="pk-sit">소금세가 무거운 곳의 가난한 농민들이 싼 소금을 사 오다 걸려 사슬에 묶였다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="영국">영국</button><button type="button" class="pk-b" data-v="프랑스">프랑스</button><button type="button" class="pk-b" data-v="두 나라 모두">두 나라 모두</button></div><div class="pk-why" hidden>1708년 갤리선 기록 — 6단계 입담</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk169");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["영국", "프랑스", "두 나라 모두"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <p><strong>② '그래서'로 잇기</strong> — 카드에서 고른 장면을 차례대로 이어 보자. 한 칸씩은 채워 두었다.</p>
 <br>
@@ -2157,61 +2174,6 @@ function askReset(){
   reset();
 }
 </script>
-<script id="ws-design-v2-js">(function(){
-var C=document.querySelector('.container'); if(!C) return;
-// 글머리 이모지는 첫 글자 마디에서만 지운다 — innerHTML을 다시 쓰면 안에 든 입력칸·단추의 리스너가 끊긴다(메인 10/28 지적)
-function strip(el,ch){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(n.nodeValue.trim()){n.nodeValue=n.nodeValue.replace(ch,'').replace(/^\s+/,'');return;}}}
-// 1) 블록 목소리 분류
-[].forEach.call(C.querySelectorAll('blockquote'),function(b){
-  var t=b.textContent.trim();
-  if(t.indexOf('🎙️')===0){b.classList.add('v2-voice');strip(b,'🎙️');var w=document.createElement('span');w.className='v2-who';w.textContent='선생님 입담';b.insertBefore(w,b.firstChild);}
-  else if(t.indexOf('📕')===0)b.classList.add('v2-task');
-  else if(t.indexOf('💡')===0)b.classList.add('v2-key');
-  else if(/^(🔍|🧭|✍️)/.test(t))b.classList.add('v2-ask');
-});
-[].forEach.call(C.querySelectorAll('p'),function(p){var t=p.textContent.trim();if(/^💬/.test(t)){p.classList.add('v2-q');strip(p,'💬');}});
-// 2) h2마다 묶어 카드로 (활동 section.ws-do는 그대로 카드)
-var kids=[].slice.call(C.children), secs=[], cur=null;
-kids.forEach(function(el){
-  if(el.tagName==='H2'){cur=document.createElement('section');cur.className='v2-sec';C.insertBefore(cur,el);secs.push(cur);}
-  else if(el.matches&&el.matches('section.ws-do')){el.classList.add('v2-sec');secs.push(el);cur=null;return;}
-  if(cur&&el.tagName!=='BR')cur.appendChild(el);
-});
-// 3) 단계 머리: «📖 1단계: 제목 — 부제» → 킥커 + 제목 + 부제
-secs.forEach(function(s,k){
-  s.id='v2s'+k; var h=s.querySelector('h2'); if(!h)return;
-  var m=h.textContent.match(/^📖\s*(\d)단계:\s*(⭐\s*)?(.+?)(\s+—\s+(.+))?$/);
-  if(m){s.classList.add('step');var kk=document.createElement('div');kk.className='v2-kicker';kk.innerHTML='<b>STEP '+m[1]+'</b>'+(m[2]?'⭐ 핵심':'');s.insertBefore(kk,h);
-    h.innerHTML=m[3]+(m[5]?'<span class="v2-sub">'+m[5]+'</span>':'');s.dataset.lab=m[1]+'단계';s.dataset.n=m[1];}
-  else{s.dataset.lab=h.textContent.replace(/^[^\w가-힣]+/,'').split('—')[0].trim();s.dataset.n=h.textContent.trim().slice(0,2);}
-});
-// 4) 진도 레일
-var R=document.createElement('nav');R.className='v2-rail';R.setAttribute('aria-label','학습지 차례');
-R.innerHTML='<div class="v2-rh"><h4>오늘의 길</h4><button type="button" class="v2-b v2-pos" aria-label="오늘의 길 위치 바꾸기"></button><button type="button" class="v2-b v2-fold" aria-expanded="true"></button></div>';
-var H=document.documentElement;function sg(k){try{return localStorage.getItem(k)}catch(e){return null}}function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
-function paint(){var top=H.classList.contains('v2-top'),fd=H.classList.contains('v2-folded');
-  R.querySelector('.v2-pos').textContent=top?'⇤ 왼쪽에':'⇡ 위로';R.querySelector('.v2-pos').title=top?'오늘의 길을 왼쪽에 두기':'오늘의 길을 위로 올리기';
-  var f=R.querySelector('.v2-fold');f.textContent=fd?'펴기 ▸':'◂ 접기';f.setAttribute('aria-expanded',fd?'false':'true');}
-if(sg('v2-top')==='1')H.classList.add('v2-top');if(sg('v2-fold')==='1')H.classList.add('v2-folded');
-R.addEventListener('click',function(e){var b=e.target.closest('.v2-b');if(!b)return;
-  if(b.classList.contains('v2-pos')){H.classList.toggle('v2-top');ss('v2-top',H.classList.contains('v2-top')?'1':'0');}
-  else{H.classList.toggle('v2-folded');ss('v2-fold',H.classList.contains('v2-folded')?'1':'0');}
-  paint();});
-setTimeout(paint,0);
-secs.forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.dataset.s=s.id;
-  var n=s.dataset.n;a.innerHTML='<span class="n">'+(/^\d$/.test(n)?n:n)+'</span><span class="t">'+s.dataset.lab+'</span><span class="c"></span>';R.appendChild(a);});
-var meter=document.createElement('div');meter.className='v2-meter';meter.innerHTML='<i></i>';R.appendChild(meter);
-var mtx=document.createElement('div');mtx.className='v2-mtx';R.appendChild(mtx);
-C.insertBefore(R,C.firstChild);
-function tally(){var all=0,fill=0;
-  secs.forEach(function(s){var ins=s.querySelectorAll('input.blank-input,textarea.activity-input');var f=0;[].forEach.call(ins,function(i){if(i.value.trim())f++;});
-    all+=ins.length;fill+=f;var a=R.querySelector('a[data-s="'+s.id+'"]');if(!a)return;a.querySelector('.c').textContent=ins.length?f+'/'+ins.length:'';a.classList.toggle('done',ins.length>0&&f===ins.length);});
-  meter.firstChild.style.width=(all?fill/all*100:0)+'%';mtx.textContent='채운 칸 '+fill+' / '+all;}
-document.addEventListener('input',tally);tally();
-if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){[].forEach.call(R.querySelectorAll('a'),function(a){a.classList.toggle('on',a.dataset.s===e.target.id);if(a.dataset.s===e.target.id&&R.scrollWidth>R.clientWidth)R.scrollLeft=a.offsetLeft-20;});}});},{rootMargin:'-30% 0px -65% 0px'});secs.forEach(function(s){io.observe(s);});}
-})();
-(function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,800);})();
-</script>
 <script id="ws-refocus-js">/* 다른 창에 갔다 오면 «하던 곳» 안내 (2026-11-10 천대현 «다른 창, 게임, 영상» · «(가)가 가장 현실적»)
    - 아무것도 저장·전송하지 않는다. 다녀온 횟수·시각을 세어 남기지도 않는다.
      위성 딥리서치(2026-11-10 seatwork-engagement): 이탈을 이름과 묶어 저장·전송하면 개인정보 보호법 최소 수집에 걸리고,
@@ -2348,6 +2310,61 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es
   }
   window.__wsRefocusShow = show;  /* 시험용 — 수업 동작에는 쓰지 않는다 */
 })();
+</script>
+<script id="ws-design-v2-js">(function(){
+var C=document.querySelector('.container'); if(!C) return;
+// 글머리 이모지는 첫 글자 마디에서만 지운다 — innerHTML을 다시 쓰면 안에 든 입력칸·단추의 리스너가 끊긴다(메인 10/28 지적)
+function strip(el,ch){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(n.nodeValue.trim()){n.nodeValue=n.nodeValue.replace(ch,'').replace(/^\s+/,'');return;}}}
+// 1) 블록 목소리 분류
+[].forEach.call(C.querySelectorAll('blockquote'),function(b){
+  var t=b.textContent.trim();
+  if(t.indexOf('🎙️')===0){b.classList.add('v2-voice');strip(b,'🎙️');var w=document.createElement('span');w.className='v2-who';w.textContent='선생님 입담';b.insertBefore(w,b.firstChild);}
+  else if(t.indexOf('📕')===0)b.classList.add('v2-task');
+  else if(t.indexOf('💡')===0)b.classList.add('v2-key');
+  else if(/^(🔍|🧭|✍️)/.test(t))b.classList.add('v2-ask');
+});
+[].forEach.call(C.querySelectorAll('p'),function(p){var t=p.textContent.trim();if(/^💬/.test(t)){p.classList.add('v2-q');strip(p,'💬');}});
+// 2) h2마다 묶어 카드로 (활동 section.ws-do는 그대로 카드)
+var kids=[].slice.call(C.children), secs=[], cur=null;
+kids.forEach(function(el){
+  if(el.tagName==='H2'){cur=document.createElement('section');cur.className='v2-sec';C.insertBefore(cur,el);secs.push(cur);}
+  else if(el.matches&&el.matches('section.ws-do')){el.classList.add('v2-sec');secs.push(el);cur=null;return;}
+  if(cur&&el.tagName!=='BR')cur.appendChild(el);
+});
+// 3) 단계 머리: «📖 1단계: 제목 — 부제» → 킥커 + 제목 + 부제
+secs.forEach(function(s,k){
+  s.id='v2s'+k; var h=s.querySelector('h2'); if(!h)return;
+  var m=h.textContent.match(/^📖\s*(\d)단계:\s*(⭐\s*)?(.+?)(\s+—\s+(.+))?$/);
+  if(m){s.classList.add('step');var kk=document.createElement('div');kk.className='v2-kicker';kk.innerHTML='<b>STEP '+m[1]+'</b>'+(m[2]?'⭐ 핵심':'');s.insertBefore(kk,h);
+    h.innerHTML=m[3]+(m[5]?'<span class="v2-sub">'+m[5]+'</span>':'');s.dataset.lab=m[1]+'단계';s.dataset.n=m[1];}
+  else{s.dataset.lab=h.textContent.replace(/^[^\w가-힣]+/,'').split('—')[0].trim();s.dataset.n=h.textContent.trim().slice(0,2);}
+});
+// 4) 진도 레일
+var R=document.createElement('nav');R.className='v2-rail';R.setAttribute('aria-label','학습지 차례');
+R.innerHTML='<div class="v2-rh"><h4>오늘의 길</h4><button type="button" class="v2-b v2-pos" aria-label="오늘의 길 위치 바꾸기"></button><button type="button" class="v2-b v2-fold" aria-expanded="true"></button></div>';
+var H=document.documentElement;function sg(k){try{return localStorage.getItem(k)}catch(e){return null}}function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function paint(){var top=H.classList.contains('v2-top'),fd=H.classList.contains('v2-folded');
+  R.querySelector('.v2-pos').textContent=top?'⇤ 왼쪽에':'⇡ 위로';R.querySelector('.v2-pos').title=top?'오늘의 길을 왼쪽에 두기':'오늘의 길을 위로 올리기';
+  var f=R.querySelector('.v2-fold');f.textContent=fd?'펴기 ▸':'◂ 접기';f.setAttribute('aria-expanded',fd?'false':'true');}
+if(sg('v2-top')==='1')H.classList.add('v2-top');if(sg('v2-fold')==='1')H.classList.add('v2-folded');
+R.addEventListener('click',function(e){var b=e.target.closest('.v2-b');if(!b)return;
+  if(b.classList.contains('v2-pos')){H.classList.toggle('v2-top');ss('v2-top',H.classList.contains('v2-top')?'1':'0');}
+  else{H.classList.toggle('v2-folded');ss('v2-fold',H.classList.contains('v2-folded')?'1':'0');}
+  paint();});
+setTimeout(paint,0);
+secs.forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.dataset.s=s.id;
+  var n=s.dataset.n;a.innerHTML='<span class="n">'+(/^\d$/.test(n)?n:n)+'</span><span class="t">'+s.dataset.lab+'</span><span class="c"></span>';R.appendChild(a);});
+var meter=document.createElement('div');meter.className='v2-meter';meter.innerHTML='<i></i>';R.appendChild(meter);
+var mtx=document.createElement('div');mtx.className='v2-mtx';R.appendChild(mtx);
+C.insertBefore(R,C.firstChild);
+function tally(){var all=0,fill=0;
+  secs.forEach(function(s){var ins=s.querySelectorAll('input.blank-input,textarea.activity-input');var f=0;[].forEach.call(ins,function(i){if(i.value.trim())f++;});
+    all+=ins.length;fill+=f;var a=R.querySelector('a[data-s="'+s.id+'"]');if(!a)return;a.querySelector('.c').textContent=ins.length?f+'/'+ins.length:'';a.classList.toggle('done',ins.length>0&&f===ins.length);});
+  meter.firstChild.style.width=(all?fill/all*100:0)+'%';mtx.textContent='채운 칸 '+fill+' / '+all;}
+document.addEventListener('input',tally);tally();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){[].forEach.call(R.querySelectorAll('a'),function(a){a.classList.toggle('on',a.dataset.s===e.target.id);if(a.dataset.s===e.target.id&&R.scrollWidth>R.clientWidth)R.scrollLeft=a.offsetLeft-20;});}});},{rootMargin:'-30% 0px -65% 0px'});secs.forEach(function(s){io.observe(s);});}
+})();
+(function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,800);})();
 </script>
 </body>
 </html>
