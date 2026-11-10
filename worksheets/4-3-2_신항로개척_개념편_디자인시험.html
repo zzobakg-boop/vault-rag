@@ -1184,6 +1184,10 @@ p.v2-q::before{content:"생각해 보기";display:block;font-size:.7rem;font-wei
 /* 빈칸 */
 input.blank-input:not(.activity-input){min-height:34px;font-size:1rem!important;font-weight:700;border:0!important;border-bottom:2.5px solid var(--step)!important;background:#f3f7ff!important;border-radius:6px 6px 0 0!important;padding:2px 8px!important;color:var(--step)!important;vertical-align:baseline}
 input.blank-input:focus{outline:3px solid rgba(47,111,214,.25)!important;outline-offset:1px}
+/* 2026-11-10 채점 색 — 위 v2 빈칸 줄이 !important라 .correct/.wrong 색을 덮었다(천대현 «틀린 부분이 빨간색으로 안 바뀜») */
+input.blank-input.correct:not(.activity-input){border-bottom-color:#34c759!important;background:#e8f8e8!important;color:#1a7a2e!important}
+input.blank-input.wrong:not(.activity-input){border-bottom-color:#ff3b30!important;background:#fff0f0!important;color:#c62828!important}
+input.blank-input.no-score.wrong:not(.activity-input){border-bottom-color:#ff9500!important;color:#a35200!important}
 .activity-input,textarea{font-size:1rem!important;line-height:1.7!important}
 .ws-fold{border-radius:14px!important}
 .ws-fold>summary{font-size:.95rem!important}
@@ -1306,6 +1310,10 @@ p.v2-q::before{content:"생각해 보기";display:block;font-size:.7rem;font-wei
 /* 빈칸 */
 input.blank-input:not(.activity-input){min-height:34px;font-size:1rem!important;font-weight:700;border:0!important;border-bottom:2.5px solid var(--step)!important;background:#f3f7ff!important;border-radius:6px 6px 0 0!important;padding:2px 8px!important;color:var(--step)!important;vertical-align:baseline}
 input.blank-input:focus{outline:3px solid rgba(47,111,214,.25)!important;outline-offset:1px}
+/* 2026-11-10 채점 색 — 위 v2 빈칸 줄이 !important라 .correct/.wrong 색을 덮었다(천대현 «틀린 부분이 빨간색으로 안 바뀜») */
+input.blank-input.correct:not(.activity-input){border-bottom-color:#34c759!important;background:#e8f8e8!important;color:#1a7a2e!important}
+input.blank-input.wrong:not(.activity-input){border-bottom-color:#ff3b30!important;background:#fff0f0!important;color:#c62828!important}
+input.blank-input.no-score.wrong:not(.activity-input){border-bottom-color:#ff9500!important;color:#a35200!important}
 .activity-input,textarea{font-size:1rem!important;line-height:1.7!important}
 .ws-fold{border-radius:14px!important}
 .ws-fold>summary{font-size:.95rem!important}
