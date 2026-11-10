@@ -2408,7 +2408,7 @@ def _webp(h, out_path):
 #     문 | A | 문 이름 | 설명 | 사진 파일 > 캡션(둘 다 비워도 됨) | 근거1 => 찾을 글 ; 근거2 ; … | 다른 곳 예 칩(선택)
 #        ← «=> 찾을 글»이 있으면 누르면 학습지의 그 자리로. 여섯째 칸은 과제 대상(예: 광주) 근거, 일곱째 칸은 «같은 종류, 다른 곳의 예»
 #          (11/10 역사 학생 눈: 순천 사례가 «광주» 근거처럼 섞여 있었다)
-#     쓰기 | 낱말 | 묻는 말 | 시작 말                                 ← 네 덩어리(셋~다섯)
+#     쓰기 | 낱말 | 묻는 말 | 시작 말                                 ← 덩어리(셋~다섯, 제목의 «세/네/다섯 덩어리»는 줄 수대로)
 #     끝 | 마지막 안내 한 줄                                          ← (선택) ③ 머리 글, 없으면 기본 문구
 _THINK_CSS = """.ws-think{margin:4px 0 6px}
 .wt-role{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #cfe5d5;border-radius:14px;padding:14px 16px}
@@ -2519,8 +2519,10 @@ def render_think(head, rows, first=True):
                          + (f'<div class="wt-ev-h wt-ex-h">🔎 같은 종류, 다른 곳의 예</div><div class="wt-chips wt-ex">{exs}</div>' if exs else '') + '</div>') if (chips or exs) else '')
                      + '</div></div>')
         o.append('</div>')
+    # 덩어리 수는 쓰기 줄 수대로(2026-11-10 9-1·9-2는 세 덩어리 — «네 덩어리» 고정이라 ③ 안내와 어긋났다)
+    _kn = {2: '두', 3: '세', 4: '네', 5: '다섯', 6: '여섯'}.get(len(writes), str(len(writes)))
     if writes:
-        o.append(f'<div class="wt-step"><span class="n">{2 if doors else 1}</span>네 덩어리로 쓰자 <small>시작 말은 그대로 써도, 바꿔 써도, 안 써도 된다</small></div>')
+        o.append(f'<div class="wt-step"><span class="n">{2 if doors else 1}</span>{_kn} 덩어리로 쓰자 <small>시작 말은 그대로 써도, 바꿔 써도, 안 써도 된다</small></div>')
         o.append(f'<div class="wt-write" style="--wt-n:{min(len(writes), 4)}">')
         for i, r in enumerate(writes, 1):
             r = r + [''] * (4 - len(r))
@@ -2528,7 +2530,7 @@ def render_think(head, rows, first=True):
                      + (f'<span class="s">{inline(r[3])}</span>' if r[3] else '') + '</div>')
         o.append('</div>')
     n3 = (2 if doors else 1) + (1 if writes else 0)
-    o.append(f'<div class="wt-step"><span class="n">{n3}</span>{inline(end) if end else "아래 칸에 네 덩어리를 이어서 쓰자"}</div>')
+    o.append(f'<div class="wt-step"><span class="n">{n3}</span>{inline(end) if end else f"아래 칸에 {_kn} 덩어리를 이어서 쓰자"}</div>')
     o.append('</div>')
     if first:
         o.append('<script id="ws-think-js">' + _THINK_JS + '</script>')
