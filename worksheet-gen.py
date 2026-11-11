@@ -1054,7 +1054,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         #   다 고르면 구분된 표가 나타나게." 교과서 107쪽도 같은 내용을 역할놀이로 낸다 —
         #   우리가 활동을 표로 눌러놨던 것이다.
         #   🔴 입력칸 0 — act 인덱스 불변. (처음엔 «평가가 아니라 판단을 흔드는 자리»라 점수에서도 뺐으나
-        #      2026-11-11 천대현 «카운트되도록» → ws_design/pickscore.js가 다 고른 묶음만 점수 줄·총점·저장에 잇는다.)
+        #      2026-11-11 천대현 «카운트되도록» → ws_design/pickscore.js가 다 고른 묶음만 «고르기 N/M»으로 따로 세고 저장에 잇는다. 총점엔 안 더한다.)
         #   정답은 **다 고른 뒤에만** 공개한다(하나씩 즉시 채점하면 찍기로 넘어간다).
         #   ⭐ 2026-09-04 일반화 — 옵션을 대괄호로 주면 N지선다가 된다.
         #      `:::인물선택 발문`                    → 웃음/울음 2지선다(종전과 동일·5-5 무영향)
@@ -4565,7 +4565,7 @@ def main():
             i = h.rfind('</body>')
             h = h[:i] + '<script id="ws-reset-js">' + open(os.path.join(_dd, 'reset.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
         # 2026-11-11 천대현 «카드 고르는 것은 맞고 틀리고 카운트가 안 되는데 카운트되도록» — 고르기 카드(:::인물선택)가 있고
-        #   점수 줄이 있는 판(수업용·복습용)에 ws_design/pickscore.js. 다 고른 묶음만 점수 줄·총점에 더하고, 저장·초기화·정답 보기에 잇는다.
+        #   점수 줄이 있는 판(수업용·복습용)에 ws_design/pickscore.js. 다 고른 묶음만 «고르기 N/M»으로 따로 세고(총점엔 안 더함), 저장·초기화·정답 보기에 잇는다.
         if 'class="ws-pick"' in h and 'id="score"' in h:
             i = h.rfind('</body>')
             h = h[:i] + '<script id="ws-pickscore-js">' + open(os.path.join(_dd, 'pickscore.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
