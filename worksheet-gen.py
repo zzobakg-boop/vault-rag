@@ -4569,13 +4569,8 @@ def main():
         if 'class="ws-pick"' in h and 'id="score"' in h:
             i = h.rfind('</body>')
             h = h[:i] + '<script id="ws-pickscore-js">' + open(os.path.join(_dd, 'pickscore.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
-        # 2026-11-10 천대현 «빈칸 쓰고 나서 설명할 때 다른 창·게임·영상» → (가) 다른 창에 15초 넘게 갔다 오면
-        #   화면 아래에 «하던 곳» 한 줄(ws_design/refocus.*). 아무것도 저장·전송하지 않는다(위성 딥리서치 seatwork-engagement).
-        #   제출 단추가 있는 수업용에만 붙이고 평가지(EXAM_MODE)·정답편·복습용(제출 단추 없음)엔 안 붙인다.
-        if 'onclick="submitResult()"' in h and 'const EXAM_MODE=true' not in h:
-            h = h.replace('</head>', '<style id="ws-refocus-css">' + open(os.path.join(_dd, 'refocus.css'), encoding='utf-8').read() + '</style>\n</head>', 1)
-            i = h.rfind('</body>')
-            h = h[:i] + '<script id="ws-refocus-js">' + open(os.path.join(_dd, 'refocus.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
+        # 다른 창에 갔다 오면 뜨던 «하던 곳» 안내(ws_design/refocus.*, 11/10)는 2026-11-11 천대현 «계속 뜨는데 실효성이 별로 없다 → 끄자»로 뺐다.
+        #   노트북 덮기·화면 꺼짐·알림 클릭도 15초 넘으면 다 떠 딴짓과 못 가르고, 학생만 보고 닫으면 끝이라 남는 게 없었다. 되살리려면 vault-rag b6fb9d5.
         if not _design:
             return h
         _css = open(os.path.join(_dd, _design + '.css'), encoding='utf-8').read()
