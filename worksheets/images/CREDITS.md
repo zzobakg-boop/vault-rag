@@ -1666,11 +1666,24 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 8-6_card_ulaanbaatar.jpg | 울란바토르 — 앞쪽 새 아파트 뒤로 언덕을 덮은 게르 지구, 2013-08 (UBandGerDistrict.jpg · 900px로 줄임) — 8-5~6 묶음판 활동 1 카드 | Ulaanbaatour · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-6_card_tokyo_kyojima.jpg | 도쿄 스미다구 교지마의 다닥다닥 붙은 목조 연립 주택, 2009 (Wooden tenement houses kyojima 3chome 2009.JPG · 900px로 줄임) — 8-5~6 묶음판 활동 1 카드 | Kamemaru2000 · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-7_bilbao_guggenheim.jpg | 에스파냐 빌바오 구겐하임 미술관, 2021 | José Ligero Loarte · CC BY-SA 4.0 · Wikimedia Commons |
-| 8-7_hero_hammarby.jpg | 스톡홀름 함마르뷔 셰스타드, 2025년 6월 | ArildV · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-7_hero_hammarby.jpg | 스톡홀름 함마르뷔 셰스타드, 2025년 6월 (Hammarby sjöstad June 2025 01.jpg · 1280×800) — 8-7~8 표지 전/후 비교의 «후» | ArildV · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-7_hero_hammarby_before.jpg | 개발 전 스톡홀름 쇠드라 함마르뷔 항구(Södra Hammarbyhamnen)의 부두 — 크레인·창고, 왼쪽 뒤 굴뚝은 함마르뷔 열 공급 시설(Hammarby värmeverk), 1991 (Digitala Stadsmuseet Dia_2206 «Södra Hammarbyhamnen med Hammarby värmeverk i bakgrunden till vänster» · 2400px 미리보기를 16:10로 잘라 1280×800, 하늘의 스캔 먼지 점만 지움 = 수정함) — 8-7~8 표지 전/후 비교의 «전». 표지 사진과 같은 함마르뷔 일대 물가지만 찍은 자리·방향은 다르다 | Ingrid Wilken / Stockholms stadsmuseum · CC BY · Digitala Stadsmuseet |
 | 8-8_freiburg_baechle.jpg | 프라이부르크 시내의 인공 수로, 2009 | Joergens.mi · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-8_hero_copenhagen.jpg | 코펜하겐 뉘하운, 2026년 7월 | Superbass · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-7_card_bundang.jpg | 성남 분당 정자동과 탄천, 2006-12 (Bundang Jeongja.jpg · 900px 4:3) | HunkinElvis · 퍼블릭 도메인 · Wikimedia Commons |
 | 8-7_card_sejong.jpg | 정부세종청사, 2014-11-10 (Government Complex Sejong.jpg · 가운데 4:3로 자름) | Minseong Kim · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-8_penguin_village.jpg | 광주 남구 양림동 펭귄마을 «펭귄마을 촌장실» 앞 — 낡은 시계·텔레비전·학교 책상 같은 생활 폐품으로 꾸민 골목(한국관광콘텐츠랩 사진번호 4118456 «양림동 펭귄마을공예거리», 1620px를 1200px로 줄임, 촬영 연도 표기 없음) | 한국관광공사 · 공공누리 제1유형 · 출처: ⓒ한국관광공사 |
+| 8-8_card_penguin.jpg | 위 사진을 4:3로 잘라 800×600(수정함) — 8-7~8 2단계 고르기 카드 | 한국관광공사 · 공공누리 제1유형 · 출처: ⓒ한국관광공사 |
+| 8-8_mercer_conditions.png/.webp | 살기 좋은 도시를 이루는 열 가지 — 교과서 160쪽 «삶의 질이 높은 도시의 조건» 그림(머서 삶의 질 조사 보고서, 2016)의 항목 이름과 둘레 배치를 따라 다시 그린 개념도(map-render/hq/hq_88_mercer.py) | 직접 제작 |
+| 8-8_voc_생태도시.jpg | 독일 프라이부르크 보봉의 태양광 주택 단지(Solarsiedlung)와 태양광 상가 건물(Sonnenschiff), 2009-10-08 (SoSie+SoSchiff Ansicht.jpg · 카드 비율 900×608로 자름 = 수정함) — 8-7~8 고급 단어 «생태 도시» | Andrewglaser · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-8_seoul_plaza_usual.jpg | 평소의 서울광장 — 잔디밭과 옛 시청(서울도서관)·새 시청, 2013-07-03 (Seoul City Hall A01.JPG · 1200px로 줄임) — 8-7~8 «세 번째 장소» 접기 | 분당선M · CC BY-SA 3.0 · Wikimedia Commons |
+| 8-8_seoul_plaza_library.jpg | 서울야외도서관이 열린 서울광장 저녁 — 잔디밭의 빈백과 사람들, 2024-10-25 (Seoul Outdoor Library (Seoul Plaza) 2024-10-25 2.jpg · 1200×675로 자름, 위치 정보 지움) | Narumi.SBT · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-8_liveability_timeline.png/.webp | 살기 좋은 도시 1위 연표 2011~2026(EIU Global Liveability Index) — 사진 넷(아래 줄·표지 코펜하겐)과 연도 띠를 묶은 개념도(map-render/hq/hq_88_liveability.py) | 직접 제작 · 사진은 각 줄 라이선스 |
+| 8-8_city_melbourne.jpg | 멜버른 프린세스 다리와 도심 스카이라인, 2023-02-19 (Princes Bridge and Melbourne skyline, southwest view 20230219 1.jpg · 1200px) | DXR · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-8_city_vienna.jpg | 빈 슈테판 대성당 북탑에서 본 지붕과 구시가, 2019-07-07 (WLM - 2020 - Stephansdom - 01.jpg · 1200px) | Moahim · CC BY-SA 4.0 · Wikimedia Commons |
+| 8-8_city_auckland.jpg | 와이테마타 항구 쪽에서 본 오클랜드 도심과 스카이타워, 2024-02-17 (Auckland CBD skyline from Waitemata Harbour entrance.jpg · 1200px) | Pseudopanax · 퍼블릭 도메인(PD-self) · Wikimedia Commons |
+| 8-8_stroget_before.jpg | 1953-09-30 코펜하겐 스트뢰에 아마게르토르 — 길가 주차·택시(«Amagertorv — Strøget, Parkering», kbharkiv 214628 · 흰 테두리 자름, 2000px판 이어 붙여 1200px) | Mogens Falk-Sørensen / Københavns Stadsarkiv · CC BY |
+| 8-8_stroget_now.jpg | 2014-06-17 스트뢰에 같은 구간, 회이브로후스 돔 쪽 (Streets of Copenhagen (4) (14448214141).jpg · 1200px) | Daniel from Glasgow · CC BY 2.0 · Wikimedia Commons |
 | 8-7_card_bilbao_1983.jpg | 빌바오 에우스칼두나 조선소 항공 사진, 1983 (Ortoargazkia-euskalduna ontziola-1983.png · 4:3로 자름) | Eusko Jaurlaritza / Gobierno Vasco · geoEuskadi · CC BY 3.0 · Wikimedia Commons |
 | 8-7_card_bilbao_euskalduna.jpg | 빌바오 에우스칼두나 회의·음악당, 2009-04 (Euskalduna Palace (April 2009).jpg · 4:3로 자름) | Jean-Pierre Dalbera · CC BY 2.0 · Wikimedia Commons |
 | 8-7_card_dochung_2009.jpg | 광주 옛 전남도청, 2009-01-11 (Korea-Gwangju-The former South Jeolla provincial office building-01A.jpg · 오른쪽 현수막 빼고 4:3로 자름) | kayakorea (Brandon Butler), 파생 Caspian blue · CC BY-SA 3.0 · Wikimedia Commons |

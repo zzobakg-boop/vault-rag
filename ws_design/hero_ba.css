@@ -1,0 +1,35 @@
+/* 표지 전/후 비교 (frontmatter hero_before, 2026-11-12 사회 8-7~8) — 왼쪽=전·오른쪽=후. 학생 입력칸이 아니다(저장·제출·점수 무관).
+   크기는 옛 표지 그림(.hero-image: 너비 100%·높이 420px까지)과 같게 — 그림 비율(--hba-r)은 js가 실제 그림에서 읽는다. */
+.hero-ba{--v:50%;margin:24px auto 0;max-width:calc(420px * var(--hba-r,1.6))}
+.hba-frame{position:relative;border-radius:10px;overflow:hidden;background:#111;touch-action:pan-y;cursor:ew-resize;user-select:none;-webkit-user-select:none}
+.hba-img{display:block;width:100%;height:auto;pointer-events:none;-webkit-user-drag:none}
+.hba-before{position:absolute;inset:0;height:100%;object-fit:cover;clip-path:inset(0 calc(100% - var(--v)) 0 0)}
+.hba-line{position:absolute;top:0;bottom:0;left:var(--v);width:3px;margin-left:-1.5px;background:#fff;box-shadow:0 0 6px rgb(0 0 0/.55);pointer-events:none}
+.hba-knob{position:absolute;top:50%;left:50%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgb(0 0 0/.45)}
+.hba-knob::before,.hba-knob::after{content:"";position:absolute;top:50%;margin-top:-6px;border:6px solid transparent}
+.hba-knob::before{left:5px;border-right:8px solid #1a1a1a;border-left:0}
+.hba-knob::after{right:5px;border-left:8px solid #1a1a1a;border-right:0}
+.hba-tag{position:absolute;top:10px;padding:3px 11px;border-radius:999px;background:rgb(10 10 10/.7);color:#fff;font-size:13px;font-weight:700;line-height:1.5;pointer-events:none;transition:opacity .2s}
+.hba-tag-b{left:10px}
+.hba-tag-a{right:10px}
+.hero-ba.hba-anim .hba-before{transition:clip-path .45s ease}
+.hero-ba.hba-anim .hba-line{transition:left .45s ease}
+.hba-range{display:block;width:100%;height:28px;margin:8px 0 0;accent-color:#d4af37;cursor:pointer}
+.hba-ctl{display:flex;justify-content:space-between;gap:10px;margin-top:4px}
+.hba-go{font:inherit;font-size:14px;font-weight:700;line-height:1.4;color:#f5f5f0;background:rgba(255,255,255,.06);border:1px solid #6b6b66;border-radius:999px;padding:7px 15px;cursor:pointer}
+.hba-go:hover{background:rgba(255,255,255,.14)}
+.hba-go[aria-pressed="true"]{background:#d4af37;border-color:#d4af37;color:#1a1a1a}
+.hba-go:focus-visible,.hba-range:focus-visible{outline:3px solid #f0c75e;outline-offset:3px}
+.hba-cap{margin:10px 0 0;font-size:13.5px;line-height:1.65;color:#bdbcb4;word-break:keep-all}
+@media (prefers-reduced-motion:reduce){.hero-ba .hba-before,.hero-ba .hba-line,.hba-tag{transition:none!important}}
+/* 인쇄: 막대는 종이에서 못 움직인다 → 두 장을 나란히(왼쪽 전·오른쪽 후) */
+@media print{
+  .hero-ba{max-width:none}
+  .hba-frame{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:none;border-radius:0;overflow:visible}
+  .hba-before{position:static;height:auto;clip-path:none!important}
+  .hba-img{border-radius:6px}
+  .hba-line,.hba-range,.hba-ctl{display:none!important}
+  .hba-tag{opacity:1!important;background:#fff;color:#111;border:1px solid #888}   /* 배경 인쇄를 끈 프린터에서도 이름표가 보이게 */
+  .hba-tag-a{right:auto;left:calc(50% + 14px)}
+  .hba-cap{color:#333}
+}

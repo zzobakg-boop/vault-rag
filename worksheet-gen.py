@@ -1956,11 +1956,17 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             _vp = [x.strip() for x in stripped[len(':::영상'):].strip().split('|')]
             while len(_vp) < 5: _vp.append('')
             _vid, _pos, _ttl, _meta, _alt = _vp[:5]
+            # 2026-11-12 사회 8-7~8 — «ID@179»면 179초에서 멈춘다(그 뒤에 카드 답 낱말이 나오는 영상). opt-in·«@» 없으면 출력 그대로.
+            #   ytPlay(JS)는 그대로 두고 data-yt에 쿼리를 붙인다 — 뒤에 붙는 «?rel=0…»는 x= 값으로 흘려 보낸다.
+            _yt = _vid
+            if '@' in _vid:
+                _vid, _end = _vid.split('@', 1)
+                _yt = f'{_vid}?end={_end.strip()}&rel=0&x='
             if _vid:
                 _lnk = f'https://www.youtube.com/watch?v={_vid}'
                 html_parts.append(
                     '<figure class="ws-vid">'
-                    f'<button type="button" class="vid-poster" data-yt="{_vid}" '
+                    f'<button type="button" class="vid-poster" data-yt="{_yt}" '
                     f'aria-label="영상 재생 — {_ttl}" '
                     'onclick="ytPlay(this)">'
                     + (f'<img src="images/{_pos}" alt="{_alt}" loading="lazy">' if _pos else '')
@@ -2668,6 +2674,11 @@ def extract_hero_meta(blank_file):
     #   hero_plate_title 이 있으면 표지 그림(글자 없는 배경)을 기울어지는 판에 올리고
     #   배지·제목·부제를 HTML 층으로 그 위에 띄운다. 키가 없는 차시는 출력이 이전과 같다.
     hero['plate'] = {k: get('hero_plate_' + k) for k in ('badge', 'title', 'sub')}
+    # 2026-11-12 천대현(사회 8-7~8 «before 사진을 비포/애프터 비교할 수 있으면 — 클릭이나 막대로») — opt-in.
+    #   hero_before 가 있으면 표지 그림 자리에 개발 전/후 비교(경계 막대·전/후 단추·그림 끌기, ws_design/hero_ba.*)를 둔다.
+    #   hero_before_label·hero_after_label = 그림 위 이름표, hero_before_note = 그림 아래 한 줄. 키가 없는 차시는 출력이 이전과 같다.
+    hero['before'] = {'img': get('hero_before'), 'label': get('hero_before_label') or '전',
+                      'after': get('hero_after_label') or '후', 'note': get('hero_before_note')}
     mm = re.search(r'^hero_keywords:\s*\[([^\]]+)\]', fm, re.M)
     if mm:
         hero['keywords'] = [k.strip().strip('"\'') for k in mm.group(1).split(',')]
@@ -2731,6 +2742,23 @@ def build_hero_plate(img, plate):
             + HERO_PLATE_CSS_JS)
 
 
+def build_hero_ba(after, ba):
+    """표지 전/후 비교 — 왼쪽=전·오른쪽=후. 학생 입력칸이 아니다(blank-input·data-id 없음 → 저장·제출·점수와 무관).
+       인쇄 땐 두 장을 나란히(ws_design/hero_ba.css). 장치 CSS·JS는 _apply_look 이 class="hero-ba" 를 보고 붙인다."""
+    lb, la = inline(ba['label']), inline(ba['after'])
+    _al = lambda s: re.sub(r'<[^>]+>', '', s).replace('"', '&quot;')   # aria-label 안에는 글자만
+    note = f'<figcaption class="hba-cap">{inline(ba["note"])}</figcaption>' if ba.get('note') else ''
+    return (f'<figure class="hero-ba" role="group" aria-label="표지 사진 전·후 비교">'
+            f'<div class="hba-frame"><img class="hba-img hba-before" src="{ba["img"]}" alt="">'
+            f'<img class="hba-img hba-after" src="{after}" alt="">'
+            f'<span class="hba-line" aria-hidden="true"><span class="hba-knob"></span></span>'
+            f'<span class="hba-tag hba-tag-b">{lb}</span><span class="hba-tag hba-tag-a">{la}</span></div>'
+            f'<input type="range" class="hba-range" min="0" max="100" step="1" value="50" '
+            f'aria-label="경계 막대 — 왼쪽은 {_al(lb)}, 오른쪽은 {_al(la)}">'
+            f'<div class="hba-ctl"><button type="button" class="hba-go hba-go-b" aria-pressed="false">◀ 전 · {lb}</button>'
+            f'<button type="button" class="hba-go hba-go-a" aria-pressed="false">후 · {la} ▶</button></div>{note}</figure>')
+
+
 def build_hero_html(title, hero):
     if not any([hero.get('keywords'), hero.get('image'), hero.get('hook')]):
         return ''
@@ -2757,7 +2785,10 @@ def build_hero_html(title, hero):
     kws_html = f'<div class="hero-keywords">{kws}</div>{card_html}' if kws else ''
     img = f'<img class="hero-image" src="{hero["image"]}" alt="">' if hero.get('image') else ''
     plate = hero.get('plate') or {}
-    if img and plate.get('title'):
+    ba = hero.get('before') or {}
+    if img and ba.get('img'):
+        img = build_hero_ba(hero['image'], ba)
+    elif img and plate.get('title'):
         img = build_hero_plate(img, plate)
     hook = f'<div class="hero-hook">{inline(hero["hook"])}</div>' if hero.get('hook') else ''
     return f'<section class="hero-section">{eyebrow}<h1 class="hero-title">{title}</h1>{sub}{kws_html}{img}{hook}</section>'
@@ -4599,6 +4630,11 @@ def main():
         if 'class="ws-pick"' in h and 'id="score"' in h:
             i = h.rfind('</body>')
             h = h[:i] + '<script id="ws-pickscore-js">' + open(os.path.join(_dd, 'pickscore.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
+        # 2026-11-12 천대현(사회 8-7~8) — 표지 전/후 비교(frontmatter hero_before)가 있는 판에만 ws_design/hero_ba.*.
+        if 'class="hero-ba"' in h:
+            h = h.replace('</head>', '<style id="ws-hero-ba-css">' + open(os.path.join(_dd, 'hero_ba.css'), encoding='utf-8').read() + '</style>\n</head>', 1)
+            i = h.rfind('</body>')
+            h = h[:i] + '<script id="ws-hero-ba-js">' + open(os.path.join(_dd, 'hero_ba.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
         # 다른 창에 갔다 오면 뜨던 «하던 곳» 안내(ws_design/refocus.*, 11/10)는 2026-11-11 천대현 «계속 뜨는데 실효성이 별로 없다 → 끄자»로 뺐다.
         #   노트북 덮기·화면 꺼짐·알림 클릭도 15초 넘으면 다 떠 딴짓과 못 가르고, 학생만 보고 닫으면 끝이라 남는 게 없었다. 되살리려면 vault-rag b6fb9d5.
         if not _design:
