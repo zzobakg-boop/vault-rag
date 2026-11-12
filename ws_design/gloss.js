@@ -18,7 +18,7 @@ function mkPop(g){
   var p=document.createElement('aside'); p.className='gl-pop'; p.id=g.id; p.hidden=true;
   p.setAttribute('role','note'); p.setAttribute('aria-label',(g.label||'보충')+': '+g.word); if(g.label) p.classList.add('gl-link');
   p.innerHTML='<div class="gl-head">'+(g.label||'보충')+'<span class="gl-word"></span></div><div class="gl-body"></div><button type="button" class="gl-x" aria-label="보충 닫기">×</button>';
-  p.querySelector('.gl-word').textContent=g.word; p.querySelector('.gl-body').textContent=g.text;
+  p.querySelector('.gl-word').textContent=g.word; p.querySelector('.gl-body').textContent=g.text.split(' // ').join('\n');
   return p;
 }
 function animate(el){ if(RM.matches) return; el.classList.remove('gl-anim'); void el.offsetWidth; el.classList.add('gl-anim'); }

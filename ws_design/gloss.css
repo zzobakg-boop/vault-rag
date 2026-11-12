@@ -15,7 +15,7 @@
 .gl-head{font-size:.72rem;font-weight:800;letter-spacing:.06em;color:var(--gl);margin:0 0 2px}
 .gl-pop.gl-link{--gl:#0f7b6c;--gl-soft:#ecf7f4;--gl-ink:#12403a}
 .gl-head .gl-word{margin-left:6px;letter-spacing:0;font-weight:700;color:var(--gl-ink)}
-.gl-body{margin:0}
+.gl-body{margin:0;white-space:pre-line}   /* 2026-11-12 사회 8-5~6 «156쪽 표를 툴팁으로» — 보충 글의 « // »를 줄바꿈으로(js). 줄바꿈 없는 글은 그대로 보인다 */
 .gl-x{position:absolute;top:4px;right:5px;width:26px;height:26px;padding:0;border:0;border-radius:6px;background:none;color:#4f6f99;font-weight:400;font-size:18px;line-height:1;font-family:inherit;cursor:pointer}
 .gl-x:hover{background:rgba(0,122,255,.1)}
 .gl-pop.gl-inline{margin:-6px 0 16px;max-width:40em}

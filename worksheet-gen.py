@@ -1369,7 +1369,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if stripped:
                     gr_rows.append([x.strip() for x in stripped.strip().strip('|').split('|')])
                 continue
-            _xs = []; _ser = []; _band = None; _src = ''; _dec = None; _yr = False; _prop = False; _refs = []
+            _xs = []; _ser = []; _band = None; _src = ''; _dec = None; _yr = False; _prop = False; _refs = []; _pts = []
             for _r in gr_rows:
                 if _r[0] == 'x':
                     _xs = _r[1:]
@@ -1397,17 +1397,44 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     _yr = True   # 2026-10-15 사회 7-3: 10년마다 한 조사(총조사)를 «1990년대»로 읽던 것 — 이 줄이 있으면 늘 «1990년»
                 elif _r[0] == '소수' and len(_r) >= 2 and _r[1].strip().isdigit():
                     _dec = int(_r[1])   # 2026-10-04 사회 7-7: 0.72명이 0.7로 보이던 것 — 표시 소수 자릿수를 정한다(없으면 종전대로 0 또는 1)
+                elif _r[0] == '점' and len(_r) >= 4:
+                    # 2026-11-12 사회 8-5~6(천대현 «교과서 스스로 탐구의 2014년 75%를 그래프에 점으로»):
+                    #   점 | 선 이름 | x | 값 | 범례 이름 | 막대 글   — 그 선의 축에 속 빈 동그라미. 선이 그 해를 지나야 보이고,
+                    #   막대가 그 해 다음 칸(x ≥ 점 x인 첫 칸)에 오면 막대 글이 아래 읽기 칸에 붙는다. 줄이 없으면 출력 불변.
+                    try:
+                        _pts.append({'n': _r[1], 'x': float(_r[2]), 'v': float(_r[3]),
+                                     'leg': _r[4] if len(_r) > 4 else '', 'r': inline('|'.join(_r[5:]).strip())})
+                    except ValueError:
+                        pass
             if _dec is not None:
                 for _sr in _ser: _sr['d'] = _dec
+            _names = [x['name'] for x in _ser]
+            _pts = [dict(p, s=_names.index(p['n'])) for p in _pts if p['n'] in _names]
             if _xs and _ser:
                 gid = f'gr{len(html_parts)}'
                 _leg = ''.join(f'<span class="gr-key"><i style="background:{x["col"]}"></i>{inline(x["name"])}</span>'
                                for x in _ser)
                 if _band:
                     _leg += f'<span class="gr-key"><i class="gr-band-key"></i>{inline(_band["name"])}</span>'
+                for _lg in dict.fromkeys(p['leg'] for p in _pts if p['leg']):
+                    _leg += (f'<span class="gr-key"><i style="background:#fff;border:2.5px solid #6b7280;border-radius:50%;'
+                             f'width:11px;height:11px;box-sizing:border-box"></i>{inline(_lg)}</span>')
                 _alt = ' · '.join(f'{x["name"]}({x["unit"]})' for x in _ser)
                 _one = len(_ser) > 1 and all((x['lo'], x['hi'], x['unit']) == (_ser[0]['lo'], _ser[0]['hi'], _ser[0]['unit']) for x in _ser)
                 _D = {'x': _xs, 's': _ser, 'band': _band, 'yr': _yr, 'prop': _prop, 'one': _one, 'ref': _refs}
+                if _pts:
+                    _D['pt'] = [{'s': p['s'], 'x': p['x'], 'v': p['v'], 'r': p['r']} for p in _pts]
+                # 점 줄이 있을 때만 끼우는 조각 — 없으면 아래 스크립트 글자가 종전과 같다(발행본 재생성 diff 0)
+                _PT_DEF = ('function XV(x){if(D.prop)return L+(R-L)*(x-+D.x[0])/(+D.x[n-1]-+D.x[0]);'
+                           'for(var j=0;j<n-1;j++){var a=+D.x[j],b=+D.x[j+1];if(x>=a&&x<=b)return X(j)+(X(j+1)-X(j))*(x-a)/(b-a);}return x<+D.x[0]?L:R;}'
+                           # 거의 같은 자리(12 이내)의 점은 뒤 점을 크게 해 겹동그라미로 — 큰 것부터 그려 작은 것이 위에 온다(8-5~6 독일 74.3·말레이시아 75)
+                           'var pp=D.pt.map(function(p){return {x:XV(p.x),y:Y(D.s[p.s],p.v)};});'
+                           'var prd=pp.map(function(a,k){var c=0;for(var j=0;j<k;j++){if(Math.abs(a.x-pp[j].x)<12&&Math.abs(a.y-pp[j].y)<12)c++;}return 7+5*c;});'
+                           'var pe=[];D.pt.map(function(p,k){return k;}).sort(function(a,b){return prd[b]-prd[a];}).forEach(function(k){var s=D.s[D.pt[k].s];'
+                           'pe[k]=el("circle",{cx:pp[k].x,cy:pp[k].y,r:prd[k],fill:"#fff","fill-opacity":0.9,stroke:s.col,"stroke-width":3,"class":"gr-pt"});});') if _pts else ''
+                _PT_DRAW = ('var xi=+D.x[i];D.pt.forEach(function(p,k){pe[k].style.display=xi>=p.x?"":"none";});'
+                            'var nx=D.pt.filter(function(p){for(var j=0;j<n;j++){if(+D.x[j]>=p.x)return j===i;}return false;});'
+                            'if(nx.length)rd.innerHTML+="<br>"+nx.map(function(p){return p.r;}).join(" · ");') if _pts else ''
                 html_parts.append(
                     f'<div class="ws-gr" id="{gid}">'
                     f'<div class="ws-gr-head">{inline(gr_head)}</div>'
@@ -1443,11 +1470,13 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     'var cur=el("line",{x1:L,x2:L,y1:T,y2:B,"class":"gr-cur"});'
                     'var lines=D.s.map(function(s){return el("polyline",{fill:"none",stroke:s.col,"stroke-width":4,"stroke-linejoin":"round","stroke-linecap":"round",points:""});});'
                     'var dots=D.s.map(function(s){return el("circle",{r:6,fill:s.col,stroke:"#fff","stroke-width":2});});'
+                    + _PT_DEF +
                     'function draw(i){i=+i;D.s.forEach(function(s,k){var p=[];for(var j=0;j<=i;j++)p.push(X(j)+","+Y(s,s.v[j]));'
                     'lines[k].setAttribute("points",p.join(" "));dots[k].setAttribute("cx",X(i));dots[k].setAttribute("cy",Y(s,s.v[i]));});'
                     'cur.setAttribute("x1",X(i));cur.setAttribute("x2",X(i));'
                     # 2026-10-06 «년대»는 10년 간격·끝자리 0일 때만 — 종전 «간격 ≤10»이라 5년·1년 간격에 «2024년대»·«1929년대»가 찍혔다(사회 7-6에서 발견) · x가 «YYYY.M»(연·월)이면 «YYYY년 M월»(역사 6-1-3 선거 그래프 제안)
                     'rd.innerHTML="<b>"+(/^[0-9]{4}[.][0-9]{1,2}$/.test(D.x[i])?String(D.x[i]).replace(/^([0-9]{4})[.]([0-9]{1,2})$/,"$1년 $2월"):D.x[i]+(!D.yr&&(+D.x[1]-+D.x[0])==10&&D.x.every(function(v){return +v%10==0;})?"년대":"년"))+"</b> — "+D.s.map(function(s){return s.name+" <b style=\\"color:"+s.col+"\\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");'
+                    + _PT_DRAW +
                     'rg.value=i;}'
                     'rg.addEventListener("input",function(){draw(rg.value);});'
                     'var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}'
@@ -2491,7 +2520,8 @@ def render_think(head, rows, first=True):
     if first:
         o.append('<style id="ws-think-css">' + _THINK_CSS + '</style>')
     o.append('<div class="ws-think">')
-    o.append(f'<div class="wt-role"><span class="wt-role-badge">🎙️ 오늘 너는</span><div><div class="wt-role-t">{inline(role.strip())}</div>'
+    # 2026-11-12 천대현 8-5~6 댓글 «'오늘 너는' 말투가 어색» — 역할 글이 명사구라 «오늘 너는 …시민»이 서술어 없이 끊겼다 → «오늘의 역할»
+    o.append(f'<div class="wt-role"><span class="wt-role-badge">🎙️ 오늘의 역할</span><div><div class="wt-role-t">{inline(role.strip())}</div>'
              + (f'<div class="wt-role-d">{inline(task.strip())}</div>' if task.strip() else '') + '</div></div>')
     if doors:
         o.append('<div class="wt-step"><span class="n">1</span>문을 하나 고르자 <small>정답은 없다 · 근거를 누르면 학습지의 그 자리로 간다</small></div><div class="wt-doors">')

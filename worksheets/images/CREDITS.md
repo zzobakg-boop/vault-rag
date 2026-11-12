@@ -491,6 +491,9 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 8-5_voc_도시화율.jpg | 나라별 도시 인구 비율(0~100%) 세계 지도, 2018 CIA 자료 (Urbanized population 2018.png) — 흰 여백을 붙여 비율 맞춤 | Wikignuthor · CC BY-SA 4.0 |
 | 8-5_voc_가속.jpg | 바늘이 시속 200km를 넘어간 자동차 속도계 (Speedometer (kmh).JPG) | Bluescan (sv.wikipedia) · 퍼블릭 도메인 |
 | 8-5_voc_양식.jpg | 옷 본(패턴)을 트레이싱지에 따라 그린 모습 — 정해진 모양대로 만드는 틀, 2012-11 (Tracing pattern sewing.jpg) | MissMessie · CC BY-SA 2.0 |
+| 8-5_voc_촌락.jpg | 세 장을 나란히 잘라 붙이고 아래에 «농촌·어촌·산지촌» 글자를 얹음(수정함) — ① 비무장 지대 대성동 마을 주민들의 벼 베기, 1988(파일 이름 기준, 커먼즈 날짜 칸 1998-12-22) (South Koreans harvest rice in the Demilitarized Zone of Korea, 1988.JPEG) · ② 경주 감포항에 댄 고깃배와 그물, 2008-05-10 (Korea-Gyeongju-Gampo Port-Ships-01.jpg) · ③ 대관령 산 위 목장의 젖소, 2007-05-27 (대관령5.jpg) | ① SRA Jeffrey Allen(미 공군) · 퍼블릭 도메인 / ② Junho Jung (Flickr) · CC BY 3.0 / ③ wonjin · CC BY 2.0 — 합친 그림은 CC BY 3.0 |
+| 8-5_map_germany_why.png(.webp) | 19세기 독일 루르·작센의 도시가 빨리 커진 까닭 개념도(탄전·철강·뱃길·철도·섬유 공업), hq_85_why_germany.py 2026-11-12 | 해안선·강·나라와 주 경계·지형 음영 Natural Earth · 퍼블릭 도메인. 탄전 범위·철도 경로는 어림으로 다시 그림 |
+| 8-5_map_kl_why.png(.webp) | 쿠알라룸푸르(클랑 계곡)가 빨리 커진 까닭 지도(두 강·주석 광산·철도·항구·수도·공업 도시), hq_85_why_kl.py 2026-11-12 | 해안선·강·철도 © OpenStreetMap 기여자(ODbL) · 지형 음영 Copernicus DEM GLO-30(© DLR e.V. 2010–2014, © Airbus 2014–2018, ESA 제공) · 사람이 많이 사는 곳 GHSL GHS-POP 2020(EC JRC, CC BY 4.0) · 위치 지도 Natural Earth(퍼블릭 도메인) |
 
 ## 8-6 63년 차이로 온 같은 안개 — 고급 단어 카드
 | 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
@@ -498,6 +501,11 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 8-6_voc_체증.jpg | 고속도로에 줄지어 멈춰 선 차들, 2016-08 (Traffic jam on the highway (28733397590).jpg) | Susanne Nilsson · CC BY-SA 2.0 |
 | 8-6_voc_집중.jpg | 도쿄 시부야 스크램블 교차로 한가운데로 몰려든 사람들(장노출로 흐릿한 군중), 2008-05 (Shibuya Crossing (2562167490).jpg) | Michael Day · CC BY 2.0 |
 | 8-6_voc_공공.jpg | 뉴욕 공립 도서관 열람실 — 여럿이 함께 쓰는 긴 책상, 2006-01 (NYC Public Library Research Room Jan 2006.jpg) | Diliff · CC BY 2.5 |
+| 8-6_suburb_dalycity.jpg | 미국 캘리포니아주 데일리시티(샌프란시스코 바로 남쪽) 스카이라인 대로를 따라 늘어선 단독 주택 단지, 2021-11-22 이륙하며 찍은 항공 사진 (Daly City little boxes aerial.jpg) — 1200×841로 줄임 | Dicklyon · CC BY-SA 4.0 |
+| 8-6_suburb_sanbon.jpg | 경기도 군포시 산본의 아파트 단지와 벚꽃 핀 언덕, 2026-04-11 (Gunpo City Sanbon with Cherry Blossoms 20260411 (05).jpg) — 위·아래·오른쪽을 잘라 1200×515로 줄임(수정함) | Treeinkr · CC BY-SA 4.0 |
+| 8-6_ulaanbaatar_ger_now.jpg | 울란바토르 북쪽 언덕의 게르 지구와 그 앞에 올라가는 아파트, 2025-05 (Ger district of Ulaanbaatar.jpg) — 언덕과 아파트가 보이게 잘라 1200px(수정함), 8-6_ulaanbaatar_ger_v2.jpg(2007)와 견주기 | Quintin Soloviev · CC BY 4.0 |
+| 8-6_hcmc_canal_now.jpg | 베트남 호찌민 도이 운하(Kênh Đôi, 옛 8군) 가에 기둥을 박아 지은 집들, 2022-04, 니티엔드엉 다리에서 (Doi Canal from Nhi Thien Duong Bridge.jpg) — 왼쪽을 잘라 1200px(수정함). 원본에 색 보정 있음 | Unpear · CC BY-SA 4.0 |
+| 8-6_two_bases_cycle.png(.webp) | 산업 기반(공장·회사)과 도시 기반 시설이 사람을 사이에 두고 주고받는 고리 — ① 서로 밀어 줄 때 · ② 한쪽이 못 따라갈 때 개념도, hq_86_two_bases.py 2026-11-12 | 직접 그린 개념도(외부 자료 없음) · 교과서 155·157쪽 맥락 |
 
 ## 8-7 쓰레기 매립지에서 살고 싶은 동네로 — 고급 단어 카드
 | 파일 | 내용(무엇이 찍혔나·어디·언제) | 저작자 · 라이선스 |
