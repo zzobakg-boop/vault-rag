@@ -27,11 +27,12 @@ GL.forEach(function(g){
   var it={g:g,open:false,locked:false,trig:null,block:null,pop:mkPop(g),path:null,dot:null,fresh:false};
   if(g.kind==='blank'){
     var inp=[].slice.call(document.querySelectorAll('.blank-input')).filter(function(e){ return e.dataset.id===String(g.blank); })[0]; if(!inp) return;   /* 선택자 문자열로 쓰지 않는다 — 정규식으로 입력칸을 세는 도구가 하나로 친다 */
-    var b=document.createElement('button'); b.type='button'; b.className='gl-badge'; b.hidden=true; b.textContent='+';
+    var b=document.createElement('button'); b.type='button'; b.className='gl-badge'+(g.always?' gl-always':''); b.hidden=!g.always; b.textContent='+';
     b.setAttribute('aria-controls',g.id); b.setAttribute('aria-expanded','false'); b.setAttribute('aria-label',g.word+' 보충 보기');
     inp.insertAdjacentElement('afterend',b);
-    it.trig=b; it.input=inp; it.locked=true;
-    inp.addEventListener('input',function(){ if(!it.locked){ lock(it); } });
+    /* 2026-11-13 always(빈칸 언제나) = 교사용 교과서 보충 — 처음부터 단추가 보이고 채점·초기화와 상관없이 열린다 */
+    it.trig=b; it.input=inp; it.always=!!g.always; it.locked=!it.always;
+    if(!it.always) inp.addEventListener('input',function(){ if(!it.locked){ lock(it); } });
   }else{
     var root=C;
     if(g.fold){ var fold=[].slice.call(document.querySelectorAll('details.ws-fold')).filter(function(d){var s=d.querySelector('summary');return s&&s.textContent.indexOf(g.fold)>=0;})[0];
@@ -47,7 +48,7 @@ GL.forEach(function(g){
     it.trig=t; it.mk=mk;
   }
   it.block=it.trig.closest('p,li')||it.trig.parentNode;
-  it.trig.addEventListener('click',function(){ setOpen(it,!it.open); });
+  it.trig.addEventListener('click',function(){ if(it.peek){ it.peek=false; layout(); return; } setOpen(it,!it.open); });   /* 미리 보기 중에 누르면 열어 둔다 */
   it.pop.querySelector('.gl-x').addEventListener('click',function(){ setOpen(it,false); it.trig.focus(); });
   items.push(it);
 });
@@ -55,7 +56,7 @@ if(!items.length) return;
 
 function setOpen(it,on){
   if(on&&it.locked) return;
-  it.open=on; it.pop.hidden=!on; it.fresh=on;
+  it.open=on; it.pop.hidden=!on; it.fresh=on; if(!on) it.peek=false;
   it.trig.setAttribute('aria-expanded',on?'true':'false');
   if(it.mk) it.mk.textContent=on?'−':'+';
   if(on) animate(it.pop);
@@ -67,10 +68,10 @@ function unlock(it){ var was=it.locked; it.locked=false; it.trig.hidden=false; i
 /* 방식 2: 채점하기 뒤에 맞힌 칸만 연다. 초기화·답 고치기면 다시 잠근다 */
 var _check=window.check, _reset=window.reset;
 if(typeof _check==='function') window.check=function(){ var r=_check.apply(this,arguments);
-  items.forEach(function(it){ if(!it.input) return;
+  items.forEach(function(it){ if(!it.input||it.always) return;
     if(it.input.classList.contains('correct')){ unlock(it); setOpen(it,true); } else { lock(it); } });
   return r; };
-if(typeof _reset==='function') window.reset=function(){ var r=_reset.apply(this,arguments); items.forEach(function(it){ if(it.input) lock(it); }); return r; };
+if(typeof _reset==='function') window.reset=function(){ var r=_reset.apply(this,arguments); items.forEach(function(it){ if(it.input&&!it.always) lock(it); }); return r; };
 
 function wideOK(){ return !printing && WIDE.matches; }
 function layout(){
@@ -79,13 +80,19 @@ function layout(){
   items.forEach(function(it){
     var card=it.trig.closest('.v2-sec')||C, cr=card.getBoundingClientRect();
     var space=vw-cr.right;
-    it.mode=(wideOK()&&space>=250)?'side':'inline';
+    it.mode=(wideOK()&&space>=250)?'side':((it.peek&&!printing)?'float':'inline');
     if(it.mode==='inline'){
       if(!it.pop.classList.contains('gl-inline')||it.pop.previousElementSibling!==it.block){ it.block.insertAdjacentElement('afterend',it.pop); }
-      it.pop.classList.add('gl-inline'); it.pop.style.cssText='';
+      it.pop.classList.add('gl-inline'); it.pop.classList.remove('gl-float'); it.pop.style.cssText='';
+    }else if(it.mode==='float'){
+      /* 좁은 화면 미리 보기 = 단추 바로 아래 뜨는 말풍선(본문을 밀지 않는다). 누르면 문단 아래로 들어가 고정된다 */
+      if(it.pop.parentNode!==layer) layer.appendChild(it.pop);
+      it.pop.classList.remove('gl-inline'); it.pop.classList.add('gl-float');
+      var fr=it.trig.getBoundingClientRect(), fw=Math.min(300,vw-16), fl=Math.max(8,Math.min(fr.left-14,vw-fw-8));
+      it.pop.style.cssText=''; it.pop.style.left=(fl+sx)+'px'; it.pop.style.top=(fr.bottom+8+sy)+'px'; it.pop.style.width=fw+'px';
     }else{
       if(it.pop.parentNode!==layer) layer.appendChild(it.pop);
-      it.pop.classList.remove('gl-inline');
+      it.pop.classList.remove('gl-inline'); it.pop.classList.remove('gl-float');
       var r=it.trig.getBoundingClientRect(), visible=it.open&&(r.width||r.height);
       it.pop.style.display=visible?'':'none';
       if(visible){
@@ -121,6 +128,17 @@ function layout(){
   });
   items.forEach(function(it){ it.fresh=false; });
 }
+/* 2026-11-13 툴팁처럼 — 마우스가 있는 화면에서는 단추·낱말에 올리면 미리 보이고, 떼면 닫힌다(누르면 열어 둔다).
+   터치 화면은 누르기만 한다. 맞힌 뒤에만 열리는 빈칸 보충은 종전대로 누르기만 */
+var HOV=window.matchMedia('(hover:hover) and (pointer:fine)');
+function peekOff(it){ clearTimeout(it.pt); it.pt=setTimeout(function(){ if(it.peek&&!it.overT&&!it.overP) setOpen(it,false); },220); }
+items.forEach(function(it){
+  if(it.g.kind==='blank'&&!it.always) return;
+  it.trig.addEventListener('mouseenter',function(){ if(!HOV.matches) return; it.overT=true; clearTimeout(it.pt); if(!it.open&&!it.locked){ it.peek=true; setOpen(it,true); } });
+  it.trig.addEventListener('mouseleave',function(){ it.overT=false; if(it.peek) peekOff(it); });
+  it.pop.addEventListener('mouseenter',function(){ it.overP=true; clearTimeout(it.pt); });
+  it.pop.addEventListener('mouseleave',function(){ it.overP=false; if(it.peek) peekOff(it); });
+});
 var raf=0; function schedule(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; layout(); }); }
 window.addEventListener('resize',schedule);
 document.addEventListener('toggle',schedule,true);
