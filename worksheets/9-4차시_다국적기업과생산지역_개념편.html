@@ -1387,7 +1387,7 @@ details.v2t-legend ul{margin-top:10px}
 .gl-head{font-size:.72rem;font-weight:800;letter-spacing:.06em;color:var(--gl);margin:0 0 2px}
 .gl-pop.gl-link{--gl:#0f7b6c;--gl-soft:#ecf7f4;--gl-ink:#12403a}
 .gl-head .gl-word{margin-left:6px;letter-spacing:0;font-weight:700;color:var(--gl-ink)}
-.gl-body{margin:0}
+.gl-body{margin:0;white-space:pre-line}   /* 2026-11-12 사회 8-5~6 «156쪽 표를 툴팁으로» — 보충 글의 « // »를 줄바꿈으로(js). 줄바꿈 없는 글은 그대로 보인다 */
 .gl-x{position:absolute;top:4px;right:5px;width:26px;height:26px;padding:0;border:0;border-radius:6px;background:none;color:#4f6f99;font-weight:400;font-size:18px;line-height:1;font-family:inherit;cursor:pointer}
 .gl-x:hover{background:rgba(0,122,255,.1)}
 .gl-pop.gl-inline{margin:-6px 0 16px;max-width:40em}
@@ -1560,7 +1560,7 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <p>기사가 나온 뒤 세 회사는 차례로 공장 문을 닫았다. F사(포드)는 2016년 10월, T사(도요타)는 2017년 10월 3일, G사가 거느린 홀든은 2017년 10월 20일에 마지막 차를 만들었다. 이날로 오스트레일리아에서 자동차를 대량으로 만드는 공장은 하나도 남지 않았다.</p>
 <blockquote>🎙️ 도요타 한 회사만 봐도 일하던 사람이 4,000명 가까이에서 1,300명으로 줄었대. 공장 둘레에서 부품을 만들던 회사들까지 생각하면 훨씬 많은 사람이 일터를 잃은 거야.</blockquote>
 </section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">(나) 베트남, 그 뒤</h3>
-<p>S사(삼성)의 베트남 박닌·타이응우옌 휴대 전화 공장은 2009년 4월부터 2025년 6월까지 휴대 전화 20억 대를 만들었다. 2025년 8월에는 베트남 총리가 이를 기념하는 패를 직접 건넸다.</p>
+<p>S사(삼성)의 베트남 박닌·타이응우옌 휴대 전화 공장은 2009년 4월부터 2025년 6월까지 휴대 전화 20억 대를 만들었다. 2025년 8월에는 베트남 총리가 이를 기념하는 패에 직접 서명했다.</p>
 <blockquote>🔍 베트남 총리는 왜 한 외국 회사의 기록을 직접 축하했을까? 3단계에서 배운 '공장이 들어서면 생기는 일'로 답해 보자.</blockquote>
 </section><section class="ws-sw-pane" data-i="3" hidden><h3 class="ws-sw-h">(다) 디트로이트, 그 뒤</h3>
 <p>2021년 디트로이트에 새 자동차 조립 공장이 문을 열었다. 이 도시에 조립 공장이 새로 들어선 것은 30년 가까이 만이다. 2021년 3월부터 이 공장에서 큰 지프 차를 만들기 시작했다.</p>
@@ -2555,7 +2555,7 @@ function mkPop(g){
   var p=document.createElement('aside'); p.className='gl-pop'; p.id=g.id; p.hidden=true;
   p.setAttribute('role','note'); p.setAttribute('aria-label',(g.label||'보충')+': '+g.word); if(g.label) p.classList.add('gl-link');
   p.innerHTML='<div class="gl-head">'+(g.label||'보충')+'<span class="gl-word"></span></div><div class="gl-body"></div><button type="button" class="gl-x" aria-label="보충 닫기">×</button>';
-  p.querySelector('.gl-word').textContent=g.word; p.querySelector('.gl-body').textContent=g.text;
+  p.querySelector('.gl-word').textContent=g.word; p.querySelector('.gl-body').textContent=g.text.split(' // ').join('\n');
   return p;
 }
 function animate(el){ if(RM.matches) return; el.classList.remove('gl-anim'); void el.offsetWidth; el.classList.add('gl-anim'); }
