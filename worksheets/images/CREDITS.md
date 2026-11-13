@@ -1657,6 +1657,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 8-4_nowon_apts.jpg | 서울 노원구의 아파트 단지 | Ox1997cow · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-4_seoul_downtown.jpg | 인왕산에서 내려다본 서울 도심 | 서울관광재단 · 공공누리 제1유형 · Wikimedia Commons |
 | 8-5_hero_london_dore.jpg | 귀스타브 도레 「기차에서 본 런던(Over London – by Rail)」, 『런던 순례』 1872 | 퍼블릭 도메인 · Yale Center for British Art · Wikimedia Commons |
+| 8-5_seoul_1894.webp | 1894년의 서울(한양) — 지붕과 길을 내려다본 사진, 「The Queen of Korea」 Demorest's Family Magazine 1894 게재 (1894JoseonSeoul.jpg · 종이 여백만 잘라 냄) — 8-5~6 묶음판 도입 표지 비교 | Frank G. Carpenter · 퍼블릭 도메인 · Wikimedia Commons |
 | 8-5_kualalumpur.jpg | 말레이시아 쿠알라룸푸르의 고층 빌딩, 2014 | CEphoto, Uwe Aranas · CC BY-SA 3.0 · Wikimedia Commons |
 | 8-5_ruhr_zollverein.jpg | 독일 에센 졸페라인 탄광 수직갱 탑, 2022 | Anil Öztas · CC BY-SA 4.0 · Wikimedia Commons |
 | 8-6_hero_london_smog1952.jpg | 1952년 런던 스모그 속 넬슨 기념탑 | N T Stobbs · CC BY-SA 2.0 · Wikimedia Commons |
