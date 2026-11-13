@@ -12,13 +12,14 @@
   🔴 폰 390px에서 가로 밀림                                         — 게이트 -0.93
   🔴 허브 주소(정답편 카드로 가는 문)가 학생 파일에 있음            — 게이트 -1.0
   ⚠️ 빈칸 답이 그 빈칸보다 앞의 «보이는» 글에 그대로 있음(카드·접기 밖) — 누출 후보
+  🔴 «빈칸 언제나» 말풍선(교사용 교과서 보충) 글에 제 빈칸 답 · ⚠️ 말풍선 글에 다른 빈칸 답 (11/13 추가)
   ⚠️ 빈칸 답이 같은 단계의 그림 캡션·접기 제목·그림 alt·그림 속 글자(OCR)에 있음 — 앞뒤 무관 (10/16 추가)
   ⚠️ 정답편이 교사 iCloud 사본에 아직 없음                          — 30초 자동 동기화 대기일 수 있음
   ⚠️ 교과서 슬롯 답의 낱말이 슬롯 뒤 학생 글(입담·카드·OX)에 처음 나옴 — --md 때만 · 판정은 사람
 
 사용: python3 ~/vault-rag/lesson_verify.py worksheets/<id>_개념편.html [--md <개념편.md>]
 """
-import html, os, re, subprocess, sys
+import html, json, os, re, subprocess, sys
 
 VR = os.path.expanduser("~/vault-rag")
 ICLOUD = os.path.expanduser("~/Library/Mobile Documents/com~apple~CloudDocs/2026 동성여중/정답편 (교사용)")
@@ -84,6 +85,39 @@ for m in re.finditer(r'<input[^>]*data-answer="([^"]+)"[^>]*data-id="(\d+)"', vi
         k = before.rfind(a)
         leaks.append(f"빈칸 {m.group(2)}={a} ← «…{before[max(0,k-18):k+len(a)].strip()}»")
 (warn if leaks else ok).append(f"누출 후보 {len(leaks)}건")
+
+# 말풍선 글(gl-data JSON) ↔ 빈칸 답 (2026-11-13 역사 제안 — 위 누출 검사는 스크립트를 통째로 빼서 :::개념 잇기 보충 글을 못 본다).
+#   «빈칸»(맞힌 뒤 열림)은 제 빈칸 답이 들어 있어도 된다. «빈칸 언제나»(교사용 교과서 보충)는 처음부터 열 수 있어 제 답이 들면 🔴.
+#   그 밖에 다른 빈칸의 답이 들어 있으면 ⚠️ — 그 빈칸보다 뒤에 있는 말풍선이면 무해할 수 있어 사람이 본다.
+gl_red, gl_warn = [], []
+gm = re.search(r'<script[^>]*id="gl-data"[^>]*>(.*?)</script>', s, re.S)
+if gm:
+    try:
+        gl = json.loads(gm.group(1))
+    except Exception:
+        gl = []
+    gans = {}
+    for x in re.findall(r'<input[^>]*class="blank-input"[^>]*>', body):
+        a, i = re.search(r'data-answer="([^"]+)"', x), re.search(r'data-id="([^"]+)"', x)
+        if a and i and len(html.unescape(a.group(1)).strip()) >= 2:
+            gans[i.group(1)] = html.unescape(a.group(1)).strip()
+    for g in gl or []:
+        txt = f"{g.get('word', '')} {g.get('text', '')}"
+        own = str(g.get("blank")) if g.get("kind") == "blank" else None
+        for k, a in gans.items():
+            if a not in txt:
+                continue
+            tag = f"{g.get('id')}({g.get('word', '')}) 안에 빈칸 {k}={a}"
+            if k == own:
+                if g.get("always"):
+                    gl_red.append(tag + " — 언제나 열리는 보충에 제 답")
+            elif own and not g.get("always") and k.isdigit() and own.isdigit() and int(k) < int(own):
+                continue   # 맞힌 뒤 열리는 말풍선 속 «앞» 빈칸 답은 이미 지나온 것(9-3~4 ⑤ 생산비 말풍선의 «임금»)
+            else:
+                gl_warn.append(tag)
+    if gl_red:
+        red.append(f"말풍선 글에 제 빈칸 답 {len(gl_red)}건")
+    (warn if gl_warn else ok).append(f"말풍선 {len(gl or [])}개 글 · 다른 빈칸 답 {len(gl_warn)}건")
 
 # 빈칸 답 ↔ 같은 단계의 그림 캡션·접기 제목·그림 속 글자 (10/16 역사 제안 — 3-3-5에서 빈칸 ⑥ 바로 아래 그림 속 «지동설»,
 #   빈칸 ② 아래 접기 제목 «'인문주의'라는 이름은…»이 🔴0으로 통과했다. 위 누출 검사는 빈칸 «앞»만 보고 접기를 통째로 뺀다.)
@@ -268,6 +302,7 @@ for x in red: print("  🔴", x)
 for x in warn: print("  ⚠️", x)
 for x in ok: print("  ✓", x)
 for l in leaks[:8]: print("     ·", l)
+for l in (gl_red + gl_warn)[:8]: print("     ·", l)
 for l in side[:8]: print("     ·", l)
 for l in side_after[:8]: print("     ℹ️", l)
 for l in pairs: print("     ·", l)
