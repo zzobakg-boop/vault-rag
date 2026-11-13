@@ -2678,7 +2678,10 @@ def extract_hero_meta(blank_file):
     #   hero_before 가 있으면 표지 그림 자리에 개발 전/후 비교(경계 막대·전/후 단추·그림 끌기, ws_design/hero_ba.*)를 둔다.
     #   hero_before_label·hero_after_label = 그림 위 이름표, hero_before_note = 그림 아래 한 줄. 키가 없는 차시는 출력이 이전과 같다.
     hero['before'] = {'img': get('hero_before'), 'label': get('hero_before_label') or '전',
-                      'after': get('hero_after_label') or '후', 'note': get('hero_before_note')}
+                      'after': get('hero_after_label') or '후', 'note': get('hero_before_note'),
+                      # 2026-11-13 천대현(사회 8-5~6 «표지 부분에 넣을 순 없니?») — 같은 곳의 전/후가 아니라 다른 두 곳을
+                      #   견줄 때는 hero_ba_compare: true. 단추에서 «전·후» 낱말을 빼고 이름표만 쓴다(키가 없으면 출력 그대로).
+                      'compare': (get('hero_ba_compare') or '').lower() in ('true', 'yes', '1', '예')}
     mm = re.search(r'^hero_keywords:\s*\[([^\]]+)\]', fm, re.M)
     if mm:
         hero['keywords'] = [k.strip().strip('"\'') for k in mm.group(1).split(',')]
@@ -2748,15 +2751,16 @@ def build_hero_ba(after, ba):
     lb, la = inline(ba['label']), inline(ba['after'])
     _al = lambda s: re.sub(r'<[^>]+>', '', s).replace('"', '&quot;')   # aria-label 안에는 글자만
     note = f'<figcaption class="hba-cap">{inline(ba["note"])}</figcaption>' if ba.get('note') else ''
-    return (f'<figure class="hero-ba" role="group" aria-label="표지 사진 전·후 비교">'
+    cmp = ba.get('compare')
+    return (f'<figure class="hero-ba" role="group" aria-label="{"표지 그림 두 장 견주기" if cmp else "표지 사진 전·후 비교"}">'
             f'<div class="hba-frame"><img class="hba-img hba-before" src="{ba["img"]}" alt="">'
             f'<img class="hba-img hba-after" src="{after}" alt="">'
             f'<span class="hba-line" aria-hidden="true"><span class="hba-knob"></span></span>'
             f'<span class="hba-tag hba-tag-b">{lb}</span><span class="hba-tag hba-tag-a">{la}</span></div>'
             f'<input type="range" class="hba-range" min="0" max="100" step="1" value="50" '
             f'aria-label="경계 막대 — 왼쪽은 {_al(lb)}, 오른쪽은 {_al(la)}">'
-            f'<div class="hba-ctl"><button type="button" class="hba-go hba-go-b" aria-pressed="false">◀ 전 · {lb}</button>'
-            f'<button type="button" class="hba-go hba-go-a" aria-pressed="false">후 · {la} ▶</button></div>{note}</figure>')
+            f'<div class="hba-ctl"><button type="button" class="hba-go hba-go-b" aria-pressed="false">◀ {"" if cmp else "전 · "}{lb}</button>'
+            f'<button type="button" class="hba-go hba-go-a" aria-pressed="false">{"" if cmp else "후 · "}{la} ▶</button></div>{note}</figure>')
 
 
 def build_hero_html(title, hero):
