@@ -318,7 +318,9 @@ if ak_md and os.path.exists(ak_md):
 #   빈칸 든 교과서 문장·쓰기 칸·정답편 «교과서 원문» 인용과 열두 글자 넘게 겹치는 문장은 뺀다 — 교과서 문장은 사실 기준표가 맡는다.
 absol = []
 if md and os.path.exists(md):
-    ABS = re.compile(r"(처음부터|처음으로|처음|원래|이미|대부분|모든|끝내|하나뿐|단 하나|오직|최초|유일|항상|결코|전혀)")
+    # 뒤 묶음은 사회 순위·수치 단정(11/14 사회 «역대 최다·사상 처음» — 7-6 «역대 최다»는 다음 해 값이 더 컸다). 사회 68편 평균 +0.9줄·약 N% +0.2줄
+    ABS = re.compile(r"(처음부터|처음으로|사상 처음|사상 최[대고저]|처음|원래|이미|대부분|모든|끝내|하나뿐|단 하나|오직|최초|유일|항상|결코|전혀"
+                     r"|세계 최[대고초]|세계 1위|역대 최[다고대저]|가장 (?:많|큰|높|낮|적)|\d+(?:\.\d+)?배|약 ?\d+(?:\.\d+)? ?%)")
     src = open(ak_md, encoding="utf-8").read() if ak_md and os.path.exists(ak_md) else ""
     quotes = re.sub(r"\s+", "", " ".join(re.findall(r"교과서 원문[^\"“]*[\"“](.*?)[\"”]", src)))
     body_md = re.sub(r"^---\n.*?\n---\n", "", open(md, encoding="utf-8").read(), flags=re.S)
