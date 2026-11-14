@@ -1915,3 +1915,27 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | holo_industry_seoul_mullae_2018.jpg | 영등포구 문래동 — 철공소 지붕 옆 아파트, 2018-10-03 ([Mullae-dong cityscape.jpg](https://commons.wikimedia.org/wiki/File:Mullae-dong_cityscape.jpg)) | Minseong Kim · CC BY-SA 4.0 · Wikimedia Commons |
 | holo_industry_gwangju_kia_plant_2009.jpg | 광주 서구의 자동차 공장, 2009-01-24 ([Kia motors gwangju factory.jpg](https://commons.wikimedia.org/wiki/File:Kia_motors_gwangju_factory.jpg)) | Sim1992 · CC BY-SA 3.0 · Wikimedia Commons |
 | holo_greenbelt_seocho_umyeon_2022.jpg | 서초구 남쪽 끝 항공사진 — 비닐하우스 밭과 숲 사이 아파트 단지, 2022-08-24 ([Seoul Aerial Shot 15.jpg](https://commons.wikimedia.org/wiki/File:Seoul_Aerial_Shot_15.jpg)) | Korea.net / KOCIS(사진 Jeon Han) · CC BY-SA 2.0 · Wikimedia Commons |
+
+## 역사① Ⅴ단원 묶음판 시각 보강 — 초상·풍자화·판화·지도 (2026-11-14 · 천대현 «핵심 인물·사건을 삽화·표·벤다이어그램으로»)
+초상은 원본을 얼굴 중심으로 둥글게 잘라 냈다(수정함). 학생 화면에는 원고 끝 «🖼 그림 출처» 접기에 줄여 적었다.
+| 파일 | 원본(위키미디어 공용 파일) | 작가 · 연도 | 라이선스 |
+|---|---|---|---|
+| 5-1_인물_루이16세.webp | Antoine-François Callet - Louis XVI, roi de France et de Navarre (1754-1793), revêtu du grand costume royal en 1779 - Google Art Project.jpg | 앙투안프랑수아 칼레 · 1779 | 퍼블릭 도메인 |
+| 5-1_인물_로베스피에르.webp | Robespierre.jpg | 작자 미상 · 1790 무렵 | 퍼블릭 도메인 |
+| 5-1_인물_나폴레옹.webp | David - The Emperor Napoleon in his Study at the Tuileries (second version), 1812.jpg | 자크루이 다비드 · 1812 | 퍼블릭 도메인 |
+| 5-1_인물_메테르니히.webp | Metternich by Lawrence (cropped).jpeg | 토머스 로런스 · 1815 무렵 | 퍼블릭 도메인 |
+| 5-1_인물_카부르.webp | Camillo Benso Cavour di Ciseri.jpg | 안토니오 치세리 · 1861 무렵 | 퍼블릭 도메인 |
+| 5-1_인물_가리발디.webp | Le Gray, Gustave (1820-1884) - Palerme. Portrait de Giuseppe Garibaldi, juillet 1860.jpg (5-1-4_가리발디.jpg에서 잘라 냄) | 귀스타브 르 그레 · 1860 | 퍼블릭 도메인 |
+| 5-1_인물_비스마르크.webp | Franz von Lenbach - Fürst Otto von Bismarck (1871).jpg | 프란츠 폰 렌바흐 · 연도 미상(공용 파일의 «1871»은 Gallerix.ru 하나가 출처이고, 렌바흐의 첫 비스마르크 초상은 1878~79년 — 학생 화면에는 연도를 쓰지 않음) | 퍼블릭 도메인 |
+| 5-1_인물_링컨.webp | Abraham Lincoln November 1863.jpg (5-1-4_링컨.jpg에서 잘라 냄) | 알렉산더 가드너 · 1863 | 퍼블릭 도메인 |
+| 5-1_인물_볼리바르.webp | José Gil de Castro - Simón Bolívar - Google Art Project.jpg (5-1-5_볼리바르.jpg에서 잘라 냄) | 호세 길 데 카스트로 · 1823 무렵 | 퍼블릭 도메인 |
+| 5-2_인물_스미스.webp | AdamSmith.jpg | 19세기 판화(원작 1787) | 퍼블릭 도메인 |
+| 5-2_인물_오언.webp | Portrait of Robert Owen (4674544).jpg | 헨리 토머스 라이얼 판화 · 1835 무렵 | 퍼블릭 도메인 |
+| 5-2_인물_마르크스.webp | Karl Marx 001.jpg (5-2-1_마르크스.jpg에서 잘라 냄) | 존 메이얼 · 1875 | 퍼블릭 도메인 |
+| 5-1-3_구제도풍자화.webp | A faut esperer q'eu se jeu la Finira bentot sic, G.23829(2).jpg (파리 카르나발레 박물관 G.23829) | 작자 미상 · 1789 | CC0 (모서리 여백 잘라 냄) |
+| 5-2-1_뮬방적.webp | Baines 1835-Mule spinning.png | 토머스 앨럼 그림 · J. W. 로리 판화 · 에드워드 베인스 『영국 면직 공업의 역사』 1835 | 퍼블릭 도메인 |
+| 5-2-2_로즈의거상.webp | Punch Rhodes Colossus.png | 에드워드 린리 샘번 · 『펀치』 1892-12-10 | 퍼블릭 도메인 |
+| 5-1_대서양정리지도.webp | 자체 제작 `map-render/hq/hq_51_atlantic.py` | 해안선 Natural Earth 1:1천만 | 퍼블릭 도메인 바탕 · 자체 제작 |
+| 5-1-2_열세식민지_v3.webp | 자체 제작 `map-render/hq/hq_512_colonies.py` — 오늘날 주 경계(NE admin_1)로 그린 1775년 개념도(메인은 매사추세츠 색, 오늘날 버몬트 땅은 1764년 국왕 결정으로 뉴욕 관할이 된 곳이라 뉴욕 색 — 버몬트는 1791년에 주가 됨) | Natural Earth | 퍼블릭 도메인 바탕 · 자체 제작 |
+| 5-2-2_아프리카분할_v2.webp | 자체 제작 `map-render/hq/hq_522_africa.py` — 옛 판(5-2-2_아프리카분할)에서 두 소말릴란드 색이 뒤바뀐 것을 고친 판(historical-basemaps world_1914의 두 이름이 서로 바뀌어 있었다, 2026-11-14 검수) | 경계 historical-basemaps 1914 · 해안·지형 Natural Earth | GPL-3.0 경계(개념도 정밀도) · 퍼블릭 도메인 바탕 · 자체 제작 |
+| 5-1-1_tl_parliament.webp | `map-render/sprites/lord.png`(lpc_build.py «lord»)를 잘라 줄임 — 레이어 9개: cape/solid/bg · body/bodies/male · head/heads/human/male · hair/plain/adult · legs/formal/male · feet/shoes/revised/male · torso/clothes/longsleeve/longsleeve/male · torso/armour/leather/male · neck/capetie/male (색은 바꿈) | Benjamin K. Smith (BenCreating) · bluecarrot16 · Durrani · Eliza Wyatt (ElizaWy) · Evert · JaidynReiman · Joe White · Johannes Sjölund (wulax) · Manuel Riecke (MrBeast) · MuffinElZangano · Nila122 · Stephen Challener (Redshrike) · TheraHedwig | OGA-BY 3.0 택일 (https://static.opengameart.org/OGA-BY-3.0.txt) · 합성함 |

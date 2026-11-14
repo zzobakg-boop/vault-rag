@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<title>역사① Ⅴ단원 5-2 묶음 — 기계가 바꾼 세상, 나뉘는 세계</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
+  background: #f5f5f7; color: #1d1d1f; line-height: 1.7; padding: 16px;
+}
+.container {
+  max-width: 800px; margin: 0 auto; background: white;
+  border-radius: 16px; padding: 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 1.5em; margin: 20px 0 12px; color: #1d1d1f; border-bottom: 2px solid #007aff; padding-bottom: 8px; }
+h2 {
+  font-size: 1.3em; margin: 30px 0 12px; color: #1d1d1f; font-weight: 800;
+  letter-spacing: -0.01em; padding: 8px 0 8px 14px; border-left: 6px solid #007aff;
+  background: linear-gradient(90deg, #f2f6ff, rgba(255,255,255,0));
+  border-radius: 0 8px 8px 0;
+}
+h2:first-of-type { margin-top: 14px; }
+h3 {
+  font-size: 1.09em; margin: 22px 0 8px; color: #2b3240; font-weight: 750;
+  padding-left: 11px; border-left: 3px solid #b6c4dc;
+}
+h4 { font-size: 1em; margin: 10px 0 6px; color: #666; }
+p { margin: 5px 0; font-size: 0.95em; }
+hr { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em;
+}
+/* ⭐ 6/18: 활동 입력칸이 든 표는 내용 폭으로 (짧은 칸이 넓은 셀에 떠 보이는 비율 깨짐 방지·21-22 사고) */
+table.act-table { width: auto; max-width: 100%; }
+table.act-table .activity-input { max-width: 100%; }
+td { border: 1px solid #e2e6ec; padding: 10px 12px; vertical-align: middle; line-height: 1.6; }
+tr:first-child td {
+  background: #e8eefb; font-weight: 750; color: #22314e; vertical-align: middle;
+  border-color: #cfd9ec; font-size: 0.96em;
+}
+tbody tr:nth-child(even):not(:first-child) td { background: #fcfdff; }
+table { border-radius: 10px; overflow: hidden; }
+.ws-fold {
+  margin: 12px 0; border: 1px solid #d8d2c4; border-left: 4px solid #7a8f6a;
+  border-radius: 8px; background: #fbfaf6; overflow: hidden;
+}
+.ws-fold > summary {
+  cursor: pointer; padding: 11px 14px; font-weight: 700; color: #4a5c40;
+  background: #f1efe6; list-style: none; user-select: none; font-size: 0.95em;
+}
+.ws-fold > summary::-webkit-details-marker { display: none; }
+.ws-fold > summary::before { content: "▸ "; color: #7a8f6a; }
+.ws-fold[open] > summary::before { content: "▾ "; }
+.ws-fold[open] > summary { border-bottom: 1px solid #e2ddd0; }
+.ws-fold-body { padding: 10px 16px 14px; }
+.ws-fold-body p { margin: 6px 0; color: #3a352c; font-size: 0.94em; line-height: 1.7; }
+.ws-fold-2c .ws-fold-body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 18px; align-items: start; }
+.ws-fold-2c .ws-fold-body > figure { grid-column: 1; grid-row: 1 / span 8; margin: 6px 0; }
+.ws-fold-2c .ws-fold-body > :not(figure) { grid-column: 2; }
+@media (max-width: 640px) { .ws-fold-2c .ws-fold-body { display: block; } }
+blockquote {
+  border-left: 3px solid #007aff; padding: 6px 14px; margin: 6px 0;
+  background: #f8f9ff; border-radius: 0 8px 8px 0; font-size: 0.93em;
+}
+/* 🎮 인물 선택 활동 — 2026-09-03. 표를 정답으로 주지 않고 학생이 고르게 한다.
+   캐릭터 선택 화면의 결: 고르기 전엔 흐리고, 고르면 색이 들어온다. */
+.ws-pick { border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd; padding: 16px; margin: 18px 0; }
+.pk-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-size: 0.94em; font-weight: 700; color: #3d4552; margin-bottom: 12px; }
+.pk-count { color: #c62c3c; white-space: nowrap; }
+.pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 640px) { .pk-grid { grid-template-columns: repeat(2, 1fr); } }
+.ws-voc { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.94em; }
+.ws-voc th { background:#f2f4f8; color:#42505f; font-weight:700; padding:9px 12px;
+              border:1px solid #dfe4ea; text-align:left; font-size:0.9em; }
+.ws-voc td { padding:9px 12px; border:1px solid #dfe4ea; vertical-align:top; }
+.vc-btn { background:none; border:0; padding:0; font:inherit; font-weight:700; color:#1c2b3a;
+           cursor:pointer; text-align:left; }
+.vc-btn::before { content:"▸ "; color:#7a8f6a; }
+.vc-btn[aria-expanded="true"]::before { content:"▾ "; }
+.vc-btn:hover { color:#0b57d0; }
+.vc-btn:focus-visible { outline:2px solid #0b57d0; outline-offset:2px; border-radius:3px; }
+.vc-body td { background:#fbfaf5; }
+.vc-body p { margin:4px 0; color:#3a352c; line-height:1.65; }
+.pk-card { border: 2px solid #e2e6ec; border-radius: 12px; background: #fff; padding: 10px 8px;
+  text-align: center; transition: transform .22s ease-out, box-shadow .22s, background .22s, border-color .15s; }
+.pk-card img { transition: filter .22s; }
+.pk-card img { width: 72px; height: 72px; image-rendering: pixelated;
+  filter: grayscale(1) opacity(.45); transition: .15s; }
+.pk-card.pk-set img { filter: none; }
+.pk-card.pk-set { border-color: #9aa4b2; background: #fdfdfe; }
+.pk-name { font-weight: 800; font-size: 0.9em; margin-top: 2px; color: #1c242f; }
+.pk-sit { font-size: 0.78em; color: #6b7482; line-height: 1.5; margin: 3px 0 8px; min-height: 2.2em; }
+.pk-btns { display: flex; gap: 5px; }
+.pk-b { flex: 1; border: 1.5px solid #d5dae1; background: #fff; border-radius: 8px;
+  padding: 6px 2px; font: inherit; font-size: 0.78em; font-weight: 700; color: #55607a; cursor: pointer; }
+.pk-b:hover { background: #f3f6fa; }
+.pk-b.on { background: #1c242f; border-color: #1c242f; color: #fff; }
+/* 🙂 기분 상태 — 고르면 캐릭터가 웃거나 운다 (2026-09-03).
+   새 그림을 그리지 않는다: 카드가 뜨거나 내려앉고, 색온도와 채도가 바뀌고, 배지가 붙는다.
+   정답 공개 때 틀린 카드는 '진짜 기분'으로 뒤집히므로 표정 변화 자체가 피드백이 된다. */
+.pk-card { position: relative; }
+.pk-card.pk-happy {
+  transform: translateY(-10px) scale(1.04);
+  border-color: #e0b13a;
+  box-shadow: 0 12px 22px rgba(200,150,30,.28), 0 0 0 3px rgba(255,214,102,.35);
+  background: linear-gradient(180deg, #fff9e2, #fff);
+  animation: pkHop .5s cubic-bezier(.34,1.56,.64,1);
+}
+.pk-card.pk-happy img { filter: brightness(1.16) saturate(1.45) contrast(1.06); transform: scale(1.1); }
+.pk-card.pk-sad {
+  transform: translateY(9px) scale(.95) rotate(1.6deg);
+  border-color: #93a3bb;
+  box-shadow: 0 1px 3px rgba(60,70,90,.10);
+  background: linear-gradient(180deg, #eef1f6, #f8fafc);
+  animation: pkSlump .45s ease-out;
+}
+.pk-card.pk-sad img {
+  filter: saturate(.22) brightness(.84) contrast(.92) hue-rotate(-14deg);
+  transform: scale(.9) rotate(-2deg);
+}
+.pk-card.pk-sad .pk-name, .pk-card.pk-sad .pk-sit { opacity: .62; }
+@keyframes pkHop {
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-20px) scale(1.09); }
+  100% { transform: translateY(-10px) scale(1.04); }
+}
+@keyframes pkSlump {
+  0%   { transform: translateY(0) scale(1) rotate(0); }
+  60%  { transform: translateY(13px) scale(.93) rotate(2.4deg); }
+  100% { transform: translateY(9px) scale(.95) rotate(1.6deg); }
+}
+.pk-card.pk-happy::after, .pk-card.pk-sad::after {
+  position: absolute; top: -12px; right: -8px; font-size: 1.9em; line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.22));
+}
+.pk-card.pk-happy::after { content: "😀"; animation: pkPop .45s cubic-bezier(.34,1.8,.64,1); }
+.pk-card.pk-sad::after { content: "😢"; animation: pkDrip .45s ease-out; }
+@keyframes pkPop { 0% { transform: scale(0) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes pkDrip { 0% { transform: translateY(-10px) scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; animation: none; }
+  .pk-card.pk-happy::after, .pk-card.pk-sad::after { animation: none; }
+}
+@media print {
+  .pk-card.pk-happy, .pk-card.pk-sad { transform: none; box-shadow: none; animation: none; }
+  .pk-card.pk-happy img, .pk-card.pk-sad img { transform: none; }
+}
+
+.pk-card.pk-ok { border-color: #1a7a60; background: #f2fbf7; }
+.pk-card.pk-no { border-color: #c62c3c; background: #fef5f6; }
+.pk-why { font-size: 0.78em; color: #b3242f; margin-top: 7px; line-height: 1.55; text-align: left; }
+.pk-tap { cursor: pointer; }
+.pk-ok .pk-why { color: #1f6b3a; }
+.pk-result { margin-top: 14px; padding: 13px 15px; border: 1px solid #1a7a60;
+  background: #e4f4ee; border-radius: 12px; font-size: 0.9em; color: #15705a; }
+.pk-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; margin-top: 10px; }
+@media (max-width: 520px) { .pk-sum { grid-template-columns: 1fr; } }
+.pk-col { background: #fff; border-radius: 10px; padding: 9px 11px; border: 1.5px solid; }
+.pk-col b { display: block; margin-bottom: 5px; font-size: 0.95em; }
+.pk-col span { display: block; font-size: 0.9em; color: #3d4552; padding: 1px 0; }
+.pk-up { border-color: #1a7a60; color: #15705a; }
+.pk-down { border-color: #c62c3c; color: #b3242f; }
+/* N지선다(기분 없음) 요약 열 — 옵션 순서대로 색이 갈린다 */
+code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
+  padding: 1px 5px; font-size: .92em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #384a63; }
+.pk-c0 { border-color: #1f6feb; color: #1a5fc8; }
+.pk-c1 { border-color: #b8862b; color: #9a6f1e; }
+.pk-c2 { border-color: #6b4fbb; color: #5b41a4; }
+.pk-c3 { border-color: #1a7a60; color: #15705a; }
+/* 옵션이 3개 이상이면 버튼을 세로로 — 가로로 늘어놓으면 폰에서 글자가 잘린다 */
+.pk-btns-col { flex-direction: column; gap: 4px; }
+.pk-btns-col .pk-b { width: 100%; text-align: center; }
+/* 이미지 없는 카드(실재 사건 등 — 생성 이미지를 쓰지 않는 자리) */
+/* 2026-10-12 사회 7-3 — 교과서 상자 안 그림(:::교과서 안 '![]()' 줄) */
+.ws-tb-fig { margin: 4px 0 12px; text-align: center; }
+.ws-tb-fig img { max-width: 100%; max-height: 380px; height: auto; border-radius: 8px; display: inline-block; }
+.ws-tb-fig figcaption { font-size: .84em; color: #6b5a33; margin-top: 5px; }
+/* 2026-10-12 사회 7-3 — 인물선택카드 «넘김»·다 고른 뒤 사진으로 뒤집기 */
+.pk-grid.pk-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+  padding: 4px 2px 10px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.pk-grid.pk-swipe .pk-card { flex: 0 0 min(270px, 78%); scroll-snap-align: start; }
+.pk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.pk-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: .95em; }
+.pk-pos { font-size: .86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.pk-win.pk-has-photo { position: relative; }
+.pk-gold .pk-win img[hidden], .pk-wtag[hidden] { display: none; }   /* 카드 결 규칙(display:block)이 hidden을 이긴다 — 지도·사진이 둘 다 보였다 */
+.pk-done .pk-win.pk-has-photo { cursor: pointer; }
+.pk-wtag { position: absolute; left: 6px; bottom: 6px; right: 6px; background: rgba(20,20,20,.62); color: #fff;
+  font-size: .72em; line-height: 1.35; padding: 3px 7px; border-radius: 6px; text-align: left; }
+.pk-wtag i { float: right; font-style: normal; opacity: .8; margin-left: 6px; }
+.pk-win.pk-flipping { animation: pkflip .46s ease-in-out; }
+@keyframes pkflip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .pk-win.pk-flipping { animation: none; } }
+/* 인물선택 '카드' 결 (2026-09-07) — :::인물선택카드 일 때만. 옛 차시는 그대로 */
+.pk-gold .pk-card { padding: 7px; border: 0; border-radius: 15px;
+  background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
+  box-shadow: 0 3px 9px rgba(0,0,0,.18); }
+.pk-gold .pk-card { display: flex; flex-direction: column; gap: 0; }
+.pk-gold .pk-win { display: block; overflow: hidden; border-radius: 5px 5px 0 0;
+  border: 4px solid #d9c98e; border-bottom: 0; background: #efe7cf; margin: 0; }
+/* 도트 스프라이트용 규칙(72px·pixelated·grayscale)이 사진 카드에 걸리면
+   고르기 전에는 사진이 안 보인다 — 사진에는 단서가 있어야 한다. */
+.pk-gold .pk-win img { image-rendering: auto; filter: none; height: auto; }
+.pk-gold .pk-win img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.pk-gold .pk-name { background: #fdf7e6; margin: 0; padding: 10px 10px 0;
+  font-size: 1.06em; font-weight: 800; color: #2c2419; }
+.pk-gold .pk-sit { background: #fdf7e6; margin: 0; padding: 5px 10px 8px;
+  font-size: .87em; line-height: 1.5; color: #574d3c; font-style: italic; }
+.pk-gold .pk-btns { background: #fdf7e6; margin: 0; padding: 0 10px 10px;
+  border-radius: 0 0 10px 10px; }
+.pk-gold .pk-why { background: #fdf7e6; margin: 0; padding: 0 10px 10px;
+  border-radius: 0 0 10px 10px; }
+.pk-gold .pk-card.pk-ok { box-shadow: 0 0 0 4px #4a9d5f, 0 10px 22px rgba(74,157,95,.4); }
+.pk-gold .pk-card.pk-no { box-shadow: 0 0 0 4px #c9584f, 0 10px 22px rgba(201,88,79,.4); }
+.pk-card.pk-noimg { padding-top: 14px; }
+.pk-card.pk-noimg .pk-name { font-size: 1.02em; }
+/* 🔴 2026-09-15 — 금테 카드 묶음에 «사진 없는 카드»가 섞이면 크림 패널이 자기 높이만
+   차지하고 그 아래로 금테 배경이 통째로 드러났다(6-5 활동 1에서 실측·빈 금색 판).
+   그리드가 행 높이를 맞추므로 카드 «안»이 늘어나야 한다 — 버튼 블록을 늘려 크림이 끝까지
+   내려오게 한다. 선택자를 .pk-gold .pk-noimg 로 좁혀 기존 발행본 회귀 0(실측: 이 조합을
+   가진 발행본이 6-5 하나뿐이었다). 🔑 사진을 못 구한 카드를 «없는 채로» 둘 수 있어야
+   «한 장만 좋은 묶음은 안 넣는다»의 반대편 — «셋은 있고 하나는 없다»가 성립한다. */
+.pk-gold .pk-card.pk-noimg { padding-top: 0; }
+.pk-gold .pk-card.pk-noimg .pk-name { padding-top: 14px; border-radius: 5px 5px 0 0; }
+.pk-gold .pk-card.pk-noimg .pk-btns { flex: 1 1 auto; justify-content: flex-start; }
+/* 2026-10-07 격자로 — 한 버튼만 두 줄로 꺾여도(폰 «인문·사회») 두 버튼 높이·폭이 같게. 줄은 아래에 붙인다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-content: end; }
+/* 2026-10-07 — 위 «flex: 0 0 auto»는 버튼 높이를 묶으려던 것인데 버튼 줄이 가로라 폭이 글자 크기로 묶였다
+   (사회 7-4 «양» 17px · «비율» 28px). 폭은 똑같이 나누고(1 1 0) 높이는 아래 정렬로 고정한다. */
+.pk-gold .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) .pk-b { flex: none; }
+.pk-gold .pk-card.pk-noimg .pk-btns-col .pk-b { flex: 0 0 auto; }   /* 세로(선택지 셋 이상)는 높이 고정 그대로 */
+@media print { .pk-b { display: none; } .pk-card img { filter: none; } }
+
+/* ⚖️ 움직이는 시소 — 2026-09-03. 정지 도식이 못 주는 것: 학생이 직접 밀어 보는 것. */
+.ws-seesaw {
+  border: 1px solid #dfe3e8; border-radius: 14px; background: #fbfcfd;
+  padding: 16px 18px 18px; margin: 18px 0;
+}
+.ws-seesaw-head { font-size: 0.9em; font-weight: 700; color: #4a5361; margin-bottom: 10px; }
+.ws-seesaw-range { width: 100%; accent-color: #c62c3c; margin-bottom: 6px; }
+.ws-seesaw-stage { position: relative; height: 190px; }
+.ws-seesaw-beam {
+  position: absolute; left: 50%; top: 50%; width: 500px; height: 10px;
+  margin-left: -250px; margin-top: -5px; background: #7b8494; border-radius: 5px;
+  transition: transform .18s ease-out;
+}
+.ws-seesaw-pivot {
+  position: absolute; left: 50%; top: 50%; margin-left: -26px;
+  border-left: 26px solid transparent; border-right: 26px solid transparent;
+  border-top: 52px solid #96a0ae;
+}
+.ws-seesaw-chip {
+  position: absolute; top: 50%; width: 168px; padding: 9px 6px;
+  text-align: center; border-radius: 12px; border: 3px solid; background: #fff;
+  transition: transform .18s ease-out; font-size: 0.88em;
+}
+.ws-seesaw-chip b { display: block; font-size: 0.95em; }
+.ws-seesaw-chip .v { display: block; font-size: 1.45em; font-weight: 800; margin-top: 2px; }
+.ws-seesaw-chip.ws-l { left: 50%; margin-left: -334px; border-color: #c62c3c; color: #c62c3c; }
+.ws-seesaw-chip.ws-r { left: 50%; margin-left: 166px; border-color: #1e5ca8; color: #1e5ca8; }
+.ws-seesaw-note {
+  text-align: center; font-size: 0.84em; color: #6b7482; margin: 0 0 8px;
+}
+.ws-seesaw-out {
+  text-align: center; font-size: 1.02em; font-weight: 700; color: #15705a;
+  background: #e0f3ec; border: 1px solid #1a7a60; border-radius: 10px; padding: 9px;
+}
+@media (max-width: 560px) {
+  .ws-seesaw-beam { width: 300px; margin-left: -150px; }
+  .ws-seesaw-chip { width: 108px; font-size: 0.78em; }   /* 2026-10-04: 124px·±206은 폰 반폭(≈165)을 9px 넘었다 */
+  .ws-seesaw-chip.ws-l { margin-left: -161px; }
+  .ws-seesaw-chip.ws-r { margin-left: 53px; }
+}
+@media print { .ws-seesaw-range { display: none; } }
+
+/* 🕰 연표 시소 (:::연표시소) — 2026-09-09.
+   🔴 기존 정지 도식(fig_232_reversal_anim.py)의 «결»을 그대로 옮긴다 —
+      크림 바탕 · 교황 보라(#7a4a84) · 상대 적갈(#964e2c) · 도트 스프라이트 ·
+      줄에 매단 접시 · 사다리꼴 기둥 · **저울 아래 연표 트랙**.
+      새로 만든 회색·남색 UI로 갈아엎었더니 학습지 결에서 튀었다(천대현 2026-09-09). */
+/* 🗺 :::지도막대 — 2026-10-06 (지도 + 연도 막대 · 핀·값은 HTML) */
+.ws-mapbar { border: 1px solid #dcd3bf; border-radius: 14px; background: #fbf8f1; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-mb-head { font-weight: 800; font-size: 1.02em; margin-bottom: 8px; color: #3a3226; }
+.ws-mb-map { position: relative; line-height: 0; border-radius: 10px; overflow: hidden; }
+.ws-mb-map img { display: block; width: 100%; height: auto; }
+.mb-pin { position: absolute; width: 0; height: 0; line-height: 1.2; }
+.mb-pin i { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #8a7f6c; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); opacity: .9;
+  transition: width .5s, height .5s, margin .5s, background .5s; }
+.mb-pin.mb-up i { background: #c2593a; }
+.mb-pin.mb-dn i { background: #3f6fa8; }
+.mb-lab { position: absolute; top: -9px; white-space: nowrap; font-size: 13px; font-weight: 700; color: #2b2419;
+  background: rgba(255,255,255,.86); border-radius: 6px; padding: 1px 5px; }
+.mb-r .mb-lab { left: 12px; }
+.mb-l .mb-lab { right: 12px; }
+.mb-u .mb-lab, .mb-d .mb-lab { left: 0; transform: translateX(-50%); }
+.mb-u .mb-lab { top: -30px; }
+.mb-d .mb-lab { top: 12px; }
+.mb-lab em { font-style: normal; color: #7a2e1a; font-variant-numeric: tabular-nums; }
+.mb-dn .mb-lab em { color: #244f86; }
+.ws-mb-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .86em; color: #4a4234; margin: 8px 2px 4px; }
+.ws-mb-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; }
+.ws-mb-legend i.mb-hi { background: #c2593a; }
+.ws-mb-legend i.mb-lo { background: #3f6fa8; }
+.ws-mb-legend .mb-bt { color: #6b6252; }
+.ws-mb-ctl { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.ws-mb-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #cfc4ae; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-mb-play:focus-visible, .ws-mb-range:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; }
+.ws-mb-range { flex: 1; accent-color: #7a5a2a; min-width: 0; }
+.ws-mb-yr { flex: none; min-width: 4.2em; font-weight: 800; color: #3a3226; font-variant-numeric: tabular-nums; }
+.ws-mb-read { min-height: 3.2em; margin-top: 6px; font-size: .95em; line-height: 1.6; color: #2b2419; }
+.ws-mb-src { font-size: .8em; color: #6b6252; margin-top: 4px; }
+@media (max-width: 560px) { .mb-lab { font-size: 11px; padding: 0 3px; } .mb-r .mb-lab { left: 8px; } .mb-l .mb-lab { right: 8px; } .mb-u .mb-lab { top: -24px; } .mb-d .mb-lab { top: 9px; } }
+@media (prefers-reduced-motion: reduce) { .mb-pin i { transition: none; } }
+@media print { .ws-mb-ctl { display: none; } }
+/* 📈 :::그래프 — 2026-09-28 */
+.ws-gr { border: 1px solid #dfe4ea; border-radius: 14px; background: #fbfcfd; padding: 14px 14px 10px; margin: 16px 0; }
+.ws-gr-head { font-weight: 800; font-size: 1.02em; margin-bottom: 6px; color: #243040; }
+.ws-gr-svg { display: block; width: 100%; height: auto; }
+.ws-gr-svg .gr-grid { stroke: #d9dee5; stroke-dasharray: 3 4; }
+.ws-gr-svg .gr-axis { stroke: #8a94a3; stroke-width: 1.5; }
+.ws-gr-svg .gr-tick { font-size: 17px; fill: #4b5563; }
+.ws-gr-svg .gr-unit { font-size: 15px; }
+.ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
+.ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-svg .gr-ref { stroke: #b45309; stroke-width: 1.5; stroke-dasharray: 8 5; }
+.ws-gr-svg .gr-ref-t { font-size: 15px; font-weight: 700; fill: #b45309; paint-order: stroke; stroke: #fbfcfd; stroke-width: 4px; }
+.ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
+.ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
+.ws-gr-ctl { display: flex; align-items: center; gap: 10px; }
+.ws-gr-play { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #c9d1db; background: #fff; font-size: 16px; cursor: pointer; }
+.ws-gr-play:focus-visible, .ws-gr-range:focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.ws-gr-range { flex: 1; accent-color: #243040; min-width: 0; }
+.ws-gr-read { min-height: 3.2em; margin-top: 8px; font-size: .95em; line-height: 1.6; color: #1f2937; }
+.ws-gr-src { font-size: .8em; color: #6b7280; margin-top: 4px; }
+@media print { .ws-gr-ctl { display: none; } }
+.ws-tl { border: 1px solid #e4dcc9; border-radius: 14px; background: #faf7f0;
+  padding: 16px 18px 14px; margin: 18px 0; }
+.ws-tl-head { font-size: 0.9em; font-weight: 700; color: #786c5c; margin-bottom: 6px; }
+.ws-tl-stage { position: relative; height: 300px; }
+.ws-tl-beam { position: absolute; left: 50%; top: 70px; width: 460px; height: 12px;
+  margin-left: -230px; background: #8c8070; border-radius: 6px;
+  transition: transform .28s ease-out; }
+.ws-tl-pivot { position: absolute; left: 50%; top: 74px; margin-left: -14px;
+  border-left: 14px solid transparent; border-right: 14px solid transparent;
+  border-top: 122px solid #c6bAaa; }
+.ws-tl-base { position: absolute; left: 50%; top: 192px; width: 200px; margin-left: -100px;
+  height: 8px; background: #b2a694; border-radius: 4px; }
+/* 🔴 칩 top = 빔top + 최대하강(sin9°×half≈36) — 그래야 접시가 «항상 빔 아래»에 있다.
+   빔top에 두면 위로 기운 쪽 접시가 빔 위로 떠올라 저울로 안 보인다(2026-09-09 실측). */
+.ws-tl-chip { position: absolute; left: 50%; top: 106px; width: 190px; text-align: center;
+  transition: transform .28s ease-out; }
+.ws-tl-chip .rope { display: block; width: 3px; height: 40px; margin: 0 auto; background: #b9ad9b; }
+.ws-tl-chip .box { display: block; background: #fff; border: 3px solid #b9ad9b; border-radius: 12px;
+  padding: 6px 8px 8px; }
+.ws-tl-chip .tl-spr { display: block; height: 52px; width: auto; margin: 0 auto 2px;
+  image-rendering: pixelated; }
+.ws-tl-chip b { display: block; font-size: 0.95em; font-weight: 800; }
+.ws-tl-chip .s { display: block; font-size: 0.78em; color: #9a9284; margin-top: 1px; }
+.ws-tl-chip .win { display: block; margin-top: 4px; font-size: 0.8em; font-weight: 800;
+  visibility: hidden; }
+.ws-tl-chip.tl-l { margin-left: -300px; }
+.ws-tl-chip.tl-r { margin-left: 110px; }
+/* 교황 = 보라 · 상대 = 적갈 (기존 도식 CH·KING 그대로) */
+.ws-tl-chip.tl-l .box { border-color: #7a4a84; } .ws-tl-chip.tl-l b, .ws-tl-chip.tl-l .win { color: #7a4a84; }
+.ws-tl-chip.tl-l .rope { background: #7a4a84; }
+.ws-tl-chip.tl-r .box { border-color: #964e2c; } .ws-tl-chip.tl-r b, .ws-tl-chip.tl-r .win { color: #964e2c; }
+.ws-tl-chip.tl-r .rope { background: #964e2c; }
+.ws-tl-chip.up .box { opacity: .6; }
+.ws-tl-say { min-height: 2.6em; margin: 2px 0 10px; font-size: 0.94em; color: #4a4136;
+  line-height: 1.7; text-align: center; font-weight: 600; }
+/* 시간축 — 기존 도식처럼 «저울 아래»에 둔다(천대현 원 요청: "밑에 표시한 연도를 클릭") */
+.ws-tl-tabs { display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 4px; border-top: 3px solid #e0d6c2; padding-top: 0; margin-top: 4px; }
+.tl-tab { flex: 1 1 0; border: 0; background: none; cursor: pointer; font-family: inherit;
+  font-size: 0.84em; color: #9a9284; padding: 0; position: relative; }
+.tl-tab::before { content: ""; display: block; width: 13px; height: 13px; border-radius: 50%;
+  background: #d8cdb8; margin: -8px auto 5px; border: 3px solid #faf7f0; }
+.tl-tab[aria-selected="true"] { color: #262018; font-weight: 800; }
+.tl-tab[aria-selected="true"]::before { background: #b07e1a; }
+.tl-print { display: none; }
+@media (max-width: 560px) {
+  .ws-tl { padding: 14px 10px 12px; }
+  .ws-tl-stage { height: 250px; }
+  .ws-tl-beam { width: 216px; margin-left: -108px; top: 56px; height: 9px; }
+  .ws-tl-pivot { top: 60px; margin-left: -11px; border-left-width: 11px; border-right-width: 11px;
+    border-top-width: 100px; }
+  .ws-tl-base { top: 156px; width: 58px; margin-left: -29px; height: 6px; }
+  .ws-tl-chip { width: 122px; top: 73px; }
+  .ws-tl-chip.tl-l { margin-left: -152px; }
+  .ws-tl-chip.tl-r { margin-left: 30px; }
+  .ws-tl-chip .rope { height: 30px; }
+  .ws-tl-chip .tl-spr { height: 40px; }
+  .ws-tl-chip b { font-size: 0.8em; } .ws-tl-chip .s { font-size: 0.68em; }
+  .ws-tl-say { min-height: 4.8em; font-size: 0.88em; }
+  .tl-tab { font-size: 0.72em; }
+}
+@media print {
+  .ws-tl-tabs, .ws-tl-stage, .ws-tl-say { display: none; }
+  .tl-print { display: table; width: 100%; }
+}
+
+/* 📖 표·도식을 읽는 자리 — 2026-09-03.
+   빈칸 본문(파랑 입력)과도, 곁말 콜아웃(왼쪽 파란 띠)과도 갈라야 하는 세 번째 계열.
+   표 바로 아래 붙여 '표의 일부'로 읽히게 한다(위 모서리를 각지게·음수 마진). */
+/* 🔴 2026-09-10 재설계 — 두 가지가 틀려 있었다.
+   ① 이 블록의 CSS가 «죽어 있었다» — 바로 위 :::연표시소 CSS에 여분의 `}`가 하나 있어
+      파서가 .ws-read 본체 규칙을 버렸다(자식 규칙 3개는 살아남아 더 안 보였다).
+      computed backgroundColor 가 rgba(0,0,0,0) 이었다. 천대현: "일반 설명과 다르게 디자인을 가져가자"
+      — 디자인이 약한 게 아니라 **없었다.**
+   ② «표 바로 아래 붙는다»는 원 설계(2026-09-03)가 실사용과 달랐다. 실측하니 사회② 8차시
+      16개 블록의 직전 형제가 전부 h2 또는 br 이고 **표 뒤인 경우가 0**이었다.
+      음수 마진과 각진 위 모서리가 근거를 잃었으므로 단독형으로 바로잡는다.
+   계열: 파랑=답이 나오는 곳 · 황토=교과서 · **슬레이트=손 안 대고 읽는 곳**.
+   태그는 :::교과서와 같은 알약형으로 올려 «일반 문단이 아님»이 한눈에 보이게 한다. */
+.ws-saryo {
+  position: relative; margin: 26px 6px 28px; padding: 30px 34px 22px;
+  background: linear-gradient(180deg, #f7eed5 0%, #f1e2bd 100%);
+  border-left: 1px solid #d6c08f; border-right: 1px solid #d6c08f;
+  box-shadow: inset 0 0 34px rgba(150, 110, 45, 0.22), 0 3px 10px rgba(60, 40, 10, 0.12);
+  color: #4a3720;
+}
+.ws-saryo::before, .ws-saryo::after {
+  content: ""; position: absolute; left: -10px; right: -10px; height: 16px; border-radius: 8px;
+  background: linear-gradient(180deg, #e2c992 0%, #b8925a 55%, #8f6a37 100%);
+  box-shadow: 0 2px 4px rgba(60, 40, 10, 0.25);
+}
+.ws-saryo::before { top: -8px; }
+.ws-saryo::after { bottom: -8px; }
+.ws-saryo .sr-tag {
+  display: inline-block; font-size: 0.78em; font-weight: 700; letter-spacing: 0.04em;
+  color: #7a5426; border: 1px solid #b8925a; border-radius: 999px; padding: 2px 11px; margin-bottom: 10px;
+  background: rgba(255, 250, 235, 0.6);
+}
+.ws-saryo .sr-q {
+  margin: 0; padding: 0; border: none; background: none;
+  font-family: "Nanum Myeongjo", "AppleMyungjo", "Noto Serif KR", "Batang", serif;
+  font-size: 1.04em; line-height: 1.85; color: #3d2c17;
+}
+.ws-saryo .sr-c { margin-top: 10px; text-align: right; font-size: 0.82em; color: #7a6040; }
+@media print { .ws-saryo { background: #fbf6e8; box-shadow: none; border: 1px solid #b8925a; } }
+.ws-2c { display: grid; gap: 22px; align-items: start; margin: 12px 0 18px; }
+.ws-2c > div { min-width: 0; }
+.ws-2c > div > :first-child { margin-top: 0; }
+.ws-2c > div > br { display: none; }
+@media (max-width: 640px) { .ws-2c:not(.c2-keep) { grid-template-columns: 1fr !important; } .ws-2c.c2-keep { gap: 10px; } .ws-2c.c2-keep figcaption { font-size: 12px; } }
+.ws-2c.c2-mid { align-items: center; }
+.ws-2c.c2-card > .c2-b { background: #fbf6ea; border-left: 5px solid #b07e1a; border-radius: 0 12px 12px 0; padding: 16px 20px; }
+.ws-2c.c2-card > .c2-b p { margin: 0 0 8px; } .ws-2c.c2-card > .c2-b p:last-child { margin-bottom: 0; }
+.ws-2c .ws-fig { margin: 0; }
+/* 📑 :::넘김 — 2026-10-12 3-3-4 5단계. :::비교와 같은 탭 모양, 안쪽은 본문 그대로. */
+.ws-sw { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0; background: #fffdf8; }
+.ws-sw-tabs { display: flex; gap: 4px; padding: 10px 10px 0; }
+.ws-sw-tab { flex: 1 1 0; min-width: 0; border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 10px 10px 0 0;
+  padding: 8px 4px; font-size: .86em; font-weight: 700; line-height: 1.3; cursor: pointer; word-break: keep-all; }
+.ws-sw-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-sw-tab:focus-visible { outline: 3px solid #23508c; outline-offset: 2px; }
+.ws-sw-stage { border-top: 3px solid #6b5a3a; padding: 6px 16px 4px; }
+.ws-sw-pane[hidden] { display: none; }
+.ws-sw-h { display: none; }
+.ws-sw-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 6px 0 12px; }
+.ws-sw-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a; border-radius: 8px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+.ws-sw-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-sw-stage { padding: 4px 10px 2px; } .ws-sw-tab { font-size: .74em; padding: 7px 2px; } }
+/* 2026-10-12 사회 7-4 — :::넘김 카드뉴스 */
+.ws-sw.sw-news { border-color: #2f4a6b; background: #fff; max-width: 600px; margin: 18px auto; }   /* 2026-10-15 천대현 «보충 카드가 가로·세로 너무 크다» — 본문 폭(736px) 다 쓰던 것을 600px로 */
+.sw-news .ws-sw-head { padding: 12px 16px 2px; font-weight: 800; color: #2f4a6b; font-size: .95em; }
+.sw-news .ws-sw-tabs { justify-content: center; gap: 8px; padding: 8px 10px 6px; }
+.sw-news .ws-sw-tab { flex: 0 0 auto; width: 30px; height: 30px; padding: 0; border-radius: 50%; font-size: .78em; font-weight: 700; border-color: #b9c6d6; color: #2f4a6b; overflow: hidden; }
+.sw-news .ws-sw-tab.on { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.sw-news .ws-sw-stage { border-top: 0; padding: 4px 16px 6px; }
+.sw-news .ws-sw-h { display: block; font-size: 1.1em; font-weight: 800; color: #1d2b3c; margin: 10px 0 6px; line-height: 1.4; }
+.sw-news .ws-sw-pane img { display: block; width: auto; max-width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 10px; margin: 2px auto 6px; }   /* 7-5 정정: 330px로 잘라 맞추니 그래프 축·카드 아래 글자가 잘렸다 — 그림 전체를 보인다 */
+.sw-news .ws-sw-pane p { font-size: .97em; line-height: 1.7; margin: 6px 0; }
+.sw-news .ws-sw-nav button { border-color: #b9c6d6; color: #2f4a6b; }
+.ws-tb-2cin { margin: 2px 0 4px; }
+.ws-tb-2cin .ws-tb-fig { margin: 0; }
+@media print { .ws-sw-pane[hidden] { display: block !important; } .ws-sw-tabs, .ws-sw-nav { display: none; } .ws-sw-h { display: block; } }
+.ws-ipdam {
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 22px; align-items: start; margin: 16px 0 20px;
+}
+.ws-ipdam .ipd-fig { margin: 0; }
+.ws-ipdam .ipd-fig img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.ws-ipdam .ipd-fig figcaption { font-size: 0.78em; color: #7a7064; margin-top: 6px; line-height: 1.5; }
+.ws-ipdam .ipd-t { margin: 0; min-width: 0; }
+.ws-ipdam .ipd-t > :first-child { margin-top: 0; }
+.ws-ipdam .ipd-t > br { display: none; }
+@media (max-width: 640px) { .ws-ipdam { grid-template-columns: 1fr; gap: 8px; } }
+@media print { .ws-ipdam { break-inside: avoid; } }
+.ws-read {
+  background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 18px 15px; margin: 16px 0 20px;
+  color: #3a4351; font-size: 0.93em; line-height: 1.78;
+}
+.ws-read .ws-read-tag {
+  display: inline-block; background: #64748b; color: #fff;
+  font-size: 0.76em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 11px; border-radius: 999px; margin-bottom: 9px;
+}
+.ws-read p { margin: 0 0 7px; font-size: 1em; }
+.ws-read .ws-fold-table { background: #fff; font-variant-numeric: tabular-nums; }
+.ws-read .ws-fold-table td:last-child, .ws-read .ws-fold-table th:last-child { text-align: right; }
+.ws-read .ws-fold-table td:last-child { white-space: nowrap; }
+.ws-read p:last-child { margin-bottom: 0; }
+@media print { .ws-read { background: #fff; border-left-color: #999; } }
+/* ✍️ 해 보는 곳 — 2026-10-06. 계열 넷: 파랑=빈칸(본문) · 황토=교과서 · 슬레이트=읽는 곳 · 초록=직접 해 보는 곳 */
+.ws-do { background: #f2f8f3; border: 1px solid #cfe5d5; border-radius: 16px; padding: 14px 20px 18px; margin: 30px 0; }
+.ws-do > h2 { margin-top: 8px; border-left-color: #2f8f55; background: linear-gradient(90deg, #dff0e4, rgba(255,255,255,0)); }
+.ws-do-tag { display: inline-block; background: #2f8f55; color: #fff; font-size: 0.76em; font-weight: 700;
+  letter-spacing: 0.02em; padding: 3px 11px; border-radius: 999px; }
+.ws-do + .ws-do { margin-top: 18px; }
+@media (max-width: 560px) { .ws-do { padding: 10px 6px 14px; margin-left: -10px; margin-right: -10px; border-radius: 12px; } }
+@media print { .ws-do { background: #fff; border-color: #bbb; } }
+
+/* ⚖️ 좌우 비교 넘기기 — 2026-09-03. 좌우 라벨은 고정, 비교 항목만 넘긴다 */
+/* 사진 위에 좌석을 얹는다 (2026-09-07) — 사진과 도식을 따로 두면 세로만 길어진다 */
+.st-stage { position: relative; border-radius: 10px; overflow: hidden; margin: 2px 0 6px; }
+.st-stage.has-bg { background-size: cover; background-position: center 42%;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.25); }
+.st-veil { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 52%, rgba(12,10,8,.42) 0%,
+    rgba(12,10,8,.68) 55%, rgba(12,10,8,.82) 100%); }
+.st-stage.has-bg .st-svg { position: relative; }
+.st-stage.has-bg .st-seat { fill: rgba(255,255,255,.30); stroke: rgba(255,255,255,.72);
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,.55)); }
+.st-stage.has-bg .st-seat.dim { opacity: .3; }
+.st-stage.has-bg .st-seat[data-g="0"].on { fill: #d64b42; stroke: #ffd9d5;
+  filter: drop-shadow(0 0 9px rgba(255,90,78,.95)) drop-shadow(0 4px 6px rgba(0,0,0,.6)); }
+.st-stage.has-bg .st-seat[data-g="1"].on { fill: #7fb4ee; stroke: #e6f2ff;
+  filter: drop-shadow(0 0 9px rgba(126,180,238,.95)) drop-shadow(0 4px 6px rgba(0,0,0,.6)); }
+.st-stage.has-bg .st-hub { fill: rgba(10,9,8,.55); stroke: rgba(255,255,255,.45); }
+.st-stage.has-bg .st-hub-n { fill: #fff; }
+.st-stage.has-bg .st-hub-t { fill: rgba(255,255,255,.8); }
+.st-cap { font-size: .76em; color: #8a857c; line-height: 1.55; margin: 0 0 10px; }
+/* 🃏 카드 골라 쓰기 (2026-09-07) — 포켓몬 카드 결: 금테 + 이름표 + 창 + 홀로 */
+.ws-pk3 { margin: 18px 0; }
+.pk3-head { font-size: 1.06em; font-weight: 700; color: #22201e; margin-bottom: 10px; }
+.pk3-deck { display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.pk3-card { display: block; width: 100%; text-align: left; cursor: pointer;
+  padding: 7px; border: 0; border-radius: 15px; font: inherit;
+  background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
+  box-shadow: 0 3px 9px rgba(0,0,0,.18);
+  transition: transform .18s ease, box-shadow .18s ease, filter .25s ease; }
+.pk3-card:hover { transform: translateY(-6px) rotate(-.7deg);
+  box-shadow: 0 12px 24px rgba(0,0,0,.24); }
+.pk3-card:focus-visible { outline: 3px solid #2b6cb0; outline-offset: 3px; }
+.pk3-in { display: block; background: #fdf7e6; border-radius: 10px; padding: 9px 9px 10px; }
+.pk3-top { display: flex; align-items: center; justify-content: space-between; gap: 6px;
+  margin-bottom: 7px; }
+.pk3-name { font-size: 1.14em; font-weight: 800; color: #2c2419; letter-spacing: -.01em; }
+.pk3-badge { font-size: .74em; font-weight: 800; color: #fff; padding: 3px 9px;
+  border-radius: 999px; white-space: nowrap; }
+.pk3-t0 .pk3-badge { background: #a9683c; }
+.pk3-t1 .pk3-badge { background: #3f7fc4; }
+.pk3-t2 .pk3-badge { background: #c99a12; }
+.pk3-win { position: relative; display: block; overflow: hidden; border-radius: 5px;
+  border: 4px solid #d9c98e; background: #efe7cf; }
+.pk3-win img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.pk3-holo { position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  background: repeating-linear-gradient(115deg, rgba(255,90,140,.55) 0 12px,
+    rgba(255,220,90,.55) 12px 24px, rgba(110,240,190,.55) 24px 36px,
+    rgba(120,170,255,.55) 36px 48px);
+  background-size: 240% 240%; mix-blend-mode: color-dodge; transition: opacity .3s; }
+.pk3-cap { display: block; margin-top: 8px; font-size: .96em; font-weight: 700; color: #2c2419; }
+.pk3-flavor { display: block; margin-top: 5px; font-size: .87em; line-height: 1.5;
+  color: #574d3c; font-style: italic; border-top: 1px solid #e2d5ad; padding-top: 6px; }
+.pk3-foot { display: block; margin-top: 8px; text-align: center; font-size: .82em;
+  font-weight: 800; color: #7a6636; background: #f2e7c4; border-radius: 6px; padding: 5px; }
+.pk3-card.on { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 0 4px #e7b625,
+  0 14px 30px rgba(201,153,46,.45); }
+.pk3-card.on .pk3-holo { opacity: .42; animation: pk3sheen 3.4s linear infinite; }
+.pk3-card.on .pk3-foot { background: #c9992e; color: #fff; }
+.pk3-card.dim { filter: grayscale(.8); opacity: .45; transform: none; }
+@keyframes pk3sheen { 0% { background-position: 0% 0%; } 100% { background-position: 240% 0%; } }
+@media (prefers-reduced-motion: reduce) {
+  .pk3-card, .pk3-card:hover, .pk3-card.on { transition: none; transform: none; }
+  .pk3-card.on .pk3-holo { animation: none; } }
+.pk3-ask { margin-top: 14px; padding: 13px 15px; border-radius: 10px;
+  background: #fbf5e4; border: 2px solid #d9c98e; }
+.pk3-pick { font-size: .87em; font-weight: 800; color: #8a7434; margin-bottom: 7px; }
+.pk3-cred { margin-top: 8px; font-size: .76em; color: #8a857c; line-height: 1.55; }
+/* 🪑 좌석 구성 눌러 보기 (2026-09-07) — 그림 먼저, 설명은 누를 때만 */
+.ws-seat { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  padding: 16px 14px 14px; background: #fdfbf7; }
+.st-title { font-size: 1.16em; font-weight: 700; color: #22201e; }
+.st-hint { font-size: .88em; color: #6e6862; margin: 4px 0 12px; }
+.st-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.st-btn { flex: 1 1 180px; padding: 11px 14px; border-radius: 10px; cursor: pointer;
+  font-size: 1em; font-weight: 700; background: #fff; transition: transform .12s, box-shadow .12s; }
+.st-btn b { font-size: 1.24em; margin-left: 4px; }
+.st-btn.st-red { border: 2px solid #b03a34; color: #b03a34; }
+.st-btn.st-blue { border: 2px solid #3c608a; color: #3c608a; }
+.st-btn:hover { transform: translateY(-2px); }
+.st-btn.st-red.on { background: #b03a34; color: #fff; box-shadow: 0 4px 12px rgba(176,58,52,.35); }
+.st-btn.st-blue.on { background: #3c608a; color: #fff; box-shadow: 0 4px 12px rgba(60,96,138,.35); }
+.st-svg { display: block; width: 100%; max-width: 520px; margin: 2px auto 6px; }
+.st-hub { fill: #f0ebe4; stroke: #cec6bc; stroke-width: 2; }
+.st-hub-n { font-size: 34px; font-weight: 700; fill: #22201e; }
+.st-hub-t { font-size: 16px; fill: #6e6862; }
+.st-seat { fill: #e6e1d9; stroke: #b9b1a6; stroke-width: 2.5;
+  transition: fill .28s, stroke .28s, opacity .28s, r .28s; }
+.st-seat.dim { opacity: .22; }
+.st-seat[data-g="0"].on { fill: #b03a34; stroke: #8d2a25; r: 18; }
+.st-seat[data-g="1"].on { fill: #d8e2ee; stroke: #3c608a; r: 18; }
+.st-cards { min-height: 108px; }
+.st-card { border-radius: 10px; padding: 13px 15px; }
+.st-card.st-red { background: #f6eeec; border: 2px solid #b03a34; }
+.st-card.st-blue { background: #eaf0f7; border: 2px solid #3c608a; }
+.st-card-h { font-size: 1.1em; font-weight: 700; margin-bottom: 7px; }
+.st-card.st-red .st-card-h { color: #b03a34; }
+.st-card.st-blue .st-card-h { color: #3c608a; }
+.st-card-h span { float: right; font-weight: 700; }
+.st-card-i { font-size: 1em; color: #22201e; margin-bottom: 5px; }
+.st-card-d { font-size: .95em; color: #55504a; }
+.st-note { margin-top: 12px; padding: 12px 15px; border-radius: 10px;
+  background: #fff4e8; border: 2px solid #c98a3c; font-weight: 700; color: #22201e; }
+@media (max-width: 640px) { .st-btn { flex: 1 1 100%; } }
+.ws-cmp { border: 2px solid #cfc4ae; border-radius: 12px; margin: 18px 0;
+  background: #fbf9f4; overflow: hidden; }
+.ws-cmp-head { display: flex; }
+.ws-cmp-head span { flex: 1; text-align: center; padding: 9px 6px; font-weight: 700;
+  font-size: .95em; color: #fff; background: #8a7a5c; }
+.ws-cmp-head span:first-child { background: #9a7b3c; }
+.ws-cmp-head span:last-child { background: #5b6b8a; }
+.ws-cmp-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 10px 4px; }
+.ws-cmp-tab { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 999px; padding: 4px 12px; font-size: .82em; cursor: pointer; font-family: inherit; }
+.ws-cmp-tab.on { background: #6b5a3a; color: #fff; border-color: #6b5a3a; }
+.ws-cmp-stage { padding: 4px 10px 0; }
+.ws-cmp-slide { display: flex; gap: 12px; align-items: flex-start; }
+/* 🔴 CSS display가 HTML hidden 속성을 이긴다 — 이 한 줄이 없으면 모든 슬라이드가 한꺼번에 보인다.
+   (gallery는 slide에 display를 안 줘서 이 문제가 없었다) */
+.ws-cmp-slide[hidden] { display: none; }
+.ws-cmp-slide figure { flex: 1 1 0; min-width: 0; margin: 0; text-align: center; }
+.ws-cmp-slide img { width: 100%; max-height: 300px; height: auto; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.ws-cmp-slide figcaption { margin-top: 6px; font-size: .76em; color: #5b5040; line-height: 1.45; }
+.ws-cmp-nav { display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 8px 0 10px; }
+.ws-cmp-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 4px 12px; font-size: .84em; cursor: pointer; font-family: inherit; }
+.ws-cmp-count { font-size: .8em; color: #8a7a5c; }
+@media (max-width: 520px) { .ws-cmp-slide img { max-height: 190px; } }
+@media print { .ws-cmp-slide[hidden] { display: flex !important; } }  /* 인쇄엔 전부 편다 */
+
+/* 🃏 뒤집는 카드 — 2026-09-03. 앞면=개념 / 뒷면=그 개념의 얼굴(실제 인물·사료) */
+.ws-flip-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
+.ws-flip { flex: 1 1 160px; min-width: 150px; max-width: 260px; height: 232px;
+  perspective: 900px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.ws-flip-in { position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.ws-flip.on .ws-flip-in { transform: rotateY(180deg); }
+.ws-flip:focus-visible .ws-flip-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
+.ws-flip-f, .ws-flip-b { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 12px;
+  border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-sizing: border-box; overflow: hidden; }
+.ws-flip-f { background: #f3f0e8; border: 2px solid #cfc4ae; }
+.ws-flip-f b { font-size: 1.15em; color: #3d3116; }
+.ws-flip-f i { font-style: normal; font-size: .84em; color: #6b5a3a; text-align: center; line-height: 1.4; }
+.ws-flip-f u { text-decoration: none; font-size: .74em; color: #a08a5c; margin-top: 6px; }
+.ws-flip-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg); justify-content: flex-start; }
+.ws-flip-b img { width: 100%; height: 136px; object-fit: cover; border-radius: 7px; }
+.ws-flip-b i { font-style: normal; font-size: .76em; color: #4a3f2a; text-align: center; line-height: 1.42; margin-top: 7px; }
+@media (prefers-reduced-motion: reduce) { .ws-flip-in { transition: none; } }
+/* 🃏 와이드 플립 — 도식(앞) ↔ 실물 사진(뒤). 2026-09-14.
+   🔴 3D 플립은 앞뒤가 position:absolute 라 **부모 높이가 없으면 0**이 된다.
+      그래서 height:auto 로 두지 못하고 aspect-ratio 로 높이를 만든다.
+      도식 1200x640(0.533)·사진 792x420(0.53)이 거의 같아 한 비율로 맞는다. */
+/* 2026-10-15 사회 7-3 — 사진 앞면 플립(:::플립 사진): 앞 = 사진+제목 · 뒤 = 배경 설명 글 */
+.fp-row { justify-content: center; }
+.ws-flip.flip-photo { flex: 1 1 200px; min-width: 200px; max-width: 240px; height: 272px; }
+.flip-photo .ws-flip-f { justify-content: flex-start; padding: 8px 8px 10px; gap: 5px; }
+.flip-photo .ws-flip-f img { width: 100%; height: 150px; object-fit: cover; border-radius: 7px; }
+.flip-photo .ws-flip-f b { font-size: 1.02em; text-align: center; line-height: 1.35; }
+.flip-photo .ws-flip-f i { font-size: .78em; }
+.flip-photo .ws-flip-f u { margin-top: auto; }
+.flip-photo .ws-flip-b { justify-content: flex-start; padding: 12px 13px; gap: 7px; }
+.flip-photo .ws-flip-b b { font-size: .98em; color: #3d3116; text-align: center; }
+.flip-photo .ws-flip-b i { font-size: .84em; text-align: left; line-height: 1.55; margin-top: 0; }
+/* 교과서 상자 안 표 */
+.ws-tb-tbl { overflow-x: auto; margin: 6px 0 10px; }
+.ws-tb-tbl table { width: auto; margin: 0; }
+.ws-flip-row.fw-row { display: block; margin: 16px 0 20px; }
+.ws-flip.flip-wide { display: block; width: 100%; max-width: 100%; height: auto;
+  aspect-ratio: 1200 / 720; perspective: 1400px; }
+.flip-wide .ws-flip-f, .flip-wide .ws-flip-b { padding: 10px; gap: 8px; }
+.flip-wide .ws-flip-f img { width: 100%; height: auto; max-height: 84%; object-fit: contain; }
+.flip-wide .ws-flip-b img { width: 100%; height: auto; max-height: 74%;
+  object-fit: contain; border-radius: 8px; }
+.flip-wide .ws-flip-b i { font-size: .82em; margin-top: 8px; padding: 0 4px; }
+.flip-wide .ws-flip-f u { font-size: .8em; }
+/* 🎯 방사형 펼침 — 2026-09-14. 중심 개념을 누르면 영역들이 둘레로 펼쳐진다.
+   🔴 폰에서 원형은 좁다 — 560px 아래에서는 원을 풀고 그리드로 내린다(칩 글자가 겹치는 것보다 낫다). */
+.ws-rad { margin: 18px 0 22px; }
+.rd-note { font-size: .88em; color: #7a6a4a; margin: 0 2px 10px; }
+.rd-stage { position: relative; width: 100%; max-width: 520px; margin: 0 auto;
+  aspect-ratio: 1 / 1; }
+.rd-core { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 112px; height: 112px; border-radius: 50%; cursor: pointer;
+  background: #fdecec; border: 3px solid #c0392b; color: #7d241a;
+  font-family: inherit; font-size: 1.18em; font-weight: 800; line-height: 1.2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  box-shadow: 0 3px 10px rgba(192,57,43,.18); transition: transform .2s, box-shadow .2s; z-index: 3; }
+.rd-core u { text-decoration: none; font-size: .52em; font-weight: 600; color: #b2685f; }
+.rd-core:hover { transform: translate(-50%,-50%) scale(1.04); }
+.ws-rad.on .rd-core { box-shadow: 0 0 0 7px rgba(192,57,43,.10), 0 3px 10px rgba(192,57,43,.2); }
+.rd-chip { position: absolute; left: 50%; top: 50%; cursor: pointer;
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(0) rotate(calc(-1 * var(--a))) scale(.4);
+  opacity: 0; pointer-events: none;
+  background: #fff; border: 2px solid #cfd5de; border-radius: 999px;
+  padding: 7px 13px; font-family: inherit; font-size: .84em; font-weight: 700; color: #3a4351;
+  white-space: nowrap; transition: transform .42s cubic-bezier(.34,1.3,.5,1), opacity .3s; }
+.ws-rad.on .rd-chip { opacity: 1; pointer-events: auto;
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(-178px) rotate(calc(-1 * var(--a))) scale(1); }
+.rd-chip:hover { border-color: #64748b; background: #f6f8fb; }
+.rd-chip.sel { background: #64748b; border-color: #64748b; color: #fff; }
+.rd-panels { margin-top: 6px; }
+.rd-panel { background: #eceef2; border: 1px solid #cfd5de; border-left: 6px solid #64748b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; }
+.rd-panel b { display: block; font-size: 1.04em; color: #2f3846; margin-bottom: 5px; }
+.rd-panel p { margin: 0 0 6px; font-size: .93em; color: #3a4351; line-height: 1.7; }
+.rd-panel i { font-style: normal; font-size: .86em; color: #6b7480; }
+.rd-go { display: inline-block; margin-left: 8px; font-size: .82em; font-weight: 700;
+  color: #b8862b; border-bottom: 1px dashed #b8862b; cursor: pointer; }
+.rd-flash { animation: rdflash 1.5s ease-out 1; }
+/* 🎯 도식 통합 모드 — 도식 칸을 눌러 그 자리에서 펼친다(세로 증가 0) */
+.rad-onfig .rd-fig { position: relative; }
+.rad-onfig .rd-fig > img { width: 100%; height: auto; display: block;
+  transition: opacity .32s, filter .32s; }
+.rad-onfig.on .rd-fig > img { opacity: .26; filter: grayscale(.35); }
+.rd-hot { position: absolute; background: rgba(192,57,43,.05); border: 0; cursor: pointer;
+  border-radius: 14px; padding: 0; transition: background .2s, box-shadow .2s; z-index: 2; }
+.rd-hot span { position: absolute; left: -9999px; }
+.rd-hot:hover { background: rgba(192,57,43,.13); box-shadow: inset 0 0 0 3px rgba(192,57,43,.55); }
+.rd-hot:focus-visible { box-shadow: inset 0 0 0 3px #c0392b; outline: none; }
+.rad-onfig.on .rd-hot { background: rgba(192,57,43,.16); box-shadow: inset 0 0 0 3px #c0392b; }
+/* 칩은 도식 «가운데»를 기준으로 원형 — 분쟁 칸(79%)을 중심으로 두면 오른쪽으로 넘친다 */
+.rad-onfig .rd-chip { position: absolute; left: 50%; top: 50%; z-index: 3; }
+/* 🔴 translateY 의 % 는 «컨테이너»가 아니라 «요소 자신의 높이» 기준이다 — 처음 -31% 로 썼더니
+   칩 높이의 31%(≈10px)만 움직여 8개가 한 점에 겹쳤다. 반지름은 px 로 주고 폭에 따라 단계 조절한다. */
+.ws-rad.rad-onfig { --r: 150px; }
+.ws-rad.rad-onfig.on .rd-chip {
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(calc(-1 * var(--r))) rotate(calc(-1 * var(--a))) scale(1); }
+@media (max-width: 900px) { .ws-rad.rad-onfig { --r: 118px; } }
+@media (max-width: 700px) { .ws-rad.rad-onfig { --r: 96px; } }
+@media (max-width: 560px) {
+  /* 🔴 폰(390)에서 도식은 330px — 원형에 칩 8개는 못 들어간다. 도식은 그대로 두고 칩만 아래 그리드로. */
+  .rad-onfig .rd-chip { position: static; transform: none !important; }
+  .ws-rad.rad-onfig.on .rd-fig { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
+  .ws-rad.rad-onfig.on .rd-fig > img { grid-column: 1 / -1; opacity: 1; filter: none; }
+  .rad-onfig.on .rd-hot { display: none; }
+}
+@keyframes rdflash { 0%,100% { box-shadow: none; } 18% { box-shadow: 0 0 0 5px rgba(184,134,43,.45); } }
+@media (max-width: 560px) {
+  .rd-stage { aspect-ratio: auto; max-width: 100%; display: grid;
+    grid-template-columns: repeat(2, 1fr); gap: 7px; }
+  .rd-core { position: static; transform: none; width: 100%; height: 62px; border-radius: 12px;
+    grid-column: 1 / -1; }
+  .rd-core:hover { transform: none; }
+  .rd-chip { position: static; transform: none !important; opacity: 1; pointer-events: auto;
+    white-space: normal; padding: 9px 6px; text-align: center; }
+  .ws-rad:not(.on) .rd-chip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .rd-chip { transition: none; } .rd-flash { animation: none; } }
+
+/* 🀄 한자 카드 — 2026-09-07. 「오늘의 고급 단어」를 표 대신 카드로.
+   앞면=이미지+한자 / 뒷면=뜯어보기·뜻·문장·가족 낱말. 세로로 안 늘리고 옆으로 넘긴다. */
+.ws-vcd { margin: 18px 0 22px; }
+.ws-vcd-head { font-size: .88em; color: #7a6a4a; margin: 0 2px 8px; }
+/* 🔴 카드 폭·간격은 "낱말 4개가 한 줄에 딱 들어가는" 값이다(실측 1040 폭 → 트랙 736).
+   4×174 + 3×10 = 726. 이보다 키우면 4번째가 반쯤 잘린 채 ▶로는 한 칸도 못 넘어간다
+   (196px일 때 넘길 여지가 94px뿐이라 카운터가 1에서 안 움직였다). */
+.ws-vcd-track { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory;
+  /* 카드 그림자가 잘리지 않도록 위아래 여백 · 스크롤바는 얇게 */
+  padding: 6px 2px 12px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.ws-vcd-track::-webkit-scrollbar { height: 6px; }
+.ws-vcd-track::-webkit-scrollbar-thumb { background: #d8cfb8; border-radius: 3px; }
+.ws-vcard { flex: 0 0 174px; width: 174px; height: 268px; scroll-snap-align: start;
+  perspective: 1000px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.vcd-in { position: relative; display: block; width: 100%; height: 100%;
+  transition: transform .55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.ws-vcard.on .vcd-in { transform: rotateY(180deg); }
+.ws-vcard:focus-visible .vcd-in { outline: 3px solid #8a5f12; outline-offset: 3px; }
+.vcd-f, .vcd-b { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; border-radius: 13px; backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; box-sizing: border-box; overflow: hidden;
+  box-shadow: 0 3px 10px rgba(60,48,20,.13); }
+.vcd-f { background: #f6f2e7; border: 2px solid #cfc4ae; justify-content: flex-start; padding: 0 0 10px; }
+.vcd-f img { width: 100%; height: 132px; object-fit: cover; border-bottom: 1px solid #ddd3ba; }
+.vcd-noimg { width: 100%; height: 132px; display: flex; align-items: center; justify-content: center;
+  font-size: 2.4em; background: #ece6d6; border-bottom: 1px solid #ddd3ba; opacity: .5; }
+/* 위아래 auto 둘이 남는 공간을 나눠 가져 글자 묶음이 이미지 아래 가운데 선다.
+   (hanja에 고정 margin을 주면 글자가 위에 붙고 카드 아래가 텅 빈다) */
+.vcd-hanja { font-size: 1.62em; letter-spacing: .06em; color: #6b4f14; margin-top: auto;
+  font-weight: 700; line-height: 1.15; text-align: center; }
+.vcd-ko { font-size: .92em; color: #3d3116; margin-top: 4px; font-weight: 700; text-align: center; }
+.vcd-ko-solo { font-size: 1.22em; margin-top: auto; color: #6b4f14; }
+.vcd-turn { font-size: .7em; color: #a08a5c; margin-top: auto; padding-top: 4px; }
+.vcd-b { background: #fffdf6; border: 2px solid #b8862b; transform: rotateY(180deg);
+  justify-content: flex-start; padding: 13px 13px 11px; gap: 6px; text-align: center;
+  /* 뒷면은 글이 많다 — 넘치면 카드 안에서만 스크롤한다(카드 키가 들쭉날쭉해지지 않게) */
+  overflow-y: auto; }
+.vcd-bko { font-size: 1.02em; font-weight: 700; color: #6b4f14;
+  border-bottom: 1px solid #ead9b4; padding-bottom: 6px; width: 100%; }
+.vcd-split { font-size: .8em; color: #7a6134; }
+.vcd-mean { font-size: .84em; color: #2f2a1e; font-weight: 600; }
+.vcd-sent { font-size: .78em; color: #4a3f2a; font-style: italic; line-height: 1.45; }
+.vcd-fam { font-size: .74em; color: #6b5a3a; line-height: 1.5; margin-top: auto;
+  border-top: 1px dashed #e3d7ba; padding-top: 6px; width: 100%; }
+.ws-vcd-nav { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.ws-vcd-nav button { border: 1px solid #cfc4ae; background: #fff; color: #6b5a3a;
+  border-radius: 8px; padding: 3px 13px; font-size: .84em; cursor: pointer; font-family: inherit; }
+.ws-vcd-nav button:disabled { opacity: .32; cursor: default; }
+.vcd-count { font-size: .82em; color: #8a7a5c; font-variant-numeric: tabular-nums; }
+/* 2026-10-08 하위 카드 — 메인 낱말카드 아래 접힘 안에 나란히(캐러셀 밖) */
+.vcd-subtag { position: absolute; top: 8px; right: 8px; font-size: .68em; font-weight: 700; color: #fff;
+  background: #7a6742; border-radius: 10px; padding: 2px 8px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.ws-vsub { margin: 12px 0 0; border: 1px solid #d9c48f; border-radius: 10px; background: #fffaf0; }
+.ws-vsub > summary { cursor: pointer; padding: 10px 14px; font-size: .9em; color: #6b4f14; list-style: none; }
+.ws-vsub > summary::-webkit-details-marker { display: none; }
+.ws-vsub > summary::after { content: " ▾"; color: #a08a5c; }
+.ws-vsub[open] > summary::after { content: " ▴"; }
+.ws-vsub > summary:focus-visible { outline: 3px solid #8a5f12; outline-offset: 2px; border-radius: 10px; }
+.ws-vsub-head { font-size: .86em; color: #5a4a2a; margin: 0 14px 10px; line-height: 1.55; }
+.ws-vsub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 10px; padding: 0 12px 14px; max-width: 640px; }
+.ws-vsubcard { flex: none; width: auto; }
+.ws-vsubcard .vcd-f { background: #fbf7ec; border-color: #d9c48f; }
+.ws-vsubcard .vcd-b > * { order: 2; }
+.ws-vsubcard .vcd-b > .vcd-bko { order: 0; }
+.ws-vsubcard .vcd-b > .vcd-fam { order: 1; margin: 2px 0 4px; padding: 6px 8px; border: 0; border-radius: 6px;
+  background: #fff1cc; color: #5a3f0c; font-weight: 700; font-size: .78em; line-height: 1.45; }
+@media (prefers-reduced-motion: reduce) {
+  .vcd-in { transition: none; }
+  .ws-vcd-track { scroll-behavior: auto; }
+}
+@media print {
+  /* 인쇄는 넘길 수 없다 — 카드를 펼쳐 앞뒤를 나란히 둔다 */
+  .ws-vcd-track { display: flex; flex-wrap: wrap; overflow: visible; }
+  .ws-vcard { height: auto; }
+  .vcd-in { transform: none !important; }
+  .vcd-f, .vcd-b { position: static; transform: none; backface-visibility: visible; }
+  .ws-vcd-nav { display: none; }
+}
+
+@media print {
+  .ws-flip { height: auto; }
+  .ws-flip-in { transform: none !important; }
+  .ws-flip-f, .ws-flip-b { position: static; transform: none; backface-visibility: visible; }
+}
+
+/* 📕 교과서를 펴는 자리 — 2026-09-02.
+   학습지 안에서 답이 나오는 것들(빈칸·설명 blockquote)은 전부 파랑(#007aff)이라
+   교과서 슬롯도 같은 파랑이면 화면상 구분이 안 됐다. 황토/크림으로 계열을 통째로 분리한다. */
+.ws-tb {
+  background: #fdf8ed; border: 1px solid #e8d9b4; border-left: 6px solid #b8862b;
+  border-radius: 0 10px 10px 0; padding: 12px 16px 14px; margin: 14px 0;
+}
+.ws-tb-tag {
+  display: inline-block; background: #b8862b; color: #fff;
+  font-size: 0.78em; font-weight: 700; letter-spacing: 0.02em;
+  padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+}
+.ws-tb-see { font-size: 0.9em; color: #7a6742; margin: 2px 0 6px; }
+/* 2026-10-07 :::2단 … 교과서 — 교과서 상자 바로 아래에 붙여 «생각 열기의 뒷이야기»로 읽히게(위 상자와 간격 줄임) */
+.ws-tb + .ws-tb-2c { margin-top: -6px; }
+.ws-tb-join { border-top: 1px dashed #d9c48f; margin-top: 12px; padding-top: 12px; }
+.ws-tb-join .ws-2c { margin: 4px 0 0; } .ws-tb-join table { background: #fff; } .ws-tb-join .c2-b { font-size: 0.95em; color: #3d3116; }
+.ws-tb-tag2 { background: #7a6742; }
+.ws-tb-2c .ws-2c { margin: 4px 0 0; }
+.ws-tb-2c table { background: #fff; }
+.ws-tb-2c .c2-b { font-size: 0.95em; color: #3d3116; }
+.ws-tb-ask { font-size: 0.95em; color: #3d3116; font-weight: 600; line-height: 2.1; }
+.ws-tb-ask strong { color: #8a5f12; }
+.ws-tb input.activity-input {
+  border-bottom: 2px solid #b8862b; background: #fffdf5; color: #3d3116;
+  text-align: left; padding-left: 8px;
+}
+.ws-tb input.activity-input:focus { border-bottom-color: #8a5f12; background: #fff8e4; }
+@media print { .ws-tb { background: #fff; border-left-color: #999; } }
+
+.callout {
+  padding: 10px 14px; margin: 10px 0; border-radius: 8px; font-size: 0.9em;
+}
+.callout-info { background: #e8f4fd; border-left: 4px solid #007aff; }
+.callout-warning { background: #fff8e1; border-left: 4px solid #ff9500; }
+.callout-tip { background: #e8f8e8; border-left: 4px solid #34c759; }
+.callout-question { background: #f3e8fd; border-left: 4px solid #af52de; }
+.code-block {
+  background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px;
+  font-family: 'SF Mono', monospace; font-size: 0.82em;
+  overflow-x: auto; margin: 10px 0; white-space: pre;
+}
+.blank-input {
+  border: none; border-bottom: 2px solid #007aff; background: #f8f9ff;
+  padding: 3px 6px; font-size: 0.93em; font-family: inherit;
+  text-align: center; border-radius: 4px 4px 0 0; outline: none;
+  transition: all 0.3s;
+}
+.blank-input:focus { border-bottom-color: #5856d6; background: #f0f0ff; }
+.blank-input.correct { border-bottom-color: #34c759; background: #e8f8e8; color: #1a7a2e; }
+.blank-input.wrong { border-bottom-color: #ff3b30; background: #fff0f0; }
+.blank-input.no-score { border-bottom-color: #aaa; }
+/* 🔴 활동 입력칸은 [학생작성:400] 처럼 inline width 가 박힌다. 데스크톱 트랙(736px)에서는
+   문제없지만 폰 트랙(330px)에서는 그대로 **페이지 전체를 옆으로 민다**.
+   2026-09-09 실측: 3-3-1·3-3-2·3-3-3 모두 문서폭 452 / 뷰포트 390 = 62px 초과.
+   ⚠️ 처음에 «낱말카드 트랙의 부작용»으로 오진했다 — 트랙은 overflow-x:auto 로 정상
+      흡수하고 있었고(clientW 330 = 부모 330), 범인은 :::교과서 안의 이 칸이었다.
+   max-width 는 «넘칠 때만» 작동하므로 데스크톱 회귀 0. */
+.blank-input.activity-input { max-width: 100%; }
+/* 🔴 표가 폰에서 페이지를 민다 — 셀 padding(좌우 24px)+테두리가 열마다 고정이라
+   3열이면 78px이 먼저 먹히고 남는 폭으로 최소폭을 못 맞춘다.
+   2026-09-09 실측: 표를 숨기면 문서폭 417→392(뷰포트 390). 폰에서만 조인다. */
+@media (max-width: 560px) {
+  table { font-size: 0.84em; table-layout: fixed; }
+  td, th { padding: 7px 6px; line-height: 1.5; word-break: break-word; }
+  tr:first-child td { font-size: 0.94em; }
+  /* 활동 표(act-table)는 «내용 폭»이라 inline width 가 든 입력칸이 그대로 민다.
+     폰에서는 셀 폭에 맞춘다 — inline style 을 이겨야 해서 !important. */
+  table.act-table { width: 100%; }
+  table.act-table .activity-input { width: 100% !important; }
+}
+.blank-input.code-blank { background: #2a2a2a; color: #e0e0e0; border-bottom-color: #5856d6; }
+.blank-input.no-score.correct { border-bottom-color: #34c759; }
+.blank-input.no-score.wrong { border-bottom-color: #ff9500; }
+.ox-input {
+  border: 1px solid #ddd; padding: 3px; font-size: 0.93em;
+  font-family: inherit; border-radius: 4px; outline: none;
+  transition: all 0.3s;
+}
+.ox-group { display: inline-flex; gap: 6px; }
+.ox-btn {
+  width: 44px; height: 44px; border: 2px solid #007aff; border-radius: 50%;
+  background: white; color: #007aff; font-size: 1.12em; font-weight: 800;
+  cursor: pointer; transition: all 0.2s; line-height: 1;
+}
+.ox-group { gap: 9px; }
+/* OX 표 — 문장 칸은 넓게, 버튼 칸은 좁고 가운데 (2026-09-03) */
+table:has(.ox-group) td:last-child { width: 118px; text-align: center; }
+table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6b7482; }
+.ox-btn:hover { background: #f0f4ff; }
+.ox-btn.selected { background: #007aff; color: white; }
+.ox-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.ox-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 4px; }
+.choice-btn {
+  padding: 4px 10px; border: 1px solid #007aff; border-radius: 6px;
+  background: white; color: #007aff; font-size: 0.82em; cursor: pointer;
+  transition: all 0.2s;
+}
+.choice-btn:hover { background: #f0f4ff; }
+.choice-btn.selected { background: #007aff; color: white; }
+.choice-btn.correct { background: #34c759; color: white; border-color: #34c759; }
+.choice-btn.wrong { background: #ff3b30; color: white; border-color: #ff3b30; }
+.btn-submitted { background: #34c759 !important; cursor: default; }
+.submit-msg { text-align: center; padding: 8px; color: #34c759; font-weight: 600; display: none; }
+.essay-input {
+  width: 100%; min-height: 104px; border: 1.5px solid #ccd4de; border-radius: 10px;
+  padding: 12px 14px; font-family: inherit; font-size: 0.95em; line-height: 1.9;
+  resize: vertical; margin: 8px 0; outline: none; background: #fcfdff;
+  transition: border-color .15s, background .15s;
+}
+.essay-input:focus { border-color: #007aff; background: #fff; }
+.essay-input:focus { border-color: #007aff; }
+.control-bar {
+  position: sticky; top: 0; background: white; padding: 10px 0;
+  border-bottom: 1px solid #eee; margin: -16px 0 16px; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.score { font-size: 1.1em; font-weight: 600; color: #007aff; }
+.btn {
+  padding: 7px 16px; border: none; border-radius: 8px;
+  font-size: 0.88em; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: #007aff; color: white; }
+.btn-secondary { background: #f0f0f5; color: #333; }
+.btn-danger { background: #ff3b30; color: white; }
+.student-info {
+  display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.student-info select { background:#fff; cursor:pointer; }
+.student-info input, .student-info select {
+  border: 1px solid #ddd; padding: 5px 10px; border-radius: 6px; font-size: 0.9em;
+}
+@media (max-width: 600px) {
+  .container { padding: 14px; }
+  .control-bar { flex-direction: column; text-align: center; }
+  table { font-size: 0.82em; }
+  .hero-title { font-size: 26px !important; }
+  .hero-section { padding: 36px 20px !important; }
+}
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #f5f5f0; padding: 56px 36px; margin: -32px -32px 28px;
+  /* 2026-10-02 천대현 «표지풍에 맞게 글꼴» — 표지 그림은 산돌고딕 계열(가는 제목·금색 부제)인데 HTML은 명조로 떨어졌다
+     (Pretendard가 설치돼 있지 않으면 Noto Serif KR → serif). 웹폰트를 실어 어느 기기에서나 같은 결로. */
+  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  border-radius: 16px 16px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #d4af37 0%, #f5f5f0 50%, #d4af37 100%);
+}
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.hero-title { font-size: 34px; font-weight: 300; margin: 0 0 14px; letter-spacing: -0.6px; line-height: 1.25; color: #f5f5f0; border: none; padding: 0; }
+.hero-subtitle { font-size: 16px; color: #d4af37; font-weight: 500; margin: 0 0 22px; line-height: 1.5; letter-spacing: -0.2px; }
+.hero-keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.hero-keyword.has-card { cursor: pointer; font-family: inherit; }
+.hero-keyword.has-card:hover { background: rgba(255,255,255,0.14); border-color: #8a8a80; }
+.hero-keyword.has-card[aria-expanded="true"] { background: rgba(255,255,255,0.18); border-color: #c9c9c0; color: #fff; }
+.kw-caret { margin-left: 7px; font-size: 11px; opacity: 0.75; }
+.hero-card { margin-top: 12px; }
+.hero-lock-note { margin-top: 10px; padding: 8px 12px; border-radius: 8px; background: rgba(255,255,255,0.92); color: #5a3e00; font-size: 13px; }
+.hero-card-inner { background: rgba(255,255,255,0.96); color: #23272e; border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; }
+.hero-card-inner table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.hero-card-inner th, .hero-card-inner td { border: 1px solid #d6dae0; padding: 7px 9px; text-align: left; }
+.hero-card-inner th { background: #eef1f5; font-weight: 700; }
+.hero-card-inner img { max-width: 100%; height: auto; border-radius: 8px; margin: 6px 0; }
+.hero-card-inner p { margin: 6px 0; }
+.hero-card-inner strong { color: #0d47a1; }
+.card-quote { border-left: 3px solid #6b9ac4; background: #f2f6fb; padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+@media print { .hero-card[hidden] { display: none; } .kw-caret { display: none; } }
+.hero-keyword {
+  padding: 6px 14px; border: 1px solid #555; border-radius: 20px;
+  font-size: 12.5px; color: #d4d4cf; background: rgba(255,255,255,0.05);
+  letter-spacing: 0.3px;
+}
+.hero-image { width: 100%; max-height: 420px; margin-top: 24px; border-radius: 10px; object-fit: contain; }
+.ws-fig { max-width: 100%; margin: 22px auto; text-align: center; }
+.ws-fig img { max-width: 100%; max-height: 440px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-fig-video { max-width: 100%; width: 760px; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); background: #000; }
+.ws-fig img[src*="comic"] { max-height: 820px; max-width: min(600px, 100%); }
+.ws-fig-zoom { cursor: zoom-in; display: inline-block; max-width: 100%; }
+.ws-fig figcaption { margin-top: 8px; font-size: 13px; color: #6b6b6b; line-height: 1.5; padding: 0 8px; }
+.ws-fold-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:0.9em; }
+.ws-fold-table th, .ws-fold-table td { border:1px solid #ddd7c8; padding:7px 9px; text-align:left; vertical-align:top; }
+.ws-fold-table thead th { background:#eee9dc; font-weight:700; }
+.ws-anim-ctl { display:flex; align-items:center; justify-content:center; gap:10px; margin:8px 0 2px; }
+.ws-anim-ctl button { border:1px solid #cfc8b6; background:#fff; border-radius:8px; padding:6px 16px;
+  cursor:pointer; font-family:inherit; font-size:0.9em; color:#4a5c40; font-weight:700; }
+.ws-anim-ctl button:hover { background:#f1efe6; }
+.ws-anim-ctl span { font-size:0.8em; color:#9a9284; }
+.ws-gal { margin: 22px auto; max-width: 100%; border: 1px solid #ddd7c8; border-radius: 12px;
+  background: #fbfaf6; overflow: hidden; }
+.ws-gal-head { padding: 12px 16px 0; font-weight: 700; color: #3a4a34; font-size: 0.98em; }
+.ws-gal-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px; }
+.ws-gal-dot { border: 1px solid #cfc8b6; background: #fff; color: #5a5344; border-radius: 999px;
+  padding: 5px 12px; font-size: 0.84em; cursor: pointer; font-family: inherit; }
+.ws-gal-dot.on { background: #4a5c40; border-color: #4a5c40; color: #fff; font-weight: 700; }
+.ws-gal-stage { text-align: center; padding: 4px 14px 0; }
+.ws-gal-slide img { max-width: 100%; max-height: 430px; height: auto; border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.14); }
+.ws-gal-slide figcaption { margin: 8px auto 0; max-width: 640px; font-size: 0.86em;
+  color: #5a5344; line-height: 1.55; }
+.ws-gal-nav { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 10px 0 14px; }
+.ws-gal-nav button { border: 1px solid #cfc8b6; background: #fff; border-radius: 8px;
+  padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.9em; color: #4a5c40; }
+.ws-gal-count { font-size: 0.86em; color: #8a8272; font-variant-numeric: tabular-nums; }
+.ws-figrow { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; max-width: 100%; margin: 22px auto; }
+.ws-figrow-item { flex: 1 1 0; min-width: 200px; max-width: 320px; margin: 0; text-align: center; }
+.ws-figrow-item img { width: 100%; max-height: 340px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.ws-figrow-item figcaption { margin-top: 6px; font-size: 12px; color: #6b6b6b; line-height: 1.45; }
+
+/* ▶️ 영상 자리 (2026-09-17) — 사진이 포스터가 되고, 누르면 그 자리에서 재생된다. */
+.ws-vid { margin: 20px auto 24px; max-width: 760px; }
+.vid-poster { position: relative; display: block; width: 100%; padding: 0; border: 0;
+  background: #000; border-radius: 10px; overflow: hidden; cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.vid-poster img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.vid-scrim { position: absolute; inset: 0; background:
+  radial-gradient(ellipse at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.42) 100%); }
+.vid-play { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px;
+  border-radius: 50%; background: rgba(216,32,32,0.92); box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+  transition: transform 0.18s, background 0.18s; }
+.vid-play::after { content: ''; position: absolute; left: 30px; top: 23px;
+  border-left: 26px solid #fff; border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+.vid-poster:hover .vid-play { transform: scale(1.09); background: rgba(232,28,28,0.98); }
+.vid-poster:focus-visible { outline: 3px solid #4a5c40; outline-offset: 3px; }
+.vid-badge { position: absolute; right: 10px; bottom: 10px; background: rgba(12,14,18,0.86);
+  color: #fff; font-size: 0.8em; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+.vid-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 10px;
+  overflow: hidden; background: #000; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.ws-vid figcaption { margin-top: 8px; font-size: 0.88em; line-height: 1.6; color: #4a5344; text-align: center; }
+.ws-vid figcaption b { display: block; color: #2f3a2a; }
+.vid-meta { font-size: 0.9em; color: #8a8272; }
+/* 종이에는 포스터와 제목만 남긴다 — 재생 장식은 뜻이 없다. */
+@media print { .vid-play, .vid-scrim, .vid-badge { display: none; }
+  .vid-poster { box-shadow: none; } }
+/* 🧩 모자이크 (2026-09-15) — 여러 장을 «겹쳐» 보여 한눈에 오게 한다. 2열 고정. */
+.ws-mos { margin: 20px auto 24px; max-width: 100%; }
+.ws-mos-head { font-size: 0.93em; font-weight: 700; color: #5a5344; margin: 0 0 10px; }
+.ws-mos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.ws-mos-cell { margin: 0; cursor: pointer; background: #fff; border: 1px solid #d8d2c4;
+  border-radius: 12px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  transition: box-shadow 0.18s, border-color 0.18s; }
+.ws-mos-cell:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.14); }
+.ws-mos-cell:focus-visible { outline: 3px solid #4a5c40; outline-offset: 2px; }
+.ws-mos-cell.on { border-color: #4a5c40; }
+.mos-shot { position: relative; display: block; }
+.mos-shot img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.mos-badge { position: absolute; left: 8px; bottom: 8px; background: rgba(28,34,26,0.84);
+  color: #fff; font-size: 0.78em; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.mos-note { display: none; text-align: left; padding: 10px 12px 12px; font-size: 0.86em;
+  line-height: 1.72; color: #3f4a3a; background: #f7f6f0; border-top: 1px solid #e6e1d4; }
+.ws-mos-cell.on .mos-note { display: block; }
+.ws-mos-cell::after { content: '눌러서 보기'; display: block; padding: 6px 12px 8px;
+  font-size: 0.74em; color: #8a8272; }
+.ws-mos-cell.on::after { display: none; }
+@media (max-width: 700px) {
+  .ws-mos-grid { gap: 8px; }
+  .mos-badge { font-size: 0.7em; padding: 3px 8px; left: 6px; bottom: 6px; }
+  .mos-note { font-size: 0.8em; padding: 8px 10px 10px; }
+  .ws-mos-cell::after { font-size: 0.68em; padding: 5px 10px 7px; }
+}
+/* 인쇄엔 전부 편다 — 접힌 채 나가면 종이에선 사진 넉 장만 남는다. */
+@media print { .mos-note { display: block; } .ws-mos-cell::after { display: none; } }
+/* 2026-10-02 천대현 «표지 아래 배경 설명 가독성이 떨어진다» — 14px 기울임 회색이었다. 한글 기울임은 글자를 비틀어 읽기 어렵다. */
+.hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
+.blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
+</style>
+<style id="ws-zoom-css">/* 2026-11-06 그림 크게 보기 창(zoom.js). 학습지 색과 상관없이 어두운 바탕 — 사진이 잘 보이게. */
+.ws-zoom { position: fixed; inset: 0; z-index: 9999; background: rgba(12,12,10,0.985); display: flex; flex-direction: column; }
+.ws-zoom[hidden] { display: none; }
+.ws-zoom-stage { flex: 1; min-height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; touch-action: none; cursor: zoom-in; }
+.ws-zoom-stage img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: center center; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+.ws-zoom-bar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 10px 16px 4px; }
+.ws-zoom-bar button, .ws-zoom-bar a { font: inherit; font-size: 15px; min-width: 44px; min-height: 40px; padding: 6px 14px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); color: #f4f2ec; text-decoration: none; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; }
+.ws-zoom-bar button:hover, .ws-zoom-bar a:hover { background: rgba(255,255,255,0.18); }
+.ws-zoom-bar button:focus-visible, .ws-zoom-bar a:focus-visible { outline: 2px solid #f4d27a; outline-offset: 2px; }
+.ws-zoom-tip { margin: 0; padding: 2px 16px 12px; text-align: center; font-size: 12.5px; color: #bdb9ad; }
+html.ws-zoom-open, html.ws-zoom-open body { overflow: hidden; }
+figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img { cursor: zoom-in; }
+@media print { .ws-zoom { display: none !important; } }
+</style>
+<style id="ws-reset-css">/* 초기화 잘못 누름 막기 (천대현 11/10 «저장 누르려다 초기화 누르는 학생들이 있음») — 저장·제출 자리는 그대로 두고, 초기화만 왼쪽으로 떼어 흰 바탕 테두리 단추로 */
+.control-bar .btn.btn-reset{background:#fff;color:#d93025;border:1px solid #f3b6b0;margin-right:14px!important}
+.control-bar .btn.btn-reset:hover{background:#fff4f3}
+</style>
+<style id="ws-design-v2">/* ===== 4-3-2 디자인 시험판 v2 — 덧씌움(원본 HTML·data-id 불변) ===== */
+:root{
+  --ink:#1f2329; --ink2:#4a5160; --mute:#7a8191; --line:#e6e8ee; --paper:#ffffff; --bg:#f3f4f7;
+  --step:#2f6fd6; --step-soft:#eaf1fd;
+  --voice:#fff6e6; --voice-line:#f0b94a;
+  --task:#fff3d6; --task-ink:#8a5a00;
+  --ask:#eef7ef; --ask-line:#3f9a5a;
+  --mark:rgba(255,214,77,.55);
+}
+html{font-size:17px}
+@media (max-width:640px){html{font-size:16.5px}}
+body{background:var(--bg)!important;color:var(--ink)!important;letter-spacing:-.005em;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.container{max-width:1120px!important;padding:0!important;background:transparent!important;box-shadow:none!important;display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:28px}
+.container>br{display:none}
+.v2-rail{grid-column:1;grid-row:1/span 999;position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;padding:14px 10px;background:var(--paper);border-radius:14px;box-shadow:0 1px 3px rgba(20,30,50,.06)}
+.v2-rail h4{font-size:.72rem;letter-spacing:.08em;color:var(--mute);margin:2px 8px 8px;font-weight:700}
+.v2-rail a{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:9px;color:var(--ink2);text-decoration:none;font-size:.82rem;line-height:1.35}
+.v2-rail a:hover{background:var(--bg)}
+.v2-rail a.on{background:var(--step-soft);color:var(--step);font-weight:700}
+.v2-rail .n{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:800;background:var(--bg);color:var(--mute)}
+.v2-rail a.on .n{background:var(--step);color:#fff}
+.v2-rail a.done .n{background:#3f9a5a;color:#fff}
+.v2-rail .c{margin-left:auto;font-size:.7rem;color:var(--mute);font-variant-numeric:tabular-nums}
+.v2-meter{height:6px;border-radius:3px;background:var(--line);margin:10px 8px 4px;overflow:hidden}
+.v2-meter i{display:block;height:100%;width:0;background:#3f9a5a;transition:width .3s}
+.v2-mtx{font-size:.72rem;color:var(--mute);margin:0 8px}
+.container>*:not(.v2-rail){grid-column:2;min-width:0}
+.hero-section{border-radius:18px!important;overflow:hidden}
+.v2-sec{background:var(--paper);border-radius:18px;padding:30px 36px 28px;margin:0 0 18px;box-shadow:0 1px 3px rgba(20,30,50,.06);scroll-margin-top:16px}
+.v2-sec.step{border-top:5px solid var(--step)}
+.v2-sec>*:first-child{margin-top:0}
+.v2-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;letter-spacing:.06em;color:var(--step);margin-bottom:6px}
+.v2-kicker b{background:var(--step);color:#fff;border-radius:6px;padding:2px 8px;letter-spacing:0}
+.v2-sec h2{font-size:1.55rem!important;line-height:1.35!important;font-weight:800!important;letter-spacing:-.02em;margin:0 0 16px!important;padding:0!important;border:0!important;color:var(--ink)!important;text-wrap:balance}
+.v2-sec h2 .v2-sub{display:block;font-size:1.02rem;font-weight:600;color:var(--ink2);margin-top:4px}
+.v2-sec p{font-size:1rem!important;line-height:1.85!important;margin:0 0 14px!important;max-width:40em;color:var(--ink)}
+.v2-sec .ws-tb-ask,.v2-sec .ws-tb p{line-height:1.6!important}
+.v2-sec strong{background:linear-gradient(transparent 62%,var(--mark) 62%);font-weight:700}
+.v2-sec figure.ws-fig{margin:20px 0!important}
+.v2-sec figcaption{font-size:.84rem!important;line-height:1.6!important;color:var(--ink2)!important}
+.v2-sec blockquote{margin:16px 0!important;font-size:.97rem!important;line-height:1.8!important}
+/* 목소리 구분: 입담 / 교과서 펴기 / 찾아보기·쓰기 / 열쇳말 */
+blockquote.v2-voice{position:relative;background:var(--voice)!important;border:0!important;border-radius:16px!important;padding:14px 18px 14px 58px!important;color:#3d3220!important}
+blockquote.v2-voice::before{content:"🎙️";position:absolute;left:14px;top:12px;width:32px;height:32px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:17px;box-shadow:0 0 0 2px var(--voice-line)}
+blockquote.v2-voice .v2-who{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;color:#b07a12;margin-bottom:2px}
+blockquote.v2-task{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;background:var(--task)!important;border:0!important;border-radius:12px!important;padding:10px 14px!important;color:var(--task-ink)!important;font-size:.9rem!important;font-weight:600}
+blockquote.v2-key{background:#f1f0ff!important;border:0!important;border-radius:12px!important;padding:12px 16px!important;color:#3b2f8f!important;font-weight:600}
+blockquote.v2-ask{background:var(--ask)!important;border:0!important;border-left:4px solid var(--ask-line)!important;border-radius:4px 12px 12px 4px!important;padding:12px 16px!important}
+p.v2-q{background:#f7f8fb;border-radius:12px;padding:12px 16px 12px 16px!important;border:1px dashed #c9cfdb;font-weight:600}
+p.v2-q::before{content:"생각해 보기";display:block;font-size:.7rem;font-weight:800;letter-spacing:.08em;color:var(--mute);margin-bottom:2px}
+.ws-tb{border-radius:14px!important}
+/* 빈칸 */
+input.blank-input:not(.activity-input){min-height:34px;font-size:1rem!important;font-weight:700;border:0!important;border-bottom:2.5px solid var(--step)!important;background:#f3f7ff!important;border-radius:6px 6px 0 0!important;padding:2px 8px!important;color:var(--step)!important;vertical-align:baseline}
+input.blank-input:focus{outline:3px solid rgba(47,111,214,.25)!important;outline-offset:1px}
+/* 2026-11-10 채점 색 — 위 v2 빈칸 줄이 !important라 .correct/.wrong 색을 덮었다(천대현 «틀린 부분이 빨간색으로 안 바뀜») */
+input.blank-input.correct:not(.activity-input){border-bottom-color:#34c759!important;background:#e8f8e8!important;color:#1a7a2e!important}
+input.blank-input.wrong:not(.activity-input){border-bottom-color:#ff3b30!important;background:#fff0f0!important;color:#c62828!important}
+input.blank-input.no-score.wrong:not(.activity-input){border-bottom-color:#ff9500!important;color:#a35200!important}
+.activity-input,textarea{font-size:1rem!important;line-height:1.7!important}
+.ws-fold{border-radius:14px!important}
+.ws-fold>summary{font-size:.95rem!important}
+.v2-sec .ws-2c{gap:24px!important}
+@media (max-width:980px){
+  .container{display:block}
+  .v2-rail{position:sticky;top:0;z-index:50;display:flex;gap:6px;overflow-x:auto;max-height:none;border-radius:0 0 12px 12px;padding:8px 10px;margin:0 -16px 12px;scrollbar-width:none}
+  .v2-rail h4,.v2-mtx{display:none}
+  .v2-rail a{flex:none;padding:6px 10px;border:1px solid var(--line);font-size:.78rem}
+  .v2-rail a .t{display:none}
+  .v2-rail a.on .t{display:inline}
+  .v2-meter{position:absolute;left:0;right:0;bottom:0;margin:0;height:3px;border-radius:0}
+}
+@media (max-width:640px){
+  .v2-sec{padding:22px 18px 20px;border-radius:14px;margin:0 0 12px}
+  .v2-sec h2{font-size:1.32rem!important}
+  blockquote.v2-voice{padding:12px 14px 12px 50px!important}
+  blockquote.v2-voice::before{left:10px;width:28px;height:28px;font-size:15px}
+}
+@media print{.v2-rail{display:none}.container{display:block}.v2-sec{box-shadow:none;break-inside:auto}}
+.v2-sec h2{background:none!important;box-shadow:none!important}
+blockquote.v2-task strong,blockquote.v2-key strong,.ws-tb strong{background:none}
+.v2-sec figure.ws-fig{max-width:760px;margin-left:auto!important;margin-right:auto!important}
+@media (max-width:980px){.v2-rail{margin:0 0 12px}}
+.container>.hero-section{margin:0 0 18px!important}
+/* 점수 막대: 카드처럼, 폰은 한 줄로 얇게 */
+.container>.control-bar{margin:0 0 14px!important;padding:10px 16px!important;border-radius:14px;border:0!important;box-shadow:0 1px 3px rgba(20,30,50,.08);top:8px!important;align-items:center}
+.control-bar .score{font-size:.9rem!important;font-variant-numeric:tabular-nums}
+@media (max-width:640px){
+  .container>.control-bar{top:0!important;border-radius:0 0 12px 12px;padding:6px 10px!important;flex-wrap:nowrap!important;gap:6px}
+  .control-bar .score{font-size:.74rem!important;white-space:nowrap;margin:0!important}
+  .control-bar .btn,.control-bar button{font-size:.72rem!important;padding:6px 8px!important;min-height:32px;white-space:nowrap}
+  .control-bar>div:last-child{display:flex;gap:4px;flex-wrap:nowrap}
+}
+@media (max-width:980px){.v2-rail{top:var(--cbh,52px)!important;z-index:90}}
+@media (max-width:640px){.container>.control-bar{flex-direction:row!important;justify-content:space-between!important;text-align:left!important}.control-bar .score{text-align:left!important}.control-bar .btn{margin:0!important}}
+@media (max-width:640px){.control-bar .score{white-space:normal!important;flex:1 1 auto;min-width:0;line-height:1.35}.control-bar>div:last-child{flex:none}.control-bar .btn{padding:6px 7px!important}}
+.v2-sec{scroll-margin-top:84px}@media (max-width:980px){.v2-sec{scroll-margin-top:120px}}
+
+/* 10/28 천대현: 오늘의 길 접기·펴기 + 왼쪽/위 고르기 */
+.v2-rh{display:flex;align-items:center;gap:6px;margin:0 4px 8px}
+.v2-rh h4{margin:0 auto 0 4px!important}
+.v2-b{font:inherit;font-size:.72rem;font-weight:700;color:var(--ink2);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 8px;cursor:pointer;white-space:nowrap}
+.v2-b:hover{background:var(--step-soft);color:var(--step)}
+/* 왼쪽 + 접힘: 번호만 남는 좁은 기둥 */
+html.v2-folded:not(.v2-top) .container{grid-template-columns:58px minmax(0,1fr)}
+html.v2-folded:not(.v2-top) .v2-rail{padding:10px 6px}
+html.v2-folded:not(.v2-top) .v2-rail .t,html.v2-folded:not(.v2-top) .v2-rail .c,html.v2-folded:not(.v2-top) .v2-rh h4,html.v2-folded:not(.v2-top) .v2-mtx,html.v2-folded:not(.v2-top) .v2-pos{display:none}
+html.v2-folded:not(.v2-top) .v2-rh{flex-direction:column;margin:0 0 6px}
+html.v2-folded:not(.v2-top) .v2-fold{padding:4px 5px;font-size:.66rem}
+html.v2-folded:not(.v2-top) .v2-rail a{justify-content:center;padding:6px 0}
+/* 위로: 한 단, 점수 막대 아래 가로 띠 */
+html.v2-top .container{display:block;max-width:920px!important}
+html.v2-top .v2-rail{position:sticky;top:var(--cbh,60px);z-index:90;display:flex;align-items:center;gap:6px;overflow-x:auto;max-height:none;padding:8px 10px;margin:0 0 14px;scrollbar-width:none}
+html.v2-top .v2-rh{flex:none;margin:0 6px 0 0}
+html.v2-top .v2-rh h4{display:none}
+html.v2-top .v2-mtx{display:none}
+html.v2-top .v2-rail a{flex:none;padding:6px 10px;border:1px solid var(--line);font-size:.8rem}
+html.v2-top .v2-meter{position:absolute;left:0;right:0;bottom:0;margin:0;height:3px;border-radius:0}
+html.v2-top.v2-folded .v2-rail a{display:none}
+html.v2-top.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;color:var(--mute);font-weight:700}
+@media (max-width:980px){
+  .v2-pos{display:none}
+  .v2-rh{flex:none;margin:0 6px 0 0}.v2-rh h4{display:none}
+  html.v2-folded .v2-rail a{display:none}
+  html.v2-folded .v2-rail::after{content:"오늘의 길";font-size:.78rem;color:var(--mute);font-weight:700}
+}
+@media (min-width:981px){html.v2-top .v2-rail a .t{display:inline}}
+</style>
+<style id="ws-voice-avatar">/* 선생님 입담 = 선생님이 말하는 말풍선 (2026-11-11 천대현 4-3-3 검토판) — frontmatter voice_avatar 가 있을 때만 붙는다.
+   v2.css 의 입담 상자(노란 바탕·🎙️ 동그라미)를 덮어 쓴다: 왼쪽에 선생님 얼굴, 오른쪽에 꼬리 달린 말풍선.
+   상자 폭·글자 크기는 그대로 두고, 글 시작만 얼굴 몫만큼 오른쪽으로 민다. */
+blockquote.v2-voice{background:transparent!important;border-radius:0!important;padding:14px 18px 14px 68px!important;z-index:0}
+blockquote.v2-voice::after{content:"";position:absolute;left:52px;right:0;top:0;bottom:0;background:var(--voice);border-radius:16px;z-index:-1}
+blockquote.v2-voice::before{content:"";left:2px;top:4px;width:40px;height:40px;font-size:0;background:#fff url("images/선생님_입담.webp") center/cover no-repeat;box-shadow:0 0 0 2px var(--voice-line)}
+blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:18px;border-style:solid;border-width:8px 8px 8px 0;border-color:transparent var(--voice) transparent transparent}
+@media (max-width:640px){
+  blockquote.v2-voice{padding:12px 14px 12px 56px!important}
+  blockquote.v2-voice::after{left:42px}
+  blockquote.v2-voice::before{left:0;top:4px;width:34px;height:34px}
+  blockquote.v2-voice .v2-who::before{left:35px;top:14px;border-width:7px 7px 7px 0}
+}
+@media print{blockquote.v2-voice::before{box-shadow:none}}
+</style>
+<style id="gl-css">/* 보충 말풍선(gloss.js 짝) — :::개념 잇기 블록에 보충 줄이 있는 차시만 */
+:root{--gl:#007aff;--gl-soft:#eef5ff;--gl-ink:#1b3557;--gl-gut:280px}
+/* 방식 1: 낱말 — 파란 점선 밑줄 + 작은 표시 */
+.gl-t{font:inherit;color:inherit;background:none;border:0;margin:0;padding:0 1px;cursor:pointer;line-height:1.35;letter-spacing:inherit;white-space:nowrap;border-radius:4px;
+  text-decoration:underline dotted var(--gl);text-decoration-thickness:2px;text-underline-offset:5px;-webkit-tap-highlight-color:transparent}
+.gl-t:hover,.gl-t[aria-expanded="true"]{background:rgba(0,122,255,.08)}
+.gl-t:focus-visible,.gl-badge:focus-visible,.gl-x:focus-visible{outline:2px solid rgba(0,122,255,.45);outline-offset:2px}
+.gl-mk{display:inline-grid;place-items:center;width:15px;height:15px;margin-left:2px;border-radius:50%;background:var(--gl);color:#fff;font-size:11px;font-weight:800;line-height:1;vertical-align:super;text-decoration:none}
+/* 방식 2: 빈칸 뒤 표시 — 채점해서 맞힌 뒤에만 보인다 */
+.gl-badge{display:inline-grid;place-items:center;width:22px;height:22px;margin:0 2px 0 4px;padding:0;border:0;border-radius:50%;background:var(--gl);color:#fff;font-weight:800;font-size:14px;line-height:1;font-family:inherit;cursor:pointer;vertical-align:middle;box-shadow:0 0 0 3px rgba(0,122,255,.15)}
+.gl-badge[hidden]{display:none}
+/* 2026-11-13 빈칸 언제나(교사용 교과서 보충) — 처음부터 보이므로 흰 바탕 테두리로 조용하게. 열면 채운다 */
+.gl-badge.gl-always{width:20px;height:20px;font-size:13px;background:#fff;color:var(--gl);box-shadow:inset 0 0 0 2px var(--gl)}
+.gl-badge.gl-always:hover,.gl-badge.gl-always[aria-expanded="true"]{background:var(--gl);color:#fff}
+/* 말풍선 */
+.gl-pop{position:relative;background:var(--gl-soft);border-left:3px solid var(--gl);border-radius:4px 10px 10px 4px;padding:8px 32px 10px 13px;color:var(--gl-ink);font-size:.84rem;line-height:1.65;text-align:left;word-break:keep-all;overflow-wrap:break-word}
+.gl-pop[hidden]{display:none}
+.gl-head{font-size:.72rem;font-weight:800;letter-spacing:.06em;color:var(--gl);margin:0 0 2px}
+.gl-pop.gl-link{--gl:#0f7b6c;--gl-soft:#ecf7f4;--gl-ink:#12403a}
+.gl-head .gl-word{margin-left:6px;letter-spacing:0;font-weight:700;color:var(--gl-ink)}
+.gl-body{margin:0;white-space:pre-line}   /* 2026-11-12 사회 8-5~6 «156쪽 표를 툴팁으로» — 보충 글의 « // »를 줄바꿈으로(js). 줄바꿈 없는 글은 그대로 보인다 */
+.gl-x{position:absolute;top:4px;right:5px;width:26px;height:26px;padding:0;border:0;border-radius:6px;background:none;color:#4f6f99;font-weight:400;font-size:18px;line-height:1;font-family:inherit;cursor:pointer}
+.gl-x:hover{background:rgba(0,122,255,.1)}
+.gl-pop.gl-inline{margin:-6px 0 16px;max-width:40em}
+.gl-layer{position:absolute;left:0;top:0;width:0;height:0;z-index:40}
+.gl-layer .gl-pop{position:absolute;box-shadow:0 2px 10px rgba(0,60,140,.12)}
+.gl-layer .gl-pop.gl-float{box-shadow:0 6px 20px rgba(0,40,100,.2)}
+.gl-svg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.gl-path{fill:none;stroke:var(--gl);stroke-width:1.2;opacity:.8}
+.gl-dot{fill:var(--gl)}
+@keyframes gl-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@keyframes gl-fade{from{opacity:0}to{opacity:.8}}
+@keyframes gl-pop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.18)}100%{transform:scale(1);opacity:1}}
+.gl-pop.gl-anim{animation:gl-in .18s ease-out}
+.gl-path.gl-anim{animation:gl-fade .25s ease-out}
+.gl-badge.gl-anim{animation:gl-pop .32s ease-out}
+@media (prefers-reduced-motion:reduce){.gl-pop.gl-anim,.gl-path.gl-anim,.gl-badge.gl-anim{animation:none!important}}
+/* 넓은 화면: 본문 상자 오른쪽에 주석 칸을 비워 둔다(사회교재 v2 판은 상자가 1120px이라 그냥 두면 여백이 140px 남짓) */
+@media screen and (min-width:1280px){
+  html.gl-wide .container{--gl-w:min(1120px, calc(100% - var(--gl-gut)));max-width:var(--gl-w)!important;
+    margin-left:max(0px, min(calc((100% - var(--gl-w)) / 2), calc(100% - var(--gl-w) - var(--gl-gut))))!important;margin-right:auto!important}
+  html.gl-wide.v2-top .container{--gl-w:min(920px, calc(100% - var(--gl-gut)))}
+}
+@media print{.gl-svg,.gl-layer,.gl-x,.gl-badge,.gl-mk{display:none!important}.gl-pop{break-inside:avoid;background:#fff;border-left-color:#999}.gl-t{text-decoration:none}}
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-2 묶음 — 기계가 바꾼 세상, 나뉘는 세계</h1><p class="hero-subtitle">기계가 바꾼 세상, 나뉘는 세계</p><div class="hero-keywords"><span class="hero-keyword">왜 하필 영국에서 기계가 돌기 시작했을까</span><span class="hero-keyword">공장이 늘자 누구의 삶이 힘들어졌을까</span><span class="hero-keyword">강한 나라들은 왜 바다 건너 땅을 차지하려 했을까</span><span class="hero-keyword">기차와 증기선은 세계를 어떻게 바꾸었을까</span></div><div class="hero-hook">1873년에 나온 소설에서 영국 신사 포그는 80일 만에 세계를 한 바퀴 돌고 런던으로 돌아왔어. 기차와 증기선 덕분이었지. 그 기차와 배는 어디서 나왔고, 무엇을 싣고 어디로 갔을까? 오늘은 교과서 159쪽부터 167쪽까지를 한 시간에 정리한다.</div></section>
+  <div class="control-bar">
+    <div class="score">
+      빈칸: <span id="score">0</span>/20 · OX: <span id="ox-score">0</span>/5
+      · 총: <span id="total-score">0</span>/25 (<span id="pct">0</span>%)
+    </div>
+    <div>
+      
+      <button class="btn btn-reset" onclick="askReset()">초기화</button>
+      <button class="btn btn-primary" onclick="check()">채점하기</button>
+      
+      <button class="btn btn-secondary" onclick="saveProgress()">💾 저장</button>
+      <button class="btn btn-primary" onclick="submitResult()" id="submitBtn">📤 제출</button>
+    </div>
+  </div>
+  <div class="student-info">
+    <select id="si-cls"><option value="">반</option><option value="1">1반</option><option value="2">2반</option><option value="3">3반</option><option value="4">4반</option><option value="5">5반</option><option value="6">6반</option></select>
+    <select id="si-num"><option value="">번호</option><option value="1">1번</option><option value="2">2번</option><option value="3">3번</option><option value="4">4번</option><option value="5">5번</option><option value="6">6번</option><option value="7">7번</option><option value="8">8번</option><option value="9">9번</option><option value="10">10번</option><option value="11">11번</option><option value="12">12번</option><option value="13">13번</option><option value="14">14번</option><option value="15">15번</option><option value="16">16번</option><option value="17">17번</option><option value="18">18번</option><option value="19">19번</option><option value="20">20번</option><option value="21">21번</option><option value="22">22번</option><option value="23">23번</option><option value="24">24번</option><option value="25">25번</option><option value="26">26번</option><option value="27">27번</option><option value="28">28번</option><option value="29">29번</option><option value="30">30번</option><option value="31">31번</option><option value="32">32번</option><option value="33">33번</option><option value="34">34번</option><option value="35">35번</option></select>
+    <input type="text" id="si-name" placeholder="이름">
+  </div>
+  <br>
+<blockquote>🎙️ 지난 시간 기억나? 나폴레옹은 졌지만, 그의 정복 전쟁 때 유럽에 퍼지고 자라난 두 생각은 남았어. 그 두 생각이 무엇이었는지 짝에게 말해 보고 시작하자.</blockquote>
+<br>
+<blockquote>🎙️ 오늘은 교과서 159쪽부터 167쪽까지를 한 시간에 정리해. 교과서를 펴 놓고 빈칸을 채우면서 따라오면 돼. 오늘 붙잡을 질문은 하나야 — <strong>기계가 바꾼 세상은 누구에게 좋았고, 누구에게 힘들었을까?</strong></blockquote>
+<br>
+<h2>📌 학습 목표</h2>
+<p>- 영국에서 기계가 경제와 사회를 바꾼 과정을 설명하고, 그때 생긴 새로운 사회 문제와 그에 대한 두 가지 생각을 말할 수 있다.</p>
+<p>- 서양 강대국들이 아시아와 아프리카를 침략한 과정과, 그 결과 세계와 생태환경이 어떻게 바뀌었는지 설명할 수 있다.</p>
+<br>
+<h2>✨ 오늘의 고급 단어</h2>
+<div class="ws-vcd" id="vd11"><div class="ws-vcd-head">그림을 보고 무슨 말일지 짐작해 본 뒤, 카드를 눌러 뒤집어 확인하자. ▶로 넘긴다.</div><div class="ws-vcd-track"><button type="button" class="ws-vcard" aria-label="가내 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-1_voc_가내.jpg" alt=""><span class="vcd-hanja">家內</span><span class="vcd-ko">가내</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">가내</span><span class="vcd-split">가(家, 집) + 내(內, 안)</span><span class="vcd-mean">집 안</span><span class="vcd-sent">"옛날에는 실을 <strong>가내</strong>에서 손으로 뽑았다."</span><span class="vcd-fam">家 → 가족 · 가정 · 국가 / 內 → 내부 · 실내 · 국내</span></span></span></button><button type="button" class="ws-vcard" aria-label="생산 수단 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-1_voc_생산수단.jpg" alt=""><span class="vcd-hanja">生産手段</span><span class="vcd-ko">생산 수단</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">생산 수단</span><span class="vcd-split">생(生, 날) + 산(産, 낳을)</span><span class="vcd-mean">물건을 만드는 데 쓰는 땅·공장·기계</span><span class="vcd-sent">"땅과 공장 같은 <strong>생산 수단</strong>을 누가 가질까?"</span><span class="vcd-fam"><strong>生 = 나다·낳다 · 産 = 낳다·만들어 내다</strong> → 생일 · 출생 / 출산 · 생산 · 특산물</span></span></span></button><button type="button" class="ws-vcard" aria-label="열강 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-2_voc_열강.jpg" alt=""><span class="vcd-hanja">列強</span><span class="vcd-ko">열강</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">열강</span><span class="vcd-split">열(列, 벌일) + 강(強, 강할)</span><span class="vcd-mean">여러 강한 나라</span><span class="vcd-sent">"19세기 말 <strong>열강</strong>은 앞다투어 식민지를 넓혔다."</span><span class="vcd-fam"><strong>列 = 줄지어 늘어선다</strong> → 행렬 · 나열 · 진열 / 強 → 강국 · 강력</span></span></span></button><button type="button" class="ws-vcard" aria-label="미개 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-2_voc_미개.jpg" alt=""><span class="vcd-hanja">未開</span><span class="vcd-ko">미개</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">미개</span><span class="vcd-split">미(未, 아닐) + 개(開, 열)</span><span class="vcd-mean">사회가 덜 발전했다고 낮잡아 보는 말</span><span class="vcd-sent">"열강은 아프리카를 <strong>미개</strong>하다고 깎아내렸다."</span><span class="vcd-fam"><strong>未 = 아직 아니다</strong> → 미래 · 미완성 · 미성년 / <strong>開 = 연다</strong> → 개방 · 개학</span></span></span></button><button type="button" class="ws-vcard" aria-label="분할 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-2_voc_분할.jpg" alt=""><span class="vcd-hanja">分割</span><span class="vcd-ko">분할</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">분할</span><span class="vcd-split">분(分, 나눌) + 할(割, 벨)</span><span class="vcd-mean">여럿으로 나누어 쪼갬</span><span class="vcd-sent">"열강은 지도 위에서 아프리카를 <strong>분할</strong>했다."</span><span class="vcd-fam"><strong>分 = 나눈다 · 割 = 칼로 벤다</strong> → 분배 · 분리 / 할인 · 할부</span></span></span></button><button type="button" class="ws-vcard" aria-label="자오선 카드 뒤집기" onclick="this.classList.toggle('on')"><span class="vcd-in"><span class="vcd-f"><img src="images/5-2-3_voc_자오선.jpg" alt=""><span class="vcd-hanja">子午線</span><span class="vcd-ko">자오선</span><span class="vcd-turn">눌러서 뒤집기</span></span><span class="vcd-b"><span class="vcd-bko">자오선</span><span class="vcd-split">자(子, 북쪽) + 오(午, 남쪽) + 선(線, 줄)</span><span class="vcd-mean">북극과 남극을 잇는 세로선(경선)</span><span class="vcd-sent">"같은 <strong>자오선</strong> 위의 마을은 정오가 같다."</span><span class="vcd-fam">子 = 열두 띠의 첫째(쥐) · 북쪽 / 午 = 일곱째(말) · 남쪽 → 정오(낮 12시) · 오전 · 오후</span></span></span></button></div><div class="ws-vcd-nav"><button type="button" class="vcd-prev" aria-label="이전 낱말">◀</button><span class="vcd-count"><b>1</b> / 6</span><button type="button" class="vcd-next" aria-label="다음 낱말">▶</button></div></div><script>(function(){var r=document.getElementById("vd11");var t=r.querySelector(".ws-vcd-track"),c=r.querySelector(".vcd-count b");var cs=[].slice.call(t.querySelectorAll(".ws-vcard"));function step(){return cs.length>1?cs[1].offsetLeft-cs[0].offsetLeft:1;}function idx(){return Math.max(0,Math.min(cs.length-1,Math.round(t.scrollLeft/step())));}var P=r.querySelector(".vcd-prev"),N=r.querySelector(".vcd-next");function sync(){var m=t.scrollWidth-t.clientWidth,e=t.scrollLeft>=m-2;c.textContent=e?cs.length:idx()+1;P.disabled=t.scrollLeft<=2;N.disabled=e;}function go(d){t.scrollTo({left:(idx()+d)*step(),behavior:"smooth"});}P.addEventListener("click",function(){go(-1);});N.addEventListener("click",function(){go(1);});t.addEventListener("scroll",function(){clearTimeout(t._z);t._z=setTimeout(sync,90);});function navfit(){var s=t.scrollWidth-t.clientWidth;r.querySelector(".ws-vcd-nav").style.display=s>step()/2?"":"none";}navfit();sync();addEventListener("resize",function(){navfit();sync();});})();</script>
+<br>
+<h2>📖 1단계: 영국에서 기계가 돌기 시작하다</h2>
+<blockquote>📕 <strong>교과서 159~160쪽</strong> 펴고 채우기 · 배정 시간 <strong>9분</strong></blockquote>
+<br>
+<blockquote>🎙️ 왜 하필 영국이었을까? 교과서는 까닭을 네 가지로 들어. 하나씩 찾으면서 채워 보자.</blockquote>
+<br>
+<p>18세기 후반부터 유럽에서는 기계의 발명과 기술의 혁신으로 경제와 사회 구조에 큰 변화가 나타났는데, 이를 ①<input type="text" class="blank-input" data-answer="산업 혁명" data-id="1" style="width:100px" placeholder="">이라고 한다. 이 변화는 영국에서 시작되었다. 영국은 일찍부터 정치적 안정을 이루었고, 국민의 자유로운 경제활동을 보장하였다. 또한 석탄과 철 등 지하자원이 풍부하였으며, 나라 밖으로는 식민지를 만들어 원료 공급지와 상품 판매처로 활용하였다. 게다가 ②<input type="text" class="blank-input" data-answer="인클로저" data-id="2" style="width:84px" placeholder=""> 운동으로 농사지을 땅이 없어진 농민들이 일자리를 찾아 도시로 몰려들어 공장에 값싼 노동력을 제공하였다.</p>
+<br>
+<style>.ws-flow{margin:18px 0 22px;padding:16px 16px 14px;border:1px solid #d9dfe7;border-radius:14px;background:#f7f9fc}.ws-flow .wf-head{font-weight:700;font-size:.98em;margin:0 0 12px;color:#1f3550}.ws-flow .wf-row{display:grid;gap:10px}.ws-flow .wf-n2{grid-template-columns:1fr 1fr}.ws-flow .wf-n3{grid-template-columns:repeat(3,1fr)}.ws-flow .wf-n4{grid-template-columns:repeat(4,1fr)}.ws-flow .wf-box{background:#fff;border:1.5px solid #9fb3cc;border-radius:10px;padding:10px 12px;line-height:1.45;word-break:keep-all}.ws-flow .wf-box b{display:block;font-size:.97em;color:#1f3550}.ws-flow .wf-box span{display:block;margin-top:3px;font-size:.88em;color:#4a5566}.ws-flow .wf-key{background:#1f3550;border-color:#1f3550}.ws-flow .wf-key b{color:#fff}.ws-flow .wf-key span{color:#d6e1ef}.ws-flow .wf-arrow{display:flex;align-items:center;justify-content:center;gap:8px;min-height:30px;margin:4px 0}.ws-flow .wf-arrow i{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid #6f86a3}.ws-flow .wf-arrow span{font-size:.86em;color:#3c5677;font-weight:600;word-break:keep-all}.ws-flow .wf-src{margin-top:10px;font-size:.78em;color:#6b7480}.ws-flow .wf-grp{border:1.5px dashed #b6c4d6;border-radius:12px;padding:8px;background:#eef3f9}.ws-flow .wf-lab{grid-column:1/-1;font-size:.8em;font-weight:700;color:#3c5677;margin:-2px 0 0}.ws-flow .wf-slot{border-style:dashed;border-color:#d08a2c;background:#fffaf0}.ws-flow .wf-loop{margin-top:8px;font-size:.86em;font-weight:600;color:#8a4b1f;text-align:center}@media (min-width:641px){.ws-flow.wf-wide .wf-track{display:flex;align-items:stretch}.ws-flow.wf-wide .wf-row{flex:1 1 0}.ws-flow.wf-wide .wf-arrow{flex:0 0 auto;min-width:26px;max-width:92px;flex-direction:column;margin:0 4px;text-align:center}.ws-flow.wf-wide .wf-arrow i{border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:12px solid #6f86a3;border-right:0}}@media (max-width:640px){.ws-flow{padding:10px 8px}.ws-flow .wf-n4{grid-template-columns:1fr 1fr}.ws-flow .wf-n3{gap:6px}.ws-flow .wf-n3 .wf-box{padding:6px 5px}.ws-flow .wf-n3 .wf-box b{font-size:.9em}.ws-flow .wf-box{padding:6px 8px}.ws-flow .wf-box span{font-size:.84em}.ws-flow .wf-arrow{min-height:20px;margin:2px 0}.ws-flow .wf-arrow i{border-left-width:7px;border-right-width:7px;border-top-width:9px}.ws-flow .wf-arrow span{font-size:.8em}}@media print{.ws-flow{break-inside:avoid}}</style><div class="ws-flow"><div class="wf-head">교과서가 든 까닭 넷 — 위 문단을 한눈에</div><div class="wf-track"><div class="wf-row wf-n4 wf-grp"><div class="wf-lab">넷이 함께</div><div class="wf-box"><b>정치가 안정됨</b><span>자유로운 경제활동을 보장</span></div><div class="wf-box"><b>석탄과 철</b><span>땅속 자원이 풍부</span></div><div class="wf-box"><b>식민지</b><span>원료를 들여오고 상품을 팔 곳</span></div><div class="wf-box"><b>땅을 잃은 농민</b><span>② 뒤 도시로 — 값싼 일손</span></div></div><div class="wf-arrow"><i aria-hidden="true"></i><span>그래서</span></div><div class="wf-row wf-n1"><div class="wf-box wf-key"><b>영국에서 새 기계가 먼저 돌기 시작했다</b><span>교과서는 이 변화를 ①이라고 부른다</span></div></div></div></div>
+<br>
+<p>영국에서 이 변화는 면직물 공업에서 시작되었다. 면직물의 수요가 늘자 실을 뽑는 ③<input type="text" class="blank-input" data-answer="방적기" data-id="3" style="width:68px" placeholder="">와 옷감을 짜는 ④<input type="text" class="blank-input" data-answer="방직기" data-id="4" style="width:68px" placeholder="">가 발명되었다. 특히 제임스 와트가 개량한 ⑤<input type="text" class="blank-input" data-answer="증기 기관" data-id="5" style="width:100px" placeholder="">이 기계를 움직이는 데 사용되어 면직물의 대량 생산이 가능해졌다. 새로운 기계의 사용으로 전통적인 가내 수공업은 쇠퇴하고 ⑥<input type="text" class="blank-input" data-answer="공장제 기계 공업" data-id="6" style="width:164px" placeholder="">이 확대되었다.</p>
+<br>
+<div class="ws-figrow"><figure class="ws-figrow-item"><img src="images/5-2-1_뮬방적.webp" alt="③이 줄지어 선 공장(1835) — 기계 한 대가 실 수백 가닥을 한꺼번에 뽑는다. 오른쪽 아래, 기계 밑에 엎드려 바닥을 청소하는 사람이 있다. 움직이는 기계 밑을 기어 다니며 솜 찌꺼기를 줍는 이 일은 몸이 작은 아이들이 많이 맡았다. (토머스 앨럼 그림, 베인스 『영국 면직 공업의 역사』 1835)" loading="lazy"><figcaption>③이 줄지어 선 공장(1835) — 기계 한 대가 실 수백 가닥을 한꺼번에 뽑는다. 오른쪽 아래, 기계 밑에 엎드려 바닥을 청소하는 사람이 있다. 움직이는 기계 밑을 기어 다니며 솜 찌꺼기를 줍는 이 일은 몸이 작은 아이들이 많이 맡았다. (토머스 앨럼 그림, 베인스 『영국 면직 공업의 역사』 1835)</figcaption></figure><figure class="ws-figrow-item"><img src="images/5-2-1_직조공장.jpg" alt="④가 줄지어 선 공장(1835) — 천장의 축과 띠가 기계 수십 대를 함께 돌린다. 그림 속에서 일하는 사람은 대부분 여성이다. (같은 책 1835)" loading="lazy"><figcaption>④가 줄지어 선 공장(1835) — 천장의 축과 띠가 기계 수십 대를 함께 돌린다. 그림 속에서 일하는 사람은 대부분 여성이다. (같은 책 1835)</figcaption></figure></div>
+<br>
+<details class="ws-fold ws-fold-더보기"><summary>🌐 같은 때 저쪽에서는? — 영국이 기계를 만들기 전, 유럽 사람들은 어디서 온 옷감을 입었을까</summary><div class="ws-fold-body">
+<p>영국에서 면직물 기계가 나오기 전, 유럽 사람들이 즐겨 입던 면직물은 인도에서 온 '캘리코'였어(무굴 제국 때)(4-2-3에서 봤지?). 영국은 은을 주고 그 천을 사 왔지. 인도 면직물을 사 오는 대신 영국 안에서 더 싸게 만들려고 한 것이 기계가 나온 까닭 가운데 하나였다고 보는 학자들도 있어.</p>
+</div></details>
+<br>
+<p>영국에서 시작된 이 변화는 세계 곳곳으로 퍼졌다. 19세기 초반에는 벨기에와 프랑스가, 19세기 중반에는 미국이 산업화 단계로 접어들었다. 19세기 후반에는 독일, 러시아, 일본에서도 산업화가 진행되었는데, 이 시기에는 철강과 석유 등을 생산하는 ⑦<input type="text" class="blank-input" data-answer="중화학 공업" data-id="7" style="width:116px" placeholder="">이 크게 발전하였다. 19세기 이후 교통과 통신 분야에서도 큰 변화가 나타났다. ⑤를 활용한 기관차와 증기선 등이 등장하여 산업에 필요한 원료 및 제품 수송이 원활해졌고, 전신과 전화기가 발명되는 등 통신 수단도 발달하였다. 전통적인 농업 중심의 사회가 산업 사회로 바뀌었고, 대규모 공장이 들어선 지역을 중심으로 도시가 성장하였으며 인구가 급격하게 늘었다.</p>
+<br>
+<h2>📖 2단계: 새로운 사회 문제와 두 가지 답</h2>
+<blockquote>📕 <strong>교과서 160~162쪽</strong> 펴고 채우기 · 배정 시간 <strong>9분</strong></blockquote>
+<br>
+<blockquote>🎙️ 산업화로 생활은 훨씬 풍요롭고 편리해졌어. 그런데 그 풍요가 모두에게 돌아갔을까?</blockquote>
+<br>
+<p>산업화가 진행되면서 사람들의 생활은 이전보다 훨씬 풍요롭고 편리해졌다. 그러나 그 혜택이 모두에게 골고루 돌아가지 못하여 ⑧<input type="text" class="blank-input" data-answer="빈부 격차" data-id="8" style="width:100px" placeholder="">가 커졌다. 게다가 많은 사람이 도시로 몰려들어 주택과 화장실이 부족하였고, 상하수도 시설이 제대로 마련되지 않아 전염병이 유행하는 등 각종 도시 문제들이 발생하였다. 또한 노동자들은 비위생적이고 위험한 노동 환경에서 낮은 임금을 받으며 오랜 시간 노동에 시달렸다. 공장이나 상점의 주인들은 더 큰 이익을 얻고자 성인 남성보다 임금이 적은 아동을 고용하기도 하였다. 한편, 일부 노동자들은 기계가 등장한 탓에 자신들이 비참한 생활을 하게 되었다며 기계 파괴 운동(⑨<input type="text" class="blank-input" data-answer="러다이트 운동" data-id="9" style="width:132px" placeholder="">)을 벌였다.</p>
+<br>
+<figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"몇 살에 공장 일을 시작했나요? — 여섯 살 때요. 몇 시부터 몇 시까지 일했나요? — 바쁠 때는 아침 5시부터 밤 9시까지요. 밥 먹을 시간은요? — 점심에 40분이요. 아침은 일하면서 틈나는 대로 먹었어요. 조금이라도 늦거나 처지면요? — 끈으로 맞았어요."</blockquote><figcaption class="sr-c">— 엘리자베스 벤틀리(당시 23세)의 증언, 영국 의회 「공장 아동 노동 조사 위원회」 청문, 1832</figcaption></figure>
+<br>
+<p>산업화가 널리 퍼지면서 자본가와 노동자라는 새로운 계급이 등장하였다. 자본을 가진 공장주나 은행가와 같은 자본가는 새로운 지배 계급으로 성장하였다. 반면, 자본을 가지지 못한 노동자는 자본가에게 고용되어 임금을 받으며 생활하였다. 이런 새로운 생산관계가 만들어지는 과정에서 생산과 소비가 시장에 따라 결정되는 ⑩<input type="text" class="blank-input" data-answer="자본주의" data-id="10" style="width:84px" placeholder=""> 체제가 자리를 잡았다. 애덤 스미스는 정부의 간섭 없이 생산자와 소비자의 자유로운 경제활동을 보장해야 한다는 ⑪<input type="text" class="blank-input" data-answer="자유방임주의" data-id="11" style="width:116px" placeholder="">를 주장하며 이 체제를 이론적으로 뒷받침하였다.</p>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 160쪽 · '산업 사회의 두 계층' 그림</div><div class="ws-tb-see">교과서 160쪽 '산업 사회의 두 계층' 그림은 같은 때 영국 사람들을 위 칸과 아래 칸으로 나누어 그렸다.</div><div class="ws-tb-ask">위 칸 사람들과 아래 칸 사람들의 생활이 어떻게 다른지 한 가지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 160쪽에서 찾기 — 위 칸 사람들과 아래 칸 사람들의 생활이 어떻게 다른지 한 가지 적자" style="width:200px" placeholder=""></div></div>
+<br>
+<p>산업화 이후 노동 문제와 가난 등 각종 사회 문제가 일어나자 이 체제를 비판하는 ⑫<input type="text" class="blank-input" data-answer="사회주의" data-id="12" style="width:84px" placeholder=""> 사상이 등장하였다. 이 사상을 따르는 사람들은 모든 사람이 토지나 공장과 같은 생산 수단을 공동으로 소유하면 부자와 가난한 사람 사이의 차이를 없앨 수 있다고 주장하였다. 오언은 협동을 강조하는 작업 공동체를 만들었다. 한편, 마르크스는 노동자들이 뜻을 하나로 모아 자본가들을 무너뜨리고 새로운 사회를 만들어야 한다고 주장하였다.</p>
+<br>
+<style>.ws-cast{margin:12px 0 18px;padding:10px 12px 8px;border-radius:14px;background:#f6f3ec;border:1px solid #e3dccb}.ws-cast .cast-head{font-size:.84em;font-weight:700;color:#6b5a36;margin:0 0 8px;letter-spacing:.02em}.ws-cast .cast-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px 4px}.ws-cast .cast-p{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;padding:4px 2px 6px;font:inherit;color:inherit;cursor:pointer;border-radius:10px;text-align:center;word-break:keep-all}.ws-cast .cast-p img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 30%;border:2px solid #fff;box-shadow:0 0 0 1.5px #c9b98f;margin-bottom:2px}.ws-cast .cast-p b{font-size:.84em;line-height:1.25}.ws-cast .cast-p span{font-size:.74em;color:#6a6253;line-height:1.25}.ws-cast .cast-p[aria-expanded="true"]{background:#fff}.ws-cast .cast-p[aria-expanded="true"] img{box-shadow:0 0 0 3px #b8862b}.ws-cast .cast-note p{margin:6px 2px 2px;font-size:.88em;line-height:1.55;background:#fff;border-radius:10px;padding:8px 10px;border:1px solid #e3dccb}.ws-cast .cast-note p[hidden]{display:none}.ws-cast .cast-src{font-size:.72em;color:#857c69;margin-top:4px}@media (max-width:640px){.ws-cast .cast-row{grid-template-columns:repeat(var(--n,4),1fr)}.ws-cast .cast-p img{width:56px;height:56px}}@media print{.ws-cast .cast-note p[hidden]{display:block}}</style><div class="ws-cast" role="group" aria-label="같은 공장을 보고 한 세 가지 생각 — 얼굴을 누르면 한 줄 소개"><div class="cast-head">같은 공장을 보고 한 세 가지 생각 — 얼굴을 누르면 한 줄 소개</div><div class="cast-row" style="--n:3"><button type="button" class="cast-p" aria-expanded="false" aria-controls="cast1-0" onclick="var w=this.closest('.ws-cast'),o=this.getAttribute('aria-expanded')==='true';w.querySelectorAll('.cast-p').forEach(function(b){b.setAttribute('aria-expanded','false')});w.querySelectorAll('.cast-note p').forEach(function(p){p.hidden=true});if(!o){this.setAttribute('aria-expanded','true');document.getElementById('cast1-0').hidden=false}"><img src="images/5-2_인물_스미스.webp" alt="애덤 스미스 초상" loading="lazy"><b>애덤 스미스</b><span>1723~1790</span></button><button type="button" class="cast-p" aria-expanded="false" aria-controls="cast1-1" onclick="var w=this.closest('.ws-cast'),o=this.getAttribute('aria-expanded')==='true';w.querySelectorAll('.cast-p').forEach(function(b){b.setAttribute('aria-expanded','false')});w.querySelectorAll('.cast-note p').forEach(function(p){p.hidden=true});if(!o){this.setAttribute('aria-expanded','true');document.getElementById('cast1-1').hidden=false}"><img src="images/5-2_인물_오언.webp" alt="로버트 오언 초상" loading="lazy"><b>로버트 오언</b><span>1771~1858</span></button><button type="button" class="cast-p" aria-expanded="false" aria-controls="cast1-2" onclick="var w=this.closest('.ws-cast'),o=this.getAttribute('aria-expanded')==='true';w.querySelectorAll('.cast-p').forEach(function(b){b.setAttribute('aria-expanded','false')});w.querySelectorAll('.cast-note p').forEach(function(p){p.hidden=true});if(!o){this.setAttribute('aria-expanded','true');document.getElementById('cast1-2').hidden=false}"><img src="images/5-2_인물_마르크스.webp" alt="카를 마르크스 초상" loading="lazy"><b>카를 마르크스</b><span>1818~1883</span></button></div><div class="cast-note"><p id="cast1-0" hidden><b>애덤 스미스</b> — 영국의 경제학자. 1776년에 낸 책에서, 정부가 끼어들지 않으면 시장이 알아서 생산과 값을 맞춘다고 보았다. 공장 문제가 커지기 전이었다.</p><p id="cast1-1" hidden><b>로버트 오언</b> — 영국의 공장주. 자기 공장 마을에서 노동 시간을 줄이고 아이들을 학교에 보내며, 서로 돕는 공동체를 만들려 했다.</p><p id="cast1-2" hidden><b>카를 마르크스</b> — 독일에서 태어나 런던에서 『자본론』을 쓴 사상가. 노동자들이 힘을 모아 자본가를 무너뜨려야 한다고 보았다.</p></div></div>
+<br>
+<table>
+<tr><td></td><td>애덤 스미스</td><td>로버트 오언</td><td>카를 마르크스</td></tr>
+<tr><td>생각의 이름</td><td>⑪</td><td>⑫</td><td>⑫</td></tr>
+<tr><td>공장·땅은 누가?</td><td>저마다 따로 가진다(사유 재산)</td><td>모두 함께</td><td>모두 함께</td></tr>
+<tr><td>어떻게 하자고 했나</td><td>정부는 끼어들지 말고 시장에 맡기자</td><td>서로 돕는 공동체에서 자본가와 노동자가 힘을 합치자</td><td>노동자가 뭉쳐 자본가를 무너뜨리자</td></tr>
+</table>
+<br>
+<blockquote>🎙️ 스미스는 공장 문제가 커지기 전에 '정부가 끼어들지 않으면 시장이 알아서 굴러간다'고 봤어. 공장이 늘고 가난이 눈에 보이자 오언과 마르크스는 '공장과 땅을 함께 갖자'고 했지. 둘 다 ⑫지만, 오언은 서로 돕는 공동체로, 마르크스는 노동자가 뭉쳐 뒤집는 길로 가자고 했어.</blockquote>
+<br>
+<h2>📖 3단계: 바다 건너 땅을 나누다</h2>
+<blockquote>📕 <strong>교과서 163~165쪽</strong> 펴고 채우기 · 배정 시간 <strong>11분</strong></blockquote>
+<br>
+<blockquote>🎙️ 공장이 많아질수록 더 많은 원료와 더 많은 시장이 필요해졌어. 그 둘을 어디서 구했을까?</blockquote>
+<br>
+<p>19세기 후반 서양에서는 산업화가 빠르게 진행되면서 경제가 크게 발전하였다. 그러자 서양 열강은 산업 발전을 위해 값싼 원료 공급지와 상품 판매 시장을 확보하고, 남아도는 국내 자본을 투자할 곳을 찾아 나섰다. 이 과정에서 서양 열강은 군사력을 앞세워 힘이 약한 작은 나라를 식민지로 삼았는데, 이러한 팽창 정책을 ⑬<input type="text" class="blank-input" data-answer="제국주의" data-id="13" style="width:84px" placeholder="">라고 한다. 이런 나라들은 약소국이 강대국의 지배를 받는 것이 당연하다는 ⑭<input type="text" class="blank-input" data-answer="사회 진화론" data-id="14" style="width:116px" placeholder="">을 내세웠다. 나아가 백인종이 유색 인종보다 우월하다는 ⑮<input type="text" class="blank-input" data-answer="인종주의" data-id="15" style="width:84px" placeholder="">에 따라 미개한 아시아, 아프리카 지역을 식민지로 삼아 문명화하는 것이 자신들의 의무이며, 이는 식민지인에게 베푸는 은혜라고 주장하였다. 열강은 이를 바탕으로 식민지 침략을 정당화하였다.</p>
+<br>
+<div class="ws-flow"><div class="wf-head">제국주의는 이렇게 굴러갔다 — 위 문단을 사슬로 펴면</div><div class="wf-track"><div class="wf-row wf-n1"><div class="wf-box"><b>산업화가 빨라지고 경제가 커졌다</b><span>19세기 후반 서양</span></div></div><div class="wf-arrow"><i aria-hidden="true"></i><span>그래서 셋을 찾아 나섰다</span></div><div class="wf-row wf-n3 wf-grp"><div class="wf-lab">셋이 함께</div><div class="wf-box"><b>값싼 원료</b><span>공장에 넣을 것</span></div><div class="wf-box"><b>상품 팔 시장</b><span>만든 것을 팔 곳</span></div><div class="wf-box"><b>돈 굴릴 곳</b><span>남아도는 국내 자본</span></div></div><div class="wf-arrow"><i aria-hidden="true"></i><span>군사력을 앞세워</span></div><div class="wf-row wf-n1"><div class="wf-box wf-key"><b>힘이 약한 나라를 식민지로</b><span>이 팽창 정책이 ⑬</span></div></div><div class="wf-arrow"><i aria-hidden="true"></i><span>침략을 정당하다고 우긴 생각</span></div><div class="wf-row wf-n2 wf-grp"><div class="wf-box wf-slot"><b>⑭</b><span>약한 나라는 강한 나라의 지배를 받는 게 당연하다</span></div><div class="wf-box wf-slot"><b>⑮</b><span>백인이 더 뛰어나니 '문명화'는 의무이자 은혜다</span></div></div></div></div>
+<br>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 163쪽 · ① 제국주의 풍자화</div><div class="ws-tb-see">교과서 163쪽 본문 오른쪽 ① 「제국주의 풍자화」는 식민지 원주민을 기계에 넣고 쥐어짜는 모습이다.</div><div class="ws-tb-ask">기계 둘레에 선 세 사람이 누구인지 그림에서 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="교과서 163쪽에서 찾기 — 기계 둘레에 선 세 사람이 누구인지 그림에서 찾아 적자." style="width:200px" placeholder=""></div></div>
+<br>
+<p>19세기 중반 이후 탐험가들의 활동으로 아프리카에 지하자원이 풍부하다는 사실이 유럽에 전해졌다. 그러자 유럽 열강은 앞다투어 아프리카를 침략하기 시작하였다. 이들은 ⑯<input type="text" class="blank-input" data-answer="베를린 회의" data-id="16" style="width:116px" placeholder="">에서 아프리카 분할에 합의하였고(1884), 이후 유럽 열강의 식민지 획득 경쟁은 더욱 치열해졌다. 영국은 아프리카를 남북으로 점령해 가면서 카이로와 케이프타운을 연결하는 ⑰<input type="text" class="blank-input" data-answer="종단 정책" data-id="17" style="width:100px" placeholder="">을 펼쳤다. 반면, 프랑스는 알제리에서부터 마다가스카르까지 아프리카를 동서로 점령하는 횡단 정책을 추진하였다. 이 과정에서 프랑스와 영국이 파쇼다 지역에서 충돌하였다(파쇼다 사건, 1898). 한편, 뒤늦게 식민지 경쟁에 뛰어든 독일은 모로코를 둘러싸고 프랑스와 대립하였다. 이와 같은 침략으로 라이베리아와 에티오피아를 제외한 아프리카의 대부분이 열강의 식민지가 되었다.</p>
+<br>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_아프리카분할_v2.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_아프리카분할_v2.webp" alt="1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 1914년까지는 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있었고, 카이로와 케이프타운을 잇는 철도는 끝내 완성되지 못했다. (경계는 개념도 정밀도)" loading="lazy"></a><figcaption>1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 1914년까지는 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있었고, 카이로와 케이프타운을 잇는 철도는 끝내 완성되지 못했다. (경계는 개념도 정밀도)</figcaption></figure>
+<br>
+<details class="ws-fold ws-fold-더보기"><summary>그림으로 보는 ⑰ — 아프리카 남쪽 끝과 북쪽 끝을 두 발로 밟은 사람(1892)</summary><div class="ws-fold-body">
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_로즈의거상.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_로즈의거상.webp" alt="영국 잡지 『펀치』의 풍자화 「로즈의 거상」(1892) — 남아프리카 케이프 식민지의 총리 세실 로즈가 케이프타운과 카이로를 두 발로 딛고 서서 전신선을 잇고 있다. (에드워드 린리 샘번 그림 · 퍼블릭 도메인)" loading="lazy"></a><figcaption>영국 잡지 『펀치』의 풍자화 「로즈의 거상」(1892) — 남아프리카 케이프 식민지의 총리 세실 로즈가 케이프타운과 카이로를 두 발로 딛고 서서 전신선을 잇고 있다. (에드워드 린리 샘번 그림 · 퍼블릭 도메인)</figcaption></figure>
+</div></details>
+<br>
+<p>17세기경 인도에 진출한 영국은 동인도 회사를 세워 인도를 지배하다가 19세기 후반부터는 총독을 보내어 직접 다스렸다. 프랑스는 베트남과 캄보디아 등 인도차이나반도를 점령하였고, 네덜란드는 인도네시아의 대부분 지역을 식민지로 삼았다. 영국, 프랑스, 독일 등은 영토가 넓고 인구가 많은 중국에 진출하여 여러 이권을 빼앗고 정치에 간섭하였다. 미국은 하와이를 병합하고, 필리핀과 괌을 차지하였다. 그 결과 20세기 초에는 아시아와 태평양 대부분의 지역이 서양 열강의 지배를 받게 되었다.</p>
+<br>
+<h2>📖 4단계: 세계가 하나로 묶이고 자연이 바뀌다</h2>
+<blockquote>📕 <strong>교과서 166~167쪽</strong> 펴고 채우기 · 배정 시간 <strong>6분</strong></blockquote>
+<br>
+<blockquote>🎙️ 포그가 80일 만에 세계를 돈 그 기차와 증기선, 그 길로 무엇이 오갔을까?</blockquote>
+<br>
+<p>산업화 이후 교통과 통신이 발달하면서 세계를 잇는 커다란 연결망이 만들어졌다. 사람들은 철도와 증기선을 이용하여 다양한 지역으로 이동할 수 있게 되었고, 그 과정에서 서양의 선진 문물이 전 세계로 퍼져 나갔다. 19세기 말부터 서양의 여러 나라가 영국의 그리니치 천문대를 기준으로 하는 ⑱<input type="text" class="blank-input" data-answer="표준시" data-id="18" style="width:68px" placeholder="">를 사용하였고, 20세기에는 전 세계가 이를 사용하였다. 서양의 의상과 건축 방식도 빠르게 전파되었고, 민주주의와 같은 정치 제도와 자유주의, 민족주의 등 다양한 사상이 여러 나라로 퍼졌다. 한편, 열강의 지배를 받던 국가들은 다른 나라와 자유롭게 교류하기 어려웠다. 식민지 국가는 열강이 요구하는 특정 품목만 교역할 수 있었고, 그 결과 식민지 국가의 경제는 서양 열강에 ⑲<input type="text" class="blank-input" data-answer="의존" data-id="19" style="width:60px" placeholder="">하는 형태를 띠었다.</p>
+<br>
+<p>산업화가 진행되면서 도시의 인구는 폭발적으로 증가하였다. 사람들은 점차 국내 도시뿐 아니라 해외로 이동하기 시작하였고, 수많은 사람이 유럽을 떠나 아메리카 대륙의 여러 나라와 오스트레일리아, 뉴질랜드 등으로 이주하였다. 열강의 침략과 대규모 인구 이동은 세계 여러 나라의 생태환경에 큰 영향을 주었다. 열강이 식민지에서 목재나 광물 등 공업의 원료가 되는 자원을 무분별하게 착취하면서 식민지 국가의 ⑳<input type="text" class="blank-input" data-answer="산림" data-id="20" style="width:60px" placeholder="">이 크게 파괴되었다. 한편, 유럽인이 적극적으로 해외로 진출하고 그곳에 정착하면서 유럽의 생태환경도 전 세계로 퍼졌다.</p>
+<br>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-3_토끼.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-3_토끼.jpg" alt="1938년 오스트레일리아 와르당섬의 웅덩이 — 물을 마시러 몰려든 토끼들이다. 원래 오스트레일리아에는 토끼가 살지 않았다. (작자 미상)" loading="lazy"></a><figcaption>1938년 오스트레일리아 와르당섬의 웅덩이 — 물을 마시러 몰려든 토끼들이다. 원래 오스트레일리아에는 토끼가 살지 않았다. (작자 미상)</figcaption></figure>
+<br>
+<h2>⭕ OX 퀴즈</h2>
+<table>
+<tr><td>#</td><td>문장</td><td>O/X</td></tr>
+<tr><td>1</td><td>새로운 기계가 쓰이면서 집에서 손으로 물건을 만드는 가내 수공업이 더 커졌다.</td><td><div class="ox-group" data-answer="X" data-label="새로운 기계가 쓰이면서 집에서 손으로 물건을 만드는 가내 수공업이 더 커졌다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>2</td><td>산업화로 생활은 풍요로워졌지만, 그 혜택이 모두에게 골고루 돌아가지는 않았다.</td><td><div class="ox-group" data-answer="O" data-label="산업화로 생활은 풍요로워졌지만, 그 혜택이 모두에게 골고루 돌아가지는 않았다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>3</td><td>애덤 스미스는 정부가 경제활동에 적극적으로 끼어들어야 한다고 주장하였다.</td><td><div class="ox-group" data-answer="X" data-label="애덤 스미스는 정부가 경제활동에 적극적으로 끼어들어야 한다고 주장하였다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>4</td><td>아프리카를 두고 경쟁한 영국과 프랑스는 같은 방향으로 땅을 넓혀 나갔다.</td><td><div class="ox-group" data-answer="X" data-label="아프리카를 두고 경쟁한 영국과 프랑스는 같은 방향으로 땅을 넓혀 나갔다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+<tr><td>5</td><td>유럽인이 해외에 정착하면서 유럽의 동식물도 함께 퍼져 그곳의 자연이 바뀌었다.</td><td><div class="ox-group" data-answer="O" data-label="유럽인이 해외에 정착하면서 유럽의 동식물도 함께 퍼져 그곳의 자연이 바뀌었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
+</table>
+<br>
+<h2>🧵 오늘 구슬 달기</h2>
+<blockquote>🎙️ 우리가 서양사를 꿰어 온 줄은 셋이야. ① 전쟁할 돈은 누가 냈고, 낸 사람은 무엇을 요구했나? ② 누구와 어떻게 오가고 부딪쳤나? 그래서 무엇이 퍼졌나? ③ 사람들은 무엇을 믿고 어떻게 생각을 바꿨나?</blockquote>
+<br>
+<p>오늘 배운 것 가운데 하나를 골라, 세 줄 가운데 어디에 가장 잘 걸리는지 번호와 까닭을 한 문장으로 적자. 딱 맞는 줄이 없으면 가장 가까운 줄을 고르고, 왜 가깝다고 보는지를 까닭에 쓰면 된다. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="오늘 배운 것 가운데 하나를 골라, 세 줄 가운데 어디에 가장 잘 걸리는" style="width:300px" placeholder=""></p>
+<br>
+<h2>다음 시간 예고</h2>
+<p>🔜 <strong>세계 대전과 사회 변동</strong> — 식민지를 나누던 열강의 경쟁은 끝내 유럽 안에서 터진다. 다음 단원에서 본다.</p>
+<br>
+<blockquote>📚 오늘 한 시간에 담지 못한 이야기(디킨스 소설 속 도시, 한국 시각 이야기, 엘리스섬 이민자)는 원래 학습지 5-2-1~5-2-3에 그대로 있다.</blockquote>
+<br>
+<details class="ws-fold ws-fold-더보기"><summary>🌍 예습·복습 — 시기별 세계 지구본(바깥 사이트)</summary><div class="ws-fold-body">
+<p><a href="https://42-apps.github.io/ahistoryofnations/app/nations.html" target="_blank" rel="noopener">A History of Nations</a> — 지구본을 돌리고 아래 막대나 ‹ › 단추로 해를 옮기면 그때의 나라 경계가 칠해진다(영어, 1800·1850·1900·1914년처럼 정해진 해만). 1850년과 1900년을 번갈아 눌러, 아프리카가 «British Africa»·«French Africa» 같은 열강의 색으로 덮이는 것을 보자. 그 사이 끝까지 남은 두 나라도 찾아보자.</p>
+<p>⚠️ 경계는 대략이고 이름표가 틀린 곳도 있다. 1900년 지도에 «Belgian Congo»라고 나오지만, 그때는 아직 벨기에 국왕 레오폴드 2세의 «콩고 자유국»이었다(1908년에 벨기에 식민지가 됨). 교과서와 다르면 교과서를 따른다.</p>
+</div></details>
+<br>
+<details class="ws-fold ws-fold-더보기"><summary>🖼 그림 출처</summary><div class="ws-fold-body">
+<p>위키미디어 공용(퍼블릭 도메인): 방적·직조 공장(T. 앨럼 그림, 에드워드 베인스 『영국 면직 공업의 역사』 1835) · 애덤 스미스(19세기 판화, 원작 1787) · 로버트 오언(헨리 토머스 라이얼 판화, 1835) · 카를 마르크스(1875 사진) · 로즈의 거상(에드워드 린리 샘번, 『펀치』 1892).</p>
+</div></details>
+<br>
+</div>
+<script>
+const TB=20, TOX=5, GT=25;
+let usedReveal=false;
+function selectOX(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.ox-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+function selectChoice(btn, val){
+  const grp=btn.parentElement;
+  grp.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  grp.dataset.selected=val;
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.hero-keyword.has-card') : null;
+  if (!b) return;
+  var card = document.getElementById('hero-card-' + b.dataset.card);
+  if (!card) return;
+  if (window.HERO_LOCK) {
+    var n = document.getElementById('hero-lock-note');
+    if (!n) { n = document.createElement('div'); n.id = 'hero-lock-note'; n.className = 'hero-lock-note';
+      n.textContent = '🔒 카드는 빈칸을 다 채우고 [채점하기]를 누르면 열려. 먼저 풀어 보자!';
+      b.parentElement.insertAdjacentElement('afterend', n); }
+    n.hidden = false; return;
+  }
+  var open = card.hasAttribute('hidden');
+  if (open) { card.removeAttribute('hidden'); } else { card.setAttribute('hidden',''); }
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.querySelector('.kw-caret').textContent = open ? '−' : '＋';
+});
+function replayAnim(id){
+  // 애니메이션 WebP/GIF는 loop=1로 구워져 한 번만 재생된다(WCAG 2.2.2).
+  // src를 캐시버스터와 함께 갈아 끼우면 처음부터 다시 돈다.
+  const im=document.getElementById(id); if(!im) return;
+  const base=im.dataset.src||im.src.split('?')[0];
+  im.src='';
+  setTimeout(()=>{ im.src = base + '?r=' + Date.now(); }, 30);
+}
+function ytPlay(b){
+  var id = b.dataset.yt, w = document.createElement('div');
+  w.className = 'vid-frame';
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + id +
+          '?rel=0&modestbranding=1&playsinline=1&autoplay=1';
+  f.title = '영상';
+  f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+  f.setAttribute('allowfullscreen', '');
+  w.appendChild(f);
+  b.replaceWith(w);
+}
+function galGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n;
+  i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-gal-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-gal-dot').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-gal-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function galStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  galGo(id, (+(g.dataset.cur||0)) + d);
+}
+function cmpGo(id,i){
+  const g=document.getElementById(id); if(!g) return;
+  const n=+g.dataset.n; i=((i%n)+n)%n;
+  g.querySelectorAll('.ws-cmp-slide').forEach(e=>{ e.hidden = (+e.dataset.i !== i); });
+  g.querySelectorAll('.ws-cmp-tab').forEach((e,k)=>e.classList.toggle('on',k===i));
+  const c=g.querySelector('.ws-cmp-count b'); if(c) c.textContent = i+1;
+  g.dataset.cur = i;
+}
+function cmpStep(id,d){
+  const g=document.getElementById(id); if(!g) return;
+  cmpGo(id, (+(g.dataset.cur||0)) + d);
+}
+function norm(s){return (s||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase();}
+window.HERO_LOCK = true;
+function check(){
+  window.HERO_LOCK = false; var _hn = document.getElementById('hero-lock-note'); if (_hn) _hn.hidden = true;
+  let bc=0, oxc=0;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    const a=norm(el.dataset.answer), u=norm(el.value);
+    if(!u){el.classList.remove('correct','wrong');return;}
+    // ⭐ 5/27 fix: no-score(활동·코드블록) input은 채점 시각 표시 제외
+    if(el.classList.contains('no-score')){el.classList.remove('correct','wrong');return;}
+    const isCorrect=u===a||a.includes(u)&&u.length>=a.length*0.6;
+    if(isCorrect){
+      el.classList.add('correct');el.classList.remove('wrong');
+      bc++;
+    }else{el.classList.add('wrong');el.classList.remove('correct');}
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const sel=grp.dataset.selected, ans=grp.dataset.answer;
+    if(!sel) return;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');oxc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const sel=grp.dataset.selected;
+    if(!sel) return;
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('correct','wrong');
+      if(btn.classList.contains('selected')){
+        if(sel===ans){btn.classList.add('correct');bc++;}
+        else{btn.classList.add('wrong');}
+      }
+    });
+  });
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=bc;
+    document.getElementById('ox-score').textContent=oxc;
+    document.getElementById('total-score').textContent=bc+oxc;
+    document.getElementById('pct').textContent=GT?Math.round((bc+oxc)/GT*100):0;
+  }
+}
+function reveal(){
+  usedReveal=true;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value=el.dataset.answer;el.classList.add('correct');el.classList.remove('wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(grp=>{
+    const ans=grp.dataset.answer;
+    grp.querySelectorAll('.ox-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.querySelectorAll('.choice-group').forEach(grp=>{
+    const ans=grp.querySelector('.choice-btn').dataset.answer;
+    grp.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.classList.remove('selected','wrong');
+      if(btn.textContent===ans){btn.classList.add('selected','correct');}
+    });
+    grp.dataset.selected=ans;
+  });
+  document.getElementById('score').textContent=TB;
+  document.getElementById('ox-score').textContent=TOX;
+  document.getElementById('total-score').textContent=GT;
+  document.getElementById('pct').textContent=100;
+}
+function reset(){
+  usedReveal=false;
+  document.querySelectorAll('.blank-input').forEach(el=>{
+    el.value='';el.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.ox-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.ox-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.classList.remove('selected','correct','wrong');
+  });
+  document.querySelectorAll('.choice-group').forEach(g=>{delete g.dataset.selected;});
+  document.querySelectorAll('.essay-input').forEach(el=>{el.value='';});
+  const _sc=document.getElementById('score');
+  if(_sc){
+    _sc.textContent=0;
+    document.getElementById('ox-score').textContent=0;
+    document.getElementById('total-score').textContent=0;
+    document.getElementById('pct').textContent=0;
+  }
+}
+// 저장/복원 — 빈칸·OX·서술형(essay)·보기버튼 *전부* localStorage에 보존 (6/8 확장)
+// ⭐ EXAM_MODE (6/12·공용 노트북 잔존 사고): 평가지는 저장 키에 반-번호를 묶는다.
+//    신원 입력 전 = 저장/복원 없음 → 다른 학생이 같은 노트북·같은 URL을 열어도 이전 답이 안 보임.
+//    본인 반·번호를 입력하면 *자기 키*만 복원 (새로고침 안전망 유지).
+const EXAM_MODE=false;
+// 학생정보 3필드 접근 — 2026-08-27부터 반·번호는 <select>, 이름만 <input>.
+// nth-child 셀렉터는 필드 순서가 바뀌면 조용히 깨지므로 id로 고정한다.
+function _siEl(id){ return document.getElementById(id); }
+function _siv(id){ const e=_siEl(id); return e?e.value.trim():''; }
+// 🔴 2026-08-31: 저장 키에 '정답 체계 지문'을 붙인다.
+//   사고 — 3-3-1의 빈칸을 21→15로 줄이자, v1 때 채워 둔 답이 v2 번호로 복원되며
+//   ⑤부터 한 칸씩 밀렸다(⑤에 '봉신', ⑥에 '주종 관계'). 화면만 보면 "답이 노출되고
+//   매칭이 틀린" 것처럼 보이는데, 실제로는 옛 입력이 새 번호에 얹힌 것이다.
+//   빈칸 개수·정답 문자열이 바뀌면 지문이 달라져 옛 답이 붙지 않는다.
+function _wsFp(){
+  let sig='';
+  document.querySelectorAll('.blank-input:not(.activity-input),.ox-group').forEach(el=>{
+    sig += (el.dataset.answer||'') + '|';
+  });
+  let h=5381;
+  for(let i=0;i<sig.length;i++){ h=((h*33)^sig.charCodeAt(i))>>>0; }
+  return h.toString(36);
+}
+function _wsKey(){
+  const fp='::v'+_wsFp();
+  if(!EXAM_MODE) return 'ws_'+document.title+fp;
+  const c=_siv('si-cls'), n=_siv('si-num');
+  if(!c||!n) return null;
+  return 'ws_'+document.title+fp+'::'+c+'-'+n;
+}
+// 지문 도입 이전(=구키)에 저장된 답은, 빈칸 개수가 그대로일 때만 이어받는다.
+//   같으면 단순 재발행이므로 학생이 쓰던 답을 살리고, 다르면 구조가 바뀐 것이므로 버린다.
+function _migrateOldKey(newKey){
+  const oldKey = EXAM_MODE
+    ? 'ws_'+document.title+'::'+_siv('si-cls')+'-'+_siv('si-num')
+    : 'ws_'+document.title;
+  let raw; try{ raw=localStorage.getItem(oldKey); }catch(e){ return; }
+  if(!raw) return;
+  try{
+    const p=JSON.parse(raw), d=p.data||{};
+    const nowN=document.querySelectorAll('.blank-input:not(.activity-input)').length;
+    const oldN=Object.keys(d).filter(k=>/^\d+$/.test(k)).length;
+    if(oldN===nowN) localStorage.setItem(newKey, raw);   // 구조 동일 → 이어받기
+  }catch(e){}
+  try{ localStorage.removeItem(oldKey); }catch(e){}  // 구키는 어느 쪽이든 정리
+}
+// 2026-11-03 오후 천대현 «반·번호 입력해도 안 살아난다» — 복원을 보류한 사이 이름을 치거나 반만 고르면 'input' 자동저장이
+//   빈 화면을 저장본 위에 덮어썼다(재현: 이름 먼저·반 고르고 2초 뒤 번호 → 빈칸). 보류 중이고 화면에 쓴 답이 하나도 없으면 덮지 않는다.
+let _restoreHeld=false;
+let _restoredOwner=null;   // 화면에 저장본을 되살렸을 때 그 주인(반·번호) — 다른 반·번호로 바꾸면 화면 답을 비운다(11/3 저녁)
+function _anyAnswer(){
+  if([...document.querySelectorAll('.blank-input,.ox-input,.essay-input')].some(el=>el.value&&el.value.trim())) return true;
+  return [...document.querySelectorAll('.ox-group,.choice-group')].some(g=>g.dataset.selected);
+}
+// 화면의 답만 비운다(이 기기 저장본은 건드리지 않는다). 채점 표시·점수도 reset()이 함께 지운다.
+function _clearScreenAnswers(){
+  try{ reset(); }catch(e){}
+  document.querySelectorAll('.ox-input').forEach(el=>{ el.value=''; });
+}
+function _persist(){
+  const key=_wsKey(); if(!key) return;
+  if(_restoreHeld && !_anyAnswer()) return;
+  const data={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    data[el.dataset.id||el.dataset.answer||('input_'+i)]=el.value;
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('ox_'+i))]=g.dataset.selected||''; });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{ data['__sel_'+(g.dataset.id||('choice_'+i))]=g.dataset.selected||''; });
+  const info={class:_siv('si-cls'),number:_siv('si-num'),name:_siv('si-name')};
+  try{ localStorage.setItem(key, JSON.stringify({info,data,ts:Date.now()})); }catch(e){}
+}
+function saveProgress(){ _persist(); alert('저장되었습니다! 같은 기기에서 반·번호를 고르면 이어서 쓸 수 있어요.\n※ 제출을 마치면 이 기기에 남긴 답은 지워집니다.'); }
+let _autosaveT;
+function autosave(){ clearTimeout(_autosaveT); _autosaveT=setTimeout(_persist,1200); }
+// 2026-11-03 천대현 «저장을 눌러도 새로고침하면 날아간다» — 실제로는 반·번호를 고를 때까지 복원을 보류한 것(9/4 신원 대조)인데
+//   화면에 아무 말이 없어 날아간 것으로 보였다. 보류 중이면 반·번호 칸 옆에 한 줄 안내를 띄운다(누구 답인지는 말하지 않는다).
+function _restoreHint(on){
+  let h=document.getElementById('ws-restore-hint');
+  if(!on){ if(h) h.remove(); return; }
+  if(h) return;
+  const anchor=_siEl('si-cls'); if(!anchor) return;
+  h=document.createElement('div'); h.id='ws-restore-hint'; h.setAttribute('role','status');
+  h.style.cssText='margin:8px 0;padding:8px 12px;border-radius:8px;background:#fff6d6;color:#5a4300;border:1px solid #e8cf7a;font-size:15px;line-height:1.5';
+  h.textContent='💾 이 기기에 저장해 둔 답이 있어요. 반·번호를 고르면 이어서 쓸 수 있어요.';
+  const box=anchor.closest('div')||anchor.parentNode; box.parentNode.insertBefore(h, box.nextSibling);
+}
+function loadProgress(){
+  // 2026-11-03 저녁 천대현 «제출 전 베끼기도 막자» — 앞 주인 답을 되살려 둔 화면에서 반·번호만 바꾸면 그 답이 그대로 남아
+  //   다른 학생 이름으로 제출될 수 있었다. 화면 답이 앞 주인 저장본에서 온 경우에만 화면을 비운다(저장본은 둔다 — 주인이 다시 고르면 돌아온다).
+  //   스스로 쓰던 답(복원한 적 없음)은 건드리지 않는다. 평가지는 키가 반·번호마다 달라 새 키엔 저장본이 없으므로
+  //   이 검사를 키 조회보다 앞에 둔다(역사 검토 11/3 🟡). 밀린 자동저장이 앞 주인 답을 새 반·번호로 쓰지 않게 타이머도 끊는다.
+  const c0=_siv('si-cls'), n0=_siv('si-num');
+  if(_restoredOwner && c0 && n0 && (String(_restoredOwner.class)!==String(c0) || String(_restoredOwner.number)!==String(n0))){
+    clearTimeout(_autosaveT); _clearScreenAnswers(); _restoredOwner=null;
+  }
+  const key=_wsKey(); if(!key) return;  // 평가 모드: 반·번호 입력 전엔 복원 없음
+  _migrateOldKey(key);
+  let saved; try{ saved=localStorage.getItem(key); }catch(e){}
+  if(!saved) return;
+  let parsed; try{ parsed=JSON.parse(saved); }catch(e){ return; }
+  const info=parsed.info, data=parsed.data;
+  // 🔒 2026-09-04 — 복원 전에 **신원을 대조한다**.
+  //   종전에는 저장된 반·번호·이름을 화면에 그대로 채워 넣었다. 그래서 친구 노트북을 빌린 학생이
+  //   열면 **남의 답과 남의 이름이 이미 적혀 있었고, 이름만 바꾸면 그대로 제출**됐다(천대현 관찰).
+  //   이제 저장된 주인과 지금 앉은 사람이 같을 때만 복원한다.
+  if(info && (info.class||info.number)){
+    const c=_siv('si-cls'), n=_siv('si-num');
+    if(!c || !n){ _restoreHeld=true; _restoreHint(true); return; }          // 아직 신원을 안 넣었다 → 보류(넣으면 리스너가 다시 부른다)
+    if(String(info.class)!==String(c) || String(info.number)!==String(n)){ _restoreHeld=true; _restoreHint(false); return; }  // 주인이 다르다 → 복원 안 함(안내도 지운다 — 남의 답이 있다는 신호가 되지 않게, 역사 검토 11/3)
+  }
+  _restoreHeld=false; _restoreHint(false);
+  if(!data) return;
+  if(info && (info.class||info.number)) _restoredOwner={class:info.class,number:info.number};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    if(data[k]!==undefined&&data[k]!=='') el.value=data[k];
+  });
+  document.querySelectorAll('.ox-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('ox_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.ox-btn')].find(x=>x.textContent.trim()===v); if(b) selectOX(b,v); }
+  });
+  document.querySelectorAll('.choice-group').forEach((g,i)=>{
+    const v=data['__sel_'+(g.dataset.id||('choice_'+i))];
+    if(v){ const b=[...g.querySelectorAll('.choice-btn')].find(x=>x.textContent.trim()===v); if(b) selectChoice(b,v); }
+  });
+}
+// 모든 입력칸에서 Enter→다음칸 이동
+const allInputs=[...document.querySelectorAll('.blank-input')];
+allInputs.forEach((el,i)=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();if(i+1<allInputs.length)allInputs[i+1].focus();else check();}
+  });
+});
+// 제출
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwh0_ECTCNjuIq_hOhP_51XpEg2UWlu_nOI5EEpnK_QZBAYEAb6pVUpr3OcKim4m6OSqg/exec';
+// 모든 입력값 수집 — 빈칸·OX·서술형·활동·choice 통합 (5/21 patch)
+function collectAnswers(){
+  const ans={};
+  document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach((el,i)=>{
+    const k=el.dataset.id||el.dataset.answer||('input_'+i);
+    ans[k]=(el.value||'').trim();
+  });
+  // 2026-10-20 정답(__key)·OX 문장도 함께 — 정리 시트가 학생 답 옆에 모범답안을 나란히 둔다. 정답은 이미 페이지 속성에 있던 값이라 새로 드러나는 것은 없다
+  const lbl={}, key={};
+  document.querySelectorAll('.blank-input:not(.no-score),.ox-input').forEach(el=>{
+    const k=el.dataset.id||el.dataset.answer; if(k && el.dataset.answer) key[k]=el.dataset.answer;
+  });
+  document.querySelectorAll('.ox-group,.choice-group').forEach((g,i)=>{
+    const k=g.dataset.id||('group_'+i);
+    ans[k]=g.dataset.selected||'';
+    const a=g.dataset.answer||(g.querySelector('[data-answer]')||{dataset:{}}).dataset.answer;
+    if(a) key[k]=a;
+    if(g.dataset.label) lbl[k]=g.dataset.label;
+  });
+  // 2026-06-24: data-label을 __labels로 동승 → 정리시트가 act-N 대신 문항 텍스트 표시 (doPost 변경 불요·답(JSON)에 라이드)
+  document.querySelectorAll('[data-label]').forEach(el=>{
+    const k=el.dataset.id; if(k && el.dataset.label) lbl[k]=el.dataset.label;
+  });
+  if(Object.keys(lbl).length) ans['__labels']=lbl;
+  if(Object.keys(key).length) ans['__key']=key;
+  return ans;
+}
+// 진행 탭 — 5/27 비활성화 (제출 학생만 수집·진행 탭 noise 차단)
+// 함수 자체는 NO-OP으로 유지 (이벤트 리스너 호환성)
+function scheduleProgress(){ /* disabled — 제출 시점에만 데이터 전송 */ }
+// 🔴 전송 중 재진입 가드 (2026-09-02) — 사회(중3) 세션이 시트에서 발견한 중복 제출의 원인.
+//   종전엔 버튼이 한 번도 disabled 되지 않았고, 텍스트는 fetch **응답 후**에야 바뀌었다.
+//   그 왕복 사이에 한 번 더 누르면 그대로 두 번 전송된다 — mode:'no-cors'라 실패해도 조용하다.
+//   실측 중복: 사회 125=126행(8/31 08:16·6반23번) · 역사 21=23행(8/31 14:12·1반18번).
+//   시각·점수·답이 전부 같아 재제출이 아니라 '버튼 두 번'이다. 집계에서 인원이 부푼다.
+let _submitting = false;
+function submitResult(){
+  if(_submitting) return;                     // 전송 중 두 번째 클릭은 무시
+  if(!SUBMIT_URL){alert('제출 URL이 설정되지 않았습니다.');return;}
+  const cls=_siv('si-cls'), num=_siv('si-num'), name=_siv('si-name');
+  if(!cls||!num||!name){alert('반, 번호를 고르고 이름을 적어주세요. (학습지 빈칸은 일부만 채워도 OK)');return;}
+  // 이름 칸에 번호를 적는 오기 차단 (6/25 채점 로그: 3-3반 3번 이름이 "23"으로 들어옴)
+  if(/^[0-9\s]+$/.test(name)){alert('이름 칸에 숫자가 들어갔어요. 이름을 적어주세요.');return;}
+  if(usedReveal){alert('⚠️ 정답 보기를 사용했기 때문에 제출할 수 없습니다. 초기화 후 다시 풀어주세요.');return;}
+  check(); // 먼저 채점
+  const _g=id=>{const e=document.getElementById(id);return e?parseInt(e.textContent)||0:0;};
+  const bs=_g('score');
+  const os=_g('ox-score');
+  const ts=_g('total-score');
+  const answers=collectAnswers();
+  const data={
+    type:'final',
+    worksheet:document.title,
+    studentClass:cls,studentNumber:num,studentName:name,
+    blankScore:bs,oxScore:os,totalScore:ts,
+    answers:answers
+  };
+  // 여기서부터 실제 전송 — 잠그고 버튼도 즉시 비활성화한다(응답을 기다리지 않는다).
+  _submitting = true;
+  const _btn=document.getElementById('submitBtn');
+  _btn.disabled = true; _btn.textContent = '전송 중…';
+  try{ _persist(); }catch(e){}            // 실패해도 답은 이 기기에 남게 먼저 저장
+  // 2026-11-03 밤 시스템(학교 AI 지적) 🟡 — 성공 뒤 지울 키를 그때 다시 계산하면, «전송 중…» 사이에 반·번호를 바꾼 평가지는
+  //   엉뚱한 키를 지우고 제출한 학생 저장본이 남았다. 보낸 순간의 키를 잡아 두고, 전송 중에는 반·번호·이름 칸을 잠근다(finally에서 푼다).
+  let _subKey=null; try{ _subKey=_wsKey(); }catch(e){}
+  const _siLock=on=>['si-cls','si-num','si-name'].forEach(id=>{ const el=_siEl(id); if(el) el.disabled=on; });
+  _siLock(true);
+  // 2026-11-03 오후 시스템 진단: 학교망 차단이 아니라 Apps Script가 간헐적으로 40초 넘게 멈춘다(맥미니 실측 12회 중 7회).
+  //   no-cors는 그 멈춤·실패를 «성공»으로 받아 왔다 → 헤더 없이 POST하면 CORS로 응답을 읽을 수 있다(서버 allow-origin:*).
+  //   Content-Type: application/json을 붙이면 preflight에 서버가 답을 못 해 바로 실패하므로 헤더는 넣지 않는다.
+  //   판정: 본문 ok:true만 성공 · 네트워크 오류/ok:false는 2초·5초 뒤 재시도 · 30초 멈춤은 재시도 없이 «다시 제출».
+  //   제출 번호(__sid)는 성공할 때까지 같은 번호를 쓴다 — 멈춘 요청이 뒤늦게 적혀 행이 겹쳐도 집계(Code_review_*·Code_essay_extract)는
+  //   반·번호별 최신 제출 하나만 쓰므로 채점엔 영향이 없다. __sid를 직접 읽는 코드는 아직 없다(역사 검토 11/3 🟡).
+  window._wsSid = window._wsSid || (Date.now().toString(36)+Math.random().toString(36).slice(2,7));
+  answers['__sid']=window._wsSid;
+  const _once=()=>{
+    const ac=(typeof AbortController!=='undefined')?new AbortController():null;
+    // 30초 멈춤 판정은 타이머가 직접 거부한다 — AbortController가 없는 옛 브라우저에서도 «전송 중…»에 영영 남지 않게(시스템 ℹ️ 11/3 밤).
+    let tm=null;
+    const to=new Promise((_,rej)=>{ tm=setTimeout(()=>{ if(ac) ac.abort(); const e=new Error('stall'); e.kind='stall'; rej(e); },30000); });
+    const req=fetch(SUBMIT_URL,{method:'POST',body:JSON.stringify(data),signal:ac?ac.signal:undefined})
+      .then(r=>r.json())
+      .then(j=>{ if(!j||j.ok!==true){ const e=new Error('busy'); e.kind='busy'; throw e; } return j; })
+      .catch(e=>{ if(e&&e.name==='AbortError') e.kind='stall'; else if(!e.kind) e.kind='net'; throw e; });
+    req.catch(()=>{});                         // 경주에서 진 쪽의 거부가 처리 안 된 오류로 남지 않게
+    return Promise.race([req,to]).finally(()=>{ clearTimeout(tm); });
+  };
+  const _send=(n)=>_once().catch(e=>{
+    if(e.kind==='stall'||n>=3) throw e;
+    _btn.textContent='다시 보내는 중… ('+(n+1)+'/3)';
+    return new Promise(r=>setTimeout(r,n===1?2000:5000)).then(()=>_send(n+1));
+  });
+  _send(1)
+  .then(()=>{
+    window._wsSid=null;                           // 다음 제출은 새 번호
+    // 🔒 2026-11-03 저녁 천대현 «제출 후 리셋은 유지, 제출 전엔 보존» — 시트가 ok:true로 받았다고 답한 **이 가지에서만** 지운다.
+    //   지우는 것: 이 기기 저장본·화면 답·반·번호·이름(친구 노트북에서 이름만 바꿔 대리 제출하는 일을 막는다, 9/4 천대현 관찰).
+    //   오전(91068cb)에 뺀 까닭은 no-cors 거짓 성공 뒤 답까지 지우는 통로였기 때문 — bb175c1로 성공 판정이 응답 본문이 되어 그 통로가 없다.
+    //   실패·멈춤·확인 못 함 가지(아래 catch)에서는 절대 지우지 않는다.
+    clearTimeout(_autosaveT);                     // 지운 뒤 밀린 자동저장이 다시 쓰지 않게
+    try{                                         // 여기서 예외가 나도 아래 catch(«시트가 바빠요»)로 새지 않게(역사 검토 11/3 ℹ️)
+      try{ if(_subKey) localStorage.removeItem(_subKey); }catch(e){}   // 보낸 순간의 키(평가지는 반·번호에 묶인다)
+      _clearScreenAnswers();
+      ['si-cls','si-num','si-name'].forEach(id=>{ const el=_siEl(id); if(el) el.value=''; });
+      _restoredOwner=null; _restoreHeld=false; _restoreHint(false);
+    }catch(e){}
+    _btn.textContent='✅ 제출 완료';
+    _btn.classList.add('btn-submitted');
+    setTimeout(()=>{
+      _btn.textContent='📤 제출';
+      _btn.classList.remove('btn-submitted');
+    }, 2000);
+    alert('제출됐어요. 이 기기에서 답을 지웠어요.');
+  })
+  .catch(e=>{
+    if(e&&e.kind==='net'){
+      // 응답을 끝내 못 읽었다 — 이 브라우저가 응답 읽기 자체를 막는 경우까지 생각해 예전 방식으로 한 번 더 보낸다(확인은 못 한다).
+      fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(data)}).catch(()=>{});
+      _btn.textContent='📤 다시 제출';
+      alert('제출을 보냈지만 들어갔는지 확인하지 못했어요(인터넷이 불안정해요).\n답은 이 기기에 저장돼 있어요. 잠시 뒤 «다시 제출»을 한 번 더 눌러 주세요.');
+      return;
+    }
+    _btn.textContent='📤 다시 제출';         // «전송 중…»에 멈춰 있지 않게
+    alert((e&&e.kind==='stall')
+      ? '학교 시트 쪽이 지금 응답이 늦어요.\n답은 이 기기에 저장돼 있으니 1~2분 뒤 «다시 제출»을 눌러 주세요.'
+      : '제출이 안 됐어요(시트가 바빠요).\n답은 이 기기에 저장돼 있으니 잠시 뒤 «다시 제출»을 눌러 주세요.');
+  })
+  .finally(()=>{                              // 성공·실패 모두 반드시 푼다 — 안 그러면 재제출이 영영 막힌다
+    _submitting = false;
+    _btn.disabled = false;
+    _siLock(false);
+  });
+}
+// 페이지 로드 시 저장된 진행 불러오기
+loadProgress();
+// 신원(반·번호)을 넣거나 바꾸면 다시 복원을 시도한다.
+//   위 대조 때문에 처음엔 보류될 수 있고, 본인이 반·번호를 고른 순간 자기 답이 돌아와야 한다.
+['si-cls','si-num'].forEach(id=>{
+  const el=_siEl(id);
+  if(el) el.addEventListener('change', ()=>{ try{ loadProgress(); }catch(e){} });
+});
+// 자동저장 — 입력/선택 시 1.2초 후 자동 보존(저장 버튼 안 눌러도 껐다 켜면 그대로). 6/8
+document.addEventListener('input', autosave, true);
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('.ox-group,.choice-group')) autosave(); }, true);
+// 입력 이벤트 → 진행 탭 실시간 누적 (5/21 patch)
+document.querySelectorAll('.blank-input,.ox-input,.essay-input').forEach(el=>{
+  el.addEventListener('input',scheduleProgress);
+});
+document.querySelectorAll('.ox-btn,.choice-btn').forEach(b=>{
+  b.addEventListener('click',()=>setTimeout(scheduleProgress,100));
+});
+['si-cls','si-num','si-name'].forEach(id=>{
+  const el=_siEl(id); if(!el) return;
+  el.addEventListener('input',scheduleProgress);
+  el.addEventListener('change',scheduleProgress);   // <select>는 input 대신 change가 확실
+});
+// 평가 모드: 반·번호를 다 입력한 시점에 *본인 키*의 저장본만 복원 (이어쓰기)
+if(EXAM_MODE){
+  ['si-cls','si-num','si-name'].forEach(id=>{
+    const el=_siEl(id); if(!el) return;
+    el.addEventListener('change',()=>{ if(_wsKey()) loadProgress(); });
+  });
+}
+
+/* 🎯 방사형 펼침 — 중심 클릭으로 펼치고, 칩 클릭으로 설명을 연다 */
+document.querySelectorAll('.ws-rad').forEach(function(rad){
+  var core = rad.querySelector('.rd-core') || rad.querySelector('.rd-hot');
+  var chips = rad.querySelectorAll('.rd-chip');
+  var panels = rad.querySelectorAll('.rd-panel');
+  function hideAll(){ panels.forEach(function(p){ p.hidden = true; });
+                       chips.forEach(function(c){ c.classList.remove('sel'); }); }
+  core.addEventListener('click', function(){
+    rad.classList.toggle('on');
+    if(!rad.classList.contains('on')) hideAll();
+  });
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      var i = c.getAttribute('data-i');
+      var was = !panels[i].hidden;
+      hideAll();
+      if(!was){ panels[i].hidden = false; c.classList.add('sel'); }
+    });
+  });
+  rad.querySelectorAll('.rd-go').forEach(function(g){
+    g.addEventListener('click', function(){
+      var t = document.querySelector(g.getAttribute('data-sel'));
+      if(!t) return;
+      t.scrollIntoView({behavior:'smooth', block:'center'});
+      t.classList.add('rd-flash');
+      setTimeout(function(){ t.classList.remove('rd-flash'); }, 1600);
+    });
+  });
+});
+</script>
+<script id="ws-zoom-js">/* 2026-11-06 천대현(사회② 8-1~2 검토판 댓글 «확대 축소는 안되나?») — 그림을 학습지 안에서 크게 보기.
+   .ws-fig-zoom 링크를 누르면 새 탭 대신 화면 위 확대 창이 열린다. 휠·두 손가락으로 키우고 끌어서 옮긴다.
+   Ctrl/⌘/Shift/가운데 단추 누르기는 예전처럼 새 탭. 스크립트가 안 돌면 링크가 그대로 새 탭으로 연다. */
+(function(){
+  var box, stage, img, s = 1, x = 0, y = 0, pts = {}, last = null, pinch = null, lastTap = 0, opener = null, lastType = '';
+  function build(){
+    box = document.createElement('div');
+    box.className = 'ws-zoom'; box.hidden = true;
+    box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', '그림 크게 보기');
+    box.innerHTML = '<div class="ws-zoom-stage"><img alt=""></div>' +
+      '<div class="ws-zoom-bar">' +
+      '<button type="button" data-z="out" aria-label="작게">−</button>' +
+      '<button type="button" data-z="in" aria-label="크게">+</button>' +
+      '<button type="button" data-z="reset">원래대로</button>' +
+      '<a class="ws-zoom-tab" target="_blank" rel="noopener">새 탭</a>' +
+      '<button type="button" data-z="close" aria-label="닫기">✕ 닫기</button></div>' +
+      '<p class="ws-zoom-tip">두 손가락이나 마우스 휠로 키우고, 끌어서 옮겨요</p>';
+    document.body.appendChild(box);
+    stage = box.querySelector('.ws-zoom-stage'); img = stage.querySelector('img');
+    box.querySelector('.ws-zoom-bar').addEventListener('click', function(e){
+      var b = e.target.closest('[data-z]'); if (!b) return;
+      var z = b.getAttribute('data-z');
+      if (z === 'close') close();
+      else if (z === 'reset') set(1, 0, 0);
+      else zoomAt(z === 'in' ? 1.5 : 1 / 1.5, stage.clientWidth / 2, stage.clientHeight / 2);
+    });
+    stage.addEventListener('wheel', function(e){
+      e.preventDefault();
+      var r = stage.getBoundingClientRect();
+      zoomAt(Math.exp(-e.deltaY * 0.0025), e.clientX - r.left, e.clientY - r.top);
+    }, {passive: false});
+    stage.addEventListener('pointerdown', down);
+    stage.addEventListener('pointermove', move);
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function(t){ stage.addEventListener(t, up); });
+    stage.addEventListener('dblclick', function(e){
+      if (lastType === 'touch') return;
+      var r = stage.getBoundingClientRect();
+      if (s > 1.01) set(1, 0, 0); else zoomAt(2.5, e.clientX - r.left, e.clientY - r.top);
+    });
+    document.addEventListener('keydown', function(e){
+      if (box.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === '+' || e.key === '=') zoomAt(1.5, stage.clientWidth / 2, stage.clientHeight / 2);
+      else if (e.key === '-') zoomAt(1 / 1.5, stage.clientWidth / 2, stage.clientHeight / 2);
+    });
+  }
+  function set(ns, nx, ny){
+    s = Math.min(8, Math.max(1, ns));
+    if (s === 1) { nx = 0; ny = 0; }
+    var w = stage.clientWidth, h = stage.clientHeight,
+        mx = Math.max(0, (img.offsetWidth * s - w) / 2), my = Math.max(0, (img.offsetHeight * s - h) / 2);
+    x = Math.min(mx, Math.max(-mx, nx)); y = Math.min(my, Math.max(-my, ny));
+    img.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + s + ')';
+    stage.style.cursor = s > 1 ? 'grab' : 'zoom-in';
+  }
+  function zoomAt(f, cx, cy){
+    var ns = Math.min(8, Math.max(1, s * f)), k = ns / s;
+    var ox = cx - stage.clientWidth / 2, oy = cy - stage.clientHeight / 2;
+    set(ns, ox - (ox - x) * k, oy - (oy - y) * k);
+  }
+  function down(e){
+    lastType = e.pointerType;
+    stage.setPointerCapture && stage.setPointerCapture(e.pointerId);
+    pts[e.pointerId] = {x: e.clientX, y: e.clientY};
+    var ids = Object.keys(pts);
+    if (ids.length === 2) {
+      var a = pts[ids[0]], b = pts[ids[1]];
+      pinch = {d: Math.hypot(a.x - b.x, a.y - b.y), s: s};
+      last = null;
+    } else if (ids.length === 1) {
+      last = {x: e.clientX, y: e.clientY};
+      var now = Date.now();
+      if (e.pointerType === 'touch' && now - lastTap < 300) {
+        var r = stage.getBoundingClientRect();
+        if (s > 1.01) set(1, 0, 0); else zoomAt(2.5, e.clientX - r.left, e.clientY - r.top);
+        lastTap = 0;
+      } else lastTap = now;
+    }
+  }
+  function move(e){
+    if (!pts[e.pointerId]) return;
+    pts[e.pointerId] = {x: e.clientX, y: e.clientY};
+    var ids = Object.keys(pts);
+    if (ids.length === 2 && pinch) {
+      var a = pts[ids[0]], b = pts[ids[1]], r = stage.getBoundingClientRect();
+      var d = Math.hypot(a.x - b.x, a.y - b.y);
+      zoomAt(pinch.s * d / pinch.d / s, (a.x + b.x) / 2 - r.left, (a.y + b.y) / 2 - r.top);
+    } else if (ids.length === 1 && last && s > 1) {
+      set(s, x + e.clientX - last.x, y + e.clientY - last.y);
+      last = {x: e.clientX, y: e.clientY};
+      stage.style.cursor = 'grabbing';
+    }
+  }
+  function up(e){
+    delete pts[e.pointerId];
+    if (Object.keys(pts).length < 2) pinch = null;
+    if (!Object.keys(pts).length) { last = null; if (s > 1) stage.style.cursor = 'grab'; }
+  }
+  /* 링크로 감싸지 않은 정지 그림(교과서 상자·입담·나란히 놓은 그림)도 같은 창으로 연다.
+     눌러서 뒤집거나 고르는 블록 안 그림은 건드리지 않는다. */
+  var STILL = 'figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img';
+  function open(a){
+    if (!box) build();
+    var isImg = a.tagName === 'IMG';
+    var src = isImg ? (a.currentSrc || a.src) : a.getAttribute('href'), im = isImg ? a : a.querySelector('img');
+    img.src = src; img.alt = im ? im.alt : '';
+    box.querySelector('.ws-zoom-tab').href = src;
+    opener = a; box.hidden = false;
+    document.documentElement.classList.add('ws-zoom-open');
+    set(1, 0, 0);
+    box.querySelector('[data-z="close"]').focus();
+  }
+  function close(){
+    box.hidden = true; pts = {}; pinch = null; last = null;
+    document.documentElement.classList.remove('ws-zoom-open');
+    if (opener) opener.focus();
+  }
+  document.addEventListener('click', function(e){
+    if (!e.target.closest || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+    var a = e.target.closest('a.ws-fig-zoom');
+    if (!a && e.target.matches && e.target.matches(STILL) && !e.target.closest('a, button, label')) a = e.target;
+    if (!a) return;
+    e.preventDefault(); open(a);
+  });
+})();
+</script>
+<script id="ws-reset-js">// 답이 하나라도 있을 때 초기화를 누르면 한 번 묻는다. 채점·저장·제출 동작은 그대로다.
+function askReset(){
+  var has = (typeof _anyAnswer === 'function') ? _anyAnswer()
+    : Array.prototype.some.call(document.querySelectorAll('.blank-input,.ox-input,.essay-input'), function(el){ return el.value && el.value.trim(); });
+  if (has && !confirm("적은 답이 모두 지워져요. 정말 초기화할까요?\n\n저장하려던 거라면 '취소'를 누르고 💾 저장을 누르세요.")) return;
+  reset();
+}
+</script>
+<script id="ws-design-v2-js">(function(){
+var C=document.querySelector('.container'); if(!C) return;
+// 글머리 이모지는 첫 글자 마디에서만 지운다 — innerHTML을 다시 쓰면 안에 든 입력칸·단추의 리스너가 끊긴다(메인 10/28 지적)
+function strip(el,ch){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(n.nodeValue.trim()){n.nodeValue=n.nodeValue.replace(ch,'').replace(/^\s+/,'');return;}}}
+// 1) 블록 목소리 분류
+[].forEach.call(C.querySelectorAll('blockquote'),function(b){
+  var t=b.textContent.trim();
+  if(t.indexOf('🎙️')===0){b.classList.add('v2-voice');strip(b,'🎙️');var w=document.createElement('span');w.className='v2-who';w.textContent='선생님 입담';b.insertBefore(w,b.firstChild);}
+  else if(t.indexOf('📕')===0)b.classList.add('v2-task');
+  else if(t.indexOf('💡')===0)b.classList.add('v2-key');
+  else if(/^(🔍|🧭|✍️)/.test(t))b.classList.add('v2-ask');
+});
+[].forEach.call(C.querySelectorAll('p'),function(p){var t=p.textContent.trim();if(/^💬/.test(t)){p.classList.add('v2-q');strip(p,'💬');}});
+// 2) h2마다 묶어 카드로 (활동 section.ws-do는 그대로 카드)
+var kids=[].slice.call(C.children), secs=[], cur=null;
+kids.forEach(function(el){
+  if(el.tagName==='H2'){cur=document.createElement('section');cur.className='v2-sec';C.insertBefore(cur,el);secs.push(cur);}
+  else if(el.matches&&el.matches('section.ws-do')){el.classList.add('v2-sec');secs.push(el);cur=null;return;}
+  if(cur&&el.tagName!=='BR')cur.appendChild(el);
+});
+// 3) 단계 머리: «📖 1단계: 제목 — 부제» → 킥커 + 제목 + 부제
+secs.forEach(function(s,k){
+  s.id='v2s'+k; var h=s.querySelector('h2'); if(!h)return;
+  var m=h.textContent.match(/^📖\s*(\d)단계:\s*(⭐\s*)?(.+?)(\s+—\s+(.+))?$/);
+  if(m){s.classList.add('step');var kk=document.createElement('div');kk.className='v2-kicker';kk.innerHTML='<b>STEP '+m[1]+'</b>'+(m[2]?'⭐ 핵심':'');s.insertBefore(kk,h);
+    h.innerHTML=m[3]+(m[5]?'<span class="v2-sub">'+m[5]+'</span>':'');s.dataset.lab=m[1]+'단계';s.dataset.n=m[1];}
+  else{s.dataset.lab=h.textContent.replace(/^[^\w가-힣]+/,'').split('—')[0].trim();s.dataset.n=h.textContent.trim().slice(0,2);}
+});
+// 4) 진도 레일
+var R=document.createElement('nav');R.className='v2-rail';R.setAttribute('aria-label','학습지 차례');
+R.innerHTML='<div class="v2-rh"><h4>오늘의 길</h4><button type="button" class="v2-b v2-pos" aria-label="오늘의 길 위치 바꾸기"></button><button type="button" class="v2-b v2-fold" aria-expanded="true"></button></div>';
+var H=document.documentElement;function sg(k){try{return localStorage.getItem(k)}catch(e){return null}}function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function paint(){var top=H.classList.contains('v2-top'),fd=H.classList.contains('v2-folded');
+  R.querySelector('.v2-pos').textContent=top?'⇤ 왼쪽에':'⇡ 위로';R.querySelector('.v2-pos').title=top?'오늘의 길을 왼쪽에 두기':'오늘의 길을 위로 올리기';
+  var f=R.querySelector('.v2-fold');f.textContent=fd?'펴기 ▸':'◂ 접기';f.setAttribute('aria-expanded',fd?'false':'true');}
+if(sg('v2-top')==='1')H.classList.add('v2-top');if(sg('v2-fold')==='1')H.classList.add('v2-folded');
+R.addEventListener('click',function(e){var b=e.target.closest('.v2-b');if(!b)return;
+  if(b.classList.contains('v2-pos')){H.classList.toggle('v2-top');ss('v2-top',H.classList.contains('v2-top')?'1':'0');}
+  else{H.classList.toggle('v2-folded');ss('v2-fold',H.classList.contains('v2-folded')?'1':'0');}
+  paint();});
+setTimeout(paint,0);
+secs.forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.dataset.s=s.id;
+  var n=s.dataset.n;a.innerHTML='<span class="n">'+(/^\d$/.test(n)?n:n)+'</span><span class="t">'+s.dataset.lab+'</span><span class="c"></span>';R.appendChild(a);});
+var meter=document.createElement('div');meter.className='v2-meter';meter.innerHTML='<i></i>';R.appendChild(meter);
+var mtx=document.createElement('div');mtx.className='v2-mtx';R.appendChild(mtx);
+C.insertBefore(R,C.firstChild);
+function tally(){var all=0,fill=0;
+  secs.forEach(function(s){var ins=s.querySelectorAll('input.blank-input,textarea.activity-input');var f=0;[].forEach.call(ins,function(i){if(i.value.trim())f++;});
+    all+=ins.length;fill+=f;var a=R.querySelector('a[data-s="'+s.id+'"]');if(!a)return;a.querySelector('.c').textContent=ins.length?f+'/'+ins.length:'';a.classList.toggle('done',ins.length>0&&f===ins.length);});
+  meter.firstChild.style.width=(all?fill/all*100:0)+'%';mtx.textContent='채운 칸 '+fill+' / '+all;}
+document.addEventListener('input',tally);tally();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){[].forEach.call(R.querySelectorAll('a'),function(a){a.classList.toggle('on',a.dataset.s===e.target.id);if(a.dataset.s===e.target.id&&R.scrollWidth>R.clientWidth)R.scrollLeft=a.offsetLeft-20;});}});},{rootMargin:'-30% 0px -65% 0px'});secs.forEach(function(s){io.observe(s);});}
+})();
+(function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,800);})();
+</script>
+<script type="application/json" id="gl-data">[{"id": "gl-1", "kind": "blank", "blank": "2", "word": "②", "text": "영국의 지주들이 농민의 경작지와 여럿이 함께 쓰던 땅(공유지)에 울타리를 쳐서 자기 땅으로 삼은 일이다. 땅을 잃은 농민들은 일자리를 찾아 큰 공장이 모인 도시로 옮겨 갔다.", "always": 1}, {"id": "gl-2", "kind": "word", "word": "면직물", "text": "목화에서 얻은 솜으로 짠 천이다. 모직물과 달리 빨아 입을 수 있어 깨끗했고, 얇고 가벼우며 물이 잘 들고 값까지 싸서 찾는 사람이 갑자기 늘었다.", "near": "영국에서 이 변화는"}, {"id": "gl-3", "kind": "blank", "blank": "5", "word": "⑤", "text": "물을 끓일 때 생기는 김의 힘을 기계를 돌리는 힘으로 바꾸는 장치다.", "always": 1}, {"id": "gl-4", "kind": "blank", "blank": "9", "word": "⑨", "text": "이 운동의 이름은 한 지도자에게서 나왔다고 알려졌지만, 그 지도자는 실제로 있었는지 확인되지 않은 전설 속 인물이다. 이 운동은 뒤에 노동 운동의 시초가 되었다.", "always": 1}, {"id": "gl-5", "kind": "blank", "blank": "16", "word": "⑯", "text": "아프리카 콩고강 유역을 두고 벨기에 왕과 포르투갈·프랑스 등이 다툰 일을 계기로 열렸다. 모인 열강은 '먼저 차지해 다스리는 나라가 그 땅을 갖는다'는 원칙에 합의하였다.", "always": 1}, {"id": "gl-6", "kind": "blank", "blank": "18", "word": "⑱", "text": "이때 기준이 된 선은 영국 그리니치 천문대를 지나는 본초 자오선이다. 경도가 15°씩 달라질 때마다 1시간씩 차이가 난다.", "always": 1}]</script>
+<script id="gl-js">/* 2026-11-10 사회② Ⅷ: 보충 말풍선 — 교사용 교과서의 파란 주석처럼. 방식 1 낱말 누르기 · 방식 2 채점해서 맞힌 빈칸만.
+   넓은 화면(1280px~)은 본문 상자 오른쪽 여백, 좁으면 그 문단 아래. 인쇄는 열린 것만 문단 아래 글로. 시험판 = 8-5~6 검토판 v3(11/9) */
+(function(){
+/* 자료는 원고 md의 :::개념 잇기 블록 «보충»·«이어 보기» 줄 → JSON 자료 칸(id gl-data).
+   [{id, kind: blank(맞힌 빈칸만 열림)·word(낱말 누르기), blank(빈칸 번호), word, near, fold, label, text}]
+   보충 문장은 교과서·교사용 주석을 옮기지 않고 우리 말로 쓰며, 뒤 빈칸 답 낱말은 넣지 않는다 */
+var GL=null; try{ GL=JSON.parse((document.getElementById('gl-data')||{}).textContent||'null'); }catch(e){ GL=null; }
+if(!GL||!GL.length) return;
+var H=document.documentElement, C=document.querySelector('.container'); if(!C) return;
+var WIDE=window.matchMedia('(min-width:1280px)'), RM=window.matchMedia('(prefers-reduced-motion:reduce)');
+var printing=false, items=[];
+var NS='http://www.w3.org/2000/svg';
+var layer=document.createElement('div'); layer.className='gl-layer';
+var svg=document.createElementNS(NS,'svg'); svg.setAttribute('class','gl-svg'); svg.setAttribute('aria-hidden','true');
+layer.appendChild(svg); document.body.appendChild(layer);
+
+function mkPop(g){
+  var p=document.createElement('aside'); p.className='gl-pop'; p.id=g.id; p.hidden=true;
+  p.setAttribute('role','note'); p.setAttribute('aria-label',(g.label||'보충')+': '+g.word); if(g.label) p.classList.add('gl-link');
+  p.innerHTML='<div class="gl-head">'+(g.label||'보충')+'<span class="gl-word"></span></div><div class="gl-body"></div><button type="button" class="gl-x" aria-label="보충 닫기">×</button>';
+  p.querySelector('.gl-word').textContent=g.word; p.querySelector('.gl-body').textContent=g.text.split(' // ').join('\n');
+  return p;
+}
+function animate(el){ if(RM.matches) return; el.classList.remove('gl-anim'); void el.offsetWidth; el.classList.add('gl-anim'); }
+
+GL.forEach(function(g){
+  var it={g:g,open:false,locked:false,trig:null,block:null,pop:mkPop(g),path:null,dot:null,fresh:false};
+  if(g.kind==='blank'){
+    var inp=[].slice.call(document.querySelectorAll('.blank-input')).filter(function(e){ return e.dataset.id===String(g.blank); })[0]; if(!inp) return;   /* 선택자 문자열로 쓰지 않는다 — 정규식으로 입력칸을 세는 도구가 하나로 친다 */
+    var b=document.createElement('button'); b.type='button'; b.className='gl-badge'+(g.always?' gl-always':''); b.hidden=!g.always; b.textContent='+';
+    b.setAttribute('aria-controls',g.id); b.setAttribute('aria-expanded','false'); b.setAttribute('aria-label',g.word+' 보충 보기');
+    inp.insertAdjacentElement('afterend',b);
+    /* 2026-11-13 always(빈칸 언제나) = 교사용 교과서 보충 — 처음부터 단추가 보이고 채점·초기화와 상관없이 열린다 */
+    it.trig=b; it.input=inp; it.always=!!g.always; it.locked=!it.always;
+    if(!it.always) inp.addEventListener('input',function(){ if(!it.locked){ lock(it); } });
+  }else{
+    var root=C;
+    if(g.fold){ var fold=[].slice.call(document.querySelectorAll('details.ws-fold')).filter(function(d){var s=d.querySelector('summary');return s&&s.textContent.indexOf(g.fold)>=0;})[0];
+      if(!fold) return; root=fold.querySelector('.ws-fold-body')||fold; }
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n,hit=null;
+    while((n=w.nextNode())){ var s0=g.near?n.data.indexOf(g.near):0; if(s0<0) continue; var k=n.data.indexOf(g.word,s0); if(k>=0){hit=n.splitText(k); hit.splitText(g.word.length); break;} }
+    if(!hit) return;
+    var t=document.createElement('button'); t.type='button'; t.className='gl-t';
+    t.setAttribute('aria-controls',g.id); t.setAttribute('aria-expanded','false');
+    t.appendChild(document.createTextNode(g.word));
+    var mk=document.createElement('span'); mk.className='gl-mk'; mk.setAttribute('aria-hidden','true'); mk.textContent='+'; t.appendChild(mk);
+    hit.parentNode.replaceChild(t,hit);
+    it.trig=t; it.mk=mk;
+  }
+  it.block=it.trig.closest('p,li')||it.trig.parentNode;
+  it.trig.addEventListener('click',function(){ if(it.peek){ it.peek=false; layout(); return; } setOpen(it,!it.open); });   /* 미리 보기 중에 누르면 열어 둔다 */
+  it.pop.querySelector('.gl-x').addEventListener('click',function(){ setOpen(it,false); it.trig.focus(); });
+  items.push(it);
+});
+if(!items.length) return;
+
+function setOpen(it,on){
+  if(on&&it.locked) return;
+  it.open=on; it.pop.hidden=!on; it.fresh=on; if(!on) it.peek=false;
+  it.trig.setAttribute('aria-expanded',on?'true':'false');
+  if(it.mk) it.mk.textContent=on?'−':'+';
+  if(on) animate(it.pop);
+  layout();
+}
+function lock(it){ it.locked=true; it.trig.hidden=true; setOpen(it,false); }
+function unlock(it){ var was=it.locked; it.locked=false; it.trig.hidden=false; if(was) animate(it.trig); }
+
+/* 방식 2: 채점하기 뒤에 맞힌 칸만 연다. 초기화·답 고치기면 다시 잠근다 */
+var _check=window.check, _reset=window.reset;
+if(typeof _check==='function') window.check=function(){ var r=_check.apply(this,arguments);
+  items.forEach(function(it){ if(!it.input||it.always) return;
+    if(it.input.classList.contains('correct')){ unlock(it); setOpen(it,true); } else { lock(it); } });
+  return r; };
+if(typeof _reset==='function') window.reset=function(){ var r=_reset.apply(this,arguments); items.forEach(function(it){ if(it.input&&!it.always) lock(it); }); return r; };
+
+function wideOK(){ return !printing && WIDE.matches; }
+function layout(){
+  H.classList.toggle('gl-wide',wideOK());
+  var vw=H.clientWidth, sx=window.scrollX||0, sy=window.scrollY||0, placed=[], use=[];
+  items.forEach(function(it){
+    var card=it.trig.closest('.v2-sec')||C, cr=card.getBoundingClientRect();
+    var space=vw-cr.right;
+    it.mode=(wideOK()&&space>=250)?'side':((it.peek&&!printing)?'float':'inline');
+    if(it.mode==='inline'){
+      if(!it.pop.classList.contains('gl-inline')||it.pop.previousElementSibling!==it.block){ it.block.insertAdjacentElement('afterend',it.pop); }
+      it.pop.classList.add('gl-inline'); it.pop.classList.remove('gl-float'); it.pop.style.cssText='';
+    }else if(it.mode==='float'){
+      /* 좁은 화면 미리 보기 = 단추 바로 아래 뜨는 말풍선(본문을 밀지 않는다). 누르면 문단 아래로 들어가 고정된다 */
+      if(it.pop.parentNode!==layer) layer.appendChild(it.pop);
+      it.pop.classList.remove('gl-inline'); it.pop.classList.add('gl-float');
+      var fr=it.trig.getBoundingClientRect(), fw=Math.min(300,vw-16), fl=Math.max(8,Math.min(fr.left-14,vw-fw-8));
+      it.pop.style.cssText=''; it.pop.style.left=(fl+sx)+'px'; it.pop.style.top=(fr.bottom+8+sy)+'px'; it.pop.style.width=fw+'px';
+    }else{
+      if(it.pop.parentNode!==layer) layer.appendChild(it.pop);
+      it.pop.classList.remove('gl-inline'); it.pop.classList.remove('gl-float');
+      var r=it.trig.getBoundingClientRect(), visible=it.open&&(r.width||r.height);
+      it.pop.style.display=visible?'':'none';
+      if(visible){
+        var lineY=r.bottom+3;
+        if(it.input){ var ir=it.input.getBoundingClientRect(); lineY=Math.max(ir.bottom,r.bottom)+3; }
+        var left=cr.right+18, width=Math.min(270,vw-left-14);
+        use.push({it:it,x0:r.right+1,y0:lineY,xk:cr.right-12,left:left,width:width,want:lineY-17});
+      }
+    }
+  });
+  /* 겹치지 않게 위에서부터 */
+  use.sort(function(a,b){return a.want-b.want;});
+  var floor=-1e9;
+  use.forEach(function(u){
+    var top=Math.max(u.want,floor);
+    u.it.pop.style.left=(u.left+sx)+'px'; u.it.pop.style.top=(top+sy)+'px'; u.it.pop.style.width=u.width+'px';
+    floor=top+u.it.pop.offsetHeight+12; u.top=top;
+  });
+  /* 선: 낱말 끝 → 그 줄 아래 틈 → 상자 가장자리 → 말풍선 머리 */
+  /* v3: 먼저 0으로 — 인쇄 화면에서 잰 폭을 붙잡고 있으면 화면으로 돌아와 가로 스크롤이 생긴다(v2 결함) */
+  svg.setAttribute('width',0); svg.setAttribute('height',0);
+  var dw=vw, dh=document.documentElement.scrollHeight;
+  svg.setAttribute('width',dw); svg.setAttribute('height',dh);
+  items.forEach(function(it){ if(it.path){ it.path.remove(); it.dot.remove(); it.path=it.dot=null; } });
+  use.forEach(function(u){
+    var x0=u.x0+sx, y0=u.y0+sy, xk=u.xk+sx, xb=u.left+sx, yb=u.top+sy+17, d;
+    if(Math.abs(yb-y0)<1) d='M'+x0+' '+y0+'H'+xb;
+    else d='M'+x0+' '+y0+'H'+xk+'C'+(xk+16)+' '+y0+' '+(xb-16)+' '+yb+' '+xb+' '+yb;
+    var p=document.createElementNS(NS,'path'); p.setAttribute('class','gl-path'); p.setAttribute('d',d);
+    var c=document.createElementNS(NS,'circle'); c.setAttribute('class','gl-dot'); c.setAttribute('cx',x0); c.setAttribute('cy',y0); c.setAttribute('r','2.4');
+    svg.appendChild(p); svg.appendChild(c); u.it.path=p; u.it.dot=c;
+    if(u.it.fresh) animate(p);
+  });
+  items.forEach(function(it){ it.fresh=false; });
+}
+/* 2026-11-13 툴팁처럼 — 마우스가 있는 화면에서는 단추·낱말에 올리면 미리 보이고, 떼면 닫힌다(누르면 열어 둔다).
+   터치 화면은 누르기만 한다. 맞힌 뒤에만 열리는 빈칸 보충은 종전대로 누르기만 */
+var HOV=window.matchMedia('(hover:hover) and (pointer:fine)');
+function peekOff(it){ clearTimeout(it.pt); it.pt=setTimeout(function(){ if(it.peek&&!it.overT&&!it.overP) setOpen(it,false); },220); }
+items.forEach(function(it){
+  if(it.g.kind==='blank'&&!it.always) return;
+  it.trig.addEventListener('mouseenter',function(){ if(!HOV.matches) return; it.overT=true; clearTimeout(it.pt); if(!it.open&&!it.locked){ it.peek=true; setOpen(it,true); } });
+  it.trig.addEventListener('mouseleave',function(){ it.overT=false; if(it.peek) peekOff(it); });
+  it.pop.addEventListener('mouseenter',function(){ it.overP=true; clearTimeout(it.pt); });
+  it.pop.addEventListener('mouseleave',function(){ it.overP=false; if(it.peek) peekOff(it); });
+});
+var raf=0; function schedule(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; layout(); }); }
+window.addEventListener('resize',schedule);
+document.addEventListener('toggle',schedule,true);
+if(window.ResizeObserver) new ResizeObserver(schedule).observe(document.body);
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(schedule);
+window.addEventListener('load',schedule);
+/* 인쇄: 열린 말풍선만 그 문단 아래 글로 */
+window.addEventListener('beforeprint',function(){ printing=true; layout(); });
+window.addEventListener('afterprint',function(){ printing=false; layout(); });
+layout();
+})();
+</script>
+</body>
+</html>

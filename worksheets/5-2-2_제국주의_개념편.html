@@ -329,6 +329,8 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
 .ws-gr-svg .gr-unit { font-size: 15px; }
 .ws-gr-svg .gr-band { fill: #f8c98a; opacity: .45; }
 .ws-gr-svg .gr-cur { stroke: #243040; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .5; }
+.ws-gr-svg .gr-ref { stroke: #b45309; stroke-width: 1.5; stroke-dasharray: 8 5; }
+.ws-gr-svg .gr-ref-t { font-size: 15px; font-weight: 700; fill: #b45309; paint-order: stroke; stroke: #fbfcfd; stroke-width: 4px; }
 .ws-gr-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9em; color: #374151; margin: 4px 2px 8px; }
 .ws-gr-legend .gr-key i { display: inline-block; width: 18px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
 .ws-gr-legend .gr-key i.gr-band-key { height: 12px; background: #f8c98a; opacity: .8; }
@@ -1130,6 +1132,22 @@ table:has(.ox-group) td:first-child { width: 46px; text-align: center; color: #6
 .hero-hook { margin-top: 24px; padding: 2px 0 2px 20px; border-left: 2px solid rgba(212,175,55,0.75); font-size: 17px; color: #ecebe4; line-height: 1.85; letter-spacing: -0.2px; font-weight: 300; font-style: normal; word-break: keep-all; }
 .blank-filled { display: inline-block; border-bottom: 2px solid #34c759; background: #e8f8e8; color: #1a7a2e; font-weight: 700; padding: 2px 8px; border-radius: 4px 4px 0 0; margin: 0 2px; }
 </style>
+<style id="ws-zoom-css">/* 2026-11-06 그림 크게 보기 창(zoom.js). 학습지 색과 상관없이 어두운 바탕 — 사진이 잘 보이게. */
+.ws-zoom { position: fixed; inset: 0; z-index: 9999; background: rgba(12,12,10,0.985); display: flex; flex-direction: column; }
+.ws-zoom[hidden] { display: none; }
+.ws-zoom-stage { flex: 1; min-height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; touch-action: none; cursor: zoom-in; }
+.ws-zoom-stage img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: center center; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+.ws-zoom-bar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 10px 16px 4px; }
+.ws-zoom-bar button, .ws-zoom-bar a { font: inherit; font-size: 15px; min-width: 44px; min-height: 40px; padding: 6px 14px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); color: #f4f2ec; text-decoration: none; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; }
+.ws-zoom-bar button:hover, .ws-zoom-bar a:hover { background: rgba(255,255,255,0.18); }
+.ws-zoom-bar button:focus-visible, .ws-zoom-bar a:focus-visible { outline: 2px solid #f4d27a; outline-offset: 2px; }
+.ws-zoom-tip { margin: 0; padding: 2px 16px 12px; text-align: center; font-size: 12.5px; color: #bdb9ad; }
+html.ws-zoom-open, html.ws-zoom-open body { overflow: hidden; }
+figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img { cursor: zoom-in; }
+@media print { .ws-zoom { display: none !important; } }
+</style>
 <style id="ws-reset-css">/* 초기화 잘못 누름 막기 (천대현 11/10 «저장 누르려다 초기화 누르는 학생들이 있음») — 저장·제출 자리는 그대로 두고, 초기화만 왼쪽으로 떼어 흰 바탕 테두리 단추로 */
 .control-bar .btn.btn-reset{background:#fff;color:#d93025;border:1px solid #f3b6b0;margin-right:14px!important}
 .control-bar .btn.btn-reset:hover{background:#fff4f3}
@@ -1333,7 +1351,7 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 <br>
 <p>페리가 식민지를 가져야 한다며 든 까닭 두 가지를 각각 짧게 적고, 하나는 1단계에서 본 무엇과, 다른 하나는 바로 위 문단의 무엇과 같은 말인지 짝지어 보자. <input type="text" class="blank-input activity-input no-score" data-id="act-2" data-label="페리가 식민지를 가져야 한다며 든 까닭 두 가지를 각각 짧게 적고, 하나" style="width:420px" placeholder=""></p>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 163쪽 · 「우리 해 보자」 키플링 「백인의 짐」</div><div class="ws-tb-ask">시는 식민지 사람들을 <strong>'절반은 무엇, 절반은 무엇'</strong> 같은 자들이라고 불렀나? 그렇게 부르면 2단계 문단의 «문명화할 의무» 주장을 어떻게 거들게 되는지 한 문장 더 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 163쪽에서 찾기 — 시는 식민지 사람들을 «절반은 무엇, 절반은 무엇» 같은 자들이라고" style="width:300px" placeholder=""></div></div>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 163쪽 · 「우리 해 보자」 키플링 「백인의 짐」</div><div class="ws-tb-ask">시는 식민지 사람들을 <strong>'절반은 무엇, 절반은 무엇'</strong> 같은 자들이라고 불렀나? 그렇게 부르면 2단계 문단의 «문명화할 의무» 주장을 어떻게 거들게 되는지 한 문장 더 쓰자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 163쪽에서 찾기 — 시는 식민지 사람들을 '절반은 무엇, 절반은 무엇' 같은 자들이라고" style="width:300px" placeholder=""></div></div>
 <br>
 <div class="ws-2c c2-mid c2-card" style="grid-template-columns:minmax(0,1.0fr) minmax(0,1.6fr)"><div class="c2-a">
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_스펜서.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_스펜서.jpg" alt="허버트 스펜서(1889) — 영국의 사회학자. '적자생존'이라는 말을 처음 만들었다. 자연에서 강한 것이 살아남듯 사회에서도 강한 쪽이 이기는 것이 자연스럽다고 보았다. (웰컴 컬렉션)" loading="lazy"></a><figcaption>허버트 스펜서(1889) — 영국의 사회학자. '적자생존'이라는 말을 처음 만들었다. 자연에서 강한 것이 살아남듯 사회에서도 강한 쪽이 이기는 것이 자연스럽다고 보았다. (웰컴 컬렉션)</figcaption></figure>
@@ -1352,7 +1370,7 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 164쪽 · 지도 「열강의 아프리카와 아시아 침략」</div><div class="ws-tb-ask">지도에서 열강의 식민지가 되지 않고 <strong>독립을 지킨 아프리카 나라 두 곳</strong>을 찾아 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 164쪽에서 찾기 — 지도에서 열강의 식민지가 되지 않고 독립을 지킨 아프리카 나라 두 곳" style="width:300px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_아프리카분할.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_아프리카분할.webp" alt="1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있어, 영국의 꿈은 끝내 이어지지 못했다. (경계는 개념도 정밀도)" loading="lazy"></a><figcaption>1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있어, 영국의 꿈은 끝내 이어지지 못했다. (경계는 개념도 정밀도)</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_아프리카분할_v2.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_아프리카분할_v2.webp" alt="1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 1914년까지는 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있었고, 카이로와 케이프타운을 잇는 철도는 끝내 완성되지 못했다. (경계는 개념도 정밀도)" loading="lazy"></a><figcaption>1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 1914년까지는 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있었고, 카이로와 케이프타운을 잇는 철도는 끝내 완성되지 못했다. (경계는 개념도 정밀도)</figcaption></figure>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 164쪽 · 사진 「벨기에의 콩고 침략 풍자화」</div><div class="ws-tb-ask">풍자화에서 벨기에의 왕은 <strong>어떤 동물</strong>로 그려졌고, 무엇을 하고 있나? 화가가 하필 그 동물을 고른 까닭도 짐작해 보자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 164쪽에서 찾기 — 풍자화에서 벨기에의 왕은 어떤 동물로 그려졌고, 무엇을 하고 있나?" style="width:400px" placeholder=""></div></div>
 <br>
@@ -1912,6 +1930,132 @@ document.querySelectorAll('.ws-rad').forEach(function(rad){
     });
   });
 });
+</script>
+<script id="ws-zoom-js">/* 2026-11-06 천대현(사회② 8-1~2 검토판 댓글 «확대 축소는 안되나?») — 그림을 학습지 안에서 크게 보기.
+   .ws-fig-zoom 링크를 누르면 새 탭 대신 화면 위 확대 창이 열린다. 휠·두 손가락으로 키우고 끌어서 옮긴다.
+   Ctrl/⌘/Shift/가운데 단추 누르기는 예전처럼 새 탭. 스크립트가 안 돌면 링크가 그대로 새 탭으로 연다. */
+(function(){
+  var box, stage, img, s = 1, x = 0, y = 0, pts = {}, last = null, pinch = null, lastTap = 0, opener = null, lastType = '';
+  function build(){
+    box = document.createElement('div');
+    box.className = 'ws-zoom'; box.hidden = true;
+    box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', '그림 크게 보기');
+    box.innerHTML = '<div class="ws-zoom-stage"><img alt=""></div>' +
+      '<div class="ws-zoom-bar">' +
+      '<button type="button" data-z="out" aria-label="작게">−</button>' +
+      '<button type="button" data-z="in" aria-label="크게">+</button>' +
+      '<button type="button" data-z="reset">원래대로</button>' +
+      '<a class="ws-zoom-tab" target="_blank" rel="noopener">새 탭</a>' +
+      '<button type="button" data-z="close" aria-label="닫기">✕ 닫기</button></div>' +
+      '<p class="ws-zoom-tip">두 손가락이나 마우스 휠로 키우고, 끌어서 옮겨요</p>';
+    document.body.appendChild(box);
+    stage = box.querySelector('.ws-zoom-stage'); img = stage.querySelector('img');
+    box.querySelector('.ws-zoom-bar').addEventListener('click', function(e){
+      var b = e.target.closest('[data-z]'); if (!b) return;
+      var z = b.getAttribute('data-z');
+      if (z === 'close') close();
+      else if (z === 'reset') set(1, 0, 0);
+      else zoomAt(z === 'in' ? 1.5 : 1 / 1.5, stage.clientWidth / 2, stage.clientHeight / 2);
+    });
+    stage.addEventListener('wheel', function(e){
+      e.preventDefault();
+      var r = stage.getBoundingClientRect();
+      zoomAt(Math.exp(-e.deltaY * 0.0025), e.clientX - r.left, e.clientY - r.top);
+    }, {passive: false});
+    stage.addEventListener('pointerdown', down);
+    stage.addEventListener('pointermove', move);
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function(t){ stage.addEventListener(t, up); });
+    stage.addEventListener('dblclick', function(e){
+      if (lastType === 'touch') return;
+      var r = stage.getBoundingClientRect();
+      if (s > 1.01) set(1, 0, 0); else zoomAt(2.5, e.clientX - r.left, e.clientY - r.top);
+    });
+    document.addEventListener('keydown', function(e){
+      if (box.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === '+' || e.key === '=') zoomAt(1.5, stage.clientWidth / 2, stage.clientHeight / 2);
+      else if (e.key === '-') zoomAt(1 / 1.5, stage.clientWidth / 2, stage.clientHeight / 2);
+    });
+  }
+  function set(ns, nx, ny){
+    s = Math.min(8, Math.max(1, ns));
+    if (s === 1) { nx = 0; ny = 0; }
+    var w = stage.clientWidth, h = stage.clientHeight,
+        mx = Math.max(0, (img.offsetWidth * s - w) / 2), my = Math.max(0, (img.offsetHeight * s - h) / 2);
+    x = Math.min(mx, Math.max(-mx, nx)); y = Math.min(my, Math.max(-my, ny));
+    img.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + s + ')';
+    stage.style.cursor = s > 1 ? 'grab' : 'zoom-in';
+  }
+  function zoomAt(f, cx, cy){
+    var ns = Math.min(8, Math.max(1, s * f)), k = ns / s;
+    var ox = cx - stage.clientWidth / 2, oy = cy - stage.clientHeight / 2;
+    set(ns, ox - (ox - x) * k, oy - (oy - y) * k);
+  }
+  function down(e){
+    lastType = e.pointerType;
+    stage.setPointerCapture && stage.setPointerCapture(e.pointerId);
+    pts[e.pointerId] = {x: e.clientX, y: e.clientY};
+    var ids = Object.keys(pts);
+    if (ids.length === 2) {
+      var a = pts[ids[0]], b = pts[ids[1]];
+      pinch = {d: Math.hypot(a.x - b.x, a.y - b.y), s: s};
+      last = null;
+    } else if (ids.length === 1) {
+      last = {x: e.clientX, y: e.clientY};
+      var now = Date.now();
+      if (e.pointerType === 'touch' && now - lastTap < 300) {
+        var r = stage.getBoundingClientRect();
+        if (s > 1.01) set(1, 0, 0); else zoomAt(2.5, e.clientX - r.left, e.clientY - r.top);
+        lastTap = 0;
+      } else lastTap = now;
+    }
+  }
+  function move(e){
+    if (!pts[e.pointerId]) return;
+    pts[e.pointerId] = {x: e.clientX, y: e.clientY};
+    var ids = Object.keys(pts);
+    if (ids.length === 2 && pinch) {
+      var a = pts[ids[0]], b = pts[ids[1]], r = stage.getBoundingClientRect();
+      var d = Math.hypot(a.x - b.x, a.y - b.y);
+      zoomAt(pinch.s * d / pinch.d / s, (a.x + b.x) / 2 - r.left, (a.y + b.y) / 2 - r.top);
+    } else if (ids.length === 1 && last && s > 1) {
+      set(s, x + e.clientX - last.x, y + e.clientY - last.y);
+      last = {x: e.clientX, y: e.clientY};
+      stage.style.cursor = 'grabbing';
+    }
+  }
+  function up(e){
+    delete pts[e.pointerId];
+    if (Object.keys(pts).length < 2) pinch = null;
+    if (!Object.keys(pts).length) { last = null; if (s > 1) stage.style.cursor = 'grab'; }
+  }
+  /* 링크로 감싸지 않은 정지 그림(교과서 상자·입담·나란히 놓은 그림)도 같은 창으로 연다.
+     눌러서 뒤집거나 고르는 블록 안 그림은 건드리지 않는다. */
+  var STILL = 'figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img';
+  function open(a){
+    if (!box) build();
+    var isImg = a.tagName === 'IMG';
+    var src = isImg ? (a.currentSrc || a.src) : a.getAttribute('href'), im = isImg ? a : a.querySelector('img');
+    img.src = src; img.alt = im ? im.alt : '';
+    box.querySelector('.ws-zoom-tab').href = src;
+    opener = a; box.hidden = false;
+    document.documentElement.classList.add('ws-zoom-open');
+    set(1, 0, 0);
+    box.querySelector('[data-z="close"]').focus();
+  }
+  function close(){
+    box.hidden = true; pts = {}; pinch = null; last = null;
+    document.documentElement.classList.remove('ws-zoom-open');
+    if (opener) opener.focus();
+  }
+  document.addEventListener('click', function(e){
+    if (!e.target.closest || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+    var a = e.target.closest('a.ws-fig-zoom');
+    if (!a && e.target.matches && e.target.matches(STILL) && !e.target.closest('a, button, label')) a = e.target;
+    if (!a) return;
+    e.preventDefault(); open(a);
+  });
+})();
 </script>
 <script id="ws-reset-js">// 답이 하나라도 있을 때 초기화를 누르면 한 번 묻는다. 채점·저장·제출 동작은 그대로다.
 function askReset(){

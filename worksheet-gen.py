@@ -142,7 +142,8 @@ def extract_table_answers(answer_file):
     # 2026-10-12 사회 7-2: 개념편 파서는 아래 블록 안의 '|' 줄을 표로 세지 않는다(블록 처리기가 먹는다).
     #   정답편 쪽만 세면 표 번호가 밀려 보기 버튼 표가 빈 칸이 된다 — 같은 블록 안은 여기서도 건너뛴다.
     ROWBLOCKS = (':::낱말', ':::좌석표', ':::카드선택', ':::비교', ':::인물선택', ':::연표시소', ':::지도막대',
-                 ':::그래프', ':::모자이크', ':::gallery', ':::플립', ':::항로지도', ':::개념 잇기', ':::더 생각')
+                 ':::그래프', ':::모자이크', ':::gallery', ':::플립', ':::항로지도', ':::개념 잇기', ':::더 생각',
+                 ':::흐름', ':::벤', ':::인물띠')
     in_rb = False
     for line in lines:
         stripped = line.strip()
@@ -323,6 +324,9 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_think = False; think_head = ''; think_rows = []; think_n = 0   # 2026-11-10: 💭 더 생각해 보기 구조판 (:::더 생각 ... :::)
     in_mb = False; mb_head = ''; mb_rows = []   # 2026-10-06: 지도 + 연도 막대 (:::지도막대 ... :::)
     in_rt = False; rt_head = ''; rt_rows = []   # 2026-10-26: 나라·인물별 항로 지도 (:::항로지도 ... :::)
+    in_flow = False; flow_head = ''; flow_rows = []; flow_css = False   # 2026-11-14: 흐름도 (:::흐름 ... :::)
+    in_venn = False; venn_head = ''; venn_rows = []; venn_css = False; venn_n = 0   # 2026-11-14: 벤 다이어그램 (:::벤 ... :::)
+    in_cast = False; cast_head = ''; cast_rows = []; cast_css = False; cast_n = 0   # 2026-11-14: 등장인물 띠 (:::인물띠 ... :::)
     in_pk = False             # 2026-09-07: 카드 골라 쓰기 (:::카드선택 ... :::)
     pk_title, pk_rows, pk_ask, pk_cred = '', [], '', ''
     seat_title, seat_rows, seat_note = '', [], ''
@@ -1299,11 +1303,20 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     f'<button type="button" role="tab" class="tl-tab" data-i="{i}" '
                     f'aria-selected="{"true" if i == 0 else "false"}">{inline(r["lab"])}</button>'
                     for i, r in enumerate(rows))
+                # 인쇄용 표 셋째 칸 = 바뀌는 쪽. 2026-11-14 사회 지적: 머리글이 «교황의 상대»(3-3-2)로 박혀 있었다.
+                #   왼쪽이 늘 같으면 «<왼쪽>의 상대»에 오른쪽(3-3-2 출력 그대로) · 오른쪽이 늘 같으면 «<오른쪽>의 상대»에 왼쪽 · 둘 다 바뀌면 «맞선 두 쪽».
+                _l0s = {r['l0'] for r in rows}; _r0s = {r['r0'] for r in rows}
+                if len(_l0s) == 1:
+                    _tl_h3 = '%s의 상대' % next(iter(_l0s)); _tl_c3 = lambda r: r['r0'] + (' · ' + r['r1'] if r['r1'] else '')
+                elif len(_r0s) == 1:
+                    _tl_h3 = '%s의 상대' % next(iter(_r0s)); _tl_c3 = lambda r: r['l0'] + (' · ' + r['l1'] if r['l1'] else '')
+                else:
+                    _tl_h3 = '맞선 두 쪽'; _tl_c3 = lambda r: r['l0'] + ' ↔ ' + r['r0']
                 prow = ''.join(
                     '<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(
                         inline(r['lab']),
                         inline(r['l0'] if r['deg'] < 0 else (r['r0'] if r['deg'] > 0 else '―')),
-                        inline(r['r0'] + (' · ' + r['r1'] if r['r1'] else '')),
+                        inline(_tl_c3(r)),
                         inline(r['say'])) for r in rows)
                 _sl = f'<img class="tl-spr" src="{tl_spr[0]}" alt="">' if tl_spr[0] else ''
                 _sr = f'<img class="tl-spr" src="{tl_spr[1]}" alt="">' if tl_spr[1] else ''
@@ -1321,7 +1334,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     f'<div class="ws-tl-say"></div>'
                     f'<div class="ws-tl-tabs" role="tablist">{btns}</div>'
                     f'<table class="tl-print"><tr><td>시점</td><td>내려간 쪽</td>'
-                    f'<td>교황의 상대</td><td>무슨 일이 있었나</td></tr>{prow}</table></div>'
+                    f'<td>{inline(_tl_h3)}</td><td>무슨 일이 있었나</td></tr>{prow}</table></div>'
                     f'<script>(function(){{'
                     f'var D={json.dumps(rows, ensure_ascii=False)};'
                     f'var w=document.getElementById("{tid}");'
@@ -1491,6 +1504,249 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     'draw(0);})();</script>')
             in_gr = False
             gr_rows = []
+            continue
+
+        # ➡️ 흐름도 (:::흐름 [가로] 머리말 ... :::) — 2026-11-14 천대현(역사 Ⅴ 묶음판 «핵심 흐름을 시각적으로»)
+        #   교과서 문단에 눌린 원인 → 결과 사슬을 상자와 화살표로 편다. 글자는 HTML이라 폰에서도 줄지 않는다(-0.83).
+        #   문법:  칸 | 제목 | 설명            ← 같은 줄에 칸을 여럿 두면 나란히(여러 까닭이 한 결과로 «모이는» 꼴)
+        #          칸* | 제목 | 설명           ← 별표 = 강조 칸(결과·핵심)
+        #          칸? | ② | 설명            ← 점선 칸 = 학생이 채울 빈칸 자리(번호로 가리킨다)
+        #          함께 | 글                   ← 지금 줄의 머리표(«넷이 함께»). 칸이 둘 이상인 줄은 테두리로 한데 묶인다
+        #          → | 화살표 글               ← 줄을 바꾼다. 화살표 글은 비워도 된다. 위아래 칸 수로 모임·갈라짐이 정해진다
+        #          ↺ | 글                      ← 끝에 «되돌아온다» 한 줄(악순환)
+        #          출처 | 글
+        #   «가로»: 줄마다 칸이 하나일 때 넓은 화면에서 왼쪽 → 오른쪽으로 놓는다(폰은 위 → 아래). 폰에서 칸 넷 줄은 2×2, 셋 줄은 세 칸 그대로.
+        #   ⚠️ 입력칸 0(act 불변) · 칸 글에 그 빈칸 답을 쓰지 않는다 — 번호(②)로 가리킨다 · CSS는 첫 블록에만 한 번(블록 없는 원고 출력 불변).
+        if stripped.startswith(':::흐름'):
+            in_flow = True; flow_rows = [[]]
+            _fh = stripped[len(':::흐름'):].strip()
+            flow_wide = _fh.startswith('가로')
+            flow_head = _fh[2:].strip() if flow_wide else _fh
+            flow_arrows = []; flow_src = ''; flow_lab = {}; flow_loop = ''
+            continue
+        if in_flow:
+            if stripped == ':::':
+                _rows = [r for r in flow_rows]
+                assert _rows and all(_rows), '🔴 :::흐름 — 빈 줄(칸 없는 줄)이 있다: 화살표 뒤에 칸을 둘 것'
+                if flow_wide:
+                    assert all(len(r) == 1 for r in _rows), '🔴 :::흐름 가로 — 줄마다 칸이 하나여야 한다'
+                def _box(t, d, star):
+                    return ('<div class="wf-box%s">' % {True: ' wf-key', False: '', '?': ' wf-slot'}[star]
+                            + '<b>%s</b>' % inline(t) + ('<span>%s</span>' % inline(d) if d else '') + '</div>')
+                parts = []
+                for i, r in enumerate(_rows):
+                    if i:
+                        _al = flow_arrows[i - 1]
+                        parts.append('<div class="wf-arrow"><i aria-hidden="true"></i>'
+                                     + ('<span>%s</span>' % inline(_al) if _al else '') + '</div>')
+                    _lb = flow_lab.get(i, '')
+                    parts.append('<div class="wf-row wf-n%d%s">%s%s</div>' % (
+                        len(r), ' wf-grp' if (len(r) > 1 or _lb) else '',
+                        ('<div class="wf-lab">%s</div>' % inline(_lb)) if _lb else '', ''.join(_box(*b) for b in r)))
+                css = ''
+                if not flow_css:
+                    flow_css = True
+                    css = ('<style>'
+                           '.ws-flow{margin:18px 0 22px;padding:16px 16px 14px;border:1px solid #d9dfe7;border-radius:14px;background:#f7f9fc}'
+                           '.ws-flow .wf-head{font-weight:700;font-size:.98em;margin:0 0 12px;color:#1f3550}'
+                           '.ws-flow .wf-row{display:grid;gap:10px}'
+                           '.ws-flow .wf-n2{grid-template-columns:1fr 1fr}.ws-flow .wf-n3{grid-template-columns:repeat(3,1fr)}'
+                           '.ws-flow .wf-n4{grid-template-columns:repeat(4,1fr)}'
+                           '.ws-flow .wf-box{background:#fff;border:1.5px solid #9fb3cc;border-radius:10px;padding:10px 12px;line-height:1.45;word-break:keep-all}'
+                           '.ws-flow .wf-box b{display:block;font-size:.97em;color:#1f3550}'
+                           '.ws-flow .wf-box span{display:block;margin-top:3px;font-size:.88em;color:#4a5566}'
+                           '.ws-flow .wf-key{background:#1f3550;border-color:#1f3550}'
+                           '.ws-flow .wf-key b{color:#fff}.ws-flow .wf-key span{color:#d6e1ef}'
+                           '.ws-flow .wf-arrow{display:flex;align-items:center;justify-content:center;gap:8px;min-height:30px;margin:4px 0}'
+                           '.ws-flow .wf-arrow i{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid #6f86a3}'
+                           '.ws-flow .wf-arrow span{font-size:.86em;color:#3c5677;font-weight:600;word-break:keep-all}'
+                           '.ws-flow .wf-src{margin-top:10px;font-size:.78em;color:#6b7480}'
+                           '.ws-flow .wf-grp{border:1.5px dashed #b6c4d6;border-radius:12px;padding:8px;background:#eef3f9}'
+                           '.ws-flow .wf-lab{grid-column:1/-1;font-size:.8em;font-weight:700;color:#3c5677;margin:-2px 0 0}'
+                           '.ws-flow .wf-slot{border-style:dashed;border-color:#d08a2c;background:#fffaf0}'
+                           '.ws-flow .wf-loop{margin-top:8px;font-size:.86em;font-weight:600;color:#8a4b1f;text-align:center}'
+                           '@media (min-width:641px){'
+                           '.ws-flow.wf-wide .wf-track{display:flex;align-items:stretch}'
+                           '.ws-flow.wf-wide .wf-row{flex:1 1 0}'
+                           '.ws-flow.wf-wide .wf-arrow{flex:0 0 auto;min-width:26px;max-width:92px;flex-direction:column;margin:0 4px;text-align:center}'
+                           '.ws-flow.wf-wide .wf-arrow i{border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:12px solid #6f86a3;border-right:0}}'
+                           '@media (max-width:640px){.ws-flow{padding:10px 8px}.ws-flow .wf-n4{grid-template-columns:1fr 1fr}.ws-flow .wf-n3{gap:6px}'
+                           '.ws-flow .wf-n3 .wf-box{padding:6px 5px}.ws-flow .wf-n3 .wf-box b{font-size:.9em}'
+                           '.ws-flow .wf-box{padding:6px 8px}.ws-flow .wf-box span{font-size:.84em}.ws-flow .wf-arrow{min-height:20px;margin:2px 0}'
+                           '.ws-flow .wf-arrow i{border-left-width:7px;border-right-width:7px;border-top-width:9px}.ws-flow .wf-arrow span{font-size:.8em}}'
+                           '@media print{.ws-flow{break-inside:avoid}}'
+                           '</style>')
+                html_parts.append(css + '<div class="ws-flow%s">' % (' wf-wide' if flow_wide else '')
+                                  + ('<div class="wf-head">%s</div>' % inline(flow_head) if flow_head else '')
+                                  + '<div class="wf-track">' + ''.join(parts) + '</div>'
+                                  + ('<div class="wf-loop">↺ %s</div>' % inline(flow_loop) if flow_loop else '')
+                                  + ('<div class="wf-src">%s</div>' % inline(flow_src) if flow_src else '') + '</div>')
+                in_flow = False; flow_rows = []
+                continue
+            _p = [x.strip() for x in stripped.strip('|').split('|')]
+            if _p and _p[0] in ('칸', '칸*', '칸?'):
+                while len(_p) < 3: _p.append('')
+                flow_rows[-1].append((_p[1], _p[2], {'칸': False, '칸*': True, '칸?': '?'}[_p[0]]))
+            elif _p and _p[0] == '함께':
+                flow_lab[len(flow_rows) - 1] = '|'.join(_p[1:]).strip()
+            elif _p and _p[0] == '↺':
+                flow_loop = '|'.join(_p[1:]).strip()
+            elif _p and _p[0] in ('→', '->'):
+                flow_arrows.append(_p[1] if len(_p) > 1 else '')
+                flow_rows.append([])
+            elif _p and _p[0] == '출처':
+                flow_src = '|'.join(_p[1:]).strip()
+            continue
+
+        # ⭕ 벤 다이어그램 (:::벤 머리말 ... :::) — 2026-11-14 천대현(역사 Ⅴ 묶음판 «표나 벤다이어그램으로»)
+        #   두 원이 겹친 그림 위에 세 칸(왼쪽만 · 겹침 · 오른쪽만)을 HTML 글자로 얹는다. 폰에서도 세 칸이 나란하다.
+        #   문법:  왼쪽 | 이름 | 한 줄 뜻(선택)      오른쪽 | 이름 | 한 줄 뜻(선택)
+        #          왼쪽만 | 항목 [=> 누르면 열리는 설명]    겹침 | 항목 [=> 설명]    오른쪽만 | 항목 [=> 설명]
+        #          겹침이름 | 둘 다(기본)              출처 | 글
+        #   ⚠️ 겹친 칸에는 «정말 둘 다»인 것만 — 근거 없이 가운데에 몰지 않는다 · 입력칸 0 · CSS는 첫 블록에만 한 번.
+        if stripped.startswith(':::벤'):
+            in_venn = True; venn_head = stripped[len(':::벤'):].strip(); venn_rows = []
+            continue
+        if in_venn:
+            if stripped == ':::':
+                _V = {'왼쪽': ('', ''), '오른쪽': ('', ''), '겹침이름': '둘 다', '출처': ''}
+                _Z = {'왼쪽만': [], '겹침': [], '오른쪽만': []}
+                for _r in venn_rows:
+                    if _r[0] in ('왼쪽', '오른쪽'):
+                        _V[_r[0]] = (_r[1] if len(_r) > 1 else '', _r[2] if len(_r) > 2 else '')
+                    elif _r[0] in _Z:
+                        _it = '|'.join(_r[1:]).strip()
+                        _a, _, _b = _it.partition('=>')
+                        assert len(re.sub(r'[*_]', '', _a.strip())) <= 14, f'🔴 :::벤 — 항목 «{_a.strip()}»이 14자를 넘는다(폰 390에서 칸당 약 105px). 줄이고 설명은 => 뒤로'
+                        _Z[_r[0]].append((_a.strip(), _b.strip()))
+                    elif _r[0] in ('겹침이름', '출처'):
+                        _V[_r[0]] = '|'.join(_r[1:]).strip()
+                assert _V['왼쪽'][0] and _V['오른쪽'][0], '🔴 :::벤 — 왼쪽·오른쪽 이름 줄이 필요하다'
+                venn_n += 1
+                def _chips(items, z):
+                    out = []
+                    for k, (a, b) in enumerate(items):
+                        if b:
+                            nid = 'wv%d-%s%d' % (venn_n, z, k)
+                            out.append('<li><button type="button" class="wv-chip" aria-expanded="false" aria-controls="%s" '
+                                       'onclick="var o=this.getAttribute(\'aria-expanded\')===\'true\';this.setAttribute(\'aria-expanded\',!o);'
+                                       'document.getElementById(\'%s\').hidden=o">%s</button>'
+                                       '<span class="wv-note" id="%s" hidden>%s</span></li>' % (nid, nid, inline(a), nid, inline(b)))
+                        else:
+                            out.append('<li><span class="wv-chip wv-plain">%s</span></li>' % inline(a))
+                    return '<ul>%s</ul>' % ''.join(out)
+                def _col(cls, title, sub, items, z):
+                    return ('<div class="wv-col %s"><div class="wv-t">%s</div>%s%s</div>'
+                            % (cls, inline(title), ('<div class="wv-s">%s</div>' % inline(sub)) if sub else '', _chips(items, z)))
+                css = ''
+                if not venn_css:
+                    venn_css = True
+                    css = ('<style>'
+                           '.ws-venn{margin:18px 0 22px}'
+                           '.ws-venn .wv-head{font-weight:700;font-size:.98em;margin:0 0 8px;color:#2b2b2b}'
+                           '.ws-venn .wv-stage{position:relative;padding:14px 3% 26px;min-height:220px}'
+                           '.ws-venn svg{position:absolute;inset:0;width:100%;height:100%;z-index:0}'
+                           '.ws-venn .wv-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:4px;align-items:start}'
+                           '.ws-venn .wv-col{text-align:center;padding:4px 2px}'
+                           '.ws-venn .wv-l{padding-left:7%}.ws-venn .wv-r{padding-right:7%}'
+                           '.ws-venn .wv-t{font-weight:800;font-size:1em;word-break:keep-all;margin-bottom:2px}'
+                           '.ws-venn .wv-l .wv-t{color:#a8402f}.ws-venn .wv-r .wv-t{color:#23508c}.ws-venn .wv-m .wv-t{color:#5b3f7a;font-size:.9em}'
+                           '.ws-venn .wv-s{font-size:.78em;color:#555;word-break:keep-all;margin-bottom:6px;line-height:1.35}'
+                           '.ws-venn ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px;align-items:center}'
+                           '.ws-venn li{margin:0;max-width:100%}'
+                           '.ws-venn .wv-chip{display:inline-block;font:inherit;font-size:.86em;line-height:1.35;padding:5px 9px;border-radius:9px;'
+                           'background:rgba(255,255,255,.92);border:1.5px solid #c9c2b4;color:#222;word-break:keep-all;cursor:pointer}'
+                           '.ws-venn .wv-plain{cursor:default}'
+                           '.ws-venn button.wv-chip::after{content:" +";color:#8a6d2b;font-weight:700}'
+                           '.ws-venn button.wv-chip[aria-expanded="true"]{background:#fff6dc;border-color:#d4a73c}'
+                           '.ws-venn button.wv-chip[aria-expanded="true"]::after{content:" −"}'
+                           '.ws-venn .wv-note{display:block;margin-top:4px;font-size:.8em;line-height:1.45;color:#333;background:#fffdf5;'
+                           'border:1px solid #e6d9b3;border-radius:8px;padding:6px 8px;text-align:left;word-break:keep-all}'
+                           '.ws-venn .wv-note[hidden]{display:none}'
+                           '.ws-venn .wv-src{font-size:.78em;color:#6b7480;margin-top:4px}'
+                           '@media (max-width:640px){.ws-venn .wv-stage{padding:12px 1% 22px}.ws-venn .wv-grid{grid-template-columns:1fr 1.15fr 1fr;gap:2px}'
+                           '.ws-venn .wv-chip{font-size:.8em;padding:4px 6px}.ws-venn .wv-t{font-size:.92em}}'
+                           '@media print{.ws-venn{break-inside:avoid}.ws-venn .wv-note[hidden]{display:block}}'
+                           '</style>')
+                svg = ('<svg viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true">'
+                       '<ellipse cx="370" cy="200" rx="350" ry="194" fill="rgba(214,95,72,.13)" stroke="#c4644f" stroke-width="2.5" vector-effect="non-scaling-stroke"/>'
+                       '<ellipse cx="630" cy="200" rx="350" ry="194" fill="rgba(52,105,180,.13)" stroke="#3f6fb0" stroke-width="2.5" vector-effect="non-scaling-stroke"/>'
+                       '</svg>')
+                html_parts.append(css + '<div class="ws-venn" role="group" aria-label="%s">' % (venn_head or '벤 다이어그램').replace('"', '')
+                                  + ('<div class="wv-head">%s</div>' % inline(venn_head) if venn_head else '')
+                                  + '<div class="wv-stage">' + svg + '<div class="wv-grid">'
+                                  + _col('wv-l', _V['왼쪽'][0], _V['왼쪽'][1], _Z['왼쪽만'], 'l')
+                                  + _col('wv-m', _V['겹침이름'], '', _Z['겹침'], 'm')
+                                  + _col('wv-r', _V['오른쪽'][0], _V['오른쪽'][1], _Z['오른쪽만'], 'r')
+                                  + '</div></div>'
+                                  + ('<div class="wv-src">%s</div>' % inline(_V['출처']) if _V['출처'] else '') + '</div>')
+                in_venn = False; venn_rows = []
+                continue
+            if '|' in stripped:
+                venn_rows.append([x.strip() for x in stripped.strip('|').split('|')])
+            continue
+
+        # 🧑 등장인물 띠 (:::인물띠 머리말 ... :::) — 2026-11-14 천대현(역사 Ⅴ 묶음판 «핵심 인물을 삽화로»)
+        #   단계 머리에 그 단계 사람들의 얼굴·이름·한 줄을 한 줄로 늘어놓는다(드라마 «등장인물» 결 · Mayer 사전 훈련).
+        #   얼굴을 누르면 아래에 두세 줄 설명이 열린다(한 번에 하나). 카드 묶음보다 낮다 — 폰은 사람 수만큼 한 줄(넷까지, 그 위는 줄바꿈).
+        #   문법:  이름 | 그림 파일(images/ 안 이름만) | 이름 아래 한 줄(10자 안팎) | 누르면 열리는 설명
+        #          출처 | 글
+        #   ⚠️ 단계 머리(빈칸 앞)에 두므로 한 줄·설명에 그 단계 빈칸 답과 뿌리를 쓰지 않는다 · 입력칸 0 · CSS는 첫 블록에만 한 번.
+        if stripped.startswith(':::인물띠'):
+            in_cast = True; cast_head = stripped[len(':::인물띠'):].strip(); cast_rows = []
+            continue
+        if in_cast:
+            if stripped == ':::':
+                cast_n += 1
+                _src = ''
+                _ppl = []
+                for _r in cast_rows:
+                    if _r[0] == '출처':
+                        _src = '|'.join(_r[1:]).strip(); continue
+                    while len(_r) < 4: _r.append('')
+                    _ppl.append(_r)
+                assert _ppl, '🔴 :::인물띠 — 사람 줄이 없다'
+                btns, notes = [], []
+                for k, (nm, img, one, note) in enumerate(_ppl[:12]):
+                    nid = 'cast%d-%d' % (cast_n, k)
+                    btns.append('<button type="button" class="cast-p" aria-expanded="false" aria-controls="%s" '
+                                'onclick="var w=this.closest(\'.ws-cast\'),o=this.getAttribute(\'aria-expanded\')===\'true\';'
+                                'w.querySelectorAll(\'.cast-p\').forEach(function(b){b.setAttribute(\'aria-expanded\',\'false\')});'
+                                'w.querySelectorAll(\'.cast-note p\').forEach(function(p){p.hidden=true});'
+                                'if(!o){this.setAttribute(\'aria-expanded\',\'true\');document.getElementById(\'%s\').hidden=false}">'
+                                '<img src="images/%s" alt="%s 초상" loading="lazy"><b>%s</b>%s</button>'
+                                % (nid, nid, img, nm.replace('"', ''), inline(nm), ('<span>%s</span>' % inline(one)) if one else ''))
+                    notes.append('<p id="%s" hidden><b>%s</b> — %s</p>' % (nid, inline(nm), inline(note)))
+                css = ''
+                if not cast_css:
+                    cast_css = True
+                    css = ('<style>'
+                           '.ws-cast{margin:12px 0 18px;padding:10px 12px 8px;border-radius:14px;background:#f6f3ec;border:1px solid #e3dccb}'
+                           '.ws-cast .cast-head{font-size:.84em;font-weight:700;color:#6b5a36;margin:0 0 8px;letter-spacing:.02em}'
+                           '.ws-cast .cast-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px 4px}'
+                           '.ws-cast .cast-p{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;padding:4px 2px 6px;'
+                           'font:inherit;color:inherit;cursor:pointer;border-radius:10px;text-align:center;word-break:keep-all}'
+                           '.ws-cast .cast-p img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 30%;'
+                           'border:2px solid #fff;box-shadow:0 0 0 1.5px #c9b98f;margin-bottom:2px}'
+                           '.ws-cast .cast-p b{font-size:.84em;line-height:1.25}'
+                           '.ws-cast .cast-p span{font-size:.74em;color:#6a6253;line-height:1.25}'
+                           '.ws-cast .cast-p[aria-expanded="true"]{background:#fff}'
+                           '.ws-cast .cast-p[aria-expanded="true"] img{box-shadow:0 0 0 3px #b8862b}'
+                           '.ws-cast .cast-note p{margin:6px 2px 2px;font-size:.88em;line-height:1.55;background:#fff;border-radius:10px;padding:8px 10px;border:1px solid #e3dccb}'
+                           '.ws-cast .cast-note p[hidden]{display:none}'
+                           '.ws-cast .cast-src{font-size:.72em;color:#857c69;margin-top:4px}'
+                           '@media (max-width:640px){.ws-cast .cast-row{grid-template-columns:repeat(var(--n,4),1fr)}.ws-cast .cast-p img{width:56px;height:56px}}'
+                           '@media print{.ws-cast .cast-note p[hidden]{display:block}}'
+                           '</style>')
+                html_parts.append(css + '<div class="ws-cast" role="group" aria-label="%s">' % (cast_head or '등장인물').replace('"', '')
+                                  + ('<div class="cast-head">%s</div>' % inline(cast_head) if cast_head else '')
+                                  + '<div class="cast-row" style="--n:%d">' % min(len(btns), 4) + ''.join(btns) + '</div>'
+                                  + '<div class="cast-note">' + ''.join(notes) + '</div>'
+                                  + ('<div class="cast-src">%s</div>' % inline(_src) if _src else '') + '</div>')
+                in_cast = False; cast_rows = []
+                continue
+            if '|' in stripped:
+                cast_rows.append([x.strip() for x in stripped.strip('|').split('|')])
             continue
 
         # 🧭 나라·인물별 항로 지도 (:::항로지도 머리말 ... :::) — 2026-10-26 천대현(역사 4-3-2 아티팩트 댓글)
