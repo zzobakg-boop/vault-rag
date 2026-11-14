@@ -11,7 +11,7 @@
   🔴 data-id 중복                                                  — 채점·저장 밀림
   🔴 폰 390px에서 가로 밀림                                         — 게이트 -0.93
   🔴 허브 주소(정답편 카드로 가는 문)가 학생 파일에 있음            — 게이트 -1.0
-  ⚠️ 빈칸 답이 그 빈칸보다 앞의 «보이는» 글에 그대로 있음(카드·접기 밖) — 누출 후보
+  ⚠️ 빈칸 답이 그 빈칸보다 앞의 «보이는» 글에 그대로 있음(카드·접기 밖) — 누출 후보 · 지도막대·연표시소·그래프 자료(var D)도 그 자리 글로 읽음 (11/14)
   🔴 «빈칸 언제나» 말풍선(교사용 교과서 보충) 글에 제 빈칸 답 · ⚠️ 말풍선 글에 다른 빈칸 답 (11/13 추가)
   ⚠️ 빈칸 답이 같은 단계의 그림 캡션·접기 제목·그림 alt·그림 속 글자(OCR)에 있음 — 앞뒤 무관 (10/16 추가)
   ⚠️ 정답편이 교사 iCloud 사본에 아직 없음                          — 30초 자동 동기화 대기일 수 있음
@@ -74,6 +74,22 @@ if os.path.exists(os.path.join(VR, "worksheets", ak)):
 
 # 누출 후보 — 카드·접기·스크립트 밖의 보이는 글에서, 빈칸보다 앞에 답이 그대로
 vis = re.sub(r'<div class="hero-card".*?</div></div>', "", body, flags=re.S)
+# 블록 스크립트의 «var D=…» 자료(지도막대 카드·연표시소 설명·그래프 이름)는 화면에 뜨는 글이다 — 그 자리에 글자로 남긴다
+#   (2026-11-14 역사 5단원 시각 보강 계획 — 스크립트를 통째로 빼면 지도막대·연표시소 카드 속 답을 못 본다).
+def _block_text(m):
+    k = m.group(0).find("var D=")
+    try:
+        d, _ = json.JSONDecoder().raw_decode(m.group(0)[k + 6:])
+    except Exception:
+        return ""
+    out = []
+    def walk(x):
+        if isinstance(x, str): out.append(x)
+        elif isinstance(x, dict): [walk(v) for v in x.values()]
+        elif isinstance(x, list): [walk(v) for v in x]
+    walk(d)
+    return " " + html.escape(" ".join(out)) + " "
+vis = re.sub(r"<script>\(function\(\)\{var D=.*?</script>", _block_text, vis, flags=re.S)
 vis = re.sub(r"<details.*?</details>|<script.*?</script>|<style.*?</style>", "", vis, flags=re.S)
 leaks = []
 for m in re.finditer(r'<input[^>]*data-answer="([^"]+)"[^>]*data-id="(\d+)"', vis):
