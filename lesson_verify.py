@@ -313,6 +313,28 @@ if ak_md and os.path.exists(ak_md):
     if pairs:
         warn.append(f"슬롯 답 ↔ 뒤 학생 글 겹침 {len(pairs)}곳 (사람이 판정)")
 
+# 단정어 든 덧붙인 문장 — 판정이 아니라 독립 검수자가 먼저 볼 목록 (2026-11-14 역사 제안 «교재 오류는 어디서 생기나»:
+#   하루 오류 30여 건 중 «교과서 밖 보충의 과한 단정» 11건이 가장 많았고, 이 낱말로 고르면 7건이 걸렸다).
+#   빈칸 든 교과서 문장·쓰기 칸·정답편 «교과서 원문» 인용과 열두 글자 넘게 겹치는 문장은 뺀다 — 교과서 문장은 사실 기준표가 맡는다.
+absol = []
+if md and os.path.exists(md):
+    ABS = re.compile(r"(처음부터|처음으로|처음|원래|이미|대부분|모든|끝내|하나뿐|단 하나|오직|최초|유일|항상|결코|전혀)")
+    src = open(ak_md, encoding="utf-8").read() if ak_md and os.path.exists(ak_md) else ""
+    quotes = re.sub(r"\s+", "", " ".join(re.findall(r"교과서 원문[^\"“]*[\"“](.*?)[\"”]", src)))
+    body_md = re.sub(r"^---\n.*?\n---\n", "", open(md, encoding="utf-8").read(), flags=re.S)
+    for n, line in enumerate(body_md.split("\n"), 1):
+        if re.search(r"[①-⑳㉑-㉟]\(\s*\*\*|\(　+|\[학생작성", line) or line.lstrip().startswith("#"):
+            continue
+        for sent in re.split(r"(?<=[.?!다요])\s+", line):
+            if len(sent) < 9 or not ABS.search(sent) or re.search(r"원래 (두 차시 )?학습지", sent):   # «원래 학습지에 그대로 있다»는 단정이 아니다
+                continue
+            flat = re.sub(r"\s+", "", sent)
+            if any(flat[j:j + 12] in quotes for j in range(0, max(1, len(flat) - 11), 4)):
+                continue
+            absol.append(f"원고 {n}행 «{ABS.search(sent).group(1)}» {sent.strip()[:90]}")
+    if absol:
+        ok.append(f"단정어 든 덧붙인 문장 {len(absol)}개 — 판정 아님, 독립 검수자가 먼저 볼 목록(ℹ️)")
+
 print(f"■ {os.path.basename(path)}")
 for x in red: print("  🔴", x)
 for x in warn: print("  ⚠️", x)
@@ -322,6 +344,7 @@ for l in (gl_red + gl_warn)[:8]: print("     ·", l)
 for l in side[:8]: print("     ·", l)
 for l in side_after[:8]: print("     ℹ️", l)
 for l in pairs: print("     ·", l)
+for l in absol[:12]: print("     ℹ️", l)
 if md:
     print("■ lesson_lint (대조표)")
     r = subprocess.run([sys.executable, os.path.expanduser("~/scripts/curriculum-designer/lesson_lint.py"), md], capture_output=True, text=True)
