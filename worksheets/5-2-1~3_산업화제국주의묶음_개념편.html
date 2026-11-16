@@ -1461,6 +1461,225 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 <tr><td>5</td><td>유럽인이 해외에 정착하면서 유럽의 동식물도 함께 퍼져 그곳의 자연이 바뀌었다.</td><td><div class="ox-group" data-answer="O" data-label="유럽인이 해외에 정착하면서 유럽의 동식물도 함께 퍼져 그곳의 자연이 바뀌었다."><button class="ox-btn" onclick="selectOX(this,'O')">O</button><button class="ox-btn" onclick="selectOX(this,'X')">X</button></div></td></tr>
 </table>
 <br>
+<h2>🗺 한 장으로 다시 보기</h2>
+<style>/* :::영향줄 — ws_design/lanes.js 짝. 색은 변수로만(흐름 지도는 어두운 화면에서 변수만 바꿔 쓴다). */
+.ws-lanes{--ln-ink:#1d2430;--ln-ink2:#5a6475;--ln-bg:#fffdf8;--ln-band:#f6f3ec;--ln-hd:#efe9dc;--ln-grid:#e2dccf;--ln-ev:#ffffff;--ln-evb:#cfc6b4;
+  --ln-k0:#2462a8;--ln-k1:#b23b2e;--ln-k2:#7a4fa3;--ln-k3:#9a6a12;--ln-halo:#fffdf8;--ln-sel:#e0a32a;
+  margin:14px 0;border:1px solid var(--ln-grid);border-radius:12px;background:var(--ln-bg);color:var(--ln-ink);padding:12px 12px 10px}
+.ws-lanes .ln-head{font-weight:700;line-height:1.5;margin:0 0 8px}
+.ws-lanes .ln-legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ln-ink2);margin:0 0 8px}
+.ws-lanes .ln-legend i{display:inline-block;width:24px;height:0;border-top:3px solid currentColor;vertical-align:middle;margin-right:6px}
+.ws-lanes .ln-legend .ln-k0{color:var(--ln-k0)}.ws-lanes .ln-legend .ln-k1{color:var(--ln-k1)}.ws-lanes .ln-legend .ln-k2{color:var(--ln-k2)}.ws-lanes .ln-legend .ln-k3{color:var(--ln-k3)}
+.ws-lanes .ln-legend .ln-k2 i{border-top-style:dashed}
+.ws-lanes .ln-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px}
+.ws-lanes .ln-svgbox{display:flex;align-items:flex-start;width:100%}
+.ws-lanes .ln-svgbox svg{display:block;font-family:inherit;height:auto;flex:none}
+.ws-lanes .ln-lsvg{position:sticky;left:0;z-index:1}
+.ws-lanes .ln-swipe{display:none;font-size:13px;font-weight:700;color:var(--ln-ink2);margin:0 0 6px}
+@media (max-width:700px){.ws-lanes .ln-swipe{display:block}}
+.ws-lanes .ln-band{fill:var(--ln-bg)}.ws-lanes .ln-odd{fill:var(--ln-band)}
+.ws-lanes .ln-colhd{fill:var(--ln-hd)}.ws-lanes .ln-vgrid{stroke:var(--ln-grid);stroke-dasharray:3 4}
+.ws-lanes .ln-coln{font-size:12.5px;font-weight:700;fill:var(--ln-ink)}.ws-lanes .ln-coly{font-size:11.5px;fill:var(--ln-ink2)}
+.ws-lanes .ln-lane{font-size:13px;font-weight:700;fill:var(--ln-ink)}
+.ws-lanes .ln-ev{cursor:pointer;outline:none}
+.ws-lanes .ln-evbg{fill:var(--ln-ev);stroke:var(--ln-evb);stroke-width:1.2}
+.ws-lanes .ln-ev:hover .ln-evbg{stroke:var(--ln-ink2)}
+.ws-lanes .ln-ev:focus-visible .ln-evbg{stroke:var(--ln-k0);stroke-width:3}
+.ws-lanes .ln-ev.ln-sel .ln-evbg{stroke:var(--ln-sel);stroke-width:3}
+.ws-lanes .ln-evn{font-size:13px;font-weight:700;fill:var(--ln-ink)}.ws-lanes .ln-evy{font-size:11px;fill:var(--ln-ink2)}
+.ws-lanes .ln-ed .ln-edp{fill:none;stroke-width:2.4}
+.ws-lanes .ln-ed.ln-k0 .ln-edp{stroke:var(--ln-k0)}.ws-lanes .ln-ed.ln-k1 .ln-edp{stroke:var(--ln-k1)}
+.ws-lanes .ln-ed.ln-k2 .ln-edp{stroke:var(--ln-k2);stroke-dasharray:6 4}.ws-lanes .ln-ed.ln-k3 .ln-edp{stroke:var(--ln-k3)}
+.ws-lanes marker .ln-k0{fill:var(--ln-k0)}.ws-lanes marker .ln-k1{fill:var(--ln-k1)}.ws-lanes marker .ln-k2{fill:var(--ln-k2)}.ws-lanes marker .ln-k3{fill:var(--ln-k3)}
+.ws-lanes .ln-edt{font-size:12.5px;font-weight:700;paint-order:stroke;stroke:var(--ln-halo);stroke-width:4px;stroke-linejoin:round}
+.ws-lanes .ln-edl.ln-k0 .ln-edt{fill:var(--ln-k0)}.ws-lanes .ln-edl.ln-k1 .ln-edt{fill:var(--ln-k1)}.ws-lanes .ln-edl.ln-k2 .ln-edt{fill:var(--ln-k2)}.ws-lanes .ln-edl.ln-k3 .ln-edt{fill:var(--ln-k3)}
+.ws-lanes .ln-dim{opacity:.16;transition:opacity .2s}
+.ws-lanes .ln-ev.ln-dim{opacity:.35}
+.ws-lanes .ln-card{margin-top:10px;border-top:1px solid var(--ln-grid);padding-top:10px;font-size:15px;line-height:1.65}
+.ws-lanes .ln-hint{color:var(--ln-ink2);margin:0}
+.ws-lanes .ln-ct{font-size:16px;border-left:5px solid var(--lc);padding-left:8px;margin-bottom:8px}
+.ws-lanes .ln-ct span{color:var(--ln-ink2);font-size:14px}
+.ws-lanes .ln-sth,.ws-lanes .ln-ioh{font-size:13px;font-weight:700;color:var(--ln-ink2);margin:8px 0 4px}
+.ws-lanes .ln-steps{margin:0;padding-left:22px}.ws-lanes .ln-steps li{margin:2px 0}
+.ws-lanes .ln-steps em{font-style:normal;font-weight:700;color:var(--ln-ink2);margin-right:4px}
+.ws-lanes .ln-go{display:block;width:100%;text-align:left;background:none;border:1px solid var(--ln-grid);border-radius:8px;padding:6px 10px;margin:4px 0;font:inherit;font-size:14.5px;color:var(--ln-ink);cursor:pointer}
+.ws-lanes .ln-go:hover{border-color:var(--ln-ink2)}
+.ws-lanes .ln-go i{display:inline-block;width:18px;height:0;border-top:3px solid currentColor;vertical-align:middle;margin-right:6px}
+.ws-lanes .ln-go.ln-k0 i{color:var(--ln-k0)}.ws-lanes .ln-go.ln-k1 i{color:var(--ln-k1)}.ws-lanes .ln-go.ln-k2 i{color:var(--ln-k2);border-top-style:dashed}.ws-lanes .ln-go.ln-k3 i{color:var(--ln-k3)}
+.ws-lanes .ln-go small{color:var(--ln-ink2)}
+.ws-lanes .ln-none{color:var(--ln-ink2);font-size:14px;margin:6px 0 0}
+.ws-lanes .ln-more{margin:8px 0 0;font-size:14px}
+.ws-lanes .ln-src{font-size:12px;color:var(--ln-ink2);margin-top:8px}
+@media print{.ws-lanes .ln-scroll{overflow:visible}.ws-lanes .ln-svgbox{min-width:0!important}.ws-lanes .ln-swipe{display:none}}
+.ws-lanes .ln-wrap{position:relative}
+.ws-lanes .ln-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:36px;pointer-events:none;opacity:0;transition:opacity .2s;background:linear-gradient(to right,transparent,var(--ln-bg))}
+.ws-lanes .ln-wrap.ln-more-r::after{opacity:1}
+.ws-lanes .ln-note{font-size:13px;color:var(--ln-ink2);margin:4px 0 0}
+</style><script>/* :::영향줄 — 나라(줄) × 시기(칸) 위에 큰 사건을 먼저 놓고, 누르면 그 나라 안의 전개와 주고받은 영향이 열린다.
+   2026-11-16 천대현 «굵직한 사건(나라→사건)을 먼저, 나라 안 전개는 부수적으로 · 영향을 주고받은 사건이 더 분명하게».
+   worksheet-gen(:::영향줄 블록)과 Ⅴ단원 흐름 지도(«한눈에» 장면)가 같은 그리기를 쓴다.
+   D = {lanes:[{n,c}], cols:[{n,y}], ev:[{n,l,c0,c1,y,st:[[해,글]],go}], inf:[{a,b,k,w,p,lx,ly}]}
+   k(영향 종류) = 생각 | 전쟁 | 도움 | 경제 */
+(function(){
+  var NS = 'http://www.w3.org/2000/svg';
+  var KIND = {'생각':'생각·소식이 건너감','전쟁':'전쟁·침략','도움':'다른 나라의 편들기','경제':'기술·원료·돈이 오감'};
+  function el(t, a, p){ var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function strip(s){ return String(s).replace(/<[^>]+>/g,''); }
+  window.WSLanes = function(root, D, opt){
+    opt = opt || {};
+    var LW = 78, CW = opt.colW || (D.cols.length >= 6 ? 108 : 124), RH = 74, H0 = 40, P = 8, EH = 44;   // 칸 여섯이면 좁혀 학습지 폭(682)에 맞춘다
+    var nc = D.cols.length, nl = D.lanes.length;
+    var W = LW + nc*CW + P, H = H0 + nl*RH + P;
+    var box = root.querySelector('.ln-svgbox'), card = root.querySelector('.ln-card');
+    var scr = root.querySelector('.ln-scroll'), swp = root.querySelector('.ln-swipe');
+    if (scr && !scr.parentNode.classList.contains('ln-wrap')){
+      var wrap = document.createElement('div'); wrap.className = 'ln-wrap'; scr.parentNode.insertBefore(wrap, scr); wrap.appendChild(scr);
+      if (swp) wrap.parentNode.insertBefore(swp, wrap);
+      var edge = function(){ wrap.classList.toggle('ln-more-r', scr.scrollLeft + scr.clientWidth < scr.scrollWidth - 4); };
+      scr.addEventListener('scroll', edge, {passive:true}); window.addEventListener('resize', edge); setTimeout(edge, 0);
+    }
+    // 나라 이름 칸은 따로 그려 왼쪽에 붙여 둔다(폰에서 그림을 옆으로 밀어도 나라 이름이 남는다)
+    box.style.minWidth = W+'px';   // 폰에서도 글자가 줄지 않게(그림만 옆으로 민다)
+    var lsvg = el('svg', {viewBox:'0 0 '+LW+' '+H, 'class':'ln-lsvg', 'aria-hidden':'true', style:'width:'+(LW/W*100)+'%'}, box);
+    var svg = el('svg', {viewBox:LW+' 0 '+(W-LW)+' '+H, 'class':'ln-msvg', style:'width:'+((W-LW)/W*100)+'%', role:'img', 'aria-label': strip(opt.label || '나라별 큰 사건과 영향')}, box);
+    var defs = el('defs', {}, svg);
+    Object.keys(KIND).forEach(function(k, i){
+      var m = el('marker', {id: root.id+'-m'+i, viewBox:'0 0 10 10', refX:'9', refY:'5', markerWidth:'10', markerHeight:'10', markerUnits:'userSpaceOnUse', orient:'auto-start-reverse'}, defs);
+      el('path', {d:'M0,0 L10,5 L0,10 z', 'class':'ln-k'+i}, m);
+    });
+    var gBg = el('g', {}, svg), gEd = el('g', {}, svg), gEv = el('g', {}, svg), gLb = el('g', {}, svg);
+    // 칸 머리
+    D.cols.forEach(function(c, i){
+      var x = LW + i*CW;
+      el('rect', {x:x+2, y:4, width:CW-4, height:H0-10, rx:6, 'class':'ln-colhd'}, gBg);
+      var t = el('text', {x:x+CW/2, y:19, 'text-anchor':'middle', 'class':'ln-coln'}, gBg); t.textContent = c.n;
+      if (c.y){ var t2 = el('text', {x:x+CW/2, y:31, 'text-anchor':'middle', 'class':'ln-coly'}, gBg); t2.textContent = c.y; }
+      if (i) el('line', {x1:x, y1:H0-4, x2:x, y2:H-P, 'class':'ln-vgrid'}, gBg);
+    });
+    // 줄
+    D.lanes.forEach(function(l, r){
+      var y = H0 + r*RH;
+      el('rect', {x:LW, y:y, width:W-LW, height:RH, 'class': r%2 ? 'ln-band ln-odd' : 'ln-band'}, gBg);
+      el('rect', {x:0, y:y, width:LW, height:RH, 'class': r%2 ? 'ln-band ln-odd' : 'ln-band'}, lsvg);
+      el('rect', {x:4, y:y+RH/2-9, width:5, height:18, rx:2, fill:l.c}, lsvg);
+      // 다섯 자 넘는 이름은 두 줄로 — 띄어쓰기에서, 없으면 가운뎃점 뒤에서 꺾는다
+      var nm = String(l.n), cut = nm.indexOf(' '), a1, a2;
+      if (cut < 0 && nm.indexOf('·') > 0){ cut = nm.indexOf('·') + 1; a1 = nm.slice(0, cut); a2 = nm.slice(cut); }
+      else if (cut > 0){ a1 = nm.slice(0, cut); a2 = nm.slice(cut + 1); }
+      if (nm.length > 5 && a1){
+        var a = el('text', {x:14, y:y+RH/2-3, 'class':'ln-lane'}, lsvg); a.textContent = a1;
+        var b = el('text', {x:14, y:y+RH/2+13, 'class':'ln-lane'}, lsvg); b.textContent = a2;
+      } else { var t = el('text', {x:14, y:y+RH/2+4, 'class':'ln-lane'}, lsvg); t.textContent = l.n; }
+    });
+    el('rect', {x:0, y:0, width:LW, height:H0, 'class':'ln-band'}, lsvg);
+    // 사건 칸
+    var box2 = D.ev.map(function(e){
+      var x = LW + e.c0*CW + 5, w = (e.c1 - e.c0 + 1)*CW - 10, y = H0 + e.l*RH + (RH - EH)/2, h = EH;
+      return {x:x, y:y, w:w, h:h, cx:x+w/2, cy:y+h/2};
+    });
+    var evEls = D.ev.map(function(e, i){
+      var b = box2[i], ln = D.lanes[e.l];
+      var g = el('g', {'class':'ln-ev', tabindex:'0', role:'button', 'aria-label': strip(ln.n+' '+e.n+' '+(e.y||'')), 'data-i':i}, gEv);
+      el('rect', {x:b.x, y:b.y, width:b.w, height:b.h, rx:8, 'class':'ln-evbg'}, g);
+      el('rect', {x:b.x, y:b.y, width:5, height:b.h, rx:2, fill:ln.c}, g);
+      var t = el('text', {x:b.x+12, y:b.y+18, 'class':'ln-evn'}, g); t.textContent = e.n;
+      if (e.y){ var t2 = el('text', {x:b.x+12, y:b.y+33, 'class':'ln-evy'}, g); t2.textContent = e.y; }
+      return g;
+    });
+    // 영향 화살표 — 오른쪽으로 가면 가로 곡선, 같은 때면 세로 곡선
+    var kinds = Object.keys(KIND);
+    var edEls = D.inf.map(function(f, i){
+      var s = box2[f.a], t = box2[f.b], ki = Math.max(0, kinds.indexOf(f.k)), d, mx, my, vert = false;
+      var gap = t.x - (s.x + s.w), lo = Math.max(s.x, t.x), hi = Math.min(s.x+s.w, t.x+t.w);
+      if (gap >= 60 || (gap > -6 && D.ev[f.a].l === D.ev[f.b].l)){
+        // 칸 하나 이상 떨어져 있으면 가로 곡선
+        var sx = s.x + s.w, sy = s.cy + (f.sy||0), ex = t.x - 1, ey = t.cy + (f.ey||0), dx = Math.max(26, (ex - sx)*0.5);
+        d = 'M'+sx+','+sy+' C'+(sx+dx)+','+sy+' '+(ex-dx)+','+ey+' '+ex+','+ey;
+        mx = (sx+ex)/2; my = (sy+ey)/2;
+      } else {
+        // 같은 때이거나 바로 옆 칸이면 줄 사이 틈으로 세로 곡선 — 받는 칸의 가장 가까운 자리로 들어간다
+        var x0 = hi > lo ? (lo+hi)/2 + (f.sx||0) : Math.min(Math.max(s.cx, s.x+18), s.x+s.w-18);
+        if (hi > lo){
+          // 겹치는 칸 범위 안에서, 가운데 줄의 다른 사건 칸을 가로지르지 않는 x를 가운데부터 찾는다
+          var yA = Math.min(s.y, t.y), yB = Math.max(s.y + s.h, t.y + t.h);
+          var cross = function(x){ return box2.some(function(q, k){ return k !== f.a && k !== f.b && q.y > yA && q.y + q.h < yB && x > q.x - 6 && x < q.x + q.w + 6; }); };
+          if (cross(x0)) for (var dd = 10; dd < (hi - lo)/2; dd += 10){ if (!cross(x0 - dd) && x0 - dd > lo + 12){ x0 -= dd; break; } if (!cross(x0 + dd) && x0 + dd < hi - 12){ x0 += dd; break; } }
+        }
+        var x1 = hi > lo ? x0 + (f.ex||0) : Math.min(Math.max(x0, t.x+18), t.x+t.w-18);
+        var down = t.y > s.y, y0 = down ? s.y + s.h : s.y, y1 = down ? t.y - 1 : t.y + t.h + 1, dy = (y1 - y0)*0.5;
+        d = 'M'+x0+','+y0+' C'+x0+','+(y0+dy)+' '+x1+','+(y1-dy)+' '+x1+','+y1;
+        mx = (x0+x1)/2; my = (y0+y1)/2; vert = true;
+      }
+      var g = el('g', {'class':'ln-ed ln-k'+ki, 'data-i':i}, gEd);
+      el('path', {d:d, 'class':'ln-edp', 'marker-end':'url(#'+root.id+'-m'+ki+')'}, g);
+      var lg = el('g', {'class':'ln-edl ln-k'+ki, 'data-i':i}, gLb);
+      // 세로 화살표는 이름표를 선 오른쪽에 붙인다(선을 가리지 않게)
+      var lt = el('text', {x:mx+(f.lx||0)+(vert ? 7 : 0), y:my+(f.ly||0)+4, 'text-anchor': vert ? 'start' : 'middle', 'class':'ln-edt'}, lg); lt.textContent = strip(f.w);
+      return [g, lg];
+    });
+    // 이름표 겹침 피하기 — 사건 칸과 앞서 놓인 이름표를 피해 옆·위·아래로 비킨다.
+    //   웹 글꼴이 늦게 오면 글자 폭이 바뀌므로 글꼴이 다 온 뒤 한 번 더 놓는다.
+    edEls.forEach(function(p){ var tx = p[1].querySelector('text'); tx.dataset.x0 = tx.getAttribute('x'); tx.dataset.y0 = tx.getAttribute('y'); });
+    function placeLabels(){
+      var placed = box2.map(function(b){ return {x:b.x, y:b.y, w:b.w, h:b.h}; });
+      function hit(bb){ return placed.some(function(q){ return bb.x < q.x+q.w+4 && q.x < bb.x+bb.w+4 && bb.y < q.y+q.h+1 && q.y < bb.y+bb.h+1; }); }
+      edEls.forEach(function(p){
+        var tx = p[1].querySelector('text'), b, x0 = +tx.dataset.x0, y0 = +tx.dataset.y0;
+        tx.setAttribute('x', x0); tx.setAttribute('y', y0);
+        try { b = tx.getBBox(); } catch(e){ return; }
+        if (!b.width) return;
+        var tries = [[0,0],[0,-12],[0,12],[-b.width/2-10,0],[b.width/2+10,0],[0,-24],[0,24],[-b.width-14,0],[b.width+14,0]];
+        for (var k = 0; k < tries.length; k++){
+          var bb = {x:b.x+tries[k][0], y:b.y+tries[k][1], w:b.width, h:b.height};
+          if (bb.x < LW || bb.x + bb.w > W || bb.y < H0) continue;
+          if (!hit(bb)){ tx.setAttribute('x', x0+tries[k][0]); tx.setAttribute('y', y0+tries[k][1]); placed.push(bb); return; }
+        }
+        placed.push({x:b.x, y:b.y, w:b.width, h:b.height});
+      });
+    }
+    placeLabels();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeLabels);
+    root._placeLabels = placeLabels;   // 숨어 있다가 보이게 된 경우 다시 놓을 때
+    // 범례
+    var lgd = root.querySelector('.ln-legend');
+    if (lgd) lgd.innerHTML = kinds.filter(function(k){ return D.inf.some(function(f){ return f.k === k; }); })
+      .map(function(k){ return '<span class="ln-k'+kinds.indexOf(k)+'"><i></i>'+esc(KIND[k])+'</span>'; }).join('');
+    var sel = -1;
+    function name(i){ var e = D.ev[i]; return D.lanes[e.l].n+' · '+e.n; }
+    function show(i){
+      sel = (sel === i ? -1 : i);
+      evEls.forEach(function(g, k){ g.classList.toggle('ln-sel', k === sel); g.classList.toggle('ln-dim', sel >= 0 && k !== sel && !D.inf.some(function(f){ return (f.a===sel&&f.b===k)||(f.b===sel&&f.a===k); })); });
+      edEls.forEach(function(p, k){ var on = sel < 0 || D.inf[k].a === sel || D.inf[k].b === sel; p[0].classList.toggle('ln-dim', !on); p[1].classList.toggle('ln-dim', !on); });
+      if (sel < 0){ card.innerHTML = '<p class="ln-hint">'+(opt.hint || '사건 칸을 누르면 그 나라 안에서 일이 어떻게 흘러갔는지, 어떤 영향을 주고받았는지가 여기 열린다.')+'</p>'; return; }
+      var e = D.ev[sel], h = '<div class="ln-ct" style="--lc:'+D.lanes[e.l].c+'"><b>'+esc(D.lanes[e.l].n)+'</b> · '+e.n+(e.y ? ' <span>'+esc(e.y)+'</span>' : '')+'</div>';
+      var inn = D.inf.filter(function(f){ return f.b === sel; }), out = D.inf.filter(function(f){ return f.a === sel; });
+      if (inn.length) h += '<div class="ln-io"><div class="ln-ioh">← 받은 영향</div>'+inn.map(function(f){ return '<button type="button" class="ln-go ln-k'+kinds.indexOf(f.k)+'" data-i="'+f.a+'"><i></i><b>'+esc(name(f.a))+'</b> — '+f.w+(f.p ? ' <small>'+esc(f.p)+'</small>' : '')+'</button>'; }).join('')+'<p class="ln-note">영향만으로 일이 일어난 것은 아니다. 아래 차례에서 '+esc(D.lanes[e.l].n)+' 안의 사정도 함께 보자.</p></div>';
+      if (e.st && e.st.length) h += '<div class="ln-sth">'+esc(D.lanes[e.l].n)+' 안에서는</div><ol class="ln-steps">'+e.st.map(function(s){ return '<li>'+(s[0] ? '<em>'+esc(s[0])+'</em> ' : '')+s[1]+'</li>'; }).join('')+'</ol>';
+      if (out.length) h += '<div class="ln-io"><div class="ln-ioh">준 영향 →</div>'+out.map(function(f){ return '<button type="button" class="ln-go ln-k'+kinds.indexOf(f.k)+'" data-i="'+f.b+'"><i></i><b>'+esc(name(f.b))+'</b> — '+f.w+(f.p ? ' <small>'+esc(f.p)+'</small>' : '')+'</button>'; }).join('')+'</div>';
+      if (!inn.length && !out.length) h += '<p class="ln-none">교과서는 이 사건이 다른 나라와 주고받은 영향을 따로 적지 않았다.</p>';
+      if (e.go && opt.goLabel) h += '<p class="ln-more"><a href="'+esc(e.go)+'"'+(opt.goTarget ? ' target="'+opt.goTarget+'" rel="noopener"' : '')+'>'+esc(opt.goLabel)+'</a></p>';
+      card.innerHTML = h;
+      card.querySelectorAll('.ln-go').forEach(function(b){ b.addEventListener('click', function(){ sel = -1; show(+b.dataset.i); }); });
+      var sc = root.querySelector('.ln-scroll'), ge = evEls[sel];
+      if (sc && ge && sc.scrollWidth > sc.clientWidth + 4){
+        var r1 = sc.getBoundingClientRect(), r2 = ge.getBoundingClientRect();
+        if (r2.left < r1.left + 70 || r2.right > r1.right) sc.scrollBy({left: r2.left - r1.left - 90, behavior: 'smooth'});
+      }
+      // 카드가 화면 아래쪽에서 열리면 카드 머리가 보이게 올린다(폰)
+      var cr = card.getBoundingClientRect(); if (cr.top > window.innerHeight*0.6) window.scrollBy({top: cr.top - window.innerHeight*0.2, behavior: 'smooth'});
+      if (opt.onShow) opt.onShow(sel, card);
+    }
+    evEls.forEach(function(g, i){
+      g.addEventListener('click', function(){ show(i); });
+      g.addEventListener('keydown', function(ev){ if (ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); show(i); } });
+    });
+    show(-1);   // 처음엔 아무것도 고르지 않은 상태(안내 한 줄·화살표 모두 보임)
+    return {show: function(i){ sel = -1; show(i); }};
+  };
+})();
+</script><div class="ws-lanes" id="wsln1"><div class="ln-head">큰 사건을 먼저 보자. 사건 칸을 누르면 그 안에서 일이 흘러간 차례와, 다른 사건과 주고받은 영향이 아래에 열린다.</div><div class="ln-legend"></div><div class="ln-scroll"><div class="ln-svgbox"></div></div><p class="ln-swipe">← 그림을 옆으로 밀어 보자 →</p><div class="ln-card" aria-live="polite"></div><div class="ln-src">화살표는 교과서가 «영향»이라 적었거나 원인→결과로 이은 것만 그렸다. 영향만으로 일이 일어난 것은 아니니 받은 쪽 칸 안의 차례도 함께 보자. 칸 너비는 햇수와 같지 않다. 지도로 보려면 아래 «예습·복습 — 시기별 세계 지도»의 Ⅴ단원 흐름 지도.</div></div><script>(function(){var D={"lanes": [{"n": "온 세계", "c": "#2f7d6e"}, {"n": "영국", "c": "#c0392b"}, {"n": "다른 공업국", "c": "#5d6d7e"}, {"n": "열강", "c": "#4b4f8a"}, {"n": "아프리카", "c": "#9a6b45"}, {"n": "아시아·태평양", "c": "#b9975b"}], "cols": [{"n": "18세기 후반", "y": "1760~1800"}, {"n": "19세기 초반", "y": "1800~1830"}, {"n": "19세기 중반", "y": "1830~1860"}, {"n": "19세기 후반", "y": "1860~1880"}, {"n": "세기의 끝", "y": "1880~1914"}], "ev": [{"n": "산업 혁명", "l": 1, "c0": 0, "c1": 0, "y": "18세기 후반", "st": [["", "인클로저 운동으로 땅을 잃은 농민들이 도시로 몰려 공장의 일손이 되었다."], ["", "면직물이 많이 필요해지자 방적기(1764~1779)와 방직기가 잇따라 발명되었다."], ["", "와트가 개량한 증기 기관으로 기계를 돌려 대량으로 만들었고, 공장제 기계 공업이 커졌다."], ["", "증기 기관차와 증기선이 원료와 제품을 실어 날랐다."]]}, {"n": "새로운 사회 문제", "l": 1, "c0": 1, "c1": 2, "y": "19세기 전반~중반", "st": [["", "도시로 사람이 몰리며 집과 화장실이 모자랐고, 상하수도가 없어 전염병이 돌았다."], ["", "산업화의 혜택이 고르게 돌아가지 않아 빈부 격차가 커졌고, 임금이 싼 아이들까지 공장에서 일했다."], ["", "기계 때문에 삶이 비참해졌다고 여긴 노동자들이 기계를 부수었다(러다이트 운동)."], ["", "노동 문제와 빈부 격차를 해결하려는 사회주의 사상이 나왔다(오언, 마르크스)."]]}, {"n": "산업 혁명의 확산", "l": 2, "c0": 1, "c1": 3, "y": "19세기", "st": [["19세기 초반", "벨기에와 프랑스로 퍼졌다."], ["19세기 중반", "미국으로 퍼졌다."], ["19세기 후반", "독일·러시아·일본이 중화학 공업을 중심으로 산업화했다."]]}, {"n": "하나로 묶인 세계", "l": 0, "c0": 4, "c1": 4, "y": "19세기 말~", "st": [["", "철도·증기선·전신으로 세계가 하나의 연결망으로 묶이고, 서양 문물이 퍼졌다."], ["19세기 말~", "서양 여러 나라가 영국 그리니치 천문대를 기준으로 하는 표준시를 쓰기 시작했고, 20세기에는 전 세계가 썼다."], ["", "열강의 침략과 대규모 인구 이동으로 생태환경이 바뀌었다. 식민지의 숲이 마구 베였고, 오스트레일리아에서는 들여온 토끼가 불어나 자연을 바꾸었다."]]}, {"n": "아프리카 분할", "l": 4, "c0": 4, "c1": 4, "y": "1880~1914", "st": [["", "탐험가들이 아프리카의 지하자원을 알리자 유럽 열강이 앞다투어 침략하기 시작했다."], ["1884", "베를린 회의에서 아프리카를 나누는 원칙을 정했다."], ["", "영국은 카이로와 케이프타운을 잇는 남북 종단 정책을, 프랑스는 알제리에서 마다가스카르까지 동서로 가로지르는 횡단 정책을 폈다."], ["1898", "두 나라가 파쇼다에서 부딪쳤다."]]}, {"n": "제국주의", "l": 3, "c0": 3, "c1": 4, "y": "19세기 후반~", "st": [["19세기 후반", "산업화로 자본주의가 크게 발전한 서양 열강이 원료와 시장, 투자처를 찾아 나섰다."], ["", "열강은 군사력을 앞세워 힘이 약한 나라를 식민지로 삼았다. 이런 팽창 정책을 제국주의라고 한다."]]}, {"n": "아시아·태평양 분할", "l": 5, "c0": 1, "c1": 4, "y": "19세기~", "st": [["19세기", "열강이 상업 활동을 넘어 아시아를 식민지로 만들려고 경쟁했다."], ["", "17세기경 인도에 진출한 영국은 동인도 회사로 다스리다가 19세기 후반부터 총독을 보내 직접 다스렸다."], ["", "프랑스는 인도차이나반도를, 네덜란드는 인도네시아를 차지했고, 넓은 땅과 많은 인구를 가진 중국에도 열강이 큰 관심을 보였다."], ["1866·1871", "프랑스와 미국이 통상을 요구하며 조선을 침략했다."], ["", "식민지는 열강이 요구하는 특정 품목만 사고팔 수밖에 없어 서양에 기대는 경제가 되었다."]]}], "inf": [{"a": 0, "b": 2, "k": "경제", "w": "기계와 기술이 퍼짐", "p": "160쪽"}, {"a": 2, "b": 3, "k": "경제", "w": "철도·증기선·전신", "p": "160·166쪽"}, {"a": 2, "b": 5, "k": "경제", "w": "원료·시장·투자처가 필요", "p": "163쪽"}, {"a": 5, "b": 4, "k": "전쟁", "w": "아프리카 침략", "p": "164쪽"}, {"a": 5, "b": 6, "k": "전쟁", "w": "아시아·태평양 침략", "p": "165쪽"}, {"a": 5, "b": 3, "k": "전쟁", "w": "침략과 이주가 자연을 바꿈", "p": "167쪽"}]};WSLanes(document.getElementById("wsln1"),D,{label:"큰 사건을 먼저 보자. 사건 칸을 누르면 그 안에서 일이 흘러간 차례와, 다른 사건과 주고받은 영향이 아래에 열린다.",goLabel:"지도로 보기 →",goTarget:"_blank"});})();</script>
+<br>
 <h2>🧵 오늘 구슬 달기</h2>
 <blockquote>🎙️ 우리가 서양사를 꿰어 온 줄은 셋이야. ① 전쟁할 돈은 누가 냈고, 낸 사람은 무엇을 요구했나? ② 누구와 어떻게 오가고 부딪쳤나? 그래서 무엇이 퍼졌나? ③ 사람들은 무엇을 믿고 어떻게 생각을 바꿨나?</blockquote>
 <br>
@@ -1472,7 +1691,7 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 <blockquote>📚 오늘 한 시간에 담지 못한 이야기(디킨스 소설 속 도시, 한국 시각 이야기, 엘리스섬 이민자)는 원래 학습지 5-2-1~5-2-3에 그대로 있다.</blockquote>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>🌍 예습·복습 — 시기별 세계 지도</summary><div class="ws-fold-body">
-<p><a href="https://zzobakg-boop.github.io/vault-rag/worksheets/5_흐름지도.html#s7" target="_blank" rel="noopener">Ⅴ단원 흐름 지도</a> — 우리 학습지 사이트의 지도다. 명예혁명에서 제국주의까지 장면 아홉을 넘기며 지도 색이 어떻게 바뀌는지 본다. 오늘 범위는 7~9장면이고, 장면마다 «찾아보자» 질문이 있다.</p>
+<p><a href="https://zzobakg-boop.github.io/vault-rag/worksheets/5_흐름지도.html#p2" target="_blank" rel="noopener">Ⅴ단원 흐름 지도</a> — 우리 학습지 사이트의 지도다. «한눈에»의 «산업화와 제국주의» 편에서 큰 사건과 서로 주고받은 영향을 보고, 사건을 누르면 그 장면으로 간다. 장면에서는 «○○ 안에서는» 단계를 누르면 지도가 그 무렵 모습으로 바뀐다. 오늘 범위는 10~12장면이다.</p>
 <p><a href="https://mapsofages.com/ko/" target="_blank" rel="noopener">Maps of Ages</a> — 한국어 지도다. 아래 막대나 ‹ › 단추로 해를 옮기면 그때의 나라 이름이 땅 위에 뜨고, 손가락 두 개로 벌리면(노트북은 마우스 휠) 커진다. <a href="https://mapsofages.com/ko/#slot=434" target="_blank" rel="noopener">1849년</a>과 <a href="https://mapsofages.com/ko/#slot=457" target="_blank" rel="noopener">1900년</a>을 번갈아 열어, 아프리카가 «프랑스령 아프리카» 같은 열강의 땅으로 덮이는 것을 보자. 그 사이 끝까지 남은 두 나라도 찾아보자. <a href="https://mapsofages.com/ko/#slot=463" target="_blank" rel="noopener">1914년</a>까지 넘기면 교과서 지도와 견줄 수 있다.</p>
 <p><a href="https://42-apps.github.io/ahistoryofnations/app/nations.html" target="_blank" rel="noopener">A History of Nations</a> — 같은 시기 경계를 지구본으로 돌려 볼 수 있다(영어, 1800·1850·1900·1914년처럼 정해진 해만).</p>
 <p>⚠️ 두 곳 모두 경계는 대략이고 이름표가 틀린 곳도 있다. Maps of Ages의 1900년 지도에 «벨기에령 콩고»라고 나오지만, 그때는 아직 벨기에 국왕 레오폴드 2세의 «콩고 자유국»이었다(1908년에 벨기에 식민지가 됨). 1849년 지도에서 아프리카 안쪽이 칠해져 있지 않은 것은 사람이 살지 않아서가 아니라 지도 만든 쪽에 경계 자료가 없어서다. 교과서와 다르면 교과서를 따른다.</p>

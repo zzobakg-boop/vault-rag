@@ -143,7 +143,7 @@ def extract_table_answers(answer_file):
     #   정답편 쪽만 세면 표 번호가 밀려 보기 버튼 표가 빈 칸이 된다 — 같은 블록 안은 여기서도 건너뛴다.
     ROWBLOCKS = (':::낱말', ':::좌석표', ':::카드선택', ':::비교', ':::인물선택', ':::연표시소', ':::지도막대',
                  ':::그래프', ':::모자이크', ':::gallery', ':::플립', ':::항로지도', ':::개념 잇기', ':::더 생각',
-                 ':::흐름', ':::벤', ':::인물띠')
+                 ':::흐름', ':::벤', ':::인물띠', ':::영향줄')
     in_rb = False
     for line in lines:
         stripped = line.strip()
@@ -327,6 +327,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_flow = False; flow_head = ''; flow_rows = []; flow_css = False   # 2026-11-14: 흐름도 (:::흐름 ... :::)
     in_venn = False; venn_head = ''; venn_rows = []; venn_css = False; venn_n = 0   # 2026-11-14: 벤 다이어그램 (:::벤 ... :::)
     in_cast = False; cast_head = ''; cast_rows = []; cast_css = False; cast_n = 0   # 2026-11-14: 등장인물 띠 (:::인물띠 ... :::)
+    in_ln = False; ln_head = ''; ln_rows = []; ln_css = False; ln_n = 0   # 2026-11-16: 나라 줄 × 시기 영향도 (:::영향줄 ... :::)
     in_pk = False             # 2026-09-07: 카드 골라 쓰기 (:::카드선택 ... :::)
     pk_title, pk_rows, pk_ask, pk_cred = '', [], '', ''
     seat_title, seat_rows, seat_note = '', [], ''
@@ -1866,6 +1867,85 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 'window.addEventListener("beforeprint",function(){cur=null;press(null);all();});all();})();</script>')
             in_rt = False; rt_rows = []
             continue
+        # 🧭 나라 줄 × 시기 영향도 (:::영향줄 머리말 ... :::) — 2026-11-16 천대현(역사 Ⅴ «한 장으로 다시 보기»)
+        #   «굵직한 사건(나라→사건)을 먼저, 나라 안 전개는 부수적으로 · 영향을 주고받은 사건이 더 분명하게».
+        #   줄(나라) × 칸(시기) 위에 큰 사건 칸을 놓고, 교과서가 «영향»이라 적은 것만 화살표로 잇는다. 사건을 누르면
+        #   그 나라 안 전개(번호 목록)와 받은 영향·준 영향(누르면 그 사건으로 건너감)이 아래 카드에 열린다.
+        #   문법:  줄 | 나라 이름 | 색(#rrggbb)
+        #          칸 | 시기 이름 | 해(선택)
+        #          사건 | 이름 | 줄 이름 | 칸 시작 | 칸 끝 | 해          (칸은 1부터 · 이름은 블록 안에서 하나뿐)
+        #          전개 | 사건 이름 | 해(비워도 됨) | 글                 (적은 차례대로 번호가 붙는다)
+        #          영향 | 출발 사건 | 도착 사건 | 생각/전쟁/도움/경제 | 건너간 것(필수) | 쪽(선택) | 글 위치 dx,dy(선택)
+        #          장면 | 사건 이름 | 주소                                (선택 · 카드 끝 «지도로 보기» 링크)
+        #          출처 | 글
+        #   그리기는 ws_design/lanes.js·lanes.css(Ⅴ단원 흐름 지도 «한눈에»와 같은 코드). 폰은 그림만 옆으로 밀고 카드는 그대로.
+        #   ⚠️ 입력칸 0(act 불변) · 화살표는 교과서 본문이 «영향»이라 적은 것만(나머지는 «같은 때»일 뿐) · CSS·JS는 첫 블록에만 한 번(블록 없는 원고 출력 불변).
+        if stripped.startswith(':::영향줄'):
+            in_ln = True; ln_head = stripped[len(':::영향줄'):].strip(); ln_rows = []
+            continue
+        if in_ln:
+            if stripped != ':::':
+                if stripped:
+                    ln_rows.append([x.strip() for x in stripped.strip().strip('|').split('|')])
+                continue
+            _lanes = []; _cols = []; _ev = []; _inf = []; _src = ''; _go = {}
+            for _r in ln_rows:
+                if _r[0] == '줄' and len(_r) >= 3:
+                    _lanes.append({'n': _r[1], 'c': _r[2]})
+                elif _r[0] == '칸' and len(_r) >= 2:
+                    _cols.append({'n': _r[1], 'y': _r[2] if len(_r) > 2 else ''})
+            _ln_nm = [l['n'] for l in _lanes]
+            for _r in ln_rows:
+                if _r[0] == '사건':
+                    assert len(_r) >= 6, f'🔴 :::영향줄 사건 줄 칸 수 — {_r}'
+                    assert _r[2] in _ln_nm, f'🔴 :::영향줄 — 없는 줄 이름: {_r[2]}'
+                    _c0, _c1 = int(_r[3]) - 1, int(_r[4]) - 1
+                    assert 0 <= _c0 <= _c1 < len(_cols), f'🔴 :::영향줄 — 칸 번호가 벗어남: {_r[1]}'
+                    _ev.append({'n': _r[1], 'l': _ln_nm.index(_r[2]), 'c0': _c0, 'c1': _c1, 'y': _r[5], 'st': []})
+            _ev_nm = [e['n'] for e in _ev]
+            assert len(set(_ev_nm)) == len(_ev_nm), '🔴 :::영향줄 — 사건 이름이 겹친다'
+            for _r in ln_rows:
+                if _r[0] == '전개' and len(_r) >= 4:
+                    assert _r[1] in _ev_nm, f'🔴 :::영향줄 전개 — 없는 사건: {_r[1]}'
+                    _ev[_ev_nm.index(_r[1])]['st'].append([_r[2], inline('|'.join(_r[3:]))])
+                elif _r[0] == '영향' and len(_r) >= 5:
+                    assert _r[1] in _ev_nm and _r[2] in _ev_nm, f'🔴 :::영향줄 영향 — 없는 사건: {_r[1]} / {_r[2]}'
+                    assert _r[3] in ('생각', '전쟁', '도움', '경제'), f'🔴 :::영향줄 영향 종류 — 생각/전쟁/도움/경제 중 하나: {_r[3]}'
+                    assert _r[4], f'🔴 :::영향줄 — «{_r[1]}→{_r[2]}»에 건너간 것이 없다'
+                    _f = {'a': _ev_nm.index(_r[1]), 'b': _ev_nm.index(_r[2]), 'k': _r[3], 'w': inline(_r[4]), 'p': _r[5] if len(_r) > 5 else ''}
+                    if len(_r) > 6 and ',' in _r[6]:
+                        _dx, _dy = _r[6].split(',')[:2]
+                        _f['lx'], _f['ly'] = float(_dx), float(_dy)
+                    _inf.append(_f)
+                elif _r[0] == '장면' and len(_r) >= 3:
+                    assert _r[1] in _ev_nm, f'🔴 :::영향줄 장면 — 없는 사건: {_r[1]}'
+                    _ev[_ev_nm.index(_r[1])]['go'] = '|'.join(_r[2:])
+                elif _r[0] == '출처' and len(_r) >= 2:
+                    _src = '|'.join(_r[1:])
+            assert _lanes and _cols and _ev, '🔴 :::영향줄 — 줄·칸·사건이 하나씩은 있어야 한다'
+            ln_n += 1
+            lid = f'wsln{ln_n}'
+            _D = {'lanes': _lanes, 'cols': _cols, 'ev': [dict(e, n=inline(e['n'])) for e in _ev], 'inf': _inf}
+            _head = ''
+            if not ln_css:
+                ln_css = True
+                _dd = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ws_design')
+                _head = ('<style>' + open(os.path.join(_dd, 'lanes.css'), encoding='utf-8').read() + '</style>'
+                         '<script>' + open(os.path.join(_dd, 'lanes.js'), encoding='utf-8').read() + '</script>')
+            html_parts.append(
+                _head +
+                f'<div class="ws-lanes" id="{lid}">'
+                f'<div class="ln-head">{inline(ln_head)}</div><div class="ln-legend"></div>'
+                '<div class="ln-scroll"><div class="ln-svgbox"></div></div>'
+                '<p class="ln-swipe">← 그림을 옆으로 밀어 보자 →</p>'
+                '<div class="ln-card" aria-live="polite"></div>'
+                + (f'<div class="ln-src">{inline(_src)}</div>' if _src else '') +
+                '</div>'
+                f'<script>(function(){{var D={json.dumps(_D, ensure_ascii=False)};'
+                f'WSLanes(document.getElementById("{lid}"),D,{{label:{json.dumps(ln_head, ensure_ascii=False)},goLabel:"지도로 보기 →",goTarget:"_blank"}});}})();</script>')
+            in_ln = False
+            continue
+
         # 🗺 지도 + 연도 막대 (:::지도막대 머리말 ... :::) — 2026-10-06 메인 결정(천대현 «같은 시대, 다른 공간» 시안 숙의)
         #   지리는 «같은 문제, 다른 지역» — 같은 지표가 나라마다 언제 바뀌었나를 지도 핀으로 나란히 본다.
         #   바탕 지도는 글자 없는 그림(map-render/hq), 핀 이름·값은 HTML(-0.83 · 폰에서도 글자가 줄지 않는다).
