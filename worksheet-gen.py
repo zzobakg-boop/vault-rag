@@ -344,6 +344,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_tb = False             # 2026-09-02: 교과서를 펴는 자리 (:::교과서 <라벨> ... :::)
     tb_label = ''             #   학습지 안(파랑)과 교과서 밖(황토)을 색으로 갈라 놓는다.
     tb_lines = []
+    tsr_css = False           # 2026-11-16: :::교과서 안 📜 사료 조항 카드 CSS를 한 번만
     figrow_items = []
     essay_count = 0  # 서술형 textarea 수 (제출 수합·세특용 data-id essay-N)
     last_heading = ''  # 가장 최근 heading (essay data-label용·2026-06-24)
@@ -853,7 +854,32 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     return re.sub(r'data-label="([^"]*)"', s, h)
                 body = []
                 _rows = []
+                # 2026-11-16 역사 5-1(천대현 «그림과 합쳐서 교과서 스타일로 권리 장전 내용도 넣고, 제6조에 밑줄을 넣어 교과서를 보고 입력하게»)
+                #   '📜 제목' 줄 다음 '머리 | 글' 줄들 = 교과서 사료 상자의 조항(머리는 내어 쓴다), '— 출처' 줄이 카드를 닫는다.
+                #   글 자리에 [학생작성]을 두면 그 조항이 밑줄 입력칸이 된다(라벨은 '교과서 N쪽에서 찾기 — 머리').
+                #   카드는 <div>라 «| 2단»에서도 글 쪽 칸에 남는다. 이 줄이 없는 상자는 출력이 그대로다.
+                _sr = None
+                # 2026-11-16 사회 학생 눈 🟡 «폰에서 한 줄 칸은 20자 안팎만 보여 30자 넘는 조항은 앞이 밀려 다시 못 읽는다»
+                #   → 조항 칸은 두 줄 밑줄 textarea. 클래스·data-id·data-label은 그대로라 채점·저장·복원·제출 코드(.blank-input·.value)가 같게 다룬다.
+                def _sr_line(t):
+                    return re.sub(r'<input type="text" (class="[^"]*activity-input[^"]*"[^>]*?) style="width:\d+px"([^>]*)>',
+                                  r'<textarea \1\2 rows="2"></textarea>', t)
+                def _sr_html(sr):
+                    _rr = ''.join(
+                        f'<div class="tsr-r{" tsr-in" if "<input" in t else ""}"><b class="tsr-k">{inline(k)}</b>'
+                        f'<span class="tsr-t">{_sr_line(_relabel(inline(t)))}</span></div>' for k, t in sr['rows'])
+                    return (f'<div class="ws-tb-sr"><div class="tsr-h">📜 {inline(sr["title"])}</div>{_rr}'
+                            + (f'<div class="tsr-c">— {inline(sr["cite"])}</div>' if sr['cite'] else '') + '</div>')
                 for ln in tb_lines + ['']:
+                    if _sr is not None:
+                        _mr = re.match(r'^([^|<]{1,12}?)\s*\|\s*(.+)$', ln)
+                        if _mr and not ln.startswith(('|', '?', '![', '— ')):
+                            _sr['rows'].append((_mr.group(1).strip(), _mr.group(2).strip())); continue
+                        if ln.startswith('— '):
+                            _sr['cite'] = ln[2:].strip(); body.append(_sr_html(_sr)); _sr = None; continue
+                        body.append(_sr_html(_sr)); _sr = None
+                    if ln.startswith('📜'):
+                        _sr = {'title': ln[1:].strip(), 'rows': [], 'cite': ''}; continue
                     # 2026-10-15 사회 7-3(천대현 «D 빈칸 표와 공통점 칸이 교과서엔 한 표에 있다 — 합치자») — 상자 안 '|…|' 줄은 표로
                     if ln.startswith('|'):
                         _rows.append(ln); continue
@@ -877,6 +903,32 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                               f'<div class="c2-a">{"".join(_fg)}</div><div class="c2-b">{"".join(_tx)}</div></div>')
                 else:
                     _inner = "".join(body)
+                if '<div class="ws-tb-sr">' in _inner and not tsr_css:
+                    tsr_css = True
+                    html_parts.append(
+                        '<style>'
+                        '.ws-tb-sr{background:#fff;border:1px solid #dcc78f;border-radius:10px;padding:10px 14px 12px;margin:2px 0 10px;box-shadow:0 1px 0 #efe3c2}'
+                        '.ws-tb-sr .tsr-h{font-weight:800;color:#6b4a12;font-size:.95em;padding:0 0 6px;margin:0 0 6px;border-bottom:2px solid #e8d9b4}'
+                        '.ws-tb-sr .tsr-r{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;align-items:baseline;'
+                        'line-height:1.65;padding:3px 0;font-size:.95em;color:#3d3116;word-break:keep-all}'
+                        '.ws-tb-sr .tsr-k{color:#8a5f12;white-space:nowrap;min-width:3.2em}'
+                        # 2026-11-16 천대현 판정 «아래 밑줄 하나» — 공책처럼 줄마다 밑줄(반복 그라디언트)은 줄 높이 반올림으로
+                        #   글자와 밑줄이 몇 px씩 어긋났다(폰 390 실측). 칸 맨 아래 밑줄 하나 + 글 길이만큼 칸이 늘어난다(두 줄 이상).
+                        '.ws-tb-sr .tsr-in{align-items:start}.ws-tb-sr .tsr-in .tsr-k{padding-top:4px;line-height:1.7}'
+                        '.ws-tb-sr .tsr-in textarea.activity-input{display:block;width:100%;max-width:none;box-sizing:border-box;'
+                        'margin:0;padding:4px 4px 3px;border:0;border-bottom:2px solid #b8862b;border-radius:0;resize:none;overflow-y:hidden;'
+                        'font:inherit;line-height:1.7;text-align:left;color:#3d3116;background:#fffdf5}'
+                        '.ws-tb-sr .tsr-in textarea.activity-input:focus{outline:none;border-bottom-color:#8a5f12;background:#fff8e4}'
+                        '.ws-tb-sr .tsr-c{margin-top:6px;text-align:right;font-size:.8em;color:#7a6742}'
+                        '@media print{.ws-tb-sr{box-shadow:none}}'
+                        '</style>'
+                        # 칸 높이 = 글 높이(rows=2보다 작아지지 않음). 입력·창 크기·반 번호 고른 뒤 복원(change) 때 다시 맞춘다.
+                        '<script>(function(){function fit(t){t.style.height="auto";t.style.height=(t.scrollHeight+2)+"px";}'
+                        'function all(){document.querySelectorAll(".ws-tb-sr textarea").forEach(fit);}'
+                        'document.addEventListener("input",function(e){if(e.target.closest&&e.target.closest(".ws-tb-sr"))fit(e.target);},true);'
+                        'document.addEventListener("change",function(){setTimeout(all,80);},true);'
+                        'window.addEventListener("resize",all);window.addEventListener("load",all);'
+                        'if(document.readyState!=="loading")setTimeout(all,0);else document.addEventListener("DOMContentLoaded",all);})();</script>')
                 html_parts.append(
                     f'<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 {inline(tb_label)}</div>'
                     f'{_inner}</div>')
