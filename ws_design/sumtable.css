@@ -1,0 +1,19 @@
+/* :::정리표 [제목] … 마크다운 표 … ::: — 2026-11-16 천대현 5-1 «세 혁명 표를 공적인 용어로, 정리표 형식과 양식에 맞게».
+   이 블록을 쓴 차시에만 실린다. 첫 줄 = 항목 머리(남색 띠), 첫 칸 = 구분 칸(옅은 남색). 표 처리·빈칸 칸·표 번호는 평소 표와 같다. */
+.ws-sum{margin:16px 0 10px}
+.ws-sum-t{display:inline-block;font-weight:800;font-size:.86em;letter-spacing:.02em;color:#fff;background:#2f4a6d;border-radius:9px 9px 0 0;padding:5px 14px 4px;line-height:1.5}
+.ws-sum table{width:100%;margin:0;border-collapse:separate;border-spacing:0;border:1.5px solid #2f4a6d;border-radius:0 10px 10px 10px;overflow:hidden;background:#fff;table-layout:auto}
+.ws-sum td{border:0;border-top:1px solid #dfe5ee;padding:9px 12px;line-height:1.6;vertical-align:middle;word-break:keep-all}
+.ws-sum td+td{border-left:1px solid #e6ebf2}
+.ws-sum tr:first-child td{background:#2f4a6d;color:#fff;font-weight:750;text-align:center;border-top:0;border-left-color:#46607f;font-size:.95em}
+.ws-sum tr:first-child td:first-child{background:#24384f}
+.ws-sum tr:not(:first-child) td:first-child{background:#eef2f8;color:#24384f;font-weight:750;text-align:center;white-space:nowrap;width:1%}
+.ws-sum tbody tr:nth-child(even):not(:first-child) td:not(:first-child),.ws-sum tr:nth-child(even):not(:first-child) td:not(:first-child){background:#fafbfd}
+@media (max-width:640px){
+  .ws-sum table{font-size:.88em;table-layout:auto}
+  .ws-sum td{padding:6px 5px;line-height:1.5}
+  .ws-sum tr:not(:first-child) td:first-child{white-space:normal;width:3.6em;padding:7px 4px}
+}
+@media print{
+  .ws-sum-t,.ws-sum tr:first-child td,.ws-sum tr:not(:first-child) td:first-child{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}

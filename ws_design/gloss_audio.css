@@ -1,0 +1,5 @@
+/* 보충 말풍선 안 소리(gloss_audio.js 짝) — 소리를 넣은 차시에만 */
+.gl-aud{margin-top:7px}
+.gl-aud audio{display:block;width:100%;max-width:300px;height:36px}
+.gl-aud-cap{margin-top:3px;font-size:.72rem;line-height:1.45;color:#4f6f99}
+@media print{.gl-aud{display:none!important}}

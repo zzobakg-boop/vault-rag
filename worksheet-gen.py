@@ -250,6 +250,13 @@ def parse_linkmap(raw):
                         if r[3]: g['near'] = r[3]
                     if k == '이어 보기':
                         g['label'] = '🔗 이어 보기'
+                    # 2026-11-16 «… | 소리 | images/….mp3 | 설명» — 말풍선 안에 소리(opt-in, 천대현 5-1 «라 마르세예즈를 말풍선으로 들을 수 있게»)
+                    _am = re.search(r'\|소리\|([^|]+\.(?:mp3|m4a|ogg|oga))(?:\|([^|]*))?$', g['text'])
+                    if _am:
+                        g['audio'] = _am.group(1).strip()
+                        if (_am.group(2) or '').strip():
+                            g['audio_cap'] = _am.group(2).strip()
+                        g['text'] = g['text'][:_am.start()].strip()
                     gloss.append(g)
                 else:
                     warn.append(f'모르는 줄 «{k}»: {ln[:40]}')
@@ -345,6 +352,8 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     tb_label = ''             #   학습지 안(파랑)과 교과서 밖(황토)을 색으로 갈라 놓는다.
     tb_lines = []
     tsr_css = False           # 2026-11-16: :::교과서 안 📜 사료 조항 카드 CSS를 한 번만
+    in_sum = False            # 2026-11-16: :::정리표 [제목] … 표 … ::: (5-1 세 혁명 표)
+    sum_css = False           #   정리표 CSS(ws_design/sumtable.css)를 한 번만
     figrow_items = []
     essay_count = 0  # 서술형 textarea 수 (제출 수합·세특용 data-id essay-N)
     last_heading = ''  # 가장 최근 heading (essay data-label용·2026-06-24)
@@ -2048,9 +2057,28 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             #          출처 | 글
             #   막대를 그해로 옮기면 그해까지 일어난 사건 핀이 나타나고, 두 끝이 다 보이는 연결선이 그려진다. 핀을 누르면 카드 한 줄.
             #   ⚠️ 입력칸 0 · 자동 재생 없음(▶만) · 인쇄 직전 마지막 해 · CSS는 이 블록 안 <style>로만(전역 CSS 불변).
-            _evs = []; _lks = []
+            #   🎨 «칠하기» (opt-in) — 2026-11-16 천대현(역사 5-1 검토판 «p.156 교과서의 지도를 좀 더 인터렉티브하게»).
+            #   `칠하기` 줄이 있으면 바탕을 그림 대신 SVG(나라마다 <path data-k="키">, map-render/hq/hq_515_latam_fill.py)로 넣고,
+            #   막대의 해가 그 나라 연도에 닿으면 옅은 색 → 진한 색으로 칠한다(색 = 그 땅을 다스리던 나라).
+            #          지도 | 파일.svg | 대체텍스트      색 | 이름 | #hex      칠하기 | 키 | 색 이름 | 연도(없으면 -)
+            #          처음 | 아직 칠한 곳이 없을 때 읽을 글      읽기 | 그해 사건 앞말      칠 뜻 | 범례 글      길 | 연결선 범례 글   (넷 다 선택)
+            #   핀(사건)은 칠하기와 따로 간다 — 칠한 해와 핀 해가 달라도 된다(파나마: 1821 에스파냐에서 벗어나 콜롬비아로 / 1903 따로 독립).
+            #   ⚠️ 칠하기 줄이 없으면 출력은 그대로(바이트 같음) · 폰(640px 아래)은 그해 핀과 고른 핀 이름표만 보인다.
+            _evs = []; _lks = []; _fcol = {}; _fills = []; _f0 = ''; _frd = ''; _fmean = ''; _froute = ''
             for _r in mb_rows:
-                if _r[0] == '사건' and len(_r) >= 7:
+                if _r[0] == '색' and len(_r) >= 3:
+                    _fcol[_r[1]] = _r[2]
+                elif _r[0] == '칠하기' and len(_r) >= 4:
+                    _fills.append({'k': _r[1], 'c': _r[2], 'y': int(_r[3]) if _r[3].isdigit() else 0})
+                elif _r[0] == '처음' and len(_r) >= 2:
+                    _f0 = '|'.join(_r[1:])
+                elif _r[0] == '읽기' and len(_r) >= 2:
+                    _frd = _r[1]
+                elif _r[0] == '칠 뜻' and len(_r) >= 2:
+                    _fmean = '|'.join(_r[1:])
+                elif _r[0] == '길' and len(_r) >= 2:
+                    _froute = '|'.join(_r[1:])
+                elif _r[0] == '사건' and len(_r) >= 7:
                     _evs.append({'n': _r[1], 'x': float(_r[2].rstrip('%')), 'y': float(_r[3].rstrip('%')),
                                  's': {'왼': 'l', '위': 'u', '아래': 'd'}.get(_r[4][:2] if _r[4].startswith('아래') else _r[4][:1], 'r'),
                                  'yr': int(_r[5]), 't': '|'.join(_r[6:])})
@@ -2074,6 +2102,63 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     for k, l in enumerate(_lks))
                 _D = {'y': [int(y) for y in _yrs], 'e': [{'n': inline(e['n']), 'y': e['yr'], 't': inline(e['t'])} for e in _evs],
                       'l': [{'a': _nm.index(l['a']), 'b': _nm.index(l['b']), 's': l['s'], 'w': inline(l['w'])} for l in _lks]}
+                # 칠하기가 없으면 아래 여섯 조각이 예전 출력 글자 그대로다.
+                _x_css = ''; _x_cls = ''; _x_v = ''; _x_d = ''; _x_box = ''; _x_ev = ''
+                _x_map = f'<img src="images/{_img}" alt="{_alt.replace(chr(34), "&quot;")}" loading="lazy">'
+                _x_leg = ('<div class="ws-mb-legend"><span><i class="mb-ls"></i>영향을 주고받음 — 무엇인가 건너갔다</span>'
+                          '<span><i class="mb-ld"></i>그냥 같은 때 — 건너간 것이 없다</span></div>')
+                _x_rd = ('if(sel>=0&&D.e[sel].y<=Y){rd.innerHTML=card(sel);}else{sel=-1;var o=D.e.filter(function(e){return e.y<=Y;});'
+                         'rd.innerHTML="<b>"+Y+"년까지</b> — "+(o.length?o.map(function(e){return e.n+" ("+e.y+")";}).join(" · "):"아직 일어난 사건이 없다")+" · 핀을 누르면 카드가 열린다";}')
+                if _fills:
+                    assert _img.endswith('.svg'), '🔴 :::지도막대 칠하기 — 지도는 나라마다 path data-k 가 있는 .svg 여야 한다'
+                    _svp = os.path.join(os.path.dirname(os.path.abspath(out_path)), 'images', _img)
+                    if not os.path.exists(_svp):   # 다른 폴더로 뽑을 때(대조·시험)는 생성기 옆 worksheets/images 에서 — 메인 v31 ℹ️
+                        _svp = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'worksheets', 'images', _img)
+                    _sv = open(_svp, encoding='utf-8').read().strip()
+                    _sv = re.sub(r'^<\?xml[^>]*>\s*', '', _sv)
+                    _have = set(re.findall(r'<path data-k="([^"]+)"', _sv))
+                    for _f in _fills:
+                        assert _f['k'] in _have, f'🔴 :::지도막대 칠하기 — 그림에 없는 나라 키: {_f["k"]}'
+                        assert _f['c'] in _fcol, f'🔴 :::지도막대 칠하기 — «색» 줄에 없는 색 이름: {_f["c"]}'
+                        _sv = _sv.replace(f'<path data-k="{_f["k"]}"',
+                                          f'<path data-k="{_f["k"]}" class="mb-c" data-y="{_f["y"] or ""}" style="--c:{_fcol[_f["c"]]}"', 1)
+                    _sv = re.sub(r'aria-label="[^"]*"', 'aria-label="' + _alt.replace(chr(34), '&quot;') + '"', _sv, count=1)
+                    _x_map = _sv
+                    _x_cls = ' mb-fill'
+                    _used = [c for c in _fcol if any(_f['c'] == c for _f in _fills)]
+                    _x_leg = ('<div class="ws-mb-legend">'
+                              + ''.join(f'<span><i class="mb-sw" style="background:{_fcol[c]}"></i>{inline(c)}</span>' for c in _used)
+                              + f'<span class="mb-bt">{inline(_fmean or "옅은 색 — 그 나라가 다스림 · 진한 색 — 벗어남")}</span>'
+                              + (f'<span><i class="mb-ls"></i>{inline(_froute or "영향을 주고받음 — 무엇인가 건너갔다")}</span>' if any(l['s'] for l in _lks) else '')
+                              + ('<span><i class="mb-ld"></i>그냥 같은 때 — 건너간 것이 없다</span>' if any(not l['s'] for l in _lks) else '')
+                              + '</div>')
+                    _x_css = ('.ws-mapbar.mb-fill .ws-mb-map{background:#e6eff4}'
+                              '.ws-mapbar.mb-fill svg.mb-geo{display:block;width:100%;height:auto}'
+                              '.ws-mapbar.mb-fill .mb-geo path{fill:#e3ded3;stroke:#fff;stroke-width:1;stroke-linejoin:round;vector-effect:non-scaling-stroke}'
+                              '.ws-mapbar.mb-fill .mb-geo path.mb-c{fill:var(--c);fill-opacity:.28;transition:fill-opacity .6s ease}'
+                              '.ws-mapbar.mb-fill .mb-geo path.mb-c.mb-on{fill-opacity:1}'
+                              '.ws-mapbar.mb-fill .mb-geo path.mb-fnow{stroke:#6b2a16;stroke-width:1.8}'
+                              '.ws-mapbar.mb-fill .mb-geo text{font-size:24px;font-weight:700;fill:#9a9384;text-anchor:middle}'
+                              '.ws-mapbar.mb-fill .mb-geo text.mb-geo-sea{fill:#86a8bb;font-style:italic;letter-spacing:.25em}'
+                              '.ws-mapbar.mb-fill .ws-mb-legend i.mb-sw{width:13px;height:11px;border-radius:3px}'
+                              '.ws-mapbar.mb-fill .ws-mb-chips{display:flex;flex-wrap:wrap;gap:5px 6px;margin-top:4px}'
+                              '.ws-mapbar.mb-fill .mb-chip{font:inherit;font-size:.84em;line-height:1.3;padding:3px 9px;border:1px solid #d5ccb8;border-radius:999px;background:#fff;color:#3a3226;cursor:pointer}'
+                              '.ws-mapbar.mb-fill .mb-chip em{font-style:normal;color:#7a2e1a;font-variant-numeric:tabular-nums}'
+                              '.ws-mapbar.mb-fill .mb-chip.mb-on{background:#2f4a6d;border-color:#2f4a6d;color:#fff}.ws-mapbar.mb-fill .mb-chip.mb-on em{color:#ffd9a8}'
+                              '.ws-mapbar.mb-fill .mb-chip:focus-visible{outline:3px solid #23508c;outline-offset:2px}'
+                              '@media print{.ws-mapbar.mb-fill .ws-mb-chips{display:none}}'
+                              '@media (max-width:640px){.ws-mapbar.mb-fill .mb-ev:not(.mb-now):not(.mb-sel) .mb-lab{display:none}}'
+                              '@media (prefers-reduced-motion:reduce){.ws-mapbar.mb-fill .mb-geo path.mb-c{transition:none}}')
+                    _D['f0'] = inline(_f0 or '아직 일어난 사건이 없다'); _D['r'] = inline(_frd or '이해의 사건')
+                    _x_v = 'fs=w.querySelectorAll("path.mb-c"),gt=w.querySelector("svg.mb-geo text"),cb=w.querySelector(".ws-mb-chips"),'
+                    _x_box = '<div class="ws-mb-chips" aria-label="지금까지 나온 핀 — 누르면 카드가 열린다"></div>'
+                    _x_ev = ('cb.addEventListener("click",function(v){var b=v.target.closest(".mb-chip");if(!b)return;'
+                             'var k=+b.getAttribute("data-k");sel=(sel===k?-1:k);draw(rg.value);});')
+                    _x_d = ('var P=i>0?D.y[i-1]:-1e9;fs.forEach(function(p){var y=+p.getAttribute("data-y"),nw=y>0&&y>P&&y<=Y;'
+                            'p.classList.toggle("mb-on",y>0&&y<=Y);p.classList.toggle("mb-fnow",nw);if(nw)p.parentNode.insertBefore(p,gt);});')
+                    _x_rd = ('if(sel>=0&&D.e[sel].y<=Y){rd.innerHTML=card(sel);}else{sel=-1;var P0=i>0?D.y[i-1]:-1e9,o=D.e.filter(function(e){return e.y>P0&&e.y<=Y;});'
+                             'rd.innerHTML="<b>"+Y+"년</b> — "+(o.length?D.r+": "+o.map(function(e){return e.n;}).join(" · ")+" · 핀이나 아래 이름을 누르면 카드가 열린다":D.f0);}'
+                             'var ch="";D.e.forEach(function(e,k){if(e.y<=Y)ch+="<button type=\'button\' class=\'mb-chip"+(k===sel?" mb-on":"")+"\' data-k=\'"+k+"\'>"+e.n+" <em>"+e.y+"</em></button>";});cb.innerHTML=ch;')
                 html_parts.append(
                     '<style>.ws-mapbar.mb-evmode .mb-ev{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit}'
                     '.ws-mapbar.mb-evmode .mb-ev i{width:16px;height:16px;margin:-8px 0 0 -8px;background:#b23b2e;opacity:.9}'
@@ -2085,34 +2170,37 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     '.ws-mapbar.mb-evmode .ws-mb-links line.mb-dot{stroke:#6b6b6b;stroke-dasharray:6 6}'
                     '.ws-mapbar.mb-evmode .ws-mb-legend i.mb-ls{display:inline-block;width:26px;height:0;border-top:3px solid #23508c;vertical-align:middle;margin-right:6px;border-radius:0}'
                     '.ws-mapbar.mb-evmode .ws-mb-legend i.mb-ld{display:inline-block;width:26px;height:0;border-top:3px dashed #6b6b6b;vertical-align:middle;margin-right:6px;border-radius:0}'
+                    + _x_css +
                     '</style>'
-                    f'<div class="ws-mapbar mb-evmode" id="{mid}">'
+                    f'<div class="ws-mapbar mb-evmode{_x_cls}" id="{mid}">'
                     f'<div class="ws-mb-head">{inline(mb_head)}</div>'
-                    f'<div class="ws-mb-map"><img src="images/{_img}" alt="{_alt.replace(chr(34), "&quot;")}" loading="lazy">'
+                    f'<div class="ws-mb-map">{_x_map}'
                     f'<svg class="ws-mb-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">{_ln}</svg>{_pinh}</div>'
-                    '<div class="ws-mb-legend"><span><i class="mb-ls"></i>영향을 주고받음 — 무엇인가 건너갔다</span>'
-                    '<span><i class="mb-ld"></i>그냥 같은 때 — 건너간 것이 없다</span></div>'
+                    + _x_leg +
                     f'<div class="ws-mb-ctl"><button type="button" class="ws-mb-play" aria-label="처음부터 넘겨 보기">▶</button>'
                     f'<input type="range" class="ws-mb-range" min="0" max="{len(_yrs)-1}" value="0" step="1" aria-label="연도 고르기">'
                     f'<span class="ws-mb-yr"></span></div>'
                     f'<div class="ws-mb-read" aria-live="polite"></div>'
-                    + (f'<div class="ws-mb-src">{inline(_src)}</div>' if _src else '') +
+                    + _x_box + (f'<div class="ws-mb-src">{inline(_src)}</div>' if _src else '') +
                     f'</div>'
                     f'<script>(function(){{'
                     f'var D={json.dumps(_D, ensure_ascii=False)};'
                     f'var w=document.getElementById("{mid}"),rg=w.querySelector(".ws-mb-range"),yr=w.querySelector(".ws-mb-yr"),'
-                    'rd=w.querySelector(".ws-mb-read"),pl=w.querySelector(".ws-mb-play"),ps=w.querySelectorAll(".mb-ev"),ls=w.querySelectorAll(".ws-mb-links line"),n=D.y.length,sel=-1;'
+                    'rd=w.querySelector(".ws-mb-read"),pl=w.querySelector(".ws-mb-play"),ps=w.querySelectorAll(".mb-ev"),ls=w.querySelectorAll(".ws-mb-links line"),'
+                    + _x_v +
+                    'n=D.y.length,sel=-1;'
                     'function card(k){var e=D.e[k],h="<b>"+e.n+" · "+e.y+"년</b> — "+e.t;'
                     'D.l.forEach(function(l){if(l.a!==k&&l.b!==k)return;var o=D.e[l.a===k?l.b:l.a];'
                     'h+="<br>"+(l.s?"━ ":"┅ ")+o.n+" ("+o.y+") — "+(l.s?"건너간 것: "+l.w:"그냥 같은 때");});return h;}'
                     'function draw(i){i=+i;var Y=D.y[i];'
                     'D.e.forEach(function(e,k){var p=ps[k];p.hidden=e.y>Y;p.classList.toggle("mb-now",e.y>Y-(i>0?D.y[i]-D.y[i-1]:1)&&e.y<=Y);p.classList.toggle("mb-sel",k===sel);});'
                     'D.l.forEach(function(l,k){ls[k].style.display=(D.e[l.a].y>Y||D.e[l.b].y>Y)?"none":"";});'
+                    + _x_d +
                     'yr.textContent=Y+"년";'
-                    'if(sel>=0&&D.e[sel].y<=Y){rd.innerHTML=card(sel);}else{sel=-1;var o=D.e.filter(function(e){return e.y<=Y;});'
-                    'rd.innerHTML="<b>"+Y+"년까지</b> — "+(o.length?o.map(function(e){return e.n+" ("+e.y+")";}).join(" · "):"아직 일어난 사건이 없다")+" · 핀을 누르면 카드가 열린다";}'
+                    + _x_rd +
                     'rg.value=i;}'
                     'ps.forEach(function(p,k){p.addEventListener("click",function(){sel=(sel===k?-1:k);draw(rg.value);});});'
+                    + _x_ev +
                     'rg.addEventListener("input",function(){draw(rg.value);});'
                     'var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}'
                     'if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){draw(n-1);return;}'
@@ -2265,6 +2353,27 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
             html_parts.append('</div>')
             html_parts.append('<!--tb-end--></div>')
             in_follow = False
+            continue
+        # 🗂 정리표 (:::정리표 [제목] … 마크다운 표 … :::) — 2026-11-16 천대현 5-1 «세 혁명 표를 공적인 용어로, 정리표 형식과 양식에 맞게»
+        #   안의 표를 남색 머리줄·옅은 남색 구분 칸으로 꾸민다. 표 처리는 평소대로(빈칸 칸·표 번호 그대로).
+        #   CSS는 이 블록을 쓴 차시에만 싣는다 — 다른 차시 출력은 글자 하나까지 그대로.
+        if stripped.startswith(':::정리표') and not in_2c:
+            if in_table:
+                html_parts.append('</table>'); in_table = False; table_row_idx = 0
+            _st = stripped[len(':::정리표'):].strip()
+            _head = ''
+            if not sum_css:
+                sum_css = True
+                _dd = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ws_design')
+                _head = '<style>' + open(os.path.join(_dd, 'sumtable.css'), encoding='utf-8').read() + '</style>'
+            html_parts.append(_head + '<div class="ws-sum">' + (f'<div class="ws-sum-t">{inline(_st)}</div>' if _st else ''))
+            in_sum = True
+            continue
+        if in_sum and stripped == ':::':
+            if in_table:
+                html_parts.append('</table>'); in_table = False; table_row_idx = 0
+            html_parts.append('</div>')
+            in_sum = False
             continue
         if stripped.startswith(':::2단'):
             # 2026-10-07 사회 7-2 천대현 «생각 열기 아래 지도·표가 따로 논다» — `교과서 | 태그 글`을 붙이면
@@ -5002,6 +5111,9 @@ def main():
             if _gl:
                 css += '<style id="gl-css">' + _rd('gloss.css') + '</style>\n'
                 js += '<script type="application/json" id="gl-data">' + _j(_gl) + '</script>\n<script id="gl-js">' + _rd('gloss.js') + '</script>\n'
+                if any(g.get('audio') for g in _gl):   # 소리를 넣은 차시에만(없는 차시는 출력 그대로)
+                    css += '<style id="gl-aud-css">' + _rd('gloss_audio.css') + '</style>\n'
+                    js += '<script id="gl-aud-js">' + _rd('gloss_audio.js') + '</script>\n'
             if _lm:
                 css += '<style id="lm-css">' + _rd('linkmap.css') + '</style>\n'
                 js += '<script type="application/json" id="lm-data">' + _j(_lm) + '</script>\n<script id="lm-js">' + _rd('linkmap.js') + '</script>\n'

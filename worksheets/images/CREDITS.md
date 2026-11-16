@@ -84,7 +84,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-1-4_테아노.jpg | Pietro Aldi - Victor Emanuel II Meeting Giuseppe Garibaldi at Teano - Google Art Project.jpg | 피에트로 알디 | 퍼블릭 도메인 (건축 틀 잘라 냄) |
 | 5-1-4_링컨.jpg | Abraham Lincoln November 1863.jpg | 알렉산더 가드너 | 퍼블릭 도메인 |
 
-자체 제작: 5-1-4_조각에서하나로.png(지도, `hq/hq_514_unify.py` · 경계 historical-basemaps 1815·1880 GPL-3.0 · Natural Earth PD) · 5-1-4_자유주의민족주의_표지.png(배경은 AI 생성 가상 장면 — 1840년대 거리의 바리케이드, 실재 장소·인물 아님 · 제목 PIL).
+자체 제작: 5-1-4_조각에서하나로.png(지도, `hq/hq_514_unify.py` · 경계 historical-basemaps 1815·1880 GPL-3.0 · Natural Earth PD) · 5-1-4_조각에서하나로_v2.webp(2026-11-16 원판 5-1-4 옛 지도를 바꿈 — 1880 독일 제국에 엘자스·로트링겐·슐레스비히 전체, 이탈리아에서 사부아·니스를 뺌, 1815 롬바르디아·베네치아를 오스트리아로 · 생성: `hq/hq_514_unify_v2.py`) · 5-1-4_관세동맹과통일.webp(5-1 묶음판 관세 동맹 지도, 2026-11-16 · 생성: `hq/hq_514_zollverein.py`) — 두 지도 경계: aourednik/historical-basemaps world_1815·world_1880·world_1914 (GPL-3.0, 개념도 정밀도, 데이터 오류 일부 바로잡음 · 1880 경계는 공용 `hq/hq_1880_fix.py`) · 북슐레스비히·오이펜·말메디: Cliopatria v0.2.1 (Seshat, CC BY 4.0) · 엘자스·로트링겐·벨기에 룩셈부르크주 경계: Natural Earth admin-1 (퍼블릭 도메인) · 해안선·지형 음영: Natural Earth 1:10m·SR 50m (퍼블릭 도메인) · 그림 아래 띠는 출처 대신 «나라 경계는 어림 경계»(10/12 학생 화면 출처 정리 방침) · 5-1-4_자유주의민족주의_표지.png(배경은 AI 생성 가상 장면 — 1840년대 거리의 바리케이드, 실재 장소·인물 아님 · 제목 PIL).
 
 ## 5-1-5 라틴 아메리카 국가들이 독립하다 (2026-10-04)
 
@@ -95,7 +95,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-1-5_이달고.jpg | Generalísimo Miguel Hidalgo y Costilla.png | 호아킨 라미레스 | 퍼블릭 도메인 |
 | 5-1-5_먼로.jpg | Gilbert Stuart, James Monroe, c. 1817, NGA 56915.jpg | 길버트 스튜어트 | CC0 (미국 국립미술관) |
 
-자체 제작: 5-1-5_독립뒤돈의흐름.png(도식, `fig_515_trade.py`) · 5-1-5_라틴아메리카독립_표지.png(배경은 AI 생성 가상 장면 — 19세기 초 카리브해 해안, 실재 장소 아님 · 제목 PIL).
+자체 제작: 5-1-5_독립뒤돈의흐름.png(도식, `fig_515_trade.py`) · 5-1-5_라틴아메리카독립_표지.png(배경은 AI 생성 가상 장면 — 19세기 초 카리브해 해안, 실재 장소 아님 · 제목 PIL). · 5-1-5_독립지도.svg(5-1 묶음판 «라틴 아메리카의 독립» 칠하기 지도, 2026-11-16 — 나라 경계 Natural Earth 10m admin-0, 퍼블릭 도메인 · 독립 연도와 독립 전 지배국 색은 교과서 156쪽 지도 · `hq_515_latam_fill.py`).
 
 ## 5-2-1 산업 혁명이 일어나다 (2026-10-04)
 
@@ -1938,6 +1938,10 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-2_인물_오언.webp | Portrait of Robert Owen (4674544).jpg | 헨리 토머스 라이얼 판화 · 1835 무렵 | 퍼블릭 도메인 |
 | 5-2_인물_마르크스.webp | Karl Marx 001.jpg (5-2-1_마르크스.jpg에서 잘라 냄) | 존 메이얼 · 1875 | 퍼블릭 도메인 |
 | 5-1-3_구제도풍자화.webp | A faut esperer q'eu se jeu la Finira bentot sic, G.23829(2).jpg (파리 카르나발레 박물관 G.23829) | 작자 미상 · 1789 | CC0 (모서리 여백 잘라 냄) |
+| 5-1-3_다비드스케치1791.webp | Le Serment du Jeu de paume.jpg (베르사유 궁전 박물관 소장 소묘, 공용 1280px 판을 1100px로 줄임) | 자크루이 다비드 · 1791 | 퍼블릭 도메인 (2026-11-16 · 천대현 검토판 댓글 «⑫ 다비드 스케치로 장소·뜻 보충») |
+| 5-1-3_라마르세예즈1907.mp3 | La Marseillaise (1907).oga (공용 설명의 출처: 유튜브 B0AROx0lKoo · 64kbps 모노 mp3로 바꾸고 소리 크기를 맞춤·끝 2초를 줄여 끔, 153초) | 노래 장 노테 · 지휘 조르주 멘델 · 1907 (곡·가사 루제 드 릴, 1792) | 퍼블릭 도메인(PD-France·PD-US) (2026-11-16 · 천대현 검토판 댓글 «라 마르세예즈를 들을 수 있도록 말풍선으로») |
+| 5-1-3_나폴레옹법전1804.webp | Code civil des Français (1804).jpg (공용, 원 출처 Flickr yalelawlibrary 35085394610 · 1280px 판을 760px로 줄임) | 사진 예일 대학교 로스쿨 도서관(Yale Law Library) · 책 1804 | CC BY 2.0 (2026-11-16 · 천대현 검토판 댓글 «나폴레옹 법전 — 교과서 사진 자료와 내용을 툴팁이나 호버줌으로») |
+| 5-1-4_자유의여신1830.webp | La Liberté guidant le peuple - Eugène Delacroix - Musée du Louvre Peintures RF 129 - après restauration 2024.jpg (공용 1280px 판을 1100px로 줄임) | 외젠 들라크루아 · 1830 (루브르 박물관) | 퍼블릭 도메인 (2026-11-16 · 천대현 검토판 댓글 «교과서의 들라크루아 그림을 넣어주면 좋겠는데») |
 | 5-2-1_뮬방적.webp | Baines 1835-Mule spinning.png | 토머스 앨럼 그림 · J. W. 로리 판화 · 에드워드 베인스 『영국 면직 공업의 역사』 1835 | 퍼블릭 도메인 |
 | 5-2-2_로즈의거상.webp | Punch Rhodes Colossus.png | 에드워드 린리 샘번 · 『펀치』 1892-12-10 | 퍼블릭 도메인 |
 | 5-1_대서양정리지도.webp | 자체 제작 `map-render/hq/hq_51_atlantic.py` | 해안선 Natural Earth 1:1천만 | 퍼블릭 도메인 바탕 · 자체 제작 |
