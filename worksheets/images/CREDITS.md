@@ -1867,6 +1867,11 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 9-1_voc_기업화.jpg | 하늘에서 본 원형 관개 농장들, 미국, 2009 (Aerial photo of center pivot irrigations systems (9364).jpg) | John A. Kelley(미국 농무부 자연자원보전청) · 퍼블릭 도메인 · Wikimedia Commons |
 | 9-2_map_places.png | 사회② 9-2 «오늘 나오는 곳» 세계 지도(미국·코스타리카·에콰도르·한국·일본·필리핀·태국·베트남) | 자체 제작 `hq_92_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
 | 9-3_map_division.png | 사회② 9-3 운동화 공간적 분업 지도(미국·베트남·브라질·튀르키예·인도·말레이시아, 태평양 가운데 Equal Earth) | 자체 제작 `hq_93_division.py` · 바탕 Natural Earth(퍼블릭 도메인) |
+| 9-3_map_division_v2.webp | 사회② 9-3~4 묶음판 운동화 공간적 분업 지도 v2(교과서 173쪽대로 중국 밑창·미국→베트남 디자인·소재 흐름을 더함, 태평양 가운데 Equal Earth) | 자체 제작 `hq_93_division.py` · 바탕 Natural Earth(퍼블릭 도메인) |
+| 9-4_news_holden_elizabeth.webp | 홀든 엘리자베스 공장 남쪽 모서리, 오스트레일리아, 2012-10-31 (OIC elizabeth sth Holden southern end.jpg) | Orderinchaos · CC BY-SA 3.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:OIC_elizabeth_sth_Holden_southern_end.jpg |
+| 9-4_news_samsung_sevt.webp | 삼성전자 베트남 타이응우옌(SEVT) 공장 정문, 옌빈 산업 단지 (Yen Binh Industrial Park Sevt.jpg) | Bacthai20 · CC BY 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Yen_Binh_Industrial_Park_Sevt.jpg |
+| 9-1_map_places_v2.webp | 사회② 9-1~2 묶음판 «오늘 나오는 곳» 지도 v2(팰루스는 지역이라 범례를 «오늘 나오는 곳»으로) | 자체 제작 `hq_91_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
+| 9-2_map_places_v2.webp | 사회② 9-1~2 묶음판 «3·4단계에 나오는 곳» 지도 v2(«한국(제주도)» 지시선을 제주로 옮김) | 자체 제작 `hq_92_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
 | 9-4_map_places.png | 사회② 9-4 «오늘 나오는 곳» 세계 지도(중국 둥관·미국 디트로이트·오스트레일리아·베트남·한국·캄보디아·방글라데시) | 자체 제작 `hq_94_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
 | 9-4_map_dongguan.png | 사회② 9-4 둥관 위치 지도(광둥성·쓰촨성, 일자리를 찾아 옮긴 길은 개념선) | 자체 제작 `hq_94_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
 | 9-2_coffee_dalat.jpg | 베트남 달랏 근처의 커피 농장, 2015 (Vietnam - coffee plantation.jpg) | P. Hughes · CC BY 4.0 · Wikimedia Commons |
