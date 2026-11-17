@@ -10,6 +10,8 @@ GL.forEach(function(g){
   var fig=document.createElement('figure'); fig.className='gl-img';
   var im=document.createElement('img'); im.src=g.img; im.loading='lazy';
   im.alt=g.img_cap||g.word||'';
+  /* 2026-11-17 역사 5-1 «나폴레옹 법전 표지»: 세로 사진은 가로 틀(cover)에 잘려 제목이 사라진다 — 세로면 자르지 않고 줄여 넣는다. 가로 사진은 그대로 */
+  im.onload=function(){ if(im.naturalHeight>im.naturalWidth) fig.classList.add('gl-img-tall'); };
   fig.appendChild(im);
   if(g.img_cap){ var c=document.createElement('figcaption'); c.textContent=g.img_cap; fig.appendChild(c); }
   var body=pop.querySelector('.gl-body'); if(body) body.insertAdjacentElement('beforebegin',fig); else pop.appendChild(fig);
