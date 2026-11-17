@@ -202,6 +202,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
   box-shadow: 0 3px 9px rgba(0,0,0,.18); }
 .pk-gold .pk-card { display: flex; flex-direction: column; gap: 0; }
+/* 2026-11-17 9-1~2: 폰 두 칸에서 카드 최소 폭(사진·이름)이 칸을 밀어 화면 밖으로 넘치던 것 — 칸 폭에 맞춰 줄어들게 */
+.pk-gold .pk-card { min-width: 0; }
+.pk-gold .pk-name, .pk-gold .pk-name .lm-n { white-space: normal; word-break: keep-all; overflow-wrap: anywhere; }
 .pk-gold .pk-win { display: block; overflow: hidden; border-radius: 5px 5px 0 0;
   border: 4px solid #d9c98e; border-bottom: 0; background: #efe7cf; margin: 0; }
 /* 도트 스프라이트용 규칙(72px·pixelated·grayscale)이 사진 카드에 걸리면
@@ -1294,6 +1297,37 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 }
 @media print{blockquote.v2-voice::before{box-shadow:none}}
 </style>
+<style id="pin-css">/* 그림 해설 번호(pins.js 짝) — «:::그림 해설» 블록이 있는 차시에만 */
+.ws-pin-hint{display:inline-flex;align-items:center;gap:4px;margin:6px 0 2px;padding:4px 11px;border-radius:999px;border:1px solid #c9b78a;
+  background:#fbf5e6;color:#6b5420;font:inherit;font-size:.8rem;font-weight:700;cursor:pointer}
+.ws-pin-hint:hover{background:#f5ead0}
+.ws-pin-print{display:none}
+.ws-pin-printmarks{display:none}
+.ws-pin-wrap{display:block}
+.ws-pin-layer{position:absolute;transform-origin:center center;pointer-events:none}
+.ws-pin{position:absolute;pointer-events:auto;width:30px;height:30px;margin:0;padding:0;border-radius:50%;
+  transform:translate(-50%,-50%) scale(calc(1 / var(--ws-pin-s,1)));
+  border:2px solid #fff;background:#c8102e;color:#fff;font:700 15px/1 system-ui,sans-serif;cursor:pointer;
+  box-shadow:0 0 0 3px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.5)}
+.ws-pin.on{background:#f4d27a;color:#2a2210;box-shadow:0 0 0 4px rgba(244,210,122,.45),0 2px 8px rgba(0,0,0,.6)}
+.ws-pin:focus-visible{outline:2px solid #f4d27a;outline-offset:3px}
+.ws-pin-panel{flex:none;max-height:38vh;overflow:auto;margin:6px 12px 0;padding:10px 14px;border-radius:10px;
+  background:#f7f3e8;color:#23201a;font-size:15px;line-height:1.6}
+.ws-pin-panel[hidden]{display:none}
+.ws-pin-t{font-size:15.5px;margin-bottom:2px}
+.ws-pin-d{margin:0 0 6px}
+.ws-pin-nav{display:flex;gap:8px;flex-wrap:wrap}
+.ws-pin-nav button{font:inherit;font-size:14px;min-height:36px;padding:4px 12px;border-radius:8px;border:1px solid #b9ae92;background:#fff;color:#3a3326;cursor:pointer}
+.ws-pin-nav button:disabled{opacity:.4;cursor:default}
+@media print{
+  .ws-pin-hint{display:none!important}
+  .ws-pin-a{position:relative}
+  .ws-pin-printmarks{display:block;position:absolute;inset:0;pointer-events:none}
+  .ws-pin-printmarks i{position:absolute;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;background:#fff;color:#000;border:1.5px solid #000;font:700 10px/13px sans-serif;text-align:center;font-style:normal}
+  .ws-pin-print{display:block;margin:4px 0 0;padding-left:0;text-align:left;font-size:9pt;line-height:1.45;list-style:none}
+  .ws-pin-print li{margin:0}
+}
+</style>
 <style id="gl-css">/* 보충 말풍선(gloss.js 짝) — :::개념 잇기 블록에 보충 줄이 있는 차시만 */
 :root{--gl:#007aff;--gl-soft:#eef5ff;--gl-ink:#1b3557;--gl-gut:280px}
 /* 방식 1: 낱말 — 파란 점선 밑줄 + 작은 표시 */
@@ -1338,6 +1372,14 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
   html.gl-wide.v2-top .container{--gl-w:min(920px, calc(100% - var(--gl-gut)))}
 }
 @media print{.gl-svg,.gl-layer,.gl-x,.gl-badge,.gl-mk{display:none!important}.gl-pop{break-inside:avoid;background:#fff;border-left-color:#999}.gl-t{text-decoration:none}}
+</style>
+<style id="gl-img-css">/* 보충 말풍선 안 사진(gloss_img.js 짝) — 사진을 넣은 차시에만 */
+.gl-img{margin:4px 0 7px}
+.gl-img img{display:block;width:100%;max-width:300px;max-height:170px;object-fit:cover;border-radius:8px}
+.gl-img .ws-fig-zoom{display:block}
+.gl-img-tall img{width:auto;max-width:100%;max-height:260px;object-fit:contain}
+.gl-img figcaption{margin-top:3px;font-size:.7rem;line-height:1.4;color:#5b6472}
+@media print{.gl-img{display:none!important}}
 </style>
 </head>
 <body>
@@ -1385,7 +1427,8 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 <br>
 <p>영국에서 이 변화는 면직물 공업에서 시작되었다. 면직물의 수요가 늘자 실을 뽑는 ③<input type="text" class="blank-input" data-answer="방적기" data-id="3" style="width:68px" placeholder="">와 옷감을 짜는 ④<input type="text" class="blank-input" data-answer="방직기" data-id="4" style="width:68px" placeholder="">가 발명되었다. 특히 제임스 와트가 개량한 ⑤<input type="text" class="blank-input" data-answer="증기 기관" data-id="5" style="width:100px" placeholder="">이 기계를 움직이는 데 사용되어 면직물의 대량 생산이 가능해졌다. 새로운 기계의 사용으로 전통적인 가내 수공업은 쇠퇴하고 ⑥<input type="text" class="blank-input" data-answer="공장제 기계 공업" data-id="6" style="width:164px" placeholder="">이 확대되었다.</p>
 <br>
-<div class="ws-figrow"><figure class="ws-figrow-item"><img src="images/5-2-1_뮬방적.webp" alt="③이 줄지어 선 공장(1835) — 기계 한 대가 실 수백 가닥을 한꺼번에 뽑는다. 오른쪽 아래, 기계 밑에 엎드려 바닥을 청소하는 사람이 있다. 움직이는 기계 밑을 기어 다니며 솜 찌꺼기를 줍는 이 일은 몸이 작은 아이들이 많이 맡았다. (토머스 앨럼 그림, 베인스 『영국 면직 공업의 역사』 1835)" loading="lazy"><figcaption>③이 줄지어 선 공장(1835) — 기계 한 대가 실 수백 가닥을 한꺼번에 뽑는다. 오른쪽 아래, 기계 밑에 엎드려 바닥을 청소하는 사람이 있다. 움직이는 기계 밑을 기어 다니며 솜 찌꺼기를 줍는 이 일은 몸이 작은 아이들이 많이 맡았다. (토머스 앨럼 그림, 베인스 『영국 면직 공업의 역사』 1835)</figcaption></figure><figure class="ws-figrow-item"><img src="images/5-2-1_직조공장.jpg" alt="④가 줄지어 선 공장(1835) — 천장의 축과 띠가 기계 수십 대를 함께 돌린다. 그림 속에서 일하는 사람은 대부분 여성이다. (같은 책 1835)" loading="lazy"><figcaption>④가 줄지어 선 공장(1835) — 천장의 축과 띠가 기계 수십 대를 함께 돌린다. 그림 속에서 일하는 사람은 대부분 여성이다. (같은 책 1835)</figcaption></figure></div>
+<div class="ws-figrow"><figure class="ws-figrow-item"><img src="images/5-2-1_뮬방적.webp" alt="③이 줄지어 선 공장(1835). (토머스 앨럼 그림, 베인스 『영국 면직 공업의 역사』 1835)" loading="lazy"><figcaption>③이 줄지어 선 공장(1835). (토머스 앨럼 그림, 베인스 『영국 면직 공업의 역사』 1835)</figcaption></figure><figure class="ws-figrow-item"><img src="images/5-2-1_직조공장.jpg" alt="④가 줄지어 선 공장(1835) — 천장의 축과 띠가 기계 수십 대를 함께 돌린다. 그림 속에서 일하는 사람은 대부분 여성이다. (같은 책 1835)" loading="lazy"><figcaption>④가 줄지어 선 공장(1835) — 천장의 축과 띠가 기계 수십 대를 함께 돌린다. 그림 속에서 일하는 사람은 대부분 여성이다. (같은 책 1835)</figcaption></figure></div>
+<br>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>🌐 같은 때 저쪽에서는? — 영국이 기계를 만들기 전, 유럽 사람들은 어디서 온 옷감을 입었을까</summary><div class="ws-fold-body">
 <p>영국에서 면직물 기계가 나오기 전, 유럽 사람들이 즐겨 입던 면직물은 인도에서 온 '캘리코'였어(무굴 제국 때)(4-2-3에서 봤지?). 영국은 은을 주고 그 천을 사 왔지. 인도 면직물을 사 오는 대신 영국 안에서 더 싸게 만들려고 한 것이 기계가 나온 까닭 가운데 하나였다고 보는 학자들도 있어.</p>
@@ -1433,10 +1476,6 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 <p>19세기 중반 이후 탐험가들의 활동으로 아프리카에 지하자원이 풍부하다는 사실이 유럽에 전해졌다. 그러자 유럽 열강은 앞다투어 아프리카를 침략하기 시작하였다. 이들은 ⑯<input type="text" class="blank-input" data-answer="베를린 회의" data-id="16" style="width:116px" placeholder="">에서 아프리카 분할에 합의하였고(1884), 이후 유럽 열강의 식민지 획득 경쟁은 더욱 치열해졌다. 영국은 아프리카를 남북으로 점령해 가면서 카이로와 케이프타운을 연결하는 ⑰<input type="text" class="blank-input" data-answer="종단 정책" data-id="17" style="width:100px" placeholder="">을 펼쳤다. 반면, 프랑스는 알제리에서부터 마다가스카르까지 아프리카를 동서로 점령하는 횡단 정책을 추진하였다. 이 과정에서 프랑스와 영국이 파쇼다 지역에서 충돌하였다(파쇼다 사건, 1898). 한편, 뒤늦게 식민지 경쟁에 뛰어든 독일은 모로코를 둘러싸고 프랑스와 대립하였다. 이와 같은 침략으로 라이베리아와 에티오피아를 제외한 아프리카의 대부분이 열강의 식민지가 되었다.</p>
 <br>
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_아프리카분할_v2.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_아프리카분할_v2.webp" alt="1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 1914년까지는 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있었고, 카이로와 케이프타운을 잇는 철도는 끝내 완성되지 못했다. (경계는 개념도 정밀도)" loading="lazy"></a><figcaption>1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 1914년까지는 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있었고, 카이로와 케이프타운을 잇는 철도는 끝내 완성되지 못했다. (경계는 개념도 정밀도)</figcaption></figure>
-<br>
-<details class="ws-fold ws-fold-더보기"><summary>그림으로 보는 ⑰ — 아프리카 남쪽 끝과 북쪽 끝을 두 발로 밟은 사람(1892)</summary><div class="ws-fold-body">
-<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_로즈의거상.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_로즈의거상.webp" alt="영국 잡지 『펀치』의 풍자화 「로즈의 거상」(1892) — 남아프리카 케이프 식민지의 총리 세실 로즈가 케이프타운과 카이로를 두 발로 딛고 서서 전신선을 잇고 있다. (에드워드 린리 샘번 그림 · 퍼블릭 도메인)" loading="lazy"></a><figcaption>영국 잡지 『펀치』의 풍자화 「로즈의 거상」(1892) — 남아프리카 케이프 식민지의 총리 세실 로즈가 케이프타운과 카이로를 두 발로 딛고 서서 전신선을 잇고 있다. (에드워드 린리 샘번 그림 · 퍼블릭 도메인)</figcaption></figure>
-</div></details>
 <br>
 <p>17세기경 인도에 진출한 영국은 동인도 회사를 세워 인도를 지배하다가 19세기 후반부터는 총독을 보내어 직접 다스렸다. 프랑스는 베트남과 캄보디아 등 인도차이나반도를 점령하였고, 네덜란드는 인도네시아의 대부분 지역을 식민지로 삼았다. 영국, 프랑스, 독일 등은 영토가 넓고 인구가 많은 중국에 진출하여 여러 이권을 빼앗고 정치에 간섭하였다. 미국은 하와이를 병합하고, 필리핀과 괌을 차지하였다. 그 결과 20세기 초에는 아시아와 태평양 대부분의 지역이 서양 열강의 지배를 받게 되었다.</p>
 <br>
@@ -2392,7 +2431,121 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es
 })();
 (function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,800);})();
 </script>
-<script type="application/json" id="gl-data">[{"id": "gl-1", "kind": "blank", "blank": "2", "word": "②", "text": "영국의 지주들이 농민의 경작지와 여럿이 함께 쓰던 땅(공유지)에 울타리를 쳐서 자기 땅으로 삼은 일이다. 땅을 잃은 농민들은 일자리를 찾아 큰 공장이 모인 도시로 옮겨 갔다.", "always": 1}, {"id": "gl-2", "kind": "word", "word": "면직물", "text": "목화에서 얻은 솜으로 짠 천이다. 모직물과 달리 빨아 입을 수 있어 깨끗했고, 얇고 가벼우며 물이 잘 들고 값까지 싸서 찾는 사람이 갑자기 늘었다.", "near": "영국에서 이 변화는"}, {"id": "gl-3", "kind": "blank", "blank": "5", "word": "⑤", "text": "물을 끓일 때 생기는 김의 힘을 기계를 돌리는 힘으로 바꾸는 장치다.", "always": 1}, {"id": "gl-4", "kind": "blank", "blank": "9", "word": "⑨", "text": "이 운동의 이름은 한 지도자에게서 나왔다고 알려졌지만, 그 지도자는 실제로 있었는지 확인되지 않은 전설 속 인물이다. 이 운동은 뒤에 노동 운동의 시초가 되었다.", "always": 1}, {"id": "gl-5", "kind": "blank", "blank": "16", "word": "⑯", "text": "아프리카 콩고강 유역을 두고 벨기에 왕과 포르투갈·프랑스 등이 다툰 일을 계기로 열렸다. 모인 열강은 '먼저 차지해 다스리는 나라가 그 땅을 갖는다'는 원칙에 합의하였다.", "always": 1}, {"id": "gl-6", "kind": "blank", "blank": "18", "word": "⑱", "text": "이때 기준이 된 선은 영국 그리니치 천문대를 지나는 본초 자오선이다. 경도가 15°씩 달라질 때마다 1시간씩 차이가 난다.", "always": 1}]</script>
+<script type="application/json" id="pin-data">{"images/5-2-1_뮬방적.webp": [{"n": 1, "x": 22.0, "y": 58.0, "t": "실을 뽑는 기계", "d": "기계 한 대가 실 수백 가닥을 한꺼번에 뽑는다. 이런 기계가 공장 안에 줄지어 서 있다."}, {"n": 2, "x": 86.0, "y": 80.0, "t": "기계 밑에 엎드린 사람", "d": "움직이는 기계 밑을 기어 다니며 바닥의 솜 찌꺼기를 줍고 있다. 이 일은 몸이 작은 아이들이 많이 맡았다."}]}</script>
+<script id="pin-js">/* 2026-11-17 천대현 5-1 검토판 댓글 «그림을 클릭해서 확대하면 미술관 큐레이터처럼 그 부분이 표시되고 설명이 들어가게 —
+   그림 아래 해설이 버려지는 텍스트가 되지 않고 분량도 줄게». 원고 «:::그림 해설 images/….webp» 블록이 있는 차시에만 실린다.
+   확대 창(zoom.js)이 열리면 그 그림 위에 번호 표시를 얹고, 번호를 누르면 창 아래 칸에 설명이 뜬다(이전·다음으로 차례대로).
+   번호 자리는 그림 너비·높이에 대한 %라 확대·이동·폰에서도 제자리에 붙는다. 인쇄에는 그림 아래 번호 목록이 나온다. */
+(function(){
+var D=null; try{ D=JSON.parse((document.getElementById('pin-data')||{}).textContent||'null'); }catch(e){ D=null; }
+if(!D) return;
+var CIRC='①②③④⑤⑥⑦⑧⑨⑩';
+function num(n){ return CIRC.charAt(n-1)||('('+n+')'); }
+function esc(t){ return String(t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* 그림 경로는 이름만 맞춘다 — 원고의 .png가 발행 때 .webp로 바뀌어도 붙게(5-2 아프리카 지도에서 확인) */
+function key(src){ return String(src||'').replace(/[?#].*$/,'').replace(/^.*\//,'').replace(/\.[a-z0-9]+$/i,''); }
+var K={}; Object.keys(D).forEach(function(k){ K[key(k)]=D[k]; });
+function pinsOf(el){ return K[key(el.tagName==='IMG'?el.getAttribute('src'):el.getAttribute('href'))]; }
+/* 링크 없이 확대 창이 여는 그림(zoom.js STILL과 같은 자리 — 나란히 놓은 그림·교과서 상자·입담) */
+var STILL='figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img';
+
+/* 본문 그림: «눌러서 번호 N곳» 안내 한 줄 + 인쇄용 목록 */
+[].slice.call(document.querySelectorAll('a.ws-fig-zoom')).concat([].slice.call(document.querySelectorAll(STILL))).forEach(function(a){
+  var P=pinsOf(a); if(!P) return;
+  var fig=a.closest('figure')||a.parentNode; fig.classList.add('ws-pin-fig');
+  var host=a;
+  if(a.tagName==='IMG'){ host=document.createElement('span'); host.className='ws-pin-wrap'; a.parentNode.insertBefore(host,a); host.appendChild(a); }
+  var hint=document.createElement('button'); hint.type='button'; hint.className='ws-pin-hint';
+  hint.innerHTML='🔍 그림을 누르면 번호 '+P.length+'곳 해설';
+  hint.addEventListener('click',function(){ a.click(); });
+  host.insertAdjacentElement('afterend',hint);
+  var ol=document.createElement('ol'); ol.className='ws-pin-print';
+  ol.innerHTML=P.map(function(p){ return '<li><b>'+num(p.n)+' '+esc(p.t)+'</b> — '+esc(p.d)+'</li>'; }).join('');
+  fig.appendChild(ol);
+  /* 인쇄에선 확대 창이 없으니 그림 위에 작은 번호를 찍어 목록과 잇는다 */
+  var pr=document.createElement('span'); pr.className='ws-pin-printmarks'; pr.setAttribute('aria-hidden','true');
+  pr.innerHTML=P.map(function(p){ return '<i style="left:'+p.x+'%;top:'+p.y+'%">'+p.n+'</i>'; }).join('');
+  host.appendChild(pr); host.classList.add('ws-pin-a');
+});
+
+var cur=null, layer=null, panel=null, obs=null, ro=null, i=-1;
+function box(){ return document.querySelector('.ws-zoom'); }
+function place(){   /* 번호 층 = 확대 창 그림의 변형 전 자리·크기, 변형은 그림과 같이 */
+  var b=box(); if(!b||!layer) return;
+  var im=b.querySelector('.ws-zoom-stage img');
+  layer.style.left=im.offsetLeft+'px'; layer.style.top=im.offsetTop+'px';
+  layer.style.width=im.offsetWidth+'px'; layer.style.height=im.offsetHeight+'px';
+  var tf=im.style.transform||''; layer.style.transform=tf;
+  var m=/scale\(([\d.]+)\)/.exec(tf); layer.style.setProperty('--ws-pin-s', m?m[1]:1);
+}
+function show(k){
+  i=k; var p=cur[k];
+  [].forEach.call(layer.children,function(b,j){ b.classList.toggle('on',j===k); b.setAttribute('aria-pressed',j===k?'true':'false'); });
+  panel.hidden=false;
+  panel.querySelector('.ws-pin-t').innerHTML='<b>'+num(p.n)+' '+esc(p.t)+'</b>';
+  panel.querySelector('.ws-pin-d').textContent=p.d;
+  panel.querySelector('[data-p="prev"]').disabled=k===0;
+  panel.querySelector('[data-p="next"]').disabled=k===cur.length-1;
+  requestAnimationFrame(place);
+}
+function teardown(){
+  if(layer) layer.remove(); if(panel) panel.remove(); if(obs) obs.disconnect(); if(ro) ro.disconnect();
+  layer=panel=obs=ro=cur=null; i=-1;
+}
+function setup(P){
+  teardown(); var b=box(); if(!b) return; cur=P;
+  var stage=b.querySelector('.ws-zoom-stage'), im=stage.querySelector('img');
+  stage.style.position='relative';
+  layer=document.createElement('div'); layer.className='ws-pin-layer';
+  P.forEach(function(p,k){
+    var bt=document.createElement('button'); bt.type='button'; bt.className='ws-pin';
+    bt.style.left=p.x+'%'; bt.style.top=p.y+'%'; bt.textContent=p.n;
+    bt.setAttribute('aria-label',p.n+'번 '+p.t); bt.setAttribute('aria-pressed','false');
+    bt.addEventListener('click',function(){ show(k); });
+    layer.appendChild(bt);
+  });
+  /* 번호를 누를 때 그림 끌기(zoom.js 포인터 잡기)가 먼저 가로채지 않게 */
+  layer.addEventListener('pointerdown',function(e){ if(e.target.closest('.ws-pin')) e.stopPropagation(); });
+  stage.appendChild(layer);
+  panel=document.createElement('div'); panel.className='ws-pin-panel'; panel.hidden=true;
+  panel.setAttribute('aria-live','polite');
+  panel.innerHTML='<div class="ws-pin-t"></div><p class="ws-pin-d"></p>'+
+    '<div class="ws-pin-nav"><button type="button" data-p="prev">◀ 이전</button><button type="button" data-p="next">다음 ▶</button>'+
+    '<button type="button" data-p="hide">설명 닫기</button></div>';
+  panel.addEventListener('click',function(e){ var q=e.target.closest('[data-p]'); if(!q) return;
+    var a=q.getAttribute('data-p');
+    if(a==='prev'&&i>0) show(i-1); else if(a==='next'&&i<cur.length-1) show(i+1);
+    else if(a==='hide'){ panel.hidden=true; i=-1; [].forEach.call(layer.children,function(x){ x.classList.remove('on'); x.setAttribute('aria-pressed','false'); }); }
+    requestAnimationFrame(place);
+  });
+  b.insertBefore(panel,b.querySelector('.ws-zoom-bar'));
+  obs=new MutationObserver(function(ms){
+    ms.forEach(function(m){ if(m.target===b&&b.hidden) teardown(); });
+    if(layer) place();
+  });
+  obs.observe(im,{attributes:true,attributeFilter:['style','src']});
+  obs.observe(b,{attributes:true,attributeFilter:['hidden']});
+  /* 설명 칸이 열리고 닫히면 그림 칸 크기가 바뀐다 — 그림 크기가 바뀔 때마다 번호 층을 다시 맞춘다 */
+  if(window.ResizeObserver){ ro=new ResizeObserver(function(){ if(layer) place(); }); ro.observe(im); ro.observe(stage); }
+  if(im.complete) place(); im.addEventListener('load',place,{once:true});
+  var tip=b.querySelector('.ws-zoom-tip'); if(tip&&!tip.dataset.pinOld){ tip.dataset.pinOld=tip.textContent; }
+  if(tip) tip.textContent='번호를 누르면 설명이 나와요 · 두 손가락이나 휠로 키우고 끌어서 옮겨요';
+}
+window.addEventListener('resize',function(){ if(layer) place(); });
+/* zoom.js가 문서 click에서 창을 연 뒤에 돈다(나중에 붙인 듣개) */
+document.addEventListener('click',function(e){
+  if(!e.target.closest) return;
+  var a=e.target.closest('a.ws-fig-zoom');
+  if(!a&&e.target.matches&&e.target.matches(STILL)&&!e.target.closest('a, button, label')) a=e.target;
+  var b=box(); if(!a||!b||b.hidden) return;
+  var P=pinsOf(a);
+  if(P){ setup(P); return; }
+  teardown(); var tip=b.querySelector('.ws-zoom-tip'); if(tip&&tip.dataset.pinOld) tip.textContent=tip.dataset.pinOld;
+});
+})();
+</script>
+<script type="application/json" id="gl-data">[{"id": "gl-1", "kind": "blank", "blank": "2", "word": "②", "text": "영국의 지주들이 농민의 경작지와 여럿이 함께 쓰던 땅(공유지)에 울타리를 쳐서 자기 땅으로 삼은 일이다. 땅을 잃은 농민들은 일자리를 찾아 큰 공장이 모인 도시로 옮겨 갔다.", "always": 1}, {"id": "gl-2", "kind": "word", "word": "면직물", "text": "목화에서 얻은 솜으로 짠 천이다. 모직물과 달리 빨아 입을 수 있어 깨끗했고, 얇고 가벼우며 물이 잘 들고 값까지 싸서 찾는 사람이 갑자기 늘었다.", "near": "영국에서 이 변화는"}, {"id": "gl-3", "kind": "blank", "blank": "5", "word": "⑤", "text": "물을 끓일 때 생기는 김의 힘을 기계를 돌리는 힘으로 바꾸는 장치다.", "always": 1}, {"id": "gl-4", "kind": "blank", "blank": "9", "word": "⑨", "text": "이 운동의 이름은 한 지도자에게서 나왔다고 알려졌지만, 그 지도자는 실제로 있었는지 확인되지 않은 전설 속 인물이다. 이 운동은 뒤에 노동 운동의 시초가 되었다.", "always": 1}, {"id": "gl-5", "kind": "blank", "blank": "16", "word": "⑯", "text": "아프리카 콩고강 유역을 두고 벨기에 왕과 포르투갈·프랑스 등이 다툰 일을 계기로 열렸다. 모인 열강은 '먼저 차지해 다스리는 나라가 그 땅을 갖는다'는 원칙에 합의하였다.", "always": 1}, {"id": "gl-6", "kind": "blank", "blank": "17", "word": "⑰", "text": "위 그림은 1892년 영국 잡지 『펀치』에 실린 풍자화 「로즈의 거상」이다. 남아프리카 케이프 식민지의 총리 세실 로즈가 아프리카 남쪽 끝 케이프타운과 북쪽 끝 카이로를 두 발로 딛고 서서 전신선을 잇고 있다. 아프리카를 남북으로 잇겠다는 영국의 계획을 한 사람의 몸으로 그렸다.", "img": "images/5-2-2_로즈의거상.webp", "img_cap": "「로즈의 거상」(1892) · 에드워드 린리 샘번 그림 · 『펀치』 · 퍼블릭 도메인"}, {"id": "gl-7", "kind": "blank", "blank": "18", "word": "⑱", "text": "이때 기준이 된 선은 영국 그리니치 천문대를 지나는 본초 자오선이다. 경도가 15°씩 달라질 때마다 1시간씩 차이가 난다.", "always": 1}]</script>
 <script id="gl-js">/* 2026-11-10 사회② Ⅷ: 보충 말풍선 — 교사용 교과서의 파란 주석처럼. 방식 1 낱말 누르기 · 방식 2 채점해서 맞힌 빈칸만.
    넓은 화면(1280px~)은 본문 상자 오른쪽 여백, 좁으면 그 문단 아래. 인쇄는 열린 것만 문단 아래 글로. 시험판 = 8-5~6 검토판 v3(11/9) */
 (function(){
@@ -2544,6 +2697,28 @@ window.addEventListener('load',schedule);
 window.addEventListener('beforeprint',function(){ printing=true; layout(); });
 window.addEventListener('afterprint',function(){ printing=false; layout(); });
 layout();
+})();
+</script>
+<script id="gl-img-js">/* 보충 말풍선 안 사진(gloss.js 짝) — 2026-11-17 천대현 9-1~2 «대표적인 곡물 메이저 회사 사진과 관련 내용을 말풍선으로».
+   원고 :::개념 잇기의 보충 줄 끝에 «| 그림 | images/….webp | 캡션»이 있는 차시에만 실린다(gloss.js 뒤에 돈다).
+   사진은 말풍선 글 위에 둔다. 말풍선을 열 때만 받도록 lazy로 둔다. */
+(function(){
+var GL=null; try{ GL=JSON.parse((document.getElementById('gl-data')||{}).textContent||'null'); }catch(e){ GL=null; }
+if(!GL||!GL.forEach) return;
+GL.forEach(function(g){
+  if(!g.img) return;
+  var pop=document.getElementById(g.id); if(!pop) return;
+  var fig=document.createElement('figure'); fig.className='gl-img';
+  var im=document.createElement('img'); im.src=g.img; im.loading='lazy';
+  im.alt=g.img_cap||g.word||'';
+  /* 2026-11-17 역사 5-1 «나폴레옹 법전 표지»: 세로 사진은 가로 틀(cover)에 잘려 제목이 사라진다 — 세로면 자르지 않고 줄여 넣는다. 가로 사진은 그대로 */
+  im.onload=function(){ if(im.naturalHeight>im.naturalWidth) fig.classList.add('gl-img-tall'); };
+  /* 2026-11-17 역사 5-1 «테니스코트의 서약» 스케치: 말풍선 틀에 잘린 구석(라켓·공)을 보려면 크게 봐야 한다 — 본문 그림과 같은 확대 창(zoom.js) 링크로 감싼다 */
+  var a=document.createElement('a'); a.className='ws-fig-zoom'; a.href=g.img; a.target='_blank'; a.rel='noopener'; a.title='눌러서 크게 보기';
+  a.appendChild(im); fig.appendChild(a);
+  if(g.img_cap){ var c=document.createElement('figcaption'); c.textContent=g.img_cap; fig.appendChild(c); }
+  var body=pop.querySelector('.gl-body'); if(body) body.insertAdjacentElement('beforebegin',fig); else pop.appendChild(fig);
+});
 })();
 </script>
 </body>

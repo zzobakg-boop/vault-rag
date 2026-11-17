@@ -9,21 +9,30 @@ var CIRC='①②③④⑤⑥⑦⑧⑨⑩';
 function num(n){ return CIRC.charAt(n-1)||('('+n+')'); }
 function esc(t){ return String(t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
 
+/* 그림 경로는 이름만 맞춘다 — 원고의 .png가 발행 때 .webp로 바뀌어도 붙게(5-2 아프리카 지도에서 확인) */
+function key(src){ return String(src||'').replace(/[?#].*$/,'').replace(/^.*\//,'').replace(/\.[a-z0-9]+$/i,''); }
+var K={}; Object.keys(D).forEach(function(k){ K[key(k)]=D[k]; });
+function pinsOf(el){ return K[key(el.tagName==='IMG'?el.getAttribute('src'):el.getAttribute('href'))]; }
+/* 링크 없이 확대 창이 여는 그림(zoom.js STILL과 같은 자리 — 나란히 놓은 그림·교과서 상자·입담) */
+var STILL='figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img';
+
 /* 본문 그림: «눌러서 번호 N곳» 안내 한 줄 + 인쇄용 목록 */
-[].forEach.call(document.querySelectorAll('a.ws-fig-zoom'),function(a){
-  var P=D[a.getAttribute('href')]; if(!P) return;
+[].slice.call(document.querySelectorAll('a.ws-fig-zoom')).concat([].slice.call(document.querySelectorAll(STILL))).forEach(function(a){
+  var P=pinsOf(a); if(!P) return;
   var fig=a.closest('figure')||a.parentNode; fig.classList.add('ws-pin-fig');
+  var host=a;
+  if(a.tagName==='IMG'){ host=document.createElement('span'); host.className='ws-pin-wrap'; a.parentNode.insertBefore(host,a); host.appendChild(a); }
   var hint=document.createElement('button'); hint.type='button'; hint.className='ws-pin-hint';
   hint.innerHTML='🔍 그림을 누르면 번호 '+P.length+'곳 해설';
   hint.addEventListener('click',function(){ a.click(); });
-  a.insertAdjacentElement('afterend',hint);
+  host.insertAdjacentElement('afterend',hint);
   var ol=document.createElement('ol'); ol.className='ws-pin-print';
   ol.innerHTML=P.map(function(p){ return '<li><b>'+num(p.n)+' '+esc(p.t)+'</b> — '+esc(p.d)+'</li>'; }).join('');
   fig.appendChild(ol);
   /* 인쇄에선 확대 창이 없으니 그림 위에 작은 번호를 찍어 목록과 잇는다 */
   var pr=document.createElement('span'); pr.className='ws-pin-printmarks'; pr.setAttribute('aria-hidden','true');
   pr.innerHTML=P.map(function(p){ return '<i style="left:'+p.x+'%;top:'+p.y+'%">'+p.n+'</i>'; }).join('');
-  a.appendChild(pr); a.classList.add('ws-pin-a');
+  host.appendChild(pr); host.classList.add('ws-pin-a');
 });
 
 var cur=null, layer=null, panel=null, obs=null, ro=null, i=-1;
@@ -93,8 +102,11 @@ window.addEventListener('resize',function(){ if(layer) place(); });
 /* zoom.js가 문서 click에서 창을 연 뒤에 돈다(나중에 붙인 듣개) */
 document.addEventListener('click',function(e){
   if(!e.target.closest) return;
-  var a=e.target.closest('a.ws-fig-zoom'); var b=box();
-  if(a&&D[a.getAttribute('href')]&&b&&!b.hidden){ setup(D[a.getAttribute('href')]); return; }
-  if(a&&b&&!b.hidden){ teardown(); var tip=b.querySelector('.ws-zoom-tip'); if(tip&&tip.dataset.pinOld) tip.textContent=tip.dataset.pinOld; }
+  var a=e.target.closest('a.ws-fig-zoom');
+  if(!a&&e.target.matches&&e.target.matches(STILL)&&!e.target.closest('a, button, label')) a=e.target;
+  var b=box(); if(!a||!b||b.hidden) return;
+  var P=pinsOf(a);
+  if(P){ setup(P); return; }
+  teardown(); var tip=b.querySelector('.ws-zoom-tip'); if(tip&&tip.dataset.pinOld) tip.textContent=tip.dataset.pinOld;
 });
 })();
