@@ -186,6 +186,33 @@ def extract_table_answers(answer_file):
 #     이어 보기 | (보충과 같은 꼴)                                               ← 초록 «🔗 이어 보기» 말풍선
 #   ⚠️ 연결어·보충 글에 그 차시 뒤쪽 빈칸·카드의 답 낱말을 넣지 않는다(선은 누를 때만 보이지만 학생이 먼저 누를 수 있다).
 LINKMAP_BLOCK = re.compile(r'^:::개념 잇기[^\n]*\n.*?^:::[ \t]*$\n?', re.M | re.S)
+# 2026-11-17 :::그림 해설 images/….webp … ::: — 확대 창 그림 위 번호 해설(ws_design/pins.*, 천대현 5-1 «큐레이터처럼»).
+#   줄 = `번호 | x% | y% | 이름 | 설명` (x·y는 그림 왼쪽 위에서 잰 %). 블록 자리엔 아무것도 그리지 않고, 같은 그림 경로의 본문 그림에 붙는다.
+#   ⚠️ 설명에 그 차시 뒤쪽 빈칸 답 낱말을 넣지 않는다(확대 창은 언제나 열 수 있다).
+PIN_BLOCK = re.compile(r'^:::그림 해설[^\n]*\n.*?^:::[ \t]*$\n?', re.M | re.S)
+
+
+def parse_pins(raw):
+    """:::그림 해설 블록들 → ({그림 경로: [{n,x,y,t,d}…]} | None, 경고 list)."""
+    out, warn = {}, []
+    for m in PIN_BLOCK.finditer(raw):
+        lines = m.group(0).splitlines()
+        src = lines[0][len(':::그림 해설'):].strip()
+        if not src:
+            warn.append('그림 경로가 없는 블록'); continue
+        for ln in lines[1:-1]:
+            ln = ln.strip()
+            if not ln or ln.startswith('%%'):
+                continue
+            r = [x.strip() for x in ln.strip('|').split('|')]
+            try:
+                out.setdefault(src, []).append({'n': int(r[0]), 'x': float(r[1].rstrip('%')), 'y': float(r[2].rstrip('%')),
+                                                't': r[3], 'd': '|'.join(r[4:]).strip()})
+            except (IndexError, ValueError):
+                warn.append(f'{src}: 읽을 수 없는 줄 «{ln[:40]}»')
+    return (out or None), warn
+
+
 _LM_KIND = {'한 갈래': 'sub', '예': 'ex', '견줘 보기': 'cmp', '다른 차시': 'xref'}
 
 
@@ -288,6 +315,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
         raw = f.read()
     raw = strip_obsidian_artifacts(raw, teacher=teacher)  # 학생용은 교사섹션 strip·정답편은 유지
     raw = LINKMAP_BLOCK.sub('', raw)   # 2026-11-10 :::개념 잇기 — 제자리엔 아무것도 그리지 않는다(parse_linkmap 참고)
+    raw = PIN_BLOCK.sub('', raw)       # 2026-11-17 :::그림 해설 — 확대 창에서만 쓴다(parse_pins 참고)
     if teacher:
         # 정답본: ①( **답** ) → 채워진 빈칸(초록 박스) 스팬 — 이전 정답본 reveal 느낌 그대로.
         # 학생 제출용과 같은 레이아웃에 답만 기입된 모습. 모범답안·OX해설·사료이미지는 정답.md 본문에서 그대로 노출.
@@ -3188,7 +3216,7 @@ def extract_hero_meta(blank_file):
     hero = {'image': None, 'keywords': [], 'subtitle': None, 'eyebrow': None, 'hook': None, 'cards': {}}
     try:
         with open(blank_file, 'r', encoding='utf-8') as f:
-            text = LINKMAP_BLOCK.sub('', f.read())   # 2026-11-10: 원고 끝 :::개념 잇기가 키워드 카드 넷째 장에 섞여 들어갔다
+            text = PIN_BLOCK.sub('', LINKMAP_BLOCK.sub('', f.read()))   # 2026-11-10: 원고 끝 :::개념 잇기가 키워드 카드 넷째 장에 섞여 들어갔다
     except Exception:
         return hero
     m = re.match(r'^---\n(.*?)\n---', text, re.S)
@@ -5082,6 +5110,11 @@ def main():
     _skip = re.compile(r'\*\*반:\*\*.*\*\*번:\*\*.*\*\*이름:\*\*')
     _raw = open(blank_file, encoding='utf-8').read()
     _lm, _gl, _lm_warn = parse_linkmap(_raw)
+    _pins, _pin_warn = parse_pins(_raw)
+    for _w in _pin_warn:
+        print(f'⚠️  :::그림 해설 — {_w}')
+    if _pins:
+        print(f"📍 그림 해설: 그림 {len(_pins)}·번호 {sum(len(v) for v in _pins.values())}")
     for _w in _lm_warn:
         print(f'⚠️  :::개념 잇기 — {_w}')
     if _lm or _gl:
@@ -5148,6 +5181,12 @@ def main():
     def _apply_design(h, linkmap=True):
         _dd = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ws_design')
         h = _apply_look(h, _dd)
+        # :::그림 해설 — 확대 창(zoom.js)이 실린 학생 판에만. 정답편은 그림 아래 해설을 그대로 둔다.
+        if linkmap and _pins and 'id="ws-zoom-js"' in h:
+            _rp = lambda n: open(os.path.join(_dd, n), encoding='utf-8').read()
+            h = h.replace('</head>', '<style id="pin-css">' + _rp('pins.css') + '</style>\n</head>', 1)
+            i = h.rfind('</body>')
+            h = h[:i] + '<script type="application/json" id="pin-data">' + json.dumps(_pins, ensure_ascii=False).replace('</', '<\\/') + '</script>\n<script id="pin-js">' + _rp('pins.js') + '</script>\n' + h[i:]
         # :::개념 잇기 — 디자인 층(v2·사회교재)이 단계 카드를 다 만든 뒤에 돌도록 맨 끝에 붙인다. 정답편은 빼고.
         if linkmap and (_lm or _gl):
             _rd = lambda n: open(os.path.join(_dd, n), encoding='utf-8').read()

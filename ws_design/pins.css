@@ -1,0 +1,29 @@
+/* 그림 해설 번호(pins.js 짝) — «:::그림 해설» 블록이 있는 차시에만 */
+.ws-pin-hint{display:inline-flex;align-items:center;gap:4px;margin:6px 0 2px;padding:4px 11px;border-radius:999px;border:1px solid #c9b78a;
+  background:#fbf5e6;color:#6b5420;font:inherit;font-size:.8rem;font-weight:700;cursor:pointer}
+.ws-pin-hint:hover{background:#f5ead0}
+.ws-pin-print{display:none}
+.ws-pin-printmarks{display:none}
+.ws-pin-layer{position:absolute;transform-origin:center center;pointer-events:none}
+.ws-pin{position:absolute;pointer-events:auto;width:30px;height:30px;margin:0;padding:0;border-radius:50%;
+  transform:translate(-50%,-50%) scale(calc(1 / var(--ws-pin-s,1)));
+  border:2px solid #fff;background:#c8102e;color:#fff;font:700 15px/1 system-ui,sans-serif;cursor:pointer;
+  box-shadow:0 0 0 3px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.5)}
+.ws-pin.on{background:#f4d27a;color:#2a2210;box-shadow:0 0 0 4px rgba(244,210,122,.45),0 2px 8px rgba(0,0,0,.6)}
+.ws-pin:focus-visible{outline:2px solid #f4d27a;outline-offset:3px}
+.ws-pin-panel{flex:none;max-height:38vh;overflow:auto;margin:6px 12px 0;padding:10px 14px;border-radius:10px;
+  background:#f7f3e8;color:#23201a;font-size:15px;line-height:1.6}
+.ws-pin-panel[hidden]{display:none}
+.ws-pin-t{font-size:15.5px;margin-bottom:2px}
+.ws-pin-d{margin:0 0 6px}
+.ws-pin-nav{display:flex;gap:8px;flex-wrap:wrap}
+.ws-pin-nav button{font:inherit;font-size:14px;min-height:36px;padding:4px 12px;border-radius:8px;border:1px solid #b9ae92;background:#fff;color:#3a3326;cursor:pointer}
+.ws-pin-nav button:disabled{opacity:.4;cursor:default}
+@media print{
+  .ws-pin-hint{display:none!important}
+  .ws-pin-a{position:relative}
+  .ws-pin-printmarks{display:block;position:absolute;inset:0;pointer-events:none}
+  .ws-pin-printmarks i{position:absolute;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;background:#fff;color:#000;border:1.5px solid #000;font:700 10px/13px sans-serif;text-align:center;font-style:normal}
+  .ws-pin-print{display:block;margin:4px 0 0;padding-left:0;text-align:left;font-size:9pt;line-height:1.45;list-style:none}
+  .ws-pin-print li{margin:0}
+}
