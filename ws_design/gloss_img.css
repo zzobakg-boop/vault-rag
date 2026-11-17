@@ -1,0 +1,5 @@
+/* 보충 말풍선 안 사진(gloss_img.js 짝) — 사진을 넣은 차시에만 */
+.gl-img{margin:4px 0 7px}
+.gl-img img{display:block;width:100%;max-width:300px;max-height:170px;object-fit:cover;border-radius:8px}
+.gl-img figcaption{margin-top:3px;font-size:.7rem;line-height:1.4;color:#5b6472}
+@media print{.gl-img{display:none!important}}

@@ -257,6 +257,13 @@ def parse_linkmap(raw):
                         if (_am.group(2) or '').strip():
                             g['audio_cap'] = _am.group(2).strip()
                         g['text'] = g['text'][:_am.start()].strip()
+                    # 2026-11-17 «… | 그림 | images/….webp | 캡션» — 말풍선 안에 사진(opt-in, 천대현 9-1~2 «대표적인 곡물 메이저 회사 사진과 관련 내용을 말풍선으로»)
+                    _gm = re.search(r'\|그림\|([^|]+\.(?:webp|jpg|jpeg|png|gif))(?:\|([^|]*))?$', g['text'])
+                    if _gm:
+                        g['img'] = _gm.group(1).strip()
+                        if (_gm.group(2) or '').strip():
+                            g['img_cap'] = _gm.group(2).strip()
+                        g['text'] = g['text'][:_gm.start()].strip()
                     gloss.append(g)
                 else:
                     warn.append(f'모르는 줄 «{k}»: {ln[:40]}')
@@ -1449,7 +1456,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 if stripped:
                     gr_rows.append([x.strip() for x in stripped.strip().strip('|').split('|')])
                 continue
-            _xs = []; _ser = []; _band = None; _src = ''; _dec = None; _yr = False; _prop = False; _refs = []; _pts = []
+            _xs = []; _ser = []; _band = None; _src = ''; _dec = None; _yr = False; _prop = False; _refs = []; _pts = []; _snds = []
             for _r in gr_rows:
                 if _r[0] == 'x':
                     _xs = _r[1:]
@@ -1486,10 +1493,20 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                                      'leg': _r[4] if len(_r) > 4 else '', 'r': inline('|'.join(_r[5:]).strip())})
                     except ValueError:
                         pass
+                elif _r[0] == '소리' and len(_r) >= 5:
+                    # 2026-11-17 사회 9-1~2(천대현 검토판 댓글 «바나나가 2024년 고점을 찍었을 때 위치에서 바나나 영어 음성을 재생»):
+                    #   소리 | 선 이름 | x | 값 | images/….mp3 | 이름표   — 그 점 위에 «🔊 이름표» 단추. 선이 그 해를 지나야 보이고,
+                    #   누르면(또는 Enter) 소리를 처음부터 한 번 낸다. 스스로 재생하지 않는다. 인쇄에는 안 나온다. 줄이 없으면 출력 불변.
+                    try:
+                        _snds.append({'n': _r[1], 'x': float(_r[2]), 'v': float(_r[3]), 'src': _r[4],
+                                      'lab': '|'.join(_r[5:]).strip() or '듣기'})
+                    except ValueError:
+                        pass
             if _dec is not None:
                 for _sr in _ser: _sr['d'] = _dec
             _names = [x['name'] for x in _ser]
             _pts = [dict(p, s=_names.index(p['n'])) for p in _pts if p['n'] in _names]
+            _snds = [dict(p, s=_names.index(p['n'])) for p in _snds if p['n'] in _names]
             if _xs and _ser:
                 gid = f'gr{len(html_parts)}'
                 _leg = ''.join(f'<span class="gr-key"><i style="background:{x["col"]}"></i>{inline(x["name"])}</span>'
@@ -1515,7 +1532,32 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 _PT_DRAW = ('var xi=+D.x[i];D.pt.forEach(function(p,k){pe[k].style.display=xi>=p.x?"":"none";});'
                             'var nx=D.pt.filter(function(p){for(var j=0;j<n;j++){if(+D.x[j]>=p.x)return j===i;}return false;});'
                             'if(nx.length)rd.innerHTML+="<br>"+nx.map(function(p){return p.r;}).join(" · ");') if _pts else ''
-                html_parts.append(
+                # 소리 줄이 있을 때만 끼우는 조각(2026-11-17) — 없으면 스크립트·CSS 글자가 종전과 같다
+                if _snds:
+                    _D['snd'] = [{'s': p['s'], 'x': p['x'], 'v': p['v'], 'src': p['src'], 'lab': p['lab']} for p in _snds]
+                _SND_DEF = ('function XS(x){if(D.prop)return L+(R-L)*(x-+D.x[0])/(+D.x[n-1]-+D.x[0]);'
+                            'for(var j=0;j<n-1;j++){var a=+D.x[j],b=+D.x[j+1];if(x>=a&&x<=b)return X(j)+(X(j+1)-X(j))*(x-a)/(b-a);}return x<+D.x[0]?L:R;}'
+                            'var se=D.snd.map(function(p){var s=D.s[p.s],cx=XS(p.x),cy=Y(s,p.v),au=null;'
+                            'var g=document.createElementNS(NS,"g");svg.appendChild(g);'
+                            'g.setAttribute("class","gr-snd");g.setAttribute("tabindex","0");g.setAttribute("role","button");g.setAttribute("aria-label",p.lab+" 소리 듣기");'
+                            'function ge(t,a,txt){var e=el(t,a,txt);g.appendChild(e);return e;}'
+                            'var ln=ge("line",{x1:cx,x2:cx,y2:cy-9,stroke:s.col,"stroke-width":2,"stroke-dasharray":"3 3"}),'
+                            'bx0=ge("rect",{rx:14,fill:"#fff",stroke:s.col,"class":"gr-snd-b"}),tx=ge("text",{"text-anchor":"middle","class":"gr-snd-t"},"🔊 "+p.lab);'
+                            # 단추를 화면 픽셀로 같은 크기(글자 13px·높이 28px)로 — SVG가 폰 0.6배·노트북 1.6배로 줄고 늘어 9px·63px가 되던 것
+                            'g.lay=function(){var sw=svg.getBoundingClientRect().width;if(!sw)return;var k=480/sw,h=28*k,fs=13*k,'
+                            'bw=(26+p.lab.length*8.5)*k,bx=Math.min(Math.max(cx-bw/2,L),478-bw),by=Math.max(cy-h-14*k,2);'
+                            'ln.setAttribute("y1",by+h);bx0.setAttribute("x",bx);bx0.setAttribute("y",by);bx0.setAttribute("width",bw);bx0.setAttribute("height",h);'
+                            'bx0.setAttribute("rx",h/2);bx0.setAttribute("stroke-width",2*k);tx.setAttribute("x",bx+bw/2);tx.setAttribute("y",by+h*0.69);tx.style.fontSize=fs+"px";};'
+                            'window.addEventListener("resize",g.lay);'
+                            'function play(){if(!au)au=new Audio(p.src);try{au.currentTime=0;}catch(e){}var q=au.play();if(q&&q.catch)q.catch(function(){});}'
+                            'g.addEventListener("click",play);'
+                            'g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();play();}});'
+                            'g.style.display="none";return g;});') if _snds else ''
+                _SND_DRAW = ('var xs=+D.x[i];D.snd.forEach(function(p,k){var on=xs>=p.x;se[k].style.display=on?"":"none";if(on)se[k].lay();});') if _snds else ''
+                _SND_CSS = ('<style>.ws-gr .gr-snd{cursor:pointer}.ws-gr .gr-snd-t{font-weight:700;fill:#1f2937}'
+                            '.ws-gr .gr-snd:hover .gr-snd-b,.ws-gr .gr-snd:focus .gr-snd-b{fill:#fff7e0}'
+                            '.ws-gr .gr-snd:focus{outline:none}@media print{.ws-gr .gr-snd{display:none!important}}</style>') if _snds else ''
+                html_parts.append(_SND_CSS +
                     f'<div class="ws-gr" id="{gid}">'
                     f'<div class="ws-gr-head">{inline(gr_head)}</div>'
                     f'<svg class="ws-gr-svg" viewBox="0 0 480 300" role="img" aria-label="{gr_head} — {_alt}"></svg>'
@@ -1550,13 +1592,13 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     'var cur=el("line",{x1:L,x2:L,y1:T,y2:B,"class":"gr-cur"});'
                     'var lines=D.s.map(function(s){return el("polyline",{fill:"none",stroke:s.col,"stroke-width":4,"stroke-linejoin":"round","stroke-linecap":"round",points:""});});'
                     'var dots=D.s.map(function(s){return el("circle",{r:6,fill:s.col,stroke:"#fff","stroke-width":2});});'
-                    + _PT_DEF +
+                    + _PT_DEF + _SND_DEF +
                     'function draw(i){i=+i;D.s.forEach(function(s,k){var p=[];for(var j=0;j<=i;j++)p.push(X(j)+","+Y(s,s.v[j]));'
                     'lines[k].setAttribute("points",p.join(" "));dots[k].setAttribute("cx",X(i));dots[k].setAttribute("cy",Y(s,s.v[i]));});'
                     'cur.setAttribute("x1",X(i));cur.setAttribute("x2",X(i));'
                     # 2026-10-06 «년대»는 10년 간격·끝자리 0일 때만 — 종전 «간격 ≤10»이라 5년·1년 간격에 «2024년대»·«1929년대»가 찍혔다(사회 7-6에서 발견) · x가 «YYYY.M»(연·월)이면 «YYYY년 M월»(역사 6-1-3 선거 그래프 제안)
                     'rd.innerHTML="<b>"+(/^[0-9]{4}[.][0-9]{1,2}$/.test(D.x[i])?String(D.x[i]).replace(/^([0-9]{4})[.]([0-9]{1,2})$/,"$1년 $2월"):D.x[i]+(!D.yr&&(+D.x[1]-+D.x[0])==10&&D.x.every(function(v){return +v%10==0;})?"년대":"년"))+"</b> — "+D.s.map(function(s){return s.name+" <b style=\\"color:"+s.col+"\\">"+fmt(s.v[i],s.d)+"</b> "+s.unit;}).join(" · ");'
-                    + _PT_DRAW +
+                    + _PT_DRAW + _SND_DRAW +
                     'rg.value=i;}'
                     'rg.addEventListener("input",function(){draw(rg.value);});'
                     'var tm=null;pl.addEventListener("click",function(){if(tm){clearInterval(tm);tm=null;pl.textContent="▶";return;}'
@@ -3568,6 +3610,9 @@ code {{ background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
   box-shadow: 0 3px 9px rgba(0,0,0,.18); }}
 .pk-gold .pk-card {{ display: flex; flex-direction: column; gap: 0; }}
+/* 2026-11-17 9-1~2: 폰 두 칸에서 카드 최소 폭(사진·이름)이 칸을 밀어 화면 밖으로 넘치던 것 — 칸 폭에 맞춰 줄어들게 */
+.pk-gold .pk-card {{ min-width: 0; }}
+.pk-gold .pk-name, .pk-gold .pk-name .lm-n {{ white-space: normal; word-break: keep-all; overflow-wrap: anywhere; }}
 .pk-gold .pk-win {{ display: block; overflow: hidden; border-radius: 5px 5px 0 0;
   border: 4px solid #d9c98e; border-bottom: 0; background: #efe7cf; margin: 0; }}
 /* 도트 스프라이트용 규칙(72px·pixelated·grayscale)이 사진 카드에 걸리면
@@ -5114,6 +5159,9 @@ def main():
                 if any(g.get('audio') for g in _gl):   # 소리를 넣은 차시에만(없는 차시는 출력 그대로)
                     css += '<style id="gl-aud-css">' + _rd('gloss_audio.css') + '</style>\n'
                     js += '<script id="gl-aud-js">' + _rd('gloss_audio.js') + '</script>\n'
+                if any(g.get('img') for g in _gl):     # 사진을 넣은 차시에만(2026-11-17, 없는 차시는 출력 그대로)
+                    css += '<style id="gl-img-css">' + _rd('gloss_img.css') + '</style>\n'
+                    js += '<script id="gl-img-js">' + _rd('gloss_img.js') + '</script>\n'
             if _lm:
                 css += '<style id="lm-css">' + _rd('linkmap.css') + '</style>\n'
                 js += '<script type="application/json" id="lm-data">' + _j(_lm) + '</script>\n<script id="lm-js">' + _rd('linkmap.js') + '</script>\n'
