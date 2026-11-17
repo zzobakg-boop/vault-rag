@@ -1941,6 +1941,8 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-1-3_다비드스케치1791.webp | Le Serment du Jeu de paume.jpg (베르사유 궁전 박물관 소장 소묘, 공용 1280px 판을 1100px로 줄임) | 자크루이 다비드 · 1791 | 퍼블릭 도메인 (2026-11-16 · 천대현 검토판 댓글 «⑫ 다비드 스케치로 장소·뜻 보충») |
 | 5-1-3_라마르세예즈1907.mp3 | La Marseillaise (1907).oga (공용 설명의 출처: 유튜브 B0AROx0lKoo · 64kbps 모노 mp3로 바꾸고 소리 크기를 맞춤·끝 2초를 줄여 끔, 153초) | 노래 장 노테 · 지휘 조르주 멘델 · 1907 (곡·가사 루제 드 릴, 1792) | 퍼블릭 도메인(PD-France·PD-US) (2026-11-16 · 천대현 검토판 댓글 «라 마르세예즈를 들을 수 있도록 말풍선으로») |
 | 5-1-3_나폴레옹법전1804.webp | Code civil des Français (1804).jpg (공용, 원 출처 Flickr yalelawlibrary 35085394610 · 1280px 판을 760px로 줄임) | 사진 예일 대학교 로스쿨 도서관(Yale Law Library) · 책 1804 | CC BY 2.0 (2026-11-16 · 천대현 검토판 댓글 «나폴레옹 법전 — 교과서 사진 자료와 내용을 툴팁이나 호버줌으로») |
+| 5-1-3_새도량형1800.webp | Usage des Nouvelles Mesures 1800.jpg (공용, 프랑스 국립도서관 소장 판화 · 1280px 판을 1000px로 줄임) | 그림 J. P. 들리옹 · 새김 L. F. 라브루스 · 1800 | 퍼블릭 도메인 (2026-11-17 · 천대현 «자유주의·민족주의를 구체적 이미지로» — 교과서 151쪽 도량형 통일) |
+| 5-1-3_고야1808.webp | El Tres de Mayo, by Francisco de Goya, from Prado thin black margin.jpg (공용 1280px 판을 1200px로 줄임) | 프란시스코 고야 · 1814 · 프라도 미술관 | 퍼블릭 도메인 (2026-11-17 · 같은 요청 — ⑰ 민족주의가 나폴레옹 점령지에서 자란 장면) |
 | 5-1-4_자유의여신1830.webp | La Liberté guidant le peuple - Eugène Delacroix - Musée du Louvre Peintures RF 129 - après restauration 2024.jpg (공용 1280px 판을 1100px로 줄임) | 외젠 들라크루아 · 1830 (루브르 박물관) | 퍼블릭 도메인 (2026-11-16 · 천대현 검토판 댓글 «교과서의 들라크루아 그림을 넣어주면 좋겠는데») |
 | 5-2-1_뮬방적.webp | Baines 1835-Mule spinning.png | 토머스 앨럼 그림 · J. W. 로리 판화 · 에드워드 베인스 『영국 면직 공업의 역사』 1835 | 퍼블릭 도메인 |
 | 5-2-2_로즈의거상.webp | Punch Rhodes Colossus.png | 에드워드 린리 샘번 · 『펀치』 1892-12-10 | 퍼블릭 도메인 |
