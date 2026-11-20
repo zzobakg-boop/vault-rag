@@ -189,6 +189,8 @@ LINKMAP_BLOCK = re.compile(r'^:::개념 잇기[^\n]*\n.*?^:::[ \t]*$\n?', re.M |
 # 2026-11-17 :::그림 해설 images/….webp … ::: — 확대 창 그림 위 번호 해설(ws_design/pins.*, 천대현 5-1 «큐레이터처럼»).
 #   줄 = `번호 | x% | y% | 이름 | 설명` (x·y는 그림 왼쪽 위에서 잰 %). 블록 자리엔 아무것도 그리지 않고, 같은 그림 경로의 본문 그림에 붙는다.
 #   ⚠️ 설명에 그 차시 뒤쪽 빈칸 답 낱말을 넣지 않는다(확대 창은 언제나 열 수 있다).
+#   2026-11-18 사회 9-3~4(천대현 «확대했을 때 왜 파나마에 등록됐는지 파나마 지도와 함께»): 줄 끝에 `| 그림 | images/….webp`를 붙이면
+#   설명 칸에 그 그림이 함께 뜬다(opt-in — 그림 줄이 없는 해설은 출력 그대로).
 PIN_BLOCK = re.compile(r'^:::그림 해설[^\n]*\n.*?^:::[ \t]*$\n?', re.M | re.S)
 
 
@@ -206,8 +208,12 @@ def parse_pins(raw):
                 continue
             r = [x.strip() for x in ln.strip('|').split('|')]
             try:
-                out.setdefault(src, []).append({'n': int(r[0]), 'x': float(r[1].rstrip('%')), 'y': float(r[2].rstrip('%')),
-                                                't': r[3], 'd': '|'.join(r[4:]).strip()})
+                pin = {'n': int(r[0]), 'x': float(r[1].rstrip('%')), 'y': float(r[2].rstrip('%')), 't': r[3]}
+                if len(r) >= 7 and r[5] == '그림':
+                    pin['d'] = r[4]; pin['img'] = r[6]
+                else:
+                    pin['d'] = '|'.join(r[4:]).strip()
+                out.setdefault(src, []).append(pin)
             except (IndexError, ValueError):
                 warn.append(f'{src}: 읽을 수 없는 줄 «{ln[:40]}»')
     return (out or None), warn
@@ -285,11 +291,14 @@ def parse_linkmap(raw):
                             g['audio_cap'] = _am.group(2).strip()
                         g['text'] = g['text'][:_am.start()].strip()
                     # 2026-11-17 «… | 그림 | images/….webp | 캡션» — 말풍선 안에 사진(opt-in, 천대현 9-1~2 «대표적인 곡물 메이저 회사 사진과 관련 내용을 말풍선으로»)
-                    _gm = re.search(r'\|그림\|([^|]+\.(?:webp|jpg|jpeg|png|gif))(?:\|([^|]*))?$', g['text'])
+                    # 2026-11-18 역사 5-1 «7월 혁명»: 경로 끝 «@15»면 가로 틀에서 위에서 15% 자리를 보여 준다(사회 학생 눈 — 삼색기·여신 머리가 잘림). 없으면 그대로 가운데
+                    _gm = re.search(r'\|그림\|([^|]+\.(?:webp|jpg|jpeg|png|gif))(?:\s*@(\d{1,3}))?(?:\|([^|]*))?$', g['text'])
                     if _gm:
                         g['img'] = _gm.group(1).strip()
-                        if (_gm.group(2) or '').strip():
-                            g['img_cap'] = _gm.group(2).strip()
+                        if _gm.group(2):
+                            g['img_y'] = int(_gm.group(2))
+                        if (_gm.group(3) or '').strip():
+                            g['img_cap'] = _gm.group(3).strip()
                         g['text'] = g['text'][:_gm.start()].strip()
                     gloss.append(g)
                 else:
@@ -1181,7 +1190,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 pick_opts = [x.strip() for x in _o.split('|') if x.strip()]
                 pick_mood = (pick_opts == ['웃음', '울음'])
             # 2026-10-06 메인·역사: «까닭펼침» — 다 고른 뒤 맞힌 카드까지 까닭을 모두 펼친다(«같은 시대» 카드처럼 까닭이 활동의 핵심일 때)
-            pick_open = pick_swipe = pick_tight = False
+            pick_open = pick_swipe = pick_tight = pick_opinion = False
             # 2026-10-12 사회 7-3: «넘김» — 카드를 옆으로 넘긴다(천대현 «다섯 가지도 옆으로 넘기게»). 순서 무관.
             # 2026-10-26 사회 7-5: «좁게» — 그림 없는 짧은 카드를 데스크톱 한 줄·폰은 한 나라 한 줄로(천대현 «학습지 내 비율을 너무 차지»).
             #   opt-in이라 «좁게»를 안 쓴 차시 출력은 글자 하나까지 같다.
@@ -1192,11 +1201,59 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                     pick_open = True; _h = _h[len('까닭펼침'):].strip(); continue
                 if _h.startswith('넘김'):
                     pick_swipe = True; _h = _h[len('넘김'):].strip(); continue
+                # 2026-11-18 사회 9-1~2 «의견» — 정답 없는 공감/비공감 카드(천대현 검토판 «앞에는 누구인지, 뒤집으면 사례, 앞 표지에서 공감/비공감, 고르면 교사용 교과서 보충»).
+                #   줄 = 이름 | 앞면(누구) | 뒷면(그 사람의 말) | 첫째 단추 쪽 예시 | 둘째 단추 쪽 예시 | 그림(«캡션 > 파일»이면 사진 위 한 줄)
+                if _h.startswith('의견'):
+                    pick_opinion = True; _h = _h[len('의견'):].strip(); continue
                 break
             pick_q = _h
             pick_rows = []
             continue
         if in_pick:
+            if stripped == ':::' and pick_opinion:
+                # 의견 카드는 .ws-pick이 아니라 .ws-opin — 고르기 점수(pickscore.js)·정답 공개 코드와 따로 간다. 입력칸 0(data-id 불변).
+                #   CSS·JS는 ws_design/opinion.*를 _apply_look이 이 블록을 쓴 판에만 붙인다(안 쓴 차시 출력 그대로).
+                assert len(pick_opts) == 2, f'❌ 의견 카드는 단추 둘 — {pick_opts}'
+                oid = f'op{len(html_parts)}'
+                _lab = {'공감': '👍 공감', '비공감': '👎 비공감'}
+                cards = ''
+                for i, (nm, who, said, ex0, ex1, img) in enumerate(pick_rows):
+                    assert said and ex0 and ex1, f'❌ 의견 카드 줄 = 이름 | 누구 | 그 사람의 말 | 예시 | 예시 | 그림 — {nm}'
+                    _alt = re.sub(r'<[^>]+>', '', inline(nm))
+                    # 뒷면 말 속 빈칸 답 가리기 — «{⑧:농약}»이면 그 낱말 대신 «⑧»을 두고, ⑧을 맞게 채우면 opinion.js가 드러낸다
+                    #   (2026-11-18 메인 검증 🟡: 카드가 ⑧ 바로 아래라 먼저 뒤집으면 답이 보인다). 낱말은 HTML에 싣지 않는다 — 입력칸 data-answer에서 읽는다.
+                    _said = re.sub(r'\{([①-⑳])\s*:\s*[^}]+\}',
+                                   lambda m: f'<span class="op-mask" data-b="{ord(m.group(1)) - 0x245F}" title="{m.group(1)}을 맞게 채우면 보여">{m.group(1)}</span>',
+                                   inline(said))
+                    _cap, _, _f = img.rpartition('>') if '>' in img else ('', '', img)
+                    _cap, _f = _cap.strip(), _f.strip()
+                    # 🔴 넘김 줄 안 그림은 lazy 금지 — 화면 밖 카드는 넘겨도 빈 칸이 뜬다
+                    win = (f'<span class="op-win"><img src="images/{_f}" alt="{_alt}">'
+                           + (f'<span class="op-cap">{inline(_cap)}</span>' if _cap else '')
+                           + '<span class="op-stamp" hidden></span></span>') if _f else '<span class="op-stamp" hidden></span>'
+                    btns = ''.join(f'<button type="button" class="op-b" data-v="{o}" aria-pressed="false" disabled>{_lab.get(o, o)}</button>' for o in pick_opts)
+                    exs = ''.join(f'<p data-v="{o}"><b>{_lab.get(o, o)}</b> {inline(t)}</p>' for o, t in zip(pick_opts, (ex0, ex1)))
+                    cards += (
+                      f'<div class="op-card{"" if _f else " op-noimg"}" data-i="{i}">'
+                      f'<div class="op-flip" role="button" tabindex="0" aria-label="{_alt} 카드 — 눌러서 뒤집기">'
+                      f'<div class="op-inner"><div class="op-face op-front">{win}'
+                      f'<div class="op-name">{inline(nm)}</div><div class="op-who">{inline(who)}</div>'
+                      f'<div class="op-hint">↻ 눌러서 뒤집기</div></div>'
+                      f'<div class="op-face op-back"><div class="op-said">{_said}</div>'
+                      f'<div class="op-by">— {inline(nm)} ({inline(who)})</div><div class="op-hint">↻ 눌러서 앞면</div></div></div></div>'
+                      f'<div class="op-btns">{btns}</div><div class="op-note">먼저 카드를 눌러 이 사람의 말을 읽자</div>'
+                      f'<div class="op-more" hidden><div class="op-more-h">📘 선생님용 교과서의 예시 댓글</div>{exs}</div></div>')
+                html_parts.append(
+                  f'<div class="ws-opin" id="{oid}"><div class="op-head"><span>{inline(pick_q)}</span>'
+                  f'<b class="op-count">0 / {len(pick_rows)}</b></div>'
+                  f'<div class="op-grid op-swipe">{cards}</div>'
+                  '<div class="op-nav"><button type="button" class="op-prev" aria-label="이전 카드">◀</button>'
+                  f'<span class="op-pos">1 / {len(pick_rows)}</span>'
+                  '<button type="button" class="op-next" aria-label="다음 카드">▶</button></div>'
+                  '<div class="op-result" hidden></div></div>')
+                in_pick = False
+                pick_rows = []
+                continue
             if stripped == ':::':
                 pid = f'pk{len(html_parts)}'
                 cards = ''
@@ -5226,6 +5283,11 @@ def main():
         if 'class="ws-pick"' in h and 'id="score"' in h:
             i = h.rfind('</body>')
             h = h[:i] + '<script id="ws-pickscore-js">' + open(os.path.join(_dd, 'pickscore.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
+        # 2026-11-18 천대현(사회 9-1~2 검토판) — :::인물선택카드 «의견»(정답 없는 공감/비공감 카드)을 쓴 판에만 ws_design/opinion.*.
+        if 'class="ws-opin"' in h:
+            h = h.replace('</head>', '<style id="ws-opin-css">' + open(os.path.join(_dd, 'opinion.css'), encoding='utf-8').read() + '</style>\n</head>', 1)
+            i = h.rfind('</body>')
+            h = h[:i] + '<script id="ws-opin-js">' + open(os.path.join(_dd, 'opinion.js'), encoding='utf-8').read() + '</script>\n' + h[i:]
         # 2026-11-12 천대현(사회 8-7~8) — 표지 전/후 비교(frontmatter hero_before)가 있는 판에만 ws_design/hero_ba.*.
         if 'class="hero-ba"' in h:
             h = h.replace('</head>', '<style id="ws-hero-ba-css">' + open(os.path.join(_dd, 'hero_ba.css'), encoding='utf-8').read() + '</style>\n</head>', 1)

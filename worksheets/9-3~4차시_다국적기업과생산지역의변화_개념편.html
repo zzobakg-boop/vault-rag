@@ -202,6 +202,9 @@ code { background: #f1f3f7; border: 1px solid #e2e6ec; border-radius: 5px;
   background: linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%);
   box-shadow: 0 3px 9px rgba(0,0,0,.18); }
 .pk-gold .pk-card { display: flex; flex-direction: column; gap: 0; }
+/* 2026-11-17 9-1~2: 폰 두 칸에서 카드 최소 폭(사진·이름)이 칸을 밀어 화면 밖으로 넘치던 것 — 칸 폭에 맞춰 줄어들게 */
+.pk-gold .pk-card { min-width: 0; }
+.pk-gold .pk-name, .pk-gold .pk-name .lm-n { white-space: normal; word-break: keep-all; overflow-wrap: anywhere; }
 .pk-gold .pk-win { display: block; overflow: hidden; border-radius: 5px 5px 0 0;
   border: 4px solid #d9c98e; border-bottom: 0; background: #efe7cf; margin: 0; }
 /* 도트 스프라이트용 규칙(72px·pixelated·grayscale)이 사진 카드에 걸리면
@@ -1370,6 +1373,42 @@ details.v2t-legend summary i{font-style:normal;color:var(--mute);font-weight:600
 details.v2t-legend ul{margin-top:10px}
 .v2t-ico{font-size:.72em;opacity:.75;margin-right:.25em;vertical-align:.08em;font-family:system-ui,sans-serif}
 </style>
+<style id="pin-css">/* 그림 해설 번호(pins.js 짝) — «:::그림 해설» 블록이 있는 차시에만 */
+.ws-pin-hint{display:inline-flex;align-items:center;gap:4px;margin:6px 0 2px;padding:4px 11px;border-radius:999px;border:1px solid #c9b78a;
+  background:#fbf5e6;color:#6b5420;font:inherit;font-size:.8rem;font-weight:700;cursor:pointer}
+.ws-pin-hint:hover{background:#f5ead0}
+.ws-pin-print{display:none}
+.ws-pin-printmarks{display:none}
+.ws-pin-wrap{display:block}
+.ws-pin-layer{position:absolute;transform-origin:center center;pointer-events:none}
+.ws-pin{position:absolute;pointer-events:auto;width:30px;height:30px;margin:0;padding:0;border-radius:50%;
+  transform:translate(-50%,-50%) scale(calc(1 / var(--ws-pin-s,1)));
+  border:2px solid #fff;background:#c8102e;color:#fff;font:700 15px/1 system-ui,sans-serif;cursor:pointer;
+  box-shadow:0 0 0 3px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.5)}
+.ws-pin.on{background:#f4d27a;color:#2a2210;box-shadow:0 0 0 4px rgba(244,210,122,.45),0 2px 8px rgba(0,0,0,.6)}
+.ws-pin:focus-visible{outline:2px solid #f4d27a;outline-offset:3px}
+.ws-pin-panel{flex:none;max-height:38vh;overflow:auto;margin:6px 12px 0;padding:10px 14px;border-radius:10px;
+  background:#f7f3e8;color:#23201a;font-size:15px;line-height:1.6}
+.ws-pin-panel[hidden]{display:none}
+.ws-pin-t{font-size:15.5px;margin-bottom:2px}
+.ws-pin-d{margin:0 0 6px}
+/* 설명 칸 그림(2026-11-18) — 본문 그림에 붙는 .ws-pin-fig와 이름이 겹치지 않게 .ws-pin-pic */
+.ws-pin-pic{margin:4px 0 6px}
+.ws-pin-pic[hidden]{display:none}
+.ws-pin-pic img{display:block;max-width:100%;max-height:24vh;border-radius:8px;border:1px solid #d9cfb4;background:#fff}
+.ws-pin-nav{display:flex;gap:8px;flex-wrap:wrap}
+@media (min-width:700px){.ws-pin-pic{float:left;width:min(42%,340px);margin:3px 14px 6px 0}.ws-pin-pic img{max-height:none;width:100%}.ws-pin-nav{clear:both}}
+.ws-pin-nav button{font:inherit;font-size:14px;min-height:36px;padding:4px 12px;border-radius:8px;border:1px solid #b9ae92;background:#fff;color:#3a3326;cursor:pointer}
+.ws-pin-nav button:disabled{opacity:.4;cursor:default}
+@media print{
+  .ws-pin-hint{display:none!important}
+  .ws-pin-a{position:relative}
+  .ws-pin-printmarks{display:block;position:absolute;inset:0;pointer-events:none}
+  .ws-pin-printmarks i{position:absolute;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;background:#fff;color:#000;border:1.5px solid #000;font:700 10px/13px sans-serif;text-align:center;font-style:normal}
+  .ws-pin-print{display:block;margin:4px 0 0;padding-left:0;text-align:left;font-size:9pt;line-height:1.45;list-style:none}
+  .ws-pin-print li{margin:0}
+}
+</style>
 <style id="gl-css">/* 보충 말풍선(gloss.js 짝) — :::개념 잇기 블록에 보충 줄이 있는 차시만 */
 :root{--gl:#007aff;--gl-soft:#eef5ff;--gl-ink:#1b3557;--gl-gut:280px}
 /* 방식 1: 낱말 — 파란 점선 밑줄 + 작은 표시 */
@@ -1529,6 +1568,7 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <br>
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/9-3_hero_hmm_algeciras.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/9-3_hero_hmm_algeciras.jpg" alt="표지의 배 — 2020년 6월 로테르담 항에 처음 들어온 컨테이너선 HMM 알헤시라스. 길이 20피트(약 6m)짜리 상자로 치면 2만 4천 개 가까이 실을 수 있다" loading="lazy"></a><figcaption>표지의 배 — 2020년 6월 로테르담 항에 처음 들어온 컨테이너선 HMM 알헤시라스. 길이 20피트(약 6m)짜리 상자로 치면 2만 4천 개 가까이 실을 수 있다</figcaption></figure>
 <br>
+<br>
 <h2>📖 2단계: 어디에 무엇을 둘까 — 운동화 한 켤레의 여행</h2>
 <blockquote>📕 <strong>교과서 172~173쪽 펴고 · 배정 시간 11분</strong></blockquote>
 <br>
@@ -1537,7 +1577,7 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <blockquote>🔍 세 회사가 그 나라를 고른 까닭이 각각 무엇인지 사진 설명에서 찾아 말해 보자.</blockquote>
 <br>
 <style>/* 2026-10-26 사회 7-5 «좁게» — 그림 없는 짧은 카드. 데스크톱은 한 줄에 다 놓고, 폰은 «이름·값 | 버튼» 한 줄씩 */ .pk-grid.pk-tight { grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; } .pk-tight .pk-card { padding: 8px 6px; } .pk-tight .pk-sit { min-height: 0; margin: 2px 0 7px; } .pk-tight .pk-b { padding: 5px 1px; word-break: keep-all; line-height: 1.25; font-size: .74em; } .pk-tight .pk-btns { gap: 3px; } @media (max-width: 640px) {   .pk-grid.pk-tight { grid-template-columns: 1fr; gap: 6px; }   .pk-tight .pk-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 10px; align-items: center; text-align: left; padding: 7px 10px; }   .pk-tight .pk-name, .pk-tight .pk-sit { grid-column: 1; margin: 0; }   .pk-tight .pk-btns { grid-column: 2; grid-row: 1 / span 2; }   .pk-tight .pk-why { grid-column: 1 / -1; } } /* 2026-10-27 사회 7-5 «센 수/견준 값»: 금테 카드도 «좁게» — 칸마다 깔던 크림 판 대신 카드 하나를 크림 판+금테(배경 두 겹)로. 폰 두 칸 배치에서 판이 조각나던 것 */ .pk-gold.pk-tight .pk-card, .pk-gold.pk-tight .pk-card.pk-noimg { padding: 9px 8px; border: 5px solid transparent; border-radius: 13px; background: linear-gradient(#fdf7e6, #fdf7e6) padding-box, linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%) border-box; } .pk-gold.pk-tight .pk-name, .pk-gold.pk-tight .pk-sit, .pk-gold.pk-tight .pk-btns, .pk-gold.pk-tight .pk-why, .pk-gold.pk-tight .pk-card.pk-noimg .pk-name { background: none; padding: 0; border-radius: 0; } .pk-gold.pk-tight .pk-name { font-size: .95em; line-height: 1.35; word-break: keep-all; } .pk-gold.pk-tight .pk-sit { word-break: keep-all; } .pk-gold.pk-tight .pk-sit { font-size: .8em; line-height: 1.4; margin: 3px 0 7px; } .pk-gold.pk-tight .pk-why { margin-top: 6px; } .pk-gold.pk-tight:has(> .pk-card:nth-child(6)), .pk-gold.pk-tight:has(.pk-b:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } @media (max-width: 640px) { .pk-grid.pk-gold.pk-tight, .pk-gold.pk-tight:has(> .pk-card:nth-child(6)), .pk-gold.pk-tight:has(.pk-b:nth-child(3)) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; } .pk-gold.pk-tight .pk-card, .pk-gold.pk-tight .pk-card.pk-noimg { display: flex; flex-direction: column; text-align: left; padding: 8px 10px; } .pk-gold.pk-tight .pk-sit { margin: 2px 0 6px; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:has(> .pk-b:nth-child(3)) { grid-auto-flow: row; grid-template-columns: 1fr; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:has(> .pk-b:nth-child(4)) { grid-template-columns: 1fr 1fr; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { align-content: center; } }</style>
-<div class="ws-pick" id="pk31"><div class="pk-head"><span>교과서 173쪽 「스스로 탐구」 지도에 나온 일곱 가지 일이다. 화살표를 따라가 보고, 어디에서 맡을지 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 7</b></div><div class="pk-grid pk-gold pk-tight"><div class="pk-card pk-noimg" data-i="0" data-ans="미국"><div class="pk-name">운동화 디자인</div><div class="pk-sit">새 운동화 모양과 색을 정하는 회의</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>디자인 회의와 검토가 회사의 중심인 미국에서 이루어진다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="미국"><div class="pk-name">충격 흡수 소재 연구</div><div class="pk-sit">뛸 때 발을 보호하는 핵심 기술을 연구한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>핵심 기술자들이 주로 회사의 중심이 있는 나라에 있다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="베트남"><div class="pk-name">운동화 만들기</div><div class="pk-sit">재료를 꿰매고 붙여 운동화를 완성한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>인건비가 싸고 일할 사람이 많다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="원료·부품 산지"><div class="pk-name">가죽</div><div class="pk-sit">운동화 겉에 쓰는 가죽을 만든다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>브라질 — 원료가 풍부하고 값이 싸다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="원료·부품 산지"><div class="pk-name">목화와 천</div><div class="pk-sit">목화를 기르고 천으로 짠다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>튀르키예·인도 — 원료가 풍부하고 값이 싸다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="원료·부품 산지"><div class="pk-name">운동화 밑창</div><div class="pk-sit">운동화 바닥에 붙이는 밑창을 만든다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>중국 — 밑창을 만들어 베트남 공장으로 보낸다</div></div><div class="pk-card pk-noimg" data-i="6" data-ans="원료·부품 산지"><div class="pk-name">금속 부품</div><div class="pk-sit">운동화에 들어가는 작은 금속 부품을 가공한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>말레이시아 — 금속 부품을 가공해 보낸다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk31");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["미국", "베트남", "원료·부품 산지"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk32"><div class="pk-head"><span>교과서 173쪽 「스스로 탐구」 지도에 나온 일곱 가지 일이다. 화살표를 따라가 보고, 어디에서 맡을지 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 7</b></div><div class="pk-grid pk-gold pk-tight"><div class="pk-card pk-noimg" data-i="0" data-ans="미국"><div class="pk-name">운동화 디자인</div><div class="pk-sit">새 운동화 모양과 색을 정하는 회의</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>디자인 회의와 검토가 회사의 중심인 미국에서 이루어진다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="미국"><div class="pk-name">충격 흡수 소재 연구</div><div class="pk-sit">뛸 때 발을 보호하는 핵심 기술을 연구한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>핵심 기술자들이 주로 회사의 중심이 있는 나라에 있다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="베트남"><div class="pk-name">운동화 만들기</div><div class="pk-sit">재료를 꿰매고 붙여 운동화를 완성한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>인건비가 싸고 일할 사람이 많다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="원료·부품 산지"><div class="pk-name">가죽</div><div class="pk-sit">운동화 겉에 쓰는 가죽을 만든다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>브라질 — 원료가 풍부하고 값이 싸다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="원료·부품 산지"><div class="pk-name">목화와 천</div><div class="pk-sit">목화를 기르고 천으로 짠다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>튀르키예·인도 — 원료가 풍부하고 값이 싸다</div></div><div class="pk-card pk-noimg" data-i="5" data-ans="원료·부품 산지"><div class="pk-name">운동화 밑창</div><div class="pk-sit">운동화 바닥에 붙이는 밑창을 만든다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>중국 — 밑창을 만들어 베트남 공장으로 보낸다</div></div><div class="pk-card pk-noimg" data-i="6" data-ans="원료·부품 산지"><div class="pk-name">금속 부품</div><div class="pk-sit">운동화에 들어가는 작은 금속 부품을 가공한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="미국">미국</button><button type="button" class="pk-b" data-v="베트남">베트남</button><button type="button" class="pk-b" data-v="원료·부품 산지">원료·부품 산지</button></div><div class="pk-why" hidden>말레이시아 — 금속 부품을 가공해 보낸다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk32");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["미국", "베트남", "원료·부품 산지"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/9-3_map_division_v2.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/9-3_map_division_v2.webp" alt="누가 어디서 무엇을 — 운동화 한 켤레를 여러 나라가 나누어 만든다" loading="lazy"></a><figcaption>누가 어디서 무엇을 — 운동화 한 켤레를 여러 나라가 나누어 만든다</figcaption></figure>
 <br>
@@ -1578,11 +1618,11 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/9-4_map_places.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/9-4_map_places.webp" alt="오늘 나오는 곳 — 중국 둥관·미국 디트로이트·오스트레일리아·베트남·한국, 캄보디아·방글라데시" loading="lazy"></a><figcaption>오늘 나오는 곳 — 중국 둥관·미국 디트로이트·오스트레일리아·베트남·한국, 캄보디아·방글라데시</figcaption></figure>
 <br>
 <style>/* 2026-10-26 사회 7-5 «좁게» — 그림 없는 짧은 카드. 데스크톱은 한 줄에 다 놓고, 폰은 «이름·값 | 버튼» 한 줄씩 */ .pk-grid.pk-tight { grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; } .pk-tight .pk-card { padding: 8px 6px; } .pk-tight .pk-sit { min-height: 0; margin: 2px 0 7px; } .pk-tight .pk-b { padding: 5px 1px; word-break: keep-all; line-height: 1.25; font-size: .74em; } .pk-tight .pk-btns { gap: 3px; } @media (max-width: 640px) {   .pk-grid.pk-tight { grid-template-columns: 1fr; gap: 6px; }   .pk-tight .pk-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 10px; align-items: center; text-align: left; padding: 7px 10px; }   .pk-tight .pk-name, .pk-tight .pk-sit { grid-column: 1; margin: 0; }   .pk-tight .pk-btns { grid-column: 2; grid-row: 1 / span 2; }   .pk-tight .pk-why { grid-column: 1 / -1; } } /* 2026-10-27 사회 7-5 «센 수/견준 값»: 금테 카드도 «좁게» — 칸마다 깔던 크림 판 대신 카드 하나를 크림 판+금테(배경 두 겹)로. 폰 두 칸 배치에서 판이 조각나던 것 */ .pk-gold.pk-tight .pk-card, .pk-gold.pk-tight .pk-card.pk-noimg { padding: 9px 8px; border: 5px solid transparent; border-radius: 13px; background: linear-gradient(#fdf7e6, #fdf7e6) padding-box, linear-gradient(150deg, #fbe9a8 0%, #e7c257 34%, #c9992e 62%, #f3dc98 100%) border-box; } .pk-gold.pk-tight .pk-name, .pk-gold.pk-tight .pk-sit, .pk-gold.pk-tight .pk-btns, .pk-gold.pk-tight .pk-why, .pk-gold.pk-tight .pk-card.pk-noimg .pk-name { background: none; padding: 0; border-radius: 0; } .pk-gold.pk-tight .pk-name { font-size: .95em; line-height: 1.35; word-break: keep-all; } .pk-gold.pk-tight .pk-sit { word-break: keep-all; } .pk-gold.pk-tight .pk-sit { font-size: .8em; line-height: 1.4; margin: 3px 0 7px; } .pk-gold.pk-tight .pk-why { margin-top: 6px; } .pk-gold.pk-tight:has(> .pk-card:nth-child(6)), .pk-gold.pk-tight:has(.pk-b:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } @media (max-width: 640px) { .pk-grid.pk-gold.pk-tight, .pk-gold.pk-tight:has(> .pk-card:nth-child(6)), .pk-gold.pk-tight:has(.pk-b:nth-child(3)) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; } .pk-gold.pk-tight .pk-card, .pk-gold.pk-tight .pk-card.pk-noimg { display: flex; flex-direction: column; text-align: left; padding: 8px 10px; } .pk-gold.pk-tight .pk-sit { margin: 2px 0 6px; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:has(> .pk-b:nth-child(3)) { grid-auto-flow: row; grid-template-columns: 1fr; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:has(> .pk-b:nth-child(4)) { grid-template-columns: 1fr 1fr; } .pk-gold.pk-tight .pk-card.pk-noimg .pk-btns:not(.pk-btns-col) { align-content: center; } }</style>
-<div class="ws-pick" id="pk72"><div class="pk-head"><span>교과서 174~175쪽에 나온 다섯 지역이다. 공장을 떠나보낸 곳일까, 맞이한 곳일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold pk-tight"><div class="pk-card pk-noimg" data-i="0" data-ans="떠나보낸 곳"><div class="pk-name">오스트레일리아</div><div class="pk-sit">세계 자동차 회사들이 모였던 나라 (2013년 기사)</div><div class="pk-btns"><button type="button" class="pk-b" data-v="떠나보낸 곳">떠나보낸 곳</button><button type="button" class="pk-b" data-v="맞이한 곳">맞이한 곳</button></div><div class="pk-why" hidden>오스트레일리아 달러 강세·높은 임금·정부의 노동 규제로 F사·G사가 생산을 멈추기로 했고, T사도 멈출 예정이었다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="맞이한 곳"><div class="pk-name">베트남</div><div class="pk-sit">한국 S사가 휴대 전화 공장을 크게 늘렸다 (2015년 기사)</div><div class="pk-btns"><button type="button" class="pk-b" data-v="떠나보낸 곳">떠나보낸 곳</button><button type="button" class="pk-b" data-v="맞이한 곳">맞이한 곳</button></div><div class="pk-why" hidden>임금이 한국의 10분의 1이고 일손을 쉽게 구하며 세금 혜택도 있다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="떠나보낸 곳"><div class="pk-name">한국</div><div class="pk-sit">S사 휴대 전화 공장과 협력 업체가 있는 곳</div><div class="pk-btns"><button type="button" class="pk-b" data-v="떠나보낸 곳">떠나보낸 곳</button><button type="button" class="pk-b" data-v="맞이한 곳">맞이한 곳</button></div><div class="pk-why" hidden>생산이 베트남으로 옮겨 가면서 일감이 줄었다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="맞이한 곳"><div class="pk-name">디트로이트</div><div class="pk-sit">미국 자동차 회사들이 다시 공장을 짓는다 (2016년 기사)</div><div class="pk-btns"><button type="button" class="pk-b" data-v="떠나보낸 곳">떠나보낸 곳</button><button type="button" class="pk-b" data-v="맞이한 곳">맞이한 곳</button></div><div class="pk-why" hidden>자동차 수요가 늘자 외국으로 나갔던 공장이 본국으로 돌아왔다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="떠나보낸 곳"><div class="pk-name">둥관시</div><div class="pk-sit">외국계 신발 공장이 예고 없이 문을 닫았다 (2015년)</div><div class="pk-btns"><button type="button" class="pk-b" data-v="떠나보낸 곳">떠나보낸 곳</button><button type="button" class="pk-b" data-v="맞이한 곳">맞이한 곳</button></div><div class="pk-why" hidden>임금과 땅값이 오르자 더 싼 나라로 옮겨 갔다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk72");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["떠나보낸 곳", "맞이한 곳"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
+<div class="ws-pick" id="pk73"><div class="pk-head"><span>교과서 174~175쪽에 나온 다섯 지역이다. 공장을 떠나보낸 곳일까, 맞이한 곳일까? 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold pk-tight"><div class="pk-card pk-noimg" data-i="0" data-ans="떠나보낸 곳"><div class="pk-name">오스트레일리아</div><div class="pk-sit">세계 자동차 회사들이 모였던 나라 (2013년 기사)</div><div class="pk-btns"><button type="button" class="pk-b" data-v="떠나보낸 곳">떠나보낸 곳</button><button type="button" class="pk-b" data-v="맞이한 곳">맞이한 곳</button></div><div class="pk-why" hidden>오스트레일리아 달러 강세·높은 임금·정부의 노동 규제로 F사·G사가 생산을 멈추기로 했고, T사도 멈출 예정이었다</div></div><div class="pk-card pk-noimg" data-i="1" data-ans="맞이한 곳"><div class="pk-name">베트남</div><div class="pk-sit">한국 S사가 휴대 전화 공장을 크게 늘렸다 (2015년 기사)</div><div class="pk-btns"><button type="button" class="pk-b" data-v="떠나보낸 곳">떠나보낸 곳</button><button type="button" class="pk-b" data-v="맞이한 곳">맞이한 곳</button></div><div class="pk-why" hidden>임금이 한국의 10분의 1이고 일손을 쉽게 구하며 세금 혜택도 있다</div></div><div class="pk-card pk-noimg" data-i="2" data-ans="떠나보낸 곳"><div class="pk-name">한국</div><div class="pk-sit">S사 휴대 전화 공장과 협력 업체가 있는 곳</div><div class="pk-btns"><button type="button" class="pk-b" data-v="떠나보낸 곳">떠나보낸 곳</button><button type="button" class="pk-b" data-v="맞이한 곳">맞이한 곳</button></div><div class="pk-why" hidden>생산이 베트남으로 옮겨 가면서 일감이 줄었다</div></div><div class="pk-card pk-noimg" data-i="3" data-ans="맞이한 곳"><div class="pk-name">디트로이트</div><div class="pk-sit">미국 자동차 회사들이 다시 공장을 짓는다 (2016년 기사)</div><div class="pk-btns"><button type="button" class="pk-b" data-v="떠나보낸 곳">떠나보낸 곳</button><button type="button" class="pk-b" data-v="맞이한 곳">맞이한 곳</button></div><div class="pk-why" hidden>자동차 수요가 늘자 외국으로 나갔던 공장이 본국으로 돌아왔다</div></div><div class="pk-card pk-noimg" data-i="4" data-ans="떠나보낸 곳"><div class="pk-name">둥관시</div><div class="pk-sit">외국계 신발 공장이 예고 없이 문을 닫았다 (2015년)</div><div class="pk-btns"><button type="button" class="pk-b" data-v="떠나보낸 곳">떠나보낸 곳</button><button type="button" class="pk-b" data-v="맞이한 곳">맞이한 곳</button></div><div class="pk-why" hidden>임금과 땅값이 오르자 더 싼 나라로 옮겨 갔다</div></div></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk73");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["떠나보낸 곳", "맞이한 곳"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}});});});})();</script>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 175쪽 · 비판적 사고력 「다국적 기업의 입지 변화와 영향」</div><div class="ws-tb-ask">세 기사 가운데 하나를 골라, 공장이 옮겨 가거나 돌아온 지역에 생긴 좋은 점과 나쁜 점을 하나씩 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 175쪽에서 찾기 — 세 기사 가운데 하나를 골라, 공장이 옮겨 가거나 돌아온 지역에 생긴" style="width:400px" placeholder=""></div></div>
 <br>
-<div class="ws-sw sw-news" id="sw77" data-cur="0"><div class="ws-sw-head">📰 다 쓴 뒤에 넘겨 보자 — 세 기사, 그 뒤</div><div class="ws-sw-tabs" role="tablist"><button type="button" role="tab" class="ws-sw-tab on" onclick="swGo('sw77',0)" aria-label="먼저 위 칸부터">1</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw77',1)" aria-label="(가) 오스트레일리아, 그 뒤">2</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw77',2)" aria-label="(나) 베트남, 그 뒤">3</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw77',3)" aria-label="(다) 디트로이트, 그 뒤">4</button></div><div class="ws-sw-stage">
+<div class="ws-sw sw-news" id="sw78" data-cur="0"><div class="ws-sw-head">📰 다 쓴 뒤에 넘겨 보자 — 세 기사, 그 뒤</div><div class="ws-sw-tabs" role="tablist"><button type="button" role="tab" class="ws-sw-tab on" onclick="swGo('sw78',0)" aria-label="먼저 위 칸부터">1</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw78',1)" aria-label="(가) 오스트레일리아, 그 뒤">2</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw78',2)" aria-label="(나) 베트남, 그 뒤">3</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw78',3)" aria-label="(다) 디트로이트, 그 뒤">4</button></div><div class="ws-sw-stage">
 <section class="ws-sw-pane" data-i="0"><h3 class="ws-sw-h">먼저 위 칸부터</h3>
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/7-5_card_cover_v2.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/7-5_card_cover_v2.webp" alt="먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자" loading="lazy"></a><figcaption>먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자</figcaption></figure>
 </section><section class="ws-sw-pane" data-i="1" hidden><h3 class="ws-sw-h">(가) 오스트레일리아, 그 뒤</h3>
@@ -1597,7 +1637,7 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <figure class="ws-fig"><a class="ws-fig-zoom" href="images/9-4_hero_detroit_packard.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/9-4_hero_detroit_packard.jpg" alt="디트로이트의 버려진 패커드 자동차 공장, 2009년 — 1956년 차 생산이 끝난 뒤 여러 업체가 나눠 쓰다가 차츰 비어, 오래 버려진 채 남았다" loading="lazy"></a><figcaption>디트로이트의 버려진 패커드 자동차 공장, 2009년 — 1956년 차 생산이 끝난 뒤 여러 업체가 나눠 쓰다가 차츰 비어, 오래 버려진 채 남았다</figcaption></figure>
 <p>2021년 디트로이트에 새 자동차 조립 공장이 문을 열었다. 이 도시에 조립 공장이 새로 들어선 것은 30년 가까이 만이다. 2021년 3월부터 이 공장에서 큰 지프 차를 만들기 시작했다.</p>
 <blockquote>🔍 위 사진의 버려진 공장과 2021년의 새 공장 — 같은 도시에서 공장은 문을 닫기도, 새로 들어서기도 한다.</blockquote>
-</section></div><div class="ws-sw-nav"><button type="button" onclick="swStep('sw77',-1)">‹ 이전</button><span class="ws-sw-count"><b>1</b> / 4</span><button type="button" onclick="swStep('sw77',1)">다음 ›</button></div></div><script>(function(){if(!window.swGo){window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}var g=document.getElementById("sw77"),x0=null,y0=null;if(!g)return;g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;swStep("sw77",dx<0?1:-1);g.scrollIntoView({block:"start",behavior:"smooth"});}},{passive:true});})();</script>
+</section></div><div class="ws-sw-nav"><button type="button" onclick="swStep('sw78',-1)">‹ 이전</button><span class="ws-sw-count"><b>1</b> / 4</span><button type="button" onclick="swStep('sw78',1)">다음 ›</button></div></div><script>(function(){if(!window.swGo){window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}var g=document.getElementById("sw78"),x0=null,y0=null;if(!g)return;g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;swStep("sw78",dx<0?1:-1);g.scrollIntoView({block:"start",behavior:"smooth"});}},{passive:true});})();</script>
 <br>
 <blockquote>✅ <strong>스스로 점검</strong> — 한국은 S사의 본국인데 왜 '떠나보낸 곳'일까? 회사에겐 좋은 결정이 그 나라 노동자에겐 다른 결과가 될 수 있어.</blockquote>
 <br>
@@ -2566,6 +2606,125 @@ if(sw){sw.classList.add('v2t-seeing');tag(sw,'사진으로 읽기');var hk=docum
 [].slice.call(document.querySelectorAll('.v2-sec h2')).forEach(function(h){var n=h.firstChild;if(!n||n.nodeType!==3)return;var m=n.data.match(/^\s*([\u2600-\u27BF\uD83C-\uDBFF\uDC00-\uDFFF\uFE0F]+)\s*/);if(!m)return;var r=n.splitText(m[0].length);var s=document.createElement('span');s.className='v2t-ico';s.textContent=m[1];h.insertBefore(s,r);h.removeChild(n)});
 })();
 </script>
+<script type="application/json" id="pin-data">{"images/9-3_hero_hmm_algeciras.jpg": [{"n": 1, "x": 20.0, "y": 70.0, "t": "HMM — 이 배를 부리는 한국 회사", "d": "HMM(옛 현대상선)은 우리나라 해운 회사다. 이 배도 2020년 경상남도 거제의 조선소에서 만들었고, 아시아와 유럽 사이를 오간다. 그런데 배 꼬리 글자를 보면 한국이 아닌 나라 이름이 보인다."}, {"n": 2, "x": 57.0, "y": 89.0, "t": "PANAMA — 이 배를 등록한 나라", "d": "배 꼬리에는 배 이름과 함께 그 배를 등록한 곳을 적는다. 이렇게 큰 배는 값이 아주 비싸서, 한국 해운사는 돈을 빌리기 쉬운 방식으로 파나마에 세운 '배 주인 노릇만 하는 회사' 이름으로 배를 등록하곤 한다. 파나마는 외국 배도 쉽게 등록해 주고 비용 부담이 적어서, 2020년 초에는 세계에서 등록된 배가 가장 많은 나라였다(실을 수 있는 무게 기준). 이 배도 2020년에는 파나마에 등록되어 있었고, 지금은 한국 국적으로 바뀌었다.", "img": "images/9-3_map_panama.webp"}]}</script>
+<script id="pin-js">/* 2026-11-17 천대현 5-1 검토판 댓글 «그림을 클릭해서 확대하면 미술관 큐레이터처럼 그 부분이 표시되고 설명이 들어가게 —
+   그림 아래 해설이 버려지는 텍스트가 되지 않고 분량도 줄게». 원고 «:::그림 해설 images/….webp» 블록이 있는 차시에만 실린다.
+   확대 창(zoom.js)이 열리면 그 그림 위에 번호 표시를 얹고, 번호를 누르면 창 아래 칸에 설명이 뜬다(이전·다음으로 차례대로).
+   번호 자리는 그림 너비·높이에 대한 %라 확대·이동·폰에서도 제자리에 붙는다. 인쇄에는 그림 아래 번호 목록이 나온다. */
+(function(){
+var D=null; try{ D=JSON.parse((document.getElementById('pin-data')||{}).textContent||'null'); }catch(e){ D=null; }
+if(!D) return;
+var CIRC='①②③④⑤⑥⑦⑧⑨⑩';
+function num(n){ return CIRC.charAt(n-1)||('('+n+')'); }
+function esc(t){ return String(t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* 그림 경로는 이름만 맞춘다 — 원고의 .png가 발행 때 .webp로 바뀌어도 붙게(5-2 아프리카 지도에서 확인) */
+function key(src){ return String(src||'').replace(/[?#].*$/,'').replace(/^.*\//,'').replace(/\.[a-z0-9]+$/i,''); }
+var K={}; Object.keys(D).forEach(function(k){ K[key(k)]=D[k]; });
+function pinsOf(el){ return K[key(el.tagName==='IMG'?el.getAttribute('src'):el.getAttribute('href'))]; }
+/* 링크 없이 확대 창이 여는 그림(zoom.js STILL과 같은 자리 — 나란히 놓은 그림·교과서 상자·입담) */
+var STILL='figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img';
+
+/* 본문 그림: «눌러서 번호 N곳» 안내 한 줄 + 인쇄용 목록 */
+[].slice.call(document.querySelectorAll('a.ws-fig-zoom')).concat([].slice.call(document.querySelectorAll(STILL))).forEach(function(a){
+  var P=pinsOf(a); if(!P) return;
+  var fig=a.closest('figure')||a.parentNode; fig.classList.add('ws-pin-fig');
+  var host=a;
+  if(a.tagName==='IMG'){ host=document.createElement('span'); host.className='ws-pin-wrap'; a.parentNode.insertBefore(host,a); host.appendChild(a); }
+  var hint=document.createElement('button'); hint.type='button'; hint.className='ws-pin-hint';
+  hint.innerHTML='🔍 그림을 누르면 번호 '+P.length+'곳 해설';
+  hint.addEventListener('click',function(){ a.click(); });
+  host.insertAdjacentElement('afterend',hint);
+  var ol=document.createElement('ol'); ol.className='ws-pin-print';
+  ol.innerHTML=P.map(function(p){ return '<li><b>'+num(p.n)+' '+esc(p.t)+'</b> — '+esc(p.d)+'</li>'; }).join('');
+  fig.appendChild(ol);
+  /* 인쇄에선 확대 창이 없으니 그림 위에 작은 번호를 찍어 목록과 잇는다 */
+  var pr=document.createElement('span'); pr.className='ws-pin-printmarks'; pr.setAttribute('aria-hidden','true');
+  pr.innerHTML=P.map(function(p){ return '<i style="left:'+p.x+'%;top:'+p.y+'%">'+p.n+'</i>'; }).join('');
+  host.appendChild(pr); host.classList.add('ws-pin-a');
+});
+
+var cur=null, layer=null, panel=null, obs=null, ro=null, i=-1;
+function box(){ return document.querySelector('.ws-zoom'); }
+function place(){   /* 번호 층 = 확대 창 그림의 변형 전 자리·크기, 변형은 그림과 같이 */
+  var b=box(); if(!b||!layer) return;
+  var im=b.querySelector('.ws-zoom-stage img');
+  layer.style.left=im.offsetLeft+'px'; layer.style.top=im.offsetTop+'px';
+  layer.style.width=im.offsetWidth+'px'; layer.style.height=im.offsetHeight+'px';
+  var tf=im.style.transform||''; layer.style.transform=tf;
+  var m=/scale\(([\d.]+)\)/.exec(tf); layer.style.setProperty('--ws-pin-s', m?m[1]:1);
+}
+function show(k){
+  i=k; var p=cur[k];
+  [].forEach.call(layer.children,function(b,j){ b.classList.toggle('on',j===k); b.setAttribute('aria-pressed',j===k?'true':'false'); });
+  panel.hidden=false;
+  panel.querySelector('.ws-pin-t').innerHTML='<b>'+num(p.n)+' '+esc(p.t)+'</b>';
+  panel.querySelector('.ws-pin-d').textContent=p.d;
+  /* 2026-11-18 사회 9-3~4: 줄 끝 «| 그림 | 경로»가 있는 번호만 설명 칸에 그림(지도)을 함께 띄운다 */
+  var fg=panel.querySelector('.ws-pin-pic');
+  /* 그림 태그를 문자열로 짜지 않는다 — HTML을 정규식으로 읽는 검사기가 그 글자를 깨진 그림 경로로 센다 */
+  fg.innerHTML='';
+  if(p.img){ var gi=document.createElement('img'); gi.src=p.img; gi.alt=p.t; fg.appendChild(gi); fg.hidden=false; } else { fg.hidden=true; }
+  panel.querySelector('[data-p="prev"]').disabled=k===0;
+  panel.querySelector('[data-p="next"]').disabled=k===cur.length-1;
+  requestAnimationFrame(place);
+}
+function teardown(){
+  if(layer) layer.remove(); if(panel) panel.remove(); if(obs) obs.disconnect(); if(ro) ro.disconnect();
+  layer=panel=obs=ro=cur=null; i=-1;
+}
+function setup(P){
+  teardown(); var b=box(); if(!b) return; cur=P;
+  var stage=b.querySelector('.ws-zoom-stage'), im=stage.querySelector('img');
+  stage.style.position='relative';
+  layer=document.createElement('div'); layer.className='ws-pin-layer';
+  P.forEach(function(p,k){
+    var bt=document.createElement('button'); bt.type='button'; bt.className='ws-pin';
+    bt.style.left=p.x+'%'; bt.style.top=p.y+'%'; bt.textContent=p.n;
+    bt.setAttribute('aria-label',p.n+'번 '+p.t); bt.setAttribute('aria-pressed','false');
+    bt.addEventListener('click',function(){ show(k); });
+    layer.appendChild(bt);
+  });
+  /* 번호를 누를 때 그림 끌기(zoom.js 포인터 잡기)가 먼저 가로채지 않게 */
+  layer.addEventListener('pointerdown',function(e){ if(e.target.closest('.ws-pin')) e.stopPropagation(); });
+  stage.appendChild(layer);
+  panel=document.createElement('div'); panel.className='ws-pin-panel'; panel.hidden=true;
+  panel.setAttribute('aria-live','polite');
+  panel.innerHTML='<div class="ws-pin-t"></div><div class="ws-pin-pic" hidden></div><p class="ws-pin-d"></p>'+
+    '<div class="ws-pin-nav"><button type="button" data-p="prev">◀ 이전</button><button type="button" data-p="next">다음 ▶</button>'+
+    '<button type="button" data-p="hide">설명 닫기</button></div>';
+  panel.addEventListener('click',function(e){ var q=e.target.closest('[data-p]'); if(!q) return;
+    var a=q.getAttribute('data-p');
+    if(a==='prev'&&i>0) show(i-1); else if(a==='next'&&i<cur.length-1) show(i+1);
+    else if(a==='hide'){ panel.hidden=true; i=-1; [].forEach.call(layer.children,function(x){ x.classList.remove('on'); x.setAttribute('aria-pressed','false'); }); }
+    requestAnimationFrame(place);
+  });
+  b.insertBefore(panel,b.querySelector('.ws-zoom-bar'));
+  obs=new MutationObserver(function(ms){
+    ms.forEach(function(m){ if(m.target===b&&b.hidden) teardown(); });
+    if(layer) place();
+  });
+  obs.observe(im,{attributes:true,attributeFilter:['style','src']});
+  obs.observe(b,{attributes:true,attributeFilter:['hidden']});
+  /* 설명 칸이 열리고 닫히면 그림 칸 크기가 바뀐다 — 그림 크기가 바뀔 때마다 번호 층을 다시 맞춘다 */
+  if(window.ResizeObserver){ ro=new ResizeObserver(function(){ if(layer) place(); }); ro.observe(im); ro.observe(stage); }
+  if(im.complete) place(); im.addEventListener('load',place,{once:true});
+  var tip=b.querySelector('.ws-zoom-tip'); if(tip&&!tip.dataset.pinOld){ tip.dataset.pinOld=tip.textContent; }
+  if(tip) tip.textContent='번호를 누르면 설명이 나와요 · 두 손가락이나 휠로 키우고 끌어서 옮겨요';
+}
+window.addEventListener('resize',function(){ if(layer) place(); });
+/* zoom.js가 문서 click에서 창을 연 뒤에 돈다(나중에 붙인 듣개) */
+document.addEventListener('click',function(e){
+  if(!e.target.closest) return;
+  var a=e.target.closest('a.ws-fig-zoom');
+  if(!a&&e.target.matches&&e.target.matches(STILL)&&!e.target.closest('a, button, label')) a=e.target;
+  var b=box(); if(!a||!b||b.hidden) return;
+  var P=pinsOf(a);
+  if(P){ setup(P); return; }
+  teardown(); var tip=b.querySelector('.ws-zoom-tip'); if(tip&&tip.dataset.pinOld) tip.textContent=tip.dataset.pinOld;
+});
+})();
+</script>
 <script type="application/json" id="gl-data">[{"id": "gl-1", "kind": "word", "word": "공장", "text": "이 공장들은 나이키가 직접 차린 공장이 아니다. 나이키와 계약하고 운동화를 만들어 주는 다른 회사의 공장이다. 나이키는 디자인·신제품 연구·광고를 미국 오리건주의 회사 중심에서 맡고, 만드는 일은 아시아 여러 나라의 계약 공장에 맡긴다. // 운동화는 1년도 안 돼 새 모델로 바뀐다. 그래서 무엇이 잘 팔릴지 먼저 읽어 내는 디자인과 광고가 이 회사의 가장 중요한 일이다.", "near": "16%를 중국 공장에서"}, {"id": "gl-2", "kind": "blank", "blank": "1", "word": "정보 통신", "text": "정보 통신은 전화·인터넷처럼 멀리 떨어진 사람끼리 소식을 주고받는 기술이다. 회사의 결정을 다른 나라 공장에 곧바로 전할 수 있어야 여러 나라에 일을 나누어 맡길 수 있다."}, {"id": "gl-3", "kind": "blank", "blank": "2", "word": "임금", "text": "임금은 일한 대가로 받는 돈이다. 같은 일을 해도 나라마다 임금이 크게 달라서, 손이 많이 가는 일은 임금이 싼 나라로 간다."}, {"id": "gl-4", "kind": "blank", "blank": "5", "word": "생산비", "text": "생산비는 물건을 만드는 데 드는 돈 전부다. 일하는 사람에게 주는 임금, 공장 땅값, 원료값이 모두 들어간다. 둥관에서 임금과 땅값이 오르자 공장이 떠난 것도 이 때문이다."}, {"id": "gl-5", "kind": "blank", "blank": "4", "word": "④", "text": "회사가 다른 지역에 따로 두는 사무소다. 이곳은 회사의 관리를 받으며 그 지역에서 회사의 일을 대신 맡아 한다. // 그래서 다른 선진국에 이것을 두면, 그 나라에서 물건을 파는 일을 가까이에서 맡길 수 있다.", "always": 1}, {"id": "gl-6", "kind": "blank", "blank": "8", "word": "⑧", "text": "어떤 일이 앞으로 나아가지 못하고 제자리에 머무르는 것이다. 지역 경제라면 가게 손님이 줄고, 문을 닫는 회사가 늘어나는 모습으로 나타난다.", "always": 1}]</script>
 <script id="gl-js">/* 2026-11-10 사회② Ⅷ: 보충 말풍선 — 교사용 교과서의 파란 주석처럼. 방식 1 낱말 누르기 · 방식 2 채점해서 맞힌 빈칸만.
    넓은 화면(1280px~)은 본문 상자 오른쪽 여백, 좁으면 그 문단 아래. 인쇄는 열린 것만 문단 아래 글로. 시험판 = 8-5~6 검토판 v3(11/9) */
@@ -2616,7 +2775,8 @@ GL.forEach(function(g){
     hit.parentNode.replaceChild(t,hit);
     it.trig=t; it.mk=mk;
   }
-  it.block=it.trig.closest('p,li')||it.trig.parentNode;
+  /* 2026-11-21 사회 5-1 ⑯: 표 칸 안 빈칸이면 칸 옆(tr 안)에 끼어 폭 81px로 찌그러졌다 — 표 밖 바로 아래로 */
+  it.block=it.trig.closest('p,li')||it.trig.closest('table')||it.trig.parentNode;
   it.trig.addEventListener('click',function(){ if(it.peek){ it.peek=false; layout(); return; } setOpen(it,!it.open); });   /* 미리 보기 중에 누르면 열어 둔다 */
   it.pop.querySelector('.gl-x').addEventListener('click',function(){ setOpen(it,false); it.trig.focus(); });
   items.push(it);
@@ -2787,8 +2947,9 @@ Object.keys(NODES).forEach(function(id){
     var q=[].slice.call(C.querySelectorAll('blockquote')).filter(function(x){return !x.closest('.v2-sec')&&(x.classList.contains('v2-voice')||x.textContent.trim().indexOf('🎙️')===0);})[0];
     if(q) hit=findText({root:q},d.word,d.near);
   }else if(d.pick){
-    var card=[].slice.call(sc.root.querySelectorAll('.ws-pick .pk-card')).filter(function(c){ if(!inB(c,sc.b)) return false; var nm=c.querySelector('.pk-name'); return nm&&nm.textContent.trim()===d.pick; })[0];
-    if(card){ o.card=card; hit=findText({root:card.querySelector('.pk-name')},d.pick); }
+    /* 2026-11-18 의견 카드(.ws-opin .op-card, opinion.js)도 «카드» 노드로 찾는다 — 고르면(op-set) 선이 열린다 */
+    var card=[].slice.call(sc.root.querySelectorAll('.ws-pick .pk-card, .ws-opin .op-card')).filter(function(c){ if(!inB(c,sc.b)) return false; var nm=c.querySelector('.pk-name, .op-name'); return nm&&nm.textContent.trim()===d.pick; })[0];
+    if(card){ o.card=card; hit=findText({root:card.querySelector('.pk-name, .op-name')},d.pick); }
   }else if(d.fold){
     var f=[].slice.call(sc.root.querySelectorAll('details.ws-fold')).filter(function(x){ var s=x.querySelector('summary'); return inB(x,sc.b)&&s&&s.textContent.indexOf(d.fold)>=0; })[0];
     if(f){ o.foldEl=f; hit=findText({root:f.querySelector('.ws-fold-body')||f},d.word); }
@@ -2863,7 +3024,7 @@ function rendered(el){
   if(el.checkVisibility&&!el.checkVisibility()) return false;
   return true;
 }
-function unlocked(o){ return !o.card||o.card.classList.contains('pk-ok')||o.card.classList.contains('pk-no'); }
+function unlocked(o){ return !o.card||o.card.classList.contains('pk-ok')||o.card.classList.contains('pk-no')||o.card.classList.contains('op-set'); }
 function lineOK(L){
   if(!L.ok) return false;
   if(L.lock&&[].concat(L.lock).some(function(k){ return !unlocked(N[k]); })) return false;
@@ -2932,7 +3093,7 @@ function metrics(o){
 /* 끝점: 글자는 줄 아래 틈으로(위에서 들어올 땐 위 틈), 그림·고르기 카드 이름은 위쪽으로 드나든다 */
 /* 넘김(.pk-swipe) 카드 줄에서 옆으로 밀려나 안 보이는 카드면 그 줄을 돌려준다(-1 왼쪽 / 1 오른쪽) */
 function swipeOff(o){
-  var sw=o.card&&o.card.closest('.pk-swipe'); if(!sw) return null;
+  var sw=o.card&&o.card.closest('.pk-swipe, .op-swipe'); if(!sw) return null;
   var a=o.anchor.getBoundingClientRect(), b=sw.getBoundingClientRect(), cx=(a.left+a.right)/2;
   return cx<b.left+4?{sw:sw,side:-1}:(cx>b.right-4?{sw:sw,side:1}:null);
 }
@@ -3155,7 +3316,7 @@ function keepVisibleAboveSheet(el){
 }
 function goTo(o){
   if(o.chip||!o.anchor) return;
-  var sw=o.card&&o.card.closest('.pk-swipe');
+  var sw=o.card&&o.card.closest('.pk-swipe, .op-swipe');
   if(sw&&swipeOff(o)){ sw.scrollTo({left:o.card.offsetLeft-sw.offsetLeft,behavior:RM.matches?'auto':'smooth'}); setTimeout(function(){ goTo(o); },RM.matches?60:420); return; }
   var el=o.anchor, r=el.getBoundingClientRect(), room=window.innerHeight-sheetH();
   window.scrollBy({top:r.top-Math.max(16,(room-r.height)/2),behavior:RM.matches?'auto':'smooth'});
@@ -3172,14 +3333,14 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&active){ v
 var raf=0; function schedule(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; layout(); }); }
 window.addEventListener('resize',schedule);
 window.addEventListener('scroll',function(){ if(active&&lineMode()) schedule(); },{passive:true});
-document.addEventListener('scroll',function(e){ if(e.target!==document&&e.target.closest&&e.target.closest('.pk-swipe')) schedule(); },{capture:true,passive:true});
+document.addEventListener('scroll',function(e){ if(e.target!==document&&e.target.closest&&e.target.closest('.pk-swipe, .op-swipe')) schedule(); },{capture:true,passive:true});
 document.addEventListener('toggle',schedule,true);
 document.addEventListener('load',schedule,true);
 window.addEventListener('load',schedule);
 if(window.ResizeObserver) new ResizeObserver(schedule).observe(document.body);
 if(window.MutationObserver){
   new MutationObserver(schedule).observe(H,{attributes:true,attributeFilter:['class']});
-  [].slice.call(document.querySelectorAll('.ws-pick')).forEach(function(w){ new MutationObserver(function(rs){
+  [].slice.call(document.querySelectorAll('.ws-pick, .ws-opin')).forEach(function(w){ new MutationObserver(function(rs){
     if(rs.some(function(r){ return !(r.target.classList&&r.target.classList.contains('lm-n')); })) schedule(); })
     .observe(w,{attributes:true,subtree:true,attributeFilter:['class']}); });
 }

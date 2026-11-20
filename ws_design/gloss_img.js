@@ -11,6 +11,8 @@ GL.forEach(function(g){
   var im=document.createElement('img'); im.src=g.img; im.loading='lazy';
   im.alt=g.img_cap||g.word||'';
   /* 2026-11-17 역사 5-1 «나폴레옹 법전 표지»: 세로 사진은 가로 틀(cover)에 잘려 제목이 사라진다 — 세로면 자르지 않고 줄여 넣는다. 가로 사진은 그대로 */
+  /* 2026-11-18 역사 5-1 «7월 혁명»: 원고 «@15»(img_y) — 가로 틀에서 위아래 어디를 보여 줄지. 없으면 가운데(그대로) */
+  if(g.img_y!=null) im.style.objectPosition='50% '+g.img_y+'%';
   im.onload=function(){ if(im.naturalHeight>im.naturalWidth) fig.classList.add('gl-img-tall'); };
   /* 2026-11-17 역사 5-1 «테니스코트의 서약» 스케치: 말풍선 틀에 잘린 구석(라켓·공)을 보려면 크게 봐야 한다 — 본문 그림과 같은 확대 창(zoom.js) 링크로 감싼다 */
   var a=document.createElement('a'); a.className='ws-fig-zoom'; a.href=g.img; a.target='_blank'; a.rel='noopener'; a.title='눌러서 크게 보기';

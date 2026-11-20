@@ -1155,6 +1155,77 @@ figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img { cursor: zoom-in;
 .control-bar .btn.btn-reset{background:#fff;color:#d93025;border:1px solid #f3b6b0;margin-right:14px!important}
 .control-bar .btn.btn-reset:hover{background:#fff4f3}
 </style>
+<style id="ws-opin-css">/* 의견 카드(:::인물선택카드 [공감|비공감] 의견) — 2026-11-18 천대현 사회 9-1~2 검토판
+   «앞에는 누구인지, 뒤집으면 사례, 앞 표지에서 공감/비공감, 고르면 교사용 교과서 보충». 이 블록을 쓴 판에만 실린다.
+   금테·크림 판은 고르기 카드(.pk-gold)와 같은 결. 앞면 = 사진·이름·누구, 뒷면 = 교과서 속 그 사람의 말. */
+.ws-opin{border:1px solid #dfe3e8;border-radius:14px;background:#fbfcfd;padding:16px;margin:18px 0}
+.op-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:.94em;font-weight:700;color:#3d4552;margin-bottom:12px;line-height:1.6}
+.op-count{color:#c62c3c;white-space:nowrap;font-variant-numeric:tabular-nums}
+.op-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:start}
+.op-card{min-width:0;padding:6px;border-radius:15px;display:flex;flex-direction:column;
+  background:linear-gradient(150deg,#fbe9a8 0%,#e7c257 34%,#c9992e 62%,#f3dc98 100%);box-shadow:0 3px 9px rgba(0,0,0,.18)}
+.op-flip{perspective:1100px;cursor:pointer;border-radius:10px;outline:none}
+.op-flip:focus-visible{outline:3px solid #0b57d0;outline-offset:2px}
+/* 앞뒤 두 면을 한 칸에 겹쳐 둔다 — 칸 높이가 두 면 가운데 긴 쪽에 맞춰져 뒤집어도 카드 높이가 그대로다 */
+.op-inner{display:grid;transition:transform .55s cubic-bezier(.3,.7,.3,1);transform-style:preserve-3d}
+.op-face{grid-area:1/1;min-width:0;display:flex;flex-direction:column;border-radius:10px;overflow:hidden;background:#fdf7e6;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden}
+.op-front{position:relative}
+.op-back{transform:rotateY(180deg);padding:12px 11px 0;background:#fffaf0}
+.op-card.op-flipped .op-inner{transform:rotateY(180deg)}
+@media (prefers-reduced-motion:reduce){.op-inner{transition:none}}
+.op-win{position:relative;display:block;border:4px solid #d9c98e;border-bottom:0;border-radius:10px 10px 0 0;background:#efe7cf}
+.op-win img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.op-cap{position:absolute;left:5px;right:5px;bottom:5px;background:rgba(20,20,20,.62);color:#fff;font-size:.66em;line-height:1.35;padding:2px 6px;border-radius:5px}
+.op-stamp{position:absolute;top:7px;right:7px;z-index:2;padding:4px 9px;border-radius:999px;background:#2c2419;color:#fff;font-size:.8em;font-weight:800;
+  box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.op-stamp[hidden]{display:none}
+.op-noimg .op-front{padding-top:30px}
+.op-name{padding:9px 10px 0;font-size:1.06em;font-weight:800;color:#2c2419;word-break:keep-all;overflow-wrap:anywhere}
+.op-who{padding:2px 10px 4px;font-size:.84em;line-height:1.45;color:#574d3c;word-break:keep-all}
+.op-hint{margin-top:auto;padding:4px 10px 8px;font-size:.72em;color:#8a7a52}
+.op-back .op-hint{padding:4px 0 8px}
+.op-said{font-size:.88em;line-height:1.65;color:#2c2419;word-break:keep-all}
+.op-said::before{content:"\201C";display:block;height:.7em;font:700 2.1em/1 Georgia,serif;color:#c9992e}
+.op-by{margin-top:8px;font-size:.74em;line-height:1.4;color:#6b5a33;text-align:right;word-break:keep-all}
+.op-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:7px 1px 1px}
+.op-b{border:1.5px solid #d6c79a;background:#fff;border-radius:9px;padding:7px 2px;font:inherit;font-size:.86em;font-weight:700;color:#3d3426;cursor:pointer;white-space:nowrap}
+.op-b:disabled{opacity:.42;cursor:not-allowed}
+.op-b.on{background:#2c2419;border-color:#2c2419;color:#fff}
+.op-b:focus-visible{outline:3px solid #0b57d0;outline-offset:1px}
+.op-note{padding:4px 2px 2px;font-size:.72em;line-height:1.4;color:#4a3d22;text-align:center;word-break:keep-all}
+.op-note[hidden]{display:none}
+.op-more{margin-top:6px;padding:8px 10px;border-radius:9px;background:#fdf7e6;font-size:.82em;line-height:1.55;color:#3d3426;word-break:keep-all}
+.op-more[hidden]{display:none}
+.op-more-h{margin-bottom:3px;font-size:.88em;font-weight:800;color:#6b5a33}
+.op-more p{margin:5px 0 0;padding-left:7px;border-left:3px solid transparent}
+/* 학습지 v2의 «.v2-sec p{font-size:1rem!important…}»가 말풍선 안 문단을 본문 크기로 키운다 — 여기서 되돌린다(홀로그램 holo.css와 같은 처방) */
+.v2-sec .ws-opin .op-more p,.ws-opin .op-more p{font-size:.84rem!important;line-height:1.55!important;margin:5px 0 0!important;color:#3d3426!important}
+.op-more p.op-mine{border-left-color:#2c2419}
+.op-more p.op-mine::after{content:" ← 네가 고른 쪽";font-size:.88em;color:#8a7a52}
+.op-nav{display:none}
+.op-nav button{border:1px solid #cfc8b6;background:#fff;border-radius:8px;padding:5px 14px;cursor:pointer;font-size:.95em}
+.op-pos{font-size:.86em;color:#8a8272;font-variant-numeric:tabular-nums}
+.op-result{margin-top:12px;padding:10px 12px;border-radius:10px;background:#f4f1e8;font-size:.9em;line-height:1.6;color:#3d3426}
+.op-result[hidden]{display:none}
+/* 폰 — 옆으로 넘기는 한 줄(고르기 카드 «넘김»과 같은 결) */
+@media (max-width:640px){
+  .ws-opin{padding:12px}
+  .op-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:4px 2px 10px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  .op-card{flex:0 0 min(270px,80%);scroll-snap-align:start}
+  .op-said{font-size:.92em}
+  .op-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:4px}
+}
+@media print{
+  .op-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;overflow:visible!important}
+  .op-inner{display:block;transform:none!important}
+  .op-face{-webkit-backface-visibility:visible;backface-visibility:visible}
+  .op-back{transform:none;border-top:1px dashed #c9b98a}
+  .op-btns,.op-note,.op-hint,.op-nav,.op-stamp,.op-more,.op-result{display:none!important}
+}
+.op-mask{display:inline-block;min-width:2.4em;padding:0 3px;border-bottom:2px solid #c9992e;color:#8a7a52;text-align:center;line-height:1.3}
+.op-mask.op-open{min-width:0;padding:0;border-bottom-color:transparent;color:#2c2419;font-weight:700}
+</style>
 <style id="ws-design-v2">/* ===== 4-3-2 디자인 시험판 v2 — 덧씌움(원본 HTML·data-id 불변) ===== */
 :root{
   --ink:#1f2329; --ink2:#4a5160; --mute:#7a8191; --line:#e6e8ee; --paper:#ffffff; --bg:#f3f4f7;
@@ -1421,6 +1492,8 @@ details.v2t-legend ul{margin-top:10px}
 <style id="gl-img-css">/* 보충 말풍선 안 사진(gloss_img.js 짝) — 사진을 넣은 차시에만 */
 .gl-img{margin:4px 0 7px}
 .gl-img img{display:block;width:100%;max-width:300px;max-height:170px;object-fit:cover;border-radius:8px}
+.gl-img .ws-fig-zoom{display:block}
+.gl-img-tall img{width:auto;max-width:100%;max-height:260px;object-fit:contain}
 .gl-img figcaption{margin-top:3px;font-size:.7rem;line-height:1.4;color:#5b6472}
 @media print{.gl-img{display:none!important}}
 </style>
@@ -1565,7 +1638,7 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <h2>📖 3단계: 넓은 땅, 한 가지 작물</h2>
 <blockquote>📕 <strong>교과서 170쪽 펴고 · 배정 시간 7분</strong></blockquote>
 <br>
-<figure class="ws-fig"><a class="ws-fig-zoom" href="images/9-2_map_places_v2.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/9-2_map_places_v2.webp" alt="3·4단계에 나오는 곳 — 미국·코스타리카·에콰도르, 한국(제주도)·일본·필리핀·태국·베트남" loading="lazy"></a><figcaption>3·4단계에 나오는 곳 — 미국·코스타리카·에콰도르, 한국(제주도)·일본·필리핀·태국·베트남</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/9-2_map_places_v3.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/9-2_map_places_v3.webp" alt="3·4단계에 나오는 곳 — 미국·코스타리카, 한국(제주도)·일본·필리핀·베트남" loading="lazy"></a><figcaption>3·4단계에 나오는 곳 — 미국·코스타리카, 한국(제주도)·일본·필리핀·베트남</figcaption></figure>
 <br>
 <blockquote>🎙️ 이 단계 사진 속 베트남 달랏 언덕을 봐. 언덕 하나가 거의 한 가지 나무로 덮였어. 이렇게 심으면 무슨 일이 생길까? 좋은 일만 있을까?</blockquote>
 <br>
@@ -1579,15 +1652,34 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <br>
 <p>세계화로 농산물 시장이 개방되면서 소비자는 여러 나라의 다양한 농산물을 살 수 있게 되었다. 국내 농산물이 모자랄 때는 수입으로 채울 수도 있다. 하지만 국내산 농산물이 덜 팔려 우리 농민이 손해를 볼 수 있고, 생산과 유통 과정에서 ⑧<input type="text" class="blank-input" data-answer="농약" data-id="8" style="width:60px" placeholder="">과 방부제를 지나치게 써서 소비자의 건강과 환경에 나쁜 영향을 줄 수도 있다.</p>
 <br>
-<div class="ws-pick" id="pk65"><div class="pk-head"><span>먹거리가 세계를 오가면서 삶이 달라진 다섯 사람을 만나 보자. 교과서 171쪽의 네 사람에 한 사람을 더했다. ▶로 넘기며 이 사람들이 지금 웃고 있을지 울고 있을지 골라 보자. 다 고르면 까닭이 열린다.</span><b class="pk-count">0 / 5</b></div><div class="pk-grid pk-gold pk-swipe"><div class="pk-card" data-i="0" data-ans="웃는 쪽"><span class="pk-win"><img src="images/9-2_card_john_corn.webp" alt="존"></span><div class="pk-name">존</div><div class="pk-sit">미국에서 옥수수 농장을 크게 운영한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃는 쪽">웃는 쪽</button><button type="button" class="pk-b" data-v="우는 쪽">우는 쪽</button></div><div class="pk-why" hidden>대량으로 생산하니 수출이 늘수록 이익이다</div></div><div class="pk-card" data-i="1" data-ans="우는 쪽"><span class="pk-win"><img src="images/9-2_card_jose_spray.webp" alt="호세"></span><div class="pk-name">호세</div><div class="pk-sit">코스타리카 바나나 농장에서 일한다. 하늘에서 약을 뿌릴 때면 숨쉬기가 무섭다. 사진은 미국 밭에 약을 뿌리는 비행기다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃는 쪽">웃는 쪽</button><button type="button" class="pk-b" data-v="우는 쪽">우는 쪽</button></div><div class="pk-why" hidden>일은 힘든데 임금은 적고, 건강까지 위협받는다</div></div><div class="pk-card" data-i="2" data-ans="우는 쪽"><span class="pk-win"><img src="images/9-2_card_jeju_citrus.webp" alt="김기영"></span><div class="pk-name">김기영</div><div class="pk-sit">제주도에서 감귤 농장을 한다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃는 쪽">웃는 쪽</button><button type="button" class="pk-b" data-v="우는 쪽">우는 쪽</button></div><div class="pk-why" hidden>수입 과일이 늘어 감귤이 덜 팔리고 값도 내려갔다</div></div><div class="pk-card" data-i="3" data-ans="웃는 쪽"><span class="pk-win"><img src="images/9-2_card_europe_fruit.webp" alt="캐서린"></span><div class="pk-name">캐서린</div><div class="pk-sit">유럽에 사는 소비자다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃는 쪽">웃는 쪽</button><button type="button" class="pk-b" data-v="우는 쪽">우는 쪽</button></div><div class="pk-why" hidden>예전엔 못 보던 열대 과일을 싸게 사 먹을 수 있다</div></div><div class="pk-card" data-i="4" data-ans="우는 쪽"><span class="pk-win"><img src="images/9-2_card_shrimp_mangrove.webp" alt="태국 해안 마을 주민"></span><div class="pk-name">태국 해안 마을 주민</div><div class="pk-sit">새우 양식장을 만든다고 바닷가 맹그로브 숲을 베어 낸 뒤 바닷가가 깎여 나갔다. 사진은 같은 일이 벌어진 방글라데시의 새우 양식장이다</div><div class="pk-btns"><button type="button" class="pk-b" data-v="웃는 쪽">웃는 쪽</button><button type="button" class="pk-b" data-v="우는 쪽">우는 쪽</button></div><div class="pk-why" hidden>맹그로브 뿌리가 막아 주던 바닷물이 마을을 파고들었다</div></div></div><div class="pk-nav"><button type="button" class="pk-prev" aria-label="이전 카드">◀</button><span class="pk-pos">1 / 5</span><button type="button" class="pk-next" aria-label="다음 카드">▶</button></div><div class="pk-result" hidden></div></div><script>(function(){var w=document.getElementById("pk65");var cs=[].slice.call(w.querySelectorAll(".pk-card")),N=cs.length;var OPTS=["웃는 쪽", "우는 쪽"],MOOD=false,OPEN=false;function done(){return cs.filter(function(c){return c.dataset.pick}).length}function reveal(){var ok=0;cs.forEach(function(c){var right=c.dataset.pick===c.dataset.ans;if(right)ok++;c.classList.add(right?"pk-ok":"pk-no");if(!right&&MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(c.dataset.ans==="웃음"?"pk-happy":"pk-sad");}if(!right||OPEN)c.querySelector(".pk-why").hidden=false;if(right&&!OPEN&&!c.dataset.tap){c.dataset.tap=1;c.classList.add("pk-tap");c.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".pk-b"))return;var y=c.querySelector(".pk-why");y.hidden=!y.hidden;});}});var r=w.querySelector(".pk-result");r.hidden=false;r.innerHTML="<b>"+ok+" / "+N+"</b> 맞혔어. "+(OPEN?"모든 카드의 이유가 펼쳐졌어 — 틀린 카드부터 보자.":"틀린 카드는 이유가 먼저 펼쳐졌어 — 거기부터 보자. 맞힌 카드도 누르면 이유가 열려.")+"<div class='pk-sum'>"+OPTS.map(function(o,oi){var head=MOOD?(o==="웃음"?"웃는 사람":"우는 사람"):o;var cls=MOOD?(o==="웃음"?"pk-up":"pk-down"):("pk-c"+oi);return "<div class='pk-col "+cls+"'><b>"+head+"</b>"+cs.filter(function(c){return c.dataset.ans===o}).map(function(c){return "<span>"+c.querySelector(".pk-name").textContent+"</span>"}).join("")+"</div>"}).join("")+"</div>";r.scrollIntoView({block:"nearest",behavior:"smooth"});}cs.forEach(function(c){c.querySelectorAll(".pk-b").forEach(function(b){b.addEventListener("click",function(){if(w.classList.contains("pk-done"))return;c.dataset.pick=b.dataset.v;c.classList.add("pk-set");if(MOOD){c.classList.remove("pk-happy","pk-sad");c.classList.add(b.dataset.v==="웃음"?"pk-happy":"pk-sad");}c.querySelectorAll(".pk-b").forEach(function(x){x.classList.toggle("on",x===b)});w.querySelector(".pk-count").textContent=done()+" / "+N;if(done()===N){w.classList.add("pk-done");reveal();}else{var nx=cs.filter(function(c){return !c.dataset.pick})[0];var g=w.querySelector(".pk-swipe");if(g&&nx)setTimeout(function(){g.scrollTo({left:nx.offsetLeft-g.offsetLeft,behavior:"smooth"})},350);}});});});var g=w.querySelector(".pk-swipe");if(g){var pos=w.querySelector(".pk-pos");function at(){var k=0,d=1e9;cs.forEach(function(c,i){var v=Math.abs(c.offsetLeft-g.offsetLeft-g.scrollLeft);if(v<d){d=v;k=i}});return k}function go(k){k=Math.max(0,Math.min(N-1,k));g.scrollTo({left:cs[k].offsetLeft-g.offsetLeft,behavior:"smooth"})}g.addEventListener("scroll",function(){pos.textContent=(at()+1)+" / "+N},{passive:true});w.querySelector(".pk-prev").onclick=function(){go(at()-1)};w.querySelector(".pk-next").onclick=function(){go(at()+1)};}})();</script>
+<div class="ws-opin" id="op65"><div class="op-head"><span>먹거리가 세계를 오가면서 삶이 달라진 네 사람이 한마디씩 했어(교과서 171쪽 스스로 탐구). 카드를 눌러 뒤집으면 그 사람이 한 말이 나와. 읽고 나서 공감하는지, 공감하지 않는지 골라 보자. 고르면 선생님용 교과서에 실린 예시 댓글이 열려.</span><b class="op-count">0 / 4</b></div><div class="op-grid op-swipe"><div class="op-card" data-i="0"><div class="op-flip" role="button" tabindex="0" aria-label="존 카드 — 눌러서 뒤집기"><div class="op-inner"><div class="op-face op-front"><span class="op-win"><img src="images/9-2_card_john_corn.webp" alt="존"><span class="op-cap">미국 옥수수밭 수확</span><span class="op-stamp" hidden></span></span><div class="op-name">존</div><div class="op-who">미국 옥수수 농장 주인</div><div class="op-hint">↻ 눌러서 뒤집기</div></div><div class="op-face op-back"><div class="op-said">우리는 옥수수를 대량으로 생산하기 때문에 수출을 많이 할수록 유리해요. 세계화로 농산물 수출이 더 활발해져 다행이라고 생각합니다.</div><div class="op-by">— 존 (미국 옥수수 농장 주인)</div><div class="op-hint">↻ 눌러서 앞면</div></div></div></div><div class="op-btns"><button type="button" class="op-b" data-v="공감" aria-pressed="false" disabled>👍 공감</button><button type="button" class="op-b" data-v="비공감" aria-pressed="false" disabled>👎 비공감</button></div><div class="op-note">먼저 카드를 눌러 이 사람의 말을 읽자</div><div class="op-more" hidden><div class="op-more-h">📘 선생님용 교과서의 예시 댓글</div><p data-v="공감"><b>👍 공감</b> 농사지어 더 많이 팔 수 있어서 좋겠어요.</p><p data-v="비공감"><b>👎 비공감</b> 하지만 수입하는 나라의 농민은 피해를 보잖아요.</p></div></div><div class="op-card" data-i="1"><div class="op-flip" role="button" tabindex="0" aria-label="김기영 카드 — 눌러서 뒤집기"><div class="op-inner"><div class="op-face op-front"><span class="op-win"><img src="images/9-2_card_jeju_citrus.webp" alt="김기영"><span class="op-cap">제주 감귤 과수원</span><span class="op-stamp" hidden></span></span><div class="op-name">김기영</div><div class="op-who">제주도 감귤 농장 주민</div><div class="op-hint">↻ 눌러서 뒤집기</div></div><div class="op-face op-back"><div class="op-said">수입 과일이 늘어나면서 제주도 감귤의 수요가 줄었어요. 가격이 내려가면서 수익이 줄어 고민입니다.</div><div class="op-by">— 김기영 (제주도 감귤 농장 주민)</div><div class="op-hint">↻ 눌러서 앞면</div></div></div></div><div class="op-btns"><button type="button" class="op-b" data-v="공감" aria-pressed="false" disabled>👍 공감</button><button type="button" class="op-b" data-v="비공감" aria-pressed="false" disabled>👎 비공감</button></div><div class="op-note">먼저 카드를 눌러 이 사람의 말을 읽자</div><div class="op-more" hidden><div class="op-more-h">📘 선생님용 교과서의 예시 댓글</div><p data-v="공감"><b>👍 공감</b> 농산물 시장이 개방될 때마다 정말 걱정이 많겠어요.</p><p data-v="비공감"><b>👎 비공감</b> 새로운 품종을 개발해서 경쟁하는 것이 더 나아요.</p></div></div><div class="op-card" data-i="2"><div class="op-flip" role="button" tabindex="0" aria-label="호세 카드 — 눌러서 뒤집기"><div class="op-inner"><div class="op-face op-front"><span class="op-win"><img src="images/9-2_card_jose_spray.webp" alt="호세"><span class="op-cap">약을 뿌리는 비행기 — 미국, 1972년</span><span class="op-stamp" hidden></span></span><div class="op-name">호세</div><div class="op-who">코스타리카 바나나 농장 노동자</div><div class="op-hint">↻ 눌러서 뒤집기</div></div><div class="op-face op-back"><div class="op-said">부모님과 함께 농사를 짓던 시절이 그리워요. 농장일은 무척 힘든데 임금은 너무 적어요. 비행기로 <span class="op-mask" data-b="8" title="⑧을 맞게 채우면 보여">⑧</span>을 뿌릴 때면 숨을 쉬기도 무서워요.</div><div class="op-by">— 호세 (코스타리카 바나나 농장 노동자)</div><div class="op-hint">↻ 눌러서 앞면</div></div></div></div><div class="op-btns"><button type="button" class="op-b" data-v="공감" aria-pressed="false" disabled>👍 공감</button><button type="button" class="op-b" data-v="비공감" aria-pressed="false" disabled>👎 비공감</button></div><div class="op-note">먼저 카드를 눌러 이 사람의 말을 읽자</div><div class="op-more" hidden><div class="op-more-h">📘 선생님용 교과서의 예시 댓글</div><p data-v="공감"><b>👍 공감</b> 힘들게 일하고 임금을 적게 받으니 정말 속상할 것 같아요.</p><p data-v="비공감"><b>👎 비공감</b> 그래도 일자리가 있으니 다행이잖아요.</p></div></div><div class="op-card" data-i="3"><div class="op-flip" role="button" tabindex="0" aria-label="캐서린 카드 — 눌러서 뒤집기"><div class="op-inner"><div class="op-face op-front"><span class="op-win"><img src="images/9-2_card_europe_fruit.webp" alt="캐서린"><span class="op-cap">영국의 과일 가게</span><span class="op-stamp" hidden></span></span><div class="op-name">캐서린</div><div class="op-who">유럽 소비자</div><div class="op-hint">↻ 눌러서 뒤집기</div></div><div class="op-face op-back"><div class="op-said">예전에는 볼 수 없었던 열대 과일을 지금은 쉽게 먹을 수 있어서 좋아요. 가격도 별로 비싸지 않고요.</div><div class="op-by">— 캐서린 (유럽 소비자)</div><div class="op-hint">↻ 눌러서 앞면</div></div></div></div><div class="op-btns"><button type="button" class="op-b" data-v="공감" aria-pressed="false" disabled>👍 공감</button><button type="button" class="op-b" data-v="비공감" aria-pressed="false" disabled>👎 비공감</button></div><div class="op-note">먼저 카드를 눌러 이 사람의 말을 읽자</div><div class="op-more" hidden><div class="op-more-h">📘 선생님용 교과서의 예시 댓글</div><p data-v="공감"><b>👍 공감</b> 맞아요. 우리나라에서 나지 않는 과일을 맛볼 수 있어요.</p><p data-v="비공감"><b>👎 비공감</b> 우리 농산물이 팔리지 않아요. 신선도와 안전성이 의심스러워요.</p></div></div></div><div class="op-nav"><button type="button" class="op-prev" aria-label="이전 카드">◀</button><span class="op-pos">1 / 4</span><button type="button" class="op-next" aria-label="다음 카드">▶</button></div><div class="op-result" hidden></div></div>
 <br>
-<blockquote>✅ <strong>스스로 점검</strong> — 웃는 쪽은 대개 '많이 파는 사람'과 '싸게 사는 사람', 우는 쪽은 '일하는 사람'과 '경쟁에서 밀린 사람', 그리고 '자연'이야. 존과 호세는 둘 다 '생산하는 쪽'인데 왜 갈렸을까? 땅과 회사를 가진 사람과, 그 땅에서 일하는 사람의 차이야. 2단계 카드의 '일손이 싼 나라로'를 떠올려 봐. 회사 쪽에서 본 '싼 일손'이, 호세 쪽에서 보면 바로 자기 자신이야.</blockquote>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 171쪽 · 스스로 탐구 「농업의 세계화로 인한 변화와 나의 입장」</div><div class="ws-tb-see">교과서처럼 이제 내 말로 댓글을 달 차례야. 열린 예시 댓글을 옮겨 적지 말고, 내 생각으로 한 문장씩 써 보자. 네 사람 모두 공감했다면, 비공감 댓글은 가장 덜 공감한 사람에게 달면 돼.</div><div class="ws-tb-ask">한 사람에게 공감 댓글 — 누구에게, 무엇이 공감되는지 <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 171쪽에서 찾기 — 한 사람에게 공감 댓글 — 누구에게, 무엇이 공감되는지" style="width:400px" placeholder=""></div><div class="ws-tb-ask">다른 한 사람에게 비공감 댓글 — 누구에게, 왜 생각이 다른지 <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="교과서 171쪽에서 찾기 — 다른 한 사람에게 비공감 댓글 — 누구에게, 왜 생각이 다른지" style="width:400px" placeholder=""></div></div>
 <br>
-<figure class="ws-fig"><a class="ws-fig-zoom" href="images/9-2_hero_ecuador_banana.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/9-2_hero_ecuador_banana.jpg" alt="에콰도르의 바나나 농장, 2011년 — 끝이 안 보일 만큼 바나나 나무만 줄지어 섰고, 앞쪽 나무에는 초록 바나나 송이가 달렸다" loading="lazy"></a><figcaption>에콰도르의 바나나 농장, 2011년 — 끝이 안 보일 만큼 바나나 나무만 줄지어 섰고, 앞쪽 나무에는 초록 바나나 송이가 달렸다</figcaption></figure>
+<blockquote>✅ <strong>스스로 점검</strong> — 다 썼으면 생각해 보자. 존과 호세는 둘 다 '생산하는 쪽'인데 왜 말이 갈렸을까?</blockquote>
 <br>
-<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 171쪽 · 사회 톡톡톡 「'착한' 바나나를 사 먹자!」</div><div class="ws-tb-ask">1980년대 필리핀 농민의 편지 한 통이 일본에서 무엇을 바꾸었는지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-3" data-label="교과서 171쪽에서 찾기 — 1980년대 필리핀 농민의 편지 한 통이 일본에서 무엇을 바꾸었는지" style="width:400px" placeholder=""></div></div>
+<details class="ws-fold ws-fold-더보기"><summary>다 고른 뒤에 펴 보자 — 세계화로 웃는 쪽과 우는 쪽</summary><div class="ws-fold-body">
+<p>세계화로 웃는 쪽은 '많이 파는 사람'(존)과 '싸게 사는 사람'(캐서린), 우는 쪽은 '경쟁에서 밀린 사람'(김기영)과 '일하는 사람'(호세)이야. 존과 호세가 갈린 까닭은 땅과 회사를 가진 사람과, 그 땅에서 일하는 사람의 차이야. 2단계 카드의 '일손이 싼 나라로'를 떠올려 봐. 회사 쪽에서 본 '싼 일손'이, 호세 쪽에서 보면 바로 자기 자신이야.</p>
+</div></details>
 <br>
-<blockquote>🎙️ 일본에서는 편지 한 통이 시작이었어. 먼 나라 소비자가 '내가 먹는 바나나가 어떻게 만들어지나'를 묻기 시작한 거야. 1단계에서 급식 재료가 어디서 왔는지 찾아본 것처럼, 무엇이 어디서 어떻게 왔는지 묻는 것부터가 시작이야.</blockquote>
+<div class="ws-tb"><div class="ws-tb-tag">📕 교과서 171쪽 · 사회 톡톡톡 「'착한' 바나나를 사 먹자!」</div><div class="ws-2c c2-mid ws-tb-2cin" style="grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)"><div class="c2-a"><figure class="ws-tb-fig"><img src="images/9-2_negros_1985_sugarcane.jpg" alt="1985년 11월, 필리핀 네그로스섬 — 사탕수수를 수레에 묶어 싣는 노동자, 뒤로 제당 공장 굴뚝 (Kim Komenich · San Francisco Examiner · 퍼블릭 도메인)" loading="lazy"><figcaption>1985년 11월, 필리핀 네그로스섬 — 사탕수수를 수레에 묶어 싣는 노동자, 뒤로 제당 공장 굴뚝 (Kim Komenich · San Francisco Examiner · 퍼블릭 도메인)</figcaption></figure></div><div class="c2-b"><div class="ws-tb-see">편지가 오가던 1980년대, 필리핀 농장에서 일하던 사람들은 어떻게 살았을까? 사진은 바나나가 아니라 사탕수수 농장이다. 1985년 네그로스섬은 설탕값이 크게 떨어져 농장 일자리가 사라졌다. 일이 있어도 하루 최저 임금은 32페소(약 1.6달러)였는데, 그마저 다 받지 못하는 사람이 많았다. 굶주리는 어린이가 15만 명이 넘는다는 유니세프 보고도 나왔다.</div><div class="ws-tb-ask">1980년대 필리핀 농민의 편지 한 통이 일본에서 무엇을 바꾸었는지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="교과서 171쪽에서 찾기 — 1980년대 필리핀 농민의 편지 한 통이 일본에서 무엇을 바꾸었는지" style="width:400px" placeholder=""></div></div></div></div>
+<br>
+<div class="ws-sw sw-news" id="sw77" data-cur="0"><div class="ws-sw-head">📰 다 쓴 뒤에 넘겨 보자 — 편지 한 통, 그 뒤 40년</div><div class="ws-sw-tabs" role="tablist"><button type="button" role="tab" class="ws-sw-tab on" onclick="swGo('sw77',0)" aria-label="먼저 위 칸부터">1</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw77',1)" aria-label="바나나에 붙은 작은 스티커">2</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw77',2)" aria-label="1,000원 가운데 70~90원">3</button><button type="button" role="tab" class="ws-sw-tab" onclick="swGo('sw77',3)" aria-label="최저 가격과 공동 기금">4</button></div><div class="ws-sw-stage">
+<section class="ws-sw-pane" data-i="0"><h3 class="ws-sw-h">먼저 위 칸부터</h3>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/7-5_card_cover_v2.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/7-5_card_cover_v2.webp" alt="먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자" loading="lazy"></a><figcaption>먼저 위 칸에 내 답을 쓰고, 그다음 넘겨 보자</figcaption></figure>
+</section><section class="ws-sw-pane" data-i="1" hidden><h3 class="ws-sw-h">바나나에 붙은 작은 스티커</h3>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/9-2_fairtrade_sticker.jpg" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/9-2_fairtrade_sticker.jpg" alt="도미니카 공화국에서 온 바나나의 스티커, 2017년" loading="lazy"></a><figcaption>도미니카 공화국에서 온 바나나의 스티커, 2017년</figcaption></figure>
+<p>일본에서는 편지 한 통이 시작이었다. 1989년 일본 생협들이 처음 들여온 '착한' 바나나(바랑곤 바나나)도 위 사진의 네그로스섬에서 왔다. 40년이 지난 지금은 여러 나라 마트에서 공정 무역 바나나를 찾아 살 수 있다. 스티커에는 기른 나라(도미니카 공화국)와 생산자 번호가 찍혀 있어서, 누가 길렀는지 거꾸로 찾아갈 수 있다.</p>
+<blockquote>🎙️ 먼 나라 소비자가 '내가 먹는 바나나는 누가 어떻게 길렀을까'를 묻기 시작한 게 출발이었어. 1단계에서 급식 재료가 어디서 왔는지 찾아본 것처럼, 묻는 것부터가 시작이야.</blockquote>
+</section><section class="ws-sw-pane" data-i="2" hidden><h3 class="ws-sw-h">1,000원 가운데 70~90원</h3>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/9-2_card_banana_1000won.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/9-2_card_banana_1000won.webp" alt="자료: 페어트레이드 인터내셔널 「위험 지도 — 바나나」(2026년 확인) · 범위로 적은 어림값" loading="lazy"></a><figcaption>자료: 페어트레이드 인터내셔널 「위험 지도 — 바나나」(2026년 확인) · 범위로 적은 어림값</figcaption></figure>
+<p>바나나를 1,000원어치 사면 농장에서 일하는 사람의 임금으로 가는 돈은 70~90원쯤이다. 가장 큰 몫은 마트와, 수입·운송·익히기를 맡는 중간 단계가 나눠 가진다.</p>
+<blockquote>🎙️ 앞에서 만난 호세 기억나? 호세 같은 사람이 받는 몫이 바로 맨 아래 주황 줄이야.</blockquote>
+</section><section class="ws-sw-pane" data-i="3" hidden><h3 class="ws-sw-h">최저 가격과 공동 기금</h3>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/9-2_card_fairtrade_two.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/9-2_card_fairtrade_two.webp" alt="자료: 페어트레이드 인터내셔널 보도 자료(2026년 10월)" loading="lazy"></a><figcaption>자료: 페어트레이드 인터내셔널 보도 자료(2026년 10월)</figcaption></figure>
+<p>최저 가격은 시장에서 바나나 값이 떨어져도 미리 정한 값 아래로는 사지 않는다는 약속이다. 공동 기금은 바나나 한 상자(약 18kg)마다 1달러를 더 내는 돈이다. 큰 농장에서는 일하는 사람들이 뽑은 대표들이, 작은 농가들이 모인 조합에서는 농민들이 그 돈을 어디에 쓸지 정한다.</p>
+<blockquote>🔍 호세가 이런 농장에서 일한다면 무엇이 달라질까? 아래 '더 생각해 보기'에서 문 B를 고를 때 근거로 써 보자.</blockquote>
+</section></div><div class="ws-sw-nav"><button type="button" onclick="swStep('sw77',-1)">‹ 이전</button><span class="ws-sw-count"><b>1</b> / 4</span><button type="button" onclick="swStep('sw77',1)">다음 ›</button></div></div><script>(function(){if(!window.swGo){window.swGo=function(id,i){var g=document.getElementById(id);if(!g)return;var ps=g.querySelectorAll(".ws-sw-pane"),n=ps.length;i=((i%n)+n)%n;ps.forEach(function(e){e.hidden=(+e.dataset.i!==i);});g.querySelectorAll(".ws-sw-tab").forEach(function(e,k){e.classList.toggle("on",k===i);e.setAttribute("aria-selected",k===i);});var c=g.querySelector(".ws-sw-count b");if(c)c.textContent=i+1;g.dataset.cur=i;};window.swStep=function(id,d){var g=document.getElementById(id);if(g)swGo(id,(+(g.dataset.cur||0))+d);};}var g=document.getElementById("sw77"),x0=null,y0=null;if(!g)return;g.querySelector(".ws-sw-stage").addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});g.querySelector(".ws-sw-stage").addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){var t=e.target;if(t.closest&&t.closest("input,textarea,.ws-vcd-track,.ws-mb,.ws-gal,.pk-swipe"))return;swStep("sw77",dx<0?1:-1);g.scrollIntoView({block:"start",behavior:"smooth"});}},{passive:true});})();</script>
 <br>
 <section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>❓ OX 퀴즈</h2>
 <br>
@@ -1604,9 +1696,9 @@ figure.lm-fig-peer img{outline:3px solid rgba(15,123,108,.5);outline-offset:3px}
 <blockquote>안 보고, 오늘 배운 것을 <strong>문장 세 개</strong>로 쓰자. 줄마다 <code>~다.</code>로 끝낸다.</blockquote>
 <blockquote>🔍 가장 자신 없는 줄 끝에 (?)를 붙이고, 그 줄만 교과서 168~171쪽에서 확인하자.</blockquote>
 <br>
-<p>1. <input type="text" class="blank-input activity-input no-score" data-id="act-4" data-label="1." style="width:240px" placeholder=""></p>
-<p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-5" data-label="2." style="width:240px" placeholder=""></p>
-<p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="3." style="width:240px" placeholder=""></p>
+<p>1. <input type="text" class="blank-input activity-input no-score" data-id="act-6" data-label="1." style="width:240px" placeholder=""></p>
+<p>2. <input type="text" class="blank-input activity-input no-score" data-id="act-7" data-label="2." style="width:240px" placeholder=""></p>
+<p>3. <input type="text" class="blank-input activity-input no-score" data-id="act-8" data-label="3." style="width:240px" placeholder=""></p>
 <br>
 </section><section class="ws-do"><div class="ws-do-tag">직접 해 보는 곳</div><h2>💭 더 생각해 보기</h2>
 <style id="ws-think-css">.ws-think{margin:4px 0 6px}
@@ -1651,7 +1743,7 @@ button.wt-chip:hover{background:#e7f2ea;border-color:#9fcdb0}
 @media (max-width:640px){.wt-doors{grid-template-columns:1fr}.wt-step small{flex-basis:100%;padding-left:34px}}
 @media (max-width:430px){.wt-write{grid-template-columns:1fr}.wt-role{flex-direction:column;gap:6px}}
 @media (prefers-reduced-motion:reduce){.wt-flash{animation:none;outline:3px solid #f59e0b}.wt-door{transition:none}}
-@media print{.wt-door,.wt-w{break-inside:avoid}.wt-pick,button.wt-chip::after{display:none}}</style><div class="ws-think"><div class="wt-role"><span class="wt-role-badge">🎙️ 오늘의 역할</span><div><div class="wt-role-t">이번 주 우리 집 장보기 담당</div><div class="wt-role-d">마트 과일 코너에 바나나가 두 가지 놓여 있다. 아래 문 두 개 가운데 하나를 골라 '나는 수입 농산물을 이렇게 고르겠다'를 써 봐. 정답은 없어. 싼 것을 고르는 것도 충분히 이유가 있는 선택이야.</div></div></div><div class="wt-step"><span class="n">1</span>문을 하나 고르자 <small>정답은 없다 · 근거를 누르면 학습지의 그 자리로 간다</small></div><div class="wt-doors"><div class="wt-door"><div class="wt-door-b"><div class="wt-door-h"><span class="wt-door-tag">🚪 문 A</span><button type="button" class="wt-pick" aria-pressed="false">이 문으로</button></div><div class="wt-door-t">값이 싼 바나나</div><div class="wt-door-d">같은 돈으로 더 많이 살 수 있는 바나나를 고른다.</div><div class="wt-ev"><div class="wt-ev-h">📎 끌어올 수 있는 근거</div><div class="wt-chips"><button type="button" class="wt-chip" data-go="넓은 땅에 같은 작물을 심는다">넓은 땅에 한 가지 작물을 대량으로 기르는 농장(3단계)</button><button type="button" class="wt-chip" data-go="유럽에 사는 소비자다">캐서린(못 보던 과일을 싸게 사는 소비자)</button><button type="button" class="wt-chip" data-go="국내 농산물이 모자랄 때는">국내 농산물이 모자랄 때 수입으로 채운다(4단계)</button></div></div></div></div><div class="wt-door"><div class="wt-door-b"><div class="wt-door-h"><span class="wt-door-tag">🚪 문 B</span><button type="button" class="wt-pick" aria-pressed="false">이 문으로</button></div><div class="wt-door-t">조금 비싸도 공정 무역 바나나</div><div class="wt-door-d">공정 무역 표시가 붙은 바나나를 고른다. 공정 무역은 만든 사람에게 정당한 값을 치러, 그 사람이 스스로 살림을 꾸려 가게 돕는 무역이다.</div><div class="wt-ev"><div class="wt-ev-h">📎 끌어올 수 있는 근거</div><div class="wt-chips"><button type="button" class="wt-chip" data-go="하늘에서 약을 뿌릴 때면">호세(하늘에서 뿌리는 약)</button><button type="button" class="wt-chip" data-go="맹그로브 숲을 베어 낸">태국 해안 마을(4단계)</button><button type="button" class="wt-chip" data-go="필리핀 농민의 편지 한 통">필리핀 농민의 편지 한 통(4단계)</button></div></div></div></div></div><div class="wt-step"><span class="n">2</span>세 덩어리로 쓰자 <small>시작 말은 그대로 써도, 바꿔 써도, 안 써도 된다</small></div><div class="wt-write" style="--wt-n:3"><div class="wt-w"><span class="k">1</span><b>지금까지</b><span class="q">지금까지 나는 어떻게 골라 왔나?</span><span class="s">나는 지금까지 …를 보고 골라 왔다.</span></div><div class="wt-w"><span class="k">2</span><b>오늘 고를 문</b><span class="q">오늘 고를 문과 그 까닭</span><span class="s">오늘은 문 …를 고르겠다. …하기 때문이다.</span></div><div class="wt-w"><span class="k">3</span><b>근거</b><span class="q">오늘 배운 영향 하나를 근거로</span><span class="s">오늘 본 …을 보면 …. 그래서 앞으로는 ….</span></div></div><div class="wt-step"><span class="n">3</span>아래 칸에 세 덩어리를 이어서 쓰자</div></div><script id="ws-think-js">(function(){
+@media print{.wt-door,.wt-w{break-inside:avoid}.wt-pick,button.wt-chip::after{display:none}}</style><div class="ws-think"><div class="wt-role"><span class="wt-role-badge">🎙️ 오늘의 역할</span><div><div class="wt-role-t">이번 주 우리 집 장보기 담당</div><div class="wt-role-d">마트 과일 코너에 바나나가 두 가지 놓여 있다. 아래 문 두 개 가운데 하나를 골라 '나는 수입 농산물을 이렇게 고르겠다'를 써 봐. 정답은 없어. 싼 것을 고르는 것도 충분히 이유가 있는 선택이야.</div></div></div><div class="wt-step"><span class="n">1</span>문을 하나 고르자 <small>정답은 없다 · 근거를 누르면 학습지의 그 자리로 간다</small></div><div class="wt-doors"><div class="wt-door"><div class="wt-door-b"><div class="wt-door-h"><span class="wt-door-tag">🚪 문 A</span><button type="button" class="wt-pick" aria-pressed="false">이 문으로</button></div><div class="wt-door-t">값이 싼 바나나</div><div class="wt-door-d">같은 돈으로 더 많이 살 수 있는 바나나를 고른다.</div><div class="wt-ev"><div class="wt-ev-h">📎 끌어올 수 있는 근거</div><div class="wt-chips"><button type="button" class="wt-chip" data-go="넓은 땅에 같은 작물을 심는다">넓은 땅에 한 가지 작물을 대량으로 기르는 농장(3단계)</button><button type="button" class="wt-chip" data-go="유럽 소비자">캐서린(못 보던 과일을 싸게 사는 소비자)</button><button type="button" class="wt-chip" data-go="국내 농산물이 모자랄 때는">국내 농산물이 모자랄 때 수입으로 채운다(4단계)</button></div></div></div></div><div class="wt-door"><div class="wt-door-b"><div class="wt-door-h"><span class="wt-door-tag">🚪 문 B</span><button type="button" class="wt-pick" aria-pressed="false">이 문으로</button></div><div class="wt-door-t">조금 비싸도 공정 무역 바나나</div><div class="wt-door-d">공정 무역 표시가 붙은 바나나를 고른다. 공정 무역은 만든 사람에게 정당한 값을 치러, 그 사람이 스스로 살림을 꾸려 가게 돕는 무역이다.</div><div class="wt-ev"><div class="wt-ev-h">📎 끌어올 수 있는 근거</div><div class="wt-chips"><button type="button" class="wt-chip" data-go="코스타리카 바나나 농장 노동자">호세(바나나 농장에서 일하는 사람)</button><button type="button" class="wt-chip" data-go="필리핀 농민의 편지 한 통">필리핀 농민의 편지 한 통(4단계)</button></div></div></div></div></div><div class="wt-step"><span class="n">2</span>세 덩어리로 쓰자 <small>시작 말은 그대로 써도, 바꿔 써도, 안 써도 된다</small></div><div class="wt-write" style="--wt-n:3"><div class="wt-w"><span class="k">1</span><b>지금까지</b><span class="q">지금까지 나는 어떻게 골라 왔나?</span><span class="s">나는 지금까지 …를 보고 골라 왔다.</span></div><div class="wt-w"><span class="k">2</span><b>오늘 고를 문</b><span class="q">오늘 고를 문과 그 까닭</span><span class="s">오늘은 문 …를 고르겠다. …하기 때문이다.</span></div><div class="wt-w"><span class="k">3</span><b>근거</b><span class="q">오늘 배운 영향 하나를 근거로</span><span class="s">오늘 본 …을 보면 …. 그래서 앞으로는 ….</span></div></div><div class="wt-step"><span class="n">3</span>아래 칸에 세 덩어리를 이어서 쓰자</div></div><script id="ws-think-js">(function(){
 var RM=window.matchMedia('(prefers-reduced-motion:reduce)');
 /* 글을 품은 가장 안쪽 요소 — 글자 조각으로 찾으면 다른 장치(개념 선 단추 등)가 글을 쪼갠 자리를 못 찾는다 */
 function find(t){ var C=document.querySelector('.container')||document.body, all=C.getElementsByTagName('*');
@@ -2462,6 +2554,100 @@ function askReset(){
   restore();   /* 처음 열 때 되살리기는 본 스크립트가 이미 끝냈다 — 카드만 이어서 */
 })();
 </script>
+<script id="ws-opin-js">/* 의견 카드(:::인물선택카드 [공감|비공감] 의견) — 2026-11-18 천대현 사회 9-1~2 검토판
+   «앞에는 누구인지, 뒤집으면 사례, 앞 표지에서 공감/비공감, 고르면 교사용 교과서 보충».
+   - 정답이 없는 고르기다. 점수·저장·제출에 넣지 않는다(pickscore.js는 .ws-pick만 센다). 입력칸 0 — data-id 불변.
+   - 단추는 카드를 한 번 뒤집어 그 사람의 말을 읽은 뒤에 켜진다(읽지 않고 고르는 것을 막는다).
+   - 고르면 카드가 앞면으로 돌아와 고른 쪽 도장이 붙고, 아래에 교사용 교과서 예시 댓글 두 쪽이 열린다(고른 쪽 표시). 다시 고를 수 있다. */
+(function(){
+[].slice.call(document.querySelectorAll('.ws-opin')).forEach(function(w){
+  var cs=[].slice.call(w.querySelectorAll('.op-card')), N=cs.length;
+  if(!N) return;
+  var cnt=w.querySelector('.op-count'), res=w.querySelector('.op-result');
+  var labs=[].slice.call(cs[0].querySelectorAll('.op-b')).map(function(b){ return {v:b.dataset.v, html:b.innerHTML}; });
+  function paint(){
+    var k=cs.filter(function(c){ return c.dataset.pick; }).length;
+    cnt.textContent=k+' / '+N;
+    if(k<N){ res.hidden=true; return; }
+    res.hidden=false;
+    res.innerHTML='<b>'+labs.map(function(l){ return l.html+' '+cs.filter(function(c){ return c.dataset.pick===l.v; }).length+'명'; }).join(' · ')+
+      '</b> — 카드마다 열린 예시 댓글에서 내가 고르지 않은 쪽 생각도 읽어 보자. 한 사람의 말에도 두 쪽 생각이 있어.';
+  }
+  /* 뒷면 말 속 가린 낱말(«⑧») — 그 빈칸을 맞게 채우면 낱말을 드러낸다. 맞음 판정은 채점(check)과 같은 규칙 */
+  function nz(t){ return (t||'').replace(/\s+/g,'').replace(/[·,.()（）\[\]]/g,'').toLowerCase(); }
+  /* 🔴 입력칸 번호 속성을 셀렉터 글자(따옴표 꼴)로 쓰지 않는다 — HTML을 정규식으로 읽는 검사기가 입력칸으로 센다(개념 잇기 때와 같은 함정). 주석에도 그 꼴을 쓰지 않는다 */
+  function blankOf(n){ return [].slice.call(document.querySelectorAll('input.blank-input')).filter(function(x){ return x.dataset.id===n; })[0]; }
+  function unmask(c){
+    [].slice.call(c.querySelectorAll('.op-mask[data-b]')).forEach(function(m){
+      var inp=blankOf(m.dataset.b); if(!inp) return;
+      var a=nz(inp.dataset.answer), u=nz(inp.value);
+      if(u&&(u===a||(a.indexOf(u)>=0&&u.length>=a.length*0.6))){ m.textContent=inp.dataset.answer; m.classList.add('op-open'); m.removeAttribute('data-b'); m.removeAttribute('title'); }
+    });
+  }
+  cs.forEach(function(c){
+    [].slice.call(c.querySelectorAll('.op-mask[data-b]')).forEach(function(m){
+      var inp=blankOf(m.dataset.b);
+      if(inp) inp.addEventListener('input',function(){ unmask(c); });
+    });
+  });
+  window.addEventListener('load',function(){ cs.forEach(unmask); });
+  cs.forEach(function(c){
+    var f=c.querySelector('.op-flip'), bs=[].slice.call(c.querySelectorAll('.op-b')), note=c.querySelector('.op-note'),
+        more=c.querySelector('.op-more'), st=c.querySelector('.op-stamp'), nm=(c.querySelector('.op-name')||{}).textContent||'';
+    nm=nm.trim();
+    function face(back){
+      if(back) unmask(c);
+      c.classList.toggle('op-flipped',back);
+      f.setAttribute('aria-label',nm+' 카드 — '+(back?'눌러서 앞면으로':'눌러서 뒤집기'));
+      if(back&&!c.dataset.read){
+        c.dataset.read='1';
+        bs.forEach(function(b){ b.disabled=false; });
+        if(!c.dataset.pick) note.textContent='읽었으면 골라 보자 · 카드를 다시 누르면 앞면';
+      }
+    }
+    f.addEventListener('click',function(e){
+      if(e.target.closest&&e.target.closest('.lm-n,a,button')) return;   /* 개념 잇기 낱말 단추는 그쪽 일 */
+      face(!c.classList.contains('op-flipped'));
+    });
+    f.addEventListener('keydown',function(e){
+      if(e.target!==f) return;
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); face(!c.classList.contains('op-flipped')); }
+    });
+    bs.forEach(function(b,bi){
+      b.addEventListener('click',function(){
+        var v=b.dataset.v;
+        c.dataset.pick=v; c.classList.add('op-set');
+        bs.forEach(function(x){ x.classList.toggle('on',x===b); x.setAttribute('aria-pressed',x===b?'true':'false'); });
+        st.innerHTML=b.innerHTML; st.hidden=false;
+        face(false);   /* 앞면으로 돌아와 도장을 보인다 */
+        more.hidden=false;
+        [].slice.call(more.querySelectorAll('p[data-v]')).forEach(function(p){ p.classList.toggle('op-mine',p.dataset.v===v); });
+        note.hidden=true;
+        paint();
+      });
+    });
+  });
+  /* 카드 높이 맞추기 — 앞뒤 면 가운데 긴 쪽이 카드마다 달라(뒷면 말 길이) 줄이 들쭉날쭉했다. 가장 큰 카드에 맞춘다 */
+  var ins=cs.map(function(c){ return c.querySelector('.op-inner'); });
+  function even(){
+    ins.forEach(function(x){ x.style.minHeight=''; });
+    var m=Math.max.apply(null,ins.map(function(x){ return x.offsetHeight; }));
+    if(m>0) ins.forEach(function(x){ x.style.minHeight=m+'px'; });
+  }
+  even();
+  window.addEventListener('load',even); window.addEventListener('resize',even);
+  [].slice.call(w.querySelectorAll('.op-win img')).forEach(function(im){ if(!im.complete) im.addEventListener('load',even); });
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(even);
+  /* 폰: 옆으로 넘기는 줄의 ◀ ▶ (데스크톱은 네 장이 한 줄이라 단추를 숨긴다) */
+  var g=w.querySelector('.op-grid'), pos=w.querySelector('.op-pos'), RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function at(){ var k=0,d=1e9; cs.forEach(function(c,i){ var v=Math.abs(c.offsetLeft-g.offsetLeft-g.scrollLeft); if(v<d){ d=v; k=i; } }); return k; }
+  function go(k){ k=Math.max(0,Math.min(N-1,k)); g.scrollTo({left:cs[k].offsetLeft-g.offsetLeft,behavior:RM?'auto':'smooth'}); }
+  g.addEventListener('scroll',function(){ pos.textContent=(at()+1)+' / '+N; },{passive:true});
+  w.querySelector('.op-prev').onclick=function(){ go(at()-1); };
+  w.querySelector('.op-next').onclick=function(){ go(at()+1); };
+});
+})();
+</script>
 <script id="ws-design-v2-js">(function(){
 var C=document.querySelector('.container'); if(!C) return;
 // 글머리 이모지는 첫 글자 마디에서만 지운다 — innerHTML을 다시 쓰면 안에 든 입력칸·단추의 리스너가 끊긴다(메인 10/28 지적)
@@ -2604,7 +2790,8 @@ GL.forEach(function(g){
     hit.parentNode.replaceChild(t,hit);
     it.trig=t; it.mk=mk;
   }
-  it.block=it.trig.closest('p,li')||it.trig.parentNode;
+  /* 2026-11-21 사회 5-1 ⑯: 표 칸 안 빈칸이면 칸 옆(tr 안)에 끼어 폭 81px로 찌그러졌다 — 표 밖 바로 아래로 */
+  it.block=it.trig.closest('p,li')||it.trig.closest('table')||it.trig.parentNode;
   it.trig.addEventListener('click',function(){ if(it.peek){ it.peek=false; layout(); return; } setOpen(it,!it.open); });   /* 미리 보기 중에 누르면 열어 둔다 */
   it.pop.querySelector('.gl-x').addEventListener('click',function(){ setOpen(it,false); it.trig.focus(); });
   items.push(it);
@@ -2720,13 +2907,19 @@ GL.forEach(function(g){
   var fig=document.createElement('figure'); fig.className='gl-img';
   var im=document.createElement('img'); im.src=g.img; im.loading='lazy';
   im.alt=g.img_cap||g.word||'';
-  fig.appendChild(im);
+  /* 2026-11-17 역사 5-1 «나폴레옹 법전 표지»: 세로 사진은 가로 틀(cover)에 잘려 제목이 사라진다 — 세로면 자르지 않고 줄여 넣는다. 가로 사진은 그대로 */
+  /* 2026-11-18 역사 5-1 «7월 혁명»: 원고 «@15»(img_y) — 가로 틀에서 위아래 어디를 보여 줄지. 없으면 가운데(그대로) */
+  if(g.img_y!=null) im.style.objectPosition='50% '+g.img_y+'%';
+  im.onload=function(){ if(im.naturalHeight>im.naturalWidth) fig.classList.add('gl-img-tall'); };
+  /* 2026-11-17 역사 5-1 «테니스코트의 서약» 스케치: 말풍선 틀에 잘린 구석(라켓·공)을 보려면 크게 봐야 한다 — 본문 그림과 같은 확대 창(zoom.js) 링크로 감싼다 */
+  var a=document.createElement('a'); a.className='ws-fig-zoom'; a.href=g.img; a.target='_blank'; a.rel='noopener'; a.title='눌러서 크게 보기';
+  a.appendChild(im); fig.appendChild(a);
   if(g.img_cap){ var c=document.createElement('figcaption'); c.textContent=g.img_cap; fig.appendChild(c); }
   var body=pop.querySelector('.gl-body'); if(body) body.insertAdjacentElement('beforebegin',fig); else pop.appendChild(fig);
 });
 })();
 </script>
-<script type="application/json" id="lm-data">{"nodes": {"원산지": {"name": "급식 재료의 원산지", "sec": "1단계", "alts": [{"near": "다섯 재료와 원산지", "word": "원산지", "sel": ".ws-tb"}]}, "기업화": {"name": "농업의 기업화", "sec": "1단계", "word": "농업의 기업화", "near": "판매하는 것을 농업의 기업화"}, "대량": {"name": "대량으로 재배·판매", "sec": "1단계", "word": "대량으로", "near": "를 이용해 대량으로"}, "기업화 나라": {"name": "미국·캐나다·오스트레일리아·아르헨티나", "sec": "1단계", "word": "미국, 캐나다, 오스트레일리아, 아르헨티나", "near": "주로 미국, 캐나다"}, "대상": {"name": "곡물뿐 아니라 과일·육류", "sec": "1단계", "word": "과일과 육류", "near": "곡물뿐 아니라 과일과 육류"}, "콤바인": {"name": "콤바인 사진(오하이오 밀 수확)", "sec": "1단계", "fig": "오하이오주 리치먼드 타운십의 밀 수확"}, "큰 장비": {"name": "큰 장비(입담)", "sec": "1단계", "word": "큰 장비", "near": "이런 큰 장비가"}, "목축업": {"name": "오스트레일리아의 목축업(교과서 사진)", "sec": "1단계", "word": "오스트레일리아의 목축업"}, "세계화": {"name": "농업의 세계화", "sec": "2단계", "word": "세계화의 흐름", "near": "기업화는 세계화의 흐름"}, "다른 나라 농사": {"name": "다른 나라에 가서 짓는 농사", "sec": "2단계", "word": "다른 나라에 가서 농사를 지어 팔기도 한다", "near": "다른 나라에 가서"}, "곡물 메이저": {"name": "곡물 메이저", "sec": "2단계", "word": "곡물 메이저", "near": "이끄는 곡물 메이저"}, "과일 수입 그래프": {"name": "과일 수입량·수입 대상국 그래프", "sec": "2단계", "alts": [{"near": "과일 수입량 그래프", "word": "과일 수입량 그래프", "sel": ".ws-tb"}]}, "이어 그린 그래프": {"name": "2015년 뒤 과일 수입량", "sec": "2단계", "word": "이어 그리면", "near": "교과서 그래프에 이어 그리면"}, "콤바인 카드": {"name": "끝없는 밀밭의 콤바인", "sec": "2단계", "pick": "끝없는 밀밭의 콤바인"}, "회사 농장 카드": {"name": "회사가 짓는 농장", "sec": "2단계", "pick": "회사가 짓는 농장"}, "수입 과일 카드": {"name": "마트의 수입 과일", "sec": "2단계", "pick": "마트의 수입 과일"}, "밀 카드": {"name": "라면 봉지의 원재료 칸", "sec": "2단계", "pick": "라면 봉지의 원재료 칸"}, "일손 카드": {"name": "일손이 싼 나라로", "sec": "2단계", "pick": "일손이 싼 나라로"}, "배 카드": {"name": "곡물 회사의 배", "sec": "2단계", "pick": "곡물 회사의 배"}, "같은 작물": {"name": "넓은 땅에 같은 작물", "sec": "3단계", "word": "넓은 땅에 같은 작물을 심는다", "near": "넓은 땅에 같은 작물"}, "커피 카카오": {"name": "커피·사탕수수·카카오", "sec": "3단계", "word": "커피·사탕수수·카카오", "near": "과일이나 커피·사탕수수"}, "달랏 커피": {"name": "달랏 커피 농장 사진", "sec": "3단계", "fig": "베트남 달랏 근처의 커피 농장"}, "벌레와 병": {"name": "밭 전체로 번진다", "sec": "3단계", "word": "입기 쉬워지고", "near": "를 입기 쉬워지고"}, "사 와야": {"name": "마을이 먹을 것을 사 와야", "sec": "3단계", "word": "부족해지기도 한다", "near": "이 부족해지기도"}, "개방": {"name": "농산물 개방", "sec": "4단계", "word": "농산물 시장이 개방되면서", "near": "세계화로 농산물 시장이"}, "다양한 농산물": {"name": "여러 나라의 다양한 농산물", "sec": "4단계", "word": "여러 나라의 다양한 농산물", "near": "여러 나라의 다양한 농산물"}, "수입으로 채움": {"name": "모자랄 때 수입으로", "sec": "4단계", "word": "수입으로 채울 수도 있다", "near": "모자랄 때는 수입으로"}, "농민 손해": {"name": "우리 농민의 손해", "sec": "4단계", "word": "우리 농민이 손해를 볼 수 있고", "near": "덜 팔려 우리 농민이"}, "건강과 환경": {"name": "소비자의 건강과 환경", "sec": "4단계", "word": "소비자의 건강과 환경", "near": "써서 소비자의 건강과 환경"}, "존": {"name": "존", "sec": "4단계", "pick": "존"}, "호세": {"name": "호세", "sec": "4단계", "pick": "호세"}, "김기영": {"name": "김기영", "sec": "4단계", "pick": "김기영"}, "캐서린": {"name": "캐서린", "sec": "4단계", "pick": "캐서린"}, "태국 마을": {"name": "태국 해안 마을 주민", "sec": "4단계", "pick": "태국 해안 마을 주민"}, "에콰도르 바나나": {"name": "에콰도르 바나나 농장 사진", "sec": "4단계", "fig": "에콰도르의 바나나 농장"}, "착한 바나나": {"name": "필리핀 농민의 편지(교과서 171쪽)", "sec": "4단계", "alts": [{"near": "필리핀 농민의 편지 한 통", "word": "필리핀 농민의 편지 한 통", "sel": ".ws-tb"}]}, "9-3 운동화": {"name": "9-3 · 내 운동화의 여권", "chip": "다음 시간 — 농산물 다음은 운동화 한 켤레가 여러 나라를 거쳐 오는 길"}}, "lines": [{"t": "sub", "a": "기업화", "b": "대량", "w": "회사가 큰 규모로 짓고 파는 것"}, {"t": "ex", "a": "기업화 나라", "b": "기업화", "w": "땅이 넓은 나라 — 이런 곳에서 일어난다"}, {"t": "ex", "a": "콤바인", "b": "기업화", "w": "한꺼번에 거두는 모습"}, {"t": "ex", "a": "큰 장비", "b": "대량", "w": "사람 손으로 하나씩 하던 일을 한꺼번에 — 대량으로 짓는 까닭"}, {"t": "sub", "a": "기업화", "b": "대상", "w": "곡물만이 아니다"}, {"t": "ex", "a": "목축업", "b": "대상", "w": "풀밭 끝까지 흩어진 소 떼 — 가축도 대량으로 기른다"}, {"t": "cmp", "a": "기업화", "b": "세계화", "w": "누가 어떻게 짓나 / 나라를 넘나드나 — 함께 일어나기도 한다"}, {"t": "sub", "a": "세계화", "b": "다른 나라 농사", "w": "나라 밖으로 나가 농사를 짓는다"}, {"t": "ex", "a": "곡물 메이저", "b": "세계화", "w": "세계 곳곳에서 기르고 실어 나르는 기업"}, {"t": "cmp", "a": "과일 수입 그래프", "b": "이어 그린 그래프", "w": "교과서 그래프는 2015년까지 / 그 뒤의 값"}, {"t": "ex", "a": "원산지", "b": "세계화", "w": "여러 나라에서 온 급식 재료"}, {"t": "ex", "a": "콤바인 카드", "b": "기업화", "w": "큰 장비로 한꺼번에 대량 생산", "lock": "콤바인 카드"}, {"t": "ex", "a": "회사 농장 카드", "b": "기업화", "w": "나라 안에서 기업이 크게", "lock": "회사 농장 카드"}, {"t": "ex", "a": "수입 과일 카드", "b": "세계화", "w": "여러 나라에서 기른 과일이 나라를 넘어", "lock": "수입 과일 카드"}, {"t": "ex", "a": "밀 카드", "b": "세계화", "w": "다른 나라에서 기른 밀이 우리 식탁에", "lock": "밀 카드"}, {"t": "ex", "a": "일손 카드", "b": "기업화", "w": "회사가 크게 짓는 농장이기도 하다", "lock": "일손 카드"}, {"t": "ex", "a": "일손 카드", "b": "다른 나라 농사", "w": "기업이 나라 밖으로 나가 농사를 짓는다", "lock": "일손 카드"}, {"t": "ex", "a": "배 카드", "b": "곡물 메이저", "w": "항구와 화물선까지 — 곡물 메이저의 모습", "lock": "배 카드"}, {"t": "sub", "a": "기업화", "b": "같은 작물", "w": "대량으로 기르려다 보니 — 넓은 땅에 한 가지 작물"}, {"t": "sub", "a": "같은 작물", "b": "커피 카카오", "w": "잘 팔릴 작물을 넓게"}, {"t": "ex", "a": "달랏 커피", "b": "같은 작물", "w": "언덕을 거의 한 가지 나무가 덮었다"}, {"t": "sub", "a": "같은 작물", "b": "벌레와 병", "w": "한 그루가 걸리면 밭 전체로"}, {"t": "sub", "a": "같은 작물", "b": "사 와야", "w": "팔 작물이 땅을 차지하면"}, {"t": "sub", "a": "개방", "b": "다양한 농산물", "w": "소비자에게 좋은 점"}, {"t": "sub", "a": "개방", "b": "수입으로 채움", "w": "모자랄 때 채운다"}, {"t": "sub", "a": "개방", "b": "농민 손해", "w": "국내산이 덜 팔리면"}, {"t": "sub", "a": "개방", "b": "건강과 환경", "w": "생산·유통 과정에서 생길 수 있는 걱정"}, {"t": "cmp", "a": "같은 작물", "b": "다양한 농산물", "w": "기르는 곳은 한 가지로, 식탁은 여러 가지로"}, {"t": "ex", "a": "원산지", "b": "다양한 농산물", "w": "1단계 급식판 — 여러 나라의 재료를 먹게 된 것도 문이 열린 덕"}, {"t": "ex", "a": "존", "b": "개방", "w": "나라 사이 문이 열려 수출이 늘수록 이익", "lock": "존"}, {"t": "ex", "a": "호세", "b": "건강과 환경", "w": "하늘에서 뿌리는 약 — 일하는 사람의 건강", "lock": "호세"}, {"t": "ex", "a": "김기영", "b": "농민 손해", "w": "수입 과일에 밀린 감귤", "lock": "김기영"}, {"t": "ex", "a": "캐서린", "b": "다양한 농산물", "w": "못 보던 과일을 싸게", "lock": "캐서린"}, {"t": "ex", "a": "태국 마을", "b": "건강과 환경", "w": "맹그로브 숲을 벤 바닷가 — 환경의 손해", "lock": "태국 마을"}, {"t": "cmp", "a": "존", "b": "호세", "w": "두 사람 모두 생산하는 쪽 — 땅을 가진 사람과 그 땅에서 일하는 사람", "lock": ["존", "호세"]}, {"t": "cmp", "a": "일손 카드", "b": "호세", "w": "회사가 찾아간 싼 일손 — 그 농장에서 일하는 사람", "lock": ["일손 카드", "호세"]}, {"t": "cmp", "a": "수입 과일 카드", "b": "캐서린", "w": "다른 나라에서 기른 과일 — 그 과일을 싸게 사는 소비자", "lock": ["수입 과일 카드", "캐서린"]}, {"t": "ex", "a": "에콰도르 바나나", "b": "같은 작물", "w": "줄지어 선 같은 나무 — 한 가지 작물의 농장"}, {"t": "cmp", "a": "착한 바나나", "b": "호세", "w": "비슷한 바나나 농장 일 — 먼 나라 소비자가 묻기 시작했다", "lock": "호세"}, {"t": "xref", "a": "세계화", "b": "9-3 운동화", "w": "다음 시간 — 공장도 세계로"}]}</script>
+<script type="application/json" id="lm-data">{"nodes": {"원산지": {"name": "급식 재료의 원산지", "sec": "1단계", "alts": [{"near": "다섯 재료와 원산지", "word": "원산지", "sel": ".ws-tb"}]}, "기업화": {"name": "농업의 기업화", "sec": "1단계", "word": "농업의 기업화", "near": "판매하는 것을 농업의 기업화"}, "대량": {"name": "대량으로 재배·판매", "sec": "1단계", "word": "대량으로", "near": "를 이용해 대량으로"}, "기업화 나라": {"name": "미국·캐나다·오스트레일리아·아르헨티나", "sec": "1단계", "word": "미국, 캐나다, 오스트레일리아, 아르헨티나", "near": "주로 미국, 캐나다"}, "대상": {"name": "곡물뿐 아니라 과일·육류", "sec": "1단계", "word": "과일과 육류", "near": "곡물뿐 아니라 과일과 육류"}, "콤바인": {"name": "콤바인 사진(오하이오 밀 수확)", "sec": "1단계", "fig": "오하이오주 리치먼드 타운십의 밀 수확"}, "큰 장비": {"name": "큰 장비(입담)", "sec": "1단계", "word": "큰 장비", "near": "이런 큰 장비가"}, "목축업": {"name": "오스트레일리아의 목축업(교과서 사진)", "sec": "1단계", "word": "오스트레일리아의 목축업"}, "세계화": {"name": "농업의 세계화", "sec": "2단계", "word": "세계화의 흐름", "near": "기업화는 세계화의 흐름"}, "다른 나라 농사": {"name": "다른 나라에 가서 짓는 농사", "sec": "2단계", "word": "다른 나라에 가서 농사를 지어 팔기도 한다", "near": "다른 나라에 가서"}, "곡물 메이저": {"name": "곡물 메이저", "sec": "2단계", "word": "곡물 메이저", "near": "이끄는 곡물 메이저"}, "과일 수입 그래프": {"name": "과일 수입량·수입 대상국 그래프", "sec": "2단계", "alts": [{"near": "과일 수입량 그래프", "word": "과일 수입량 그래프", "sel": ".ws-tb"}]}, "이어 그린 그래프": {"name": "2015년 뒤 과일 수입량", "sec": "2단계", "word": "이어 그리면", "near": "교과서 그래프에 이어 그리면"}, "콤바인 카드": {"name": "끝없는 밀밭의 콤바인", "sec": "2단계", "pick": "끝없는 밀밭의 콤바인"}, "회사 농장 카드": {"name": "회사가 짓는 농장", "sec": "2단계", "pick": "회사가 짓는 농장"}, "수입 과일 카드": {"name": "마트의 수입 과일", "sec": "2단계", "pick": "마트의 수입 과일"}, "밀 카드": {"name": "라면 봉지의 원재료 칸", "sec": "2단계", "pick": "라면 봉지의 원재료 칸"}, "일손 카드": {"name": "일손이 싼 나라로", "sec": "2단계", "pick": "일손이 싼 나라로"}, "배 카드": {"name": "곡물 회사의 배", "sec": "2단계", "pick": "곡물 회사의 배"}, "같은 작물": {"name": "넓은 땅에 같은 작물", "sec": "3단계", "word": "넓은 땅에 같은 작물을 심는다", "near": "넓은 땅에 같은 작물"}, "커피 카카오": {"name": "커피·사탕수수·카카오", "sec": "3단계", "word": "커피·사탕수수·카카오", "near": "과일이나 커피·사탕수수"}, "달랏 커피": {"name": "달랏 커피 농장 사진", "sec": "3단계", "fig": "베트남 달랏 근처의 커피 농장"}, "벌레와 병": {"name": "밭 전체로 번진다", "sec": "3단계", "word": "입기 쉬워지고", "near": "를 입기 쉬워지고"}, "사 와야": {"name": "마을이 먹을 것을 사 와야", "sec": "3단계", "word": "부족해지기도 한다", "near": "이 부족해지기도"}, "개방": {"name": "농산물 개방", "sec": "4단계", "word": "농산물 시장이 개방되면서", "near": "세계화로 농산물 시장이"}, "다양한 농산물": {"name": "여러 나라의 다양한 농산물", "sec": "4단계", "word": "여러 나라의 다양한 농산물", "near": "여러 나라의 다양한 농산물"}, "수입으로 채움": {"name": "모자랄 때 수입으로", "sec": "4단계", "word": "수입으로 채울 수도 있다", "near": "모자랄 때는 수입으로"}, "농민 손해": {"name": "우리 농민의 손해", "sec": "4단계", "word": "우리 농민이 손해를 볼 수 있고", "near": "덜 팔려 우리 농민이"}, "건강과 환경": {"name": "소비자의 건강과 환경", "sec": "4단계", "word": "소비자의 건강과 환경", "near": "써서 소비자의 건강과 환경"}, "존": {"name": "존", "sec": "4단계", "pick": "존"}, "호세": {"name": "호세", "sec": "4단계", "pick": "호세"}, "김기영": {"name": "김기영", "sec": "4단계", "pick": "김기영"}, "캐서린": {"name": "캐서린", "sec": "4단계", "pick": "캐서린"}, "네그로스 1985": {"name": "1985년 네그로스섬 사탕수수 노동자 사진", "sec": "4단계", "fig": "필리핀 네그로스섬"}, "착한 바나나": {"name": "필리핀 농민의 편지(교과서 171쪽)", "sec": "4단계", "alts": [{"near": "필리핀 농민의 편지 한 통", "word": "필리핀 농민의 편지 한 통", "sel": ".ws-tb"}]}, "9-3 운동화": {"name": "9-3 · 내 운동화의 여권", "chip": "다음 시간 — 농산물 다음은 운동화 한 켤레가 여러 나라를 거쳐 오는 길"}}, "lines": [{"t": "sub", "a": "기업화", "b": "대량", "w": "회사가 큰 규모로 짓고 파는 것"}, {"t": "ex", "a": "기업화 나라", "b": "기업화", "w": "땅이 넓은 나라 — 이런 곳에서 일어난다"}, {"t": "ex", "a": "콤바인", "b": "기업화", "w": "한꺼번에 거두는 모습"}, {"t": "ex", "a": "큰 장비", "b": "대량", "w": "사람 손으로 하나씩 하던 일을 한꺼번에 — 대량으로 짓는 까닭"}, {"t": "sub", "a": "기업화", "b": "대상", "w": "곡물만이 아니다"}, {"t": "ex", "a": "목축업", "b": "대상", "w": "풀밭 끝까지 흩어진 소 떼 — 가축도 대량으로 기른다"}, {"t": "cmp", "a": "기업화", "b": "세계화", "w": "누가 어떻게 짓나 / 나라를 넘나드나 — 함께 일어나기도 한다"}, {"t": "sub", "a": "세계화", "b": "다른 나라 농사", "w": "나라 밖으로 나가 농사를 짓는다"}, {"t": "ex", "a": "곡물 메이저", "b": "세계화", "w": "세계 곳곳에서 기르고 실어 나르는 기업"}, {"t": "cmp", "a": "과일 수입 그래프", "b": "이어 그린 그래프", "w": "교과서 그래프는 2015년까지 / 그 뒤의 값"}, {"t": "ex", "a": "원산지", "b": "세계화", "w": "여러 나라에서 온 급식 재료"}, {"t": "ex", "a": "콤바인 카드", "b": "기업화", "w": "큰 장비로 한꺼번에 대량 생산", "lock": "콤바인 카드"}, {"t": "ex", "a": "회사 농장 카드", "b": "기업화", "w": "나라 안에서 기업이 크게", "lock": "회사 농장 카드"}, {"t": "ex", "a": "수입 과일 카드", "b": "세계화", "w": "여러 나라에서 기른 과일이 나라를 넘어", "lock": "수입 과일 카드"}, {"t": "ex", "a": "밀 카드", "b": "세계화", "w": "다른 나라에서 기른 밀이 우리 식탁에", "lock": "밀 카드"}, {"t": "ex", "a": "일손 카드", "b": "기업화", "w": "회사가 크게 짓는 농장이기도 하다", "lock": "일손 카드"}, {"t": "ex", "a": "일손 카드", "b": "다른 나라 농사", "w": "기업이 나라 밖으로 나가 농사를 짓는다", "lock": "일손 카드"}, {"t": "ex", "a": "배 카드", "b": "곡물 메이저", "w": "항구와 화물선까지 — 곡물 메이저의 모습", "lock": "배 카드"}, {"t": "sub", "a": "기업화", "b": "같은 작물", "w": "대량으로 기르려다 보니 — 넓은 땅에 한 가지 작물"}, {"t": "sub", "a": "같은 작물", "b": "커피 카카오", "w": "잘 팔릴 작물을 넓게"}, {"t": "ex", "a": "달랏 커피", "b": "같은 작물", "w": "언덕을 거의 한 가지 나무가 덮었다"}, {"t": "sub", "a": "같은 작물", "b": "벌레와 병", "w": "한 그루가 걸리면 밭 전체로"}, {"t": "sub", "a": "같은 작물", "b": "사 와야", "w": "팔 작물이 땅을 차지하면"}, {"t": "sub", "a": "개방", "b": "다양한 농산물", "w": "소비자에게 좋은 점"}, {"t": "sub", "a": "개방", "b": "수입으로 채움", "w": "모자랄 때 채운다"}, {"t": "sub", "a": "개방", "b": "농민 손해", "w": "국내산이 덜 팔리면"}, {"t": "sub", "a": "개방", "b": "건강과 환경", "w": "생산·유통 과정에서 생길 수 있는 걱정"}, {"t": "cmp", "a": "같은 작물", "b": "다양한 농산물", "w": "기르는 곳은 한 가지로, 식탁은 여러 가지로"}, {"t": "ex", "a": "원산지", "b": "다양한 농산물", "w": "1단계 급식판 — 여러 나라의 재료를 먹게 된 것도 문이 열린 덕"}, {"t": "ex", "a": "존", "b": "개방", "w": "나라 사이 문이 열려 수출이 늘수록 이익", "lock": "존"}, {"t": "ex", "a": "호세", "b": "건강과 환경", "w": "하늘에서 뿌리는 약 — 일하는 사람의 건강", "lock": "호세"}, {"t": "ex", "a": "김기영", "b": "농민 손해", "w": "수입 과일에 밀린 감귤", "lock": "김기영"}, {"t": "ex", "a": "캐서린", "b": "다양한 농산물", "w": "못 보던 과일을 싸게", "lock": "캐서린"}, {"t": "cmp", "a": "존", "b": "호세", "w": "두 사람 모두 생산하는 쪽 — 땅을 가진 사람과 그 땅에서 일하는 사람", "lock": ["존", "호세"]}, {"t": "cmp", "a": "일손 카드", "b": "호세", "w": "회사가 찾아간 싼 일손 — 그 농장에서 일하는 사람", "lock": ["일손 카드", "호세"]}, {"t": "cmp", "a": "수입 과일 카드", "b": "캐서린", "w": "다른 나라에서 기른 과일 — 그 과일을 싸게 사는 소비자", "lock": ["수입 과일 카드", "캐서린"]}, {"t": "cmp", "a": "네그로스 1985", "b": "호세", "w": "다른 사람, 비슷한 처지 — 1985년 필리핀 사탕수수 밭의 실제 노동자와 교과서 속 바나나 농장 노동자", "lock": "호세"}, {"t": "cmp", "a": "착한 바나나", "b": "호세", "w": "비슷한 바나나 농장 일 — 먼 나라 소비자가 묻기 시작했다", "lock": "호세"}, {"t": "xref", "a": "세계화", "b": "9-3 운동화", "w": "다음 시간 — 공장도 세계로"}]}</script>
 <script id="lm-js">/* 2026-11-10 천대현(사회② Ⅷ «샘플판에 적용했던 사항들을 8단원 묶음판 전체에»): 개념 관계 선.
    낱말을 누르면 이 학습지 안에서 이어지는 개념·사례가 선으로 나타난다. 원고·입력칸·data-id는 건드리지 않고 화면 글자만 단추로 감싼다.
    선 규칙(색만이 아니라 모양으로도): 한 갈래 실선+빈 삼각형 · 예 둥근 점선+속 찬 원 · 견줘 보기 쇄선+양끝 막대 · 다른 차시 가는 실선+여백 칩.
@@ -2793,8 +2986,9 @@ Object.keys(NODES).forEach(function(id){
     var q=[].slice.call(C.querySelectorAll('blockquote')).filter(function(x){return !x.closest('.v2-sec')&&(x.classList.contains('v2-voice')||x.textContent.trim().indexOf('🎙️')===0);})[0];
     if(q) hit=findText({root:q},d.word,d.near);
   }else if(d.pick){
-    var card=[].slice.call(sc.root.querySelectorAll('.ws-pick .pk-card')).filter(function(c){ if(!inB(c,sc.b)) return false; var nm=c.querySelector('.pk-name'); return nm&&nm.textContent.trim()===d.pick; })[0];
-    if(card){ o.card=card; hit=findText({root:card.querySelector('.pk-name')},d.pick); }
+    /* 2026-11-18 의견 카드(.ws-opin .op-card, opinion.js)도 «카드» 노드로 찾는다 — 고르면(op-set) 선이 열린다 */
+    var card=[].slice.call(sc.root.querySelectorAll('.ws-pick .pk-card, .ws-opin .op-card')).filter(function(c){ if(!inB(c,sc.b)) return false; var nm=c.querySelector('.pk-name, .op-name'); return nm&&nm.textContent.trim()===d.pick; })[0];
+    if(card){ o.card=card; hit=findText({root:card.querySelector('.pk-name, .op-name')},d.pick); }
   }else if(d.fold){
     var f=[].slice.call(sc.root.querySelectorAll('details.ws-fold')).filter(function(x){ var s=x.querySelector('summary'); return inB(x,sc.b)&&s&&s.textContent.indexOf(d.fold)>=0; })[0];
     if(f){ o.foldEl=f; hit=findText({root:f.querySelector('.ws-fold-body')||f},d.word); }
@@ -2869,7 +3063,7 @@ function rendered(el){
   if(el.checkVisibility&&!el.checkVisibility()) return false;
   return true;
 }
-function unlocked(o){ return !o.card||o.card.classList.contains('pk-ok')||o.card.classList.contains('pk-no'); }
+function unlocked(o){ return !o.card||o.card.classList.contains('pk-ok')||o.card.classList.contains('pk-no')||o.card.classList.contains('op-set'); }
 function lineOK(L){
   if(!L.ok) return false;
   if(L.lock&&[].concat(L.lock).some(function(k){ return !unlocked(N[k]); })) return false;
@@ -2938,7 +3132,7 @@ function metrics(o){
 /* 끝점: 글자는 줄 아래 틈으로(위에서 들어올 땐 위 틈), 그림·고르기 카드 이름은 위쪽으로 드나든다 */
 /* 넘김(.pk-swipe) 카드 줄에서 옆으로 밀려나 안 보이는 카드면 그 줄을 돌려준다(-1 왼쪽 / 1 오른쪽) */
 function swipeOff(o){
-  var sw=o.card&&o.card.closest('.pk-swipe'); if(!sw) return null;
+  var sw=o.card&&o.card.closest('.pk-swipe, .op-swipe'); if(!sw) return null;
   var a=o.anchor.getBoundingClientRect(), b=sw.getBoundingClientRect(), cx=(a.left+a.right)/2;
   return cx<b.left+4?{sw:sw,side:-1}:(cx>b.right-4?{sw:sw,side:1}:null);
 }
@@ -3161,7 +3355,7 @@ function keepVisibleAboveSheet(el){
 }
 function goTo(o){
   if(o.chip||!o.anchor) return;
-  var sw=o.card&&o.card.closest('.pk-swipe');
+  var sw=o.card&&o.card.closest('.pk-swipe, .op-swipe');
   if(sw&&swipeOff(o)){ sw.scrollTo({left:o.card.offsetLeft-sw.offsetLeft,behavior:RM.matches?'auto':'smooth'}); setTimeout(function(){ goTo(o); },RM.matches?60:420); return; }
   var el=o.anchor, r=el.getBoundingClientRect(), room=window.innerHeight-sheetH();
   window.scrollBy({top:r.top-Math.max(16,(room-r.height)/2),behavior:RM.matches?'auto':'smooth'});
@@ -3178,14 +3372,14 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&active){ v
 var raf=0; function schedule(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; layout(); }); }
 window.addEventListener('resize',schedule);
 window.addEventListener('scroll',function(){ if(active&&lineMode()) schedule(); },{passive:true});
-document.addEventListener('scroll',function(e){ if(e.target!==document&&e.target.closest&&e.target.closest('.pk-swipe')) schedule(); },{capture:true,passive:true});
+document.addEventListener('scroll',function(e){ if(e.target!==document&&e.target.closest&&e.target.closest('.pk-swipe, .op-swipe')) schedule(); },{capture:true,passive:true});
 document.addEventListener('toggle',schedule,true);
 document.addEventListener('load',schedule,true);
 window.addEventListener('load',schedule);
 if(window.ResizeObserver) new ResizeObserver(schedule).observe(document.body);
 if(window.MutationObserver){
   new MutationObserver(schedule).observe(H,{attributes:true,attributeFilter:['class']});
-  [].slice.call(document.querySelectorAll('.ws-pick')).forEach(function(w){ new MutationObserver(function(rs){
+  [].slice.call(document.querySelectorAll('.ws-pick, .ws-opin')).forEach(function(w){ new MutationObserver(function(rs){
     if(rs.some(function(r){ return !(r.target.classList&&r.target.classList.contains('lm-n')); })) schedule(); })
     .observe(w,{attributes:true,subtree:true,attributeFilter:['class']}); });
 }

@@ -1696,7 +1696,11 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 9-1_hero_palouse_wheat.jpg | 아이다호 팰루스의 밀 수확 | 미국 농무부 농업연구청 · 퍼블릭 도메인 · Wikimedia Commons |
 | 9-1_ohio_combine.jpg | 오하이오주 리치먼드 타운십의 밀 수확, 2010 | Nyttend · 퍼블릭 도메인 · Wikimedia Commons |
 | 9-2_hero_ecuador_banana.jpg | 에콰도르의 바나나 농장, 2011 | Dave Lonsdale · CC BY 2.0 · Wikimedia Commons |
+| 9-2_fairtrade_sticker.jpg | 공정 무역 표시 스티커가 붙은 바나나(도미니카 공화국산), 2017 — 가로로 잘라 줄임 | Bjerkebanen · CC BY-SA 4.0 · Wikimedia Commons (File:Fair-Banana.jpg) |
+| 9-2_card_banana_1000won.webp | 카드뉴스 숫자 카드 «바나나 1,000원어치를 사면» — 위 사진: 공정 무역 표시 스티커가 붙은 바나나(2017, 찍은 곳 표기 없음) · 막대: 페어트레이드 인터내셔널 «위험 지도 — 바나나»(2026-11 확인)의 몫 비율을 1,000원으로 바꾼 어림값 | 사진 Juliamh123 · CC BY-SA 4.0 · Wikimedia Commons (File:Fairtrade-märkta bananer.jpg) · 그림 전체도 CC BY-SA 4.0 |
+| 9-2_card_fairtrade_two.webp | 카드뉴스 그림 «공정 무역 바나나에 붙는 두 가지»(최저 가격 바닥선·상자당 1달러 기금) — 페어트레이드 인터내셔널 보도 자료(2026-10-05) 내용을 그림으로 | 직접 그림(PIL) |
 | 9-3_hero_hmm_algeciras.jpg | 로테르담 항에 처음 들어온 컨테이너선 HMM 알헤시라스, 2020년 6월 | kees torn · CC BY-SA 2.0 · Wikimedia Commons |
+| 9-3_map_panama.webp | 사회② 9-3~4 표지 배 «PANAMA» 확대 창 보충 지도 — 파나마·파나마 운하·카리브해(대서양)·태평양·코스타리카·콜롬비아 | 자체 제작 `hq_93_panama.py` · 바탕 Natural Earth(퍼블릭 도메인) |
 | 9-4_dongguan_factory.jpg | 광둥성 둥관시의 한 공장, 2015 | Jole222 · CC BY-SA 4.0 · Wikimedia Commons |
 | 9-4_hero_detroit_packard.jpg | 버려진 패커드 자동차 공장, 디트로이트, 2009 | Albert duce · CC BY-SA 3.0 · Wikimedia Commons |
 | 9-5_hero_makati.jpg | 마닐라 마카티의 빌딩 숲, 2017 | Lawrence Ruiz · CC BY-SA 4.0 · Wikimedia Commons |
@@ -1872,6 +1876,8 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 9-4_news_samsung_sevt.webp | 삼성전자 베트남 타이응우옌(SEVT) 공장 정문, 옌빈 산업 단지 (Yen Binh Industrial Park Sevt.jpg) | Bacthai20 · CC BY 4.0 · Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Yen_Binh_Industrial_Park_Sevt.jpg |
 | 9-1_map_places_v2.webp | 사회② 9-1~2 묶음판 «오늘 나오는 곳» 지도 v2(팰루스는 지역이라 범례를 «오늘 나오는 곳»으로) | 자체 제작 `hq_91_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
 | 9-2_map_places_v2.webp | 사회② 9-1~2 묶음판 «3·4단계에 나오는 곳» 지도 v2(«한국(제주도)» 지시선을 제주로 옮김) | 자체 제작 `hq_92_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
+| 9-2_map_places_v3.webp | 사회② 9-1~2 묶음판 «3·4단계에 나오는 곳» 지도 v3(4단계 카드를 교과서 171쪽 네 사람으로 바꾸며 태국을 뺌, 2026-11-18) | 자체 제작 `hq_92_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
+| 9-2_negros_1985_sugarcane.jpg | 사회② 9-1~2 톡톡톡 상자 사진 — 1985년 11월 필리핀 네그로스 옥시덴탈 빅토리아스 제당소 근처, 사탕수수를 수레에 묶어 싣는 노동자와 제당 공장 굴뚝(흑백, 품질만 줄임) | Kim Komenich (The San Francisco Examiner) · Wikimedia Commons https://commons.wikimedia.org/wiki/File:Juanito_Pedrosa_loading_sugar_cane.jpg | Public domain(PD-US-1978-89: 1978~1989 미국 발행물에 저작권 표시·등록 없음) |
 | 9-4_map_places.png | 사회② 9-4 «오늘 나오는 곳» 세계 지도(중국 둥관·미국 디트로이트·오스트레일리아·베트남·한국·캄보디아·방글라데시) | 자체 제작 `hq_94_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
 | 9-4_map_dongguan.png | 사회② 9-4 둥관 위치 지도(광둥성·쓰촨성, 일자리를 찾아 옮긴 길은 개념선) | 자체 제작 `hq_94_maps.py` · 바탕 Natural Earth(퍼블릭 도메인) |
 | 9-2_coffee_dalat.jpg | 베트남 달랏 근처의 커피 농장, 2015 (Vietnam - coffee plantation.jpg) | P. Hughes · CC BY 4.0 · Wikimedia Commons |

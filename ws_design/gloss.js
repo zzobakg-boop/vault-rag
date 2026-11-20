@@ -47,7 +47,8 @@ GL.forEach(function(g){
     hit.parentNode.replaceChild(t,hit);
     it.trig=t; it.mk=mk;
   }
-  it.block=it.trig.closest('p,li')||it.trig.parentNode;
+  /* 2026-11-21 사회 5-1 ⑯: 표 칸 안 빈칸이면 칸 옆(tr 안)에 끼어 폭 81px로 찌그러졌다 — 표 밖 바로 아래로 */
+  it.block=it.trig.closest('p,li')||it.trig.closest('table')||it.trig.parentNode;
   it.trig.addEventListener('click',function(){ if(it.peek){ it.peek=false; layout(); return; } setOpen(it,!it.open); });   /* 미리 보기 중에 누르면 열어 둔다 */
   it.pop.querySelector('.gl-x').addEventListener('click',function(){ setOpen(it,false); it.trig.focus(); });
   items.push(it);

@@ -51,6 +51,11 @@ function show(k){
   panel.hidden=false;
   panel.querySelector('.ws-pin-t').innerHTML='<b>'+num(p.n)+' '+esc(p.t)+'</b>';
   panel.querySelector('.ws-pin-d').textContent=p.d;
+  /* 2026-11-18 사회 9-3~4: 줄 끝 «| 그림 | 경로»가 있는 번호만 설명 칸에 그림(지도)을 함께 띄운다 */
+  var fg=panel.querySelector('.ws-pin-pic');
+  /* 그림 태그를 문자열로 짜지 않는다 — HTML을 정규식으로 읽는 검사기가 그 글자를 깨진 그림 경로로 센다 */
+  fg.innerHTML='';
+  if(p.img){ var gi=document.createElement('img'); gi.src=p.img; gi.alt=p.t; fg.appendChild(gi); fg.hidden=false; } else { fg.hidden=true; }
   panel.querySelector('[data-p="prev"]').disabled=k===0;
   panel.querySelector('[data-p="next"]').disabled=k===cur.length-1;
   requestAnimationFrame(place);
@@ -76,7 +81,7 @@ function setup(P){
   stage.appendChild(layer);
   panel=document.createElement('div'); panel.className='ws-pin-panel'; panel.hidden=true;
   panel.setAttribute('aria-live','polite');
-  panel.innerHTML='<div class="ws-pin-t"></div><p class="ws-pin-d"></p>'+
+  panel.innerHTML='<div class="ws-pin-t"></div><div class="ws-pin-pic" hidden></div><p class="ws-pin-d"></p>'+
     '<div class="ws-pin-nav"><button type="button" data-p="prev">◀ 이전</button><button type="button" data-p="next">다음 ▶</button>'+
     '<button type="button" data-p="hide">설명 닫기</button></div>';
   panel.addEventListener('click',function(e){ var q=e.target.closest('[data-p]'); if(!q) return;

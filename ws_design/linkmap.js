@@ -64,8 +64,9 @@ Object.keys(NODES).forEach(function(id){
     var q=[].slice.call(C.querySelectorAll('blockquote')).filter(function(x){return !x.closest('.v2-sec')&&(x.classList.contains('v2-voice')||x.textContent.trim().indexOf('🎙️')===0);})[0];
     if(q) hit=findText({root:q},d.word,d.near);
   }else if(d.pick){
-    var card=[].slice.call(sc.root.querySelectorAll('.ws-pick .pk-card')).filter(function(c){ if(!inB(c,sc.b)) return false; var nm=c.querySelector('.pk-name'); return nm&&nm.textContent.trim()===d.pick; })[0];
-    if(card){ o.card=card; hit=findText({root:card.querySelector('.pk-name')},d.pick); }
+    /* 2026-11-18 의견 카드(.ws-opin .op-card, opinion.js)도 «카드» 노드로 찾는다 — 고르면(op-set) 선이 열린다 */
+    var card=[].slice.call(sc.root.querySelectorAll('.ws-pick .pk-card, .ws-opin .op-card')).filter(function(c){ if(!inB(c,sc.b)) return false; var nm=c.querySelector('.pk-name, .op-name'); return nm&&nm.textContent.trim()===d.pick; })[0];
+    if(card){ o.card=card; hit=findText({root:card.querySelector('.pk-name, .op-name')},d.pick); }
   }else if(d.fold){
     var f=[].slice.call(sc.root.querySelectorAll('details.ws-fold')).filter(function(x){ var s=x.querySelector('summary'); return inB(x,sc.b)&&s&&s.textContent.indexOf(d.fold)>=0; })[0];
     if(f){ o.foldEl=f; hit=findText({root:f.querySelector('.ws-fold-body')||f},d.word); }
@@ -140,7 +141,7 @@ function rendered(el){
   if(el.checkVisibility&&!el.checkVisibility()) return false;
   return true;
 }
-function unlocked(o){ return !o.card||o.card.classList.contains('pk-ok')||o.card.classList.contains('pk-no'); }
+function unlocked(o){ return !o.card||o.card.classList.contains('pk-ok')||o.card.classList.contains('pk-no')||o.card.classList.contains('op-set'); }
 function lineOK(L){
   if(!L.ok) return false;
   if(L.lock&&[].concat(L.lock).some(function(k){ return !unlocked(N[k]); })) return false;
@@ -209,7 +210,7 @@ function metrics(o){
 /* 끝점: 글자는 줄 아래 틈으로(위에서 들어올 땐 위 틈), 그림·고르기 카드 이름은 위쪽으로 드나든다 */
 /* 넘김(.pk-swipe) 카드 줄에서 옆으로 밀려나 안 보이는 카드면 그 줄을 돌려준다(-1 왼쪽 / 1 오른쪽) */
 function swipeOff(o){
-  var sw=o.card&&o.card.closest('.pk-swipe'); if(!sw) return null;
+  var sw=o.card&&o.card.closest('.pk-swipe, .op-swipe'); if(!sw) return null;
   var a=o.anchor.getBoundingClientRect(), b=sw.getBoundingClientRect(), cx=(a.left+a.right)/2;
   return cx<b.left+4?{sw:sw,side:-1}:(cx>b.right-4?{sw:sw,side:1}:null);
 }
@@ -432,7 +433,7 @@ function keepVisibleAboveSheet(el){
 }
 function goTo(o){
   if(o.chip||!o.anchor) return;
-  var sw=o.card&&o.card.closest('.pk-swipe');
+  var sw=o.card&&o.card.closest('.pk-swipe, .op-swipe');
   if(sw&&swipeOff(o)){ sw.scrollTo({left:o.card.offsetLeft-sw.offsetLeft,behavior:RM.matches?'auto':'smooth'}); setTimeout(function(){ goTo(o); },RM.matches?60:420); return; }
   var el=o.anchor, r=el.getBoundingClientRect(), room=window.innerHeight-sheetH();
   window.scrollBy({top:r.top-Math.max(16,(room-r.height)/2),behavior:RM.matches?'auto':'smooth'});
@@ -449,14 +450,14 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&active){ v
 var raf=0; function schedule(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; layout(); }); }
 window.addEventListener('resize',schedule);
 window.addEventListener('scroll',function(){ if(active&&lineMode()) schedule(); },{passive:true});
-document.addEventListener('scroll',function(e){ if(e.target!==document&&e.target.closest&&e.target.closest('.pk-swipe')) schedule(); },{capture:true,passive:true});
+document.addEventListener('scroll',function(e){ if(e.target!==document&&e.target.closest&&e.target.closest('.pk-swipe, .op-swipe')) schedule(); },{capture:true,passive:true});
 document.addEventListener('toggle',schedule,true);
 document.addEventListener('load',schedule,true);
 window.addEventListener('load',schedule);
 if(window.ResizeObserver) new ResizeObserver(schedule).observe(document.body);
 if(window.MutationObserver){
   new MutationObserver(schedule).observe(H,{attributes:true,attributeFilter:['class']});
-  [].slice.call(document.querySelectorAll('.ws-pick')).forEach(function(w){ new MutationObserver(function(rs){
+  [].slice.call(document.querySelectorAll('.ws-pick, .ws-opin')).forEach(function(w){ new MutationObserver(function(rs){
     if(rs.some(function(r){ return !(r.target.classList&&r.target.classList.contains('lm-n')); })) schedule(); })
     .observe(w,{attributes:true,subtree:true,attributeFilter:['class']}); });
 }
