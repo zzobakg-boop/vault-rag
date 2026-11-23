@@ -95,7 +95,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-1-5_이달고.jpg | Generalísimo Miguel Hidalgo y Costilla.png | 호아킨 라미레스 | 퍼블릭 도메인 |
 | 5-1-5_먼로.jpg | Gilbert Stuart, James Monroe, c. 1817, NGA 56915.jpg | 길버트 스튜어트 | CC0 (미국 국립미술관) |
 
-자체 제작: 5-1-5_독립뒤돈의흐름.png(도식, `fig_515_trade.py`) · 5-1-5_라틴아메리카독립_표지.png(배경은 AI 생성 가상 장면 — 19세기 초 카리브해 해안, 실재 장소 아님 · 제목 PIL). · 5-1_묶음_표지.webp(5-1 묶음판 표지, 2026-11-18 — 배경은 AI 생성 가상 장면(Grok Aurora): 빈 왕좌와 바닥의 왕관, 열린 문 밖 깃발 든 군중, 실재 장소·인물 아님 · 제목 PIL · `make-cover.sh`) · 5-1-5_독립지도.svg(5-1 묶음판 «라틴 아메리카의 독립» 칠하기 지도, 2026-11-16 — 나라 경계 Natural Earth 10m admin-0, 퍼블릭 도메인 · 독립 연도와 독립 전 지배국 색은 교과서 156쪽 지도 · `hq_515_latam_fill.py`).
+자체 제작: 5-1-5_독립뒤돈의흐름.png(도식, `fig_515_trade.py`) · 5-1-5_라틴아메리카독립_표지.png(배경은 AI 생성 가상 장면 — 19세기 초 카리브해 해안, 실재 장소 아님 · 제목 PIL). · 5-1_묶음_표지.webp(5-1 묶음판 표지, 2026-11-18 — 배경은 AI 생성 가상 장면(Grok Aurora): 빈 왕좌와 바닥의 왕관, 열린 문 밖 깃발 든 군중, 실재 장소·인물 아님 · 제목 PIL · `make-cover.sh`) · 5-1-5_독립지도.svg(5-1 묶음판 «라틴 아메리카의 독립» 칠하기 지도, 2026-11-16 — 나라 경계 Natural Earth 10m admin-0, 퍼블릭 도메인 · 독립 연도와 독립 전 지배국 색은 교과서 156쪽 지도 · `hq_515_latam_fill.py`). · 5-1-4_선거권확대_원그래프.webp(5-1 묶음판 4단계 «선거법 개정» 말풍선 원그래프, 2026-11-18 — 수치는 교과서 153쪽 자료 2 «영국의 선거법 개정 과정»의 유권자 비율 3·5·9·19·46·62% · matplotlib으로 직접 그림). · 5-1-5_독립뒤돈의흐름_v2.webp(5-1 묶음판 4단계 «독립했는데, 돈은 어디로 흘렀을까» 지도 도식, 2026-11-18 — 땅·나라 경계 Natural Earth 1:1천만, 퍼블릭 도메인 · 아이콘 Twemoji 14.0.2(https://github.com/twitter/twemoji), CC BY 4.0, Twitter, Inc. and other contributors · 근거 교과서 157쪽 · `hq_515_flow.py`) · 5-1-5_커피농장1882.webp(위키미디어 공용 «Slaves working on a coffee plantation 01.jpg», 마르크 페레스 사진, 1882 무렵 브라질 파라이바 계곡, 퍼블릭 도메인) · 5-1-5_질산염공장1889.webp(위키미디어 공용 «Oficina Salitrera Paposo 1889 a.jpg», 루이스 부다 뒤콜리에 사진, 『타라파카 질산염 공장 사진첩』 이키케 1889, 퍼블릭 도메인).
 
 ## 5-2-1 산업 혁명이 일어나다 (2026-10-04)
 
@@ -126,6 +126,8 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 5-2-3_토끼.jpg | Rabbits MyxomatosisTrial WardangIsland 1938.jpg | 작자 미상 | 퍼블릭 도메인 |
 
 자체 제작: 5-2-3_산업화제국주의영향_표지.png(배경은 AI 생성 가상 장면 — 19세기 말 기차역과 항구, 실재 장소 아님 · 제목 PIL).
+
+자체 제작(2026-11-23 5-2 묶음판): 5-2_묶음_표지.webp(5-2 묶음판 표지 — 배경은 AI 생성 가상 장면(Grok Aurora): 19세기 말 서재 탁자 위 아프리카 지도와 컴퍼스, 창밖 공장 굴뚝과 증기선, 실재 장소·인물 아님 · 제목 PIL · `make-cover.sh`+`cover_overlay.py`).
 
 ## 5-1-1 보강 (2026-10-04)
 

@@ -1316,7 +1316,12 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 .ws-pin-panel[hidden]{display:none}
 .ws-pin-t{font-size:15.5px;margin-bottom:2px}
 .ws-pin-d{margin:0 0 6px}
+/* 설명 칸 그림(2026-11-18) — 본문 그림에 붙는 .ws-pin-fig와 이름이 겹치지 않게 .ws-pin-pic */
+.ws-pin-pic{margin:4px 0 6px}
+.ws-pin-pic[hidden]{display:none}
+.ws-pin-pic img{display:block;max-width:100%;max-height:24vh;border-radius:8px;border:1px solid #d9cfb4;background:#fff}
 .ws-pin-nav{display:flex;gap:8px;flex-wrap:wrap}
+@media (min-width:700px){.ws-pin-pic{float:left;width:min(42%,340px);margin:3px 14px 6px 0}.ws-pin-pic img{max-height:none;width:100%}.ws-pin-nav{clear:both}}
 .ws-pin-nav button{font:inherit;font-size:14px;min-height:36px;padding:4px 12px;border-radius:8px;border:1px solid #b9ae92;background:#fff;color:#3a3326;cursor:pointer}
 .ws-pin-nav button:disabled{opacity:.4;cursor:default}
 @media print{
@@ -1384,7 +1389,7 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 </head>
 <body>
 <div class="container">
-  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-2 묶음 — 기계가 바꾼 세상, 나뉘는 세계</h1><p class="hero-subtitle">기계가 바꾼 세상, 나뉘는 세계</p><div class="hero-keywords"><span class="hero-keyword">왜 하필 영국에서 기계가 돌기 시작했을까</span><span class="hero-keyword">공장이 늘자 누구의 삶이 힘들어졌을까</span><span class="hero-keyword">강한 나라들은 왜 바다 건너 땅을 차지하려 했을까</span><span class="hero-keyword">기차와 증기선은 세계를 어떻게 바꾸었을까</span></div><div class="hero-hook">1873년에 나온 소설에서 영국 신사 포그는 80일 만에 세계를 한 바퀴 돌고 런던으로 돌아왔어. 기차와 증기선 덕분이었지. 그 기차와 배는 어디서 나왔고, 무엇을 싣고 어디로 갔을까? 오늘은 교과서 159쪽부터 167쪽까지를 한 시간에 정리한다.</div></section>
+  <section class="hero-section"><h1 class="hero-title">역사① Ⅴ단원 5-2 묶음 — 기계가 바꾼 세상, 나뉘는 세계</h1><p class="hero-subtitle">기계가 바꾼 세상, 나뉘는 세계</p><div class="hero-keywords"><span class="hero-keyword">왜 하필 영국에서 기계가 돌기 시작했을까</span><span class="hero-keyword">공장이 늘자 누구의 삶이 힘들어졌을까</span><span class="hero-keyword">강한 나라들은 왜 바다 건너 땅을 차지하려 했을까</span><span class="hero-keyword">기차와 증기선은 세계를 어떻게 바꾸었을까</span></div><img class="hero-image" src="images/5-2_묶음_표지.webp" alt=""><div class="hero-hook">1873년에 나온 소설에서 영국 신사 포그는 80일 만에 세계를 한 바퀴 돌고 런던으로 돌아왔어. 기차와 증기선 덕분이었지. 그 기차와 배는 어디서 나왔고, 무엇을 싣고 어디로 갔을까? 오늘은 교과서 159쪽부터 167쪽까지를 한 시간에 정리한다.</div></section>
   <div class="control-bar">
     <div class="score">
       빈칸: <span id="score">0</span>/20 · OX: <span id="ox-score">0</span>/5
@@ -1427,7 +1432,7 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 <br>
 <p>영국에서 이 변화는 면직물 공업에서 시작되었다. 면직물의 수요가 늘자 실을 뽑는 ③<input type="text" class="blank-input" data-answer="방적기" data-id="3" style="width:68px" placeholder="">와 옷감을 짜는 ④<input type="text" class="blank-input" data-answer="방직기" data-id="4" style="width:68px" placeholder="">가 발명되었다. 특히 제임스 와트가 개량한 ⑤<input type="text" class="blank-input" data-answer="증기 기관" data-id="5" style="width:100px" placeholder="">이 기계를 움직이는 데 사용되어 면직물의 대량 생산이 가능해졌다. 새로운 기계의 사용으로 전통적인 가내 수공업은 쇠퇴하고 ⑥<input type="text" class="blank-input" data-answer="공장제 기계 공업" data-id="6" style="width:164px" placeholder="">이 확대되었다.</p>
 <br>
-<div class="ws-figrow"><figure class="ws-figrow-item"><img src="images/5-2-1_뮬방적.webp" alt="③이 줄지어 선 공장(1835). (토머스 앨럼 그림, 베인스 『영국 면직 공업의 역사』 1835)" loading="lazy"><figcaption>③이 줄지어 선 공장(1835). (토머스 앨럼 그림, 베인스 『영국 면직 공업의 역사』 1835)</figcaption></figure><figure class="ws-figrow-item"><img src="images/5-2-1_직조공장.jpg" alt="④가 줄지어 선 공장(1835) — 천장의 축과 띠가 기계 수십 대를 함께 돌린다. 그림 속에서 일하는 사람은 대부분 여성이다. (같은 책 1835)" loading="lazy"><figcaption>④가 줄지어 선 공장(1835) — 천장의 축과 띠가 기계 수십 대를 함께 돌린다. 그림 속에서 일하는 사람은 대부분 여성이다. (같은 책 1835)</figcaption></figure></div>
+<div class="ws-figrow"><figure class="ws-figrow-item"><img src="images/5-2-1_뮬방적.webp" alt="③이 줄지어 선 공장(1835). (토머스 앨럼 그림, 베인스 『영국 면직 공업의 역사』 1835)" loading="lazy"><figcaption>③이 줄지어 선 공장(1835). (토머스 앨럼 그림, 베인스 『영국 면직 공업의 역사』 1835)</figcaption></figure><figure class="ws-figrow-item"><img src="images/5-2-1_직조공장.jpg" alt="④가 줄지어 선 공장(1835). (같은 책 1835)" loading="lazy"><figcaption>④가 줄지어 선 공장(1835). (같은 책 1835)</figcaption></figure></div>
 <br>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>🌐 같은 때 저쪽에서는? — 영국이 기계를 만들기 전, 유럽 사람들은 어디서 온 옷감을 입었을까</summary><div class="ws-fold-body">
@@ -1445,7 +1450,7 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 <br>
 <figure class="ws-saryo"><div class="sr-tag">📜 사료</div><blockquote class="sr-q">"몇 살에 공장 일을 시작했나요? — 여섯 살 때요. 몇 시부터 몇 시까지 일했나요? — 바쁠 때는 아침 5시부터 밤 9시까지요. 밥 먹을 시간은요? — 점심에 40분이요. 아침은 일하면서 틈나는 대로 먹었어요. 조금이라도 늦거나 처지면요? — 끈으로 맞았어요."</blockquote><figcaption class="sr-c">— 엘리자베스 벤틀리(당시 23세)의 증언, 영국 의회 「공장 아동 노동 조사 위원회」 청문, 1832</figcaption></figure>
 <br>
-<p>산업화가 널리 퍼지면서 자본가와 노동자라는 새로운 계급이 등장하였다. 자본을 가진 공장주나 은행가와 같은 자본가는 새로운 지배 계급으로 성장하였다. 반면, 자본을 가지지 못한 노동자는 자본가에게 고용되어 임금을 받으며 생활하였다. 이런 새로운 생산관계가 만들어지는 과정에서 생산과 소비가 시장에 따라 결정되는 ⑩<input type="text" class="blank-input" data-answer="자본주의" data-id="10" style="width:84px" placeholder=""> 체제가 자리를 잡았다. 애덤 스미스는 정부의 간섭 없이 생산자와 소비자의 자유로운 경제활동을 보장해야 한다는 ⑪<input type="text" class="blank-input" data-answer="자유방임주의" data-id="11" style="width:116px" placeholder="">를 주장하며 이 체제를 이론적으로 뒷받침하였다.</p>
+<p>산업화가 널리 퍼지면서 자본가와 노동자라는 새로운 계급이 등장하였다. 자본을 가진 공장주나 은행가와 같은 자본가는 새로운 지배 계급으로 성장하였다. 이들은 점차 참정권을 얻고 의회로 진출하며 사회를 이끌었다. 반면, 자본을 가지지 못한 노동자는 자본가에게 고용되어 임금을 받으며 생활하였다. 이런 새로운 생산관계가 만들어지는 과정에서 생산과 소비가 시장에 따라 결정되는 ⑩<input type="text" class="blank-input" data-answer="자본주의" data-id="10" style="width:84px" placeholder=""> 체제가 자리를 잡았다. 애덤 스미스는 정부의 간섭 없이 생산자와 소비자의 자유로운 경제활동을 보장해야 한다는 ⑪<input type="text" class="blank-input" data-answer="자유방임주의" data-id="11" style="width:116px" placeholder="">를 주장하며 이 체제를 이론적으로 뒷받침하였다.</p>
 <br>
 <div class="ws-tb"><div class="ws-tb-tag">📕 교과서 160쪽 · '산업 사회의 두 계층' 그림</div><div class="ws-tb-see">교과서 160쪽 '산업 사회의 두 계층' 그림은 같은 때 영국 사람들을 위 칸과 아래 칸으로 나누어 그렸다.</div><div class="ws-tb-ask">위 칸 사람들과 아래 칸 사람들의 생활이 어떻게 다른지 한 가지 적자. <input type="text" class="blank-input activity-input no-score" data-id="act-1" data-label="교과서 160쪽에서 찾기 — 위 칸 사람들과 아래 칸 사람들의 생활이 어떻게 다른지 한 가지 적자" style="width:200px" placeholder=""></div></div>
 <br>
@@ -1453,12 +1458,33 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 <br>
 <style>.ws-cast{margin:12px 0 18px;padding:10px 12px 8px;border-radius:14px;background:#f6f3ec;border:1px solid #e3dccb}.ws-cast .cast-head{font-size:.84em;font-weight:700;color:#6b5a36;margin:0 0 8px;letter-spacing:.02em}.ws-cast .cast-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px 4px}.ws-cast .cast-p{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;padding:4px 2px 6px;font:inherit;color:inherit;cursor:pointer;border-radius:10px;text-align:center;word-break:keep-all}.ws-cast .cast-p img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 30%;border:2px solid #fff;box-shadow:0 0 0 1.5px #c9b98f;margin-bottom:2px}.ws-cast .cast-p b{font-size:.84em;line-height:1.25}.ws-cast .cast-p span{font-size:.74em;color:#6a6253;line-height:1.25}.ws-cast .cast-p[aria-expanded="true"]{background:#fff}.ws-cast .cast-p[aria-expanded="true"] img{box-shadow:0 0 0 3px #b8862b}.ws-cast .cast-note p{margin:6px 2px 2px;font-size:.88em;line-height:1.55;background:#fff;border-radius:10px;padding:8px 10px;border:1px solid #e3dccb}.ws-cast .cast-note p[hidden]{display:none}.ws-cast .cast-src{font-size:.72em;color:#857c69;margin-top:4px}@media (max-width:640px){.ws-cast .cast-row{grid-template-columns:repeat(var(--n,4),1fr)}.ws-cast .cast-p img{width:56px;height:56px}}@media print{.ws-cast .cast-note p[hidden]{display:block}}</style><div class="ws-cast" role="group" aria-label="같은 공장을 보고 한 세 가지 생각 — 얼굴을 누르면 한 줄 소개"><div class="cast-head">같은 공장을 보고 한 세 가지 생각 — 얼굴을 누르면 한 줄 소개</div><div class="cast-row" style="--n:3"><button type="button" class="cast-p" aria-expanded="false" aria-controls="cast1-0" onclick="var w=this.closest('.ws-cast'),o=this.getAttribute('aria-expanded')==='true';w.querySelectorAll('.cast-p').forEach(function(b){b.setAttribute('aria-expanded','false')});w.querySelectorAll('.cast-note p').forEach(function(p){p.hidden=true});if(!o){this.setAttribute('aria-expanded','true');document.getElementById('cast1-0').hidden=false}"><img src="images/5-2_인물_스미스.webp" alt="애덤 스미스 초상" loading="lazy"><b>애덤 스미스</b><span>1723~1790</span></button><button type="button" class="cast-p" aria-expanded="false" aria-controls="cast1-1" onclick="var w=this.closest('.ws-cast'),o=this.getAttribute('aria-expanded')==='true';w.querySelectorAll('.cast-p').forEach(function(b){b.setAttribute('aria-expanded','false')});w.querySelectorAll('.cast-note p').forEach(function(p){p.hidden=true});if(!o){this.setAttribute('aria-expanded','true');document.getElementById('cast1-1').hidden=false}"><img src="images/5-2_인물_오언.webp" alt="로버트 오언 초상" loading="lazy"><b>로버트 오언</b><span>1771~1858</span></button><button type="button" class="cast-p" aria-expanded="false" aria-controls="cast1-2" onclick="var w=this.closest('.ws-cast'),o=this.getAttribute('aria-expanded')==='true';w.querySelectorAll('.cast-p').forEach(function(b){b.setAttribute('aria-expanded','false')});w.querySelectorAll('.cast-note p').forEach(function(p){p.hidden=true});if(!o){this.setAttribute('aria-expanded','true');document.getElementById('cast1-2').hidden=false}"><img src="images/5-2_인물_마르크스.webp" alt="카를 마르크스 초상" loading="lazy"><b>카를 마르크스</b><span>1818~1883</span></button></div><div class="cast-note"><p id="cast1-0" hidden><b>애덤 스미스</b> — 영국의 경제학자. 1776년에 낸 책에서, 정부가 끼어들지 않으면 시장이 알아서 생산과 값을 맞춘다고 보았다. 공장 문제가 커지기 전이었다.</p><p id="cast1-1" hidden><b>로버트 오언</b> — 영국의 공장주. 자기 공장 마을에서 노동 시간을 줄이고 아이들을 학교에 보내며, 서로 돕는 공동체를 만들려 했다.</p><p id="cast1-2" hidden><b>카를 마르크스</b> — 독일에서 태어나 런던에서 『자본론』을 쓴 사상가. 노동자들이 힘을 모아 자본가를 무너뜨려야 한다고 보았다.</p></div></div>
 <br>
+<style>/* :::정리표 [제목] … 마크다운 표 … ::: — 2026-11-16 천대현 5-1 «세 혁명 표를 공적인 용어로, 정리표 형식과 양식에 맞게».
+   이 블록을 쓴 차시에만 실린다. 첫 줄 = 항목 머리(남색 띠), 첫 칸 = 구분 칸(옅은 남색). 표 처리·빈칸 칸·표 번호는 평소 표와 같다. */
+.ws-sum{margin:16px 0 10px}
+.ws-sum-t{display:inline-block;font-weight:800;font-size:.86em;letter-spacing:.02em;color:#fff;background:#2f4a6d;border-radius:9px 9px 0 0;padding:5px 14px 4px;line-height:1.5}
+.ws-sum table{width:100%;margin:0;border-collapse:separate;border-spacing:0;border:1.5px solid #2f4a6d;border-radius:0 10px 10px 10px;overflow:hidden;background:#fff;table-layout:auto}
+.ws-sum td{border:0;border-top:1px solid #dfe5ee;padding:9px 12px;line-height:1.6;vertical-align:middle;word-break:keep-all}
+.ws-sum td+td{border-left:1px solid #e6ebf2}
+.ws-sum tr:first-child td{background:#2f4a6d;color:#fff;font-weight:750;text-align:center;border-top:0;border-left-color:#46607f;font-size:.95em}
+.ws-sum tr:first-child td:first-child{background:#24384f}
+.ws-sum tr:not(:first-child) td:first-child{background:#eef2f8;color:#24384f;font-weight:750;text-align:center;white-space:nowrap;width:1%}
+.ws-sum tbody tr:nth-child(even):not(:first-child) td:not(:first-child),.ws-sum tr:nth-child(even):not(:first-child) td:not(:first-child){background:#fafbfd}
+@media (max-width:640px){
+  .ws-sum table{font-size:.88em;table-layout:auto}
+  .ws-sum td{padding:6px 5px;line-height:1.5}
+  .ws-sum tr:not(:first-child) td:first-child{white-space:normal;width:3.6em;padding:7px 4px}
+}
+@media print{
+  .ws-sum-t,.ws-sum tr:first-child td,.ws-sum tr:not(:first-child) td:first-child{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style><div class="ws-sum"><div class="ws-sum-t">🗂 세 사람의 생각 정리표</div>
 <table>
-<tr><td></td><td>애덤 스미스</td><td>로버트 오언</td><td>카를 마르크스</td></tr>
-<tr><td>생각의 이름</td><td>⑪</td><td>⑫</td><td>⑫</td></tr>
-<tr><td>공장·땅은 누가?</td><td>저마다 따로 가진다(사유 재산)</td><td>모두 함께</td><td>모두 함께</td></tr>
-<tr><td>어떻게 하자고 했나</td><td>정부는 끼어들지 말고 시장에 맡기자</td><td>서로 돕는 공동체에서 자본가와 노동자가 힘을 합치자</td><td>노동자가 뭉쳐 자본가를 무너뜨리자</td></tr>
+<tr><td>구분</td><td>애덤 스미스</td><td>로버트 오언</td><td>카를 마르크스</td></tr>
+<tr><td>사상</td><td>⑪</td><td>⑫</td><td>⑫</td></tr>
+<tr><td>생산 수단의 소유</td><td>개인이 저마다 소유(사유 재산)</td><td>모두가 함께 소유</td><td>모두가 함께 소유</td></tr>
+<tr><td>해결 방법</td><td>정부의 간섭 없이 시장에 맡긴다</td><td>협동하는 작업 공동체에서 자본가와 노동자가 힘을 합친다</td><td>노동자가 단결해 자본가를 무너뜨린다</td></tr>
 </table>
+</div>
 <br>
 <blockquote>🎙️ 스미스는 공장 문제가 커지기 전에 '정부가 끼어들지 않으면 시장이 알아서 굴러간다'고 봤어. 공장이 늘고 가난이 눈에 보이자 오언과 마르크스는 '공장과 땅을 함께 갖자'고 했지. 둘 다 ⑫지만, 오언은 서로 돕는 공동체로, 마르크스는 노동자가 뭉쳐 뒤집는 길로 가자고 했어.</blockquote>
 <br>
@@ -1475,7 +1501,8 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 <br>
 <p>19세기 중반 이후 탐험가들의 활동으로 아프리카에 지하자원이 풍부하다는 사실이 유럽에 전해졌다. 그러자 유럽 열강은 앞다투어 아프리카를 침략하기 시작하였다. 이들은 ⑯<input type="text" class="blank-input" data-answer="베를린 회의" data-id="16" style="width:116px" placeholder="">에서 아프리카 분할에 합의하였고(1884), 이후 유럽 열강의 식민지 획득 경쟁은 더욱 치열해졌다. 영국은 아프리카를 남북으로 점령해 가면서 카이로와 케이프타운을 연결하는 ⑰<input type="text" class="blank-input" data-answer="종단 정책" data-id="17" style="width:100px" placeholder="">을 펼쳤다. 반면, 프랑스는 알제리에서부터 마다가스카르까지 아프리카를 동서로 점령하는 횡단 정책을 추진하였다. 이 과정에서 프랑스와 영국이 파쇼다 지역에서 충돌하였다(파쇼다 사건, 1898). 한편, 뒤늦게 식민지 경쟁에 뛰어든 독일은 모로코를 둘러싸고 프랑스와 대립하였다. 이와 같은 침략으로 라이베리아와 에티오피아를 제외한 아프리카의 대부분이 열강의 식민지가 되었다.</p>
 <br>
-<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_아프리카분할_v2.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_아프리카분할_v2.webp" alt="1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 1914년까지는 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있었고, 카이로와 케이프타운을 잇는 철도는 끝내 완성되지 못했다. (경계는 개념도 정밀도)" loading="lazy"></a><figcaption>1914년의 아프리카 — 영국(빨강)의 남북 화살표와 프랑스(파랑)의 동서 화살표가 수단에서 엇갈린다. 1914년까지는 영국의 화살표가 지나가는 길 한가운데에 독일 땅(회색)이 끼어 있었고, 카이로와 케이프타운을 잇는 철도는 끝내 완성되지 못했다. (경계는 개념도 정밀도)</figcaption></figure>
+<figure class="ws-fig"><a class="ws-fig-zoom" href="images/5-2-2_아프리카분할_v2.webp" target="_blank" rel="noopener" title="눌러서 크게 보기"><img src="images/5-2-2_아프리카분할_v2.webp" alt="1914년의 아프리카 (직접 그림 · 경계는 개념도 정밀도)" loading="lazy"></a><figcaption>1914년의 아프리카 (직접 그림 · 경계는 개념도 정밀도)</figcaption></figure>
+<br>
 <br>
 <p>17세기경 인도에 진출한 영국은 동인도 회사를 세워 인도를 지배하다가 19세기 후반부터는 총독을 보내어 직접 다스렸다. 프랑스는 베트남과 캄보디아 등 인도차이나반도를 점령하였고, 네덜란드는 인도네시아의 대부분 지역을 식민지로 삼았다. 영국, 프랑스, 독일 등은 영토가 넓고 인구가 많은 중국에 진출하여 여러 이권을 빼앗고 정치에 간섭하였다. 미국은 하와이를 병합하고, 필리핀과 괌을 차지하였다. 그 결과 20세기 초에는 아시아와 태평양 대부분의 지역이 서양 열강의 지배를 받게 되었다.</p>
 <br>
@@ -1737,7 +1764,7 @@ blockquote.v2-voice .v2-who::before{content:"";position:absolute;left:44px;top:1
 </div></details>
 <br>
 <details class="ws-fold ws-fold-더보기"><summary>🖼 그림 출처</summary><div class="ws-fold-body">
-<p>위키미디어 공용(퍼블릭 도메인): 방적·직조 공장(T. 앨럼 그림, 에드워드 베인스 『영국 면직 공업의 역사』 1835) · 애덤 스미스(19세기 판화, 원작 1787) · 로버트 오언(헨리 토머스 라이얼 판화, 1835) · 카를 마르크스(1875 사진) · 로즈의 거상(에드워드 린리 샘번, 『펀치』 1892).</p>
+<p>위키미디어 공용(퍼블릭 도메인): 방적·직조 공장(T. 앨럼 그림, 에드워드 베인스 『영국 면직 공업의 역사』 1835) · 애덤 스미스(19세기 판화, 원작 1787) · 로버트 오언(헨리 토머스 라이얼 판화, 1835) · 카를 마르크스(1875 사진) · 로즈의 거상(에드워드 린리 샘번, 『펀치』 1892) · 와르당섬 토끼(1938 사진). 표지 배경은 AI로 만든 가상 장면(Grok Aurora)이다. 아프리카 지도는 직접 그렸다(경계 historical-basemaps GPL-3.0, 해안선 Natural Earth).</p>
 </div></details>
 <br>
 </div>
@@ -2431,7 +2458,7 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es
 })();
 (function(){var cb=document.querySelector('.control-bar');function f(){if(cb)document.documentElement.style.setProperty('--cbh',(cb.offsetHeight+(innerWidth<=640?0:8))+'px');}f();addEventListener('resize',f);addEventListener('load',f);setTimeout(f,800);})();
 </script>
-<script type="application/json" id="pin-data">{"images/5-2-1_뮬방적.webp": [{"n": 1, "x": 22.0, "y": 58.0, "t": "실을 뽑는 기계", "d": "기계 한 대가 실 수백 가닥을 한꺼번에 뽑는다. 이런 기계가 공장 안에 줄지어 서 있다."}, {"n": 2, "x": 86.0, "y": 80.0, "t": "기계 밑에 엎드린 사람", "d": "움직이는 기계 밑을 기어 다니며 바닥의 솜 찌꺼기를 줍고 있다. 이 일은 몸이 작은 아이들이 많이 맡았다."}]}</script>
+<script type="application/json" id="pin-data">{"images/5-2-1_직조공장.jpg": [{"n": 1, "x": 58.0, "y": 19.0, "t": "천장의 축과 띠", "d": "천장을 가로지르는 긴 쇠막대(축)가 돌면, 거기 걸린 띠가 바닥의 기계마다 힘을 나눠 준다. 축 하나를 돌리는 힘으로 기계 수십 대가 한꺼번에 움직였다."}, {"n": 2, "x": 58.0, "y": 84.0, "t": "기계를 돌보는 여성", "d": "기계 옆에 쪼그려 앉아 실과 천을 살피고 있다. 왼쪽 기계 앞에도, 멀리 줄지어 선 기계 앞에도 일하는 사람은 대부분 여성이다."}], "images/5-2-1_뮬방적.webp": [{"n": 1, "x": 22.0, "y": 58.0, "t": "실을 뽑는 기계", "d": "기계 한 대가 실 수백 가닥을 한꺼번에 뽑는다. 이런 기계가 공장 안에 줄지어 서 있다."}, {"n": 2, "x": 86.0, "y": 80.0, "t": "기계 밑에 엎드린 사람", "d": "움직이는 기계 밑을 기어 다니며 바닥의 솜 찌꺼기를 줍고 있다. 이 일은 몸이 작은 아이들이 많이 맡았다."}], "images/5-2-2_아프리카분할_v2.webp": [{"n": 1, "x": 42.0, "y": 25.0, "t": "영국의 길", "d": "영국은 북쪽 끝 이집트의 카이로에서 남쪽 끝 케이프타운까지 아프리카를 세로로 잇는 땅을 차지하려 했다. 두 도시를 철도와 전신선으로 잇는 것이 꿈이었다."}, {"n": 2, "x": 22.0, "y": 34.0, "t": "프랑스의 길", "d": "프랑스는 서아프리카의 다카르에서 홍해 가의 지부티까지 아프리카를 가로로 잇고자 했다. 교과서는 이 길을 '알제리에서 마다가스카르까지'라고 적었다. 끝을 어디로 잡든 방향은 동서다."}, {"n": 3, "x": 39.6, "y": 44.3, "t": "파쇼다", "d": "두 길이 엇갈린 곳이다. 1898년 나일강 가의 이 마을에서 두 나라 군대가 마주쳤다."}, {"n": 4, "x": 44.0, "y": 62.0, "t": "길을 막은 독일 땅", "d": "1914년까지 영국의 길 한가운데에 독일 땅(회색, 독일령 동아프리카)이 끼어 있었다. 그래서 카이로와 케이프타운을 잇는 철도는 끝내 완성되지 못했다."}, {"n": 5, "x": 17.0, "y": 53.0, "t": "라이베리아", "d": "독립을 지킨 두 나라 가운데 하나다. 미국에서 노예 신분을 벗은 흑인들이 건너가 세운 나라로, 1847년에 독립을 선언했다. 이웃한 영국·프랑스 식민지에 땅 일부를 빼앗겼지만 나라는 지켰다."}, {"n": 6, "x": 49.5, "y": 52.0, "t": "에티오피아", "d": "독립을 지킨 또 한 나라다. 1896년 아도와 전투에서 쳐들어온 이탈리아군을 크게 물리쳐 독립을 지켰다."}, {"n": 7, "x": 15.0, "y": 21.0, "t": "모로코", "d": "뒤늦게 식민지 경쟁에 뛰어든 독일이 이곳을 두고 프랑스와 맞섰다(1905·1911). 결국 대부분을 프랑스가 차지했다(1912)."}]}</script>
 <script id="pin-js">/* 2026-11-17 천대현 5-1 검토판 댓글 «그림을 클릭해서 확대하면 미술관 큐레이터처럼 그 부분이 표시되고 설명이 들어가게 —
    그림 아래 해설이 버려지는 텍스트가 되지 않고 분량도 줄게». 원고 «:::그림 해설 images/….webp» 블록이 있는 차시에만 실린다.
    확대 창(zoom.js)이 열리면 그 그림 위에 번호 표시를 얹고, 번호를 누르면 창 아래 칸에 설명이 뜬다(이전·다음으로 차례대로).
@@ -2485,6 +2512,11 @@ function show(k){
   panel.hidden=false;
   panel.querySelector('.ws-pin-t').innerHTML='<b>'+num(p.n)+' '+esc(p.t)+'</b>';
   panel.querySelector('.ws-pin-d').textContent=p.d;
+  /* 2026-11-18 사회 9-3~4: 줄 끝 «| 그림 | 경로»가 있는 번호만 설명 칸에 그림(지도)을 함께 띄운다 */
+  var fg=panel.querySelector('.ws-pin-pic');
+  /* 그림 태그를 문자열로 짜지 않는다 — HTML을 정규식으로 읽는 검사기가 그 글자를 깨진 그림 경로로 센다 */
+  fg.innerHTML='';
+  if(p.img){ var gi=document.createElement('img'); gi.src=p.img; gi.alt=p.t; fg.appendChild(gi); fg.hidden=false; } else { fg.hidden=true; }
   panel.querySelector('[data-p="prev"]').disabled=k===0;
   panel.querySelector('[data-p="next"]').disabled=k===cur.length-1;
   requestAnimationFrame(place);
@@ -2510,7 +2542,7 @@ function setup(P){
   stage.appendChild(layer);
   panel=document.createElement('div'); panel.className='ws-pin-panel'; panel.hidden=true;
   panel.setAttribute('aria-live','polite');
-  panel.innerHTML='<div class="ws-pin-t"></div><p class="ws-pin-d"></p>'+
+  panel.innerHTML='<div class="ws-pin-t"></div><div class="ws-pin-pic" hidden></div><p class="ws-pin-d"></p>'+
     '<div class="ws-pin-nav"><button type="button" data-p="prev">◀ 이전</button><button type="button" data-p="next">다음 ▶</button>'+
     '<button type="button" data-p="hide">설명 닫기</button></div>';
   panel.addEventListener('click',function(e){ var q=e.target.closest('[data-p]'); if(!q) return;
@@ -2545,7 +2577,7 @@ document.addEventListener('click',function(e){
 });
 })();
 </script>
-<script type="application/json" id="gl-data">[{"id": "gl-1", "kind": "blank", "blank": "2", "word": "②", "text": "영국의 지주들이 농민의 경작지와 여럿이 함께 쓰던 땅(공유지)에 울타리를 쳐서 자기 땅으로 삼은 일이다. 땅을 잃은 농민들은 일자리를 찾아 큰 공장이 모인 도시로 옮겨 갔다. // 이 일로 공장은 값싼 일손을 얻었다. 그런데 농민은 함께 쓰던 땅에서 소와 양을 먹이고 땔감을 모으며 제 살림을 꾸리던 길을 잃고, 남의 공장에서 품삯을 받고 일해야 했다. 같은 사건인데도 누구 쪽에서 보느냐에 따라 얻은 것과 잃은 것이 다르다.", "always": 1}, {"id": "gl-2", "kind": "word", "word": "면직물", "text": "목화에서 얻은 솜으로 짠 천이다. 모직물과 달리 빨아 입을 수 있어 깨끗했고, 얇고 가벼우며 물이 잘 들고 값까지 싸서 찾는 사람이 갑자기 늘었다.", "near": "영국에서 이 변화는"}, {"id": "gl-3", "kind": "blank", "blank": "5", "word": "⑤", "text": "물을 끓일 때 생기는 김의 힘을 기계를 돌리는 힘으로 바꾸는 장치다.", "always": 1}, {"id": "gl-4", "kind": "blank", "blank": "9", "word": "⑨", "text": "이 운동의 이름은 한 지도자에게서 나왔다고 알려졌지만, 그 지도자는 실제로 있었는지 확인되지 않은 전설 속 인물이다. 이 운동은 뒤에 노동 운동의 시초가 되었다.", "always": 1}, {"id": "gl-5", "kind": "blank", "blank": "16", "word": "⑯", "text": "아프리카 콩고강 유역을 두고 벨기에 왕과 포르투갈·프랑스 등이 다툰 일을 계기로 열렸다. 모인 열강은 '먼저 차지해 다스리는 나라가 그 땅을 갖는다'는 원칙에 합의하였다.", "always": 1}, {"id": "gl-6", "kind": "blank", "blank": "17", "word": "⑰", "text": "위 그림은 1892년 영국 잡지 『펀치』에 실린 풍자화 「로즈의 거상」이다. 남아프리카 케이프 식민지의 총리 세실 로즈가 아프리카 남쪽 끝 케이프타운과 북쪽 끝 카이로를 두 발로 딛고 서서 전보를 보내는 전신선을 잇고 있다. 아프리카를 남북으로 잇겠다는 영국의 계획을 한 사람의 몸으로 그렸다.", "img": "images/5-2-2_로즈의거상.webp", "img_cap": "「로즈의 거상」(1892) · 에드워드 린리 샘번 그림 · 『펀치』 · 퍼블릭 도메인"}, {"id": "gl-7", "kind": "blank", "blank": "18", "word": "⑱", "text": "이때 기준이 된 선은 영국 그리니치 천문대를 지나는 본초 자오선이다. 경도가 15°씩 달라질 때마다 1시간씩 차이가 난다.", "always": 1}]</script>
+<script type="application/json" id="gl-data">[{"id": "gl-1", "kind": "blank", "blank": "2", "word": "②", "text": "영국의 지주들이 농민의 경작지와 여럿이 함께 쓰던 땅(공유지)에 울타리를 쳐서 자기 땅으로 삼은 일이다. 땅을 잃은 농민들은 일자리를 찾아 큰 공장이 모인 도시로 옮겨 갔다. // 이 일로 공장은 값싼 일손을 얻었다. 그런데 농민은 함께 쓰던 땅에서 소와 양을 먹이고 땔감을 모으며 제 살림을 꾸리던 길을 잃고, 남의 공장에서 품삯을 받고 일해야 했다. 같은 사건인데도 누구 쪽에서 보느냐에 따라 얻은 것과 잃은 것이 다르다.", "always": 1}, {"id": "gl-2", "kind": "word", "word": "면직물", "text": "목화에서 얻은 솜으로 짠 천이다. 모직물과 달리 빨아 입을 수 있어 깨끗했고, 얇고 가벼우며 물이 잘 들고 값까지 싸서 찾는 사람이 갑자기 늘었다.", "near": "영국에서 이 변화는"}, {"id": "gl-3", "kind": "blank", "blank": "5", "word": "⑤", "text": "물을 끓일 때 생기는 김의 힘을 기계를 돌리는 힘으로 바꾸는 장치다.", "always": 1}, {"id": "gl-4", "kind": "blank", "blank": "9", "word": "⑨", "text": "이 운동의 이름은 한 지도자에게서 나왔다고 알려졌지만, 그 지도자는 실제로 있었는지 확인되지 않은 전설 속 인물이다. 이 운동은 뒤에 노동 운동의 시초가 되었다.", "always": 1}, {"id": "gl-5", "kind": "blank", "blank": "16", "word": "⑯", "text": "아프리카 콩고강 유역을 두고 벨기에 왕과 포르투갈·프랑스 등이 다툰 일을 계기로 열렸다. 모인 열강은 '먼저 차지해 다스리는 나라가 그 땅을 갖는다'는 원칙에 합의하였다.", "always": 1}, {"id": "gl-6", "kind": "blank", "blank": "17", "word": "⑰", "text": "위 그림은 1892년 영국 잡지 『펀치』에 실린 풍자화 「로즈의 거상」이다. 남아프리카 케이프 식민지의 총리 세실 로즈가 아프리카 남쪽 끝 케이프타운과 북쪽 끝 카이로를 두 발로 딛고 서서 전보를 보내는 전신선을 잇고 있다. 아프리카를 남북으로 잇겠다는 영국의 계획을 한 사람의 몸으로 그렸다.", "img": "images/5-2-2_로즈의거상.webp", "img_cap": "「로즈의 거상」(1892) · 에드워드 린리 샘번 그림 · 『펀치』 · 퍼블릭 도메인"}, {"id": "gl-7", "kind": "blank", "blank": "18", "word": "⑱", "text": "이때 기준이 된 선은 영국 그리니치 천문대를 지나는 본초 자오선이다. 경도가 15°씩 달라질 때마다 1시간씩 차이가 난다. 1884년 국제 자오선 회의에서 이 선이 경도의 기준으로 정해졌다. 우리나라는 동경 135°를 기준으로 삼아 영국보다 9시간 빠르다.", "always": 1}, {"id": "gl-8", "kind": "word", "word": "정치적 안정", "text": "5-1에서 본 명예혁명(1688~1689) 뒤로 영국에서는 왕이 아니라 의회가 법과 세금을 정했고, 왕과 의회가 군대를 이끌고 맞서 싸우는 일도 끝났다. 이렇게 나라 안이 오래 안정된 것이 영국에서 먼저 새 기계가 돈 까닭 가운데 하나다.", "near": "영국은 일찍부터"}, {"id": "gl-9", "kind": "word", "word": "석탄과 철", "text": "19세기 영국은 전 세계 석탄의 3분의 2, 철의 2분의 1가량을 캐고 만들었다(교과서 159쪽 그림 ❶). 석탄은 기계를 돌리는 불을 땠고, 철은 기계와 철도를 만드는 재료가 되었다.", "near": "또한 석탄과"}, {"id": "gl-10", "kind": "blank", "blank": "6", "word": "⑥", "text": "이런 곳에서 일하려면 정해진 시간에 나와 늦지 않는 것이 중요해졌다. 시간을 잘 지키고, 부지런하고, 정확해야 한다는 새 생활 습관이 이때 퍼졌다. 공장은 일손이 많은 큰 도시 근처로 옮겨 갔고, 대량으로 만든 면직물은 철도로 항구까지 실려 가 세계로 팔려 나갔다."}, {"id": "gl-11", "kind": "word", "word": "기관차와 증기선", "text": "영국의 스티븐슨이 만든 기관차가 달리기 시작한 뒤 곳곳에 철도가 놓였다. 미국의 풀턴은 1807년 김의 힘으로 움직이는 배를 띄웠다(교과서 160쪽 사진 ③). 표지 이야기의 포그가 80일 만에 세계를 한 바퀴 돈 것도 이 기차와 배 덕분이었다.", "near": "를 활용한"}, {"id": "gl-12", "kind": "word", "word": "참정권", "text": "나랏일에 참여할 수 있는 권리로, 의원을 뽑는 선거권이 대표적이다. 5-1에서 본 1832년 영국 선거법 개정으로 도시의 상공업자를 비롯한 중산 계급이 선거권을 얻었다. 공장주와 은행가 같은 자본가도 여기에 들었다. 같은 공장의 노동자들은 이때 선거권을 얻지 못해, 인민헌장을 내밀며 선거권을 달라고 했다(5-1 ⑳).", "near": "이들은 점차"}, {"id": "gl-13", "kind": "blank", "blank": "11", "word": "⑪", "text": "애덤 스미스는 나라가 경제에 끼어드는 일을 되도록 줄이고, 사람들이 저마다 자기 이익을 좇아 사고팔게 두면 나라의 부가 오히려 커진다고 보았다(1776년에 낸 책 『국부론』). 사는 사람과 파는 사람이 자기 이익만 생각해도 알맞은 값이 저절로 정해지는 시장의 힘을 흔히 '보이지 않는 손'이라고 부른다.", "always": 1}, {"id": "gl-14", "kind": "blank", "blank": "12", "word": "⑫", "text": "처음 이 생각을 편 사람들은 노동자가 불행한 까닭을 서로 이기려고만 다투는 경쟁에서 찾고, 협동과 공동체를 내세웠다. 오언이 세운 뉴 래너크 공장 마을이 그 예다. 아이에게 공장 일 대신 공부를 시키고 노동자에게 집을 마련해 주었다(교과서 162쪽 사진 ⑦). 마르크스는 이런 방법이 현실에서 이루어지기 어렵다고 비판하며, 노동자가 뭉쳐 싸워야 한다고 했다. 이 생각에 힘입어 뒤에 노동자 정당이 생겨 노동자의 권리를 지키려 했다.", "always": 1}, {"id": "gl-15", "kind": "word", "word": "남아도는 국내 자본", "text": "19세기 후반 기업끼리 경쟁이 심해지자, 큰 기업이 작은 기업을 사들이거나 서로 값과 생산량을 미리 짜고 정해 몇몇 큰 기업이 시장을 차지했다. 이렇게 커진 기업과 은행에는 나라 안에서 다 쓸 곳을 찾지 못한 돈이 쌓였다. 교과서는 그 돈을 굴릴 곳을 찾는 것도 바다 건너 땅을 넘본 까닭으로 든다.", "near": "판매 시장을 확보하고,"}, {"id": "gl-16", "kind": "blank", "blank": "14", "word": "⑭", "text": "다윈은 생물이 살아남기 경쟁을 거치며 조금씩 바뀌어 왔다고 설명했다. 이 생각을 사람과 나라 사이의 일에 그대로 옮겨 붙인 것이 이 주장이다. 영국의 철학자 스펜서가 쓴 '적자생존(환경에 가장 알맞은 것이 살아남는다)'이라는 말이 널리 퍼졌다. 이 주장을 따르면 강한 나라가 약한 나라를 차지하는 것도 자연의 법칙이 된다."}, {"id": "gl-17", "kind": "word", "word": "식민지인에게 베푸는 은혜", "text": "교과서 163쪽 '우리 해 보자'의 시 「백인의 짐」(키플링, 1899)이 이 주장을 그대로 담았다. 시는 식민지 사람들을 '반은 악마 같고 반은 어린이 같은 자들'이라고 부르며, 그들을 가르치고 다스리는 일을 백인이 짊어진 짐이라고 했다.", "near": "의무이며, 이는"}, {"id": "gl-18", "kind": "word", "word": "파쇼다 사건", "text": "수단의 나일강 가 마을 파쇼다에서, 이집트 쪽에서 강을 거슬러 남쪽으로 내려온 영국군과 서쪽에서 건너온 프랑스군이 마주쳤다(1898). 전쟁 직전까지 갔지만 프랑스군이 물러났다. 그 뒤 1904년 두 나라는 영국은 이집트를, 프랑스는 모로코를 저마다 세력권으로 두기로 타협했다. 교과서 164쪽 풍자화는 할머니로 변장한 늑대(영국)가 소녀(프랑스)의 쿠키(파쇼다)를 노리는 모습으로 그렸다.", "near": "충돌하였다("}, {"id": "gl-19", "kind": "word", "word": "동인도 회사", "text": "4-3-2 신항로 개척 때 본 것처럼, 유럽 상인들은 이보다 훨씬 전부터 향신료와 차를 찾아 아시아로 몰려들었다. 동인도 회사는 나라에서 아시아 무역을 혼자 할 권리를 받은 회사다. 영국 동인도 회사는 장사를 넘어 군대를 두고 인도 땅을 다스렸다.", "near": "인도에 진출한 영국은"}, {"id": "gl-20", "kind": "word", "word": "이권", "text": "이익을 얻을 수 있는 권리다(교과서 165쪽). 철도를 놓아 운영할 권리, 광산을 캘 권리, 항구 둘레 땅을 빌려 쓸 권리 같은 것이다.", "near": "진출하여 여러"}, {"id": "gl-21", "kind": "blank", "blank": "19", "word": "⑲", "text": "열강은 동남아시아에서 고무·사탕수수 같은 작물을 넓은 농장에서 길러 큰 이익을 얻었다. 네덜란드령 인도네시아 주민들은 고무 농장에서 강제 노동에 시달렸다(교과서 165쪽 사진). 원료는 싼값에 넘기고, 그 원료로 공장에서 만든 물건은 사 와야 하는 짜임이다. 5-1에서 본 라틴 아메리카도 같았다. 오늘 질문으로 보면, 이 짜임에서 누가 이익을 얻고 누가 힘들었을까?"}, {"id": "gl-22", "kind": "word", "word": "특정 품목", "text": "3학년 사회에서 농업의 세계화를 배울 때 다시 만난다. 오늘날에도 커피·카카오처럼 팔 작물 한 가지만 넓게 기르는 곳에서는 그 지역 사람들이 먹을 식량이 모자라기도 한다.", "near": "열강이 요구하는", "label": "🔗 이어 보기"}, {"id": "gl-23", "kind": "word", "word": "유럽의 생태환경", "text": "오스트레일리아에 정착한 한 영국인이 1859년 고향의 토끼를 들여와 농장에 풀어 놓았다. 천적이 없던 토끼는 무섭게 불어나 풀을 먹어 치웠고, 양털 생산까지 줄었다. 사람들은 1900년대 초 긴 울타리를 세워 막으려 했고, 1950년에는 토끼만 걸리는 바이러스를 퍼뜨렸다. 처음엔 크게 줄었지만 이겨 낸 토끼가 다시 불어나, 토끼와의 싸움은 지금도 이어진다. 아래 사진이 그 토끼들이다.", "near": "그곳에 정착하면서"}]</script>
 <script id="gl-js">/* 2026-11-10 사회② Ⅷ: 보충 말풍선 — 교사용 교과서의 파란 주석처럼. 방식 1 낱말 누르기 · 방식 2 채점해서 맞힌 빈칸만.
    넓은 화면(1280px~)은 본문 상자 오른쪽 여백, 좁으면 그 문단 아래. 인쇄는 열린 것만 문단 아래 글로. 시험판 = 8-5~6 검토판 v3(11/9) */
 (function(){
@@ -2595,7 +2627,8 @@ GL.forEach(function(g){
     hit.parentNode.replaceChild(t,hit);
     it.trig=t; it.mk=mk;
   }
-  it.block=it.trig.closest('p,li')||it.trig.parentNode;
+  /* 2026-11-21 사회 5-1 ⑯: 표 칸 안 빈칸이면 칸 옆(tr 안)에 끼어 폭 81px로 찌그러졌다 — 표 밖 바로 아래로 */
+  it.block=it.trig.closest('p,li')||it.trig.closest('table')||it.trig.parentNode;
   it.trig.addEventListener('click',function(){ if(it.peek){ it.peek=false; layout(); return; } setOpen(it,!it.open); });   /* 미리 보기 중에 누르면 열어 둔다 */
   it.pop.querySelector('.gl-x').addEventListener('click',function(){ setOpen(it,false); it.trig.focus(); });
   items.push(it);
@@ -2712,6 +2745,8 @@ GL.forEach(function(g){
   var im=document.createElement('img'); im.src=g.img; im.loading='lazy';
   im.alt=g.img_cap||g.word||'';
   /* 2026-11-17 역사 5-1 «나폴레옹 법전 표지»: 세로 사진은 가로 틀(cover)에 잘려 제목이 사라진다 — 세로면 자르지 않고 줄여 넣는다. 가로 사진은 그대로 */
+  /* 2026-11-18 역사 5-1 «7월 혁명»: 원고 «@15»(img_y) — 가로 틀에서 위아래 어디를 보여 줄지. 없으면 가운데(그대로) */
+  if(g.img_y!=null) im.style.objectPosition='50% '+g.img_y+'%';
   im.onload=function(){ if(im.naturalHeight>im.naturalWidth) fig.classList.add('gl-img-tall'); };
   /* 2026-11-17 역사 5-1 «테니스코트의 서약» 스케치: 말풍선 틀에 잘린 구석(라켓·공)을 보려면 크게 봐야 한다 — 본문 그림과 같은 확대 창(zoom.js) 링크로 감싼다 */
   var a=document.createElement('a'); a.className='ws-fig-zoom'; a.href=g.img; a.target='_blank'; a.rel='noopener'; a.title='눌러서 크게 보기';
