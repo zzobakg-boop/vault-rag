@@ -9,6 +9,7 @@ vault-lint — 볼트 건강 검진 (LLM Wiki의 Lint 워크플로우)
   4. 유사 제목 — 레벤슈타인 거리 기반 중복 후보
 
 결과: 40. Docs/Lint_Report_YYYY-MM-DD.md
+손으로 다시 돌려 확인할 때: python3 lint.py --no-inbox (시스템 인박스에 소비 알림을 보내지 않는다)
 """
 
 import os
@@ -327,7 +328,8 @@ def main():
           f"액션후보 {len(top_actions)}")
 
     # 소비 루프: 액션 후보가 있으면 시스템 레인 인박스에 1건 push (2026-07-09)
-    if top_actions:
+    # 손으로 다시 돌려 확인할 때는 --no-inbox — 11/23 전후 비교로 세 번 돌렸다가 같은 알림이 세 건 쌓였다.
+    if top_actions and "--no-inbox" not in sys.argv:
         import subprocess
         msg = (f"[주간 lint 소비] 타이포 교정 후보 {len(top_actions)}건 — "
                f"'40. Docs/Lint_Report_{today}.md' §5 확인 후 일괄 교정. "
