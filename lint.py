@@ -86,12 +86,15 @@ def extract_wikilinks(content: str) -> set[str]:
     content = CODE_FENCE_RE.sub("", content)
     content = INLINE_CODE_RE.sub("", content)
     # 표 안 별칭 링크 [[타겟\|별칭]]의 이스케이프 백슬래시가 타겟에 붙는 오탐 제거
-    return {m.group(1).strip().rstrip("\\").strip() for m in WIKILINK_RE.finditer(content)}
+    # 링크 글자도 NFC로 — 아래 name_stem과 같은 기준으로 비교한다
+    return {unicodedata.normalize("NFC", m.group(1).strip().rstrip("\\").strip()) for m in WIKILINK_RE.finditer(content)}
 
 
 def name_stem(path: Path) -> str:
-    """파일명에서 확장자·경로 제외한 기본 이름"""
-    return path.stem
+    """파일명에서 확장자·경로 제외한 기본 이름(NFC).
+    iCloud에서 온 이름은 자모로 풀린 NFD로 저장된다(11/23 실측: 볼트 노트 4,681편 중 349편). NFC 링크와 그대로 비교하면
+    멀쩡한 링크를 깨졌다고 세고, 비슷한 NFC 이름을 «타이포 교정 후보»로 내밀었다(11/16·11/23 «판정은 1차 추» 오탐)."""
+    return unicodedata.normalize("NFC", path.stem)
 
 
 def similar(a: str, b: str, threshold: float = 0.85) -> bool:
