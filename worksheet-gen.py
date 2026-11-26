@@ -348,6 +348,7 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
     in_voc = False; voc_rows = []; voc_key = ''   # 2026-09-04: :::낱말 아코디언
     in_vcd = False; vcd_rows = []; vcd_head = ''  # 2026-09-07: :::낱말카드 (한자 카드·가로)
     in_fold = False   # 2026-08-31: 접힌 콜아웃 '> [!타입]- 제목' → <details>
+    _f2c = False      # 2026-11-24: «| 2단» 접힘 안 «> ---» 줄 나눔용
     in_ox_table = False
     title = "학습지"
     table_idx = -1  # 현재 처리 중인 테이블 인덱스
@@ -2912,6 +2913,19 @@ def build_html_from_blank(blank_file, answers, ox_answers, answer_file, teacher=
                 in_fold = True
             elif in_fold and stripped.startswith('>'):
                 body = stripped[2:] if stripped.startswith('> ') else stripped[1:]
+                # 2026-11-24 역사 5-2(천대현 «자료와 글 배치가 언발란스») — «| 2단» 접힘 안 «> ---» = 새 줄(그림 | 글)을 연다.
+                #   그림 하나 옆에 글이 세 배로 늘어지던 것을 «그림+그 글» 두 쌍으로 나눈다. 다른 접힘에선 그대로 문단.
+                if _f2c and body.strip() == '---':
+                    if fold_tbl:
+                        html_parts.append(_fold_table(fold_tbl, inline)); fold_tbl = []
+                    html_parts.append('</div><div class="ws-fold-body ws-fold-row2" style="border-top: 1px dashed #d8cfbd;">')  # 스타일은 줄 안에 — 이 줄을 안 쓴 판은 바이트 그대로
+                    continue
+                # 2026-11-24 역사 5-2 철도 접힘 — «> ===» = 2단을 풀고 한 단으로 넓게(가로로 긴 세계 지도). 이 뒤는 그림도 글도 전체 폭.
+                if _f2c and body.strip() == '===':
+                    if fold_tbl:
+                        html_parts.append(_fold_table(fold_tbl, inline)); fold_tbl = []
+                    html_parts.append('</div><div class="ws-fold-body ws-fold-wide" style="display: block; border-top: 1px dashed #d8cfbd;">')
+                    continue
                 # 🔴 2026-09-02: 접기 블록 안의 표도 렌더한다.
                 #   룰 -0.77(blockquote 안 표는 파이프가 그대로 노출)이 접기에도 그대로 적용됐다.
                 #   '|'로 시작하는 줄을 모아 <table>로 낸다. 구분선(|---|)은 헤더 경계로만 쓴다.

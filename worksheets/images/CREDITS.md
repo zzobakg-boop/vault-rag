@@ -128,6 +128,7 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 자체 제작: 5-2-3_산업화제국주의영향_표지.png(배경은 AI 생성 가상 장면 — 19세기 말 기차역과 항구, 실재 장소 아님 · 제목 PIL).
 
 자체 제작(2026-11-23 5-2 묶음판): 5-2_묶음_표지.webp(5-2 묶음판 표지 — 배경은 AI 생성 가상 장면(Grok Aurora): 19세기 말 서재 탁자 위 아프리카 지도와 컴퍼스, 창밖 공장 굴뚝과 증기선, 실재 장소·인물 아님 · 제목 PIL · `make-cover.sh`+`cover_overlay.py`).
+자체 제작(2026-11-24 5-2 묶음판, 천대현 검토판 댓글 «AI 시대와 대조»): 5-2_묶음_표지_19세기.webp(위 표지의 글자 없는 배경 그대로)·5-2_묶음_표지_AI시대_v2.webp(AI 생성 가상 장면(Grok Aurora): 가까운 미래 사무실, 창밖 지붕에 냉각기를 얹은 상자 모양 데이터센터와 빗속 배달 노동자, 탁자 위 세 빛 그물에 덮인 지구 홀로그램 · 실재 장소·인물·기업 아님 · 글자 없음 · `make-cover.sh`). 표지 전/후 비교(hero_before)에 쓴다.
 
 ## 5-1-1 보강 (2026-10-04)
 
@@ -1972,3 +1973,11 @@ Google Gemini 이미지 모델(gemini-3-pro-image-preview)로 인물만 생성�
 | 9-2_card_europe_fruit.webp | 사회② 9-1~2 카드·말풍선 사진 — 영국 스완지 아시아 식료품점 과일 매대: 바나나, 망고, 리치, 포도, 클레멘타인, 파운드(£) 가격표 (Commons «Exotic fruit for sale at an Asian supermarket.jpg»을 4:3으로 잘라 줄임) | Vouliagmeni · Wikimedia Commons https://commons.wikimedia.org/wiki/File:Exotic_fruit_for_sale_at_an_Asian_supermarket.jpg | CC BY-SA 4.0 · 수정함(자름) |
 | 9-2_card_shrimp_mangrove.webp | 사회② 9-1~2 카드·말풍선 사진 — 방글라데시 해안 새우 양식장을 위에서 봄: 둑으로 나뉜 양식 연못과 수상 가옥, 남은 맹그로브 숲 조각 (Commons «Shrimp Farm by the Mangroves.jpg»을 4:3으로 잘라 줄임) | Amdadphoto · Wikimedia Commons https://commons.wikimedia.org/wiki/File:Shrimp_Farm_by_the_Mangroves.jpg | CC BY-SA 4.0 · 수정함(자름) |
 | 9-1_gloss_cargill.webp | 사회② 9-1~2 카드·말풍선 사진 — 미국 일리노이주 이스트세인트루이스 미시시피강변 카길 곡물 엘리베이터: 흰 탑에 «Cargill» 로고가 또렷, 사일로와 강 적재 설비 (Commons «Cargill and grain elevator in East St. Louis.jpg»을 4:3으로 잘라 줄임) | Mark Schierbecker · Wikimedia Commons https://commons.wikimedia.org/wiki/File:Cargill_and_grain_elevator_in_East_St._Louis.jpg | CC BY-SA 3.0 · 수정함(자름) |
+5-2_캘리코_벽걸이.webp — «Chintz wall panel», 인도 코로만델 해안, 18세기 초, 면에 손으로 그리고 물들임(무늬는 장 베랭(父) 디자인을 따름) · The Metropolitan Museum of Art 소장 · CC0 · https://commons.wikimedia.org/wiki/File:Chintz_wall_panel_MET_DP364555.jpg · 가로 1000px로 줄임(2026-11-24 5-2 묶음판 «같은 때 저쪽에서는?» 접힘, 천대현 검토판 댓글).
+5-2_도시문제_템스강물.webp — William Heath «Monster Soup commonly called Thames Water»(1828), Wellcome Collection V0011218 · 퍼블릭 도메인 · https://commons.wikimedia.org/wiki/File:Monster_Soup_commonly_called_Thames_Water._Wellcome_V0011218.jpg · 가로 1000px로 줄임(2026-11-24 5-2 묶음판 2단계 도시 문제 넘겨 보기).
+5-2_도시문제_콜레라골목.webp — «A Court for King Cholera», Punch 1852 · 퍼블릭 도메인 · https://commons.wikimedia.org/wiki/File:Punch-A_Court_for_King_Cholera.png · 흑백·가로 1000px로 줄임(같은 자리). 8-5_hero_london_dore.jpg도 같은 자리에서 다시 쓴다.
+5-2_하루두장_농가와공장.webp — 자체 제작 도식(PIL, 2026-11-24 5-2 묶음판 «산업 사회» 말풍선). 공장 시간 = 1832년 영국 의회 공장 아동 노동 조사 위원회 엘리자베스 벤틀리 증언, 농가 시간은 해 뜨고 지는 때를 나타낸 개념도.
+5-2_일과노동_스탠딩.webp — 자체 제작 도식(PIL, 2026-11-24 5-2 묶음판 노동 접힘 둘째 줄). 일·노동 구분 = 가이 스탠딩, EBS 위대한 수업 «이 불안정한 시대를 사는 법» 2강(한 학자의 해석으로 표기). 빈칸 답 낱말 없음(②는 번호로만).
+5-2_철도_영국간선.webp — 자체 제작 지도(matplotlib, 2026-11-24 5-2 묶음판 철도 접힘, 스크립트 ~/scripts/curriculum-designer/map-render/hq/hq_52_rail_gb.py). 간선 22개 개통 연도는 위키백과 각 철도 회사 문서, 길이는 J. Simmons(Grace's Guide)·Fordham Sourcebook. 해안선 Natural Earth(퍼블릭 도메인).
+5-2_철도_세계로.webp — 자체 제작 지도(matplotlib Equal Earth, hq_52_rail_world.py). 나라별 첫 철도·대륙 횡단선 연도는 위키백과 각 문서, 세계 길이는 Geistbeck 1887·독일 제국 통계 연감 1915. 바탕 Natural Earth(퍼블릭 도메인). 사실 표 hq_52_rail_facts.json.
+5-2_공장자리_강가에서도시로.webp — 왼쪽 «New Lanark around 1818»(존 위닝 판화, 퍼블릭 도메인; 사진 Nizzan Cohen CC0, https://commons.wikimedia.org/wiki/File:New_Lanark_1818.jpg, 액자 부분 잘라냄) + 오른쪽 William Wyld «Manchester from Kersal Moor»(1852, 퍼블릭 도메인, https://commons.wikimedia.org/wiki/File:Wyld,_William_-_Manchester_from_Kersal_Moor,_with_rustic_figures_and_goats_-_Google_Art_Project.jpg)을 나란히 붙임(2026-11-24 5-2 묶음판 «대규모 공장» 말풍선).

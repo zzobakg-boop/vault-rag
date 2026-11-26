@@ -14,7 +14,7 @@ function key(src){ return String(src||'').replace(/[?#].*$/,'').replace(/^.*\//,
 var K={}; Object.keys(D).forEach(function(k){ K[key(k)]=D[k]; });
 function pinsOf(el){ return K[key(el.tagName==='IMG'?el.getAttribute('src'):el.getAttribute('href'))]; }
 /* 링크 없이 확대 창이 여는 그림(zoom.js STILL과 같은 자리 — 나란히 놓은 그림·교과서 상자·입담) */
-var STILL='figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img';
+var STILL='figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img, .ws-gal-slide img';  /* 2026-11-24 역사 5-2: 넘겨 보기(:::gallery) 그림도 확대 창·번호 해설 */
 
 /* 본문 그림: «눌러서 번호 N곳» 안내 한 줄 + 인쇄용 목록 */
 [].slice.call(document.querySelectorAll('a.ws-fig-zoom')).concat([].slice.call(document.querySelectorAll(STILL))).forEach(function(a){

@@ -98,7 +98,7 @@
   }
   /* 링크로 감싸지 않은 정지 그림(교과서 상자·입담·나란히 놓은 그림)도 같은 창으로 연다.
      눌러서 뒤집거나 고르는 블록 안 그림은 건드리지 않는다. */
-  var STILL = 'figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img';
+  var STILL = 'figure.ws-tb-fig img, figure.ipd-fig img, .ws-figrow-item img, .ws-gal-slide img';  /* 2026-11-24 역사 5-2: 넘겨 보기(:::gallery) 그림도 확대 창·번호 해설 */
   function open(a){
     if (!box) build();
     var isImg = a.tagName === 'IMG';
