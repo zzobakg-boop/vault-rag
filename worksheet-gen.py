@@ -3023,6 +3023,24 @@ def _ws3d_dir(out_path):
     return os.path.join(os.path.dirname(os.path.abspath(out_path)), 'ws3d')
 
 
+# 2026-11-26 천대현(사회② 8-3~4 «중심부와 주변부가 붙어 있어 거리감이 없다 — 학생들이 도심·주거 공업 지역·개발 제한 구역이
+#   다 붙어 있냐고 물었다») → 자료 파일에 "dist"가 있으면 홀로그램 아래에 실제 거리 막대(정적 HTML, 3D를 켜지 않아도 보임).
+def _holo_dist(d):
+    if not d: return ''
+    esc = lambda x: str(x).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+    mx = float(d.get('max', 12)); rows = ''
+    for r in d['rows']:
+        w = max(4, min(100, r['km'] / mx * 100))
+        rows += (f'<div class="hgd-row" style="--c:{r["color"]}"><span class="hgd-name"><b>{esc(r["zone"])}</b>{esc(r["place"])}</span>'
+                 f'<span class="hgd-bar"><i style="width:{w:.1f}%"></i><em>{esc(r["label"])}</em></span></div>')
+    b = d.get('beyond')
+    if b: rows += (f'<div class="hgd-row hgd-beyond" style="--c:{b["color"]}"><span class="hgd-name"><b>{esc(b["zone"])}</b>{esc(b["text"])}</span>'
+                   '<span class="hgd-bar"><i style="width:100%"></i><em>더 바깥 →</em></span></div>')
+    return ('<div class="hg-dist"><p class="hgd-title">📏 ' + esc(d['title']) + '<small>' + esc(d['from']) + '</small></p>'
+            '<div class="hgd-axis"><span>도심 0km</span><span>' + f'{mx:g}km' + '</span></div>' + rows +
+            '<p class="hgd-note">' + esc(d['note']) + '</p><p class="hgd-src">' + esc(d['src']) + '</p></div>')
+
+
 def render_holo(fname, out_path):
     with open(os.path.join(_ws3d_dir(out_path), 'data', fname), encoding='utf-8') as f:
         data = json.load(f)
@@ -3034,7 +3052,7 @@ def render_holo(fname, out_path):
     return ('<div class="ws-holo"><p class="hg-lead"><b>🛰️ 홀로그램 도시로 한눈에 보기</b> — 교과서 150~153쪽 그림 속 도시를 3D로 띄웠다. '
             '돌려 보고, 핀을 눌러 진짜 사진과 그래프를 열어 보자. 위 단추로 보기를 바꾸면 땅값이 솟아오르고, 지하철이 놓이면 도시가 바뀌는 모습도 볼 수 있다.</p>'
             '<div class="hg" data-mode="scape">'
-            '<div class="hg-top"><div class="hg-title">홀로그램 도시<small>교과서 그림을 옮긴 모식도 · 실제 도시가 아니다</small></div>'
+            '<div class="hg-top"><div class="hg-title">홀로그램 도시<small>교과서 그림을 옮긴 모식도 · 실제 도시가 아니다 · 거리는 크게 줄였다</small></div>'
             '<div class="hg-modes" role="group" aria-label="보기 바꾸기"><button type="button" data-mode="scape" aria-pressed="true">🏙 경관</button>'
             '<button type="button" data-mode="price" aria-pressed="false">💰 지가</button><button type="button" data-mode="change" aria-pressed="false">⏳ 경관 변화</button></div></div>'
             f'<div class="hg-stage"><div class="hg-legend" aria-hidden="true">{legend}</div>'
@@ -3044,6 +3062,7 @@ def render_holo(fname, out_path):
             f'<div class="hg-poster"{_ps}><button type="button" class="hg-start">홀로그램 켜기<small>끌어서 돌려 보기 · 핀을 눌러 자료 열기</small></button></div></div>'
             '<div class="hg-ctl"><span>⏳</span><label for="hg-t" style="white-space:nowrap">지하철 놓기</label><input id="hg-t" type="range" min="0" max="100" value="0">'
             '<output for="hg-t">지하철이 놓이기 전</output></div>'
+            f'{_holo_dist(data.get("dist"))}'
             '<aside class="hg-panel" aria-live="polite"></aside>'
             '<p class="hg-note">모식도의 높이와 땅값은 교과서 설명을 옮긴 것이다. 실제 수치는 정보 창의 그래프와 사진에서 확인한다.</p>'
             f'<script type="application/json" class="hg-data">{_j}</script></div></div>')

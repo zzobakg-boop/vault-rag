@@ -81,3 +81,17 @@
 .hg .hg-panel p.hg-kick{font-size:.76rem!important;margin:0 0 8px!important;color:var(--hg-mute)}
 .hg p.hg-nogl{font-size:.9rem!important;line-height:1.5!important;margin:0!important;color:#dff7ff}
 .hg-fallback .hg-top .hg-pin::after,.hg-fallback .hg-top .hg-pin::before{display:none}.hg-fallback .hg-stage+.hg-top{padding-bottom:10px}
+/* 2026-11-26 실제 거리 막대(광주 예) — 지역들이 붙어 보이는 모식도에 거리감 */
+.hg-dist{padding:12px 14px 6px;border-top:1px solid var(--hg-line)}
+.hg .hg-dist .hgd-title{margin:0 0 8px;font-weight:800;color:#bff3ff;font-size:.95rem;line-height:1.5}
+.hgd-title small{display:block;font-weight:500;font-size:.78rem;color:var(--hg-mute)}
+.hgd-axis{display:flex;justify-content:space-between;margin-left:calc(min(40%,190px) + 8px);font-size:.72rem;color:var(--hg-mute);border-bottom:1px dashed var(--hg-line);padding-bottom:2px;margin-bottom:6px}
+.hgd-row{display:flex;align-items:center;gap:8px;margin:7px 0;font-size:.84rem}
+.hgd-name{flex:0 0 min(40%,190px);line-height:1.35;color:#cbeefb}
+.hgd-name b{display:block;color:var(--c);font-size:.86rem}
+.hgd-bar{position:relative;flex:1;height:22px;border-radius:6px;background:rgba(111,231,255,.06)}
+.hgd-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--c);opacity:.75}
+.hgd-bar em{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-style:normal;font-weight:800;font-size:.82rem;color:#eaffff;text-shadow:0 0 4px #051722,0 0 2px #051722}
+.hgd-beyond .hgd-bar i{opacity:.28;background:repeating-linear-gradient(90deg,var(--c) 0 10px,transparent 10px 16px)}
+.hg .hg-dist .hgd-note{margin:10px 0 4px;font-size:.86rem;line-height:1.6;color:#eaffff}
+.hg .hg-dist .hgd-src{margin:0 0 4px;font-size:.72rem;color:var(--hg-mute)}
